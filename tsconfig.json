@@ -24,11 +24,13 @@
         "tests/*"
       ],
       "emberclear/*": [
-        "app/*"
+        "src/*"
       ],
       "*": [
         "types/*"
-      ]
+      ],
+      "ember-redux": ["node_modules/ember-redux/index.d.ts"],
+      "redux": ["node_modules/redux/index.d.ts"]
     }
   },
   "include": [
