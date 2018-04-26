@@ -34,7 +34,7 @@
     }
   },
   "include": [
-    "app",
+    "src/*",
     "tests",
     "types"
   ]

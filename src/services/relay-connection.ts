@@ -1,6 +1,8 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
+import { translationMacro as t } from "ember-i18n";
+
 
 import { Socket } from 'phoenix-socket';
 
@@ -18,6 +20,8 @@ export default class RelayConnection extends Service.extend({
 }) {
   toast = service('toast');
   redux = service('redux');
+  i18n = service('i18n');
+
   socket = null;
   channel = null;
 
@@ -36,16 +40,15 @@ export default class RelayConnection extends Service.extend({
   send(to: string, data: string) {
     const payload = { to, message: data };
 
-    assert(
-      'this.channel must be connected before sending messages',
-      this.channel != null
-    )
+    if (!this.channel) {
+      return this.toast.error(t('connection.errors.send.notConnected'));
+    }
 
     return this.channel
       .push('chat', payload)
-      .receive("ok", (msg: string) => console.log("created message", msg) )
-      .receive("error", (reasons: any) => console.log("create failed", reasons) )
-      .receive("timeout", () => console.log("Networking issue...") )
+      .receive("ok", (msg: string) => console.log(t('connection.log.push.ok', { msg })) )
+      .receive("error", (reasons: any) => console.log(t('connection.log.push.error', { reasons })) )
+      .receive("timeout", () => console.log(t('connection.log.push.timeout')) )
   }
 
   // each user has at least one channel that they subscribe to
@@ -65,6 +68,8 @@ export default class RelayConnection extends Service.extend({
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
   connect() {
+    this.toast.info(t('connection.connecting'));
+
     const publicKey = '';
     const url = DEFAULT_RELAYS[0].url;
 
@@ -73,11 +78,11 @@ export default class RelayConnection extends Service.extend({
 
     socket.onError(() => {
       this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''))
-      this.toast.error('An error occurred in the socket connection!');
+      this.toast.error(t('connection.status.socket.error'));
     });
     socket.onClose(() => {
       this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''))
-      this.toast.info('The socket connection has been dropped!');
+      this.toast.info(t('connection.status.socket.close'));
     });
 
     // establish initial connection to the server
@@ -89,7 +94,9 @@ export default class RelayConnection extends Service.extend({
   }
 
   subscribeToChannel(channelName: string) {
-    assert('socket must be connected', this.socket != null);
+    if (!this.socket) {
+      return this.toast(t('connection.errors.subscribe.notConnected'));
+    }
 
     // subscribe and hook up things.
     const channel = this.socket.channel(channelName, {});
@@ -98,14 +105,12 @@ export default class RelayConnection extends Service.extend({
     channel.onError(() => {
       this.redux.dispatch(stateChange(ConnectionStatus.ChannelError, ''))
 
-      console.info('channel: there was an error!');
       this.socket.disconnect();
     });
 
     channel.onClose(() => {
       this.redux.dispatch(stateChange(ConnectionStatus.ChannelClosed, ''))
 
-      console.info('channel: channel has gone away gracefully')
       this.socket.disconnect();
     });
 
@@ -115,7 +120,7 @@ export default class RelayConnection extends Service.extend({
       .join()
       .receive('ok', this.handleConnected)
       .receive('error', this.handleError)
-      .receive("timeout", () => console.log("Networking issue. Still waiting...") );
+      .receive("timeout", () => this.toast.info(t('connection.status.timeout')) );
 
   }
 

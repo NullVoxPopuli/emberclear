@@ -1,2 +1,13 @@
-{{user-login}}
+I am the application route <br />
 {{outlet}}
+<hr />
+Here is a component: <br  />
+{{user-login}}
+<hr />
+<div class="ui show button"><i class="plus icon"></i></div>
+
+{{#link-to 'application'}} Application {{/link-to}}
+{{#link-to 'setup'}} Setup {{/link-to}}
+{{#link-to 'setup.introduction'}} Introduction {{/link-to}}
+{{#link-to 'setup.confirm-identity'}} Confirm Identity {{/link-to}}
+{{#link-to 'setup.finished'}} Finished {{/link-to}}

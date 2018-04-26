@@ -5,6 +5,11 @@ An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) pro
 
 ## Development
 
+you must run ember-cli canary
+```
+npm install -g https://github.com/ember-cli/ember-cli.git
+```
+
 ```bash
 ./run
 ```
