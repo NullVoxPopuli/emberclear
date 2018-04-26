@@ -1,12 +1,11 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { assert } from '@ember/debug';
 import { translationMacro as t } from "ember-i18n";
 
 
 import { Socket } from 'phoenix-socket';
 
-import { stateChange, ConnectionStatus } from 'emberclear/redux-store/relay-connection';
+import { stateChange, ConnectionStatus } from '../redux-store/relay-connection';
 
 const DEFAULT_RELAYS = {
   0: { url: 'wss://mesh-relay-in-us-1.herokuapp.com/socket' },
@@ -15,15 +14,13 @@ const DEFAULT_RELAYS = {
   3: { url: '' }
 };
 
-export default class RelayConnection extends Service.extend({
-  // anything which *must* be merged to prototype here
-}) {
-  toast = service('toast');
-  redux = service('redux');
-  i18n = service('i18n');
+export default Service.extend({
+  toast: service('toast'),
+  redux: service('redux'),
+  i18n: service('i18n'),
 
-  socket = null;
-  channel = null;
+  socket: null,
+  channel: null,
 
   // TODO: add support for sending along a specific channel / chat-room
   // TODO: consider chatroom implementation with server, or keeping it all
@@ -37,7 +34,7 @@ export default class RelayConnection extends Service.extend({
   //       Cons of Client Side Channels
   //       - more complicated logic for a problem that already been solved
   //
-  send(to: string, data: string) {
+  send(to, data) {
     const payload = { to, message: data };
 
     if (!this.channel) {
@@ -46,10 +43,10 @@ export default class RelayConnection extends Service.extend({
 
     return this.channel
       .push('chat', payload)
-      .receive("ok", (msg: string) => console.log(t('connection.log.push.ok', { msg })) )
-      .receive("error", (reasons: any) => console.log(t('connection.log.push.error', { reasons })) )
+      .receive("ok", (msg) => console.log(t('connection.log.push.ok', { msg })) )
+      .receive("error", (reasons) => console.log(t('connection.log.push.error', { reasons })) )
       .receive("timeout", () => console.log(t('connection.log.push.timeout')) )
-  }
+  },
 
   // each user has at least one channel that they subscribe to
   // this is for direct messages
@@ -91,9 +88,9 @@ export default class RelayConnection extends Service.extend({
     this.subscribeToChannel(`user:${publicKey}`);
 
 
-  }
+  },
 
-  subscribeToChannel(channelName: string) {
+  subscribeToChannel(channelName) {
     if (!this.socket) {
       return this.toast(t('connection.errors.subscribe.notConnected'));
     }
@@ -122,29 +119,22 @@ export default class RelayConnection extends Service.extend({
       .receive('error', this.handleError)
       .receive("timeout", () => this.toast.info(t('connection.status.timeout')) );
 
-  }
+  },
 
-  handleError(data: string) {
+  handleError(data) {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelError, data))
 
     console.error(data);
-  }
+  },
 
   handleConnected() {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelConnected, ''))
-  }
+  },
 
-  handleMessage(data: string) {
+  handleMessage(data) {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelReceived, data))
 
     // process the message and do something with it
     // pass it off to a message processing service
   }
-}
-
-// DO NOT DELETE: this is how TypeScript knows how to look up your services.
-declare module '@ember/service' {
-  interface Registry {
-    'relay-connection': RelayConnection;
-  }
-}
+});
