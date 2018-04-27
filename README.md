@@ -5,11 +5,6 @@ An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) pro
 
 ## Development
 
-you must run ember-cli canary
-```
-npm install -g https://github.com/ember-cli/ember-cli.git
-```
-
 ```bash
 ./run
 ```
@@ -24,3 +19,11 @@ Written in ember for demonstration of
  - websockets
  - typescript
  - all the modern features / best practices of ember
+
+#### Debugging
+
+Module Resolation:
+```js
+// shows all detected services
+Object.keys(window.requirejs.entries).filter(b => b.includes("service"))
+```

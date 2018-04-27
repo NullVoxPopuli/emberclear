@@ -26,7 +26,7 @@
     "@types/qunit": "^2.5.0",
     "@types/rsvp": "^4.0.1",
     "@types/url-parse": "^1.1.0",
-    "ember-cli-typescript": "^1.2.1",
+    "ember-cli-typescript": "github:typed-ember/ember-cli-typescript#mu",
     "ember-i18n": "^5.2.1",
     "ember-lodash-shim": "^2.0.0",
     "ember-redux": "^3.1.1",
