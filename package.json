@@ -28,7 +28,6 @@
     "@types/url-parse": "^1.1.0",
     "ember-cli-typescript": "github:typed-ember/ember-cli-typescript#mu",
     "ember-i18n": "^5.2.1",
-    "ember-lodash-shim": "^2.0.0",
     "ember-redux": "^3.1.1",
     "ember-redux-shim": "^2.5.0",
     "ember-redux-thunk-shim": "^2.4.0",
