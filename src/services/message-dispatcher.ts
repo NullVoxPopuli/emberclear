@@ -7,6 +7,7 @@ export default class MessageDispatcher extends Service {
   relayConnection = service('relay-connection');
 }
 
+// DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
     'message-dispatcher': MessageDispatcher

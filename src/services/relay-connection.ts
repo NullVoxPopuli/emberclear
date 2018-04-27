@@ -141,6 +141,7 @@ export default class RelayConnection extends Service.extend({
 
 }
 
+// DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
     'relay-connection': RelayConnection
