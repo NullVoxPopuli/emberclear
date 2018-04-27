@@ -6,3 +6,9 @@ export default class MessageDispatcher extends Service {
   redux = service('redux');
   relayConnection = service('relay-connection');
 }
+
+declare module '@ember/service' {
+  interface Registry {
+    'message-dispatcher': MessageDispatcher
+  }
+}

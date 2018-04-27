@@ -14,7 +14,7 @@ const DEFAULT_RELAYS = {
   3: { url: '' }
 };
 
-export default Service.extend({
+export default class RelayConnection extends Service.extend({
   toast: service('toast'),
   redux: service('redux'),
   i18n: service('i18n'),
@@ -137,4 +137,12 @@ export default Service.extend({
     // process the message and do something with it
     // pass it off to a message processing service
   }
-});
+}) {
+
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    'relay-connection': RelayConnection
+  }
+}

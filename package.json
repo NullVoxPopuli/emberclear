@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@ember/optional-features": "^0.5.2",
-    "@types/ember": "^2.8.21",
+    "@types/ember": "^2.8.22",
     "@types/ember-data": "^2.14.15",
     "@types/ember-qunit": "^3.0.2",
     "@types/ember-test-helpers": "^0.7.1",
@@ -42,7 +42,7 @@
     "text-encoding": "^0.6.4",
     "toastr": "^2.1.4",
     "tweetnacl-util": "^0.15.0",
-    "typescript": "^2.8.1",
+    "typescript": "^2.8.3",
     "url-parse": "^1.4.0"
   },
   "devDependencies": {
