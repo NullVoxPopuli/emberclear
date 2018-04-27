@@ -1,10 +1,14 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default Route.extend({
-  socket: service('relay-connection'),
+export default class ApplicationRoute extends Route.extend({
+  relaySocket: service('relay-connection')
+}) {
+  
 
-  activate() {
-    this.socket.connect();
+  activate(this: ApplicationRoute) {
+    console.log(this.relaySocket);
+    console.log(this.get('relaySocket'));
+    this.relaySocket.connect();
   }
-});
+}

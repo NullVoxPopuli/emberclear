@@ -97,6 +97,10 @@
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.0.tgz#c40f8e07dce607d3ef25a626b93a6a7cdcf97881"
 
+"@types/phoenix@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@types/phoenix/-/phoenix-0.0.4.tgz#6ada6be91dfdc1fa77ed57691f92821920f71d12"
+
 "@types/qunit@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@types/qunit/-/qunit-2.5.0.tgz#fab886ca4160ba8bf299b146a8f54ee3057c8e32"
@@ -5461,9 +5465,9 @@ path-type@^1.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-phoenix-socket@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/phoenix-socket/-/phoenix-socket-1.2.3.tgz#90d4d96e39961d82f72c255f9150e9afd623d41f"
+phoenix@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.3.0.tgz#1df2c27f986ee295e37c9983ec28ebac1d7f4a3e"
 
 pify@^2.0.0:
   version "2.3.0"
