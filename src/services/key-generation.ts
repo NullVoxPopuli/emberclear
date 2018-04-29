@@ -1,12 +1,12 @@
 import Service from '@ember/service';
 
-import * as bip39 from 'bip39';
+// import * as bip39 from 'bip39';
 
 export default class KeyGeneration extends Service {
   newKeyPair(): string {
     // TODO: do the mnenonic myself.
     //       bip39 is too tied to cryptocurrencies...
-    return bip39.generateMnemonic();
+    // return bip39.generateMnemonic();
   }
 }
 
