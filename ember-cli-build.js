@@ -25,6 +25,8 @@ module.exports = function(defaults) {
     ]
   });
 
+  app.import('node_modules/bip39/index.js');
+  app.import('vendor/shims/bip39.js');
 
   return app.toTree();
 };

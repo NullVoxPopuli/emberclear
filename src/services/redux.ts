@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import {
   reducers, enhancers,
   listOfMiddleware, setupMiddleware
-} from 'emberclear/redux-store/index';
+} from '../redux-store';
 
 // called by the internal ReduxService
 const makeStoreInstance = ({ reducers, enhancers }) => {
@@ -21,8 +21,15 @@ const makeStoreInstance = ({ reducers, enhancers }) => {
   return store;
 };
 
-export default ReduxService.extend({
+export default class Redux extends ReduxService.extend({
   reducers,
   enhancers,
   makeStoreInstance
-});
+}) {}
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your services.
+declare module '@ember/service' {
+  interface Registry {
+    'redux': Redux
+  }
+}

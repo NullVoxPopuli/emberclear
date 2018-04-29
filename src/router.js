@@ -12,6 +12,8 @@ Router.map(function() {
     this.route('confirm-identity');
     this.route('finished');
   });
+
+  this.route('login');
 });
 
 export default Router;

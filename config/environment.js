@@ -27,6 +27,10 @@ module.exports = function(environment) {
       defaultLocale: 'en-us'
     },
 
+    'ember-toastr': {
+      injectAs: 'toastr'
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
