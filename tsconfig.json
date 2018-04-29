@@ -34,7 +34,8 @@
       ],
       "@ember": ["node_modules/@types/ember/index.d.ts"],
       "ember-redux": ["node_modules/ember-redux/index.d.ts"],
-      "redux": ["node_modules/redux/index.d.ts"]
+      "redux": ["node_modules/redux/index.d.ts"],
+      "tweetnacl": ["node_modules/tweetnacl/nacl.d.ts"]
     }
   },
   "include": [
