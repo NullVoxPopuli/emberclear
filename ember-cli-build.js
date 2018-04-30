@@ -19,6 +19,8 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
+
+  // phoenix sockets!
   app.import('node_modules/phoenix/assets/js/phoenix.js',  {
     using: [
       { transformation: 'cjs', as: 'phoenix'}
@@ -27,6 +29,33 @@ module.exports = function(defaults) {
 
   // app.import('node_modules/bip39/index.js');
   // app.import('vendor/shims/bip39.js');
+
+  // tweetnacl-js
+  app.import('node_modules/tweetnacl/nacl-fast.min.js', {
+    using: [
+      { transformation: 'cjs', as: 'tweetnacl'}
+    ]
+  });
+  app.import('vendor/shims/tweetnacl.js');
+
+  // tweetnacl-util
+  app.import('node_modules/tweetnacl-util/nacl-util.js');
+  app.import('vendor/shims/tweetnacl-util.js');
+
+  // secure-random
+  app.import('node_modules/secure-random/lib/secure-random.js');
+  app.import('vendor/shims/secure-random.js');
+
+  // qrcode
+  app.import('node_modules/qrcode/build/qrcode.min.js');
+  app.import('vendor/shims/qrcode.js');
+
+  // text-encoding
+  app.import('node_modules/text-encoding/index.js' ,{
+    using: [
+      { transformation: 'cjs', as: 'text-encoding'}
+    ]
+  });
 
   return app.toTree();
 };

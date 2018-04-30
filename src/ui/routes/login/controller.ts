@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { generateNewKeys } from 'emberclear/crypto/nacl';
+import { generateNewKeys } from 'emberclear/src/utils/nacl';
 
 export default class Login extends Controller.extend({
   keyGeneration: service('key-generation'),

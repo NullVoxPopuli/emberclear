@@ -1,4 +1,5 @@
 import * as NaCl from 'tweetnacl';
+console.log(NaCl);
 import secureRandom from 'secure-random';
 
 import {
@@ -6,7 +7,7 @@ import {
   convertBase64StringToUint8Array,
   convertStringToUint8Array,
   convertUint8ArrayToString
-} from '../utility/string-encoding';
+} from 'emberclear/src/utils/string-encoding';
 
 export function generateNewKeys() {
   const newKeys = NaCl.box.keyPair();
