@@ -14,7 +14,7 @@ const DEFAULT_RELAYS = {
 };
 
 export default class RelayConnection extends Service {
-  // toast = service('toast');
+  toast = service('toast');
   redux = service('redux');
   i18n = service('i18n');
 
@@ -36,7 +36,7 @@ export default class RelayConnection extends Service {
   send(this: RelayConnection, to: string, data: string) {
     const payload = { to, message: data };
     const channel = this.get('channel');
-    // const toast = this.get('toast');
+    const toast = this.get('toast');
 
     if (!channel) {
       return console.error(t('connection.errors.send.notConnected'));
@@ -44,9 +44,9 @@ export default class RelayConnection extends Service {
 
     return channel
       .push('chat', payload)
-      .receive("ok", (msg: string) => console.log(t('connection.log.push.ok', { msg })) )
-      .receive("error", (reasons: any) => console.log(t('connection.log.push.error', { reasons })) )
-      .receive("timeout", () => console.log(t('connection.log.push.timeout')) )
+      .receive("ok", (msg: string) => toast.info(t('connection.log.push.ok', { msg })) )
+      .receive("error", (reasons: any) => toast.error(t('connection.log.push.error', { reasons })) )
+      .receive("timeout", () => toast.info(t('connection.log.push.timeout')) )
   }
 
   // each user has at least one channel that they subscribe to
@@ -66,7 +66,8 @@ export default class RelayConnection extends Service {
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
   connect(this: RelayConnection) {
-    // const toast = this.get('toast');
+    const toast = this.get('toast');
+    // toast.info('hi');
     const redux = this.get('redux');
 
     console.info(t('connection.connecting'));
@@ -77,13 +78,14 @@ export default class RelayConnection extends Service {
     const socket = new Socket(url, { params: { uid: publicKey } });
     this.set('socket', socket);
 
+    console.log('hi');
     socket.onError(() => {
+      toast.error(t('connection.status.socket.error'));
       redux.dispatch(stateChange(ConnectionStatus.SocketError, ''))
-      console.error(t('connection.status.socket.error'));
     });
     socket.onClose(() => {
+      toast.info(t('connection.status.socket.close'));
       redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''))
-      console.info(t('connection.status.socket.close'));
     });
 
     // establish initial connection to the server
