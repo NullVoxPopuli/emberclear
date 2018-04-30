@@ -3,7 +3,7 @@
     'use strict';
 
     return {
-      'default': self['tweetnacl'],
+      'default': self['nacl-fast.min'],
       __esModule: true,
     };
   }

@@ -36,7 +36,7 @@ module.exports = function(defaults) {
       { transformation: 'cjs', as: 'tweetnacl'}
     ]
   });
-  app.import('vendor/shims/tweetnacl.js');
+  // app.import('vendor/shims/tweetnacl.js');
 
   // tweetnacl-util
   app.import('node_modules/tweetnacl-util/nacl-util.js');

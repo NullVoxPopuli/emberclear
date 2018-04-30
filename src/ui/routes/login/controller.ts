@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-// import { generateNewKeys } from 'emberclear/src/utils/nacl';
+import { generateNewKeys } from 'emberclear/src/utils/nacl';
 
 export default class Login extends Controller.extend({
   keyGeneration: service('key-generation'),
@@ -8,10 +8,10 @@ export default class Login extends Controller.extend({
 
   actions: {
     generateSeed() {
-      // const { publicKey, privateKey } = generateNewKeys();
+      const { publicKey, privateKey } = generateNewKeys();
       // const seed = this.get('keyGeneration').newKeyPair();
 
-      // this.set('seed', privateKey);
+      this.set('seed', privateKey);
 
     }
   }
