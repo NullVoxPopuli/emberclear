@@ -1,5 +1,4 @@
-import * as NaCl from 'tweetnacl';
-console.log(NaCl);
+import NaCl from 'tweetnacl';
 import secureRandom from 'secure-random';
 
 import {

@@ -3,7 +3,7 @@
     'use strict';
 
     return {
-      'default': self['nacl-fast.min'],
+      'default': self['nacl'],
       __esModule: true,
     };
   }

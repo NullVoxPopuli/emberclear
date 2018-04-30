@@ -1,5 +1,7 @@
 import Service from '@ember/service';
 
+import { generateNewKeys } from 'emberclear/src/utils/nacl';
+
 // import * as bip39 from 'bip39';
 
 export default class KeyGeneration extends Service {
@@ -7,6 +9,12 @@ export default class KeyGeneration extends Service {
     // TODO: do the mnenonic myself.
     //       bip39 is too tied to cryptocurrencies...
     // return bip39.generateMnemonic();
+
+    const { publicKey, privateKey } = generateNewKeys();
+
+    // convert to bip-format
+
+    return privateKey;
   }
 }
 

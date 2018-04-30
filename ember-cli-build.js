@@ -31,12 +31,9 @@ module.exports = function(defaults) {
   // app.import('vendor/shims/bip39.js');
 
   // tweetnacl-js
-  app.import('node_modules/tweetnacl/nacl-fast.min.js', {
-    using: [
-      { transformation: 'cjs', as: 'tweetnacl'}
-    ]
-  });
-  // app.import('vendor/shims/tweetnacl.js');
+  // TODO: find a wasm implementation
+  app.import('node_modules/tweetnacl/nacl-fast.min.js');
+  app.import('vendor/shims/tweetnacl.js');
 
   // tweetnacl-util
   app.import('node_modules/tweetnacl-util/nacl-util.js');
