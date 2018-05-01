@@ -39,6 +39,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    // Ember.run.backburner.DEBUG = true;
+
   }
 
   if (environment === 'test') {

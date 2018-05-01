@@ -9,6 +9,9 @@ const App = Application.extend({
   Resolver
 });
 
+
+window.Ember.run.backburner.DEBUG = true;
+
 loadInitializers(App, config.modulePrefix + "/src/init");
 
 export default App;

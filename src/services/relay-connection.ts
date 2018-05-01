@@ -15,9 +15,9 @@ const DEFAULT_RELAYS = {
 };
 
 export default class RelayConnection extends Service {
-  // @service('toast') toast;
+  @service('toast') toast;
   @service('redux') redux;
-  // @service('i18n') i18n;
+  @service('i18n') i18n;
 
   socket?: Socket;
   channel?: Channel;
@@ -68,10 +68,10 @@ export default class RelayConnection extends Service {
   //       for chat rooms
   connect(this: RelayConnection) {
     const toast = this.get('toast');
-    // toast.info('hi');
+    toast.info('hi');
     const redux = this.get('redux');
 
-    console.info(t('connection.connecting'));
+    toast.success(t('connection.connecting'))
 
     const publicKey = '';
     const url = DEFAULT_RELAYS[0].url;
