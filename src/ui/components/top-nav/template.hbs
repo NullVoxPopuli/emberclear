@@ -1,0 +1,28 @@
+<div class='navbar'>
+    <div class='container'>
+        <div class='navbar-brand'>
+            {{#link-to 'application' class='navbar-item'}}
+                EmberClear
+            {{/link-to}}
+            <span class="navbar-burger burger" data-target="navbarMenuHeroC">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                {{#link-to 'chat' class='navbar-item'}}
+                    Chat
+                {{/link-to}}
+               
+                {{#link-to 'settings' class='navbar-item'}}
+                    <span class='icon'>
+                        <i class='fas fa-user-circle'></i>
+                    </span>
+                    Profile
+                {{/link-to}}
+            </div>
+        </div>
+    </div>
+</div>

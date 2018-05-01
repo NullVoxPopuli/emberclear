@@ -78,7 +78,6 @@ export default class RelayConnection extends Service {
     const socket = new Socket(url, { params: { uid: publicKey } });
     this.set('socket', socket);
 
-    console.log('hi');
     socket.onError(() => {
       toast.error(t('connection.status.socket.error'));
       redux.dispatch(stateChange(ConnectionStatus.SocketError, ''))

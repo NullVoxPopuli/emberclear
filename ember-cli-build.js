@@ -1,5 +1,7 @@
 'use strict';
 
+const Funnel = require('broccoli-funnel');
+const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
@@ -30,6 +32,12 @@ module.exports = function(defaults) {
   // app.import('node_modules/bip39/index.js');
   // app.import('vendor/shims/bip39.js');
 
+  // font awesome
+  app.import('vendor/fontawesome/css/font-awesome-all.min.css');
+  var fontTree = new Funnel('vendor/fontawesome/webfonts', { destDir: '/assets/fontawesome/webfonts' });
+  var fontStyleTree = new Funnel('vendor/fontawesome/css', { destDir: '/assets/fontawesome/css' });
+
+
   // tweetnacl-js
   // TODO: find a wasm implementation
   app.import('node_modules/tweetnacl/nacl-fast.min.js');
@@ -54,5 +62,5 @@ module.exports = function(defaults) {
     ]
   });
 
-  return app.toTree();
+  return mergeTrees([app.toTree(), fontTree, fontStyleTree]);
 };
