@@ -1,13 +1,15 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+
+import { service } from '@ember-decorators/service';
+
 
 export default class ApplicationRoute extends Route {
-  relaySocket = service('relay-connection');
-  toast = service('toast');
+  @service('relay-connection') relaySocket;
+  // @service('toast') toast;
 
   activate(this: ApplicationRoute) {
-    this.get('relaySocket').connect();
-    // console.log(this.get('toast'));
-    // this.get('toast').success('hello');
+    this.relaySocket.connect();
+
+    // this.toast.success('hello');
   }
 }

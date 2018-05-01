@@ -1,6 +1,7 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
 import { translationMacro as t } from "ember-i18n";
+
+import { service } from '@ember-decorators/service';
 
 import { Channel, Socket } from 'phoenix';
 
@@ -14,9 +15,9 @@ const DEFAULT_RELAYS = {
 };
 
 export default class RelayConnection extends Service {
-  toast = service('toast');
-  redux = service('redux');
-  i18n = service('i18n');
+  // @service('toast') toast;
+  @service('redux') redux;
+  // @service('i18n') i18n;
 
   socket?: Socket;
   channel?: Channel;

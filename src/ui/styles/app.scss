@@ -10,3 +10,34 @@
 
 @import 'fontawesome/css/fontawesome-all.min.css';
 @import "bulma";
+
+@import "utility/sticky-footer";
+
+// sticky footer
+.full-view-wrapper {
+  @include sticky-footer-container;
+  width: 100%;
+  overflow: auto;
+
+  .main-section {
+    @include sticky-footer-content;
+    width: 100%;
+    min-height: 700px;
+    position: relative;
+
+    // so that content can be centered and such
+    display: flex;
+    // so it behaves like a normal web page
+    flex-direction: column;
+  }
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#wrapper {
+  flex: 1;
+}
