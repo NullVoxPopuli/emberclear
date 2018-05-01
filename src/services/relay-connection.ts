@@ -15,7 +15,7 @@ const DEFAULT_RELAYS = {
 };
 
 export default class RelayConnection extends Service {
-  @service('toast') toast;
+  @service('notifications') toast;
   @service('redux') redux;
   @service('i18n') i18n;
 
@@ -67,11 +67,7 @@ export default class RelayConnection extends Service {
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
   connect(this: RelayConnection) {
-    const toast = this.get('toast');
-    toast.info('hi');
-    const redux = this.get('redux');
-
-    toast.success(t('connection.connecting'))
+    this.toast.info(t('connection.connecting'))
 
     const publicKey = '';
     const url = DEFAULT_RELAYS[0].url;
@@ -80,12 +76,12 @@ export default class RelayConnection extends Service {
     this.set('socket', socket);
 
     socket.onError(() => {
-      toast.error(t('connection.status.socket.error'));
-      redux.dispatch(stateChange(ConnectionStatus.SocketError, ''))
+      this.toast.error(t('connection.status.socket.error'));
+      this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''))
     });
     socket.onClose(() => {
-      toast.info(t('connection.status.socket.close'));
-      redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''))
+      this.toast.info(t('connection.status.socket.close'));
+      this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''))
     });
 
     // establish initial connection to the server

@@ -3,7 +3,7 @@ import Controller from '@ember/controller';
 import { service } from '@ember-decorators/service';
 import { action, computed } from '@ember-decorators/object';
 
-export default class Login extends Controller {
+export default class Setup extends Controller {
   @service('key-generation') keyGeneration;
 
   seed = ''
