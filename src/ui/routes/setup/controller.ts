@@ -1,24 +1,25 @@
 import Controller from '@ember/controller';
-
 import { service } from '@ember-decorators/service';
-import { action, computed } from '@ember-decorators/object';
+import { action } from '@ember-decorators/object';
 
-export default class Setup extends Controller {
-  @service('key-generation') keyGeneration;
+import IdentityService from 'emberclear/services/identity';
 
-  seed = ''
+export default class SetupController extends Controller {
+  @service('identity') identity!: IdentityService;
+
+  name!: string;
 
   @action
-  generateSeed() {
-    const seed = this.keyGeneration.newKeyPair();
+  createIdentity(this: SetupController) {
+    this.identity.create(this.name);
 
-    this.set('seed', seed);
+    this.transitionToRoute('chat');
   }
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your controllers.
 declare module '@ember/controller' {
   interface Registry {
-    'login': Login;
+    'setup': SetupController;
   }
 }

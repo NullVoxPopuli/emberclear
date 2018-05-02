@@ -7,6 +7,7 @@ import { action } from '@ember-decorators/object';
 
 export default class ChatRoute extends Route {
   @service('relay-connection') relaySocket;
+  @service('identity') identity;
 
   activate(this: ApplicationRoute) {
     this.relaySocket.connect();
@@ -15,7 +16,9 @@ export default class ChatRoute extends Route {
 
   // ensure we are allowed to be here
   beforeModel() {
-    this.transitionTo('setup');
+    if (!this.identity.exists()) {
+      this.transitionTo('setup');
+    }
   }
 
 }
