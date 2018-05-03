@@ -1,7 +1,8 @@
 ---
 language: node_js
 node_js:
-  - "6"
+  - "node"
+  - "lts/*"
 
 sudo: false
 dist: trusty
@@ -10,8 +11,11 @@ addons:
   chrome: stable
 
 cache:
+  yarn: true
   directories:
     - $HOME/.npm
+    - $HOME/.yarn
+    - node_modules
 
 env:
   global:
@@ -19,8 +23,8 @@ env:
     - JOBS=1
 
 before_install:
-  - npm config set spin false
+  - yarn config set cache-folder $HOME/.yarn
 
 script:
-  - npm run lint:js
-  - npm test
+  # - npm run lint:js
+  - yarn test
