@@ -4,7 +4,7 @@ node_js:
   - "node"
   - "lts/*"
 
-sudo: false
+sudo: "required"
 dist: trusty
 
 addons:
