@@ -13,7 +13,7 @@ export default class SetupController extends Controller {
   createIdentity(this: SetupController) {
     this.identity.create(this.name);
 
-    this.transitionToRoute('chat');
+    this.transitionToRoute('setup.completed');
   }
 }
 

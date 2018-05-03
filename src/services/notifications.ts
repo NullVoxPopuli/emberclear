@@ -3,8 +3,6 @@ import RSVP from 'rsvp';
 
 import { service } from '@ember-decorators/service';
 
-import { createNotification } from 'emberclear/src/utils/create-notification';
-
 // TODO: implement sysstem-notifications
 export default class Notifications extends Service {
   @service('toast') toast;
@@ -45,15 +43,15 @@ export default class Notifications extends Service {
           if (permission === 'granted') {
             return resolve()
           }
-            
+
           return reject();
         });
       }
-  
+
       return resolve();
     });
 
-    
+
   }
 
   showNotification(msg: string, title: string, options = {}) {

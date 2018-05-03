@@ -1,0 +1,30 @@
+{{#focus-card title='What would you like to be called?'}}
+
+  <div class='card-content'>
+    <div class='content'>
+      If you would like to use this account on other computers,
+      please store this mnemonic in a secure place. It will be used
+      to login.
+      <pre>
+        mnemonic goes here
+      </pre>
+    </div>
+  </div>
+
+  <footer class="card-footer">
+    <div class='card-footer-item'>
+      <button
+        class='button'
+        {{action (transition-to 'setup.index')}}>
+        Back
+      </button>
+
+      <button
+        class='button'
+        {{action 'createIdentity'}}>
+        Next
+      </button>
+    </div>
+  </footer>
+
+{{/focus-card}}

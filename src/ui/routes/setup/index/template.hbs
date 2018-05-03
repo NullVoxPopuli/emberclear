@@ -1,0 +1,23 @@
+{{#focus-card title='What would you like to be called?'}}
+
+  <div class="card-content">
+    <div class="content">
+      <label>This is how others will identify you</label>
+      {{input
+        class='input is-large'
+        type='text'
+        value=name}}
+    </div>
+  </div>
+
+  <footer class="card-footer">
+    <div class='card-footer-item'>
+      <button
+        class='button'
+        {{action createIdentity}}>
+        Next
+      </button>
+    </div>
+  </footer>
+
+{{/focus-card}}

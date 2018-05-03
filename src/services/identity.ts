@@ -10,7 +10,7 @@ import Identity from 'emberclear/data/models/identity';
 // TODO: use actual model, and use this just for proxying to that
 export default class IdentityService extends Service {
   @service('key-generation') keyGeneration!: KeyGeneration;
-  @service('store') store!: DS.Store;
+  // @service('store') store!: DS.Store;
 
   name?: string;
   publicKey?: string;
@@ -19,12 +19,12 @@ export default class IdentityService extends Service {
   create(name: string) {
     const { publicKey, privateKey } = this.keyGeneration.newKeyPair();
 
-    this.store.createRecord('identity', {
-      id: 'me',
-      name,
-      privateKey,
-      publicKey
-    });
+    // this.store.createRecord('identity', {
+    //   id: 'me',
+    //   name,
+    //   privateKey,
+    //   publicKey
+    // });
   }
 
   exists(): boolean {

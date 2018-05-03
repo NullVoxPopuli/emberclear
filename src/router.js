@@ -7,9 +7,13 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('setup');
-  this.route('login');
   this.route('chat');
+
+  this.route('setup', function() {
+    this.route('completed');
+  });
+
+  this.route('login');
   this.route('settings');
   this.route('faq');
 });
