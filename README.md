@@ -2,6 +2,9 @@
 
 An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) protocol.
 
+TODO:
+- add rust/wasm bip39 mnemonics?
+- replace tweetnacl with wasm version.
 
 ## Development
 
