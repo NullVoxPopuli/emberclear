@@ -19,7 +19,8 @@ export default class IdentityService extends Service {
     const { publicKey, privateKey } = generateNewKeys();
 
     this.set('privateKey', privateKey);
-    console.log(publicKey, privateKey );
+    this.set('publicKey', publicKey);
+    this.set('name', name);
     // this.store.createRecord('identity', {
     //   id: 'me',
     //   name,
@@ -29,6 +30,7 @@ export default class IdentityService extends Service {
   }
 
   exists(): boolean {
+    return !!this.privateKey;
     const identity = this._identity();
 
     if (!identity) return false;

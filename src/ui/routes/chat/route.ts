@@ -11,7 +11,6 @@ export default class ChatRoute extends Route {
 
   activate(this: ApplicationRoute) {
     this.relaySocket.connect();
-
   }
 
   // ensure we are allowed to be here
