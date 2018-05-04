@@ -3,22 +3,23 @@ import Service from '@ember/service';
 
 import { service } from '@ember-decorators/service';
 
-import KeyGeneration from 'emberclear/services/key-generation';
+import { generateNewKeys } from 'emberclear/src/utils/nacl';
 import Identity from 'emberclear/data/models/identity';
 
 
 // TODO: use actual model, and use this just for proxying to that
 export default class IdentityService extends Service {
-  @service('key-generation') keyGeneration!: KeyGeneration;
   // @service('store') store!: DS.Store;
 
   name?: string;
   publicKey?: string;
   privateKey?: string;
 
-  create(name: string) {
-    const { publicKey, privateKey } = this.keyGeneration.newKeyPair();
+  create(this: IdentityService, name: string) {
+    const { publicKey, privateKey } = generateNewKeys();
 
+    this.set('privateKey', privateKey);
+    console.log(publicKey, privateKey );
     // this.store.createRecord('identity', {
     //   id: 'me',
     //   name,

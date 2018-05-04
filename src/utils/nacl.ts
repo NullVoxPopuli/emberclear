@@ -31,6 +31,7 @@ export function encryptFor(messageWithoutNonce: string, theirPublicKey: string, 
     mySecretKeyUint8Array);
 
   const fullMessage = new Uint8Array(nonce.length + box.length);
+
   fullMessage.set(nonce);
   fullMessage.set(message, nonce.length);
 
