@@ -78,6 +78,7 @@
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.0.0",
+    "ember-route-helpers": "^1.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/637d242c187b82de4111bc2a4d566b377a3ee62e.tgz",
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3"
