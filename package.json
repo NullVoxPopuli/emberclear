@@ -44,6 +44,8 @@
     "ember-symbol-observable": "1.0.1",
     "ember-toastr": "^1.7.1",
     "font-awesome": "^4.7.0",
+    "libsodium": "^0.7.3",
+    "libsodium-wrappers": "^0.7.3",
     "phoenix": "^1.3.0",
     "qrcode": "^1.2.0",
     "redux": "3.7.2",

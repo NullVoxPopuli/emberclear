@@ -29,15 +29,19 @@ module.exports = function(defaults) {
     ]
   });
 
-
   // font awesome
   app.import('vendor/fontawesome/css/font-awesome-all.min.css');
   var fontTree = new Funnel('vendor/fontawesome/webfonts', { destDir: '/assets/fontawesome/webfonts' });
   var fontStyleTree = new Funnel('vendor/fontawesome/css', { destDir: '/assets/fontawesome/css' });
 
 
+  // libsodium
+  app.import('node_modules/libsodium/dist/modules/libsodium.js');
+  app.import('node_modules/libsodium-wrappers/dist/modules/libsodium-wrappers.js');
+  app.import('vendor/shims/libsodium.js');
+  app.import('vendor/shims/libsodium-wrappers.js');
+
   // tweetnacl-js
-  // TODO: find a wasm implementation
   app.import('node_modules/tweetnacl/nacl-fast.min.js');
   app.import('vendor/shims/tweetnacl.js');
 
@@ -54,7 +58,7 @@ module.exports = function(defaults) {
   app.import('vendor/shims/qrcode.js');
 
   // text-encoding
-  app.import('node_modules/text-encoding/index.js' ,{
+  app.import('node_modules/text-encoding/index.js', {
     using: [
       { transformation: 'cjs', as: 'text-encoding'}
     ]

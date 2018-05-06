@@ -12,6 +12,14 @@ export function convertUint8ArrayToBase64String(array: Uint8Array): string {
   return naclUtil.encodeBase64(array);
 }
 
+export function ensureUint8Array(text: string | Uint8Array): Uint8Array {
+  if (text.constructor === Uint8Array) {
+    return text;
+  }
+
+  return convertStringToUint8Array(text);
+}
+
 export function convertBase64StringToUint8Array(base64: string): Uint8Array {
   return naclUtil.decodeBase64(base64);
 }
