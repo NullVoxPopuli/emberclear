@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "ES2017",
     "allowJs": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",

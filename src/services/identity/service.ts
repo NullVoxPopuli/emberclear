@@ -4,10 +4,10 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
 import { generateNewKeys } from 'emberclear/src/utils/nacl/utils';
+import { toBase64 } from 'emberclear/src/utils/string-encoding';
 import Identity from 'emberclear/data/models/identity';
 
 
-// TODO: use actual model, and use this just for proxying to that
 export default class IdentityService extends Service {
   // @service('store') store!: DS.Store;
 
@@ -15,11 +15,13 @@ export default class IdentityService extends Service {
   publicKey?: string;
   privateKey?: string;
 
-  create(this: IdentityService, name: string) {
-    const { publicKey, privateKey } = generateNewKeys();
+  async create(this: IdentityService, name: string) {
+    const { publicKey, privateKey } = await generateNewKeys();
+    const pub = await toBase64(publicKey);
+    const priv = await toBase64(privateKey);
 
-    this.set('privateKey', privateKey);
-    this.set('publicKey', publicKey);
+    this.set('privateKey', priv);
+    this.set('publicKey', pub);
     this.set('name', name);
     // this.store.createRecord('identity', {
     //   id: 'me',

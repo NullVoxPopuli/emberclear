@@ -41,28 +41,25 @@ module.exports = function(defaults) {
   app.import('vendor/shims/libsodium.js');
   app.import('vendor/shims/libsodium-wrappers.js');
 
-  // tweetnacl-js
-  app.import('node_modules/tweetnacl/nacl-fast.min.js');
-  app.import('vendor/shims/tweetnacl.js');
-
-  // tweetnacl-util
-  app.import('node_modules/tweetnacl-util/nacl-util.js');
-  app.import('vendor/shims/tweetnacl-util.js');
-
-  // secure-random
-  app.import('node_modules/secure-random/lib/secure-random.js');
-  app.import('vendor/shims/secure-random.js');
+  // bip39
+  // app.import('node_modules/string_decoder/index.js', { using: [{ transformation: 'cjs', as: 'string_decoder' }]});
+  // app.import('node_modules/emitter/dist/emitter.js', { using: [{ transformation: 'cjs', as: 'emitter' }]});
+  // app.import('node_modules/stream/index.js', { using: [{ transformation: 'cjs', as: 'stream' }]});
+  // app.import('node_modules/buffer/index.js', { using: [{ transformation: 'cjs', as: 'buffer' }]});
+  app.import('node_modules/bip39/index.js',  { using: [{ transformation: 'cjs', as: 'bip39'}]});
+  // app.import('node_modules/bip39/index.js');
+  // app.import('vendor/shims/bip39.js');
 
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
 
   // text-encoding
-  app.import('node_modules/text-encoding/index.js', {
-    using: [
-      { transformation: 'cjs', as: 'text-encoding'}
-    ]
-  });
+  // app.import('node_modules/text-encoding/index.js', {
+  //   using: [
+  //     { transformation: 'cjs', as: 'text-encoding'}
+  //   ]
+  // });
 
   return mergeTrees([app.toTree(), fontTree, fontStyleTree]);
 };

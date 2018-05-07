@@ -1,0 +1,24 @@
+<div class="card-content">
+  <div class="content">
+    <label>This is how others will identify you</label>
+    {{input
+      class='input is-large'
+      type='text'
+      value=name}}
+
+      {{!-- {{inputs/text-input
+        required=true
+        onChange=(action (mut name))}} --}}
+  </div>
+</div>
+
+<footer class="card-footer">
+  <div class='card-footer-item'>
+    <button
+      class='button'
+      disabled={{nameIsBlank}}
+      {{action createIdentity}}>
+      Next
+    </button>
+  </div>
+</footer>
