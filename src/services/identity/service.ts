@@ -20,24 +20,20 @@ export default class IdentityService extends Service {
     const pub = await toBase64(publicKey);
     const priv = await toBase64(privateKey);
 
-    this.set('privateKey', priv);
-    this.set('publicKey', pub);
-    this.set('name', name);
-    // this.store.createRecord('identity', {
-    //   id: 'me',
-    //   name,
-    //   privateKey,
-    //   publicKey
-    // });
+    this.store.createRecord('identity', {
+      id: 'me',
+      name,
+      priv,
+      pub
+    });
   }
 
   exists(): boolean {
-    return !!this.privateKey;
     const identity = this._identity();
 
     if (!identity) return false;
 
-    const key = identity.get('privateKey');
+    const key = identity.privateKey;
 
     return ((key || '').length > 0);
   }

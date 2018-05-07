@@ -40,16 +40,7 @@ module.exports = function(defaults) {
   app.import('node_modules/libsodium-wrappers/dist/modules/libsodium-wrappers.js');
   app.import('vendor/shims/libsodium.js');
   app.import('vendor/shims/libsodium-wrappers.js');
-
-  // bip39
-  // app.import('node_modules/string_decoder/index.js', { using: [{ transformation: 'cjs', as: 'string_decoder' }]});
-  // app.import('node_modules/emitter/dist/emitter.js', { using: [{ transformation: 'cjs', as: 'emitter' }]});
-  // app.import('node_modules/stream/index.js', { using: [{ transformation: 'cjs', as: 'stream' }]});
-  // app.import('node_modules/buffer/index.js', { using: [{ transformation: 'cjs', as: 'buffer' }]});
-  // app.import('node_modules/bip39/index.js',  { using: [{ transformation: 'cjs', as: 'bip39'}]});
-  // app.import('node_modules/bip39/index.js');
-  // app.import('vendor/shims/bip39.js');
-  app.import('vendor/bip39-browserified.js');
+  app.import('vendor/bip39-browserified.js', { using: [{ transformation: 'cjs', as: 'bip39'}]});
 
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');

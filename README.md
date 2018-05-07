@@ -23,6 +23,11 @@ Written in ember for demonstration of
  - typescript
  - all the modern features / best practices of ember
 
+
+#### Onetime browserify things
+
+https://wzrd.in/
+
 #### Debugging
 
 Module Resolation:
