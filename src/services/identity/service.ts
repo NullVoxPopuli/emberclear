@@ -3,7 +3,7 @@ import Service from '@ember/service';
 
 import { service } from '@ember-decorators/service';
 
-import { generateNewKeys } from 'emberclear/src/utils/nacl';
+import { generateNewKeys } from 'emberclear/src/utils/nacl/utils';
 import Identity from 'emberclear/data/models/identity';
 
 

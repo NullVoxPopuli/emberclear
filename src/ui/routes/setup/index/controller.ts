@@ -10,8 +10,12 @@ export default class SetupController extends Controller {
   name!: string;
 
   @action
-  createIdentity(this: SetupController) {
-    this.identity.create(this.name);
+  async createIdentity(this: SetupController) {
+    // if (this.name && this.name.length < 1) {
+    //   return;
+    // }
+
+    await this.identity.create(this.name);
 
     this.transitionToRoute('setup.completed');
   }

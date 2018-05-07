@@ -1,5 +1,6 @@
 import * as nacl from './utils';
 import { module, test } from 'qunit';
+import { convertUint8ArrayToString } from 'emberclear/src/utils/string-encoding';
 
 module('Unit | Utility | nacl', function(hooks) {
 
@@ -17,13 +18,27 @@ module('Unit | Utility | nacl', function(hooks) {
     assert.ok(boxKeys.privateKey);
   });
 
-  test('box encrypt | works', async function(assert) {
+  test('encryptFor/decryptFrom | works with Uint8Array', async function(assert) {
       const bob = await nacl.generateNewKeys();
       const alice = await nacl.generateNewKeys();
 
-      const ciphertext = await nacl.encryptFor('hello', bob.publicKey, alice.privateKey);
-      const decrypted = await nacl.decryptFrom(ciphertext, bob.publicKey, alice.privateKey);
+      const msg = 'hello';
+      const msgAsUint8 = Uint8Array.from([104, 101, 108, 108, 111]);
+      const ciphertext = await nacl.encryptFor(msg, bob.publicKey, alice.privateKey);
+      const decrypted = await nacl.decryptFrom(ciphertext, bob.publicKey, bob.privateKey);
 
-      assert.equal('hello', decrypted);
+      assert.deepEqual(msgAsUint8, decrypted);
+  });
+
+  test('encrypt/decrypt | works', async function(assert) {
+    const bob = await nacl.generateNewKeys();
+    const alice = await nacl.generateNewKeys();
+
+    // hello
+    const msg = Uint8Array.from([104, 101, 108, 108, 111]);
+    const ciphertext = await nacl.encrypt(msg, bob.publicKey, alice.privateKey);
+    const decrypted = await nacl.decrypt(ciphertext, bob.publicKey, bob.privateKey);
+
+    assert.deepEqual(msg, decrypted);
   });
 });

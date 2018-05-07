@@ -1,42 +1,52 @@
-import naclUtil from 'tweetnacl-util';
 import * as QRCode from 'qrcode';
+import _libsodium from 'libsodium-wrappers';
 
-// this package offers a ton of encoding / decoding options.
-// We can probably slim this back down to UTF-*
-import { TextDecoder } from 'text-encoding';
+export async function libsodium(): Promise<ISodium> {
+  await _libsodium.ready;
 
-const defaultEncoding = 'utf-8';
-const utf8Decoder = new TextDecoder(defaultEncoding);
-
-export function convertUint8ArrayToBase64String(array: Uint8Array): string {
-  return naclUtil.encodeBase64(array);
+  return _libsodium;
 }
 
-export function ensureUint8Array(text: string | Uint8Array): Uint8Array {
+export async function toBase64(array: Uint8Array): Promise<string> {
+  const sodium = await libsodium();
+
+  return sodium.to_base64(array);
+}
+
+export async function fromBase64(base64: string): Promise<Uint8Array> {
+  const sodium = await libsodium();
+
+  return sodium.from_base64(base64);
+}
+
+export async function fromString(str: string): Promise<Uint8Array> {
+  const sodium = await libsodium();
+
+  return sodium.from_string(str);
+}
+
+export async function toString(uint8Array: Uint8Array): Promise<string> {
+  const sodium = await libsodium();
+
+  return sodium.to_string(uint8Array);
+}
+
+export async function ensureUint8Array(text: string | Uint8Array): Promise<Uint8Array> {
   if (text.constructor === Uint8Array) {
-    return text;
+    return text as Uint8Array;
   }
 
-  return convertStringToUint8Array(text);
+  return await fromString(text as string);
 }
 
-export function convertBase64StringToUint8Array(base64: string): Uint8Array {
-  return naclUtil.decodeBase64(base64);
-}
-
-export function convertStringToUint8Array(string: string): Uint8Array {
-  const base64 = btoa(string);
-  return naclUtil.decodeBase64(base64);
-}
-
-export function convertUint8ArrayToString(array: Uint8Array) {
-  const string = utf8Decoder.decode(array);
-  // string includes control characters, such as null
-  // which is common if the string is shorter than a block
-  const trimmed = string.replace(/^\0+/, '').replace(/\0+$/, '');
-
-  return trimmed;
-}
+// export function convertUint8ArrayToString(array: Uint8Array) {
+//   const string = utf8Decoder.decode(array);
+//   // string includes control characters, such as null
+//   // which is common if the string is shorter than a block
+//   const trimmed = string.replace(/^\0+/, '').replace(/\0+$/, '');
+//
+//   return trimmed;
+// }
 
 export async function convertObjectToQRCodeDataURL(object: any): Promise<string> {
   const string = JSON.stringify(object);

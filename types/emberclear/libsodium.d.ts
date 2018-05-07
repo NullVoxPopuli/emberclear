@@ -1,9 +1,13 @@
 
 interface BoxKeys {
-  keyType: string,
+  // keyType: string,
   privateKey: Uint8Array,
   publicKey: Uint8Array
 }
+
+type BoxInput =
+  | string
+  | Uint8Array
 
 type Key =
   | string
@@ -14,7 +18,7 @@ type Key =
 // }
 
 // https://gist.github.com/buu700/039601a7b410474f0edba9977a8c6393
-declare module 'libsodium-wrappers' {
+// declare module 'libsodium-wrappers' {
 	interface ISodium {
 		crypto_aead_chacha20poly1305_ABYTES: number;
 		crypto_aead_chacha20poly1305_KEYBYTES: number;
@@ -90,5 +94,5 @@ declare module 'libsodium-wrappers' {
 		to_string (a: Uint8Array) : string;
 	}
 
-	const sodium: ISodium;
-}
+	// const sodium: ISodium;
+// }

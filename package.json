@@ -50,11 +50,8 @@
     "qrcode": "^1.2.0",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
-    "secure-random": "^1.1.1",
     "text-encoding": "^0.6.4",
     "toastr": "^2.1.4",
-    "tweetnacl": "^1.0.0",
-    "tweetnacl-util": "^0.15.0",
     "typescript": "^2.8.3",
     "url-parse": "^1.4.0"
   },
