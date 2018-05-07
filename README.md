@@ -1,4 +1,5 @@
 # emberclear
+[![Build Status](https://travis-ci.com/NullVoxPopuli/emberclear.svg?branch=master)](https://travis-ci.com/NullVoxPopuli/emberclear)
 
 An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) protocol.
 
