@@ -1,0 +1,1 @@
+../../../src/locales/en-us/translations.ts
