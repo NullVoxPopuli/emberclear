@@ -11,9 +11,11 @@
   },
   "repository": "https://github.com/NullVoxPopuli/emberclear",
   "scripts": {
-    "build": "node_modules/.bin/ember build",
-    "start": "node_modules/.bin/ember serve",
-    "test": "node_modules/.bin/ember test"
+    "ember": "EMBER_CLI_MODULE_UNIFICATION=true node_modules/.bin/ember",
+    "build": "yarn ember build",
+    "start": "yarn ember serve",
+    "test": "yarn ember test",
+    "lint:js": "node_modules/.bin/eslint ./*.js src blueprints config lib server tests"
   },
   "dependencies": {
     "@ember-decorators/babel-transforms": "^2.0.0",
@@ -55,9 +57,9 @@
     "url-parse": "^1.4.0"
   },
   "devDependencies": {
-    "broccoli-asset-rev": "^2.4.5",
+    "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
-    "ember-cli": "github:ember-cli/ember-cli",
+    "ember-cli": "github:ember-cli/ember-cli#8f6bdda5dba5a08679fe3a9f896f0efc5db30acb",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-dependency-checker": "^2.0.0",
@@ -70,17 +72,18 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
-    "ember-data": "github:emberjs/data",
+    "ember-data": "github:emberjs/data#5b330097c79037620cd7441a4e729302bae2cf40",
     "ember-export-application-global": "^2.0.0",
-    "ember-load-initializers": "^1.0.0",
+    "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.0.0",
     "ember-route-helpers": "^1.0.0",
-    "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/637d242c187b82de4111bc2a4d566b377a3ee62e.tgz",
+    "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/ce5af9915b4ecf926d649d51cc2eeb70c6af4fd6.tgz",
     "eslint-plugin-ember": "^5.0.0",
-    "loader.js": "^4.2.3"
+    "loader.js": "^4.2.3",
+    "qunit-dom": "^0.6.2"
   },
   "engines": {
-    "node": "^4.5 || 6.* || >= 7.*"
+    "node": "6.* || >= 8.*"
   }
 }

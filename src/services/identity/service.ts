@@ -9,7 +9,7 @@ import Identity from 'emberclear/data/models/identity';
 
 
 export default class IdentityService extends Service {
-  // @service('store') store!: DS.Store;
+  @service('store') store!: DS.Store;
 
   name?: string;
   publicKey?: string;

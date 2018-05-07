@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
-import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic';
+import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
 
 export default class SetupCompletedController extends Controller {
   @service('identity') identity;

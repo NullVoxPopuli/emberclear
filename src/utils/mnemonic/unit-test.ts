@@ -1,6 +1,6 @@
 import * as nacl from './utils';
 import { module, test } from 'qunit';
-import { mnemonicFromNaClBoxPrivateKey } from './mnemonic';
+import { mnemonicFromNaClBoxPrivateKey } from './utils';
 
 module('Unit | Utility | mnemonic', function(hooks) {
 

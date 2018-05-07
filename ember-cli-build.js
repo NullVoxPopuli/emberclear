@@ -46,9 +46,10 @@ module.exports = function(defaults) {
   // app.import('node_modules/emitter/dist/emitter.js', { using: [{ transformation: 'cjs', as: 'emitter' }]});
   // app.import('node_modules/stream/index.js', { using: [{ transformation: 'cjs', as: 'stream' }]});
   // app.import('node_modules/buffer/index.js', { using: [{ transformation: 'cjs', as: 'buffer' }]});
-  app.import('node_modules/bip39/index.js',  { using: [{ transformation: 'cjs', as: 'bip39'}]});
+  // app.import('node_modules/bip39/index.js',  { using: [{ transformation: 'cjs', as: 'bip39'}]});
   // app.import('node_modules/bip39/index.js');
   // app.import('vendor/shims/bip39.js');
+  app.import('vendor/bip39-browserified.js');
 
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');
