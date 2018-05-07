@@ -1,1 +1,1 @@
-../../../src/locales/en-us/translations.ts
+../../../src/locales/en-us/translations.js
