@@ -10,7 +10,7 @@ import Router from 'emberclear/router';
 // use a form validation library ^
 export default class NameEntry extends Component {
   @service('identity') identity!: IdentityService;
-  @service router!: Router;
+  @service router;
 
   name!: string;
 
@@ -22,8 +22,9 @@ export default class NameEntry extends Component {
   @action
   async createIdentity(this: NameEntry) {
     if (this.nameIsBlank) return;
-
-    await this.identity.create(this.name);
+    if (!this.identity.exists()) {
+      await this.identity.create(this.name);
+    }
 
     this.router.transitionTo('setup.completed');
   }

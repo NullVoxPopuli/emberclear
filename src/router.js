@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('chat');
 
   this.route('setup', function() {
+    this.route('new');
     this.route('completed');
   });
 

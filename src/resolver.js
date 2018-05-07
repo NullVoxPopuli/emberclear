@@ -18,7 +18,6 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
   locale: { definitiveCollection: 'main'},
   'ember-i18n@config': { definitiveCollection: 'main' },
   'util': { definitiveCollection: 'utils' },
-  // 'store': { definitiveCollection: 'main' }
 });
 
 moduleConfig.collections.main.types.push('config');

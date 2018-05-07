@@ -72,6 +72,7 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
+    "ember-concurrency": "^0.8.19",
     "ember-data": "github:emberjs/data#5b330097c79037620cd7441a4e729302bae2cf40",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.1.0",

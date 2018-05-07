@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
+import { isBlank, isPresent } from '@ember/utils';
 
 import { service } from '@ember-decorators/service';
 
@@ -23,36 +24,39 @@ export default class IdentityService extends Service {
     this.store.createRecord('identity', {
       id: 'me',
       name,
-      priv,
-      pub
+      privateKey: priv,
+      publicKey: pub
     });
+
+    console.log(this._identity());
   }
 
   exists(): boolean {
     const identity = this._identity();
 
-    if (!identity) return false;
+    if (identity === null) return false;
+    if (isBlank(identity)) return false;
 
-    const key = identity.privateKey;
+    const key = identity.privateKey);
 
-    return ((key || '').length > 0);
+    return isPresent(identity.privateKey));
   }
 
-  load() {
-    const json = JSON.parse(localStorage.identity);
-
-    this.store.createRecord('identity', json);
-  }
-
-  dump() {
-    const identity = this._identity();
-
-    if (!identity) return;
-
-    const json = identity.serialize({ includeId: true });
-
-    localStorage.identity = json;
-  }
+  // load() {
+  //   const json = JSON.parse(localStorage.identity);
+  //
+  //   this.store.createRecord('identity', json);
+  // }
+  //
+  // dump() {
+  //   const identity = this._identity();
+  //
+  //   if (isBlank(identity)) return;
+  //
+  //   const json = identity.serialize({ includeId: true });
+  //
+  //   localStorage.identity = json;
+  // }
 
   _identity(): Identity | null {
     return this.store.peekRecord('identity', 'me');

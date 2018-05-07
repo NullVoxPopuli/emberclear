@@ -40,14 +40,14 @@ export default class RelayConnection extends Service {
     const toast = this.get('toast');
 
     if (!channel) {
-      return console.error(t('connection.errors.send.notConnected'));
+      return console.error(this.i18n.t('connection.errors.send.notConnected'));
     }
 
     return channel
       .push('chat', payload)
-      .receive("ok", (msg: string) => toast.info(t('connection.log.push.ok', { msg })) )
-      .receive("error", (reasons: any) => toast.error(t('connection.log.push.error', { reasons })) )
-      .receive("timeout", () => toast.info(t('connection.log.push.timeout')) )
+      .receive("ok", (msg: string) => toast.info(this.i18n.t('connection.log.push.ok', { msg })) )
+      .receive("error", (reasons: any) => toast.error(this.i18n.t('connection.log.push.error', { reasons })) )
+      .receive("timeout", () => toast.info(this.i18n.t('connection.log.push.timeout')) )
   }
 
   // each user has at least one channel that they subscribe to
@@ -67,7 +67,7 @@ export default class RelayConnection extends Service {
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
   connect(this: RelayConnection) {
-    this.toast.info(t('connection.connecting'))
+    this.toast.info(this.i18n.t('connection.connecting'));
 
     const publicKey = '';
     const url = DEFAULT_RELAYS[0].url;
@@ -76,11 +76,11 @@ export default class RelayConnection extends Service {
     this.set('socket', socket);
 
     socket.onError(() => {
-      this.toast.error(t('connection.status.socket.error'));
+      this.toast.error(this.i18n.t('connection.status.socket.error'));
       this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''))
     });
     socket.onClose(() => {
-      this.toast.info(t('connection.status.socket.close'));
+      this.toast.info(this.i18n.t('connection.status.socket.close'));
       this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''))
     });
 
@@ -98,7 +98,7 @@ export default class RelayConnection extends Service {
     // const toast = this.get('toast');
 
     if (!socket) {
-      return toast.error(t('connection.errors.subscribe.notConnected'));
+      return toast.error(this.i18n.t('connection.errors.subscribe.notConnected'));
     }
 
     // subscribe and hook up things.
@@ -123,7 +123,7 @@ export default class RelayConnection extends Service {
       .join()
       .receive('ok', this.handleConnected)
       .receive('error', this.handleError)
-      .receive("timeout", () => console.info(t('connection.status.timeout')) );
+      .receive("timeout", () => console.info(this.i18n.t('connection.status.timeout')) );
 
   }
 
