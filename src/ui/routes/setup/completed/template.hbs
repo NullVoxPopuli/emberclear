@@ -1,10 +1,8 @@
-{{#focus-card title='What would you like to be called?'}}
+{{#focus-card title=(t 'ui.setup.almostReady')}}
 
   <div class='card-content'>
     <div class='content'>
-      If you would like to use this account on other computers,
-      please store this mnemonic in a secure place. It will be used
-      to login.
+      {{t 'ui.setup.mnemonicPrompt'}}
       <pre>{{mnemonic}}</pre>
     </div>
   </div>
@@ -14,13 +12,13 @@
       <button
         class='button'
         {{action (transition-to 'setup.index')}}>
-        Back
+        {{t 'buttons.back'}}
       </button>
 
       <button
         class='button'
         {{action (transition-to 'chat')}}>
-        Next
+        {{t 'buttons.next'}}
       </button>
     </div>
   </footer>

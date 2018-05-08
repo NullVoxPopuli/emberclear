@@ -1,6 +1,6 @@
 <div class="card-content">
   <div class="content">
-    <label>This is how others will identify you</label>
+    <label>{{t 'ui.setup.nameLabel'}}</label>
     {{input
       class='input is-large'
       type='text'
@@ -18,7 +18,7 @@
       class='button'
       disabled={{nameIsBlank}}
       {{action createIdentity}}>
-      Next
+      {{t 'buttons.next'}}
     </button>
   </div>
 </footer>
