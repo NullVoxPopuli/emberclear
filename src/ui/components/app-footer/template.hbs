@@ -3,25 +3,23 @@
     <div class="content">
       <div class='columns'>
         <div class='column is-half'>
-          <h4>Navigation</h4>
-          {{#link-to 'application'}}Home{{/link-to}}<br />
-          {{#link-to 'chat'}}Chat{{/link-to}}<br />
-          {{#link-to 'settings'}}Profile{{/link-to}}<br />
+          <h4>{{t 'ui.footer.navigation'}}</h4>
+          {{#link-to 'application'}}{{t 'routes.home'}}{{/link-to}}<br />
+          {{#link-to 'chat'}}{{t 'routes.chat'}}{{/link-to}}<br />
+          {{#link-to 'settings'}}{{t 'routes.profile'}}{{/link-to}}<br />
 
-          {{#link-to 'faq'}}F.A.Q.{{/link-to}}<br />
+          {{#link-to 'faq'}}{{t 'routes.faq'}}{{/link-to}}<br />
         </div>
 
 
         <div class='column is-half'>
-          <strong>EmberClear</strong> by Preston Sego
-          ()<a href="https://github.com/NullVoxPopuli/" target='_blank'>NullVoxPopuli</a>).
-          <br />
-
-          The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank'>source code</a>
-          uses the <a href="http://opensource.org/licenses/mit-license.php" target='_blank'>MIT</a> license.
+          <strong>{{t 'appname'}}</strong> {{t 'authoredBy'}}
+          (<a href="https://github.com/NullVoxPopuli/" target='_blank'>NullVoxPopuli</a>).
+          <br /><br  />
+          {{t 'ui.footer.license'}}
           <br /><br />
 
-          Want to support this project? <br />
+          {{t 'ui.footer.wantToSupport'}} <br />
           ETH: 0x85b7b3343A85A5378c1cB7e7A1a7b6f5ac0767fF <br />
           BTC: 36EoDTVCYNhc6wSk6JbwXZKmVkxvba57Vr
         </div>

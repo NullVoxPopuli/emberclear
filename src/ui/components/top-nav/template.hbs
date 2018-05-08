@@ -2,7 +2,7 @@
     <div class='container'>
         <div class='navbar-brand'>
             {{#link-to 'application' class='navbar-item'}}
-                EmberClear
+              {{t 'appname'}}
             {{/link-to}}
             <span class="navbar-burger burger" data-target="navbarMenuHeroC">
                 <span></span>
@@ -13,14 +13,14 @@
         <div class="navbar-menu">
             <div class="navbar-end">
                 {{#link-to 'chat' class='navbar-item'}}
-                    Chat
+                    {{t 'routes.chat'}}
                 {{/link-to}}
 
                 {{#link-to 'settings' class='navbar-item'}}
                     <span class='icon'>
                         <i class='fas fa-user-circle'></i>
                     </span>
-                    Profile
+                    {{t 'routes.profile'}}
                 {{/link-to}}
             </div>
         </div>

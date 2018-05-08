@@ -1,6 +1,7 @@
 export default {
   appname: 'emberclear',
   subheader: 'Encrypted Chat. No History. No Logs.',
+  authoredBy: 'by Preston Sego',
 
   connection: {
     connecting: 'Connecting...',
@@ -35,6 +36,12 @@ export default {
     back: 'Back',
     begin: 'Begin',
   },
+  routes: {
+    home: 'Home',
+    chat: 'Chat',
+    profile: 'Profile',
+    faq: 'F.A.Q.'
+  },
   ui: {
     faq: {
       title: 'F.A.Q',
@@ -48,6 +55,15 @@ export default {
       howDoesWorkA: ``,
       whyQ: 'Why?',
       whyA: ``,
+    },
+    footer: {
+      navigation: 'Navigation',
+      wantToSupport: 'Want to support this project?',
+      license: `
+        The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank'>source code</a>
+        uses the <a href="http://opensource.org/licenses/mit-license.php" target='_blank'>MIT</a> license.
+      `,
+
     },
     login: {
       title: 'Login',
