@@ -6,7 +6,15 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    // eslint slows down the dev-build-debug cycle significantly
+    // hinting: false disables linting at build time.
+    hinting: false,
+    eslint: {
+      testGenerator: 'qunit',
+      group: true,
+      rulesDir: 'eslint-rules',
+      extensions: ['js', 'ts'],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -23,24 +31,24 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   // phoenix sockets!
-  app.import('node_modules/phoenix/assets/js/phoenix.js',  {
-    using: [
-      { transformation: 'cjs', as: 'phoenix'}
-    ]
+  app.import('node_modules/phoenix/assets/js/phoenix.js', {
+    using: [{ transformation: 'cjs', as: 'phoenix' }],
   });
 
   // font awesome
   app.import('vendor/fontawesome/css/font-awesome-all.min.css');
-  var fontTree = new Funnel('vendor/fontawesome/webfonts', { destDir: '/assets/fontawesome/webfonts' });
-  var fontStyleTree = new Funnel('vendor/fontawesome/css', { destDir: '/assets/fontawesome/css' });
+  var fontTree = new Funnel('vendor/fontawesome/webfonts', {
+    destDir: '/assets/fontawesome/webfonts',
+  });
 
+  var fontStyleTree = new Funnel('vendor/fontawesome/css', { destDir: '/assets/fontawesome/css' });
 
   // libsodium
   app.import('node_modules/libsodium/dist/modules/libsodium.js');
   app.import('node_modules/libsodium-wrappers/dist/modules/libsodium-wrappers.js');
   app.import('vendor/shims/libsodium.js');
   app.import('vendor/shims/libsodium-wrappers.js');
-  app.import('vendor/bip39-browserified.js', { using: [{ transformation: 'cjs', as: 'bip39'}]});
+  app.import('vendor/bip39-browserified.js', { using: [{ transformation: 'cjs', as: 'bip39' }] });
 
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');

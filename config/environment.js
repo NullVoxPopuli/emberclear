@@ -4,8 +4,8 @@ module.exports = function(environment) {
   let ENV = {
     'ember-resolver': {
       features: {
-        EMBER_RESOLVER_MODULE_UNIFICATION: true
-      }
+        EMBER_RESOLVER_MODULE_UNIFICATION: true,
+      },
     },
     modulePrefix: 'emberclear',
     environment,
@@ -15,22 +15,22 @@ module.exports = function(environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
-        'ember-module-unification': true
+        'ember-module-unification': true,
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
-    'i18n': {
-      defaultLocale: 'en-us'
+    i18n: {
+      defaultLocale: 'en-us',
     },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
   };
 
   if (environment === 'development') {
@@ -40,7 +40,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     // Ember.run.backburner.DEBUG = true;
-
   }
 
   if (environment === 'test') {

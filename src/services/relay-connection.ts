@@ -14,6 +14,7 @@ const DEFAULT_RELAYS = {
   3: { url: '' }
 };
 
+// Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
   @service('notifications') toast;
   @service('redux') redux;

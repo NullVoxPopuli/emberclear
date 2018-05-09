@@ -3,7 +3,6 @@ import Resolver from 'ember-resolver/resolvers/fallback';
 
 import { merge } from '@ember/polyfills';
 
-
 import buildResolverConfig from 'ember-resolver/ember-config';
 import config from '../config/environment';
 
@@ -13,15 +12,15 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
  * to add support for them.
  */
 
- merge(moduleConfig.types, {
+merge(moduleConfig.types, {
   config: { definitiveCollection: 'main' },
-  locale: { definitiveCollection: 'main'},
+  locale: { definitiveCollection: 'main' },
   'ember-i18n@config': { definitiveCollection: 'main' },
-  'util': { definitiveCollection: 'utils' },
+  util: { definitiveCollection: 'utils' },
 });
 
 moduleConfig.collections.main.types.push('config');
 
 export default Resolver.extend({
-  config: moduleConfig
+  config: moduleConfig,
 });

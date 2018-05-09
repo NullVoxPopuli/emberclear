@@ -10,26 +10,26 @@ export default {
       push: {
         ok: 'push: created. {{msg}}',
         error: 'push: message failed. {{reasons}}',
-        timeout: 'push: Networking issue'
-      }
+        timeout: 'push: Networking issue',
+      },
     },
 
     status: {
       socket: {
         error: 'An error occurred in the socket connection!',
-        close: 'The socket connection has been dropped!'
+        close: 'The socket connection has been dropped!',
       },
-      timeout: 'There is a networking issue. waiting...'
+      timeout: 'There is a networking issue. waiting...',
     },
 
     errors: {
       send: {
-        notConnected: 'Cannot send messages without a connection!'
+        notConnected: 'Cannot send messages without a connection!',
       },
       subscribe: {
-        notConnected: 'Cannot subscribe to a channel without a socket connection!'
-      }
-    }
+        notConnected: 'Cannot subscribe to a channel without a socket connection!',
+      },
+    },
   },
   buttons: {
     next: 'Next',
@@ -40,7 +40,7 @@ export default {
     home: 'Home',
     chat: 'Chat',
     profile: 'Profile',
-    faq: 'F.A.Q.'
+    faq: 'F.A.Q.',
   },
   ui: {
     faq: {
@@ -63,11 +63,10 @@ export default {
         The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank'>source code</a>
         uses the <a href="http://opensource.org/licenses/mit-license.php" target='_blank'>MIT</a> license.
       `,
-
     },
     login: {
       title: 'Login',
-      instructions: 'Please paste or type your mnemonic key.'
+      instructions: 'Please paste or type your mnemonic key.',
     },
     setup: {
       introQuestion: 'What would you like to be called?',
@@ -76,7 +75,7 @@ export default {
       mnemonicPrompt: `
         If you would like to use this account on other computers,
         please store this mnemonic in a secure place. It will be used
-        to login.`
-    }
-  }
-}
+        to login.`,
+    },
+  },
+};
