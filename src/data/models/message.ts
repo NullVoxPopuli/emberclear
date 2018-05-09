@@ -1,9 +1,15 @@
 import DS from 'ember-data';
+import Model from 'ember-data/model';
+import { attr } from '@ember-decorators/data';
 
-export default class Message extends DS.Model.extend({
+export default class Message extends Model {
+  @attr('string') from?: string;
+  @attr('string') to?: string;
+  @attr('string') body?: string;
+  @attr('string') contentType?: string;
 
-}) {
-  // normal class body definition here
+  @attr('string') channel?: string;
+  @attr('string') thread?: string;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
