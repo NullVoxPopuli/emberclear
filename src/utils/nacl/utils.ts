@@ -1,12 +1,14 @@
-import _libsodium from 'libsodium-wrappers';
+import libsodiumWrapper, { ISodium } from 'libsodium-wrappers';
 
 import { ensureUint8Array } from 'emberclear/src/utils/string-encoding';
 import { concat } from 'emberclear/src/utils/arrays/utils';
 
-export async function libsodium(): Promise<ISodium> {
-  await _libsodium.ready;
 
-  return _libsodium;
+export async function libsodium(): Promise<ISodium> {
+  const sodium = libsodiumWrapper.sodium;
+  await sodium.ready;
+
+  return sodium;
 }
 
 // _libsodium.crypto_box_NONCEBYTES;

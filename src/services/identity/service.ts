@@ -2,6 +2,7 @@ import Service, { Registry as ServiceRegistry } from '@ember/service';
 import { isBlank, isPresent } from '@ember/utils';
 
 import { service } from '@ember-decorators/service';
+import { alias } from '@ember-decorators/object/computed';
 
 import { generateNewKeys } from 'emberclear/src/utils/nacl/utils';
 import { toBase64 } from 'emberclear/src/utils/string-encoding';
@@ -11,21 +12,25 @@ import Identity from 'emberclear/data/models/identity';
 export default class IdentityService extends Service {
   @service store!: ServiceRegistry['store'];
 
-  name?: string;
-  publicKey?: string;
-  privateKey?: string;
+  record?: Identity;
+
+  @alias('record.name') name?: string;
+  @alias('record.publicKey') publicKey?: string;
+  @alias('record.privateKey') privateKey?: string;
 
   async create(this: IdentityService, name: string) {
     const { publicKey, privateKey } = await generateNewKeys();
     const pub = await toBase64(publicKey);
     const priv = await toBase64(privateKey);
 
-    this.store.createRecord('identity', {
+    const record = this.store.createRecord('identity', {
       id: 'me',
       name,
       privateKey: priv,
       publicKey: pub
-    })
+    });
+
+    this.set('record', record);
   }
 
   exists(): boolean {

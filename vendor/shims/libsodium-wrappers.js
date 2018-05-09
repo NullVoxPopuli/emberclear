@@ -3,7 +3,7 @@
     'use strict';
 
     return {
-      'default': self['sodium'],
+      default: self,
       __esModule: true,
     };
   }

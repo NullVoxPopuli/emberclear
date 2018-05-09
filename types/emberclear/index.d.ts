@@ -24,7 +24,7 @@ declare global {
   }
 }
 
-export {};
+
 //
 // // https://github.com/typed-ember/ember-cli-typescript/issues/197#issuecomment-384645960
 // declare module '@ember/debug' {

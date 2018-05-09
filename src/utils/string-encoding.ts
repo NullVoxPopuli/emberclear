@@ -1,10 +1,11 @@
 import * as QRCode from 'qrcode';
-import _libsodium from 'libsodium-wrappers';
+import libsodiumWrapper, { ISodium } from 'libsodium-wrappers';
 
 export async function libsodium(): Promise<ISodium> {
-  await _libsodium.ready;
+  const sodium = libsodiumWrapper.sodium;
+  await sodium.ready;
 
-  return _libsodium;
+  return sodium;
 }
 
 export async function toBase64(array: Uint8Array): Promise<string> {
