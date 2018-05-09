@@ -5,8 +5,8 @@ module('Unit | Service | identity', function(hooks) {
   setupTest(hooks);
 
   // Replace this with your real tests.
-  // test('it exists', function(assert) {
-  //   let service = this.owner.lookup('service:identity');
-  //   assert.ok(service);
-  // });
+  test('it exists', function(assert) {
+    let service = this.owner.lookup('service:identity');
+    assert.ok(service);
+  });
 });

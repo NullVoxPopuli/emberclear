@@ -10,4 +10,3 @@ module('Unit | Service | notifications', function(hooks) {
     assert.ok(service);
   });
 });
-

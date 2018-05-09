@@ -1,6 +1,5 @@
 import * as nacl from './utils';
 import { module, test } from 'qunit';
-import { convertUint8ArrayToString } from 'emberclear/src/utils/string-encoding';
 
 module('Unit | Utility | nacl', function(hooks) {
 

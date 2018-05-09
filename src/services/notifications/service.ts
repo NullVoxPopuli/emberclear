@@ -5,7 +5,7 @@ import { service } from '@ember-decorators/service';
 
 // TODO: implement sysstem-notifications
 export default class Notifications extends Service {
-  @service('toast') toast;
+  @service toast!: Toast;
 
   info(msg: string, title = '', options = {}) {
     this.display('info', msg, title, options);
@@ -55,13 +55,13 @@ export default class Notifications extends Service {
   }
 
   showNotification(msg: string, title: string, options = {}) {
-    const _options = {
+    const notificationOptions = {
       body: msg,
       // icon: ''
       ...options
     };
 
-    return new Notification(title, options);
+    return new Notification(title, notificationOptions);
   }
 
 }

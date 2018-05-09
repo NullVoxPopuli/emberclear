@@ -1,18 +1,13 @@
 import Route from '@ember/routing/route';
-
 import { service } from '@ember-decorators/service';
-
-import { action } from '@ember-decorators/object';
-import RelayConnection from 'emberclear/services/relay-connection';
-import IdentityService from 'emberclear/services/identity/service';
-
+import { Registry as ServiceRegistry } from '@ember/service';
 
 export default class ChatRoute extends Route {
-  @service('relay-connection') relaySocket!: RelayConnection;
-  @service('identity') identity!: IdentityService;
+  @service relayConnection!: ServiceRegistry['relay-connection'];
+  @service identity!: ServiceRegistry['identity'];
 
   activate(this: ChatRoute) {
-    this.relaySocket.connect();
+    this.relayConnection.connect();
   }
 
   // ensure we are allowed to be here

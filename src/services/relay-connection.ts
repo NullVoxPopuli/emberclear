@@ -1,8 +1,5 @@
 import Service from '@ember/service';
-import { translationMacro as t } from "ember-i18n";
-
 import { service } from '@ember-decorators/service';
-
 import { Channel, Socket } from 'phoenix';
 
 import { stateChange, ConnectionStatus } from '../redux-store/relay-connection';
@@ -16,9 +13,10 @@ const DEFAULT_RELAYS = {
 
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
-  @service('notifications') toast;
-  @service('redux') redux;
-  @service('i18n') i18n;
+  @service('notifications') toast!: Toast;
+  // TODO: findout the type name of the redux service
+  @service('redux') redux!: any;
+  @service('i18n') i18n!: I18n;
 
   socket?: Socket;
   channel?: Channel;
@@ -96,7 +94,7 @@ export default class RelayConnection extends Service {
   subscribeToChannel(this: RelayConnection, channelName: string) {
     const socket = this.get('socket');
     const redux = this.get('redux');
-    // const toast = this.get('toast');
+    const toast = this.toast;
 
     if (!socket) {
       return toast.error(this.i18n.t('connection.errors.subscribe.notConnected'));

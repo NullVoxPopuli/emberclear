@@ -6,7 +6,7 @@ type ArrayBuffers =
   | Float64Array
 
 export function concat<T extends ArrayBuffers>(arr1: T, arr2: T): T {
-  const result = new Uint8Array(arr1.length + arr2.length);
+  const result = new T(arr1.length + arr2.length);
 
   result.set(arr1, 0);
   result.set(arr2, arr1.length);

@@ -36,6 +36,11 @@ export default {
     back: 'Back',
     begin: 'Begin',
   },
+  services: {
+    crypto: {
+      keyGenFailed: 'Key Generation Failed'
+    }
+  },
   routes: {
     home: 'Home',
     chat: 'Chat',

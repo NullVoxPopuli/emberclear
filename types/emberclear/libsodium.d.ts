@@ -20,6 +20,10 @@ type Key =
 // https://gist.github.com/buu700/039601a7b410474f0edba9977a8c6393
 // declare module 'libsodium-wrappers' {
 	interface ISodium {
+    libsodium: {
+      usingWasm: boolean
+    }
+
 		crypto_aead_chacha20poly1305_ABYTES: number;
 		crypto_aead_chacha20poly1305_KEYBYTES: number;
 		crypto_aead_chacha20poly1305_NPUBBYTES: number;

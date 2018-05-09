@@ -1,5 +1,4 @@
-import DS from 'ember-data';
-import Service from '@ember/service';
+import Service, { Registry as ServiceRegistry } from '@ember/service';
 import { isBlank, isPresent } from '@ember/utils';
 
 import { service } from '@ember-decorators/service';
@@ -10,7 +9,7 @@ import Identity from 'emberclear/data/models/identity';
 
 
 export default class IdentityService extends Service {
-  @service('store') store!: DS.Store;
+  @service store!: ServiceRegistry['store'];
 
   name?: string;
   publicKey?: string;
@@ -34,8 +33,6 @@ export default class IdentityService extends Service {
 
     if (identity === null) return false;
     if (isBlank(identity)) return false;
-
-    const key = identity.privateKey;
 
     return isPresent(identity.privateKey);
   }
