@@ -26,9 +26,7 @@ export default class IdentityService extends Service {
       name,
       privateKey: priv,
       publicKey: pub
-    });
-
-    console.log(this._identity());
+    })
   }
 
   exists(): boolean {
@@ -37,9 +35,9 @@ export default class IdentityService extends Service {
     if (identity === null) return false;
     if (isBlank(identity)) return false;
 
-    const key = identity.privateKey);
+    const key = identity.privateKey;
 
-    return isPresent(identity.privateKey));
+    return isPresent(identity.privateKey);
   }
 
   // load() {
