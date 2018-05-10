@@ -1,10 +1,13 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import { service } from '@ember-decorators/service';
+
+import RelayConnection from 'emberclear/services/relay-connection';
+import Redux from 'emberclear/services/redux';
 
 export default class MessageDispatcher extends Service {
   // toast = service('toast');
-  redux = service('redux');
-  relayConnection = service('relay-connection');
+  @service redux!: Redux;
+  @service relayConnection!: RelayConnection;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

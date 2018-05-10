@@ -1,12 +1,12 @@
-(function() {
-  function vendorModule() {
-    'use strict';
-
-    return {
-      'default': self['secure-random'],
-      __esModule: true,
-    };
-  }
-
-  define('secure-random', [], vendorModule);
-})();
+// (function() {
+//   function vendorModule() {
+//     'use strict';
+//
+//     return {
+//       'default': self['Buffer'],
+//       __esModule: true,
+//     };
+//   }
+//
+//   define('buffer', [], vendorModule);
+// })();

@@ -1,4 +1,5 @@
-import Service, { Registry as ServiceRegistry } from '@ember/service';
+import DS from 'ember-data';
+import Service from '@ember/service';
 import { isBlank, isPresent } from '@ember/utils';
 
 import { service } from '@ember-decorators/service';
@@ -10,7 +11,7 @@ import Identity from 'emberclear/data/models/identity';
 
 
 export default class IdentityService extends Service {
-  @service store!: ServiceRegistry['store'];
+  @service store!: DS.Store
 
   record?: Identity;
 

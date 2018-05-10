@@ -1,11 +1,10 @@
 import Route from '@ember/routing/route';
-import { Registry as ServiceRegistry } from '@ember/service';
-
 import { service } from '@ember-decorators/service';
 
+import IdentityService from 'emberclear/services/identity/service';
 
 export default class SetupIndexRoute extends Route {
-  @service identity!: ServiceRegistry['identity'];
+  @service identity!: IdentityService;
 
   // ensure we are allowed to be here
   beforeModel() {

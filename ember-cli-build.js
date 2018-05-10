@@ -48,18 +48,15 @@ module.exports = function(defaults) {
   app.import('node_modules/libsodium-wrappers/dist/modules/libsodium-wrappers.js');
   app.import('vendor/shims/libsodium.js');
   app.import('vendor/shims/libsodium-wrappers.js');
-  app.import('vendor/bip39-browserified.js', { using: [{ transformation: 'cjs', as: 'bip39' }] });
 
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
 
-  // text-encoding
-  // app.import('node_modules/text-encoding/index.js', {
-  //   using: [
-  //     { transformation: 'cjs', as: 'text-encoding'}
-  //   ]
-  // });
+  // buffer
+  app.import('node_modules/buffer/index.js', {
+    using: [{ transformation: 'cjs', as: 'buffer' }]
+  });
 
   return mergeTrees([app.toTree(), fontTree, fontStyleTree]);
 };

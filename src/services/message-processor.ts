@@ -1,11 +1,14 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import { service } from '@ember-decorators/service';
+
+import RelayConnection from 'emberclear/services/relay-connection';
+import Redux from 'emberclear/services/redux';
 
 export default class MessageProcessor extends Service {
   // anything which *must* be merged to prototype here
   // toast = service('toast');
-  redux = service('redux');
-  relayConnection = service('relay-connection');
+  @service redux!: Redux;
+  @service relayConnection!: RelayConnection;
 
 }
 

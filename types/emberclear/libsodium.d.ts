@@ -19,9 +19,8 @@ type Key =
 
 // https://gist.github.com/buu700/039601a7b410474f0edba9977a8c6393
 declare module 'libsodium-wrappers' {
-  const ready: Promise<boolean>;
-
   interface ISodium {
+    ready: Promise<boolean>;
     libsodium: {
       usingWasm: boolean
     }

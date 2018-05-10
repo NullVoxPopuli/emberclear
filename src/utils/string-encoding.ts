@@ -1,43 +1,49 @@
 import * as QRCode from 'qrcode';
-import libsodiumWrapper, { ISodium } from 'libsodium-wrappers';
+import * as Buffer from 'buffer';
+import libsodiumWrapper from 'libsodium-wrappers';
 
-export async function libsodium(): Promise<ISodium> {
-  const sodium = libsodiumWrapper.sodium;
-  await sodium.ready;
+console.log(Buffer);
+// for the utils, we don't care about wasm,
+// so the conversions don't need to be async
+const sodium = libsodiumWrapper.sodium;
 
-  return sodium;
-}
+// export async function libsodium(): Promise<ISodium> {
+//   const sodium = libsodiumWrapper.sodium;
+//   await sodium.ready;
+//
+//   return sodium;
+// }
 
-export async function toBase64(array: Uint8Array): Promise<string> {
-  const sodium = await libsodium();
-
+export function toBase64(array: Uint8Array): string {
   return sodium.to_base64(array);
 }
 
-export async function fromBase64(base64: string): Promise<Uint8Array> {
-  const sodium = await libsodium();
-
+export function fromBase64(base64: string): Uint8Array {
   return sodium.from_base64(base64);
 }
 
-export async function fromString(str: string): Promise<Uint8Array> {
-  const sodium = await libsodium();
-
+export function fromString(str: string): Uint8Array {
   return sodium.from_string(str);
 }
 
-export async function toString(uint8Array: Uint8Array): Promise<string> {
-  const sodium = await libsodium();
+export function toNumber(uint8Array: Uint8Array): number {
+  const length = uint8Array.length;
+  const buffer = Buffer.Buffer.from(uint8Array);
+  const result = buffer.readUintBe(0, length);
 
+  return result;
+}
+
+export function toString(uint8Array: Uint8Array): string {
   return sodium.to_string(uint8Array);
 }
 
-export async function ensureUint8Array(text: string | Uint8Array): Promise<Uint8Array> {
+export function ensureUint8Array(text: string | Uint8Array): Uint8Array {
   if (text.constructor === Uint8Array) {
     return text as Uint8Array;
   }
 
-  return await fromString(text as string);
+  return fromString(text as string);
 }
 
 // export function convertUint8ArrayToString(array: Uint8Array) {

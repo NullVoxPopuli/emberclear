@@ -3,6 +3,7 @@ import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
 
 import { stateChange, ConnectionStatus } from '../redux-store/relay-connection';
+import Redux from 'emberclear/services/redux';
 
 const DEFAULT_RELAYS = {
   0: { url: 'wss://mesh-relay-in-us-1.herokuapp.com/socket' },
@@ -14,8 +15,7 @@ const DEFAULT_RELAYS = {
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
   @service('notifications') toast!: Toast;
-  // TODO: findout the type name of the redux service
-  @service('redux') redux!: any;
+  @service('redux') redux!: Redux;
   @service('i18n') i18n!: I18n;
 
   socket?: Socket;

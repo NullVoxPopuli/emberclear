@@ -1,13 +1,13 @@
 import Controller from '@ember/controller';
-import { Registry as ServiceRegistry } from '@ember/service';
 import { computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
+import IdentityService from 'emberclear/services/identity/service';
 
 
 export default class SetupCompletedController extends Controller {
-  @service identity!: ServiceRegistry['identity'];
+  @service identity!: IdentityService;
   @service i18n!: I18n;
 
   @computed('identity.privateKey')
