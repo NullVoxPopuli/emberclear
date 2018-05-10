@@ -1,6 +1,10 @@
+import { default as BrowserBuffer } from 'buffer';
+
 import { english } from './bip39/wordlists';
 
 import { fromString } from 'emberclear/src/utils/string-encoding';
+
+const Buffer = BrowserBuffer.Buffer;
 
 // TODO: implement bip39 myself, since no existing library goes
 //       privateKey -> mnemonic (only mnemonic -> privateKey)
@@ -40,23 +44,38 @@ function mapBytesToWords(bytes: Uint8Array): string[] {
   return uint11Array.map(n => english[bitArrayToNumber(n)]);
 }
 
+// https://stackoverflow.com/questions/1436438/how-do-you-set-clear-and-toggle-a-single-bit-in-javascripts
+function bitTest(num, bit) { return ((num >> bit ) % 2 != 0) }
+
 // inspired from: https://github.com/pvorb/node-md5/issues/25
-function toUint11Array(input: Uint8Array): boolean[][] {
+export function toUint11Array(input: Uint8Array): boolean[][] {
   let result: boolean[][] = [];
   let currentChunk: boolean[] = [];
+
   input.forEach(byte => {
     for (var j = 7; j >= 0; j--) {
       var b = ((byte >> j) & 0x1) > 0;
-      currentChunk.push(b);
 
       if (currentChunk.length === 11) {
         result.push(currentChunk);
         currentChunk = [];
       }
+
+      // console.log(input, byte, j, b);
+      currentChunk.push(b);
     }
   });
 
+  result.push(currentChunk);
+
   return result;
+}
+
+function modulo(a: number, b: number) {
+    return a - Math.floor(a/b)*b;
+}
+function toUint32(x: number) {
+    return modulo(x, Math.pow(2, 32));
 }
 
 function bitArrayToNumber(input: boolean[]): number {
