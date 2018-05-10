@@ -61,12 +61,9 @@ export function toUint11Array(input: Uint8Array): boolean[][] {
         currentChunk = [];
       }
 
-      // console.log(input, byte, j, b);
       currentChunk.push(b);
     }
   });
-
-  result.push(currentChunk);
 
   return result;
 }

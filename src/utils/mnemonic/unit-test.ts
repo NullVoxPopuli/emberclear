@@ -27,24 +27,32 @@ module('Unit | Utility | mnemonic', function() {
     assert.deepEqual(result, expected);
   });
 
-  test ('toUint11Array | converts | 11 bits', function(assert) {
+  test ('toUint11Array | converts | 12 bits', function(assert) {
     const input = new Buffer(4);
-    input.writeUInt32LE(2048); // 10000000000
+    input.writeUInt32LE(2048); // 0b100000000000
 
     const result = toUint11Array(input);
 
     // 00010000
     const expected = [
-      [true, false, false, false,
-       false, false, false, false,
-       false, false, false]];
+      [
+        false, false, false, false,
+        false, false, false, false,
+        false, false, false, true
+      ],
+      [
+        false, false, false, false,
+        false, false, false, false,
+        false, false, false
+      ]
+    ];
 
     assert.deepEqual(result, expected);
   });
 
-  test ('toUint11Array | converts | 12 bits', function(assert) {
-    const input = new Buffer(2);
-    input.writeUInt32LE(4096); // 100000000000
+  test ('toUint11Array | converts | 13 bits', function(assert) {
+    const input = new Buffer(5);
+    input.writeUInt32LE(4096); // 0b1000000000000
 
     const result = toUint11Array(input);
 
