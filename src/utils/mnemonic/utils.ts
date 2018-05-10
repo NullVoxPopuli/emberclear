@@ -1,6 +1,6 @@
 import { english } from './bip39/wordlists';
 
-import { fromString, toNumber } from 'emberclear/src/utils/string-encoding';
+import { fromString } from 'emberclear/src/utils/string-encoding';
 
 // TODO: implement bip39 myself, since no existing library goes
 //       privateKey -> mnemonic (only mnemonic -> privateKey)
@@ -31,32 +31,34 @@ export function mnemonicFromNaClBoxPrivateKey(privateKey: string) {
 // split number into 11-bit chunks
 // NOTE: 2^11 = 2048
 // NOTE: 2048 = how many words in a bip39 wordlist
+//
+// BitArray: https://github.com/mikolalysenko/minimal-bit-array/blob/master/bitarray.js
+//           ^ Seems not the fastest
 function mapBytesToWords(bytes: Uint8Array): string[] {
-  const num = toNumber(bytes);
-  const chunks = numberToBitChunks(num);
+  const uint11Array = toUint11Array(bytes);
 
-  return chunks.map(n => english[n]);
+  return uint11Array.map(n => english[bitArrayToNumber(n)]);
 }
 
-function numberToBitChunks(num: number): number[] {
-  let result: number[] = [];
-  let remaining = num;
+// inspired from: https://github.com/pvorb/node-md5/issues/25
+function toUint11Array(input: Uint8Array): boolean[][] {
+  let result: boolean[][] = [];
+  let currentChunk: boolean[] = [];
+  input.forEach(byte => {
+    for (var j = 7; j >= 0; j--) {
+      var b = ((byte >> j) & 0x1) > 0;
+      currentChunk.push(b);
 
-  while (remaining !== 0) {
-    const elevenBitValue = shift(remaining, -11);
-
-    result.push(elevenBitValue);
-
-    remaining
-  }
-
+      if (currentChunk.length === 11) {
+        result.push(currentChunk);
+        currentChunk = [];
+      }
+    }
+  });
 
   return result;
 }
 
-// NOTE: javascript can't handle > 32bit bit-wise operations
-//       so we trick the javascript.
-// https://en.wikipedia.org/wiki/Arithmetic_shift
-function shift(number: number, shift: number): number {
-    return number * Math.pow(2, shift);
+function bitArrayToNumber(input: boolean[]): number {
+  return input.reduce((result, x) => result << 1 | x, 0);
 }

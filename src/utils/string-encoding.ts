@@ -1,18 +1,9 @@
 import * as QRCode from 'qrcode';
-import * as Buffer from 'buffer';
 import libsodiumWrapper from 'libsodium-wrappers';
 
-console.log(Buffer);
 // for the utils, we don't care about wasm,
 // so the conversions don't need to be async
 const sodium = libsodiumWrapper.sodium;
-
-// export async function libsodium(): Promise<ISodium> {
-//   const sodium = libsodiumWrapper.sodium;
-//   await sodium.ready;
-//
-//   return sodium;
-// }
 
 export function toBase64(array: Uint8Array): string {
   return sodium.to_base64(array);
@@ -24,14 +15,6 @@ export function fromBase64(base64: string): Uint8Array {
 
 export function fromString(str: string): Uint8Array {
   return sodium.from_string(str);
-}
-
-export function toNumber(uint8Array: Uint8Array): number {
-  const length = uint8Array.length;
-  const buffer = Buffer.Buffer.from(uint8Array);
-  const result = buffer.readUintBe(0, length);
-
-  return result;
 }
 
 export function toString(uint8Array: Uint8Array): string {
