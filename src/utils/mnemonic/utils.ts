@@ -44,28 +44,6 @@ function mapBytesToWords(bytes: Uint8Array): string[] {
   return uint11Array.map(n => english[n]);
 }
 
-
-function* bitsFromOctetsLE(octets: Uint8Array) {
-    for (let byte of octets) {
-        for (let i=0; i<8; i++) {
-            yield (byte & 1);
-            byte >>= 1;
-        }
-    }
-}
-function* hendecadsFromBitsLE(bits) {
-    let i=0;
-    let val=0;
-    for (const bit of bits) {
-        if (i==11) {
-            yield val;
-            i = val = 0;
-        }
-        val |= bit << (i++);
-    }
-    yield val;
-}
-
 // inspired from: https://github.com/pvorb/node-md5/issues/25
 // https://stackoverflow.com/a/50285590/356849
 export function toUint11Array(input: Uint8Array): number[] {
@@ -99,4 +77,11 @@ export function toUint11Array(input: Uint8Array): number[] {
 }
 
 // from Uint11Array
-export function toUint8Array(input: number[]) {}
+export function toUint8Array(input: number[]): Uint8Array {
+  let buffer = 0;
+  let numbits = 0;
+  let output: number[] = [];
+
+
+  return Uint8Array.from(output);
+}

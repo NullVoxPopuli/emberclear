@@ -8,8 +8,7 @@ import { fromString } from 'emberclear/src/utils/string-encoding';
 module('Unit | Utility | mnemonic', function() {
   // no one use this!
   const samplePrivateKey = fromString('lS2wl26RcF9F2-gtCACQ6N4TsSrLx7qT9hFT5zrdW9A');
-  // NOTE: typed arrays are little-endian
-  // NOTE: endianness is what the left end is
+
   const numbers = {
     ['32']: new Uint8Array([0x20]),
     ['64']: new Uint8Array([0x40]),
