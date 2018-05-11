@@ -36,8 +36,8 @@ module('Unit | Utility | mnemonic', function() {
     assert.deepEqual(result, expected);
   });
 
-  test('key can be converted and recovered', function(assert) {
-    const mnemonic = mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
+  test('key can be converted and recovered', async function(assert) {
+    const mnemonic = await mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
     const result = naclBoxPrivateKeyFromMnemonic(mnemonic);
 
     assert.deepEqual(result, samplePrivateKey);

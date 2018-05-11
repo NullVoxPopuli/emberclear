@@ -60,16 +60,17 @@ export function toUint11Array(input: Uint8Array): number[] {
     // if there are enough bits, extract 11bit chunk
     if (numbits >= 11) {
       // 0x7FF is 2047, the max 11 bit number
-      const elevenBitNum = buffer & 0x7ff
+      const elevenBitNum = buffer & 0x7ff;
       output.push(elevenBitNum);
       // drop chunk from buffer
       buffer = buffer >> 11;
       numbits -= 11;
     }
   }
+
   // also output leftover bits
   if (numbits != 0) {
-    const elevenBitNum = buffer & 0x7ff
+    const elevenBitNum = buffer & 0x7ff;
     output.push(elevenBitNum);
   }
 
@@ -82,6 +83,29 @@ export function toUint8Array(input: number[]): Uint8Array {
   let numbits = 0;
   let output: number[] = [];
 
+  for (let i = 0; i < input.length; i++) {
+    // prepend bits to buffer
+    // buffer increments
+    // 11 -> 3 -> 14 -> 6 -> 17 -> 9 -> 1 -> 12 -> 4 -> 15
+    buffer |= input[i] << numbits;
+    numbits += 11;
+
+    // if there are enough bits, extract 8 bit number
+    while (numbits >= 8) {
+      const eightBitNum = buffer & 0xff;
+      output.push(eightBitNum);
+
+      // drop chunk from buffer
+      buffer = buffer >> 8;
+      numbits -= 8;
+    }
+  }
+
+  // also output leftover bits
+  if (numbits != 0) {
+    const eightBitNum = buffer & 0xff;
+    output.push(eightBitNum);
+  }
 
   return Uint8Array.from(output);
 }
