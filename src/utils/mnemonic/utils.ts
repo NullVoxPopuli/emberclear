@@ -1,10 +1,6 @@
-import { default as BrowserBuffer } from 'buffer';
-
 import { english } from './bip39/wordlists';
 
 import { fromString } from 'emberclear/src/utils/string-encoding';
-
-const Buffer = BrowserBuffer.Buffer;
 
 // TODO: implement bip39 myself, since no existing library goes
 //       privateKey -> mnemonic (only mnemonic -> privateKey)
@@ -23,12 +19,16 @@ const Buffer = BrowserBuffer.Buffer;
 // then each 11 bit is used to select a word from dictionary.
 //
 // for more details see BIP39
-export function mnemonicFromNaClBoxPrivateKey(privateKey: Uint8Array) {
+export function mnemonicFromNaClBoxPrivateKey(privateKey: Uint8Array): string {
   const words = mapBytesToWords(privateKey);
 
   const checksumWord = '';
 
   return words.join(' ') + ' ' + checksumWord;
+}
+
+export function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Uint8Array {
+  return new Uint8Array();
 }
 
 // split number into 11-bit chunks
@@ -40,57 +40,31 @@ export function mnemonicFromNaClBoxPrivateKey(privateKey: Uint8Array) {
 function mapBytesToWords(bytes: Uint8Array): string[] {
   const uint11Array = toUint11Array(bytes);
 
-  return uint11Array.map(n => english[bitArrayToNumber(n)]);
+  return uint11Array.map(n => english[n]);
 }
 
 // inspired from: https://github.com/pvorb/node-md5/issues/25
-export function toUint11Array(input: Uint8Array): boolean[][] {
-  let result: boolean[][] = [];
-  let currentChunk: boolean[] = [];
+export function toUint11Array(input) {
+    var buffer = 0, numbits = 0;
+    var output = [];
 
-  for (var i = input.length - 1; i >= 0; i--) {
-    let byte = input[i];
+    for (var i = 0; i < input.length; i++) {
+        // prepend bits to buffer
+        buffer |= input[i] << numbits;
+        numbits += 8;
+        // if there are enough bits, extract 11bit chunk
+        if (numbits >= 11) {
+            // 0x7FF is 2047, the max 11 bit number
+            output.push(buffer & 0x7FF);
+            // drop chunk from buffer
+            buffer = buffer >> 11;
+            numbits -= 11;
+        }
+    }
+    // also output leftover bits
+    if (numbits != 0) {
+      output.push(buffer & 0x7FF);
+    }
 
-    let byteArray = byteToBitArray(byte);
-
-    console.log(byte, byteArray);
-    byteArray.reverse().forEach(bit => {
-      currentChunk.push(bit);
-
-      if (currentChunk.length === 10) {
-        result.push(currentChunk);
-        currentChunk = [];
-      }
-    })
-  }
-
-  if (currentChunk.length > 0) {
-    result.push(currentChunk);
-  }
-
-  return result;
-}
-
-// little-endian
-export function byteToBitArray(byte: number) {
-  let result = [];
-
-  for (var j = 7; j >= 0; j--) {
-    var b = ((byte >> j) & 0x1) > 0;
-
-    result.push(b);
-  }
-
-  return result;
-}
-
-function modulo(a: number, b: number) {
-    return a - Math.floor(a/b)*b;
-}
-function toUint32(x: number) {
-    return modulo(x, Math.pow(2, 32));
-}
-
-function bitArrayToNumber(input: boolean[]): number {
-  return input.reduce((result, x) => result << 1 | x, 0);
+    return output;
 }

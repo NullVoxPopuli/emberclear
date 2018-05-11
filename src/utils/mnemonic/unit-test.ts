@@ -1,11 +1,8 @@
 import * as nacl from './utils';
-import { default as BrowserBuffer } from 'buffer';
 
 import { module, test } from 'qunit';
-import { mnemonicFromNaClBoxPrivateKey, toUint11Array, byteToBitArray } from './utils';
+import { mnemonicFromNaClBoxPrivateKey, toUint11Array, naclBoxPrivateKeyFromMnemonic } from './utils';
 import { fromString } from 'emberclear/src/utils/string-encoding';
-
-const Buffer = BrowserBuffer.Buffer;
 
 
 module('Unit | Utility | mnemonic', function() {
@@ -15,89 +12,53 @@ module('Unit | Utility | mnemonic', function() {
   const numbers = {
     ['32']: new Uint8Array([32]),
     ['64']: new Uint8Array([64]),
-    ['2048']: new Uint8Array([0, 8])
+    ['2048']: new Uint8Array([0, 8]),
+    ['4096']: new Uint8Array([0, 16])
   }
 
 
-  test('converts a private key to english', function(assert) {
+  test('mnemonicFromNaClBoxPrivateKey | converts a private key to english', function(assert) {
     const result = mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
-
-    assert.ok(result);
-  });
-
-  test('byteToBitArray | converts | 8 as a byte', function(assert) {
-    const result = byteToBitArray(8) // 0b1000
-    const expected = [false, false, false, false, true, false, false, false];
+    const expected = 'horn sing describe chat hockey stand credit deer emotion regular crime dance little express raw evolve make snap claim shrimp vacuum evidence phone deer snack extra boy chicken similar fiction antenna able ';
 
     assert.deepEqual(result, expected);
   });
 
-  test('byteToBitArray | converts | 20 as a byte', function(assert) {
-    const result = byteToBitArray(20) // 0b10100
-    const expected = [false, false, false, true, false, true, false, false];
+  test('key can be converted and recovered', function(assert) {
+    const mnemonic = mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
+    const result = naclBoxPrivateKeyFromMnemonic(mnemonic);
 
-    assert.deepEqual(result, expected);
+    assert.deepEqual(result, samplePrivateKey);
   });
-
-  test('byteToBitArray | converts | 31 as a byte', function(assert) {
-    const result = byteToBitArray(31) // 0b11111
-    const expected = [false, false, false, true, true, true, true, true];
-
-    assert.deepEqual(result, expected);
-  });
-
 
   test ('toUint11Array | converts | 8 bits', function(assert) {
-    const input = new Buffer(1);
-    input.writeUInt8(32) // 0b100000
-
-    const result = toUint11Array(input);
-    console.log(numbers['32'], input, result);
+    const result = toUint11Array(numbers['32']);
 
     // 00010000
-    const expected = [[false, false, true, false, false, false, false, false]];
+    const expected = [32];
 
     assert.deepEqual(result, expected);
   });
 
   test ('toUint11Array | converts | 12 bits', function(assert) {
-    const input = new Buffer(2);
-    input.writeUInt16LE(2048); // 0b100000000000
-
-    const result = toUint11Array(input);
-
-    // 00010000
-    const expected = [
-      [
-        false, false, false, false,
-        false, false, false, false,
-        false, false, false, true
-      ],
-      [
-        false, false, false, false,
-        false, false, false, false,
-        false, false, false
-      ]
-    ];
+    const result = toUint11Array(numbers['2048']);
+    const expected = [[0], [8]];
 
     assert.deepEqual(result, expected);
   });
 
   test ('toUint11Array | converts | 13 bits', function(assert) {
-    const input = new Buffer(5);
-    input.writeUInt32LE(4096); // 0b1000000000000
+    const result = toUint11Array(numbers['4096']);
+    const expected = [[0], [16]];
 
-    const result = toUint11Array(input);
-
-    // 00010000
-    const expected = [
-      [false],
-      [ true, false, false, false,
-       false, false, false, false,
-       false, false, false]
-    ];
 
     assert.deepEqual(result, expected);
+  });
+
+  test('toUint11Array | converts | private key', function(assert) {
+    const result = toUint11Array(samplePrivateKey);
+
+    assert.deepEqual(null, result);
   });
 
 });

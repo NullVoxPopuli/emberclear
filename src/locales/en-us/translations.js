@@ -81,6 +81,11 @@ export default {
         If you would like to use this account on other computers,
         please store this mnemonic in a secure place. It will be used
         to login.`,
+      note: `
+        You may download your settings at any time so that you can upload
+        them to another computer. The settings will include more than just
+        your identity.
+      `
     },
   },
 };

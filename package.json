@@ -35,7 +35,6 @@
     "@types/rsvp": "^4.0.1",
     "@types/url-parse": "^1.1.0",
     "bip39": "^2.5.0",
-    "buffer": "^5.1.0",
     "bulma": "^0.7.1",
     "ember-bulma": "^0.4.1",
     "ember-cli-cjs-transform": "github:rwjblue/ember-cli-cjs-transform",

@@ -53,10 +53,5 @@ module.exports = function(defaults) {
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
 
-  // buffer
-  app.import('node_modules/buffer/index.js', {
-    using: [{ transformation: 'cjs', as: 'buffer' }]
-  });
-
   return mergeTrees([app.toTree(), fontTree, fontStyleTree]);
 };
