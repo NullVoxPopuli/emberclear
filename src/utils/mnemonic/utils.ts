@@ -44,6 +44,7 @@ function mapBytesToWords(bytes: Uint8Array): string[] {
 }
 
 // inspired from: https://github.com/pvorb/node-md5/issues/25
+// https://stackoverflow.com/a/50285590/356849
 export function toUint11Array(input) {
     var buffer = 0, numbits = 0;
     var output = [];
