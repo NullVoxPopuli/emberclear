@@ -42,14 +42,14 @@ module('Unit | Utility | mnemonic', function() {
 
   test ('toUint11Array | converts | 12 bits', function(assert) {
     const result = toUint11Array(numbers['2048']);
-    const expected = [[0], [8]];
+    const expected = [0, 8];
 
     assert.deepEqual(result, expected);
   });
 
   test ('toUint11Array | converts | 13 bits', function(assert) {
     const result = toUint11Array(numbers['4096']);
-    const expected = [[0], [16]];
+    const expected = [0, 16];
 
 
     assert.deepEqual(result, expected);

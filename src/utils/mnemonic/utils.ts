@@ -34,6 +34,7 @@ export function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Uint8Array {
 // split number into 11-bit chunks
 // NOTE: 2^11 = 2048
 // NOTE: 2048 = how many words in a bip39 wordlist
+// NOTE: list is range 0 - 2047
 //
 // BitArray: https://github.com/mikolalysenko/minimal-bit-array/blob/master/bitarray.js
 //           ^ Seems not the fastest
@@ -45,7 +46,7 @@ function mapBytesToWords(bytes: Uint8Array): string[] {
 
 // inspired from: https://github.com/pvorb/node-md5/issues/25
 // https://stackoverflow.com/a/50285590/356849
-export function toUint11Array(input) {
+export function toUint11Array(input: Uint8Array): number[] {
     var buffer = 0, numbits = 0;
     var output = [];
 
@@ -68,4 +69,9 @@ export function toUint11Array(input) {
     }
 
     return output;
+}
+
+// from Uint11Array
+export function toUint8Array(input: number[]) {
+
 }
