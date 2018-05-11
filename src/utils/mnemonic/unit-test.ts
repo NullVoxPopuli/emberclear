@@ -8,12 +8,14 @@ import { fromString } from 'emberclear/src/utils/string-encoding';
 module('Unit | Utility | mnemonic', function() {
   // no one use this!
   const samplePrivateKey = fromString('lS2wl26RcF9F2-gtCACQ6N4TsSrLx7qT9hFT5zrdW9A');
-  // note, typed arrays are big-endian
+  // NOTE: typed arrays are little-endian
+  // NOTE: endianness is what the left end is
   const numbers = {
-    ['32']: new Uint8Array([32]),
-    ['64']: new Uint8Array([64]),
-    ['2048']: new Uint8Array([0, 8]),
-    ['4096']: new Uint8Array([0, 16])
+    ['32']: new Uint8Array([0x20]),
+    ['64']: new Uint8Array([0x40]),
+    ['2048']: new Uint8Array([0x8, 0]),
+    ['4096']: new Uint8Array([0x10, 0]),
+    ['7331']: new Uint8Array([0xA3, 0x1C])
   }
 
 
@@ -31,34 +33,43 @@ module('Unit | Utility | mnemonic', function() {
     assert.deepEqual(result, samplePrivateKey);
   });
 
-  test ('toUint11Array | converts | 8 bits', function(assert) {
+  test ('toUint11Array | converts | 32 (8 bits)', function(assert) {
     const result = toUint11Array(numbers['32']);
-
-    // 00010000
     const expected = [32];
 
     assert.deepEqual(result, expected);
   });
 
-  test ('toUint11Array | converts | 12 bits', function(assert) {
+  test ('toUint11Array | converts | 2048 (12 bits)', function(assert) {
     const result = toUint11Array(numbers['2048']);
-    const expected = [0, 8];
+    const expected = [8, 0];
 
     assert.deepEqual(result, expected);
   });
 
-  test ('toUint11Array | converts | 13 bits', function(assert) {
+  test ('toUint11Array | converts | 4096 (13 bits)', function(assert) {
     const result = toUint11Array(numbers['4096']);
-    const expected = [0, 16];
+    const expected = [16, 0];
 
+    assert.deepEqual(result, expected);
+  });
+
+  test ('toUint11Array | converts | 7331 (13 bits)', function(assert) {
+    const result = toUint11Array(numbers['7331']);
+    const expected = [1187, 3];
 
     assert.deepEqual(result, expected);
   });
 
   test('toUint11Array | converts | private key', function(assert) {
     const result = toUint11Array(samplePrivateKey);
+    const expected = [
+      876, 1610, 476, 310, 867, 1700, 408, 458,
+      582, 1446, 412, 442, 1044, 646, 1428, 625,
+      1076, 1642, 333, 1593, 1924, 622, 1308, 458,
+      1640, 648, 213, 317, 1607, 686, 78, 2];
 
-    assert.deepEqual(null, result);
+    assert.deepEqual(result, expected);
   });
 
 });

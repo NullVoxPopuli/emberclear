@@ -44,34 +44,59 @@ function mapBytesToWords(bytes: Uint8Array): string[] {
   return uint11Array.map(n => english[n]);
 }
 
+
+function* bitsFromOctetsLE(octets: Uint8Array) {
+    for (let byte of octets) {
+        for (let i=0; i<8; i++) {
+            yield (byte & 1);
+            byte >>= 1;
+        }
+    }
+}
+function* hendecadsFromBitsLE(bits) {
+    let i=0;
+    let val=0;
+    for (const bit of bits) {
+        if (i==11) {
+            yield val;
+            i = val = 0;
+        }
+        val |= bit << (i++);
+    }
+    yield val;
+}
+
 // inspired from: https://github.com/pvorb/node-md5/issues/25
 // https://stackoverflow.com/a/50285590/356849
 export function toUint11Array(input: Uint8Array): number[] {
-    var buffer = 0, numbits = 0;
-    var output = [];
+  // return Array.from(hendecadsFromBitsLE(bitsFromOctetsLE(input)));
 
-    for (var i = 0; i < input.length; i++) {
-        // prepend bits to buffer
-        buffer |= input[i] << numbits;
-        numbits += 8;
-        // if there are enough bits, extract 11bit chunk
-        if (numbits >= 11) {
-            // 0x7FF is 2047, the max 11 bit number
-            output.push(buffer & 0x7FF);
-            // drop chunk from buffer
-            buffer = buffer >> 11;
-            numbits -= 11;
-        }
-    }
-    // also output leftover bits
-    if (numbits != 0) {
-      output.push(buffer & 0x7FF);
-    }
+  let buffer = 0;
+  let numbits = 0;
+  let output = [];
 
-    return output;
+  for (let i = 0; i < input.length; i++) {
+    // prepend bits to buffer
+    buffer |= input[i] << numbits;
+    numbits += 8;
+    // if there are enough bits, extract 11bit chunk
+    if (numbits >= 11) {
+      // 0x7FF is 2047, the max 11 bit number
+      const elevenBitNum = buffer & 0x7ff
+      output.push(elevenBitNum);
+      // drop chunk from buffer
+      buffer = buffer >> 11;
+      numbits -= 11;
+    }
+  }
+  // also output leftover bits
+  if (numbits != 0) {
+    const elevenBitNum = buffer & 0x7ff
+    output.push(elevenBitNum);
+  }
+
+  return output;
 }
 
 // from Uint11Array
-export function toUint8Array(input: number[]) {
-
-}
+export function toUint8Array(input: number[]) {}

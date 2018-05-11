@@ -38,8 +38,8 @@ export default {
   },
   services: {
     crypto: {
-      keyGenFailed: 'Key Generation Failed'
-    }
+      keyGenFailed: 'Key Generation Failed',
+    },
   },
   routes: {
     home: 'Home',
@@ -85,7 +85,7 @@ export default {
         You may download your settings at any time so that you can upload
         them to another computer. The settings will include more than just
         your identity.
-      `
+      `,
     },
   },
 };
