@@ -1,10 +1,5 @@
 import { english } from './bip39/wordlists';
 
-import { fromString } from 'emberclear/src/utils/string-encoding';
-
-// TODO: implement bip39 myself, since no existing library goes
-//       privateKey -> mnemonic (only mnemonic -> privateKey)
-//
 // https://crypto.stackexchange.com/a/50759/8245
 // BIP 39 describes the implementation of a mnemonic code or mnemonic sentence
 // -- a group of easy to remember words --
@@ -19,10 +14,15 @@ import { fromString } from 'emberclear/src/utils/string-encoding';
 // then each 11 bit is used to select a word from dictionary.
 //
 // for more details see BIP39
-export function mnemonicFromNaClBoxPrivateKey(privateKey: Uint8Array): string {
-  const words = mapBytesToWords(privateKey);
+//
+// NOTE: 2^11 = 2048
+// NOTE: 2048 = how many words in a bip39 wordlist
+// NOTE: list is range 0 - 2047
+export async function mnemonicFromNaClBoxPrivateKey(privateKey: Uint8Array): Promise<string> {
+  const uint11Array = toUint11Array(privateKey);
+  const words = applyWords(uint11Array);
 
-  const checksumWord = '';
+  const checksumWord = await computeChecksum(uint11Array);
 
   return words.join(' ') + ' ' + checksumWord;
 }
@@ -31,24 +31,24 @@ export function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Uint8Array {
   return new Uint8Array();
 }
 
-// split number into 11-bit chunks
-// NOTE: 2^11 = 2048
-// NOTE: 2048 = how many words in a bip39 wordlist
-// NOTE: list is range 0 - 2047
-//
-// BitArray: https://github.com/mikolalysenko/minimal-bit-array/blob/master/bitarray.js
-//           ^ Seems not the fastest
-function mapBytesToWords(bytes: Uint8Array): string[] {
-  const uint11Array = toUint11Array(bytes);
+export async function computeChecksum(nums: number[]): Promise<string> {
+  const sum = nums.reduce((acc, v) => acc + v);
 
-  return uint11Array.map(n => english[n]);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', Uint32Array.from([sum]));
+
+  const arr = new Uint8Array(hashBuffer);
+  const uint11Hash = toUint11Array(arr);
+  const words = applyWords(uint11Hash);
+
+  return words[0];
 }
 
-// inspired from: https://github.com/pvorb/node-md5/issues/25
+function applyWords(nums: number[]): string[] {
+  return nums.map(n => english[n]);
+}
+
 // https://stackoverflow.com/a/50285590/356849
 export function toUint11Array(input: Uint8Array): number[] {
-  // return Array.from(hendecadsFromBitsLE(bitsFromOctetsLE(input)));
-
   let buffer = 0;
   let numbits = 0;
   let output = [];

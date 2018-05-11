@@ -7,7 +7,12 @@ import { fromString } from 'emberclear/src/utils/string-encoding';
 
 module('Unit | Utility | mnemonic', function() {
   // no one use this!
-  const samplePrivateKey = fromString('lS2wl26RcF9F2-gtCACQ6N4TsSrLx7qT9hFT5zrdW9A');
+  const samplePrivateKey = Uint8Array.from([
+    43, 191, 106, 38, 141, 42, 151, 128,
+    227, 93, 124, 214, 166, 222, 144, 176,
+    162, 181, 203, 27, 39, 18, 37, 173,
+    2, 189, 139, 8, 181, 8, 171, 45
+  ]);
 
   const numbers = {
     ['32']: new Uint8Array([0x20]),
@@ -18,9 +23,15 @@ module('Unit | Utility | mnemonic', function() {
   }
 
 
-  test('mnemonicFromNaClBoxPrivateKey | converts a private key to english', function(assert) {
-    const result = mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
-    const expected = 'horn sing describe chat hockey stand credit deer emotion regular crime dance little express raw evolve make snap claim shrimp vacuum evidence phone deer snack extra boy chicken similar fiction antenna able ';
+  test('mnemonicFromNaClBoxPrivateKey | converts a private key to english', async function(assert) {
+    const result = await mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
+    const expected = `
+      tornado priority nasty potato comic
+      then upper labor suspect kind
+      embody climb hero very decide
+      banana pigeon apple teach master
+      head season hood ability glare
+    `.replace(/[ \n\r]+/g, ' ').trim();
 
     assert.deepEqual(result, expected);
   });
@@ -61,12 +72,15 @@ module('Unit | Utility | mnemonic', function() {
   });
 
   test('toUint11Array | converts | private key', function(assert) {
+    console.log('key length: ', samplePrivateKey);
     const result = toUint11Array(samplePrivateKey);
     const expected = [
-      876, 1610, 476, 310, 867, 1700, 408, 458,
-      582, 1446, 412, 442, 1044, 646, 1428, 625,
-      1076, 1642, 333, 1593, 1924, 622, 1308, 458,
-      1640, 648, 213, 317, 1607, 686, 78, 2];
+      1835, 1367, 1177, 1350, 370,
+      1793, 1912, 994, 1750, 980,
+      579, 344, 858, 1943, 454,
+      145, 1317, 85, 1780, 1093,
+      848, 1553, 874, 1
+    ];
 
     assert.deepEqual(result, expected);
   });
