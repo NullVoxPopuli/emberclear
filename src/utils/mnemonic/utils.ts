@@ -23,9 +23,8 @@ const Buffer = BrowserBuffer.Buffer;
 // then each 11 bit is used to select a word from dictionary.
 //
 // for more details see BIP39
-export function mnemonicFromNaClBoxPrivateKey(privateKey: string) {
-  const bytes = fromString(privateKey);
-  const words = mapBytesToWords(bytes);
+export function mnemonicFromNaClBoxPrivateKey(privateKey: Uint8Array) {
+  const words = mapBytesToWords(privateKey);
 
   const checksumWord = '';
 
@@ -44,26 +43,43 @@ function mapBytesToWords(bytes: Uint8Array): string[] {
   return uint11Array.map(n => english[bitArrayToNumber(n)]);
 }
 
-// https://stackoverflow.com/questions/1436438/how-do-you-set-clear-and-toggle-a-single-bit-in-javascripts
-function bitTest(num, bit) { return ((num >> bit ) % 2 != 0) }
-
 // inspired from: https://github.com/pvorb/node-md5/issues/25
 export function toUint11Array(input: Uint8Array): boolean[][] {
   let result: boolean[][] = [];
   let currentChunk: boolean[] = [];
 
-  input.forEach(byte => {
-    for (var j = 7; j >= 0; j--) {
-      var b = ((byte >> j) & 0x1) > 0;
+  for (var i = input.length - 1; i >= 0; i--) {
+    let byte = input[i];
 
-      if (currentChunk.length === 11) {
+    let byteArray = byteToBitArray(byte);
+
+    console.log(byte, byteArray);
+    byteArray.reverse().forEach(bit => {
+      currentChunk.push(bit);
+
+      if (currentChunk.length === 10) {
         result.push(currentChunk);
         currentChunk = [];
       }
+    })
+  }
 
-      currentChunk.push(b);
-    }
-  });
+  if (currentChunk.length > 0) {
+    result.push(currentChunk);
+  }
+
+  return result;
+}
+
+// little-endian
+export function byteToBitArray(byte: number) {
+  let result = [];
+
+  for (var j = 7; j >= 0; j--) {
+    var b = ((byte >> j) & 0x1) > 0;
+
+    result.push(b);
+  }
 
   return result;
 }

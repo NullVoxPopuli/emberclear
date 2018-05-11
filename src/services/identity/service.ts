@@ -21,14 +21,12 @@ export default class IdentityService extends Service {
 
   async create(this: IdentityService, name: string) {
     const { publicKey, privateKey } = await generateNewKeys();
-    const pub = await toBase64(publicKey);
-    const priv = await toBase64(privateKey);
 
     const record = this.store.createRecord('identity', {
       id: 'me',
       name,
-      privateKey: priv,
-      publicKey: pub
+      privateKey,
+      publicKey
     });
 
     this.set('record', record);
