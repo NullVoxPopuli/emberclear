@@ -1,9 +1,5 @@
-import * as nacl from './utils';
-
 import { module, test } from 'qunit';
 import { mnemonicFromNaClBoxPrivateKey, toUint11Array, naclBoxPrivateKeyFromMnemonic, toUint8Array } from './utils';
-import { fromString } from 'emberclear/src/utils/string-encoding';
-
 
 module('Unit | Utility | mnemonic', function() {
   // no one use this!

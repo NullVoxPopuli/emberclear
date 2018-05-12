@@ -21,17 +21,23 @@
     "baseUrl": ".",
     "module": "es6",
     "paths": {
+      "emberclear": [
+        "src/*"
+      ],
       "emberclear/tests/*": [
         "tests/*"
       ],
       "emberclear/*": [
-        "src/*"
+        "src/*",
+        "node_modules/ember-redux/app/*"
       ],
       "emberclear/src/*": [
-        "src/*"
+        "src/*",
+        "node_modules/ember-redux/src/*"
       ],
       "*": [
-        "types/*"
+        "types/*",
+        "node_modules/ember-redux/app/*"
       ],
       "@ember": ["node_modules/@types/ember/index.d.ts"],
       "ember-redux": ["node_modules/ember-redux/index.d.ts"],

@@ -24,9 +24,10 @@ type StateChange = {
   message: string
 }
 
-export const stateChange =
-  (status: ConnectionStatus, message: string): StateChange =>
-    ({type: STATE_CHANGE, message, status});
+// Action Creators
+export function stateChange(status: ConnectionStatus, message: string): StateChange {
+  return ({type: STATE_CHANGE, message, status});
+}
 
 
 const initialState: RelayConnectionState = {

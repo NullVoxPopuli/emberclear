@@ -1,0 +1,51 @@
+#!/bin/bash
+#
+# A script to make working with docker/compose to have
+# less typing.
+#
+# For local development only.
+
+COMPOSE="docker-compose -f docker-compose.yml --project-directory . -p emberclear"
+
+function runstuff {
+  # First arg
+  given_command=$1
+  # The rest of the args
+  arguments=${@:2}
+
+  case $given_command in
+    up:build) ${COMPOSE} up --build $arguments;;
+    up)       ${COMPOSE} up $arguments;;
+    bash)     ${COMPOSE} run --rm $arguments bash;;
+
+    restart) ${COMPOSE} stop $arguments && ${COMPOSE} start $arguments;;
+
+    ember)
+      docker build . -t ember-cli
+      docker run \
+        --rm \
+        -ti \
+        -v $(pwd):/app \
+        -p 4200:4200 -p 7020:7020 -p 7357:7357 \
+        ember-cli bash
+    ;;
+
+    clean:all)
+      echo "Cleaning..."
+      # Don't name any folders bin, obj, tmp, dist, or node_modules
+      shopt -s globstar
+      rm -rf **/dist && \
+      rm -rf **/node_modules && \
+      rm -rf **/tmp
+    ;;
+
+    *)
+      echo "forwarding to docker-compose: $@"
+      ${COMPOSE} $@
+    ;;
+  esac
+}
+
+if [ $1 ]; then
+  runstuff $*
+fi

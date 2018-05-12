@@ -1,0 +1,40 @@
+version: '3'
+services:
+  ember:
+    # image: emberjs/ember-cli
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+    # Default command to run when the container starts
+    command: bash -c "yarn && yarn start"
+
+    # A friendly name for finding the container with
+    # docker commands easier
+    container_name: emberclear
+
+    # NOTE: Ports Mappings are HOST:CONTAINER
+    ports:
+
+      # Test Server
+      - 7357:7357
+      # Ember Dev Server (default)
+      - 4200:4200
+      # Live Reload
+      - 49153:49153
+    volumes:
+      - ember-tmp:/app/tmp
+      - ember-dist:/app/dist
+      - ember-node_modules:/app/node_modules
+      # Copies the whole app into the container
+      - .:/app:delegated
+
+      # Override the above mapping for the following
+      # noise directories:
+
+
+
+volumes:
+  ember-tmp:
+  ember-dist:
+  ember-node_modules:

@@ -32,15 +32,6 @@ declare global {
 // }
 
 
-
-
-
-// https://github.com/ember-redux/ember-redux/blob/master/addon/services/redux.js
-// declare interface Redux {
-//   getState(): any;
-//   dispatch(action: string): any;
-// }
-
 declare module '@ember/service' {
   interface Registry {
     'toast': Toast,

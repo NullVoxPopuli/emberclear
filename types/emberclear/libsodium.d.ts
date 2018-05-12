@@ -25,6 +25,8 @@ declare module 'libsodium-wrappers' {
       usingWasm: boolean
     }
 
+    randombytes_buf(bytes: number): Uint8Array;
+
   	crypto_aead_chacha20poly1305_ABYTES: number;
   	crypto_aead_chacha20poly1305_KEYBYTES: number;
   	crypto_aead_chacha20poly1305_NPUBBYTES: number;
