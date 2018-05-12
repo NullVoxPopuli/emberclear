@@ -1,7 +1,7 @@
 import * as nacl from './utils';
 
 import { module, test } from 'qunit';
-import { mnemonicFromNaClBoxPrivateKey, toUint11Array, naclBoxPrivateKeyFromMnemonic } from './utils';
+import { mnemonicFromNaClBoxPrivateKey, toUint11Array, naclBoxPrivateKeyFromMnemonic, toUint8Array } from './utils';
 import { fromString } from 'emberclear/src/utils/string-encoding';
 
 
@@ -72,7 +72,6 @@ module('Unit | Utility | mnemonic', function() {
   });
 
   test('toUint11Array | converts | private key', function(assert) {
-    console.log('key length: ', samplePrivateKey);
     const result = toUint11Array(samplePrivateKey);
     const expected = [
       1835, 1367, 1177, 1350, 370,
@@ -81,6 +80,34 @@ module('Unit | Utility | mnemonic', function() {
       145, 1317, 85, 1780, 1093,
       848, 1553, 874, 1
     ];
+
+    assert.deepEqual(result, expected);
+  });
+
+  test('toUint8Array | converts | 32', function(assert) {
+    const result = toUint8Array([32]);
+    const expected = numbers['32'];
+
+    assert.deepEqual(result, expected);
+  });
+
+  test('toUint8Array | converts | 2048', function(assert) {
+    const result = toUint8Array([8, 0]);
+    const expected = numbers['2048'];
+
+    assert.deepEqual(result, expected);
+  });
+
+  test('toUint8Array | converts | 4096', function(assert) {
+    const result = toUint8Array([16, 0]);
+    const expected = numbers['4096'];
+
+    assert.deepEqual(result, expected);
+  });
+
+  test('toUint8Array | converts | 7331', function(assert) {
+    const result = toUint8Array([1187, 3]);
+    const expected = numbers['7331'];
 
     assert.deepEqual(result, expected);
   });

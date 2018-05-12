@@ -28,7 +28,14 @@ export async function mnemonicFromNaClBoxPrivateKey(privateKey: Uint8Array): Pro
 }
 
 export function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Uint8Array {
-  return new Uint8Array();
+  const words = mnemonic.split(' ');
+  const key = words.slice(0, 24);
+  const checksum = words[words.length];
+  const nums = key.map(word => english.indexOf(word));
+  const result = toUint8Array(nums);
+  console.log(key, result, key.length, mnemonic);
+
+  return result;
 }
 
 export async function computeChecksum(nums: number[]): Promise<string> {
@@ -60,8 +67,7 @@ export function toUint11Array(input: Uint8Array): number[] {
     // if there are enough bits, extract 11bit chunk
     if (numbits >= 11) {
       // 0x7FF is 2047, the max 11 bit number
-      const elevenBitNum = buffer & 0x7ff;
-      output.push(elevenBitNum);
+      output.push(buffer & 0x7ff);
       // drop chunk from buffer
       buffer = buffer >> 11;
       numbits -= 11;
@@ -70,8 +76,7 @@ export function toUint11Array(input: Uint8Array): number[] {
 
   // also output leftover bits
   if (numbits != 0) {
-    const elevenBitNum = buffer & 0x7ff;
-    output.push(elevenBitNum);
+    output.push(buffer & 0x7ff);
   }
 
   return output;
@@ -92,8 +97,8 @@ export function toUint8Array(input: number[]): Uint8Array {
 
     // if there are enough bits, extract 8 bit number
     while (numbits >= 8) {
-      const eightBitNum = buffer & 0xff;
-      output.push(eightBitNum);
+      // 0xff is 255
+      output.push(buffer & 0xff);
 
       // drop chunk from buffer
       buffer = buffer >> 8;
@@ -101,10 +106,8 @@ export function toUint8Array(input: number[]): Uint8Array {
     }
   }
 
-  // also output leftover bits
-  if (numbits != 0) {
-    const eightBitNum = buffer & 0xff;
-    output.push(eightBitNum);
+  if (output[output.length - 1] === 0) {
+    output = output.slice(0, output.length - 1);
   }
 
   return Uint8Array.from(output);

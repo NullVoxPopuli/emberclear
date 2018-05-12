@@ -16,8 +16,8 @@ export default class IdentityService extends Service {
   record?: Identity;
 
   @alias('record.name') name?: string;
-  @alias('record.publicKey') publicKey?: string;
-  @alias('record.privateKey') privateKey?: string;
+  @alias('record.publicKey') publicKey?: Uint8Array;
+  @alias('record.privateKey') privateKey?: Uint8Array;
 
   async create(this: IdentityService, name: string) {
     const { publicKey, privateKey } = await generateNewKeys();

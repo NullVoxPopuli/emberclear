@@ -2,21 +2,15 @@ import Controller from '@ember/controller';
 import { computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
-import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
-import IdentityService from 'emberclear/services/identity/service';
-
 
 export default class SetupCompletedController extends Controller {
-  @service identity!: IdentityService;
   @service i18n!: I18n;
 
-  @computed('identity.privateKey')
+  @computed('model')
   get mnemonic() {
-    const key = this.identity.privateKey;
+    if (!this.model) { return this.i18n.t('services.crypto.keyGenFailed'); }
 
-    if (!key) { return this.i18n.t('services.crypto.keyGenFailed'); }
-
-    return mnemonicFromNaClBoxPrivateKey(key);
+    return this.model;
   }
 }
 
