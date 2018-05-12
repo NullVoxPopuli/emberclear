@@ -30,7 +30,7 @@ module('Unit | Utility | mnemonic', function() {
       then upper labor suspect kind
       embody climb hero very decide
       banana pigeon apple teach master
-      head season hood ability glare
+      head season hood ability dove
     `.replace(/[ \n\r]+/g, ' ').trim();
 
     assert.deepEqual(result, expected);
@@ -38,7 +38,7 @@ module('Unit | Utility | mnemonic', function() {
 
   test('key can be converted and recovered', async function(assert) {
     const mnemonic = await mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
-    const result = naclBoxPrivateKeyFromMnemonic(mnemonic);
+    const result = await naclBoxPrivateKeyFromMnemonic(mnemonic);
 
     assert.deepEqual(result, samplePrivateKey);
   });

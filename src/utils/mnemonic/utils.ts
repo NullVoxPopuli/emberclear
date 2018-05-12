@@ -22,23 +22,32 @@ export async function mnemonicFromNaClBoxPrivateKey(privateKey: Uint8Array): Pro
   const uint11Array = toUint11Array(privateKey);
   const words = applyWords(uint11Array);
 
-  const checksumWord = await computeChecksum(uint11Array);
+  const checksumWord = await computeChecksum(privateKey);
 
   return words.join(' ') + ' ' + checksumWord;
 }
 
-export function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Uint8Array {
+export async function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Promise<Uint8Array> {
   const words = mnemonic.split(' ');
   const key = words.slice(0, 24);
-  const checksum = words[words.length];
+  const checksum = words[words.length - 1];
   const nums = key.map(word => english.indexOf(word));
-  const result = toUint8Array(nums);
-  console.log(key, result, key.length, mnemonic);
 
-  return result;
+  // verify with the checksum, to see if we need to chop off the last
+  // byte or something
+  const fullResult = toUint8Array(nums);
+  const fullCheck = await computeChecksum(fullResult);
+  const shortResult = fullResult.slice(0, fullResult.length - 1);
+  const shortCheck = await computeChecksum(shortResult);
+
+  // success!
+  if (shortCheck === fullCheck) return shortResult;
+  if (fullCheck === checksum) return fullResult;
+
+  throw 'Checksum could not validate private key';
 }
 
-export async function computeChecksum(nums: number[]): Promise<string> {
+export async function computeChecksum(nums: Uint8Array): Promise<string> {
   const sum = nums.reduce((acc, v) => acc + v);
 
   const hashBuffer = await crypto.subtle.digest('SHA-256', Uint32Array.from([sum]));
@@ -104,10 +113,6 @@ export function toUint8Array(input: number[]): Uint8Array {
       buffer = buffer >> 8;
       numbits -= 8;
     }
-  }
-
-  if (output[output.length - 1] === 0) {
-    output = output.slice(0, output.length - 1);
   }
 
   return Uint8Array.from(output);
