@@ -37,6 +37,8 @@ export async function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Promise<U
   // byte or something
   const fullResult = toUint8Array(nums);
   const fullCheck = await computeChecksum(fullResult);
+  // because 256bits doesn't divide by 11, we will sometimes
+  // have a stray 0 at the end of the conversion
   const shortResult = fullResult.slice(0, fullResult.length - 1);
   const shortCheck = await computeChecksum(shortResult);
 
