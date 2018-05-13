@@ -9,13 +9,16 @@ services:
     # Default command to run when the container starts
     command: bash -c "yarn && yarn start"
 
+    # To prevent files created in the container from being owned by root
+    # to get these numbers: `echo "$(id -u):$(id -g)"`
+    user: 1000:1000
+
     # A friendly name for finding the container with
     # docker commands easier
     container_name: emberclear
 
     # NOTE: Ports Mappings are HOST:CONTAINER
     ports:
-
       # Test Server
       - 7357:7357
       # Ember Dev Server (default)

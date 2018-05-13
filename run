@@ -21,12 +21,16 @@ function runstuff {
     restart) ${COMPOSE} stop $arguments && ${COMPOSE} start $arguments;;
 
     ember)
+      # these two commands do the same as
+      # docker-compose up --build
+      # (kinda)
       docker build . -t ember-cli
       docker run \
         --rm \
         -ti \
         -v $(pwd):/app \
         -p 4200:4200 -p 7020:7020 -p 7357:7357 \
+        -u $(id -u):$(id -g) \
         ember-cli bash
     ;;
 

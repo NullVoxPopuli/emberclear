@@ -4,7 +4,7 @@ FROM node:9
 ENV CORE_DEPS apt-transport-https gnupg
 ENV WATCHMAN_DEPS python-dev
 ENV TESTING_DEPS google-chrome-stable
-ENV BUILD_DEPS libsass-dev
+ENV BUILD_DEPS ""
 
 # Install chrome and watchman deps
 RUN echo \
