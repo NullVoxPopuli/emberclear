@@ -16,12 +16,15 @@
                     {{t 'routes.chat'}}
                 {{/link-to}}
 
-                {{#link-to 'settings' class='navbar-item'}}
-                    <span class='icon'>
-                        <i class='fas fa-user-circle'></i>
-                    </span>
-                    {{t 'routes.profile'}}
-                {{/link-to}}
+                {{#if hasName}}
+                  {{#link-to 'settings' class='navbar-item'}}
+                      <span class='icon'>
+                          <i class='fas fa-user-circle'></i>
+                      </span>
+                      {{!-- {{t 'routes.profile'}} --}}
+                      {{name}}
+                  {{/link-to}}
+                {{/if}}
             </div>
         </div>
     </div>

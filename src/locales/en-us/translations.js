@@ -74,6 +74,7 @@ export default {
       instructions: 'Please paste or type your mnemonic key.',
     },
     setup: {
+      overwriteTitle: 'Are you sure you want to create a new identity?',
       introQuestion: 'What would you like to be called?',
       almostReady: 'You are almost ready to begin chatting!',
       nameLabel: 'This is how others will identify you',

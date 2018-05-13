@@ -10,6 +10,8 @@ export default class SetupIndexRoute extends Route {
   beforeModel() {
     if (!this.identity.exists()) {
       this.transitionTo('setup.new');
+    } else {
+      this.transitionTo('setup.overwrite');
     }
   }
 }

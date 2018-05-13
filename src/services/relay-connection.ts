@@ -18,7 +18,7 @@ const DEFAULT_RELAYS = {
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
   @service('notifications') toast!: Toast;
-  @service redux!: Redux;
+  @service('redux') redux!: Redux;
   @service i18n!: I18n;
   @service identity!: IdentityService;
 
@@ -124,24 +124,24 @@ export default class RelayConnection extends Service {
 
   }
 
-  onSocketError() {
+  onSocketError = () => {
     this.toast.error(this.i18n.t('connection.status.socket.error'));
     this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''));
   }
 
-  onSocketClose() {
+  onSocketClose = () => {
     this.toast.info(this.i18n.t('connection.status.socket.close'));
     this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''));
   }
 
 
-  onChannelError() {
+  onChannelError = () => {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelError, ''))
 
     if (this.socket) this.socket.disconnect();
   }
 
-  onChannelClose() {
+  onChannelClose = () => {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelClosed, ''))
 
     if (this.socket) this.socket.disconnect();

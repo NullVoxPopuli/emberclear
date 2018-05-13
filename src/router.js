@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('setup', function() {
     this.route('new');
     this.route('completed');
+    this.route('overwrite');
   });
 
   this.route('login');

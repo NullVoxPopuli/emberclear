@@ -6,10 +6,17 @@ import { service } from '@ember-decorators/service';
 import { alias } from '@ember-decorators/object/computed';
 
 import { generateNewKeys } from 'emberclear/src/utils/nacl/utils';
-import { toBase64 } from 'emberclear/src/utils/string-encoding';
 import Identity from 'emberclear/data/models/identity';
 
-
+// The purpose of this service is to be an interface that
+// handles syncing between the data store and persistent localstorage.
+//
+// if the identity doesn't already exist in the store, it will try
+// try to be loaded from localstorage.
+// if the identity does exist in in teh store, localstorage will
+// overwrite what is in the store.
+// the only time the localstorage copy of the identity is written to
+// is upon update and initial creation of the identity data.
 export default class IdentityService extends Service {
   @service store!: DS.Store
 
@@ -30,10 +37,11 @@ export default class IdentityService extends Service {
     });
 
     this.set('record', record);
+    this.dump();
   }
 
   exists(): boolean {
-    const identity = this._identity();
+    let identity = this._identity();
 
     if (identity === null) return false;
     if (isBlank(identity)) return false;
@@ -41,24 +49,43 @@ export default class IdentityService extends Service {
     return isPresent(identity.privateKey);
   }
 
-  // load() {
-  //   const json = JSON.parse(localStorage.identity);
-  //
-  //   this.store.createRecord('identity', json);
-  // }
-  //
-  // dump() {
-  //   const identity = this._identity();
-  //
-  //   if (isBlank(identity)) return;
-  //
-  //   const json = identity.serialize({ includeId: true });
-  //
-  //   localStorage.identity = json;
-  // }
+  load() {
+    if (localStorage.identity) {
+      const json = JSON.parse(localStorage.identity);
 
-  _identity(): Identity | null {
-    return this.store.peekRecord('identity', 'me');
+      const existing = this.store.peekRecord('identity', 'me');
+
+      if (existing) {
+        Object.keys(json).forEach(key => {
+          existing.set(key, json[key]);
+        });
+
+        existing.save();
+      } else {
+        this.store.createRecord('identity', json);
+      }
+
+    }
+  }
+
+  dump() {
+    const identity = this._identity();
+
+    if (isBlank(identity)) return;
+
+    const json = identity.serialize({ includeId: true });
+
+    localStorage.identity = JSON.stringify({ id: json.data.id, ...json.data.attributes });
+  }
+
+  _identity(this: IdentityService): Identity | null {
+    if (this.record === null) this.load();
+
+    let identity = this.store.peekRecord('identity', 'me');
+
+    this.set('record', identity);
+
+    return identity;
   }
 }
 
