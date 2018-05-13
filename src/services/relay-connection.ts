@@ -2,8 +2,11 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
 
-import { stateChange, ConnectionStatus } from '../redux-store/relay-connection';
 import Redux from 'emberclear/services/redux';
+import IdentityService from 'emberclear/services/identity/service';
+import { toBase64 } from 'emberclear/src/utils/string-encoding';
+
+import { stateChange, ConnectionStatus } from '../redux-store/relay-connection';
 
 const DEFAULT_RELAYS = {
   0: { url: 'wss://mesh-relay-in-us-1.herokuapp.com/socket' },
@@ -15,8 +18,9 @@ const DEFAULT_RELAYS = {
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
   @service('notifications') toast!: Toast;
-  @service('redux') redux!: Redux;
-  @service('i18n') i18n!: I18n;
+  @service redux!: Redux;
+  @service i18n!: I18n;
+  @service identity!: IdentityService;
 
   socket?: Socket;
   channel?: Channel;
@@ -49,6 +53,19 @@ export default class RelayConnection extends Service {
       .receive("timeout", () => toast.info(this.i18n.t('connection.log.push.timeout')) )
   }
 
+  // TODO: ensure not already connected
+  canConnect(this: RelayConnection): boolean {
+    return this.identity.exists();
+  }
+
+  userChannelId(): string {
+    const publicKey = this.identity.publicKey;
+
+    if (!publicKey) return '';
+
+    return toBase64(publicKey);
+  }
+
   // each user has at least one channel that they subscribe to
   // this is for direct messages
   // subsequent rooms may be subscribed to, and are denoted by
@@ -66,35 +83,36 @@ export default class RelayConnection extends Service {
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
   connect(this: RelayConnection) {
+    if (!this.canConnect()) return;
+
     this.toast.info(this.i18n.t('connection.connecting'));
 
-    const publicKey = '';
+    const publicKey = this.userChannelId();
     const url = DEFAULT_RELAYS[0].url;
 
     const socket = new Socket(url, { params: { uid: publicKey } });
     this.set('socket', socket);
 
-    socket.onError(() => {
-      this.toast.error(this.i18n.t('connection.status.socket.error'));
-      this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''))
-    });
-    socket.onClose(() => {
-      this.toast.info(this.i18n.t('connection.status.socket.close'));
-      this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''))
-    });
+    socket.onError(this.onSocketError);
+    socket.onClose(this.onSocketClose);
 
     // establish initial connection to the server
-    // socket.connect();
-    //
-    // this.subscribeToChannel(`user:${publicKey}`);
+    socket.connect();
+    this.subscribeToChannel(`user:${publicKey}`);
+  }
 
+  onSocketError() {
+    this.toast.error(this.i18n.t('connection.status.socket.error'));
+    this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''));
+  }
 
+  onSocketClose() {
+    this.toast.info(this.i18n.t('connection.status.socket.close'));
+    this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''));
   }
 
   subscribeToChannel(this: RelayConnection, channelName: string) {
-    const socket = this.get('socket');
-    const redux = this.get('redux');
-    const toast = this.toast;
+    const { socket, toast } = this;
 
     if (!socket) {
       return toast.error(this.i18n.t('connection.errors.subscribe.notConnected'));
@@ -104,18 +122,8 @@ export default class RelayConnection extends Service {
     const channel = socket.channel(channelName, {});
     this.set('channel', channel);
 
-    channel.onError(() => {
-      redux.dispatch(stateChange(ConnectionStatus.ChannelError, ''))
-
-      socket.disconnect();
-    });
-
-    channel.onClose(() => {
-      redux.dispatch(stateChange(ConnectionStatus.ChannelClosed, ''))
-
-      socket.disconnect();
-    });
-
+    channel.onError(this.onChannelError);
+    channel.onClose(this.onChannelClose);
     channel.on('chat', this.handleMessage);
 
     channel
@@ -126,24 +134,30 @@ export default class RelayConnection extends Service {
 
   }
 
-  handleError(this: RelayConnection, data: string) {
-    const redux = this.get('redux');
+  onChannelError() {
+    this.redux.dispatch(stateChange(ConnectionStatus.ChannelError, ''))
 
-    redux.dispatch(stateChange(ConnectionStatus.ChannelError, data))
+    if (this.socket) this.socket.disconnect();
+  }
+
+  onChannelClose() {
+    this.redux.dispatch(stateChange(ConnectionStatus.ChannelClosed, ''))
+
+    if (this.socket) this.socket.disconnect();
+  }
+
+  handleError(this: RelayConnection, data: string) {
+    this.redux.dispatch(stateChange(ConnectionStatus.ChannelError, data))
 
     console.error(data);
   }
 
   handleConnected(this: RelayConnection, ) {
-    const redux = this.get('redux');
-
-    redux.dispatch(stateChange(ConnectionStatus.ChannelConnected, ''))
+    this.redux.dispatch(stateChange(ConnectionStatus.ChannelConnected, ''))
   }
 
   handleMessage(this: RelayConnection, data: string) {
-    const redux = this.get('redux');
-
-    redux.dispatch(stateChange(ConnectionStatus.ChannelReceived, data))
+    this.redux.dispatch(stateChange(ConnectionStatus.ChannelReceived, data))
 
     // process the message and do something with it
     // pass it off to a message processing service

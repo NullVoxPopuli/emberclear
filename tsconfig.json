@@ -21,9 +21,6 @@
     "baseUrl": ".",
     "module": "es6",
     "paths": {
-      "emberclear": [
-        "src/*"
-      ],
       "emberclear/tests/*": [
         "tests/*"
       ],
