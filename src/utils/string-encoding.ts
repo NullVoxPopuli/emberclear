@@ -29,15 +29,6 @@ export function ensureUint8Array(text: string | Uint8Array): Uint8Array {
   return fromString(text as string);
 }
 
-// export function convertUint8ArrayToString(array: Uint8Array) {
-//   const string = utf8Decoder.decode(array);
-//   // string includes control characters, such as null
-//   // which is common if the string is shorter than a block
-//   const trimmed = string.replace(/^\0+/, '').replace(/\0+$/, '');
-//
-//   return trimmed;
-// }
-
 export async function convertObjectToQRCodeDataURL(object: any): Promise<string> {
   const string = JSON.stringify(object);
 

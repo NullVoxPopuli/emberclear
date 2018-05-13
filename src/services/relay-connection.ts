@@ -101,16 +101,6 @@ export default class RelayConnection extends Service {
     this.subscribeToChannel(`user:${publicKey}`);
   }
 
-  onSocketError() {
-    this.toast.error(this.i18n.t('connection.status.socket.error'));
-    this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''));
-  }
-
-  onSocketClose() {
-    this.toast.info(this.i18n.t('connection.status.socket.close'));
-    this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''));
-  }
-
   subscribeToChannel(this: RelayConnection, channelName: string) {
     const { socket, toast } = this;
 
@@ -133,6 +123,17 @@ export default class RelayConnection extends Service {
       .receive("timeout", () => console.info(this.i18n.t('connection.status.timeout')) );
 
   }
+
+  onSocketError() {
+    this.toast.error(this.i18n.t('connection.status.socket.error'));
+    this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''));
+  }
+
+  onSocketClose() {
+    this.toast.info(this.i18n.t('connection.status.socket.close'));
+    this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''));
+  }
+
 
   onChannelError() {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelError, ''))
