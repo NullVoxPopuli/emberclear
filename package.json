@@ -5,6 +5,7 @@
   "description": "Small description for emberclear goes here",
   "license": "MIT",
   "author": "NullVoxPopuli",
+  "main": "src/main.js",
   "directories": {
     "doc": "doc",
     "test": "tests"
