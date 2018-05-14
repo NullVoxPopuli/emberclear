@@ -8,6 +8,12 @@ import { alias } from '@ember-decorators/object/computed';
 import { generateNewKeys } from 'emberclear/src/utils/nacl/utils';
 import Identity from 'emberclear/data/models/identity';
 
+interface IdentityAttributes {
+  name: string;
+  publicKey: Uint8Array;
+  privateKey: Uint8Array;
+}
+
 // The purpose of this service is to be an interface that
 // handles syncing between the data store and persistent localstorage.
 //
@@ -29,15 +35,31 @@ export default class IdentityService extends Service {
   async create(this: IdentityService, name: string) {
     const { publicKey, privateKey } = await generateNewKeys();
 
-    const record = this.store.createRecord('identity', {
-      id: 'me',
-      name,
-      privateKey,
-      publicKey
-    });
+    const record = this.upsertIdentity({ name, publicKey, privateKey });
 
     this.set('record', record);
     this.dump();
+  }
+
+  // 1. see if record already exists
+  //    1a. Yes: update
+  //    2b. No: create
+  upsertIdentity(attributes: IdentityAttributes) {
+    const existing = this.store.peekRecord('identity', 'me');
+
+    if (existing) {
+      this.applyAttributes(attributes, existing);
+
+      return existing;
+    }
+
+    return this.store.createRecord('identity', { id: 'me', ...attributes });
+  }
+
+  applyAttributes(attributes: IdentityAttributes, record: Identity) {
+    Object.keys(attributes).forEach(attribute => {
+      record.set(attribute, attributes[attribute]);
+    });
   }
 
   exists(): boolean {

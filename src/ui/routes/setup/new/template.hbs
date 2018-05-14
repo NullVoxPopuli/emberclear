@@ -1,3 +1,7 @@
+{{#if identityAlreadyExists}}
+  {{dismissable-warning warning=(t 'ui.setup.warning')}}
+{{/if}}
+
 {{#focus-card title=(t 'ui.setup.introQuestion')}}
 
   {{name-entry}}

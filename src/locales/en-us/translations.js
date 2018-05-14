@@ -74,6 +74,10 @@ export default {
       instructions: 'Please paste or type your mnemonic key.',
     },
     setup: {
+      warning: `
+        Warning: You are about to destroy an existing identity.
+        Please be sure you have backed up the mnemonic and / or
+        settings`,
       overwriteTitle: 'Are you sure you want to create a new identity?',
       introQuestion: 'What would you like to be called?',
       almostReady: 'You are almost ready to begin chatting!',
