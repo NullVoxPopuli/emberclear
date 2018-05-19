@@ -67,7 +67,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
-    "ember-cli": "github:ember-cli/ember-cli#964fd4ae7c7182ef2e6abdc16d9e542dc0a1892e",
+    "ember-cli": "github:twokul/ember-cli#mu-fix",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-dependency-checker": "^2.0.0",

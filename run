@@ -34,6 +34,16 @@ function runstuff {
         ember-cli bash
     ;;
 
+    docker)
+     docker build . -t emberclear \
+     && \
+       docker run -it \
+         -p 4200:4200 \
+         -p 7020:7020 \
+         -v $PWD:/app \
+         --rm emberclear
+   ;;
+
     clean:all)
       echo "Cleaning..."
       # Don't name any folders bin, obj, tmp, dist, or node_modules

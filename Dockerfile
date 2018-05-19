@@ -1,5 +1,5 @@
 # FROM node:9-alpine
-FROM node:9
+FROM node:8.11.1
 
 ENV CORE_DEPS apt-transport-https gnupg
 ENV WATCHMAN_DEPS python-dev
@@ -32,4 +32,6 @@ WORKDIR /app
 # install npm (for security updates), and ember-cli
 RUN echo \
   && npm install --global npm@latest \
-  && npm install --global github:ember-cli/ember-cli#964fd4ae7c7182ef2e6abdc16d9e542dc0a1892e
+  && npm install --global github:twokul/ember-cli#mu-fix
+
+CMD ["yarn", "start"]

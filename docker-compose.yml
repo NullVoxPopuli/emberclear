@@ -11,7 +11,7 @@ services:
 
     # To prevent files created in the container from being owned by root
     # to get these numbers: `echo "$(id -u):$(id -g)"`
-    user: 1000:1000
+    # user: 1000:1000
 
     # A friendly name for finding the container with
     # docker commands easier

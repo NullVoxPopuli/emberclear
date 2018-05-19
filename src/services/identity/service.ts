@@ -5,7 +5,7 @@ import { isBlank, isPresent } from '@ember/utils';
 import { service } from '@ember-decorators/service';
 import { alias } from '@ember-decorators/object/computed';
 
-import { generateNewKeys } from 'emberclear/src/utils/nacl/utils';
+import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import Identity from 'emberclear/data/models/identity';
 
 interface IdentityAttributes {
@@ -33,7 +33,7 @@ export default class IdentityService extends Service {
   @alias('record.privateKey') privateKey?: Uint8Array;
 
   async create(this: IdentityService, name: string) {
-    const { publicKey, privateKey } = await generateNewKeys();
+    const { publicKey, privateKey } = await generateAsymmetricKeys();
 
     const record = this.upsertIdentity({ name, publicKey, privateKey });
 
