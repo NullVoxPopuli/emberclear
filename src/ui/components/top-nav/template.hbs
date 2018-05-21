@@ -1,16 +1,20 @@
-<div class='navbar'>
+<div class='navbar has-shadow'>
     <div class='container'>
         <div class='navbar-brand'>
             {{#link-to 'application' class='navbar-item'}}
               {{t 'appname'}}
             {{/link-to}}
-            <span class="navbar-burger burger" data-target="navbarMenuHeroC">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
+            <a
+              role='button'
+              class="navbar-burger burger {{touchMenuClasses}}"
+              aria-label="menu" aria-expanded="false"
+              {{action 'toggleTouchMenu'}}>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
-        <div class="navbar-menu">
+        <div class="navbar-menu {{touchMenuClasses}}">
             <div class="navbar-end">
                 {{#link-to 'chat' class='navbar-item'}}
                     {{t 'routes.chat'}}

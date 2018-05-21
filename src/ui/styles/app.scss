@@ -9,6 +9,11 @@
 // $radius: 0;
 $card-background-color: #f7f7f7;
 
+// https://github.com/jgthms/bulma/blob/master/sass/utilities/initial-variables.sass#L46,L57
+// custom breakpoints
+$gap: 32px;
+
+
 @import 'fontawesome/css/fontawesome-all.min.css';
 @import "bulma";
 
@@ -17,6 +22,7 @@ $card-background-color: #f7f7f7;
 @import "utility/spacing";
 @import "utility/borders";
 @import "utility/flex";
+@import "utility/width";
 
 .full-height {
   height: 100%;
