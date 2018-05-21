@@ -2,14 +2,7 @@
 Channel List Component --}}
 
 <div class='container w-100 flex-grow flex-column align-items-stretch'>
-    <div class='flex-grow'>
-      {{chat-history messages=''}}
-
-      {{!-- {{message-display}}
-      {{message-display}}
-      {{message-display}} --}}
-
-    </div>
+    {{chat-history class='flex-grow flex-column'}}
 
     <div class=''>
       {{message-entry}}

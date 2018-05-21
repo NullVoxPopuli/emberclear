@@ -1,6 +1,6 @@
 <div class='message'>
-  <span>Author</span><span>time</span>
+  <span>{{@message.from}}</span><span>{{@message.sentAt}} ({{@message.receivedAt}})</span>
   <p>
-    Message
+    {{@message.body}}
   </p>
 </div>
