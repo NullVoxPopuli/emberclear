@@ -24,7 +24,7 @@ interface IdentityAttributes {
 // the only time the localstorage copy of the identity is written to
 // is upon update and initial creation of the identity data.
 export default class IdentityService extends Service {
-  @service store!: DS.Store
+  @service store!: DS.Store;
 
   record?: Identity;
 

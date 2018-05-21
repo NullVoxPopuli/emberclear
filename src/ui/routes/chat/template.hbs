@@ -1,12 +1,17 @@
 {{!-- User List Component
 Channel List Component --}}
-<div class='container flex-grow flex-column'>
 
-  <div class='flex-grow'>
-    {{chat-history}}
-  </div>
+<div class='container flex-grow flex-column align-items-stretch'>
+    <div class='flex-grow'>
+      {{chat-history messages=''}}
 
-  <div class=''>
-    {{message-entry}}
-  </div>
+      {{!-- {{message-display}}
+      {{message-display}}
+      {{message-display}} --}}
+
+    </div>
+
+    <div class=''>
+      {{message-entry}}
+    </div>
 </div>
