@@ -3,25 +3,15 @@ import Component from '@ember/component';
 
 import { action, computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
-
+import { alias } from '@ember-decorators/object/computed';
 
 export default class ChatHistory extends Component {
   @service store!: DS.Store;
+  @service('messages/persistence') messagePersistence!: MessagePersistence;
 
-  didInsertElement() {
-    let msg = this.store.createRecord('message',{
-      from: 'Me',
-      body: 'hi',
-      sentAt: new Date(),
-      receivedAt: new Date()
-    });
+  @alias('messagePersistence.messages.all') messages: Message[];
 
-    this.set('messages', [msg, msg, msg]);
-  }
-
-  didRender() {
-    // this..didRender();
-
+  didRender() {)
     this.scrollMessagesContainer();
   }
 
@@ -43,12 +33,16 @@ export default class ChatHistory extends Component {
       receivedAt: new Date()
     });
 
-    this.set('messages', [...this.messages, msg]);
+    this.messagePersistence.getMessages();
+    console.log(msg);
+
+
+    // this.set('messages', [...this.messages, msg]);
   }
 
   @action
   remove() {
-    this.messages.pop();
-    this.set('messages', [...this.messages])
+    this.messages.pop().destroyRecord();
+    // this.set('messages', [...this.messages])
   }
 }
