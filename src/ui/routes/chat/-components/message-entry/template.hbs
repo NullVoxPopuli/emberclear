@@ -1,5 +1,12 @@
-<div class='flex-row'>
+<div class='chat-entry flex-row'>
   <button>Upload</button>
-  <input class='flex-grow' />
-  <button {{action 'send'}}>Send</button>
+
+  {{input
+    class='flex-grow'
+    value=text
+  }}
+
+  <button {{action 'send'}}>
+    Send
+  </button>
 </div>

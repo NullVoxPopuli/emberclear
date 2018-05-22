@@ -1,5 +1,13 @@
 <div class='message'>
-  <span>{{@message.from}}</span><span>{{@message.sentAt}} ({{@message.receivedAt}})</span>
+  <div class='message-header'>
+    <span class='from'>{{@message.from}}</span>
+    <span class='sentAt'>
+      {{@message.sentAt}}
+      <span class='receivedAt'>
+        {{@message.receivedAt}}
+      </span>
+    </span>
+  </div>
   <p>
     {{@message.body}}
   </p>

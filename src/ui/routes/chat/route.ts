@@ -1,4 +1,3 @@
-import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
@@ -16,15 +15,7 @@ export default class ChatRoute extends Route {
   // ensure we are allowed to be here
   beforeModel() {
     if (!this.identity.exists()) {
-      // this.transitionTo('setup');
+      this.transitionTo('setup');
     }
   }
-
-  // load messages for the current room
-  model() {
-    return RSVP.hash({
-      messages: this.store.peekAll('message');
-    })
-  }
-
 }

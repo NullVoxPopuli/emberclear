@@ -1,4 +1,3 @@
-import DS from 'ember-data';
 import Component from '@ember/component';
 
 import { service } from '@ember-decorators/service';
@@ -10,9 +9,9 @@ import Message from 'emberclear/data/models/message';
 export default class ChatHistory extends Component {
   @service('messages/persistence') messagePersistence!: MessagePersistence;
 
-  @alias('messagePersistence.messages.all') messages: Message[];
+  @alias('messagePersistence.messages.all') messages!: Message[];
 
-  didRender() {)
+  didRender() {
     this.scrollMessagesContainer();
   }
 

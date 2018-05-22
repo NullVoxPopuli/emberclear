@@ -4,20 +4,24 @@ import { action } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
 import MessagePersistence from 'emberclear/services/messages/persistence';
+import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 
 export default class MessageEntry extends Component {
-  @service store;
-  @service('messages/persistence') messagePersistence!: MessagePersistence;
+  @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
+
+  // value from the input field
+  text?: string;
+  // disable the text field while sending
+  isDisabled = false;
+
+
 
   @action
-  send() {
-    let msg = this.store.createRecord('message',{
-      from: 'Me',
-      body: 'hello',
-      sentAt: new Date(),
-      receivedAt: new Date()
-    });
+  async send(this: MessageEntry) {
+    this.set('isDisabled', true);
+    await this.messageDispatcher.sendMessage(this.text);
 
-    this.messagePersistence.append(msg);
+    this.set('isDisabled', false);
+    this.set('text', '');
   }
 }

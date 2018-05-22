@@ -18,7 +18,8 @@
     "start": "yarn ember serve",
     "test": "yarn ember test",
     "lint": "yarn eslint src blueprints config lib server tests",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "deploy": "yarn build && yarn ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\" && git push origin gh-pages:gh-pages"
   },
   "dependencies": {
     "@ember-decorators/babel-transforms": "^2.0.0",
@@ -72,6 +73,7 @@
     "ember-cli-babel": "^6.6.0",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.2.3",
+    "ember-cli-github-pages": "^0.2.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",

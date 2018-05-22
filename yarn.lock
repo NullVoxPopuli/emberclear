@@ -151,9 +151,9 @@
     "@types/jquery" "*"
     "@types/rsvp" "*"
 
-"@types/estree@0.0.39":
-  version "0.0.39"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
+"@types/estree@0.0.38":
+  version "0.0.38"
+  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.38.tgz#c1be40aa933723c608820a99a373a16d215a1ca2"
 
 "@types/handlebars@*":
   version "4.0.37"
@@ -2614,7 +2614,7 @@ ember-cli-babel@6.12.0, ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, e
     ember-cli-version-checker "^2.1.0"
     semver "^5.4.1"
 
-ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.7:
+ember-cli-babel@^5.1.7:
   version "5.2.8"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-5.2.8.tgz#0356b03cc3fdff5d0f2ecaa46a0e1cfaebffd876"
   dependencies:
@@ -2674,6 +2674,13 @@ ember-cli-get-component-path-option@^1.0.0:
 ember-cli-get-dependency-depth@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-get-dependency-depth/-/ember-cli-get-dependency-depth-1.0.0.tgz#e0afecf82a2d52f00f28ab468295281aec368d11"
+
+ember-cli-github-pages@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-github-pages/-/ember-cli-github-pages-0.2.0.tgz#2789d178936d8a1350ebbb1a300ab90760a111da"
+  dependencies:
+    ember-cli-version-checker "^2.1.0"
+    rsvp "^4.7.0"
 
 ember-cli-htmlbars-inline-precompile@^1.0.0:
   version "1.0.2"
@@ -3174,12 +3181,6 @@ ember-load-initializers@^1.1.0:
   resolved "https://registry.yarnpkg.com/ember-load-initializers/-/ember-load-initializers-1.1.0.tgz#4edacc0f3a14d9f53d241ac3e5561804c8377978"
   dependencies:
     ember-cli-babel "^6.6.0"
-
-ember-localforage-adapter@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/ember-localforage-adapter/-/ember-localforage-adapter-2.2.1.tgz#baedcb2eab23a98528eb442c7f28701cfd64e591"
-  dependencies:
-    ember-cli-babel "^5.1.5"
 
 ember-lodash-shim@^2.0.0:
   version "2.0.7"
@@ -7012,11 +7013,11 @@ rollup@^0.41.4:
   dependencies:
     source-map-support "^0.4.0"
 
-rollup@^0.59.0:
-  version "0.59.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.59.1.tgz#86cbceaecd861df1317a0aa29207173de23e6a5d"
+rollup@^0.58.1:
+  version "0.58.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.58.2.tgz#2feddea8c0c022f3e74b35c48e3c21b3433803ce"
   dependencies:
-    "@types/estree" "0.0.39"
+    "@types/estree" "0.0.38"
     "@types/node" "*"
 
 rsvp@^3.0.14, rsvp@^3.0.16, rsvp@^3.0.17, rsvp@^3.0.18, rsvp@^3.0.21, rsvp@^3.0.6, rsvp@^3.1.0, rsvp@^3.2.1, rsvp@^3.3.3, rsvp@^3.5.0:

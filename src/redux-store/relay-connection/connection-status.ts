@@ -25,7 +25,7 @@ type StateChange = {
 }
 
 // Action Creators
-export function stateChange(status: ConnectionStatus, message: string): StateChange {
+export function stateChange(status: ConnectionStatus, message: string = ''): StateChange {
   return ({type: STATE_CHANGE, message, status});
 }
 
