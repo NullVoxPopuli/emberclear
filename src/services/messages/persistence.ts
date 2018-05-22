@@ -1,6 +1,13 @@
 import DS from 'ember-data';
+import Array from '@ember/array/mutable';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
+
+import Message from 'emberclear/data/models/message';
+
+interface MessageCache {
+  all: Array<Message>
+}
 
 // NOTE: this would be easier to manage / reason about
 //       in redux, but as the message pool grows,
@@ -11,17 +18,25 @@ export default class MessagePersistence extends Service {
   @service store!: DS.Store;
 
   // collections of all messages for every channel
-  messages = {
+  messages: MessageCache = {
     all: []
   };
 
-  getMessages(channel = '', thread = '') {
-    const msgs = this.store.peekAll('message');
+  append(this: MessagePersistence, msg: Message) {
+    // const channel = msg.channel;
 
-    this.set('messages.all', msgs);
+    this.messages.all.pushObject(msg);
 
-    return msgs;
+    // this.get(`messages.${channel}`).pushObject(msg);
   }
+
+  // getMessages(this: MessagePersistence, channel = '', thread = '') {
+  //   const msgs = this.store.peekAll('message');
+  //
+  //   this.set('messages.all', msgs);
+  //
+  //   return msgs;
+  // }
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
