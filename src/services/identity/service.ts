@@ -38,31 +38,14 @@ export default class IdentityService extends Service {
   async create(this: IdentityService, name: string) {
     const { publicKey, privateKey } = await generateAsymmetricKeys();
 
-    const record = this.upsertIdentity({ name, publicKey, privateKey });
+    // remove existing record
+    await this.store.unloadAll('identity');
+
+    const record = this.store.createRecord('identity', { id: 'me', name, publicKey, privateKey });
 
     await record.save();
+
     this.set('record', record);
-  }
-
-  // 1. see if record already exists
-  //    1a. Yes: update
-  //    2b. No: create
-  upsertIdentity(attributes: IdentityAttributes) {
-    const existing = this.store.peekRecord('identity', 'me');
-
-    if (existing) {
-      this.applyAttributes(attributes, existing);
-
-      return existing;
-    }
-
-    return this.store.createRecord('identity', { id: 'me', ...attributes });
-  }
-
-  applyAttributes(attributes: IdentityAttributes, record: Identity) {
-    Object.keys(attributes).forEach(attribute => {
-      record.set(attribute, attributes[attribute]);
-    });
   }
 
   async exists(): Promise<boolean> {

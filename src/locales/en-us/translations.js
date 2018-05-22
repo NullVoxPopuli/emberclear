@@ -79,6 +79,17 @@ export default {
         Please be sure you have backed up the mnemonic and / or
         settings`,
       overwriteTitle: 'Are you sure you want to create a new identity?',
+      overwriteQuestion: `
+        This is a destructive action, that will
+        cause the currently configured identity to be forgotten and
+        replaced. There is no way to recover, and without having the
+        mnemonic saved somewhere, you will be unable to connect with any
+        of the previously configured chats as no one will know who you are.
+        <br />
+        <br />
+        Are you sure you want to do this?`,
+      overwriteAbort: 'No, take me back to safety',
+      overwriteConfirm: 'Yes, I understand the risks',
       introQuestion: 'What would you like to be called?',
       almostReady: 'You are almost ready to begin chatting!',
       nameLabel: 'This is how others will identify you',
