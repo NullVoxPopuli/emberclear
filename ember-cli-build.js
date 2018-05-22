@@ -37,10 +37,7 @@ module.exports = function(defaults) {
 
   // font awesome
   app.import('vendor/fontawesome/css/font-awesome-all.min.css');
-  var fontTree = new Funnel('vendor/fontawesome/webfonts', {
-    destDir: '/assets/fontawesome/webfonts',
-  });
-
+  var fontTree = new Funnel('vendor/fontawesome/webfonts', { destDir: '/assets/fontawesome/webfonts' });
   var fontStyleTree = new Funnel('vendor/fontawesome/css', { destDir: '/assets/fontawesome/css' });
 
   // libsodium
@@ -52,6 +49,15 @@ module.exports = function(defaults) {
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
+
+  // localforage
+  app.import('node_modules/localforage/dist/localforage.js');
+  app.import('vendor/shims/localforage.js');
+
+  // uuid
+  app.import('node_modules/uuid/index.js', {
+    using: [{ transformation: 'cjs', as: 'uuid' }]
+  });
 
   return mergeTrees([app.toTree(), fontTree, fontStyleTree]);
 };

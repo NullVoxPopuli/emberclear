@@ -28,6 +28,9 @@ export default class IdentityService extends Service {
 
   record?: Identity;
 
+  // safety for not accidentally blowing away an existing identity
+  allowOverride = false;
+
   @alias('record.name') name?: string;
   @alias('record.publicKey') publicKey?: Uint8Array;
   @alias('record.privateKey') privateKey?: Uint8Array;
@@ -37,8 +40,8 @@ export default class IdentityService extends Service {
 
     const record = this.upsertIdentity({ name, publicKey, privateKey });
 
+    await record.save();
     this.set('record', record);
-    this.dump();
   }
 
   // 1. see if record already exists
@@ -62,8 +65,8 @@ export default class IdentityService extends Service {
     });
   }
 
-  exists(): boolean {
-    let identity = this._identity();
+  async exists(): Promise<boolean> {
+    let identity = await this._identity();
 
     if (identity === null) return false;
     if (isBlank(identity)) return false;
@@ -71,43 +74,21 @@ export default class IdentityService extends Service {
     return isPresent(identity.privateKey);
   }
 
-  load() {
-    if (localStorage.identity) {
-      const json = JSON.parse(localStorage.identity);
+  async load(this: IdentityService) {
+    try {
+      const existing = await this.store.findRecord('identity', 'me');
 
-      const existing = this.store.peekRecord('identity', 'me');
-
-      if (existing) {
-        Object.keys(json).forEach(key => {
-          existing.set(key, json[key]);
-        });
-
-        existing.save();
-      } else {
-        this.store.createRecord('identity', json);
-      }
-
+      this.set('record', existing);
+    } catch (e) {
+      // no record found
+      this.set('allowOverride', true);
     }
   }
 
-  dump() {
-    const identity = this._identity();
+  async _identity(this: IdentityService): Promise<Identity | null> {
+    if (this.record === null) await this.load();
 
-    if (isBlank(identity)) return;
-
-    const json = identity.serialize({ includeId: true });
-
-    localStorage.identity = JSON.stringify({ id: json.data.id, ...json.data.attributes });
-  }
-
-  _identity(this: IdentityService): Identity | null {
-    if (this.record === null) this.load();
-
-    let identity = this.store.peekRecord('identity', 'me');
-
-    this.set('record', identity);
-
-    return identity;
+    return this.record;
   }
 }
 
