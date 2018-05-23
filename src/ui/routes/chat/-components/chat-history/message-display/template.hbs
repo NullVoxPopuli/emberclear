@@ -2,13 +2,13 @@
   <div class='message-header'>
     <span class='from'>{{@message.from}}</span>
     <span class='sentAt'>
-      {{@message.sentAt}}
-      <span class='receivedAt'>
-        {{@message.receivedAt}}
+      {{moment-format @message.sentAt 'lll'}}
+      <span class='receivedAt has-background-info'>
+        Received: {{moment-format @message.receivedAt 'lll'}}
       </span>
     </span>
   </div>
-  <p>
+  <p class='message-body'>
     {{@message.body}}
   </p>
 </div>

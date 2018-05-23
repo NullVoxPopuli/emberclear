@@ -1,0 +1,33 @@
+.message {
+  padding: 5px;
+
+  .message-header {
+    cursor: default;
+
+    .from {
+      font-style: bold;
+    }
+
+    .sentAt {
+      font-weight: lighter;
+      color: lighten($grey, 20%);
+
+
+      &:hover {
+        .receivedAt {
+          opacity: 1;
+        }
+      }
+
+      .receivedAt {
+        opacity: 0;
+        transition-property: all;
+        transition-duration: 0.1s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

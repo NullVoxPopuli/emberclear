@@ -1,0 +1,13 @@
+
+.message-list {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  .messages {
+    overflow-y: auto;
+    min-height: auto;
+    max-height: 100%;
+  }
+}

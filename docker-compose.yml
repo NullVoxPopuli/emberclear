@@ -1,5 +1,8 @@
 version: '3'
 services:
+  # TODO: add relays here
+
+
   ember:
     # image: emberjs/ember-cli
     build:

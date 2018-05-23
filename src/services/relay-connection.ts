@@ -54,8 +54,8 @@ export default class RelayConnection extends Service {
   }
 
   // TODO: ensure not already connected
-  canConnect(this: RelayConnection): boolean {
-    return this.identity.exists();
+  async canConnect(this: RelayConnection): Promise<boolean> {
+    return await this.identity.exists();
   }
 
   userChannelId(): string {
@@ -82,8 +82,9 @@ export default class RelayConnection extends Service {
   //       a channel, then we don't need a room-channel per user.
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
-  connect(this: RelayConnection) {
-    if (!this.canConnect()) return;
+  async connect(this: RelayConnection) {
+    const canConnect = await this.canConnect();
+    if (!canConnect) return;
 
     this.toast.info(this.i18n.t('connection.connecting'));
 
