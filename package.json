@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": false,
   "description": "Small description for emberclear goes here",
-  "license": "OPL-1.0",
+  "license": "GPL-3.0",
   "author": "NullVoxPopuli",
   "main": "src/main.js",
   "directories": {
