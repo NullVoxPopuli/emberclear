@@ -1,1 +1,0 @@
-../../../src/locales/en-us/translations.js

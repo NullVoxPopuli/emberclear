@@ -5,7 +5,8 @@
 #
 # For local development only.
 
-COMPOSE="docker-compose -f docker-compose.yml --project-directory . -p emberclear"
+UI_PATH="packages/frontend"
+COMPOSE="docker-compose -f scripts/docker-compose.yml --project-directory ./$UI_PATH -p emberclear"
 
 function runstuff {
   # First arg
@@ -20,27 +21,35 @@ function runstuff {
 
     restart) ${COMPOSE} stop $arguments && ${COMPOSE} start $arguments;;
 
+    deploy)
+      ( ./scripts/deploy )
+    ;;
+
+    yarn)
+      ( cd $UI_PATH && yarn $arguments )
+    ;;
+
     ember)
       # these two commands do the same as
       # docker-compose up --build
       # (kinda)
-      docker build . -t ember-cli
+      docker build ./${UI_PATH} -t ember-cli
       docker run \
         --rm \
         -ti \
-        -v $(pwd):/app \
+        -v $(pwd)/${UI_PATH}:/app \
         -p 4200:4200 -p 7020:7020 -p 7357:7357 \
         -u $(id -u):$(id -g) \
         ember-cli bash
     ;;
 
     docker)
-     docker build . -t emberclear \
+     docker build ./${UI_PATH} -t emberclear \
      && \
        docker run -it \
          -p 4200:4200 \
          -p 7020:7020 \
-         -v $PWD:/app \
+         -v $PWD/${UI_PATH}:/app \
          --rm emberclear
    ;;
 

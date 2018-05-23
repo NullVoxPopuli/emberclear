@@ -5,8 +5,10 @@ An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) pro
 
 ## Development
 
+Note: the frontend code is in `packages/frontend`. This is to separate the over-arching  repo files from the individual project(s).
+
 ```bash
-./run
+./run yarn start:dev
 ```
 
 Question: should the relay finally become part of the same project?
@@ -18,11 +20,6 @@ Written in ember for demonstration of
  - websockets
  - typescript
  - all the modern features / best practices of ember
-
-
-#### Onetime browserify things
-
-https://wzrd.in/
 
 #### Debugging
 

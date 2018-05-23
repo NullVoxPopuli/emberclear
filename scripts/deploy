@@ -2,6 +2,8 @@
 set -ex
 
 # dist should already exist.
+cd packages/frontend
+
 mkdir -p dist
 
 yarn build:production
@@ -21,3 +23,5 @@ cp index.html 404.html
 git add . \
   && git commit -m"update gh-pages" \
   && git push github gh-pages -f
+
+cd ../../
