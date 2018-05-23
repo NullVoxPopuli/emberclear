@@ -4,9 +4,7 @@ set -ex
 # dist should already exist.
 mkdir -p dist
 
-yarn build
-
-export NODE_ENV=production
+yarn build --environment production
 
 cd dist \
   && git init \
