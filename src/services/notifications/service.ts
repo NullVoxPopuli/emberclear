@@ -5,8 +5,6 @@ import { service } from '@ember-decorators/service';
 
 // TODO: implement sysstem-notifications
 export default class Notifications extends Service {
-  @service toast!: Toast;
-
   info(msg: string, title = '', options = {}) {
     this.display('info', msg, title, options);
   }
@@ -26,6 +24,7 @@ export default class Notifications extends Service {
   async display(status: string, msg: string, title: string, options = {}) {
     const hasPermission = await this.isPermissionGranted();
 
+    return; // toast disabled, because of jQuery. boo jQuery
     if (hasPermission) {
       this.showNotification(msg, title, options);
       return;

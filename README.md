@@ -3,22 +3,17 @@
 
 An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) protocol.
 
-TODO:
-- add rust/wasm bip39 mnemonics?
-- replace tweetnacl with wasm version.
-
 ## Development
 
 ```bash
 ./run
 ```
 
-TODO: implement run script.
-
 Question: should the relay finally become part of the same project?
 
 Written in ember for demonstration of
  - progressive web apps
+ - server side rendering (via prember, since this is hosted on github pages)
  - service workers
  - websockets
  - typescript
@@ -41,3 +36,9 @@ File Watch Problems?
 ```bash
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 ```
+
+
+
+## License
+
+[Open Pubilc License v1.0 (OPL-1.0)](https://tldrlegal.com/license/open-public-license-v1.0-(opl-1.0))

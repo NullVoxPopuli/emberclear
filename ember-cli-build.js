@@ -15,6 +15,12 @@ module.exports = function(defaults) {
       rulesDir: 'eslint-rules',
       extensions: ['js', 'ts'],
     },
+    prember: {
+      urls: [
+        '/',
+        '/faq'
+      ]
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
