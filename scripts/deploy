@@ -4,7 +4,7 @@ set -ex
 # dist should already exist.
 mkdir -p dist
 
-yarn build --environment production
+yarn build:production
 
 cd dist \
   && git init \
