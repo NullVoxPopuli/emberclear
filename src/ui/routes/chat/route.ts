@@ -13,8 +13,10 @@ export default class ChatRoute extends Route {
   }
 
   // ensure we are allowed to be here
-  beforeModel() {
-    if (!this.identity.exists()) {
+  async beforeModel() {
+    const exists = await this.identity.exists();
+
+    if (!exists) {
       this.transitionTo('setup');
     }
   }
