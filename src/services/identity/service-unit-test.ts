@@ -11,14 +11,10 @@ module('Unit | Service | identity', function(hooks) {
     const name = 'test identity';
     let service = this.owner.lookup('service:identity');
 
-    Ember.run(() => service.create(name));
-    Ember.run(() => {});
-    Ember.run(() => {});
-    Ember.run(() => {});
-    Ember.run(() => {});
-    Ember.run(() => {});
-    // service.set('record', null);
-    Ember.run(() => service.load());
+    await Ember.run(() => service.create(name));
+    // await service.create(name);
+    service.set('record', null);
+    await Ember.run(() => service.load());
 
     assert.ok(service.record);
     assert.equal(service.name, name);

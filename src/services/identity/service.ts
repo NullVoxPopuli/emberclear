@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import Service from '@ember/service';
 import { isBlank, isPresent } from '@ember/utils';
@@ -35,23 +36,23 @@ export default class IdentityService extends Service {
   @alias('record.publicKey') publicKey?: Uint8Array;
   @alias('record.privateKey') privateKey?: Uint8Array;
 
-  async create(this: IdentityService, name: string) {
+  async create(this: IdentityService, name: string): Promise<void> {
     const { publicKey, privateKey } = await generateAsymmetricKeys();
 
     // remove existing record
     await this.store.unloadAll('identity');
 
-    const record = this.store.createRecord('identity', { id: 'me', name, publicKey, privateKey });
+    const record = this.store.createRecord('identity', {
+      id: 'me', name, publicKey, privateKey
+    });
 
     await record.save();
-
-    this.set('record', record);
+    await this.load();
   }
 
   async exists(): Promise<boolean> {
-    let identity = await this._identity();
+    let identity = await this.identity();
 
-    if (identity === null) return false;
     if (isBlank(identity)) return false;
 
     return isPresent(identity.privateKey);
@@ -61,14 +62,14 @@ export default class IdentityService extends Service {
     try {
       const existing = await this.store.findRecord('identity', 'me');
 
-      this.set('record', existing);
+      Ember.run(() => this.set('record', existing));
     } catch (e) {
       // no record found
-      this.set('allowOverride', true);
+      Ember.run(() => this.set('allowOverride', true));
     }
   }
 
-  async _identity(this: IdentityService): Promise<Identity | null> {
+  async identity(this: IdentityService): Promise<Identity | null> {
     if (this.record === null) await this.load();
 
     return this.record;
