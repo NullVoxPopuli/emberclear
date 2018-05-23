@@ -19,7 +19,7 @@
     "test": "yarn ember test",
     "lint": "yarn eslint src blueprints config lib server tests",
     "lint:fix": "yarn lint --fix",
-    "deploy": "yarn build && yarn ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\" && git push origin gh-pages:gh-pages"
+    "deploy": "ember build && ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\" && git push origin gh-pages:gh-pages"
   },
   "dependencies": {
     "@ember-decorators/babel-transforms": "^2.0.0",
