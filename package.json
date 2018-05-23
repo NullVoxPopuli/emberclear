@@ -65,6 +65,10 @@
     "redux-thunk": "2.2.0",
     "toastr": "^2.1.4",
     "typescript": "^2.8.3",
+    "ember-service-worker": "^0.6.12",
+    "ember-service-worker-asset-cache": "^0.6.2",
+    "ember-moment": "^7.7.0",
+    "ember-service-worker-index": "^0.6.6",
     "url-parse": "^1.4.0",
     "uuid": "^3.2.1"
   },
@@ -89,7 +93,6 @@
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-moment": "^7.7.0",
     "ember-resolver": "^4.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/db31ac4f619a273828e6214b92611ec62bf66a12.tgz",
     "eslint-plugin-ember": "^5.0.0",
