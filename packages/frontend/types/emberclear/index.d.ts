@@ -1,7 +1,12 @@
 
 import Ember from 'ember';
 
+
 declare global {
+  interface FastBoot {
+    isFastBoot: boolean;
+  }
+
   interface Window {
     devToolsExtension: any
   }

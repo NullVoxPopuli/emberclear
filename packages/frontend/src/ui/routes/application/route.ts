@@ -7,7 +7,7 @@ import IdentityService from 'emberclear/services/identity/service';
 export default class ApplicationRoute extends Route {
   @service identity!: IdentityService;
   @service relayConnection!: RelayConnection;
-  @service fastboot;
+  @service fastboot!: FastBoot;
 
   activate(this: ApplicationRoute) {
     if (this.fastboot.isFastBoot) return;
