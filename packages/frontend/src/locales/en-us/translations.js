@@ -66,7 +66,7 @@ export default {
       wantToSupport: 'Want to support this project?',
       license: `
         The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank'>source code</a>
-        uses the <a href="http://opensource.org/licenses/mit-license.php" target='_blank'>MIT</a> license.
+        uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank'>GPL-3</a> license.
       `,
     },
     login: {
