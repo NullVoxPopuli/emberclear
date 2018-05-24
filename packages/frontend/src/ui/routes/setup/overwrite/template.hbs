@@ -6,7 +6,15 @@
   </div>
 
   <div class='card-footer'>
-    <a class='card-footer-item'>{{t 'ui.setup.overwriteAbort'}}</a>
-    <a class='card-footer-item'>{{t 'ui.setup.overwriteConfirm'}}</a>
+    <a
+      {{action 'didClickNo'}}
+      class='card-footer-item'>
+      {{t 'ui.setup.overwriteAbort'}}
+    </a>
+    <a
+      {{action 'didClickYes'}}
+      class='card-footer-item'>
+      {{t 'ui.setup.overwriteConfirm'}}
+    </a>
   </div>
 {{/focus-card}}

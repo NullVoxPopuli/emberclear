@@ -58,19 +58,23 @@ export default class IdentityService extends Service {
     return isPresent(identity.privateKey);
   }
 
-  async load(this: IdentityService) {
+  async load(this: IdentityService): Promise<Identity | null> {
     try {
       const existing = await this.store.findRecord('identity', 'me');
 
       Ember.run(() => this.set('record', existing));
+
+      return existing;
     } catch (e) {
       // no record found
       Ember.run(() => this.set('allowOverride', true));
     }
+
+    return null;
   }
 
   async identity(this: IdentityService): Promise<Identity | null> {
-    if (this.record === null) await this.load();
+    if (isBlank(this.record)) return await this.load();
 
     return this.record;
   }

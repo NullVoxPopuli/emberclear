@@ -5,6 +5,10 @@ import libsodiumWrapper from 'libsodium-wrappers';
 // so the conversions don't need to be async
 const sodium = libsodiumWrapper.sodium;
 
+export function toHex(array: Uint8Array): string {
+  return sodium.to_hex(array);
+}
+
 export function toBase64(array: Uint8Array): string {
   return sodium.to_base64(array);
 }

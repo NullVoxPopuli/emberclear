@@ -4,7 +4,7 @@ import { Channel, Socket } from 'phoenix';
 
 import Redux from 'emberclear/services/redux';
 import IdentityService from 'emberclear/services/identity/service';
-import { toBase64 } from 'emberclear/src/utils/string-encoding';
+import { toBase64, toHex } from 'emberclear/src/utils/string-encoding';
 
 import { stateChange, ConnectionStatus } from '../redux-store/relay-connection';
 
@@ -63,7 +63,7 @@ export default class RelayConnection extends Service {
 
     if (!publicKey) return '';
 
-    return toBase64(publicKey);
+    return toHex(publicKey);
   }
 
   // each user has at least one channel that they subscribe to
