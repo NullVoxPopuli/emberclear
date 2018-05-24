@@ -23,7 +23,9 @@ export default class NameEntry extends Component {
   @action
   async createIdentity(this: NameEntry) {
     if (this.nameIsBlank) return;
-    if (!this.identity.exists()) {
+    const exists = await this.identity.exists();
+
+    if (!exists) {
       await this.identity.create(this.name);
     }
 

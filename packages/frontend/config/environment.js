@@ -58,7 +58,7 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
     // github pages:
     ENV.rootURL = '/emberclear';
-    ENV.baseURL = '/emberclear';
+    // ENV.baseURL = '/emberclear';
 
   }
 
