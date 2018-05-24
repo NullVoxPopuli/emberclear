@@ -12,9 +12,6 @@ export default class ApplicationRoute extends Route {
   activate(this: ApplicationRoute) {
     if (this.fastboot.isFastBoot) return;
 
-    const el = document.getElementById('pre-load-spinner');
-    el.parentNode.removeChild(el);
-
     this.identity.load();
     this.relayConnection.connect();
 

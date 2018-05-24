@@ -30,6 +30,51 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    'ember-bulma': {
+      // exclude everything by default
+      except: [
+        'bulma-button',
+        'bulma-checkbox',
+        'bulma-column',
+        'bulma-columns',
+        'bulma-container',
+        'bulma-control',
+        'bulma-footer',
+        'bulma-header',
+        'bulma-header-menu',
+        'bulma-hero-content',
+        'bulma-hero-footer',
+        'bulma-hero-header',
+        'bulma-hero',
+        'bulma-input',
+        'bulma-menu',
+        'bulma-menu-list',
+        'bulma-message-body',
+        'bulma-message-header',
+        'bulma-message',
+        'bulma-modal-background',
+        'bulma-modal-close',
+        'bulma-modal',
+        'bulma-nav-center',
+        'bulma-nav',
+        'bulma-nav-left',
+        'bulma-nav-right',
+        'bulma-nav-toggle',
+        'bulma-notification',
+        'bulma-panel-block',
+        'bulma-panel',
+        'bulma-panel-tabs',
+        'bulma-progress',
+        'bulma-radio',
+        'bulma-section',
+        'bulma-select',
+        'bulma-table',
+        'bulma-tabs',
+        'bulma-tag',
+        'bulma-textarea',
+      ]
     }
   };
 

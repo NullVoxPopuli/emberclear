@@ -29,6 +29,10 @@ function runstuff {
       ( cd $UI_PATH && yarn $arguments )
     ;;
 
+    yarn:reinstall)
+      ( cd $UI_PATH && rm -rf dist tmp node_modules yarn.lock && yarn )
+    ;;
+
     ember)
       # these two commands do the same as
       # docker-compose up --build

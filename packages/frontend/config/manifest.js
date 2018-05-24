@@ -9,7 +9,7 @@ module.exports = function(environment, appConfig) {
     name: "emberclear",
     short_name: "emberclear",
     description: "Encrypted Chat. No History. No Logs.",
-    start_url: "/",
+    start_url: `${rootURL}/`,
     display: "standalone",
     background_color: "#fff",
     theme_color: "#fff",

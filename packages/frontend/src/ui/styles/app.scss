@@ -20,7 +20,7 @@ $widescreen: 1152px + (2 * $gap);
 $fullhd: 1344px + (2 * $gap);
 
 @import 'fontawesome/css/fontawesome-all.min.css';
-@import "bulma";
+@import 'bulma';
 
 $tablet: 480px;
 
@@ -39,6 +39,7 @@ $tablet: 480px;
 
 body {
   @include sticky-footer-container;
+  overflow-x: hidden;
 
   .sticky-footer-content {
     @include sticky-footer-content;

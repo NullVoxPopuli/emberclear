@@ -70,9 +70,9 @@
     ember-cli-babel "^6.6.0"
     ember-compatibility-helpers "^1.0.0"
 
-"@ember/optional-features@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@ember/optional-features/-/optional-features-0.5.2.tgz#92544285b173adef8f462420411bf77ddf822dd4"
+"@ember/optional-features@github:emberjs/ember-optional-features#f7df428073c7dd0e0d56da25de6b2e83bd069bef":
+  version "0.6.1"
+  resolved "https://codeload.github.com/emberjs/ember-optional-features/tar.gz/f7df428073c7dd0e0d56da25de6b2e83bd069bef"
   dependencies:
     chalk "^2.3.0"
     co "^4.6.0"
@@ -7230,8 +7230,8 @@ rollup@^0.41.4:
     source-map-support "^0.4.0"
 
 rollup@^0.59.0:
-  version "0.59.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.59.2.tgz#37011ed83947e4e1071b66f9e7d0574b144affc9"
+  version "0.59.3"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.59.3.tgz#15dae74cb1b6a6b39a63c7096c1d6f47d8f2a5bd"
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "*"

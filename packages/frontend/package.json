@@ -15,7 +15,7 @@
     "ember": "EMBER_CLI_MODULE_UNIFICATION=true node_modules/.bin/ember",
     "eslint": "node_modules/.bin/eslint",
     "build": "yarn ember build",
-    "build:production": "yarn build --environment production",
+    "build:production": "FASTBOOT_DISABLED=true yarn build --environment production",
     "start": "yarn ember serve",
     "start:dev": "FASTBOOT_DISABLED=true SW_DISABLED=true yarn start",
     "test": "yarn ember test",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@ember-decorators/babel-transforms": "^2.0.0",
-    "@ember/optional-features": "^0.5.2",
+    "@ember/optional-features": "github:emberjs/ember-optional-features#f7df428073c7dd0e0d56da25de6b2e83bd069bef",
     "@types/bip39": "^2.4.0",
     "@types/ember": "^2.8.22",
     "@types/ember-data": "^2.14.15",

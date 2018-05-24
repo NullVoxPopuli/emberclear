@@ -15,10 +15,16 @@ module.exports = function(defaults) {
       rulesDir: 'eslint-rules',
       extensions: ['js', 'ts'],
     },
+    // always enable sourcemaps, even in production
+    // (cause debugging!)
+    // sourcemaps: {
+    //   enabled: true,
+    //   extensions: ['js', 'css'],
+    // },
     prember: {
       urls: [
         '/',
-        '/faq'
+        '/faq',
       ]
     },
   });
