@@ -1,0 +1,26 @@
+.has-hover-tip {
+  position: relative;
+
+  &:hover {
+    .hover-tip {
+      opacity: 1;
+    }
+  }
+
+  .hover-tip {
+    opacity: 0;
+    color: black;
+    z-index: 10;
+    position: absolute;
+    bottom: 20px;
+    padding: 5px;
+    border-radius: 2px;
+    transition-property: all;
+    transition-duration: 0.1s;
+    box-shadow: 0 $radius-small $radius-small rgba(0,0,0, 0.5);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

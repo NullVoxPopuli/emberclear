@@ -30,7 +30,7 @@ $tablet: 480px;
 @import "utility/borders";
 @import "utility/flex";
 @import "utility/width";
-
+@import "components/hover-tip";
 
 .full-height {
   height: 100%;
@@ -77,29 +77,6 @@ body {
     .sentAt {
       font-weight: lighter;
       color: lighten($grey, 20%);
-      position: relative;
-
-      &:hover {
-        .receivedAt {
-          opacity: 1;
-        }
-      }
-
-      .receivedAt {
-        opacity: 0;
-        color: black;
-        z-index: 10;
-        position: absolute;
-        bottom: 20px;
-        padding: 5px;
-        border-radius: 2px;
-        transition-property: all;
-        transition-duration: 0.1s;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
     }
   }
 }
