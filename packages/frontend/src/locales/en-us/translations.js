@@ -46,6 +46,7 @@ export default {
     chat: 'Chat',
     profile: 'Profile',
     faq: 'F.A.Q.',
+    createNewUser: 'Create New User',
   },
   ui: {
     faq: {
