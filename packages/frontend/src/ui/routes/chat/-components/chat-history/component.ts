@@ -16,8 +16,8 @@ export default class ChatHistory extends Component {
   }
 
   scrollMessagesContainer() {
-    const element = this.element.querySelector('.messages');
-    const lastMessage = element.querySelector('.message:last-child');
+    const element = this.element.querySelector('.messages') as HTMLElement;
+    const lastMessage = element.querySelector('.message:last-child') as HTMLElement;
 
     if (lastMessage) {
       element.scrollTop = lastMessage.offsetTop + lastMessage.offsetHeight;
