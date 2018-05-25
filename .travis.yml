@@ -27,4 +27,4 @@ before_install:
 
 script:
   # - npm run lint:js
-  - cd packages/frontend && yarn test
+  - cd packages/frontend && yarn && yarn test
