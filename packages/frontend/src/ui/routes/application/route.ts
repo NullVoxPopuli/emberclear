@@ -13,15 +13,11 @@ export default class ApplicationRoute extends Route {
     if (this.fastboot.isFastBoot) return;
 
     this.identity.load();
-    this.relayConnection.connect();
 
     setInterval(() => {
       navigator.serviceWorker.getRegistration()
         .then(registration => registration && registration.update());
     }, 60000);
-
-
-
 
 
     // window.addEventListener("beforeinstallprompt", function(e) {

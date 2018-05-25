@@ -15,7 +15,7 @@
     "ember": "EMBER_CLI_MODULE_UNIFICATION=true node_modules/.bin/ember",
     "eslint": "node_modules/.bin/eslint",
     "build": "yarn ember build",
-    "build:production": "FASTBOOT_DISABLED=true yarn build --environment production",
+    "build:production": "EXPERIMENTAL_RENDER_MODE_SERIALIZE=true yarn build --environment production",
     "start": "yarn ember serve",
     "start:dev": "FASTBOOT_DISABLED=true SW_DISABLED=true yarn start",
     "test": "yarn ember test",
