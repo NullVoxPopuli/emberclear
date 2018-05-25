@@ -1,7 +1,6 @@
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import Service from '@ember/service';
 
 import localforage from 'localforage';
 

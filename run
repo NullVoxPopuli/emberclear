@@ -67,12 +67,32 @@ function runstuff {
     ;;
 
     *)
-      echo "forwarding to docker-compose: $@"
-      ${COMPOSE} $@
+      # echo "forwarding to docker-compose: $@"
+      # ${COMPOSE} $@
+      print_help
     ;;
   esac
 }
 
+function print_help {
+
+  echo ""
+  echo "Available Commands:"
+  echo ""
+  echo "up:build"
+  echo "up"
+  echo "bash"
+  echo "restart"
+  echo "deploy"
+  echo "yarn"
+  echo "yarn:reinstall"
+  echo "ember"
+  echo "docker"
+  echo "clean:all"
+}
+
 if [ $1 ]; then
   runstuff $*
+else
+  print_help
 fi
