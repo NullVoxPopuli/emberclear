@@ -15,7 +15,7 @@ cache:
   directories:
     - $HOME/.npm
     - $HOME/.yarn
-    - packages/frontend/node_modules
+    # - packages/frontend/node_modules
 
 env:
   global:
