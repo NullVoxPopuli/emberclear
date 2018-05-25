@@ -102,7 +102,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
     // github pages:
-    ENV.rootURL = '/emberclear/';
+    ENV.rootURL = process.env.ROOT_URL || '/emberclear/';
     ENV.baseURL = '/';
 
   }
