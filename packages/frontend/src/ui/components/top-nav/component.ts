@@ -10,11 +10,18 @@ export default class TopNav extends Component {
   @service router;
 
   @alias('router.currentRouteName') routeName!: string;
-  @equal('routeName', 'application') isApplication!: boolean;
+  @equal('routeName', 'index') isApplication!: boolean;
   @not('isApplication') isChat!: boolean;
 
   @alias('identity.record.name') name?: string;
   @notEmpty('identity.record.name') hasName!: boolean;
+
+  @computed('isChat')
+  get textColor() {
+    if (this.isChat) return 'has-text-white';
+
+    return '';
+  }
 
   isTouchMenuVisible = false;
 

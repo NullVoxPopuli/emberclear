@@ -31,6 +31,7 @@ $tablet: 480px;
 @import "utility/flex";
 @import "utility/width";
 @import "components/hover-tip";
+@import "bulma-augmentations";
 
 // .full-height {
 //   height: 100%;
@@ -84,8 +85,9 @@ body {
 
 
 .chat-entry {
+  margin-bottom: 20px;
+
   input {
-    height: 3rem;
     padding-left: 10px;
     padding-right: 10px;
   }

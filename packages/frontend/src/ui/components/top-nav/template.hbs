@@ -1,7 +1,7 @@
-<div class='navbar has-shadow {{if isChat "has-background-primary"}}'>
+<div class='navbar is-fixed-top has-shadow {{if isChat "is-primary"}}'>
     <div class='container'>
         <div class='navbar-brand'>
-            {{#link-to 'application' class='navbar-item {{textColor}}'}}
+            {{#link-to 'application' class=(concat 'navbar-item ' (if isChat textColor))}}
               {{t 'appname'}}
             {{/link-to}}
             <a
@@ -14,14 +14,15 @@
                 <span aria-hidden="true"></span>
             </a>
         </div>
+
         <div class="navbar-menu {{touchMenuClasses}}">
             <div class="navbar-end">
-                {{#link-to 'chat' class='navbar-item {{if isChat "has-text-white"}}'}}
+                {{#link-to 'chat' class='navbar-item'}}
                     {{t 'routes.chat'}}
                 {{/link-to}}
 
                 {{#if hasName}}
-                  {{#link-to 'settings' class='navbar-item {{if isChat "has-text-white"}}'}}
+                  {{#link-to 'settings' class='navbar-item'}}
                       <span class='icon'>
                           <i class='fas fa-user-circle'></i>
                       </span>
