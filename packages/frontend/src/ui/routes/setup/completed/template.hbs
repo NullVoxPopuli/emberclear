@@ -1,29 +1,25 @@
 {{#focus-card title=(t 'ui.setup.almostReady')}}
 
-  <div class='card-content'>
-    <div class='content'>
-      {{t 'ui.setup.mnemonicPrompt'}}
+  <div class='content'>
+    {{t 'ui.setup.mnemonicPrompt'}}
 
-      {{mnemonic-display privateKey=model.privateKey}}
+    {{mnemonic-display privateKey=model.privateKey}}
 
-      {{t 'ui.setup.note'}}
-    </div>
+    {{t 'ui.setup.note'}}
   </div>
 
-  <footer class="card-footer">
-    <div class='card-footer-item'>
-      <button
-        class='button'
-        {{action (transition-to 'setup.index')}}>
-        {{t 'buttons.back'}}
-      </button>
+  <div class='is-pulled-right'>
+    <button
+      class='button'
+      {{action (transition-to 'setup.index')}}>
+      {{t 'buttons.back'}}
+    </button>
 
-      <button
-        class='button'
-        {{action (transition-to 'chat')}}>
-        {{t 'buttons.next'}}
-      </button>
-    </div>
-  </footer>
+    <button
+      class='button'
+      {{action (transition-to 'chat')}}>
+      {{t 'buttons.next'}}
+    </button>
+  </div>
 
 {{/focus-card}}

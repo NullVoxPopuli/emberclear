@@ -1,20 +1,14 @@
-<div class="card-content">
-  <div class="content">
-    <label>{{t 'ui.setup.nameLabel'}}</label>
-    {{input
-      class='input is-large'
-      type='text'
-      value=name}}
-  </div>
+<div class="content">
+  {{input
+    class='input is-large'
+    type='text'
+    placeholder=(t 'ui.setup.nameLabel')
+    value=name}}
 </div>
 
-<footer class="card-footer">
-  <div class='card-footer-item'>
-    <button
-      class='button'
-      disabled={{nameIsBlank}}
-      {{action createIdentity}}>
-      {{t 'buttons.next'}}
-    </button>
-  </div>
-</footer>
+<button
+  class='button is-pulled-right'
+  disabled={{nameIsBlank}}
+  {{action createIdentity}}>
+  {{t 'buttons.next'}}
+</button>

@@ -47,6 +47,7 @@ export default class IdentityService extends Service {
     });
 
     await record.save();
+    this.set('allowOverride', false);
     await this.load();
   }
 

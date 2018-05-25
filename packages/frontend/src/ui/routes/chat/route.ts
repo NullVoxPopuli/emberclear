@@ -9,6 +9,13 @@ export default class ChatRoute extends Route {
   @service identity!: IdentityService
   @service fastboot!: FastBoot;
 
+  activate() {
+    if (this.fastboot.isFastBoot) return;
+
+    const navbar = document.getElementsByClassName('navbar');
+    navbar.classList += ' has-background-primary';
+  }
+
   // ensure we are allowed to be here
   async beforeModel() {
     if (this.fastboot.isFastBoot) return;

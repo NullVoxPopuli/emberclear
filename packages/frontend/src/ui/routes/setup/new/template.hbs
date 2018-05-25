@@ -1,9 +1,9 @@
-{{#if identityAlreadyExists}}
-  {{dismissable-warning warning=(t 'ui.setup.warning')}}
-{{/if}}
+<div class='hero'>
+  <div class='hero-body'>
+    {{#focus-card title=(t 'ui.setup.introQuestion')}}
 
-{{#focus-card title=(t 'ui.setup.introQuestion')}}
+      {{name-entry}}
 
-  {{name-entry}}
-
-{{/focus-card}}
+    {{/focus-card}}
+  </div>
+</div>
