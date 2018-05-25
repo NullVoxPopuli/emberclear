@@ -58,9 +58,20 @@ export default {
         mesh nodes on free-tier cloud services.
       `,
       howDoesWorkQ: 'How does it work?',
-      howDoesWorkA: ``,
+      howDoesWorkA: `
+        All the encryption is done in the browser -- at no time do private keys leave your computer.
+        EmberClear uses libsodium's public key-cryptography to ensure cryptographically safe messaging
+        across the internet, on any network -- even if the network is compromised.`,
       whyQ: 'Why?',
-      whyA: ``,
+      whyA: `
+        Partially for fun and learning -- wanting to provide a framework for people wanting to
+        get in to web applications so that they pre-existing tools that can interface with their
+        creations.
+
+        This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
+        Ultimately, this project, by functionality, will be a clone of whatever is popular - with the
+        one key difference that nothing is ever tracked by the relays / federated nodes.
+      `,
     },
     footer: {
       navigation: 'Navigation',
