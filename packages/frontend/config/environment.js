@@ -5,6 +5,7 @@ module.exports = function(environment) {
     'ember-resolver': {
       features: {
         EMBER_RESOLVER_MODULE_UNIFICATION: true,
+        EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true
       },
     },
     modulePrefix: 'emberclear',

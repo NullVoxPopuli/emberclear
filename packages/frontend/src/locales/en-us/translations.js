@@ -35,6 +35,7 @@ export default {
     next: 'Next',
     back: 'Back',
     begin: 'Begin',
+    donateEth: 'Donate Ethereum',
   },
   services: {
     crypto: {

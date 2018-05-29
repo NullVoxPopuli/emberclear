@@ -4,10 +4,11 @@
       <div class='columns'>
         <div class='column is-half'>
           <h4>{{t 'ui.footer.navigation'}}</h4>
+
           {{#link-to 'application'}}{{t 'routes.home'}}{{/link-to}}<br />
           {{#link-to 'chat'}}{{t 'routes.chat'}}{{/link-to}}<br />
           {{#link-to 'settings'}}{{t 'routes.profile'}}{{/link-to}}<br />
-          {{#link-to 'setup'}}{{t 'routes.createNewUser'}}{{/link-to}}<br / />
+          {{#link-to 'setup'}}{{t 'routes.createNewUser'}}{{/link-to}}<br />
 
           {{#link-to 'faq'}}{{t 'routes.faq'}}{{/link-to}}<br />
         </div>
@@ -24,10 +25,9 @@
           <a
             class='has-hover-tip'
             href="https://etherscan.io/address/0x3fbe03aa431c540fdbd9350ecd1ae8f4f4ec0d23">
-            Donate Ethererum
-            {{#hover-tip}}
-              0x3fbe03aa431c540fdbd9350ecd1ae8f4f4ec0d23
-            {{/hover-tip}}
+            {{t 'buttons.donateEth'}}
+
+            <HoverTip>0x3fbe03aa431c540fdbd9350ecd1ae8f4f4ec0d23</HoverTip>
           </a>
           <br />
         </div>

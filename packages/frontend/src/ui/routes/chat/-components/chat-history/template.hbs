@@ -1,7 +1,7 @@
 <div class='message-list'>
   <div class='messages'>
     {{#each messages as |message|}}
-      {{message-display message=message}}
+      <Message @message={{message}} />
     {{/each}}
   </div>
 </div>

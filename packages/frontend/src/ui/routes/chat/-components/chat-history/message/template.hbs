@@ -3,9 +3,9 @@
     <span class='from'>{{@message.from}}</span>
     <span class='sentAt has-hover-tip'>
       {{moment-format @message.sentAt 'lll'}}
-      {{#hover-tip}}
+      <HoverTip>
         Received: {{moment-format @message.receivedAt 'lll'}}
-      {{/hover-tip}}
+      </HoverTip>
     </span>
   </div>
   <p class='message-body'>
