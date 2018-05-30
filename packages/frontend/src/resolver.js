@@ -12,14 +12,23 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
  * to add support for them.
  */
 
+console.log(moduleConfig);
 merge(moduleConfig.types, {
   config: { definitiveCollection: 'main' },
-  locale: { definitiveCollection: 'main' },
-  'ember-i18n@config': { definitiveCollection: 'main' },
   util: { definitiveCollection: 'utils' },
+  'ember-intl@adapter': { definitiveCollection: 'main' },
+  'ember-intl@translation': { definitiveCollection: 'translations' },
+  translation: { definitiveCollection: 'translations' },
+  'translation:en-us': { definitiveCollection: 'translations' },
+  formats: { definitiveCollection: 'main' },
+  cldr: { definitiveCollection: 'main' },
+  'util:intl': { definitiveCollection: 'utils' }
 });
 
+moduleConfig.collections.translations = { types: [ 'translation' ] };
+
 moduleConfig.collections.main.types.push('config');
+moduleConfig.collections.main.types.push('translation');
 
 export default Resolver.extend({
   config: moduleConfig,

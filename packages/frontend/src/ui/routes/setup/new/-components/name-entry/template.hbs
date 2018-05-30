@@ -1,9 +1,10 @@
 <div class="content">
-  <Input
-    @class='input is-large'
-    @type='text'
-    @placeholder={{t 'ui.setup.nameLabel'}}
-    @value={{name}} />
+  {{input
+    class='input is-large'
+    type='text'
+    placeholder=(t 'ui.setup.nameLabel')
+    value=name
+  }}
 </div>
 
 <button

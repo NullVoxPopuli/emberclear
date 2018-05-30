@@ -1,36 +1,36 @@
 <div class='navbar is-fixed-top has-shadow {{if isChat "is-primary"}}'>
-    <div class='container'>
-        <div class='navbar-brand'>
-            {{#link-to 'application' class=(concat 'navbar-item ' (if isChat textColor))}}
-              {{t 'appname'}}
-            {{/link-to}}
-            <a
-              role='button'
-              class="navbar-burger burger {{touchMenuClasses}}"
-              aria-label="menu" aria-expanded="false"
-              {{action 'toggleTouchMenu'}}>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div class="navbar-menu {{touchMenuClasses}}">
-            <div class="navbar-end">
-                {{#link-to 'chat' class='navbar-item'}}
-                  {{t 'routes.chat'}}
-                {{/link-to}}
-
-                {{#if hasName}}
-                  {{#link-to 'settings' class='navbar-item'}}
-                      <span class='icon'>
-                          <i class='fas fa-user-circle'></i>
-                      </span>
-                      {{!-- {{t 'routes.profile'}} --}}
-                      {{name}}
-                  {{/link-to}}
-                {{/if}}
-            </div>
-        </div>
+  <div class='container'>
+    <div class='navbar-brand'>
+      {{#link-to 'application' class=(concat 'navbar-item ' (if isChat textColor))}}
+        {{t 'appname'}}
+      {{/link-to}}
+      <a
+        role='button'
+        class="navbar-burger burger {{touchMenuClasses}}"
+        aria-label="menu" aria-expanded="false"
+        {{action 'toggleTouchMenu'}}>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+      </a>
     </div>
+
+    <div class="navbar-menu {{touchMenuClasses}}">
+      <div class="navbar-end">
+        {{#link-to 'chat' class='navbar-item'}}
+          {{t 'routes.chat'}}
+        {{/link-to}}
+
+        {{#if hasName}}
+          {{#link-to 'settings' class='navbar-item'}}
+            <span class='icon'>
+              <i class='fas fa-user-circle'></i>
+            </span>
+            {{!-- {{t 'routes.profile'}} --}}
+            {{name}}
+          {{/link-to}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
 </div>

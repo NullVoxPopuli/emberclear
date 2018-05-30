@@ -4,7 +4,7 @@ import { service } from '@ember-decorators/service';
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
 
 export default class Mnemonic extends Component {
-  @service i18n!: I18n;
+  @service intl!: Intl;
 
   privateKey?: Uint8Array;
   mnemonic?: string;
@@ -17,7 +17,7 @@ export default class Mnemonic extends Component {
     // const key = this.identity.privateKey;
     let result = '';
 
-    if (!key) { result = this.i18n.t('services.crypto.keyGenFailed'); }
+    if (!key) { result = this.intl.t('services.crypto.keyGenFailed'); }
     else result = await mnemonicFromNaClBoxPrivateKey(key);
 
     this.set('mnemonic', result);
