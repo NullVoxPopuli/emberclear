@@ -15,7 +15,7 @@ module.exports = function(/* env */) {
      * @type {Array?}
      * @default "null"
      */
-    locales: null,
+    locales: ['en-us'],
 
     /**
      * autoPolyfill, when true will automatically inject the IntlJS polyfill
@@ -34,7 +34,7 @@ module.exports = function(/* env */) {
      * @type {Boolean}
      * @default "false"
      */
-    disablePolyfill: false,
+    disablePolyfill: true,
 
     /**
      * prevents the translations from being bundled with the application code.
@@ -47,7 +47,7 @@ module.exports = function(/* env */) {
      * @type {Boolean}
      * @default "false"
      */
-    publicOnly: false,
+    publicOnly: true,
 
     /**
      * Path where translations are kept.  This is relative to the project root.
