@@ -37,10 +37,6 @@
         "node_modules/ember-redux/app/*"
       ],
       "@ember": ["node_modules/@types/ember/index.d.ts"],
-      "ember__test-helpers/*": [
-        "node_modules/@types/ember-test-helpers/index.d.ts",
-        "node_modules/@types/ember-testing-helpres/index.d.ts"
-      ],
       "ember-redux": ["node_modules/ember-redux/index.d.ts"],
       "redux": ["node_modules/redux/index.d.ts"],
       "tweetnacl": ["node_modules/tweetnacl/nacl.d.ts"]

@@ -41,6 +41,7 @@ declare module '@ember/service' {
   interface Registry {
     'toast': Toast,
     'intl': Intl,
+    'i18n': Intl
     // 'redux': Redux
   }
 }
