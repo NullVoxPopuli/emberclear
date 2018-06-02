@@ -19,7 +19,7 @@ const DEFAULT_RELAYS = {
 export default class RelayConnection extends Service {
   @service('notifications') toast!: Toast;
   @service('redux') redux!: Redux;
-  @service intl!: Intl;
+  @service('i18n') intl!: Intl;
   @service identity!: IdentityService;
 
   socket?: Socket;

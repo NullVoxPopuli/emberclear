@@ -4,7 +4,7 @@ import { service } from '@ember-decorators/service';
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
 
 export default class Mnemonic extends Component {
-  @service intl!: Intl;
+  @service('i18n') intl!: Intl;
 
   privateKey?: Uint8Array;
   mnemonic?: string;
