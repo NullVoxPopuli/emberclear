@@ -13,6 +13,7 @@
   "repository": "https://github.com/NullVoxPopuli/emberclear",
   "scripts": {
     "ember": "EMBER_CLI_MODULE_UNIFICATION=true node_modules/.bin/ember",
+    "ember:update": "node_modules/.bin/ember-cli-update",
     "eslint": "node_modules/.bin/eslint",
     "build": "yarn ember build",
     "build:debug": "EMBER_CLI_PACKAGER=true BROCCOLI_DEBUG=* yarn build",
@@ -93,6 +94,7 @@
     "ember-cli-uglify": "^2.0.0",
     "ember-data": "github:emberjs/data#e3a24f6b74324688afc6ea530730ca30d7d69c1d",
     "ember-export-application-global": "^2.0.0",
+    "ember-i18n": "^5.2.1",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.0.0",
