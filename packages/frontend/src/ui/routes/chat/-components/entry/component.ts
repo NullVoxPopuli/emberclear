@@ -3,7 +3,7 @@ import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
-import MessagePersistence from 'emberclear/services/messages/persistence';
+// import MessagePersistence from 'emberclear/services/messages/persistence';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 
 export default class MessageEntry extends Component {
@@ -14,11 +14,12 @@ export default class MessageEntry extends Component {
   // disable the text field while sending
   isDisabled = false;
 
-
-
   @action
   async send(this: MessageEntry) {
     this.set('isDisabled', true);
+
+    if (!this.text) return;
+
     await this.messageDispatcher.sendMessage(this.text);
 
     this.set('isDisabled', false);

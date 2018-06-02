@@ -15,6 +15,7 @@
     "ember": "EMBER_CLI_MODULE_UNIFICATION=true node_modules/.bin/ember",
     "ember:update": "node_modules/.bin/ember-cli-update",
     "eslint": "node_modules/.bin/eslint",
+    "tsc": "node_modules/.bin/tsc",
     "build": "yarn ember build",
     "build:debug": "EMBER_CLI_PACKAGER=true BROCCOLI_DEBUG=* yarn build",
     "build:production": "EXPERIMENTAL_RENDER_MODE_SERIALIZE=true yarn build --environment production",
