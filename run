@@ -57,7 +57,7 @@ function runstuff {
     ;;
 
     submodules:update)
-      ( cd ${RELAY_PATH}/phoenix-relay && git pull origin master)
+      ( cd ${RELAY_PATH}/phoenix-relay && git pull origin master )
     ;;
 
     *)
