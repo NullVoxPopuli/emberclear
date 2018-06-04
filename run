@@ -16,6 +16,7 @@ function runstuff {
   arguments=${@:2}
 
   case $given_command in
+    dc)       ${COMPOSE} $arguments;;
     up:build) ${COMPOSE} up --build $arguments;;
     up)       ${COMPOSE} up $arguments;;
     bash)     ${COMPOSE} run --rm $arguments bash;;

@@ -6,7 +6,7 @@ services:
       context: ./relays/phoenix-relay
       dockerfile: ./Dockerfile
 
-    command: mix phoenix.server
+    command: bash -c "mix deps.get && mix phoenix.server"
     container_name: phoenix-relay
     ports:
       - 4000:4000
