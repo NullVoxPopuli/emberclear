@@ -1,17 +1,20 @@
 version: '3'
 services:
-  # TODO: add relays here
   phoenix-relay:
     build:
       context: ./relays/phoenix-relay
       dockerfile: ./Dockerfile
 
-    command: bash -c "mix deps.get && mix phoenix.server"
+    command: bash -c "mix deps.get && mix phx.server"
     container_name: phoenix-relay
-    ports:
-      - 4000:4000
     volumes:
-      - ./relays/phoenix-relay:/app:delegated
+      - .:/app
+    ports:
+      - "4301:4301"
+    volumes:
+      - phoenix-deps:/app/deps
+      - phoenix-build:/app/_build
+      - ./relays/phoenix-relay:/app
 
   emberclear:
     depends_on:
@@ -56,3 +59,5 @@ volumes:
   ember-tmp:
   ember-dist:
   ember-node_modules:
+  phoenix-deps:
+  phoenix-build:
