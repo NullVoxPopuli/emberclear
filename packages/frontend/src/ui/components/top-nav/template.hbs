@@ -17,17 +17,22 @@
 
     <div class="navbar-menu {{touchMenuClasses}}">
       <div class="navbar-end">
-        {{#link-to 'chat' class='navbar-item'}}
-          {{t 'routes.chat'}}
-        {{/link-to}}
 
         {{#if hasName}}
+          {{#link-to 'chat' class='navbar-item'}}
+            {{t 'routes.chat'}}
+          {{/link-to}}
+
           {{#link-to 'settings' class='navbar-item'}}
             <span class='icon'>
               <i class='fas fa-user-circle'></i>
             </span>
             {{!-- {{t 'routes.profile'}} --}}
             {{name}}
+          {{/link-to}}
+        {{else}}
+          {{#link-to 'setup' class='navbar-item'}}
+            {{t 'routes.createNewUser'}}
           {{/link-to}}
         {{/if}}
       </div>

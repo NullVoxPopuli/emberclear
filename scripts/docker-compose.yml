@@ -25,7 +25,7 @@ services:
       dockerfile: ./Dockerfile
 
     # Default command to run when the container starts
-    command: bash -c "yarn && yarn start"
+    command: bash -c "yarn && yarn start:dev"
 
     # To prevent files created in the container from being owned by root
     # to get these numbers: `echo "$(id -u):$(id -g)"`
@@ -42,7 +42,7 @@ services:
       # Ember Dev Server (default)
       - 4200:4200
       # Live Reload
-      - 49153:49153
+      - 7020:7020
     volumes:
       - ember-tmp:/app/tmp
       - ember-dist:/app/dist
