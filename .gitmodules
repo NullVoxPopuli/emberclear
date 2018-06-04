@@ -1,0 +1,3 @@
+[submodule "packages/relays/phoenix-relay"]
+	path = packages/relays/phoenix-relay
+	url = git@github.com:NullVoxPopuli/mesh-relay-phoenix.git
