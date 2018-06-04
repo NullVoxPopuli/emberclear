@@ -70,9 +70,9 @@
     ember-cli-babel "^6.6.0"
     ember-compatibility-helpers "^1.0.0"
 
-"@ember/optional-features@github:emberjs/ember-optional-features#f7df428073c7dd0e0d56da25de6b2e83bd069bef":
+"@ember/optional-features@^0.6.1":
   version "0.6.1"
-  resolved "https://codeload.github.com/emberjs/ember-optional-features/tar.gz/f7df428073c7dd0e0d56da25de6b2e83bd069bef"
+  resolved "https://registry.yarnpkg.com/@ember/optional-features/-/optional-features-0.6.1.tgz#c5163c11bdd11ed8d69d4e273b114b95af16e5a9"
   dependencies:
     chalk "^2.3.0"
     co "^4.6.0"
@@ -2895,9 +2895,9 @@ ember-cli-test-loader@^2.2.0:
   dependencies:
     ember-cli-babel "^6.8.1"
 
-ember-cli-typescript@^1.3.1:
+"ember-cli-typescript@github:typed-ember/ember-cli-typescript#mu":
   version "1.3.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-typescript/-/ember-cli-typescript-1.3.1.tgz#af9c00e5f0a37dd3117ba6b78153e016f3482fd2"
+  resolved "https://codeload.github.com/typed-ember/ember-cli-typescript/tar.gz/76ff3f045114e168e7521a7aa0b20d31c6383054"
   dependencies:
     broccoli-debug "^0.6.4"
     broccoli-funnel "^2.0.1"
@@ -3301,13 +3301,6 @@ ember-redux-shim@^2.5.0:
     babel-plugin-transform-object-rest-spread "^6.19.0"
     broccoli-merge-trees "^1.1.4"
     broccoli-replace "^0.12.0"
-    ember-cli-babel "^6.8.2"
-
-ember-redux-thunk-shim@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/ember-redux-thunk-shim/-/ember-redux-thunk-shim-2.4.0.tgz#894a6911321771d12a9fea9e9f537f99bf6587d7"
-  dependencies:
-    broccoli-merge-trees "^1.1.4"
     ember-cli-babel "^6.8.2"
 
 ember-redux@^3.1.1:
@@ -6878,10 +6871,6 @@ redeyed@~1.0.0:
   resolved "https://registry.yarnpkg.com/redeyed/-/redeyed-1.0.1.tgz#e96c193b40c0816b00aec842698e61185e55498a"
   dependencies:
     esprima "~3.0.0"
-
-redux-thunk@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
 redux@3.7.2:
   version "3.7.2"
