@@ -22,32 +22,9 @@ function runstuff {
     bash)     ${COMPOSE} run --rm $arguments bash;;
 
     restart) ${COMPOSE} stop $arguments && ${COMPOSE} start $arguments;;
-
-    deploy)
-      ( ./scripts/deploy )
-    ;;
-
-    yarn)
-      ( cd $UI_PATH && yarn $arguments )
-    ;;
-
-    yarn:reinstall)
-      ( cd $UI_PATH && rm -rf dist tmp node_modules yarn.lock && yarn )
-    ;;
-
-    ember)
-      # these two commands do the same as
-      # docker-compose up --build
-      # (kinda)
-      docker build ./${UI_PATH} -t ember-cli
-      docker run \
-        --rm \
-        -ti \
-        -v $(pwd)/${UI_PATH}:/app \
-        -p 4200:4200 -p 7020:7020 -p 7357:7357 \
-        -u $(id -u):$(id -g) \
-        ember-cli bash
-    ;;
+    deploy) ( ./scripts/deploy );;
+    yarn) ( cd $UI_PATH && yarn $arguments );;
+    yarn:reinstall) ( cd $UI_PATH && rm -rf dist tmp node_modules yarn.lock && yarn );;
 
     docker)
      docker build ./${UI_PATH} -t emberclear \
@@ -57,15 +34,30 @@ function runstuff {
          -p 7020:7020 \
          -v $PWD/${UI_PATH}:/app \
          --rm emberclear
-   ;;
+    ;;
 
+    # Don't name any folders bin, obj, tmp, dist, or node_modules
     clean:all)
       echo "Cleaning..."
-      # Don't name any folders bin, obj, tmp, dist, or node_modules
+      runstuff clean:frontend
+      runstuff clean:relays
+    ;;
+
+    clean:relays)
+      shopt -s globstar
+      rm -rf **/deps && \
+      rm -rf **/_build
+    ;;
+
+    clean:frontend)
       shopt -s globstar
       rm -rf **/dist && \
       rm -rf **/node_modules && \
       rm -rf **/tmp
+    ;;
+
+    submodules:update)
+      ( cd ${RELAY_PATH}/phoenix-relay && git pull origin master)
     ;;
 
     *)
