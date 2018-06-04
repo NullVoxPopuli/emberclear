@@ -13,6 +13,7 @@ export default class NameEntry extends Component {
   @service identity!: IdentityService;
   @service router!: Registry['router'];
 
+  // @tracked
   name!: string;
 
   @computed('name')

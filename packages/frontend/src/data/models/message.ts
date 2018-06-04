@@ -1,7 +1,7 @@
 import Model from 'ember-data/model';
 import { attr, belongsTo } from '@ember-decorators/data';
 
-import Identity from 'emberclear/data/models/identity';
+import Identity from 'emberclear/data/models/identity/model';
 
 export default class Message extends Model {
   @attr('string') from?: string;

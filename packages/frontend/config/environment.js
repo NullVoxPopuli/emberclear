@@ -18,6 +18,7 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
         'ember-module-unification': true,
         'ember-glimmer-angle-bracket-invocation': true,
+        'ember-metal-tracked-properties': true,
         EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true,
       },
       EXTEND_PROTOTYPES: {

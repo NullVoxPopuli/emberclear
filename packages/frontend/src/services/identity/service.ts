@@ -1,19 +1,13 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 import Service from '@ember/service';
-import { isBlank, isPresent } from '@ember/utils';
+import { isPresent } from '@ember/utils';
 
 import { service } from '@ember-decorators/service';
 import { alias } from '@ember-decorators/object/computed';
 
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
-import Identity from 'emberclear/data/models/identity';
-
-interface IdentityAttributes {
-  name: string;
-  publicKey: Uint8Array;
-  privateKey: Uint8Array;
-}
+import Identity from 'emberclear/data/models/identity/model';
 
 // The purpose of this service is to be an interface that
 // handles syncing between the data store and persistent localstorage.
@@ -54,7 +48,7 @@ export default class IdentityService extends Service {
   async exists(): Promise<boolean> {
     let identity = await this.identity();
 
-    if (isBlank(identity)) return false;
+    if (!identity) return false;
 
     return isPresent(identity.privateKey);
   }
@@ -75,7 +69,7 @@ export default class IdentityService extends Service {
   }
 
   async identity(this: IdentityService): Promise<Identity | null> {
-    if (isBlank(this.record)) return await this.load();
+    if (!this.record) return await this.load();
 
     return this.record;
   }

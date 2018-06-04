@@ -25,7 +25,10 @@ export default class Redux extends ReduxService.extend({
   reducers,
   enhancers,
   makeStoreInstance
-}) {}
+}) {
+  // TODO: figure out real types.....
+  [x: string]: any;
+}
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {

@@ -4,7 +4,7 @@ import { Channel, Socket } from 'phoenix';
 
 import Redux from 'emberclear/services/redux';
 import IdentityService from 'emberclear/services/identity/service';
-import { toBase64, toHex } from 'emberclear/src/utils/string-encoding';
+import { toHex } from 'emberclear/src/utils/string-encoding';
 
 import { stateChange, ConnectionStatus } from '../redux-store/relay-connection';
 
