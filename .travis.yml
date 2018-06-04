@@ -22,7 +22,16 @@ env:
     # See https://git.io/vdao3 for details.
     - JOBS=1
 
+git:
+  # handle submodules manually
+  submodules: false
+
 before_install:
+  # Use sed to replace the SSH URL with the public URL, then initialize submodules
+  # https://stackoverflow.com/a/24600210/356849
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+
   - yarn config set cache-folder $HOME/.yarn
 
 script:
