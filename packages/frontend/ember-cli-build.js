@@ -72,5 +72,10 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'uuid' }]
   });
 
+  // bulma-toast
+  app.import('node_modules/bulma-toast/dist/bulma-toast.js');
+  app.import('vendor/shims/bulma-toast.js');
+  app.import('node_modules/bulma-toast/dist/bulma-toast.min.css');
+
   return mergeTrees([app.toTree(), fontTree, fontStyleTree]);
 };

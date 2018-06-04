@@ -1,36 +1,53 @@
 import Service from '@ember/service';
+import { isPresent } from '@ember/utils';
+
 import RSVP from 'rsvp';
+import { toast } from 'bulma-toast';
 
 import { service } from '@ember-decorators/service';
 
 // TODO: implement sysstem-notifications
 export default class Notifications extends Service {
   info(msg: string, title = '', options = {}) {
-    this.display('info', msg, title, options);
+    this.display('is-info', msg, title, options);
   }
 
   success(msg: string, title = '', options = {}) {
-    this.display('success', msg, title, options);
+    this.display('is-success', msg, title, options);
   }
 
   warning(msg: string, title = '', options = {}) {
-    this.display('warning', msg, title, options);
+    this.display('is-warning', msg, title, options);
   }
 
   error(msg: string, title = '', options = {}) {
-    this.display('error', msg, title, options);
+    this.display('is-danger', msg, title, options);
   }
 
   async display(status: string, msg: string, title: string, options = {}) {
     const hasPermission = await this.isPermissionGranted();
 
-    return; // toast disabled, because of jQuery. boo jQuery
     if (hasPermission) {
       this.showNotification(msg, title, options);
       return;
     }
 
-    this.toast[status](msg, title, options);
+    this.createToast(status, msg, title, options);
+  }
+
+  createToast(status: string, msg: string, title: string, options: any) {
+    const message = isPresent(title) ? `${title}: ${msg}` : msg;
+
+    console.log(toast);
+    toast({
+      message,
+      // is-primary, is-link, is-info, is-success, is-warning, is-danger
+      // just a css class
+      type: status,
+      dismissable: true,
+      position: 'is-right',
+      duration: 2300
+    });
   }
 
   isPermissionGranted() {

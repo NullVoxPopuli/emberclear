@@ -44,6 +44,7 @@
     "@types/uuid": "^3.4.3",
     "bip39": "^2.5.0",
     "bulma": "^0.7.1",
+    "bulma-toast": "^0.1.0",
     "ember-bulma": "^0.4.1",
     "ember-cli-cjs-transform": "github:rwjblue/ember-cli-cjs-transform",
     "ember-cli-fastboot": "^1.1.4-beta.1",
