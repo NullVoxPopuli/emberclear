@@ -1,9 +1,9 @@
-{{#focus-card title=(t 'ui.setup.almostReady')}}
+<FocusCard @title={{t 'ui.setup.almostReady'}}>
 
   <div class='content'>
     {{t 'ui.setup.mnemonicPrompt'}}
 
-    {{mnemonic-display privateKey=model.privateKey}}
+    <MnemonicDisplay @privateKey={{model.privateKey}} />
 
     {{t 'ui.setup.note'}}
   </div>
@@ -22,4 +22,4 @@
     </button>
   </div>
 
-{{/focus-card}}
+</FocusCard>

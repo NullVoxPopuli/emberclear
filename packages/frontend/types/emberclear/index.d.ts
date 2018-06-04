@@ -24,7 +24,7 @@ declare global {
   }
 
   // https://github.com/jamesarosen/ember-i18n/blob/master/addon/services/i18n.js
-  interface I18n {
+  interface Intl {
     t(translation: string, options?: any): string;
   }
 }
@@ -40,7 +40,8 @@ declare global {
 declare module '@ember/service' {
   interface Registry {
     'toast': Toast,
-    'i18n': I18n,
+    'intl': Intl,
+    'i18n': Intl
     // 'redux': Redux
   }
 }

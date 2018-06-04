@@ -14,12 +14,22 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
 
 merge(moduleConfig.types, {
   config: { definitiveCollection: 'main' },
+  util: { definitiveCollection: 'utils' },
+  // ember-intl
+  // 'ember-intl@adapter': { definitiveCollection: 'main' },
+  // 'ember-intl@translation': { definitiveCollection: 'main' },
+  // translation: { definitiveCollection: 'main' },
+  // formats: { definitiveCollection: 'main' },
+  // cldr: { definitiveCollection: 'main' },
+  // 'util:intl': { definitiveCollection: 'utils' }
+
+  // ember-i18n
   locale: { definitiveCollection: 'main' },
   'ember-i18n@config': { definitiveCollection: 'main' },
-  util: { definitiveCollection: 'utils' },
 });
 
 moduleConfig.collections.main.types.push('config');
+moduleConfig.collections.main.types.push('translation');
 
 export default Resolver.extend({
   config: moduleConfig,

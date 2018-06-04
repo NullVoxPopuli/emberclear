@@ -19,7 +19,7 @@ const DEFAULT_RELAYS = {
 export default class RelayConnection extends Service {
   @service('notifications') toast!: Toast;
   @service('redux') redux!: Redux;
-  @service i18n!: I18n;
+  @service('i18n') intl!: Intl;
   @service identity!: IdentityService;
 
   socket?: Socket;
@@ -43,14 +43,14 @@ export default class RelayConnection extends Service {
     const toast = this.get('toast');
 
     if (!channel) {
-      return console.error(this.i18n.t('connection.errors.send.notConnected'));
+      return console.error(this.intl.t('connection.errors.send.notConnected'));
     }
 
     return channel
       .push('chat', payload)
-      .receive("ok", (msg: string) => toast.info(this.i18n.t('connection.log.push.ok', { msg })) )
-      .receive("error", (reasons: any) => toast.error(this.i18n.t('connection.log.push.error', { reasons })) )
-      .receive("timeout", () => toast.info(this.i18n.t('connection.log.push.timeout')) )
+      .receive("ok", (msg: string) => toast.info(this.intl.t('connection.log.push.ok', { msg })) )
+      .receive("error", (reasons: any) => toast.error(this.intl.t('connection.log.push.error', { reasons })) )
+      .receive("timeout", () => toast.info(this.intl.t('connection.log.push.timeout')) )
   }
 
   // TODO: ensure not already connected
@@ -86,7 +86,7 @@ export default class RelayConnection extends Service {
     const canConnect = await this.canConnect();
     if (!canConnect) return;
 
-    this.toast.info(this.i18n.t('connection.connecting'));
+    this.toast.info(this.intl.t('connection.connecting'));
 
     const publicKey = this.userChannelId();
     const url = DEFAULT_RELAYS[0].url;
@@ -106,7 +106,7 @@ export default class RelayConnection extends Service {
     const { socket, toast } = this;
 
     if (!socket) {
-      return toast.error(this.i18n.t('connection.errors.subscribe.notConnected'));
+      return toast.error(this.intl.t('connection.errors.subscribe.notConnected'));
     }
 
     // subscribe and hook up things.
@@ -121,17 +121,17 @@ export default class RelayConnection extends Service {
       .join()
       .receive('ok', this.handleConnected)
       .receive('error', this.handleError)
-      .receive("timeout", () => console.info(this.i18n.t('connection.status.timeout')) );
+      .receive("timeout", () => console.info(this.intl.t('connection.status.timeout')) );
 
   }
 
   onSocketError = () => {
-    this.toast.error(this.i18n.t('connection.status.socket.error'));
+    this.toast.error(this.intl.t('connection.status.socket.error'));
     this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''));
   }
 
   onSocketClose = () => {
-    this.toast.info(this.i18n.t('connection.status.socket.close'));
+    this.toast.info(this.intl.t('connection.status.socket.close'));
     this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''));
   }
 

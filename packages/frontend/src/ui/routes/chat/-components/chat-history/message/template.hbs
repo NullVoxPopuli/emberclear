@@ -2,10 +2,11 @@
   <div class='message-header'>
     <span class='from'>{{@message.from}}</span>
     <span class='sentAt has-hover-tip'>
-      {{moment-format @message.sentAt 'lll'}}
-      {{#hover-tip}}
-        Received: {{moment-format @message.receivedAt 'lll'}}
-      {{/hover-tip}}
+      {{format-date @message.sentAt}}
+
+      <HoverTip>
+        Received: {{format-date @message.receivedAt}}
+      </HoverTip>
     </span>
   </div>
   <p class='message-body'>
