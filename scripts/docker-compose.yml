@@ -1,12 +1,24 @@
 version: '3'
 services:
   # TODO: add relays here
-
-
-  ember:
-    # image: emberjs/ember-cli
+  phoenix-relay:
     build:
-      context: .
+      context: ./relays/phoenix-relay
+      dockerfile: ./Dockerfile
+
+    command: mix phoenix.server
+    container_name: phoenix-relay
+    ports:
+      - 4000:4000
+    volumes:
+      - ./relays/phoenix-relay:/app:delegated
+
+  emberclear:
+    depends_on:
+      - phoenix-relay
+
+    build:
+      context: ./frontend
       dockerfile: ./Dockerfile
 
     # Default command to run when the container starts
@@ -33,7 +45,7 @@ services:
       - ember-dist:/app/dist
       - ember-node_modules:/app/node_modules
       # Copies the whole app into the container
-      - .:/app:delegated
+      - ./frontend:/app:delegated
 
       # Override the above mapping for the following
       # noise directories:

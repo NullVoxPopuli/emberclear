@@ -6,7 +6,8 @@
 # For local development only.
 
 UI_PATH="packages/frontend"
-COMPOSE="docker-compose -f scripts/docker-compose.yml --project-directory ./$UI_PATH -p emberclear"
+RELAY_PATH="packages/relays"
+COMPOSE="docker-compose -f scripts/docker-compose.yml --project-directory ./packages -p emberclear"
 
 function runstuff {
   # First arg
