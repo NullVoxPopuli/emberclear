@@ -1,7 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 
-import { reducers as relayConnection } from './relay-connection';
+import { reducers as relayConnection, State as RelayState } from './relay-connection';
 
-export const reducers = combineReducers({
+export interface State {
+  relayConnection: RelayState
+}
+
+export const reducers: Reducer<State> = combineReducers({
   relayConnection
 });

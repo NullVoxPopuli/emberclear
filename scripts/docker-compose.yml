@@ -25,7 +25,7 @@ services:
       dockerfile: ./Dockerfile
 
     # Default command to run when the container starts
-    command: bash -c "yarn && yarn start:dev"
+    command: bash -c "yarn && yarn start:dev -p 4201"
 
     # To prevent files created in the container from being owned by root
     # to get these numbers: `echo "$(id -u):$(id -g)"`

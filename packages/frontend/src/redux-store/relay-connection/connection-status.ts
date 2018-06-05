@@ -13,7 +13,7 @@ export enum ConnectionStatus {
   ChannelReceived
 }
 
-type RelayConnectionState = {
+export type RelayConnectionState = {
   connectionStatus: ConnectionStatus,
   lastMessage: string
 }

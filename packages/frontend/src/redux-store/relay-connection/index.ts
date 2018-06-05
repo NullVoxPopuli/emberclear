@@ -4,6 +4,7 @@ export {
   STATE_CHANGE,
   stateChange,
   ConnectionStatus,
+  RelayConnectionState as State
 } from './connection-status';
 
 

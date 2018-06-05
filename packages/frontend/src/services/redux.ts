@@ -1,19 +1,32 @@
 import ReduxService from 'ember-redux/services/redux';
-import { createStore, applyMiddleware, compose } from 'redux';
+import {
+  createStore, applyMiddleware, compose,
+  GenericStoreEnhancer, AnyAction, Reducer
+} from 'redux';
 
 import {
   reducers, enhancers,
-  listOfMiddleware, setupMiddleware
+  listOfMiddleware, setupMiddleware, State
 } from '../redux-store';
 
-// called by the internal ReduxService
-const makeStoreInstance = ({ reducers, enhancers }) => {
-  const middleware = applyMiddleware(...listOfMiddleware);
 
-  const createStoreWithMiddleware = compose(
-    middleware,
+interface MakeStoreParams {
+  reducers: Reducer<State>;
+  enhancers: GenericStoreEnhancer;
+}
+
+// called by the internal ReduxService
+const makeStoreInstance = (props: MakeStoreParams) => {
+  const { reducers, enhancers } = props;
+
+  const storeComposer = compose(
+    // sagas, maybe thunks, etc:
+    applyMiddleware(...listOfMiddleware),
+    // e.g.: dev tools
     enhancers
-  )(createStore);
+  ) as GenericStoreEnhancer;
+
+  const createStoreWithMiddleware = storeComposer(createStore);
 
   const store = createStoreWithMiddleware(reducers);
   setupMiddleware(store);
