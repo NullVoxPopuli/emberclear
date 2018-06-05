@@ -5,6 +5,14 @@ const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
+  let disabledAddons = [];
+
+  if (EmberApp.env() !== 'production' && !process.env.ENABLE_SW) {
+     // disable service workers by default for dev and testing
+     disabledAddons.push('ember-service-worker');
+   }
+
+
   let app = new EmberApp(defaults, {
     // eslint slows down the dev-build-debug cycle significantly
     // hinting: false disables linting at build time.
@@ -14,6 +22,9 @@ module.exports = function(defaults) {
       group: true,
       rulesDir: 'eslint-rules',
       extensions: ['js', 'ts'],
+    },
+    addons: {
+      blacklist: disabledAddons
     },
     // always enable sourcemaps, even in production
     // (cause debugging!)

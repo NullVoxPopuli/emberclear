@@ -98,6 +98,14 @@
     ember-cli-babel "^6.12.0"
     ember-cli-htmlbars-inline-precompile "^1.0.0"
 
+"@ember/test-helpers@github:emberjs/ember-test-helpers":
+  version "0.7.24"
+  resolved "https://codeload.github.com/emberjs/ember-test-helpers/tar.gz/bdbc9437ac3c500fc70603f77d473f7b61ce73bf"
+  dependencies:
+    broccoli-funnel "^2.0.1"
+    ember-cli-babel "^6.12.0"
+    ember-cli-htmlbars-inline-precompile "^1.0.0"
+
 "@glimmer/di@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@glimmer/di/-/di-0.2.0.tgz#73bfd4a6ee4148a80bf092e8a5d29bcac9d4ce7e"
@@ -2850,7 +2858,7 @@ ember-cli-test-loader@^2.2.0:
     chalk "^2.3.0"
     chokidar "^2.0.3"
     debug "^3.1.0"
-    ember-cli "~3.1.4"
+    ember-cli "~2.18.2"
     ember-cli-get-component-path-option "^1.0.0"
     ember-cli-is-package-missing "^1.0.0"
     ember-cli-normalize-entity-name "^1.0.0"

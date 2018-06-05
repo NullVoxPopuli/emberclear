@@ -4,8 +4,6 @@ import { isPresent } from '@ember/utils';
 import RSVP from 'rsvp';
 import { toast } from 'bulma-toast';
 
-import { service } from '@ember-decorators/service';
-
 // TODO: implement sysstem-notifications
 export default class Notifications extends Service {
   info(msg: string, title = '', options = {}) {
@@ -38,7 +36,6 @@ export default class Notifications extends Service {
   createToast(status: string, msg: string, title: string, options: any) {
     const message = isPresent(title) ? `${title}: ${msg}` : msg;
 
-    console.log(toast);
     toast({
       message,
       // is-primary, is-link, is-info, is-success, is-warning, is-danger

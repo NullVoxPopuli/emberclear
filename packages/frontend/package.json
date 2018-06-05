@@ -29,6 +29,7 @@
   "dependencies": {
     "@ember-decorators/babel-transforms": "^2.0.0",
     "@ember/optional-features": "^0.6.1",
+    "@ember/test-helpers": "github:emberjs/ember-test-helpers",
     "@types/bip39": "^2.4.0",
     "@types/ember": "^2.8.25",
     "@types/ember-data": "^2.14.17",

@@ -14,10 +14,10 @@ export default class ApplicationRoute extends Route {
 
     this.identity.load();
 
-    setInterval(() => {
-      navigator.serviceWorker.getRegistration()
-        .then(registration => registration && registration.update());
-    }, 60000);
+    // setInterval(() => {
+    //   navigator.serviceWorker && navigator.serviceWorker.getRegistration()
+    //     .then(registration => registration && registration.update());
+    // }, 60000);
 
 
     // window.addEventListener("beforeinstallprompt", function(e) {
