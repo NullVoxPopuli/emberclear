@@ -6,18 +6,21 @@ module.exports = {
   },
   plugins: [
     'ember',
-    'prettier'
+    'prettier',
+    'qunit'
   ],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
-    'prettier'
+    'prettier',
+    'plugin:qunit/recommended',
   ],
   env: {
     browser: true
   },
   rules: {
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
+    'ember/avoid-leaking-state-in-ember-objects': 'warn'
   },
   overrides: [
     // node files

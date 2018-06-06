@@ -1,16 +1,18 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import Evented from '@ember/object/evented';
+
+import { reject, Promise, resolve } from 'rsvp';
 import DS from 'ember-data';
 import localforage from 'localforage';
 import { v4 as uuid } from 'uuid';
 
-export const LFQueue = Ember.Object.extend({
-
-  queue: [Ember.RSVP.resolve()],
+export const LFQueue = EmberObject.extend({
+  queue: [resolve()],
 
   attach(callback) {
     const queueKey = this.queue.length;
 
-    this.queue[queueKey] = new Ember.RSVP.Promise((resolve, reject) => {
+    this.queue[queueKey] = new Promise((resolve, reject) => {
       this.queue[queueKey - 1].then(() => {
         this.queue.splice(queueKey - 1, 1);
         callback(resolve, reject);
@@ -18,11 +20,10 @@ export const LFQueue = Ember.Object.extend({
     });
 
     return this.queue[queueKey];
-  }
+  },
 });
 
-export default DS.Adapter.extend(Ember.Evented, {
-
+export default DS.Adapter.extend(Evented, {
   defaultSerializer: 'localforage',
   queue: LFQueue.create(),
   caching: 'model',
@@ -46,11 +47,11 @@ export default DS.Adapter.extend(Ember.Evented, {
    * @param {Object|String|Integer|null} id
    */
   findRecord(store, type, id) {
-    return this._getNamespaceData(type).then((namespaceData) => {
+    return this._getNamespaceData(type).then(namespaceData => {
       const record = namespaceData.records[id];
 
       if (!record) {
-        return Ember.RSVP.reject('record not found in localforage');
+        return reject('record not found in localforage');
       }
 
       return record;
@@ -58,7 +59,7 @@ export default DS.Adapter.extend(Ember.Evented, {
   },
 
   findAll(store, type) {
-    return this._getNamespaceData(type).then((namespaceData) => {
+    return this._getNamespaceData(type).then(namespaceData => {
       const records = [];
 
       for (let id in namespaceData.records) {
@@ -70,7 +71,7 @@ export default DS.Adapter.extend(Ember.Evented, {
   },
 
   findMany(store, type, ids) {
-    return this._getNamespaceData(type).then((namespaceData) => {
+    return this._getNamespaceData(type).then(namespaceData => {
       const records = [];
 
       for (let i = 0; i < ids.length; i++) {
@@ -86,11 +87,11 @@ export default DS.Adapter.extend(Ember.Evented, {
   },
 
   queryRecord(store, type, query) {
-    return this._getNamespaceData(type).then((namespaceData) => {
+    return this._getNamespaceData(type).then(namespaceData => {
       const record = this._query(namespaceData.records, query, true);
 
       if (!record) {
-        return Ember.RSVP.reject('no record found in localforage');
+        return reject('no record found in localforage');
       }
 
       return record;
@@ -111,7 +112,7 @@ export default DS.Adapter.extend(Ember.Evented, {
    *  { complete: true, name: /foo|bar/ }
    */
   query(store, type, query) {
-    return this._getNamespaceData(type).then((namespaceData) => {
+    return this._getNamespaceData(type).then(namespaceData => {
       return this._query(namespaceData.records, query);
     });
   },
@@ -154,8 +155,8 @@ export default DS.Adapter.extend(Ember.Evented, {
   updateRecord: updateOrCreate,
 
   deleteRecord(store, type, snapshot) {
-    return this.queue.attach((resolve) => {
-      this._getNamespaceData(type).then((namespaceData) => {
+    return this.queue.attach(resolve => {
+      this._getNamespaceData(type).then(namespaceData => {
         delete namespaceData.records[snapshot.id];
 
         this._setNamespaceData(type, namespaceData).then(() => {
@@ -174,7 +175,7 @@ export default DS.Adapter.extend(Ember.Evented, {
   _setNamespaceData(type, namespaceData) {
     const modelNamespace = this._modelNamespace(type);
 
-    return this._loadData().then((storage) => {
+    return this._loadData().then(storage => {
       storage[modelNamespace] = namespaceData;
 
       return localforage.setItem(this._adapterNamespace(), storage);
@@ -184,15 +185,15 @@ export default DS.Adapter.extend(Ember.Evented, {
   _getNamespaceData(type) {
     const modelNamespace = this._modelNamespace(type);
 
-    return this._loadData().then((storage) => {
-      const namespaceData = storage && storage[modelNamespace] || { records: {} };
+    return this._loadData().then(storage => {
+      const namespaceData = (storage && storage[modelNamespace]) || { records: {} };
 
       return namespaceData;
     });
   },
 
   _loadData() {
-    return localforage.getItem(this._adapterNamespace()).then((storage) => {
+    return localforage.getItem(this._adapterNamespace()).then(storage => {
       return storage ? storage : {};
     });
   },
@@ -203,14 +204,14 @@ export default DS.Adapter.extend(Ember.Evented, {
 
   _adapterNamespace() {
     return this.get('namespace') || 'DS.LFAdapter';
-  }
+  },
 });
 
 function updateOrCreate(store, type, snapshot) {
-  return this.queue.attach((resolve) => {
-    this._getNamespaceData(type).then((namespaceData) => {
+  return this.queue.attach(resolve => {
+    this._getNamespaceData(type).then(namespaceData => {
       const serializer = store.serializerFor(type.modelName);
-      const recordHash = serializer.serialize(snapshot, {includeId: true});
+      const recordHash = serializer.serialize(snapshot, { includeId: true });
       // update(id comes from snapshot) or create(id comes from serialization)
       const id = snapshot.id || recordHash.id;
 

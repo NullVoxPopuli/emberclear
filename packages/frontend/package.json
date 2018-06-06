@@ -64,6 +64,7 @@
     "ember-web-app": "^2.3.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-qunit": "^3.2.1",
     "font-awesome": "^4.7.0",
     "libsodium": "^0.7.3",
     "libsodium-wrappers": "^0.7.3",

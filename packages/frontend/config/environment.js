@@ -5,7 +5,7 @@ module.exports = function(environment) {
     'ember-resolver': {
       features: {
         EMBER_RESOLVER_MODULE_UNIFICATION: true,
-        EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true
+        EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true,
       },
     },
     modulePrefix: 'emberclear',
@@ -78,8 +78,8 @@ module.exports = function(environment) {
         'bulma-tabs',
         'bulma-tag',
         'bulma-textarea',
-      ]
-    }
+      ],
+    },
   };
 
   if (environment === 'development') {
@@ -108,7 +108,6 @@ module.exports = function(environment) {
     // github pages:
     ENV.rootURL = process.env.ROOT_URL || '/emberclear/';
     ENV.baseURL = '/';
-
   }
 
   return ENV;

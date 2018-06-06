@@ -1,7 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.JSONSerializer.extend({
-
   _shouldSerializeHasMany(snapshot, key, relationship) {
     const relationshipType = snapshot.type.determineRelationshipType(relationship, this.store);
 
@@ -9,9 +8,11 @@ export default DS.JSONSerializer.extend({
       return true;
     }
 
-    return this._canSerialize(key) &&
+    return (
+      this._canSerialize(key) &&
       (relationshipType === 'manyToNone' ||
         relationshipType === 'manyToMany' ||
-        relationshipType === 'manyToOne');
-  }
+        relationshipType === 'manyToOne')
+    );
+  },
 });
