@@ -38,4 +38,4 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo s
 
 ## License
 
-[Open Pubilc License v1.0 (OPL-1.0)](https://tldrlegal.com/license/open-public-license-v1.0-(opl-1.0))
+[GNU General Public License version 3](https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)#summary)
