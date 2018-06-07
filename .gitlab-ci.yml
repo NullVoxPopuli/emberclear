@@ -5,6 +5,11 @@ stages:
   - build
   - deploy
 
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - packages/frontend/node_modules
+
 lint:
   stage: lint
   tags:
@@ -14,8 +19,7 @@ lint:
 
 test:
   stage: test
-  cache:
-    - packages/frontend/node_modules
+
   tags:
     - docker
   before_script:
@@ -38,7 +42,8 @@ production:
   script:
     - ./run yarn build:production
   artifacts:
-    - packages/frontend/dist
+    paths:
+      - packages/frontend/dist
 
 pages:
   script:
@@ -55,9 +60,6 @@ setup:
   stage: setup
   tags:
     - docker
-  cache:
-    paths:
-      - packages/frontend/node_modules
   before_script:
     - npm config set spin false
     - npm install --global npm@latest
