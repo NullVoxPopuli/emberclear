@@ -10,8 +10,8 @@ cache:
   paths:
     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
-tags:
-  - docker
+# tags:
+#   - docker
 
 before_script:
   - npm config set spin false
