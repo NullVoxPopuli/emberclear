@@ -9,6 +9,7 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
+    - /usr/local/bin
 
 lint:
   stage: quality
@@ -70,6 +71,7 @@ setup:
     - ./run yarn install
   artifacts:
     paths:
+      - /usr/local/bin
       - ${CI_PROJECT_DIR}/packages/frontend/node_modules/
 
 
