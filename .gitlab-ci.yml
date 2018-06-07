@@ -44,7 +44,7 @@ test:
     # Install Virtual Display emulator
     - apt-get install -y xvfb
   script:
-    - ./run yarn test
+    - su nobody -c "./run yarn test"
   dependencies:
     - setup
 
