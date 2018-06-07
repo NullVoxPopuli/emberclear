@@ -8,7 +8,7 @@ stages:
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - packages/frontend/node_modules
+    - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
 lint:
   stage: quality
@@ -48,7 +48,7 @@ production:
 pages:
   stage: deploy
   script:
-    - cp -r $CI_PROJECT_DIR/packages/frontend/dist/* public/
+    - cp -r ${CI_PROJECT_DIR}/packages/frontend/dist/* public/
   artifacts:
     paths:
       - public
@@ -69,7 +69,7 @@ setup:
     - ./run yarn install
   artifacts:
     paths:
-      - node_modules/
+      - ${CI_PROJECT_DIR}/packages/frontend/node_modules/
 
 
 code_quality:
