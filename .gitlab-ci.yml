@@ -11,14 +11,12 @@ cache:
     - .cache_yarn
     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
+image: node:latest
 variables:
   YARN_CACHE_FOLDER: .cache_yarn
-# tags:
-#   - docker
 
 before_script:
   - npm config set spin false
-  - npm install --global yarn
 
 lint:
   stage: quality
@@ -76,7 +74,6 @@ pages:
 
 
 setup:
-  image: node:8.11.1
   stage: setup
   tags:
     - docker
