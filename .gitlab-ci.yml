@@ -8,8 +8,11 @@ stages:
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
+    - .cache_yarn
     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
+variables:
+  YARN_CACHE_FOLDER: .cache_yarn
 # tags:
 #   - docker
 
@@ -23,6 +26,8 @@ lint:
     - docker
   script:
     - ./run yarn lint
+  dependencies:
+    - setup
 
 test:
   stage: test
@@ -41,6 +46,8 @@ test:
     - apt-get install -y xvfb
   script:
     - ./run yarn test
+  dependencies:
+    - setup
 
 production:
   stage: deploy
@@ -51,6 +58,8 @@ production:
   artifacts:
     paths:
       - packages/frontend/dist
+  dependencies:
+    - setup
 
 pages:
   stage: deploy
@@ -61,6 +70,9 @@ pages:
       - public
   only:
     - master
+  dependencies:
+    - production
+    - setup
 
 
 setup:
