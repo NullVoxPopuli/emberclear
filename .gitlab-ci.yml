@@ -1,6 +1,6 @@
 stages:
   - setup
-  - lint
+  - quality
   - test
   - build
   - deploy
@@ -11,7 +11,7 @@ cache:
     - packages/frontend/node_modules
 
 lint:
-  stage: lint
+  stage: quality
   tags:
     - docker
   script:
@@ -73,6 +73,7 @@ setup:
 
 
 code_quality:
+  stage: quality
   image: docker:stable
   variables:
     DOCKER_DRIVER: overlay2
@@ -90,6 +91,7 @@ code_quality:
     paths: [gl-code-quality-report.json]
 
 dependency_scanning:
+  stage: quality
   image: docker:stable
   variables:
     DOCKER_DRIVER: overlay2
