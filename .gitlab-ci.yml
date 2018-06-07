@@ -66,6 +66,7 @@ setup:
     - npm install --global npm@latest
     - npm install --global yarn
   script:
+    - echo $(which yarn)
     - ./run yarn install
   artifacts:
     paths:
