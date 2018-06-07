@@ -49,8 +49,8 @@ test:
   dependencies:
     - setup
 
-production:
-  stage: deploy
+production-build:
+  stage: build
   tags:
     - docker
   script:
@@ -71,7 +71,7 @@ pages:
   only:
     - master
   dependencies:
-    - production
+    - production-build
     - setup
 
 
