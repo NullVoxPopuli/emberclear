@@ -1,0 +1,104 @@
+stages:
+  - setup
+  - lint
+  - test
+  - build
+  - deploy
+
+lint:
+  stage: lint
+  tags:
+    - docker
+  script:
+    - ./run yarn lint
+
+test:
+  stage: test
+  cache:
+    - packages/frontend/node_modules
+  tags:
+    - docker
+  before_script:
+    - set -xe
+    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+    - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+    # Update packages
+    - apt-get update -yqqq
+    # Install Chrome browser
+    - apt-get install -y google-chrome-stable
+    # Install Virtual Display emulator
+    - apt-get install -y xvfb
+  script:
+    - ./run yarn test
+
+production:
+  stage: deploy
+  tags:
+    - docker
+  script:
+    - ./run yarn build:production
+  artifacts:
+    - packages/frontend/dist
+
+pages:
+  script:
+    - cp -r $CI_PROJECT_DIR/packages/frontend/dist/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+
+setup:
+  image: node:8.11.1
+  stage: setup
+  tags:
+    - docker
+  cache:
+    paths:
+      - packages/frontend/node_modules
+  before_script:
+    - npm config set spin false
+    - npm install --global npm@latest
+    - npm install --global yarn
+  script:
+    - ./run yarn install
+  artifacts:
+    paths:
+      - node_modules/
+
+
+code_quality:
+  image: docker:stable
+  variables:
+    DOCKER_DRIVER: overlay2
+  allow_failure: true
+  services:
+    - docker:stable-dind
+  script:
+    - export SP_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
+    - docker run
+        --env SOURCE_CODE="$PWD"
+        --volume "$PWD":/code
+        --volume /var/run/docker.sock:/var/run/docker.sock
+        "registry.gitlab.com/gitlab-org/security-products/codequality:$SP_VERSION" /code
+  artifacts:
+    paths: [gl-code-quality-report.json]
+
+dependency_scanning:
+  image: docker:stable
+  variables:
+    DOCKER_DRIVER: overlay2
+  allow_failure: true
+  services:
+    - docker:stable-dind
+  script:
+    - export SP_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
+    - docker run
+        --env DEP_SCAN_DISABLE_REMOTE_CHECKS="${DEP_SCAN_DISABLE_REMOTE_CHECKS:-false}"
+        --volume "$PWD:/code"
+        --volume /var/run/docker.sock:/var/run/docker.sock
+        "registry.gitlab.com/gitlab-org/security-products/dependency-scanning:$SP_VERSION" /code
+  artifacts:
+    paths: [gl-dependency-scanning-report.json]
