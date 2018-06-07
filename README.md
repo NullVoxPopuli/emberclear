@@ -23,7 +23,7 @@ Written in ember for demonstration of
 
 #### Debugging
 
-Module Resolation:
+Module Resolution:
 ```js
 // shows all detected services
 Object.keys(window.requirejs.entries).filter(b => b.includes("service"))
