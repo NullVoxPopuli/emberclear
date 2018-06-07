@@ -9,7 +9,10 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
-    - /usr/local/bin
+
+before_script:
+  - npm config set spin false
+  - npm install --global yarn
 
 lint:
   stage: quality
@@ -62,10 +65,6 @@ setup:
   stage: setup
   tags:
     - docker
-  before_script:
-    - npm config set spin false
-    - npm install --global npm@latest
-    - npm install --global yarn
   script:
     - echo $(which yarn)
     - ./run yarn install
