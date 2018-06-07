@@ -46,6 +46,7 @@ production:
       - packages/frontend/dist
 
 pages:
+  stage: deploy
   script:
     - cp -r $CI_PROJECT_DIR/packages/frontend/dist/* public/
   artifacts:
