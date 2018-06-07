@@ -10,6 +10,9 @@ cache:
   paths:
     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
+tags:
+  - docker
+
 before_script:
   - npm config set spin false
   - npm install --global yarn
@@ -66,7 +69,6 @@ setup:
   tags:
     - docker
   script:
-    - echo $(which yarn)
     - ./run yarn install
   artifacts:
     paths:
