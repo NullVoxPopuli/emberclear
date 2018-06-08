@@ -62,6 +62,7 @@ production-build:
 pages:
   stage: deploy
   script:
+    - mkdir -p public
     - cp -r ${CI_PROJECT_DIR}/packages/frontend/dist/* public/
   artifacts:
     paths:
