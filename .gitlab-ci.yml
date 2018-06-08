@@ -18,15 +18,15 @@ variables:
 before_script:
   - npm config set spin false
 
-lint:
-  stage: quality
-  tags:
-    - docker
-  allow_failure: true
-  script:
-    - ./run yarn lint
-  dependencies:
-    - setup
+# lint:
+#   stage: quality
+#   tags:
+#     - docker
+#   allow_failure: true
+#   script:
+#     - ./run yarn lint
+#   dependencies:
+#     - setup
 
 test:
   stage: test
@@ -43,10 +43,7 @@ test:
     - apt-get install -y google-chrome-stable
     # Install Virtual Display emulator
     - apt-get install -y xvfb
-  script:
-    # - useradd nobody
-    - adduser --disabled-password --gecos '' nobody
-    - su nobody -c "./run yarn test"
+  script: [./run yarn test]
   dependencies:
     - setup
 
