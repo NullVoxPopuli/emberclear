@@ -13,9 +13,9 @@ addons:
 cache:
   yarn: true
   directories:
-    - $HOME/.npm
-    - $HOME/.yarn
-    # - packages/frontend/node_modules
+    # - $HOME/.npm
+    # - $HOME/.yarn
+    - packages/frontend/node_modules
 
 env:
   global:
