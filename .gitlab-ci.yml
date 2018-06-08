@@ -11,12 +11,9 @@ cache:
     - .cache_yarn
     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
-image: node:latest
+image: danlynn/ember-cli:3.1.4
 variables:
   YARN_CACHE_FOLDER: .cache_yarn
-
-before_script:
-  - npm config set spin false
 
 # lint:
 #   stage: quality
@@ -33,16 +30,16 @@ test:
 
   tags:
     - docker
-  before_script:
-    - set -xe
-    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-    - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
-    # Update packages
-    - apt-get update -yqqq
-    # Install Chrome browser
-    - apt-get install -y google-chrome-stable
-    # Install Virtual Display emulator
-    - apt-get install -y xvfb
+  # before_script:
+  #   - set -xe
+  #   - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+  #   - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+  #   # Update packages
+  #   - apt-get update -yqqq
+  #   # Install Chrome browser
+  #   - apt-get install -y google-chrome-stable
+  #   # Install Virtual Display emulator
+  #   - apt-get install -y xvfb
   script: [./run yarn test]
   dependencies:
     - setup
@@ -51,8 +48,7 @@ production-build:
   stage: build
   tags:
     - docker
-  script:
-    - ./run yarn build:production
+  script: [./run yarn build:production]
   artifacts:
     paths:
       - packages/frontend/dist
