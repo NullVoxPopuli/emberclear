@@ -48,7 +48,8 @@ production-build:
   stage: build
   tags:
     - docker
-  script: [./run yarn build:production]
+  script:
+    - ./run yarn build:production
   artifacts:
     paths:
       - packages/frontend/dist
