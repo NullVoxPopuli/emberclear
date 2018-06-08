@@ -3,6 +3,12 @@
 
 An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) protocol.
 
+
+emberclear is published at:
+
+- Netlify: https://emberclear.netlify.com/
+- Github: http://nullvoxpopuli.github.io/emberclear/
+
 ## Development
 
 Note: the frontend code is in `packages/frontend`. This is to separate the over-arching  repo files from the individual project(s).
