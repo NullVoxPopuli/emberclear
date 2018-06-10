@@ -43,7 +43,8 @@ export default class Notifications extends Service {
       type: status,
       dismissable: true,
       position: 'is-right',
-      duration: 2300
+      duration: 2300,
+      ...options
     });
   }
 
@@ -51,7 +52,7 @@ export default class Notifications extends Service {
     return new RSVP.Promise((resolve, reject) => {
       if (!('Notification' in window)) return reject();
 
-      if (Notification.permission !== 'denied') {
+      if ((Notification as any).permission !== 'denied') {
         Notification.requestPermission(permission => {
           if (permission === 'granted') {
             return resolve()
@@ -63,8 +64,6 @@ export default class Notifications extends Service {
 
       return resolve();
     });
-
-
   }
 
   showNotification(msg: string, title: string, options = {}) {

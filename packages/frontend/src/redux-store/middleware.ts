@@ -1,3 +1,5 @@
+import { Store } from "redux";
+
 // This project does not need sagas, as
 // redux will not be used for storing network-originating data
 // (and ember-concurrency is more ergonomic)
@@ -11,7 +13,7 @@
 
 // const sagaMiddleware = createSaga();
 
-export const setup = (store) => {
+export const setup = (_store: Store<any>) => {
   // sagaMiddleware.run(addAsync);
 };
 

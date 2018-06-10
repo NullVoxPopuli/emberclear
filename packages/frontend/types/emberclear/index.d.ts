@@ -1,6 +1,4 @@
-
 import Ember from 'ember';
-
 
 declare global {
   interface FastBoot {

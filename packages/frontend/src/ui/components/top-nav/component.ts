@@ -8,7 +8,7 @@ import IdentityService from 'emberclear/services/identity/service';
 
 export default class TopNav extends Component {
   @service identity!: IdentityService;
-  @service router: Registry['router'];
+  @service router!: Registry['router'];
 
   @alias('router.currentRouteName') routeName!: string;
   @equal('routeName', 'index') isApplication!: boolean;

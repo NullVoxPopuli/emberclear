@@ -1,7 +1,7 @@
 import ReduxService from 'ember-redux/services/redux';
 import {
   createStore, applyMiddleware, compose,
-  GenericStoreEnhancer, AnyAction, Reducer
+  GenericStoreEnhancer, Reducer
 } from 'redux';
 
 import {

@@ -1,4 +1,3 @@
-import Service from '@ember/service';
 import { getContext } from '@ember/test-helpers';
 
 export const textFor = (selector: string): string => {

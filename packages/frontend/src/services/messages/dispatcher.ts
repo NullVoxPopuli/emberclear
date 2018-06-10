@@ -4,7 +4,7 @@ import { service } from '@ember-decorators/service';
 
 import RelayConnection from 'emberclear/services/relay-connection';
 import Redux from 'emberclear/services/redux';
-import Message from 'emberclear/data/models/message';
+// import Message from 'emberclear/data/models/message';
 import MessagePersistence from 'emberclear/services/messages/persistence';
 import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';

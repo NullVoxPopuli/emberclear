@@ -7,7 +7,7 @@ import IdentityService from 'emberclear/services/identity/service';
 
 export default class SetupController extends Controller {
   @service identity!: IdentityService;
-  @service router: Registry['router'];
+  @service router!: Registry['router'];
 
   @notEmpty('identity.record.privateKey') identityAlreadyExists!: boolean;
   @alias('identity.allowOverride') allowOverride!: boolean;
