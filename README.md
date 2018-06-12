@@ -31,6 +31,13 @@ Written in ember for demonstration of
  - typescript
  - all the modern features / best practices of ember
 
+
+TODO:
+ - implement WebRTC for messaging/audio/video and use websockets as a fallback
+   - ensure that WebRTC messages can be manually encrypted (otherwise, it's not worth it)
+ - websocket via [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) for disconnecting the UI from the data management so that the UI can update independently from the WebWorker Socket Connection
+ - write relay server in rust or continue in elixir
+
 #### Debugging
 
 Module Resolution:
