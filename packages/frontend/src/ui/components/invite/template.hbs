@@ -1,7 +1,11 @@
-<ModalContainer ...attributes as |container|>
+<ModalContainer as |container|>
   <button class='button' {{action container.toggle}}>Invite</button>
 
   <Modal @isActive={{container.isActive}} @close={{action container.toggle}}>
-    boop
+    <pre>
+      <code>
+        {}
+      </code>
+    </pre>
   </Modal>
 </ModalContainer>

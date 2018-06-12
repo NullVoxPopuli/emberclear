@@ -1,4 +1,4 @@
-<ModalContainer ...attributes as |container|>
+<ModalContainer as |container|>
   <button class='button' {{action container.toggle}}>Add Friend</button>
 
   <Modal @isActive={{container.isActive}} @close={{action container.toggle}}>
