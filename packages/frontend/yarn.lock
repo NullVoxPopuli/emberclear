@@ -2738,7 +2738,7 @@ ember-cli-broccoli-sane-watcher@^2.0.4:
     hash-for-dep "^1.2.3"
     pkg-dir "^2.0.0"
     resolve "^1.7.1"
-    rollup "^0.60.1"
+    rollup "^0.59.0"
     rollup-plugin-commonjs "^9.1.0"
     rollup-plugin-node-resolve "^3.3.0"
     username "^3.0.0"
@@ -3224,6 +3224,13 @@ ember-decorators@^2.0.0:
     "@ember-decorators/service" "^2.1.0"
     ember-cli-babel "^6.0.0"
     semver "^5.5.0"
+
+ember-elsewhere@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/ember-elsewhere/-/ember-elsewhere-1.0.4.tgz#598514c27975051a8c04255f97096491a762e3cf"
+  dependencies:
+    ember-cli-babel "^6.3.0"
+    ember-cli-htmlbars "^2.0.1"
 
 ember-export-application-global@^2.0.0:
   version "2.0.0"

@@ -95,6 +95,7 @@
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
     "ember-data": "github:emberjs/data#e3a24f6b74324688afc6ea530730ca30d7d69c1d",
+    "ember-elsewhere": "^1.0.4",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^5.0.0",
     "ember-intl": "^3.0.0-beta.8",

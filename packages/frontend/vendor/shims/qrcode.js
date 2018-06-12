@@ -3,7 +3,7 @@
     'use strict';
 
     return {
-      'default': self['qrcode'],
+      'default': self['QRCode'],
       __esModule: true,
     };
   }

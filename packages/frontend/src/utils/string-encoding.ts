@@ -1,4 +1,4 @@
-import * as QRCode from 'qrcode';
+import QRCode from 'qrcode';
 import libsodiumWrapper from 'libsodium-wrappers';
 
 // for the utils, we don't care about wasm,

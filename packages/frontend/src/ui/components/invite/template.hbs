@@ -2,10 +2,22 @@
   <button class='button' {{action container.toggle}}>Invite</button>
 
   <Modal @isActive={{container.isActive}} @close={{action container.toggle}}>
-    <pre>
-      <code>
-        {}
-      </code>
-    </pre>
+    <h3 class='title-is-3'>This is your public identity</h3>
+    Send this to a friend so that they can communicate with you.
+    <br  />
+
+    <div class='flex-row align-items-stretch'>
+      <img src={{qrCode}} />
+      <pre><code>{{identityJson}}</code></pre>
+
+    </div>
+
+
+
+
+    <hr />
+
+    <button class='button'>Download</button>
+    <button class='button'>Copy</button>
   </Modal>
 </ModalContainer>
