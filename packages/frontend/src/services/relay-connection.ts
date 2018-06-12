@@ -19,7 +19,7 @@ const DEFAULT_RELAYS = {
 export default class RelayConnection extends Service {
   @service('notifications') toast!: Toast;
   @service('redux') redux!: Redux;
-  @service('i18n') intl!: Intl;
+  @service('intl') intl!: Intl;
   @service identity!: IdentityService;
 
   socket?: Socket;
@@ -148,17 +148,17 @@ export default class RelayConnection extends Service {
     if (this.socket) this.socket.disconnect();
   }
 
-  handleError(this: RelayConnection, data: string) {
+  handleError = (data: string) => {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelError, data))
 
     console.error(data);
   }
 
-  handleConnected(this: RelayConnection, ) {
+  handleConnected = () => {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelConnected, ''))
   }
 
-  handleMessage(this: RelayConnection, data: string) {
+  handleMessage = (data: string) => {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelReceived, data))
 
     // process the message and do something with it

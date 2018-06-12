@@ -21,6 +21,8 @@ export function fromString(str: string): Uint8Array {
   return sodium.from_string(str);
 }
 
+export const toUint8Array = fromString;
+
 export function toString(uint8Array: Uint8Array): string {
   return sodium.to_string(uint8Array);
 }

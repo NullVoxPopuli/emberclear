@@ -1,4 +1,7 @@
-<div class='chat-entry flex-row field has-addons flex-grow'>
+<form
+  class='chat-entry flex-row field has-addons flex-grow'
+  {{action 'send' on="submit"}}
+  >
   <div class='control'>
     <button class='button'>Upload</button>
   </div>
@@ -11,8 +14,6 @@
   </div>
 
   <div class='control'>
-    <button class='button' {{action 'send'}}>
-      Send
-    </button>
+    <input class='button' type='submit' value='Send' {{action 'send'}} />
   </div>
-</div>
+</form>

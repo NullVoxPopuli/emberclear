@@ -89,6 +89,9 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     // Ember.run.backburner.DEBUG = true;
+
+    // TODO: find a way to determine this
+    ENV.host = 'http://localhost:4201';
   }
 
   if (environment === 'test') {
@@ -106,9 +109,12 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
     // github pages:
+    ENV.host = process.env.HOST;
     ENV.rootURL = process.env.ROOT_URL || '/emberclear/';
     ENV.baseURL = '/';
   }
+
+  ENV.hostUrl = `${ENV.host || ''}${ENV.rootURL || '/'}`
 
   return ENV;
 };

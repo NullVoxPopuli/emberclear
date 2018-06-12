@@ -1,0 +1,13 @@
+<div class="modal {{if @isActive 'is-active'}}">
+  <div class="modal-background"></div>
+
+  <div class="modal-content">
+    {{yield}}
+  </div>
+
+  <button
+    {{action @close}}
+    class="modal-close is-large"
+    aria-label="close">
+  </button>
+</div>

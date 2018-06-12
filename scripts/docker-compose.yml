@@ -39,8 +39,8 @@ services:
     ports:
       # Test Server
       - 7357:7357
-      # Ember Dev Server (default)
-      - 4200:4200
+      # Ember Dev Server
+      - 4201:4201
       # Live Reload
       - 7020:7020
     volumes:

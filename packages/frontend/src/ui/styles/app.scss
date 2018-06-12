@@ -47,6 +47,13 @@ body {
   }
 }
 
+.notices {
+  position: fixed;
+  top: 52px;
+  right: 0;
+  z-index: 40;
+}
+
 .navbar-item .icon:only-child {
   margin: 0;
 }
