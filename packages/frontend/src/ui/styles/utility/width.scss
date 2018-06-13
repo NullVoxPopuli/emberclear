@@ -5,3 +5,15 @@
 .w-fit {
   max-width: 100%;
 }
+
+.overflow {
+  overflow: auto;
+}
+
+.mw-0 {
+  min-width: 0;
+}
+
+.contain {
+  object-fit: contain;
+}

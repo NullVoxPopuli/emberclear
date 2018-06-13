@@ -11,19 +11,17 @@
       <img src={{qrCode}} />
     {{/if}}
 
-    <div class='flex-column w-fit'>
-      <pre><code id='my-identity'>{{identityJson}}</code></pre>
+    <div class='flex-column flex-grow mw-0'>
+      <pre class='overflow contain'><code id='my-identity'>{{identityJson}}</code></pre>
 
-      <div class='pull-right m-t-md'>
-        <button class='button'>Download</button>
-
+      <div class='flex-row justify-content-end m-t-md'>
         <CopyButton
-          class='button'
+          class='button has-status-tip {{if copied "is-active"}}'
           @success={{action 'copySuccess'}}
           @clipboardTarget='#my-identity'>
+          Copy
 
-          {{copyText}}
-
+          <HoverTip @animationClasses='floats-up'>Copied!</HoverTip>
         </CopyButton>
       </div>
     </div>

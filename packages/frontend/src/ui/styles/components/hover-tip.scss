@@ -8,20 +8,39 @@
   }
 
   .hover-tip {
-    opacity: 0;
-    color: black;
-    z-index: 10;
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    padding: 5px;
-    border-radius: 2px;
-    transition-property: all;
-    transition-duration: 0.1s;
-    box-shadow: 0 $radius-small $radius-small rgba(0,0,0, 0.5);
-
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+.has-status-tip {
+  position: relative;
+
+  &.is-active {
+    .hover-tip {
+      opacity: 1
+    }
+  }
+}
+
+.hover-tip {
+  opacity: 0;
+  color: black;
+  z-index: 10;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  padding: 5px;
+  border-radius: 2px;
+  transition-property: all;
+  transition-duration: 0.1s;
+  box-shadow: 0 $radius-small $radius-small rgba(0,0,0, 0.5);
+}
+
+// custom animations...
+.has-status-tip.is-active, .has-hover-tip:hover {
+  .floats-up {
+    bottom: 50px;
   }
 }

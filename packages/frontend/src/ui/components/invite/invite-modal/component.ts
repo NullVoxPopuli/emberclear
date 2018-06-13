@@ -13,7 +13,7 @@ import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string
 export default class InviteModal extends Component {
   @service identity!: Identity;
 
-  copyText = 'Copy';
+  copied = false;
 
   constructor() {
     super(...arguments);
@@ -47,9 +47,9 @@ export default class InviteModal extends Component {
 
   @action
   copySuccess(this: InviteModal) {
-    this.set('copyText', 'Copied!');
+    this.set('copied', true);
 
-    setTimeout(() => this.set('copyText', 'Copy'), 2000);
+    setTimeout(() => this.set('copied', false), 2000);
   }
 
 }
