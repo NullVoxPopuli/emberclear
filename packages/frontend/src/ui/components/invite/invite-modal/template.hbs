@@ -12,11 +12,19 @@
     {{/if}}
 
     <div class='flex-column w-fit'>
-      <pre><code>{{identityJson}}</code></pre>
+      <pre><code id='my-identity'>{{identityJson}}</code></pre>
 
-      <div class='pull-right'>
+      <div class='pull-right mt-2'>
         <button class='button'>Download</button>
-        <button class='button'>Copy</button>
+
+        <CopyButton
+          class='button'
+          @success={{action 'copySuccess'}}
+          @clipboardTarget='#my-identity'>
+
+          {{copyText}}
+
+        </CopyButton>
       </div>
     </div>
 

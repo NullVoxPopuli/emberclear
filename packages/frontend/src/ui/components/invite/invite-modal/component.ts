@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { schedule } from '@ember/runloop';
 
 import { service } from '@ember-decorators/service';
-import { computed } from '@ember-decorators/object';
+import { computed, action } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
 import { task } from 'ember-concurrency';
 
@@ -12,6 +12,8 @@ import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string
 
 export default class InviteModal extends Component {
   @service identity!: Identity;
+
+  copyText = 'Copy';
 
   constructor() {
     super(...arguments);
@@ -43,5 +45,11 @@ export default class InviteModal extends Component {
     return qrCode;
   }).drop().observes('publicIdentity');
 
+  @action
+  copySuccess(this: InviteModal) {
+    this.set('copyText', 'Copied!');
+
+    setTimeout(() => this.set('copyText', 'Copy'), 2000);
+  }
 
 }
