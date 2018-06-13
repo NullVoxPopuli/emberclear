@@ -1,5 +1,8 @@
 <div class="modal {{if @isActive 'is-active'}}">
-  <div class="modal-background"></div>
+  <div
+    {{action @close on='click'}}
+    class="modal-background">
+  </div>
 
   <div class="modal-content">
     <div class='box'>
