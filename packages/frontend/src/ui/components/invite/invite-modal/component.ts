@@ -1,5 +1,5 @@
-import Ember from 'ember';
 import Component from '@ember/component';
+import { schedule } from '@ember/runloop';
 
 import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
@@ -10,18 +10,16 @@ import Identity from 'emberclear/services/identity/service';
 import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string-encoding';
 
 
-export default class InviteModal extends Component.extend({
-  // qrCodeTask: task(function* () {
-  //   let publicIdentity = this.get('publicIdentity');
-  //   let qrCode = yield convertObjectToQRCodeDataURL(publicIdentity);
-  //   return qrCode;
-  // })
-  // .drop()
-  // .observes('publicIdentity'),
-  //
-  // qrCode: Ember.computed.reads('qrCodeTask.last.value')
-}) {
+export default class InviteModal extends Component {
   @service identity!: Identity;
+
+  constructor() {
+    super(...arguments);
+
+    schedule("afterRender", this, function (this: InviteModal) {
+      this.qrCodeTask.perform();
+    });
+  }
 
   @computed('identity.publicKey', 'identity.name')
   get publicIdentity() {
@@ -39,7 +37,6 @@ export default class InviteModal extends Component.extend({
   @reads('qrCodeTask.last.value') qrCode!: string;
 
   qrCodeTask = task(function * (this: InviteModal) {
-    console.log("hey look at me");
     const publicIdentity = this.publicIdentity;
     const qrCode = yield convertObjectToQRCodeDataURL(publicIdentity);
 
