@@ -73,6 +73,9 @@ module.exports = function(defaults) {
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
+  app.import('node_modules/instascan/index.js', {
+    using: [{ transformation: 'cjs', as: 'instascan'}]
+  });
 
   // localforage
   app.import('node_modules/localforage/dist/localforage.js');

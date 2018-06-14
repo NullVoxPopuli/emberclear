@@ -1,3 +1,29 @@
 <Modal @isActive={{@isActive}} @close={{action @close}}>
-  Paste your friend's public identity here
+  <button class='button' {{action 'toggleScanning'}}>
+    <span class='icon'>
+      <i class='fas fa-qrcode'></i>
+    </span>
+  </button>
+
+  {{#if scanning}}
+
+  {{/if}}
+
+  {{#unless scanning}}
+    <h3 class='title-is-3'>Paste are upload your friend's identity</h3>
+    <br  />
+    <div >
+      <form {{action 'importIdentity' on='submit'}}>
+        {{input
+          type='textarea'
+          rows='4'
+          value=identityToImport
+          onChange=(action (mut identityToImport))
+          placeholder=placeholder
+        }}
+
+        <input type='submit' value='Import' />
+      </form>
+    </div>
+  {{/unless}}
 </Modal>

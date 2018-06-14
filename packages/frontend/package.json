@@ -66,6 +66,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-qunit": "^3.2.1",
     "font-awesome": "^4.7.0",
+    "instascan": "^1.0.0",
     "libsodium": "^0.7.3",
     "libsodium-wrappers": "^0.7.3",
     "localforage": "^1.7.1",

@@ -31,7 +31,6 @@ export default class InviteModal extends Component {
     const qrCodePromise = convertObjectToQRCodeDataURL(publicIdentity);
 
     return PromiseProxy.create({ promise: qrCodePromise });
-
   }
 
   @action
