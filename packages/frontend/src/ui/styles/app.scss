@@ -47,6 +47,10 @@ body {
   }
 }
 
+.has-resize-disabled {
+  resize: none;
+}
+
 .notices {
   position: fixed;
   top: 52px;

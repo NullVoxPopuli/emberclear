@@ -1,22 +1,40 @@
-/**
- * Catch-all for ember-data.
- */
+interface IOptions {
+  video?: HTMLElement;
+  mirror?: boolean;
+  continuous?: boolean;
+  captureImage?: boolean;
+  backgroundScan?: boolean;
+  refractoryPeriod?: number;
+  scanPeriod?: number;
+}
+
+declare class Scanner {
+  // static new(options: IOptions): Scanner;
+  constructor(options: IOptions);
+  captureImage: boolean;
+
+  start(camera: Camera): Promise<void>;
+  stop(): Promise<void>;
+  scan(): null | { content: string, image: null | string };
+  addListener(name: string, callback: (content: any) => any): void;
+
+}
+
+declare class Camera {
+  id: string;
+  name: string;
+
+  // not actually on camera, but set by me
+  displayName: string;
+
+  getCameras(): Promise<Camera[]>;
+}
+
 declare module 'instascan' {
-  export class Scanner {
-    // export namespace Camera {
-    //     export function getCameras(): Camera[];
-    // }
-    captureImage: boolean;
+  const defaultExport: {
+    Scanner: Scanner,
+    Camera: Camera
+  };
 
-    start(camera: Camera): void;
-    stop(): void;
-    scan(): null | { content: any, image: any };
-    addListener(name: string, callback: () => any): void;
-
-  }
-
-  export class Camera {
-    id: string;
-    name: string;
-  }
+  export default defaultExport;
 }

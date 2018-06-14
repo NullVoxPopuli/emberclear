@@ -1,0 +1,21 @@
+<div style='width: 100%; height: 300px; overflow: hidden'>
+  <video id='qr-preview' class='w-100' autoplay='autoplay'></video>
+</div>
+
+<span class='flex justify-content-space-between m-t-md'>
+  <div>
+    {{#if showCameras}}
+      {{#each cameras as |camera|}}
+        <button
+          class='button {{if (eq camera activeCamera) "is-disabled"}}'
+          {{action 'selectCamera' camera}}>
+          {{camera.name}}
+        </button>
+      {{/each}}
+    {{/if}}
+  </div>
+
+  <button class='button' {{action @onCancel}}>
+    Cancel
+  </button>
+</span>

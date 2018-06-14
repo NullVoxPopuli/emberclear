@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 
 import { action } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
 
 const fakeIdentity = `{
   "name": "fake name",
@@ -8,6 +9,8 @@ const fakeIdentity = `{
 }`
 
 export default class AddModal extends Component {
+  @service('notifications') toast!: Toast;
+
   identityToImport = '';
   scanning = false;
   placeholder = fakeIdentity;
@@ -20,5 +23,15 @@ export default class AddModal extends Component {
   @action
   importIdentity() {
     console.log('importing...');
+  }
+
+  @action
+  onScan() {
+    console.log(...arguments);
+  }
+
+  @action
+  onScanError(e: Error) {
+    this.toast.error(e.message);
   }
 }

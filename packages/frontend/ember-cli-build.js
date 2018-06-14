@@ -4,6 +4,10 @@ const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
+// instascan requires 'fs'...
+const nodeBuiltins = require('rollup-plugin-node-builtins');
+
+
 module.exports = function(defaults) {
   let disabledAddons = [];
 
@@ -74,7 +78,7 @@ module.exports = function(defaults) {
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
   app.import('node_modules/instascan/index.js', {
-    using: [{ transformation: 'cjs', as: 'instascan'}]
+    using: [{ transformation: 'cjs', as: 'instascan', plugins: [nodeBuiltins()] }]
   });
 
   // localforage
