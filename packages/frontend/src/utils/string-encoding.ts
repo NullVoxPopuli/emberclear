@@ -9,6 +9,10 @@ export function toHex(array: Uint8Array): string {
   return sodium.to_hex(array);
 }
 
+export function fromHex(hex: string): Uint8Array {
+  return sodium.from_hex(hex);
+}
+
 export function toBase64(array: Uint8Array): string {
   return sodium.to_base64(array);
 }

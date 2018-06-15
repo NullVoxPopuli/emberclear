@@ -26,6 +26,7 @@ export default class IdentityService extends Service {
   // safety for not accidentally blowing away an existing identity
   allowOverride = false;
 
+  @alias('record.id') id?: string;
   @alias('record.name') name?: string;
   @alias('record.publicKey') publicKey?: Uint8Array;
   @alias('record.privateKey') privateKey?: Uint8Array;

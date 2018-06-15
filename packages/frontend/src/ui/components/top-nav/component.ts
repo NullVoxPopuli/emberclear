@@ -14,8 +14,7 @@ export default class TopNav extends Component {
   @equal('routeName', 'index') isApplication!: boolean;
   @not('isApplication') isChat!: boolean;
 
-  @alias('identity.record.name') name?: string;
-  @notEmpty('identity.record.name') hasName!: boolean;
+  @notEmpty('identity.name') hasName!: boolean;
 
   @computed('isChat')
   get textColor(this: TopNav) {

@@ -1,6 +1,12 @@
 import Ember from 'ember';
 
+
 declare global {
+  interface IdentityJson {
+    name: string;
+    publicKey: string;
+  }
+
   interface FastBoot {
     isFastBoot: boolean;
   }

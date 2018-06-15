@@ -2,6 +2,8 @@ import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
 
 export default class ModalContainer extends Component {
+  // tagName = '';
+
   isActive = false
 
   @action

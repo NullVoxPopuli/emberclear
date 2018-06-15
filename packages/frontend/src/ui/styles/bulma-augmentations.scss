@@ -3,24 +3,29 @@
   transition-duration: 0.2s;
 
   a {
+    color: #4a4a4a;
     transition-property: all;
     transition-duration: 0.2s;
-
   }
 
   &.is-primary {
-    a.navbar-burger {
+    a, a.navbar-burger {
       color: white;
+    }
+    .dropdown-menu {
+      a {
+        color: #4a4a4a;
+      }
     }
   }
 }
-//
-// .modal.is-active {
-//   transition-property: all;
-//   transition-duration: 1s;
-//
-//   .modal-content, .modal-background, .box {
-//     transition-property: all;
-//     transition-duration: 1s;
-//   }
-// }
+
+.modal {
+  transition-property: all;
+  transition-duration: 1s;
+
+  .modal-content, .modal-background, .box {
+    transition-property: all;
+    transition-duration: 1s;
+  }
+}

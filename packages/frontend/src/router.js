@@ -15,6 +15,7 @@ Router.map(function() {
     this.route('overwrite');
   });
 
+  this.route('contacts');
   this.route('login');
   this.route('settings');
   this.route('faq');

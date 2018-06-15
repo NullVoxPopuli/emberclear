@@ -23,16 +23,8 @@
             {{t 'routes.chat'}}
           {{/link-to}}
 
-          <Add class='navbar-item' />
-          <Invite class='navbar-item' />
+          <UserDropMenu class='navbar-item has-dropdown' />
 
-          {{#link-to 'settings' class='navbar-item'}}
-            <span class='icon'>
-              <i class='fas fa-user-circle'></i>
-            </span>
-            {{!-- {{t 'routes.profile'}} --}}
-            {{name}}
-          {{/link-to}}
         {{else}}
           {{#link-to 'setup' class='navbar-item'}}
             {{t 'routes.createNewUser'}}

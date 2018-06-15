@@ -30,7 +30,11 @@ export default DS.Adapter.extend(Evented, {
   coalesceFindRequests: true,
 
   shouldBackgroundReloadRecord() {
-    return false;
+    return true;
+  },
+
+  shouldBackgroundReloadAll() {
+    return true;
   },
 
   shouldReloadAll() {

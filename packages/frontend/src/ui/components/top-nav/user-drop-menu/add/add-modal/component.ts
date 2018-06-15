@@ -1,7 +1,10 @@
+import DS from 'ember-data';
 import Component from '@ember/component';
 
 import { action } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
+
+import { fromHex } from 'emberclear/src/utils/string-encoding';
 
 const fakeIdentity = `{
   "name": "fake name",
@@ -10,8 +13,9 @@ const fakeIdentity = `{
 
 export default class AddModal extends Component {
   @service('notifications') toast!: Toast;
+  @service store!: DS.Store;
 
-  identityToImport = '';
+  identityToImport?: IdentityJson;
   scanning = false;
   placeholder = fakeIdentity;
 
@@ -26,8 +30,18 @@ export default class AddModal extends Component {
   }
 
   @action
-  onScan() {
-    console.log(...arguments);
+  async onScan(this: AddModal, identityJson: string) {
+    const identity = JSON.parse(identityJson);
+    const { name, publicKey } = identity;
+
+    await this.store.createRecord('identity', {
+      name,
+      id: publicKey,
+      publicKey: fromHex(publicKey)
+    }).save();
+
+    this.set('scanning', false);
+    this.close();
   }
 
   @action
