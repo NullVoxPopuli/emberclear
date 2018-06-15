@@ -2,10 +2,31 @@
   <div class='content'>
     <h1>Contacts ({{model.length}})</h1>
 
-    {{log model.length}}
-    {{#each model as |identity|}}
-      <a {{action 'remove' identity}}>Remove</a>
-      {{identity.name}} - {{identity.publicKeyAsHex}}
-    {{/each}}
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Public Key</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {{#each model as |identity|}}
+          <tr>
+            <td>
+              <a {{action 'remove' identity}}>Remove</a>
+            </td>
+            <td>
+              {{identity.name}}
+            </td>
+            <td>
+              {{identity.publicKeyAsHex}}
+            </td>
+          </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
   </div>
 </div>

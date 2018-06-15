@@ -1,11 +1,18 @@
 import IntlService from 'ember-intl/services/intl';
 import fetch from 'fetch';
+import { service } from '@ember-decorators/service';
 
 import config from 'emberclear/config/environment';
 
-export default class EmberClearIntl extends IntlService {
+export default class EmberclearIntl extends IntlService {
+  @service fastboot!: FastBoot;
+
   async loadTranslations(locale: string) {
-    let response = await fetch(`${config.hostUrl}/translations/${locale}.json`);
+    let url = `/translations/${locale}.json`;
+
+    if (this.fastboot.isFastBoot) url = `${config.hostUrl}${url}`;
+
+    let response = await fetch(url);
     let translations = await response.json();
 
     this.addTranslations(locale, translations);
@@ -29,6 +36,6 @@ export default class EmberClearIntl extends IntlService {
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    'intl': EmberClearIntl
+    'intl': EmberclearIntl
   }
 };

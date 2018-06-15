@@ -49,9 +49,9 @@
     "faq": {
       "title": "F.A.Q",
       "whatIsQ": "What is {appname}",
-      "whatIsA": "\n        EmberClear is the open source p2p encrypted chat\n        client that operates over open source\n        mesh nodes on free-tier cloud services.\n      ",
+      "whatIsA": "\n        Emberclear is the open source p2p encrypted chat\n        client that operates over open source\n        mesh nodes on free-tier cloud services.\n      ",
       "howDoesWorkQ": "How does it work?",
-      "howDoesWorkA": "\n        All the encryption is done in the browser -- at no time do private keys leave your computer.\n        EmberClear uses libsodium's public key-cryptography to ensure cryptographically safe messaging\n        across the internet, on any network -- even if the network is compromised.",
+      "howDoesWorkA": "\n        All the encryption is done in the browser -- at no time do private keys leave your computer.\n        Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging\n        across the internet, on any network -- even if the network is compromised.",
       "whyQ": "Why?",
       "whyA": "\n        Partially for fun and learning -- wanting to provide a framework for people wanting to\n        get in to web applications so that they pre-existing tools that can interface with their\n        creations.\n\n        This project is also inspired by a lack of trust in existing chat apps and their infrastructure.\n        Ultimately, this project, by functionality, will be a clone of whatever is popular - with the\n        one key difference that nothing is ever tracked by the relays / federated nodes.\n      "
     },

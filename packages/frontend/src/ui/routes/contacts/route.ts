@@ -5,11 +5,12 @@ import IdentityService from 'emberclear/services/identity/service';
 export default class ContactsRoute extends Route {
   @service identity!: IdentityService;
 
-  model(this: ContactsRoute) {
-    const identities = this.store
-      .findAll('identity', { backgroundReload: true })
-      // .filter(identity => identity.id !== this.identity.id);
+  async model(this: ContactsRoute) {
+    const records = await this.store.findAll('identity', { backgroundReload: true })
+    const filtered = records.filter(identity => {
+      return identity.id !== this.identity.id;
+    });
 
-    return identities;
+    return filtered;
   }
 }

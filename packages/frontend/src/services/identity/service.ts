@@ -4,7 +4,7 @@ import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
 
 import { service } from '@ember-decorators/service';
-import { alias } from '@ember-decorators/object/computed';
+import { alias, reads } from '@ember-decorators/object/computed';
 
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import Identity from 'emberclear/data/models/identity/model';
@@ -26,7 +26,7 @@ export default class IdentityService extends Service {
   // safety for not accidentally blowing away an existing identity
   allowOverride = false;
 
-  @alias('record.id') id?: string;
+  @reads('record.id') id?: string;
   @alias('record.name') name?: string;
   @alias('record.publicKey') publicKey?: Uint8Array;
   @alias('record.privateKey') privateKey?: Uint8Array;
@@ -52,6 +52,10 @@ export default class IdentityService extends Service {
     if (!identity) return false;
 
     return isPresent(identity.privateKey);
+  }
+
+  async ensureLoaded(): Promise<boolean> {
+    return await this.exists();
   }
 
   async load(this: IdentityService): Promise<Identity | null> {
