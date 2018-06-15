@@ -15,7 +15,7 @@ export default class AddModal extends Component {
   @service('notifications') toast!: Toast;
   @service store!: DS.Store;
 
-  identityToImport?: IdentityJson;
+  identityToImport = '';
   scanning = false;
   placeholder = fakeIdentity;
 
@@ -25,20 +25,18 @@ export default class AddModal extends Component {
   }
 
   @action
-  importIdentity() {
-    console.log('importing...');
+  async importIdentity() {
+    const identity = JSON.parse(this.identityToImport)
+
+    await this.tryCreate(identity);
+    this.close();
   }
 
   @action
   async onScan(this: AddModal, identityJson: string) {
     const identity = JSON.parse(identityJson);
-    const { name, publicKey } = identity;
 
-    await this.store.createRecord('identity', {
-      name,
-      id: publicKey,
-      publicKey: fromHex(publicKey)
-    }).save();
+    await this.tryCreate(identity);
 
     this.set('scanning', false);
     this.close();
@@ -47,5 +45,21 @@ export default class AddModal extends Component {
   @action
   onScanError(e: Error) {
     this.toast.error(e.message);
+  }
+
+  async tryCreate(identity: IdentityJson) {
+    const { name, publicKey } = identity;
+    const exists = this.store.peekRecord('identity', publicKey);
+
+    if (exists) {
+      this.toast.info('Friend already added!');
+      return;
+    }
+
+    await this.store.createRecord('identity', {
+      name,
+      id: publicKey,
+      publicKey: fromHex(publicKey)
+    }).save();
   }
 }

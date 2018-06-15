@@ -1,7 +1,7 @@
 <ModalContainer as |container|>
   <a
     class={{@linkClass}}
-    {{action container.toggle}}>Invite</a>
+    {{action (queue container.toggle @afterClick)}}>Invite</a>
 
   {{to-elsewhere
     named='modals'

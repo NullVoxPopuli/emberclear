@@ -20,8 +20,8 @@
       {{/link-to}}
 
       <div class='flex-row dropdown-item justify-content-space-between'>
-        <Add />
-        <Invite />
+        <Add @afterClick={{action 'closeMenu'}}/>
+        <Invite @afterClick={{action 'closeMenu'}}/>
       </div>
 
     </div>

@@ -4,6 +4,7 @@
 
     {{log model.length}}
     {{#each model as |identity|}}
+      <a {{action 'remove' identity}}>Remove</a>
       {{identity.name}} - {{identity.publicKeyAsHex}}
     {{/each}}
   </div>

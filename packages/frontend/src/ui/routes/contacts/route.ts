@@ -7,8 +7,8 @@ export default class ContactsRoute extends Route {
 
   model(this: ContactsRoute) {
     const identities = this.store
-      .peekAll('identity')
-      .filter(identity => identity.id !== this.identity.id);
+      .findAll('identity', { backgroundReload: true })
+      // .filter(identity => identity.id !== this.identity.id);
 
     return identities;
   }
