@@ -10,7 +10,7 @@ export default class EmberclearIntl extends IntlService {
   async loadTranslations(locale: string) {
     let url = `/translations/${locale}.json`;
 
-    if (this.fastboot.isFastBoot) url = `${config.hostUrl}${url}`;
+    if (this.fastboot.isFastBoot) url = `http://localhost:7784${url}`;
 
     let response = await fetch(url);
     let translations = await response.json();
