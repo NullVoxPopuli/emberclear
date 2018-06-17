@@ -1,22 +1,12 @@
+// https://github.com/jgthms/bulma/blob/master/sass/components/navbar.sass
 .navbar {
   transition-property: all;
   transition-duration: 0.2s;
 
   a {
-    color: #4a4a4a;
+    color: $navbar-item-color;
     transition-property: all;
     transition-duration: 0.2s;
-  }
-
-  &.is-primary {
-    a, a.navbar-burger {
-      color: white;
-    }
-    .dropdown-menu {
-      a {
-        color: #4a4a4a;
-      }
-    }
   }
 }
 
