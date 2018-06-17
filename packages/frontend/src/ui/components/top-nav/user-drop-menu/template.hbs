@@ -1,29 +1,25 @@
-<div class="dropdown navbar-item {{if showDropdown 'is-active'}}">
-  <a class="dropdown-trigger" {{action (mut showDropdown) (not showDropdown)}}>
-    <span class='icon'>
-      <i class='fas fa-user-circle'></i>
-    </span>
-    <span>{{name}}</span>
-  </a>
+<a class="navbar-link" {{action (mut showDropdown) (not showDropdown)}}>
+  <span class='icon'>
+    <i class='fas fa-user-circle'></i>
+  </span>
+  <span>{{name}}</span>
+</a>
 
-  <div class="dropdown-menu" role="menu">
-    <div class="dropdown-content">
+<div class="navbar-dropdown">
+  {{#link-to 'contacts' class='navbar-item'}}
+    <span class='icon'><i class="fas fa-address-book"></i></span>
+    <span>Contacts</span>
+  {{/link-to}}
 
-      {{#link-to 'contacts' class='dropdown-item has-text-black'}}
-        <span class='icon'><i class="fas fa-address-book"></i></span>
-        <span>Contacts</span>
-      {{/link-to}}
+  {{#link-to 'settings' class='navbar-item'}}
+    <span class='icon'><i class="fas fa-sliders-h"></i></span>
+    <span>Settings</span>
+  {{/link-to}}
 
-      {{#link-to 'settings' class='dropdown-item has-text-black'}}
-        <span class='icon'><i class="fas fa-sliders-h"></i></span>
-        <span>Settings</span>
-      {{/link-to}}
+  <hr class='navbar-divider' />
 
-      <div class='flex-row dropdown-item justify-content-space-between'>
-        <Add @afterClick={{action 'closeMenu'}}/>
-        <Invite @afterClick={{action 'closeMenu'}}/>
-      </div>
-
-    </div>
+  <div class='flex-row navbar-item justify-content-space-between'>
+    <Add @afterClick={{action 'closeMenu'}}/>
+    <Invite @afterClick={{action 'closeMenu'}}/>
   </div>
 </div>

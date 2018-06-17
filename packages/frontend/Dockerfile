@@ -31,7 +31,6 @@ WORKDIR /app
 
 # install npm (for security updates), and ember-cli
 RUN echo \
-  && npm install --global npm@latest \
-  && npm install --global github:twokul/ember-cli#7bc63039a1f89e03d9c1246cc5d3e8245290f302
+  && npm install --global npm@latest
 
 CMD ["yarn", "start"]
