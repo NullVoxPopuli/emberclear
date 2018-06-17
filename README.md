@@ -7,7 +7,7 @@
 An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) protocol.
 
 
-emberclear is published at: emberclear.io
+emberclear is published at: https://emberclear.io
 
 ## Development
 
