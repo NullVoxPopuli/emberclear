@@ -6,20 +6,28 @@
 </a>
 
 <div class="navbar-dropdown">
-  {{#link-to 'contacts' class='navbar-item'}}
+  <a class='navbar-item'
+    {{action (queue
+      (action closeMenu)
+      (transition-to 'contacts'))
+    }}>
     <span class='icon'><i class="fas fa-address-book"></i></span>
     <span>Contacts</span>
-  {{/link-to}}
+  </a>
 
-  {{#link-to 'settings' class='navbar-item'}}
+  <a class='navbar-item'
+  {{action (queue
+    (action closeMenu)
+    (transition-to 'settings'))
+  }}>
     <span class='icon'><i class="fas fa-sliders-h"></i></span>
     <span>Settings</span>
-  {{/link-to}}
+  </a>
 
   <hr class='navbar-divider' />
 
   <div class='flex-row navbar-item justify-content-space-between'>
-    <Add @afterClick={{action 'closeMenu'}}/>
-    <Invite @afterClick={{action 'closeMenu'}}/>
+    <Add @afterClick={{action closeMenu}}/>
+    <Invite @afterClick={{action closeMenu}}/>
   </div>
 </div>
