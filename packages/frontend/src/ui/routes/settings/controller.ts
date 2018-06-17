@@ -23,6 +23,6 @@ export default class extends Controller {
 
   @action
   async downloadSettings() {
-    console.log('settings');
+    // console.log('settings')s;
   }
 }

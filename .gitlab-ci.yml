@@ -16,7 +16,6 @@ variables:
   YARN_CACHE_FOLDER: .cache_yarn
   DOCKER_DRIVER: overlay2
 
-#
 # lint:
 #   stage: test
 #   tags:
@@ -103,9 +102,9 @@ build-pages:
 #       git add . \
 #         && git commit -m"update gh-pages" \
 #         && git push github gh-pages -f
-
-  dependencies:
-    - build-pages
+#
+#   dependencies:
+#     - build-pages
 
 deploy-gitlab-pages:
   stage: deploy
