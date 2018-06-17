@@ -1,0 +1,36 @@
+<div class='container'>
+  <h1 class='title m-t-md'>Settings</h1>
+  <div class='content'>
+
+    <form
+      {{action 'save'}}>
+
+      <FieldWithLabel @label='Name'>
+        {{input
+          class='input'
+          value=(readonly name)
+          onChange=(action (mut name))
+        }}
+      </FieldWithLabel>
+
+      <div class='flex justify-content-end'>
+
+        <input class='button' type='submit' value='Save' />
+      </div>
+    </form>
+
+    <button
+      class='button'
+      {{action (mut showPrivateKey) (not showPrivateKey)}}>
+      {{if showPrivateKey 'Hide' 'Show'}} private key
+    </button>
+
+    {{#if showPrivateKey}}
+      <MnemonicDisplay @privateKey={{identity.privateKey}} />
+    {{/if}}
+
+    <button class='button' {{action 'downloadSettings'}}>
+      Download
+    </button>
+  </div>
+</div>

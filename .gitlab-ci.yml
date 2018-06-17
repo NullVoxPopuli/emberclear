@@ -16,34 +16,34 @@ variables:
   YARN_CACHE_FOLDER: .cache_yarn
   DOCKER_DRIVER: overlay2
 
-
-lint:
-  stage: test
-  tags:
-    - docker
-  allow_failure: true
-  script:
-    - ./run yarn lint
-  dependencies:
-    - setup
-
-code_quality:
-  stage: test
-  image: docker:stable
-  variables:
-    DOCKER_DRIVER: overlay2
-  allow_failure: true
-  services:
-    - docker:stable-dind
-  script:
-    - export SP_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
-    - docker run
-        --env SOURCE_CODE="$PWD"
-        --volume "$PWD/packages/frontend":/code
-        --volume /var/run/docker.sock:/var/run/docker.sock
-        "registry.gitlab.com/gitlab-org/security-products/codequality:$SP_VERSION" /code
-  artifacts:
-    paths: [gl-code-quality-report.json]
+#
+# lint:
+#   stage: test
+#   tags:
+#     - docker
+#   allow_failure: true
+#   script:
+#     - ./run yarn lint
+#   dependencies:
+#     - setup
+#
+# code_quality:
+#   stage: test
+#   image: docker:stable
+#   variables:
+#     DOCKER_DRIVER: overlay2
+#   allow_failure: true
+#   services:
+#     - docker:stable-dind
+#   script:
+#     - export SP_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
+#     - docker run
+#         --env SOURCE_CODE="$PWD"
+#         --volume "$PWD/packages/frontend":/code
+#         --volume /var/run/docker.sock:/var/run/docker.sock
+#         "registry.gitlab.com/gitlab-org/security-products/codequality:$SP_VERSION" /code
+#   artifacts:
+#     paths: [gl-code-quality-report.json]
 
 test:
   stage: test
@@ -65,44 +65,44 @@ build-pages:
   dependencies:
     - setup
 
-deploy-github-pages:
-  stage: deploy
-  environment:
-    name: github
-    url: https://nullvoxpopuli.github.com/emberclear
-  script:
-    # (
-    #   cd packages/frontend/dist \
-    #     && git config --global user.email "theprecognition+deployments@gmail.com" \
-    #     && git config --global user.name "Deploy from GitLab" \
-    #     && git init \
-    #     && git remote add github git@github.com:NullVoxPopuli/emberclear.git \
-    #     && (git checkout --orphan gh-pages || true) \
-    #     && (git checkout gh-pages || true) \
-    #     && cp index.html 404.html \
-    #     && git add . \
-    #     && git commit -m"update gh-pages" \
-    #     && git push github gh-pages -f
-    # )
-    - |
-      git config --global user.email "theprecognition+deployments@gmail.com"
-      git config --global user.name "Deploy from GitLab"
-
-      cd packages/frontend/dist \
-        && git init \
-        && git remote add github $GITHUB_PAGES_REMOTE
-
-      # already in dist
-      git checkout --orphan gh-pages || true
-      git checkout gh-pages || true
-
-      # Hack to get around github's lack of support for SPAs
-      cp index.html 404.html
-
-      # already in dist, and already on gh-pages
-      git add . \
-        && git commit -m"update gh-pages" \
-        && git push github gh-pages -f
+# deploy-github-pages:
+#   stage: deploy
+#   environment:
+#     name: github
+#     url: https://nullvoxpopuli.github.com/emberclear
+#   script:
+#     # (
+#     #   cd packages/frontend/dist \
+#     #     && git config --global user.email "theprecognition+deployments@gmail.com" \
+#     #     && git config --global user.name "Deploy from GitLab" \
+#     #     && git init \
+#     #     && git remote add github git@github.com:NullVoxPopuli/emberclear.git \
+#     #     && (git checkout --orphan gh-pages || true) \
+#     #     && (git checkout gh-pages || true) \
+#     #     && cp index.html 404.html \
+#     #     && git add . \
+#     #     && git commit -m"update gh-pages" \
+#     #     && git push github gh-pages -f
+#     # )
+#     - |
+#       git config --global user.email "theprecognition+deployments@gmail.com"
+#       git config --global user.name "Deploy from GitLab"
+#
+#       cd packages/frontend/dist \
+#         && git init \
+#         && git remote add github $GITHUB_PAGES_REMOTE
+#
+#       # already in dist
+#       git checkout --orphan gh-pages || true
+#       git checkout gh-pages || true
+#
+#       # Hack to get around github's lack of support for SPAs
+#       cp index.html 404.html
+#
+#       # already in dist, and already on gh-pages
+#       git add . \
+#         && git commit -m"update gh-pages" \
+#         && git push github gh-pages -f
 
   dependencies:
     - build-pages
