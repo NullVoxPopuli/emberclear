@@ -43,9 +43,9 @@ routes:
 ui:
   faq:
     title: F.A.Q
-    whatIsQ: What is {appname}
+    whatIsQ: What is emberclear
     whatIsA: >
-      {appname} is the open source p2p encrypted chat
+      emberclear is the open source p2p encrypted chat
       client that operates over open source
       mesh nodes on free-tier cloud services.
     howDoesWorkQ: How does it work?

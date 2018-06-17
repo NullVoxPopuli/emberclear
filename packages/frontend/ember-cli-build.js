@@ -10,8 +10,16 @@ const nodeBuiltins = require('rollup-plugin-node-builtins');
 
 module.exports = function(defaults) {
   let disabledAddons = [];
+  let environment = EmberApp.env();
+  let enableSW = process.env.ENABLE_SW;
+  let disableServiceWorker = environment !== 'production' && !enableSW;
 
-  if (EmberApp.env() !== 'production' && !process.env.ENABLE_SW) {
+  console.log('\n---------------');
+  console.log('environment: ', environment, 'ENABLE_SW', enableSW);
+  console.log('Service Worker Will Be Enabled: ', disableServiceWorker);
+  console.log('---------------\n');
+
+  if (disableServiceWorker) {
      // disable service workers by default for dev and testing
      disabledAddons.push('ember-service-worker');
    }

@@ -29,8 +29,12 @@
       <MnemonicDisplay @privateKey={{identity.privateKey}} />
     {{/if}}
 
-    <button class='button' {{action 'downloadSettings'}}>
-      Download
-    </button>
+    <a
+      href={{downloadSettingsUrl}}
+      download='emberclear.settings'
+      target='_blank'
+      class='button'>
+      Download Settings
+    </a>
   </div>
 </div>

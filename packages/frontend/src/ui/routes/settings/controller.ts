@@ -1,7 +1,9 @@
 import Controller from '@ember/controller';
-import { action } from '@ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
 import { alias } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
+
+import { objectToDataURL } from 'emberclear/src/utils/string-encoding';
 
 import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';
@@ -14,6 +16,17 @@ export default class extends Controller {
 
   showPrivateKey = false;
 
+  @computed('identity.record')
+  downloadSettingsUrl() {
+    const toDownload = {
+      name: this.identity.name,
+      privateKey: this.identity.privateKey,
+      publicKey: this.identity.publicKey
+    }
+
+    return objectToDataURL(toDownload);
+  }
+
   @action
   async save() {
     await this.identity.record!.save();
@@ -21,8 +34,4 @@ export default class extends Controller {
     this.flash.success('Identity Updated');
   }
 
-  @action
-  async downloadSettings() {
-    // console.log('settings')s;
-  }
 }
