@@ -7,10 +7,7 @@
 An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) protocol.
 
 
-emberclear is published at:
-
-- Netlify: https://emberclear.netlify.com/
-- Github: http://nullvoxpopuli.github.io/emberclear/
+emberclear is published at: emberclear.io
 
 ## Development
 
