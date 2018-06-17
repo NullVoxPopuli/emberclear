@@ -7,7 +7,10 @@ import IdentityService from 'emberclear/services/identity/service';
 export default class UserDropMenu extends Component {
   @service identity!: IdentityService;
 
+  // tagName = '';
   showDropdown = false;
+
+  classNameBindings = ['showDropdown:is-active']
 
   @alias('identity.name') name?: string;
 
