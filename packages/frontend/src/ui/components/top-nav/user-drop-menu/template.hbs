@@ -1,7 +1,5 @@
 <a class="navbar-link" {{action (mut showDropdown) (not showDropdown)}}>
-  <span class='icon'>
-    <i class='fas fa-user-circle'></i>
-  </span>
+  <span class='icon'>{{fa-icon 'user-circle' prefix='fas'}}</span>
   <span>{{name}}</span>
 </a>
 
@@ -11,7 +9,7 @@
       (action closeMenu)
       (transition-to 'contacts')
     )}}>
-    <span class='icon'><i class="fas fa-address-book"></i></span>
+    <span class='icon'>{{fa-icon 'address-book' prefix='fas'}}</span>
     <span>{{t 'routes.contacts'}}</span>
   </a>
 
@@ -20,7 +18,7 @@
     (action closeMenu)
     (transition-to 'settings')
   )}}>
-    <span class='icon'><i class="fas fa-sliders-h"></i></span>
+    <span class='icon'>{{fa-icon 'sliders-h' prefix='fas'}}</span>
     <span>{{t 'routes.settings'}}</span>
   </a>
 
@@ -39,7 +37,7 @@
       (action closeMenu)
       (transition-to 'logout')
     )}}>
-    <span class='icon'><i class="fas fa-sign-out-alt"></i></span>
+    <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
     <span>{{t 'routes.logout'}}</span>
   </a>
 </div>

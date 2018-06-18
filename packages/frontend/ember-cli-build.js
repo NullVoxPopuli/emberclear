@@ -17,7 +17,7 @@ module.exports = function(defaults) {
 
   console.log('\n---------------');
   console.log('environment: ', environment);
-  console.log('isProduction: ' isProduction);
+  console.log('isProduction: ', isProduction);
   console.log('ENABLE_SW: ', enableSW);
   console.log('Service Worker Will Be Disabled: ', disableServiceWorker);
   console.log('---------------\n');
@@ -41,25 +41,23 @@ module.exports = function(defaults) {
     addons: {
       blacklist: disabledAddons
     },
-    // always enable sourcemaps, even in production
-    // (cause debugging!)
-    // sourcemaps: {
-    //   enabled: true,
-    //   extensions: ['js', 'css'],
-    // },
     prember: {
       urls: [
         '/',
         '/faq',
         '/chat',
-      ]
+      ],
     },
-    'ember-font-awesome': {
-      removeUnusedIcons: isProduction
-    }
+    'fontawesome': {
+      icons: {
+        'free-solid-svg-icons': [
+          'qrcode', 'user-circle', 'address-book', 'sliders-h', 'sign-out-alt',
+        ],
+      },
+    },
     treeShaking: {
-      enabled: true
-    }
+      enabled: true,
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -81,9 +79,9 @@ module.exports = function(defaults) {
   });
 
   // font awesome
-  app.import('vendor/fontawesome/css/font-awesome-all.min.css');
-  var fontTree = new Funnel('vendor/fontawesome/webfonts', { destDir: '/assets/fontawesome/webfonts' });
-  var fontStyleTree = new Funnel('vendor/fontawesome/css', { destDir: '/assets/fontawesome/css' });
+  // app.import('vendor/fontawesome/css/font-awesome-all.min.css');
+  // var fontTree = new Funnel('vendor/fontawesome/webfonts', { destDir: '/assets/fontawesome/webfonts' });
+  // var fontStyleTree = new Funnel('vendor/fontawesome/css', { destDir: '/assets/fontawesome/css' });
 
   // libsodium
   app.import('node_modules/libsodium/dist/modules/libsodium.js');
@@ -113,7 +111,7 @@ module.exports = function(defaults) {
   app.import('node_modules/bulma-toast/dist/bulma-toast.min.css');
 
   return mergeTrees([
-    app.toTree(),
-    fontTree, fontStyleTree
+    app.toTree()
+    // fontTree, fontStyleTree
   ]);
 };
