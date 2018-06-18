@@ -11,11 +11,14 @@ const nodeBuiltins = require('rollup-plugin-node-builtins');
 module.exports = function(defaults) {
   let disabledAddons = [];
   let environment = EmberApp.env();
+  let isProduction = environment === 'production';
   let enableSW = process.env.ENABLE_SW;
-  let disableServiceWorker = environment !== 'production' && !enableSW;
+  let disableServiceWorker = !isProduction && !enableSW;
 
   console.log('\n---------------');
-  console.log('environment: ', environment, 'ENABLE_SW', enableSW);
+  console.log('environment: ', environment);
+  console.log('isProduction: ' isProduction);
+  console.log('ENABLE_SW: ', enableSW);
   console.log('Service Worker Will Be Disabled: ', disableServiceWorker);
   console.log('---------------\n');
 
@@ -51,6 +54,9 @@ module.exports = function(defaults) {
         '/chat',
       ]
     },
+    'ember-font-awesome': {
+      removeUnusedIcons: isProduction
+    }
     treeShaking: {
       enabled: true
     }
@@ -106,5 +112,8 @@ module.exports = function(defaults) {
   app.import('vendor/shims/bulma-toast.js');
   app.import('node_modules/bulma-toast/dist/bulma-toast.min.css');
 
-  return mergeTrees([app.toTree(), fontTree, fontStyleTree]);
+  return mergeTrees([
+    app.toTree(),
+    fontTree, fontStyleTree
+  ]);
 };
