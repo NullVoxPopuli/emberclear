@@ -3,13 +3,19 @@
   Send this to a friend so that they can communicate with you.
   <br  />
 
-  <div class='flex-row align-items-stretch'>
+  <div class='
+    flex-column-mobile flex-row-tablet
+    align-items-stretch'>
 
-    {{#if qrCode.isPending}}
-      <div style='width: 180px; height: 180px;' class='loader'></div>
-    {{else}}
-      <img src={{qrCode.content}} />
-    {{/if}}
+    <div class='flex justify-content-center' style='min-width: 180px; min-height: 180px;'>
+      {{#if qrCode.isPending}}
+        <div style='width: 180px; height: 180px;' class='loader'></div>
+      {{else}}
+        <img
+          style='width: 180px; height: 180px;'
+          src={{qrCode.content}} />
+      {{/if}}
+    </div>
 
     <div class='flex-column flex-grow mw-0'>
       <pre class='overflow contain'><code id='my-identity'>{{identityJson}}</code></pre>
