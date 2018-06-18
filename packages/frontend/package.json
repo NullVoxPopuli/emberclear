@@ -100,6 +100,7 @@
     "ember-cli-sass": "^6.1.3",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
+    "ember-cli-tree-shaker": "^0.2.0",
     "ember-cli-uglify": "^2.0.0",
     "ember-data": "github:emberjs/data#e3a24f6b74324688afc6ea530730ca30d7d69c1d",
     "ember-export-application-global": "^2.0.0",
