@@ -1,41 +1,44 @@
-<div class='container'>
-  <h1 class='title m-t-md'>Settings</h1>
-  <div class='content'>
+<div class='section'>
+  <div class='container'>
+    <h1 class='title'>Settings</h1>
+    <div class='content'>
 
-    <form
-      {{action 'save'}}>
+      <form
+        {{action 'save'}}>
 
-      <FieldWithLabel @label='Name'>
-        {{input
-          class='input'
-          value=(readonly name)
-          onChange=(action (mut name))
-        }}
-      </FieldWithLabel>
+        <FieldWithLabel @label='Name'>
+          {{input
+            class='input'
+            value=(readonly name)
+            onChange=(action (mut name))
+          }}
+        </FieldWithLabel>
 
-      <div class='flex justify-content-end'>
+        <div class='flex justify-content-end'>
 
-        <input class='button' type='submit' value='Save' />
-      </div>
-    </form>
+          <input class='button' type='submit' value='Save' />
+        </div>
+      </form>
 
-    <button
-      class='button'
-      {{action (mut showPrivateKey) (not showPrivateKey)}}>
-      {{if showPrivateKey 'Hide' 'Show'}} private key
-    </button>
+      <button
+        class='button'
+        {{action (mut showPrivateKey) (not showPrivateKey)}}>
+        {{if showPrivateKey 'Hide' 'Show'}} private key
+      </button>
 
-    {{#if showPrivateKey}}
-      <MnemonicDisplay @privateKey={{identity.privateKey}} />
-    {{/if}}
+      {{#if showPrivateKey}}
+        <MnemonicDisplay @privateKey={{identity.privateKey}} />
+      {{/if}}
 
-    <a
-      href={{downloadSettingsUrl}}
-      download='emberclear.settings'
-      target='_blank'
-      rel='noopener'
-      class='button'>
-      Download Settings
-    </a>
+      <a
+        href={{downloadSettingsUrl}}
+        download='emberclear.settings'
+        target='_blank'
+        rel='noopener'
+        class='button'>
+        Download Settings
+      </a>
+    </div>
   </div>
+
 </div>

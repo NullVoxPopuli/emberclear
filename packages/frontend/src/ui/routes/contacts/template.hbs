@@ -1,20 +1,21 @@
-<div class='container'>
-  <h1 class='title m-t-md'>
-    {{t 'ui.contacts.title' number=model.length}}
-  </h1>
-  <div class='content'>
+<section class='section'>
+  <div class='container'>
+    <h1 class='title'>
+      {{t 'ui.contacts.title' number=model.length}}
+    </h1>
+    <div class='content'>
 
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>{{t 'models.identity.name'}}</th>
-          <th>{{t 'models.identity.publicKey'}}</th>
-        </tr>
-      </thead>
-      <tbody>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>{{t 'models.identity.name'}}</th>
+            <th>{{t 'models.identity.publicKey'}}</th>
+          </tr>
+        </thead>
+        <tbody>
 
-        {{#each model as |identity|}}
+          {{#each model as |identity|}}
           <tr>
             <td>
               <a {{action 'remove' identity}}>
@@ -28,9 +29,10 @@
               {{identity.publicKeyAsHex}}
             </td>
           </tr>
-        {{/each}}
+          {{/each}}
 
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
+</section>
