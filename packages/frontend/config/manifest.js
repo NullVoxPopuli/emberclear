@@ -4,13 +4,13 @@
 module.exports = function(environment /*, appConfig */) {
   // See https://github.com/san650/ember-web-app#documentation for a list of
   // supported properties
-  const rootURL = environment.rootURL || process.env.ROOT_URL || '';
+  const rootURL = environment.rootURL || process.env.ROOT_URL;
 
   return {
     name: 'emberclear',
     short_name: 'emberclear',
     description: 'Encrypted Chat. No History. No Logs.',
-    start_url: `${rootURL}/`,
+    start_url: `${rootURL || '.'}`,
     display: 'standalone',
     background_color: '#fff',
     theme_color: '#fff',

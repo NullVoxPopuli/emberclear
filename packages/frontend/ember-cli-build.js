@@ -16,7 +16,7 @@ module.exports = function(defaults) {
 
   console.log('\n---------------');
   console.log('environment: ', environment, 'ENABLE_SW', enableSW);
-  console.log('Service Worker Will Be Enabled: ', disableServiceWorker);
+  console.log('Service Worker Will Be Disabled: ', disableServiceWorker);
   console.log('---------------\n');
 
   if (disableServiceWorker) {
@@ -52,14 +52,7 @@ module.exports = function(defaults) {
       ]
     },
     treeShaking: {
-      enabled: true,
-
-      include: [
-
-        // This is an example of a vendor shim reaching back into the addon tree. This needs a hint to prevent removal.
-        // https://github.com/simplabs/ember-test-selectors/blob/62070d20a2a50918f7cac373a3b23f8e9a94bf31/vendor/ember-test-selectors/patch-component.js#L10
-        'ember-test-selectors/utils/bind-data-test-attributes.js'
-      ]
+      enabled: true
     }
   });
 
