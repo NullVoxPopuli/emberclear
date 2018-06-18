@@ -9,6 +9,8 @@ import { Registry } from '@ember/service';
 import IdentityService from 'emberclear/services/identity/service';
 
 export default class UserDropMenu extends Component {
+  onClose!: () => void;
+
   @service identity!: IdentityService;
   @service store!: DS.Store;
   @service router!: Registry['router'];
@@ -23,5 +25,6 @@ export default class UserDropMenu extends Component {
   @action
   closeMenu(this: UserDropMenu) {
     this.set('showDropdown', false);
+    this.onClose();
   }
 }

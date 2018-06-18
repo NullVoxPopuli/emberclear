@@ -23,7 +23,10 @@
             {{t 'routes.chat'}}
           {{/link-to}}
 
-          <UserDropMenu class='navbar-item has-dropdown' />
+          <UserDropMenu
+            class='navbar-item has-dropdown'
+            @onClose={{action (mut isTouchMenuVisible) false}}
+            />
 
         {{else}}
           {{#link-to 'setup' class='navbar-item'}}
