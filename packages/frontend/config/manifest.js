@@ -4,7 +4,7 @@
 module.exports = function(environment /*, appConfig */) {
   // See https://github.com/san650/ember-web-app#documentation for a list of
   // supported properties
-  const rootURL = environment.rootURL || process.env.ROOT_URL;
+  const rootURL = environment.rootURL || process.env.ROOT_URL || '';
 
   return {
     name: 'emberclear',
