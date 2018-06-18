@@ -1,13 +1,15 @@
 <div class='container'>
-  <h1 class='title m-t-md'>Contacts ({{model.length}})</h1>
+  <h1 class='title m-t-md'>
+    {{t 'ui.contacts.title' number=model.length}}
+  </h1>
   <div class='content'>
 
     <table>
       <thead>
         <tr>
           <th></th>
-          <th>Name</th>
-          <th>Public Key</th>
+          <th>{{t 'models.identity.name'}}</th>
+          <th>{{t 'models.identity.publicKey'}}</th>
         </tr>
       </thead>
       <tbody>
@@ -15,7 +17,9 @@
         {{#each model as |identity|}}
           <tr>
             <td>
-              <a {{action 'remove' identity}}>Remove</a>
+              <a {{action 'remove' identity}}>
+                {{t 'buttons.remove'}}
+              </a>
             </td>
             <td>
               {{identity.name}}

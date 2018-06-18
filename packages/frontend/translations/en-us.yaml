@@ -27,6 +27,8 @@ buttons:
   next: Next
   back: Back
   begin: Begin
+  logout: Logout
+  remove: Remove
   donateEth: Donate Ethereum
 
 services:
@@ -36,9 +38,17 @@ services:
 routes:
   home: Home
   chat: Chat
+  logout: Logout
+  contacts: Contacts
+  settings: Settings
   profile: Profile
   faq: F.A.Q.
   createNewUser: Create New User
+
+models:
+  identity:
+    name: Name
+    publicKey: Public Key
 
 ui:
   faq:
@@ -95,7 +105,7 @@ ui:
     overwriteConfirm: Yes, I understand the risks
     introQuestion: What would you like to be called?
     almostReady: You are almost ready to begin chatting!
-    nameLabel: This is how others will identify you
+    nameLabel: Your desired alias
     mnemonicPrompt: >
       If you would like to use this account on other computers,
       please store this mnemonic in a secure place. It will be used
@@ -104,3 +114,17 @@ ui:
       You may download your settings at any time so that you can upload
       them to another computer. The settings will include more than just
       your identity.
+
+  contacts:
+    title: 'Contacts ({number})'
+
+  logout:
+    title: Logging out is destructive
+    warning: >
+      Logging out will delete all local data.
+      Please make sure you either have your
+      mnemonic written down or memorized.
+
+      Alternatively, you download your settings on
+    theSettingsPage: the Settings page.
+    confirm: Confirm Logout

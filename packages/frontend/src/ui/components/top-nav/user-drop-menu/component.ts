@@ -1,12 +1,16 @@
+import { DS } from 'ember-data';
 import Component from '@ember/component';
+
 import { service } from '@ember-decorators/service';
 import { alias } from '@ember-decorators/object/computed';
 import { action } from '@ember-decorators/object';
-import IdentityService from 'emberclear/services/identity/service';
+
 import { Registry } from '@ember/service';
+import IdentityService from 'emberclear/services/identity/service';
 
 export default class UserDropMenu extends Component {
   @service identity!: IdentityService;
+  @service store!: DS.Store;
   @service router!: Registry['router'];
 
   // tagName = '';

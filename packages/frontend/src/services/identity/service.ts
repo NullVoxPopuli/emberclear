@@ -37,13 +37,18 @@ export default class IdentityService extends Service {
     // remove existing record
     await this.store.unloadAll('identity');
 
+    await this.setIdentity(name, privateKey, publicKey);
+    this.set('allowOverride', false);
+
+    await this.load();
+  }
+
+  async setIdentity(this: IdentityService, name: string, privateKey: Uint8Array, publicKey: Uint8Array) {
     const record = this.store.createRecord('identity', {
       id: 'me', name, publicKey, privateKey
     });
 
     await record.save();
-    this.set('allowOverride', false);
-    await this.load();
   }
 
   async exists(): Promise<boolean> {
@@ -60,7 +65,7 @@ export default class IdentityService extends Service {
 
   async load(this: IdentityService): Promise<Identity | null> {
     try {
-      const existing = await this.store.findRecord('identity', 'me');
+      const existing = await this.store.findRecord('identity', 'me', { backgroundReload: true });
 
       Ember.run(() => this.set('record', existing));
 

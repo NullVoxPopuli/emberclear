@@ -17,6 +17,7 @@ Router.map(function() {
 
   this.route('contacts');
   this.route('login');
+  this.route('logout');
   this.route('settings');
   this.route('faq');
 });

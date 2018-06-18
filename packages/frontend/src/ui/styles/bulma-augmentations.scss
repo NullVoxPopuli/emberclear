@@ -8,6 +8,12 @@
     transition-property: all;
     transition-duration: 0.2s;
   }
+
+  &.is-primary {
+   a.navbar-burger {
+     color: white;
+   }
+ }
 }
 
 .modal {
