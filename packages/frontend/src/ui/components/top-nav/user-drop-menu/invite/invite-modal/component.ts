@@ -40,7 +40,8 @@ export default class InviteModal extends Component {
   }
 
   @action
-  copySuccess(this: InviteModal) {
+  copySuccess(this: InviteModal, e: any) {
+    e.clearSelection();
     this.set('copied', true);
 
     setTimeout(() => this.set('copied', false), 2000);

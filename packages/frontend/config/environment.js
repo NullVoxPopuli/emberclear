@@ -35,11 +35,11 @@ module.exports = function(environment) {
       defaultLocale: 'en-us',
     },
 
-    routerScroll: {
-      scrollElement: 'body',
-      // targetElement: '#emberclear-topnav',
-      delayScrollTop: true,
-    },
+    // routerScroll: {
+    //   scrollElement: 'body',
+    //   // targetElement: '#emberclear-topnav',
+    //   delayScrollTop: true,
+    // },
 
     APP: {
       // Here you can pass flags/options to your application instance
