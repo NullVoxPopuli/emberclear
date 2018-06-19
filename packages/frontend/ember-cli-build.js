@@ -3,6 +3,7 @@
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const { BroccoliCSSBlocks } = require('@css-blocks/broccoli');
 
 // instascan requires 'fs'...
 const nodeBuiltins = require('rollup-plugin-node-builtins');
@@ -112,6 +113,11 @@ module.exports = function(defaults) {
 
   return mergeTrees([
     app.toTree()
+    // new BroccoliCSSBlocks(app.path, {
+    //   entry: ['app'],
+    //   output: "src/ui/styles/css-blocks.css"
+    // })
+    // app.toTree()
     // fontTree, fontStyleTree
   ]);
 };
