@@ -11,6 +11,7 @@ export default class InviteModal extends Component {
   @service identity!: Identity;
 
   copied = false;
+  showQrCodeMobile = true;
 
   @computed('identity.publicKey', 'identity.name')
   get publicIdentity() {
@@ -31,6 +32,11 @@ export default class InviteModal extends Component {
     const qrCodePromise = convertObjectToQRCodeDataURL(publicIdentity);
 
     return PromiseProxy.create({ promise: qrCodePromise });
+  }
+
+  @action
+  toggleShowQrCode(this: InviteModal) {
+    this.set('showQrCodeMobile', !this.showQrCodeMobile);
   }
 
   @action

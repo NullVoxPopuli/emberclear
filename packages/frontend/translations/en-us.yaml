@@ -51,6 +51,13 @@ models:
     publicKey: Public Key
 
 ui:
+  invite:
+    showProfile: Show Profile
+    showQRCode: Show QR Code
+    copyProfile: Copy
+    copied: Copied!
+
+
   faq:
     title: F.A.Q
     whatIsQ: What is emberclear

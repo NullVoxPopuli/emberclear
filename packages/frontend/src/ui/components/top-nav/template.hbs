@@ -19,20 +19,27 @@
       <div class="navbar-end">
 
         {{#if hasName}}
-          {{#link-to 'chat' class='navbar-item'}}
+          <a class='navbar-item'
+            {{action (queue
+              (action toggleTouchMenu)
+              (transition-to 'chat')
+            )}}>
             {{t 'routes.chat'}}
-          {{/link-to}}
+          </a>
 
           <UserDropMenu
             class='navbar-item has-dropdown'
-            @onClose={{action (mut isTouchMenuVisible) false}}
+            @onClose={{action toggleTouchMenu}}
             />
 
         {{else}}
-          {{#link-to 'setup' class='navbar-item'}}
+          <a class='navbar-item'
+            {{action (queue
+              (action toggleTouchMenu)
+              (transition-to 'setup')
+            )}}>
             {{t 'routes.createNewUser'}}
-          {{/link-to}}
-
+          </a>
         {{/if}}
 
       </div>

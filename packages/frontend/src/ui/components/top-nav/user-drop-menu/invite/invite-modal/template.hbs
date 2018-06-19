@@ -7,7 +7,10 @@
     flex-column-mobile flex-row-tablet
     align-items-stretch'>
 
-    <div class='flex justify-content-center' style='min-width: 180px; min-height: 180px;'>
+    <div class='
+      flex justify-content-center
+      {{if (not showQrCodeMobile) "is-hidden-mobile"}}
+      ' style='min-width: 180px; min-height: 180px;'>
       {{#if qrCode.isPending}}
         <div style='width: 180px; height: 180px;' class='loader'></div>
       {{else}}
@@ -18,16 +21,33 @@
     </div>
 
     <div class='flex-column flex-grow mw-0'>
-      <pre class='overflow contain'><code id='my-identity'>{{identityJson}}</code></pre>
+      <pre
+        class='
+          overflow contain
+          {{if showQrCodeMobile "is-hidden-mobile" }}
+        '><code id='my-identity'>{{identityJson}}</code></pre>
 
-      <div class='flex-row justify-content-end m-t-md'>
+      <div class='
+        flex-row
+        justify-content-space-between-mobile justify-content-end-tablet
+        m-t-md'>
+
+        <button class='button is-hidden-tablet' {{action toggleShowQrCode}}>
+          {{#if showQrCodeMobile}}
+            {{t 'ui.invite.showProfile'}}
+          {{else}}
+            {{t 'ui.invite.showQRCode'}}
+          {{/if}}
+        </button>
+
         <CopyButton
           class='button has-status-tip {{if copied "is-active"}}'
           @success={{action 'copySuccess'}}
           @clipboardTarget='#my-identity'>
-          Copy
 
-          <HoverTip @animationClasses='floats-up'>Copied!</HoverTip>
+          {{t 'ui.invite.copyProfile'}}
+
+          <HoverTip @animationClasses='floats-up'>{{t 'ui.invite.copied'}}</HoverTip>
         </CopyButton>
       </div>
     </div>
