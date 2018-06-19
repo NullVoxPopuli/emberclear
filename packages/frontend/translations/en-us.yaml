@@ -5,6 +5,7 @@ authoredBy: by Preston Sego
 
 connection:
   connecting: Connecting...
+  connected: Connected!
   log:
     push:
       ok: 'push: created. {msg}'

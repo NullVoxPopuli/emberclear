@@ -155,6 +155,7 @@ export default class RelayConnection extends Service {
   }
 
   handleConnected = () => {
+    this.toast.success(this.intl.t('connection.connected'));
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelConnected, ''))
   }
 
