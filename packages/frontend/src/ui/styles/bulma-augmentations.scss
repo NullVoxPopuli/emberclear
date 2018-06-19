@@ -20,7 +20,15 @@
   .navbar-brand a:hover {
     color: $navbar-item-color;
   }
+
+  .navbar-dropdown {
+    min-width: 150px;
+
+    &.dropdown-right { left: -41px; }
+  }
 }
+
+
 
 .modal {
   transition-property: all;
