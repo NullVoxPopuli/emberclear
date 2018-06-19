@@ -5,7 +5,7 @@ import { computed, action } from '@ember-decorators/object';
 
 import Identity from 'emberclear/services/identity/service';
 import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string-encoding';
-import { PromiseProxy } from 'emberclear/src/utils/promise';
+import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
 
 export default class InviteModal extends Component {
   @service identity!: Identity;
@@ -31,7 +31,8 @@ export default class InviteModal extends Component {
     const publicIdentity = this.publicIdentity;
     const qrCodePromise = convertObjectToQRCodeDataURL(publicIdentity);
 
-    return PromiseProxy.create({ promise: qrCodePromise });
+    // return PromiseProxy.create({ promise: qrCodePromise });
+    return new PromiseMonitor<string>(qrCodePromise);
   }
 
   @action

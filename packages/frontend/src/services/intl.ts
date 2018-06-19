@@ -2,8 +2,6 @@ import IntlService from 'ember-intl/services/intl';
 import fetch from 'fetch';
 import { service } from '@ember-decorators/service';
 
-import config from 'emberclear/config/environment';
-
 export default class EmberclearIntl extends IntlService {
   @service fastboot!: FastBoot;
 

@@ -18,6 +18,7 @@ export default class AddModal extends Component {
   identityToImport = '';
   scanning = false;
   placeholder = fakeIdentity;
+  close!: () => void;
 
   @action
   toggleScanning(this: AddModal) {

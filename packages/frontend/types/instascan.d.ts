@@ -1,5 +1,5 @@
 interface IOptions {
-  video?: HTMLElement;
+  video?: Element | null;
   mirror?: boolean;
   continuous?: boolean;
   captureImage?: boolean;
@@ -9,6 +9,7 @@ interface IOptions {
 }
 
 declare class Scanner {
+  new(options: IOptions): Scanner;
   // static new(options: IOptions): Scanner;
   constructor(options: IOptions);
   captureImage: boolean;
@@ -31,8 +32,13 @@ declare class Camera {
 }
 
 declare module 'instascan' {
+  // https://stackoverflow.com/questions/39019502/seeking-typescript-type-definition-new-callable-clarification
+  interface IScanner {
+    new (options: IOptions): Scanner;
+  }
+
   const defaultExport: {
-    Scanner: Scanner,
+    Scanner: IScanner,
     Camera: Camera
   };
 
