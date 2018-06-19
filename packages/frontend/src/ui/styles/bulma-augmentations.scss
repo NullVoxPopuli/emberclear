@@ -10,10 +10,16 @@
   }
 
   &.is-primary {
-   a.navbar-burger {
-     color: white;
-   }
- }
+    a.navbar-burger {
+      color: white;
+    }
+  }
+
+  .navbar-brand a:active,
+  .navbar-brand a:focus,
+  .navbar-brand a:hover {
+    color: $navbar-item-color;
+  }
 }
 
 .modal {
