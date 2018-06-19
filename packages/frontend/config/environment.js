@@ -11,7 +11,11 @@ module.exports = function(environment) {
     modulePrefix: 'emberclear',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    // locationType: 'auto', // default
+    // https://github.com/dollarshaveclub/ember-router-scroll#installation--usage
+    locationType: 'router-scroll',
+    historySupportMiddleware: true,
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -29,6 +33,12 @@ module.exports = function(environment) {
 
     i18n: {
       defaultLocale: 'en-us',
+    },
+
+    routerScroll: {
+      scrollElement: 'body',
+      // targetElement: '#emberclear-topnav',
+      delayScrollTop: true,
     },
 
     APP: {
