@@ -1,12 +1,19 @@
 import libsodiumWrapper, { ISodium } from 'libsodium-wrappers';
 
 import { concat } from 'emberclear/src/utils/arrays/utils';
+import { toHex } from 'emberclear/src/utils/string-encoding';
 
 export async function libsodium(): Promise<ISodium> {
   const sodium = libsodiumWrapper.sodium;
   await sodium.ready;
 
   return sodium;
+}
+
+export async function derivePublicKey(privateKey: Uint8Array): Promise<Uint8Array> {
+  const sodium = await libsodium();
+
+  return sodium.crypto_scalarmult_base(privateKey);
 }
 
 export async function randomBytes(length: number): Promise<Uint8Array> {

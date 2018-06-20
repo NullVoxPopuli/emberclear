@@ -36,6 +36,14 @@
           <a class='navbar-item'
             {{action (queue
               (action toggleTouchMenu)
+              (transition-to 'login')
+            )}}>
+            {{t 'routes.login'}}
+          </a>
+
+          <a class='navbar-item'
+            {{action (queue
+              (action toggleTouchMenu)
               (transition-to 'setup')
             )}}>
             {{t 'routes.createNewUser'}}

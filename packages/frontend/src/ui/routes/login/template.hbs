@@ -1,7 +1,22 @@
-{{t 'ui.login.title'}}
+<section class="hero">
+  <div class="hero-body">
+    <div class='container'>
+      <FocusCard @title={{t 'ui.login.title'}}>
 
-{{t 'ui.login.instructions'}}
+        <Field>
+          {{input class='input' value=name placeholder='Name'}}
+        </Field>
 
+        <Field>
+          {{input class='input' value=mnemonic placeholder='Enter your mnemonic'}}
+        </Field>
 
-<button class='button'>Login</button>
-<button class='button'>Upload Settings</button>
+        <div class='flex justify-content-end'>
+          {{!-- <button class='button'>Upload Settings</button> --}}
+          <button class='button' {{action login}}>Login</button>
+        </div>
+
+      </FocusCard>
+    </div>
+  </div>
+</section>
