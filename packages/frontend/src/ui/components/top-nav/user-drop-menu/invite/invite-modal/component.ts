@@ -2,10 +2,12 @@ import Component from '@ember/component';
 
 import { service } from '@ember-decorators/service';
 import { computed, action } from '@ember-decorators/object';
+import { alias } from '@ember-decorators/object/computed';
 
 import Identity from 'emberclear/services/identity/service';
-import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string-encoding';
 import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
+
+import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string-encoding';
 
 export default class InviteModal extends Component {
   @service identity!: Identity;
@@ -13,8 +15,12 @@ export default class InviteModal extends Component {
   copied = false;
   showQrCodeMobile = true;
 
-  @computed('identity.publicKey', 'identity.name')
+  @alias('identity.isLoggedIn') isLoggedIn!: boolean;
+
+  @computed('identity.publicKey', 'identity.name', 'isLoggedIn')
   get publicIdentity() {
+    if (!this.isLoggedIn) return {};
+
     return {
       name: this.identity.name,
       publicKey: toHex(this.identity.publicKey as Uint8Array)
@@ -31,7 +37,6 @@ export default class InviteModal extends Component {
     const publicIdentity = this.publicIdentity;
     const qrCodePromise = convertObjectToQRCodeDataURL(publicIdentity);
 
-    // return PromiseProxy.create({ promise: qrCodePromise });
     return new PromiseMonitor<string>(qrCodePromise);
   }
 

@@ -12,8 +12,6 @@ export default class LogoutController extends Controller {
   logout(this: LogoutController) {
     this.identity.set('record', undefined);
     this.store.unloadAll('identity');
-    const status = this.identity.isLoggedIn;
-    console.log(status);
 
     localforage.clear();
 
