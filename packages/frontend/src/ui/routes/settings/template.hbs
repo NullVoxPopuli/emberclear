@@ -3,8 +3,7 @@
     <h1 class='title'>Settings</h1>
     <div class='content'>
 
-      <form
-        {{action 'save'}}>
+      <form {{action 'save' on='submit'}}>
 
         <Field @label='Name'>
           {{input
@@ -14,7 +13,6 @@
         </Field>
 
         <div class='flex justify-content-end'>
-
           <input class='button' type='submit' value='Save' />
         </div>
       </form>
@@ -22,7 +20,9 @@
       <button
         class='button'
         {{action (mut showPrivateKey) (not showPrivateKey)}}>
+
         {{if showPrivateKey 'Hide' 'Show'}} private key
+
       </button>
 
       {{#if showPrivateKey}}
