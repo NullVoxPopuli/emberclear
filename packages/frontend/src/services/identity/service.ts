@@ -33,8 +33,8 @@ export default class IdentityService extends Service {
   @alias('record.privateKey') privateKey?: Uint8Array;
 
   @computed('name', 'privateKey', 'publicKey')
-  get isLoggedIn() {
-    return (this.name && this.privateKey && this.publicKey);
+  get isLoggedIn(): boolean {
+    return !!(this.name && this.privateKey && this.publicKey);
   }
 
   async create(this: IdentityService, name: string): Promise<void> {

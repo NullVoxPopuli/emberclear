@@ -2,11 +2,13 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 
+import IdentityService from 'emberclear/services/identity/service';
+
 import {
   objectToDataURL, toHex, fromHex
 } from 'emberclear/src/utils/string-encoding';
 
-import IdentityService from 'emberclear/services/identity/service';
+import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
 
 export default class Settings extends Service {
   @service identity!: IdentityService;
@@ -19,21 +21,25 @@ export default class Settings extends Service {
     if (!publicKey) return;
 
     const toDownload = {
+      version: 1,
       name,
       privateKey:  toHex(privateKey),
-      publicKey: toHex(publicKey)
     }
 
     return objectToDataURL(toDownload);
   }
 
-  import(settings: string) {
+  async import(settings: string) {
     const json = JSON.parse(settings);
+    const { name, privateKey: privateKeyHex } = json;
+
+    const privateKey = fromHex(privateKeyHex);
+    const publicKey = await derivePublicKey(privateKey);
 
     this.identity.setIdentity(
-      json.name,
-      fromHex(json.privateKey),
-      fromHex(json.publicKey)
+      name,
+      privateKey,
+      publicKey
     );
 
     // TODO: the actual settings

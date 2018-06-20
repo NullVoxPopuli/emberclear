@@ -10,8 +10,10 @@ export default class LogoutController extends Controller {
 
   @action
   logout(this: LogoutController) {
-    this.store.unloadAll('identity');
     this.identity.set('record', undefined);
+    this.store.unloadAll('identity');
+    const status = this.identity.isLoggedIn;
+    console.log(status);
 
     localforage.clear();
 

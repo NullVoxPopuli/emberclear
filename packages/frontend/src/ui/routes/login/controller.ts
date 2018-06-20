@@ -5,12 +5,14 @@ import { action } from '@ember-decorators/object';
 
 import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';
+import Settings from 'emberclear/services/settings';
 
 import { naclBoxPrivateKeyFromMnemonic } from 'emberclear/src/utils/mnemonic/utils';
 import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
 
 export default class extends Controller {
   @service identity!: IdentityService;
+  @service settings!: Settings;
   @service('notifications') flash!: Notifications;
 
   mnemonic = '';
@@ -26,6 +28,18 @@ export default class extends Controller {
       const publicKey = await derivePublicKey(privateKey);
 
       await this.identity.setIdentity(name, privateKey, publicKey);
+
+      this.transitionToRoute('chat');
+    } catch (e) {
+      console.error(e);
+      this.flash.error('There was a problem logging in...');
+    }
+  }
+
+  @action
+  async uploadSettings(data: string) {
+    try {
+      await this.settings.import(data);
 
       this.transitionToRoute('chat');
     } catch (e) {

@@ -12,8 +12,13 @@
         </Field>
 
         <div class='flex justify-content-end'>
-          {{!-- <button class='button'>Upload Settings</button> --}}
-          <button class='button' {{action login}}>Login</button>
+          <FileChooser @onChoose={{action uploadSettings}} as |chooser|>
+            <button class='button' {{action chooser.openFileChooser}}>
+              Upload Settings
+            </button>
+          </FileChooser>
+
+          <button class='m-l-md button' {{action login}}>Login</button>
         </div>
 
       </FocusCard>

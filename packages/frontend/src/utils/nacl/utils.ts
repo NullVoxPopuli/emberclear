@@ -1,7 +1,6 @@
 import libsodiumWrapper, { ISodium } from 'libsodium-wrappers';
 
 import { concat } from 'emberclear/src/utils/arrays/utils';
-import { toHex } from 'emberclear/src/utils/string-encoding';
 
 export async function libsodium(): Promise<ISodium> {
   const sodium = libsodiumWrapper.sodium;
