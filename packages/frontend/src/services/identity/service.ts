@@ -3,6 +3,7 @@ import DS from 'ember-data';
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
 
+import { computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 import { alias, reads } from '@ember-decorators/object/computed';
 
@@ -30,6 +31,11 @@ export default class IdentityService extends Service {
   @alias('record.name') name?: string;
   @alias('record.publicKey') publicKey?: Uint8Array;
   @alias('record.privateKey') privateKey?: Uint8Array;
+
+  @computed('name', 'privateKey', 'publicKey')
+  get isLoggedIn() {
+    return (this.name && this.privateKey && this.publicKey);
+  }
 
   async create(this: IdentityService, name: string): Promise<void> {
     const { publicKey, privateKey } = await generateAsymmetricKeys();

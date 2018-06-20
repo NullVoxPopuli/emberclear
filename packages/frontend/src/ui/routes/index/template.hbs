@@ -9,10 +9,13 @@
         <h2>{{t 'subheader'}}</h2>
         <br />
 
-        {{#link-to 'chat'
-          class='button is-dark'
-          style='padding-left: 2rem; padding-right: 2rem'}}
-          {{t 'buttons.begin'}}
+        {{#link-to 'chat' class='button is-dark p-l-md p-r-md'}}
+
+          {{#if isLoggedIn}}
+            {{t 'routes.chat'}}
+          {{else}}
+            {{t 'buttons.begin'}}
+          {{/if}}
         {{/link-to}}
       </div>
     </div>
