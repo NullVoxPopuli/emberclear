@@ -30,6 +30,8 @@ export default class MessageDispatcher extends Service {
       receivedAt: new Date()
     });
 
+    msg.save();
+
     this.messagePersistence.append(msg);
     this.sendToAll(msg)
   }

@@ -14,6 +14,10 @@ interface MessageCache {
 //       the pains of the immutability pattern also grow.
 //       This uses mutable objects to reduce memory
 //       footprint
+//
+// TODO: do I still need this?
+//       I think ember-data handles everything I would have
+//       implemented in here
 export default class MessagePersistence extends Service {
   @service store!: DS.Store;
 
@@ -25,7 +29,7 @@ export default class MessagePersistence extends Service {
   append(this: MessagePersistence, msg: Message) {
     // const channel = msg.channel;
 
-    this.messages.all.pushObject(msg);
+    // this.messages.all.pushObject(msg);
 
     // this.get(`messages.${channel}`).pushObject(msg);
   }

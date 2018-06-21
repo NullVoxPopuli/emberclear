@@ -1,3 +1,4 @@
+import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
@@ -22,5 +23,12 @@ export default class ChatRoute extends Route {
     }
 
     this.relayConnection.connect();
+  }
+
+  // TODO: filter to the room
+  async model() {
+    const records = this.store.findAll('message', { backgroundReload: true });
+
+    return RSVP.hash({ messages: records });
   }
 }
