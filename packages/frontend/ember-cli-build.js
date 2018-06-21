@@ -9,6 +9,12 @@ const { BroccoliCSSBlocks } = require('@css-blocks/broccoli');
 const nodeBuiltins = require('rollup-plugin-node-builtins');
 
 
+// note that by default, the enabled flags on some things
+// like minifying, and prember, by default, already check
+// if environment === 'production'
+//
+// the explicitness is for sanity checking during the
+// exploration of bundle / dependency sizes...
 module.exports = function(defaults) {
   let disabledAddons = [];
   let environment = EmberApp.env();
@@ -33,6 +39,8 @@ module.exports = function(defaults) {
     // eslint slows down the dev-build-debug cycle significantly
     // hinting: false disables linting at build time.
     hinting: false,
+    minifyJS: { enabled: isProduction },
+    minifyCSS: { enabled: isProduction },
     eslint: {
       testGenerator: 'qunit',
       group: true,
@@ -43,6 +51,7 @@ module.exports = function(defaults) {
       blacklist: disabledAddons
     },
     prember: {
+      enabled: isProduction,
       urls: [
         '/',
         '/faq',
@@ -102,6 +111,7 @@ module.exports = function(defaults) {
   app.import('vendor/shims/localforage.js');
 
   // uuid
+  // app.import('node_modules/uuid/index.js');
   app.import('node_modules/uuid/index.js', {
     using: [{ transformation: 'cjs', as: 'uuid' }]
   });

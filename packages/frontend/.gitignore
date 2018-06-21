@@ -3,6 +3,9 @@
 # legacy (may accidentally be created via generator)
 /app
 
+# bundle analysis
+/concat-stats-for
+
 # compiled output
 /dist
 /tmp

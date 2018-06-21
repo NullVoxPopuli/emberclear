@@ -1716,6 +1716,16 @@ broccoli-clean-css@^1.1.0:
     inline-source-map-comment "^1.0.5"
     json-stable-stringify "^1.0.0"
 
+broccoli-concat-analyser@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/broccoli-concat-analyser/-/broccoli-concat-analyser-3.0.0.tgz#f5ec20b21c41ee1eceed8d10dba1fb75bedddbe2"
+  dependencies:
+    cpr "^2.0.0"
+    filesize "^3.3.0"
+    ora "^0.3.0"
+    uglify-es "^3.0.23"
+    walk-sync "^0.3.1"
+
 broccoli-concat@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.2.2.tgz#86ffdc52606eb590ba9f6b894c5ec7a016f5b7b9"
@@ -2455,7 +2465,7 @@ clean-up-path@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/clean-up-path/-/clean-up-path-1.0.0.tgz#de9e8196519912e749c9eaf67c13d64fac72a3e5"
 
-cli-cursor@^1.0.1:
+cli-cursor@^1.0.1, cli-cursor@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/cli-cursor/-/cli-cursor-1.0.2.tgz#64da3f7d56a54412e59794bd62dc35295e8f2987"
   dependencies:
@@ -2466,6 +2476,10 @@ cli-cursor@^2.1.0:
   resolved "https://registry.yarnpkg.com/cli-cursor/-/cli-cursor-2.1.0.tgz#b35dac376479facc3e94747d41d0d0f5238ffcb5"
   dependencies:
     restore-cursor "^2.0.0"
+
+cli-spinners@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-0.2.0.tgz#85078737913b880f6ec9ffe7b65e83ec7776284f"
 
 cli-spinners@^1.1.0:
   version "1.3.1"
@@ -2581,6 +2595,10 @@ commander@2.8.x:
 commander@^2.5.0, commander@^2.6.0, commander@^2.9.0:
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
+
+commander@~2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
 
 commander@~2.14.1:
   version "2.14.1"
@@ -2747,6 +2765,15 @@ core-object@^3.1.3:
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
+
+cpr@^2.0.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/cpr/-/cpr-2.2.0.tgz#2dc6c87dfb78012489cdd994227628c320e9a17b"
+  dependencies:
+    graceful-fs "^4.1.5"
+    minimist "^1.2.0"
+    mkdirp "~0.5.1"
+    rimraf "^2.5.4"
 
 create-ecdh@^4.0.0:
   version "4.0.3"
@@ -3203,7 +3230,7 @@ ember-cli-broccoli-sane-watcher@^2.0.4:
     hash-for-dep "^1.2.3"
     pkg-dir "^2.0.0"
     resolve "^1.7.1"
-    rollup "^0.60.1"
+    rollup "^0.59.0"
     rollup-plugin-commonjs "^9.1.0"
     rollup-plugin-node-resolve "^3.3.0"
     username "^3.0.0"
@@ -4584,7 +4611,7 @@ filename-regex@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/filename-regex/-/filename-regex-2.0.1.tgz#c1c4b9bee3e09725ddb106b75c1e301fe2f18b26"
 
-filesize@^3.1.3:
+filesize@^3.1.3, filesize@^3.3.0:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/filesize/-/filesize-3.6.1.tgz#090bb3ee01b6f801a8a8be99d31710b3422bb317"
 
@@ -5092,7 +5119,7 @@ good-listener@^1.2.2:
   dependencies:
     delegate "^3.1.2"
 
-graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.4, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
+graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.4, graceful-fs@^4.1.5, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
@@ -6512,6 +6539,12 @@ lodash@^4.0.0, lodash@^4.16.2, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.2.1, l
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
+log-symbols@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
+  dependencies:
+    chalk "^1.0.0"
+
 log-symbols@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-2.2.0.tgz#5740e1c5d6f0dfda4ad9323b5332107ef6b4c40a"
@@ -6825,7 +6858,7 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1:
+mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
@@ -7241,6 +7274,15 @@ optionator@^0.8.2:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
     wordwrap "~1.0.0"
+
+ora@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ora/-/ora-0.3.0.tgz#367a078ad25cfb096da501115eb5b401e07d7495"
+  dependencies:
+    chalk "^1.1.1"
+    cli-cursor "^1.0.2"
+    cli-spinners "^0.2.0"
+    log-symbols "^1.0.2"
 
 ora@^2.0.0:
   version "2.1.0"
@@ -8225,9 +8267,9 @@ rollup@^0.57.1:
     signal-exit "^3.0.2"
     sourcemap-codec "^1.4.1"
 
-rollup@^0.59.0:
-  version "0.59.4"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.59.4.tgz#6f80f7017c22667ff1bf3e62adf8624a44cc44aa"
+rollup@^0.60.1:
+  version "0.60.7"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.60.7.tgz#2b62ef9306f719b1ab85a7814b3e6596ac51fae8"
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "*"
@@ -9123,6 +9165,13 @@ typescript@~2.9.0:
 uc.micro@^1.0.1, uc.micro@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.5.tgz#0c65f15f815aa08b560a61ce8b4db7ffc3f45376"
+
+uglify-es@^3.0.23:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/uglify-es/-/uglify-es-3.3.9.tgz#0c1c4f0700bed8dbc124cdb304d2592ca203e677"
+  dependencies:
+    commander "~2.13.0"
+    source-map "~0.6.1"
 
 uglify-js@^2.6, uglify-js@^2.6.2, uglify-js@^2.7.0:
   version "2.8.29"
