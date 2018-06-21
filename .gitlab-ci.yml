@@ -52,17 +52,17 @@ test:
   dependencies:
     - setup
 
-build-pages:
-  stage: build
-  tags:
-    - docker
-  script:
-    - ./run yarn build:production
-  artifacts:
-    paths:
-      - packages/frontend/dist
-  dependencies:
-    - setup
+# build-pages:
+#   stage: build
+#   tags:
+#     - docker
+#   script:
+#     - ./run yarn build:production
+#   artifacts:
+#     paths:
+#       - packages/frontend/dist
+#   dependencies:
+#     - setup
 
 # deploy-github-pages:
 #   stage: deploy
@@ -106,21 +106,21 @@ build-pages:
 #   dependencies:
 #     - build-pages
 
-deploy-gitlab-pages:
-  stage: deploy
-  environment:
-    name: github
-    url: https://nullvoxpopuli.gitlab.com/emberclear
-  script:
-    - mkdir -p public
-    - cp -r ${CI_PROJECT_DIR}/packages/frontend/dist/* public/
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
-  dependencies:
-    - build-pages
+# deploy-gitlab-pages:
+#   stage: deploy
+#   environment:
+#     name: github
+#     url: https://nullvoxpopuli.gitlab.com/emberclear
+#   script:
+#     - mkdir -p public
+#     - cp -r ${CI_PROJECT_DIR}/packages/frontend/dist/* public/
+#   artifacts:
+#     paths:
+#       - public
+#   only:
+#     - master
+#   dependencies:
+#     - build-pages
 
 
 setup:
