@@ -27,6 +27,8 @@ export default class ChatRoute extends Route {
 
   // TODO: filter to the room
   async model() {
+    if (this.fastboot.isFastBoot) return;
+
     const records = this.store.findAll('message', { backgroundReload: true });
 
     return RSVP.hash({ messages: records });
