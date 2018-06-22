@@ -6,10 +6,11 @@ stages:
   - deploy
 
 cache:
+  untracked: true
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - .cache_yarn
-    # - ${CI_PROJECT_DIR}/packages/frontend/node_modules
+    - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
 before_script:
   - time ./run yarn install
@@ -23,22 +24,21 @@ variables:
 lint:
   stage: test
   tags: [ docker ]
-  allow_failure: true
-  # dependencies: [ setup ]
+  dependencies: [ setup ]
   script: [ time ./run yarn lint ]
 
 # TODO: coverage?
 test:
   stage: test
   tags: [ docker ]
-  # dependencies: [ setup ]
+  dependencies: [ setup ]
   script: [ time ./run yarn test ]
 
 
 build-production:
   stage: build
   tags: [ docker ]
-  # dependencies: [ setup ]
+  dependencies: [ setup ]
   script:
     - time ./run yarn build:production
   artifacts:
@@ -53,11 +53,11 @@ deploy-production:
     - time npm i -g netlify-cli
     - time netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
 
-# setup:
-#   stage: setup
-#   tags: [ docker ]
-#   script: [ time ./run yarn install ]
-#   artifacts:
-#     paths:
-#       - /usr/local/bin
-#       # - ${CI_PROJECT_DIR}/packages/frontend/node_modules/
+setup:
+  stage: setup
+  tags: [ docker ]
+  script: [ time ./run yarn install ]
+  # artifacts:
+  #   paths:
+  #     - /usr/local/bin
+  #     - ${CI_PROJECT_DIR}/packages/frontend/node_modules/
