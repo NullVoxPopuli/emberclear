@@ -54,7 +54,7 @@ models:
 
 ui:
   invite:
-    showProfile: Show Profile
+    showProfile: Show QR Data
     showQRCode: Show QR Code
     copyProfile: Copy
     copied: Copied!
