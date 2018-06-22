@@ -69,6 +69,7 @@ module.exports = function(defaults) {
       enabled: true,
     },
     'esw-index': {},
+    'esw-cache-fallback': { patterns: ['/'], version: '1' },
     'ember-app-shell': {}
   });
 

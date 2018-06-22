@@ -40,6 +40,7 @@ the-everything-stage-for-speed:
     - time ./run yarn install
     - time ./run yarn lint
     - time ./run yarn test
+
     # TODO: do branch check here in bash
     - time ./run yarn build:production
     - time npm i -g netlify-cli
