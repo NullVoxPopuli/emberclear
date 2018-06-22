@@ -46,6 +46,13 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    fastboot: {
+      hostWhitelist: [
+        'emberclear.io',
+        /^localhost:\d+$/,
+      ],
+    },
+
     'ember-bulma': {
       // exclude everything by default
       except: [

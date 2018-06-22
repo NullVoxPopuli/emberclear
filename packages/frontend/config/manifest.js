@@ -8,6 +8,8 @@ module.exports = function(environment /*, appConfig */) {
   // rootURL should end in a slash
   const rootURL = environment.rootURL || process.env.ROOT_URL || '/';
 
+  console.log(`manifest.json is using rootURL as ${rootURL}`);
+
   return {
     name: 'emberclear',
     short_name: 'emberclear',
