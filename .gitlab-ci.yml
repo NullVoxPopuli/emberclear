@@ -12,11 +12,8 @@ cache:
     - .cache_yarn
     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
-before_script:
-  - time ./run yarn install
-
-
 image: danlynn/ember-cli:3.1.4
+
 variables:
   YARN_CACHE_FOLDER: .cache_yarn
   DOCKER_DRIVER: overlay2
