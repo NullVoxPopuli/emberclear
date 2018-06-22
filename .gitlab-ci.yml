@@ -6,11 +6,11 @@ stages:
   - deploy
 
 cache:
-  untracked: true
+  # untracked: true
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - ${CI_PROJECT_DIR}/.cache_yarn
-    - ${CI_PROJECT_DIR}/packages/frontend/node_modules
+    # - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
 image: danlynn/ember-cli:3.1.4
 
@@ -21,6 +21,17 @@ variables:
 # Gitlab's pipelines have about 3.5 minutes of overhead per stage
 # see previous run: https://gitlab.com/NullVoxPopuli/emberclear/pipelines/24394951/builds
 # where all the pipeline steps are split out
+#
+# This one stage takes on average: 6-8 minutes
+# All the stages take on average: 20-25 minutes
+#
+# This likely due to the (un)zipping of cache
+# and network transfer between gitlab and wherever cache is stored.
+#
+# Using a self-hosted gitlab-runner with local-to-the-runner-cache
+# would be a huge win.
+#
+# TODO: look into free-tier IaaS machines for hosting a gitlab-runner
 the-everything-stage-for-speed:
   stage: build
   tags: [ docker ]
