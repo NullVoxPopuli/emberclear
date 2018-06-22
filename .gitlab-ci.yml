@@ -9,13 +9,13 @@ cache:
   untracked: true
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - .cache_yarn
+    - ${CI_PROJECT_DIR}/.cache_yarn
     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
 image: danlynn/ember-cli:3.1.4
 
 variables:
-  YARN_CACHE_FOLDER: .cache_yarn
+  YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
   DOCKER_DRIVER: overlay2
 
 lint:
