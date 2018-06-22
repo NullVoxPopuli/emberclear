@@ -20,6 +20,12 @@
   </head>
   <body class='has-navbar-fixed-top'>
     {{content-for "body"}}
+    <div id='app-loader' style='width: 180px; margin: 30px auto; text-align: center;'>
+
+      <div style='width: 180px; height: 180px;' class='loader'>
+      </div>
+    </div>
+
 
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/emberclear.js"></script>

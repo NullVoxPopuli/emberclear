@@ -15,13 +15,21 @@ export default class ApplicationRoute extends Route {
     // TODO: make configurable
     const locale = 'en-us';
 
-    await this.intl.loadTranslations(locale);
-
     this.intl.setLocale(locale);
 
-    if (this.fastboot.isFastBoot) return;
+    await this.intl.loadTranslations(locale);
+
+    if (this.fastboot.isFastBoot) {
+      return;
+    }
 
     await this.identity.load();
+
+    const loader = document.querySelector('#app-loader');
+
+    if (loader) {
+      loader.remove();
+    }
   }
 
   async activate(this: ApplicationRoute) {

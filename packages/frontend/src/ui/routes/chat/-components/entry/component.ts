@@ -3,7 +3,6 @@ import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
-// import MessagePersistence from 'emberclear/services/messages/persistence';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 
 export default class MessageEntry extends Component {

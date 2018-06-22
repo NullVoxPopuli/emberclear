@@ -9,6 +9,9 @@ declare global {
 
   interface FastBoot {
     isFastBoot: boolean;
+    request: {
+      path: string;
+    }
   }
 
   interface Window {

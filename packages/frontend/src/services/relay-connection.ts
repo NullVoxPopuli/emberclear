@@ -89,7 +89,7 @@ export default class RelayConnection extends Service {
     this.toast.info(this.intl.t('connection.connecting'));
 
     const publicKey = this.userChannelId();
-    const url = DEFAULT_RELAYS[2].url;
+    const url = DEFAULT_RELAYS[0].url;
 
     const socket = new Socket(url, { params: { uid: publicKey } });
     this.set('socket', socket);

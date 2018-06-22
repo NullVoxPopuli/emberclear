@@ -5,7 +5,6 @@ import { service } from '@ember-decorators/service';
 // giant block o' types
 import RelayConnection from 'emberclear/services/relay-connection';
 import Redux from 'emberclear/services/redux';
-import MessagePersistence from 'emberclear/services/messages/persistence';
 import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';
 import Message from 'emberclear/data/models/message';
@@ -20,7 +19,6 @@ export default class MessageDispatcher extends Service {
   @service redux!: Redux;
   @service relayConnection!: RelayConnection;
   @service identity!: IdentityService;
-  @service('messages/persistence') messagePersistence!: MessagePersistence;
 
   sendMessage(messageText: string) {
     let msg = this.store.createRecord('message',{
@@ -32,7 +30,6 @@ export default class MessageDispatcher extends Service {
 
     msg.save();
 
-    this.messagePersistence.append(msg);
     this.sendToAll(msg)
   }
 
