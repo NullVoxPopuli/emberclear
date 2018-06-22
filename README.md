@@ -14,6 +14,7 @@ emberclear is published at: https://emberclear.io
 Note: the frontend code is in `packages/frontend`. This is to separate the over-arching  repo files from the individual project(s).
 
 ```bash
+git submodule update --init --recursive
 ./run yarn start:dev
 ```
 

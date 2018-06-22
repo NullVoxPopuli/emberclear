@@ -55,7 +55,6 @@ module.exports = function(defaults) {
       urls: [
         '/',
         '/faq',
-        '/chat',
       ],
     },
     'fontawesome': {
