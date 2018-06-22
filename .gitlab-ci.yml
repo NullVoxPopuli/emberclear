@@ -16,15 +16,15 @@ variables:
   YARN_CACHE_FOLDER: .cache_yarn
   DOCKER_DRIVER: overlay2
 
-# lint:
-#   stage: test
-#   tags:
-#     - docker
-#   allow_failure: true
-#   script:
-#     - ./run yarn lint
-#   dependencies:
-#     - setup
+lint:
+  stage: test
+  tags:
+    - docker
+  allow_failure: true
+  script:
+    - ./run yarn lint
+  dependencies:
+    - setup
 #
 # code_quality:
 #   stage: test
