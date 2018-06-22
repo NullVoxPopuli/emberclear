@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import * as Redux from 'redux';
 
 // declare class EmberRedux extends Ember.Object {
@@ -61,5 +61,5 @@ export function route<Function>(
   routeFunc: Function
 ): any;
 
-export default class EmberRedux extends Ember.Object {
+export default class EmberRedux extends EmberObject {
 }

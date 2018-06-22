@@ -1,5 +1,5 @@
-import Ember from 'ember';
 import DS from 'ember-data';
+import { run } from '@ember/runloop';
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
 
@@ -73,12 +73,12 @@ export default class IdentityService extends Service {
     try {
       const existing = await this.store.findRecord('identity', 'me', { backgroundReload: true });
 
-      Ember.run(() => this.set('record', existing));
+      run(() => this.set('record', existing));
 
       return existing;
     } catch (e) {
       // no record found
-      Ember.run(() => this.set('allowOverride', true));
+      run(() => this.set('allowOverride', true));
     }
 
     return null;

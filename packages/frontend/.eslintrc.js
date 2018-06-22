@@ -4,30 +4,45 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
+  parser: "typescript-eslint-parser",
   plugins: [
     'ember',
-    'prettier',
+    // 'prettier',
     'qunit'
   ],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
-    'prettier',
+    // prettier disabled, because it does not yet support
+    // - multiline object destructuring
+    // - multiline arrays (for large arrays)
+    // 'prettier',
     'plugin:qunit/recommended',
   ],
   env: {
     browser: true
   },
   rules: {
-    'prettier/prettier': 'error',
-    'ember/avoid-leaking-state-in-ember-objects': 'warn'
+    // 'prettier/prettier': 'error',
+    'ember/avoid-leaking-state-in-ember-objects': 'warn',
+    'no-console': 'warn'
   },
   overrides: [
+    {
+      files: ['**/*.ts'],
+      rules: {
+        // Better enforced by TS
+        'no-undef': 'off',
+        'no-unused-vars': 'off',
+        'ember/no-attrs-snapshot': 'off'
+      }
+    },
     // node files
     {
       files: [
         'ember-cli-build.js',
         'index.js',
+        'src/ember-intl.js',
         'testem.js',
         'blueprints/*/index.js',
         'config/**/*.js',

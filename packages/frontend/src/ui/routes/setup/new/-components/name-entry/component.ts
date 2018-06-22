@@ -32,4 +32,4 @@ export default class NameEntry extends Component {
 
     this.router.transitionTo('setup.completed');
   }
-};
+}

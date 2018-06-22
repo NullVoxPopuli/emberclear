@@ -1,2 +1,5 @@
 /blueprints/*/files/**/*.js
 /src/utils/mnemonic/bip39/wordlists/english.ts
+/src/data/models/application/*.js
+/config/optional-features.json
+/concat-stats-for

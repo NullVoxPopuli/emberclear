@@ -1,16 +1,13 @@
 import { set } from '@ember/object';
 
 export default class PromiseMonitor<T> {
-  _promise: Promise<T>;
-  isRejected: boolean;
-  isFulfilled: boolean;
-  isPending: boolean;
+  _promise!: Promise<T>;
+  isRejected = false;
+  isFulfilled = false;
+  isPending = true;
   result: T | Error | undefined;
 
   constructor(promise: Promise<T>) {
-    this.isPending = true;
-    this.isFulfilled = false;
-    this.isRejected = false;
     this._promise = promise;
 
     this._evaluatePromise();

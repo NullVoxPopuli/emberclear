@@ -45,7 +45,7 @@ export default class Settings extends Service {
     // TODO: the actual settings
   }
 
-};
+}
 
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
@@ -53,4 +53,4 @@ declare module '@ember/service' {
   interface Registry {
     'settings': Settings
   }
-};
+}
