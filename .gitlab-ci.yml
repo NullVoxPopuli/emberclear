@@ -18,43 +18,55 @@ variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
   DOCKER_DRIVER: overlay2
 
-lint:
-  stage: test
-  tags: [ docker ]
-  dependencies: [ setup ]
-  script: [ time ./run yarn lint ]
-
-# TODO: coverage?
-test:
-  stage: test
-  tags: [ docker ]
-  dependencies: [ setup ]
-  script: [ time ./run yarn test ]
-
-
-build-production:
+# Gitlab's pipelines have about 3.5 minutes of overhead per stage
+# see previous run: https://gitlab.com/NullVoxPopuli/emberclear/pipelines/24394951/builds
+# where all the pipeline steps are split out
+the-everything-stage-for-speed:
   stage: build
   tags: [ docker ]
-  dependencies: [ setup ]
   script:
+    # TODO: extract all this to bash script?
+    - time ./run yarn install
+    - time ./run yarn lint
+    - time ./run yarn test
+    # TODO: do branch check here in bash
     - time ./run yarn build:production
-  artifacts:
-    paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/dist
-
-
-deploy-production:
-  stage: deploy
-  tags: [ docker ]
-  script:
     - time npm i -g netlify-cli
     - time netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
 
-setup:
-  stage: setup
-  tags: [ docker ]
-  script: [ time ./run yarn install ]
-  # artifacts:
-  #   paths:
-  #     - /usr/local/bin
-  #     - ${CI_PROJECT_DIR}/packages/frontend/node_modules/
+# lint:
+#   stage: test
+#   tags: [ docker ]
+#   dependencies: [ setup ]
+#   script: [ time ./run yarn lint ]
+#
+# # TODO: coverage?
+# test:
+#   stage: test
+#   tags: [ docker ]
+#   dependencies: [ setup ]
+#   script: [ time ./run yarn test ]
+#
+#
+# build-production:
+#   stage: build
+#   tags: [ docker ]
+#   dependencies: [ setup ]
+#   script:
+#     - time ./run yarn build:production
+#   artifacts:
+#     paths:
+#       - ${CI_PROJECT_DIR}/packages/frontend/dist
+#
+#
+# deploy-production:
+#   stage: deploy
+#   tags: [ docker ]
+#   script:
+#     - time npm i -g netlify-cli
+#     - time netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
+#
+# setup:
+#   stage: setup
+#   tags: [ docker ]
+#   script: [ time ./run yarn install ]
