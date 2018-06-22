@@ -52,17 +52,19 @@ test:
   dependencies:
     - setup
 
-# build-pages:
-#   stage: build
-#   tags:
-#     - docker
-#   script:
-#     - ./run yarn build:production
-#   artifacts:
-#     paths:
-#       - packages/frontend/dist
-#   dependencies:
-#     - setup
+build-and-deploy:
+  stage: build
+  tags:
+    - docker
+  script:
+    - ./run yarn build:production
+    - npm i -g netlify-cli
+    - netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
+  artifacts:
+    paths:
+      - packages/frontend/dist
+  dependencies:
+    - setup
 
 # deploy-github-pages:
 #   stage: deploy
