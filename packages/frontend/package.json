@@ -95,6 +95,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
+    "ember-app-shell": "^0.5.4",
     "ember-cli": "github:ember-cli/ember-cli#7bc63039a1f89e03d9c1246cc5d3e8245290f302",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.6.0",

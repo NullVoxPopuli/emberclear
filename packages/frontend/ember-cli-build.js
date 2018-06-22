@@ -47,16 +47,14 @@ module.exports = function(defaults) {
       rulesDir: 'eslint-rules',
       extensions: ['js', 'ts'],
     },
-    addons: {
-      blacklist: disabledAddons
-    },
+    addons: { blacklist: disabledAddons },
     prember: {
       enabled: isProduction,
       urls: [
         '/',
         '/faq',
         '/chat',
-        '/setup',
+        // '/setup',
         '/login',
       ],
     },
@@ -70,6 +68,8 @@ module.exports = function(defaults) {
     treeShaking: {
       enabled: true,
     },
+    'esw-index': {},
+    'ember-app-shell': {}
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -90,11 +90,6 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'phoenix' }],
   });
 
-  // font awesome
-  // app.import('vendor/fontawesome/css/font-awesome-all.min.css');
-  // var fontTree = new Funnel('vendor/fontawesome/webfonts', { destDir: '/assets/fontawesome/webfonts' });
-  // var fontStyleTree = new Funnel('vendor/fontawesome/css', { destDir: '/assets/fontawesome/css' });
-
   // libsodium
   app.import('node_modules/libsodium/dist/modules/libsodium.js');
   app.import('node_modules/libsodium-wrappers/dist/modules/libsodium-wrappers.js');
@@ -113,7 +108,6 @@ module.exports = function(defaults) {
   app.import('vendor/shims/localforage.js');
 
   // uuid
-  // app.import('node_modules/uuid/index.js');
   app.import('node_modules/uuid/index.js', {
     using: [{ transformation: 'cjs', as: 'uuid' }]
   });

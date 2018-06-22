@@ -21,6 +21,7 @@ Router.map(function() {
   this.route('logout');
   this.route('settings');
   this.route('faq');
+  this.route('app-shell');
 });
 
 export default Router;
