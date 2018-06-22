@@ -48,7 +48,7 @@ test:
   stage: test
   tags:
     - docker
-  script: [./run yarn test]
+  script: [time ./run yarn test]
   dependencies:
     - setup
 
@@ -57,9 +57,9 @@ build-and-deploy:
   tags:
     - docker
   script:
-    - ./run yarn build:production
-    - npm i -g netlify-cli
-    - netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
+    - time ./run yarn build:production
+    - time npm i -g netlify-cli
+    - time netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
   artifacts:
     paths:
       - packages/frontend/dist
@@ -130,7 +130,7 @@ setup:
   tags:
     - docker
   script:
-    - ./run yarn install
+    - time ./run yarn install
   artifacts:
     paths:
       - /usr/local/bin
