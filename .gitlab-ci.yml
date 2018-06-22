@@ -9,7 +9,7 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - .cache_yarn
-    - ${CI_PROJECT_DIR}/packages/frontend/node_modules
+    # - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
 image: danlynn/ember-cli:3.1.4
 variables:
