@@ -70,7 +70,7 @@ module.exports = function(defaults) {
     },
     'esw-index': {
       includeScope: [
-        /\/$/,
+        /^\/$/,
       ]
     },
     'asset-cache': {
