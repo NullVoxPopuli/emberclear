@@ -11,7 +11,7 @@ export default class EmberclearIntl extends IntlService {
     if (this.fastboot.isFastBoot) {
       const host = this.fastboot.request.host;
       url = `${host}${url}`
-    };
+    }
 
     let response = await fetch(url);
     let translations = await response.json();
