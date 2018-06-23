@@ -1,26 +1,23 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
+import IntlService from 'ember-intl/services/intl';
 import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
-import EmberclearIntl from 'emberclear/services/intl';
 
 export default class ApplicationRoute extends Route {
   @service identity!: IdentityService;
   @service relayConnection!: RelayConnection;
   @service fastboot!: FastBoot;
-  @service intl!: EmberclearIntl;
+  @service intl!: IntlService;
 
   async beforeModel() {
     // TODO: make configurable
     const locale = 'en-us';
 
-    this.intl.setLocale(locale);
-    await this.intl.loadTranslations(locale);
+    this.intl.setLocale([locale]);
 
     if (this.fastboot.isFastBoot) { return; }
-
-    // get a copy of the translations after re-hydration
 
     await this.identity.load();
 
