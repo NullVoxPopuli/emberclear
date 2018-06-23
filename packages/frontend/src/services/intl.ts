@@ -9,7 +9,11 @@ export default class EmberclearIntl extends IntlService {
     let url = `/translations/${locale}.json`;
 
     if (this.fastboot.isFastBoot) {
-      const host = this.fastboot.request.host;
+      let host = this.fastboot.request.host;
+      if (!host.startsWith('http')) {
+        host = `http://${host}`;
+      }
+
       url = `${host}${url}`
     }
 

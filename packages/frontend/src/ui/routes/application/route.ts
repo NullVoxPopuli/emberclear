@@ -17,11 +17,12 @@ export default class ApplicationRoute extends Route {
 
     this.intl.setLocale(locale);
 
-    await this.intl.loadTranslations(locale);
-
     if (this.fastboot.isFastBoot) {
-      return;
+      return await this.intl.loadTranslations(locale);
     }
+
+    // get a copy of the translations after re-hydration
+    this.intl.loadTranslations(locale);
 
     await this.identity.load();
 
