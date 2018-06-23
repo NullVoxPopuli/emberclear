@@ -74,15 +74,16 @@ module.exports = function(defaults) {
         /\/faq(\/.*)?/,
         /\/chat(\/.*)?/,
         /\/setup(\/.*)?/,
-        /\/login(\/.*)?/
+        /\/login(\/.*)?/,
+        /translations/,
       ]
     },
-    'asset-cache': {
-      include:[
-        'assets/**/*',
-        'translations/**/*'
-      ]
-    },
+    // 'asset-cache': {
+    //   include:[
+    //     'assets/**/*',
+    //     'translations/**/*'
+    //   ]
+    // },
     'esw-cache-fallback': { patterns: ['/'], version: '1' },
     'ember-app-shell': {}
   });

@@ -9,6 +9,9 @@
 # compiled output
 /dist
 /tmp
+tmp
+dist
+node_modules
 
 
 # dependencies
