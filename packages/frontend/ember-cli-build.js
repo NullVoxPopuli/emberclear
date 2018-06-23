@@ -51,11 +51,11 @@ module.exports = function(defaults) {
     prember: {
       enabled: isProduction,
       urls: [
-        '/',
-        '/faq',
-        '/chat',
-        // '/setup',
-        '/login',
+        // '/',
+        // '/faq',
+        // '/chat',
+        // // '/setup',
+        // '/login',
       ],
     },
     'fontawesome': {

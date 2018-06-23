@@ -11,6 +11,7 @@ declare global {
     isFastBoot: boolean;
     request: {
       path: string;
+      host: string;
     }
   }
 
