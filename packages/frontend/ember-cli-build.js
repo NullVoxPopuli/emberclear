@@ -70,21 +70,16 @@ module.exports = function(defaults) {
     },
     'esw-index': {
       includeScope: [
-        /\//,
-        /\/faq(\/.*)?/,
-        /\/chat(\/.*)?/,
-        /\/setup(\/.*)?/,
-        /\/login(\/.*)?/,
-        /translations/,
+        /\/$/,
       ]
     },
-    // 'asset-cache': {
-    //   include:[
-    //     'assets/**/*',
-    //     'translations/**/*'
-    //   ]
-    // },
-    'esw-cache-fallback': { patterns: ['/'], version: '1' },
+    'asset-cache': {
+      include:[
+        'assets/**/*',
+        '**/*.html'
+      ]
+    },
+    // 'esw-cache-fallback': { patterns: ['/'], version: '1' },
     'ember-app-shell': {}
   });
 
