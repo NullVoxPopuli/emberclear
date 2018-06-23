@@ -49,12 +49,12 @@ module.exports = function(defaults) {
     },
     addons: { blacklist: disabledAddons },
     prember: {
-      enabled: false, //isProduction,
+      enabled: isProduction,
       urls: [
         '/',
         '/faq',
         '/chat',
-        // '/setup',
+        '/setup',
         '/login',
       ],
     },
@@ -68,7 +68,15 @@ module.exports = function(defaults) {
     treeShaking: {
       enabled: true,
     },
-    'esw-index': {},
+    'esw-index': {
+      includeScope: [
+        /\//,
+        /\/faq(\/.*)?/,
+        /\/chat(\/.*)?/,
+        /\/setup(\/.*)?/,
+        /\/login(\/.*)?/
+      ]
+    },
     'esw-cache-fallback': { patterns: ['/'], version: '1' },
     'ember-app-shell': {}
   });
