@@ -49,13 +49,13 @@ module.exports = function(defaults) {
     },
     addons: { blacklist: disabledAddons },
     prember: {
-      enabled: isProduction,
+      enabled: false, //isProduction,
       urls: [
-        // '/',
-        // '/faq',
-        // '/chat',
-        // // '/setup',
-        // '/login',
+        '/',
+        '/faq',
+        '/chat',
+        // '/setup',
+        '/login',
       ],
     },
     'fontawesome': {
