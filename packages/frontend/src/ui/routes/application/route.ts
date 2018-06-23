@@ -16,13 +16,11 @@ export default class ApplicationRoute extends Route {
     const locale = 'en-us';
 
     this.intl.setLocale(locale);
+    await this.intl.loadTranslations(locale);
 
-    if (this.fastboot.isFastBoot) {
-      return await this.intl.loadTranslations(locale);
-    }
+    if (this.fastboot.isFastBoot) { return; }
 
     // get a copy of the translations after re-hydration
-    this.intl.loadTranslations(locale);
 
     await this.identity.load();
 
@@ -32,6 +30,7 @@ export default class ApplicationRoute extends Route {
       loader.remove();
     }
   }
+
 
   async activate(this: ApplicationRoute) {
 

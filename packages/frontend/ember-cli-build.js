@@ -77,6 +77,12 @@ module.exports = function(defaults) {
         /\/login(\/.*)?/
       ]
     },
+    'asset-cache': {
+      include:[
+        'assets/**/*',
+        'translations/**/*'
+      ]
+    },
     'esw-cache-fallback': { patterns: ['/'], version: '1' },
     'ember-app-shell': {}
   });
