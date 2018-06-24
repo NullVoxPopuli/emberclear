@@ -31,6 +31,8 @@ export default class AddModal extends Component {
 
     await this.tryCreate(identity);
     this.close();
+    this.toast.info(`${identity.name || 'Fried'} added!`);
+
   }
 
   @action

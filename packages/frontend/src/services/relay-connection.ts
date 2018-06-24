@@ -4,6 +4,7 @@ import { Channel, Socket } from 'phoenix';
 
 import Redux from 'emberclear/services/redux';
 import IdentityService from 'emberclear/services/identity/service';
+import MessageProcessor from 'emberclear/services/messages/processor';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
 import { stateChange, ConnectionStatus } from '../redux-store/relay-connection';
@@ -17,10 +18,12 @@ const DEFAULT_RELAYS = {
 
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
+  @service('messages/processor') processor!: MessageProcessor;
   @service('notifications') toast!: Toast;
-  @service('redux') redux!: Redux;
   @service('intl') intl!: Intl;
+  @service redux!: Redux;
   @service identity!: IdentityService;
+
 
   socket?: Socket;
   channel?: Channel;
@@ -48,8 +51,17 @@ export default class RelayConnection extends Service {
 
     return channel
       .push('chat', payload)
-      .receive("ok", (msg: string) => toast.info(this.intl.t('connection.log.push.ok', { msg })) )
-      .receive("error", (reasons: any) => toast.error(this.intl.t('connection.log.push.error', { reasons })) )
+      .receive("ok", (msg: string) => {
+        // TODO: mark the message as sent
+        //toast.info(this.intl.t('connection.log.push.ok', { msg }))
+      })
+      .receive("error", (reasons: any) => {
+        // relay error
+        const { reason } = reasons;
+
+        toast.error(this.intl.t('connection.log.push.error', { reasons: reason}));
+        console.error(reasons);
+      })
       .receive("timeout", () => toast.info(this.intl.t('connection.log.push.timeout')) )
   }
 
@@ -162,8 +174,7 @@ export default class RelayConnection extends Service {
   handleMessage = (data: string) => {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelReceived, data))
 
-    // process the message and do something with it
-    // pass it off to a message processing service
+    this.processor.receive(data);
   }
 }
 

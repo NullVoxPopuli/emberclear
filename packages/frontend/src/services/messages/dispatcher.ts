@@ -11,7 +11,7 @@ import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
 
 import { encryptFor } from 'emberclear/src/utils/nacl/utils';
-import { toUint8Array, toString } from 'emberclear/src/utils/string-encoding';
+import { toUint8Array, toString, toHex, ensureUint8Array } from 'emberclear/src/utils/string-encoding';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
@@ -35,8 +35,10 @@ export default class MessageDispatcher extends Service {
 
   // the downside to end-to-end encryption
   // the bigger the list of identities, the longer this takes
-  sendToAll(msg: Message) {
-    this.store.peekAll('identity').forEach(identity => {
+  async sendToAll(msg: Message) {
+    const everyone = await this.store.findAll('identity');
+
+    everyone.forEach(identity => {
       if (identity.id === 'me') return; // don't send to self
 
       this.sendToUser(msg, identity);
@@ -50,7 +52,7 @@ export default class MessageDispatcher extends Service {
     const payload = this.messageToPayloadJson(msg);
     const payloadString = JSON.stringify(payload);
     const payloadBytes = toUint8Array(payloadString);
-    const uid = toString(theirPublicKey);
+    const uid = toHex(theirPublicKey);
 
     const encryptedMessage = await encryptFor(payloadBytes, myPrivateKey, theirPublicKey);
 
@@ -65,7 +67,7 @@ export default class MessageDispatcher extends Service {
       time_sent: msg.sentAt,
       sender: {
         name: msg.from,
-        uid: this.identity.publicKey,
+        uid: toHex(this.identity.publicKey),
         location: ''
       },
       message: {

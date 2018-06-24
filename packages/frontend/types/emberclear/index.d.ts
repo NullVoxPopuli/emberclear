@@ -35,8 +35,12 @@ declare global {
   interface Intl {
     t(translation: string, options?: any): string;
   }
-}
 
+  interface RelayMessage {
+    uid: string;
+    message: string;
+  }
+}
 
 //
 // // https://github.com/typed-ember/ember-cli-typescript/issues/197#issuecomment-384645960
@@ -48,7 +52,7 @@ declare global {
 declare module '@ember/service' {
   interface Registry {
     'toast': Toast,
-    // 'intl': Intl,
+    'intl': Intl,
     // 'i18n': Intl
     // 'redux': Redux
   }

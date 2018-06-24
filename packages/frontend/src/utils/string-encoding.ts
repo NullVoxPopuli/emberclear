@@ -28,7 +28,8 @@ export function fromString(str: string): Uint8Array {
 export const toUint8Array = fromString;
 
 export function toString(uint8Array: Uint8Array): string {
-  return sodium.to_string(uint8Array);
+  return new TextDecoder("utf-8").decode(uint8Array);
+// return sodium.to_string(uint8Array);
 }
 
 export function ensureUint8Array(text: string | Uint8Array): Uint8Array {
