@@ -13,10 +13,10 @@
 
   <p class='message-body'>
     {{@message.body}}
-
+    <br />
     {{#each urls as |url|}}
-      <video>
-        <source src={{url}} />
+      <video style='max-height: 200px' preload='auto' muted autoplay loop>
+        <source src={{url}} type='video/mp4' />
       </video>
     {{/each}}
   </p>

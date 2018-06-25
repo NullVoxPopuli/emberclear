@@ -11,6 +11,6 @@ export default class extends Component {
   get urls() {
     const urls = this.message.body!.match(URL_PATTERN);
 
-    return urls;
+    return urls.map(u => u.replace('gifv', 'mp4'));
   }
 }
