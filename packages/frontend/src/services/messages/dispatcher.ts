@@ -11,7 +11,7 @@ import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
 
 import { encryptFor } from 'emberclear/src/utils/nacl/utils';
-import { toUint8Array, toString, toHex, ensureUint8Array } from 'emberclear/src/utils/string-encoding';
+import { toUint8Array, toString, toHex } from 'emberclear/src/utils/string-encoding';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
@@ -67,7 +67,7 @@ export default class MessageDispatcher extends Service {
       time_sent: msg.sentAt,
       sender: {
         name: msg.from,
-        uid: toHex(this.identity.publicKey),
+        uid: toHex(this.identity.publicKey!),
         location: ''
       },
       message: {

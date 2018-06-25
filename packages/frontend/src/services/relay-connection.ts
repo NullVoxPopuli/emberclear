@@ -171,9 +171,7 @@ export default class RelayConnection extends Service {
     this.redux.dispatch(stateChange(ConnectionStatus.ChannelConnected, ''))
   }
 
-  handleMessage = (data: string) => {
-    this.redux.dispatch(stateChange(ConnectionStatus.ChannelReceived, data))
-
+  handleMessage = (data: RelayMessage) => {
     this.processor.receive(data);
   }
 }
