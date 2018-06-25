@@ -19,9 +19,14 @@
     background: $white-ter;
   }
 
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
+
   p { padding: 5px; }
 
   .message-body {
+    border: none;
     background-color: transparent;
   }
 

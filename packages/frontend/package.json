@@ -98,6 +98,7 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "@html-next/vertical-collection": "^1.0.0-beta.12",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
     "ember-cli": "github:ember-cli/ember-cli#7bc63039a1f89e03d9c1246cc5d3e8245290f302",

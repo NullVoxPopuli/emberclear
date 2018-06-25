@@ -1,11 +1,30 @@
 <div class='message-list'>
   <div class='messages with-styled-scrollbar'>
 
-    {{#each messages as |message|}}
+    {{#each messages as |message index|}}
 
-      <Message @message={{message}} />
+      <Message
+        @message={{message}}
+        @hideHeader={{should-hide-header messages message index}} />
 
     {{/each}}
-
   </div>
+
+  {{!-- {{#vertical-collection
+    messages
+    tagName='div'
+    class='messages'
+    estimateHeight=5
+    staticHeight=false
+    bufferSize=1
+    renderAll=false
+    renderFromLast=false
+     as |message index|}}
+
+     <Message
+       @message={{message}}
+       @hideHeader={{should-hide-header messages message index}} />
+
+  {{/vertical-collection}} --}}
+
 </div>

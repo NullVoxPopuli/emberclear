@@ -1,4 +1,5 @@
-<div class='message m-b-md m-l-md m-r-md'>
+<div class='message m-l-md m-r-md m-b-md'>
+
   <div class='message-header'>
     <span class='from'>{{@message.from}}</span>
     <span class='sentAt has-hover-tip'>
@@ -9,7 +10,15 @@
       </HoverTip>
     </span>
   </div>
+
   <p class='message-body'>
     {{@message.body}}
+
+    {{#each urls as |url|}}
+      <video>
+        <source src={{url}} />
+      </video>
+    {{/each}}
   </p>
+
 </div>
