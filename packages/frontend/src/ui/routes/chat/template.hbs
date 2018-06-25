@@ -1,8 +1,13 @@
 {{!-- User List Component
 Channel List Component --}}
 
-<div class='container w-100 flex-grow flex-column align-items-stretch'>
+<div class='
+  container is-fluid
+  flex-grow flex-column align-items-stretch
+  no-magins
+  '>
+
   <ChatHistory class='flex-grow flex-column' @messages={{model.messages}}/>
 
-  <Entry />
+  <Entry class='p-l-md p-r-md'/>
 </div>

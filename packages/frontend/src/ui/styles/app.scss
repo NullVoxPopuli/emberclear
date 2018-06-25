@@ -1,3 +1,7 @@
+// Color Variables
+// https://bulma.io/documentation/overview/variables/
+
+
 // Colors
 // $primary: #650360;
 // $info:    #00A4D9;
@@ -30,7 +34,9 @@ $tablet: 480px;
 @import "utility/flex";
 @import "utility/width";
 @import "components/hover-tip";
+@import "components/messages";
 @import "bulma-augmentations";
+@import "scrollbar";
 
 // .full-height {
 //   height: 100%;
@@ -60,39 +66,6 @@ body {
 .navbar-item .icon:only-child {
   margin: 0;
 }
-
-
-.message-list {
-  flex: 1 1 0%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  .messages {
-    overflow-y: auto;
-    min-height: auto;
-    max-height: 100%;
-    padding-top: 50px;
-  }
-}
-
-.message {
-  p { padding: 5px; }
-
-  .message-header {
-    cursor: default;
-
-    .from {
-      font-style: bold;
-    }
-
-    .sentAt {
-      font-weight: lighter;
-      color: lighten($grey, 20%);
-    }
-  }
-}
-
 
 .chat-entry {
   margin-bottom: 20px;
