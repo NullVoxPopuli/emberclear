@@ -13,12 +13,23 @@
 
   <p class='message-body'>
     {{@message.body}}
-    <br />
+
+    {{!--
+      likely will need to use a cross-domain proxy to get around CORS issues
+      https://medium.freecodecamp.org/client-side-web-scraping-with-javascript-using-jquery-and-regex-5b57a271cb86
+      http://www.whateverorigin.org/
+      http://multiverso.me/AllOrigins/
+
+      and because of that, it's possible submitting a bunch of URLs to one of these services
+      could reduce privacy.
+    --}}
+
+    {{!-- <br />
     {{#each urls as |url|}}
       <video style='max-height: 200px' preload='auto' muted autoplay loop>
         <source src={{url}} type='video/mp4' />
       </video>
-    {{/each}}
+    {{/each}} --}}
   </p>
 
 </div>

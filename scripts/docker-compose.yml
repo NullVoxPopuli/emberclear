@@ -1,9 +1,8 @@
-version: '3'
+version: '3.4'
 services:
   phoenix-relay:
     build:
       context: ./relays/phoenix-relay
-      dockerfile: ./Dockerfile
 
     command: bash -c "mix deps.get && mix phx.server"
     container_name: phoenix-relay
@@ -17,12 +16,8 @@ services:
       - ./relays/phoenix-relay:/app
 
   emberclear:
-    depends_on:
-      - phoenix-relay
-
     build:
       context: ./frontend
-      dockerfile: ./Dockerfile
 
     # Default command to run when the container starts
     command: bash -c "yarn && yarn start:dev -p 4201"
@@ -48,7 +43,27 @@ services:
       - ember-dist:/app/dist
       - ember-node_modules:/app/node_modules
       # Copies the whole app into the container
-      - ./frontend:/app:delegated
+      # - ./frontend:/app:delegated
+
+      # Copy invidial files/folders so container contents don't leak out
+      - ./frontend/config:/app/config
+      - ./frontend/fastboot:/app/fastboot
+      - ./frontend/public:/app/public
+      - ./frontend/src:/app/src
+      - ./frontend/tests:/app/tests
+      - ./frontend/translations:/app/translations
+      - ./frontend/types:/app/types
+      - ./frontend/vendor:/app/vendor
+
+      - ./frontend/.ember-cli:/app/.ember-cli
+      - ./frontend/.eslintignore:/app/.eslintignore
+      - ./frontend/.eslintrc.js:/app/.eslintrc.js
+      - ./frontend/.watchmanconfig:/app/.watchmanconfig
+      - ./frontend/ember-cli-build.js:/app/ember-cli-build.js
+      - ./frontend/package.json:/app/package.json
+      - ./frontend/testem.js:/app/testem.js
+      - ./frontend/tsconfig.json:/app/tsconfig.json
+      - ./frontend/yarn.lock:/app/yarn.lock
 
       # Override the above mapping for the following
       # noise directories:

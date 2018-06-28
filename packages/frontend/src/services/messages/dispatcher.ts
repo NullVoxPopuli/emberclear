@@ -4,7 +4,6 @@ import { service } from '@ember-decorators/service';
 
 // giant block o' types
 import RelayConnection from 'emberclear/services/relay-connection';
-import Redux from 'emberclear/services/redux';
 import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';
 import Message from 'emberclear/data/models/message';
@@ -16,7 +15,6 @@ import { toUint8Array, toString, toHex } from 'emberclear/src/utils/string-encod
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
   @service store!: DS.Store;
-  @service redux!: Redux;
   @service relayConnection!: RelayConnection;
   @service identity!: IdentityService;
 

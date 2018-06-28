@@ -30,8 +30,8 @@ export default class AddModal extends Component {
     const identity = JSON.parse(this.identityToImport)
 
     await this.tryCreate(identity);
+
     this.close();
-    this.toast.info(`${identity.name || 'Fried'} added!`);
 
   }
 
@@ -42,6 +42,7 @@ export default class AddModal extends Component {
     await this.tryCreate(identity);
 
     this.set('scanning', false);
+
     this.close();
   }
 
@@ -64,5 +65,7 @@ export default class AddModal extends Component {
       id: publicKey,
       publicKey: fromHex(publicKey)
     }).save();
+
+    this.toast.info(`${identity.name || 'Friend'} added!`);
   }
 }

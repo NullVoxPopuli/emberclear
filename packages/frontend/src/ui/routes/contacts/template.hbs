@@ -1,46 +1,9 @@
 <section class='section'>
   <div class='container'>
-    <h1 class='title'>
-      {{t 'ui.contacts.title' number=model.length}}
-    </h1>
+    <Header @identities={{model.identities}} />
+
     <div class='content'>
-
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>{{t 'models.identity.name'}}</th>
-            <th>{{t 'models.identity.publicKey'}}</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          {{#each model as |identity|}}
-            <tr>
-              <td>
-                <a {{action 'remove' identity}}>
-                  {{t 'buttons.remove'}}
-                </a>
-              </td>
-              <td>
-                {{identity.name}}
-              </td>
-              <td>
-                {{identity.publicKeyAsHex}}
-              </td>
-            </tr>
-          {{/each}}
-
-          {{#if (eq model.length 0)}}
-            <tr>
-              <td colspan='3'>
-                {{t 'ui.contacts.noContacts'}}
-              </td>
-            </tr>
-          {{/if}}
-
-        </tbody>
-      </table>
+      <ContactTable @identities={{model.identities}} />
     </div>
   </div>
 </section>

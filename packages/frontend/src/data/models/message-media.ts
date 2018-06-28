@@ -10,3 +10,10 @@ export default class MessageMedia extends Model {
 
   @belongsTo('message') message?: Message;
 }
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your models.
+declare module 'ember-data' {
+  interface ModelRegistry {
+    'message-media': Message;
+  }
+}
