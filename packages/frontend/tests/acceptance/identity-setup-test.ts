@@ -1,3 +1,4 @@
+import { DS } from 'ember-data';
 import { run } from '@ember/runloop';
 import { module, test, skip } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
@@ -6,6 +7,7 @@ import { setupApplicationTest } from 'ember-qunit';
 import localforage from 'localforage';
 
 import { nameForm } from 'emberclear/tests/helpers/pages/setup';
+import { getService } from 'emberclear/tests/helpers/get-service';
 
 module('Acceptance | Identity Setup', function(hooks) {
   setupApplicationTest(hooks);
@@ -45,7 +47,7 @@ module('Acceptance | Identity Setup', function(hooks) {
       });
 
       test('sets the "me" identity', function(assert) {
-        const store = this.owner.lookup('service:store');
+        const store = getService<DS.Store>('store');
         const known = store.peekAll('identity');
 
         assert.equal(known.length, 1);
