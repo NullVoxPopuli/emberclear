@@ -40,9 +40,16 @@ module('Acceptance | Identity Setup', function(hooks) {
         });
       });
 
-      // testing is hard :(
-      skip('proceeds to next page', async function(assert) {
+      test('proceeds to next page', function(assert) {
         assert.equal(currentURL(), '/setup/completed');
+      });
+
+      test('sets the "me" identity', function(assert) {
+        const store = this.owner.lookup('service:store');
+        const known = store.peekAll('identity');
+
+        assert.equal(known.length, 1);
+        assert.equal(known.firstObject.id, 'me');
       });
     });
   });
