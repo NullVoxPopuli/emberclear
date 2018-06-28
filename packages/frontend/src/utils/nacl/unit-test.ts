@@ -1,5 +1,5 @@
 import * as nacl from './utils';
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 
 module('Unit | Utility | nacl', function() {
   test('libsodium uses wasm', async function(assert) {
@@ -38,5 +38,9 @@ module('Unit | Utility | nacl', function() {
 
     assert.deepEqual(nonce, Uint8Array.from(msg));
     assert.deepEqual(notTheNonce, Uint8Array.from([25]));
+  });
+
+  skip('decrypt an encrypted message', async function(assert) {
+
   });
 });
