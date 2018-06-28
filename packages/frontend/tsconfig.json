@@ -22,24 +22,11 @@
     "baseUrl": ".",
     "module": "es6",
     "paths": {
-      "emberclear/tests/*": [
-        "tests/*"
-      ],
-      "emberclear/*": [
-        "src/*",
-        "node_modules/ember-redux/app/*"
-      ],
-      "emberclear/src/*": [
-        "src/*",
-        "node_modules/ember-redux/src/*"
-      ],
-      "*": [
-        "types/*",
-        "node_modules/ember-redux/app/*"
-      ],
+      "emberclear/tests/*": ["tests/*"],
+      "emberclear/*": ["src/*"],
+      "emberclear/src/*": ["src/*"],
+      "*": ["types/*"],
       "@ember": ["node_modules/@types/ember/index.d.ts"],
-      "ember-redux": ["node_modules/ember-redux/index.d.ts"],
-      "redux": ["node_modules/redux/index.d.ts"],
       "fetch": ["node_modules/ember-fetch/index.d.ts"],
       "tweetnacl": ["node_modules/tweetnacl/nacl.d.ts"]
     }

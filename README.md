@@ -34,6 +34,8 @@ TODO:
    - ensure that WebRTC messages can be manually encrypted (otherwise, it's not worth it)
  - websocket via [WebWorker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) for disconnecting the UI from the data management so that the UI can update independently from the WebWorker Socket Connection
  - write relay server in rust or continue in elixir
+ - [WASM / ASM.js Renderer](https://github.com/201-created/emberconf-schedule-2018/compare/master...asmjs?expand=1)
+ - [FastBoot Rendering Context Helper](https://twitter.com/ryantotweets/status/1011745553447866368)
 
 #### Debugging
 

@@ -5,10 +5,6 @@ const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { BroccoliCSSBlocks } = require('@css-blocks/broccoli');
 
-// instascan requires 'fs'...
-const nodeBuiltins = require('rollup-plugin-node-builtins');
-
-
 // note that by default, the enabled flags on some things
 // like minifying, and prember, by default, already check
 // if environment === 'production'
@@ -80,7 +76,7 @@ module.exports = function(defaults) {
       ]
     },
     // 'esw-cache-fallback': { patterns: ['/'], version: '1' },
-    'ember-app-shell': {}
+    'ember-app-shell': {},
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -110,9 +106,20 @@ module.exports = function(defaults) {
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
-  app.import('node_modules/instascan/index.js', {
-    using: [{ transformation: 'cjs', as: 'instascan', plugins: [nodeBuiltins()] }]
+
+  // qrcode scanner
+  app.import('node_modules/qr-scanner/qr-scanner.min.js', {
+    using: [{ transformation: 'es6', as: 'qr-scanner' }]
   });
+
+  // qr-scanner hardcoded this path.... -.-
+  var qrScannerWorker = new Funnel(
+    'node_modules/qr-scanner/', {
+      include: ['qr-scanner-worker.min.js'],
+      destDir: '/libraries/qr-scanner/'
+    }
+  );
+
 
   // localforage
   app.import('node_modules/localforage/dist/localforage.js');
@@ -124,12 +131,14 @@ module.exports = function(defaults) {
   });
 
   // bulma-toast
+  app.import('node_modules/bulma/bulma.sass');
   app.import('node_modules/bulma-toast/dist/bulma-toast.js');
   app.import('vendor/shims/bulma-toast.js');
   app.import('node_modules/bulma-toast/dist/bulma-toast.min.css');
 
   return mergeTrees([
-    app.toTree()
+    app.toTree(),
+    qrScannerWorker
     // new BroccoliCSSBlocks(app.path, {
     //   entry: ['app'],
     //   output: "src/ui/styles/css-blocks.css"

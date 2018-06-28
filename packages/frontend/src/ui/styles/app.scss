@@ -23,7 +23,7 @@ $desktop: 768px + (2 * $gap);
 $widescreen: 1152px + (2 * $gap);
 $fullhd: 1344px + (2 * $gap);
 
-@import 'bulma';
+@import 'node_modules/bulma/bulma';
 
 $tablet: 480px;
 

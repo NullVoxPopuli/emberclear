@@ -38,6 +38,8 @@ the-everything-stage-for-speed:
   script:
     # TODO: extract all this to bash script?
     - time ./run yarn install
+    #  clean
+    - rm -rf ./packages/frontend/{dist,tmp}
     - time ./run yarn lint
     - time ./run yarn test
 

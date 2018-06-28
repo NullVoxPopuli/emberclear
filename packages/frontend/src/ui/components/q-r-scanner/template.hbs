@@ -1,9 +1,21 @@
-<div style='width: 100%; height: 300px; overflow: hidden'>
-  <video id='qr-preview' class='w-100' autoplay='autoplay'></video>
+<div
+  class='flex justify-content-center align-items-center'
+  style='width: 100%; height: 300px; overflow: hidden'>
+
+  {{#unless started}}
+    <div style='width: 180px; height: 180px;' class='loader'></div>
+  {{/unless}}
+
+  <video
+    id='qr-preview'
+    class='w-100 {{if started "is-block" "is-hidden"}}'
+    autoplay='autoplay'>
+  </video>
+
 </div>
 
 <span class='flex justify-content-space-between m-t-md'>
-  <div>
+  {{!-- <div>
     {{#if showCameras}}
       {{#each cameras as |camera|}}
         <button
@@ -13,7 +25,7 @@
         </button>
       {{/each}}
     {{/if}}
-  </div>
+  </div> --}}
 
   <button class='button' {{action @onCancel}}>
     Cancel

@@ -1,0 +1,36 @@
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>{{t 'models.identity.name'}}</th>
+      <th>{{t 'models.identity.publicKey'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each contacts as |identity|}}
+      <tr>
+        <td>
+          <a {{action 'remove' identity}}>
+            {{t 'buttons.remove'}}
+          </a>
+        </td>
+        <td>
+          {{identity.name}}
+        </td>
+        <td>
+          {{identity.publicKeyAsHex}}
+        </td>
+      </tr>
+    {{/each}}
+
+    {{#if (eq contacts.length 0)}}
+      <tr>
+        <td colspan='3'>
+          {{t 'ui.contacts.noContacts'}}
+        </td>
+      </tr>
+    {{/if}}
+
+  </tbody>
+</table>

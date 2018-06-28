@@ -26,16 +26,6 @@ function runstuff {
     yarn) ( cd $UI_PATH && yarn $arguments );;
     yarn:reinstall) ( cd $UI_PATH && rm -rf dist tmp node_modules yarn.lock && yarn );;
 
-    docker)
-     docker build ./${UI_PATH} -t emberclear \
-     && \
-       docker run -it \
-         -p 4200:4200 \
-         -p 7020:7020 \
-         -v $PWD/${UI_PATH}:/app \
-         --rm emberclear
-    ;;
-
     # Don't name any folders bin, obj, tmp, dist, or node_modules
     clean:all)
       echo "Cleaning..."
@@ -82,8 +72,6 @@ function print_help {
   echo "deploy         : deploys to github pages"
   echo "yarn"
   echo "yarn:reinstall"
-  echo ""
-  echo "docker         : build and run default command from docker image"
   echo ""
   echo "clean:all      : recursively removes dist, node_modules, and tmp directories"
 }

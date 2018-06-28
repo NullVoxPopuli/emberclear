@@ -1,15 +1,19 @@
-<div class="content">
-  {{input
-    class='input is-large'
-    type='text'
-    placeholder=(t 'ui.setup.nameLabel')
-    value=name
-  }}
-</div>
+<form {{action createIdentity on='submit'}}>
 
-<button
-  class='button is-pulled-right'
-  disabled={{nameIsBlank}}
-  {{action createIdentity}}>
-  {{t 'buttons.next'}}
-</button>
+  <div class="content">
+    {{input
+      class='input is-large'
+      type='text'
+      placeholder=(t 'ui.setup.nameLabel')
+      value=name
+    }}
+  </div>
+
+  <input
+    type='submit'
+    class='button is-pulled-right'
+    disabled={{nameIsBlank}}
+    value={{t 'buttons.next'}}
+    {{action createIdentity}} />
+
+</form>

@@ -2,12 +2,9 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
 
-import Redux from 'emberclear/services/redux';
 import IdentityService from 'emberclear/services/identity/service';
 import MessageProcessor from 'emberclear/services/messages/processor';
 import { toHex } from 'emberclear/src/utils/string-encoding';
-
-import { stateChange, ConnectionStatus } from '../redux-store/relay-connection';
 
 const DEFAULT_RELAYS = {
   0: { url: 'wss://mesh-relay-in-us-1.herokuapp.com/socket' },
@@ -21,7 +18,6 @@ export default class RelayConnection extends Service {
   @service('messages/processor') processor!: MessageProcessor;
   @service('notifications') toast!: Toast;
   @service('intl') intl!: Intl;
-  @service redux!: Redux;
   @service identity!: IdentityService;
 
 
@@ -139,36 +135,29 @@ export default class RelayConnection extends Service {
 
   onSocketError = () => {
     this.toast.error(this.intl.t('connection.status.socket.error'));
-    this.redux.dispatch(stateChange(ConnectionStatus.SocketError, ''));
   }
 
   onSocketClose = () => {
     this.toast.info(this.intl.t('connection.status.socket.close'));
-    this.redux.dispatch(stateChange(ConnectionStatus.SocketClosed, ''));
   }
 
 
   onChannelError = () => {
-    this.redux.dispatch(stateChange(ConnectionStatus.ChannelError, ''))
-
+    console.log('channel errored');
     if (this.socket) this.socket.disconnect();
   }
 
   onChannelClose = () => {
-    this.redux.dispatch(stateChange(ConnectionStatus.ChannelClosed, ''))
-
+    console.log('channel closed');
     if (this.socket) this.socket.disconnect();
   }
 
   handleError = (data: string) => {
-    this.redux.dispatch(stateChange(ConnectionStatus.ChannelError, data))
-
     console.error(data);
   }
 
   handleConnected = () => {
     this.toast.success(this.intl.t('connection.connected'));
-    this.redux.dispatch(stateChange(ConnectionStatus.ChannelConnected, ''))
   }
 
   handleMessage = (data: RelayMessage) => {
