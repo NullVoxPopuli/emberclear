@@ -1,11 +1,7 @@
 import { DS } from 'ember-data';
-import { run } from '@ember/runloop';
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import localforage from 'localforage';
-
-import { nameForm } from 'emberclear/tests/helpers/pages/setup';
 import { getService } from 'emberclear/tests/helpers/get-service';
 import { createCurrentUser } from 'emberclear/tests/helpers';
 import IdentityService from 'emberclear/services/identity/service';
