@@ -37,16 +37,21 @@ the-everything-stage-for-speed:
   tags: [ docker ]
   script:
     # TODO: extract all this to bash script?
+    - rm -rf ./packages/frontend/{dist,tmp,node_modules,yarn.lock}
     - time ./run yarn install
     #  clean
-    - rm -rf ./packages/frontend/{dist,tmp}
     - time ./run yarn lint
     - time ./run yarn test
 
     # TODO: do branch check here in bash
-    - time ./run yarn build:production
-    - time npm i -g netlify-cli
-    - time netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
+    - >
+      BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+      if [[ "$BRANCH" == "master" ]]; then
+        time ./run yarn build:production
+        time npm i -g netlify-cli
+        time netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
+      fi
 
 # lint:
 #   stage: test

@@ -11,6 +11,13 @@ interface BoxKeys {
 
 // https://gist.github.com/buu700/039601a7b410474f0edba9977a8c6393
 declare module 'libsodium-wrappers' {
+  // enum Base64Variant {
+  //   ORIGINAL = 1,
+  //   ORIGINAL_NO_PADDING = 3,
+  //   URLSAFE = 5,
+  //   URLSAFE_NO_PADDING = 7
+  // }
+
   interface ISodium {
     ready: Promise<boolean>;
     libsodium: {
@@ -18,6 +25,13 @@ declare module 'libsodium-wrappers' {
     }
 
     randombytes_buf(bytes: number): Uint8Array;
+
+    base64_variants: {
+      ORIGINAL: number;
+      ORIGINAL_NO_PADDING: number;
+      URLSAFE: number;
+      URLSAFE_NO_PADDING: number;
+    }
 
     crypto_aead_chacha20poly1305_ABYTES: number;
     crypto_aead_chacha20poly1305_KEYBYTES: number;
@@ -103,7 +117,7 @@ declare module 'libsodium-wrappers' {
     from_string (s: string) : Uint8Array;
     memcmp (a: Uint8Array, b: Uint8Array) : boolean;
     memzero (a: Uint8Array) : void;
-    to_base64 (a: Uint8Array) : string;
+    to_base64 (a: Uint8Array, variant: number) : string;
     to_hex (a: Uint8Array) : string;
     to_string (a: Uint8Array) : string;
   }

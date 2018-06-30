@@ -14,7 +14,7 @@ export function fromHex(hex: string): Uint8Array {
 }
 
 export function toBase64(array: Uint8Array): string {
-  return sodium.to_base64(array);
+  return sodium.to_base64(array, sodium.base64_variants.ORIGINAL);
 }
 
 export function fromBase64(base64: string): Uint8Array {
@@ -22,14 +22,15 @@ export function fromBase64(base64: string): Uint8Array {
 }
 
 export function fromString(str: string): Uint8Array {
+  // return new TextEncoder().encode(str);
   return sodium.from_string(str);
 }
 
 export const toUint8Array = fromString;
 
 export function toString(uint8Array: Uint8Array): string {
-  return new TextDecoder("utf-8").decode(uint8Array);
-// return sodium.to_string(uint8Array);
+  // return new TextDecoder("utf-8").decode(uint8Array);
+return sodium.to_string(uint8Array);
 }
 
 export function ensureUint8Array(text: string | Uint8Array): Uint8Array {
