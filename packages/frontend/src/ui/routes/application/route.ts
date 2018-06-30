@@ -28,6 +28,11 @@ export default class ApplicationRoute extends Route {
     }
   }
 
+  async afterModel() {
+    if (this.fastboot.isFastBoot) return;
+
+    this.relayConnection.connect();
+  }
 
   async activate(this: ApplicationRoute) {
 

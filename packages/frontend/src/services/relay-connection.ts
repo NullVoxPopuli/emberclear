@@ -22,9 +22,10 @@ export default class RelayConnection extends Service {
   @service('intl') intl!: Intl;
   @service identity!: IdentityService;
 
-
   socket?: Socket;
   channel?: Channel;
+
+  connected = false;
 
   // TODO: add support for sending along a specific channel / chat-room
   // TODO: consider chatroom implementation with server, or keeping it all
@@ -86,7 +87,7 @@ export default class RelayConnection extends Service {
   //       for chat rooms
   async connect(this: RelayConnection) {
     const canConnect = await this.canConnect();
-    if (!canConnect) return;
+    if (!canConnect || this.connected) return;
 
     this.toast.info(this.intl.t('connection.connecting'));
 
@@ -102,6 +103,8 @@ export default class RelayConnection extends Service {
     // establish initial connection to the server
     socket.connect();
     this.subscribeToChannel(`user:${publicKey}`);
+
+    this.set('connected', true);
   }
 
   subscribeToChannel(this: RelayConnection, channelName: string) {
@@ -133,6 +136,7 @@ export default class RelayConnection extends Service {
 
   onSocketClose = () => {
     this.toast.info(this.intl.t('connection.status.socket.close'));
+    this.set('connected', false);
   }
 
 
