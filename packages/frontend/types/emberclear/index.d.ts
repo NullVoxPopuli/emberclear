@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 
 declare global {
+
   interface IdentityJson {
     name: string;
     publicKey: string;
@@ -39,6 +40,24 @@ declare global {
   interface RelayMessage {
     uid: string;
     message: string;
+  }
+
+  interface RelayJson {
+    type: string;
+    client: string;
+    client_version: string;
+    time_sent: Date;
+    sender: {
+      name: string;
+      uid: string;
+      location: string;
+    },
+    message: {
+      channel: string;
+      thread: string;
+      body: string;
+      contentType: string
+    }
   }
 }
 

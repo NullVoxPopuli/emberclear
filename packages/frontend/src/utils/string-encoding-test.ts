@@ -15,13 +15,13 @@ module('Unit | Utility | String Encoding', function() {
   });
 
   module('toBase64 / fromBase64', function() {
-    skip('converts uint8array and back', function(assert) {
-      const msgAsUint8 = Uint8Array.from([104, 101, 108, 108, 111]); // hello
+    test('converts uint8array and back', async function(assert) {
+      const msgAsUint8 = new Uint8Array([0, 1, 2, 3, 4]);
 
-      const base64 = stringEncoding.toBase64(msgAsUint8);
-      const original = stringEncoding.fromBase64(base64);
+      const base64 = await stringEncoding.toBase64(msgAsUint8);
+      const result = await stringEncoding.fromBase64(base64);
 
-      assert.deepEqual(original, msgAsUint8);
+      assert.deepEqual(result, msgAsUint8);
     });
   });
 

@@ -58,7 +58,7 @@ export async function encryptFor(
 export async function decryptFrom(
   ciphertextWithNonce: Uint8Array,
   senderPublicKey: Uint8Array,
-  recipientPrivateKey: Uint8Array): Promise<Uint8Array | undefined> {
+  recipientPrivateKey: Uint8Array): Promise<Uint8Array> {
 
   const sodium = await libsodium();
 

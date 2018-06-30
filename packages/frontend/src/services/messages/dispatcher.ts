@@ -10,7 +10,7 @@ import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
 
 import { encryptFor } from 'emberclear/src/utils/nacl/utils';
-import { toUint8Array, toString, toHex } from 'emberclear/src/utils/string-encoding';
+import { toUint8Array, toBase64, fromBase64, toString, toHex } from 'emberclear/src/utils/string-encoding';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
@@ -19,7 +19,7 @@ export default class MessageDispatcher extends Service {
   @service identity!: IdentityService;
 
   sendMessage(messageText: string) {
-    let msg = this.store.createRecord('message',{
+    let msg = this.store.createRecord('message', {
       from: this.identity.name,
       body: messageText,
       sentAt: new Date(),
@@ -61,10 +61,10 @@ export default class MessageDispatcher extends Service {
 
     const encryptedMessage = await encryptFor(payloadBytes, theirPublicKey, myPrivateKey);
 
-    return toHex(encryptedMessage);
+    return await toBase64(encryptedMessage);
   }
 
-  messageToPayloadJson(msg: Message) {
+  messageToPayloadJson(msg: Message): RelayJson {
     return {
       type: 'chat',
       client: '',

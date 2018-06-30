@@ -18,6 +18,8 @@
         class='flex-column align-items-stretch'>
 
         {{textarea
+          data-test-identity-textarea
+          id='identity-textarea'
           class='p-md m-b-md flex-grow has-resize-disabled'
           rows='4'
           value=identityToImport
@@ -28,17 +30,24 @@
         <div class='flex justify-content-end'>
           <div class='field is-grouped'>
             <p class='control'>
-              <button class='button' type='submit' value='Import'>
-                Import
-              </button>
-            </p>
-
-            <p class='control'>
               <button class='button is-primary' {{action 'toggleScanning'}}>
                 <span class='icon'>{{fa-icon 'qrcode' prefix='fas'}}</span>
                 <span>Scan</span>
               </button>
             </p>
+
+            <p class='control'>
+              <button class='button' type='submit' value='Import'>
+                Import
+              </button>
+            </p>
+
+            {{!-- <p class='control'>
+              <button class='button' {{action paste}}>
+                Paste
+              </button>
+            </p> --}}
+
           </div>
         </div>
       </form>

@@ -112,7 +112,7 @@ declare module 'libsodium-wrappers' {
       key: Uint8Array,
       nonce: Uint8Array
     ) : Uint8Array;
-    from_base64 (s: string) : Uint8Array;
+    from_base64 (s: string, variant: number) : Uint8Array;
     from_hex (s: string) : Uint8Array;
     from_string (s: string) : Uint8Array;
     memcmp (a: Uint8Array, b: Uint8Array) : boolean;

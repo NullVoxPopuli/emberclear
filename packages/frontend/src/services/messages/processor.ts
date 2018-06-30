@@ -1,15 +1,18 @@
+import { DS } from 'ember-data';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
 import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
+import Identity from 'emberclear/data/models/identity/model';
 
 import { decryptFrom } from 'emberclear/src/utils/nacl/utils';
-import { fromString, fromHex, toString } from 'emberclear/src/utils/string-encoding';
+import { fromHex, toString, fromBase64 } from 'emberclear/src/utils/string-encoding';
 
 export default class MessageProcessor extends Service {
   // anything which *must* be merged to prototype here
   // toast = service('toast');
+  @service store!: DS.Store;
   @service identity!: IdentityService;
   @service relayConnection!: RelayConnection;
 
@@ -23,21 +26,62 @@ export default class MessageProcessor extends Service {
     // and save it. ember-data and the routing
     // will take care of where to place the
     // message in the UI
+
+    await this.importMessage(decrypted);
   }
 
   async decryptMessage(message: string, senderPublicKey: Uint8Array, recipientPrivateKey: Uint8Array) {
-    const messageBytes = fromHex(message);
+    const messageBytes = await fromBase64(message);
 
     const decrypted = await decryptFrom(
       messageBytes, senderPublicKey, recipientPrivateKey
     );
 
+    // TODO: consider a binary format, instead of
+    //       converting to/from string and json
     const payload = toString(decrypted);
     const data = JSON.parse(payload);
 
     return data;
   }
 
+  async importMessage(json: RelayJson) {
+    const { message: msg, sender: senderInfo } = json;
+
+    const sender = await this.findOrCreateSender(senderInfo);
+
+    const message = this.store.createRecord('message', {
+      from: sender.name,
+      sentAt: json.time_sent,
+      receivedAt: new Date(),
+      body: msg.body,
+      channel: msg.channel,
+      thread: msg.thread,
+      contentType: msg.contentType
+    });
+
+    message.save();
+
+    return message;
+  }
+
+  async findOrCreateSender(senderData: RelayJson["sender"]): Promise<Identity> {
+    const { name, uid, location } = senderData;
+    const publicKey = fromHex(uid);
+
+    let record = await this.store.findRecord('identity', uid);
+
+    if (!record) {
+      return this.store.createRecord('identity', {
+        publicKey,
+        name
+      });
+    }
+
+    record.set('name', name);
+
+    return record;
+  }
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

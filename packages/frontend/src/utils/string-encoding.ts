@@ -1,9 +1,12 @@
 import QRCode from 'qrcode';
 import libsodiumWrapper from 'libsodium-wrappers';
 
+import { libsodium } from 'emberclear/src/utils/nacl/utils';
+
 // for the utils, we don't care about wasm,
 // so the conversions don't need to be async
 const sodium = libsodiumWrapper.sodium;
+
 
 export function toHex(array: Uint8Array): string {
   return sodium.to_hex(array);
@@ -13,12 +16,16 @@ export function fromHex(hex: string): Uint8Array {
   return sodium.from_hex(hex);
 }
 
-export function toBase64(array: Uint8Array): string {
+export async function toBase64(array: Uint8Array): Promise<string> {
+  const sodium = await libsodium();
+
   return sodium.to_base64(array, sodium.base64_variants.ORIGINAL);
 }
 
-export function fromBase64(base64: string): Uint8Array {
-  return sodium.from_base64(base64);
+export async function fromBase64(base64: string): Promise<Uint8Array> {
+  const sodium = await libsodium();
+
+  return sodium.from_base64(base64, sodium.base64_variants.ORIGINAL);
 }
 
 export function fromString(str: string): Uint8Array {
