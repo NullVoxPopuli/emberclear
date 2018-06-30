@@ -26,7 +26,7 @@ module('Unit | Utility | mnemonic', function() {
       then upper labor suspect kind
       embody climb hero very decide
       banana pigeon apple teach master
-      head season hood ability dove
+      head season hood ability fossil
     `.replace(/[ \n\r]+/g, ' ').trim();
 
     assert.deepEqual(result, expected);

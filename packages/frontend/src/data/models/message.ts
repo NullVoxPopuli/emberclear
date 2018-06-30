@@ -15,6 +15,7 @@ export default class Message extends Model {
 
   @attr('date') receivedAt?: Date;
   @attr('date') sentAt!: Date;
+  @attr('string') sendError?: string;
 
   @belongsTo('identity') sender?: Identity;
   // TODO: come up with different word.. medias is weird

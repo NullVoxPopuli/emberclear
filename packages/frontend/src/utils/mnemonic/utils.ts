@@ -1,4 +1,5 @@
 import { english } from './bip39/wordlists';
+import { genericHash } from 'emberclear/src/utils/nacl/utils';
 
 // https://crypto.stackexchange.com/a/50759/8245
 // BIP 39 describes the implementation of a mnemonic code or mnemonic sentence
@@ -45,17 +46,18 @@ export async function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Promise<U
   // success!
   if (shortCheck === fullCheck) return shortResult;
   if (fullCheck === checksum) return fullResult;
+  console.log('full', fullResult, 'short', shortResult);
 
   throw 'Checksum could not validate private key';
 }
 
 export async function computeChecksum(nums: Uint8Array): Promise<string> {
   const sum = nums.reduce((acc, v) => acc + v);
+  const arr32 = Uint32Array.from([sum]);
+  const arr8 = new Uint8Array(arr32.buffer, 0, 4);
 
-  const hashBuffer = await crypto.subtle.digest('SHA-256', Uint32Array.from([sum]));
-
-  const arr = new Uint8Array(hashBuffer);
-  const uint11Hash = toUint11Array(arr);
+  const hashBuffer = await genericHash(arr8);
+  const uint11Hash = toUint11Array(hashBuffer);
   const words = applyWords(uint11Hash);
 
   return words[0];

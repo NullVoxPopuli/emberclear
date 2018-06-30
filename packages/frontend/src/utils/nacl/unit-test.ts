@@ -1,5 +1,5 @@
 import * as nacl from './utils';
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 
 module('Unit | Utility | nacl', function() {
   test('libsodium uses wasm', async function(assert) {

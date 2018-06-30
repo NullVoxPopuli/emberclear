@@ -9,6 +9,12 @@ export async function libsodium(): Promise<ISodium> {
   return sodium;
 }
 
+export async function genericHash(arr: Uint8Array): Promise<Uint8Array> {
+  const sodium = await libsodium();
+
+  return sodium.crypto_generichash(32, arr);
+}
+
 export async function derivePublicKey(privateKey: Uint8Array): Promise<Uint8Array> {
   const sodium = await libsodium();
 

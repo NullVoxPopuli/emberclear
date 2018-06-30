@@ -10,7 +10,7 @@ import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
 
 import { encryptFor } from 'emberclear/src/utils/nacl/utils';
-import { toUint8Array, toBase64, fromBase64, toString, toHex } from 'emberclear/src/utils/string-encoding';
+import { toUint8Array, toBase64, toHex } from 'emberclear/src/utils/string-encoding';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
@@ -52,7 +52,7 @@ export default class MessageDispatcher extends Service {
 
     const encryptedMessage = await this.encryptMessage(payload, theirPublicKey, myPrivateKey);
 
-    this.relayConnection.send(uid, encryptedMessage);
+    this.relayConnection.send(uid, encryptedMessage, msg);
   }
 
   async encryptMessage(payload: any, theirPublicKey: Uint8Array, myPrivateKey: Uint8Array): Promise<string> {

@@ -1,6 +1,6 @@
 import { DS } from 'ember-data';
 import { run } from '@ember/runloop';
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -25,7 +25,7 @@ module('Acceptance | Identity Setup', function(hooks) {
       assert.equal(currentURL(), '/setup/new');
     });
 
-    module('name is not filled in', function(hooks) {
+    module('name is not filled in', function() {
       test('proceeding is disallowed', async function(assert) {
         await nameForm.clickNext();
 

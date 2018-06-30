@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 import QrScanner from 'qr-scanner';
-import { NoCameraError } from 'emberclear/src/utils/errors';
+// import { NoCameraError } from 'emberclear/src/utils/errors';
 
 // inspiration from previous work here:
 // https://github.com/NullVoxPopuli/tanqueReact/blob/master/js/components/-components/qr-scanner/index.jsx

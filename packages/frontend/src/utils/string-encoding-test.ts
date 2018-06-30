@@ -1,5 +1,5 @@
 import * as stringEncoding from './string-encoding';
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 
 module('Unit | Utility | String Encoding', function() {
 

@@ -4,6 +4,8 @@ import { Channel, Socket } from 'phoenix';
 
 import IdentityService from 'emberclear/services/identity/service';
 import MessageProcessor from 'emberclear/services/messages/processor';
+import Message from 'emberclear/data/models/message';
+
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
 const DEFAULT_RELAYS = {
@@ -36,10 +38,9 @@ export default class RelayConnection extends Service {
   //       Cons of Client Side Channels
   //       - more complicated logic for a problem that already been solved
   //
-  send(this: RelayConnection, to: string, data: string) {
+  send(this: RelayConnection, to: string, data: string, msg: Message) {
     const payload = { to, message: data };
     const channel = this.get('channel');
-    const toast = this.get('toast');
 
     if (!channel) {
       return console.error(this.intl.t('connection.errors.send.notConnected'));
@@ -47,18 +48,11 @@ export default class RelayConnection extends Service {
 
     return channel
       .push('chat', payload)
-      .receive("ok", (msg: string) => {
-        // TODO: mark the message as sent
-        //toast.info(this.intl.t('connection.log.push.ok', { msg }))
-      })
-      .receive("error", (reasons: any) => {
-        // relay error
-        const { reason } = reasons;
-
-        toast.error(this.intl.t('connection.log.push.error', { reasons: reason}));
-        console.error(reasons);
-      })
-      .receive("timeout", () => toast.info(this.intl.t('connection.log.push.timeout')) )
+      .receive("ok", () => msg.set('receivedAt', new Date()))
+      .receive("error", ({ reason }) => msg.set('sendError', reason))
+      .receive(
+        "timeout",
+        () => msg.set('sendError', this.intl.t('models.message.errors.timeout')));
   }
 
   // TODO: ensure not already connected

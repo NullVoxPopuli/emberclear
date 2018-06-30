@@ -52,6 +52,10 @@ models:
     name: Name
     publicKey: Public Key
 
+  message:
+    errors:
+      timeout: 'Sending timed out.'
+
 ui:
   invite:
     showProfile: Show QR Data

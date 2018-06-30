@@ -66,21 +66,26 @@ export default class MessageProcessor extends Service {
   }
 
   async findOrCreateSender(senderData: RelayJson["sender"]): Promise<Identity> {
-    const { name, uid, location } = senderData;
+    const { name, uid } = senderData;
     const publicKey = fromHex(uid);
 
-    let record = await this.store.findRecord('identity', uid);
+    try {
+      let record = await this.store.findRecord('identity', uid);
+      record.set('name', name);
 
-    if (!record) {
-      return this.store.createRecord('identity', {
+      return record;
+    } catch (e) {
+      let record = this.store.createRecord('identity', {
         publicKey,
         name
       });
+
+      record.save();
+
+      return record;
     }
 
-    record.set('name', name);
 
-    return record;
   }
 }
 
