@@ -5,7 +5,7 @@ import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
 
 import { decryptFrom } from 'emberclear/src/utils/nacl/utils';
-import { fromString, fromHex } from 'emberclear/src/utils/string-encoding';
+import { fromString, fromHex, toString } from 'emberclear/src/utils/string-encoding';
 
 export default class MessageProcessor extends Service {
   // anything which *must* be merged to prototype here
@@ -17,16 +17,25 @@ export default class MessageProcessor extends Service {
     const { uid, message } = socketData;
     const senderPublicKey = fromHex(uid);
     const recipientPrivateKey = this.identity.privateKey!;
-    const messageBytes = fromString(message);
+
+    const decrypted = await this.decryptMessage(message, senderPublicKey, recipientPrivateKey);
+    // once received, parse it into a message,
+    // and save it. ember-data and the routing
+    // will take care of where to place the
+    // message in the UI
+  }
+
+  async decryptMessage(message: string, senderPublicKey: Uint8Array, recipientPrivateKey: Uint8Array) {
+    const messageBytes = fromHex(message);
 
     const decrypted = await decryptFrom(
       messageBytes, senderPublicKey, recipientPrivateKey
     );
 
-    // once received, parse it into a message,
-    // and save it. ember-data and the routing
-    // will take care of where to place the
-    // message in the UI
+    const payload = toString(decrypted);
+    const data = JSON.parse(payload);
+
+    return data;
   }
 
 }

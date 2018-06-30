@@ -46,15 +46,22 @@ export default class MessageDispatcher extends Service {
   async sendToUser(msg: Message, to: Identity) {
     const myPrivateKey = this.identity.privateKey as Uint8Array;
     const theirPublicKey = to.publicKey as Uint8Array;
-
-    const payload = this.messageToPayloadJson(msg);
-    const payloadString = JSON.stringify(payload);
-    const payloadBytes = toUint8Array(payloadString);
     const uid = toHex(theirPublicKey);
 
-    const encryptedMessage = await encryptFor(payloadBytes, myPrivateKey, theirPublicKey);
+    const payload = this.messageToPayloadJson(msg);
 
-    this.relayConnection.send(uid, toString(encryptedMessage));
+    const encryptedMessage = await this.encryptMessage(payload, theirPublicKey, myPrivateKey);
+
+    this.relayConnection.send(uid, encryptedMessage);
+  }
+
+  async encryptMessage(payload: any, theirPublicKey: Uint8Array, myPrivateKey: Uint8Array): Promise<string> {
+    const payloadString = JSON.stringify(payload);
+    const payloadBytes = toUint8Array(payloadString);
+
+    const encryptedMessage = await encryptFor(payloadBytes, theirPublicKey, myPrivateKey);
+
+    return toHex(encryptedMessage);
   }
 
   messageToPayloadJson(msg: Message) {

@@ -99,7 +99,7 @@ module.exports = function(defaults) {
 
   // libsodium
   app.import('node_modules/libsodium/dist/modules/libsodium.js');
-  app.import('node_modules/libsodium-wrappers/dist/modules/libsodium-wrappers.js');
+  app.import('node_modules/libsodium/dist/modules/libsodium-wrappers.js');
   app.import('vendor/shims/libsodium.js');
   app.import('vendor/shims/libsodium-wrappers.js');
 
