@@ -1,9 +1,11 @@
+import RSVP from 'rsvp';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
 
 import IdentityService from 'emberclear/services/identity/service';
 import MessageProcessor from 'emberclear/services/messages/processor';
+import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import Message from 'emberclear/data/models/message';
 
 import { toHex } from 'emberclear/src/utils/string-encoding';
@@ -18,6 +20,7 @@ const DEFAULT_RELAYS = {
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
   @service('messages/processor') processor!: MessageProcessor;
+  @service('messages/dispatcher') dispatcher!: MessageDispatcher;
   @service('notifications') toast!: Toast;
   @service('intl') intl!: Intl;
   @service identity!: IdentityService;
@@ -39,7 +42,7 @@ export default class RelayConnection extends Service {
   //       Cons of Client Side Channels
   //       - more complicated logic for a problem that already been solved
   //
-  send(this: RelayConnection, to: string, data: string, msg: Message) {
+  send(this: RelayConnection, to: string, data: string) {
     const payload = { to, message: data };
     const channel = this.get('channel');
 
@@ -47,13 +50,14 @@ export default class RelayConnection extends Service {
       return console.error(this.intl.t('connection.errors.send.notConnected'));
     }
 
-    return channel
-      .push('chat', payload)
-      .receive("ok", () => msg.set('receivedAt', new Date()))
-      .receive("error", ({ reason }) => msg.set('sendError', reason))
-      .receive(
-        "timeout",
-        () => msg.set('sendError', this.intl.t('models.message.errors.timeout')));
+    return new Promise((resolve, reject) => {
+      channel
+        .push('chat', payload)
+        .receive("ok", resolve)
+        .receive("error", reject)
+        .receive("timeout",
+          () => reject({ reason: this.intl.t('models.message.errors.timeout') }));
+    });
   }
 
   // TODO: ensure not already connected
@@ -105,6 +109,9 @@ export default class RelayConnection extends Service {
     this.subscribeToChannel(`user:${publicKey}`);
 
     this.set('connected', true);
+
+    // ping for user statuses
+    this.dispatcher.pingAll();
   }
 
   subscribeToChannel(this: RelayConnection, channelName: string) {

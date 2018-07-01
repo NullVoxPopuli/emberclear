@@ -1,11 +1,11 @@
 @mixin flexUtils($modifier) {
   .flex-row#{$modifier} {
-    display: flex;
+    display: flex !important;
     flex-direction: row;
   }
 
   .flex-column#{$modifier} {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
   }
 

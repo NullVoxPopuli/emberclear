@@ -9,6 +9,7 @@ export default class Message extends Model {
   @attr('string') to!: string;
   @attr('string') body!: string;
   @attr('string') contentType!: string;
+  @attr('string') type!: string;
 
   @attr('string') channel!: string;
   @attr('string') thread!: string;

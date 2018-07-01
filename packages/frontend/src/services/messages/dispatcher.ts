@@ -8,27 +8,40 @@ import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';
 import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
+import StatusManager from 'emberclear/services/status-manager';
 
 import { encryptFor } from 'emberclear/src/utils/nacl/utils';
 import { toUint8Array, toBase64, toHex } from 'emberclear/src/utils/string-encoding';
+import { build as toPayloadJson } from './builder';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
   @service store!: DS.Store;
   @service relayConnection!: RelayConnection;
   @service identity!: IdentityService;
+  @service statusManager!: StatusManager;
 
   sendMessage(messageText: string) {
     let msg = this.store.createRecord('message', {
       from: this.identity.name,
       body: messageText,
       sentAt: new Date(),
-      receivedAt: new Date()
+      type: 'chat'
     });
 
     msg.save();
 
     this.sendToAll(msg)
+  }
+
+  async pingAll() {
+    const ping = this.store.createRecord('message', {
+      from: this.identity.name,
+      sentAt: new Date(),
+      type: 'ping'
+    })
+
+    this.sendToAll(ping);
   }
 
   // the downside to end-to-end encryption
@@ -48,11 +61,25 @@ export default class MessageDispatcher extends Service {
     const theirPublicKey = to.publicKey as Uint8Array;
     const uid = toHex(theirPublicKey);
 
-    const payload = this.messageToPayloadJson(msg);
+    const payload = toPayloadJson(msg, this.identity.record!);
 
     const encryptedMessage = await this.encryptMessage(payload, theirPublicKey, myPrivateKey);
 
-    this.relayConnection.send(uid, encryptedMessage, msg);
+    try {
+      await this.relayConnection.send(uid, encryptedMessage);
+
+      msg.set('receivedAt', new Date());
+    } catch (e) {
+      console.error(e);
+      const { reason, to_uid: toUid } = e;
+      const error: string = reason;
+
+      msg.set('sendError', error);
+
+      if (error.match(/not found/)) {
+        this.statusManager.markOffline(toUid)
+      }
+    }
   }
 
   async encryptMessage(payload: any, theirPublicKey: Uint8Array, myPrivateKey: Uint8Array): Promise<string> {
@@ -62,26 +89,6 @@ export default class MessageDispatcher extends Service {
     const encryptedMessage = await encryptFor(payloadBytes, theirPublicKey, myPrivateKey);
 
     return await toBase64(encryptedMessage);
-  }
-
-  messageToPayloadJson(msg: Message): RelayJson {
-    return {
-      type: 'chat',
-      client: '',
-      client_version: '',
-      time_sent: msg.sentAt,
-      sender: {
-        name: msg.from,
-        uid: toHex(this.identity.publicKey!),
-        location: ''
-      },
-      message: {
-        channel: msg.channel,
-        thread: msg.thread,
-        body: msg.body,
-        contentType: msg.contentType
-      }
-    }
   }
 }
 

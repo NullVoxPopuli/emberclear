@@ -3,6 +3,13 @@ import { attr } from '@ember-decorators/data';
 import { computed } from '@ember-decorators/object';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
+export const Status = {
+  ONLINE: 'online',
+  OFFLINE: 'offline',
+  AWAY: 'away',
+  BUSY: 'busy'
+};
+
 // TODO: https://github.com/localForage/localForage
 // TODO: custom adapter for storage: https://guides.emberjs.com/v3.1.0/models/customizing-adapters/
 // TODO: example implementation: https://github.com/mydea/ember-indexeddb/blob/master/addon/adapters/indexed-db.js
@@ -10,6 +17,7 @@ export default class Identity extends Model {
   @attr() name?: string;
   @attr() publicKey?: Uint8Array;
   @attr() privateKey?: Uint8Array;
+  @attr() onlineStatus?: string;
 
   @computed('publicKey')
   get publicKeyAsHex() {

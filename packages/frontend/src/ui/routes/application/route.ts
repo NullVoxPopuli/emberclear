@@ -1,3 +1,4 @@
+import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
@@ -26,6 +27,14 @@ export default class ApplicationRoute extends Route {
     if (loader) {
       loader.remove();
     }
+  }
+
+  async model() {
+    if (this.fastboot.isFastBoot) return;
+
+    const contacts = this.store.findAll('identity', { backgroundReload: true });
+
+    return RSVP.hash({ contacts });
   }
 
   async afterModel() {

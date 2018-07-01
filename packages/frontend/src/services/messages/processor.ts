@@ -5,6 +5,7 @@ import { service } from '@ember-decorators/service';
 import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
 import Identity from 'emberclear/data/models/identity/model';
+import StatusManager from 'emberclear/services/status-manager';
 
 import { decryptFrom } from 'emberclear/src/utils/nacl/utils';
 import { fromHex, toString, fromBase64 } from 'emberclear/src/utils/string-encoding';
@@ -15,6 +16,7 @@ export default class MessageProcessor extends Service {
   @service store!: DS.Store;
   @service identity!: IdentityService;
   @service relayConnection!: RelayConnection;
+  @service statusManager!: StatusManager;
 
   async receive(socketData: RelayMessage) {
     const { uid, message } = socketData;
@@ -46,18 +48,21 @@ export default class MessageProcessor extends Service {
   }
 
   async importMessage(json: RelayJson) {
-    const { message: msg, sender: senderInfo } = json;
+    const { type, message: msg, sender: senderInfo } = json;
 
     const sender = await this.findOrCreateSender(senderInfo);
 
+    this.statusManager.markOnline(sender);
+
     const message = this.store.createRecord('message', {
+      type,
       from: sender.name,
       sentAt: json.time_sent,
       receivedAt: new Date(),
       body: msg.body,
       channel: msg.channel,
       thread: msg.thread,
-      contentType: msg.contentType
+      contentType: msg.contentType,
     });
 
     message.save();

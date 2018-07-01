@@ -1,0 +1,17 @@
+.fixed-to-side-for-sidebar {
+  // position: fixed;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.is-sidebar-hidden {
+  // display: none;
+  width: 0;
+  opacity: 0;
+}
+
+.is-sidebar-visible {
+  // display: flex;
+  width: 150px;
+  opacity: 1;
+}

@@ -6,7 +6,25 @@
   </a>
 </ServiceWorkerUpdateNotify>
 
+<div class='flex-row flex-grow m-none m-b-none'>
+  {{#if identity.isLoggedIn}}
+    <Sidebar class='
+      flex transition-all
+      {{if sidebar.isShown
+        "is-sidebar-visible"
+        "is-sidebar-hidden"}}'
+      @contacts={{model.contacts}} />
 
-{{outlet}}
+    <HamburgerButton
+      @class='fixed-to-side-for-sidebar flex'
+      @onClick={{action toggleSidebar}}
+      @isActive={{sidebar.isShown}} />
+  {{/if}}
+
+
+  <div class='flex-column flex-grow'>
+    {{outlet}}
+  </div>
+</div>
 
 {{multiple-from-elsewhere name='modals'}}

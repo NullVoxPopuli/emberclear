@@ -25,7 +25,7 @@ export default class ChatRoute extends Route {
   async model() {
     if (this.fastboot.isFastBoot) return;
 
-    const records = this.store.findAll('message', { backgroundReload: true });
+    const records = await this.store.findAll('message', { backgroundReload: true });
 
     return RSVP.hash({ messages: records });
   }

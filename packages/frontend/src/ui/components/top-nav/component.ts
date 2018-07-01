@@ -11,6 +11,8 @@ export default class TopNav extends Component {
   @service router!: Registry['router'];
   @service fastboot!: FastBoot;
 
+  isTouchMenuVisible = false;
+
   @alias('router.currentRouteName') routeName!: string;
   @alias('identity.isLoggedIn') isLoggedIn!: boolean;
   @equal('routeName', 'index') isApplication!: boolean;
@@ -32,19 +34,9 @@ export default class TopNav extends Component {
     return '';
   }
 
-  isTouchMenuVisible = false;
-
-  @computed('isTouchMenuVisible')
-  get touchMenuClasses(this: TopNav) {
-    if (this.isTouchMenuVisible) {
-      return 'is-active';
-    }
-
-    return '';
-  }
-
   @action
   toggleTouchMenu(this: TopNav) {
     this.set('isTouchMenuVisible', !this.isTouchMenuVisible);
   }
+
 }

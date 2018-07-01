@@ -41,7 +41,10 @@
         </button>
 
         <CopyButton
-          class='button has-status-tip {{if copied "is-active"}}'
+          class='
+            button has-status-tip
+            {{if copied "is-active"}}
+            {{if showQrCodeMobile "is-hidden-mobile"}}'
           @success={{action 'copySuccess'}}
           @clipboardTarget='#my-identity'>
 
