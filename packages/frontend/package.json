@@ -94,7 +94,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
-    "ember-cli": "github:ember-cli/ember-cli#9d7fd5f3fea476944a4e9ddc38f1f7da57fee0ca",
+    "ember-cli": "github:ember-cli/ember-cli#bd36eca668f8fab21cc9cdfdaae97ffcdc1de9ee",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-dependency-checker": "^2.0.0",
@@ -107,12 +107,12 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
-    "ember-data": "github:emberjs/data#cd99c94921e67ac512a8a43dad3ac0987f11b473",
+    "ember-data": "github:emberjs/data#498c533d386085412ac97d0061022ef032d950ae",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.0.0",
-    "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/351d93d36a22cc5a1977eb06b4bd27ad9db9812a.tgz",
+    "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/5e98771ed0c0a78c325521660d9d875b4460690b.tgz",
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
     "qunit-dom": "^0.6.2"

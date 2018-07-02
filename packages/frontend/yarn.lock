@@ -3348,9 +3348,9 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     resolve "^1.3.3"
     semver "^5.3.0"
 
-"ember-cli@github:ember-cli/ember-cli#9d7fd5f3fea476944a4e9ddc38f1f7da57fee0ca":
+"ember-cli@github:ember-cli/ember-cli#bd36eca668f8fab21cc9cdfdaae97ffcdc1de9ee":
   version "3.2.0-beta.2"
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/9d7fd5f3fea476944a4e9ddc38f1f7da57fee0ca"
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/bd36eca668f8fab21cc9cdfdaae97ffcdc1de9ee"
   dependencies:
     amd-name-resolver "^1.2.0"
     babel-plugin-transform-es2015-modules-amd "^6.24.0"
@@ -3551,9 +3551,9 @@ ember-concurrency@^0.8.19:
     ember-cli-babel "^6.8.2"
     ember-maybe-import-regenerator "^0.1.5"
 
-"ember-data@github:emberjs/data#cd99c94921e67ac512a8a43dad3ac0987f11b473":
-  version "3.3.0-canary"
-  resolved "https://codeload.github.com/emberjs/data/tar.gz/cd99c94921e67ac512a8a43dad3ac0987f11b473"
+"ember-data@github:emberjs/data#498c533d386085412ac97d0061022ef032d950ae":
+  version "3.4.0-canary"
+  resolved "https://codeload.github.com/emberjs/data/tar.gz/498c533d386085412ac97d0061022ef032d950ae"
   dependencies:
     "@ember/ordered-set" "^1.0.0"
     amd-name-resolver "0.0.7"
@@ -3567,7 +3567,7 @@ ember-concurrency@^0.8.19:
     broccoli-babel-transpiler "^6.0.0"
     broccoli-debug "^0.6.2"
     broccoli-file-creator "^1.0.0"
-    broccoli-funnel "^1.2.0"
+    broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^2.0.0"
     broccoli-rollup "^2.1.0"
     calculate-cache-key-for-tree "^1.1.0"
@@ -3850,9 +3850,9 @@ ember-service-worker@^0.6.12:
     hash-for-dep "^1.2.3"
     rollup-plugin-replace "^1.1.1"
 
-"ember-source@https://s3.amazonaws.com/builds.emberjs.com/canary/shas/351d93d36a22cc5a1977eb06b4bd27ad9db9812a.tgz":
+"ember-source@https://s3.amazonaws.com/builds.emberjs.com/canary/shas/5e98771ed0c0a78c325521660d9d875b4460690b.tgz":
   version "3.4.0-canary"
-  resolved "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/351d93d36a22cc5a1977eb06b4bd27ad9db9812a.tgz#58c84961a69dfd1ca88791e108232e30b545c069"
+  resolved "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/5e98771ed0c0a78c325521660d9d875b4460690b.tgz#3f5157787d9396a5a917f47d11c5623bb33eef57"
   dependencies:
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^2.0.0"
