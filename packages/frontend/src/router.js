@@ -9,7 +9,8 @@ const Router = EmberRouter.extend(RouterScroll, {
 
 Router.map(function() {
   this.route('chat', function() {
-    this.route('privately-with', { path: '/privately-with/:' });
+    this.route('privately-with', { path: '/privately-with/:uId' });
+    this.route('in-channel', { path: '/in-channel/:channelId'});
   });
 
   this.route('setup', function() {

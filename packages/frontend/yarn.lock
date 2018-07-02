@@ -3290,7 +3290,7 @@ ember-cli-tree-shaker@^0.2.0:
 
 "ember-cli-typescript@github:typed-ember/ember-cli-typescript#mu":
   version "1.3.2"
-  resolved "https://codeload.github.com/typed-ember/ember-cli-typescript/tar.gz/bca7e1c1c7773c9206b3ec94c67040ea46fe9d05"
+  resolved "https://codeload.github.com/typed-ember/ember-cli-typescript/tar.gz/0d5d5e337fd670fd3a0f669215392af2eb6d5487"
   dependencies:
     broccoli-debug "^0.6.4"
     broccoli-funnel "^2.0.1"

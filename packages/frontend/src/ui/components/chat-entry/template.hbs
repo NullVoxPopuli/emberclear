@@ -7,10 +7,12 @@
   </div>
 
   <div class='control flex-grow'>
-    {{input
+    <input
       class='input'
-      value=text
-    }}
+      value={{text}}
+      oninput={{action  onInputChange}}
+      placeholder='Send a message to {{messageTarget}}'
+    />
   </div>
 
   <div class='control'>

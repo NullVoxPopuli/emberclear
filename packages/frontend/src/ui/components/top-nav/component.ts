@@ -1,3 +1,4 @@
+import DS from 'ember-data';
 import Component from '@ember/component';
 import { Registry } from '@ember/service';
 import { service } from '@ember-decorators/service';
