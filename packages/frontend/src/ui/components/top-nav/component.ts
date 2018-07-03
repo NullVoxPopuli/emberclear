@@ -6,11 +6,13 @@ import { action, computed } from '@ember-decorators/object';
 import { alias, equal } from '@ember-decorators/object/computed';
 
 import IdentityService from 'emberclear/services/identity/service';
+import Sidebar from 'emberclear/services/sidebar';
 
 export default class TopNav extends Component {
   @service identity!: IdentityService;
   @service router!: Registry['router'];
   @service fastboot!: FastBoot;
+  @service sidebar!: Sidebar;
 
   isTouchMenuVisible = false;
 
@@ -38,6 +40,11 @@ export default class TopNav extends Component {
   @action
   toggleTouchMenu(this: TopNav) {
     this.set('isTouchMenuVisible', !this.isTouchMenuVisible);
+  }
+
+  @action
+  toggleSidebar(this: ApplicationController) {
+    this.sidebar.toggle();
   }
 
 }

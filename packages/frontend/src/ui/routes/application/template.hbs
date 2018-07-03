@@ -8,16 +8,19 @@
 
 <div class='flex-row flex-grow m-none m-b-none'>
   {{#if identity.isLoggedIn}}
-    <div class='sidebar-container flex'>
-      <Sidebar class='
-        flex transition-all
-        {{if sidebar.isShown
-          "is-sidebar-visible"
-          "is-sidebar-hidden"}}'
-        @contacts={{model.contacts}} />
+    <div class='
+      sidebar-container flex-row transition-all
+      align-items-stretch
+      {{if sidebar.isShown
+        "is-sidebar-visible"
+        "is-sidebar-hidden"}}'>
+      <Sidebar class='flex' @contacts={{model.contacts}} />
 
       <HamburgerButton
-        @class='fixed-to-side-for-sidebar flex'
+        @class='
+          fixed-to-side-for-sidebar
+          is-hidden-touch
+          is-flex-desktop'
         @onClick={{action toggleSidebar}}
         @isActive={{sidebar.isShown}} />
     </div>

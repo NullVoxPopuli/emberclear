@@ -1,11 +1,19 @@
 <div class='navbar is-fixed-top has-shadow {{if isChat "is-primary"}}'>
   <div class='container {{if isChat "is-fluid"}}'>
     <div class='navbar-brand'>
+
+      {{#if isLoggedIn}}
+        <div class='navbar-item is-hidden-desktop-only'>
+          <HamburgerButton
+            @class='flex'
+            @onClick={{action toggleSidebar}}
+            @isActive={{sidebar.isShown}} />
+        </div>
+      {{/if}}
+
       {{#link-to 'application' class=(concat 'navbar-item ' (if isChat textColor))}}
         {{t 'appname'}}
       {{/link-to}}
-
-
 
       <CurrentChatName class='navbar-item chat-name' as |isVisible name|>
         {{#if isVisible}}
