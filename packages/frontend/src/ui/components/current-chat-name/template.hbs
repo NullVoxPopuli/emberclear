@@ -1,3 +1,7 @@
-{{#unless chatName.isPending}}
-  {{chatName.result}}
-{{/unless}}
+{{#if has-block}}
+  {{yield isChatVisible chatName.result}}
+{{else}}
+  {{#unless chatName.isPending}}
+    {{chatName.result}}
+  {{/unless}}
+{{/if}}

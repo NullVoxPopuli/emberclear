@@ -72,6 +72,11 @@ body {
   margin: 0;
 }
 
+.navbar-item .chat-name, .navbar-item.chat-name {
+  font-weight: bold;
+  border-left: 1px solid $white-ter;
+}
+
 .chat-entry {
   input {
     padding-left: 10px;

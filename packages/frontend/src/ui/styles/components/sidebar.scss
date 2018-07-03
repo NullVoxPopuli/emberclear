@@ -2,6 +2,8 @@
   // position: fixed;
   width: 2.5rem;
   height: 2.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .is-sidebar-hidden {
@@ -14,4 +16,26 @@
   // display: flex;
   width: 150px;
   opacity: 1;
+}
+
+@include mobile {
+  .is-sidebar-hidden {
+    height: 2.5rem;
+  }
+
+  .sidebar-container {
+    z-index: 100;
+    background: white;
+    position: fixed;
+
+    left: 0;
+    min-width: 2.5rem;
+    box-shadow: 2px 6px 10px rgba(0,0,0,0.5);
+
+    .is-sidebar-visible {
+      height: 100vh;
+
+    }
+  }
+
 }

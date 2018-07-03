@@ -35,6 +35,14 @@ export default class extends Component {
     return '';
   }
 
+  @computed('chatName.isPending', 'chatName.result')
+  get isChatVisible() {
+    return (
+      !this.chatName.isPending &&
+      this.chatName.result !== ''
+    );
+  }
+
   getName(uid: string) {
     const promise = new RSVP.Promise(async (resolve, reject) => {
       const record = await this.store.findRecord('identity', uid);

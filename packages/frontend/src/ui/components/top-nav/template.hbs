@@ -7,7 +7,12 @@
 
 
 
-      <h1 class='navbar-item'>Chat: <CurrentChatName /></h1>
+      <CurrentChatName class='navbar-item chat-name' as |isVisible name|>
+        {{#if isVisible}}
+            {{name}}
+        {{/if}}
+      </CurrentChatName>
+
 
       <HamburgerButton
         @onClick={{action toggleTouchMenu}}
