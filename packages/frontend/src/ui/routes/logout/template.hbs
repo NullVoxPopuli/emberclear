@@ -1,22 +1,20 @@
 <section class="hero is-danger is-large">
   <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        {{t 'ui.logout.title'}}
-      </h1>
-      <h2 class="subtitle">
-        {{t 'ui.logout.warning'}}
-        {{#link-to 'settings'}}
-          {{t 'ui.logout.theSettingsPage'}}
-        {{/link-to}}
-      </h2>
+    <h1 class="title">
+      {{t 'ui.logout.title'}}
+    </h1>
+    <h2 class="subtitle">
+      {{t 'ui.logout.warning'}}
+      {{#link-to 'settings'}}
+        {{t 'ui.logout.theSettingsPage'}}
+      {{/link-to}}
+    </h2>
 
-      <div class='flex justify-content-end'>
-        <a class='button' {{action logout}}>
-          <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
-          <span>{{t 'ui.logout.confirm'}}</span>
-        </a>
-      </div>
+    <div class='flex justify-content-end'>
+      <a class='button' {{action logout}}>
+        <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
+        <span>{{t 'ui.logout.confirm'}}</span>
+      </a>
     </div>
   </div>
 </section>
