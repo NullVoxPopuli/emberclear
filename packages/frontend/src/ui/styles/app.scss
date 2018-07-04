@@ -67,7 +67,8 @@ body {
 }
 
 .overflows {
-  overflow: auto;
+  // overflow: auto;
+  overflow-y: auto;
 }
 .no-overflow {
   overflow: hidden;
