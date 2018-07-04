@@ -1,0 +1,11 @@
+@mixin default-transition {
+  transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045);
+}
+
+@mixin default-transition-fast {
+  transition: all 0.1s cubic-bezier(0.6, 0, 0.735, 0.045);
+}
+
+.transition-all {
+  @include default-transition;
+}

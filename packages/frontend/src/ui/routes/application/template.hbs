@@ -6,15 +6,16 @@
   </a>
 </ServiceWorkerUpdateNotify>
 
-<div class='flex-row flex-grow m-none m-b-none'>
+<div class='is-flex-desktop flex-grow m-none m-b-none no-overflow'>
   {{#if identity.isLoggedIn}}
     <div class='
-      sidebar-container flex-row transition-all
+      sidebar-container flex-row transition-all is-fullheight
       align-items-stretch
       {{if sidebar.isShown
         "is-sidebar-visible"
         "is-sidebar-hidden"}}'>
-      <Sidebar class='flex' @contacts={{model.contacts}} />
+
+      <Sidebar class='sidebar-wrapper' @contacts={{model.contacts}} />
 
       <HamburgerButton
         @class='
@@ -24,11 +25,15 @@
         @onClick={{action toggleSidebar}}
         @isActive={{sidebar.isShown}} />
     </div>
-
   {{/if}}
 
 
-  <div class='flex-column flex-grow'>
+  <div class='
+    flex-column flex-grow
+    is-fullheight overflows
+    {{if sidebar.isShown
+      "is-sidebar-visible"
+      "is-sidebar-hidden"}}'>
     {{outlet}}
   </div>
 </div>

@@ -1,21 +1,7 @@
-//
-// .is-sidebar-hidden {
-//   display: none;
-//   // width: 0;
-//   opacity: 0;
-//   left: -150px;
-// }
-//
-// .is-sidebar-visible {
-//   display: flex;
-//   // width: 150px;
-//   left: 0;
-//   opacity: 1;
-// }
 .sidebar-container {
   background: white;
-  z-index: 100;
-  box-shadow: 2px 6px 10px rgba(0,0,0,0.5);
+  z-index: 29;
+  box-shadow: $box-shadow;
   min-width: 250px;
 
   &.is-sidebar-visible {
@@ -24,20 +10,19 @@
 
   &.is-sidebar-hidden {
     left: -250px;
+    // box-shadow: 0 0 0;
   }
 
   aside {
     height: 100vh;
   }
-
 }
 
 @include mobile {
   .sidebar-container {
     position: fixed;
-    top: 68px;
+    top: 54px;
     min-width: 200px;
-
 
     &.is-sidebar-hidden {
       left: -200px;
@@ -48,36 +33,40 @@
 @include tablet {
   .sidebar-container {
     position: fixed;
-    top: 70px;
+    top: 54px;
   }
 }
 
 @include desktop {
   .sidebar-container {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 70px;
-    min-width: 220px;
+    position: static;
+    @include default-transition;
 
-    &.is-sidebar-hidden {
-      min-width: 0;
-
-      aside {
-        position: fixed;
-        left: -220px;
-        opacity: 0;
-      }
-    }
-
-    aside {
-      opacity: 1;
-      position: fixed;
-      left: 0;
-      transition: all 0.2s linear;
+    .sidebar-wrapper {
+      width: 100%;
+      @include default-transition;
     }
 
     .fixed-to-side-for-sidebar {
-      // margin-left: 100px;
+      width: 3.25rem;
+    }
+
+    &.is-sidebar-hidden {
+      min-width: 3.25rem;
+      width: 3.25rem;
+
+      .sidebar-wrapper {
+        margin-left: -600%;
+      }
+    }
+
+    &.is-sidebar-visible {
+      min-width: inherit;
+      width: 16rem;
+
+      .sidebar-wrapper {
+        margin-left: 0rem;
+      }
     }
   }
 }

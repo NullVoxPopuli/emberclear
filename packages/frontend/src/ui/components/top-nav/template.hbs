@@ -3,7 +3,7 @@
     <div class='navbar-brand'>
 
       {{#if isLoggedIn}}
-        <div class='navbar-item is-hidden-desktop-only'>
+        <div class='is-hidden-desktop'>
           <HamburgerButton
             @class='flex'
             @onClick={{action toggleSidebar}}
@@ -15,9 +15,11 @@
         {{t 'appname'}}
       {{/link-to}}
 
-      <CurrentChatName class='navbar-item chat-name' as |isVisible name|>
+      <CurrentChatName class='navbar-item' as |isVisible name|>
         {{#if isVisible}}
+          <span class='chat-name'>
             {{name}}
+          </span>
         {{/if}}
       </CurrentChatName>
 

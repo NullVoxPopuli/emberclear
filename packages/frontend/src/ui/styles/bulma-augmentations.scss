@@ -3,6 +3,10 @@
   transition-property: all;
   transition-duration: 0.2s;
 
+  &.has-shadow {
+    box-shadow: $box-shadow;
+  }
+
   a {
     color: $navbar-item-color;
     transition-property: all;
@@ -35,5 +39,11 @@
   .modal-content, .modal-background, .box {
     transition-property: all;
     transition-duration: 1s;
+  }
+}
+
+@include desktop {
+  .navbar-dropdown {
+    // box-shadow: $navbar-dropdown-boxed-shadow;
   }
 }

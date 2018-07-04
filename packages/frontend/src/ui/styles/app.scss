@@ -22,6 +22,14 @@ $tablet: 480px;
 $desktop: 768px + (2 * $gap);
 $widescreen: 1152px + (2 * $gap);
 $fullhd: 1344px + (2 * $gap);
+$radius-small: 0.2rem;
+
+$box-shadow: 0 0 2px 2px rgba(0,0,0,0.12);
+$dropdown-content-shadow: $box-shadow;
+$dropdown-content-radius: $radius-small;
+
+$navbar-dropdown-radius: $radius-small;
+$navbar-dropdown-boxed-shadow: $box-shadow;
 
 @import 'node_modules/bulma/bulma';
 
@@ -33,6 +41,7 @@ $tablet: 480px;
 @import "utility/borders";
 @import "utility/flex";
 @import "utility/width";
+@import "utility/transitions";
 @import "components/hover-tip";
 @import "components/messages";
 @import "components/sidebar";
@@ -57,8 +66,19 @@ body {
   height: 100vh;
 }
 
+.overflows {
+  overflow: auto;
+}
+.no-overflow {
+  overflow: hidden;
+}
+
 .has-resize-disabled {
   resize: none;
+}
+
+.sticky {
+  position: sticky;
 }
 
 .notices {
@@ -77,13 +97,13 @@ body {
   border-left: 1px solid $white-ter;
 }
 
+.chat-container {
+  max-height: calc(100% - 50px);
+}
+
 .chat-entry {
   input {
     padding-left: 10px;
     padding-right: 10px;
   }
-}
-
-.transition-all {
-  transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045);
 }

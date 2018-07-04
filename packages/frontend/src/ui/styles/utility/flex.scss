@@ -12,6 +12,13 @@
   .flex-grow#{$modifier} { flex-grow: 1; }
   .flex#{$modifier} { display: flex; }
 
+  @for $i from 0 through 20 {
+    .flex-width-#{$i * 5}#{$modifier} {
+      flex-basis: #{$i * 5%};
+    }
+  }
+
+
   .align-items-start#{$modifier} { align-items: flex-start; }
   .align-items-end#{$modifier} { align-items: flex-end; }
   .align-items-center#{$modifier} { align-items: center; }
@@ -23,8 +30,9 @@
   .justify-content-space-between#{$modifier} { justify-content: space-between; }
   .justify-content-space-around#{$modifier} { justify-content: space-around; }
   .justify-content-space-evenly#{$modifier} { justify-content: space-evenly; }
-
 }
+
+
 
 @include mobile {
   @include flexUtils('-mobile');
