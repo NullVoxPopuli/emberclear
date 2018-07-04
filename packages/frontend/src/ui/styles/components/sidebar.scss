@@ -21,7 +21,7 @@
 @include mobile {
   .sidebar-container {
     position: fixed;
-    top: 54px;
+    top: 52px;
     min-width: 200px;
 
     &.is-sidebar-hidden {
@@ -33,7 +33,7 @@
 @include tablet {
   .sidebar-container {
     position: fixed;
-    top: 54px;
+    top: 52px;
   }
 }
 
