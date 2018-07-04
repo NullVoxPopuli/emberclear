@@ -1,4 +1,7 @@
 // https://github.com/jgthms/bulma/blob/master/sass/components/navbar.sass
+.container {
+  width: auto !important;
+}
 .navbar {
   transition-property: all;
   transition-duration: 0.2s;
