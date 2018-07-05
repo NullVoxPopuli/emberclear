@@ -58,7 +58,8 @@ module.exports = function(defaults) {
       icons: {
         'free-solid-svg-icons': [
           'qrcode', 'user-circle', 'address-book', 'sliders-h', 'sign-out-alt',
-          'dot-circle'
+          'dot-circle',
+          'plus'
         ],
       },
     },

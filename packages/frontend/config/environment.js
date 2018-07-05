@@ -35,6 +35,10 @@ module.exports = function(environment) {
       defaultLocale: 'en-us',
     },
 
+    fontawesome: {
+      defaultPrefix: 'fas' // free-and-solid
+    },
+
     // routerScroll: {
     //   scrollElement: 'body',
     //   // targetElement: '#emberclear-topnav',
