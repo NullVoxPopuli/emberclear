@@ -59,7 +59,8 @@ module.exports = function(defaults) {
         'free-solid-svg-icons': [
           'qrcode', 'user-circle', 'address-book', 'sliders-h', 'sign-out-alt',
           'dot-circle',
-          'plus'
+          'plus',
+          'code', 'desktop', 'bed', 'video'
         ],
       },
     },

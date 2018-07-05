@@ -1,0 +1,19 @@
+<div class="dropdown-trigger">
+  <button class="button" {{action toggleMenu}}>
+    {{#if hasButtonText}}
+      <span>{{@buttonText}}</span>
+    {{/if}}
+
+    {{#if hasButtonIcon}}
+      <span class="icon is-small">
+        {{fa-icon @buttonIcon}}
+      </span>
+    {{/if}}
+  </button>
+</div>
+
+<div class="dropdown-menu">
+  <div class="dropdown-content">
+    {{yield}}
+  </div>
+</div>
