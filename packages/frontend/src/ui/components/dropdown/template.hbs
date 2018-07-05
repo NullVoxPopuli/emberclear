@@ -1,5 +1,5 @@
 <div class="dropdown-trigger">
-  <button class="button" {{action toggleMenu}}>
+  <a class="button" {{action toggleMenu}}>
     {{#if hasButtonText}}
       <span>{{@buttonText}}</span>
     {{/if}}
@@ -9,7 +9,7 @@
         {{fa-icon @buttonIcon}}
       </span>
     {{/if}}
-  </button>
+  </a>
 </div>
 
 <div class="dropdown-menu">
