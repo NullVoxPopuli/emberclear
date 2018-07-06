@@ -4,10 +4,12 @@ import { action, computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
+import Identity from 'emberclear/data/models/identity/model';
 
 export default class MessageEntry extends Component {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
 
+  to?: Identity;
   // value from the input field
   text?: string;
   // disable the text field while sending
