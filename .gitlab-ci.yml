@@ -53,7 +53,7 @@ the-everything-stage-for-speed:
 
     -    time wget https://github.com/netlify/netlifyctl/releases/download/v$NETLIFY_CLI_VERSION/netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
     -    time tar -xf netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
-    -    time ./netlifyctl -y deploy --name emberclear --access-token $NETLIFY_ACCESS_TOKEN --publish-directory packages/frontend/dist
+    -    time ./netlifyctl -y deploy --name emberclear --access-token $NETLIFY_ACCESS_TOKEN --publish-directory ./packages/frontend/dist || cat netlifyctl-debug.log
       # fi
 
 # lint:
