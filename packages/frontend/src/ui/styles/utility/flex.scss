@@ -9,6 +9,7 @@
     flex-direction: column;
   }
 
+  .flex-wrap#{$modifier} { flex-wrap: wrap; }
   .flex-grow#{$modifier} { flex-grow: 1; }
   .flex#{$modifier} { display: flex; }
 

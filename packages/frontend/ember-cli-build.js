@@ -57,10 +57,12 @@ module.exports = function(defaults) {
     'fontawesome': {
       icons: {
         'free-solid-svg-icons': [
-          'qrcode', 'user-circle', 'address-book', 'sliders-h', 'sign-out-alt',
+          'qrcode', 'user-circle',
+          'address-book', 'sliders-h', 'sign-out-alt',
           'dot-circle',
           'plus',
-          'code', 'desktop', 'bed', 'video'
+          'code', 'desktop', 'bed', 'video',
+          'angle-down', 'angle-up'
         ],
       },
     },

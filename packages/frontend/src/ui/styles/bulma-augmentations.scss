@@ -50,3 +50,14 @@
     // box-shadow: $navbar-dropdown-boxed-shadow;
   }
 }
+
+.card.small {
+  .card-header {
+    .card-header-title {
+      padding: 2px 5px;
+    }
+    .card-header-icon {
+      padding: 2px 5px;
+    }
+  }
+}

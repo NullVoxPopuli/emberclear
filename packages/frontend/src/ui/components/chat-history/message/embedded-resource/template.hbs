@@ -1,0 +1,27 @@
+<div class='card small embedded-resource'>
+  <header class='card-header'>
+    <p class='card-header-title'>
+      {{title}} Title
+    </p>
+    <a class='card-header-icon' {{action toggleShow}}>
+      <span class='icon'>
+        {{fa-icon 'angle-down'}}
+      </span>
+    </a>
+  </header>
+
+  {{#if (not isCollapsed)}}
+
+    {{#if isYouTube}}
+      <iframe
+        src="{{embedUrl}}" width="560" height="315"
+        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+      </iframe>
+
+    {{else if isImage}}
+      <img src={{@url}} />
+    {{/if}}
+
+  {{/if}}
+
+</div>

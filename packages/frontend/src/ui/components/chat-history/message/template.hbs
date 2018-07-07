@@ -33,12 +33,12 @@
     --}}
 
 
-    {{!-- <br />
-    {{#each urls as |url|}}
-      <video style='max-height: 200px' preload='auto' muted autoplay loop>
-        <source src={{url}} type='video/mp4' />
-      </video>
-    {{/each}} --}}
+    <br />
+    <div class='flex flex-wrap'>
+      {{#each urls as |url|}}
+        <EmbeddedResource class='flex' @url={{url}} />
+      {{/each}}
+    </div>
   </p>
 
 </div>

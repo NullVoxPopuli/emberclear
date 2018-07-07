@@ -46,3 +46,11 @@
     }
   }
 }
+
+.embedded-resource {
+  margin: 5px;
+  img, iframe {
+    max-width: 480px;
+    max-height: 270px;
+  }
+}
