@@ -1,11 +1,16 @@
 import Component from '@ember/component';
 import { action, computed } from '@ember-decorators/object';
+import { or } from '@ember-decorators/object/computed';
+import { service } from '@ember-decorators/service';
+
 
 // https://stackoverflow.com/a/8260383/356849
 const YT_PATTERN = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
 const IMAGE_PATTERN = /(jpg|png|gif)/;
 
-export default class extends Component {
+export default class EmbeddedResource extends Component {
+  @service relayConnection!: RelayConnection;
+
   url!: string;
 
   isYouTube = false;
@@ -18,8 +23,20 @@ export default class extends Component {
     super(...arguments);
 
     this.parseUrl();
+    this.fetchOpenGraph();
   }
 
+  @or('embedUrl', 'isImage', 'hasOgData') shouldRender!: boolean;
+
+
+  async fetchOpenGraph(this: EmbeddedResource) {
+    const og = await this.relayConnection.fetchOpenGraph(this.url);
+
+    this.set('hasOgData', og.title && og.description);
+    this.set('ogData', og);
+    this.set('title', og.title);
+
+  }
 
   parseUrl() {
     const url = this.url;

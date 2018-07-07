@@ -10,12 +10,29 @@ import Message from 'emberclear/data/models/message';
 
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
+// TODO: extract to models + service? idk
 const DEFAULT_RELAYS = {
-  0: { url: 'wss://mesh-relay-in-us-1.herokuapp.com/socket' },
-  1: { url: 'wss://mesh-relay-in-us-2.herokuapp.com/socket' },
-  2: { url: 'ws://localhost:4301/socket' },
-  3: { url: '' }
+  0: { socketPath: 'socket', ogPath: 'open_graph', httpProtocol: 'https', wsProtocol: 'wss', host: 'mesh-relay-in-us-1.herokuapp.com' },
+  1: { socketPath: 'socket', ogPath: 'open_graph', httpProtocol: 'https', wsProtocol: 'wss', host: 'mesh-relay-in-us-2.herokuapp.com' },
+  2: { socketPath: 'socket', ogPath: 'open_graph', httpProtocol: 'http', wsProtocol: 'ws',  host: 'localhost:4301' },
 };
+
+function wsUrl(num: number) {
+  const { socketPath, wsProtocol, host } = DEFAULT_RELAYS[num];
+
+  return `${wsProtocol}://${host}/${socketPath}`;
+}
+
+function ogUrl(num: number) {
+  const { ogPath, httpProtocol, host } = DEFAULT_RELAYS[num];
+
+  return `${httpProtocol}://${host}/${ogPath}`;
+}
+
+const DEBUG_SELECTED_RELAY = 2;
+
+const ws = wsUrl(DEBUG_SELECTED_RELAY);
+const og = ogUrl(DEBUG_SELECTED_RELAY);
 
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
@@ -29,6 +46,23 @@ export default class RelayConnection extends Service {
   channel?: Channel;
 
   connected = false;
+
+  async fetchOpenGraph(url: string): Promise<OpenGraphData> {
+    const safeUrl = encodeURIComponent(url);
+    const ogUrl = `${og}?url=${safeUrl}`;
+    const response = await fetch(ogUrl, {
+      credentials: 'omit',
+      referrer: 'no-referrer',
+      cache: 'no-cache',
+      headers: {
+        ['Accept']: 'application/json'
+      }
+    });
+
+    const json = await response.json();
+
+    return (json || {}).data;
+  }
 
   // TODO: add support for sending along a specific channel / chat-room
   // TODO: consider chatroom implementation with server, or keeping it all
@@ -96,7 +130,7 @@ export default class RelayConnection extends Service {
     this.toast.info(this.intl.t('connection.connecting'));
 
     const publicKey = this.userChannelId();
-    const url = DEFAULT_RELAYS[0].url;
+    const url = ws;
 
     const socket = new Socket(url, { params: { uid: publicKey } });
     this.set('socket', socket);

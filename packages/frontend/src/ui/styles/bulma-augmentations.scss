@@ -54,10 +54,15 @@
 .card.small {
   .card-header {
     .card-header-title {
+      font-weight: normal;
+      font-style: italic;
       padding: 2px 5px;
     }
     .card-header-icon {
       padding: 2px 5px;
     }
+  }
+  .card-content {
+    padding: 5px;
   }
 }

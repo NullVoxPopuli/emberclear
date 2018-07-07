@@ -1,31 +1,43 @@
-<div class='card small embedded-resource'>
-  <header class='card-header'>
-    <p class='card-header-title'>
-      {{title}} Title
-    </p>
-    <a class='card-header-icon' {{action toggleShow}}>
-      <span class='icon'>
-        {{#if isCollapsed}}
-          {{fa-icon 'angle-up'}}
-        {{else}}
-          {{fa-icon 'angle-down'}}
-        {{/if}}
-      </span>
-    </a>
-  </header>
+{{#if shouldRender}}
+  <div class='card small embedded-resource'>
 
-  {{#if (not isCollapsed)}}
+    <header class='card-header'>
+      {{#if (is-present title)}}
+        <p class='card-header-title'>
+          {{title}}
+        </p>
+      {{/if}}
+      <a class='card-header-icon' {{action toggleShow}}>
+        <span class='icon'>
+          {{#if isCollapsed}}
+            {{fa-icon 'angle-up'}}
+          {{else}}
+            {{fa-icon 'angle-down'}}
+          {{/if}}
+        </span>
+      </a>
+    </header>
+    {{#if (not isCollapsed)}}
 
-    {{#if isYouTube}}
-      <iframe
-        src="{{embedUrl}}" width="560" height="315"
-        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-      </iframe>
+      {{#if isYouTube}}
+        <iframe
+          class='card-content'
+          src="{{embedUrl}}" width="560" height="315"
+          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
 
-    {{else if isImage}}
-      <img src={{@url}} />
+      {{else if isImage}}
+
+        <img class='card-content' src={{@url}} />
+
+      {{else}}
+
+        <MetadataPreview
+          class='{{if hasOgData "card-content"}}'
+          @ogData={{ogData}} />
+
+      {{/if}}
+
     {{/if}}
-
-  {{/if}}
-
-</div>
+  </div>
+{{/if}}

@@ -8,6 +8,34 @@ declare global {
     publicKey: string;
   }
 
+  interface OpenGraphData {
+    audio?: string;
+    ['audio:secure_url']?: string;
+    ['audio:type']?: string;
+    description?: string;
+    determiner?: string;
+    image?: string;
+    ['image:alt']?: string;
+    ['image:height']?: string;
+    ['image:secure_url']?: string;
+    ['image:width']?: string;
+    locale?: string;
+    site_name?: string;
+    title?: string;
+    type?: string;
+    url?: string;
+    video?: string;
+    ['video:alt']?: string;
+    ['video:height']?: string;
+    ['video:secure_url']?: string;
+    ['video:type']?: string;
+    ['video:width']?: string;
+  }
+
+  interface RelayOpenGraphResponse {
+    data: OpenGraphData;
+  }
+
   interface FastBoot {
     isFastBoot: boolean;
     request: {

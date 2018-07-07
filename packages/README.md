@@ -9,3 +9,5 @@ Updating: `git submodule update`
 Removing: `git submodule rm packages/relays/phoenix-relay`
 
 NOTE: must cd into submodule directory to manage it
+
+NOTE: Comitting code works the same as a normal repo

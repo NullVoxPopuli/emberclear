@@ -74,6 +74,16 @@ body {
   overflow: hidden;
 }
 
+.thumbnail-container {
+  width: 100px;
+  // height: 100px;
+  .thumbnail {
+    width: 100px;
+    height: auto;
+    display: block;
+  }
+}
+
 .has-resize-disabled {
   resize: none;
 }
