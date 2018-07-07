@@ -29,7 +29,7 @@ function ogUrl(num: number) {
   return `${httpProtocol}://${host}/${ogPath}`;
 }
 
-const DEBUG_SELECTED_RELAY = 2;
+const DEBUG_SELECTED_RELAY = 0;
 
 const ws = wsUrl(DEBUG_SELECTED_RELAY);
 const og = ogUrl(DEBUG_SELECTED_RELAY);
