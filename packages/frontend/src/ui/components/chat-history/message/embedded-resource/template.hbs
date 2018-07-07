@@ -4,7 +4,7 @@
     <header class='card-header'>
       {{#if (is-present title)}}
         <p class='card-header-title'>
-          {{title}}
+          <a href='{{url}}' target='_blank'>{{title}}</a>
         </p>
       {{/if}}
       <a class='card-header-icon' {{action toggleShow}}>
