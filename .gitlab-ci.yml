@@ -45,16 +45,7 @@ the-everything-stage-for-speed:
     - time ./run yarn test
 
     # TODO: do branch check here in bash
-    - >
-      BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-      if [[ "$BRANCH" == "master" ]]; then
-        time ./run yarn build:production
-
-        time wget https://github.com/netlify/netlifyctl/releases/download/v$NETLIFY_CLI_VERSION/netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
-        time tar -xf netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
-        time ./netlifyctl -y deploy --site-id $NETLIFY_SITE_ID --access-token $NETLIFY_ACCESS_TOKEN --publish-directory ./packages/frontend/dist
-      fi
+    - time ./scripts/deploy
 
 # lint:
 #   stage: test

@@ -1,27 +1,10 @@
 #!/bin/bash
-set -ex
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-# dist should already exist.
-cd packages/frontend
+if [[ "$BRANCH" == "master" ]]; then
+  time ./run yarn build:production
 
-mkdir -p dist
-
-yarn build:production
-
-cd dist \
-  && git init \
-  && git remote add github git@github.com:NullVoxPopuli/emberclear.git
-
-# already in dist
-git checkout --orphan gh-pages || true
-git checkout gh-pages || true
-
-# Hack to get around github's lack of support for SPAs
-cp index.html 404.html
-
-# already in dist, and already on gh-pages
-git add . \
-  && git commit -m"update gh-pages" \
-  && git push github gh-pages -f
-
-cd ../../
+  time wget https://github.com/netlify/netlifyctl/releases/download/v$NETLIFY_CLI_VERSION/netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
+  time tar -xf netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
+  time ./netlifyctl -y deploy --site-id $NETLIFY_SITE_ID --access-token $NETLIFY_ACCESS_TOKEN --publish-directory ./packages/frontend/dist
+fi
