@@ -5,7 +5,11 @@
     </p>
     <a class='card-header-icon' {{action toggleShow}}>
       <span class='icon'>
-        {{fa-icon 'angle-down'}}
+        {{#if isCollapsed}}
+          {{fa-icon 'angle-up'}}
+        {{else}}
+          {{fa-icon 'angle-down'}}
+        {{/if}}
       </span>
     </a>
   </header>
