@@ -17,6 +17,7 @@ image: danlynn/ember-cli:3.1.4
 variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
   DOCKER_DRIVER: overlay2
+  NETLIFY_CLI_VERSION: 0.4.0
 
 # Gitlab's pipelines have about 3.5 minutes of overhead per stage
 # see previous run: https://gitlab.com/NullVoxPopuli/emberclear/pipelines/24394951/builds
@@ -44,17 +45,16 @@ the-everything-stage-for-speed:
     - time ./run yarn test
 
     # TODO: do branch check here in bash
-    - >
-      BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    # - >
+    - BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-      if [[ "$BRANCH" == "master" ]]; then
-        time ./run yarn build:production
+      # if [[ "$BRANCH" == "master" ]]; then
+    -    time ./run yarn build:production
 
-        export NETLIFY_CLI_VERSION=0.4.0
-        time wget https://github.com/netlify/netlifyctl/releases/download/v$NETLIFY_CLI_VERSION/netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
-        time tar -xf netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
-        time ./netlifyctl -y deploy --name emberclear --access-token $NETLIFY_ACCESS_TOKEN --publish-directory packages/frontend/dist
-      fi
+    -    time wget https://github.com/netlify/netlifyctl/releases/download/v$NETLIFY_CLI_VERSION/netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
+    -    time tar -xf netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
+    -    time ./netlifyctl -y deploy --name emberclear --access-token $NETLIFY_ACCESS_TOKEN --publish-directory packages/frontend/dist
+      # fi
 
 # lint:
 #   stage: test
