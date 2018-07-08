@@ -12,7 +12,11 @@
   </div>
 
   <p class='message-body'>
-    {{markdown-to-html @message.body}}
+    {{markdown-to-html
+      markdown=@message.body
+      simplifiedAutoLink=true
+      simpleLineBreaks=true
+    }}
 
     {{!--
       likely will need to use a cross-domain proxy to get around CORS issues
