@@ -12,7 +12,7 @@
   </div>
 
   <p class='message-body'>
-    {{@message.body}}
+    {{markdown-to-html @message.body}}
 
     {{!--
       likely will need to use a cross-domain proxy to get around CORS issues
@@ -33,12 +33,14 @@
     --}}
 
 
-    <br />
-    <div class='flex flex-wrap'>
-      {{#each urls as |url|}}
-        <EmbeddedResource class='flex' @url={{url}} />
-      {{/each}}
-    </div>
+    {{#if (is-present urls)}}
+      <br />
+      <div class='flex flex-wrap'>
+        {{#each urls as |url|}}
+          <EmbeddedResource class='flex' @url={{url}} />
+        {{/each}}
+      </div>
+    {{/if}}
   </p>
 
 </div>

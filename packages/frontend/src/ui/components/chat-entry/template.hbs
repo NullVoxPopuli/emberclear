@@ -1,6 +1,6 @@
 <form
   class='chat-entry flex-row field has-addons flex-grow m-b-sm'
-  {{action 'send' on="submit"}}
+  {{action 'sendMessage' on="submit"}}
   >
   <div class='control'>
     <Dropdown @up={{true}} @buttonIcon='plus'>
@@ -32,15 +32,15 @@
   </div>
 
   <div class='control flex-grow'>
-    <input
+    {{textarea
+      autofocus
       class='input'
-      value={{text}}
-      oninput={{action  onInputChange}}
-      placeholder='Send a message to {{messageTarget}}'
-    />
+      value=text
+      placeholder=placeholder
+    }}
   </div>
 
   <div class='control'>
-    <input class='button' type='submit' value='Send' {{action 'send'}} />
+    <input class='button' type='submit' value='Send' {{action 'sendMessage'}} />
   </div>
 </form>

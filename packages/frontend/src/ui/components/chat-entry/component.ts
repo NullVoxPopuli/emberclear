@@ -8,12 +8,17 @@ import Identity from 'emberclear/data/models/identity/model';
 
 export default class MessageEntry extends Component {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
+  @service prismManager!: PrismManager;
 
   to?: Identity;
   // value from the input field
   text?: string;
   // disable the text field while sending
   isDisabled = false;
+
+  didRender() {
+    this.element.querySelector('textarea').onkeypress = this.onKeyPress.bind(this);
+  }
 
   @computed('to.name')
   get messageTarget() {
@@ -26,8 +31,13 @@ export default class MessageEntry extends Component {
     return 'The Public Channel';
   }
 
+  @computed('messageTarget')
+  get placeholder() {
+    return `Send a message to ${this.messageTarget}`;
+  }
+
   @action
-  async send(this: MessageEntry) {
+  async sendMessage(this: MessageEntry) {
     this.set('isDisabled', true);
 
     if (!this.text) return;
@@ -36,12 +46,17 @@ export default class MessageEntry extends Component {
 
     this.set('isDisabled', false);
     this.set('text', '');
+    this.element.querySelector('textarea').value = '';
+    this.prismManager.addLanguage('typescript');
   }
 
   @action
-  onInputChange(this: MessageEntry, event: KeyboardEvent) {
-    const text = (event.target as HTMLInputElement).value;
+  onKeyPress(this: MessageEntry, event: KeyboardEvent) {
+    const { keyCode, shiftKey} = event;
 
-    this.set('text', text);
+    // don't submit when shift is being held.
+    if (!shiftKey && keyCode === 13) {
+      this.send('sendMessage');
+    }
   }
 }
