@@ -15,21 +15,21 @@ export default class PrismManager extends Service {
   //
   // TODO: fetch these files asyncily, so we can manage state, and know
   // when to call highlightAll
-  addLanguage(language: string) {
-    this.addEssentials();
+  async addLanguage(language: string) {
+    await this.addEssentials();
 
     if (this.alreadyAdded.includes(language)) return;
 
     const path = `https://cdn.jsdelivr.net/combine/npm/prismjs@1.14.0/components/prism-${language}.min.js`;
 
-    this.addScript(path);
+    await this.addScript(path);
 
     this.alreadyAdded.push(language);
 
-    setTimeout(() => Prism && Prism.highlightAll(), 1000);
+    Prism.highlightAll();
   }
 
-  addEssentials() {
+  async addEssentials() {
     if (this.areEssentialsPresent) return;
 
     const mainJs = 'https://cdn.jsdelivr.net/combine/npm/prismjs@1.14.0';
@@ -46,23 +46,25 @@ export default class PrismManager extends Service {
 
     const head = document.querySelector('head');
     const link = document.createElement('link');
-    const script = document.createElement('script');
 
-    script.setAttribute('src', js);
     link.setAttribute('href', css);
     link.setAttribute('rel', 'stylesheet');
 
     head.appendChild(link);
-    head.appendChild(script);
+    await this.addScript(js);
 
     this.set('areEssentialsPresent', true);
   }
 
-  addScript(path: string) {
+  async addScript(path: string) {
     const head = document.querySelector('head');
     const script = document.createElement('script');
 
-    script.setAttribute('src', path);
+    const file = await fetch(path);
+    const code = await file.text();
+
+    script.setAttribute('type', 'text/javascript');
+    script.innerHTML = code;
 
     head.appendChild(script);
   }
