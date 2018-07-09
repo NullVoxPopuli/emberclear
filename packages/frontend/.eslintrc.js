@@ -25,7 +25,8 @@ module.exports = {
   rules: {
     // 'prettier/prettier': 'error',
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
-    'no-console': 'warn'
+    'no-console': 'warn',
+    'no-cond-assign': 'off'
   },
   overrides: [
     {

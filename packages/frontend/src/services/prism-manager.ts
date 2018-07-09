@@ -1,4 +1,22 @@
 import Service from '@ember/service';
+import { dropTask, task } from 'ember-concurrency-decorators';
+
+const PRISM_VERSION = '1.14.0';
+const CDN =`https://cdn.jsdelivr.net/combine/`;
+const PRISM_PATH = `npm/prismjs@${PRISM_VERSION}`;
+const PRISM_PLUGIN_PATH = `${PRISM_PATH}/plugins/`;
+const PRISM_URL = `${CDN}${PRISM_PATH}`;
+
+const linNumJs = `${PRISM_PLUGIN_PATH}line-numbers/prism-line-numbers.min.js`;
+const langJs = `${PRISM_PLUGIN_PATH}show-language/prism-show-language.min.js`;
+const normalWhiteSpaceJs = `${PRISM_PLUGIN_PATH}normalize-whitespace/prism-normalize-whitespace.min.js`;
+const autoLinkJs = `${PRISM_PLUGIN_PATH}autolinker/prism-autolinker.min.js`;
+const js = [PRISM_URL, linNumJs, langJs, normalWhiteSpaceJs, autoLinkJs].join(',');
+
+const mainCss = `${PRISM_URL}/themes/prism.min.css`;
+const lineNumCss = `${PRISM_PLUGIN_PATH}line-numbers/prism-line-numbers.min.css`;
+const autolinkerCss = `${PRISM_PLUGIN_PATH}autolinker/prism-autolinker.min.css`;
+const css = [mainCss, lineNumCss, autolinkerCss].join(',');
 
 export default class PrismManager extends Service {
   areEssentialsPresent = false;
@@ -15,43 +33,35 @@ export default class PrismManager extends Service {
   //
   // TODO: fetch these files asyncily, so we can manage state, and know
   // when to call highlightAll
-  async addLanguage(language: string) {
-    await this.addEssentials();
+  @task({ maxConcurrency: 1 })
+  * addLanguage(language: string) {
+    language = this._expandLanguageAbbreviation(language);
+
+    yield this.addEssentials.perform();
 
     if (this.alreadyAdded.includes(language)) return;
 
-    const path = `https://cdn.jsdelivr.net/combine/npm/prismjs@1.14.0/components/prism-${language}.min.js`;
+    const path = `${PRISM_URL}/components/prism-${language}.min.js`;
 
-    await this.addScript(path);
+    yield this.addScript(path);
 
     this.alreadyAdded.push(language);
 
     Prism.highlightAll();
   }
 
-  async addEssentials() {
+  @dropTask
+  * addEssentials() {
     if (this.areEssentialsPresent) return;
 
-    const mainJs = 'https://cdn.jsdelivr.net/combine/npm/prismjs@1.14.0';
-    const linNumJs = 'npm/prismjs@1.14.0/plugins/line-numbers/prism-line-numbers.min.js';
-    const langJs = 'npm/prismjs@1.14.0/plugins/show-language/prism-show-language.min.js';
-    const normalWhiteSpaceJs = 'npm/prismjs@1.14.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js';
-    const autoLinkJs = 'npm/prismjs@1.14.0/plugins/autolinker/prism-autolinker.min.js';
-    const js = [mainJs, linNumJs, langJs, normalWhiteSpaceJs, autoLinkJs].join(',');
-
-    const mainCss = 'https://cdn.jsdelivr.net/combine/npm/prismjs@1.14.0/themes/prism.min.css';
-    const lineNumCss = 'npm/prismjs@1.14.0/plugins/line-numbers/prism-line-numbers.min.css';
-    const autolinkerCss = 'npm/prismjs@1.14.0/plugins/autolinker/prism-autolinker.min.css';
-    const css = [mainCss, lineNumCss, autolinkerCss].join(',');
-
-    const head = document.querySelector('head');
+    const head = document.querySelector('head')!;
     const link = document.createElement('link');
 
     link.setAttribute('href', css);
     link.setAttribute('rel', 'stylesheet');
 
     head.appendChild(link);
-    await this.addScript(js);
+    yield this.addScript(js);
 
     this.set('areEssentialsPresent', true);
   }
@@ -67,5 +77,13 @@ export default class PrismManager extends Service {
     script.innerHTML = code;
 
     head.appendChild(script);
+  }
+
+  _expandLanguageAbbreviation(language: string) {
+    switch(language) {
+      case 'ts': return 'typescript';
+      case 'rb': return 'ruby';
+      default: return language;
+    }
   }
 }

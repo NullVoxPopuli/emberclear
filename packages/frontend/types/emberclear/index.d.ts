@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import Prism from 'prismjs';
 
-
+export as namespace Prism;
 declare global {
 
   interface IdentityJson {

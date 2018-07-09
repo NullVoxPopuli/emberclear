@@ -6,6 +6,8 @@ import { service } from '@ember-decorators/service';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import Identity from 'emberclear/data/models/identity/model';
 
+import { matchAll } from 'emberclear/src/utils/string/utils';
+
 export default class MessageEntry extends Component {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
   @service prismManager!: PrismManager;
@@ -44,19 +46,57 @@ export default class MessageEntry extends Component {
 
     await this.messageDispatcher.sendMessage(this.text);
 
+    // non-blocking
+    this._addLanguages(this.text);
+
     this.set('isDisabled', false);
     this.set('text', '');
-    this.element.querySelector('textarea').value = '';
-    this.prismManager.addLanguage('typescript');
+
+    const textarea = this.element.querySelector('textarea')
+
+    textarea.value = '';
+    textarea.style.cssText = '';
+
   }
 
   @action
   onKeyPress(this: MessageEntry, event: KeyboardEvent) {
-    const { keyCode, shiftKey} = event;
+    const { keyCode, shiftKey, target } = event;
+
+    this._adjustHeight(target);
 
     // don't submit when shift is being held.
     if (!shiftKey && keyCode === 13) {
       this.send('sendMessage');
+
+      // prevent regular 'Enter' from inserting a linebreak
+      return false;
     }
+  }
+
+  _adjustHeight(element) {
+    element.style.cssText = `
+      max-height: 7rem;
+      height: ${element.scrollHeight}px
+    `;
+  }
+
+  async _addLanguages(text: string) {
+    const languages = this._parseLanguages(text);
+
+    languages.forEach(language => {
+      this.prismManager.addLanguage.perform(language)
+    });
+  }
+
+  _parseLanguages(text: string): string[] {
+    let languages: string[] = [];
+
+    const matches = matchAll(text, /```(\w+)/g);
+
+
+    matches.forEach(match => languages.push(match[1]));
+
+    return languages;
   }
 }
