@@ -1,9 +1,9 @@
-<a class="navbar-link" {{action (mut showDropdown) (not showDropdown)}}>
+<a class="navbar-link" style='z-index: 31' {{action (mut showDropdown) (not showDropdown)}}>
   <span class='icon'>{{fa-icon 'user-circle' prefix='fas'}}</span>
   <span>{{name}}</span>
 </a>
 
-<div class="navbar-dropdown dropdown-right transition-all">
+<div class="navbar-dropdown dropdown-right transition-all" style='z-index: 31'>
   <a class='navbar-item'
     {{action (queue
       (action closeMenu)
@@ -25,8 +25,21 @@
   <hr class='navbar-divider' />
 
   <div class='flex-row navbar-item justify-content-space-between'>
-    <Add class='m-r-md' @afterClick={{action closeMenu}}/>
-    <Invite @afterClick={{action closeMenu}}/>
+    <a class='button m-r-md'
+      {{action (queue
+        (action closeMenu)
+        (action toggleModal 'add-friend')
+      )}}>
+      Add Friend
+    </a>
+    <a
+      class='button'
+      {{action (queue
+        (action closeMenu)
+        (action toggleModal 'show-my-info')
+      )}}>
+      Invite
+    </a>
   </div>
 
   <hr class='navbar-divider' />
@@ -41,3 +54,5 @@
     <span>{{t 'routes.logout'}}</span>
   </a>
 </div>
+
+<div class='full-overlay {{if showDropdown "is-active"}}' style='z-index: 30' {{action closeMenu}} />

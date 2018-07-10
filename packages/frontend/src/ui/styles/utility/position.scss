@@ -1,0 +1,17 @@
+.full-overlay {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  @include default-transition;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+}

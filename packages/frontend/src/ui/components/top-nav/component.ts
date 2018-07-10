@@ -14,8 +14,6 @@ export default class TopNav extends Component {
   @service fastboot!: FastBoot;
   @service sidebar!: Sidebar;
 
-  isTouchMenuVisible = false;
-
   @alias('router.currentRouteName') routeName!: string;
   @alias('identity.isLoggedIn') isLoggedIn!: boolean;
   @equal('routeName', 'index') isApplication!: boolean;
@@ -35,11 +33,6 @@ export default class TopNav extends Component {
     if (this.isChat) return 'has-text-white';
 
     return '';
-  }
-
-  @action
-  toggleTouchMenu(this: TopNav) {
-    this.set('isTouchMenuVisible', !this.isTouchMenuVisible);
   }
 
   @action

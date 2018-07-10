@@ -1,39 +1,57 @@
 <aside class='
-  menu
-  is-inverted
-  flex-grow
+  menu has-background-white
+  is-inverted flex-grow
   p-sm is-size-6
+  flex-column justify-content-space-between
   '>
-  <p class='menu-label m-t-sm m-b-sm'>
-    Contacts
-  </p>
-  <ul class='menu-list'>
-    {{#each @contacts as |contact|}}
+  <div>
+    <div class='is-hidden-desktop'>
+      <TopMobileSection />
+    </div>
+
+    <p class='menu-label m-t-sm m-b-sm'>
+      Contacts
+    </p>
+    <ul class='menu-list'>
+      {{#each @contacts as |contact|}}
+        <li>
+          {{#link-to 'chat.privately-with' contact.id
+            activeClass='is-active'
+            class='flex-row align-items-center'
+          }}
+            <StatusIcon @contact={{contact}} />
+            <span class='m-l-sm'>{{contact.name}}</span>
+          {{/link-to}}
+        </li>
+      {{/each}}
+
+      {{#if (eq @contacts.length 0)}}
+        You have no contacts.
+        TODO: add invite / add buttons
+      {{/if}}
+    </ul>
+
+    <p class='menu-label m-t-sm m-b-sm'>
+      Channels
+    </p>
+    <ul class='menu-list'>
       <li>
-        {{#link-to 'chat.privately-with' contact.id
-          activeClass='is-active'
-          class='flex-row align-items-center'
-        }}
-          <StatusIcon @contact={{contact}} />
-          <span class='m-l-sm'>{{contact.name}}</span>
+        {{#link-to 'chat'}}
+          # Public
         {{/link-to}}
       </li>
-    {{/each}}
+    </ul>
+  </div>
 
-    {{#if (eq @contacts.length 0)}}
-      You have no contacts.
-      TODO: add invite / add buttons
-    {{/if}}
-  </ul>
-
-  <p class='menu-label m-t-sm m-b-sm'>
-    Channels
-  </p>
-  <ul class='menu-list'>
-    <li>
-      {{#link-to 'chat'}}
-        # Public
-      {{/link-to}}
-    </li>
-  </ul>
+  {{#if isLoggedIn}}
+    <a
+      class='navbar-item align-self-end'
+      {{action (queue
+        (action closeSidebar)
+        (transition-to 'logout')
+      )}}>
+      <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
+      <span>{{t 'routes.logout'}}</span>
+    </a>
+  {{/if}}
 </aside>

@@ -21,7 +21,9 @@ merge(moduleConfig.types, {
   translation: { definitiveCollection: 'main' },
   formats: { definitiveCollection: 'main' },
   cldr: { definitiveCollection: 'main' },
-  'util:intl': { definitiveCollection: 'utils' }
+  'util:intl': { definitiveCollection: 'utils' },
+  // ember-gestures
+  'ember-gesture': { definitiveCollection: 'main' }
 });
 
 moduleConfig.collections.main.types.push('config');
