@@ -1,0 +1,35 @@
+<div class='is-flex-desktop flex-grow m-none m-b-none no-overflow'>
+  {{#if identity.isLoggedIn}}
+    <div class='
+      sidebar-container flex-row transition-all is-fullheight
+      align-items-stretch
+      {{if sidebar.isShown
+        "is-sidebar-visible"
+        "is-sidebar-hidden"}}'>
+
+      <div class='sidebar-underlay full-overlay' {{action toggleSidebar}}></div>
+
+      <Sidebar class='sidebar-wrapper' @contacts={{model.contacts}} />
+
+      <HamburgerButton
+        @class='
+          fixed-to-side-for-sidebar
+          is-hidden-mobile
+          is-flex-desktop'
+        @onClick={{action toggleSidebar}}
+        @isActive={{sidebar.isShown}} />
+    </div>
+  {{/if}}
+
+
+  <div class='
+    flex-column flex-grow
+    is-fullheight overflows
+    {{if sidebar.isShown
+      "is-sidebar-visible"
+      "is-sidebar-hidden"}}'>
+
+    {{yield}}
+
+  </div>
+</div>

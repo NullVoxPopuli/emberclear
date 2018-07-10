@@ -21,49 +21,24 @@
         </span>
       {{/if}}
     </CurrentChatName>
-
-
-    <HamburgerButton
-      @onClick={{action toggleTouchMenu}}
-      @isActive={{isTouchMenuVisible}} />
   </div>
 
 
-  <div class="navbar-menu transition-all {{if isTouchMenuVisible 'is-active'}}">
-    <div class="navbar-end">
+  <div class="navbar-end is-hidden-touch">
+    {{#if isLoggedIn}}
+      <a class='navbar-item' {{action (transition-to 'chat')}}>
+        {{t 'routes.chat'}}
+      </a>
 
-      {{#if isLoggedIn}}
-        <a class='navbar-item'
-          {{action (queue
-            (action toggleTouchMenu)
-            (transition-to 'chat')
-          )}}>
-          {{t 'routes.chat'}}
-        </a>
+      <UserDropMenu class='navbar-item has-dropdown' />
+    {{else}}
+      <a class='navbar-item' {{action (transition-to 'login')}}>
+        {{t 'routes.login'}}
+      </a>
 
-        <UserDropMenu
-          class='navbar-item has-dropdown'
-          @onClose={{action toggleTouchMenu}}
-          />
-
-      {{else}}
-        <a class='navbar-item'
-          {{action (queue
-            (action toggleTouchMenu)
-            (transition-to 'login')
-          )}}>
-          {{t 'routes.login'}}
-        </a>
-
-        <a class='navbar-item'
-          {{action (queue
-            (action toggleTouchMenu)
-            (transition-to 'setup')
-          )}}>
-          {{t 'routes.createNewUser'}}
-        </a>
-      {{/if}}
-
-    </div>
+      <a class='navbar-item' {{action (transition-to 'setup')}}>
+        {{t 'routes.createNewUser'}}
+      </a>
+    {{/if}}
   </div>
 </div>

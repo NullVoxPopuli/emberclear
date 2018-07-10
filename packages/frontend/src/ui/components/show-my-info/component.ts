@@ -9,7 +9,7 @@ import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
 
 import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string-encoding';
 
-export default class InviteModal extends Component {
+export default class ShowMyInfo extends Component {
   @service identity!: Identity;
 
   copied = false;

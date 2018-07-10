@@ -6,36 +6,20 @@
   </a>
 </ServiceWorkerUpdateNotify>
 
-<div class='is-flex-desktop flex-grow m-none m-b-none no-overflow'>
-  {{#if identity.isLoggedIn}}
-    <div class='
-      sidebar-container flex-row transition-all is-fullheight
-      align-items-stretch
-      {{if sidebar.isShown
-        "is-sidebar-visible"
-        "is-sidebar-hidden"}}'>
-
-      <Sidebar class='sidebar-wrapper' @contacts={{model.contacts}} />
-
-      <HamburgerButton
-        @class='
-          fixed-to-side-for-sidebar
-          is-hidden-touch
-          is-flex-desktop'
-        @onClick={{action toggleSidebar}}
-        @isActive={{sidebar.isShown}} />
-    </div>
-  {{/if}}
-
-
-  <div class='
-    flex-column flex-grow
-    is-fullheight overflows
-    {{if sidebar.isShown
-      "is-sidebar-visible"
-      "is-sidebar-hidden"}}'>
-    {{outlet}}
-  </div>
-</div>
+<OffCanvasContainer>
+  {{outlet}}
+</OffCanvasContainer>
 
 {{multiple-from-elsewhere name='modals'}}
+
+{{!--
+  Static Modals / Modals that will /
+  could get toggleed from _multiple_ places.
+--}}
+<ModalStatic @name='add-friend' as |isActive toggle|>
+  <AddContact @isActive={{isActive}} @close={{toggle}} />
+</ModalStatic>
+
+<ModalStatic @name='show-my-info' as |isActive toggle|>
+  <ShowMyInfo @isActive={{isActive}} @close={{toggle}} />
+</ModalStatic>
