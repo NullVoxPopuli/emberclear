@@ -1,30 +1,19 @@
 <div class='message-list'>
-  <div class='messages with-styled-scrollbar'>
 
-    {{#each chatMessages as |message index|}}
-
-      <Message
-        @message={{message}}
-        @hideHeader={{should-hide-header messages message index}} />
-
-    {{/each}}
-  </div>
-
-  {{!-- {{#vertical-collection
-    messages
+  {{#vertical-collection chatMessages
     tagName='div'
-    class='messages'
-    estimateHeight=5
+    class='messages default-transition'
+    estimateHeight=100
     staticHeight=false
     bufferSize=1
     renderAll=false
-    renderFromLast=false
+    renderFromLast=true
      as |message index|}}
 
      <Message
        @message={{message}}
        @hideHeader={{should-hide-header messages message index}} />
 
-  {{/vertical-collection}} --}}
+  {{/vertical-collection}}
 
 </div>

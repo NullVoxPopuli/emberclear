@@ -3,5 +3,5 @@
     <img class='thumbnail' src="{{og.image}}" />
   </span>
 
-  <span>{{sanitize-html value=(html-safe og.description)}}</span>
+  <span>{{{purify-dom og.description}}}</span>
 </div>
