@@ -12,30 +12,7 @@
   </div>
 
   <p class='message-body'>
-    {{markdown-to-html
-      markdown=@message.body
-      simplifiedAutoLink=true
-      simpleLineBreaks=true
-    }}
-
-    {{!--
-      likely will need to use a cross-domain proxy to get around CORS issues
-      https://medium.freecodecamp.org/client-side-web-scraping-with-javascript-using-jquery-and-regex-5b57a271cb86
-      http://www.whateverorigin.org/
-      http://multiverso.me/AllOrigins/
-
-      and because of that, it's possible submitting a bunch of URLs to one of these services
-      could reduce privacy.
-    --}}
-
-    {{!--
-    For sites that support iframing...
-    <iframe width="560" height="315"
-      src="https://www.youtube-nocookie.com/embed/R6_ugobl5sk?rel=0"
-      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-    </iframe>
-    --}}
-
+    {{{messageBody}}}
 
     {{#if (is-present urls)}}
       <br />
