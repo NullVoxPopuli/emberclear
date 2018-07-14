@@ -17,7 +17,10 @@ export default class ChatHistory extends Component {
     const lastMessage = messages[messages.length - 1] as HTMLElement;
 
     if (lastMessage) {
-      element.scrollTop = element.scrollHeight + lastMessage.offsetHeight;
+      console.log('total message height: ', [].slice.call(messages).map(m => m.offsetHeight).reduce((a, m) => m+a, 0));
+      console.log('container scrollHeight: ', element.scrollHeight, 'container scrollTop: ', element.scrollTop);
+      console.log('lastMessage.offsetHeight: ', lastMessage.offsetHeight, 'lastMessage.offsetTop: ', lastMessage.offsetTop);
+      element.scrollTop = lastMessage.offsetTop + lastMessage.offsetHeight * 20000;
     }
   }
 }
