@@ -4,6 +4,11 @@ import { service } from '@ember-decorators/service';
 
 import IdentityService from 'emberclear/services/identity/service';
 import RelayConnection from 'emberclear/services/relay-connection';
+import Message from 'emberclear/data/models/message';
+
+export interface IModel {
+  messages: Message[]
+}
 
 export default class ChatRoute extends Route {
   @service relayConnection!: RelayConnection;

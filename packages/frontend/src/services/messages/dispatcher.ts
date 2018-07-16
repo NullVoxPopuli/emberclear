@@ -21,7 +21,7 @@ export default class MessageDispatcher extends Service {
   @service identity!: IdentityService;
   @service statusManager!: StatusManager;
 
-  sendMessage(messageText: string) {
+  async sendMessage(messageText: string) {
     let msg = this.store.createRecord('message', {
       from: this.identity.name,
       body: messageText,
@@ -29,7 +29,7 @@ export default class MessageDispatcher extends Service {
       type: 'chat'
     });
 
-    msg.save();
+    await msg.save();
 
     this.sendToAll(msg)
   }

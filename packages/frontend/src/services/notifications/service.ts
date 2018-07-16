@@ -49,21 +49,21 @@ export default class Notifications extends Service {
   }
 
   isPermissionGranted() {
-    return new RSVP.Promise((resolve, reject) => {
-      if (!('Notification' in window)) return reject();
+    // return new RSVP.Promise((resolve, reject) => {
+    //   if (!('Notification' in window)) return reject();
 
-      if ((Notification as any).permission !== 'denied') {
-        Notification.requestPermission(permission => {
-          if (permission === 'granted') {
-            return resolve()
-          }
+    //   if ((Notification as any).permission !== 'denied') {
+    //     Notification.requestPermission(permission => {
+    //       if (permission === 'granted') {
+    //         return resolve()
+    //       }
 
-          return reject();
-        });
-      }
+    //       return reject();
+    //     });
+    //   }
 
-      return resolve();
-    });
+    //   return resolve();
+    // });
   }
 
   showNotification(msg: string, title: string, options = {}) {

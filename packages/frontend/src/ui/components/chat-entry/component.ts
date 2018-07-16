@@ -5,6 +5,7 @@ import { service } from '@ember-decorators/service';
 
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import Identity from 'emberclear/data/models/identity/model';
+import PrismManager from 'emberclear/services/prism-manager';
 
 import { matchAll } from 'emberclear/src/utils/string/utils';
 
@@ -19,7 +20,7 @@ export default class MessageEntry extends Component {
   isDisabled = false;
 
   didRender() {
-    this.element.querySelector('textarea').onkeypress = this.onKeyPress.bind(this);
+    this.element.querySelector('textarea')!.onkeypress = this.onKeyPress.bind(this);
   }
 
   @computed('to.name')
@@ -52,7 +53,7 @@ export default class MessageEntry extends Component {
     this.set('isDisabled', false);
     this.set('text', '');
 
-    const textarea = this.element.querySelector('textarea')
+    const textarea = this.element.querySelector('textarea')!;
 
     textarea.value = '';
     textarea.style.cssText = '';
@@ -74,7 +75,7 @@ export default class MessageEntry extends Component {
     }
   }
 
-  _adjustHeight(element) {
+  _adjustHeight(element: HTMLElement) {
     element.style.cssText = `
       max-height: 7rem;
       height: ${element.scrollHeight}px

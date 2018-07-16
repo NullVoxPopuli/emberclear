@@ -3,7 +3,7 @@ import DS from 'ember-data';
 import Component from '@ember/component';
 
 import { service } from '@ember-decorators/service';
-import { action, computed } from '@ember-decorators/object';
+import { computed } from '@ember-decorators/object';
 
 import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
 
@@ -12,9 +12,8 @@ const PRIVATE_CHAT_REGEX = /chat\/privately-with\/(.+)/;
 
 export default class extends Component {
   @service store!: DS.Store;
-  @service router!: Registry['router'];
+  @service router!: Router;
   @service fastboot!: FastBoot;
-
 
   @computed('router.currentURL')
   get chatName() {
@@ -37,14 +36,20 @@ export default class extends Component {
 
   @computed('chatName.isPending', 'chatName.result')
   get isChatVisible() {
-    return (
-      !this.chatName.isPending &&
-      this.chatName.result !== ''
-    );
+    const name = this.chatName;
+
+    if (name instanceof PromiseMonitor) {
+      return (
+        !name.isPending &&
+        name.result !== ''
+      );
+    }
+
+    return false;
   }
 
   getName(uid: string) {
-    const promise = new RSVP.Promise(async (resolve, reject) => {
+    const promise: Promise<string> = new RSVP.Promise(async (resolve /*, reject */) => {
       const record = await this.store.findRecord('identity', uid);
 
       resolve(record.name);

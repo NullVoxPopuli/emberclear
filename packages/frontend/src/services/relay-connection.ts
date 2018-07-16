@@ -1,4 +1,3 @@
-import RSVP from 'rsvp';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
@@ -6,33 +5,9 @@ import { Channel, Socket } from 'phoenix';
 import IdentityService from 'emberclear/services/identity/service';
 import MessageProcessor from 'emberclear/services/messages/processor';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import Message from 'emberclear/data/models/message';
+import RelayManager from 'emberclear/services/relay-manager';
 
 import { toHex } from 'emberclear/src/utils/string-encoding';
-
-// TODO: extract to models + service? idk
-const DEFAULT_RELAYS = {
-  0: { socketPath: 'socket', ogPath: 'open_graph', httpProtocol: 'https', wsProtocol: 'wss', host: 'mesh-relay-in-us-1.herokuapp.com' },
-  1: { socketPath: 'socket', ogPath: 'open_graph', httpProtocol: 'https', wsProtocol: 'wss', host: 'mesh-relay-in-us-2.herokuapp.com' },
-  2: { socketPath: 'socket', ogPath: 'open_graph', httpProtocol: 'http', wsProtocol: 'ws',  host: 'localhost:4301' },
-};
-
-function wsUrl(num: number) {
-  const { socketPath, wsProtocol, host } = DEFAULT_RELAYS[num];
-
-  return `${wsProtocol}://${host}/${socketPath}`;
-}
-
-function ogUrl(num: number) {
-  const { ogPath, httpProtocol, host } = DEFAULT_RELAYS[num];
-
-  return `${httpProtocol}://${host}/${ogPath}`;
-}
-
-const DEBUG_SELECTED_RELAY = 0;
-
-const ws = wsUrl(DEBUG_SELECTED_RELAY);
-const og = ogUrl(DEBUG_SELECTED_RELAY);
 
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
@@ -40,29 +15,13 @@ export default class RelayConnection extends Service {
   @service('messages/dispatcher') dispatcher!: MessageDispatcher;
   @service('notifications') toast!: Toast;
   @service('intl') intl!: Intl;
+  @service relayManager!: RelayManager;
   @service identity!: IdentityService;
 
   socket?: Socket;
   channel?: Channel;
 
   connected = false;
-
-  async fetchOpenGraph(url: string): Promise<OpenGraphData> {
-    const safeUrl = encodeURIComponent(url);
-    const ogUrl = `${og}?url=${safeUrl}`;
-    const response = await fetch(ogUrl, {
-      credentials: 'omit',
-      referrer: 'no-referrer',
-      cache: 'no-cache',
-      headers: {
-        ['Accept']: 'application/json'
-      }
-    });
-
-    const json = await response.json();
-
-    return (json || {}).data;
-  }
 
   // TODO: add support for sending along a specific channel / chat-room
   // TODO: consider chatroom implementation with server, or keeping it all
@@ -130,7 +89,7 @@ export default class RelayConnection extends Service {
     this.toast.info(this.intl.t('connection.connecting'));
 
     const publicKey = this.userChannelId();
-    const url = ws;
+    const url = this.relayManager.getRelay().socket;
 
     const socket = new Socket(url, { params: { uid: publicKey } });
     this.set('socket', socket);

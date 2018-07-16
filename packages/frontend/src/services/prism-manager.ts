@@ -50,8 +50,7 @@ export default class PrismManager extends Service {
     Prism.highlightAll();
   }
 
-  @dropTask
-  * addEssentials() {
+  @dropTask * addEssentials() {
     if (this.areEssentialsPresent) return;
 
     const head = document.querySelector('head')!;
@@ -67,7 +66,7 @@ export default class PrismManager extends Service {
   }
 
   async addScript(path: string) {
-    const head = document.querySelector('head');
+    const head = document.querySelector('head')!;
     const script = document.createElement('script');
 
     const file = await fetch(path);

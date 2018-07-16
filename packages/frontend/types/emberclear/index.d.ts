@@ -1,8 +1,18 @@
 import Ember from 'ember';
-import Prism from 'prismjs';
 
-export as namespace Prism;
 declare global {
+  interface Prism {
+    highlightAll: () => void;
+  }
+
+  interface RenderingContext {
+    client: any;
+    server: any;
+  }
+
+  interface Router {
+    currentURL: string;
+  }
 
   interface IdentityJson {
     name: string;

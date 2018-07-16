@@ -15,7 +15,7 @@ export default class ModalContainer extends Component {
     return this.modals.find(this.name);
   }
 
-  @reads('modal.isActive') isActive;
+  @reads('modal.isActive') isActive!: boolean;
 
   @action
   toggle(this: ModalContainer) {
