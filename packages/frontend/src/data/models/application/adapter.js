@@ -214,18 +214,16 @@ export default DS.Adapter.extend(Evented, {
 });
 
 function updateOrCreate(store, type, snapshot) {
-  return this.queue.attach(resolve => {
-    this._getNamespaceData(type).then(namespaceData => {
-      const serializer = store.serializerFor(type.modelName);
-      const recordHash = serializer.serialize(snapshot, { includeId: true });
-      // update(id comes from snapshot) or create(id comes from serialization)
-      const id = snapshot.id || recordHash.id;
+  return this.queue.attach(async (resolve) => {
+    const namespaceData = await this._getNamespaceData(type);
+    const serializer = store.serializerFor(type.modelName);
+    const recordHash = serializer.serialize(snapshot, { includeId: true });
+    // update(id comes from snapshot) or create(id comes from serialization)
+    const id = snapshot.id || recordHash.id;
 
-      namespaceData.records[id] = recordHash;
+    namespaceData.records[id] = recordHash;
 
-      this._setNamespaceData(type, namespaceData).then(() => {
-        resolve();
-      });
-    });
+    await this._setNamespaceData(type, namespaceData);
+    resolve();
   });
 }

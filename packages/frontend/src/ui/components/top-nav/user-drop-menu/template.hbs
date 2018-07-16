@@ -24,23 +24,7 @@
 
   <hr class='navbar-divider' />
 
-  <div class='flex-row navbar-item justify-content-space-between'>
-    <a class='button m-r-md'
-      {{action (queue
-        (action closeMenu)
-        (action toggleModal 'add-friend')
-      )}}>
-      Add Friend
-    </a>
-    <a
-      class='button'
-      {{action (queue
-        (action closeMenu)
-        (action toggleModal 'show-my-info')
-      )}}>
-      Invite
-    </a>
-  </div>
+  <InviteButtons @beforeClick={{action closeMenu}} />
 
   <hr class='navbar-divider' />
 

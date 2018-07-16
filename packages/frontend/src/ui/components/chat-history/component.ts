@@ -1,26 +1,31 @@
 import Component from '@ember/component';
+import { later } from '@ember/runloop';
 import { filterBy } from '@ember-decorators/object/computed';
 
 import Message from 'emberclear/data/models/message';
 
+// TODO:
+//  - show a "hey there are more messages" notice when there are
+//    new messages
+//  - when scrolling up, new messages coming in shouldn't
+//    scroll back to the bottom
+//  - when already at the bottom, receiving new messages
+//    should scroll the view to the bottom
 export default class ChatHistory extends Component {
-
   @filterBy('messages', 'type', 'chat') chatMessages!: Message[];
 
-  didRender() {
-    this.scrollMessagesContainer();
+  didRender(this: ChatHistory) {
+    later(this, () => this.scrollMessagesContainer());
   }
 
   scrollMessagesContainer() {
     const element = this.element.querySelector('.messages') as HTMLElement;
     const messages = element.querySelectorAll('.message');
     const lastMessage = messages[messages.length - 1] as HTMLElement;
+    // const lastMessage = element.querySelector('.message:last-child');
 
     if (lastMessage) {
-      console.log('total message height: ', [].slice.call(messages).map(m => m.offsetHeight).reduce((a, m) => m+a, 0));
-      console.log('container scrollHeight: ', element.scrollHeight, 'container scrollTop: ', element.scrollTop);
-      console.log('lastMessage.offsetHeight: ', lastMessage.offsetHeight, 'lastMessage.offsetTop: ', lastMessage.offsetTop);
-      element.scrollTop = lastMessage.offsetTop + lastMessage.offsetHeight * 20000;
+      element.scrollTop = lastMessage.offsetTop + lastMessage.offsetHeight;
     }
   }
 }

@@ -42,21 +42,4 @@ export default class ApplicationRoute extends Route {
 
     this.relayConnection.connect();
   }
-
-  async activate(this: ApplicationRoute) {
-
-    // setInterval(() => {
-    //   navigator.serviceWorker && navigator.serviceWorker.getRegistration()
-    //     .then(registration => registration && registration.update());
-    // }, 60000);
-
-
-    // window.addEventListener("beforeinstallprompt", function(e) {
-    //   // log the platforms provided as options in an install prompt
-    //   console.log(e.platforms); // e.g., ["web", "android", "windows"]
-    //   e.userChoice.then(function(outcome) {
-    //     console.log(outcome); // either "accepted" or "dismissed"
-    //   }, handleError);
-    // });
-  }
 }

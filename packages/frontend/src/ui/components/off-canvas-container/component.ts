@@ -13,7 +13,7 @@ export default class OffCanvasContainer extends Component {
 
 
   @action
-  toggleSidebar(this: ApplicationController) {
+  toggleSidebar(this: OffCanvasContainer) {
     this.sidebar.toggle();
   }
 }

@@ -20,7 +20,7 @@ export default class Message extends Model {
 
   @belongsTo('identity') sender?: Identity;
   // TODO: come up with different word.. medias is weird
-  @hasMany('message-media') medias?: MessageMedia;
+  // @hasMany('message-media') medias?: MessageMedia;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

@@ -1,7 +1,10 @@
 import Component from '@ember/component';
-import { action, computed } from '@ember-decorators/object';
+import { action } from '@ember-decorators/object';
 import { or } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
+
+import RelayConnection from 'emberclear/services/relay-connection';
+import RelayManager from 'emberclear/services/relay-manager';
 
 
 // https://stackoverflow.com/a/8260383/356849
@@ -10,6 +13,7 @@ const IMAGE_PATTERN = /(jpg|png|gif)/;
 
 export default class EmbeddedResource extends Component {
   @service relayConnection!: RelayConnection;
+  @service relayManager!: RelayManager;
 
   url!: string;
 
@@ -18,6 +22,9 @@ export default class EmbeddedResource extends Component {
   isCollapsed = false;
   embedUrl?: string;
 
+  hasOgData!: boolean;
+  ogData!: OpenGraphData;
+  title?: string;
 
   constructor() {
     super(...arguments);
@@ -28,14 +35,12 @@ export default class EmbeddedResource extends Component {
 
   @or('embedUrl', 'isImage', 'hasOgData') shouldRender!: boolean;
 
-
   async fetchOpenGraph(this: EmbeddedResource) {
-    const og = await this.relayConnection.fetchOpenGraph(this.url);
+    const og = await this.relayManager.getOpenGraph(this.url);
 
-    this.set('hasOgData', og.title && og.description);
+    this.set('hasOgData', !!(og.title && og.description));
     this.set('ogData', og);
     this.set('title', og.title);
-
   }
 
   parseUrl() {

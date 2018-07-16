@@ -12,6 +12,7 @@
     <p class='menu-label m-t-sm m-b-sm'>
       Contacts
     </p>
+
     <ul class='menu-list'>
       {{#each @contacts as |contact|}}
         <li>
@@ -25,15 +26,18 @@
         </li>
       {{/each}}
 
-      {{#if (eq @contacts.length 0)}}
+      {{#if (not (is-present @contacts))}}
         You have no contacts.
-        TODO: add invite / add buttons
+
+
+        <InviteButtons class='w-100' @beforeClick={{action closeSidebar}} />
       {{/if}}
     </ul>
 
     <p class='menu-label m-t-sm m-b-sm'>
       Channels
     </p>
+
     <ul class='menu-list'>
       <li>
         {{#link-to 'chat'}}

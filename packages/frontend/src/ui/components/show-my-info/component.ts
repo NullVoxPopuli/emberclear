@@ -41,12 +41,12 @@ export default class ShowMyInfo extends Component {
   }
 
   @action
-  toggleShowQrCode(this: InviteModal) {
+  toggleShowQrCode(this: ShowMyInfo) {
     this.set('showQrCodeMobile', !this.showQrCodeMobile);
   }
 
   @action
-  copySuccess(this: InviteModal, e: any) {
+  copySuccess(this: ShowMyInfo, e: any) {
     e.clearSelection();
     this.set('copied', true);
 

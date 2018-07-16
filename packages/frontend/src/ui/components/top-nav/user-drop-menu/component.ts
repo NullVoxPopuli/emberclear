@@ -12,11 +12,8 @@ export default class UserDropMenu extends Component {
   @service identity!: IdentityService;
   @service store!: DS.Store;
   @service router!: Registry['router'];
-  @service modals!: Modals;
 
-  // tagName = '';
   showDropdown = false;
-
   classNameBindings = ['showDropdown:is-active']
 
   @alias('identity.name') name?: string;
@@ -24,10 +21,5 @@ export default class UserDropMenu extends Component {
   @action
   closeMenu(this: UserDropMenu) {
     this.set('showDropdown', false);
-  }
-
-  @action
-  toggleModal(name: string) {
-    this.modals.toggle(name);
   }
 }

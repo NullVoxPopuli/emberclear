@@ -65,7 +65,7 @@ export default class MessageProcessor extends Service {
       contentType: msg.contentType,
     });
 
-    message.save();
+    await message.save();
 
     return message;
   }

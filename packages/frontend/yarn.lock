@@ -3508,7 +3508,7 @@ ember-cli-broccoli-sane-watcher@^2.0.4:
     hash-for-dep "^1.2.3"
     pkg-dir "^2.0.0"
     resolve "^1.7.1"
-    rollup "^0.62.0"
+    rollup "^0.60.1"
     rollup-plugin-commonjs "^9.1.0"
     rollup-plugin-node-resolve "^3.3.0"
     username "^3.0.0"
@@ -8710,9 +8710,9 @@ rollup@^0.57.1:
     signal-exit "^3.0.2"
     sourcemap-codec "^1.4.1"
 
-rollup@^0.62.0:
-  version "0.62.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.62.0.tgz#4ca8b3c9582195dc9341ff8a1375f58319b95bfc"
+rollup@^0.60.1:
+  version "0.60.7"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.60.7.tgz#2b62ef9306f719b1ab85a7814b3e6596ac51fae8"
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "*"

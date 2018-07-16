@@ -1,9 +1,9 @@
 import Service from '@ember/service';
 import EmberObject from '@ember/object';
 
-interface ModalState {
-  name: string;
-  isActive: boolean;
+class ModalState extends EmberObject {
+  name!: string;
+  isActive!: boolean;
 }
 
 export default class Modals extends Service {
@@ -25,7 +25,7 @@ export default class Modals extends Service {
     const modal = this.modals.find(m => m.name === name);
 
     if (!modal) {
-      const newModal = new EmberObject({ name, isActive: false });
+      const newModal = new ModalState({ name, isActive: false });
 
       this.modals.push(newModal);
 
