@@ -39,6 +39,8 @@ export default class extends Component {
   }
 
   didInsertElement() {
+    // extra code features
+    this._makeCodeBlocksFancy();
     // non-blocking
     this._addLanguages(this.message.body);
   }
@@ -60,5 +62,13 @@ export default class extends Component {
     matches.forEach(match => languages.push(match[1]));
 
     return languages;
+  }
+
+  _makeCodeBlocksFancy() {
+    const pres = this.element.querySelectorAll('pre');
+
+    if (pres && pres.length > 0) {
+      pres.forEach(p => p.classList.add('line-numbers'));
+    }
   }
 }
