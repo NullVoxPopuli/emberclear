@@ -83,6 +83,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-qunit": "^3.2.1",
     "libsodium": "github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855",
+    "libsodium-wrappers": "github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855",
     "localforage": "^1.7.1",
     "phoenix": "^1.3.0",
     "prember": "^0.4.0",
