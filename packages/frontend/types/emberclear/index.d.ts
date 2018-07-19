@@ -5,6 +5,14 @@ declare global {
     highlightAll: () => void;
   }
 
+
+  interface IDecoratorArgs extends Array<any | string | PropertyDescriptor> {
+    0: any;
+    1: string;
+    2: PropertyDescriptor
+  }
+
+
   interface RenderingContext {
     client: any;
     server: any;
