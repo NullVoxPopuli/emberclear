@@ -13,7 +13,7 @@
       ' style='min-width: 180px; min-height: 180px;'>
       {{#if qrCode.isPending}}
         <div style='width: 180px; height: 180px;' class='loader'></div>
-      {{else}}
+      {{else if qrCode.result}}
         <img
           style='width: 180px; height: 180px;'
           src={{qrCode.result}} />

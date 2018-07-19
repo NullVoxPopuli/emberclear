@@ -1,11 +1,38 @@
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
+import { service } from '@ember-decorators/service';
+import { computed } from '@ember-decorators/object';
 
 import RSVP from 'rsvp';
 import { toast } from 'bulma-toast';
 
-// TODO: implement sysstem-notifications
+import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/decorators';
+
+// TODO: pull out toasts.
+//       notifications / web notifications should only be used for important things.
+//
+// TODO: write a separate UI element for connection status, like what slack has.
 export default class Notifications extends Service {
+  @service fastboot!: FastBoot;
+
+  askToEnableNotifications = false;
+  isHiddenUntilBrowserRefresh = false;
+
+  @disableInFastboot(false)
+  @syncToLocalStorage
+  get isNeverGoingToAskAgain() {
+    return false;
+  }
+
+  @computed('askToEnableNotifications', 'isHiddenUntilBrowserRefresh', 'isNeverGoingToAskAgain')
+  get showInAppPrompt() {
+    if (this.isPermissionDenied()) return false;
+    if (this.isNeverGoingToAskAgain) return false;
+    if (this.isHiddenUntilBrowserRefresh) return false;
+
+    return this.askToEnableNotifications;
+  }
+
   info(msg: string, title = '', options = {}) {
     this.display('is-info', msg, title, options);
   }
@@ -23,14 +50,60 @@ export default class Notifications extends Service {
   }
 
   async display(status: string, msg: string, title: string, options = {}) {
-    const hasPermission = await this.isPermissionGranted();
-
-    if (hasPermission) {
+    if (this.isPermissionGranted()) {
       this.showNotification(msg, title, options);
       return;
     }
 
+    // Permission to display desktop notifications has not yet been granted.
+    // ask the user if they would like to enable those.
+    this.set('askToEnableNotifications', true);
+
+
     this.createToast(status, msg, title, options);
+  }
+
+  isPermissionGranted() {
+    if (this.isBrowserCapableOfNotifications()) {
+      return Notification.permission === 'granted';
+    }
+
+    return false;
+  }
+
+  isPermissionDenied() {
+    return Notification.permission === 'denied';
+  }
+
+  askPermission() {
+    return new RSVP.Promise((resolve, reject) => {
+      if (!this.isBrowserCapableOfNotifications()) return reject();
+      if (this.isPermissionDenied()) return reject();
+
+      Notification.requestPermission(permission => {
+        if (permission === 'granted') {
+          this.set('askToEnableNotifications', false);
+
+          return resolve()
+        }
+
+        return reject();
+      });
+    });
+  }
+
+  isBrowserCapableOfNotifications() {
+    return ('Notification' in window);
+  }
+
+  showNotification(msg: string, title: string, options = {}) {
+    const notificationOptions = {
+      body: msg,
+      // icon: ''
+      ...options
+    };
+
+    return new Notification(title, notificationOptions);
   }
 
   createToast(status: string, msg: string, title: string, options: any) {
@@ -46,34 +119,6 @@ export default class Notifications extends Service {
       duration: 2300,
       ...options
     });
-  }
-
-  isPermissionGranted() {
-    // return new RSVP.Promise((resolve, reject) => {
-    //   if (!('Notification' in window)) return reject();
-
-    //   if ((Notification as any).permission !== 'denied') {
-    //     Notification.requestPermission(permission => {
-    //       if (permission === 'granted') {
-    //         return resolve()
-    //       }
-
-    //       return reject();
-    //     });
-    //   }
-
-    //   return resolve();
-    // });
-  }
-
-  showNotification(msg: string, title: string, options = {}) {
-    const notificationOptions = {
-      body: msg,
-      // icon: ''
-      ...options
-    };
-
-    return new Notification(title, notificationOptions);
   }
 
 }
