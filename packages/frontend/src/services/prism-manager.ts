@@ -83,6 +83,7 @@ export default class PrismManager extends Service {
       case 'ts': return 'typescript';
       case 'rb': return 'ruby';
       case 'hbs': return 'handlebars';
+      case 'js': return 'javascript';
       default: return language;
     }
   }
