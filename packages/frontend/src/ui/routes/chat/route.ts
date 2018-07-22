@@ -6,6 +6,8 @@ import IdentityService from 'emberclear/services/identity/service';
 import RelayConnection from 'emberclear/services/relay-connection';
 import Message from 'emberclear/data/models/message';
 
+import { disableInFastboot } from 'emberclear/src/utils/decorators';
+
 export interface IModel {
   messages: Message[]
 }
@@ -13,12 +15,9 @@ export interface IModel {
 export default class ChatRoute extends Route {
   @service relayConnection!: RelayConnection;
   @service identity!: IdentityService;
-  @service fastboot!: FastBoot;
 
-  // ensure we are allowed to be here
+  @disableInFastboot
   beforeModel() {
-    if (this.fastboot.isFastBoot) return;
-
     // identity should be loaded from application route
     if (this.identity.isLoggedIn) return;
 
@@ -26,18 +25,18 @@ export default class ChatRoute extends Route {
     this.transitionTo('setup');
   }
 
-  // TODO: filter to the room
+  @disableInFastboot({ default: { messages: [] } })
   async model() {
-    if (this.fastboot.isFastBoot) return;
-
-    const records = await this.store.findAll('message', { backgroundReload: true });
+    const records = await this.store.findAll('message', {
+      backgroundReload: true,
+      include: 'sender'
+    });
 
     return RSVP.hash({ messages: records });
   }
 
+  @disableInFastboot
   async afterModel() {
-    if (this.fastboot.isFastBoot) return;
-
     this.relayConnection.connect();
   }
 }

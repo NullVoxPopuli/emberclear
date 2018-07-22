@@ -1,6 +1,7 @@
 import Model from 'ember-data/model';
 import { attr } from '@ember-decorators/data';
 import { computed } from '@ember-decorators/object';
+import { reads } from '@ember-decorators/object/computed';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
 export const Status = {
@@ -18,6 +19,8 @@ export default class Identity extends Model {
   @attr() publicKey?: Uint8Array;
   @attr() privateKey?: Uint8Array;
   @attr() onlineStatus?: string;
+
+  @reads('publicKeyAsHex') uid!: string;
 
   @computed('publicKey')
   get publicKeyAsHex() {

@@ -6,6 +6,8 @@ import IntlService from 'ember-intl/services/intl';
 import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
 
+import { disableInFastboot } from 'emberclear/src/utils/decorators';
+
 export default class ApplicationRoute extends Route {
   @service identity!: IdentityService;
   @service relayConnection!: RelayConnection;
@@ -32,17 +34,15 @@ export default class ApplicationRoute extends Route {
     }
   }
 
+  @disableInFastboot({ default: { contacts: [] } })
   async model() {
-    if (this.fastboot.isFastBoot) return;
-
-    const contacts = this.store.findAll('identity', { backgroundReload: true });
+    const contacts = await this.store.findAll('identity', { backgroundReload: true });
 
     return RSVP.hash({ contacts });
   }
 
+  @disableInFastboot
   async afterModel() {
-    if (this.fastboot.isFastBoot) return;
-
     this.relayConnection.connect();
   }
 }

@@ -21,25 +21,12 @@ export default class MessageDispatcher extends Service {
   @service identity!: IdentityService;
   @service statusManager!: StatusManager;
 
-  async sendMessage(messageText: string) {
-    let msg = this.store.createRecord('message', {
-      from: this.identity.name,
-      body: messageText,
-      sentAt: new Date(),
-      type: 'chat'
-    });
-
-    await msg.save();
-
-    this.sendToAll(msg)
-  }
-
   async pingAll() {
     const ping = this.store.createRecord('message', {
       from: this.identity.name,
       sentAt: new Date(),
       type: 'ping'
-    })
+    });
 
     this.sendToAll(ping);
   }

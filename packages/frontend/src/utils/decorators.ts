@@ -1,21 +1,38 @@
-import { assert } from '@ember/debug';
+import { getOwner } from '@ember/application';
+import { decoratorWithParams } from '@ember-decorators/utils/decorator';
 
-export function disableInFastboot<T>(defaultValue: T) {
-  return (_target: any, _propertyKey: string, descriptor: PropertyDescriptor) => {
-    const oldGet = descriptor.get;
+function isFastBoot(context) {
+  const service = getOwner(context).lookup('service:fastboot');
 
-    descriptor.get = function(): T {
-      const fb = this.fastboot;
+  return service.isFastBoot;
+}
 
-      assert(`
-        The FastBoot service must be present under the name 'fastboot'.
-        Did you inject it?`, fb);
+export const disableInFastboot = decoratorWithParams(_disableInFastboot);
 
-      if (fb.isFastBoot) return defaultValue;
+export function _disableInFastboot<T>(_target: any, _propertyKey: string, descriptor: PropertyDescriptor, params: any[]) {
+  const options = params[0] || {};
+  const fbReturn = options.default;
+  const { get: oldGet, value: oldValue } = descriptor;
+
+  if (oldValue) {
+    descriptor.value = function(...args: any[]): T {
+      if (isFastBoot(this)) return fbReturn;
+
+      return oldValue.apply(this, ...args);
+    }
+
+    return descriptor;
+  }
+
+  if (oldGet) {
+    descriptor.get = function(): T | undefined {
+      if (isFastBoot(this)) return fbReturn;
 
       return oldGet();
     }
   }
+
+  return descriptor;
 }
 
 export function syncToLocalStorage<T>(target: any, propertyKey: string, descriptor: PropertyDescriptor) {

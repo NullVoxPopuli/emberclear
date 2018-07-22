@@ -1,8 +1,5 @@
 import Component from '@ember/component';
 import { later } from '@ember/runloop';
-import { filterBy } from '@ember-decorators/object/computed';
-
-import Message from 'emberclear/data/models/message';
 
 // TODO:
 //  - show a "hey there are more messages" notice when there are
@@ -12,8 +9,6 @@ import Message from 'emberclear/data/models/message';
 //  - when already at the bottom, receiving new messages
 //    should scroll the view to the bottom
 export default class ChatHistory extends Component {
-  @filterBy('messages', 'type', 'chat') chatMessages!: Message[];
-
   didRender(this: ChatHistory) {
     later(this, () => this.scrollMessagesContainer());
   }

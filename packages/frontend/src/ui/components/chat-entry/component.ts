@@ -4,11 +4,13 @@ import { action, computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
+import MessageFactory from 'emberclear/services/messages/factory';
 import Identity from 'emberclear/data/models/identity/model';
 
 
 export default class MessageEntry extends Component {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
+  @service('messages/factory') messageFactory!: MessageFactory;
 
   to?: Identity;
   // value from the input field
@@ -38,21 +40,14 @@ export default class MessageEntry extends Component {
 
   @action
   async sendMessage(this: MessageEntry) {
-    this.set('isDisabled', true);
-
     if (!this.text) return;
 
-    await this.messageDispatcher.sendMessage(this.text);
+    this.set('isDisabled', true);
 
+    await this._sendMessage(this.text);
 
     this.set('isDisabled', false);
     this.set('text', '');
-
-    const textarea = this.element.querySelector('textarea')!;
-
-    textarea.value = '';
-    textarea.style.cssText = '';
-
   }
 
   @action
@@ -77,5 +72,23 @@ export default class MessageEntry extends Component {
       max-height: 7rem;
       height: ${element.scrollHeight}px
     `;
+  }
+
+  async _sendMessage(text: string) {
+    if (this.to) {
+      const msg = this.messageFactory.buildWhisper(text, this.to);
+
+      await msg.save();
+
+      if (this.to.id === 'me') return;
+
+      return await this.messageDispatcher.sendToUser(msg, this.to);
+    }
+
+    const msg = this.messageFactory.buildChat(text);
+
+    await msg.save();
+
+    return await this.messageDispatcher.sendToAll(msg);
   }
 }

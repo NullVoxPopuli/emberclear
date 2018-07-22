@@ -6,7 +6,7 @@ import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/deco
 export default class Sidebar extends Service {
   @service fastboot!: FastBoot;
 
-  @disableInFastboot(false)
+  @disableInFastboot
   @syncToLocalStorage
   get isShown(): boolean {
     return false;

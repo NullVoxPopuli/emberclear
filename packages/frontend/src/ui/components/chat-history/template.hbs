@@ -1,8 +1,8 @@
-<div class='message-list'>
+<div class='message-list flex-row no-overflow'>
 
-  {{#vertical-collection chatMessages
+  {{#vertical-collection @messages
     tagName='div'
-    class='messages default-transition'
+    class='messages flex-grow justify-content-end overflows'
     estimateHeight=100
     staticHeight=false
     bufferSize=3
@@ -10,9 +10,7 @@
     renderFromLast=true
      as |message index|}}
 
-     <Message
-       @message={{message}}
-       @hideHeader={{should-hide-header messages message index}} />
+     <Message @message={{message}} />
 
   {{/vertical-collection}}
 

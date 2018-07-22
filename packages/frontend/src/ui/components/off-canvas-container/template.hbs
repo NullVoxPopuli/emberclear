@@ -1,5 +1,5 @@
 <div class='is-flex-desktop flex-grow m-none m-b-none no-overflow'>
-  {{#if identity.isLoggedIn}}
+  {{#if isLoggedIn}}
     <div class='
       sidebar-container flex-row transition-all is-fullheight
       align-items-stretch
@@ -8,7 +8,7 @@
         "is-sidebar-hidden"}}'>
 
       <div class='no-select sidebar-underlay full-overlay' {{action toggleSidebar}}></div>
-      <Sidebar class='sidebar-wrapper' @contacts={{model.contacts}} />
+      <Sidebar class='sidebar-wrapper' @contacts={{@contacts}} />
 
       <HamburgerButton
         @class='
