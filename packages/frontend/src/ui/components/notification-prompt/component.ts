@@ -8,7 +8,6 @@ import Notifications from 'emberclear/services/notifications/service';
 export default class NotificationPrompt extends Component {
   @service notifications!: Notifications;
 
-
   @reads('notifications.showInAppPrompt')
   isVisible!: boolean;
 

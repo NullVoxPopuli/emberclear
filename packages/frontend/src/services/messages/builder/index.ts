@@ -1,11 +1,10 @@
-import { toHex } from "emberclear/src/utils/string-encoding";
 import Message from "emberclear/data/models/message";
 import Identity from "emberclear/data/models/identity/model";
 
 export function buildSender(sender: Identity): RelayJson['sender'] {
   return {
     name: sender.name!,
-    uid: toHex(sender.publicKey!),
+    uid: sender.uid,
     location: ''
   }
 }

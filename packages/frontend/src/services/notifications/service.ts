@@ -1,6 +1,5 @@
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
-import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 
 import RSVP from 'rsvp';
@@ -13,12 +12,10 @@ import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/deco
 //
 // TODO: write a separate UI element for connection status, like what slack has.
 export default class Notifications extends Service {
-  @service fastboot!: FastBoot;
-
   askToEnableNotifications = false;
   isHiddenUntilBrowserRefresh = false;
 
-  @disableInFastboot(false)
+  @disableInFastboot
   @syncToLocalStorage
   get isNeverGoingToAskAgain() {
     return false;
@@ -26,6 +23,7 @@ export default class Notifications extends Service {
 
   @computed('askToEnableNotifications', 'isHiddenUntilBrowserRefresh', 'isNeverGoingToAskAgain')
   get showInAppPrompt() {
+    if (!this.isBrowserCapableOfNotifications()) return false;
     if (this.isPermissionDenied()) return false;
     if (this.isNeverGoingToAskAgain) return false;
     if (this.isHiddenUntilBrowserRefresh) return false;

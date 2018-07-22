@@ -1,7 +1,12 @@
 <div class='message m-l-md m-r-md m-b-md'>
 
   <div class='message-header'>
-    <span class='from'>{{@message.from}}</span>
+    <span class='from'>
+      {{#link-to 'chat.privately-with' @message.from}}
+        {{@message.sender.name}}
+      {{/link-to}}
+    </span>
+
     <span class='sentAt has-hover-tip'>
       {{format-date @message.sentAt}}
 
@@ -16,6 +21,7 @@
 
     {{#if (is-present urls)}}
       <br />
+
       <div class='flex flex-wrap'>
         {{#each urls as |url|}}
           <EmbeddedResource class='flex' @url={{url}} />

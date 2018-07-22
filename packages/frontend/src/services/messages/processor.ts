@@ -56,7 +56,8 @@ export default class MessageProcessor extends Service {
 
     const message = this.store.createRecord('message', {
       type,
-      from: sender.name,
+      sender,
+      from: sender.uid,
       sentAt: json.time_sent,
       receivedAt: new Date(),
       body: msg.body,
@@ -74,6 +75,10 @@ export default class MessageProcessor extends Service {
     const { name, uid } = senderData;
     const publicKey = fromHex(uid);
 
+    if (uid === this.identity.uid) {
+      return this.identity.record!;
+    }
+
     try {
       let record = await this.store.findRecord('identity', uid);
       record.set('name', name);
@@ -81,6 +86,7 @@ export default class MessageProcessor extends Service {
       return record;
     } catch (e) {
       let record = this.store.createRecord('identity', {
+        id: uid,
         publicKey,
         name
       });

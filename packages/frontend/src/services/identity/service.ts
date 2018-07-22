@@ -8,6 +8,7 @@ import { service } from '@ember-decorators/service';
 import { alias, reads } from '@ember-decorators/object/computed';
 
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
+import { toHex } from 'emberclear/src/utils/string-encoding';
 import Identity from 'emberclear/data/models/identity/model';
 
 // The purpose of this service is to be an interface that
@@ -35,6 +36,13 @@ export default class IdentityService extends Service {
   @computed('name', 'privateKey', 'publicKey')
   get isLoggedIn(): boolean {
     return !!(this.name && this.privateKey && this.publicKey);
+  }
+
+  @computed('publicKey')
+  get uid(): string {
+    if (!this.publicKey) return '';
+
+    return toHex(this.publicKey);
   }
 
   async create(this: IdentityService, name: string): Promise<void> {
