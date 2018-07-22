@@ -5,6 +5,8 @@ import { service } from '@ember-decorators/service';
 import IdentityService from 'emberclear/services/identity/service';
 import { IModel as ChatModel } from 'emberclear/ui/routes/chat/route';
 
+import { disableInFastboot } from 'emberclear/src/utils/decorators';
+
 interface IModelParams {
   uId: string;
 }
@@ -12,6 +14,7 @@ interface IModelParams {
 export default class ChatPrivatelyRoute extends Route {
   @service identity!: IdentityService;
 
+  @disableInFastboot
   beforeModel(transition: Transition) {
     const params = transition.params['chat.privately-with'];
     const { uId } = params as IModelParams;
@@ -21,9 +24,7 @@ export default class ChatPrivatelyRoute extends Route {
     }
   }
 
-  // Two scenarios
-  //  - to: the uId from the current user
-  //  - from the uId and to the currentUser
+  @disableInFastboot
   async model(params: IModelParams) {
     const { uId } = params;
 
@@ -31,7 +32,6 @@ export default class ChatPrivatelyRoute extends Route {
     const chatModel = this.modelFor('chat') as ChatModel;
 
     return RSVP.hash({
-      uid: uId,
       targetIdentity: record,
       messages: chatModel.messages
     });

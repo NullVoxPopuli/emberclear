@@ -8,11 +8,10 @@ import IdentityService from 'emberclear/services/identity/service';
 export default class extends Controller {
   @service identity!: IdentityService;
 
-  @reads('model.uid') uid!: string;
+  @reads('model.targetIdentity.uid') uid!: string;
 
   @filter('model.messages')
   messages(message: Message, _index: number, _array: Message[]) {
-    console.log(message.from, message.body, message.type, message.sender);
     return (
       message.type === MESSAGE_TYPE.WHISPER && (
         // we sent this message
