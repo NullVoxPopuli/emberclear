@@ -6,17 +6,17 @@ import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
 import Identity from 'emberclear/data/models/identity/model';
 import StatusManager from 'emberclear/services/status-manager';
+import ContactManager from 'emberclear/services/contact-manager';
 
 import { decryptFrom } from 'emberclear/src/utils/nacl/utils';
 import { fromHex, toString, fromBase64 } from 'emberclear/src/utils/string-encoding';
 
 export default class MessageProcessor extends Service {
-  // anything which *must* be merged to prototype here
-  // toast = service('toast');
   @service store!: DS.Store;
   @service identity!: IdentityService;
   @service relayConnection!: RelayConnection;
   @service statusManager!: StatusManager;
+  @service contactManager!: ContactManager;
 
   async receive(socketData: RelayMessage) {
     const { uid, message } = socketData;
@@ -24,11 +24,11 @@ export default class MessageProcessor extends Service {
     const recipientPrivateKey = this.identity.privateKey!;
 
     const decrypted = await this.decryptMessage(message, senderPublicKey, recipientPrivateKey);
+
     // once received, parse it into a message,
     // and save it. ember-data and the routing
     // will take care of where to place the
     // message in the UI
-
     await this.importMessage(decrypted);
   }
 
@@ -73,30 +73,12 @@ export default class MessageProcessor extends Service {
 
   async findOrCreateSender(senderData: RelayJson["sender"]): Promise<Identity> {
     const { name, uid } = senderData;
-    const publicKey = fromHex(uid);
 
     if (uid === this.identity.uid) {
       return this.identity.record!;
     }
 
-    try {
-      let record = await this.store.findRecord('identity', uid);
-      record.set('name', name);
-
-      return record;
-    } catch (e) {
-      let record = this.store.createRecord('identity', {
-        id: uid,
-        publicKey,
-        name
-      });
-
-      record.save();
-
-      return record;
-    }
-
-
+    return await this.contactManager.findOrCreate(uid, name);
   }
 }
 

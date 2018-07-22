@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { later } from '@ember/runloop';
 
 import { action, computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
@@ -44,7 +45,8 @@ export default class MessageEntry extends Component {
 
     this.set('isDisabled', true);
 
-    await this._sendMessage(this.text);
+    await this.dispatchMessage(this.text);
+    later(this, () => this.scollContainer());
 
     this.set('isDisabled', false);
     this.set('text', '');
@@ -54,7 +56,7 @@ export default class MessageEntry extends Component {
   onKeyPress(this: MessageEntry, event: KeyboardEvent) {
     const { keyCode, shiftKey, target } = event;
 
-    this._adjustHeight(target);
+    this.adjustHeight(target);
 
     // don't submit when shift is being held.
     if (!shiftKey && keyCode === 13) {
@@ -67,14 +69,25 @@ export default class MessageEntry extends Component {
     return true;
   }
 
-  _adjustHeight(element: HTMLElement) {
+  private adjustHeight(element: HTMLElement) {
     element.style.cssText = `
       max-height: 7rem;
       height: ${element.scrollHeight}px
     `;
   }
 
-  async _sendMessage(text: string) {
+  private scollContainer() {
+    const container = this.element.parentElement!;
+    const element = container.querySelector('.messages')!;
+    const messages = element.querySelectorAll('.message')!;
+    const lastMessage = messages[messages.length - 1] as HTMLElement;
+
+    if (lastMessage) {
+      element.scrollTop = lastMessage.offsetTop + lastMessage.offsetHeight;
+    }
+  }
+
+  private async dispatchMessage(text: string) {
     if (this.to) {
       const msg = this.messageFactory.buildWhisper(text, this.to);
 

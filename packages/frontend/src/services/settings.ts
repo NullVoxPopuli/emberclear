@@ -3,6 +3,7 @@ import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 
 import IdentityService from 'emberclear/services/identity/service';
+// import ContactManager from 'emberclear/services/contact-manager';
 
 import {
   objectToDataURL, toHex, fromHex
@@ -12,6 +13,7 @@ import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
 
 export default class Settings extends Service {
   @service identity!: IdentityService;
+  // @service contactManager!: ContactManager;
 
   @computed('identity.privateKey', 'identity.publicKey')
   get downloadUrl() {
@@ -20,10 +22,17 @@ export default class Settings extends Service {
     if (!privateKey) return;
     if (!publicKey) return;
 
+    // TODO: extract the generation of downloadUrl to an async function
+    //       and don't actually have the settings rendered on the page when
+    //       visiting. This will also enable us to provide a modal
+    //       for optional encryption of the settings via password.
+    // const contacts = this.contactManager.allContacts();
+
     const toDownload = {
       version: 1,
       name,
-      privateKey:  toHex(privateKey),
+      privateKey: toHex(privateKey),
+      contacts: []
     }
 
     return objectToDataURL(toDownload);
@@ -44,7 +53,6 @@ export default class Settings extends Service {
 
     // TODO: the actual settings
   }
-
 }
 
 

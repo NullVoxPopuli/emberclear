@@ -30,6 +30,17 @@ export default class extends Component {
     return sanitized;
   }
 
+  @computed('message.sender')
+  get senderName() {
+    const sender = this.message.sender;
+
+    if (!sender) {
+      return '-- Removed --';
+    }
+
+    return sender.name;
+  }
+
   @computed('messageBody')
   get urls() {
     const urls = this.message.body!.match(URL_PATTERN);
@@ -40,20 +51,21 @@ export default class extends Component {
 
   didInsertElement() {
     // extra code features
-    this._makeCodeBlocksFancy();
+    this.makeCodeBlocksFancy();
+
     // non-blocking
-    this._addLanguages(this.message.body);
+    this.addLanguages(this.message.body);
   }
 
-  async _addLanguages(text: string) {
-    const languages = this._parseLanguages(text);
+  private async addLanguages(text: string) {
+    const languages = this.parseLanguages(text);
 
     languages.forEach(language => {
       this.prismManager.addLanguage.perform(language)
     });
   }
 
-  _parseLanguages(text: string): string[] {
+  private parseLanguages(text: string): string[] {
     let languages: string[] = [];
 
     const matches = matchAll(text, /```(\w+)/g);
@@ -64,7 +76,7 @@ export default class extends Component {
     return languages;
   }
 
-  _makeCodeBlocksFancy() {
+  private makeCodeBlocksFancy() {
     const pres = this.element.querySelectorAll('pre');
 
     if (pres && pres.length > 0) {

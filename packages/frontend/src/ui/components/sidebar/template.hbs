@@ -14,15 +14,36 @@
     </p>
 
     <ul class='menu-list'>
+
+      {{!--
+        TODO: try to come up with a better solution for this type of responsive behavior.
+              duplicating things feels weird.
+      --}}
+
       {{#each @contacts as |contact|}}
-        <li>
+
+        <li class='is-hidden-touch'>
           {{#link-to 'chat.privately-with' contact.id
             activeClass='is-active'
-            class='flex-row align-items-center'
-          }}
+            class='flex-row align-items-center'}}
+
             <StatusIcon @contact={{contact}} />
             <span class='m-l-sm'>{{contact.name}}</span>
+
           {{/link-to}}
+        </li>
+
+        <li class='is-hidden-desktop'>
+          <a class='flex-row align-items-center'
+            {{action (queue
+              (action closeSidebar)
+              (transition-to 'chat.privately-with' contact.id)
+            )}}>
+
+            <StatusIcon @contact={{contact}} />
+            <span class='m-l-sm'>{{contact.name}}</span>
+
+          </a>
         </li>
       {{/each}}
     </ul>
@@ -38,10 +59,19 @@
     </p>
 
     <ul class='menu-list'>
-      <li>
+      <li class='is-hidden-touch'>
         {{#link-to 'chat'}}
           # Public
         {{/link-to}}
+      </li>
+
+      <li class='is-hidden-desktop'>
+        <a {{action (queue
+          (action closeSidebar)
+          (transition-to 'chat')
+          )}}>
+          # Public
+        </a>
       </li>
     </ul>
   </div>

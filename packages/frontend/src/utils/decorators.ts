@@ -18,7 +18,7 @@ export function _disableInFastboot<T>(_target: any, _propertyKey: string, descri
     descriptor.value = function(...args: any[]): T {
       if (isFastBoot(this)) return fbReturn;
 
-      return oldValue.apply(this, ...args);
+      return oldValue.apply(this, args);
     }
 
     return descriptor;
