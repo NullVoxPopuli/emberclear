@@ -6,7 +6,8 @@ module.exports = function(environment /*, appConfig */) {
   // supported properties
 
   // rootURL should end in a slash
-  const rootURL = environment.rootURL || process.env.ROOT_URL || '/';
+  // const rootURL = environment.rootURL || process.env.ROOT_URL || '/';
+  const rootURL = '/';
 
   console.log(`manifest.json is using rootURL as ${rootURL}`);
 

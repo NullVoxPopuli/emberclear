@@ -6,6 +6,7 @@ import { alias } from '@ember-decorators/object/computed';
 
 import Identity from 'emberclear/services/identity/service';
 import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
+import { disableInFastboot } from 'emberclear/src/utils/decorators';
 
 import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string-encoding';
 
@@ -33,6 +34,7 @@ export default class ShowMyInfo extends Component {
   }
 
   @computed('publicIdentity')
+  @disableInFastboot({ default: {} })
   get qrCode() {
     const publicIdentity = this.publicIdentity;
     const qrCodePromise = convertObjectToQRCodeDataURL(publicIdentity);

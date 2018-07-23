@@ -14,7 +14,7 @@
 
       {{#if qrCode.isPending}}
         <div style='width: 180px; height: 180px;' class='loader'></div>
-      {{else if qrCode.result}}
+      {{else if (is-present qrCode.result)}}
         <img
           style='width: 180px; height: 180px;'
           src={{qrCode.result}} />
