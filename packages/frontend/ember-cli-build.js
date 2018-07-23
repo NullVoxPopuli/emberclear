@@ -70,7 +70,7 @@ module.exports = function(defaults) {
       enabled: true,
     },
     'ember-service-worker': {
-      versionStrategy: 'every-build'
+      versionStrategy: 'project-revision'
     },
     // 'esw-index': {
     //   includeScope: [
