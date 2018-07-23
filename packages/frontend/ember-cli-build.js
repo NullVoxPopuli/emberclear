@@ -3,7 +3,7 @@
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const { BroccoliCSSBlocks } = require('@css-blocks/broccoli');
+// const { BroccoliCSSBlocks } = require('@css-blocks/broccoli');
 
 // note that by default, the enabled flags on some things
 // like minifying, and prember, by default, already check
@@ -69,7 +69,11 @@ module.exports = function(defaults) {
     treeShaking: {
       enabled: true,
     },
-
+    'ember-service-worker': {
+      versionStrategy: 'every-build'
+    },
+    // 'esw-index': {
+    //   includeScope: [
     //     /^\/$/,
     //   ]
     // },
