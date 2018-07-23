@@ -3,6 +3,7 @@
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const gitRev = require('git-rev-sync');
 // const { BroccoliCSSBlocks } = require('@css-blocks/broccoli');
 
 // note that by default, the enabled flags on some things
@@ -17,6 +18,7 @@ module.exports = function(defaults) {
   let isProduction = environment === 'production';
   let enableSW = process.env.ENABLE_SW;
   let disableServiceWorker = !isProduction && !enableSW;
+  let version = gitRev.short();
 
   console.log('\n---------------');
   console.log('environment: ', environment);
@@ -70,7 +72,7 @@ module.exports = function(defaults) {
       enabled: true,
     },
     'ember-service-worker': {
-      versionStrategy: 'project-revision'
+      // versionStrategy: 'project-revision'
     },
     // 'esw-index': {
     //   includeScope: [
@@ -78,16 +80,17 @@ module.exports = function(defaults) {
     //   ]
     // },
     'asset-cache': {
+      version,
       include:[
         'assets/**/*',
         '**/*.html'
       ]
     },
     'esw-cache-fallback': {
+      version,
       patterns: [
         '/',
       ],
-      // version: '1'
     },
     'ember-app-shell': {},
   });

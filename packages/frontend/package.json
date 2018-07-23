@@ -123,6 +123,7 @@
     "ember-resolver": "^4.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/7bc8511a7399d44ffb09514b659e3faaa140d597.tgz",
     "eslint-plugin-ember": "^5.0.0",
+    "git-rev-sync": "^1.12.0",
     "loader.js": "^4.2.3",
     "qunit-dom": "^0.7.0"
   },
