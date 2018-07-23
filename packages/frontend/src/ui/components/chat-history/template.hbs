@@ -19,13 +19,23 @@
     class='messages justify-content-end overflows'
     estimateHeight=100
     staticHeight=false
-    bufferSize=3
+    bufferSize=8
     renderAll=false
     renderFromLast=true
+    lastReached=(action onLastReached)
+    lastVisibleChanged=(action onLastVisibleChanged)
     as |message index|}}
 
      <Message @message={{message}} />
 
   {{/vertical-collection}}
+
+  <div class='new-messages
+    flex-row transition-all
+    p-l-md p-r-md p-t-xs p-b-xs
+    {{if isLastVisible "hidden"}}'>
+    There are newer messages
+    <a class='m-l-md underline' {{action scrollToBottom}}> view recent messages</a>
+  </div>
 
 </div>

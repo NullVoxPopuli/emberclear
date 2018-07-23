@@ -1,6 +1,7 @@
 .message-list {
   flex: 1 1 0%;
   display: flex;
+  position: relative;
 
   .messages {
     // overflow-y: auto;
@@ -51,4 +52,23 @@
     max-width: 480px;
     max-height: 270px;
   }
+}
+
+.new-messages {
+  position:absolute;
+  background: $info;
+  box-shadow: $box-shadow;
+  color: findColorInvert($blue);
+  border-radius: 2px;
+  bottom: 10px;
+  left: 15px;
+
+  &.hidden {
+    bottom: -50px;
+  }
+
+  a {
+    color: findColorInvert($blue);
+  }
+
 }
