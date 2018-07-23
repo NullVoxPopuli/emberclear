@@ -69,18 +69,22 @@ module.exports = function(defaults) {
     treeShaking: {
       enabled: true,
     },
-    'esw-index': {
-      includeScope: [
-        /^\/$/,
-      ]
-    },
+
+    //     /^\/$/,
+    //   ]
+    // },
     'asset-cache': {
       include:[
         'assets/**/*',
         '**/*.html'
       ]
     },
-    // 'esw-cache-fallback': { patterns: ['/'], version: '1' },
+    'esw-cache-fallback': {
+      patterns: [
+        '/',
+      ],
+      // version: '1'
+    },
     'ember-app-shell': {},
   });
 

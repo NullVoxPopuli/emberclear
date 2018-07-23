@@ -50,8 +50,11 @@ export default class ChatHistory extends Component {
     const container = this.element.querySelector('.message-list')!;
     const messages = this.element.querySelectorAll('.message')!;
     const lastMessage = messages[messages.length - 1] as HTMLElement;
-    const isVisible = isElementInViewport(lastMessage, container);
 
-    this.set('isLastVisible', isVisible);
+    if (lastMessage) {
+      const isVisible = isElementInViewport(lastMessage, container);
+
+      this.set('isLastVisible', isVisible);
+    }
   }
 }
