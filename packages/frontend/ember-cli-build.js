@@ -87,7 +87,8 @@ module.exports = function(defaults) {
       include:[
         'assets/**/*',
         '**/*.html',
-        'index.html'
+        'index.html',
+        '200.html'
       ]
     },
     'esw-cache-fallback': {
