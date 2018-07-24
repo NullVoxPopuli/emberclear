@@ -72,29 +72,30 @@ module.exports = function(defaults) {
     treeShaking: {
       enabled: true,
     },
-    'ember-service-worker': {
-      registrationStrategy: 'inline'
+    // 'ember-service-worker': {
+      // registrationStrategy: 'inline'
       // versionStrategy: 'project-revision'
-    },
+    // },
     'esw-index': {
-      version,
+      // version,
       includeScope: [
         /^\/$/,
       ]
     },
     'asset-cache': {
-      version,
+      // version,
       include:[
         'assets/**/*',
-        '**/*.html'
+        '**/*.html',
+        'index.html'
       ]
     },
-    // 'esw-cache-fallback': {
-    //   version,
-    //   patterns: [
-    //     '/',
-    //   ],
-    // },
+    'esw-cache-fallback': {
+      // version,
+      patterns: [
+        '/',
+      ],
+    },
     'ember-app-shell': {},
   });
 
