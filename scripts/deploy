@@ -6,6 +6,8 @@ echo "Current branch: $BRANCH"
 if [[ "$BRANCH" == "master" ]]; then
   echo "Current branch is master. Starting deploy..."
 
+  NETLIFY_CLI_VERSION=0.4.0
+
   time ./run yarn build:production
 
   wget https://github.com/netlify/netlifyctl/releases/download/v$NETLIFY_CLI_VERSION/netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
@@ -16,5 +18,5 @@ if [[ "$BRANCH" == "master" ]]; then
   deploy_status=$?
   echo "Deploy finished with status: $deploy_status"
 
-  deploy_status
+  exit $deploy_status
 fi
