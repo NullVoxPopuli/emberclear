@@ -1,6 +1,8 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
+import { disableInFastboot } from 'emberclear/src/utils/decorators';
+
 import IdentityService from 'emberclear/services/identity/service';
 
 export default class SettingsRoute extends Route {
@@ -9,9 +11,8 @@ export default class SettingsRoute extends Route {
 
 
   // ensure we are allowed to be here
+  @disableInFastboot
   async beforeModel() {
-    if (this.fastboot.isFastBoot) return;
-
     const exists = await this.identity.exists();
 
     if (!exists) {

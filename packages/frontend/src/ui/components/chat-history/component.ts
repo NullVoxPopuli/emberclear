@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { later } from '@ember/runloop';
 import { action } from '@ember-decorators/object';
 
+// TODO: needs concurrency love, because of component dismounting
 function isElementInViewport(element, container) {
   var rect = element.getBoundingClientRect();
   var containerRect = container.getBoundingClientRect();

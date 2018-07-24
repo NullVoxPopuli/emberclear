@@ -4,12 +4,11 @@ import { alias, reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 
 import IdentityService from 'emberclear/services/identity/service';
-import Notifications from 'emberclear/services/notifications/service';
 import Settings from 'emberclear/services/settings';
 
 export default class extends Controller {
   @service identity!: IdentityService;
-  @service('notifications') flash!: Notifications;
+  @service('notifications') toast!: Toast;
   @service settings!: Settings;
 
   @alias('identity.record.name') name!: string;
@@ -22,7 +21,19 @@ export default class extends Controller {
   async save() {
     await this.identity.record!.save();
 
-    this.flash.success('Identity Updated');
+    this.toast.success('Identity Updated');
+  }
+
+  @action
+  async deleteMessages() {
+    this.toast.info('Deleting messages...');
+    this.set('messagesDeleted', true);
+
+    const messages = await this.store.findAll('message')
+    await messages.invoke('destroyRecord');
+
+    this.toast.info('All messages have been cleared.');
+
   }
 
 }

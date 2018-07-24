@@ -65,7 +65,7 @@ module.exports = function(defaults) {
           'dot-circle',
           'plus',
           'code', 'desktop', 'bed', 'video',
-          'angle-down', 'angle-up'
+          'angle-down', 'angle-up', 'times'
         ],
       },
     },
