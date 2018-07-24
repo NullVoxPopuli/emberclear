@@ -72,10 +72,10 @@ module.exports = function(defaults) {
     treeShaking: {
       enabled: true,
     },
-    // 'ember-service-worker': {
-    //   // version,
-    //   versionStrategy: 'project-revision'
-    // },
+    'ember-service-worker': {
+      registrationStrategy: 'inline'
+      // versionStrategy: 'project-revision'
+    },
     // 'esw-index': {
     //   version,
     //   includeScope: [
