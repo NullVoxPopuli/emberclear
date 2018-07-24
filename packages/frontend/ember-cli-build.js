@@ -24,6 +24,7 @@ module.exports = function(defaults) {
   console.log('environment: ', environment);
   console.log('isProduction: ', isProduction);
   console.log('ENABLE_SW: ', enableSW);
+  console.log('git version: ', version);
   console.log('Service Worker Will Be Disabled: ', disableServiceWorker);
   console.log('---------------\n');
 
@@ -71,10 +72,12 @@ module.exports = function(defaults) {
     treeShaking: {
       enabled: true,
     },
-    'ember-service-worker': {
-      // versionStrategy: 'project-revision'
-    },
+    // 'ember-service-worker': {
+    //   // version,
+    //   versionStrategy: 'project-revision'
+    // },
     // 'esw-index': {
+    //   version,
     //   includeScope: [
     //     /^\/$/,
     //   ]
