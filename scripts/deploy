@@ -9,7 +9,7 @@ if [[ "$BRANCH" == "master" ]]; then
   NETLIFY_CLI_VERSION=0.4.0
 
   time ./run yarn build:production
-  cp ./packages/frontend/dist/index.html ./packages/frontend/dist/200.html
+  cp ./scripts/_redirects packages/frontend/dist
 
   wget https://github.com/netlify/netlifyctl/releases/download/v$NETLIFY_CLI_VERSION/netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
   tar -xf netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
