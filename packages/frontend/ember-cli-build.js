@@ -76,12 +76,12 @@ module.exports = function(defaults) {
       registrationStrategy: 'inline'
       // versionStrategy: 'project-revision'
     },
-    // 'esw-index': {
-    //   version,
-    //   includeScope: [
-    //     /^\/$/,
-    //   ]
-    // },
+    'esw-index': {
+      version,
+      includeScope: [
+        /^\/$/,
+      ]
+    },
     'asset-cache': {
       version,
       include:[
@@ -89,12 +89,12 @@ module.exports = function(defaults) {
         '**/*.html'
       ]
     },
-    'esw-cache-fallback': {
-      version,
-      patterns: [
-        '/',
-      ],
-    },
+    // 'esw-cache-fallback': {
+    //   version,
+    //   patterns: [
+    //     '/',
+    //   ],
+    // },
     'ember-app-shell': {},
   });
 
