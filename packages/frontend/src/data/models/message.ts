@@ -36,7 +36,7 @@ export default class Message extends Model {
   @attr('date') sentAt!: Date;
   @attr('string') sendError?: string;
 
-  @belongsTo('identity', { async: false }) sender?: Identity;
+  @belongsTo('identity', { async: true }) sender?: Identity;
   // TODO: come up with different word.. medias is weird
   // @hasMany('message-media') medias?: MessageMedia;
 }

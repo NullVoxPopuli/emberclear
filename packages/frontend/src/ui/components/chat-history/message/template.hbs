@@ -2,9 +2,15 @@
 
   <div class='message-header'>
     <span class='from'>
-      {{#link-to 'chat.privately-with' @message.from}}
-        {{senderName}}
-      {{/link-to}}
+      {{#if hasSender}}
+
+        {{#link-to 'chat.privately-with' @message.from}}
+          {{senderName}}
+        {{/link-to}}
+
+      {{else}}
+        <em>removed</em>
+      {{/if}}
     </span>
 
     <span class='sentAt has-hover-tip'>

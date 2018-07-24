@@ -18,6 +18,5 @@ export default class extends Component {
   remove(identity: Identity) {
     identity.deleteRecord();
     identity.save()
-    identity.unloadRecord();
   }
 }

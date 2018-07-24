@@ -1,11 +1,14 @@
 import Component from '@ember/component';
 import { computed } from '@ember-decorators/object';
+import { reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 import showdown from 'showdown';
 import { sanitize } from 'dom-purify';
 
+import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
 import PrismManager from 'emberclear/services/prism-manager';
 import Message from 'emberclear/data/models/message';
+import Identity from 'emberclear/data/models/identity/model';
 import { matchAll } from 'emberclear/src/utils/string/utils';
 
 // https://www.regextester.com/98192
@@ -31,14 +34,21 @@ export default class extends Component {
   }
 
   @computed('message.sender')
-  get senderName() {
-    const sender = this.message.sender;
+  get sender(): PromiseMonitor<Identity> {
+    const promise = this.message.sender;
 
-    if (!sender) {
-      return '-- Removed --';
+    return new PromiseMonitor<Identity>(promise);
+  }
+
+  @reads('sender.isFulfilled') hasSender!: boolean;
+
+  @computed('sender.result', 'hasSender')
+  get senderName() {
+    if (this.hasSender) {
+      return this.sender.result!.name;
     }
 
-    return sender.name;
+    return '';
   }
 
   @computed('messageBody')
