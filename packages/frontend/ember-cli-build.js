@@ -76,19 +76,18 @@ module.exports = function(defaults) {
       registrationStrategy: 'inline'
       // versionStrategy: 'project-revision'
     },
-    'esw-index': {
-      // version,
-      includeScope: [
-        /^\/$/,
-      ]
-    },
+    // 'esw-index': {
+    //   // version,
+    //   includeScope: [
+    //     /^\/$/,
+    //   ]
+    // },
     'asset-cache': {
       // version,
       include:[
         'assets/**/*',
         '**/*.html',
         'index.html',
-        '200.html'
       ]
     },
     'esw-cache-fallback': {
