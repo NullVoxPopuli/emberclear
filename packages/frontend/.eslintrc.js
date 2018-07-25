@@ -27,7 +27,8 @@ module.exports = {
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
     'no-console': 'warn',
     'no-cond-assign': 'off',
-    'no-useless-escape': 'off'
+    'no-useless-escape': 'off',
+    'require-yield': 'off'
   },
   overrides: [
     {
