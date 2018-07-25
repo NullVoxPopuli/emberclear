@@ -21,4 +21,6 @@ if [[ "$BRANCH" == "master" ]]; then
   echo "Deploy finished with status: $deploy_status"
 
   exit $deploy_status
+else
+  echo "current branch ($BRANCH) did not equal 'master'."
 fi
