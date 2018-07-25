@@ -15,3 +15,21 @@
     visibility: visible;
   }
 }
+
+.p-absolute {
+  position: absolute;
+
+  &.top {
+    top: 0;
+  }
+
+  &.span {
+    left: 0;
+    right: 0;
+  }
+
+  &.base-z {
+    z-index: 1;
+  }
+}
+

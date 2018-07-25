@@ -1,17 +1,16 @@
 import Service from '@ember/service';
-import { isPresent } from '@ember/utils';
 import { computed } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
 
 import RSVP from 'rsvp';
-import { toast } from 'bulma-toast';
 
 import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/decorators';
 
-// TODO: pull out toasts.
-//       notifications / web notifications should only be used for important things.
-//
-// TODO: write a separate UI element for connection status, like what slack has.
+import Toast from 'emberclear/src/services/toast';
+
 export default class Notifications extends Service {
+  @service toast!: Toast;
+
   askToEnableNotifications = false;
   isHiddenUntilBrowserRefresh = false;
 
@@ -58,7 +57,7 @@ export default class Notifications extends Service {
     this.set('askToEnableNotifications', true);
 
 
-    this.createToast(status, msg, title, options);
+    this.toast.createToast(status, msg, title, options);
   }
 
   isPermissionGranted() {
@@ -103,22 +102,6 @@ export default class Notifications extends Service {
 
     return new Notification(title, notificationOptions);
   }
-
-  createToast(status: string, msg: string, title: string, options: any) {
-    const message = isPresent(title) ? `${title}: ${msg}` : msg;
-
-    toast({
-      message,
-      // is-primary, is-link, is-info, is-success, is-warning, is-danger
-      // just a css class
-      type: status,
-      dismissable: true,
-      position: 'is-right',
-      duration: 2300,
-      ...options
-    });
-  }
-
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

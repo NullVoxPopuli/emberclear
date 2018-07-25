@@ -1,3 +1,4 @@
+import RSVP from 'rsvp';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
@@ -20,6 +21,7 @@ export default class RelayConnection extends Service {
 
   socket?: Socket;
   channel?: Channel;
+  channelName?: string;
 
   connected = false;
 
@@ -35,9 +37,9 @@ export default class RelayConnection extends Service {
   //       Cons of Client Side Channels
   //       - more complicated logic for a problem that already been solved
   //
-  send(this: RelayConnection, to: string, data: string) {
+  async send(this: RelayConnection, to: string, data: string) {
     const payload = { to, message: data };
-    const channel = this.get('channel');
+    const channel = await this.getChannel();
 
     if (!channel) {
       return console.error(this.intl.t('connection.errors.send.notConnected'));
@@ -86,56 +88,70 @@ export default class RelayConnection extends Service {
     const canConnect = await this.canConnect();
     if (!canConnect || this.connected) return;
 
-    this.toast.info(this.intl.t('connection.connecting'));
+    this.updateStatus('info', this.intl.t('connection.connecting'));
 
     const publicKey = this.userChannelId();
     const url = this.relayManager.getRelay().socket;
 
     const socket = new Socket(url, { params: { uid: publicKey } });
+
     this.set('socket', socket);
+    this.set('channelName', `user:${publicKey}`)
 
     socket.onError(this.onSocketError);
     socket.onClose(this.onSocketClose);
 
     // establish initial connection to the server
     socket.connect();
-    this.subscribeToChannel(`user:${publicKey}`);
 
-    this.set('connected', true);
-
-    // ping for user statuses
-    this.dispatcher.pingAll();
+    await this.getChannel();
   }
 
-  subscribeToChannel(this: RelayConnection, channelName: string) {
-    const { socket, toast } = this;
+  async getChannel(this: RelayConnection): Promise<Channel> {
+    const { socket, channelName, intl } = this;
 
-    if (!socket) {
-      return toast.error(this.intl.t('connection.errors.subscribe.notConnected'));
-    }
+    return new RSVP.Promise((resolve, reject) => {
+      if (this.channel) {
+        return resolve(this.channel);
+      }
 
-    // subscribe and hook up things.
-    const channel = socket.channel(channelName, {});
-    this.set('channel', channel);
+      if (!socket) {
+        return reject(intl.t('connection.errors.subscribe.notConnected'));
+      }
 
-    channel.onError(this.onChannelError);
-    channel.onClose(this.onChannelClose);
-    channel.on('chat', this.handleMessage);
+      if (!channelName) {
+        return reject('No Channel Name Specified');
+      }
 
-    channel
-      .join()
-      .receive('ok', this.handleConnected)
-      .receive('error', this.handleError)
-      .receive("timeout", () => console.info(this.intl.t('connection.status.timeout')) );
+      const channel = socket.channel(channelName, {});
 
+      this.set('channel', channel);
+
+      channel.onError(this.onChannelError);
+      channel.onClose(this.onChannelClose);
+      channel.on('chat', this.handleMessage);
+
+      channel
+        .join()
+        .receive('ok', () => {
+          this.set('connected', true);
+
+          this.handleConnected();
+
+          resolve(channel);
+        })
+        .receive('error', this.handleError)
+        .receive("timeout", () => console.info(this.intl.t('connection.status.timeout')) );
+    });
   }
 
   onSocketError = () => {
-    this.toast.error(this.intl.t('connection.status.socket.error'));
+    this.updateStatus('error', this.intl.t('connection.status.socket.error'));
   }
 
   onSocketClose = () => {
-    this.toast.info(this.intl.t('connection.status.socket.close'));
+    this.updateStatus('info', this.intl.t('connection.status.socket.close'));
+
     this.set('connected', false);
   }
 
@@ -155,11 +171,19 @@ export default class RelayConnection extends Service {
   }
 
   handleConnected = () => {
-    this.toast.success(this.intl.t('connection.connected'));
+    this.updateStatus('info', this.intl.t('connection.connected'));
+
+    // ping for user statuses
+    this.dispatcher.pingAll();
   }
 
   handleMessage = (data: RelayMessage) => {
     this.processor.receive(data);
+  }
+
+  updateStatus = (level, msg) => {
+    this.set('status', msg);
+    this.set('statusLevel', level);
   }
 }
 

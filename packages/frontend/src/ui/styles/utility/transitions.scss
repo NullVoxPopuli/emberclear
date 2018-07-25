@@ -9,3 +9,7 @@
 .transition-all {
   @include default-transition;
 }
+
+.fade-out {
+  opacity: 0;
+}
