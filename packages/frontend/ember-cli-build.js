@@ -83,7 +83,7 @@ module.exports = function(defaults) {
     //   ]
     // },
     'asset-cache': {
-      // version,
+      version,
       include:[
         'assets/**/*',
         '**/*.html',
@@ -91,7 +91,7 @@ module.exports = function(defaults) {
       ]
     },
     'esw-cache-fallback': {
-      // version,
+      version,
       patterns: [
         '/',
       ],

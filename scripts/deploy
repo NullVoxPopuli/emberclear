@@ -23,7 +23,6 @@ if [[ "$BRANCH" == "master" ]]; then
   ./netlifyctl -y deploy --site-id $NETLIFY_SITE_ID --access-token $NETLIFY_ACCESS_TOKEN --publish-directory ./packages/frontend/dist
 
   deploy_status=$?
-  cat netlifyctl-debug.log
   echo "Deploy finished with status: $deploy_status"
 
   exit $deploy_status
