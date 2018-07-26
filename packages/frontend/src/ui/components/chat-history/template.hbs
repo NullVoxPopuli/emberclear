@@ -35,8 +35,9 @@
     flex-row transition-all
     p-l-md p-r-md p-t-xs p-b-xs
     {{if isLastVisible "hidden"}}'>
-    There are newer messages
-    <a class='m-l-md underline' {{action scrollToBottom}}> view recent messages</a>
+
+   <span class='is-hidden-mobile m-r-sm'>There are newer messages</span>
+    <a class='underline' {{action scrollToBottom}}> view recent messages</a>
   </div>
 
 </div>
