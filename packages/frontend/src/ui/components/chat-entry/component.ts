@@ -9,7 +9,7 @@ import MessageFactory from 'emberclear/services/messages/factory';
 import Identity from 'emberclear/data/models/identity/model';
 
 
-export default class MessageEntry extends Component {
+export default class ChatEntry extends Component {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
   @service('messages/factory') messageFactory!: MessageFactory;
 
@@ -31,7 +31,7 @@ export default class MessageEntry extends Component {
 
     // TODO: i18n
     // TODO: support more channels
-    return 'The Public Channel';
+    return 'Everyone in your contacts';
   }
 
   @computed('messageTarget')
@@ -40,7 +40,7 @@ export default class MessageEntry extends Component {
   }
 
   @action
-  async sendMessage(this: MessageEntry) {
+  async sendMessage(this: ChatEntry) {
     if (!this.text) return;
 
     this.set('isDisabled', true);
@@ -53,10 +53,10 @@ export default class MessageEntry extends Component {
   }
 
   @action
-  onKeyPress(this: MessageEntry, event: KeyboardEvent) {
+  onKeyPress(this: ChatEntry, event: KeyboardEvent) {
     const { keyCode, shiftKey, target } = event;
 
-    this.adjustHeight(target);
+    this.adjustHeight(target as HTMLElement);
 
     // don't submit when shift is being held.
     if (!shiftKey && keyCode === 13) {

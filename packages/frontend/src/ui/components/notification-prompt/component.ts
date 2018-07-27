@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
-import { reads, alias, and, not } from '@ember-decorators/object/computed';
+import { reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 
 import Notifications from 'emberclear/services/notifications/service';

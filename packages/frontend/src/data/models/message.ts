@@ -1,8 +1,7 @@
 import Model from 'ember-data/model';
-import { attr, belongsTo, hasMany } from '@ember-decorators/data';
+import { attr, belongsTo } from '@ember-decorators/data';
 
 import Identity from 'emberclear/data/models/identity/model';
-import MessageMedia from 'emberclear/data/models/message-media';
 
 export enum MESSAGE_TYPE {
   CHAT = 'chat',
@@ -37,8 +36,6 @@ export default class Message extends Model {
   @attr('string') sendError?: string;
 
   @belongsTo('identity', { async: true }) sender?: Identity;
-  // TODO: come up with different word.. medias is weird
-  // @hasMany('message-media') medias?: MessageMedia;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

@@ -65,7 +65,8 @@ module.exports = function(defaults) {
           'dot-circle',
           'plus',
           'code', 'desktop', 'bed', 'video',
-          'angle-down', 'angle-up', 'times'
+          'angle-down', 'angle-up', 'times',
+          'phone', 'phone-volume'
         ],
       },
     },

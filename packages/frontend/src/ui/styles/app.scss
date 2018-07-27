@@ -64,6 +64,10 @@ body {
   }
 }
 
+.not-allowed {
+  cursor: not-allowed !important;
+}
+
 .is-fullheight {
   height: 100vh;
 }

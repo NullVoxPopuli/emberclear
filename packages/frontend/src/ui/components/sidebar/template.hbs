@@ -54,14 +54,17 @@
       <InviteButtons class='w-100 is-hidden-touch' @beforeClick={{action closeSidebar}} />
     {{/if}}
 
-    <p class='menu-label m-t-sm m-b-sm'>
-      Channels
+    <p class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'>
+      <span>Channels</span>
+      <a class='button is-small'>
+        <span class='icon'>{{fa-icon 'plus'}}</span>
+      </a>
     </p>
 
     <ul class='menu-list'>
       <li class='is-hidden-touch'>
         {{#link-to 'chat'}}
-          # Public
+          # Everyone
         {{/link-to}}
       </li>
 
@@ -70,7 +73,7 @@
           (action closeSidebar)
           (transition-to 'chat')
           )}}>
-          # Public
+          # Everyone
         </a>
       </li>
     </ul>

@@ -3,7 +3,8 @@ import DS from 'ember-data';
 import Component from '@ember/component';
 
 import { service } from '@ember-decorators/service';
-import { computed } from '@ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
+import { alias, equal } from '@ember-decorators/object/computed';
 
 import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
 
@@ -14,6 +15,9 @@ export default class extends Component {
   @service store!: DS.Store;
   @service router!: Router;
   @service fastboot!: FastBoot;
+
+  @alias('router.currentRouteName') routeName!: string;
+  @equal('routeName', 'chat.index') isRootChat!: boolean;
 
   @computed('router.currentURL')
   get chatName() {
@@ -46,6 +50,11 @@ export default class extends Component {
     }
 
     return false;
+  }
+
+  @action
+  beginVideoCall() {
+    console.log('not implemented');
   }
 
   getName(uid: string) {

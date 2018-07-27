@@ -1,4 +1,4 @@
-<div class='navbar is-fixed-top has-shadow {{if isChat "is-primary"}}'>
+<div class='navbar no-select is-fixed-top has-shadow {{if isChat "is-primary"}}'>
   <div class='navbar-brand'>
 
     {{#if isLoggedIn}}
@@ -16,7 +16,7 @@
 
     <CurrentChatName class='navbar-item' as |isVisible name|>
       {{#if isVisible}}
-        <span class='chat-name'>
+        <span class='chat-name p-l-md'>
           {{name}}
         </span>
       {{/if}}

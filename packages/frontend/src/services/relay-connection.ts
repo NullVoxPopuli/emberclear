@@ -22,6 +22,8 @@ export default class RelayConnection extends Service {
   socket?: Socket;
   channel?: Channel;
   channelName?: string;
+  status?: string;
+  statusLevel?: string;
 
   connected = false;
 
@@ -110,7 +112,7 @@ export default class RelayConnection extends Service {
   async getChannel(this: RelayConnection): Promise<Channel> {
     const { socket, channelName, intl } = this;
 
-    return new RSVP.Promise((resolve, reject) => {
+    const promise: Promise<Channel> = new RSVP.Promise((resolve, reject) => {
       if (this.channel) {
         return resolve(this.channel);
       }
@@ -143,6 +145,8 @@ export default class RelayConnection extends Service {
         .receive('error', this.handleError)
         .receive("timeout", () => console.info(this.intl.t('connection.status.timeout')) );
     });
+
+    return promise;
   }
 
   onSocketError = () => {
@@ -181,7 +185,7 @@ export default class RelayConnection extends Service {
     this.processor.receive(data);
   }
 
-  updateStatus = (level, msg) => {
+  updateStatus = (level: string, msg: string) => {
     this.set('status', msg);
     this.set('statusLevel', level);
   }
