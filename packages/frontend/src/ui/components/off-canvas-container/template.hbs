@@ -7,14 +7,20 @@
         "is-sidebar-visible"
         "is-sidebar-hidden"}}'>
 
+      <div class='sidebar-buttons'>
+        <HamburgerButton
+          @class='
+            is-hidden-mobile
+            is-flex-desktop'
+          @onClick={{action toggleSidebar}}
+          @isActive={{sidebar.isShown}} />
+      </div>
+
       <div class='no-select sidebar-underlay full-overlay' {{action toggleSidebar}}></div>
       <Sidebar class='sidebar-wrapper' @contacts={{@contacts}} />
 
       <HamburgerButton
-        @class='
-          fixed-to-side-for-sidebar
-          is-hidden-mobile
-          is-flex-desktop'
+        @class='offcanvas-trigger is-flex-tablet-only'
         @onClick={{action toggleSidebar}}
         @isActive={{sidebar.isShown}} />
     </div>
