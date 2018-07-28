@@ -9,8 +9,29 @@
       <TopMobileSection />
     </div>
 
-    <p class='menu-label m-t-sm m-b-sm'>
-      Contacts
+    <p class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'>
+      <span>Contacts</span>
+      <span>
+
+        <a
+          class='button is-small'
+          {{action (queue
+            (action closeSidebar)
+            (action toggleModal 'show-my-info')
+          )}}>
+          <span class='icon'>{{fa-icon 'share'}}</span>
+        </a>
+
+        <a
+          class='button is-small'
+          {{action (queue
+            (action closeSidebar)
+            (action toggleModal 'add-friend')
+          )}}>
+          <span class='icon'>{{fa-icon 'plus'}}</span>
+        </a>
+
+      </span>
     </p>
 
     <ul class='menu-list'>

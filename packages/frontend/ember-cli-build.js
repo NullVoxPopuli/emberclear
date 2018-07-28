@@ -66,7 +66,7 @@ module.exports = function(defaults) {
           'plus',
           'code', 'desktop', 'bed', 'video',
           'angle-down', 'angle-up', 'times',
-          'phone', 'phone-volume'
+          'phone', 'phone-volume', 'share'
         ],
       },
     },

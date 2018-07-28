@@ -1,7 +1,7 @@
 {{#if isLoggedIn}}
   <span class='is-size-4'>{{name}}</span>
 
-  <ul class='menu-list m-b-md'>
+  <ul class='menu-list'>
     <li>
       <a class=''
         {{action (queue
@@ -25,25 +25,6 @@
     </li>
 
   </ul>
-
-  <div class='w-100 flex justify-content-space-between'>
-    <a
-      class='button m-r-md'
-      {{action (queue
-        (action closeSidebar)
-        (action toggleModal 'add-friend')
-      )}}>
-      Add Friend
-    </a>
-    <a
-      class='button'
-      {{action (queue
-        (action closeSidebar)
-        (action toggleModal 'show-my-info')
-      )}}>
-      Invite
-    </a>
-  </div>
 
   <hr class='divider' />
 {{/if}}
