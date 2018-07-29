@@ -52,11 +52,6 @@ export default class extends Component {
     return false;
   }
 
-  @action
-  beginVideoCall() {
-    console.log('not implemented');
-  }
-
   getName(uid: string) {
     const promise: Promise<string> = new RSVP.Promise(async (resolve /*, reject */) => {
       const record = await this.store.findRecord('identity', uid);

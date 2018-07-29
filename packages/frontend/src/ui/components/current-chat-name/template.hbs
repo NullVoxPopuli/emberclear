@@ -2,25 +2,10 @@
 
   {{yield isChatVisible chatName.result}}
 
-  {{#if (not isRootChat)}}
-    <!-- https://codelabs.developers.google.com/codelabs/webrtc-web/#3 -->
-    <a class='m-l-sm not-allowed' disabled {{action beginVideoCall}}>
-      <span class='icon has-text-white'>{{fa-icon 'phone'}}</span>
-    </a>
-
-    <a class='m-l-sm not-allowed' disabled {{action beginVideoCall}}>
-      <span class='icon has-text-white'>{{fa-icon 'video'}}</span>
-    </a>
-  {{/if}}
-
 {{else}}
   {{#unless chatName.isPending}}
 
     {{chatName.result}}
-
-    <a {{action beginVideoCall}}>
-      <span class='icon'>{{fa-icon 'phone'}}</span>
-    </a>
 
   {{/unless}}
 {{/if}}
