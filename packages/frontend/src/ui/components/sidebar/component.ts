@@ -16,6 +16,8 @@ export default class extends Component {
   @alias('identity.name') name?: string;
   @alias('identity.isLoggedIn') isLoggedIn!: boolean;
 
+  isChannelFormVisible = false;
+
   @action
   closeSidebar() {
     this.sidebar.hide();
@@ -24,5 +26,10 @@ export default class extends Component {
   @action
   toggleModal(name: string) {
     this.modals.toggle(name);
+  }
+
+  @action
+  toggleChannelForm() {
+    this.set('isChannelFormVisible', !this.isChannelFormVisible);
   }
 }

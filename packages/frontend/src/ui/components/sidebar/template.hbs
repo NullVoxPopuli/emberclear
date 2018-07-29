@@ -77,10 +77,20 @@
 
     <p class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'>
       <span>Channels</span>
-      <a class='button is-small'>
-        <span class='icon'>{{fa-icon 'plus'}}</span>
+      <a class='button is-small' {{action toggleChannelForm}}>
+        <span class='icon'>
+          {{#if isChannelFormVisible}}
+            {{fa-icon 'times'}}
+          {{else}}
+            {{fa-icon 'plus'}}
+          {{/if}}
+        </span>
       </a>
     </p>
+
+    {{#if isChannelFormVisible}}
+      <ChannelForm @onSubmit={{action toggleChannelForm}} />
+    {{/if}}
 
     <ul class='menu-list'>
       <li class='is-hidden-touch'>
@@ -97,18 +107,49 @@
           # Everyone
         </a>
       </li>
+
+
+      {{!--
+        TODO: try to come up with a better solution for this type of responsive behavior.
+              duplicating things feels weird.
+      --}}
+
+      {{#each @channels as |channel|}}
+
+        <li class='is-hidden-touch'>
+          {{#link-to 'chat.in-channel' channel.id activeClass='is-active'}}
+
+            #<span class='m-l-sm'>{{channel.name}}</span>
+
+          {{/link-to}}
+        </li>
+
+        <li class='is-hidden-desktop'>
+          <a {{action (queue
+               (action closeSidebar)
+               (transition-to 'chat.in-channel' channel.id)
+             )}}>
+
+            #<span class='m-l-sm'>{{channel.name}}</span>
+
+          </a>
+        </li>
+      {{/each}}
     </ul>
   </div>
 
   {{#if isLoggedIn}}
-    <a
-      class='navbar-item align-self-end'
-      {{action (queue
-        (action closeSidebar)
-        (transition-to 'logout')
-      )}}>
-      <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
-      <span>{{t 'routes.logout'}}</span>
-    </a>
+    <div class='align-self-end'>
+      <hr class='divider m-b-sm' />
+
+      <a class='navbar-item flex-row align-items-center'
+        {{action (queue
+          (action closeSidebar)
+          (transition-to 'logout')
+        )}}>
+        <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
+        <span>{{t 'routes.logout'}}</span>
+      </a>
+    </div>
   {{/if}}
 </aside>

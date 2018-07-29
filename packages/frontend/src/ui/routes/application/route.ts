@@ -37,8 +37,9 @@ export default class ApplicationRoute extends Route {
   @disableInFastboot({ default: { contacts: [] } })
   async model() {
     const contacts = await this.store.findAll('identity', { backgroundReload: true });
+    const channels = await this.store.findAll('channel', { backgroundReload: true });
 
-    return RSVP.hash({ contacts });
+    return RSVP.hash({ contacts, channels });
   }
 
   @disableInFastboot

@@ -8,7 +8,9 @@
   </a>
 </ServiceWorkerUpdateNotify>
 
-<OffCanvasContainer class='no-overflow' @contacts={{model.contacts}}>
+<OffCanvasContainer class='no-overflow'
+  @contacts={{model.contacts}}
+  @channels={{model.channels}}>
   {{outlet}}
 </OffCanvasContainer>
 
