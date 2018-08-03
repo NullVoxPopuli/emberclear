@@ -27,14 +27,10 @@ export default class ApplicationRoute extends Route {
 
     await this.identity.load();
 
-    const loader = document.querySelector('#app-loader');
-
-    if (loader) {
-      loader.remove();
-    }
+    this.removeAppLoader();
   }
 
-  @disableInFastboot({ default: { contacts: [] } })
+  @disableInFastboot({ default: { contacts: [], channels: [] } })
   async model() {
     const contacts = await this.store.findAll('identity', { backgroundReload: true });
     const channels = await this.store.findAll('channel', { backgroundReload: true });
@@ -45,5 +41,14 @@ export default class ApplicationRoute extends Route {
   @disableInFastboot
   async afterModel() {
     this.relayConnection.connect();
+  }
+
+  @disableInFastboot
+  private removeAppLoader() {
+    const loader = document.querySelector('#app-loader');
+
+    if (loader) {
+      loader.remove();
+    }
   }
 }

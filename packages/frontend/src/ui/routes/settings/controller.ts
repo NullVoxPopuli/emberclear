@@ -14,6 +14,7 @@ export default class extends Controller {
   @alias('identity.record.name') name!: string;
 
   showPrivateKey = false;
+  messagesDeleted = false;
 
   @reads('settings.downloadUrl') downloadSettingsUrl!: string;
 
