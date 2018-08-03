@@ -63,6 +63,8 @@ export default class IdentityService extends Service {
     });
 
     await record.save();
+
+    this.set('record', record);
   }
 
   async exists(): Promise<boolean> {

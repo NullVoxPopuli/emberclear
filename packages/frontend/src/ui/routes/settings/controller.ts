@@ -36,4 +36,19 @@ export default class extends Controller {
 
   }
 
+  @action
+  async downloadSettings() {
+    const settings = await this.settings.buildData();
+
+    if (!settings) return;
+
+    const link = document.createElement('a');
+    link.setAttribute('download', 'emberclear.settings');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener');
+    link.setAttribute('href', settings);
+
+    link.click();
+  }
+
 }

@@ -3,11 +3,13 @@ import { service } from '@ember-decorators/service';
 import { action } from '@ember-decorators/object';
 
 import DS from 'ember-data';
+import ChannelManager from 'emberclear/services/channel-manager';
 
 export default class ChannelForm extends Component {
   onSubmit!: () => void;
 
   @service store!: DS.Store;
+  @service channelManager!: ChannelManager;
 
   newChannelName = '';
 
@@ -23,11 +25,11 @@ export default class ChannelForm extends Component {
 
 
   private async createChannel() {
-    const record = this.store.createRecord('channel', {
-      id: this.newChannelName,
-      name: this.newChannelName
-    });
+    const id = this.newChannelName;
 
-    await record.save();
+    // TODO: using both will likely lead to problems in the future.
+    //       id should maybe be a guid which will allow the channel
+    //       name to change
+    return await this.channelManager.findOrCreate(id, id);
   }
 }

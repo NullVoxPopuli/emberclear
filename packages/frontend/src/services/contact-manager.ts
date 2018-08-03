@@ -11,25 +11,35 @@ export default class ContactManager extends Service {
 
   async findOrCreate(uid: string, name: string): Promise<Identity> {
     try {
-      let record = await this.find(uid);
-
-      // always update the name
-      record.set('name', name);
-
-      return record;
+      return await this.findAndSetName(uid, name);
     } catch (e) {
-      const publicKey = fromHex(uid);
-
-      let record = this.store.createRecord('identity', {
-        id: uid,
-        publicKey,
-        name
-      });
-
-      await record.save();
-
-      return record;
+      return await this.create(uid, name);
     }
+  }
+
+  async findAndSetName(uid: string, name: string): Promise<Identity> {
+    let record = await this.find(uid);
+
+    // always update the name
+    record.set('name', name);
+
+    await record.save();
+
+    return record;
+  }
+
+  async create(uid: string, name: string): Promise<Identity> {
+    const publicKey = fromHex(uid);
+
+    let record = this.store.createRecord('identity', {
+      id: uid,
+      publicKey,
+      name
+    });
+
+    await record.save();
+
+    return record;
   }
 
   async allContacts(): Promise<Identity[]> {

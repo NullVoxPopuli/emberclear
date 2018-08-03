@@ -6,10 +6,7 @@
       <form {{action 'save' on='submit'}}>
 
         <Field @label='Name'>
-          {{input
-            class='input'
-            value=name
-          }}
+          {{input class='input' value=name}}
         </Field>
 
         <div class='flex justify-content-end'>
@@ -17,24 +14,15 @@
         </div>
       </form>
 
-      <button
-        class='button'
-        {{action (mut showPrivateKey) (not showPrivateKey)}}>
-
+      <button class='button' {{action (mut showPrivateKey) (not showPrivateKey)}}>
         {{if showPrivateKey 'Hide' 'Show'}} private key
-
       </button>
 
       {{#if showPrivateKey}}
         <MnemonicDisplay @privateKey={{identity.privateKey}} />
       {{/if}}
 
-      <a
-        href={{downloadSettingsUrl}}
-        download='emberclear.settings'
-        target='_blank'
-        rel='noopener'
-        class='button'>
+      <a {{action downloadSettings}} class='button'>
         Download Settings
       </a>
 

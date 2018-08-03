@@ -30,7 +30,7 @@ export default class Toast extends Service {
       type: status,
       dismissable: true,
       position: 'is-right',
-      duration: 2300,
+      duration: 350000,
       ...options
     });
   }

@@ -12,6 +12,8 @@ export default class LogoutController extends Controller {
   logout(this: LogoutController) {
     this.identity.set('record', undefined);
     this.store.unloadAll('identity');
+    this.store.unloadAll('contact');
+    this.store.unloadAll('channel');
 
     localforage.clear();
 
