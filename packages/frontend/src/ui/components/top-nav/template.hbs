@@ -1,4 +1,8 @@
-<div class='navbar no-select is-fixed-top has-shadow {{if isChat "is-primary"}}'>
+<div class='
+  flex-row align-items-center justify-content-space-between
+  navbar no-select
+  is-fixed-top has-shadow {{if isChat "is-primary"}}'>
+
   <div class='navbar-brand'>
 
     {{#if isLoggedIn}}
@@ -14,15 +18,25 @@
       {{t 'appname'}}
     {{/link-to}}
 
-    <CurrentChatName class='navbar-item' as |isVisible name|>
-      {{#if isVisible}}
-        <span class='chat-name p-l-md'>
-          {{name}}
-        </span>
-      {{/if}}
-    </CurrentChatName>
+
+    {{#if isLoggedIn}}
+      <CurrentChatName class='navbar-item' as |isVisible name|>
+        {{#if isVisible}}
+          <span class='chat-name p-l-md'>
+            {{name}}
+          </span>
+        {{/if}}
+      </CurrentChatName>
+    {{/if}}
   </div>
 
+  {{#if (not isLoggedIn)}}
+    <div class='navbar-end is-visible-touch'>
+      <a class='navbar-item is-hidden-desktop' {{action (transition-to 'login')}}>
+        {{t 'routes.login'}}
+      </a>
+    </div>
+  {{/if}}
 
   <div class="navbar-end is-hidden-touch">
     {{#if isLoggedIn}}
