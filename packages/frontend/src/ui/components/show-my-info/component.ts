@@ -4,6 +4,8 @@ import { service } from '@ember-decorators/service';
 import { computed, action } from '@ember-decorators/object';
 import { alias } from '@ember-decorators/object/computed';
 
+import ENV from '../../../../config/environment';
+
 import Identity from 'emberclear/services/identity/service';
 import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
 import { disableInFastboot } from 'emberclear/src/utils/decorators';
@@ -31,6 +33,14 @@ export default class ShowMyInfo extends Component {
   @computed('publicIdentity')
   get identityJson() {
     return JSON.stringify(this.publicIdentity, null, 2);
+  }
+
+  @computed('publicIdentity')
+  get url() {
+    const { name, publicKey } = this.publicIdentity;
+    const uri = `${ENV.host}/invite?name=${name}&publicKey=${publicKey}`;
+
+    return encodeURI(uri);
   }
 
   @computed('publicIdentity')

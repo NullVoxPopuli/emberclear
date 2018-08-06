@@ -1,13 +1,14 @@
 import Controller from '@ember/controller';
-import { filter } from '@ember-decorators/object/computed';
+import { service } from '@ember-decorators/service';
+import { action } from '@ember-decorators/object';
 
-import Message, { MESSAGE_TYPE } from 'emberclear/src/data/models/message';
+import Modals from 'emberclear/services/modals';
 
 export default class extends Controller {
+  @service modals!: Modals;
 
-  @filter('model.messages')
-  messages(message: Message, _index: number, _array: Message[]) {
-    return message.type === MESSAGE_TYPE.CHAT;
+  @action
+  toggleModal(name: string) {
+    this.modals.toggle(name);
   }
-
 }

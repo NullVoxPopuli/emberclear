@@ -29,8 +29,8 @@ export default class Toast extends Service {
       // just a css class
       type: status,
       dismissable: true,
-      position: 'is-right',
-      duration: 350000,
+      position: 'top-right',
+      duration: 3500,
       ...options
     });
   }

@@ -1,17 +1,22 @@
-<pre style='max-height: 300px !important;'>
-TODO: there should not be a default chat, but a welcome screen.
-      due to the nature of how the  encryption works, having an
-      all-inclusive channel doesn't make sense.
-      maybe?
-      idk.
+<div class='p-md'>
+  <p class='m-b-md'>
+    <h2 class='is-size-2'>Welcome!</h2>
 
-      Ultimately, what needs to happen is that people can create and join channels.
-      When someone joins a channel, they will receive all the public keys of the
-      members of that channel.
+    To get started, you'll need at least one friend.<br /><br />
 
-      This channel behavior could work for an 'all' channel, but may result in
-      too much noise.
-</pre>
-<ChatHistory class='flex-grow flex-column no-overflow' @messages={{messages}}/>
+    Then you'll be able to chat with them and create channels for communicating with groups of friends.
 
-<ChatEntry class='p-l-md p-r-md'/>
+  </p>
+
+  <div class='flex-row'>
+    <a class='button m-r-md' {{action toggleModal 'show-my-info'}}>
+      <span class='icon'>{{fa-icon 'share'}}</span>
+      <span>Share My Info</span>
+    </a>
+
+    <a class='button' {{action toggleModal 'add-friend'}}>
+      <span class='icon'>{{fa-icon 'plus'}}</span>
+      <span>Add Friend</span>
+    </a>
+  </div>
+</div>

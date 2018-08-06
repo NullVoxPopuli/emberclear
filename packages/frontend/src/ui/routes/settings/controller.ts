@@ -8,7 +8,7 @@ import Settings from 'emberclear/services/settings';
 
 export default class extends Controller {
   @service identity!: IdentityService;
-  @service('notifications') toast!: Toast;
+  @service('toast') toast!: Toast;
   @service settings!: Settings;
 
   @alias('identity.record.name') name!: string;
