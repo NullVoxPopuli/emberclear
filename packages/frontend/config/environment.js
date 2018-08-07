@@ -1,5 +1,7 @@
 'use strict';
 
+console.log('HOST: ', process.env.HOST, 'CI: ', process.env.CI)
+
 module.exports = function(environment) {
   let ENV = {
     'ember-resolver': {
