@@ -35,7 +35,7 @@ export default class IdentityService extends Service {
 
   @computed('name', 'privateKey', 'publicKey')
   get isLoggedIn(): boolean {
-    return !!(this.name && this.privateKey && this.publicKey);
+    return !!(this.privateKey && this.publicKey);
   }
 
   @computed('publicKey')

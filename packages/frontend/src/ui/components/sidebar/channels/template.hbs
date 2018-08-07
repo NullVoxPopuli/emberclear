@@ -1,0 +1,41 @@
+<p class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'>
+  <span>Channels</span>
+
+  <a class='button is-small' {{action (mut isFormVisible) true}}>
+    <span class='icon'>
+      {{#if isFormVisible}}
+        {{fa-icon 'times'}}
+      {{else}}
+        {{fa-icon 'plus'}}
+      {{/if}}
+    </span>
+  </a>
+</p>
+
+{{#if isFormVisible}}
+  <ChannelForm @onSubmit={{action (mut isFormVisible) false}} />
+{{/if}}
+
+
+<ul class='menu-list'>
+
+  {{#each @channels as |channel|}}
+
+    <WithResponsiveness
+      @whenLarge={{action (transition-to 'chat.in-channel' channel.id)}}
+      @whenSmall={{action (queue
+        (action @closeSidebar)
+        (action (transition-to 'chat.in-channel' channel.id))
+      )}}
+      as |classNames onClick|>
+
+      <li class={{classNames}}>
+        <a {{action onClick}}>
+          #<span class='m-l-sm'>{{channel.name}}</span>
+        </a>
+      </li>
+
+    </WithResponsiveness>
+
+  {{/each}}
+</ul>

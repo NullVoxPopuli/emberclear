@@ -1,0 +1,56 @@
+<p class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'>
+  <span>Contacts</span>
+  <span>
+
+    <a
+      class='button is-small'
+      {{action (queue
+        (action @closeSidebar)
+        (action @toggleModal 'show-my-info')
+      )}}>
+      <span class='icon'>{{fa-icon 'share'}}</span>
+    </a>
+
+    <a
+      class='button is-small'
+      {{action (queue
+        (action @closeSidebar)
+        (action @toggleModal 'add-friend')
+      )}}>
+      <span class='icon'>{{fa-icon 'plus'}}</span>
+    </a>
+
+  </span>
+</p>
+
+<ul class='menu-list'>
+
+  {{#each @contacts as |contact|}}
+
+    <WithResponsiveness
+      @whenLarge={{action (transition-to 'chat.privately-with' contact.id)}}
+      @whenSmall={{action (queue
+        (action @closeSidebar)
+        (action (transition-to 'chat.privately-with' contact.id))
+      )}}
+      as |classNames onClick|>
+
+      <li class={{classNames}}>
+        <!-- TODO: need a way to figure out when is-active -->
+        <!-- should be displayed -->
+        <a class='flex-row align-items-center has-hover-tip' {{action onClick}}>
+          <StatusIcon @contact={{contact}} />
+          <span class='m-l-sm'>{{or contact.name '[unnamed]'}}</span>
+          <HoverTip>{{contact.displayName}}</HoverTip>
+        </a>
+      </li>
+
+    </WithResponsiveness>
+  {{/each}}
+</ul>
+
+{{#if (not (is-present @contacts))}}
+  You have no contacts.
+
+  <InviteButtons class='w-100 is-hidden-touch' @beforeClick={{action @closeSidebar}} />
+{{/if}}

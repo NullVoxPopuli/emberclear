@@ -9,133 +9,15 @@
       <TopMobileSection />
     </div>
 
-    <p class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'>
-      <span>Contacts</span>
-      <span>
+    <Contacts
+      @contacts={{contacts}}
+      @closeSidebar={{action closeSidebar}}
+      @toggleModal={{action toggleModal}} />
 
-        <a
-          class='button is-small'
-          {{action (queue
-            (action closeSidebar)
-            (action toggleModal 'show-my-info')
-          )}}>
-          <span class='icon'>{{fa-icon 'share'}}</span>
-        </a>
+    <Channels
+      @channels={{@channels}}
+      @closeSidebar={{action closeSidebar}} />
 
-        <a
-          class='button is-small'
-          {{action (queue
-            (action closeSidebar)
-            (action toggleModal 'add-friend')
-          )}}>
-          <span class='icon'>{{fa-icon 'plus'}}</span>
-        </a>
-
-      </span>
-    </p>
-
-    <ul class='menu-list'>
-
-      {{!--
-        TODO: try to come up with a better solution for this type of responsive behavior.
-              duplicating things feels weird.
-      --}}
-
-      {{#each @contacts as |contact|}}
-
-        <li class='is-hidden-touch'>
-          {{#link-to 'chat.privately-with' contact.id
-            activeClass='is-active'
-            class='flex-row align-items-center'}}
-
-            <StatusIcon @contact={{contact}} />
-            <span class='m-l-sm'>{{contact.name}}</span>
-
-          {{/link-to}}
-        </li>
-
-        <li class='is-hidden-desktop'>
-          <a class='flex-row align-items-center'
-            {{action (queue
-              (action closeSidebar)
-              (transition-to 'chat.privately-with' contact.id)
-            )}}>
-
-            <StatusIcon @contact={{contact}} />
-            <span class='m-l-sm'>{{contact.name}}</span>
-
-          </a>
-        </li>
-      {{/each}}
-    </ul>
-
-    {{#if (not (is-present @contacts))}}
-      You have no contacts.
-
-      <InviteButtons class='w-100 is-hidden-touch' @beforeClick={{action closeSidebar}} />
-    {{/if}}
-
-    <p class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'>
-      <span>Channels</span>
-      <a class='button is-small' {{action toggleChannelForm}}>
-        <span class='icon'>
-          {{#if isChannelFormVisible}}
-            {{fa-icon 'times'}}
-          {{else}}
-            {{fa-icon 'plus'}}
-          {{/if}}
-        </span>
-      </a>
-    </p>
-
-    {{#if isChannelFormVisible}}
-      <ChannelForm @onSubmit={{action toggleChannelForm}} />
-    {{/if}}
-
-    <ul class='menu-list'>
-      <li class='is-hidden-touch'>
-        {{#link-to 'chat'}}
-          # Everyone
-        {{/link-to}}
-      </li>
-
-      <li class='is-hidden-desktop'>
-        <a {{action (queue
-          (action closeSidebar)
-          (transition-to 'chat')
-          )}}>
-          # Everyone
-        </a>
-      </li>
-
-
-      {{!--
-        TODO: try to come up with a better solution for this type of responsive behavior.
-              duplicating things feels weird.
-      --}}
-
-      {{#each @channels as |channel|}}
-
-        <li class='is-hidden-touch'>
-          {{#link-to 'chat.in-channel' channel.id activeClass='is-active'}}
-
-            #<span class='m-l-sm'>{{channel.name}}</span>
-
-          {{/link-to}}
-        </li>
-
-        <li class='is-hidden-desktop'>
-          <a {{action (queue
-               (action closeSidebar)
-               (transition-to 'chat.in-channel' channel.id)
-             )}}>
-
-            #<span class='m-l-sm'>{{channel.name}}</span>
-
-          </a>
-        </li>
-      {{/each}}
-    </ul>
   </div>
 
   {{#if isLoggedIn}}

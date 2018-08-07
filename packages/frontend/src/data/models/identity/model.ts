@@ -28,6 +28,14 @@ export default class Identity extends Model {
 
     return toHex(this.publicKey);
   }
+
+  @computed('name', 'publicKeyAsHex')
+  get displayName() {
+    const name = this.name;
+    const shortKey = this.publicKeyAsHex.substring(0, 8);
+
+    return `${name} (${shortKey})`;
+  }
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
