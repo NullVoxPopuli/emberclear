@@ -37,7 +37,7 @@ export default class InviteRoute extends Route {
     }
 
     this.toast.error('Invalid Invite Link');
-    return this.transitionTo('/');
+    return this.transitionTo('chat');
   }
 
   private async acceptContactInvite(name: string, publicKey: string) {
@@ -47,11 +47,15 @@ export default class InviteRoute extends Route {
       return this.transitionTo('/chat/privately-with/me');
     }
 
-    await this.contactManager.findOrCreate(publicKey!, name!);
+    try {
+      await this.contactManager.findOrCreate(publicKey!, name!);
+    } catch (e) {
+      this.toast.error(`There was a problem importing ${name}: ${e.message}`);
+      return this.transitionTo('chat');
+    }
 
     this.toast.success(`${name} has been successfully imported!`);
-    this.transitionTo(`/chat/privately-with/${publicKey}`);
-    return;
+    return this.transitionTo(`/chat/privately-with/${publicKey}`);
   }
 
   private hasParams() {
