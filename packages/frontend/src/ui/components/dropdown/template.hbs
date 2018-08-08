@@ -12,6 +12,10 @@
   </a>
 </div>
 
+{{#if isOpen}}
+  <div class='no-select full-overlay invisible' {{action toggleMenu}} ></div>
+{{/if}}
+
 <div class="dropdown-menu">
   <div class="dropdown-content">
     {{yield}}

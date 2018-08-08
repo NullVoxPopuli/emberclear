@@ -14,6 +14,12 @@
     opacity: 1;
     visibility: visible;
   }
+
+  &.invisible {
+    opacity: 1;
+    visibility: visible;
+    cursor: default !important;
+  }
 }
 
 .p-absolute {
