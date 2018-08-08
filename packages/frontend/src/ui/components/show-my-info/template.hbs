@@ -23,14 +23,8 @@
     </div>
 
     <div class='flex-column flex-grow mw-0'>
-      <pre
-        class='
-          overflow contain
-          {{if showQrCodeMobile "is-hidden-mobile" }}
-        '><code id='my-identity'>{{identityJson}}</code></pre>
-
-      <div class='w-100'>
-        <a href={{url}} target='_blank' rel='noopener'>{{url}}</a>
+      <div class='w-100 shareable-url wrap is-hidden-mobile'>
+        <a id='invite-link' href={{url}} target='_blank' rel='noopener'>{{url}}</a>
       </div>
 
       <div class='
@@ -52,7 +46,7 @@
             {{if copied "is-active"}}
             {{if showQrCodeMobile "is-hidden-mobile"}}'
           @success={{action 'copySuccess'}}
-          @clipboardTarget='#my-identity'>
+          @clipboardTarget='#invite-link'>
 
           {{t 'ui.invite.copyProfile'}}
 

@@ -63,3 +63,9 @@ export default class ContactManager extends Service {
     return await this.store.findRecord('identity', uid);
   }
 }
+
+declare module '@ember/service' {
+  interface Registry {
+    'contact-manager': ContactManager;
+  }
+}

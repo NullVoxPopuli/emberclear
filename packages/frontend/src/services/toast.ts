@@ -32,7 +32,7 @@ export default class Toast extends Service {
       pauseOnHover: true,
       closeOnClick: true,
       position: 'top-right',
-      duration: 3500,
+      duration: 4000,
       ...options
     });
   }

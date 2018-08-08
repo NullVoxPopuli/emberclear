@@ -98,6 +98,22 @@ body {
   }
 }
 
+.shareable-url {
+  overflow-x: auto;
+  padding: 10px 5px;
+
+  a {
+    white-space: nowrap;
+  }
+
+  &.wrap {
+    a {
+      white-space: initial;
+      word-wrap: break-word;
+    }
+  }
+}
+
 .has-resize-disabled {
   resize: none;
 }
