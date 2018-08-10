@@ -71,7 +71,7 @@
     "ember-decorators": "^2.0.0",
     "ember-elsewhere": "^1.0.4",
     "ember-intl": "^3.1.1",
-    "ember-rollup": "^1.0.2",
+    "ember-rollup": "^2.0.0",
     "ember-route-helpers": "^2.0.0",
     "ember-router-scroll": "^0.7.1",
     "ember-service-worker": "^0.6.12",

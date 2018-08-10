@@ -21,6 +21,8 @@ export default class ChatEntry extends Component {
 
   didRender() {
     this.element.querySelector('textarea')!.onkeypress = this.onKeyPress.bind(this);
+    this.element.querySelector('textarea')!.onkeyup = this.onKeyUp.bind(this);
+    this.element.querySelector('textarea')!.onkeydown = this.onKeyUp.bind(this);
   }
 
   @computed('to.name')
@@ -46,7 +48,11 @@ export default class ChatEntry extends Component {
     this.set('isDisabled', true);
 
     await this.dispatchMessage(this.text);
-    later(this, () => this.scollContainer());
+    later(this, () => {
+      this.scollContainer();
+
+      this.adjustHeightOfTextInput();
+    });
 
     this.set('isDisabled', false);
     this.set('text', '');
@@ -54,9 +60,7 @@ export default class ChatEntry extends Component {
 
   @action
   onKeyPress(this: ChatEntry, event: KeyboardEvent) {
-    const { keyCode, shiftKey, target } = event;
-
-    this.adjustHeight(target as HTMLElement);
+    const { keyCode, shiftKey } = event;
 
     // don't submit when shift is being held.
     if (!shiftKey && keyCode === 13) {
@@ -69,10 +73,26 @@ export default class ChatEntry extends Component {
     return true;
   }
 
+  @action
+  onKeyUp(this: ChatEntry, event: KeyboardEvent) {
+    const {  target } = event;
+
+    this.adjustHeight(target as HTMLElement);
+  }
+
+  private adjustHeightOfTextInput() {
+    const textarea = this.element.querySelector('textarea') as HTMLElement;
+
+    this.adjustHeight(textarea);
+  }
+
   private adjustHeight(element: HTMLElement) {
+    const lines  = (this.text || '').split(/\r\n|\r|\n/).length;
+    console.log(lines)
+
     element.style.cssText = `
       max-height: 7rem;
-      height: ${element.scrollHeight}px
+      height: calc(${lines * 24}px + 0.375rem + 0.375rem)
     `;
   }
 
