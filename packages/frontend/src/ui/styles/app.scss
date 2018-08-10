@@ -154,3 +154,26 @@ pre {
   max-height: 200px;
   overflow: auto;
 }
+
+
+.resizable-textarea {
+textarea, .textarea-size {
+    max-height: 7rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+  textarea {
+  height: 100%;
+  position: absolute;
+  resize:none;
+  white-space: normal;
+  }
+
+  .textarea-size {
+    visibility: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}

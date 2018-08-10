@@ -62,6 +62,7 @@ export default class ChatEntry extends Component {
   onKeyPress(this: ChatEntry, event: KeyboardEvent) {
     const { keyCode, shiftKey } = event;
 
+    this.adjustHeightOfTextInput();
     // don't submit when shift is being held.
     if (!shiftKey && keyCode === 13) {
       this.send('sendMessage');
@@ -77,23 +78,14 @@ export default class ChatEntry extends Component {
   onKeyUp(this: ChatEntry, event: KeyboardEvent) {
     const {  target } = event;
 
-    this.adjustHeight(target as HTMLElement);
+    this.adjustHeightOfTextInput();
   }
 
   private adjustHeightOfTextInput() {
     const textarea = this.element.querySelector('textarea') as HTMLElement;
+    const sizer = this.element.querySelector('.textarea-size')!;
 
-    this.adjustHeight(textarea);
-  }
-
-  private adjustHeight(element: HTMLElement) {
-    const lines  = (this.text || '').split(/\r\n|\r|\n/).length;
-    console.log(lines)
-
-    element.style.cssText = `
-      max-height: 7rem;
-      height: calc(${lines * 24}px + 0.375rem + 0.375rem)
-    `;
+    sizer.innerHTML = textarea.value + '\n';
   }
 
   private scollContainer() {
