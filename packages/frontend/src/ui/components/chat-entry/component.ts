@@ -76,7 +76,7 @@ export default class ChatEntry extends Component {
 
   @action
   onKeyUp(this: ChatEntry, event: KeyboardEvent) {
-    const {  target } = event;
+    const { target } = event;
 
     this.adjustHeightOfTextInput();
   }
@@ -91,12 +91,8 @@ export default class ChatEntry extends Component {
   private scollContainer() {
     const container = this.element.parentElement!;
     const element = container.querySelector('.messages')!;
-    const messages = element.querySelectorAll('.message')!;
-    const lastMessage = messages[messages.length - 1] as HTMLElement;
 
-    if (lastMessage) {
-      element.scrollTop = lastMessage.offsetTop + lastMessage.offsetHeight;
-    }
+    element.scrollTop = element.scrollTop * 10000000000000;
   }
 
   private async dispatchMessage(text: string) {

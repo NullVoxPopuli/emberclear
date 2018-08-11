@@ -1,11 +1,16 @@
 import Component from '@ember/component';
 import { later } from '@ember/runloop';
 import { action } from '@ember-decorators/object';
+import { service } from '@ember-decorators/service';
 import { task } from 'ember-concurrency-decorators';
 
 import { isElementWithin } from 'emberclear/src/utils/dom/utils';
 
+import ChatScroller from 'emberclear/services/chat-scroller';
+
 export default class ChatHistory extends Component {
+  @service chatScroller!: ChatScroller;
+
   isLastVisible = true;
 
   didRender() {
@@ -24,27 +29,15 @@ export default class ChatHistory extends Component {
 
   @action
   scrollToBottom() {
-    const element = this.element.querySelector('.messages')!;
-    const messages = element.querySelectorAll('.message')!;
-    const lastMessage = messages[messages.length - 1] as HTMLElement;
-
-    if (lastMessage) {
-      element.scrollTop = lastMessage.offsetTop + lastMessage.offsetHeight;
-    }
+    this.chatScroller.scrollToBottom();
 
     this.updateVisibilityOfNewMessageNotifier.perform();
   }
 
   @task
   * updateVisibilityOfNewMessageNotifier(this: ChatHistory) {
-    const container = this.element.querySelector('.message-list') as HTMLElement;
-    const messages = this.element.querySelectorAll('.message')!;
-    const lastMessage = messages[messages.length - 1] as HTMLElement;
+    const isVisible = this.chatScroller.isSecondToLastVisible();
 
-    if (lastMessage) {
-      const isVisible = isElementWithin(lastMessage, container);
-
-      this.set('isLastVisible', isVisible);
-    }
+    this.set('isLastVisible', isVisible);
   }
 }

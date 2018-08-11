@@ -7,6 +7,7 @@ import IdentityService from 'emberclear/services/identity/service';
 import Identity from 'emberclear/data/models/identity/model';
 import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';
+import ChatScroller from 'emberclear/services/chat-scroller';
 
 import { decryptFrom } from 'emberclear/src/utils/nacl/utils';
 import { fromHex, toString, fromBase64 } from 'emberclear/src/utils/string-encoding';
@@ -17,6 +18,7 @@ export default class MessageProcessor extends Service {
   @service relayConnection!: RelayConnection;
   @service statusManager!: StatusManager;
   @service contactManager!: ContactManager;
+  @service chatScroller!: ChatScroller;
 
   async receive(socketData: RelayMessage) {
     const { uid, message } = socketData;
@@ -30,6 +32,8 @@ export default class MessageProcessor extends Service {
     // will take care of where to place the
     // message in the UI
     await this.importMessage(decrypted);
+
+    this.chatScroller.maybeNudgeToBottom();
   }
 
   async decryptMessage(message: string, senderPublicKey: Uint8Array, recipientPrivateKey: Uint8Array) {
