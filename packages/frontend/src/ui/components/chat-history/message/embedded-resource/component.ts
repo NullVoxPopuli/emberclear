@@ -5,7 +5,7 @@ import { service } from '@ember-decorators/service';
 
 import RelayConnection from 'emberclear/services/relay-connection';
 import RelayManager from 'emberclear/services/relay-manager';
-
+import ChatScroller from 'emberclear/services/chat-scroller';
 
 // https://stackoverflow.com/a/8260383/356849
 const YT_PATTERN = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -14,6 +14,7 @@ const IMAGE_PATTERN = /(jpg|png|gif)/;
 export default class EmbeddedResource extends Component {
   @service relayConnection!: RelayConnection;
   @service relayManager!: RelayManager;
+  @service chatScroller!: ChatScroller;
 
   url!: string;
 
@@ -41,6 +42,8 @@ export default class EmbeddedResource extends Component {
     this.set('hasOgData', !!(og.title && og.description));
     this.set('ogData', og);
     this.set('title', og.title);
+
+    this.chatScroller.maybeNudgeToBottom();
   }
 
   parseUrl() {

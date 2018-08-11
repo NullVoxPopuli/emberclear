@@ -49,8 +49,6 @@ export default class ChatEntry extends Component {
 
     await this.dispatchMessage(this.text);
     later(this, () => {
-      this.scollContainer();
-
       this.adjustHeightOfTextInput();
     });
 
@@ -86,13 +84,6 @@ export default class ChatEntry extends Component {
     const sizer = this.element.querySelector('.textarea-size')!;
 
     sizer.innerHTML = textarea.value + '\n';
-  }
-
-  private scollContainer() {
-    const container = this.element.parentElement!;
-    const element = container.querySelector('.messages')!;
-
-    element.scrollTop = element.scrollTop * 10000000000000;
   }
 
   private async dispatchMessage(text: string) {

@@ -1,10 +1,8 @@
 import Component from '@ember/component';
-import { later } from '@ember/runloop';
 import { action } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
+import { timeout } from 'ember-concurrency';
 import { task } from 'ember-concurrency-decorators';
-
-import { isElementWithin } from 'emberclear/src/utils/dom/utils';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
 
@@ -13,31 +11,31 @@ export default class ChatHistory extends Component {
 
   isLastVisible = true;
 
-  didRender() {
-    later(this, () => this.updateVisibilityOfNewMessageNotifier.perform());
-  }
-
-  @action
-  onLastReached() {
-    later(this, () => this.updateVisibilityOfNewMessageNotifier.perform());
-  }
-
-  @action
-  onLastVisibleChanged() {
-    later(this, () => this.updateVisibilityOfNewMessageNotifier.perform());
+  didInsertElement() {
+    this.autoScrollToBottom.perform();
   }
 
   @action
   scrollToBottom() {
     this.chatScroller.scrollToBottom();
-
-    this.updateVisibilityOfNewMessageNotifier.perform();
   }
 
   @task
-  * updateVisibilityOfNewMessageNotifier(this: ChatHistory) {
-    const isVisible = this.chatScroller.isSecondToLastVisible();
+  * autoScrollToBottom(this: ChatHistory) {
+    const messages = this.element.querySelector('.messages') as HTMLElement;
 
-    this.set('isLastVisible', isVisible);
+    while(true) {
+      yield timeout(250);
+
+      // allow 1px inaccuracy by adding 1
+      const { scrollHeight, clientHeight, scrollTop } = messages;
+      const isScrolledToBottom = scrollHeight - clientHeight <= scrollTop + 10;
+
+      if (isScrolledToBottom) {
+        messages.scrollTop = scrollHeight - clientHeight;
+      }
+
+      this.set('isLastVisible', isScrolledToBottom);
+    }
   }
 }
