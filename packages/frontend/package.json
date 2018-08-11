@@ -118,6 +118,7 @@
     "ember-data": "github:emberjs/data#1abc3bb38ddba37d68b4cf9c14f4486628746d89",
     "ember-export-application-global": "^2.0.0",
     "ember-hammertime": "^1.2.4",
+    "ember-keyboard": "^3.0.2",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-purify": "^4.2.0",
