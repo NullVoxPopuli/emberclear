@@ -19,7 +19,7 @@
     "prettier": "node_modules/.bin/prettier",
     "build": "yarn ember build",
     "build:debug": "EMBER_CLI_PACKAGER=true BROCCOLI_DEBUG=* yarn build",
-    "build:production": "ENABLE_SW=true PREMBER=true EXPERIMENTAL_RENDER_MODE_SERIALIZE=true yarn build --environment production",
+    "build:production": "ENABLE_SW=true PREMBER=true EXPERIMENTAL_RENDER_MODE_SERIALIZE=true yarn build --environment production && sed -i -e 's/{{ROOT_URL}}/\\//g' dist/index.html",
     "build:production:analyze": "CONCAT_STATS=true yarn build:production",
     "start": "yarn ember serve -p 4201",
     "start:dev": "ENABLE_SW=false SW_DISABLED=true FASTBOOT_DISABLED=true yarn start -p 4201",
