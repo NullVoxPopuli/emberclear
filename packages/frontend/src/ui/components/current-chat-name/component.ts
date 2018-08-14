@@ -9,6 +9,7 @@ import { alias, equal } from '@ember-decorators/object/computed';
 import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
 
 const PRIVATE_CHAT_REGEX = /chat\/privately-with\/(.+)/;
+const CHANNEL_REGEX = /chat\/in-channel\/(.+)/;
 
 
 export default class extends Component {
@@ -24,16 +25,24 @@ export default class extends Component {
     if (this.fastboot.isFastBoot) return;
 
     const url = this.router.currentURL;
-    const matches = PRIVATE_CHAT_REGEX.exec(url);
+    const privateMatches = PRIVATE_CHAT_REGEX.exec(url);
 
     // Private Chat
-    if (matches) {
-      const uid = matches[1];
+    if (privateMatches) {
+      const encodedId = privateMatches[1];
+      const id = decodeURI(encodedId);
 
-      return this.getName(uid);
+      return this.getName(id, 'identity');
     }
 
-    // TODO: Channels
+    const channelMatches = CHANNEL_REGEX.exec(url);
+
+    if (channelMatches) {
+      const encodedId = channelMatches[1];
+      const id = decodeURI(encodedId);
+
+      return this.getName(id, 'channel', '#');
+    }
 
     return '';
   }
@@ -52,11 +61,11 @@ export default class extends Component {
     return false;
   }
 
-  getName(uid: string) {
+  getName(id: string, modelType: string, prefix = '') {
     const promise: Promise<string> = new RSVP.Promise(async (resolve /*, reject */) => {
-      const record = await this.store.findRecord('identity', uid);
+      const record = await this.store.findRecord(modelType, id);
 
-      resolve(record.name);
+      resolve(`${prefix}${record.name}`);
     });
 
     return new PromiseMonitor<string>(promise);

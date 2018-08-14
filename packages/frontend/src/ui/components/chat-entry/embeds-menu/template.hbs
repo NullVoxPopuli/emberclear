@@ -1,0 +1,42 @@
+<Dropdown @up={{true}} @buttonIcon='plus' @buttonClass='h-100'>
+  <em class='dropdown-item'>
+    New embeddables coming soon.
+  </em>
+
+  <hr class="dropdown-divider">
+
+  <ModalStatic @name='code-or-snippet' as |_isActive toggle|>
+    <a class='dropdown-item flex align-items-center' {{action toggle}}>
+      <span class='icon m-r-sm'>{{fa-icon 'code'}}</span>
+      <span>Code or text snippet</span>
+    </a>
+  </ModalStatic>
+
+  <a class='dropdown-item flex align-items-center' disabled>
+    <span class='icon m-r-sm'>{{fa-icon 'bed'}}</span>
+    <span>Embed from URL</span>
+  </a>
+
+  <hr class="dropdown-divider">
+
+  <a class='dropdown-item flex align-items-center' disabled>
+    <span class='icon m-r-sm'>{{fa-icon 'desktop'}}</span>
+    <span>Send File from Computer</span>
+  </a>
+
+  <hr class="dropdown-divider">
+
+  <a class='dropdown-item flex align-items-center' disabled>
+    <span class='icon m-r-sm'>{{fa-icon 'video'}}</span>
+    <span>Start Video Chat</span>
+  </a>
+
+  <a class='dropdown-item flex align-items-center' disabled>
+    <span class='icon m-r-sm'>{{fa-icon 'phone'}}</span>
+    <span>Start Audio Chat</span>
+  </a>
+</Dropdown>
+
+<ModalStatic @name='code-or-snippet' as |isActive toggle|>
+  <Snippet @isActive={{isActive}} @close={{toggle}} @sendTo={{@sendTo}} />
+</ModalStatic>

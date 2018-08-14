@@ -1,0 +1,26 @@
+<Modal @isActive={{@isActive}} @close={{@close}}>
+  <h5 class='is-size-5'>
+    Send Code or Snippet to <strong>{{@sendTo.name}}</strong>
+  </h5>
+
+  <div class='flex-row m-b-md'>
+    {{input
+      class='input'
+      value=title
+      placeholder='Title (optional)'}}
+
+    <div>Language Picker</div>
+  </div>
+
+  {{textarea
+    autofocus
+    role='snippet-entry'
+    class='input transition-all m-b-md snippet-entry'
+    value=text
+  }}
+
+  <div class='flex-row justify-content-end'>
+    <button class='button m-r-sm' {{action @close}}>Cancel</button>
+    <button class='button is-primary' {{action sendMessage}}>Send Snippet</button>
+  </div>
+</Modal>

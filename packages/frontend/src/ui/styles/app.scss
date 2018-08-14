@@ -146,7 +146,14 @@ body {
   textarea {
     padding-left: 10px;
     padding-right: 10px;
-    resize: none;
+
+    &[role='chat-entry'] {
+      resize: none;
+    }
+
+    &[role='snippet-entry'], &.snippet-entry {
+      min-height: 10rem;
+    }
   }
 }
 
