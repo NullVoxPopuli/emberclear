@@ -13,16 +13,18 @@ export default class ChatEntry extends Component {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
   @service('messages/factory') messageFactory!: MessageFactory;
 
-  to?: Identity;
+  to!: Identity;
   // value from the input field
   text?: string;
   // disable the text field while sending
   isDisabled = false;
 
   didRender() {
-    this.element.querySelector('textarea')!.onkeypress = this.onKeyPress.bind(this);
-    this.element.querySelector('textarea')!.onkeyup = this.onKeyUp.bind(this);
-    this.element.querySelector('textarea')!.onkeydown = this.onKeyUp.bind(this);
+    const mainInput = this.element.querySelector('textarea.chat-entry') as HTMLElement;
+
+    mainInput.onkeypress = this.onKeyPress.bind(this);
+    mainInput.onkeyup = this.onKeyUp.bind(this);
+    mainInput.onkeydown = this.onKeyUp.bind(this);
   }
 
   @computed('to.name')
@@ -87,20 +89,6 @@ export default class ChatEntry extends Component {
   }
 
   private async dispatchMessage(text: string) {
-    if (this.to) {
-      const msg = this.messageFactory.buildWhisper(text, this.to);
-
-      await msg.save();
-
-      if (this.to.id === 'me') return;
-
-      return await this.messageDispatcher.sendToUser(msg, this.to);
-    }
-
-    const msg = this.messageFactory.buildChat(text);
-
-    await msg.save();
-
-    return await this.messageDispatcher.sendToAll(msg);
+    this.messageDispatcher.send(text, this.to);
   }
 }

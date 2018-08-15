@@ -15,4 +15,9 @@ export default class Dropdown extends Component {
   toggleMenu() {
     this.set('isOpen', !this.isOpen);
   }
+
+  @action
+  closeMenu() {
+    this.set('isOpen', false);
+  }
 }

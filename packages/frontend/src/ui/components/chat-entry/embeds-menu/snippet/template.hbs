@@ -1,15 +1,21 @@
 <Modal @isActive={{@isActive}} @close={{@close}}>
-  <h5 class='is-size-5'>
+  <h5 class='is-size-5 m-b-md'>
     Send Code or Snippet to <strong>{{@sendTo.name}}</strong>
   </h5>
 
-  <div class='flex-row m-b-md'>
+  <div class='flex-row m-b-md m-r-sm'>
     {{input
       class='input'
       value=title
       placeholder='Title (optional)'}}
 
-    <div>Language Picker</div>
+    <div class='select m-l-sm'>
+      <select>
+        {{#each languages as |availableLanguage|}}
+          <option>{{availableLanguage}}</option>
+        {{/each}}
+      </select>
+    </div>
   </div>
 
   {{textarea

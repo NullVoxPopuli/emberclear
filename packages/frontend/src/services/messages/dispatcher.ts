@@ -9,6 +9,7 @@ import Notifications from 'emberclear/services/notifications/service';
 import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
 import StatusManager from 'emberclear/services/status-manager';
+import MessageFactory from 'emberclear/services/messages/factory';
 
 import { encryptFor } from 'emberclear/src/utils/nacl/utils';
 import { toUint8Array, toBase64, toHex } from 'emberclear/src/utils/string-encoding';
@@ -20,6 +21,18 @@ export default class MessageDispatcher extends Service {
   @service relayConnection!: RelayConnection;
   @service identity!: IdentityService;
   @service statusManager!: StatusManager;
+  @service('messages/factory') messageFactory!: MessageFactory;
+
+  async send(text: string, to: Identity) {
+    const msg = this.messageFactory.buildWhisper(text, to);
+
+    await msg.save();
+
+    if (to.id === 'me') return;
+
+    // TODO: channels?
+    return await this.sendToUser(msg, to);
+  }
 
   async pingAll() {
     const ping = this.store.createRecord('message', {
