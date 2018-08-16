@@ -29,6 +29,8 @@ export default class extends Component {
     const markdown = this.message.body;
     const html = converter.makeHtml(markdown);
     const sanitized = sanitize(html);
+    console.log(markdown, html, sanitized);
+    debugger;
 
     return sanitized;
   }

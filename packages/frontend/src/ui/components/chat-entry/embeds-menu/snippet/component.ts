@@ -23,12 +23,15 @@ export default class SnippetModal extends Component {
 
   @action
   sendMessage() {
-    const message = `
-    *${this.title}*
+    const messageParts = [
+      `*${this.title}*`,
+      '\n',
+      `${codeDelimiter}${this.language}`,
+      this.text,
+      codeDelimiter
+    ];
 
-    ${codeDelimiter}${this.language}
-      ${this.text}
-    ${codeDelimiter}`;
+    const message = messageParts.join('\n');
 
     this.messageDispatcher.send(message, this.sendTo);
     this.close();

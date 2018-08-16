@@ -50,12 +50,13 @@ export default class ChatEntry extends Component {
     this.set('isDisabled', true);
 
     await this.dispatchMessage(this.text);
-    later(this, () => {
-      this.adjustHeightOfTextInput();
-    });
 
     this.set('isDisabled', false);
     this.set('text', '');
+
+    later(this, () => {
+      this.adjustHeightOfTextInput();
+    });
   }
 
   @action
