@@ -16,6 +16,8 @@ module.exports = function(defaults) {
   let disabledAddons = [];
   let environment = EmberApp.env();
   let isProduction = environment === 'production';
+  let isTest = environment === 'test';
+
   let enableSW = process.env.ENABLE_SW;
   let disableServiceWorker = !isProduction && !enableSW;
   let version = gitRev.short();
@@ -37,9 +39,17 @@ module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // eslint slows down the dev-build-debug cycle significantly
     // hinting: false disables linting at build time.
-    hinting: false,
+    hinting: isTest,
+    tests: isTest,
     minifyJS: { enabled: isProduction },
     minifyCSS: { enabled: isProduction },
+
+    'ember-cli-babel': {
+      includePolyfill: isProduction
+    },
+
+    autoprefixer: { sourcemap: false },
+
     eslint: {
       testGenerator: 'qunit',
       group: true,
