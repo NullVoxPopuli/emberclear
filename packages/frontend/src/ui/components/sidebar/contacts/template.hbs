@@ -41,7 +41,7 @@
         <a class='flex-row align-items-center has-hover-tip' {{action onClick}}>
           <StatusIcon @contact={{contact}} />
           <span class='m-l-sm'>{{or contact.name '[unnamed]'}}</span>
-          <HoverTip>{{contact.displayName}}</HoverTip>
+          <HoverTip @class='overlay'>{{contact.displayName}}</HoverTip>
         </a>
       </li>
 

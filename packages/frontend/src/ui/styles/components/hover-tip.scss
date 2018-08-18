@@ -37,6 +37,11 @@
   transition-duration: 0.2s;
   transition-delay: 0.5s;
   box-shadow: 0 $radius-small $radius-small rgba(0,0,0, 0.5);
+
+  &.overlay {
+    bottom: 0;
+    right: 0;
+  }
 }
 
 // custom animations...
