@@ -3,5 +3,8 @@
     <img class='thumbnail' src="{{og.image}}" />
   </span>
 
-  <span>{{{purify-dom og.description}}}</span>
+  <div>
+    <a class='block' href={{@url}} target='_blank'>{{{purify-dom og.title}}}</a>
+    <p>{{{purify-dom og.description}}}</p>
+  </div>
 </div>

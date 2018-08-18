@@ -26,8 +26,6 @@
     {{{messageBody}}}
 
     {{#if (is-present urls)}}
-      <br />
-
       <div class='flex flex-wrap'>
         {{#each urls as |url|}}
           <EmbeddedResource class='flex' @url={{url}} />

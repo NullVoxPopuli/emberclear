@@ -1,12 +1,15 @@
 {{#if shouldRender}}
   <div class='card small embedded-resource'>
+    {{log ogData}}
+    {{log ogData.title}}
 
     <header class='card-header'>
       {{#if (is-present title)}}
         <p class='card-header-title'>
-          <a href='{{url}}' target='_blank'>{{title}}</a>
+          {{siteName}}
         </p>
       {{/if}}
+
       <a class='card-header-icon' {{action toggleShow}}>
         <span class='icon'>
           {{#if isCollapsed}}
@@ -17,6 +20,7 @@
         </span>
       </a>
     </header>
+
     {{#if (not isCollapsed)}}
 
       {{#if isYouTube}}
@@ -34,6 +38,7 @@
 
         <MetadataPreview
           class='{{if hasOgData "card-content"}}'
+          @url={{url}}
           @ogData={{ogData}} />
 
       {{/if}}

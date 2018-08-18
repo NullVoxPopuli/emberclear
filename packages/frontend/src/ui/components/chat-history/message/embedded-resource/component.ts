@@ -8,7 +8,7 @@ import RelayManager from 'emberclear/services/relay-manager';
 import ChatScroller from 'emberclear/services/chat-scroller';
 
 // https://stackoverflow.com/a/8260383/356849
-const YT_PATTERN = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+const YT_PATTERN = /^.*(youtu.be\/|\/v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
 const IMAGE_PATTERN = /(jpg|png|gif)/;
 
 export default class EmbeddedResource extends Component {
@@ -26,6 +26,7 @@ export default class EmbeddedResource extends Component {
   hasOgData!: boolean;
   ogData!: OpenGraphData;
   title?: string;
+  siteName?: string;
 
   constructor() {
     super(...arguments);
@@ -39,9 +40,10 @@ export default class EmbeddedResource extends Component {
   async fetchOpenGraph(this: EmbeddedResource) {
     const og = await this.relayManager.getOpenGraph(this.url);
 
-    this.set('hasOgData', !!(og.title && og.description));
+    this.set('hasOgData', !!(og.title));
     this.set('ogData', og);
     this.set('title', og.title);
+    this.set('siteName', og.site_name);
 
     this.chatScroller.maybeNudgeToBottom();
   }
