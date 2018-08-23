@@ -36,7 +36,7 @@ export default class ChatRoute extends Route {
   }
 
   @disableInFastboot
-  async afterModel() {
+  afterModel() {
     this.relayConnection.connect();
   }
 }

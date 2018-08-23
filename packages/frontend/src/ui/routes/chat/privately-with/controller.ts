@@ -12,12 +12,15 @@ export default class extends Controller {
 
   @filter('model.messages')
   messages(message: Message, _index: number, _array: Message[]) {
+    const me = this.identity.uid;
+    const target = this.uid;
+
     return (
       message.type === MESSAGE_TYPE.WHISPER && (
-        // we sent this message
-        (message.to === this.uid && message.from === this.identity.uid)
-        // we received a message
-        || message.from === this.uid
+        // we sent this message to someone else (this could incude ourselves)
+        (message.to === target && message.from === me)
+        // we received a message from someone else to us (including from ourselves)
+        || (message.from === target && message.to === me)
       )
     );
   }

@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
+import { task } from 'ember-concurrency-decorators';
 
 // giant block o' types
 import RelayConnection from 'emberclear/services/relay-connection';
@@ -31,7 +32,7 @@ export default class MessageDispatcher extends Service {
     if (to.id === 'me') return;
 
     // TODO: channels?
-    return await this.sendToUser(msg, to);
+    return await this.sendToUser.perform(msg, to);
   }
 
   async pingAll() {
@@ -41,32 +42,32 @@ export default class MessageDispatcher extends Service {
       type: 'ping'
     });
 
-    this.sendToAll(ping);
+    this.sendToAll.perform(ping);
   }
 
   // the downside to end-to-end encryption
   // the bigger the list of identities, the longer this takes
-  async sendToAll(msg: Message) {
-    const everyone = await this.store.findAll('identity');
+  @task * sendToAll(msg: Message) {
+    const everyone = yield this.store.findAll('identity');
 
     everyone.forEach(identity => {
       if (identity.id === 'me') return; // don't send to self
 
-      this.sendToUser(msg, identity);
+      this.sendToUser.perform(msg, identity);
     });
   }
 
-  async sendToUser(msg: Message, to: Identity) {
+  @task * sendToUser(msg: Message, to: Identity) {
     const myPrivateKey = this.identity.privateKey as Uint8Array;
     const theirPublicKey = to.publicKey as Uint8Array;
     const uid = toHex(theirPublicKey);
 
     const payload = toPayloadJson(msg, this.identity.record!);
 
-    const encryptedMessage = await this.encryptMessage(payload, theirPublicKey, myPrivateKey);
+    const encryptedMessage = yield this.encryptMessage(payload, theirPublicKey, myPrivateKey);
 
     try {
-      await this.relayConnection.send(uid, encryptedMessage);
+      yield this.relayConnection.send(uid, encryptedMessage);
 
       msg.set('receivedAt', new Date());
     } catch (e) {

@@ -1,4 +1,3 @@
-import { run } from '@ember/runloop';
 import { DS } from 'ember-data';
 
 import { generateAsymmetricKeys } from "emberclear/src/utils/nacl/utils";
@@ -15,12 +14,19 @@ export async function createCurrentUser(): Promise<Identity> {
   const { publicKey, privateKey } = await generateAsymmetricKeys();
 
   const record = store.createRecord('identity', {
-    id: 'me', name, publicKey, privateKey
+    id: 'me', name: 'Test User', publicKey, privateKey
   });
 
   await record.save();
 
-  await run(() => identityService.set('record', record));
+  identityService.set('record', record);
+  identityService.set('allowOverride', false);
 
   return record;
+}
+
+export function setupCurrentUser(hooks: NestedHooks) {
+  hooks.beforeEach(async function() {
+    await createCurrentUser();
+  });
 }

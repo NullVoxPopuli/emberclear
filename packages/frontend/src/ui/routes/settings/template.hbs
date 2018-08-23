@@ -1,4 +1,4 @@
-<div class='section'>
+<div data-test-settings-wrapper class='section'>
   <div class='container'>
     <h1 class='title'>Settings</h1>
     <div class='content'>
@@ -6,15 +6,15 @@
       <form {{action 'save' on='submit'}}>
 
         <Field @label='Name'>
-          {{input class='input' value=name}}
+          {{input data-test-name-field class='input' value=name}}
         </Field>
 
         <div class='flex justify-content-end'>
-          <input class='button' type='submit' value='Save' />
+          <input data-test-save class='button' type='submit' value='Save' />
         </div>
       </form>
 
-      <button class='button' {{action (mut showPrivateKey) (not showPrivateKey)}}>
+      <button data-test-show-private-key-toggle class='button' {{action (mut showPrivateKey) (not showPrivateKey)}}>
         {{if showPrivateKey 'Hide' 'Show'}} private key
       </button>
 
@@ -31,6 +31,7 @@
       <h2 class='is-size-4'>Danger Zone</h2>
 
       <button
+        data-test-delete-messages
         disabled={{messagesDeleted}}
         class='button is-danger is-outlined'
         {{action 'deleteMessages'}}>

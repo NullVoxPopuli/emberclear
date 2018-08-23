@@ -1,4 +1,7 @@
 export { stubService } from './stub-service';
 export { textFor } from './text-for';
-export { createCurrentUser } from './create-current-user';
+export { createCurrentUser, setupCurrentUser } from './create-current-user';
 export { getService } from './get-service';
+export { clearLocalStorage } from './clear-local-storage';
+export { setupRelayConnectionMocks } from './setup-relay-connection-mocks';
+export { getStore } from './get-store';

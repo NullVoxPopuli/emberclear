@@ -1,5 +1,7 @@
 <TopNav id='emberclear-topnav'/>
 
+
+<NotificationContainer @position="top-right" />
 <NotificationPrompt />
 
 <ServiceWorkerUpdateNotify>
@@ -14,7 +16,6 @@
   {{outlet}}
 </OffCanvasContainer>
 
-{{multiple-from-elsewhere name='modals'}}
 
 {{!--
   Static Modals / Modals that will /
@@ -27,3 +28,6 @@
 <ModalStatic @name='show-my-info' as |isActive toggle|>
   <ShowMyInfo @isActive={{isActive}} @close={{toggle}} />
 </ModalStatic>
+
+
+<MultipleFromElsewhere @name='modals' />

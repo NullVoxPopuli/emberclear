@@ -1,11 +1,31 @@
 import Service from '@ember/service';
 import { getContext } from '@ember/test-helpers';
 
-export const stubService = (name: string, hash = {}) => {
-  let stubbedService = Service.extend(hash);
+interface IInjection {
+  in: string;
+  as: string;
+}
+
+export const stubService = (name: string, hash = {}, injections?: Array<IInjection>) => {
+  let stubbedService;
+
+  // TODO: need to be able to use an extended service that uses services. :)
+  if (hash instanceof Function) {
+    stubbedService = hash;
+  } else {
+    stubbedService = Service.extend(hash);
+  }
 
   let { owner } = getContext();
-  owner.register(`service:${name}`, stubbedService)
+  let serviceName = `service:${name}`;
+
+  owner.register(serviceName, stubbedService);
+
+  if (injections) {
+    injections.forEach(injection => {
+      owner.application.inject(injection.in, injection.as, serviceName);
+    });
+  }
 };
 
 export default stubService;

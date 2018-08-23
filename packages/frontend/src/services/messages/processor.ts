@@ -62,6 +62,7 @@ export default class MessageProcessor extends Service {
       type,
       sender,
       from: sender.uid,
+      to: this.identity.uid,
       sentAt: json.time_sent,
       receivedAt: new Date(),
       body: msg.body,

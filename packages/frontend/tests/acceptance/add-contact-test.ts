@@ -2,18 +2,31 @@ import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-import localforage from 'localforage';
+import {
+  stubService, clearLocalStorage,
+  setupCurrentUser
+} from 'emberclear/tests/helpers';
 
 module('Acceptance | Add Contact', function(hooks) {
   setupApplicationTest(hooks);
+  clearLocalStorage(hooks);
 
-  hooks.beforeEach(async function() {
-    await localforage.clear();
+  hooks.beforeEach(function () {
+    stubService('relay-connection', {
+      connect() { return; }
+    }, [
+      { in: 'route:application', as: 'relayConnection' },
+      { in: 'route:chat', as: 'relayConnection' }
+    ]);
   });
 
-  test('visiting /contacts | redirects to setup', async function(assert) {
-    await visit('/contacts');
+  module('Is logged in', function(hooks) {
+    setupCurrentUser(hooks);
 
-    assert.equal(currentURL(), '/setup/new');
+    test('visiting /contacts | does not redirect', async function(assert) {
+      await visit('/contacts');
+
+      assert.equal(currentURL(), '/contacts');
+    });
   });
 });

@@ -14,9 +14,6 @@ export default class ApplicationRoute extends Route {
   @service fastboot!: FastBoot;
   @service intl!: IntlService;
 
-  // TODO: ask to turn on notifications
-  // TODO: use that same UI (that slack uses)
-  //       for other important things, like.. "disconnected, retrying in..."
   async beforeModel() {
     // TODO: make configurable
     const locale = 'en-us';
@@ -39,7 +36,7 @@ export default class ApplicationRoute extends Route {
   }
 
   @disableInFastboot
-  async afterModel() {
+  afterModel() {
     this.relayConnection.connect();
   }
 
