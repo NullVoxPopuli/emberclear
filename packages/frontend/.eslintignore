@@ -4,3 +4,9 @@
 /src/data/models/application/*.js
 /config/optional-features.json
 /concat-stats-for
+/node_modules
+/dist
+*.lock
+*.log
+*.json
+*.yaml

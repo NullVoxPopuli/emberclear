@@ -76,14 +76,12 @@ export default class ChatEntry extends Component {
   }
 
   @action
-  onKeyUp(this: ChatEntry, event: KeyboardEvent) {
-    const { target } = event;
-
+  onKeyUp(_event: KeyboardEvent) {
     this.adjustHeightOfTextInput();
   }
 
   private adjustHeightOfTextInput() {
-    const textarea = this.element.querySelector('textarea') as HTMLElement;
+    const textarea = this.element.querySelector('textarea') as HTMLTextAreaElement;
     const sizer = this.element.querySelector('.textarea-size')!;
 
     sizer.innerHTML = textarea.value + '\n';

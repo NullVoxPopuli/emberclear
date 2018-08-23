@@ -1,8 +1,10 @@
 <KeyboardPress @key="ctrl+Space" @onPress={{action toggleSidebar}} />
 
-<div class='is-flex-desktop flex-grow m-none m-b-none no-overflow'>
+<div data-test-offcanvas-wrapper class='is-flex-desktop flex-grow m-none m-b-none no-overflow'>
   {{#if isLoggedIn}}
-    <div class='
+    <div
+      data-test-sidebar-container
+      class='
       sidebar-container flex-row transition-all is-fullheight
       align-items-stretch
       {{if sidebar.isShown

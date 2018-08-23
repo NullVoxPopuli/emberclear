@@ -41,7 +41,7 @@ module.exports = function(defaults) {
     // hinting: false disables linting at build time.
     hinting: isTest,
     // tests: isTest,
-    tests: true,
+    // tests: true,
     minifyJS: { enabled: isProduction },
     minifyCSS: { enabled: isProduction },
 
@@ -49,7 +49,7 @@ module.exports = function(defaults) {
       includePolyfill: isProduction
     },
 
-    autoprefixer: { sourcemap: false },
+    // autoprefixer: { sourcemap: false },
 
     eslint: {
       testGenerator: 'qunit',

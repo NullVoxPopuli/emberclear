@@ -2,6 +2,7 @@ import RSVP from 'rsvp';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
+import { task } from 'ember-concurrency-decorators';
 
 import IdentityService from 'emberclear/services/identity/service';
 import MessageProcessor from 'emberclear/services/messages/processor';
@@ -9,6 +10,11 @@ import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import RelayManager from 'emberclear/services/relay-manager';
 
 import { toHex } from 'emberclear/src/utils/string-encoding';
+
+interface ISendPayload {
+  to: string;
+  message: String;
+}
 
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
@@ -40,7 +46,7 @@ export default class RelayConnection extends Service {
   //       - more complicated logic for a problem that already been solved
   //
   async send(this: RelayConnection, to: string, data: string) {
-    const payload = { to, message: data };
+    const payload: ISendPayload = { to, message: data };
     const channel = await this.getChannel();
 
     if (!channel) {
@@ -87,7 +93,11 @@ export default class RelayConnection extends Service {
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
   async connect(this: RelayConnection) {
-    const canConnect = await this.canConnect();
+    this.establishConnection.perform();
+  }
+
+  @task * establishConnection(this: RelayConnection) {
+    const canConnect = yield this.canConnect();
     if (!canConnect || this.connected) return;
 
     this.updateStatus('info', this.intl.t('connection.connecting'));
@@ -106,7 +116,7 @@ export default class RelayConnection extends Service {
     // establish initial connection to the server
     socket.connect();
 
-    await this.getChannel();
+    yield this.getChannel();
   }
 
   async getChannel(this: RelayConnection): Promise<Channel> {

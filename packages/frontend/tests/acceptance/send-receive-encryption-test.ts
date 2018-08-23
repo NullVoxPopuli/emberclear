@@ -4,16 +4,22 @@ import { setupApplicationTest } from 'ember-qunit';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageProcessor from 'emberclear/services/messages/processor';
 
-import localforage from 'localforage';
-import { getService } from 'emberclear/tests/helpers';
+import { getService, clearLocalStorage, stubService } from 'emberclear/tests/helpers';
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 
 module('Acceptance | Send/Receive Encryption', function(hooks) {
   setupApplicationTest(hooks);
+  clearLocalStorage(hooks);
 
-  hooks.beforeEach(async function() {
-    await localforage.clear();
+  hooks.beforeEach(function () {
+    stubService('relay-connection', {
+      connect() { return; }
+    }, [
+      { in: 'route:application', as: 'relayConnection' },
+      { in: 'route:chat', as: 'relayConnection' }
+    ]);
   });
+
 
   test('round-trip encrypt-decrypt should return the same message', async function(assert) {
     const dispatcher = getService<MessageDispatcher>('messages/dispatcher');

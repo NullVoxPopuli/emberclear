@@ -3,7 +3,7 @@ import DS from 'ember-data';
 import Component from '@ember/component';
 
 import { service } from '@ember-decorators/service';
-import { action, computed } from '@ember-decorators/object';
+import { computed } from '@ember-decorators/object';
 import { alias, equal } from '@ember-decorators/object/computed';
 
 import PromiseMonitor from 'emberclear/src/utils/promise-monitor';

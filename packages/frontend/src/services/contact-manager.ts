@@ -48,7 +48,7 @@ export default class ContactManager extends Service {
     return identities.filter(i => i.id !== 'me');
   }
 
-  async addContact(info: any) {
+  async addContact(_info: any) {
     try {
       // const existing = this.find(info.id);
 

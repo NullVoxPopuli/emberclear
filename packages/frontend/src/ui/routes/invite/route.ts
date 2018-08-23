@@ -4,7 +4,7 @@ import { isPresent } from '@ember/utils';
 
 import { disableInFastboot } from 'emberclear/src/utils/decorators';
 
-import InviteController from './controller';
+import { IQueryParams } from './controller';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
 import IdentityService from 'emberclear/services/identity/service';
@@ -16,20 +16,20 @@ export default class InviteRoute extends Route {
   @service channelManager!: ChannelManager;
 
   @disableInFastboot
-  beforeModel() {
+  async beforeModel(transition: any) {
     // identity should be loaded from application route
-    if (this.identity.isLoggedIn) return;
+    if (this.identity.isLoggedIn) return await this.acceptInvite(transition);
 
     // no identity, need to create one
     this.transitionTo('setup');
   }
 
-  @disableInFastboot
-  async setupController(controller: InviteController, model: never) {
-    this._super(controller, model);
+  // @disableInFastboot
+  async acceptInvite(transition: any) {
+    const query = transition.queryParams as IQueryParams;
 
-    if (this.hasParams()) {
-      const { name, publicKey } = controller;
+    if (this.hasParams(query)) {
+      const { name, publicKey } = query;
 
       // if (isPresent(publicKey)) {
         return await this.acceptContactInvite(name!, publicKey!);
@@ -58,8 +58,7 @@ export default class InviteRoute extends Route {
     return this.transitionTo(`/chat/privately-with/${publicKey}`);
   }
 
-  private hasParams() {
-    const { name, publicKey } = this.controller as InviteController;
+  private hasParams({ name, publicKey }: IQueryParams) {
 
     // TODO: support additional / different params for private channels
     return isPresent(name) && isPresent(publicKey);
