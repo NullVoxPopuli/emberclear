@@ -38,9 +38,10 @@ the-everything-stage-for-speed:
   tags: [ docker ]
   script:
     # TODO: extract all this to bash script?
-    - rm -rf ./packages/frontend/{dist,tmp,node_modules} #,yarn.lock}
+    - rm -rf ./packages/frontend/{dist,tmp,node_modules,yarn.lock}
     - time ./run yarn install
-    - time ./run yarn lint
+    # linting is built in to test
+    # - time ./run yarn lint
     - time ./run yarn test
     - time ./scripts/deploy
 
