@@ -5,6 +5,7 @@ import { start } from 'ember-qunit';
 import QUnit from 'qunit';
 
 const seed = Math.random().toString(36).substr(2, 5);
+// const seed = 'hp72t';
 
 QUnit.config.seed = seed;
 QUnit.config.reorder = true;
