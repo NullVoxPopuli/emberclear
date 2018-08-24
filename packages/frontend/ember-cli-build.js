@@ -68,19 +68,6 @@ module.exports = function(defaults) {
         '/login',
       ],
     },
-    'fontawesome': {
-      icons: {
-        'free-solid-svg-icons': [
-          'qrcode', 'user-circle',
-          'address-book', 'sliders-h', 'sign-out-alt',
-          'dot-circle',
-          'plus',
-          'code', 'desktop', 'bed', 'video',
-          'angle-down', 'angle-up', 'times',
-          'phone', 'phone-volume', 'share'
-        ],
-      },
-    },
     treeShaking: {
       enabled: true,
     },

@@ -39,10 +39,7 @@ the-everything-stage-for-speed:
   script:
     # TODO: extract all this to bash script?
     - rm -rf ./packages/frontend/{dist,tmp,node_modules,yarn.lock}
-    - time ./run yarn install
-    # linting is built in to test
-    # - time ./run yarn lint
-    - time ./run yarn test
+    - ( cd ./packages/frontend && yarn install && yarn test )
     - time ./scripts/deploy
 
 # lint:
