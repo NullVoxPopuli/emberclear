@@ -14,7 +14,6 @@ export default class Mnemonic extends Component {
   }
 
   async updateMnemonic(this: Mnemonic, key?: Uint8Array) {
-    // const key = this.identity.privateKey;
     let result = '';
 
     if (!key) { result = this.intl.t('services.crypto.keyGenFailed'); }
