@@ -2,9 +2,13 @@ import Application from '../src/main';
 import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
 import { start } from 'ember-qunit';
+import QUnit from 'qunit';
 
-// QUnit.config.testTimeout = 10000;
+const seed = Math.random().toString(36).substr(2, 5);
 
+QUnit.config.seed = seed;
+QUnit.config.reorder = true;
+QUnit.begin(() => console.info(`Using seed for Qunit: ${seed}`));
 
 setApplication(Application.create(config.APP));
 
