@@ -1,7 +1,7 @@
 import { getOwner } from '@ember/application';
 import { decoratorWithParams } from '@ember-decorators/utils/decorator';
 
-function isFastBoot(context) {
+function isFastBoot(context: any) {
   const service = getOwner(context).lookup('service:fastboot');
 
   return service.isFastBoot;

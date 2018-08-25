@@ -1,5 +1,4 @@
 import { DS } from 'ember-data';
-import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -8,8 +7,8 @@ import { setupApplicationTest } from 'ember-qunit';
 import { nameForm } from 'emberclear/tests/helpers/pages/setup';
 
 import {
-  stubService, getService, clearLocalStorage,
-  setupCurrentUser, createCurrentUser, setupRelayConnectionMocks,
+  getService, clearLocalStorage,
+  setupCurrentUser, setupRelayConnectionMocks,
   trackAsyncDataRequests
 } from 'emberclear/tests/helpers';
 
@@ -18,7 +17,6 @@ module('Acceptance | Setup', function(hooks) {
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   trackAsyncDataRequests(hooks);
-
 
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);

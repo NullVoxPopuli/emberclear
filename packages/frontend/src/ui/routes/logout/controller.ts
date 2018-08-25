@@ -16,6 +16,7 @@ export default class LogoutController extends Controller {
     this.store.unloadAll('channel');
 
     localforage.clear();
+    localStorage.clear();
 
     this.transitionToRoute('application');
   }

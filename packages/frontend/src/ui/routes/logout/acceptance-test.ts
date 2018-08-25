@@ -3,7 +3,7 @@ import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
-  clearLocalStorage, stubService,
+  clearLocalStorage,
   setupRelayConnectionMocks
 } from 'emberclear/tests/helpers';
 

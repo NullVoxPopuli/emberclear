@@ -1,4 +1,4 @@
-import { module, skip, skip as test } from 'qunit';
+import { module, skip, test } from 'qunit';
 import { visit as dangerousVisit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -6,8 +6,8 @@ import DS from 'ember-data';
 import IdentityService from 'emberclear/src/services/identity/service';
 
 import {
-  stubService, getService, clearLocalStorage,
-  setupCurrentUser, setupRelayConnectionMocks
+  getService, clearLocalStorage,
+  setupCurrentUser, setupRelayConnectionMocks, cancelLongRunningTimers
 } from 'emberclear/tests/helpers';
 
 import { app } from 'emberclear/tests/helpers/pages/app';
@@ -24,6 +24,7 @@ module('Acceptance | Invitations', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
+  cancelLongRunningTimers(hooks);
 
   module('Is not logged in', function(hooks) {
     hooks.beforeEach(async function() {
@@ -55,7 +56,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('a toast is displayed with an error', function(assert) {
-          const text = app.toast().innerText;
+          const text = app.toast()!.textContent!;
 
           assert.ok(text.includes('Invalid Invite Link'));
         });
@@ -71,7 +72,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('a toast is displayed with an error', function(assert) {
-          const text = app.toast().innerText;
+          const text = app.toast()!.textContent!;
 
           assert.ok(text.includes('Invalid Invite Link'));
         });
@@ -90,7 +91,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('a toast is displayed with an error', function(assert) {
-          const text = app.toast().innerText;
+          const text = app.toast()!.textContent!;
 
           assert.ok(text.includes('There was a problem'));
         });
@@ -111,7 +112,7 @@ module('Acceptance | Invitations', function(hooks) {
           });
 
           test('a toast is displayed with a warning', function(assert) {
-            const text = app.toast().innerText;
+            const text = app.toast()!.textContent!;
 
             assert.ok(text.includes(`You can't invite yourself...`));
           });
@@ -127,7 +128,7 @@ module('Acceptance | Invitations', function(hooks) {
             await visit(url);
           });
 
-          skip('a redirect to the correct direct message chat', function(assert) {
+          test('a redirect to the correct direct message chat', function(assert) {
             assert.expect(1);
 
             assert.equal(currentURL(), `/chat/privately-with/${publicKey}`);

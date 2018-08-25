@@ -58,7 +58,7 @@ module('Acceptance | Settings', function(hooks) {
 
 
         skip('confirmation is display', function(assert) {
-          const text = app.toast().textContent;
+          const text = app.toast()!.textContent!;
 
           assert.ok(text.includes('Identity Updated'));
         });
@@ -85,7 +85,7 @@ module('Acceptance | Settings', function(hooks) {
       });
     });
 
-    module('Downloading settings', function(hooks) {
+    module('Downloading settings', function() {
       // TODO: how to test downloads?
     });
 

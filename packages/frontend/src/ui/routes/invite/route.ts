@@ -42,7 +42,7 @@ export default class InviteRoute extends Route {
 
   private async acceptContactInvite(name: string, publicKey: string) {
     if (publicKey === this.identity.record!.publicKeyAsHex) {
-      this.toast.warning(`You can't invite yourself.. but you can talk to yourself!`);
+      this.toast.warning(`You can't invite yourself... but you can talk to yourself!`);
 
       return this.transitionTo('/chat/privately-with/me');
     }

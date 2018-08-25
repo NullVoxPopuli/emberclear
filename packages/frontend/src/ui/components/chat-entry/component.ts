@@ -80,14 +80,14 @@ export default class ChatEntry extends Component {
     this.adjustHeightOfTextInput();
   }
 
-  private adjustHeightOfTextInput() {
+  adjustHeightOfTextInput() {
     const textarea = this.element.querySelector('textarea') as HTMLTextAreaElement;
     const sizer = this.element.querySelector('.textarea-size')!;
 
     sizer.innerHTML = textarea.value + '\n';
   }
 
-  private async dispatchMessage(text: string) {
+  async dispatchMessage(text: string) {
     this.messageDispatcher.send(text, this.to);
   }
 }

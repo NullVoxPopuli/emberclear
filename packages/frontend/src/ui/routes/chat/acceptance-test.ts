@@ -4,13 +4,15 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import {
   clearLocalStorage,
-  setupRelayConnectionMocks
+  setupRelayConnectionMocks,
+  cancelLongRunningTimers
 } from 'emberclear/tests/helpers';
 
 module('Acceptance | Chat', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
+  cancelLongRunningTimers(hooks);
 
   module('when not logged in', function(hooks) {
     hooks.beforeEach(async function() {

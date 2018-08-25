@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
@@ -36,6 +37,10 @@ export default class ChatHistory extends Component {
       }
 
       this.set('isLastVisible', isScrolledToBottom);
+
+      // HACK: remove eventually....
+      // http://ember-concurrency.com/docs/testing-debugging/
+      if (Ember.testing) { return; }
     }
   }
 }
