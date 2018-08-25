@@ -57,7 +57,7 @@ export default DS.Adapter.extend(Evented, {
       const record = namespaceData.records[id];
 
       if (!record) {
-        return reject('record not found in localforage');
+        return reject(`record (${type}:${id}) not found in localforage`);
       }
 
       return record;

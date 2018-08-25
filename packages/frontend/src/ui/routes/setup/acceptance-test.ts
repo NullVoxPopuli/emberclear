@@ -9,20 +9,29 @@ import { nameForm } from 'emberclear/tests/helpers/pages/setup';
 
 import {
   stubService, getService, clearLocalStorage,
-  setupCurrentUser, createCurrentUser
+  setupCurrentUser, createCurrentUser, setupRelayConnectionMocks,
+  trackAsyncDataRequests
 } from 'emberclear/tests/helpers';
 
-module('Acceptance | Identity Setup', function(hooks) {
+module('Acceptance | Setup', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
+  setupRelayConnectionMocks(hooks);
+  trackAsyncDataRequests(hooks);
 
-  hooks.beforeEach(function () {
-    stubService('relay-connection', {
-      connect() { return; }
-    }, [
-      { in: 'route:application', as: 'relayConnection' },
-      { in: 'route:chat', as: 'relayConnection' }
-    ]);
+
+  module('is logged in', function(hooks) {
+    setupCurrentUser(hooks);
+
+    module('visits /setup', function(hooks) {
+      hooks.beforeEach(async function() {
+        await visit('/setup');
+      });
+
+      test('redirects to warning', async function(assert) {
+        assert.equal(currentURL(), '/setup/overwrite');
+      });
+    });
   });
 
   module('visiting /setup', function(hooks) {
@@ -40,15 +49,20 @@ module('Acceptance | Identity Setup', function(hooks) {
 
         assert.equal(currentURL(), '/setup/new');
       });
+
+      test('no record was created', async function(assert) {
+        const store = getService<DS.Store>('store');
+        const known = await store.findAll('identity');
+
+        assert.equal(known.length, 0);
+      });
     });
 
     module('name is filled in', function(hooks) {
       hooks.beforeEach(async function() {
         await nameForm.enterName('My Name');
 
-        await run(async () => {
-          await nameForm.clickNext();
-        });
+        await nameForm.clickNext();
       });
 
       test('proceeds to next page', function(assert) {
@@ -65,17 +79,4 @@ module('Acceptance | Identity Setup', function(hooks) {
     });
   });
 
-  module('is logged in', function(hooks) {
-    setupCurrentUser(hooks);
-
-    module('visits /setup', function(hooks) {
-      hooks.beforeEach(async function() {
-        await visit('/setup');
-      });
-
-      test('redirects to warning', async function(assert) {
-        assert.equal(currentURL(), '/setup/overwrite');
-      });
-    });
-  });
 });

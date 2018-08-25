@@ -7,7 +7,7 @@ import IdentityService from 'emberclear/src/services/identity/service';
 
 import {
   stubService, getService, clearLocalStorage,
-  setupCurrentUser
+  setupCurrentUser, setupRelayConnectionMocks
 } from 'emberclear/tests/helpers';
 
 import { app } from 'emberclear/tests/helpers/pages/app';
@@ -20,18 +20,10 @@ async function visit(url: string) {
   }
 }
 
-module('Acceptance | Open Invitation Link', function(hooks) {
+module('Acceptance | Invitations', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
-
-  hooks.beforeEach(function () {
-    stubService('relay-connection', {
-      connect() { return; }
-    }, [
-      { in: 'route:application', as: 'relayConnection' },
-      { in: 'route:chat', as: 'relayConnection' }
-    ]);
-  });
+  setupRelayConnectionMocks(hooks);
 
   module('Is not logged in', function(hooks) {
     hooks.beforeEach(async function() {
