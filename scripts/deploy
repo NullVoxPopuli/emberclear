@@ -17,6 +17,7 @@ if [[ "$BRANCH" == "master" ]]; then
   # exit if any of the following errors
   set -e
 
+  ( cd ./packages/frontend && rm -rf dist tmp )
   time ./run yarn build:production
   cp ./scripts/_redirects packages/frontend/dist
 
