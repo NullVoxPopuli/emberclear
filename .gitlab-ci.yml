@@ -18,7 +18,7 @@ variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
   DOCKER_DRIVER: overlay2
   NETLIFY_CLI_VERSION: 0.4.0
-  NODE_OPTIONS: --max-old-space-size=4096
+  NODE_OPTIONS: --max-old-space-size=2048
 
 
 
