@@ -12,7 +12,7 @@ cache:
     - ${CI_PROJECT_DIR}/.cache_yarn
     # - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
-image: danlynn/ember-cli:3.1.4
+image: danlynn/ember-cli:3.3.0
 
 variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn

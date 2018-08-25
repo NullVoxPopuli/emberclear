@@ -1,6 +1,4 @@
 import Ember from 'ember';
-// import { isTesting } from '@ember/testing';
-
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { isPresent } from '@ember/utils';
@@ -30,7 +28,7 @@ export default class Toast extends Service {
 
     this.notifications.addNotification({
       autoClear: true,
-      clearDuration: Ember.testing ? 0 : 4000,
+      clearDuration: Ember.testing ? 10 : 4000,
       ...options,
       message: message || '',
       type: status
