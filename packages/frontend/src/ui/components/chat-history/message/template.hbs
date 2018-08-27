@@ -14,7 +14,13 @@
     </span>
 
     <span class='sentAt has-hover-tip'>
-      {{format-date @message.sentAt}}
+      {{format-date @message.sentAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+      }}
 
       <HoverTip>
         Received: {{format-date @message.receivedAt}}
