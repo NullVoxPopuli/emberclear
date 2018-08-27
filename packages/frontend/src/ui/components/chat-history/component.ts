@@ -30,11 +30,13 @@ export default class ChatHistory extends Component {
 
       // allow 1px inaccuracy by adding 1
       const { scrollHeight, clientHeight, scrollTop } = messages;
-      const isScrolledToBottom = scrollHeight - clientHeight <= scrollTop + 10;
+      const isScrolledToBottom = scrollHeight - clientHeight <= scrollTop + 100;
 
-      if (isScrolledToBottom) {
-        messages.scrollTop = scrollHeight - clientHeight;
-      }
+      // if (isScrolledToBottom) {
+      //   messages.scrollTop = scrollHeight - clientHeight;
+      // }
+
+      this.chatScroller.maybeNudgeToBottom();
 
       this.set('isLastVisible', isScrolledToBottom);
 
