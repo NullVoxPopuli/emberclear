@@ -1,4 +1,4 @@
-<KeyboardPress @key="ctrl+Space" @onPress={{action toggleSidebar}} />
+<KeyboardPress @key="ctrl+Space" @onDown={{action toggleSidebar}} />
 
 <div data-test-offcanvas-wrapper class='is-flex-desktop flex-grow m-none m-b-none no-overflow'>
   {{#if isLoggedIn}}
