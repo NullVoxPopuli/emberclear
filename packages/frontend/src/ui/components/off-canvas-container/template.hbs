@@ -1,13 +1,13 @@
-<KeyboardPress @key="ctrl+Space" @onDown={{action toggleSidebar}} />
+<KeyboardPress @key="ctrl+Space" @onDown={{action this.toggleSidebar}} />
 
 <div data-test-offcanvas-wrapper class='is-flex-desktop flex-grow m-none m-b-none no-overflow'>
-  {{#if isLoggedIn}}
+  {{#if this.isLoggedIn}}
     <div
       data-test-sidebar-container
       class='
       sidebar-container flex-row transition-all is-fullheight
       align-items-stretch
-      {{if sidebar.isShown
+      {{if this.sidebar.isShown
         "is-sidebar-visible"
         "is-sidebar-hidden"}}'>
 
@@ -16,17 +16,17 @@
           @class='
             is-hidden-mobile
             is-flex-desktop'
-          @onClick={{action toggleSidebar}}
+          @onClick={{action this.toggleSidebar}}
           @isActive={{sidebar.isShown}} />
       </div>
 
-      <div class='no-select sidebar-underlay full-overlay' {{action toggleSidebar}}></div>
+      <div class='no-select sidebar-underlay full-overlay' {{action this.toggleSidebar}}></div>
       <Sidebar class='sidebar-wrapper' @contacts={{@contacts}} @channels={{@channels}} />
 
       <HamburgerButton
         @class='offcanvas-trigger is-flex-tablet-only'
-        @onClick={{action toggleSidebar}}
-        @isActive={{sidebar.isShown}} />
+        @onClick={{action this.toggleSidebar}}
+        @isActive={{this.sidebar.isShown}} />
     </div>
   {{/if}}
 
@@ -34,7 +34,7 @@
   <div class='
     flex-column flex-grow
     is-fullheight overflows
-    {{if sidebar.isShown
+    {{if this.sidebar.isShown
       "is-sidebar-visible"
       "is-sidebar-hidden"}}'>
 

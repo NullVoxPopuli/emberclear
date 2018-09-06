@@ -3,12 +3,12 @@ import { service } from '@ember-decorators/service';
 import { action } from '@ember-decorators/object';
 import { reads, alias } from '@ember-decorators/object/computed';
 
-import Sidebar from 'emberclear/services/sidebar';
+import SidebarService from 'emberclear/services/sidebar';
 import IdentityService from 'emberclear/services/identity/service';
 import Modals from 'emberclear/services/modals';
 
-export default class extends Component {
-  @service sidebar!: Sidebar;
+export default class Sidebar extends Component {
+  @service sidebar!: SidebarService;
   @service identity!: IdentityService;
   @service modals!: Modals;
 

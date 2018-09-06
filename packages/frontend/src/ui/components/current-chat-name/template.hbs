@@ -1,11 +1,11 @@
 {{#if (has-block)}}
 
-  {{yield isChatVisible chatName.result}}
+  {{yield this.isChatVisible this.chatName.result}}
 
 {{else}}
-  {{#unless chatName.isPending}}
+  {{#unless this.chatName.isPending}}
 
-    {{chatName.result}}
+    {{this.chatName.result}}
 
   {{/unless}}
 {{/if}}

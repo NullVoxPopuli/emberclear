@@ -10,13 +10,13 @@
     </div>
 
     <Contacts
-      @contacts={{contacts}}
-      @closeSidebar={{action closeSidebar}}
-      @toggleModal={{action toggleModal}} />
+      @contacts={{@contacts}}
+      @closeSidebar={{action this.closeSidebar}}
+      @toggleModal={{action this.toggleModal}} />
 
     <Channels
       @channels={{@channels}}
-      @closeSidebar={{action closeSidebar}} />
+      @closeSidebar={{action this.closeSidebar}} />
 
   </div>
 
@@ -26,7 +26,7 @@
 
       <a class='navbar-item flex-row align-items-center'
         {{action (queue
-          (action closeSidebar)
+          (action this.closeSidebar)
           (transition-to 'logout')
         )}}>
         <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>

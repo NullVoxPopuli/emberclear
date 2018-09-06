@@ -1,4 +1,4 @@
-<form data-test-name-form {{action createIdentity on='submit'}}>
+<form data-test-name-form {{action this.createIdentity on='submit'}}>
 
   <div class="content">
     {{input
@@ -6,7 +6,7 @@
       class='input is-large'
       type='text'
       placeholder=(t 'ui.setup.nameLabel')
-      value=name
+      value=this.name
     }}
   </div>
 
@@ -18,8 +18,8 @@
     data-test-next
     type='submit'
     class='button is-pulled-right'
-    disabled={{nameIsBlank}}
+    disabled={{this.nameIsBlank}}
     value={{t 'buttons.next'}}
-    {{action createIdentity}} />
+    {{action this.createIdentity}} />
 
 </form>

@@ -1,25 +1,25 @@
 <div class='
   flex-row align-items-center justify-content-space-between
   navbar no-select
-  is-fixed-top has-shadow {{if isChat "is-primary"}}'>
+  is-fixed-top has-shadow {{if this.isChat "is-primary"}}'>
 
   <div class='navbar-brand'>
 
-    {{#if isLoggedIn}}
+    {{#if this.isLoggedIn}}
       <div class='is-hidden-desktop'>
         <HamburgerButton
           @class='flex'
-          @onClick={{action toggleSidebar}}
-          @isActive={{sidebar.isShown}} />
+          @onClick={{action this.toggleSidebar}}
+          @isActive={{this.sidebar.isShown}} />
       </div>
     {{/if}}
 
-    {{#link-to 'application' class=(concat 'navbar-item ' (if isChat textColor))}}
+    {{#link-to 'application' class=(concat 'navbar-item ' (if this.isChat this.textColor))}}
       {{t 'appname'}}
     {{/link-to}}
 
 
-    {{#if isLoggedIn}}
+    {{#if this.isLoggedIn}}
       <CurrentChatName class='navbar-item' as |isVisible name|>
         {{#if isVisible}}
           <span class='chat-name p-l-md'>
@@ -30,7 +30,7 @@
     {{/if}}
   </div>
 
-  {{#if (not isLoggedIn)}}
+  {{#if (not this.isLoggedIn)}}
     <div class='navbar-end is-visible-touch'>
       <a class='navbar-item is-hidden-desktop' {{action (transition-to 'login')}}>
         {{t 'routes.login'}}
@@ -39,7 +39,7 @@
   {{/if}}
 
   <div class="navbar-end is-hidden-touch">
-    {{#if isLoggedIn}}
+    {{#if this.isLoggedIn}}
       <a class='navbar-item' {{action (transition-to 'chat')}}>
         {{t 'routes.chat'}}
       </a>

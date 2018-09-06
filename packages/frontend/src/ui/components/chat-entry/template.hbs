@@ -1,6 +1,6 @@
 <form
   class='chat-entry flex-row field has-addons flex-grow m-b-sm'
-  {{action 'sendMessage' on="submit"}}
+  {{action this.sendMessage on="submit"}}
   >
   <div class='control flex'>
     <EmbedsMenu @sendTo={{@to}} />
@@ -11,13 +11,13 @@
       autofocus
       role='chat-entry'
       class='input transition-all chat-entry'
-      value=text
-      placeholder=placeholder
+      value=this.text
+      placeholder=this.placeholder
     }}
     <div class='textarea-size'></div>
   </div>
 
   <div class='control flex-column'>
-    <input class='button flex-grow' type='submit' value='Send' {{action 'sendMessage'}} />
+    <input class='button flex-grow' type='submit' value='Send' {{action this.sendMessage}} />
   </div>
 </form>
