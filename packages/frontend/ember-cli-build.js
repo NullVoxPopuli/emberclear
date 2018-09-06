@@ -42,11 +42,16 @@ module.exports = function(defaults) {
     hinting: isTest,
     tests: isTest,
     // tests: true,
-    minifyJS: { enabled: isProduction },
+    minifyJS: { enabled: false },
     minifyCSS: { enabled: isProduction },
 
     'ember-cli-babel': {
-      includePolyfill: isProduction
+      includePolyfill: false,
+      disablePresetEnv: true,
+      disableDebugTooling: isProduction,
+      // Will not build if uncommented:
+      // disableEmberModulesAPIPolyfill: true
+      // compileModules: false,
     },
 
     // autoprefixer: { sourcemap: false },
