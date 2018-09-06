@@ -4,16 +4,20 @@
 <NotificationContainer @position="top-right" />
 <NotificationPrompt />
 
-<ServiceWorkerUpdateNotify>
-  <a class="service-worker-update-notify notification is-info" href="">
-    A new version is available, click here to update.
-  </a>
-</ServiceWorkerUpdateNotify>
 
 <OffCanvasContainer class='no-overflow'
   @contacts={{model.contacts}}
   @channels={{model.channels}}>
+
+
+  <ServiceWorkerUpdateNotify>
+    <a class="service-worker-update-notify notification is-info" href="">
+      A new version is available, click here to update.
+    </a>
+  </ServiceWorkerUpdateNotify>
+
   {{outlet}}
+
 </OffCanvasContainer>
 
 
