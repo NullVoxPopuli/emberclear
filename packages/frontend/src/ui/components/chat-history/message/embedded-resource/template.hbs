@@ -1,16 +1,16 @@
-{{#if shouldRender}}
+{{#if this.shouldRender}}
   <div class='card small embedded-resource'>
 
     <header class='card-header'>
-      {{#if (is-present siteName)}}
+      {{#if (is-present this.siteName)}}
         <p class='card-header-title'>
-          {{siteName}}
+          {{this.siteName}}
         </p>
       {{/if}}
 
-      <a class='card-header-icon' {{action toggleShow}}>
+      <a class='card-header-icon' {{action this.toggleShow}}>
         <span class='icon'>
-          {{#if isCollapsed}}
+          {{#if this.isCollapsed}}
             {{fa-icon 'angle-up'}}
           {{else}}
             {{fa-icon 'angle-down'}}
@@ -19,25 +19,25 @@
       </a>
     </header>
 
-    {{#if (not isCollapsed)}}
+    {{#if (not this.isCollapsed)}}
 
-      {{#if isYouTube}}
+      {{#if this.isYouTube}}
         <iframe
           class='card-content'
-          src="{{embedUrl}}" width="560" height="315"
+          src="{{this.embedUrl}}" width="560" height="315"
           frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
         </iframe>
 
-      {{else if isImage}}
+      {{else if this.isImage}}
 
         <img class='card-content' src={{@url}} />
 
       {{else}}
 
         <MetadataPreview
-          class='{{if hasOgData "card-content"}}'
-          @url={{url}}
-          @ogData={{ogData}} />
+          class='{{if this.hasOgData "card-content"}}'
+          @url={{@url}}
+          @ogData={{this.ogData}} />
 
       {{/if}}
 

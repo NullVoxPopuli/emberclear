@@ -8,10 +8,10 @@
   </thead>
   <tbody>
 
-    {{#each contacts as |identity|}}
+    {{#each this.contacts as |identity|}}
       <tr>
         <td>
-          <a {{action 'remove' identity}}>
+          <a {{action this.remove identity}}>
             {{t 'buttons.remove'}}
           </a>
         </td>
@@ -24,7 +24,7 @@
       </tr>
     {{/each}}
 
-    {{#if (eq contacts.length 0)}}
+    {{#if (eq this.contacts.length 0)}}
       <tr>
         <td colspan='3'>
           {{t 'ui.contacts.noContacts'}}

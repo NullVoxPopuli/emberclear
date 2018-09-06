@@ -1,10 +1,10 @@
 <div class="dropdown-trigger">
-  <a class="button {{@buttonClass}}" {{action toggleMenu}}>
-    {{#if hasButtonText}}
+  <a class="button {{@buttonClass}}" {{action this.toggleMenu}}>
+    {{#if this.hasButtonText}}
       <span>{{@buttonText}}</span>
     {{/if}}
 
-    {{#if hasButtonIcon}}
+    {{#if this.hasButtonIcon}}
       <span class="icon is-small">
         {{fa-icon @buttonIcon}}
       </span>
@@ -12,12 +12,12 @@
   </a>
 </div>
 
-{{#if isOpen}}
-  <div class='no-select full-overlay invisible' {{action toggleMenu}} ></div>
+{{#if this.isOpen}}
+  <div class='no-select full-overlay invisible' {{action this.toggleMenu}} ></div>
 {{/if}}
 
 <div class="dropdown-menu">
   <div class="dropdown-content">
-    {{yield (action closeMenu)}}
+    {{yield (action this.closeMenu)}}
   </div>
 </div>

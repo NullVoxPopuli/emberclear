@@ -1,11 +1,11 @@
 <div class='notification is-info has-text-centered is-radiusless p-sm transition-all'>
-  <button class='delete' {{action askNextTime}}></button>
+  <button class='delete' {{action this.askNextTime}}></button>
 
   <strong>emberclear needs your permision to enable notifications.</strong>
 
   <div class='flex justify-content-space-around m-t-sm'>
-    <a {{action enableNotifications}}>Enable Notifications</a>
-    <a {{action askNextTime}}>Ask Next Time</a>
-    <a {{action neverAskAgain}}>Never Ask Again</a>
+    <a {{action this.enableNotifications}}>Enable Notifications</a>
+    <a {{action this.askNextTime}}>Ask Next Time</a>
+    <a {{action this.neverAskAgain}}>Never Ask Again</a>
   </div>
 </div>

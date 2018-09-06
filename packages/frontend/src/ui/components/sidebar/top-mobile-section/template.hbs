@@ -1,11 +1,11 @@
-{{#if isLoggedIn}}
+{{#if this.isLoggedIn}}
   <span class='is-size-4'>{{name}}</span>
 
   <ul class='menu-list'>
     <li>
       <a class=''
         {{action (queue
-          (action closeSidebar)
+          (action this.closeSidebar)
           (transition-to 'contacts')
         )}}>
         <span class='icon'>{{fa-icon 'address-book' prefix='fas'}}</span>
@@ -16,7 +16,7 @@
     <li>
       <a class=''
         {{action (queue
-          (action closeSidebar)
+          (action this.closeSidebar)
           (transition-to 'settings')
         )}}>
         <span class='icon'>{{fa-icon 'sliders-h'}}</span>

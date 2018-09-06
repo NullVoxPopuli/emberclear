@@ -9,22 +9,22 @@
 
     <div class='
       flex justify-content-center
-      {{if (not showQrCodeMobile) "is-hidden-mobile"}}
+      {{if (not this.showQrCodeMobile) "is-hidden-mobile"}}
       ' style='min-width: 180px; min-height: 180px;'>
 
-      {{#if qrCode.isPending}}
+      {{#if this.qrCode.isPending}}
         <div style='width: 180px; height: 180px;' class='loader'></div>
-      {{else if (is-present qrCode.result)}}
+      {{else if (is-present this.qrCode.result)}}
         <img
           style='width: 180px; height: 180px;'
-          src={{qrCode.result}} />
+          src={{this.qrCode.result}} />
       {{/if}}
 
     </div>
 
     <div class='flex-column flex-grow mw-0'>
       <div class='w-100 shareable-url wrap is-hidden-mobile'>
-        <a id='invite-link' href={{url}} target='_blank' rel='noopener'>{{url}}</a>
+        <a id='invite-link' href={{this.url}} target='_blank' rel='noopener'>{{this.url}}</a>
       </div>
 
       <div class='
@@ -32,8 +32,8 @@
         justify-content-space-between-mobile justify-content-end-tablet
         m-t-md'>
 
-        <button class='button is-hidden-tablet' {{action toggleShowQrCode}}>
-          {{#if showQrCodeMobile}}
+        <button class='button is-hidden-tablet' {{action this.toggleShowQrCode}}>
+          {{#if this.showQrCodeMobile}}
             {{t 'ui.invite.showProfile'}}
           {{else}}
             {{t 'ui.invite.showQRCode'}}
@@ -43,9 +43,9 @@
         <CopyButton
           class='
             button has-status-tip
-            {{if copied "is-active"}}
-            {{if showQrCodeMobile "is-hidden-mobile"}}'
-          @success={{action 'copySuccess'}}
+            {{if this.copied "is-active"}}
+            {{if this.showQrCodeMobile "is-hidden-mobile"}}'
+          @success={{action this.copySuccess}}
           @clipboardTarget='#invite-link'>
 
           {{t 'ui.invite.copyProfile'}}

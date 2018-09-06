@@ -1,2 +1,2 @@
-<input style='display: none;' type='file' onchange={{action didChooseFile}}/>
-{{yield (hash openFileChooser=(action openFileChooser))}}
+<input style='display: none;' type='file' onchange={{action this.didChooseFile}}/>
+{{yield (hash openFileChooser=(action this.openFileChooser))}}

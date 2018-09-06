@@ -5,7 +5,7 @@ import { reads } from '@ember-decorators/object/computed';
 
 import Modals from 'emberclear/services/modals';
 
-export default class ModalContainer extends Component {
+export default class ModalStatic extends Component {
   @service modals!: Modals;
 
   name!: string;
@@ -18,7 +18,7 @@ export default class ModalContainer extends Component {
   @reads('modal.isActive') isActive!: boolean;
 
   @action
-  toggle(this: ModalContainer) {
+  toggle(this: ModalStatic) {
     this.modals.toggle(this.name);
   }
 }

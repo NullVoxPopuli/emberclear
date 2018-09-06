@@ -1,19 +1,19 @@
 <Modal @isActive={{@isActive}} @close={{action @close}}>
 
-  {{#if scanning}}
+  {{#if this.scanning}}
     <QRScanner
-      @onScan={{action 'onScan'}}
-      @onError={{action 'onScanError'}}
-      @onCancel={{action 'toggleScanning'}}
+      @onScan={{action this.onScan}}
+      @onError={{action this.onScanError}}
+      @onCancel={{action this.toggleScanning}}
       />
   {{/if}}
 
-  {{#unless scanning}}
+  {{#unless this.scanning}}
     <h3 class='title-is-3'>Paste or scan your friend's identity</h3>
     <br  />
     <div >
       <form
-        {{action 'importIdentity' on='submit'}}
+        {{action this.importIdentity on='submit'}}
         class='flex-column align-items-stretch'>
 
         {{textarea
@@ -21,15 +21,15 @@
           id='identity-textarea'
           class='p-md m-b-md flex-grow has-resize-disabled'
           rows='4'
-          value=identityToImport
-          onChange=(action (mut identityToImport))
-          placeholder=placeholder
+          value=this.identityToImport
+          onChange=(action (mut this.identityToImport))
+          placeholder=this.placeholder
         }}
 
         <div class='flex justify-content-end'>
           <div class='field is-grouped'>
             <p class='control'>
-              <button class='button is-primary' {{action 'toggleScanning'}}>
+              <button class='button is-primary' {{action this.toggleScanning}}>
                 <span class='icon'>{{fa-icon 'qrcode' prefix='fas'}}</span>
                 <span>Scan</span>
               </button>
@@ -40,12 +40,6 @@
                 Import
               </button>
             </p>
-
-            {{!-- <p class='control'>
-              <button class='button' {{action paste}}>
-                Paste
-              </button>
-            </p> --}}
 
           </div>
         </div>

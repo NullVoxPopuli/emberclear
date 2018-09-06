@@ -32,10 +32,10 @@
   <div class='new-messages
     flex-row transition-all
     p-l-md p-r-md p-t-xs p-b-xs
-    {{if isLastVisible "hidden"}}'>
+    {{if this.isLastVisible "hidden"}}'>
 
    <span class='is-hidden-mobile m-r-sm'>There are newer messages</span>
-    <a class='underline' {{action scrollToBottom}}> view recent messages</a>
+    <a class='underline' {{action this.scrollToBottom}}> view recent messages</a>
   </div>
 
 </div>

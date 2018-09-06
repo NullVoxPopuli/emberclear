@@ -6,12 +6,12 @@
   <div class='flex-row m-b-md m-r-sm'>
     {{input
       class='input'
-      value=title
+      value=this.title
       placeholder='Title (optional)'}}
 
     <div class='select m-l-sm'>
-      <select onchange={{action (mut language) value="target.value"}}>
-        {{#each languages as |availableLanguage|}}
+      <select onchange={{action (mut this.language) value="target.value"}}>
+        {{#each this.languages as |availableLanguage|}}
           <option value={{availableLanguage}}>{{availableLanguage}}</option>
         {{/each}}
       </select>
@@ -22,11 +22,11 @@
     autofocus
     role='snippet-entry'
     class='input transition-all m-b-md snippet-entry'
-    value=text
+    value=this.text
   }}
 
   <div class='flex-row justify-content-end'>
     <button class='button m-r-sm' {{action @close}}>Cancel</button>
-    <button class='button is-primary' {{action sendMessage}}>Send Snippet</button>
+    <button class='button is-primary' {{action this.sendMessage}}>Send Snippet</button>
   </div>
 </Modal>
