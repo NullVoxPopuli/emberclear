@@ -1,4 +1,6 @@
-import Controller from '@ember/controller';
+import Component from '@ember/component';
+import { RouterService } from 'ember';
+
 import { service } from '@ember-decorators/service';
 import { alias } from '@ember-decorators/object/computed';
 import { dropTask } from 'ember-concurrency-decorators';
@@ -10,17 +12,18 @@ import Settings from 'emberclear/services/settings';
 import { naclBoxPrivateKeyFromMnemonic } from 'emberclear/src/utils/mnemonic/utils';
 import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
 
-export default class LoginController extends Controller {
+export default class LoginForm extends Component {
   @service identity!: IdentityService;
   @service settings!: Settings;
   @service toast!: Toast;
+  @service router!: RouterService;
 
   mnemonic = '';
   name = '';
 
   @alias('identity.isLoggedIn') isLoggedIn!: boolean;
 
-  @dropTask * login(this: LoginController) {
+  @dropTask * login(this: LoginForm) {
     try {
       const name = this.name;
       const privateKey = yield naclBoxPrivateKeyFromMnemonic(this.mnemonic);
@@ -28,7 +31,7 @@ export default class LoginController extends Controller {
 
       yield this.identity.setIdentity(name, privateKey, publicKey);
 
-      this.transitionToRoute('chat');
+      this.router.transitionTo('chat');
     } catch (e) {
       console.error(e);
       this.toast.error('There was a problem logging in...');
@@ -40,7 +43,7 @@ export default class LoginController extends Controller {
     try {
       yield this.settings.import(data);
 
-      this.transitionToRoute('settings');
+      this.router.transitionTo('settings');
     } catch(e) {
       console.error(e);
       this.toast.error('There was a problem processing your file...');

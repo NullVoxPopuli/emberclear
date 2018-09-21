@@ -5,8 +5,7 @@ import Component from '@ember/component';
 import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import { alias, equal } from '@ember-decorators/object/computed';
-
-import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
+import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
 const PRIVATE_CHAT_REGEX = /chat\/privately-with\/(.+)/;
 const CHANNEL_REGEX = /chat\/in-channel\/(.+)/;

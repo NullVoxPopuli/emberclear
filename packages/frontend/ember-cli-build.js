@@ -4,7 +4,6 @@ const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
-// const { BroccoliCSSBlocks } = require('@css-blocks/broccoli');
 
 // note that by default, the enabled flags on some things
 // like minifying, and prember, by default, already check
@@ -40,10 +39,16 @@ module.exports = function(defaults) {
     // eslint slows down the dev-build-debug cycle significantly
     // hinting: false disables linting at build time.
     hinting: isTest,
-    tests: isTest,
+    // tests: isTest,
     // tests: true,
     minifyJS: { enabled: false },
     minifyCSS: { enabled: isProduction },
+
+    // babel: {
+    //   plugins: [
+    //     ['@babel/plugin-syntax-decorators', { legacy: true }]
+    //   ]
+    // },
 
     'ember-cli-babel': {
       includePolyfill: false,
@@ -53,6 +58,10 @@ module.exports = function(defaults) {
       // disableEmberModulesAPIPolyfill: true
       // compileModules: false,
     },
+
+    // sourcemaps: {
+    //   enabled: false
+    // },
 
     // autoprefixer: { sourcemap: false },
 

@@ -3,6 +3,7 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import localforage from 'localforage';
+import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
 import IdentityService from 'emberclear/services/identity/service';
 import ContactManager from 'emberclear/services/contact-manager';
@@ -13,7 +14,6 @@ import {
 } from 'emberclear/src/utils/string-encoding';
 
 import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
-import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
 
 interface IContactJson {
  name: string | undefined;

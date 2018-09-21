@@ -4,8 +4,9 @@ import { reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 import showdown from 'showdown';
 import { sanitize } from 'dom-purify';
+import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
-import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
+
 import PrismManager from 'emberclear/services/prism-manager';
 import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
@@ -71,7 +72,7 @@ export default class extends Component {
     const languages = this.parseLanguages(text);
 
     languages.forEach(language => {
-      this.prismManager.addLanguage.perform(language)
+      this.prismManager.get('addLanguage').perform(language)
     });
   }
 

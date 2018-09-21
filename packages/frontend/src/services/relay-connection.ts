@@ -2,7 +2,8 @@ import RSVP from 'rsvp';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
-import { task } from 'ember-concurrency-decorators';
+// import { task } from 'ember-concurrency-decorators';
+import { task } from 'ember-concurrency';
 
 import IdentityService from 'emberclear/services/identity/service';
 import MessageProcessor from 'emberclear/services/messages/processor';
@@ -93,10 +94,12 @@ export default class RelayConnection extends Service {
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
   async connect(this: RelayConnection) {
-    this.establishConnection.perform();
+    this.get('establishConnection').perform();
   }
 
-  @task * establishConnection(this: RelayConnection) {
+  // @task
+  // * establishConnection(this: RelayConnection) {
+  establishConnection = task(function*(this: RelayConnection) {
     const canConnect = yield this.canConnect();
     if (!canConnect || this.connected) return;
 
@@ -117,7 +120,8 @@ export default class RelayConnection extends Service {
     socket.connect();
 
     yield this.getChannel();
-  }
+  // }
+  });
 
   async getChannel(this: RelayConnection): Promise<Channel> {
     const { socket, channelName, intl } = this;

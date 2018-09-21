@@ -1,0 +1,21 @@
+<FocusCard @title={{t 'ui.login.title'}}>
+
+  <Field>
+    {{input class='input' value=name placeholder='Name'}}
+  </Field>
+
+  <Field>
+    {{input class='input' value=mnemonic placeholder='Enter your mnemonic'}}
+  </Field>
+
+  <div class='flex justify-content-end'>
+    <FileChooser @onChoose={{perform uploadSettings}} as |chooser|>
+      <button class='button' {{action chooser.openFileChooser}}>
+        Upload Settings
+      </button>
+    </FileChooser>
+
+    <button class='m-l-md button' {{action (perform login)}}>Login</button>
+  </div>
+
+</FocusCard>

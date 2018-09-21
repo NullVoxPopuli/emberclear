@@ -5,8 +5,7 @@ import { libsodium } from 'emberclear/src/utils/nacl/utils';
 
 // for the utils, we don't care about wasm,
 // so the conversions don't need to be async
-const sodium = libsodiumWrapper.sodium;
-
+const sodium = (libsodiumWrapper as any).sodium as typeof libsodiumWrapper;
 
 export function toHex(array: Uint8Array): string {
   return sodium.to_hex(array);

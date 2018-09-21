@@ -1,12 +1,12 @@
-import libsodiumWrapper, { ISodium } from 'libsodium-wrappers';
+import libsodiumWrapper, { KeyPair } from 'libsodium-wrappers';
 
 import { concat } from 'emberclear/src/utils/arrays/utils';
 
-export async function libsodium(): Promise<ISodium> {
-  const sodium = libsodiumWrapper.sodium;
+export async function libsodium(): Promise<typeof libsodiumWrapper> {
+  const sodium = (libsodiumWrapper as any).sodium;
   await sodium.ready;
 
-  return sodium;
+  return sodium as typeof libsodiumWrapper;
 }
 
 export async function genericHash(arr: Uint8Array): Promise<Uint8Array> {
@@ -33,7 +33,7 @@ export async function generateNonce(): Promise<Uint8Array> {
   return await randomBytes(sodium.crypto_box_NONCEBYTES);
 }
 
-export async function generateAsymmetricKeys(): Promise<BoxKeys> {
+export async function generateAsymmetricKeys(): Promise<KeyPair> {
   const sodium = await libsodium();
 
   return sodium.crypto_box_keypair();

@@ -1,8 +1,6 @@
 import Resolver from 'ember-resolver/resolvers/fallback';
 // import Resolver from 'ember-resolver/resolvers/glimmer-wrapper';
 
-import { merge } from '@ember/polyfills';
-
 import buildResolverConfig from 'ember-resolver/ember-config';
 import config from '../config/environment';
 
@@ -12,7 +10,7 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
  * to add support for them.
  */
 
-merge(moduleConfig.types, {
+moduleConfig.types = Object.assign(moduleConfig.types, {
   config: { definitiveCollection: 'main' },
   util: { definitiveCollection: 'utils' },
   // ember-intl

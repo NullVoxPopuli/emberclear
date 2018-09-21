@@ -3,16 +3,18 @@ stages:
   - quality
   - test
   - build
+  - analyze
   - deploy
 
-cache:
-  # untracked: true
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - ${CI_PROJECT_DIR}/.cache_yarn
-    # - ${CI_PROJECT_DIR}/packages/frontend/node_modules
+# cache:
+#   # untracked: true
+#   key: ${CI_COMMIT_REF_SLUG}
+#   paths:
+#     - ${CI_PROJECT_DIR}/.cache_yarn
+#     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
-image: danlynn/ember-cli:3.3.0
+image: node:10
+# image: danlynn/ember-cli:3.4.2
 
 variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
@@ -36,48 +38,69 @@ variables:
 # would be a huge win.
 #
 # TODO: look into free-tier IaaS machines for hosting a gitlab-runner
-the-everything-stage-for-speed:
-  stage: build
-  tags: [ docker ]
-  script:
-    # TODO: extract all this to bash script?
-    - rm -rf ./packages/frontend/{dist,tmp,node_modules,yarn.lock}
-    - ( cd ./packages/frontend && yarn install && yarn test )
-    - time ./scripts/deploy
-
-# lint:
-#   stage: test
-#   tags: [ docker ]
-#   dependencies: [ setup ]
-#   script: [ time ./run yarn lint ]
-#
-# # TODO: coverage?
-# test:
-#   stage: test
-#   tags: [ docker ]
-#   dependencies: [ setup ]
-#   script: [ time ./run yarn test ]
-#
-#
-# build-production:
+# the-everything-stage-for-speed:
 #   stage: build
 #   tags: [ docker ]
-#   dependencies: [ setup ]
 #   script:
-#     - time ./run yarn build:production
-#   artifacts:
-#     paths:
-#       - ${CI_PROJECT_DIR}/packages/frontend/dist
-#
-#
-# deploy-production:
-#   stage: deploy
-#   tags: [ docker ]
-#   script:
-#     - time npm i -g netlify-cli
-#     - time netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
-#
-# setup:
-#   stage: setup
-#   tags: [ docker ]
-#   script: [ time ./run yarn install ]
+#     # TODO: extract all this to bash script?
+#     - rm -rf ./packages/frontend/{dist,tmp,node_modules,yarn.lock}
+#     - ( cd ./packages/frontend && yarn install && yarn test )
+#     - time ./scripts/deploy
+
+# TODO: HACK: for now, it's faster to install everything
+#       than it is to rely on gitlab's slow cache
+before_script:
+  - time ./run yarn install
+
+lint:js:
+  stage: quality
+  dependencies: [ setup ]
+  script: 
+    - time ./run yarn lint:js
+
+lint:hbs:
+  stage: quality
+  allow_failure: true
+  dependencies: [ setup ]
+  script: 
+    - time ./run yarn lint:hbs
+
+# TODO: coverage?
+test:
+  stage: test
+  dependencies: [ setup ]
+  script: 
+    - time ./scripts/install-chrome-apt
+    - time ./run yarn test
+
+Build Production:
+  stage: build
+  dependencies: [ setup ]
+  only: [ master ]
+  script:
+    - time ./run clean:frontend-build
+    - time ./run yarn build:production
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/dist
+
+Analyze Bundle:
+  stage: analyze
+  dependencies: 
+    - Build Production
+  only: [ master ]
+  script:
+    - time ./run yarn analyze
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/dist  
+
+Deploy Production:
+  stage: deploy
+  only: [ master ]
+  script:
+    - time ./scripts/deploy
+
+setup:
+  stage: setup
+  script: [ time ./run yarn install ]
