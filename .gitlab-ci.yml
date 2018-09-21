@@ -88,6 +88,7 @@ Analyze Bundle:
   stage: build
   dependencies: [ setup ]
   only: [ master ]
+  allow_failure: true
   script:
     - time ./run yarn analyze
   artifacts:
@@ -99,7 +100,7 @@ Deploy Production:
   only: [ master ]
   script:
     - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
-    - time ./scripts/deploy
+    - time ./scripts/publish
 
 setup:
   stage: setup
