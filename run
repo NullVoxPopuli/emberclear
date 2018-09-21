@@ -41,9 +41,15 @@ function runstuff {
 
     clean:frontend)
       shopt -s globstar
-      rm -rf **/dist && \
       rm -rf **/node_modules && \
-      rm -rf **/tmp
+      runstuff clean:frontend-build
+    ;;
+
+    clean:frontend-build)
+      shopt -s globstar
+      rm -rf **/dist && \
+      rm -rf **/tmp && \
+      rm -rf **/concat-stats-for
     ;;
 
     submodules:update)

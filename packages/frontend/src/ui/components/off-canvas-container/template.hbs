@@ -31,12 +31,14 @@
   {{/if}}
 
 
-  <div class='
-    flex-column flex-grow
-    is-fullheight overflows
-    {{if this.sidebar.isShown
-      "is-sidebar-visible"
-      "is-sidebar-hidden"}}'>
+  <div
+    data-scroll-container
+    class='
+      flex-column flex-grow
+      is-fullheight overflows
+      {{if sidebar.isShown
+        "is-sidebar-visible"
+        "is-sidebar-hidden"}}'>
 
     {{yield}}
 

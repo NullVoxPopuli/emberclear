@@ -52,11 +52,9 @@ module.exports = function(environment) {
       },
     },
 
-    // routerScroll: {
-    //   scrollElement: 'body',
-    //   // targetElement: '#emberclear-topnav',
-    //   delayScrollTop: true,
-    // },
+    routerScroll: {
+      scrollElement: '[data-scroll-container]',
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
@@ -74,8 +72,8 @@ module.exports = function(environment) {
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    ENV.APP.LOG_TRANSITIONS = true;
-    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     // Ember.run.backburner.DEBUG = true;
     ENV.host = 'http://localhost:4201'

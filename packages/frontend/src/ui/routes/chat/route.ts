@@ -1,4 +1,3 @@
-import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
@@ -27,12 +26,12 @@ export default class ChatRoute extends Route {
 
   @disableInFastboot({ default: { messages: [] } })
   async model() {
-    const records = await this.store.findAll('message', {
+    const messages = await this.store.findAll('message', {
       backgroundReload: true,
       include: 'sender'
     });
 
-    return RSVP.hash({ messages: records });
+    return { messages };
   }
 
   @disableInFastboot

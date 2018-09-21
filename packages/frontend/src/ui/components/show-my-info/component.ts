@@ -3,11 +3,11 @@ import Component from '@ember/component';
 import { service } from '@ember-decorators/service';
 import { computed, action } from '@ember-decorators/object';
 import { alias } from '@ember-decorators/object/computed';
+import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
 import ENV from '../../../../config/environment';
 
 import Identity from 'emberclear/services/identity/service';
-import PromiseMonitor from 'emberclear/src/utils/promise-monitor';
 import { disableInFastboot } from 'emberclear/src/utils/decorators';
 
 import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string-encoding';

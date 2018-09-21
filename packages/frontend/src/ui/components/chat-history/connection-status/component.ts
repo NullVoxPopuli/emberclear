@@ -1,7 +1,9 @@
 import Component from '@ember/component';
 import { service } from '@ember-decorators/service';
 import { reads } from '@ember-decorators/object/computed';
-import { task } from 'ember-concurrency-decorators';
+// import { task } from 'ember-concurrency-decorators';
+import { task } from 'ember-concurrency';
+
 import { timeout } from 'ember-concurrency';
 
 import RelayConnection from 'emberclear/src/services/relay-connection';
@@ -18,21 +20,25 @@ export default class ConnectionStatus extends Component {
   //       connected, the message shows.
   didRender() {
     if (this.isConnected) {
-      this.setToFade.perform();
+      this.get('setToFade').perform();
     } else {
-      this.removeFade.perform();
+      this.get('removeFade').perform();
     }
   }
 
-  @task * setToFade() {
+  // @task * setToFade() {
+  setToFade = task(function*(this: ConnectionStatus) {
     yield timeout(2000);
 
     this.element.classList.add('fade-out');
-  }
+  // }
+  });
 
-  @task * removeFade() {
+  // @task * removeFade() {
+  removeFade = task(function*(this: ConnectionStatus) {
     yield timeout(200);
 
     this.element.classList.remove('fade-out');
-  }
+  // }
+  });
 }

@@ -1,10 +1,9 @@
 ---
 language: node_js
 node_js:
-  - "node"
-  - "lts/*"
+  - "10"
 
-sudo: "required"
+sudo: false
 dist: trusty
 
 addons:
@@ -27,6 +26,10 @@ git:
   submodules: false
 
 before_install:
+  # update to latest yarn
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+
   # Use sed to replace the SSH URL with the public URL, then initialize submodules
   # https://stackoverflow.com/a/24600210/356849
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
@@ -34,6 +37,30 @@ before_install:
 
   - yarn config set cache-folder $HOME/.yarn
 
-script:
-  # - npm run lint:js
-  - ( cd packages/frontend && rm -rf tmp dist node_modules && yarn && yarn test )
+install:
+  - ( cd packages/frontend && yarn install )
+
+stages:
+  - frontend tests
+  - additional tests
+  # - ember version tests
+  # - name: external partner tests
+  #   if: NOT (branch ~= /^release.*/)
+  # - name: deploy
+  #   if: type = push AND (branch IN (master, beta, release) OR tag IS present)
+
+jobs:
+  fail_fast: true
+
+  include:
+    # runs tests with current locked deps and linting
+    - stage: frontend tests
+      name: "Linting"
+      script: ( cd packages/frontend && yarn lint:js )
+    - name: "Basic Tests"
+      script: ( cd packages/frontend && yarn test )
+
+    # - stage: additional tests
+    - name: "Template Linting"
+      script: ( cd packages/frontend && yarn lint:hbs )
+      allow_failure: true
