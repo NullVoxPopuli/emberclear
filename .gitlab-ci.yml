@@ -78,7 +78,7 @@ Build Production:
   dependencies: [ setup ]
   only: [ master ]
   script:
-    - time ./run clean:frontend-build
+    # - time ./run clean:frontend-build
     - time ./run yarn build:production
   artifacts:
     paths:
