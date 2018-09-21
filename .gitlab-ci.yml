@@ -85,20 +85,20 @@ Build Production:
       - ${CI_PROJECT_DIR}/packages/frontend/dist
 
 Analyze Bundle:
-  stage: analyze
-  dependencies: 
-    - Build Production
+  stage: build
+  dependencies: [ setup ]
   only: [ master ]
   script:
     - time ./run yarn analyze
   artifacts:
     paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/dist  
+      - ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html
 
 Deploy Production:
   stage: deploy
   only: [ master ]
   script:
+    - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
     - time ./scripts/deploy
 
 setup:
