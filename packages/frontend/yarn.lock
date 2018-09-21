@@ -6917,9 +6917,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-"libsodium-wrappers@github:jedisct1/libsodium.js#b0ceac55216150e18eb82f7ae13346ba10e5483d", libsodium@0.7.3, "libsodium@github:jedisct1/libsodium.js#b0ceac55216150e18eb82f7ae13346ba10e5483d":
+"libsodium-wrappers@github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855", libsodium@0.7.3, "libsodium@github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855":
   version "0.7.3"
-  resolved "https://codeload.github.com/jedisct1/libsodium.js/tar.gz/b0ceac55216150e18eb82f7ae13346ba10e5483d"
+  resolved "https://codeload.github.com/jedisct1/libsodium.js/tar.gz/8fa117918df38f52668feaf9cbc498c633671855"
   dependencies:
     libsodium "0.7.3"
 
