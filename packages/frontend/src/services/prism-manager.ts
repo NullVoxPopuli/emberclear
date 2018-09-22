@@ -1,7 +1,5 @@
 import Service from '@ember/service';
-// import { dropTask, task } from 'ember-concurrency-decorators';
-import { task } from 'ember-concurrency';
-
+import { dropTask, task } from 'ember-concurrency-decorators';
 
 const PRISM_VERSION = '1.15.0';
 const CDN =`https://cdn.jsdelivr.net/combine/`;
@@ -103,12 +101,11 @@ export default class PrismManager extends Service {
   //
   // TODO: fetch these files asyncily, so we can manage state, and know
   // when to call highlightAll
-  // @task({ maxConcurrency: 1 })
-  // * addLanguage(language: string) {
-  addLanguage = task(function*(this: PrismManager, language: string) {
+  @task({ maxConcurrency: 1 })
+  * addLanguage(language: string) {
     language = this._expandLanguageAbbreviation(language);
 
-    yield this.get('addEssentials').perform();
+    yield this.addEssentials.perform();
 
     if (this.alreadyAdded.includes(language)) return;
 
@@ -119,11 +116,9 @@ export default class PrismManager extends Service {
     this.alreadyAdded.push(language);
 
     Prism.highlightAll();
-  // }
-  }).maxConcurrency(1);
+  }
 
-  // @dropTask * addEssentials() {
-  addEssentials = task(function*(this: PrismManager) {
+  @dropTask * addEssentials() {
       if (this.areEssentialsPresent) return;
 
     const head = document.querySelector('head')!;
@@ -136,8 +131,7 @@ export default class PrismManager extends Service {
     yield this.addScript(js);
 
     this.set('areEssentialsPresent', true);
-  // }
-  }).drop();
+  }
 
   async addScript(path: string) {
     const head = document.querySelector('head')!;

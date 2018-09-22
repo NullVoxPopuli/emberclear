@@ -20,9 +20,7 @@ export default class ChannelForm extends Component {
     this.set('newChannelName', '');
 
     this.onSubmit();
-
   }
-
 
   private async createChannel() {
     const id = this.newChannelName;

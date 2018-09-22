@@ -3,8 +3,7 @@ import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 import { timeout } from 'ember-concurrency';
-// import { task } from 'ember-concurrency-decorators';
-import { task } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
 
@@ -14,7 +13,7 @@ export default class ChatHistory extends Component {
   isLastVisible = true;
 
   didInsertElement() {
-    this.get('autoScrollToBottom').perform();
+    this.autoScrollToBottom.perform();
   }
 
   @action
@@ -22,9 +21,8 @@ export default class ChatHistory extends Component {
     this.chatScroller.scrollToBottom();
   }
 
-  // @task
-  // * autoScrollToBottom(this: ChatHistory) {
-  autoScrollToBottom = task(function*(this: ChatHistory) {
+  @task
+  * autoScrollToBottom(this: ChatHistory) {
     const messages = this.element.querySelector('.messages') as HTMLElement;
 
     while(true) {
@@ -34,10 +32,6 @@ export default class ChatHistory extends Component {
       const { scrollHeight, clientHeight, scrollTop } = messages;
       const isScrolledToBottom = scrollHeight - clientHeight <= scrollTop + 100;
 
-      // if (isScrolledToBottom) {
-      //   messages.scrollTop = scrollHeight - clientHeight;
-      // }
-
       this.chatScroller.maybeNudgeToBottom();
 
       this.set('isLastVisible', isScrolledToBottom);
@@ -46,6 +40,5 @@ export default class ChatHistory extends Component {
       // http://ember-concurrency.com/docs/testing-debugging/
       if (Ember.testing) { return; }
     }
-  // }
-  });
+  }
 }

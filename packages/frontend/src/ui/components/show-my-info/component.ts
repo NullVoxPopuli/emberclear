@@ -16,7 +16,6 @@ export default class ShowMyInfo extends Component {
   @service identity!: Identity;
 
   copied = false;
-  showQrCodeMobile = true;
 
   @alias('identity.isLoggedIn') isLoggedIn!: boolean;
 
@@ -50,11 +49,6 @@ export default class ShowMyInfo extends Component {
     const qrCodePromise = convertObjectToQRCodeDataURL(publicIdentity);
 
     return new PromiseMonitor<string>(qrCodePromise);
-  }
-
-  @action
-  toggleShowQrCode(this: ShowMyInfo) {
-    this.set('showQrCodeMobile', !this.showQrCodeMobile);
   }
 
   @action

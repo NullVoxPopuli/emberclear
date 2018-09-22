@@ -1,8 +1,7 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
-// import { task } from 'ember-concurrency-decorators';
-import { task } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
 
 // giant block o' types
 import RelayConnection from 'emberclear/services/relay-connection';
@@ -33,7 +32,7 @@ export default class MessageDispatcher extends Service {
     if (to.id === 'me') return;
 
     // TODO: channels?
-    return await this.get('sendToUser').perform(msg, to);
+    return await this.sendToUser.perform(msg, to);
   }
 
   async pingAll() {
@@ -43,25 +42,22 @@ export default class MessageDispatcher extends Service {
       type: 'ping'
     });
 
-    this.get('sendToAll').perform(ping);
+    this.sendToAll.perform(ping);
   }
 
   // the downside to end-to-end encryption
   // the bigger the list of identities, the longer this takes
-  // @task * sendToAll(msg: Message) {
-  sendToAll = task(function*(this: MessageDispatcher, msg: Message) {
-      const everyone = yield this.store.findAll('identity');
+  @task * sendToAll(this: MessageDispatcher, msg: Message) {
+    const everyone = yield this.store.findAll('identity');
 
     everyone.forEach(identity => {
       if (identity.id === 'me') return; // don't send to self
 
-      this.get('sendToUser').perform(msg, identity);
+      this.sendToUser.perform(msg, identity);
     });
-  // }
-  });
+  }
 
-  // @task * sendToUser(msg: Message, to: Identity) {
-  sendToUser = task(function*(this: MessageDispatcher, msg: Message, to: Identity) {
+  @task * sendToUser(msg: Message, to: Identity) {
     const myPrivateKey = this.identity.privateKey as Uint8Array;
     const theirPublicKey = to.publicKey as Uint8Array;
     const uid = toHex(theirPublicKey);
@@ -85,8 +81,7 @@ export default class MessageDispatcher extends Service {
         this.statusManager.markOffline(toUid)
       }
     }
-  // }
-  });
+  }
 
   async encryptMessage(payload: any, theirPublicKey: Uint8Array, myPrivateKey: Uint8Array): Promise<string> {
     const payloadString = JSON.stringify(payload);

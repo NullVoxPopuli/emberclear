@@ -46,15 +46,6 @@ export default class AddModal extends Component {
     this.close();
   }
 
-
-  // @action
-  // paste() {
-  //   var input = this.element.querySelector('#identity-textarea') as HTMLTextAreaElement;
-  //   input.focus();
-  //
-  //   document.execCommand('paste');
-  // }
-
   @action
   onScanError(e: Error) {
     this.toast.error(e.message);

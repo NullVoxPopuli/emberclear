@@ -7,10 +7,7 @@
     flex-column-mobile flex-row-tablet
     align-items-stretch'>
 
-    <div class='
-      flex justify-content-center
-      {{if (not this.showQrCodeMobile) "is-hidden-mobile"}}
-      ' style='min-width: 180px; min-height: 180px;'>
+    <div class='flex justify-content-center' style='min-width: 180px; min-height: 180px;'>
 
       {{#if this.qrCode.isPending}}
         <div style='width: 180px; height: 180px;' class='loader'></div>
@@ -23,7 +20,7 @@
     </div>
 
     <div class='flex-column flex-grow mw-0'>
-      <div class='w-100 shareable-url wrap is-hidden-mobile'>
+      <div class='w-100 shareable-url wrap'>
         <a id='invite-link' href={{this.url}} target='_blank' rel='noopener'>{{this.url}}</a>
       </div>
 
@@ -32,19 +29,10 @@
         justify-content-space-between-mobile justify-content-end-tablet
         m-t-md'>
 
-        <button class='button is-hidden-tablet' {{action this.toggleShowQrCode}}>
-          {{#if this.showQrCodeMobile}}
-            {{t 'ui.invite.showProfile'}}
-          {{else}}
-            {{t 'ui.invite.showQRCode'}}
-          {{/if}}
-        </button>
-
         <CopyButton
           class='
             button has-status-tip
-            {{if this.copied "is-active"}}
-            {{if this.showQrCodeMobile "is-hidden-mobile"}}'
+            {{if this.copied "is-active"}}'
           @success={{action this.copySuccess}}
           @clipboardTarget='#invite-link'>
 

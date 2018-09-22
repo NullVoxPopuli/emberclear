@@ -2,8 +2,7 @@ import RSVP from 'rsvp';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
-// import { task } from 'ember-concurrency-decorators';
-import { task } from 'ember-concurrency';
+import { dropTask } from 'ember-concurrency-decorators';
 
 import IdentityService from 'emberclear/services/identity/service';
 import MessageProcessor from 'emberclear/services/messages/processor';
@@ -34,18 +33,6 @@ export default class RelayConnection extends Service {
 
   connected = false;
 
-  // TODO: add support for sending along a specific channel / chat-room
-  // TODO: consider chatroom implementation with server, or keeping it all
-  //       filtered on the frontend, as it has been in previous implementations
-  //
-  //       Pros of Client-Side Channels
-  //       - server implementation is simple
-  //       - server-side channels could potentially have lots more channels on the server
-  //         - this could burn through resources quicker, especially on free tier IaaS
-  //
-  //       Cons of Client Side Channels
-  //       - more complicated logic for a problem that already been solved
-  //
   async send(this: RelayConnection, to: string, data: string) {
     const payload: ISendPayload = { to, message: data };
     const channel = await this.getChannel();
@@ -94,12 +81,11 @@ export default class RelayConnection extends Service {
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
   async connect(this: RelayConnection) {
-    this.get('establishConnection').perform();
+    this.establishConnection.perform();
   }
 
-  // @task
-  // * establishConnection(this: RelayConnection) {
-  establishConnection = task(function*(this: RelayConnection) {
+  @dropTask
+  * establishConnection(this: RelayConnection) {
     const canConnect = yield this.canConnect();
     if (!canConnect || this.connected) return;
 
@@ -120,8 +106,7 @@ export default class RelayConnection extends Service {
     socket.connect();
 
     yield this.getChannel();
-  // }
-  });
+  }
 
   async getChannel(this: RelayConnection): Promise<Channel> {
     const { socket, channelName, intl } = this;

@@ -1,20 +1,6 @@
 <div class='message-list flex-column justify-content-end no-overflow'>
   <ConnectionStatus class='p-absolute top span transition-all base-z' />
 
-  {{!--
-    TODO: if at the bottom of the message list, when a message comes in
-          the view should auto-scroll to the bottom to reveal the new
-          message
-
-          ideas:
-            - do in didInsertElement with run.later
-            - check if the bottom of the last message is visible within
-              the viewport.
-            - since the last message may not even be rendered, this could get weird.
-            - https://github.com/html-next/vertical-collection
-              maybe using some combination of lastVisibleChanged and lastReached?
-  --}}
-
   {{#vertical-collection @messages
     tagName='div'
     class='messages justify-content-end overflows'
