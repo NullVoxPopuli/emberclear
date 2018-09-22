@@ -24,6 +24,7 @@
     "test:server": "yarn ember exam --server",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "yarn eslint './**/*.ts'",
+    "lint:sass": "yarn sass-lint --config .sass-lint.yml src/ui/styles/**/*.scss -q -v",
     "lint:pretty": "yarn prettier \"{config,lib,server,tests/**/*.ts,src/**/*.ts}\"",
     "lint:fix": "bash -c 'yarn lint --fix'",
     "deploy": "yarn ember deploy production",
@@ -130,6 +131,7 @@
     "prettier": "^1.12.1",
     "qunit-dom": "^0.8.0",
     "sass": "^1.13.2",
+    "sass-lint": "^1.12.1",
     "typescript": "~3.0.1",
     "typescript-eslint-parser": "^18.0.0"
   },

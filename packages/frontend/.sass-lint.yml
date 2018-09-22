@@ -1,0 +1,14 @@
+options:
+  formatter: stylish
+  merge-default-rules: true
+files:
+  include: '**/*.scss'
+
+rules:
+  indentation: 2
+  trailing-semicolon: 2
+  property-sort-order: 0
+  no-color-literals: 0
+  variable-name-format: 0
+  leading-zero:
+    include: true

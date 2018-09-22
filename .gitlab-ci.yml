@@ -64,6 +64,12 @@ Lint Templates:
   script:
     - time ./run yarn lint:hbs
 
+Lint SCSS:
+  stage: quality
+  dependencies: [ setup ]
+  script:
+    - time ./run yarn lint:sass
+
 Check Types:
   stage: quality
   dependencies: [ setup ]
