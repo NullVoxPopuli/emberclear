@@ -1,10 +1,15 @@
+{{! template-lint-disable no-triple-curlies }}
+
 <div class='flex-row'>
   <span class='thumbnail-container m-r-md'>
-    <img class='thumbnail' src="{{og.image}}" />
+    <img alt={{t 'images.alt.thumbnail'}} class='thumbnail' src={{og.image}}>
   </span>
 
   <div>
-    <a class='block' href={{@url}} target='_blank'>{{{purify-dom og.title}}}</a>
+    <a class='block' rel='noopener' href={{@url}} target='_blank'>
+      {{{purify-dom og.title}}}
+    </a>
+
     <p>{{{purify-dom og.description}}}</p>
   </div>
 </div>

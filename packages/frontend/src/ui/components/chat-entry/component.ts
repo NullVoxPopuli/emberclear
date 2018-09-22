@@ -44,7 +44,10 @@ export default class ChatEntry extends Component {
   }
 
   @action
-  async sendMessage(this: ChatEntry) {
+  async sendMessage(this: ChatEntry, e: Event) {
+    e.preventDefault();
+    e.stopPropagation();
+
     if (!this.text) return;
 
     this.set('isDisabled', true);

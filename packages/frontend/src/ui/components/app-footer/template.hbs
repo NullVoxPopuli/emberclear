@@ -1,6 +1,8 @@
-<footer class="footer">
-  <div class="container">
-    <div class="content">
+{{! template-lint-disable no-bare-strings }}
+
+<footer class='footer'>
+  <div class='container'>
+    <div class='content'>
       <div class='columns'>
         <div class='column is-half'>
           <h4>{{t 'ui.footer.navigation'}}</h4>
@@ -16,15 +18,16 @@
 
         <div class='column is-half'>
           <strong>{{t 'appname'}}</strong> {{t 'authoredBy'}}
-          (<a href="https://github.com/NullVoxPopuli/" target='_blank' rel='noopener'>NullVoxPopuli</a>).
-          <br><br  />
+          (<a href='https://github.com/NullVoxPopuli/' target='_blank' rel='noopener'>NullVoxPopuli</a>).
+          <br><br>
           {{t 'ui.footer.license' htmlSafe=true}}
           <br><br>
 
           {{t 'ui.footer.wantToSupport'}} <br>
           <a
             class='has-hover-tip'
-            href="https://etherscan.io/address/0x3fbe03aa431c540fdbd9350ecd1ae8f4f4ec0d23">
+            href='https://etherscan.io/address/0x3fbe03aa431c540fdbd9350ecd1ae8f4f4ec0d23'
+          >
             {{t 'buttons.donateEth'}}
 
             <HoverTip>0x3fbe03aa431c540fdbd9350ecd1ae8f4f4ec0d23</HoverTip>

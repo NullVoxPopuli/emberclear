@@ -1,18 +1,20 @@
-<div class="modal {{if @isActive 'is-active'}}">
+<div class='modal {{if @isActive 'is-active'}}'>
   <div
-    {{action @close on='click'}}
-    class="modal-background">
-  </div>
+    class='modal-background'
+    onclick={{action @close on='click'}}
+    role='button'
+    aria-label={{t 'buttons.ariaLabel.modalBackdrop'}}
+  />
 
-  <div class="modal-content">
+  <div class='modal-content'>
     <div class='box'>
       {{yield}}
     </div>
   </div>
 
   <button
-    {{action @close}}
-    class="modal-close is-large"
-    aria-label="close">
-  </button>
+    class='modal-close is-large'
+    onclick={{action @close}}
+    aria-label={{t 'buttons.ariaLabel.closeModal'}}
+  />
 </div>

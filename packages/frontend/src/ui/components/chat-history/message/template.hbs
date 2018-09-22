@@ -1,3 +1,5 @@
+{{! template-lint-disable no-triple-curlies }}
+
 <div class='message m-l-md m-r-md m-b-md'>
 
   <div class='message-header'>
@@ -9,12 +11,13 @@
         {{/link-to}}
 
       {{else}}
-        <em>removed</em>
+        <em>{{t 'ui.chat.sender.removed'}}</em>
       {{/if}}
     </span>
 
     <span class='sentAt has-hover-tip'>
-      {{format-date @message.sentAt
+      {{format-date
+        @message.sentAt
         year='numeric'
         month='numeric'
         day='numeric'
@@ -22,9 +25,11 @@
         minute='numeric'
       }}
 
-      <HoverTip>
-        Received: {{format-date @message.receivedAt}}
-      </HoverTip>
+      {{#if @message.receivedAt}}
+        <HoverTip>
+          {{t 'ui.chat.messages.received' at=(format-date @message.receivedAt)}}
+        </HoverTip>
+      {{/if}}
     </span>
   </div>
 

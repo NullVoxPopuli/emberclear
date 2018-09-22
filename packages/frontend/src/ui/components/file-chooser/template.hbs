@@ -1,2 +1,7 @@
-<input style='display: none;' type='file' onchange={{action this.didChooseFile}}/>
+<input
+  style='display: none;'
+  type='file'
+  onchange={{action this.didChooseFile}}
+>
+
 {{yield (hash openFileChooser=(action this.openFileChooser))}}

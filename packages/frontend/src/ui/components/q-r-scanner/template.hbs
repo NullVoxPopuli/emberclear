@@ -1,6 +1,7 @@
 <div
   class='flex justify-content-center align-items-center'
-  style='width: 100%; height: 300px; overflow: hidden'>
+  style='width: 100%; height: 300px; overflow: hidden'
+>
 
   {{#unless this.started}}
     <div style='width: 180px; height: 180px;' class='loader'></div>
@@ -8,14 +9,14 @@
 
   <video
     id='qr-preview'
-    class='w-100 {{if this.started "is-block" "is-hidden"}}'
-    autoplay='autoplay'>
-  </video>
+    class='w-100 {{if this.started 'is-block' 'is-hidden'}}'
+    autoplay='autoplay'
+  />
 
 </div>
 
 <span class='flex justify-content-space-between m-t-md'>
   <button class='button' {{action @onCancel}}>
-    Cancel
+    {{t 'buttons.cancel'}}
   </button>
 </span>

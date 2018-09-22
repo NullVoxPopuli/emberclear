@@ -3,6 +3,8 @@ appname: emberclear
 subheader: Encrypted Chat. No History. No Logs.
 authoredBy: by Preston Sego
 
+todo: 'TODO: fill this out correctly'
+
 connection:
   connecting: Connecting...
   connected: Connected!
@@ -25,12 +27,44 @@ connection:
       notConnected: Cannot subscribe to a channel without a socket connection!
 
 buttons:
+  save: Save
   next: Next
   back: Back
   begin: Begin
   logout: Logout
+  login: Login
+  cancel: Cancel
+  import: Import
+  scan: Scan
+  sendSnippet: Send Snippet
   remove: Remove
   donateEth: Donate Ethereum
+  loginInstead: Login instead
+  uploadSettings: Upload Settings
+  showMyInfo: Show My Info
+  invite: Invite
+  addFriend: Add Friend
+  ariaLabel:
+    sidebar: 'Toggles the sidebar'
+    dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
+    modalBackdrop: Clickable backdrop for clicking off a modal to close it
+    menuBackdrop: Clickable backdrop for clicking off the menu to close it
+    sidebarBackdrop: Clickable backdrop for clicking off the sidebar to hide it
+    closeModal: Close Modal
+
+images:
+  alt:
+    thumbnail: Thumbnail
+    ownIdentityQR: This is your identity information represented as a QR Code
+
+input:
+  placeholder:
+    mnemonic: Enter your mnemonic
+    name: Name
+
+status:
+  importing: Importing ...
+  updateAvailable: A new version is available, click here to update.
 
 services:
   crypto:
@@ -61,6 +95,69 @@ ui:
     copyProfile: Copy
     copied: Copied!
 
+  notifications:
+    prompt:
+      title: emberclear needs your permission to enable notifications.
+      enable: Enable Notifications
+      askLater: Ask Next Time
+      neverAsk: Never Ask Again
+
+  search:
+    title: Search for things
+    description: Search coming soon
+  
+  shortcuts:
+    title: Keyboard Shortcuts
+    key:
+      ctrlSlash: <i class='key'>ctrl</i> + <i class='key'>/</i>
+      ctrlK: <i class='key'>ctrl</i> + <i class='key'>k</i>
+      ctrlSpace: <i class='key'>ctrl</i> + <i class='key'>space</i>
+      ctrlH: <i class='key'>ctrl</i> + <i class='key'>h</i>
+
+    actions:
+      search: Search Everything
+      toggleSidebar: Toggle the Sidebar
+      toggleHelp: Toggle Keyboard Help
+
+
+
+  sidebar:
+    channels:
+      title: Channels
+      none: You are not in any channels
+    contacts:
+      title: 'Contacts'
+      none: You have no contacts.
+
+  showMyInfo:
+    title: This is your public identity
+    description: Send this to a friend so that they can communicate with you.
+
+  addContact:
+    title: Paste or scan your friend's identity
+
+  chat:
+    welcome: Welcome!
+    message: >
+      To get started, you'll need at least one friend.<br /><br />
+
+      Then you'll be able to chat with them and create channels for communicating with groups of friends.
+    newMessages: There are newer messages
+    viewRecent: view recent messages
+    sender:
+      removed: removed
+    messages:
+      received: 'Received: {at}'
+    
+    embedMenu:
+      code: Code or text snippet
+      embed: Embed from URL
+      file: Send File from Computer
+      video: Start Video Chat
+      audio: Start Audio Chat
+    
+    codeModal:
+      title: Send Code or Snippet to <strong>{to}</strong>
 
   faq:
     title: F.A.Q
@@ -140,3 +237,12 @@ ui:
       Alternatively, you download your settings on
     theSettingsPage: the Settings page.
     confirm: Confirm Logout
+
+  settings:
+    title: Settings
+    hideKey: Hide private key
+    showKey: Show private key
+    download: Download Settings
+    danger:
+      title: Danger Zone
+      deleteMessages: Delete Messages

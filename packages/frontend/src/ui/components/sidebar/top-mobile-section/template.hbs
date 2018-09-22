@@ -3,22 +3,26 @@
 
   <ul class='menu-list'>
     <li>
-      <a class=''
-        {{action (queue
-          (action this.closeSidebar)
-          (transition-to 'contacts')
-        )}}>
+      <a
+        onclick={{action
+          (queue
+            (action this.closeSidebar)
+            (transition-to 'contacts'))
+        }}
+      >
         <span class='icon'>{{fa-icon 'address-book' prefix='fas'}}</span>
         <span>{{t 'routes.contacts'}}</span>
       </a>
     </li>
 
     <li>
-      <a class=''
-        {{action (queue
-          (action this.closeSidebar)
-          (transition-to 'settings')
-        )}}>
+      <a
+        onclick={{action
+          (queue
+            (action this.closeSidebar)
+            (transition-to 'settings'))
+        }}
+      >
         <span class='icon'>{{fa-icon 'sliders-h'}}</span>
         <span>{{t 'routes.settings'}}</span>
       </a>
@@ -26,5 +30,5 @@
 
   </ul>
 
-  <hr class='divider m-b-sm m-t-sm' />
+  <hr class='divider m-b-sm m-t-sm'>
 {{/if}}

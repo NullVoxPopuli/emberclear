@@ -1,5 +1,7 @@
-<p class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'>
-  <span>Channels</span>
+<p
+  class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'
+>
+  <span>{{t 'ui.sidebar.channels.title'}}</span>
 
   <a class='button is-small' {{action (mut isFormVisible) true}}>
     <span class='icon'>
@@ -16,19 +18,18 @@
   <ChannelForm @onSubmit={{action (mut isFormVisible) false}} />
 {{/if}}
 
-
 <ul class='menu-list'>
 
   {{#each @channels as |channel|}}
 
     <WithResponsiveness
       @whenLarge={{action (transition-to 'chat.in-channel' channel.id)}}
-      @whenSmall={{action (queue
-        (action @closeSidebar)
-        (action (transition-to 'chat.in-channel' channel.id))
-      )}}
-      as |classNames onClick|>
-
+      @whenSmall={{action
+        (queue
+          (action @closeSidebar)
+          (action (transition-to 'chat.in-channel' channel.id)))
+      }} as |classNames onClick|
+    >
       <li class={{classNames}}>
         <a {{action onClick}}>
           #<span class='m-l-sm'>{{channel.name}}</span>
@@ -39,3 +40,7 @@
 
   {{/each}}
 </ul>
+
+{{#if (not (is-present @channels))}}
+  {{t 'ui.sidebar.channels.none'}}
+{{/if}}

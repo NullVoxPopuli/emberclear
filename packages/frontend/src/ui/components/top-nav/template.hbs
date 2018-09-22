@@ -1,7 +1,13 @@
-<div class='
+
+{{! template-lint-disable attribute-indentation }}
+{{! NOTE: because it doesn't allow multi-line class defs }}
+
+<div
+  class='
   flex-row align-items-center justify-content-space-between
   navbar no-select
-  is-fixed-top has-shadow {{if this.isChat "is-primary"}}'>
+  is-fixed-top has-shadow {{if this.isChat 'is-primary'}}'
+>
 
   <div class='navbar-brand'>
 
@@ -10,11 +16,15 @@
         <HamburgerButton
           @class='flex'
           @onClick={{action this.toggleSidebar}}
-          @isActive={{this.sidebar.isShown}} />
+          @isActive={{this.sidebar.isShown}}
+        />
       </div>
     {{/if}}
 
-    {{#link-to 'application' class=(concat 'navbar-item ' (if this.isChat this.textColor))}}
+    {{#link-to
+      'application'
+      class=(concat 'navbar-item ' (if this.isChat this.textColor))
+    }}
       {{t 'appname'}}
     {{/link-to}}
 
@@ -38,7 +48,7 @@
     </div>
   {{/if}}
 
-  <div class="navbar-end is-hidden-touch">
+  <div class='navbar-end is-hidden-touch'>
     {{#if this.isLoggedIn}}
       <a class='navbar-item' {{action (transition-to 'chat')}}>
         {{t 'routes.chat'}}

@@ -55,21 +55,20 @@ before_script:
 lint:js:
   stage: quality
   dependencies: [ setup ]
-  script: 
+  script:
     - time ./run yarn lint:js
 
 lint:hbs:
   stage: quality
-  allow_failure: true
   dependencies: [ setup ]
-  script: 
+  script:
     - time ./run yarn lint:hbs
 
 # TODO: coverage?
 test:
   stage: test
   dependencies: [ setup ]
-  script: 
+  script:
     - time ./scripts/install-chrome-apt
     - time ./run yarn test
 

@@ -2,29 +2,36 @@
 
   <div class='flex-row align-items-center'>
     <h3 class='is-size-3'>
-      Keyboard Shortcuts
+      {{t 'ui.shortcuts.title'}}
     </h3>
     <span class='m-l-md'>
-      <i class='key'>ctrl</i> + <i class='key'>/</i>
+      {{t 'ui.shortcuts.key.ctrlSlash' htmlSafe=true}}
     </span>
   </div>
 
   <hr>
 
   <p class='content'>
-    <label class='is-uppercase'>Search Everything</label><br>
-    <i class='key'>ctrl</i> + <i class='key'>k</i>
+    <label class='is-uppercase'>
+      {{t 'ui.shortcuts.actions.search'}}
+    </label><br>
+    {{t 'ui.shortcuts.key.ctrlK' htmlSafe=true}}
   </p>
 
   <p class='content'>
-    <label class='is-uppercase'>Toggle the Sidebar</label><br>
-    <i class='key'>ctrl</i> + <i class='key'>space</i>
+    <label class='is-uppercase'>
+      {{t 'ui.shortcuts.actions.toggleSidebar'}}
+    </label><br>
+    {{t 'ui.shortcuts.key.ctrlSpace' htmlSafe=true}}
   </p>
 
   <p class='content'>
-    <label class='is-uppercase'>Toggle Keyboard Help</label><br>
-    <i class='key'>ctrl</i> + <i class='key'>h</i> <br>
-    <i class='key'>ctrl</i> + <i class='key'>/</i>
+    <label class='is-uppercase'>
+      {{t 'ui.shortcuts.actions.toggleHelp'}}
+    </label><br>
+    {{t 'ui.shortcuts.key.ctrlH' htmlSafe=true}} <br>
+    {{t 'ui.shortcuts.key.ctrlSlash' htmlSafe=true}}
+
   </p>
 
 </Modal>

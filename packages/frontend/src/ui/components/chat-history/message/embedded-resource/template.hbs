@@ -23,21 +23,27 @@
 
       {{#if this.isYouTube}}
         <iframe
+          allowfullscreen
           class='card-content'
-          src="{{this.embedUrl}}" width="560" height="315"
-          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+          src={{this.embedUrl}}
+          width='560' 
+          height='315'
+          frameborder='0'
+          allow='autoplay; encrypted-media'
+        >
         </iframe>
 
       {{else if this.isImage}}
 
-        <img class='card-content' src={{@url}} />
+        <img alt={{t 'todo'}} class='card-content' src={{@url}}>
 
       {{else}}
 
         <MetadataPreview
-          class='{{if this.hasOgData "card-content"}}'
+          class={{if this.hasOgData 'card-content'}}
           @url={{@url}}
-          @ogData={{this.ogData}} />
+          @ogData={{this.ogData}} 
+        />
 
       {{/if}}
 

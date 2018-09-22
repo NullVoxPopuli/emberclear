@@ -1,7 +1,10 @@
+{{! template-lint-disable attribute-indentation }}
+
 <div class='message-list flex-column justify-content-end no-overflow'>
   <ConnectionStatus class='p-absolute top span transition-all base-z' />
 
-  {{#vertical-collection @messages
+  {{#vertical-collection
+    @messages
     tagName='div'
     class='messages justify-content-end overflows'
     estimateHeight=100
@@ -9,19 +12,22 @@
     bufferSize=8
     renderAll=false
     renderFromLast=true
-    as |message index|}}
-
-     <Message @message={{message}} />
+    as |message|
+  }}
+    <Message @message={{message}} />
 
   {{/vertical-collection}}
 
-  <div class='new-messages
-    flex-row transition-all
-    p-l-md p-r-md p-t-xs p-b-xs
-    {{if this.isLastVisible "hidden"}}'>
+  <div
+    class='new-messages flex-row transition-all p-l-md p-r-md p-t-xs p-b-xs {{if this.isLastVisible 'hidden'}}'
+  >
 
-   <span class='is-hidden-mobile m-r-sm'>There are newer messages</span>
-    <a class='underline' {{action this.scrollToBottom}}> view recent messages</a>
+    <span class='is-hidden-mobile m-r-sm'>
+      {{t 'ui.chat.newMessages'}}
+    </span>
+
+    <a class='underline' {{action this.scrollToBottom}}>
+      {{t 'ui.chat.viewRecent'}}
+    </a>
   </div>
-
 </div>

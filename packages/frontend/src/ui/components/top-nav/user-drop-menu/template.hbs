@@ -1,47 +1,60 @@
-<a class="navbar-link" style='z-index: 31'
-  {{action (mut this.showDropdown) (not this.showDropdown)}}>
-
+<a
+  class='navbar-link'
+  style='z-index: 31'
+  onclick={{action (mut this.showDropdown) (not this.showDropdown)}}
+>
   <span class='icon'>{{fa-icon 'user-circle' prefix='fas'}}</span>
   <span>{{this.name}}</span>
 
 </a>
 
-<div class="navbar-dropdown dropdown-right transition-all" style='z-index: 31'>
-  <a class='navbar-item'
-    {{action (queue
-      (action this.closeMenu)
-      (transition-to 'contacts')
-    )}}>
+<div class='navbar-dropdown dropdown-right transition-all' style='z-index: 31'>
+  <a
+    class='navbar-item'
+    onclick={{action
+      (queue
+        (action this.closeMenu)
+        (transition-to 'contacts'))
+    }}
+  >
     <span class='icon'>{{fa-icon 'address-book' prefix='fas'}}</span>
     <span>{{t 'routes.contacts'}}</span>
   </a>
 
-  <a class='navbar-item'
-    {{action (queue
-      (action this.closeMenu)
-      (transition-to 'settings')
-    )}}>
+  <a
+    class='navbar-item'
+    onclick={{action
+      (queue
+        (action this.closeMenu)
+        (transition-to 'settings'))
+    }}
+  >
     <span class='icon'>{{fa-icon 'sliders-h' prefix='fas'}}</span>
     <span>{{t 'routes.settings'}}</span>
   </a>
 
-  <hr class='navbar-divider' />
+  <hr class='navbar-divider'>
 
   <InviteButtons @beforeClick={{action this.closeMenu}} />
 
-  <hr class='navbar-divider' />
+  <hr class='navbar-divider'>
 
   <a
     class='navbar-item'
-    {{action (queue
-      (action this.closeMenu)
-      (transition-to 'logout')
-    )}}>
+    onclick={{action
+      (queue
+        (action this.closeMenu)
+        (transition-to 'logout'))
+    }}
+  >
     <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
     <span>{{t 'routes.logout'}}</span>
   </a>
 </div>
 
 <div
-  class='full-overlay {{if this.showDropdown "is-active"}}'
-  style='z-index: 30' {{action this.closeMenu}} />
+  role='button'
+  aria-label={{t 'buttons.ariaLabel.menuBackdrop'}}
+  class='full-overlay {{if this.showDropdown 'is-active'}}'
+  style='z-index: 30' {{action this.closeMenu}}
+/>

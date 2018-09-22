@@ -1,13 +1,18 @@
-<div id='app-loader' style='
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  display: flex;
-  flix-direction: column;
-  justify-content: center;
-  align-items: center;'>
+{{! template-lint-disable attribute-indentation }}
+
+<div
+  id='app-loader'
+  style='
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flix-direction: column;
+    justify-content: center;
+    align-items: center;'
+  >
 
   <div style='width: 180px; height: 180px;' class='loader'>
   </div>
 
-  <span class='m-l-md'>Importing ...</span>
+  <span class='m-l-md'>{{t 'status.importing'}}</span>
 </div>
 

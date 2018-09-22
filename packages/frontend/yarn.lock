@@ -4836,24 +4836,24 @@ ember-service-worker@^0.7.0:
     jquery "^3.3.1"
     resolve "^1.6.0"
 
-ember-template-lint@^0.8.23, ember-template-lint@^0.8.7:
-  version "0.8.23"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-0.8.23.tgz#45170d6f2fe6336635df1d1067cabab6b5eb02d0"
-  dependencies:
-    "@glimmer/compiler" "^0.35.5"
-    chalk "^2.0.0"
-    glob "^7.0.0"
-    minimatch "^3.0.4"
-    resolve "^1.1.3"
-    strip-bom "^3.0.0"
-
-ember-template-lint@^1.0.0-beta.5:
+ember-template-lint@1.0.0-beta.5, ember-template-lint@^1.0.0-beta.5:
   version "1.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-1.0.0-beta.5.tgz#b9c3459752b9fb6c93f676f5a99e18372ad60af2"
   dependencies:
     "@glimmer/compiler" "^0.36.2"
     chalk "^2.0.0"
     globby "^8.0.1"
+    minimatch "^3.0.4"
+    resolve "^1.1.3"
+    strip-bom "^3.0.0"
+
+ember-template-lint@^0.8.7:
+  version "0.8.23"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-0.8.23.tgz#45170d6f2fe6336635df1d1067cabab6b5eb02d0"
+  dependencies:
+    "@glimmer/compiler" "^0.35.5"
+    chalk "^2.0.0"
+    glob "^7.0.0"
     minimatch "^3.0.4"
     resolve "^1.1.3"
     strip-bom "^3.0.0"

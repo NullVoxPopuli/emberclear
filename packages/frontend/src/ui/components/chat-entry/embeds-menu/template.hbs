@@ -1,34 +1,37 @@
 <Dropdown @up={{true}} @buttonIcon='plus' @buttonClass='h-100' as |closeMenu|>
 
   <ModalStatic @name='code-or-snippet' as |_isActive toggle|>
-    <a class='dropdown-item flex align-items-center' {{action (queue (action toggle) closeMenu)}}>
+    <a
+      class='dropdown-item flex align-items-center'
+      onclick={{action (queue (action toggle) closeMenu)}}
+    >
       <span class='icon m-r-sm'>{{fa-icon 'code'}}</span>
-      <span>Code or text snippet</span>
+      <span>{{t 'ui.chat.embedMenu.code'}}</span>
     </a>
   </ModalStatic>
 
   <a class='dropdown-item flex align-items-center has-text-grey-light' disabled>
     <span class='icon m-r-sm'>{{fa-icon 'bed'}}</span>
-    <span>Embed from URL</span>
+    <span>{{t 'ui.chat.embedMenu.embed'}}</span>
   </a>
 
-  <hr class="dropdown-divider">
+  <hr class='dropdown-divider'>
 
   <a class='dropdown-item flex align-items-center has-text-grey-light' disabled>
     <span class='icon m-r-sm'>{{fa-icon 'desktop'}}</span>
-    <span>Send File from Computer</span>
+    <span>{{t 'ui.chat.embedMenu.file'}}</span>
   </a>
 
-  <hr class="dropdown-divider">
+  <hr class='dropdown-divider'>
 
   <a class='dropdown-item flex align-items-center has-text-grey-light' disabled>
     <span class='icon m-r-sm'>{{fa-icon 'video'}}</span>
-    <span>Start Video Chat</span>
+    <span>{{t 'ui.chat.embedMenu.video'}}</span>
   </a>
 
   <a class='dropdown-item flex align-items-center has-text-grey-light' disabled>
     <span class='icon m-r-sm'>{{fa-icon 'phone'}}</span>
-    <span>Start Audio Chat</span>
+    <span>{{t 'ui.chat.embedMenu.audio'}}</span>
   </a>
 </Dropdown>
 

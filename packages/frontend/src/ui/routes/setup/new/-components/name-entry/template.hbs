@@ -1,6 +1,6 @@
 <form data-test-name-form {{action this.createIdentity on='submit'}}>
 
-  <div class="content">
+  <div class='content'>
     {{input
       data-test-name-field
       class='input is-large'
@@ -11,15 +11,16 @@
   </div>
 
   {{#link-to 'login'}}
-    Login instead
+    {{t 'buttons.loginInstead'}}
   {{/link-to}}
 
-  <input
+  <input 
     data-test-next
     type='submit'
     class='button is-pulled-right'
     disabled={{this.nameIsBlank}}
     value={{t 'buttons.next'}}
-    {{action this.createIdentity}} >
+    onclick={{action this.createIdentity}}
+  >
 
 </form>

@@ -2,10 +2,8 @@
 
   {{yield this.isChatVisible this.chatName.result}}
 
-{{else}}
-  {{#unless this.chatName.isPending}}
+{{else if (not this.chatName.isPending)}}
 
-    {{this.chatName.result}}
+  {{this.chatName.result}}
 
-  {{/unless}}
 {{/if}}

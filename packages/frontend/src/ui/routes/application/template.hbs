@@ -1,18 +1,18 @@
 <TopNav id='emberclear-topnav'/>
 
 
-<NotificationContainer @position="top-right" />
+<NotificationContainer @position='top-right' />
 <NotificationPrompt />
 
 
-<OffCanvasContainer class='no-overflow'
+<OffCanvasContainer
+  class='no-overflow'
   @contacts={{model.contacts}}
-  @channels={{model.channels}}>
-
-
+  @channels={{model.channels}}
+>
   <ServiceWorkerUpdateNotify>
-    <a class="service-worker-update-notify notification is-info" href="">
-      A new version is available, click here to update.
+    <a class='service-worker-update-notify notification is-info' href=''>
+      {{t 'status.updateAvailable'}}
     </a>
   </ServiceWorkerUpdateNotify>
 
@@ -38,14 +38,14 @@
 <ModalStatic @name='keyboard-shortcuts' as |isActive toggle|>
   <KeyboardShortcuts @isActive={{isActive}} @close={{toggle}} />
 
-  <KeyboardPress @key="ctrl+KeyH" @onDown={{action toggle}} />
-  <KeyboardPress @key="ctrl+Slash" @onDown={{action toggle}} />
+  <KeyboardPress @key='ctrl+KeyH' @onDown={{action toggle}} />
+  <KeyboardPress @key='ctrl+Slash' @onDown={{action toggle}} />
 </ModalStatic>
 
 <ModalStatic @name='search' as |isActive toggle|>
   <Search @isActive={{isActive}} @close={{toggle}} />
 
-  <KeyboardPress @key="ctrl+KeyK" @onDown={{action toggle}} />
+  <KeyboardPress @key='ctrl+KeyK' @onDown={{action toggle}} />
 </ModalStatic>
 
 

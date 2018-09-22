@@ -1,22 +1,28 @@
-<p class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'>
-  <span>Contacts</span>
+<p
+  class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'
+>
+  <span>{{t 'ui.sidebar.contacts.title'}}</span>
   <span>
 
     <a
       class='button is-small'
-      {{action (queue
-        (action @closeSidebar)
-        (action @toggleModal 'show-my-info')
-      )}}>
+      onclick={{action
+        (queue
+          (action @closeSidebar)
+          (action @toggleModal 'show-my-info'))
+      }}
+    >
       <span class='icon'>{{fa-icon 'share'}}</span>
     </a>
 
     <a
       class='button is-small'
-      {{action (queue
-        (action @closeSidebar)
-        (action @toggleModal 'add-friend')
-      )}}>
+      onclick={{action
+        (queue
+          (action @closeSidebar)
+          (action @toggleModal 'add-friend'))
+      }}
+    >
       <span class='icon'>{{fa-icon 'plus'}}</span>
     </a>
 
@@ -29,11 +35,12 @@
 
     <WithResponsiveness
       @whenLarge={{action (transition-to 'chat.privately-with' contact.id)}}
-      @whenSmall={{action (queue
-        (action @closeSidebar)
-        (action (transition-to 'chat.privately-with' contact.id))
-      )}}
-      as |classNames onClick|>
+      @whenSmall={{action
+        (queue
+          (action @closeSidebar)
+          (action (transition-to 'chat.privately-with' contact.id)))
+      }} as |classNames onClick|
+    >
 
       <li class={{classNames}}>
         {{!-- TODO: need a way to figure out when is-active
@@ -50,7 +57,10 @@
 </ul>
 
 {{#if (not (is-present @contacts))}}
-  You have no contacts.
+  {{t 'ui.sidebar.contacts.none'}}
 
-  <InviteButtons class='w-100 is-hidden-touch' @beforeClick={{action @closeSidebar}} />
+  <InviteButtons
+    class='w-100 is-hidden-touch'
+    @beforeClick={{action @closeSidebar}}
+  />
 {{/if}}
