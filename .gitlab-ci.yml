@@ -52,17 +52,24 @@ variables:
 before_script:
   - time ./run yarn install
 
-lint:js:
+List JS/TS:
   stage: quality
   dependencies: [ setup ]
   script:
     - time ./run yarn lint:js
 
-lint:hbs:
+Lint Templates:
   stage: quality
   dependencies: [ setup ]
   script:
     - time ./run yarn lint:hbs
+
+Check Types:
+  stage: quality
+  dependencies: [ setup ]
+  allow_failure: true
+  script:
+    - time ./run yarn tsc
 
 # TODO: coverage?
 test:
