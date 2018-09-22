@@ -201,6 +201,26 @@
     "@babel/helper-remap-async-to-generator" "^7.1.0"
     "@babel/plugin-syntax-async-generators" "^7.0.0"
 
+"@babel/plugin-proposal-class-properties@^7.0.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.1.0.tgz#9af01856b1241db60ec8838d84691aa0bd1e8df4"
+  dependencies:
+    "@babel/helper-function-name" "^7.1.0"
+    "@babel/helper-member-expression-to-functions" "^7.0.0"
+    "@babel/helper-optimise-call-expression" "^7.0.0"
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/helper-replace-supers" "^7.1.0"
+    "@babel/plugin-syntax-class-properties" "^7.0.0"
+
+"@babel/plugin-proposal-decorators@^7.0.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.1.0.tgz#bb39ae934318e4560db2d724b0fca8da0299b120"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/helper-replace-supers" "^7.1.0"
+    "@babel/helper-split-export-declaration" "^7.0.0"
+    "@babel/plugin-syntax-decorators" "^7.1.0"
+
 "@babel/plugin-proposal-json-strings@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-json-strings/-/plugin-proposal-json-strings-7.0.0.tgz#3b4d7b5cf51e1f2e70f52351d28d44fc2970d01e"
@@ -233,6 +253,18 @@
 "@babel/plugin-syntax-async-generators@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-async-generators/-/plugin-syntax-async-generators-7.0.0.tgz#bf0891dcdbf59558359d0c626fdc9490e20bc13c"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
+"@babel/plugin-syntax-class-properties@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-class-properties/-/plugin-syntax-class-properties-7.0.0.tgz#e051af5d300cbfbcec4a7476e37a803489881634"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
+"@babel/plugin-syntax-decorators@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-decorators/-/plugin-syntax-decorators-7.1.0.tgz#2fa7c1a7905a299c9853ebcef340306675f9cbdc"
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
@@ -525,37 +557,38 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@ember-decorators/babel-transforms@2.0.0":
-  version "2.0.0"
-  resolved "http://registry.npmjs.org/@ember-decorators/babel-transforms/-/babel-transforms-2.0.0.tgz#35e20046b920d1c17010760b7b1515965d58c293"
+"@ember-decorators/babel-transforms@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/babel-transforms/-/babel-transforms-2.1.1.tgz#9585d0b4071b0aae54a86580bc1042de09790c21"
   dependencies:
+    "@babel/plugin-proposal-class-properties" "^7.0.0"
+    "@babel/plugin-proposal-decorators" "^7.0.0"
     babel-plugin-transform-class-properties "^6.24.1"
     babel-plugin-transform-decorators-legacy "^1.3.4"
-    ember-cli-babel "^6.6.0"
     ember-cli-version-checker "^2.1.0"
 
-"@ember-decorators/component@^2.4.1", "@ember-decorators/component@^2.5.0":
+"@ember-decorators/component@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@ember-decorators/component/-/component-2.5.0.tgz#ef7b15a2b34467e40f3d140b35bc306bbafe2070"
   dependencies:
     "@ember-decorators/utils" "^2.5.0"
     ember-cli-babel "^6.6.0"
 
-"@ember-decorators/controller@^2.4.1", "@ember-decorators/controller@^2.5.0":
+"@ember-decorators/controller@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@ember-decorators/controller/-/controller-2.5.0.tgz#6ebb105cfd89cd4e2d8d37d216eedf58b8c8f61c"
   dependencies:
     "@ember-decorators/utils" "^2.5.0"
     ember-cli-babel "^6.6.0"
 
-"@ember-decorators/data@^2.4.1", "@ember-decorators/data@^2.5.0":
+"@ember-decorators/data@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@ember-decorators/data/-/data-2.5.0.tgz#44b4bce42c7e8b8011e268a176eb4399d50e8e8f"
   dependencies:
     "@ember-decorators/utils" "^2.5.0"
     ember-cli-babel "^6.6.0"
 
-"@ember-decorators/object@^2.4.1", "@ember-decorators/object@^2.5.0":
+"@ember-decorators/object@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@ember-decorators/object/-/object-2.5.0.tgz#64955d0216632641f1aee9f474222ce1afdb7bb6"
   dependencies:
@@ -563,7 +596,7 @@
     ember-cli-babel "^6.6.0"
     ember-compatibility-helpers "^1.0.0"
 
-"@ember-decorators/service@^2.4.1", "@ember-decorators/service@^2.5.0":
+"@ember-decorators/service@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@ember-decorators/service/-/service-2.5.0.tgz#e4ccc829989b6df593d2534f013c09f747f36400"
   dependencies:
@@ -818,8 +851,8 @@
   resolved "https://registry.yarnpkg.com/@types/dompurify/-/dompurify-0.0.31.tgz#f152d5a81f2b5625e29f11eb016cd9b301d0d4b4"
 
 "@types/ember-data@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-3.0.0.tgz#c9bcc29e74d226624924d52971a9e4f4e13b7c4d"
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-3.0.1.tgz#7edc1733371db07619f5a56f90e6693f29e43d05"
   dependencies:
     "@types/rsvp" "*"
 
@@ -830,7 +863,7 @@
     "@types/ember" "*"
     "@types/ember-test-helpers" "*"
 
-"@types/ember-test-helpers@*", "@types/ember-test-helpers@^1.0.0":
+"@types/ember-test-helpers@*":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/ember-test-helpers/-/ember-test-helpers-1.0.1.tgz#dff6044be11b4540ce2cbb2baee5a90d075d678c"
   dependencies:
@@ -847,9 +880,12 @@
     "@types/rsvp" "*"
 
 "@types/ember@*", "@types/ember@^3.0.5":
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/@types/ember/-/ember-3.0.16.tgz#14cb1deb79f5b89d506e5e53ec98945f4f2ffbfc"
+  version "3.0.19"
+  resolved "https://registry.yarnpkg.com/@types/ember/-/ember-3.0.19.tgz#25488d30de13c59a95c978874a8687f5a05068c5"
   dependencies:
+    "@types/ember__array" "*"
+    "@types/ember__debug" "*"
+    "@types/ember__engine" "*"
     "@types/ember__object" "*"
     "@types/ember__polyfills" "*"
     "@types/ember__string" "*"
@@ -858,9 +894,21 @@
     "@types/jquery" "*"
     "@types/rsvp" "*"
 
-"@types/ember__object@*":
+"@types/ember__array@*":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/ember__array/-/ember__array-3.0.2.tgz#4f61ba9e6bb12dd4c8b0abaefd5220b4f6579f1d"
+
+"@types/ember__debug@*":
   version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@types/ember__object/-/ember__object-3.0.1.tgz#9d3b44bc59e81edf7748d75494b2918bf28ab298"
+  resolved "https://registry.yarnpkg.com/@types/ember__debug/-/ember__debug-3.0.1.tgz#ee7ab2edf8619e2a26a0d6ecf509536f97b3c00e"
+
+"@types/ember__engine@*":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/ember__engine/-/ember__engine-3.0.2.tgz#4e0bcabc71d9ae92124d5e15ce176ef8f8c45654"
+
+"@types/ember__object@*":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/ember__object/-/ember__object-3.0.2.tgz#9a2b6b8a7f0cb7490e56c4b010b320fd04b9b1d3"
   dependencies:
     "@types/rsvp" "*"
 
@@ -875,8 +923,8 @@
     "@types/handlebars" "*"
 
 "@types/ember__test-helpers@^0.7.0":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@types/ember__test-helpers/-/ember__test-helpers-0.7.2.tgz#c7d1c9e85742c700ed36618045133915b53888b0"
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@types/ember__test-helpers/-/ember__test-helpers-0.7.3.tgz#9d260d6e7cd15a1c869005d4297d37598695ded3"
   dependencies:
     "@types/ember" "*"
     "@types/htmlbars-inline-precompile" "*"
@@ -2279,11 +2327,13 @@ broccoli-clean-css@^1.1.0:
     json-stable-stringify "^1.0.0"
 
 broccoli-concat-analyser@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/broccoli-concat-analyser/-/broccoli-concat-analyser-4.2.0.tgz#181c87ce3bcef540bc2997b841da171e5587fea3"
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/broccoli-concat-analyser/-/broccoli-concat-analyser-4.3.0.tgz#37adbba55020b0fbdb67396a4f168104d7149701"
   dependencies:
     filesize "^3.3.0"
+    fs-extra "^4.0.2"
     ora "^0.3.0"
+    pify "^4.0.0"
     uglify-es "^3.0.23"
     walk-sync "^0.3.1"
     workerpool "^2.3.1"
@@ -2996,9 +3046,13 @@ caniuse-api@^2.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000884:
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30000805, caniuse-lite@^1.0.30000884:
   version "1.0.30000885"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000885.tgz#e889e9f8e7e50e769f2a49634c932b8aee622984"
+
+caniuse-lite@^1.0.30000844:
+  version "1.0.30000886"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000886.tgz#2127186c4f57da10d3ba26fc3e87dce4a5ddd3ae"
 
 capture-exit@^1.2.0:
   version "1.2.0"
@@ -4433,8 +4487,8 @@ ember-concurrency-decorators@^0.0.4-beta.0:
     ember-cli-babel "^6.16.0"
 
 ember-concurrency@^0.8.19:
-  version "0.8.20"
-  resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-0.8.20.tgz#2c4f84ed3eb86cd0c7be9c2d21dd23f560757ac7"
+  version "0.8.21"
+  resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-0.8.21.tgz#23263e00455d32bb7f5b1b344376143019796ac6"
   dependencies:
     babel-core "^6.24.1"
     ember-cli-babel "^6.8.2"
@@ -4491,19 +4545,7 @@ ember-css-modules@^0.7.10:
     semver "^5.5.0"
     silent-error "^1.1.0"
 
-ember-decorators@2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/ember-decorators/-/ember-decorators-2.4.1.tgz#922f719759e4d12053760628eb978afd716ab5b3"
-  dependencies:
-    "@ember-decorators/component" "^2.4.1"
-    "@ember-decorators/controller" "^2.4.1"
-    "@ember-decorators/data" "^2.4.1"
-    "@ember-decorators/object" "^2.4.1"
-    "@ember-decorators/service" "^2.4.1"
-    ember-cli-babel "^6.0.0"
-    semver "^5.5.0"
-
-ember-decorators@^2.4.1:
+ember-decorators@2.5.0, ember-decorators@^2.4.1:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/ember-decorators/-/ember-decorators-2.5.0.tgz#ffc78a776c851189b3eba96a17fadc2eb75d16fe"
   dependencies:
@@ -8454,6 +8496,10 @@ pify@^2.0.0:
 pify@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
+
+pify@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.0.tgz#db04c982b632fd0df9090d14aaf1c8413cadb695"
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
