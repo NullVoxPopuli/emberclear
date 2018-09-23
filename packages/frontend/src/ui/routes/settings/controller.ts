@@ -19,7 +19,9 @@ export default class extends Controller {
   @reads('settings.downloadUrl') downloadSettingsUrl!: string;
 
   @action
-  async save() {
+  async save(e: Event) {
+    e.preventDefault();
+
     await this.identity.record!.save();
 
     this.toast.success('Identity Updated');

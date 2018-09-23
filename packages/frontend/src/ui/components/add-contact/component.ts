@@ -26,7 +26,9 @@ export default class AddModal extends Component {
   }
 
   @action
-  async importIdentity() {
+  async importIdentity(e: Event) {
+    e.preventDefault();
+
     const identity = JSON.parse(this.identityToImport)
 
     await this.tryCreate(identity);

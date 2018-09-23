@@ -3,7 +3,7 @@
     <h1 class='title'>{{t 'ui.settings.title' }}</h1>
     <div class='content'>
 
-      <form {{action 'save' on='submit'}}>
+      <form onsubmit={{action 'save'}}>
 
         <Field @label='Name'>
           {{input data-test-name-field class='input' value=name}}

@@ -3,6 +3,7 @@ import { Registry } from '@ember/service';
 import { isBlank } from '@ember/utils';
 import { service } from '@ember-decorators/service';
 import { computed, action } from '@ember-decorators/object';
+import { dropTask } from 'ember-concurrency-decorators';
 
 import IdentityService from 'emberclear/services/identity/service';
 
@@ -22,12 +23,18 @@ export default class NameEntry extends Component {
   }
 
   @action
-  async createIdentity(this: NameEntry) {
+  createIdentity(e: Event) {
+    e.preventDefault();
+
+    this.create.perform();
+  }
+
+  @dropTask * create(this: NameEntry) {
     if (this.nameIsBlank) return;
-    const exists = await this.identity.exists();
+    const exists = yield this.identity.exists();
 
     if (!exists) {
-      await this.identity.create(this.name);
+      yield this.identity.create(this.name);
     }
 
     this.router.transitionTo('setup.completed');
