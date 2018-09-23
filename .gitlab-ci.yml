@@ -136,8 +136,8 @@ Deploy Production:
     - echo "-------------------------------------------"
     # - apt-get -y install tree
     # - tree ${CI_PROJECT_DIR}/packages/frontend/dist
-    - echo "----------------- sw.js -------------------"
-    - cat ${CI_PROJECT_DIR}/packages/frontend/dist/sw.js
+    - echo "----------------- manifest -------------------"
+    - cat ${CI_PROJECT_DIR}/packages/frontend/dist/manifest.webmanifest
     - echo "-------------- faq/index.html -------------"
     - cat ${CI_PROJECT_DIR}/packages/frontend/dist/faq/index.html
     - echo "-------------------------------------------"
