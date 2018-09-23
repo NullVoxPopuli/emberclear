@@ -38,7 +38,7 @@ module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // eslint slows down the dev-build-debug cycle significantly
     // hinting: false disables linting at build time.
-    hinting: isTest,
+    hinting: false,
     // tests: isTest,
     // tests: true,
     minifyJS: { enabled: false },
