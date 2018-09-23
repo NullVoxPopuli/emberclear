@@ -143,6 +143,8 @@ Deploy Production:
     - echo "-------------------------------------------"
     - time ./scripts/publish
 
-setup:
-  stage: setup
-  script: [ time ./run yarn install ]
+# Setup is currently worthless, because it's faster
+# to install everything at every stage than to rely on cache...
+# setup:
+#   stage: setup
+#   script: [ time ./run yarn install ]
