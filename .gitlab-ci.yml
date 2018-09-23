@@ -113,8 +113,8 @@ Deploy Production:
   script:
     - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
     - echo "-------------------------------------------"
-    - apt-get -y install tree
-    - tree ${CI_PROJECT_DIR}/packages/frontend/dist
+    # - apt-get -y install tree
+    # - tree ${CI_PROJECT_DIR}/packages/frontend/dist
     - echo "----------------- sw.js -------------------"
     - cat ${CI_PROJECT_DIR}/packages/frontend/dist/sw.js
     - echo "-------------- faq/index.html -------------"
