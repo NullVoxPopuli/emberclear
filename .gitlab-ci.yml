@@ -102,9 +102,6 @@ Analyze Bundle:
   only: [ master ]
   allow_failure: true
   script:
-    - echo "-------------------------------------------"
-    - ls -la ${CI_PROJECT_DIR}/packages/frontend/dist
-    - echo "-------------------------------------------"
     - time ./run yarn analyze
   artifacts:
     paths:
@@ -115,6 +112,9 @@ Deploy Production:
   only: [ master ]
   script:
     - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
+    - echo "-------------------------------------------"
+    - ls -la ${CI_PROJECT_DIR}/packages/frontend/dist
+    - echo "-------------------------------------------"
     - time ./scripts/publish
 
 setup:
