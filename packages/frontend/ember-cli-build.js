@@ -59,6 +59,10 @@ module.exports = function(defaults) {
       // compileModules: false,
     },
 
+    'ember-test-selectors': {
+      strip: isProduction
+    },
+
     // sourcemaps: {
     //   enabled: false
     // },
