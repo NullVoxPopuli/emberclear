@@ -3,7 +3,7 @@
   <ModalStatic @name='code-or-snippet' as |_isActive toggle|>
     <a
       class='dropdown-item flex align-items-center'
-      onclick={{action (queue (action toggle) closeMenu)}}
+      {{action (queue (action toggle) closeMenu)}}
     >
       <span class='icon m-r-sm'>{{fa-icon 'code'}}</span>
       <span>{{t 'ui.chat.embedMenu.code'}}</span>

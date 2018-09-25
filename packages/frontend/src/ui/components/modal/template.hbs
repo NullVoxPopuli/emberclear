@@ -1,9 +1,9 @@
 <div class='modal {{if @isActive 'is-active'}}'>
   <div
     class='modal-background'
-    onclick={{action @close on='click'}}
     role='button'
     aria-label={{t 'buttons.ariaLabel.modalBackdrop'}}
+    onclick={{action @close on='click'}}
   />
 
   <div class='modal-content'>
@@ -14,7 +14,7 @@
 
   <button
     class='modal-close is-large'
-    onclick={{action @close}}
     aria-label={{t 'buttons.ariaLabel.closeModal'}}
+    {{action @close}}
   />
 </div>

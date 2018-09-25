@@ -8,6 +8,7 @@ module.exports = {
     'no-bare-strings': true,
     'no-invalid-interactive': {
       additionalInteractiveTags: [ 'a' ]
-    }
+    },
+    'attribute-indentation': false
   }
 };

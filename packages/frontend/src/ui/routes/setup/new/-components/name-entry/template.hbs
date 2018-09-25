@@ -1,4 +1,6 @@
-<form data-test-name-form onsubmit={{action this.createIdentity}}>
+<form
+  data-test-name-form
+  {{action this.createIdentity on='submit'}}>
 
   <div class='content'>
     {{input

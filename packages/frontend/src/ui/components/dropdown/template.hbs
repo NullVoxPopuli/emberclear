@@ -1,5 +1,5 @@
 <div class='dropdown-trigger'>
-  <a class='button {{@buttonClass}}' onclick={{action this.toggleMenu}}>
+  <a class='button {{@buttonClass}}' {{action this.toggleMenu}}>
     {{#if this.hasButtonText}}
       <span>{{@buttonText}}</span>
     {{/if}}
@@ -17,7 +17,7 @@
     class='no-select full-overlay invisible'
     role='button'
     aria-label={{t 'buttons.ariaLabel.dropdownBackdrop'}}
-    onclick={{action this.toggleMenu}}
+    {{action this.toggleMenu}}
   />
 {{/if}}
 

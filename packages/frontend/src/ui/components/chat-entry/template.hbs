@@ -1,6 +1,6 @@
 <form
   class='chat-entry flex-row field has-addons flex-grow m-b-sm'
-  onsubmit={{action this.sendMessage}}
+  {{action this.sendMessage on='submit'}}
 >
   <div class='control flex'>
     <EmbedsMenu @sendTo={{@to}} />

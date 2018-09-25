@@ -30,10 +30,9 @@
 
       <a
         class='navbar-item flex-row align-items-center'
-        onclick={{action
-          (queue
-            (action this.closeSidebar)
-            (transition-to 'logout'))
+        {{action (queue
+          (action this.closeSidebar)
+          (transition-to 'logout'))
         }}
       >
         <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>

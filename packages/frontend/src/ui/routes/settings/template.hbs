@@ -3,7 +3,7 @@
     <h1 class='title'>{{t 'ui.settings.title' }}</h1>
     <div class='content'>
 
-      <form onsubmit={{action 'save'}}>
+      <form {{action 'save' on='submit'}}>
 
         <Field @label='Name'>
           {{input data-test-name-field class='input' value=name}}
@@ -17,7 +17,7 @@
       <button
         data-test-show-private-key-toggle
         class='button'
-        onclick={{action (mut showPrivateKey) (not showPrivateKey)}}
+        {{action (mut showPrivateKey) (not showPrivateKey)}}
       >
 
         {{#if showPrivateKey}}
@@ -44,7 +44,7 @@
         data-test-delete-messages
         disabled={{messagesDeleted}}
         class='button is-danger is-outlined'
-        onclick={{action 'deleteMessages'}}
+        {{action 'deleteMessages'}}
       >
 
         <span class='icon is-small'>

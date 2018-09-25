@@ -3,26 +3,20 @@
 
   <ul class='menu-list'>
     <li>
-      <a
-        onclick={{action
-          (queue
-            (action this.closeSidebar)
-            (transition-to 'contacts'))
-        }}
-      >
+      <a {{action (queue
+        (action this.closeSidebar)
+        (transition-to 'contacts'))
+      }}>
         <span class='icon'>{{fa-icon 'address-book' prefix='fas'}}</span>
         <span>{{t 'routes.contacts'}}</span>
       </a>
     </li>
 
     <li>
-      <a
-        onclick={{action
-          (queue
-            (action this.closeSidebar)
-            (transition-to 'settings'))
-        }}
-      >
+      <a {{action (queue
+        (action this.closeSidebar)
+        (transition-to 'settings'))
+      }}>
         <span class='icon'>{{fa-icon 'sliders-h'}}</span>
         <span>{{t 'routes.settings'}}</span>
       </a>

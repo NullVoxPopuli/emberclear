@@ -6,10 +6,9 @@
 
     <a
       class='button is-small'
-      onclick={{action
-        (queue
-          (action @closeSidebar)
-          (action @toggleModal 'show-my-info'))
+      {{action (queue
+        (action @closeSidebar)
+        (action @toggleModal 'show-my-info'))
       }}
     >
       <span class='icon'>{{fa-icon 'share'}}</span>
@@ -17,10 +16,9 @@
 
     <a
       class='button is-small'
-      onclick={{action
-        (queue
-          (action @closeSidebar)
-          (action @toggleModal 'add-friend'))
+      {{action (queue
+        (action @closeSidebar)
+        (action @toggleModal 'add-friend'))
       }}
     >
       <span class='icon'>{{fa-icon 'plus'}}</span>
