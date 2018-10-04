@@ -129,6 +129,7 @@ Merge Coverage:
   artifacts:
     paths:
       - ${CI_PROJECT_DIR}/packages/frontend/coverage/
+      - cat ${CI_PROJECT_DIR}/packages/frontend/coverage/coverage-summary.json
 
 Build Production:
   stage: build
@@ -169,11 +170,10 @@ Deploy Production:
 
 pages:
   stage: deploy
-  only: [ master ]
   dependencies:
     - Merge Coverage
   script:
-    - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/
+    - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/$CI_COMMIT_REF_NAME
   artifacts:
     paths:
       - public

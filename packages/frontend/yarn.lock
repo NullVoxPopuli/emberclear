@@ -4136,9 +4136,9 @@ ember-cli-clipboard@^0.9.0:
     ember-cli-htmlbars "^2.0.2"
     fastboot-transform "0.1.1"
 
-ember-cli-code-coverage@^1.0.0-beta.6:
+ember-cli-code-coverage@abhilashlr/ember-cli-code-coverage#Module_Unification:
   version "1.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/ember-cli-code-coverage/-/ember-cli-code-coverage-1.0.0-beta.6.tgz#7da5dc4e2eb7c207b827b6cbdf91a96d0cca0983"
+  resolved "https://codeload.github.com/abhilashlr/ember-cli-code-coverage/tar.gz/40e884510dbdfdc7065e0409fe14d46153a20c31"
   dependencies:
     babel-plugin-istanbul "^5.1.0"
     babel-plugin-transform-async-to-generator "^6.24.1"
@@ -7247,9 +7247,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-"libsodium-wrappers@github:jedisct1/libsodium.js#9d4455cfd8c68a53238475b9f900f42582d7c925", libsodium@0.7.3, "libsodium@github:jedisct1/libsodium.js#9d4455cfd8c68a53238475b9f900f42582d7c925":
+"libsodium-wrappers@github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855", libsodium@0.7.3, "libsodium@github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855":
   version "0.7.3"
-  resolved "https://codeload.github.com/jedisct1/libsodium.js/tar.gz/9d4455cfd8c68a53238475b9f900f42582d7c925"
+  resolved "https://codeload.github.com/jedisct1/libsodium.js/tar.gz/8fa117918df38f52668feaf9cbc498c633671855"
   dependencies:
     libsodium "0.7.3"
 
