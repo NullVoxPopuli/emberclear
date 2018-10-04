@@ -167,7 +167,7 @@ Deploy Production:
     - echo "-------------------------------------------"
     - time ./scripts/publish
 
-Report:
+pages:
   stage: deploy
   only: [ master ]
   dependencies:
