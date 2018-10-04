@@ -173,6 +173,7 @@ pages:
   dependencies:
     - Merge Coverage
   script:
+    - mkdir -p public/$CI_COMMIT_REF_NAME
     - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/$CI_COMMIT_REF_NAME
   artifacts:
     paths:
