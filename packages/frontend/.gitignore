@@ -2,6 +2,7 @@
 
 # legacy (may accidentally be created via generator)
 /app
+/coverage*
 
 # bundle analysis
 /concat-stats-for

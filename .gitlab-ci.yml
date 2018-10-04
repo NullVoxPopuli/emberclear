@@ -83,6 +83,9 @@ Unit Tests:
   script:
     - time ./scripts/install-chrome-apt
     - time ./run yarn test:named Unit
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
 
 Helper Tests:
   stage: test
@@ -90,6 +93,9 @@ Helper Tests:
   script:
     - time ./scripts/install-chrome-apt
     - time ./run yarn test:named Helper
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
 
 Integration Tests:
   stage: test
@@ -97,6 +103,9 @@ Integration Tests:
   script:
     - time ./scripts/install-chrome-apt
     - time ./run yarn test:named Integration
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
 
 Acceptance Tests:
   stage: test
@@ -104,7 +113,22 @@ Acceptance Tests:
   script:
     - time ./scripts/install-chrome-apt
     - time ./run yarn test:named Acceptance
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
 
+Merge Coverage:
+  stage: build
+  dependencies:
+    - Acceptance Tests
+    - Integration Tests
+    - Helper Tests
+    - Unit Tests
+  script:
+    - time ./run yarn merge-coverage
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/coverage/
 
 Build Production:
   stage: build
@@ -142,6 +166,18 @@ Deploy Production:
     - cat ${CI_PROJECT_DIR}/packages/frontend/dist/faq/index.html
     - echo "-------------------------------------------"
     - time ./scripts/publish
+
+Report:
+  stage: deploy
+  only: [ master ]
+  dependencies:
+    - Merge Coverage
+  script:
+    - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
 
 # Setup is currently worthless, because it's faster
 # to install everything at every stage than to rely on cache...
