@@ -1,4 +1,5 @@
 <a
+  data-test-user-dropdown-toggle
   class='navbar-link'
   style='z-index: 31'
   {{action (mut this.showDropdown) (not this.showDropdown)}}
@@ -8,7 +9,10 @@
 
 </a>
 
-<div class='navbar-dropdown dropdown-right transition-all' style='z-index: 31'>
+<div
+  data-test-user-dropdown
+  class='navbar-dropdown dropdown-right transition-all'
+  style='z-index: 31'>
   <a
     class='navbar-item'
     {{action (queue
@@ -38,6 +42,7 @@
   <hr class='navbar-divider'>
 
   <a
+    data-test-logout
     class='navbar-item'
     {{action (queue
       (action this.closeMenu)
