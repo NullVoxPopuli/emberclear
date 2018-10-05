@@ -15,6 +15,18 @@ export default class Modals extends Service {
     modal.set('isActive', !modal.isActive);
   }
 
+  close(name: string) {
+    const modal = this.find(name);
+
+    modal.set('isActive', false);
+  }
+
+  open(name: string) {
+    const modal = this.find(name);
+
+    modal.set('isActive', true);
+  }
+
   isVisible(name: string) {
     const modal = this.find(name);
 

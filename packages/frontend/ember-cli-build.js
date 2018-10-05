@@ -170,17 +170,9 @@ module.exports = function(defaults) {
 
   // bulma-toast
   app.import('node_modules/bulma/bulma.sass');
-  app.import('node_modules/bulma-toast/dist/bulma-toast.min.js');
-  app.import('vendor/shims/bulma-toast.js');
 
   return mergeTrees([
     app.toTree(),
     qrScannerWorker
-    // new BroccoliCSSBlocks(app.path, {
-    //   entry: ['app'],
-    //   output: "src/ui/styles/css-blocks.css"
-    // })
-    // app.toTree()
-    // fontTree, fontStyleTree
   ]);
 };

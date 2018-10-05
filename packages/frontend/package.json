@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "bulma": "^0.7.1",
-    "bulma-toast": "^1.0.1",
     "libsodium": "github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855",
     "libsodium-wrappers": "github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855",
     "localforage": "^1.7.1",

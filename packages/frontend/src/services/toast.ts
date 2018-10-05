@@ -3,9 +3,8 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { isPresent } from '@ember/utils';
 
-
 export default class Toast extends Service {
-  @service('notification-messages') notifications;
+  @service('notification-messages') notifications!: any;
 
   info(msg: string, title = '', options = {}) {
     this.createToast('info', msg, title, options);
