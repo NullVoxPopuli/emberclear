@@ -1,1 +1,7 @@
-{{yield this.isActive (action this.toggle)}}
+{{yield
+  this.isActive
+  (hash
+    toggle=(action this.toggle)
+    close=(action this.close)
+    open=(action this.open)
+  )}}

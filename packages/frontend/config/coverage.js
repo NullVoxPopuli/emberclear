@@ -4,7 +4,8 @@ module.exports = {
     '*/concat-stats-for/**/*',
     '*/public/**/*',
     '*/translations/**/*',
-    '*/vendor/**/*'
+    '*/vendor/**/*',
+    '*-test.*'
   ],
   parallel: true
 };

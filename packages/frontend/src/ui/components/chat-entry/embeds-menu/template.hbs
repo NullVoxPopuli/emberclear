@@ -1,9 +1,9 @@
 <Dropdown @up={{true}} @buttonIcon='plus' @buttonClass='h-100' as |closeMenu|>
 
-  <ModalStatic @name='code-or-snippet' as |_isActive toggle|>
+  <ModalStatic @name='code-or-snippet' as |_isActive actions|>
     <a
       class='dropdown-item flex align-items-center'
-      {{action (queue (action toggle) closeMenu)}}
+      {{action (queue (action actions.toggle) closeMenu)}}
     >
       <span class='icon m-r-sm'>{{fa-icon 'code'}}</span>
       <span>{{t 'ui.chat.embedMenu.code'}}</span>
@@ -35,6 +35,6 @@
   </a>
 </Dropdown>
 
-<ModalStatic @name='code-or-snippet' as |isActive toggle|>
-  <Snippet @isActive={{isActive}} @close={{action toggle}} @sendTo={{@sendTo}} />
+<ModalStatic @name='code-or-snippet' as |isActive actions|>
+  <Snippet @isActive={{isActive}} @close={{action actions.close}} @sendTo={{@sendTo}} />
 </ModalStatic>

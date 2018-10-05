@@ -52,7 +52,7 @@ variables:
 before_script:
   - time ./run yarn install
 
-List JS/TS:
+Lint JS/TS:
   stage: quality
   dependencies: [ setup ]
   script:
@@ -126,10 +126,10 @@ Merge Coverage:
     - Unit Tests
   script:
     - time ./run yarn merge-coverage
+    - cat ${CI_PROJECT_DIR}/packages/frontend/coverage/coverage-summary.json
   artifacts:
     paths:
       - ${CI_PROJECT_DIR}/packages/frontend/coverage/
-      - cat ${CI_PROJECT_DIR}/packages/frontend/coverage/coverage-summary.json
 
 Build Production:
   stage: build
@@ -170,6 +170,7 @@ Deploy Production:
 
 pages:
   stage: deploy
+  only: [ master ]
   dependencies:
     - Merge Coverage
   script:

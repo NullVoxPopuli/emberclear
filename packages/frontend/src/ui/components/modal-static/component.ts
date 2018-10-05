@@ -21,4 +21,14 @@ export default class ModalStatic extends Component {
   toggle(this: ModalStatic) {
     this.modals.toggle(this.name);
   }
+
+  @action
+  close(this: ModalStatic) {
+    this.modals.close(this.name);
+  }
+
+  @action
+  open(this: ModalStatic) {
+    this.modals.open(this.name);
+  }
 }
