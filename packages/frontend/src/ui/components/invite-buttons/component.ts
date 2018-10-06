@@ -15,7 +15,6 @@ export default class InviteButtons extends Component {
       this.beforeClick();
     }
 
-
     this.modals.toggle(name);
   }
 }
