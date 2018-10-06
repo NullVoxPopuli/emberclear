@@ -2396,11 +2396,28 @@ broccoli-concat-analyser@^4.2.0:
     workerpool "^2.3.1"
     zlib "^1.0.5"
 
-broccoli-concat@^3.2.2, broccoli-concat@^3.5.1, broccoli-concat@^3.7.1:
+broccoli-concat@^3.2.2, broccoli-concat@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.7.1.tgz#22ba97420b33f5254549adc5bc41163f97bd1793"
   dependencies:
     broccoli-debug "^0.6.4"
+    broccoli-kitchen-sink-helpers "^0.3.1"
+    broccoli-plugin "^1.3.0"
+    ensure-posix-path "^1.0.2"
+    fast-sourcemap-concat "^1.4.0"
+    find-index "^1.1.0"
+    fs-extra "^4.0.3"
+    fs-tree-diff "^0.5.7"
+    lodash.merge "^4.3.1"
+    lodash.omit "^4.1.0"
+    lodash.uniq "^4.2.0"
+    walk-sync "^0.3.2"
+
+broccoli-concat@^3.7.3:
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.7.3.tgz#0dca01311567ffb13180e6b4eb111824628e4885"
+  dependencies:
+    broccoli-debug "^0.6.5"
     broccoli-kitchen-sink-helpers "^0.3.1"
     broccoli-plugin "^1.3.0"
     ensure-posix-path "^1.0.2"
@@ -2444,7 +2461,7 @@ broccoli-css-modules@^0.6.2:
     rsvp "^3.2.1"
     symlink-or-copy "^1.1.6"
 
-broccoli-debug@^0.6.1, broccoli-debug@^0.6.3, broccoli-debug@^0.6.4:
+broccoli-debug@^0.6.1, broccoli-debug@^0.6.3, broccoli-debug@^0.6.4, broccoli-debug@^0.6.5:
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/broccoli-debug/-/broccoli-debug-0.6.5.tgz#164a5cdafd8936e525e702bf8f91f39d758e2e78"
   dependencies:
@@ -2843,7 +2860,7 @@ broccoli@^1.1.0:
     tmp "0.0.31"
     underscore.string "^3.2.2"
 
-broccoli@^2.0.0-beta.3:
+broccoli@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/broccoli/-/broccoli-2.0.0.tgz#7b95d6173865184697e4dab9f477591057b9410e"
   dependencies:
@@ -3001,10 +3018,6 @@ builtin-status-codes@^3.0.0:
 builtins@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/builtins/-/builtins-1.0.3.tgz#cb94faeb61c8696451db36534e1422f94f0aee88"
-
-bulma-toast@^1.0.1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/bulma-toast/-/bulma-toast-1.2.0.tgz#654d32627a0f8a09cdcbc6661590bdf09a827c2f"
 
 bulma@^0.7.1:
   version "0.7.1"
@@ -4448,19 +4461,19 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     resolve "^1.3.3"
     semver "^5.3.0"
 
-"ember-cli@github:ember-cli/ember-cli#2805962d1c9188ef36ca7f9abec360cbebbd47a6":
+"ember-cli@github:NullVoxPopuli/ember-cli#1f54b505f09fd7718cf6d4486238a8f91f9e0a58":
   version "3.5.0-beta.1"
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/2805962d1c9188ef36ca7f9abec360cbebbd47a6"
+  resolved "https://codeload.github.com/NullVoxPopuli/ember-cli/tar.gz/1f54b505f09fd7718cf6d4486238a8f91f9e0a58"
   dependencies:
     amd-name-resolver "^1.2.0"
     babel-plugin-transform-es2015-modules-amd "^6.24.1"
     bower-config "^1.3.0"
     bower-endpoint-parser "0.2.2"
-    broccoli "^2.0.0-beta.3"
+    broccoli "^2.0.0"
     broccoli-amd-funnel "^2.0.1"
     broccoli-babel-transpiler "^6.5.0"
     broccoli-builder "^0.18.14"
-    broccoli-concat "^3.5.1"
+    broccoli-concat "^3.7.3"
     broccoli-config-loader "^1.0.1"
     broccoli-config-replace "^1.1.2"
     broccoli-debug "^0.6.4"
@@ -4527,7 +4540,7 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     quick-temp "^0.1.8"
     resolve "^1.8.1"
     rsvp "^4.8.3"
-    sane "^3.0.0"
+    sane "^4.0.0"
     semver "^5.5.0"
     silent-error "^1.1.0"
     sort-package-json "^1.15.0"
@@ -9891,22 +9904,6 @@ sane@^2.5.2:
     anymatch "^2.0.0"
     capture-exit "^1.2.0"
     exec-sh "^0.2.0"
-    fb-watchman "^2.0.0"
-    micromatch "^3.1.4"
-    minimist "^1.1.1"
-    walker "~1.0.5"
-    watch "~0.18.0"
-  optionalDependencies:
-    fsevents "^1.2.3"
-
-sane@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/sane/-/sane-3.1.0.tgz#995193b7dc1445ef1fe41ddfca2faf9f111854c6"
-  dependencies:
-    anymatch "^2.0.0"
-    capture-exit "^1.2.0"
-    exec-sh "^0.2.0"
-    execa "^1.0.0"
     fb-watchman "^2.0.0"
     micromatch "^3.1.4"
     minimist "^1.1.1"

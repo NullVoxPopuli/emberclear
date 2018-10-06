@@ -26,7 +26,7 @@ module('Acceptance | Setup', function(hooks) {
         await visit('/setup');
       });
 
-      test('redirects to warning', async function(assert) {
+      test('redirects to warning', function(assert) {
         assert.equal(currentURL(), '/setup/overwrite');
       });
     });
