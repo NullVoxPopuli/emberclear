@@ -53,12 +53,3 @@
     </WithResponsiveness>
   {{/each}}
 </ul>
-
-{{#if (not (is-present @contacts))}}
-  {{t 'ui.sidebar.contacts.none'}}
-
-  <InviteButtons
-    class='w-100 is-hidden-touch'
-    @beforeClick={{action @closeSidebar}}
-  />
-{{/if}}

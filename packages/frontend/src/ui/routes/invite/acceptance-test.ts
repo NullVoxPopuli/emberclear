@@ -1,24 +1,17 @@
 import { module, skip, test } from 'qunit';
-import { visit as dangerousVisit, currentURL } from '@ember/test-helpers';
+import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import DS from 'ember-data';
 import IdentityService from 'emberclear/src/services/identity/service';
 
 import {
+  visit,
   getService, clearLocalStorage,
   setupCurrentUser, setupRelayConnectionMocks, cancelLongRunningTimers
 } from 'emberclear/tests/helpers';
 
 import { app } from 'emberclear/tests/helpers/pages/app';
-
-async function visit(url: string) {
-  try {
-    await dangerousVisit(url);
-  } catch (e) {
-    console.error(e);
-  }
-}
 
 module('Acceptance | Invitations', function(hooks) {
   setupApplicationTest(hooks);
