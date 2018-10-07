@@ -79,17 +79,6 @@ module.exports = function(defaults) {
     treeShaking: {
       enabled: true,
     },
-    'ember-service-worker': {
-      enabled: true,
-      // registrationStrategy: 'inline'
-      // versionStrategy: 'project-revision'
-    },
-    // 'esw-index': {
-    //   // version,
-    //   includeScope: [
-    //     /^\/$/,
-    //   ]
-    // },
     'asset-cache': {
       version,
       include:[

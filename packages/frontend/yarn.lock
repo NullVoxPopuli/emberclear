@@ -2413,7 +2413,7 @@ broccoli-concat@^3.2.2, broccoli-concat@^3.7.1:
     lodash.uniq "^4.2.0"
     walk-sync "^0.3.2"
 
-broccoli-concat@^3.7.3:
+broccoli-concat@^3.5.1:
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.7.3.tgz#0dca01311567ffb13180e6b4eb111824628e4885"
   dependencies:
@@ -2860,7 +2860,7 @@ broccoli@^1.1.0:
     tmp "0.0.31"
     underscore.string "^3.2.2"
 
-broccoli@^2.0.0:
+broccoli@^2.0.0-beta.3:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/broccoli/-/broccoli-2.0.0.tgz#7b95d6173865184697e4dab9f477591057b9410e"
   dependencies:
@@ -4918,12 +4918,12 @@ ember-service-worker-index@^0.6.6:
     broccoli-merge-trees "^1.2.1"
     broccoli-plugin "^1.3.0"
 
-"ember-service-worker-update-notify@github:NullVoxPopuli/ember-service-worker-update-notify#upgrades":
+ember-service-worker-update-notify@^1.0.2:
   version "1.0.2"
-  resolved "https://codeload.github.com/NullVoxPopuli/ember-service-worker-update-notify/tar.gz/fd2421d3f60e3cef382bd9d16cea3069be9be667"
+  resolved "https://registry.yarnpkg.com/ember-service-worker-update-notify/-/ember-service-worker-update-notify-1.0.2.tgz#b62a91c9df519cfd1e0fb3a3f98533699e44f80d"
   dependencies:
-    ember-cli-babel "^6.16.0"
-    ember-cli-htmlbars "^3.0.0"
+    ember-cli-babel "^6.3.0"
+    ember-cli-htmlbars "^2.0.1"
 
 ember-service-worker@^0.7.0:
   version "0.7.0"
@@ -9904,6 +9904,22 @@ sane@^2.5.2:
     anymatch "^2.0.0"
     capture-exit "^1.2.0"
     exec-sh "^0.2.0"
+    fb-watchman "^2.0.0"
+    micromatch "^3.1.4"
+    minimist "^1.1.1"
+    walker "~1.0.5"
+    watch "~0.18.0"
+  optionalDependencies:
+    fsevents "^1.2.3"
+
+sane@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/sane/-/sane-3.1.0.tgz#995193b7dc1445ef1fe41ddfca2faf9f111854c6"
+  dependencies:
+    anymatch "^2.0.0"
+    capture-exit "^1.2.0"
+    exec-sh "^0.2.0"
+    execa "^1.0.0"
     fb-watchman "^2.0.0"
     micromatch "^3.1.4"
     minimist "^1.1.1"
