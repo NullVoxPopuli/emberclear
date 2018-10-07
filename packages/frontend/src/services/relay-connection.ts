@@ -97,7 +97,7 @@ export default class RelayConnection extends Service {
     const socket = new Socket(url, { params: { uid: publicKey } });
 
     this.set('socket', socket);
-    this.set('channelName', `user:${publicKey}`)
+    this.set('channelName', `user:${publicKey}`);
 
     socket.onError(this.onSocketError);
     socket.onClose(this.onSocketClose);

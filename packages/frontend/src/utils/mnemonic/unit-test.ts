@@ -16,7 +16,7 @@ module('Unit | Utility | mnemonic', function() {
     ['2048']: new Uint8Array([0x8, 0]),
     ['4096']: new Uint8Array([0x10, 0]),
     ['7331']: new Uint8Array([0xA3, 0x1C])
-  }
+  };
 
 
   test('mnemonicFromNaClBoxPrivateKey | converts a private key to english', async function(assert) {

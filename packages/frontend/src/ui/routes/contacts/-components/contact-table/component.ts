@@ -17,6 +17,6 @@ export default class extends Component {
   @action
   remove(identity: Identity) {
     identity.deleteRecord();
-    identity.save()
+    identity.save();
   }
 }

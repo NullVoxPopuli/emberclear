@@ -39,11 +39,11 @@ const behaviors = {
 
         test('navigation does not occur', function(assert) {
           assert.equal(currentURL(), '/login');
-        })
+        });
       });
     }
   }
-}
+};
 
 module('Acceptance | Login', function(hooks) {
   setupApplicationTest(hooks);
@@ -56,12 +56,12 @@ module('Acceptance | Login', function(hooks) {
 
     module('visits /login', function(hooks) {
       hooks.beforeEach(async function() {
-        await visit('/login')
-      })
+        await visit('/login');
+      });
 
       test('redirects', function(assert) {
         assert.equal(currentURL(), '/');
-      })
+      });
     });
   });
 
@@ -72,14 +72,14 @@ module('Acceptance | Login', function(hooks) {
 
     test('is not redirected', function(assert) {
       assert.equal(currentURL(), '/login');
-    })
+    });
 
     behaviors.invalid.clickLogin();
 
     module('the name field is filled in', function(hooks) {
       hooks.beforeEach(async function() {
         await loginForm.typeName('NullVoxPopuli');
-      })
+      });
 
       behaviors.invalid.clickLogin();
     });
@@ -90,7 +90,7 @@ module('Acceptance | Login', function(hooks) {
       });
 
       behaviors.invalid.clickLogin();
-    })
+    });
 
     module('both name and mnemonic are filled in', function(hooks) {
       module('with valid values', function(hooks) {

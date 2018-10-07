@@ -10,7 +10,7 @@ function disableOpenGraphFetching(hooks: NestedHooks, respondWith = {}) {
   hooks.beforeEach(function () {
     stubService('relay-manager', {
       getOpenGraph: (_url: string) => (respondWith)
-    })
+    });
   });
 }
 
@@ -45,8 +45,8 @@ module('Integration | Component | embedded-resource', function(hooks) {
       hooks.beforeEach(async function(this: TestContext) {
         this.set('someUrl', 'https://i.imgur.com/gCyUdeb.gifv');
         // await render(hbs`<EmbeddedResource @url=someUrl />`);
-        await render(hbs`{{embedded-resource url=someUrl}}`)
-      })
+        await render(hbs`{{embedded-resource url=someUrl}}`);
+      });
 
 
       skip('the rendered content is not blank', function(assert) {

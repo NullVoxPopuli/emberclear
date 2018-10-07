@@ -22,7 +22,7 @@ export default class FileChooser extends Component {
       const content = event.target!.result;
 
       this.onChoose(content);
-    }
+    };
 
     fileReader.readAsText(file);
   }

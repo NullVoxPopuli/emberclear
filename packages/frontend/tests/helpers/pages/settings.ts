@@ -11,8 +11,8 @@ export const settings = {
   togglePrivateKey: () => click(`${wrapper} [data-test-show-private-key-toggle]`),
 
   privateKeyText: () => find(`${wrapper} [data-test-mnemonic]`)
-}
+};
 
 export default {
   settings
-}
+};

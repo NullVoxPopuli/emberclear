@@ -25,7 +25,7 @@ module('Acceptance | Send/Receive Encryption', function(hooks) {
     const encrypted = await dispatcher.encryptMessage(message, bob.publicKey, alice.privateKey);
 
     // bob receives from alice
-    const decrypted = await processor.decryptMessage(encrypted, alice.publicKey, bob.privateKey)
+    const decrypted = await processor.decryptMessage(encrypted, alice.publicKey, bob.privateKey);
 
 
     assert.deepEqual(decrypted, message);

@@ -65,5 +65,5 @@ module('Acceptance | Sidebar Visibility', function(hooks) {
         });
       });
     });
-  })
+  });
 });

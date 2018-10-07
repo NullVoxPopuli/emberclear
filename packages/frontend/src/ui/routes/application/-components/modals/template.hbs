@@ -1,0 +1,28 @@
+<MultipleFromElsewhere @name='modals' />
+
+{{!--
+  Static Modals / Modals that will /
+  could get toggleed from _multiple_ places.
+--}}
+<ModalStatic @name='add-friend' as |isActive actions|>
+  <AddContact @isActive={{isActive}} @close={{actions.close}} />
+</ModalStatic>
+
+<ModalStatic @name='show-my-info' as |isActive actions|>
+  <ShowMyInfo @isActive={{isActive}} @close={{actions.close}} />
+</ModalStatic>
+
+<ModalStatic @name='keyboard-shortcuts' as |isActive actions|>
+  <KeyboardShortcuts @isActive={{isActive}} @close={{actions.close}} />
+
+  <KeyboardPress @key='ctrl+KeyH' @onDown={{action actions.toggle}} />
+  <KeyboardPress @key='ctrl+Slash' @onDown={{action actions.toggle}} />
+</ModalStatic>
+
+<ModalStatic @name='search' as |isActive actions|>
+  <Search @isActive={{isActive}} @close={{actions.close}} />
+
+  <KeyboardPress @key='ctrl+KeyK' @onDown={{action actions.toggle}} />
+</ModalStatic>
+
+

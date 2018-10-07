@@ -35,7 +35,7 @@ export default class KeyboardPress extends KeyboardAwareComponent {
       event.stopPropagation();
 
       fn();
-    }
+    };
   }
 
 

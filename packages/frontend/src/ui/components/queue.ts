@@ -1,6 +1,6 @@
 import { helper as buildHelper } from '@ember/component/helper';
 
-type Action = (...args: any[]) => any
+type Action = (...args: any[]) => any;
 
 // similar to
 // https://github.com/DockYard/ember-composable-helpers/blob/master/addon/helpers/queue.js

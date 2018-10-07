@@ -9,7 +9,7 @@ import { fromHex } from 'emberclear/src/utils/string-encoding';
 const fakeIdentity = `{
   "name": "fake name",
   "publicKey": "fake NaCl public key"
-}`
+}`;
 
 export default class AddModal extends Component {
   @service('notifications') toast!: Toast;
@@ -27,7 +27,7 @@ export default class AddModal extends Component {
 
   @action
   async importIdentity() {
-    const identity = JSON.parse(this.identityToImport)
+    const identity = JSON.parse(this.identityToImport);
 
     await this.tryCreate(identity);
 

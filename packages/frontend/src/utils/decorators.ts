@@ -19,7 +19,7 @@ export function _disableInFastboot<T>(_target: any, _propertyKey: string, descri
       if (isFastBoot(this)) return fbReturn;
 
       return oldValue.apply(this, args);
-    }
+    };
 
     return descriptor;
   }
@@ -29,7 +29,7 @@ export function _disableInFastboot<T>(_target: any, _propertyKey: string, descri
       if (isFastBoot(this)) return fbReturn;
 
       return oldGet.apply(this);
-    }
+    };
   }
 
   return descriptor;
@@ -44,11 +44,11 @@ export function syncToLocalStorage<T>(target: any, propertyKey: string, descript
     const json = (lsValue && JSON.parse(lsValue)) || {};
 
     return json.value;
-  }
+  };
 
   descriptor.set = (value) => {
     const lsValue = JSON.stringify({ value });
 
     localStorage.setItem(key, lsValue);
-  }
+  };
 }

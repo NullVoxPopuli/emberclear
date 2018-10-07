@@ -4469,11 +4469,11 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     babel-plugin-transform-es2015-modules-amd "^6.24.1"
     bower-config "^1.3.0"
     bower-endpoint-parser "0.2.2"
-    broccoli "^2.0.0"
+    broccoli "^2.0.0-beta.3"
     broccoli-amd-funnel "^2.0.1"
     broccoli-babel-transpiler "^6.5.0"
     broccoli-builder "^0.18.14"
-    broccoli-concat "^3.7.3"
+    broccoli-concat "^3.5.1"
     broccoli-config-loader "^1.0.1"
     broccoli-config-replace "^1.1.2"
     broccoli-debug "^0.6.4"
@@ -4540,7 +4540,7 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     quick-temp "^0.1.8"
     resolve "^1.8.1"
     rsvp "^4.8.3"
-    sane "^4.0.0"
+    sane "^3.0.0"
     semver "^5.5.0"
     silent-error "^1.1.0"
     sort-package-json "^1.15.0"
@@ -4918,12 +4918,12 @@ ember-service-worker-index@^0.6.6:
     broccoli-merge-trees "^1.2.1"
     broccoli-plugin "^1.3.0"
 
-ember-service-worker-update-notify@^1.0.2:
+"ember-service-worker-update-notify@github:NullVoxPopuli/ember-service-worker-update-notify#upgrades":
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/ember-service-worker-update-notify/-/ember-service-worker-update-notify-1.0.2.tgz#b62a91c9df519cfd1e0fb3a3f98533699e44f80d"
+  resolved "https://codeload.github.com/NullVoxPopuli/ember-service-worker-update-notify/tar.gz/fd2421d3f60e3cef382bd9d16cea3069be9be667"
   dependencies:
-    ember-cli-babel "^6.3.0"
-    ember-cli-htmlbars "^2.0.1"
+    ember-cli-babel "^6.16.0"
+    ember-cli-htmlbars "^3.0.0"
 
 ember-service-worker@^0.7.0:
   version "0.7.0"

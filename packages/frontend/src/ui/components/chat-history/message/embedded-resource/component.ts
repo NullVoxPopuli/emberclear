@@ -55,7 +55,7 @@ export default class EmbeddedResource extends Component {
 
     if (ytMatches && ytMatches[2]) {
       this.set('isYouTube', true);
-      const videoId = ytMatches[2]
+      const videoId = ytMatches[2];
       const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}`;
 
       this.set('embedUrl', embedUrl);

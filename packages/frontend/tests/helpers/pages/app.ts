@@ -13,8 +13,8 @@ export const app = {
     clickLogout: () => click('[data-test-user-dropdown] [data-test-logout]'),
     logoutButton: () => find('[data-test-user-dropdown] [data-test-logout]')
   }
-}
+};
 
 export default {
   app
-}
+};

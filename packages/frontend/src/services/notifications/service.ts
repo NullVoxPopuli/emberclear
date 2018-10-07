@@ -81,7 +81,7 @@ export default class Notifications extends Service {
         if (permission === 'granted') {
           this.set('askToEnableNotifications', false);
 
-          return resolve()
+          return resolve();
         }
 
         return reject();

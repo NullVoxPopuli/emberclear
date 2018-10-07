@@ -7,4 +7,4 @@ export const loginForm = {
   typeMnemonic: (mnemonic: string) => fillIn(`${wrapper} [data-test-mnemonic]`, mnemonic),
 
   submit: () => click(`${wrapper} [data-test-submit-login]`)
-}
+};

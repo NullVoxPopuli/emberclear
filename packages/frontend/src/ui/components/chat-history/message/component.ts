@@ -13,7 +13,7 @@ import Identity from 'emberclear/data/models/identity/model';
 import { matchAll } from 'emberclear/src/utils/string/utils';
 
 // https://www.regextester.com/98192
-const URL_PATTERN = /(((http|https)\:\/\/)|(www)){1}[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\&\.\/\?\:@\-_=#])*/gi
+const URL_PATTERN = /(((http|https)\:\/\/)|(www)){1}[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\&\.\/\?\:@\-_=#])*/gi;
 
 const converter = new showdown.Converter({
   simplifiedAutoLink: true,
@@ -72,7 +72,7 @@ export default class extends Component {
     const languages = this.parseLanguages(text);
 
     languages.forEach(language => {
-      this.prismManager.addLanguage.perform(language)
+      this.prismManager.addLanguage.perform(language);
     });
   }
 

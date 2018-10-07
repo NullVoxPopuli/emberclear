@@ -15,32 +15,22 @@ module.exports = function(defaults) {
   let disabledAddons = [];
   let environment = EmberApp.env();
   let isProduction = environment === 'production';
-  let isTest = environment === 'test';
 
-  let enableSW = process.env.ENABLE_SW;
-  let disableServiceWorker = !isProduction && !enableSW;
+  let swDisabled = process.env.SW_DISABLED;
   let version = gitRev.short();
 
   console.log('\n---------------');
   console.log('environment: ', environment);
   console.log('isProduction: ', isProduction);
-  console.log('ENABLE_SW: ', enableSW);
+  console.log('SW_DISABLED: ', swDisabled);
   console.log('git version: ', version);
-  console.log('Service Worker Will Be Disabled: ', disableServiceWorker);
   console.log('---------------\n');
-
-  if (disableServiceWorker) {
-     // disable service workers by default for dev and testing
-     disabledAddons.push('ember-service-worker');
-   }
 
 
   let app = new EmberApp(defaults, {
     // eslint slows down the dev-build-debug cycle significantly
     // hinting: false disables linting at build time.
     hinting: false,
-    // tests: isTest,
-    // tests: true,
     minifyJS: { enabled: false },
     minifyCSS: { enabled: isProduction },
 
@@ -78,7 +68,6 @@ module.exports = function(defaults) {
     },
     addons: { blacklist: disabledAddons },
     prember: {
-      enabled: isProduction,
       urls: [
         '/',
         '/faq',
@@ -91,7 +80,8 @@ module.exports = function(defaults) {
       enabled: true,
     },
     'ember-service-worker': {
-      registrationStrategy: 'inline'
+      enabled: true,
+      // registrationStrategy: 'inline'
       // versionStrategy: 'project-revision'
     },
     // 'esw-index': {

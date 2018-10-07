@@ -31,7 +31,7 @@ export default class MessageFactory extends Service {
       from: this.identity.uid,
       sender: this.identity.record,
       ...attributes
-    })
+    });
   }
 }
 

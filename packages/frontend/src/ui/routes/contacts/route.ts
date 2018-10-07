@@ -20,7 +20,7 @@ export default class ContactsRoute extends Route {
 
   @disableInFastboot
   async model(this: ContactsRoute) {
-    const records = await this.store.findAll('identity', { backgroundReload: true })
+    const records = await this.store.findAll('identity', { backgroundReload: true });
 
     return RSVP.hash({
       identities: records

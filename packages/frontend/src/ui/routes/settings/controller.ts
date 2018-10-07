@@ -30,7 +30,7 @@ export default class extends Controller {
     this.toast.info('Deleting messages...');
     this.set('messagesDeleted', true);
 
-    const messages = await this.store.findAll('message')
+    const messages = await this.store.findAll('message');
     await messages.invoke('destroyRecord');
 
     this.toast.info('All messages have been cleared.');

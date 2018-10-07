@@ -32,7 +32,7 @@ module('Unit | Utility | nacl', function() {
     const sender = await nacl.generateAsymmetricKeys();
 
     let bigMsg: number[] = [];
-    for (let i = 0; i < 128; i++) { bigMsg = bigMsg.concat([104, 101, 108, 108, 111]) }
+    for (let i = 0; i < 128; i++) { bigMsg = bigMsg.concat([104, 101, 108, 108, 111]); }
 
     const msgAsUint8 = Uint8Array.from(bigMsg); // hello * 128 = 640 Bytes
     const ciphertext = await nacl.encryptFor(msgAsUint8, receiver.publicKey, sender.privateKey);

@@ -11,8 +11,8 @@ export const sidebar = {
 
   isOpen: () => !!find(`${wrapper} .is-sidebar-visible`),
   isPresent: () => !!find(`${wrapper} ${sidebarContainer}`),
-}
+};
 
 export default {
   sidebar
-}
+};

@@ -78,7 +78,7 @@ export default class MessageDispatcher extends Service {
       msg.set('sendError', error);
 
       if (error.match(/not found/)) {
-        this.statusManager.markOffline(toUid)
+        this.statusManager.markOffline(toUid);
       }
     }
   }

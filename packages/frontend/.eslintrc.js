@@ -23,6 +23,7 @@ module.exports = {
     browser: true
   },
   rules: {
+    'semi': ['error', 'always'],
     // 'prettier/prettier': 'error',
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
     'no-console': 'warn',

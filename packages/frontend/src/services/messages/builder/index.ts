@@ -6,7 +6,7 @@ export function buildSender(sender: Identity): RelayJson['sender'] {
     name: sender.name!,
     uid: sender.uid,
     location: ''
-  }
+  };
 }
 
 export function buildMessage(msg: Message): RelayJson['message'] {
