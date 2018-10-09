@@ -9,7 +9,7 @@ export function cancelLongRunningTimers(hooks: NestedHooks) {
 
     window._breakTimerLoopsId = later(() => {
       run.cancelTimers();
-    }, 500);
+    }, 1000);
   });
 
   hooks.afterEach(function() {
