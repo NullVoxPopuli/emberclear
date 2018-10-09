@@ -146,7 +146,6 @@ Analyze Bundle:
   stage: build
   dependencies: [ setup ]
   only: [ master ]
-  allow_failure: true
   script:
     - time ./run yarn analyze
   artifacts:
