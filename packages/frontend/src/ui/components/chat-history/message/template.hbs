@@ -39,7 +39,10 @@
     {{#if (is-present urls)}}
       <div class='flex flex-wrap'>
         {{#each urls as |url|}}
-          <EmbeddedResource class='flex' @url={{url}} />
+          {{!--  TODO why would this ever be falsey? --}}
+          {{#if url}}
+            <EmbeddedResource class='flex' @url={{url}} />
+          {{/if}}
         {{/each}}
       </div>
     {{/if}}
