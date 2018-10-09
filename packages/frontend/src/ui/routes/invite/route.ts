@@ -7,6 +7,7 @@ import { disableInFastboot } from 'emberclear/src/utils/decorators';
 import { IQueryParams } from './controller';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
+import RedirectManager from 'emberclear/services/redirect-manager/service';
 import IdentityService from 'emberclear/services/identity/service';
 
 export default class InviteRoute extends Route {
@@ -14,11 +15,16 @@ export default class InviteRoute extends Route {
   @service identity!: IdentityService;
   @service contactManager!: ContactManager;
   @service channelManager!: ChannelManager;
+  @service redirectManager!: RedirectManager;
 
   @disableInFastboot
   async beforeModel(transition: any) {
     // identity should be loaded from application route
     if (this.identity.isLoggedIn) return await this.acceptInvite(transition);
+
+    this.toast.info('Please login or create your account before the invite can be accepted');
+
+    this.redirectManager.persistURL();
 
     // no identity, need to create one
     this.transitionTo('setup');
