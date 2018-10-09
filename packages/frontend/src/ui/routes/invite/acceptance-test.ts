@@ -4,6 +4,7 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import DS from 'ember-data';
 import IdentityService from 'emberclear/src/services/identity/service';
+import RedirectManager from 'emberclear/src/services/redirect-manager/service';
 
 import {
   visit,
@@ -28,10 +29,17 @@ module('Acceptance | Invitations', function(hooks) {
       assert.equal(currentURL(), '/setup/new');
     });
 
+    test('there is now a pending redirect', function(assert) {
+      const redirect = getService<RedirectManager>('redirect-manager');
+
+      assert.ok(redirect.hasPendingRedirect);
+    });
 
     test('the url is stored in localstorage for use later', function(assert) {
-      // TODO:
-      assert.expect(0);
+      const redirect = getService<RedirectManager>('redirect-manager');
+      const url = redirect.attemptedRoute;
+
+      assert.equal(url, '/invite?name=Test&publicKey=abcdef123456');
     });
   });
 
@@ -51,7 +59,7 @@ module('Acceptance | Invitations', function(hooks) {
         test('a toast is displayed with an error', function(assert) {
           const text = app.toast()!.textContent!;
 
-          assert.ok(text.includes('Invalid Invite Link'));
+          assert.ok(text.includes('Invalid Invite Link'), 'Toast says invite is invalid');
         });
       });
 
@@ -67,7 +75,7 @@ module('Acceptance | Invitations', function(hooks) {
         test('a toast is displayed with an error', function(assert) {
           const text = app.toast()!.textContent!;
 
-          assert.ok(text.includes('Invalid Invite Link'));
+          assert.ok(text.includes('Invalid Invite Link'), 'Toast says invite is invalid');
         });
       });
 
@@ -86,7 +94,7 @@ module('Acceptance | Invitations', function(hooks) {
         test('a toast is displayed with an error', function(assert) {
           const text = app.toast()!.textContent!;
 
-          assert.ok(text.includes('There was a problem'));
+          assert.ok(text.includes('There was a problem'), 'Toast says there is a problem');
         });
       });
 
@@ -107,7 +115,10 @@ module('Acceptance | Invitations', function(hooks) {
           test('a toast is displayed with a warning', function(assert) {
             const text = app.toast()!.textContent!;
 
-            assert.ok(text.includes(`You can't invite yourself...`));
+            assert.ok(
+              text.includes(`You can't invite yourself...`),
+              'Toast says you cannot invite yourself'
+            );
           });
         });
 

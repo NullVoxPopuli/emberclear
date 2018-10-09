@@ -21,10 +21,9 @@ export default class RedirectManager extends Service {
   }
 
   persistURL() {
-    const location = (this.router as any).location.location as Location;
-    const url = `${location.pathname}${location.search}`;
+    const location = (this.router as any).location;
 
-    this.set('attemptedRoute', url);
+    this.set('attemptedRoute', location.path);
   }
 
   evaluate() {

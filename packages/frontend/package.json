@@ -33,7 +33,7 @@
     "lint:fix": "bash -c 'yarn lint --fix'",
     "deploy": "yarn ember deploy production",
     "bundle-analyze": "yarn broccoli-concat-analyser ./concat-stats-for",
-    "analyze": "yarn build:production:analyze && yarn bundle-analyze && cp ./concat-stats-for/index.html ./public/bundle.html"
+    "analyze": "./scripts/analyze.sh"
   },
   "dependencies": {
     "bulma": "^0.7.1",
