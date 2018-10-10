@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
 import { or } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
+import { task } from 'ember-concurrency-decorators';
 
 import RelayConnection from 'emberclear/services/relay-connection';
 import RelayManager from 'emberclear/services/relay-manager';
@@ -28,9 +29,12 @@ export default class EmbeddedResource extends Component {
   title?: string;
   siteName?: string;
 
-  constructor() {
-    super(...arguments);
+  didInsertElement() {
+    this.setup.perform();
+  }
 
+
+  @task * setup(this: EmbeddedResource) {
     this.parseUrl();
     this.fetchOpenGraph();
   }
