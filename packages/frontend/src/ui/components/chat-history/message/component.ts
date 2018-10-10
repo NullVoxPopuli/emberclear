@@ -10,10 +10,7 @@ import { PromiseMonitor } from 'ember-computed-promise-monitor';
 import PrismManager from 'emberclear/services/prism-manager';
 import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
-import { matchAll } from 'emberclear/src/utils/string/utils';
-
-// https://www.regextester.com/98192
-const URL_PATTERN = /(((http|https)\:\/\/)|(www)){1}[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\&\.\/\?\:@\-_=#])*/gi;
+import { parseLanguages, parseURLs } from 'emberclear/src/utils/string/utils';
 
 const converter = new showdown.Converter({
   simplifiedAutoLink: true,
@@ -54,10 +51,9 @@ export default class extends Component {
 
   @computed('messageBody')
   get urls() {
-    const urls = this.message.body!.match(URL_PATTERN);
-    if (urls === null) return [];
+    const content = this.message.body!;
 
-    return urls.map(u => u.replace('gifv', 'mp4'));
+    return parseURLs(content);
   }
 
   didInsertElement() {
@@ -69,23 +65,13 @@ export default class extends Component {
   }
 
   private async addLanguages(text: string) {
-    const languages = this.parseLanguages(text);
+    const languages = parseLanguages(text);
 
     languages.forEach(language => {
       this.prismManager.addLanguage.perform(language);
     });
   }
 
-  private parseLanguages(text: string): string[] {
-    let languages: string[] = [];
-
-    const matches = matchAll(text, /```(\w+)/g);
-
-
-    matches.forEach(match => languages.push(match[1]));
-
-    return languages;
-  }
 
   private makeCodeBlocksFancy() {
     const pres = this.element.querySelectorAll('pre');
