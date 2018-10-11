@@ -27,10 +27,7 @@ module.exports = function(environment) {
         'ember-metal-tracked-properties': true,
         EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true,
       },
-      EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse.
-        Date: false,
-      },
+      EXTEND_PROTOTYPES: false,
     },
 
     i18n: {
@@ -53,7 +50,7 @@ module.exports = function(environment) {
     },
 
     routerScroll: {
-      scrollElement: '[data-scroll-container]',
+      scrollElement: '#scrollContainer',
     },
 
     APP: {
