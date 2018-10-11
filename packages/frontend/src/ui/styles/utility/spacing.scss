@@ -23,26 +23,28 @@ $positions: (
   @return if($key == 'none', 0, $value + $sizeUnit);
 }
 
-@each $size in $sizes {
-  $sizeKey: nth($size, 1);
-  $sizeValue: nth($size, 2);
+@mixin spacingUtils($modifier) {
+  @each $size in $sizes {
+    $sizeKey: nth($size, 1);
+    $sizeValue: nth($size, 2);
 
-  .#{$marginKey}#{$separator}#{$sizeKey} {
-    margin: sizeValue($sizeKey, $sizeValue);
-  }
-  .#{$paddingKey}#{$separator}#{$sizeKey} {
-    padding: sizeValue($sizeKey, $sizeValue);
-  }
-
-  @each $position in $positions {
-    $posKey: nth($position, 1);
-    $posValue: nth($position, 2);
-
-    .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
-      margin-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+    .#{$marginKey}#{$separator}#{$sizeKey}#{$modifier} {
+      margin: sizeValue($sizeKey, $sizeValue);
     }
-    .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
-      padding-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+    .#{$paddingKey}#{$separator}#{$sizeKey}#{$modifier} {
+      padding: sizeValue($sizeKey, $sizeValue);
+    }
+
+    @each $position in $positions {
+      $posKey: nth($position, 1);
+      $posValue: nth($position, 2);
+
+      .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey}#{$modifier} {
+        margin-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+      }
+      .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey}#{$modifier} {
+        padding-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+      }
     }
   }
 }
@@ -50,3 +52,18 @@ $positions: (
 .no-magins {
   margin: 0 !important;
 }
+
+@include mobile {
+  @include spacingUtils('-mobile');
+}
+
+@include tablet {
+  @include spacingUtils('-tablet');
+}
+
+// @include desktop {
+//   @include spacingUtils('-desktop');
+// }
+
+
+@include spacingUtils('');

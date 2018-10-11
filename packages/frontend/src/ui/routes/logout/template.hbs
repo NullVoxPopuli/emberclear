@@ -1,11 +1,18 @@
-<section class='hero is-danger is-large'>
-  <div class='hero-body'>
-    <h1 class='title'>
+<section class='
+  is-fullheight
+  has-background-danger has-text-white
+  centered-content align-items-start-mobile align-items-center-tablet'
+>
+
+  <div class='w-100 p-md-mobile p-xl-tablet'>
+    <h1 class='title has-text-white p-b-lg p-t-lg-mobile p-t-lg-none-tablet'>
       {{t 'ui.logout.title'}}
     </h1>
-    <h2 class='subtitle'>
+
+    <h2 class='subtitle has-text-white'>
       {{t 'ui.logout.warning'}}
-      {{#link-to 'settings' class='underline'}}
+
+      {{#link-to 'settings' class='underline has-text-white'}}
         {{t 'ui.logout.theSettingsPage'}}
       {{/link-to}}
     </h2>

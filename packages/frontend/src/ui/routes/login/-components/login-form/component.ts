@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { RouterService } from 'ember';
 
 import { service } from '@ember-decorators/service';
+import { action } from '@ember-decorators/object';
 import { alias } from '@ember-decorators/object/computed';
 import { dropTask } from 'ember-concurrency-decorators';
 
@@ -20,6 +21,7 @@ export default class LoginForm extends Component {
 
   mnemonic = '';
   name = '';
+  scanning = false;
 
   @alias('identity.isLoggedIn') isLoggedIn!: boolean;
 
@@ -48,5 +50,20 @@ export default class LoginForm extends Component {
       console.error(e);
       this.toast.error('There was a problem processing your file...');
     }
+  }
+
+  @action
+  toggleScanning(this: LoginForm) {
+    this.set('scanning', !this.scanning);
+  }
+
+  @action
+  onScan(this: LoginForm, settingsJson: string) {
+    this.uploadSettings.perform(settingsJson);
+  }
+
+  @action
+  onScanError(e: Error) {
+    this.toast.error(e.message);
   }
 }
