@@ -118,6 +118,7 @@
     "ember-service-worker-asset-cache": "^0.6.2",
     "ember-service-worker-cache-fallback": "^0.6.1",
     "ember-service-worker-index": "^0.6.6",
+    "ember-service-worker-update-notify": "^1.0.2",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/ebb15e4e16e333567bc162b916f9eabdc595f37f.tgz",
     "ember-template-lint": "1.0.0-beta.5",
     "ember-test-selectors": "^1.0.0",
@@ -133,10 +134,9 @@
     "prettier": "^1.12.1",
     "qunit-dom": "^0.8.0",
     "sass": "^1.13.2",
-    "ember-service-worker-update-notify": "^1.0.2",
     "sass-lint": "^1.12.1",
     "typescript": "~3.1.1",
-    "typescript-eslint-parser": "^19.0.2"
+    "typescript-eslint-parser": "^20.0.0"
   },
   "_": {
     "ember-service-worker-update-notify": "github:NullVoxPopuli/ember-service-worker-update-notify#upgrades"
