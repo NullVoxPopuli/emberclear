@@ -45,6 +45,14 @@ export default class Settings extends Service {
     return new PromiseMonitor(promise);
   }
 
+
+  @computed('identity.privateKey', 'identity.publicKey')
+  get settingsObject() {
+    const promise = this.buildSettings();
+
+    return new PromiseMonitor<ISettingsJson | undefined>(promise);
+  }
+
   async import(settings: string) {
     const json = JSON.parse(settings);
 
@@ -60,7 +68,7 @@ export default class Settings extends Service {
     const publicKey = await derivePublicKey(privateKey);
 
     channels.forEach(async ( channel: IChannelJson ) => {
-      await this.channelManager.findOrCreate(channel.id, channel.name);
+      return await this.channelManager.findOrCreate(channel.id, channel.name);
     });
 
     contacts.forEach(async ( contact: IContactJson ) => {
@@ -78,6 +86,12 @@ export default class Settings extends Service {
   }
 
   async buildData(): Promise<string | undefined> {
+    const toDownload = await this.buildSettings();
+
+    return objectToDataURL(toDownload);
+  }
+
+  async buildSettings(): Promise<ISettingsJson | undefined> {
     const { name, publicKey, privateKey } = this.identity;
 
     if (!privateKey) return;
@@ -100,7 +114,7 @@ export default class Settings extends Service {
       }))
     };
 
-    return objectToDataURL(toDownload);
+    return toDownload;
   }
 }
 

@@ -36,6 +36,18 @@
         {{t 'ui.settings.download' }}
       </a>
 
+      <button
+        class='button'
+        {{action (mut this.showQRSettings) (not this.showQRSettings)}}
+      >
+        {{t 'ui.settings.copyProfileToDevice'}}
+      </button>
+
+      {{#if this.showQRSettings}}
+        <SettingsAsQrCode />
+      {{/if}}
+
+
       <hr>
 
       <h2 class='is-size-4'>{{t 'ui.settings.danger.title' }}</h2>

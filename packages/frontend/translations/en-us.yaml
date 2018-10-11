@@ -5,6 +5,9 @@ authoredBy: by Preston Sego
 
 todo: 'TODO: fill this out correctly'
 
+qrCode:
+  error: QR Code could not be generated
+
 connection:
   connecting: Connecting...
   connected: Connected!
@@ -105,7 +108,7 @@ ui:
   search:
     title: Search for things
     description: Search coming soon
-  
+
   shortcuts:
     title: Keyboard Shortcuts
     key:
@@ -148,14 +151,14 @@ ui:
       removed: removed
     messages:
       received: 'Received: {at}'
-    
+
     embedMenu:
       code: Code or text snippet
       embed: Embed from URL
       file: Send File from Computer
       video: Start Video Chat
       audio: Start Audio Chat
-    
+
     codeModal:
       title: Send Code or Snippet to <strong>{to}</strong>
 
@@ -240,6 +243,7 @@ ui:
 
   settings:
     title: Settings
+    copyProfileToDevice: Copy Profile to Device
     hideKey: Hide private key
     showKey: Show private key
     download: Download Settings

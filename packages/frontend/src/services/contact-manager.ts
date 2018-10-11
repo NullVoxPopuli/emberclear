@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
+import { run } from '@ember/runloop';
 
 import Identity from 'emberclear/data/models/identity/model';
 
@@ -10,11 +11,13 @@ export default class ContactManager extends Service {
   @service store!: DS.Store;
 
   async findOrCreate(uid: string, name: string): Promise<Identity> {
-    try {
-      return await this.findAndSetName(uid, name);
-    } catch (e) {
-      return await this.create(uid, name);
-    }
+    return await run(async () => {
+      try {
+        return await this.findAndSetName(uid, name);
+      } catch (e) {
+        return await this.create(uid, name);
+      }
+    });
   }
 
   async findAndSetName(uid: string, name: string): Promise<Identity> {

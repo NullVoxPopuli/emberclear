@@ -1,41 +1,61 @@
 <FocusCard @title={{t 'ui.login.title'}}>
 
-  <Field>
-    {{input
-      data-test-name
-      class='input'
-      value=name
-      placeholder=(t 'input.placeholder.name')
-    }}
-  </Field>
+  {{#if this.scanning}}
+    <QRScanner
+      @onScan={{action this.onScan}}
+      @onError={{action this.onScanError}}
+      @onCancel={{action this.toggleScanning}}
+    />
+  {{/if}}
 
-  <Field>
-    {{input
-      data-test-mnemonic
-      class='input'
-      value=mnemonic
-      placeholder=(t 'input.placeholder.mnemonic')
-    }}
-  </Field>
+  {{#unless this.scanning}}
+    <Field>
+      {{input
+        data-test-name
+        class='input'
+        value=name
+        placeholder=(t 'input.placeholder.name')
+      }}
+    </Field>
 
-  <div class='flex justify-content-end'>
-    <FileChooser @onChoose={{perform uploadSettings}} as |chooser|>
+    <Field>
+      {{input
+        data-test-mnemonic
+        class='input'
+        value=mnemonic
+        placeholder=(t 'input.placeholder.mnemonic')
+      }}
+    </Field>
+
+    <div class='flex justify-content-end'>
+
       <button
-        data-test-upload-settings
+        data-test-scan-settings
         class='button'
-        {{action chooser.openFileChooser}}
+        {{action this.toggleScanning}}
       >
-        {{t 'buttons.uploadSettings'}}
+        {{t 'buttons.scan'}}
       </button>
-    </FileChooser>
 
-    <button
-      data-test-submit-login
-      class='m-l-md button'
-      {{action (perform login)}}
-    >
-      {{t 'buttons.login'}}
-    </button>
-  </div>
+      <FileChooser @onChoose={{perform uploadSettings}} as |chooser|>
+        <button
+          data-test-upload-settings
+          class='m-l-md button'
+          {{action chooser.openFileChooser}}
+        >
+          {{t 'buttons.uploadSettings'}}
+        </button>
+      </FileChooser>
+
+      <button
+        data-test-submit-login
+        class='m-l-md button'
+        {{action (perform login)}}
+      >
+        {{t 'buttons.login'}}
+      </button>
+
+    </div>
+  {{/unless}}
 
 </FocusCard>

@@ -1,19 +1,23 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
+import { run } from '@ember/runloop';
 import { service } from '@ember-decorators/service';
 
 import Channel from 'emberclear/data/models/channel';
 import ArrayProxy from '@ember/array/proxy';
 
+
 export default class ChannelManager extends Service {
   @service store!: DS.Store;
 
   async findOrCreate(id: string, name: string): Promise<Channel> {
-    try {
-      return await this.findAndSetName(id, name);
-    } catch (e) {
-      return await this.create(id, name);
-    }
+    return await run(async () => {
+      try {
+        return await this.findAndSetName(id, name);
+      } catch (e) {
+        return await this.create(id, name);
+      }
+    });
   }
 
   async findAndSetName(id: string, name: string): Promise<Channel> {
