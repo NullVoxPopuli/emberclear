@@ -3,8 +3,8 @@
 >
   <span>{{t 'ui.sidebar.channels.title'}}</span>
 
-  <a class='button is-small' {{action (mut isFormVisible) true}}>
-    <span class='icon'>
+  <a class='button is-small' {{action this.toggleForm}}>
+    <span class='icon' data-test-channel-form-toggle>
       {{#if isFormVisible}}
         {{fa-icon 'times'}}
       {{else}}
@@ -15,7 +15,7 @@
 </p>
 
 {{#if isFormVisible}}
-  <ChannelForm @onSubmit={{action (mut isFormVisible) false}} />
+  <ChannelForm @onSubmit={{action this.toggleForm}} />
 {{/if}}
 
 <ul class='menu-list'>

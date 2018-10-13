@@ -68,7 +68,7 @@ export default class extends Component {
     const languages = parseLanguages(text);
 
     languages.forEach(language => {
-      this.prismManager.addLanguage.perform(language);
+      this.prismManager.addLanguage.perform(language, this.element);
     });
   }
 

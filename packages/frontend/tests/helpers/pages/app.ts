@@ -1,4 +1,7 @@
-import { find, click, waitFor } from '@ember/test-helpers';
+import {
+  find, click, waitFor, fillIn,
+  triggerKeyEvent
+} from '@ember/test-helpers';
 
 const toast = '[data-test-notification-message]';
 
@@ -19,7 +22,7 @@ export const app = {
   footer: {
     faq: () => find('[data-test-footer-faq]') as HTMLElement,
     clickFaq: () => click('[data-test-footer-faq]')
-  }
+  },
 };
 
 export default {

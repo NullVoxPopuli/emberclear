@@ -102,12 +102,14 @@ export default class PrismManager extends Service {
   // TODO: fetch these files asyncily, so we can manage state, and know
   // when to call highlightAll
   @task({ maxConcurrency: 1 })
-  * addLanguage(language: string) {
+  * addLanguage(language: string, element?: HTMLElement) {
     language = this._expandLanguageAbbreviation(language);
 
     yield this.addEssentials.perform();
 
-    if (this.alreadyAdded.includes(language)) return;
+    if (this.alreadyAdded.includes(language) && element) {
+      return Prism.highlightAllUnder(element);
+    }
 
     const path = `${PRISM_URL}/components/prism-${language}.min.js`;
 
