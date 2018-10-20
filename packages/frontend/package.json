@@ -114,7 +114,7 @@
     "ember-rollup": "^2.0.0",
     "ember-router-helpers": "github:rwjblue/ember-router-helpers",
     "ember-router-scroll": "^1.0.0",
-    "ember-service-worker": "^0.7.0",
+    "ember-service-worker": "github:NullVoxPopuli/ember-service-worker#blind-fix-for-issue-125",
     "ember-service-worker-asset-cache": "^0.6.2",
     "ember-service-worker-cache-fallback": "^0.6.1",
     "ember-service-worker-index": "^0.6.6",
