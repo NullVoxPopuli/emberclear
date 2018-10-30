@@ -1,4 +1,3 @@
-import RSVP from 'rsvp';
 import DS from 'ember-data';
 import Component from '@ember/component';
 
@@ -61,7 +60,7 @@ export default class extends Component {
   }
 
   getName(id: string, modelType: string, prefix = '') {
-    const promise: Promise<string> = new RSVP.Promise(async (resolve /*, reject */) => {
+    const promise: Promise<string> = new Promise(async (resolve /*, reject */) => {
       const record = await this.store.findRecord(modelType, id);
 
       resolve(`${prefix}${record.name}`);

@@ -2,8 +2,6 @@ import Service from '@ember/service';
 import { computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
-import RSVP from 'rsvp';
-
 import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/decorators';
 
 import Toast from 'emberclear/src/services/toast';
@@ -73,7 +71,7 @@ export default class Notifications extends Service {
   }
 
   askPermission() {
-    return new RSVP.Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       if (!this.isBrowserCapableOfNotifications()) return reject();
       if (this.isPermissionDenied()) return reject();
 

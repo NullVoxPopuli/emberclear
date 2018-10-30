@@ -1,4 +1,3 @@
-import RSVP from 'rsvp';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
@@ -72,7 +71,7 @@ export default class Settings extends Service {
     });
 
     contacts.forEach(async ( contact: IContactJson ) => {
-      if (!contact.publicKey || !contact.name) return RSVP.resolve();
+      if (!contact.publicKey || !contact.name) return Promise.resolve();
 
       return await this.contactManager.findOrCreate(contact.publicKey, contact.name);
     });

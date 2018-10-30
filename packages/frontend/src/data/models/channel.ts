@@ -16,3 +16,10 @@ export default class Channel extends Model {
 
   @hasMany('identity')  members!: Identity[];
 }
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your models.
+declare module 'ember-data' {
+  interface ModelRegistry {
+    'channel': Channel;
+  }
+}

@@ -1,4 +1,4 @@
-import { DS } from 'ember-data';
+import DS from 'ember-data';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
@@ -52,7 +52,7 @@ export default class MessageProcessor extends Service {
   }
 
   async importMessage(json: RelayJson) {
-    const { type, message: msg, sender: senderInfo } = json;
+    const { type, target, message: msg, sender: senderInfo } = json;
 
     const sender = await this.findOrCreateSender(senderInfo);
 
@@ -60,6 +60,7 @@ export default class MessageProcessor extends Service {
 
     const message = this.store.createRecord('message', {
       type,
+      target,
       sender,
       from: sender.uid,
       to: this.identity.uid,
