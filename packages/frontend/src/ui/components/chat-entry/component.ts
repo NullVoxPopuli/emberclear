@@ -2,18 +2,20 @@ import Component from '@ember/component';
 import { later } from '@ember/runloop';
 
 import { action, computed } from '@ember-decorators/object';
+import { reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
-import Identity from 'emberclear/data/models/identity/model';
+import Identity from 'emberclear/src/data/models/identity/model';
+import Channel from 'emberclear/src/data/models/channel';
 
 
 export default class ChatEntry extends Component {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
   @service('messages/factory') messageFactory!: MessageFactory;
 
-  to!: Identity;
+  to!: Identity | Channel;
   // value from the input field
   text?: string;
   // disable the text field while sending
@@ -27,20 +29,17 @@ export default class ChatEntry extends Component {
     mainInput.onkeydown = this.onKeyUp.bind(this);
   }
 
-  @computed('to.name')
-  get messageTarget() {
-    if (this.to) {
-      return this.to.name;
-    }
-
-    // TODO: i18n
-    // TODO: support more channels
-    return 'Everyone in your contacts';
-  }
+  @reads('to.name') messageTarget!: string;
 
   @computed('messageTarget')
   get placeholder() {
-    return `Send a message to ${this.messageTarget}`;
+    let prefix = '';
+
+    if (this.to instanceof Channel) {
+      prefix = 'everyone in ';
+    }
+
+    return `Send a message to ${prefix}${this.messageTarget}`;
   }
 
   @action

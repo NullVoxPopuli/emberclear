@@ -13,11 +13,6 @@ declare global {
   }
 
 
-  interface RenderingContext {
-    client: any;
-    server: any;
-  }
-
   interface Router {
     currentURL: string;
   }
@@ -91,6 +86,7 @@ declare global {
 
   interface RelayJson {
     type: string;
+    target: string;
     client: string;
     client_version: string;
     time_sent: Date;

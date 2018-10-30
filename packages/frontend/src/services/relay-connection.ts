@@ -1,4 +1,3 @@
-import RSVP from 'rsvp';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
@@ -111,7 +110,7 @@ export default class RelayConnection extends Service {
   async getChannel(this: RelayConnection): Promise<Channel> {
     const { socket, channelName, intl } = this;
 
-    const promise: Promise<Channel> = new RSVP.Promise((resolve, reject) => {
+    const promise: Promise<Channel> = new Promise((resolve, reject) => {
       if (this.channel) {
         return resolve(this.channel);
       }

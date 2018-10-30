@@ -7,31 +7,22 @@ import { IModel as ChatModel } from 'emberclear/ui/routes/chat/route';
 import { disableInFastboot } from 'emberclear/src/utils/decorators';
 
 interface IModelParams {
-  u_id: string;
+  channel_id: string;
 }
 
-export default class ChatPrivatelyRoute extends Route {
+export default class ChatInChannelRoute extends Route {
   @service identity!: IdentityService;
 
   @disableInFastboot
-  beforeModel(transition: any) {
-    const params = transition.params['chat.privately-with'];
-    const { u_id } = params as IModelParams;
-
-    if (u_id === this.identity.uid) {
-      this.transitionTo('chat.privately-with', 'me');
-    }
-  }
-
-  @disableInFastboot
   async model(params: IModelParams) {
-    const { u_id } = params;
+    const { channel_id } = params;
 
-    const record = await this.store.findRecord('identity', u_id);
+    const targetChannel = await this.store.findRecord('channel', channel_id);
+    // TODO: filter these messages down
     const chatModel = this.modelFor('chat') as ChatModel;
 
     return {
-      targetIdentity: record,
+      targetChannel,
       messages: chatModel.messages
     };
   }

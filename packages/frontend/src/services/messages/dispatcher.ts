@@ -8,7 +8,8 @@ import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';
 import Message from 'emberclear/data/models/message';
-import Identity from 'emberclear/data/models/identity/model';
+import Identity from 'emberclear/src/data/models/identity/model';
+import Channel from 'emberclear/src/data/models/channel';
 import StatusManager from 'emberclear/services/status-manager';
 import MessageFactory from 'emberclear/services/messages/factory';
 
@@ -24,36 +25,48 @@ export default class MessageDispatcher extends Service {
   @service statusManager!: StatusManager;
   @service('messages/factory') messageFactory!: MessageFactory;
 
-  async send(text: string, to: Identity) {
-    const msg = this.messageFactory.buildWhisper(text, to);
+  async send(text: string, to: Identity | Channel) {
+    const message = this.messageFactory.buildChat(text, to);
 
-    await msg.save();
+    await message.save();
 
-    if (to.id === 'me') return;
+    if (to instanceof Identity) {
+      if (to.id === 'me') return;
 
-    // TODO: channels?
-    return await this.sendToUser.perform(msg, to);
+      return await this.sendToUser.perform(message, to);
+    }
+
+    // Otherwise, Channel Message
+    return this.sendToChannel(message, to);
   }
 
   async pingAll() {
-    const ping = this.store.createRecord('message', {
-      from: this.identity.name,
-      sentAt: new Date(),
-      type: 'ping'
-    });
+    const ping = this.messageFactory.buildPing();
 
     this.sendToAll.perform(ping);
   }
 
   // the downside to end-to-end encryption
   // the bigger the list of identities, the longer this takes
+  //
+  // TODO: should this be hard-limited to just messages like PINGs?
   @task * sendToAll(this: MessageDispatcher, msg: Message) {
     const everyone = yield this.store.findAll('identity');
 
-    everyone.forEach(identity => {
+    everyone.forEach(( identity: Identity ) => {
       if (identity.id === 'me') return; // don't send to self
 
       this.sendToUser.perform(msg, identity);
+    });
+  }
+
+  sendToChannel(msg: Message, channel: Channel) {
+    const members = channel.members;
+
+    members.forEach(member => {
+      if (member.id === this.identity.id) return; // don't send to self
+
+      this.sendToUser.perform(msg, member);
     });
   }
 

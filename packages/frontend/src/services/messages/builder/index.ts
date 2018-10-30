@@ -23,6 +23,7 @@ export function buildMessage(msg: Message): RelayJson['message'] {
 export function build(msg: Message, sender: Identity): RelayJson {
   return {
     type: msg.type,
+    target: msg.target,
     client: '',
     client_version: '',
     time_sent: msg.sentAt,
