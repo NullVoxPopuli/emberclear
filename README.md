@@ -9,6 +9,16 @@ An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) pro
 
 emberclear is published at: https://emberclear.io
 
+## Another Chat App?
+
+Yes, there is a lack of trust that manifests when existing chat apps are closed source and centralized. Emberclear, by design, is trustless -- meaning that, while there is a server component, the server knows nothing more than your "_public_ key".  The server(s) are also meant to be hot-swappable members of a mesh network, so no one implementation matters, as long as the same protcol is used.
+
+<a href='https://docs.google.com/spreadsheets/d/116MpTXfga_f8N0tLSY_Glt_fd4GIag9T5-P_mag7RlQ/edit#gid=0'  target='_blank'>
+  Here is a table of detailing out same differences between emberclear and other chat apps:
+  <img src='https://gitlab.com/NullVoxPopuli/emberclear/raw/master/images/comparison.png'>
+</a>
+
+
 ## Development
 
 Note: the frontend code is in `packages/frontend`. This is to separate the over-arching  repo files from the individual project(s).
