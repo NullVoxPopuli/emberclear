@@ -1,5 +1,4 @@
-// import Component from 'sparkles-component';
-import Component from '@ember/component';
+import Component, { tracked } from 'sparkles-component';
 import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import { not, notEmpty } from '@ember-decorators/object/computed';
@@ -15,35 +14,30 @@ interface IArgs {
   message: Message;
 }
 
-// export default class DeliveryConfirmation extends Component<IArgs> {
-export default class DeliveryConfirmation extends Component {
+export default class DeliveryConfirmation extends Component<IArgs> {
   @service identity!: IdentityService;
 
-  timedOut = false;
+  @tracked timedOut = false;
 
   @not('wasReceived') wasSent!: boolean;
-  // @notEmpty('args.message.deliveryConfirmations') hasDeliveryConfirmations!: boolean;
-  @notEmpty('message.deliveryConfirmations') hasDeliveryConfirmations!: boolean;
+  @notEmpty('args.message.deliveryConfirmations') hasDeliveryConfirmations!: boolean;
+
+  @computed('args.message.to')
+  get wasReceived() {
+    return this.args.message.to === this.identity.uid;
+  }
 
   didInsertElement() {
     this.waitForConfirmation.perform();
   }
 
-  // @computed('args.message.to')
-  @computed('message.to')
-  get wasReceived() {
-    // return this.args.message.to === this.identity.uid;
-    return this.message.to === this.identity.uid;
-  }
-
-  // TODO: ember-concurrency doesn't work with sparkles?
   @dropTask * waitForConfirmation(this: DeliveryConfirmation) {
     if (this.timedOut) return;
 
     yield timeout(TIMEOUT_MS);
 
     if (!this.hasDeliveryConfirmations) {
-      this.set('timedOut', true);
+      this.timedOut = true;
     }
   }
 }

@@ -1,16 +1,25 @@
 <div class='confirmations'>
+
   {{#if this.wasSent}}
     {{#if this.hasDeliveryConfirmations}}
+
       {{fa-icon 'check' size='sm'}}
+
     {{else if this.timedOut}}
+
       <div class='has-hover-tip'>
         {{fa-icon 'exclamation-circle'}}
+
         <HoverTip @class='w-left-200'>
           {{t 'status.deliveryFailed'}}
         </HoverTip>
       </div>
+
     {{else}}
+
       <EllipsisLoader />
+
     {{/if}}
   {{/if}}
+
 </div>
