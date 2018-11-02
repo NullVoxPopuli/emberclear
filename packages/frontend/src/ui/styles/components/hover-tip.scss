@@ -4,12 +4,18 @@
   &:hover {
     .hover-tip {
       opacity: 1;
+      bottom: 20px;
     }
   }
 
   .hover-tip {
     &:hover {
       opacity: 1;
+    }
+
+    &.w-left-200 {
+      width: 200px;
+      left: -200px;
     }
   }
 }
@@ -29,7 +35,7 @@
   color: black;
   z-index: 10;
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   left: 0;
   padding: 5px;
   border-radius: 2px;

@@ -135,6 +135,7 @@
     "qunit-dom": "^0.8.0",
     "sass": "^1.13.2",
     "sass-lint": "^1.12.1",
+    "sparkles-component": "^1.1.0",
     "typescript": "~3.1.1",
     "typescript-eslint-parser": "^20.0.0"
   },

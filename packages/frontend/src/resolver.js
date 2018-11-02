@@ -13,6 +13,7 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
 moduleConfig.types = Object.assign(moduleConfig.types, {
   config: { definitiveCollection: 'main' },
   util: { definitiveCollection: 'utils' },
+  'component-manager': { definitiveCollection: 'main' },
   // ember-intl
   'ember-intl@adapter': { definitiveCollection: 'main' },
   'ember-intl@translation': { definitiveCollection: 'main' },

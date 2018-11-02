@@ -10,11 +10,9 @@ export function buildSender(sender: Identity): RelayJson['sender'] {
 }
 
 export function buildMessage(msg: Message): RelayJson['message'] {
-  const { channel, thread, body, contentType } = msg;
+  const { body, contentType } = msg;
 
   return {
-    channel,
-    thread,
     body,
     contentType
   };
@@ -22,6 +20,8 @@ export function buildMessage(msg: Message): RelayJson['message'] {
 
 export function build(msg: Message, sender: Identity): RelayJson {
   return {
+    id: msg.id,
+    to: msg.to,
     type: msg.type,
     target: msg.target,
     client: '',

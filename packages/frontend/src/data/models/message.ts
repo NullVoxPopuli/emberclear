@@ -1,5 +1,5 @@
 import Model from 'ember-data/model';
-import { attr, belongsTo } from '@ember-decorators/data';
+import { attr, belongsTo, hasMany } from '@ember-decorators/data';
 
 import Identity from 'emberclear/data/models/identity/model';
 
@@ -47,7 +47,7 @@ export enum TYPE {
   EMOTE = 'emote',
   PING = 'ping',
   DISCONNECT = 'disconnect',
-  DELIVERY_CONFIRMATION = 'delivery-confirmation'
+  DELIVERY_CONFIRMATION = 'delivery-confirmation',
 }
 
 export enum TARGET {
@@ -58,7 +58,12 @@ export enum TARGET {
 }
 
 
-  export default class Message extends Model {
+/**
+ * NOTE:
+ * GUID - used for message receipts / delivery confirmation
+ *        and threads
+ * */
+export default class Message extends Model {
 
   /**
    * from: the id of an identity
@@ -66,7 +71,9 @@ export enum TARGET {
   @attr() from!: string;
 
   /**
-   * identityId | channelId // should these have different formats?;
+   * identityId | channelId | messageId
+   *
+   * TODO: should these have different formats?;
    * */
   @attr() to!: string;
 
@@ -103,6 +110,11 @@ export enum TARGET {
   @attr() sendError?: string;
 
   @belongsTo('identity', { async: true }) sender?: Identity;
+
+  // @belongsTo('message', { async: false, inverse: 'deliveryConfirmations' }) confirmationFor?: Message;
+  // @hasMany('message', { async: false, inverse: 'confirmationFor' }) deliveryConfirmations?: Message[];
+  @hasMany('message', { async: false }) deliveryConfirmations?: Message[];
+
 
   // currently unused
   @attr() contentType!: string;

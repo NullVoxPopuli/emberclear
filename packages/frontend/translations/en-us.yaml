@@ -66,6 +66,7 @@ input:
     name: Name
 
 status:
+  deliveryFailed: 'Message could not be delivered'
   importing: Importing ...
   updateAvailable: A new version is available, click here to update.
 

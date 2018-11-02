@@ -85,6 +85,8 @@ declare global {
   }
 
   interface RelayJson {
+    id: string;
+    to: string;
     type: string;
     target: string;
     client: string;
@@ -96,8 +98,6 @@ declare global {
       location: string;
     },
     message: {
-      channel: string;
-      thread: string;
       body: string;
       contentType: string
     }
