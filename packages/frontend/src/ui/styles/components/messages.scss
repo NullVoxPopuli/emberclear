@@ -12,6 +12,7 @@
 }
 
 .message {
+  position: relative;
   background-color: transparent;
 
   &:hover {
@@ -23,6 +24,14 @@
   }
 
   p { padding: 5px; }
+
+  .confirmations {
+    font-size: 0.8rem;
+    position: absolute;
+    right: 0rem;
+    bottom: 0rem;
+    opacity: 0.5;
+  }
 
   .message-body {
     border: none;

@@ -1,10 +1,12 @@
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
+import uuid from 'uuid';
 
 import IdentityService from 'emberclear/services/identity/service';
 import { TYPE, TARGET } from 'emberclear/src/data/models/message';
 import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
+import Message from 'emberclear/src/data/models/message';
 
 export default class MessageFactory extends Service {
   @service store!: any;
@@ -32,15 +34,17 @@ export default class MessageFactory extends Service {
     return this.build({ type: TYPE.PING });
   }
 
-  // buildEmote(text: string) {
-  //   return this._build({
-  //     body: text,
-  //     type: TYPE.EMOTE
-  //   });
-  // }
+  buildDeliveryConfirmation(forMessage: Message): Message {
+    return this.build({
+      target: TARGET.MESSAGE,
+      type: TYPE.DELIVERY_CONFIRMATION,
+      to: forMessage.id
+    });
+  }
 
   private build(attributes = {}) {
     return this.store.createRecord('message', {
+      id: uuid(),
       sentAt: new Date(),
       from: this.identity.uid,
       sender: this.identity.record,
