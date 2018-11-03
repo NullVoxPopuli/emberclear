@@ -16,7 +16,7 @@
   background-color: transparent;
 
   &:hover {
-    background: $white-ter;
+    background: lighten($background, 5);
   }
 
   &:not(:last-child) {
@@ -30,7 +30,9 @@
     position: absolute;
     right: 0rem;
     bottom: 0rem;
-    opacity: 0.5;
+    svg {
+      opacity: 0.5;
+    }
   }
 
   .message-body {
@@ -39,7 +41,7 @@
   }
 
   .message-header {
-    color: black;
+    color: $text;
     padding: 5px;
     background-color: transparent;
     cursor: default;

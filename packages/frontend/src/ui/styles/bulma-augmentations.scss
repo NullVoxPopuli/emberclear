@@ -18,11 +18,11 @@
 
   &.is-primary {
     a.navbar-burger {
-      color: white;
+      color: $text;
     }
 
     > a.navbar-item {
-      color: white;
+      color: $text;
     }
   }
 
@@ -85,8 +85,4 @@ pre code .number {
   padding: initial;
   text-align: initial;
   vertical-align: initial;
-}
-
-.message:hover {
-  background: #fbfbfb;
 }

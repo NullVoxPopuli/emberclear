@@ -15,17 +15,12 @@ $dropdown-content-radius: $radius-small;
 $navbar-dropdown-radius: $radius-small;
 $navbar-dropdown-boxed-shadow: $box-shadow;
 
-// body.darkly {
-  // @import 'themes/bulmaswatch/darkly/variables';
-// }
-
 @import 'themes/default';
+// @import 'themes/bulmaswatch/superhero/variables';
 
 @import 'node_modules/bulma/bulma';
 
-// body.darkly {
-  // @import 'themes/bulmaswatch/darkly/overrides.scss';
-// }
+// @import 'themes/bulmaswatch/superhero/overrides.scss';
 
 $tablet: 480px;
 
@@ -176,17 +171,17 @@ pre {
 
 .resizable-textarea {
 textarea, .textarea-size {
-    max-height: 7rem;
+  max-height: 7rem;
   overflow: hidden;
   width: 100%;
 }
 
-  textarea {
+textarea {
   height: 100%;
   position: absolute;
   resize:none;
   white-space: normal;
-  }
+}
 
   .textarea-size {
     visibility: hidden;
