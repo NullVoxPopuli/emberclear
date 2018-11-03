@@ -1,19 +1,3 @@
-// Color Variables
-// https://bulma.io/documentation/overview/variables/
-
-
-// Colors
-// $primary: #650360;
-// $info:    #00A4D9;
-// $success: #5eadb2;
-// $warning: #fce473;
-// $danger:  #ed6c63;
-
-// // Border radius
-// $radius: 0;
-$card-background-color: #f7f7f7;
-
-
 // https://github.com/jgthms/bulma/blob/master/sass/utilities/initial-variables.sass#L46,L57
 // custom breakpoints
 // be divisible by 12 and 16
@@ -31,7 +15,17 @@ $dropdown-content-radius: $radius-small;
 $navbar-dropdown-radius: $radius-small;
 $navbar-dropdown-boxed-shadow: $box-shadow;
 
+// body.darkly {
+  // @import 'themes/bulmaswatch/darkly/variables';
+// }
+
+@import 'themes/default';
+
 @import 'node_modules/bulma/bulma';
+
+// body.darkly {
+  // @import 'themes/bulmaswatch/darkly/overrides.scss';
+// }
 
 $tablet: 480px;
 
@@ -44,6 +38,7 @@ $tablet: 480px;
 @import "utility/events";
 @import "utility/transitions";
 @import "utility/position";
+@import "utility/colors";
 @import "components/hover-tip";
 @import "components/messages";
 @import "components/sidebar";
@@ -55,6 +50,10 @@ $tablet: 480px;
 //   height: 100%;
 //   height: 100vh;
 // }
+
+html {
+  overflow: hidden;
+}
 
 body {
   @include sticky-footer-container;

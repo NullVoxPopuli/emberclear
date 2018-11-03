@@ -1,6 +1,6 @@
 .sidebar-container {
   position: fixed;
-  background: white;
+  background: $sidebar-background;
   z-index: 29;
   box-shadow: $box-shadow;
   min-width: 250px;
@@ -14,7 +14,7 @@
     left: 0;
 
     .sidebar-buttons {
-      border-right: 1px solid lightgray;
+      border-right: 1px solid darken($sidebar-background, 10%);
     }
   }
 
@@ -26,7 +26,7 @@
     top: 52px;
     width: 3.25rem;
     z-index: 31;
-    background: white;
+    background: $sidebar-background;
   }
 
   aside {
@@ -58,7 +58,6 @@
 
 @include mobile {
   .sidebar-container {
-    // min-width: 240px;
     top: 0px;
     z-index: 31;
 

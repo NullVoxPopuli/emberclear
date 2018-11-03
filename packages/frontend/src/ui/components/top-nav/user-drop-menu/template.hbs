@@ -1,63 +1,66 @@
-<a
-  data-test-user-dropdown-toggle
-  class='navbar-link'
-  style='z-index: 31'
-  {{action (mut this.showDropdown) (not this.showDropdown)}}
->
-  <span class='icon'>{{fa-icon 'user-circle' prefix='fas'}}</span>
-  <span>{{this.name}}</span>
-
-</a>
-
-<div
-  data-test-user-dropdown
-  class='navbar-dropdown dropdown-right transition-all'
-  style='z-index: 31'>
+<div class='navbar-item has-dropdown {{if this.showDropdown 'is-active'}}'>
   <a
-    class='navbar-item'
-    {{action (queue
-      (action this.closeMenu)
-      (transition-to 'contacts'))
-    }}
+    data-test-user-dropdown-toggle
+    class='navbar-link'
+    style='z-index: 31'
+    {{action this.toggleMenu}}
   >
-    <span class='icon'>{{fa-icon 'address-book' prefix='fas'}}</span>
-    <span>{{t 'routes.contacts'}}</span>
+    <span class='icon'>{{fa-icon 'user-circle' prefix='fas'}}</span>
+    <span>{{this.name}}</span>
+
   </a>
 
-  <a
-    class='navbar-item'
-    {{action (queue
-      (action this.closeMenu)
-      (transition-to 'settings'))
-    }}
-  >
-    <span class='icon'>{{fa-icon 'sliders-h' prefix='fas'}}</span>
-    <span>{{t 'routes.settings'}}</span>
-  </a>
+  <div
+    data-test-user-dropdown
+    id={{this.dropDownId}}
+    class='navbar-dropdown'
+    style='z-index: 31; min-width: 200px'>
+    <a
+      class='navbar-item'
+      {{action (queue
+        (action this.closeMenu)
+        (transition-to 'contacts'))
+      }}
+    >
+      <span class='icon'>{{fa-icon 'address-book' prefix='fas'}}</span>
+      <span>{{t 'routes.contacts'}}</span>
+    </a>
 
-  <hr class='navbar-divider'>
+    <a
+      class='navbar-item'
+      {{action (queue
+        (action this.closeMenu)
+        (transition-to 'settings'))
+      }}
+    >
+      <span class='icon'>{{fa-icon 'sliders-h' prefix='fas'}}</span>
+      <span>{{t 'routes.settings'}}</span>
+    </a>
 
-  <InviteButtons @beforeClick={{action this.closeMenu}} />
+    <hr class='navbar-divider'>
 
-  <hr class='navbar-divider'>
+    <InviteButtons @beforeClick={{action this.closeMenu}} />
 
-  <a
-    data-test-logout
-    class='navbar-item'
-    {{action (queue
-      (action this.closeMenu)
-      (transition-to 'logout'))
-    }}
-  >
-    <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
-    <span>{{t 'routes.logout'}}</span>
-  </a>
+    <hr class='navbar-divider'>
+
+    <a
+      data-test-logout
+      class='navbar-item'
+      {{action (queue
+        (action this.closeMenu)
+        (transition-to 'logout'))
+      }}
+    >
+      <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
+      <span>{{t 'routes.logout'}}</span>
+    </a>
+  </div>
+
+  <div
+    role='button'
+    aria-label={{t 'buttons.ariaLabel.menuBackdrop'}}
+    class='full-overlay {{if this.showDropdown 'is-active'}}'
+    style='z-index: 30'
+    {{action this.closeMenu}}
+  />
 </div>
-
-<div
-  role='button'
-  aria-label={{t 'buttons.ariaLabel.menuBackdrop'}}
-  class='full-overlay {{if this.showDropdown 'is-active'}}'
-  style='z-index: 30'
-  {{action this.closeMenu}}
-/>

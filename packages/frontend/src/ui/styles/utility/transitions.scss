@@ -10,6 +10,10 @@
   @include default-transition;
 }
 
+.transition-all-fast {
+  @include default-transition-fast;
+}
+
 .fade-out {
   opacity: 0;
 }
