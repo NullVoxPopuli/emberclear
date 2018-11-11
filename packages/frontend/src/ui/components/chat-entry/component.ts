@@ -42,6 +42,11 @@ export default class ChatEntry extends Component {
     return `Send a message to ${prefix}${this.messageTarget}`;
   }
 
+  @computed('text', 'isDisabled')
+  get isSubmitDisabled() {
+    return  !this.text || this.text.length === 0 || this.isDisabled;
+  }
+
   @action
   async sendMessage(this: ChatEntry) {
     if (!this.text) return;

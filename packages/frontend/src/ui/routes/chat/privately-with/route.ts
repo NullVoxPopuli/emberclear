@@ -12,6 +12,7 @@ interface IModelParams {
 
 export default class ChatPrivatelyRoute extends Route {
   @service identity!: IdentityService;
+  @service toast!: Toast;
 
   @disableInFastboot
   beforeModel(transition: any) {
@@ -27,7 +28,15 @@ export default class ChatPrivatelyRoute extends Route {
   async model(params: IModelParams) {
     const { u_id } = params;
 
-    const record = await this.store.findRecord('identity', u_id);
+    let record;
+
+    try {
+      record = await this.store.findRecord('identity', u_id);
+    } catch (e) {
+      this.toast.error(e);
+
+      this.transitionTo('chat.index');
+    }
     const chatModel = this.modelFor('chat') as ChatModel;
 
     return {
