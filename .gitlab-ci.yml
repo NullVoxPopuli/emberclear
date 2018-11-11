@@ -50,6 +50,7 @@ variables:
 # TODO: HACK: for now, it's faster to install everything
 #       than it is to rely on gitlab's slow cache
 before_script:
+  - time npm install -g yarn@latest
   - time ./run yarn install
 
 Lint JS/TS:
