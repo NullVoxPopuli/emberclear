@@ -6,6 +6,9 @@ import {
 const toast = '[data-test-notification-message]';
 
 export const app = {
+  selectors: {
+    toast: '[data-test-notification-message]',
+  },
   toast: () => find(toast),
   toastText: () => find(toast)!.textContent,
   dismissToast: () => click(toast),

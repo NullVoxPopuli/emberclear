@@ -13,9 +13,9 @@ import Channel from 'emberclear/src/data/models/channel';
 import StatusManager from 'emberclear/services/status-manager';
 import MessageFactory from 'emberclear/services/messages/factory';
 
-import { encryptFor } from 'emberclear/src/utils/nacl/utils';
-import { toUint8Array, toBase64, toHex } from 'emberclear/src/utils/string-encoding';
-import { build as toPayloadJson } from './builder';
+import { toHex } from 'emberclear/src/utils/string-encoding';
+import { build as toPayloadJson } from './-utils/builder';
+import { encryptForSocket } from './-utils/encryptor';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
@@ -71,13 +71,12 @@ export default class MessageDispatcher extends Service {
   }
 
   @task * sendToUser(msg: Message, to: Identity) {
-    const myPrivateKey = this.identity.privateKey as Uint8Array;
     const theirPublicKey = to.publicKey as Uint8Array;
     const uid = toHex(theirPublicKey);
 
     const payload = toPayloadJson(msg, this.identity.record!);
 
-    const encryptedMessage = yield this.encryptMessage(payload, theirPublicKey, myPrivateKey);
+    const encryptedMessage = yield encryptForSocket(payload, to, this.identity.record!);
 
     try {
       yield this.relayConnection.send(uid, encryptedMessage);
@@ -94,15 +93,6 @@ export default class MessageDispatcher extends Service {
         this.statusManager.markOffline(toUid);
       }
     }
-  }
-
-  async encryptMessage(payload: any, theirPublicKey: Uint8Array, myPrivateKey: Uint8Array): Promise<string> {
-    const payloadString = JSON.stringify(payload);
-    const payloadBytes = toUint8Array(payloadString);
-
-    const encryptedMessage = await encryptFor(payloadBytes, theirPublicKey, myPrivateKey);
-
-    return await toBase64(encryptedMessage);
   }
 }
 

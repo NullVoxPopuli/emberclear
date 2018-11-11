@@ -1,9 +1,9 @@
-<div class='confirmations'>
+<div data-test-confirmations class='confirmations'>
 
   {{#if this.wasSent}}
     {{#if this.hasDeliveryConfirmations}}
 
-      {{fa-icon 'check' size='sm'}}
+      {{fa-icon 'check' size='sm' aria-label='message delivered successfully'}}
 
     {{else if this.timedOut}}
 

@@ -84,6 +84,27 @@ declare global {
     message: string;
   }
 
+  interface ChannelMember {
+    id: string;
+    name: string;
+  }
+
+  interface MemberResult {
+    id: string;
+    result: boolean;
+    time: string;
+  }
+
+  interface ChannelInvitation {
+    invitePublicKey: string;
+    result: MemberResult[];
+  }
+
+  interface ChannelBlock {
+    blockedPublicKey: string;
+    result: MemberResult[];
+  }
+
   interface RelayJson {
     id: string;
     to: string;
@@ -100,6 +121,12 @@ declare global {
     message: {
       body: string;
       contentType: string
+    },
+    channelInfo?: {
+      name: string;
+      members: ChannelMember[];
+      pendingInvitations: ChannelInvitation[];
+      blocked: ChannelBlock[];
     }
   }
 }

@@ -48,6 +48,7 @@ export enum TYPE {
   PING = 'ping',
   DISCONNECT = 'disconnect',
   DELIVERY_CONFIRMATION = 'delivery-confirmation',
+  INFO_CHANNEL_SYNC = 'info-channel-sync',
 }
 
 export enum TARGET {

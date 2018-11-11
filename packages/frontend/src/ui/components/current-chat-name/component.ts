@@ -20,7 +20,7 @@ export default class extends Component {
 
   @computed('router.currentURL')
   get chatName() {
-    if (this.fastboot.isFastBoot) return;
+    if (this.fastboot.isFastBoot) return '';
 
     const url = this.router.currentURL;
     const privateMatches = PRIVATE_CHAT_REGEX.exec(url);

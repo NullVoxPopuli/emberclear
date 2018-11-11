@@ -1,12 +1,23 @@
 import { stubService } from './stub-service';
 
-export function setupRelayConnectionMocks(hooks: NestedHooks) {
+interface IMockServiceTarget {
+  in: string;
+  as: string;
+}
+
+export function setupRelayConnectionMocks(
+  hooks: NestedHooks,
+  overrides = {},
+  targets: IMockServiceTarget[] = []
+) {
   hooks.beforeEach(function () {
     stubService('relay-connection', {
-      connect() { return; }
+      connect() { return; },
+      ...overrides
     }, [
       { in: 'route:application', as: 'relayConnection' },
-      { in: 'route:chat', as: 'relayConnection' }
+      { in: 'route:chat', as: 'relayConnection' },
+      ...targets,
     ]);
   });
 }
