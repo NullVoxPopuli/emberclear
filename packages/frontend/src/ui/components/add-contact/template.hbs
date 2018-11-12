@@ -1,4 +1,8 @@
-<Modal @isActive={{@isActive}} @close={{action @close}}>
+<Modal
+  data-test-add-contact
+  @isActive={{@isActive}}
+  @close={{action @close}}
+>
 
   {{#if this.scanning}}
     <QRScanner
