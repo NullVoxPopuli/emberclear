@@ -1,10 +1,12 @@
 <p
+  data-test-sidebar-contacts
   class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'
 >
   <span>{{t 'ui.sidebar.contacts.title'}}</span>
   <span>
 
     <a
+      data-test-share-info
       class='button is-small'
       {{action (queue
         (action @closeSidebar)
@@ -15,6 +17,7 @@
     </a>
 
     <a
+      data-test-add-friend
       class='button is-small'
       {{action (queue
         (action @closeSidebar)

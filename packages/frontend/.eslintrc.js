@@ -29,7 +29,10 @@ module.exports = {
     'no-console': 'warn',
     'no-cond-assign': 'off',
     'no-useless-escape': 'off',
-    'require-yield': 'off'
+    'require-yield': 'off',
+
+    // doesn't support deep nesting
+    'qunit/no-identical-names': 'warn'
   },
   overrides: [
     {

@@ -1,6 +1,10 @@
 {{! template-lint-disable attribute-indentation}}
 
-<Modal @isActive={{@isActive}} @close={{action @close}}>
+<Modal
+  data-test-share-info
+  @isActive={{@isActive}}
+  @close={{action @close}}
+>
   <h3 class='title-is-3'>{{t 'ui.showMyInfo.title'}}</h3>
   {{t 'ui.showMyInfo.description'}}
   <br>

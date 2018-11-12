@@ -13,6 +13,7 @@ import {
 
 
 import { sidebar } from 'emberclear/tests/helpers/pages/sidebar';
+import { app } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Sidebar', function(hooks) {
   setupApplicationTest(hooks);
@@ -23,6 +24,54 @@ module('Acceptance | Sidebar', function(hooks) {
   hooks.beforeEach(async function() {
     await visit('/chat');
     await sidebar.toggle();
+  });
+
+  module('Contacts', function(hooks) {
+    test('the modals are hidden', function(assert) {
+      assert.ok(app.modals.addContact.isHidden(), 'Add Contact is hidden');
+      assert.ok(app.modals.shareInfo.isHidden(), 'Share Info is hidden');
+    });
+
+    module('the add contact button is clicked', function(hooks) {
+      hooks.beforeEach(async function() {
+        await sidebar.contacts.clickAdd();
+      });
+
+      test('the modal is visible', function(assert) {
+        assert.notOk(app.modals.addContact.isHidden());
+      });
+
+      module('the modal is closed', function(hooks) {
+        hooks.beforeEach(async function() {
+          await app.modals.addContact.hide();
+        });
+
+        test('the modal is no longer visible', function(assert) {
+          assert.ok(app.modals.addContact.isHidden());
+        });
+      });
+    });
+
+
+    module('the share info button is clicked', function(hooks) {
+      hooks.beforeEach(async function() {
+        await sidebar.contacts.clickShare();
+      });
+
+      test('the modal is visible', function(assert) {
+        assert.notOk(app.modals.shareInfo.isHidden());
+      });
+
+      module('the modal is closed', function(hooks) {
+        hooks.beforeEach(async function() {
+          await app.modals.shareInfo.hide();
+        });
+
+        test('the modal is no longer visible', function(assert) {
+          assert.ok(app.modals.shareInfo.isHidden());
+        });
+      });
+    });
   });
 
   module('Channels', function(hooks) {

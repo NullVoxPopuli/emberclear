@@ -4,6 +4,7 @@ const wrapper = '[data-test-offcanvas-wrapper]';
 const toggleButton = '[data-test-hamburger-toggle]';
 const sidebarContainer = '[data-test-sidebar-container]';
 const channelForm = '[data-test-channel-form]';
+const contacts = '[data-test-sidebar-contacts]';
 
 export const sidebar = {
   wrapper: () => find(wrapper),
@@ -13,6 +14,10 @@ export const sidebar = {
   isOpen: () => !!find(`${wrapper} .is-sidebar-visible`),
   isPresent: () => !!find(`${wrapper} ${sidebarContainer}`),
 
+  contacts: {
+    clickAdd: () => click(`${contacts} [data-test-add-friend]`),
+    clickShare: () => click(`${contacts} [data-test-share-info]`),
+  },
 
   channels: {
     toggleForm: () => click('[data-test-channel-form-toggle]'),

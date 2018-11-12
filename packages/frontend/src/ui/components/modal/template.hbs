@@ -1,6 +1,11 @@
 <KeyboardPress @key='Escape' @onDown={{action @close}} />
 
-<div class='modal {{if @isActive 'is-active'}}'>
+<div
+  ...attributes
+  aria-modal
+  aria-hidden={{not @isActive}}
+  class='modal {{if @isActive 'is-active'}}'
+>
   <div
     class='modal-background'
     role='button'

@@ -16,6 +16,18 @@ export const app = {
 
   scrollContainer: () => find('#scrollContainer') as HTMLElement,
 
+  modals: {
+    addContact: {
+      isHidden: () => find('[data-test-add-contact][aria-modal][aria-hidden]'),
+      hide: () => click('[data-test-add-contact] [aria-label="Close Modal"]'),
+    },
+
+    shareInfo: {
+      isHidden: () => find('[data-test-share-info][aria-modal][aria-hidden]'),
+      hide: () => click('[data-test-share-info] [aria-label="Close Modal"]'),
+    }
+  },
+
   userDropdown: {
     open: () => click('[data-test-user-dropdown-toggle]'),
     clickLogout: () => click('[data-test-user-dropdown] [data-test-logout]'),
