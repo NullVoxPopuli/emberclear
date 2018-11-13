@@ -3,7 +3,6 @@ import localforage from 'localforage';
 async function cleanEverything() {
   // specifically, offline storage
   await localforage.clear();
-
   await localStorage.clear();
 }
 
