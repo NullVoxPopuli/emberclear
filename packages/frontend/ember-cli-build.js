@@ -137,11 +137,6 @@ module.exports = function(defaults) {
     }
   );
 
-
-  // localforage
-  app.import('node_modules/localforage/dist/localforage.js');
-  app.import('vendor/shims/localforage.js');
-
   // uuid
   app.import('node_modules/uuid/index.js', {
     using: [{ transformation: 'cjs', as: 'uuid' }]
