@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "automerge": false,
+  "packageRules": [
+    {
+        "paths": ["packages/frontend/package.json"],
+        "rangeStrategy": "replace"
+    },
+    {
+       "paths": ["packages/frontend/Dockerfile"],
+        "enabled": false
+    }
+    
+  ]
+}
