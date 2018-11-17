@@ -4,6 +4,7 @@ import { service } from '@ember-decorators/service';
 import { isPresent } from '@ember/utils';
 
 export default class Toast extends Service {
+  // from ember-cli-notifications
   @service('notification-messages') notifications!: any;
 
   info(msg: string, title = '', options = {}) {
@@ -29,7 +30,7 @@ export default class Toast extends Service {
       autoClear: true,
       clearDuration: Ember.testing ? 10 : 4000,
       ...options,
-      message: message || '',
+      message: message || 'status',
       type: status
     });
   }

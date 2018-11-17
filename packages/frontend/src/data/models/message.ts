@@ -110,7 +110,7 @@ export default class Message extends Model {
   @attr() sentAt!: Date;
   @attr() sendError?: string;
 
-  @belongsTo('identity', { async: true }) sender?: Identity;
+  @belongsTo('identity', { async: false }) sender?: Identity;
 
   // @belongsTo('message', { async: false, inverse: 'deliveryConfirmations' }) confirmationFor?: Message;
   // @hasMany('message', { async: false, inverse: 'confirmationFor' }) deliveryConfirmations?: Message[];

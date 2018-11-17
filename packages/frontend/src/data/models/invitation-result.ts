@@ -7,8 +7,8 @@ export default class InvitationResult extends Model {
   @attr() createdAt!: Date;
   @attr() isApproved!: boolean;
 
-  @belongsTo('invitation') invitation!: Identity;
-  @belongsTo('identity') responder!: Identity[];
+  @belongsTo('invitation', { async: false }) invitation!: Identity;
+  @belongsTo('identity', { async: false }) responder!: Identity[];
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

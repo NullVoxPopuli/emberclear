@@ -3,12 +3,11 @@ import Component from '@ember/component';
 import { service } from '@ember-decorators/service';
 import { computed, action } from '@ember-decorators/object';
 import { alias } from '@ember-decorators/object/computed';
-import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
 import ENV from '../../../../config/environment';
 
 import Identity from 'emberclear/services/identity/service';
-import { disableInFastboot } from 'emberclear/src/utils/decorators';
+import { disableInFastboot, monitor } from 'emberclear/src/utils/decorators';
 
 import { convertObjectToQRCodeDataURL, toHex } from 'emberclear/src/utils/string-encoding';
 
@@ -44,11 +43,12 @@ export default class ShowMyInfo extends Component {
 
   @computed('publicIdentity')
   @disableInFastboot({ default: {} })
+  @monitor
   get qrCode() {
     const publicIdentity = this.publicIdentity;
     const qrCodePromise = convertObjectToQRCodeDataURL(publicIdentity);
 
-    return new PromiseMonitor<string>(qrCodePromise);
+    return qrCodePromise;
   }
 
   @action

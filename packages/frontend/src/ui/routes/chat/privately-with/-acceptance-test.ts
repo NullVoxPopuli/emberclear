@@ -88,7 +88,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
     module('someone that does not exist', function(hooks) {
       setupRelayConnectionMocks(hooks);
 
-      hooks.beforeEach(async function() {
+      hooks.beforeEach(function() {
         visit('/chat/privately-with/nobody');
       });
 
@@ -102,7 +102,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
         const toastText = app.toast()!.textContent;
 
-        assert.ok(toastText.match(/not found/), 'toast is displayed saying the user is not found');
+        assert.ok(toastText.match(/not be located/), 'toast is displayed saying the user is not found');
       });
     });
 
@@ -225,7 +225,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             await waitFor(chat.selectors.message);
           });
 
-          test('the message is shown, but is waiting for a confirmation', async function(assert) {
+          test('the message is shown, but is waiting for a confirmation', function(assert) {
             const messages = chat.messages.all();
             const confirmations = chat.messages.confirmationsFor(messages[0]);
             const loader = chat.messages.loaderFor(messages[0]);
@@ -247,7 +247,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             assert.equal(result, 1);
           });
 
-          module('a confirmation is received', function(assert) {
+          module('a confirmation is received', function() {
             skip('the message is shown, with successful confirmation', function(assert) {
 
             });

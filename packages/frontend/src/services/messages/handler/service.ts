@@ -18,7 +18,7 @@ export default class ReceivedMessageHandler extends Service {
   @service('messages/auto-responder') autoResponder!: AutoResponder;
 
   async handle(raw: RelayJson) {
-    const message = await this.importMessage(raw);
+    const message = await this.decomposeMessage(raw);
     const type = message.type;
 
     switch (type) {
@@ -100,7 +100,7 @@ export default class ReceivedMessageHandler extends Service {
   }
 
 
-  private async importMessage(json: RelayJson) {
+  private async decomposeMessage(json: RelayJson) {
     const { id, type, target, message: msg, sender: senderInfo } = json;
 
     const sender = await this.findOrCreateSender(senderInfo);

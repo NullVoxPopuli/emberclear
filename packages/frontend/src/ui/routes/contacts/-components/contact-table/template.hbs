@@ -1,4 +1,4 @@
-<table>
+<table data-test-contacts>
   <thead>
     <tr>
       <th></th>
@@ -9,7 +9,7 @@
   <tbody>
 
     {{#each this.contacts as |identity|}}
-      <tr>
+      <tr data-test-contact-row>
         <td>
           <a {{action this.remove identity}}>
             {{t 'buttons.remove'}}

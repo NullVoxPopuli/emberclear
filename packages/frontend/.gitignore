@@ -11,6 +11,9 @@
 /dist/
 /tmp/
 
+# generated as a part of deployment
+/public/bundle.html
+
 
 # dependencies
 /bower_components/

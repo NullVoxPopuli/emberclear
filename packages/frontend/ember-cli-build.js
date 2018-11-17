@@ -34,11 +34,17 @@ module.exports = function(defaults) {
     minifyJS: { enabled: false },
     minifyCSS: { enabled: isProduction },
 
-    // babel: {
+    babel: {
+      // sourceMaps: 'inline'
     //   plugins: [
     //     ['@babel/plugin-syntax-decorators', { legacy: true }]
     //   ]
-    // },
+    },
+
+    sourcemaps: {
+      enabled: !isProduction,
+      extensions: 'js'
+    },
 
     'ember-cli-babel': {
       includePolyfill: false,
@@ -51,11 +57,6 @@ module.exports = function(defaults) {
 
     'ember-test-selectors': {
       strip: isProduction
-    },
-
-    sourcemaps: {
-      enabled: !isProduction,
-      extensions: 'js'
     },
 
     // autoprefixer: { sourcemap: false },

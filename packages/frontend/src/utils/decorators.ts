@@ -1,5 +1,6 @@
 import { getOwner } from '@ember/application';
 import { decoratorWithParams } from '@ember-decorators/utils/decorator';
+import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
 function isFastBoot(context: any) {
   const service = getOwner(context).lookup('service:fastboot');
@@ -51,4 +52,22 @@ export function syncToLocalStorage<T>(target: any, propertyKey: string, descript
 
     localStorage.setItem(key, lsValue);
   };
+}
+
+export function monitor<T = any>(_target: any, _propertyKey: string, descriptor: PropertyDescriptor) {
+  const { get: oldGet } = descriptor;
+  // TODO: assert that a getter exists
+  // TODO: assert that a setter does not exist
+
+  descriptor.get = function(): any {
+    const promise = oldGet!.apply(this);
+
+    return new PromiseMonitor<T>(promise);
+  };
+
+  descriptor.set = (/* value */) => {
+    throw new Error('a monitored property cannot be set');
+  };
+
+  return descriptor;
 }
