@@ -3,6 +3,7 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
 import Identity from 'emberclear/src/data/models/identity/model';
+import Notifications from 'emberclear/services/notifications/service';
 import Message, { TYPE, TARGET } from 'emberclear/src/data/models/message';
 import IdentityService from 'emberclear/services/identity/service';
 import StatusManager from 'emberclear/services/status-manager';
@@ -12,6 +13,8 @@ import AutoResponder from 'emberclear/src/services/messages/auto-responder';
 
 export default class ReceivedMessageHandler extends Service {
   @service store!: DS.Store;
+  @service intl!: Intl;
+  @service notifications!: Notifications;
   @service statusManager!: StatusManager;
   @service identity!: IdentityService;
   @service contactManager!: ContactManager;
@@ -84,11 +87,15 @@ export default class ReceivedMessageHandler extends Service {
         console.info('TARGET INVALID', raw);
         return message;
     }
-
   }
 
   private async handleWhisperChat(message: Message) {
     await message.save();
+
+    const name = message.sender!.name;
+    const msg = this.intl.t('ui.notifications.from', { name });
+
+    this.notifications.info(msg);
 
     return message;
   }

@@ -42,6 +42,7 @@ buttons:
   sendSnippet: Send Snippet
   remove: Remove
   donateEth: Donate Ethereum
+  donateXmr: Donate Monero
   loginInstead: Login instead
   uploadSettings: Upload Settings
   showMyInfo: Show My Info
@@ -100,6 +101,8 @@ ui:
     copied: Copied!
 
   notifications:
+    title: emberclear message
+    from: message from {name}
     prompt:
       title: emberclear needs your permission to enable notifications.
       enable: Enable Notifications
@@ -189,6 +192,15 @@ ui:
       Ultimately, this project, by functionality, will be a clone of whatever
       is popular - with the one key difference that nothing is ever tracked
       by the relays / federated nodes.
+
+    notOnlineQ: What happens when I send a message and the recipient is no longer online.
+    notOnlineA: >
+      The server does not story any messages, and does not keep a queue of undelivered messages.
+      If a recipient is not online, the message will manually need to be resent.
+
+    serverStorageQ: Does the server / relay store any of my messages ever?
+    serverStorageA: No
+
 
   footer:
     navigation: Navigation

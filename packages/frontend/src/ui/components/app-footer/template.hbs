@@ -24,14 +24,13 @@
           <br><br>
 
           {{t 'ui.footer.wantToSupport'}} <br>
-          <a
-            class='has-hover-tip'
-            href='https://etherscan.io/address/0x3fbe03aa431c540fdbd9350ecd1ae8f4f4ec0d23'
-          >
-            {{t 'buttons.donateEth'}}
-
-            <HoverTip>0x3fbe03aa431c540fdbd9350ecd1ae8f4f4ec0d23</HoverTip>
+          <a {{action (toggle 'showMoneroAddress' this)}}>
+            {{t 'buttons.donateXmr'}}
           </a>
+          <br>
+          {{#if this.showMoneroAddress}}
+            XMR: 49UPDubdAzJ6TL3KMgxSugMV2KwtmeDmX2M2HZSTkcuS1jabsfZYy2hfyzLygW7DPCjhHojQC5gZMCpLiigVV4YcNbeh6d9
+          {{/if}}
           <br>
         </div>
       </div>

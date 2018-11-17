@@ -46,10 +46,9 @@
       <li class={{classNames}}>
         {{!-- TODO: need a way to figure out when is-active
                     should be displayed --}}
-        <a class='flex-row align-items-center has-hover-tip' {{action onClick}}>
+        <a class='flex-row align-items-center' {{action onClick}}>
           <StatusIcon @contact={{contact}} />
           <span class='m-l-sm'>{{or contact.name '[unnamed]'}}</span>
-          <HoverTip @class='overlay'>{{contact.displayName}}</HoverTip>
         </a>
       </li>
 

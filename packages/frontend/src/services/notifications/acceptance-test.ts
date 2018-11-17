@@ -7,6 +7,7 @@ import {
   clearLocalStorage,
   setupRelayConnectionMocks,
   cancelLongRunningTimers,
+  setupWindowNotification,
   getService
 } from 'emberclear/tests/helpers';
 
@@ -19,16 +20,7 @@ module('Acceptance | Notifications Service', function(hooks) {
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   cancelLongRunningTimers(hooks);
-
-  let originalNotification;
-
-  hooks.beforeEach(function() {
-    originalNotification = window.Notification;
-  });
-
-  hooks.afterEach(function() {
-    window.Notification = originalNotification;
-  });
+  setupWindowNotification(hooks);
 
   module('permission has not yet been asked for', function(hooks) {
     let notifications!: Notifications;
@@ -40,30 +32,6 @@ module('Acceptance | Notifications Service', function(hooks) {
       };
 
       notifications = getService<Notifications>('notifications');
-    });
-
-    test('does not ask by default', function(assert) {
-      assert.ok(notifications.isBrowserCapableOfNotifications(), 'Browser is capable of notifications');
-      assert.notOk(notifications.isPermissionDenied(), 'Permission has not previously been denied');
-      assert.notOk(notifications.isNeverGoingToAskAgain, 'User did not say to never ask again');
-      assert.notOk(notifications.isHiddenUntilBrowserRefresh, 'User did not say to ask later');
-
-      assert.notOk(notifications.showInAppPrompt, 'The in-app prompt should not be shown yet');
-    });
-
-    module('after a notification is attempted', function(hooks) {
-      hooks.beforeEach(function() {
-        notifications.info('a test message');
-      });
-
-      test('the in-app prompt is shown', function(assert) {
-        assert.ok(notifications.isBrowserCapableOfNotifications(), 'Browser is capable of notifications');
-        assert.notOk(notifications.isPermissionDenied(), 'Permission has not previously been denied');
-        assert.notOk(notifications.isNeverGoingToAskAgain, 'User did not say to never ask again');
-        assert.notOk(notifications.isHiddenUntilBrowserRefresh, 'User did not say to ask later');
-
-        assert.ok(notifications.showInAppPrompt, 'The in-app prompt should be shown');
-      });
     });
 
     module('permission denied', function(hooks) {

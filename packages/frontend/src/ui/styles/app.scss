@@ -59,6 +59,14 @@ body {
   }
 }
 
+.service-worker-update-notify {
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  left: 0;
+  border-radius: 0;
+}
+
 .not-allowed {
   cursor: not-allowed !important;
 }
