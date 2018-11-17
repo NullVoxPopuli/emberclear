@@ -37,6 +37,15 @@
   .sidebar-wrapper {
     width: 100%;
     z-index: 30;
+
+    .menu-label {
+      position: sticky;
+      top: 0px;
+      background: white;
+      z-index: 1;
+      padding-bottom: 8px;
+      // padding-top: 8px;
+    }
   }
 
   .sidebar-underlay {

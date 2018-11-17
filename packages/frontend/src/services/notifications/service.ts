@@ -8,8 +8,9 @@ import Toast from 'emberclear/src/services/toast';
 
 export default class Notifications extends Service {
   @service toast!: Toast;
+  @service intl!: Intl;
 
-  askToEnableNotifications = false;
+  askToEnableNotifications = true;
   isHiddenUntilBrowserRefresh = false;
 
   @disableInFastboot
@@ -21,6 +22,7 @@ export default class Notifications extends Service {
   @computed('askToEnableNotifications', 'isHiddenUntilBrowserRefresh', 'isNeverGoingToAskAgain')
   get showInAppPrompt() {
     if (!this.isBrowserCapableOfNotifications()) return false;
+    if (this.isPermissionGranted()) return false;
     if (this.isPermissionDenied()) return false;
     if (this.isNeverGoingToAskAgain) return false;
     if (this.isHiddenUntilBrowserRefresh) return false;
@@ -29,19 +31,19 @@ export default class Notifications extends Service {
   }
 
   info(msg: string, title = '', options = {}) {
-    this.display('is-info', msg, title, options);
+    return this.display('is-info', msg, title, options);
   }
 
   success(msg: string, title = '', options = {}) {
-    this.display('is-success', msg, title, options);
+    return this.display('is-success', msg, title, options);
   }
 
   warning(msg: string, title = '', options = {}) {
-    this.display('is-warning', msg, title, options);
+    return this.display('is-warning', msg, title, options);
   }
 
   error(msg: string, title = '', options = {}) {
-    this.display('is-danger', msg, title, options);
+    return this.display('is-danger', msg, title, options);
   }
 
   async display(status: string, msg: string, title: string, options = {}) {
@@ -91,14 +93,16 @@ export default class Notifications extends Service {
     return ('Notification' in window);
   }
 
-  showNotification(msg: string, title: string, options = {}) {
+  showNotification(msg: string, title = '', options = {}) {
+    const defaultTitle = this.intl.t('ui.notifications.title');
     const notificationOptions = {
       body: msg,
       // icon: ''
       ...options
     };
 
-    return new Notification(title, notificationOptions);
+
+    return new Notification(title || defaultTitle, notificationOptions);
   }
 }
 

@@ -2,22 +2,12 @@
   <div class='container'>
     <h1 class='title'>{{t 'ui.faq.title'}}</h1>
 
-    <strong>{{t 'ui.faq.whatIsQ'}}</strong>
-    <p class='m-b-lg'>
-      {{t 'ui.faq.whatIsA'}}
-    </p>
+    <QAndA @question='ui.faq.whatIsQ' @answer='ui.faq.whatIsA' />
+    <QAndA @question='ui.faq.howDoesWorkQ' @answer='ui.faq.howDoesWorkA' />
+    <QAndA @question='ui.faq.whyQ' @answer='ui.faq.whyA' />
+    <QAndA @question='ui.faq.notOnlineQ' @answer='ui.faq.notOnlineA' />
+    <QAndA @question='ui.faq.serverStorageQ' @answer='ui.faq.serverStorageA' />
 
-    <strong>{{t 'ui.faq.howDoesWorkQ'}}</strong>
-
-    <p class='m-b-lg'>
-      {{t 'ui.faq.howDoesWorkA'}}
-    </p>
-
-    <strong>{{t 'ui.faq.whyQ'}}</strong>
-
-    <p class='m-b-lg'>
-      {{t 'ui.faq.whyA'}}
-    </p>
   </div>
 </section>
 
