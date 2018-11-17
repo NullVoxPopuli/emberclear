@@ -12,6 +12,8 @@ import {
   objectToDataURL, toHex, fromHex
 } from 'emberclear/src/utils/string-encoding';
 
+import { monitor } from 'emberclear/src/utils/decorators';
+
 import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
 
 interface IContactJson {
@@ -38,10 +40,9 @@ export default class Settings extends Service {
   @service channelManager!: ChannelManager;
 
   @computed('identity.privateKey', 'identity.publicKey')
+  @monitor
   get downloadUrl() {
-    const promise = this.buildData();
-
-    return new PromiseMonitor(promise);
+    return this.buildData();
   }
 
 

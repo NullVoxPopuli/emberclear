@@ -3,7 +3,7 @@ import { service } from '@ember-decorators/service';
 
 import IdentityService from 'emberclear/services/identity/service';
 import ChatScroller from 'emberclear/services/chat-scroller';
-import ReceivedMessageHandler from 'emberclear/src/services/messages/handler';
+import ReceivedMessageHandler from 'emberclear/src/services/messages/handler/service';
 
 import { decryptFromSocket } from './-utils/decryptor';
 

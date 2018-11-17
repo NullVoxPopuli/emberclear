@@ -13,6 +13,7 @@ interface IModelParams {
 export default class ChatPrivatelyRoute extends Route {
   @service identity!: IdentityService;
   @service toast!: Toast;
+  @service intl!: Intl;
 
   @disableInFastboot
   beforeModel(transition: any) {
@@ -32,8 +33,8 @@ export default class ChatPrivatelyRoute extends Route {
 
     try {
       record = await this.store.findRecord('identity', u_id);
-    } catch (e) {
-      this.toast.error(e);
+    } catch (error) {
+      this.toast.error(error || this.intl.t('ui.chat.errors.contactNotFound'));
 
       this.transitionTo('chat.index');
     }

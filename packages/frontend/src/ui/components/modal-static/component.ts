@@ -18,17 +18,17 @@ export default class ModalStatic extends Component {
   @reads('modal.isActive') isActive!: boolean;
 
   @action
-  toggle(this: ModalStatic) {
+  toggle() {
     this.modals.toggle(this.name);
   }
 
   @action
-  close(this: ModalStatic) {
+  close() {
     this.modals.close(this.name);
   }
 
   @action
-  open(this: ModalStatic) {
+  open() {
     this.modals.open(this.name);
   }
 }

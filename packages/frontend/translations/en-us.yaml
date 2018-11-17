@@ -149,6 +149,8 @@ ui:
       Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: There are newer messages
     viewRecent: view recent messages
+    errors:
+      contactNotFound: Your contact could not be located
     sender:
       removed: removed
     messages:

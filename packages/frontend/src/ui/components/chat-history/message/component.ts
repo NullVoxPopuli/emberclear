@@ -6,11 +6,11 @@ import showdown from 'showdown';
 import { sanitize } from 'dom-purify';
 import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
-
 import PrismManager from 'emberclear/services/prism-manager';
 import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
 import { parseLanguages, parseURLs } from 'emberclear/src/utils/string/utils';
+import { monitor } from 'emberclear/src/utils/decorators';
 
 const converter = new showdown.Converter({
   simplifiedAutoLink: true,
@@ -32,10 +32,9 @@ export default class extends Component {
   }
 
   @computed('message.sender')
+  @monitor
   get sender(): PromiseMonitor<Identity | undefined> {
-    const promise = this.message.sender;
-
-    return new PromiseMonitor<Identity | undefined>(promise);
+    return this.message.sender;
   }
 
   @reads('sender.isFulfilled') hasSender!: boolean;
