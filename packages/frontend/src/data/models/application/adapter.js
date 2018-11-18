@@ -13,22 +13,4 @@ export default LFAdapter.extend({
   shouldBackgroundReloadAll() {
     return true;
   },
-
-  // ember-localforage does not throw valuable errors
-  queryRecord(/* store, type, query */) {
-    return new Promise((resolve, reject) => {
-      return this._super(...arguments)
-        .then(resolve)
-        .catch(() => reject('no record found in localforage'));
-    });
-  },
-
-  // async findRecord(store, type, id) {
-  //   try {
-  //     return await this._super(...arguments);
-  //   } catch (error) {
-  //     // ember-localforage does not throw valuable errors
-  //     throw new EmberError(error || `record (${type}:${id}) not found in localforage`);
-  //   }
-  // },
 });

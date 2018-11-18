@@ -13,42 +13,48 @@
   {{/if}}
 
   {{#unless this.scanning}}
-    <h3 class='title-is-3'>{{t 'ui.addContact.title'}}</h3>
+
+    {{t 'ui.addContact.title'}}
     <br>
-    <div >
-      <form
-        {{action this.importIdentity on='submit'}}
-        class='flex-column align-items-stretch'
-      >
 
-        {{textarea
-          data-test-identity-textarea
-          id='identity-textarea'
-          class='p-md m-b-md flex-grow has-resize-disabled'
-          rows='4'
-          value=this.identityToImport
-          onChange=(action (mut this.identityToImport))
-          placeholder=this.placeholder
-        }}
+    <div class='flex-row'>
+      <div class='w-100 flex-row flex-grow justify-content-center'>
+        {{!--
+        this loggedIn hack is something for force QRCode to re-render
+        I don't know why it doesn't re-render on its own.
+        --}}
+        {{#if this.isLoggedIn}}
+          <QRCode @data={{this.publicIdentity}} @alt={{t 'images.alt.ownIdentityQR'}} />
+        {{/if}}
 
-        <div class='flex justify-content-end'>
-          <div class='field is-grouped'>
-            <p class='control'>
-              <button class='button is-primary' {{action this.toggleScanning}}>
-                <span class='icon'>{{fa-icon 'qrcode' prefix='fas'}}</span>
-                <span>{{t 'buttons.scan'}}</span>
-              </button>
-            </p>
-
-            <p class='control'>
-              <button class='button' type='submit' value='Import'>
-                {{t 'buttons.import'}}
-              </button>
-            </p>
-
-          </div>
+        <div class='flex-grow shareable-url wrap is-hidden-touch'>
+          <a
+            href={{this.url}}
+            target='_blank'
+            rel='noopener'
+          >
+            {{this.url}}
+          </a>
         </div>
-      </form>
+      </div>
+
+    </div>
+
+    <div class='flex justify-content-end'>
+      <div class='field is-grouped'>
+        <p class='control'>
+          <button class='button is-primary' {{action this.toggleScanning}}>
+            <span class='icon'>{{fa-icon 'qrcode' prefix='fas'}}</span>
+            <span>{{t 'buttons.scan'}}</span>
+          </button>
+
+          <CopyTextButton
+            @text={{this.url}}
+            @label={{t 'ui.invite.copyProfile'}}
+          />
+        </p>
+
+      </div>
     </div>
   {{/unless}}
 </Modal>

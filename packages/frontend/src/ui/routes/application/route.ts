@@ -14,6 +14,7 @@ export default class ApplicationRoute extends Route {
   @service intl!: IntlService;
 
   async beforeModel() {
+    // TODO: check all the modern web requirements
     // TODO: make configurable
     const locale = 'en-us';
 

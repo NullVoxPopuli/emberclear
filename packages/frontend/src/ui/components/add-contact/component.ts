@@ -1,38 +1,49 @@
 import DS from 'ember-data';
-import Component from '@ember/component';
+import Component, { tracked } from 'sparkles-component';
 
-import { action } from '@ember-decorators/object';
+import { action, computed } from '@ember-decorators/object';
+import { reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 
-import { fromHex } from 'emberclear/src/utils/string-encoding';
+import ENV from 'emberclear/config/environment';
+import { toHex, fromHex } from 'emberclear/src/utils/string-encoding';
 
-const fakeIdentity = `{
-  "name": "fake name",
-  "publicKey": "fake NaCl public key"
-}`;
+import Identity from 'emberclear/services/identity/service';
 
-export default class AddModal extends Component {
+interface IArgs {
+  isActive: boolean;
+  close: () => void;
+}
+
+export default class AddModal extends Component<IArgs> {
   @service('notifications') toast!: Toast;
+  @service identity!: Identity;
   @service store!: DS.Store;
 
-  identityToImport = '';
-  scanning = false;
-  placeholder = fakeIdentity;
-  close!: () => void;
+  @tracked scanning = false;
 
-  @action
-  toggleScanning(this: AddModal) {
-    this.set('scanning', !this.scanning);
+  @reads('identity.isLoggedIn') isLoggedIn!: boolean;
+
+  @computed('identity.publicKey','identity.name', 'isLoggedIn')
+  get publicIdentity() {
+    if (!this.isLoggedIn) return {};
+
+    const { name, uid } = this.identity;
+
+    return { name, publicKey: uid };
+  }
+
+  @computed('publicIdentity')
+  get url() {
+    const { name, publicKey } = this.publicIdentity;
+    const uri = `${ENV.host}/invite?name=${name}&publicKey=${publicKey}`;
+
+    return encodeURI(uri);
   }
 
   @action
-  async importIdentity() {
-    const identity = JSON.parse(this.identityToImport);
-
-    await this.tryCreate(identity);
-
-    this.close();
-
+  toggleScanning(this: AddModal) {
+    this.scanning = !this.scanning;
   }
 
   @action
@@ -41,7 +52,7 @@ export default class AddModal extends Component {
 
     await this.tryCreate(identity);
 
-    this.set('scanning', false);
+    this.scanning = false;
 
     this.close();
   }

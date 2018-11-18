@@ -75,6 +75,7 @@ export default class Message extends Model {
    * identityId | channelId | messageId
    *
    * TODO: should these have different formats?;
+   * TODO: change this from ids to a polymorphic belongs to
    * */
   @attr() to!: string;
 

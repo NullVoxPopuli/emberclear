@@ -1,3 +1,6 @@
+import showdown from 'showdown';
+import DOMPurify from 'dom-purify';
+
 export function isElementWithin(element: HTMLElement, container: HTMLElement): boolean {
   const rect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();
@@ -32,4 +35,25 @@ export function keepInViewPort(element: HTMLElement, margin = 20 /* px */) {
   if (rect.bottom > window.innerHeight) {
     element.style.bottom = `${margin}px`;
   }
+}
+
+const converter = new showdown.Converter({
+  simplifiedAutoLink: true,
+  simpleLineBreaks: true,
+  openLinksInNewWindow: true,
+});
+
+// NOTE: sanitizing by default removes target="_blank"
+DOMPurify.addHook('afterSanitizeAttributes', function(node: any) {
+  if ('target' in node) {
+    node.setAttribute('target', '_blank');
+  }
+});
+
+export function convertAndSanitizeMarkdown(markdown: string) {
+  const html = converter.makeHtml(markdown);
+  const sanitized = DOMPurify.sanitize(html);
+
+  return sanitized;
+
 }

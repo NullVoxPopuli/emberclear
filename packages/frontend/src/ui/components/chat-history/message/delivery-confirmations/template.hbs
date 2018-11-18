@@ -8,6 +8,14 @@
     {{else if this.timedOut}}
 
       <div class='has-hover-tip'>
+        {{#if this.deleteMessage.isIdle}}
+          <a {{action (perform this.deleteMessage)}}>{{t 'buttons.delete'}}</a>
+        {{/if}}
+        |
+        {{#if this.resend.isIdle}}
+          <a {{action (perform this.resend)}}>{{t 'buttons.resend'}}</a>
+        {{/if}}
+
         {{fa-icon 'exclamation-circle'}}
 
         <HoverTip @class='w-left-200'>

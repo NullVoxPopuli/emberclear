@@ -30,6 +30,8 @@ connection:
       notConnected: Cannot subscribe to a channel without a socket connection!
 
 buttons:
+  delete: delete
+  resend: resend
   save: Save
   next: Next
   back: Back
@@ -97,7 +99,7 @@ models:
 
 ui:
   invite:
-    copyProfile: Copy
+    copyProfile: Copy Link
     copied: Copied!
 
   notifications:
@@ -126,8 +128,6 @@ ui:
       toggleSidebar: Toggle the Sidebar
       toggleHelp: Toggle Keyboard Help
 
-
-
   sidebar:
     channels:
       title: Channels
@@ -137,12 +137,8 @@ ui:
       title: 'Contacts'
       none: You have no contacts.
 
-  showMyInfo:
-    title: This is your public identity
-    description: Send this to a friend so that they can communicate with you.
-
   addContact:
-    title: Paste or scan your friend's identity
+    title: Have a friend scan your QR Code, share your link, or scan their QR Code
 
   chat:
     welcome: Welcome!

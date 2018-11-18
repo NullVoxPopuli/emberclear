@@ -121,6 +121,11 @@ module.exports = function(defaults) {
   app.import('vendor/shims/libsodium.js');
   app.import('vendor/shims/libsodium-wrappers.js');
 
+  // markdown
+  app.import('node_modules/showdown/dist/showdown.js', {
+    using: [{ transformation: 'cjs', as: 'showdown' }]
+  });
+
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
