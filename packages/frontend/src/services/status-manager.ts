@@ -1,4 +1,3 @@
-import { DS } from 'ember-data';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
@@ -8,7 +7,7 @@ import ContactManager from 'emberclear/services/contact-manager';
 // TODO: does this need to be its own service?
 //       should these functions move to the ContactManager?
 export default class StatusManager extends Service {
-  @service store!: DS.Store;
+  @service store;
   @service contactManager!: ContactManager;
 
   async markOffline(uid: string) {

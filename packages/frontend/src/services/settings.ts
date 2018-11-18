@@ -12,7 +12,7 @@ import {
   objectToDataURL, toHex, fromHex
 } from 'emberclear/src/utils/string-encoding';
 
-import { monitor } from 'emberclear/src/utils/decorators';
+import { monitor, syncToLocalStorage } from 'emberclear/src/utils/decorators';
 
 import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
 
@@ -38,6 +38,9 @@ export default class Settings extends Service {
   @service identity!: IdentityService;
   @service contactManager!: ContactManager;
   @service channelManager!: ChannelManager;
+
+  @syncToLocalStorage
+  get hideOfflineContacts() { return false; }
 
   @computed('identity.privateKey', 'identity.publicKey')
   @monitor

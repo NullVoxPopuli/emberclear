@@ -11,4 +11,9 @@ export const textFor = (selector: string): string => {
   return text;
 };
 
+
+export function text(elements: Element[]): string {
+  return Array.from(elements).map(e => e.textContent.trim()).join();
+}
+
 export default textFor;

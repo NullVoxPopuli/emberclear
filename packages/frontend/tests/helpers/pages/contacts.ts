@@ -4,9 +4,9 @@ import {
 
 export const contacts = {
   rows: {
-    dom: () => findAll('[data-test-contact-row]'),
+    dom: () => findAll('[data-test-contacts] [data-test-contact-row]'),
     removeAt: (index: number) => {
-      const row = findAll('[data-test-contact-row]')[index];
+      const row = findAll('[data-test-contacts] [data-test-contact-row]')[index];
       const link = row.querySelector('a')!;
 
       return click(link);
