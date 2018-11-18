@@ -10,7 +10,9 @@ export const settings = {
 
   togglePrivateKey: () => click(`${wrapper} [data-test-show-private-key-toggle]`),
 
-  privateKeyText: () => find(`${wrapper} [data-test-mnemonic]`)
+  privateKeyText: () => find(`${wrapper} [data-test-mnemonic]`),
+
+  toggleHideOfflineContacts: () => click(`${wrapper} [data-test-hide-offline-contacts]`),
 };
 
 export default {

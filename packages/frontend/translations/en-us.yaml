@@ -136,6 +136,7 @@ ui:
     contacts:
       title: 'Contacts'
       none: You have no contacts.
+      numOffline: '{num} offline'
 
   addContact:
     title: Have a friend scan your QR Code, share your link, or scan their QR Code
@@ -259,6 +260,7 @@ ui:
     hideKey: Hide private key
     showKey: Show private key
     download: Download Settings
+    hideOfflineContacts: Hide offline contacts
     danger:
       title: Danger Zone
       deleteMessages: Delete Messages

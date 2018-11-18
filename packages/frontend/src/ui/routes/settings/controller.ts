@@ -17,6 +17,7 @@ export default class extends Controller {
   messagesDeleted = false;
 
   @reads('settings.downloadUrl') downloadSettingsUrl!: string;
+  @alias('settings.hideOfflineContacts') hideOfflineContacts!: boolean;
 
   @action
   async save() {

@@ -1,4 +1,4 @@
-import { find, click, triggerKeyEvent, fillIn } from '@ember/test-helpers';
+import { find, click, triggerKeyEvent, fillIn, findAll } from '@ember/test-helpers';
 
 const wrapper = '[data-test-offcanvas-wrapper]';
 const toggleButton = '[data-test-hamburger-toggle]';
@@ -7,6 +7,10 @@ const channelForm = '[data-test-channel-form]';
 const contacts = '[data-test-sidebar-contacts]';
 
 export const sidebar = {
+  selectors: {
+    offlineCount: '[data-test-offline-count]',
+  },
+
   wrapper: () => find(wrapper),
 
   toggle: () => click(`${wrapper} ${sidebarContainer} > ${toggleButton}`),
@@ -17,6 +21,8 @@ export const sidebar = {
   contacts: {
     clickAdd: () => click(`${contacts} [data-test-add-friend]`),
     clickShare: () => click(`${contacts} [data-test-share-info]`),
+    rows: () => findAll(`${sidebarContainer} [data-test-contact-row].is-hidden-touch`),
+    offlineCount: () => find(`[data-test-offline-count]`),
   },
 
   channels: {

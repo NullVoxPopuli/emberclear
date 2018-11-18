@@ -5,17 +5,12 @@ import { setupApplicationTest } from 'ember-qunit';
 import {
   clearLocalStorage,
   setupCurrentUser, setupRelayConnectionMocks,
-  getService, cancelLongRunningTimers
+  getService, cancelLongRunningTimers, createIdentity
 } from 'emberclear/tests/helpers';
 
 import Identity from 'emberclear/src/data/models/identity/model';
-import ContactManager from 'emberclear/src/services/contact-manager';
 import IdentityService from 'emberclear/src/services/identity/service';
 
-import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
-import { toHex } from 'emberclear/src/utils/string-encoding';
-
-import { app } from 'emberclear/tests/helpers/pages/app';
 import { contacts } from 'emberclear/tests/helpers/pages/contacts';
 
 module('Acceptance | Contacts', function(hooks) {
@@ -48,20 +43,9 @@ module('Acceptance | Contacts', function(hooks) {
 
       hooks.beforeEach(async function() {
         me = getService<IdentityService>('identity').record!;
-        const contactManager = getService<ContactManager>('contactManager');
 
-        const keys1 = await generateAsymmetricKeys();
-        const keys2 = await generateAsymmetricKeys();
-
-        await contactManager.findOrCreate(
-          toHex(keys1.publicKey),
-          'First Contact'
-        );
-
-        await contactManager.findOrCreate(
-          toHex(keys2.publicKey),
-          'Second Contact'
-        );
+        await createIdentity('First Contact');
+        await createIdentity('Second Contact');
 
         await visit('/contacts');
       });

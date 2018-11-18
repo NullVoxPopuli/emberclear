@@ -11,11 +11,18 @@ export const Status = {
   BUSY: 'busy'
 };
 
+export enum STATUS {
+  ONLINE = 'online',
+  OFFLINE = 'offline',
+  AWAY = 'away',
+  BUSY = 'busy'
+}
+
 export default class Identity extends Model {
   @attr() name?: string;
   @attr() publicKey?: Uint8Array;
   @attr() privateKey?: Uint8Array;
-  @attr() onlineStatus?: string;
+  @attr() onlineStatus?: STATUS;
 
   @reads('publicKeyAsHex') uid!: string;
 
