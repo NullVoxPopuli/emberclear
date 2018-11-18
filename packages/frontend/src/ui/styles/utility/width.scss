@@ -21,3 +21,22 @@
 .w-1 {
   width: 1rem;
 }
+
+
+@mixin sizeUtils($modifier) {
+  @for $i from 1 through 20 {
+    .w-#{$i * 5}#{$modifier} {
+      width: 5% * $i !important;
+    }
+  }
+}
+
+@include tablet {
+  @include sizeUtils('-tablet');
+}
+
+@include desktop {
+  @include sizeUtils('-desktop');
+}
+
+@include sizeUtils('');

@@ -17,12 +17,19 @@
   }
 
   &.is-primary {
-    a.navbar-burger {
-      color: $text;
+    a.navbar-burger  {
+      color: $navbar-item-color;
     }
 
     > a.navbar-item {
-      color: $text;
+      color: $navbar-item-color;
+    }
+
+    .navbar-brand a,
+    .navbar-brand a:active,
+    .navbar-brand a:focus,
+    .navbar-brand a:hover {
+      color: white;
     }
   }
 
@@ -85,4 +92,15 @@ pre code .number {
   padding: initial;
   text-align: initial;
   vertical-align: initial;
+}
+
+.hero.is-large {
+  height: calc(100vh - 52px);
+  justify-content: center;
+  align-items: center;
+
+  .hero-body {
+    padding: 2rem;
+    flex-grow: 0;
+  }
 }
