@@ -30,6 +30,10 @@ export default class MessageDispatcher extends Service {
 
     await message.save();
 
+    this.sendTo(message, to);
+  }
+
+  async sendTo(message: Message, to: Identity | Channel) {
     if (to instanceof Identity) {
       if (to.id === 'me') return;
 
@@ -83,7 +87,6 @@ export default class MessageDispatcher extends Service {
 
       msg.set('receivedAt', new Date());
     } catch (e) {
-      console.error(e);
       const { reason, to_uid: toUid } = e;
       const error: string = reason;
 
@@ -91,7 +94,10 @@ export default class MessageDispatcher extends Service {
 
       if (error.match(/not found/)) {
         this.statusManager.markOffline(toUid);
+        return;
       }
+
+      console.error(e);
     }
   }
 }

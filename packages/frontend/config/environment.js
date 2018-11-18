@@ -43,7 +43,7 @@ module.exports = function(environment) {
           'dot-circle',
           'plus',
           'code', 'desktop', 'bed', 'video',
-          'angle-down', 'angle-up', 'times',
+          'angle-down', 'angle-up', 'angle-right', 'times',
           'phone', 'phone-volume', 'share',
           'check-circle', 'exclamation-circle',
           'check', 'ellipsis-h'

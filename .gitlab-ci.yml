@@ -156,23 +156,22 @@ Analyze Bundle:
 Deploy Production:
   stage: deploy
   only: [ master ]
+  dependencies:
+    - Merge Coverage
+    - Analyze Bundle
+    - Build Production
   script:
+    - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/
     - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
-    - echo "-------------------------------------------"
-    # - apt-get -y install tree
-    # - tree ${CI_PROJECT_DIR}/packages/frontend/dist
-    - echo "----------------- manifest -------------------"
-    - cat ${CI_PROJECT_DIR}/packages/frontend/dist/manifest.webmanifest
-    - echo "-------------- faq/index.html -------------"
-    - cat ${CI_PROJECT_DIR}/packages/frontend/dist/faq/index.html
-    - echo "-------------------------------------------"
     - time ./scripts/publish
+
 
 pages:
   stage: deploy
   only: [ master ]
   dependencies:
     - Merge Coverage
+    - Analyze Bundle
   script:
     - mkdir -p public/$CI_COMMIT_REF_NAME
     - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/$CI_COMMIT_REF_NAME

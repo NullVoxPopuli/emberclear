@@ -26,10 +26,9 @@ module('Acceptance | Sidebar', function(hooks) {
     await sidebar.toggle();
   });
 
-  module('Contacts', function(hooks) {
+  module('Contacts', function() {
     test('the modals are hidden', function(assert) {
       assert.ok(app.modals.addContact.isHidden(), 'Add Contact is hidden');
-      assert.ok(app.modals.shareInfo.isHidden(), 'Share Info is hidden');
     });
 
     module('the add contact button is clicked', function(hooks) {
@@ -48,27 +47,6 @@ module('Acceptance | Sidebar', function(hooks) {
 
         test('the modal is no longer visible', function(assert) {
           assert.ok(app.modals.addContact.isHidden());
-        });
-      });
-    });
-
-
-    module('the share info button is clicked', function(hooks) {
-      hooks.beforeEach(async function() {
-        await sidebar.contacts.clickShare();
-      });
-
-      test('the modal is visible', function(assert) {
-        assert.notOk(app.modals.shareInfo.isHidden());
-      });
-
-      module('the modal is closed', function(hooks) {
-        hooks.beforeEach(async function() {
-          await app.modals.shareInfo.hide();
-        });
-
-        test('the modal is no longer visible', function(assert) {
-          assert.ok(app.modals.shareInfo.isHidden());
         });
       });
     });

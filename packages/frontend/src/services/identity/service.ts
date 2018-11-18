@@ -29,9 +29,9 @@ export default class IdentityService extends Service {
   allowOverride = false;
 
   @reads('record.id') id?: string;
-  @alias('record.name') name?: string;
-  @alias('record.publicKey') publicKey?: Uint8Array;
-  @alias('record.privateKey') privateKey?: Uint8Array;
+  @reads('record.name') name?: string;
+  @reads('record.publicKey') publicKey?: Uint8Array;
+  @reads('record.privateKey') privateKey?: Uint8Array;
 
   @computed('name', 'privateKey', 'publicKey')
   get isLoggedIn(): boolean {

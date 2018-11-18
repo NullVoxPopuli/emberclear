@@ -1,57 +1,57 @@
-<p
-  data-test-sidebar-contacts
-  class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'
->
-  <span>{{t 'ui.sidebar.contacts.title'}}</span>
-  <span>
-
-    <a
-      data-test-share-info
-      class='button is-small'
-      {{action (queue
-        (action @closeSidebar)
-        (action @toggleModal 'show-my-info'))
-      }}
-    >
-      <span class='icon'>{{fa-icon 'share'}}</span>
+<Collapsible as |isOpen toggle Icon|>
+  <p
+    data-test-sidebar-contacts
+    class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'
+  >
+    <a class='flex-row align-items-center' {{action toggle}}>
+      <Icon class='w-1' @isOpen={{isOpen}} />
+      <span class='has-text-black'>{{t 'ui.sidebar.contacts.title'}}</span>
     </a>
-
-    <a
-      data-test-add-friend
-      class='button is-small'
-      {{action (queue
-        (action @closeSidebar)
-        (action @toggleModal 'add-friend'))
-      }}
-    >
-      <span class='icon'>{{fa-icon 'plus'}}</span>
-    </a>
-
-  </span>
-</p>
-
-<ul class='menu-list'>
-
-  {{#each @contacts as |contact|}}
 
     <WithResponsiveness
-      @whenLarge={{action (transition-to 'chat.privately-with' contact.id)}}
-      @whenSmall={{action
-        (queue
-          (action @closeSidebar)
-          (action (transition-to 'chat.privately-with' contact.id)))
-      }} as |classNames onClick|
+      @whenLarge={{action @toggleModal 'add-friend'}}
+      @whenSmall={{action (queue
+        (action @closeSidebar)
+        (action @toggleModal 'add-friend')
+      )}}
+      as |classNames onClick|
     >
-
-      <li class={{classNames}}>
-        {{!-- TODO: need a way to figure out when is-active
-                    should be displayed --}}
-        <a class='flex-row align-items-center' {{action onClick}}>
-          <StatusIcon @contact={{contact}} />
-          <span class='m-l-sm'>{{or contact.name '[unnamed]'}}</span>
-        </a>
-      </li>
+      <a
+        data-test-add-friend
+        class='button is-small {{classNames}}'
+        {{action onClick}}
+      >
+        <span class='icon'>{{fa-icon 'plus'}}</span>
+      </a>
 
     </WithResponsiveness>
-  {{/each}}
-</ul>
+  </p>
+
+  {{#if isOpen}}
+    <ul class='menu-list'>
+      {{#each @contacts as |contact|}}
+
+        <WithResponsiveness
+          @whenLarge={{action (transition-to 'chat.privately-with' contact.id)}}
+          @whenSmall={{action
+            (queue
+              (action @closeSidebar)
+              (action (transition-to 'chat.privately-with' contact.id)))
+          }} as |classNames onClick|
+        >
+
+          <li class={{classNames}}>
+            {{!-- TODO: need a way to figure out when is-active
+                        should be displayed --}}
+            <a class='flex-row align-items-center' {{action onClick}}>
+              <StatusIcon @contact={{contact}} />
+              <span class='m-l-sm'>{{or contact.name '[unnamed]'}}</span>
+            </a>
+          </li>
+
+        </WithResponsiveness>
+      {{/each}}
+    </ul>
+  {{/if}}
+
+</Collapsible>

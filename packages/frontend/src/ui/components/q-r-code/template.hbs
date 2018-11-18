@@ -1,0 +1,21 @@
+<div
+  class='flex justify-content-center flex-grow'
+  style='min-width: 180px; min-height: 180px;'
+>
+
+  {{#if this.qrCodeData}}
+    <img
+      alt={{@alt}}
+      style='min-width: 180px; min-height: 180px;'
+      src={{this.qrCodeData}}
+    >
+  {{else}}
+    <div style='
+      min-width: 160px;
+      min-height: 160px;
+      padding: 10px;
+      ' class='loader'></div>
+  {{/if}}
+
+</div>
+

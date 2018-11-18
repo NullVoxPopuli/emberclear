@@ -1,46 +1,52 @@
-<p
-  class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'
->
-  <span>{{t 'ui.sidebar.channels.title'}}</span>
+<Collapsible as |isOpen toggle Icon|>
+  <p
+    class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'
+  >
+    <a class='flex-row align-items-center' {{action toggle}}>
+      <Icon class='w-1' @isOpen={{isOpen}} />
+      <span class='has-text-black'>{{t 'ui.sidebar.channels.title'}}</span>
+    </a>
 
-  <a class='button is-small' {{action this.toggleForm}}>
-    <span class='icon' data-test-channel-form-toggle>
-      {{#if isFormVisible}}
-        {{fa-icon 'times'}}
+    <a class='button is-small' {{action this.toggleForm}}>
+      <span class='icon' data-test-channel-form-toggle>
+        {{#if isFormVisible}}
+          {{fa-icon 'times'}}
+        {{else}}
+          {{fa-icon 'plus'}}
+        {{/if}}
+      </span>
+    </a>
+  </p>
+
+  {{#if isFormVisible}}
+    <ChannelForm @onSubmit={{action this.toggleForm}} />
+  {{/if}}
+
+
+  {{#if isOpen}}
+    <ul class='menu-list'>
+
+      {{#each @channels as |channel|}}
+
+        <WithResponsiveness
+          @whenLarge={{action (transition-to 'chat.in-channel' channel.id)}}
+          @whenSmall={{action
+            (queue
+              (action @closeSidebar)
+              (action (transition-to 'chat.in-channel' channel.id)))
+          }} as |classNames onClick|
+        >
+          <li class={{classNames}}>
+            <a {{action onClick}}>
+              #<span class='m-l-sm'>{{channel.name}}</span>
+            </a>
+          </li>
+
+        </WithResponsiveness>
       {{else}}
-        {{fa-icon 'plus'}}
-      {{/if}}
-    </span>
-  </a>
-</p>
+        <li>{{t 'ui.sidebar.channels.none'}}</li>
+      {{/each}}
+    </ul>
+  {{/if}}
 
-{{#if isFormVisible}}
-  <ChannelForm @onSubmit={{action this.toggleForm}} />
-{{/if}}
-
-<ul class='menu-list'>
-
-  {{#each @channels as |channel|}}
-
-    <WithResponsiveness
-      @whenLarge={{action (transition-to 'chat.in-channel' channel.id)}}
-      @whenSmall={{action
-        (queue
-          (action @closeSidebar)
-          (action (transition-to 'chat.in-channel' channel.id)))
-      }} as |classNames onClick|
-    >
-      <li class={{classNames}}>
-        <a {{action onClick}}>
-          #<span class='m-l-sm'>{{channel.name}}</span>
-        </a>
-      </li>
-
-    </WithResponsiveness>
-
-  {{/each}}
-</ul>
-
-{{#if (not (is-present @channels))}}
-  {{t 'ui.sidebar.channels.none'}}
-{{/if}}
+</Collapsible>
