@@ -1,43 +1,45 @@
 {{! template-lint-disable attribute-indentation-}}
-<aside
-  class='
-    menu has-sidebar-background-color
-    is-inverted flex-grow
-    p-sm is-size-6
-    flex-column justify-content-space-between'
->
-  <div>
-    <div class='is-hidden-desktop'>
-      <TopMobileSection />
+<div ...attributes>
+  <aside
+    class='
+      menu has-sidebar-background-color
+      is-inverted flex-grow
+      p-sm is-size-6
+      flex-column justify-content-space-between'
+  >
+    <div>
+      <div class='is-hidden-desktop'>
+        <TopMobileSection />
+      </div>
+
+      <Contacts
+        @contacts={{@contacts}}
+        @closeSidebar={{action this.closeSidebar}}
+        @toggleModal={{action this.toggleModal}}
+      />
+
+      <Channels
+        @channels={{@channels}}
+        @closeSidebar={{action this.closeSidebar}}
+      />
+
     </div>
 
-    <Contacts
-      @contacts={{@contacts}}
-      @closeSidebar={{action this.closeSidebar}}
-      @toggleModal={{action this.toggleModal}}
-    />
+    {{#if isLoggedIn}}
+      <div class='align-self-end'>
+        <hr class='divider m-b-sm'>
 
-    <Channels
-      @channels={{@channels}}
-      @closeSidebar={{action this.closeSidebar}}
-    />
-
-  </div>
-
-  {{#if isLoggedIn}}
-    <div class='align-self-end'>
-      <hr class='divider m-b-sm'>
-
-      <a
-        class='navbar-item flex-row align-items-center'
-        {{action (queue
-          (action this.closeSidebar)
-          (transition-to 'logout'))
-        }}
-      >
-        <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
-        <span>{{t 'routes.logout'}}</span>
-      </a>
-    </div>
-  {{/if}}
-</aside>
+        <a
+          class='navbar-item flex-row align-items-center'
+          {{action (queue
+            (action this.closeSidebar)
+            (transition-to 'logout'))
+          }}
+        >
+          <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
+          <span>{{t 'routes.logout'}}</span>
+        </a>
+      </div>
+    {{/if}}
+  </aside>
+</div>

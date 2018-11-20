@@ -1,0 +1,12 @@
+{{!-- TODO: need a way to figure out when is-active
+            should be displayed --}}
+<a
+  {{action @onClick}}
+  class='
+    flex-row align-items-center
+    {{if this.isActive 'is-active'}}
+  '
+>
+  <StatusIcon @contact={{@contact}} />
+  <span class='m-l-sm'>{{or @contact.name '[unnamed]'}}</span>
+</a>
