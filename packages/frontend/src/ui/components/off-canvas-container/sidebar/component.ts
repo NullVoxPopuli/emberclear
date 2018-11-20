@@ -1,7 +1,6 @@
-import Component from '@ember/component';
+import Component from 'sparkles-component';
 import { service } from '@ember-decorators/service';
-import { action } from '@ember-decorators/object';
-import { reads, alias } from '@ember-decorators/object/computed';
+import { reads } from '@ember-decorators/object/computed';
 
 import SidebarService from 'emberclear/services/sidebar';
 import IdentityService from 'emberclear/services/identity/service';
@@ -13,15 +12,13 @@ export default class Sidebar extends Component {
   @service modals!: Modals;
 
   @reads('sidebar.isShown') isShown!: boolean;
-  @alias('identity.name') name?: string;
-  @alias('identity.isLoggedIn') isLoggedIn!: boolean;
+  @reads('identity.name') name?: string;
+  @reads('identity.isLoggedIn') isLoggedIn!: boolean;
 
-  @action
   closeSidebar() {
     this.sidebar.hide();
   }
 
-  @action
   toggleModal(name: string) {
     this.modals.toggle(name);
   }
