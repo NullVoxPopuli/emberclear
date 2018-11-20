@@ -46,7 +46,7 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "@ember-decorators/babel-transforms": "^2.0.0",
+    "@ember-decorators/babel-transforms": "^3.0.0",
     "@ember-decorators/utils": "^3.0.0-beta.0",
     "@ember/optional-features": "^0.7.0",
     "@ember/test-helpers": "1.0.1",
