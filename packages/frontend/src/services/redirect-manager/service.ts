@@ -20,10 +20,8 @@ export default class RedirectManager extends Service {
     return !!this.attemptedRoute;
   }
 
-  persistURL() {
-    const location = (this.router as any).location;
-
-    this.set('attemptedRoute', location.path);
+  persistURL(path: string) {
+    this.set('attemptedRoute', path);
   }
 
   evaluate() {

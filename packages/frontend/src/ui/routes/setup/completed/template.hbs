@@ -1,6 +1,6 @@
 <FocusCard @title={{t 'ui.setup.almostReady'}}>
 
-  <div class='content'>
+  <div data-test-setup-mnemonic class='content'>
     {{t 'ui.setup.mnemonicPrompt'}}
 
     <MnemonicDisplay @privateKey={{model.privateKey}} />
@@ -13,7 +13,11 @@
       {{t 'buttons.back'}}
     </button>
 
-    <button class='button' {{action (transition-to 'chat')}}>
+    <button
+      data-test-next
+      class='button'
+      {{action (transition-to 'chat')}}
+    >
       {{t 'buttons.next'}}
     </button>
   </div>

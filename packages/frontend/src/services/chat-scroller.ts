@@ -25,7 +25,8 @@ export default class ChatScroller extends Service {
       return isElementWithin(lastMessage, container);
     }
 
-    return false;
+    // nothing to show. last is like... square root of -1... or something.
+    return true;
   }
 
   scrollToBottom() {
