@@ -3,6 +3,11 @@
 <div class='message-list flex-column justify-content-end no-overflow'>
   <ConnectionStatus class='p-absolute top span transition-all base-z' />
 
+
+  {{!--
+
+  the vertical collection component does not allow for proper reverse / stick-to-bottom rendering
+
   {{#vertical-collection
     @messages
     tagName='div'
@@ -10,7 +15,7 @@
     estimateHeight=100
     staticHeight=false
     bufferSize=8
-    renderAll=false
+    renderAll=true
     renderFromLast=true
     as |message|
   }}
@@ -18,16 +23,29 @@
 
   {{/vertical-collection}}
 
-  <div
-    class='new-messages flex-row transition-all p-l-md p-r-md p-t-xs p-b-xs {{if this.isLastVisible 'hidden'}}'
+  --}}
+
+  <div class='messages justify-content-end overflows'>
+    {{#each @messages as |message|}}
+      <Message @message={{message}} />
+    {{/each}}
+  </div>
+
+  <a
+    {{action this.scrollToBottom}}
+    class='
+      new-messages has-text-white flex-row
+      transition-all p-l-md p-r-md p-t-xs p-b-xs
+      {{if this.isLastVisible 'hidden'}}
+    '
   >
 
     <span class='is-hidden-mobile m-r-sm'>
       {{t 'ui.chat.newMessages'}}
     </span>
 
-    <a class='underline' {{action this.scrollToBottom}}>
+    <span class='underline'>
       {{t 'ui.chat.viewRecent'}}
-    </a>
-  </div>
+    </span>
+  </a>
 </div>

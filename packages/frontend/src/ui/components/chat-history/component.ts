@@ -3,7 +3,7 @@ import Component from '@ember/component';
 import { action } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 import { timeout } from 'ember-concurrency';
-import { task } from 'ember-concurrency-decorators';
+import { keepLatestTask } from 'ember-concurrency-decorators';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
 
@@ -21,18 +21,14 @@ export default class ChatHistory extends Component {
     this.chatScroller.scrollToBottom();
   }
 
-  @task
-  * autoScrollToBottom(this: ChatHistory) {
-    const messages = this.element.querySelector('.messages') as HTMLElement;
+  // This watches to see if we have scrolled up, and shows the
+  // quick link to jump to the bottom.
+  @keepLatestTask * autoScrollToBottom(this: ChatHistory) {
 
     while(true) {
       yield timeout(250);
 
-      // allow 1px inaccuracy by adding 1
-      const { scrollHeight, clientHeight, scrollTop } = messages;
-      const isScrolledToBottom = scrollHeight - clientHeight <= scrollTop + 100;
-
-      this.chatScroller.maybeNudgeToBottom();
+      const isScrolledToBottom = this.chatScroller.isLastVisible();
 
       this.set('isLastVisible', isScrolledToBottom);
 
