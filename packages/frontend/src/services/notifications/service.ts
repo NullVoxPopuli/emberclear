@@ -101,7 +101,6 @@ export default class Notifications extends Service {
       ...options
     };
 
-
     return new Notification(title || defaultTitle, notificationOptions);
   }
 }

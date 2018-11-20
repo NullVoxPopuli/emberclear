@@ -5,6 +5,7 @@ import { service } from '@ember-decorators/service';
 import PromiseMonitor from 'ember-computed-promise-monitor';
 
 import PrismManager from 'emberclear/services/prism-manager';
+import ChatScroller from 'emberclear/services/chat-scroller';
 import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
 import { parseLanguages, parseURLs } from 'emberclear/src/utils/string/utils';
@@ -13,6 +14,7 @@ import { monitor } from 'emberclear/src/utils/decorators';
 
 export default class extends Component {
   @service prismManager!: PrismManager;
+  @service chatScroller!: ChatScroller;
   message!: Message;
 
   @computed('message.body')
@@ -53,6 +55,12 @@ export default class extends Component {
 
     // non-blocking
     this.addLanguages(this.message.body);
+
+
+    // maybe scroll to the bottom?
+    // should this really live here?
+    // every inserted message is going to call this....
+    this.chatScroller.maybeNudgeToBottom(this.element);
   }
 
   private async addLanguages(text: string) {
