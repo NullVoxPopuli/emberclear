@@ -24,7 +24,7 @@ export default class InviteRoute extends Route {
 
     this.toast.info('Please login or create your account before the invite can be accepted');
 
-    this.redirectManager.persistURL();
+    this.redirectManager.persistURL(transition.intent.url);
 
     // no identity, need to create one
     this.transitionTo('setup');

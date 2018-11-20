@@ -16,4 +16,5 @@ declare module 'ember-concurrency-decorators' {
 
   export const task: any;
   export const dropTask: any;
+  export const keepLatestTask: any;
 }

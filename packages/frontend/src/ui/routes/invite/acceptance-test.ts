@@ -1,5 +1,5 @@
 import { module, skip, test } from 'qunit';
-import { currentURL } from '@ember/test-helpers';
+import { currentURL, settled, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import DS from 'ember-data';
@@ -13,6 +13,8 @@ import {
 } from 'emberclear/tests/helpers';
 
 import { app } from 'emberclear/tests/helpers/pages/app';
+import { chat } from 'emberclear/tests/helpers/pages/chat';
+import { nameForm, completedPage } from 'emberclear/tests/helpers/pages/setup';
 
 module('Acceptance | Invitations', function(hooks) {
   setupApplicationTest(hooks);
@@ -40,6 +42,45 @@ module('Acceptance | Invitations', function(hooks) {
       const url = redirect.attemptedRoute;
 
       assert.equal(url, '/invite?name=Test&publicKey=abcdef123456');
+    });
+
+    module('the user fills in their name and proceeds', function(hooks) {
+      hooks.beforeEach(async function() {
+        await nameForm.enterName('My Name');
+        await nameForm.clickNext();
+        await waitFor('[data-test-setup-mnemonic]');
+      });
+
+      test('setup has advanced properly', function(assert) {
+        assert.equal(currentURL(), '/setup/completed');
+      });
+
+      test('redirect is still pending', function(assert) {
+        const redirect = getService<RedirectManager>('redirect-manager');
+        const url = redirect.attemptedRoute;
+
+        assert.ok(redirect.hasPendingRedirect, 'redirect is pending');
+        assert.equal(url, '/invite?name=Test&publicKey=abcdef123456', 'url is present');
+      });
+
+      module('the user clicks passed the mnemonic screen', function(hooks) {
+        hooks.beforeEach(async function() {
+          await completedPage.clickNext();
+          await waitFor(chat.selectors.form);
+        });
+
+        test('the redirect has been evaluated', function(assert) {
+          assert.equal(currentURL(), '/chat/privately-with/abcdef123456');
+        });
+
+        test('the redirect manager has been cleared', function(assert) {
+          const redirect = getService<RedirectManager>('redirect-manager');
+          const url = redirect.attemptedRoute;
+
+          assert.notOk(redirect.hasPendingRedirect, 'redirect is not pending');
+          assert.equal(url, null, 'url is no longer present');
+        });
+      });
     });
   });
 
