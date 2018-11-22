@@ -118,7 +118,7 @@
     "ember-service-worker": "github:DockYard/ember-service-worker#c78cb28432af5eeb6e4adc0961fb7f8da025cd14",
     "ember-service-worker-asset-cache": "^0.6.2",
     "ember-service-worker-cache-fallback": "^0.6.1",
-    "ember-service-worker-index": "^0.6.6",
+    "ember-service-worker-index": "^0.7.0",
     "ember-service-worker-update-notify": "^1.0.2",
     "ember-sinon": "^3.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/a662910a5ce72ce84ba8867a5abfcf1b30158dcf.tgz",
