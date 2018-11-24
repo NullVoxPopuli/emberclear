@@ -5307,9 +5307,10 @@ ember-css-modules@^0.7.10:
     semver "^5.5.0"
     toposort "^1.0.6"
 
-"ember-data@github:emberjs/data#8b7de9e69f2418ef9747aa4ca51f59efff9d669c":
+"ember-data@github:emberjs/data#e5e2ccc1caa340d61c9fc9f2808f1f66633a95a4":
   version "3.5.0"
-  resolved "https://codeload.github.com/emberjs/data/tar.gz/8b7de9e69f2418ef9747aa4ca51f59efff9d669c"
+  uid e5e2ccc1caa340d61c9fc9f2808f1f66633a95a4
+  resolved "https://codeload.github.com/emberjs/data/tar.gz/e5e2ccc1caa340d61c9fc9f2808f1f66633a95a4"
   dependencies:
     "@ember/ordered-set" "^2.0.3"
     "@glimmer/env" "^0.1.7"
