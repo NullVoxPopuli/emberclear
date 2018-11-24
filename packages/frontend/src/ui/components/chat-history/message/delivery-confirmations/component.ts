@@ -5,7 +5,7 @@ import { not, notEmpty } from '@ember-decorators/object/computed';
 import { dropTask } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
 
-import Message, { TARGET } from 'emberclear/src/data/models/message';
+import Message, { TARGET } from 'emberclear/src/data/models/message/model';
 import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
 import IdentityService from 'emberclear/src/services/identity/service';

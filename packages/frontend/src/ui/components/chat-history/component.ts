@@ -1,22 +1,28 @@
 import Ember from 'ember';
-import Component from '@ember/component';
-import { action } from '@ember-decorators/object';
+import Component, { tracked } from 'sparkles-component';
 import { service } from '@ember-decorators/service';
 import { timeout } from 'ember-concurrency';
 import { keepLatestTask } from 'ember-concurrency-decorators';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
+import Message from 'emberclear/src/data/models/message/model';
+import Identity from 'emberclear/src/data/models/identity/model';
+import Channel from 'emberclear/src/data/models/channel';
 
-export default class ChatHistory extends Component {
+interface IArgs {
+  to: Identity | Channel;
+  messages: Message[];
+}
+
+export default class ChatHistory extends Component<IArgs> {
   @service chatScroller!: ChatScroller;
 
-  isLastVisible = true;
+  @tracked isLastVisible = true;
 
   didInsertElement() {
     this.autoScrollToBottom.perform();
   }
 
-  @action
   scrollToBottom() {
     this.chatScroller.scrollToBottom();
   }
@@ -30,7 +36,7 @@ export default class ChatHistory extends Component {
 
       const isScrolledToBottom = this.chatScroller.isLastVisible();
 
-      this.set('isLastVisible', isScrolledToBottom);
+      this.isLastVisible = isScrolledToBottom;
 
       // HACK: remove eventually....
       // http://ember-concurrency.com/docs/testing-debugging/

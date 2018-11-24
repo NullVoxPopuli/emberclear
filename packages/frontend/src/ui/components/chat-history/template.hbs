@@ -1,5 +1,3 @@
-{{! template-lint-disable attribute-indentation }}
-
 <div class='message-list flex-column justify-content-end no-overflow'>
   <ConnectionStatus class='p-absolute top span transition-all base-z' />
 
@@ -26,6 +24,8 @@
   --}}
 
   <div class='messages justify-content-end overflows'>
+    <UnreadManagement @messages={{@messages}} @to={{@to}} />
+
     {{#each @messages as |message|}}
       <Message @message={{message}} />
     {{/each}}

@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { reads, filter } from '@ember-decorators/object/computed';
 
-import Message, { TARGET } from 'emberclear/src/data/models/message';
+import Message, { TARGET } from 'emberclear/src/data/models/message/model';
 
 export default class extends Controller {
   @reads('model.targetChannel.id') id!: string;

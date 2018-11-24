@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { service } from '@ember-decorators/service';
 import { reads, filter } from '@ember-decorators/object/computed';
 
-import Message, { TARGET } from 'emberclear/src/data/models/message';
+import Message, { TARGET } from 'emberclear/src/data/models/message/model';
 import IdentityService from 'emberclear/services/identity/service';
 
 export default class extends Controller {

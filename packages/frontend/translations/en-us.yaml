@@ -129,6 +129,7 @@ ui:
       toggleHelp: Toggle Keyboard Help
 
   sidebar:
+    unread: Unread
     channels:
       title: Channels
       none: You are not in any channels
@@ -149,6 +150,8 @@ ui:
       Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: There are newer messages
     viewRecent: view recent messages
+    unreadMessages: '{number} new messages since {time}'
+    markAllAsRead: Mark all as read
     errors:
       contactNotFound: Your contact could not be located
     sender:

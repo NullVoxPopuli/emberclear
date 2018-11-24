@@ -121,6 +121,22 @@ body {
   resize: none;
 }
 
+.has-shadow {
+  box-shadow: $box-shadow;
+
+  &.height-tall {
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.3);
+  }
+
+  &.buttons {
+    border-radius: 4px;
+  }
+
+  a {
+    margin: 0 !important;
+  }
+}
+
 .sticky {
   position: sticky;
 }

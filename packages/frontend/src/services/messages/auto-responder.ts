@@ -3,7 +3,7 @@ import { service } from '@ember-decorators/service';
 
 import MessageDispatcher from 'emberclear/src/services/messages/dispatcher';
 import MessageFactory from 'emberclear/src/services/messages/factory';
-import Message from 'emberclear/src/data/models/message';
+import Message from 'emberclear/src/data/models/message/model';
 
 /**
  * Nothing here should be blocking, as these responses should not matter

@@ -1,12 +1,35 @@
-{{!-- TODO: need a way to figure out when is-active
-            should be displayed --}}
-<a
-  {{action @onClick}}
-  class='
-    flex-row align-items-center
-    {{if this.isActive 'is-active'}}
-  '
->
-  <StatusIcon @contact={{@contact}} />
-  <span class='m-l-sm'>{{or @contact.name '[unnamed]'}}</span>
-</a>
+{{#if this.shouldBeRendered}}
+  <WithResponsiveness
+    @whenLarge={{action (transition-to 'chat.privately-with' @contact.id)}}
+    @whenSmall={{action
+      (queue
+        (action @closeSidebar)
+        (action (transition-to 'chat.privately-with' @contact.id)))
+    }} as |classNames onClick|
+  >
+
+    <li data-test-contact-row class={{classNames}}>
+      <a
+        {{action onClick}}
+        class='
+          flex-row align-items-center justify-content-space-between
+          {{if this.isActive 'is-active'}}
+        '
+      >
+        <span class='flex-row align-items-center'>
+          <StatusIcon @contact={{@contact}} />
+          <span class='m-l-sm'>{{or @contact.name '[unnamed]'}}</span>
+        </span>
+
+        {{#if hasUnread}}
+          <span
+            id={{this.unreadElementId}}
+            class='tag is-danger is-pulled-right'>
+            {{numberUnread}}
+          </span>
+        {{/if}}
+      </a>
+    </li>
+
+  </WithResponsiveness>
+{{/if}}

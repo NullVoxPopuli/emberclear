@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 
 import Identity from 'emberclear/src/data/models/identity/model';
-import Message from 'emberclear/src/data/models/message';
+import Message from 'emberclear/src/data/models/message/model';
 
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 

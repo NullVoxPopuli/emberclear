@@ -1,4 +1,3 @@
-{{! template-lint-disable attribute-indentation-}}
 <div ...attributes>
   <aside
     class='
@@ -12,6 +11,13 @@
         <TopMobileSection />
       </div>
 
+      {{#if this.hasUnreadAbove}}
+        <UnreadIndicator
+          @onClick={{action this.scrollUpToNearestUnread}}
+          @direction='up'
+        />
+      {{/if}}
+
       <Contacts
         @contacts={{@contacts}}
         @closeSidebar={{action this.closeSidebar}}
@@ -22,6 +28,14 @@
         @channels={{@channels}}
         @closeSidebar={{action this.closeSidebar}}
       />
+
+      {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
+      {{#if this.hasUnreadBelow}}
+        <UnreadIndicator
+          @onClick={{action this.scrollDownToNearestUnread}}
+          @direction='down'
+        />
+      {{/if}}
 
     </div>
 

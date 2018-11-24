@@ -7,7 +7,7 @@ import { task } from 'ember-concurrency-decorators';
 import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';
-import Message from 'emberclear/data/models/message';
+import Message from 'emberclear/data/models/message/model';
 import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
 import StatusManager from 'emberclear/services/status-manager';

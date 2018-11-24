@@ -1,7 +1,10 @@
 {{! template-lint-disable no-triple-curlies }}
 
-<div class='message m-l-md m-r-md m-b-md' data-test-chat-message>
-
+<div
+  id={{@message.id}}
+  class='message m-l-md m-r-md m-b-md {{if @message.unread 'unread'}}'
+  data-test-chat-message
+>
   <div class='message-header'>
     <span class='from'>
       {{#if hasSender}}
@@ -33,7 +36,11 @@
     </span>
   </div>
 
-  <p class='message-body'>
+  <p
+    role='button'
+    class='message-body'
+    {{action (perform this.markRead)}}
+  >
     {{{messageBody}}}
 
     {{#if (is-present urls)}}
