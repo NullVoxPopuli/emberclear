@@ -29,6 +29,16 @@
     top: 0;
   }
 
+  &.bottom {
+    bottom: 0;
+  }
+
+  &.center-x {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
   &.span {
     left: 0;
     right: 0;

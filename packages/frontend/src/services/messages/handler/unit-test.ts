@@ -8,7 +8,7 @@ import {
   setupCurrentUser,
 } from 'emberclear/tests/helpers';
 
-import { TYPE, TARGET } from 'emberclear/src/data/models/message';
+import { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
 import IdentityService from 'emberclear/src/services/identity/service';
 
 import ReceivedMessageHandler from './service';

@@ -4,7 +4,7 @@ import { service } from '@ember-decorators/service';
 import IdentityService from 'emberclear/services/identity/service';
 import RelayConnection from 'emberclear/services/relay-connection';
 import RedirectManager from 'emberclear/services/redirect-manager/service';
-import Message from 'emberclear/data/models/message';
+import Message from 'emberclear/data/models/message/model';
 
 import { disableInFastboot } from 'emberclear/src/utils/decorators';
 

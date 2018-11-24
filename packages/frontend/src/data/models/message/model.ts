@@ -1,5 +1,6 @@
 import Model from 'ember-data/model';
 import { attr, belongsTo, hasMany } from '@ember-decorators/data';
+import { not } from '@ember-decorators/object/computed';
 
 import Identity from 'emberclear/data/models/identity/model';
 
@@ -109,6 +110,13 @@ export default class Message extends Model {
 
   @attr() receivedAt?: Date;
   @attr() sentAt!: Date;
+
+  /**
+   * The Date/Time that the current user has viewed the message.
+   * Can also be artifically set via a "Mark all as read" button.
+   * */
+  @attr() readAt!: Date;
+
   @attr() sendError?: string;
 
   @belongsTo('identity', { async: false }) sender?: Identity;
@@ -117,6 +125,8 @@ export default class Message extends Model {
   // @hasMany('message', { async: false, inverse: 'confirmationFor' }) deliveryConfirmations?: Message[];
   @hasMany('message', { async: false }) deliveryConfirmations?: Message[];
 
+
+  @not('readAt') unread!: boolean;
 
   // currently unused
   @attr() contentType!: string;

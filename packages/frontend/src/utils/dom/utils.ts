@@ -15,6 +15,23 @@ export function isElementWithin(element: HTMLElement, container: HTMLElement): b
   return isVisible;
 }
 
+export function isInElementWithinViewport(element: Element, container: Element): boolean {
+  const containerRect = container.getBoundingClientRect();
+  const childRect = element.getBoundingClientRect();
+
+  const containerViewableArea = {
+    height: container.clientHeight,
+    width: container.clientWidth
+  };
+
+  const isViewable = (
+    childRect.top >= containerRect.top
+    && childRect.top <= containerRect.top + containerViewableArea.height
+  );
+
+  return isViewable;
+}
+
 export function keepInViewPort(element: HTMLElement, margin = 20 /* px */) {
   const rect = element.getBoundingClientRect();
 
@@ -56,4 +73,33 @@ export function convertAndSanitizeMarkdown(markdown: string) {
 
   return sanitized;
 
+}
+
+
+// https://stackoverflow.com/questions/45408920/plain-javascript-scrollintoview-inside-div
+export function scrollIntoViewOfParent(parent: Element, child: Element) {
+ // Where is the parent on page
+  const parentRect = parent.getBoundingClientRect();
+  // What can you see?
+  const parentViewableArea = {
+    height: parent.clientHeight,
+    width: parent.clientWidth
+  };
+
+  // Where is the child
+  const childRect = child.getBoundingClientRect();
+  // Is the child viewable?
+  const isViewable = (
+    childRect.top >= parentRect.top
+  ) && (
+    childRect.top <= parentRect.top + parentViewableArea.height
+  );
+
+  // if you can't see the child try to scroll parent
+  if (!isViewable) {
+    // scroll by offset relative to parent
+    const amount = childRect.top - parentRect.top - (parentViewableArea.height / 2);
+
+    parent.scrollBy({ top: amount, behavior: 'smooth' });
+  }
 }

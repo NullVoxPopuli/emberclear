@@ -4,7 +4,7 @@ import { service } from '@ember-decorators/service';
 
 import Identity from 'emberclear/src/data/models/identity/model';
 import Notifications from 'emberclear/services/notifications/service';
-import Message, { TYPE, TARGET } from 'emberclear/src/data/models/message';
+import Message, { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
 import IdentityService from 'emberclear/services/identity/service';
 import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';

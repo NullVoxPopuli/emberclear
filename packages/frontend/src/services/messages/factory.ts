@@ -3,10 +3,10 @@ import { service } from '@ember-decorators/service';
 import uuid from 'uuid';
 
 import IdentityService from 'emberclear/services/identity/service';
-import { TYPE, TARGET } from 'emberclear/src/data/models/message';
+import { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
 import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
-import Message from 'emberclear/src/data/models/message';
+import Message from 'emberclear/src/data/models/message/model';
 
 export default class MessageFactory extends Service {
   @service store!: any;
@@ -29,6 +29,9 @@ export default class MessageFactory extends Service {
     let message = this.build({
       body: text,
       type: TYPE.CHAT,
+      // all messages sent are read... beacuse..
+      // we sent them, so... they are read already...
+      readAt: new Date(),
       ...attributes
     });
 

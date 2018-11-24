@@ -19,6 +19,10 @@
     background: lighten($background, 5);
   }
 
+  &.unread {
+    background-color: #f1f1fa;
+  }
+
   &:not(:last-child) {
     margin-bottom: 0;
   }
@@ -75,6 +79,7 @@
   left: 15px;
 
   &.hidden {
+    // TODO: use ember-animated
     bottom: -150px;
   }
 

@@ -29,28 +29,17 @@
 
   {{#if isOpen}}
     <ul class='menu-list'>
-      {{#each this.contacts as |contact|}}
-
-        <WithResponsiveness
-          @whenLarge={{action (transition-to 'chat.privately-with' contact.id)}}
-          @whenSmall={{action
-            (queue
-              (action @closeSidebar)
-              (action (transition-to 'chat.privately-with' contact.id)))
-          }} as |classNames onClick|
-        >
-
-          <li data-test-contact-row class={{classNames}}>
-            <Contact @contact={{contact}} @onClick={{action onClick}} />
-          </li>
-
-        </WithResponsiveness>
+      {{#each @contacts as |contact|}}
+        <Contact
+          @contact={{contact}}
+          @closeSidebar={{@closeSidebar}}
+        />
       {{/each}}
 
       {{#if (and this.hideOfflineContacts (gt this.numberOffline 0))}}
-        <small data-test-offline-count class='p-l-md has-text-grey-dark is-italic'>
-          {{t 'ui.sidebar.contacts.numOffline' num=this.numberOffline}}
-        </small>
+        <li data-test-offline-count class='p-l-md m-t-sm has-text-grey-dark is-italic'>
+          <small>{{t 'ui.sidebar.contacts.numOffline' num=this.numberOffline}}</small>
+        </li>
       {{/if}}
     </ul>
   {{/if}}
