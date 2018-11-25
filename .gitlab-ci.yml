@@ -176,6 +176,7 @@ pages:
   script:
     - mkdir -p public/$CI_COMMIT_REF_NAME
     - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/$CI_COMMIT_REF_NAME
+    - mv ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html public/$CI_COMMIT_REF_NAME
   artifacts:
     paths:
       - public
