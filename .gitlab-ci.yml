@@ -163,6 +163,7 @@ Deploy Production:
   script:
     - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/
     - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
+    - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html public/bundle.html
     - time ./scripts/publish
 
 
