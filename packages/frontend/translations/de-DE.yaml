@@ -60,7 +60,7 @@ input:
     mnemonic: Enter your mnemonic
     name: Name
 status:
-  deliveryFailed: 'Die Nachricht konnte nicht zugestellt werden'
+  deliveryFailed: 'Die Nachricht konnte nicht zugestellt werden.'
   importing: Wird importiert...
   updateAvailable: Eine neue Version ist verfügbar. Klicken Sie hier, um die Aktualisierung durchzuführen.
 services:
@@ -133,7 +133,7 @@ ui:
     errors:
       contactNotFound: Your contact could not be located
     sender:
-      removed: removed
+      removed: Entfernt
     messages:
       received: 'Received: {at}'
     embedMenu:
@@ -177,7 +177,7 @@ ui:
     overwriteQuestion: >
       This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. <br> <br> Are you sure you want to do this?
     overwriteAbort: No, take me back to safety
-    overwriteConfirm: Yes, I understand the risks
+    overwriteConfirm: Ja, ich bin mir des Risikos bewusst
     introQuestion: What would you like to be called?
     almostReady: You are almost ready to begin chatting!
     nameLabel: Your desired alias
