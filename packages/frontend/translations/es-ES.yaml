@@ -6,8 +6,8 @@ todo: 'TODO: fill this out correctly'
 qrCode:
   error: QR Code could not be generated
 connection:
-  connecting: Connecting...
-  connected: Connected!
+  connecting: Conectando...
+  connected: Conectado!
   log:
     push:
       ok: 'push: created. {msg}'
@@ -24,8 +24,8 @@ connection:
     subscribe:
       notConnected: Cannot subscribe to a channel without a socket connection!
 buttons:
-  delete: delete
-  resend: resend
+  delete: eliminar
+  resend: volver a enviar
   save: Save
   next: Next
   back: Back
@@ -152,7 +152,7 @@ ui:
     howDoesWorkQ: How does it work?
     howDoesWorkA: >
       All the encryption is done in the browser -- at no time do private keys leave your computer. Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging across the internet, on any network -- even if the network is compromised.
-    whyQ: Why?
+    whyQ: '¿Por què?'
     whyA: >
       Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
       This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
