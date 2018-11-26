@@ -58,16 +58,16 @@ images:
 input:
   placeholder:
     mnemonic: Enter your mnemonic
-    name: Name
+    name: Nom
 status:
   deliveryFailed: 'Message could not be delivered'
-  importing: Importing ...
-  updateAvailable: A new version is available, click here to update.
+  importing: Importation en cours...
+  updateAvailable: Une nouvelle version est disponible, cliquez ici pour mettre à jour.
 services:
   crypto:
-    keyGenFailed: Key Generation Failed
+    keyGenFailed: La génération de clé a échoué
 routes:
-  home: Home
+  home: Accueil
   chat: Chat
   logout: Logout
   login: Login
@@ -122,18 +122,18 @@ ui:
   addContact:
     title: Have a friend scan your QR Code, share your link, or scan their QR Code
   chat:
-    welcome: Welcome!
+    welcome: Bienvenue !
     message: >
       To get started, you'll need at least one friend.<br /><br />
       Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: There are newer messages
     viewRecent: view recent messages
     unreadMessages: '{number} new messages since {time}'
-    markAllAsRead: Mark all as read
+    markAllAsRead: Marquer tout comme lu
     errors:
       contactNotFound: Your contact could not be located
     sender:
-      removed: removed
+      removed: supprimée
     messages:
       received: 'Received: {at}'
     embedMenu:
