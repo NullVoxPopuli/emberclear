@@ -46,8 +46,8 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "@ember-decorators/babel-transforms": "^3.0.0",
-    "@ember-decorators/utils": "^3.0.0-beta.0",
+    "@ember-decorators/babel-transforms": "^3.1.0",
+    "@ember-decorators/utils": "^3.1.0",
     "@ember/optional-features": "^0.7.0",
     "@ember/test-helpers": "1.0.1",
     "@fortawesome/ember-fontawesome": "^0.1.0-8",
@@ -98,9 +98,9 @@
     "ember-composable-helpers": "^2.1.0",
     "ember-computed-promise-monitor": "^0.1.3",
     "ember-concurrency": "^0.8.19",
-    "ember-concurrency-decorators": "0.3.0",
+    "ember-concurrency-decorators": "github:NullVoxPopuli/ember-concurrency-decorators#upgrade-ember-decorators",
     "ember-data": "github:emberjs/data#e5e2ccc1caa340d61c9fc9f2808f1f66633a95a4",
-    "ember-decorators": "^3.0.1",
+    "ember-decorators": "^3.1.0",
     "ember-elsewhere": "^1.0.4",
     "ember-exam": "^1.0.0",
     "ember-export-application-global": "^2.0.0",
@@ -119,7 +119,7 @@
     "ember-service-worker-asset-cache": "^0.6.2",
     "ember-service-worker-cache-fallback": "^0.6.1",
     "ember-service-worker-index": "^0.7.0",
-    "ember-service-worker-update-notify": "^1.0.2",
+    "ember-service-worker-update-notify": "github:NullVoxPopuli/ember-service-worker-update-notify#upgrades",
     "ember-sinon": "^3.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/a662910a5ce72ce84ba8867a5abfcf1b30158dcf.tgz",
     "ember-template-lint": "1.0.0-beta.6",
@@ -140,9 +140,6 @@
     "sparkles-component": "^1.1.0",
     "typescript": "~3.1.1",
     "typescript-eslint-parser": "20.1.1"
-  },
-  "_": {
-    "ember-service-worker-update-notify": "github:NullVoxPopuli/ember-service-worker-update-notify#upgrades"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"

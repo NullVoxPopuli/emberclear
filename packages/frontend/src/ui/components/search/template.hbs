@@ -1,8 +1,63 @@
 <Modal @isActive={{@isActive}} @close={{action @close}}>
 
-  <h3 class='is-size-3'>{{t 'ui.search.title' }}</h3>
+  <form {{action this.submitSearch on='submit'}}>
+    <div class='field'>
+      <div class='control'>
+        {{input
+          autofocus
+          id=this.inputId
+          type='text'
+          class='input is-large'
+          value=this.searchText
+          placeholder=(t 'ui.search.title')
+          input=(action this.submitSearch)
+        }}
+      </div>
+    </div>
+    <input style='display: none' type='submit' value='submit'>
+  </form>
 
-  <p class='m-lg'>
-    {{t 'ui.search.description' }}
-  </p>
+  <div
+    class='m-t-lg overflows'
+    style='max-height: 250px; margin-right: -1rem; padding-right: 1rem;'
+  >
+    {{#if (not this.hasResults)}}
+      {{t 'ui.search.nothingFound'}}
+    {{else}}
+      <h5 class='is-size-7 is-uppercase'>{{t 'ui.search.contacts'}}</h5>
+
+      {{#each this.identityResults as |identity|}}
+        <div tablist>
+          <Result @to='chat.privately-with' @id={{identity.uid}} @afterSelect={{action @close}}>
+            <span>
+              @ <strong class='has-text-link'>{{identity.name}}</strong>
+            </span>
+            <span class='has-text-grey'>
+              {{first-8 identity.uid}}
+            </span>
+          </Result>
+        </div>
+      {{else}}
+        {{t 'ui.search.noContacts'}}
+      {{/each}}
+
+      <hr class='m-t-sm m-b-sm'>
+      <h5 class='is-size-7 is-uppercase'>{{t 'ui.search.channels'}}</h5>
+
+      {{#each this.channelResults as |channel|}}
+        <div tablist>
+          <Result @to='chat.in-channel' @id={{channel.id}} @afterSelect={{action @close}}>
+            <span>
+              # <strong class='has-text-link'>{{channel.name}}</strong>
+            </span>
+            <span class='has-text-grey'>
+              {{first-8 channel.id}}
+            </span>
+          </Result>
+        </div>
+      {{else}}
+        {{t 'ui.search.noChannels'}}
+      {{/each}}
+    {{/if}}
+  </div>
 </Modal>
