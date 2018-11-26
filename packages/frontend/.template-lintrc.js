@@ -5,7 +5,15 @@ module.exports = {
   rules: {
     'quotes': 'single',
     'no-inline-styles': false,
-    'no-bare-strings': true,
+    'no-bare-strings': {
+      whitelist: [
+        '(', ')', ',', '.', '&',
+        '+', '-', '=', '*', '/',
+        '#', '%', '!', '?', ':',
+        '[', ']', '{', '}', '<', '>',
+        '•', '—', ' ', '|', '@'
+      ],
+    },
     'no-invalid-interactive': {
       additionalInteractiveTags: [ 'a' ]
     },

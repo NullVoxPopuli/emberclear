@@ -1,34 +1,39 @@
-import Component from '@ember/component';
+import Component from 'sparkles-component';
 import { service } from '@ember-decorators/service';
-import { action, computed } from '@ember-decorators/object';
+import { computed } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
 
 import Modals from 'emberclear/services/modals';
 
-export default class ModalStatic extends Component {
+interface IArgs {
+  name: string;
+}
+
+export default class ModalStatic extends Component<IArgs> {
   @service modals!: Modals;
 
   name!: string;
 
-  @computed('name')
+  @computed('args.name')
   get modal() {
-    return this.modals.find(this.name);
+    return this.modals.find(this.args.name);
   }
 
   @reads('modal.isActive') isActive!: boolean;
 
-  @action
   toggle() {
-    this.modals.toggle(this.name);
+    if (this.isActive) {
+      this.close();
+    } else {
+      this.open();
+    }
   }
 
-  @action
   close() {
-    this.modals.close(this.name);
+    this.modals.close(this.args.name);
   }
 
-  @action
   open() {
-    this.modals.open(this.name);
+    this.modals.open(this.args.name);
   }
 }

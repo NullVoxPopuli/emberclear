@@ -2,6 +2,20 @@
 .container {
   width: auto !important;
 }
+
+a {
+  &:focus {
+    background-color: whitesmoke;
+    outline: none;
+    border: 1px solid lightgray;
+
+    &:hover {
+      background-color: darken(whitesmoke, 5%);
+    }
+  }
+
+}
+
 .navbar {
   transition-property: all;
   transition-duration: 0.2s;
@@ -14,6 +28,7 @@
     color: $navbar-item-color;
     transition-property: all;
     transition-duration: 0.2s;
+
   }
 
   &.is-primary {

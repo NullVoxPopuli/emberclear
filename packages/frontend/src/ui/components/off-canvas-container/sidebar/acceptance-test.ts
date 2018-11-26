@@ -136,6 +136,13 @@ module('Acceptance | Sidebar', function(hooks) {
           });
         });
       });
+
+      module('there are enough contacts to scroll', function(hooks) {
+        hooks.before(async function() {
+          // TODO: these need implementing
+          // Need a way to set the window size
+        });
+      });
     });
   });
 

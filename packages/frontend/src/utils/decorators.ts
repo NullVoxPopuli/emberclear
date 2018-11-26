@@ -8,10 +8,15 @@ function isFastBoot(context: any) {
   return service.isFastBoot;
 }
 
-export const disableInFastboot = decoratorWithParams(_disableInFastboot);
+interface IDecorator {
+  descriptor: PropertyDescriptor;
+  key: string;
+  kind: string;
+  placement: string;
+}
 
-export function _disableInFastboot<T>(_target: any, _propertyKey: string, descriptor: PropertyDescriptor, params: any[]) {
-  const options = params[0] || {};
+export const disableInFastboot = decoratorWithParams(function<T>({ descriptor }: IDecorator, params: any)  {
+  const options = params && params[0] || {};
   const fbReturn = options.default;
   const { get: oldGet, value: oldValue } = descriptor;
 
@@ -34,7 +39,7 @@ export function _disableInFastboot<T>(_target: any, _propertyKey: string, descri
   }
 
   return descriptor;
-}
+});
 
 export function syncToLocalStorage<T>(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const targetName = target.constructor.name;
