@@ -1,6 +1,6 @@
 ---
 appname: emberclear
-subheader: Encrypted Chat. No History. No Logs.
+subheader: Chat cifrado. No historia. No registros.
 authoredBy: by Preston Sego
 todo: 'TODO: fill this out correctly'
 qrCode:
@@ -37,8 +37,8 @@ buttons:
   scan: Scan
   sendSnippet: Send Snippet
   remove: Remove
-  donateEth: Donate Ethereum
-  donateXmr: Donate Monero
+  donateEth: Donar Ethereum
+  donateXmr: Donar Monero
   loginInstead: Login instead
   uploadSettings: Upload Settings
   showMyInfo: Show My Info
