@@ -25,32 +25,32 @@ connection:
       notConnected: Impossible de s’abonner à une chaine sans une connexion socket !
 buttons:
   delete: supprimer
-  resend: resend
-  save: Save
-  next: Next
-  back: Back
-  begin: Begin
-  logout: Logout
-  login: Login
-  cancel: Cancel
-  import: Import
-  scan: Scan
-  sendSnippet: Send Snippet
-  remove: Remove
+  resend: ré-envoyer
+  save: Sauvegarder
+  next: Suivant
+  back: Précédent
+  begin: Démarrer
+  logout: Se déconnecter
+  login: Se connecter
+  cancel: Annuler
+  import: Importer
+  scan: Scanner
+  sendSnippet: Envoyer un Snippet
+  remove: Supprimer
   donateEth: Donate Ethereum
   donateXmr: Donate Monero
   loginInstead: Login instead
-  uploadSettings: Upload Settings
-  showMyInfo: Show My Info
-  invite: Invite
-  addFriend: Add Friend
+  uploadSettings: Uploader les paramètres
+  showMyInfo: Afficher mes infos
+  invite: Inviter
+  addFriend: Ajouter un ami
   ariaLabel:
-    sidebar: 'Toggles the sidebar'
+    sidebar: 'Afficher/Masquer la barre latérale'
     dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
     modalBackdrop: Clickable backdrop for clicking off a modal to close it
     menuBackdrop: Clickable backdrop for clicking off the menu to close it
     sidebarBackdrop: Clickable backdrop for clicking off the sidebar to hide it
-    closeModal: Close Modal
+    closeModal: Fermer
 images:
   alt:
     thumbnail: Thumbnail
