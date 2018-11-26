@@ -8,7 +8,7 @@
   @contacts={{model.contacts}}
   @channels={{model.channels}}
 >
-  <ServiceWorkerUpdateNotify @pollingInterval={{1000}}>
+  <ServiceWorkerUpdateNotify @pollingInterval={{10000}}>
     <a class='service-worker-update-notify notification is-info' href=''>
       {{t 'status.updateAvailable'}}
     </a>
