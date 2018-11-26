@@ -154,9 +154,9 @@ ui:
       Die gesamte Verschlüsselung findet lokal im Browser statt -- zu keiner Zeit verlassen die privaten Schlüssel deinen Computer. Emberclear nutzt Libsodium's öffentliche Schlüssel-Kryptographie, um die Sicherheit der Nachrichten über das gesamte Internet und in jedem Netzwerk zu garantieren -- selbst wenn das genutzte Netzwerk bereits kompromitiert ist.
     whyQ: Warum?
     whyA: >
-      Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
-      This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
-      Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
+      Zum Einen aus Spaß, zum Anderen aus der Freude am Lernen -- Ich wollte schon immer ein Framework für Entwickler erstellen, welches diese dann in bestehende Web Anwendungen integrieren können.
+      Dieses Projekt wurde außerdem von meinem Misstrauen gegenüber bestehender Chat Apps und deren Infrastruktur inspiriert. 
+      Am Ende soll das Projekt über alle Funktion der populären Messenger verfügen -- mit einem Unterschied: Weder Server, Relays noch die förderierten Knoten tracken deine Inhalte.
     notOnlineQ: Was passiert wenn ich eine Nachricht sende und der Empfänger nich mehr online ist.
     notOnlineA: >
       Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
@@ -178,21 +178,21 @@ ui:
       Dies ist eine zerstörerische Handlung, welche die aktuell konfigurierte Identität löscht und ersetzt. Es existiert keine Möglichkeit zur Wiederherstellung und ohne die mnemonic Passphrase wirst du dich auch nicht mehr mit zuvor konfigurerten Chats verbinden können. <br> <br> Möchtest du wirklich fortfahren?
     overwriteAbort: No, take me back to safety
     overwriteConfirm: Ja, ich bin mir der Risiken bewusst
-    introQuestion: What would you like to be called?
-    almostReady: You are almost ready to begin chatting!
-    nameLabel: Your desired alias
+    introQuestion: Wie möchtest du genannt werden?
+    almostReady: Du hast es fast geschafft!
+    nameLabel: Dein gewünschter Alias
     mnemonicPrompt: >
-      If you would like to use this account on other computers, please store this mnemonic in a secure place. It will be used to login.
+      Wenn du einen Account auch auf anderen Computern nutzen willst, dann speichere diese mnemonic Passphrase an einem sicheren Ort. Diese wird zum Anmelden benötigt.
     note: >
       Du kannst jederzeit deine Einstellungen herunterladen, um diese dann später auf einem anderen PC nutzen zu können. Die Einstellungen beinhalten mehr als nur deine Identität.
   contacts:
-    title: 'Contacts ({number})'
-    noContacts: You do not have any contacts. Feel free to import some from your user menu in the top-right corner.
+    title: 'Kontakte ({number})'
+    noContacts: Du hast noch keine Kontakte. Über das Benutzer Menü in der oberen rechten Ecke kannst du welche importieren.
   logout:
-    title: Logging out is destructive
+    title: Abmelden löscht die vorhandenen Daten
     warning: >
       Das Abmelden führt zur Löschung aller lokalen Daten. Bitte stelle sicher, dass du dir deine mnemonic Passphrase aufgeschrieben oder gemerkt hast. Herunterladen kannst du deine Einstellungen alternativ auch unter
-    theSettingsPage: the Settings page.
+    theSettingsPage: der Einstellungsseite.
     confirm: Abmeldung bestätigen
   settings:
     title: Einstellungen
