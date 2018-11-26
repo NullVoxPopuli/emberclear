@@ -15,8 +15,8 @@ connection:
       timeout: 'push: Netzwerkfehler'
   status:
     socket:
-      error: An error occurred in the socket connection!
-      close: The socket connection has been dropped!
+      error: Bei der Socket Verbindung ist ein Fehler aufgetreten!
+      close: Die Socket Verbindung wurde unterbrochen!
     timeout: Ein Verbindungsfehler ist aufgetreten. Bitte warten...
   errors:
     send:
@@ -89,26 +89,26 @@ ui:
     copied: Kopiert!
   notifications:
     title: emberclear message
-    from: message from {name}
+    from: Nachricht von {name}
     prompt:
-      title: emberclear needs your permission to enable notifications.
-      enable: Enable Notifications
+      title: Emberclear benötigt deine Erlaubnis, um die Benachrichtigungen aktivieren zu können.
+      enable: Benachrichtigungen aktivieren
       askLater: Jedes Mal nachfragen
       neverAsk: Nicht erneut nachfragen
   search:
-    title: Search for things
-    description: Search coming soon
+    title: Nach Inhalten suchen
+    description: Suchfunktion folgt in kürze
   shortcuts:
     title: Tastatenkombination
     key:
-      ctrlSlash: <i class='key'>ctrl</i> + <i class='key'>/</i>
-      ctrlK: <i class='key'>ctrl</i> + <i class='key'>k</i>
-      ctrlSpace: <i class='key'>ctrl</i> + <i class='key'>space</i>
-      ctrlH: <i class='key'>ctrl</i> + <i class='key'>h</i>
+      ctrlSlash: <i class='key'>strg</i> + <i class='key'>/</i>
+      ctrlK: <i class='key'>strg</i> + <i class='key'>k</i>
+      ctrlSpace: <i class='key'>strg</i> + <i class='key'>Leertaste</i>
+      ctrlH: <i class='key'>strg</i> + <i class='key'>h</i>
     actions:
       search: Alles durchsuchen
       toggleSidebar: Seitenleiste anzeigen/ausblenden
-      toggleHelp: Toggle Keyboard Help
+      toggleHelp: Tastaturhilfe einblenden
   sidebar:
     unread: Ungelesen
     channels:
@@ -124,26 +124,26 @@ ui:
   chat:
     welcome: Willkommen!
     message: >
-      To get started, you'll need at least one friend.<br /><br />
-      Then you'll be able to chat with them and create channels for communicating with groups of friends.
+      Du brauchst mindestens einen Freund, um anfangen zu können.<br /><br />
+      Danach kannst du mit deinen Kontakten chatten und über Kanäle mit Gruppen kommunizieren.
     newMessages: Es existieren neuere Nachrichten
     viewRecent: Letzte Nachrichten ansehen
-    unreadMessages: '{number} new messages since {time}'
-    markAllAsRead: Mark all as read
+    unreadMessages: '{number} neue Nachrichten seit {time}'
+    markAllAsRead: Alle als gelesen markieren
     errors:
-      contactNotFound: Your contact could not be located
+      contactNotFound: Dein Kontakt konnte nicht lokalisiert werden
     sender:
       removed: Entfernt
     messages:
-      received: 'Received: {at}'
+      received: 'Empfangen: {at}'
     embedMenu:
-      code: Code or text snippet
+      code: Code oder Text Ausschnitt
       embed: Embed from URL
-      file: Send File from Computer
+      file: Datei von PC senden
       video: Video Chat starten
       audio: Audio Chat starten
     codeModal:
-      title: Send Code or Snippet to <strong>{to}</strong>
+      title: Sende Code oder Ausschnitt an <strong>{to}</strong>
   faq:
     title: Häufig gestellte Fragen (FAQ)
     whatIsQ: Was ist Emberclear?
@@ -157,25 +157,25 @@ ui:
       Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
       This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
       Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
-    notOnlineQ: What happens when I send a message and the recipient is no longer online.
+    notOnlineQ: Was passiert wenn ich eine Nachricht sende und der Empfänger nich mehr online ist.
     notOnlineA: >
-      The server does not story any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
-    serverStorageQ: Does the server / relay store any of my messages ever?
+      Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
+    serverStorageQ: Speichert der Server / das Relay meine Nachrichten?
     serverStorageA: false
   footer:
     navigation: Navigation
-    wantToSupport: Want to support this project?
+    wantToSupport: Möchtest du das Projekt unterstützen?
     license: >
-      The <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
+      Der <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>Quellcode</a> nutzt eine <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> Lizenz.
   login:
-    title: Login
-    instructions: Please paste or type your mnemonic key.
+    title: Anmelden
+    instructions: Bitte füge oder tippe deine mnemonic Passphrase ein
   setup:
     warning: >
-      Warning: You are about to destroy an existing identity. Please be sure you have backed up the mnemonic and / or settings
-    overwriteTitle: Are you sure you want to create a new identity?
+      Achtung: Du bist dabei eine bereits existierende Identität zu löschen. Bitte stelle sicher, dass du die menmonic Passphrase und / oder die Einstellungen gesichert hast.
+    overwriteTitle: Möchtest du wirklich eine neue Identität anlegen?
     overwriteQuestion: >
-      This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. <br> <br> Are you sure you want to do this?
+      Dies ist eine zerstörerische Handlung, welche die aktuell konfigurierte Identität löscht und ersetzt. Es existiert keine Möglichkeit zur Wiederherstellung und ohne die mnemonic Passphrase wirst du dich auch nicht mehr mit zuvor konfigurerten Chats verbinden können. <br> <br> Möchtest du wirklich fortfahren?
     overwriteAbort: No, take me back to safety
     overwriteConfirm: Ja, ich bin mir der Risiken bewusst
     introQuestion: What would you like to be called?
