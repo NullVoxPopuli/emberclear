@@ -22,7 +22,7 @@ connection:
     send:
       notConnected: Nachrichten können ohne Internetverbindung nicht gesendet werden!
     subscribe:
-      notConnected: Cannot subscribe to a channel without a socket connection!
+      notConnected: Abonnieren eines Kanals ohne Socket Verbindung nicht möglich!
 buttons:
   delete: Löschen
   resend: Erneut senden
@@ -35,11 +35,11 @@ buttons:
   cancel: Abbrechen
   import: Importieren
   scan: Scannen
-  sendSnippet: Send Snippet
+  sendSnippet: Ausschnitt senden
   remove: Entfernen
   donateEth: Ethereum spenden
   donateXmr: Monero spenden
-  loginInstead: Login instead
+  loginInstead: Stattdessen anmelden
   uploadSettings: Upload-Einstellungen
   showMyInfo: Meine Info anzeigen
   invite: Einladen
@@ -57,7 +57,7 @@ images:
     ownIdentityQR: Dies ist deine Identität, verpackt in einem QR Code
 input:
   placeholder:
-    mnemonic: Enter your mnemonic
+    mnemonic: Mnemonic Passphrase eingeben
     name: Name
 status:
   deliveryFailed: 'Die Nachricht konnte nicht zugestellt werden.'
@@ -184,15 +184,14 @@ ui:
     mnemonicPrompt: >
       If you would like to use this account on other computers, please store this mnemonic in a secure place. It will be used to login.
     note: >
-      You may download your settings at any time so that you can upload them to another computer. The settings will include more than just your identity.
+      Du kannst jederzeit deine Einstellungen herunterladen, um diese dann später auf einem anderen PC nutzen zu können. Die Einstellungen beinhalten mehr als nur deine Identität.
   contacts:
     title: 'Contacts ({number})'
     noContacts: You do not have any contacts. Feel free to import some from your user menu in the top-right corner.
   logout:
     title: Logging out is destructive
     warning: >
-      Logging out will delete all local data. Please make sure you either have your mnemonic written down or memorized.
-      Alternatively, you download your settings on
+      Das Abmelden führt zur Löschung aller lokalen Daten. Bitte stelle sicher, dass du dir deine mnemonic Passphrase aufgeschrieben oder gemerkt hast. Herunterladen kannst du deine Einstellungen alternativ auch unter
     theSettingsPage: the Settings page.
     confirm: Abmeldung bestätigen
   settings:
