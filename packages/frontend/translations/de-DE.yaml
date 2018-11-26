@@ -17,7 +17,7 @@ connection:
     socket:
       error: An error occurred in the socket connection!
       close: The socket connection has been dropped!
-    timeout: There is a networking issue. waiting...
+    timeout: Ein Verbindungsfehler ist aufgetreten. Bitte warten...
   errors:
     send:
       notConnected: Cannot send messages without a connection!
