@@ -140,19 +140,19 @@ ui:
       code: Code or text snippet
       embed: Embed from URL
       file: Send File from Computer
-      video: Start Video Chat
-      audio: Start Audio Chat
+      video: Video Chat starten
+      audio: Audio Chat starten
     codeModal:
       title: Send Code or Snippet to <strong>{to}</strong>
   faq:
     title: Häufig gestellte Fragen (FAQ)
     whatIsQ: Was ist Emberclear?
     whatIsA: >
-      emberclear is the open source p2p encrypted chat client that operates over open source mesh nodes on free-tier cloud services.
-    howDoesWorkQ: How does it work?
+      Emberclear ist ein quelloffener und verschlüsselter p2p Chat Client, der via Open Source Mesh Knoten im kostenlosen Kontingent der großen Cloud Anbieter läuft.
+    howDoesWorkQ: Wie funtioniert das?
     howDoesWorkA: >
-      All the encryption is done in the browser -- at no time do private keys leave your computer. Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging across the internet, on any network -- even if the network is compromised.
-    whyQ: Why?
+      Die gesamte Verschlüsselung findet lokal im Browser statt -- zu keiner Zeit verlassen die privaten Schlüssel den Computer. Emberclear nutzt Libsodium's öffentliche Schlüssel-Kryptographie, um die Sicherheit der Nachrichten über das gesamte Internet und in jedem Netzwerk zu garantieren -- selbst wenn das genutzte Netzwerk bereits kompromitiert ist.
+    whyQ: Warum?
     whyA: >
       Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
       This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
