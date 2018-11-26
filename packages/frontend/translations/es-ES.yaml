@@ -178,8 +178,8 @@ ui:
       This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. <br> <br> Are you sure you want to do this?
     overwriteAbort: No, take me back to safety
     overwriteConfirm: Yes, I understand the risks
-    introQuestion: What would you like to be called?
-    almostReady: You are almost ready to begin chatting!
+    introQuestion: '¿Como quieras ser llamado?'
+    almostReady: '¡Estás casi listo para comenzar a chatear!'
     nameLabel: Your desired alias
     mnemonicPrompt: >
       If you would like to use this account on other computers, please store this mnemonic in a secure place. It will be used to login.
@@ -196,7 +196,7 @@ ui:
     theSettingsPage: the Settings page.
     confirm: Confirm Logout
   settings:
-    title: Settings
+    title: Configuración
     copyProfileToDevice: Copy Profile to Device
     hideKey: Hide private key
     showKey: Show private key

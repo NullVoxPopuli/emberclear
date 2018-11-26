@@ -145,7 +145,7 @@ ui:
     codeModal:
       title: Send Code or Snippet to <strong>{to}</strong>
   faq:
-    title: F.A.Q
+    title: F.A.Q.
     whatIsQ: What is emberclear
     whatIsA: >
       emberclear is the open source p2p encrypted chat client that operates over open source mesh nodes on free-tier cloud services.
