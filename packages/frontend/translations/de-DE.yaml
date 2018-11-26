@@ -2,7 +2,7 @@
 appname: emberclear
 subheader: Verschlüsselter Chat. Kein Verlauf. Keine Logs.
 authoredBy: von Preston Sego
-todo: 'TODO: fill this out correctly'
+todo: 'TODO: Fülle dies korrekt aus'
 qrCode:
   error: QR Code konnte nicht erzeugt werden
 connection:
@@ -10,9 +10,9 @@ connection:
   connected: Verbunden!
   log:
     push:
-      ok: 'push: created. {msg}'
-      error: 'push: message failed. {reasons}'
-      timeout: 'push: Networking issue'
+      ok: 'push: erstellt {msg}'
+      error: 'push: Senden fehlgeschlagen {reason}'
+      timeout: 'push: Netzwerkfehler'
   status:
     socket:
       error: An error occurred in the socket connection!
@@ -20,32 +20,32 @@ connection:
     timeout: Ein Verbindungsfehler ist aufgetreten. Bitte warten...
   errors:
     send:
-      notConnected: Cannot send messages without a connection!
+      notConnected: Nachricht kann ohne Internetverbindung nicht gesendet werden!
     subscribe:
       notConnected: Cannot subscribe to a channel without a socket connection!
 buttons:
-  delete: delete
-  resend: resend
-  save: Save
-  next: Next
-  back: Back
-  begin: Begin
-  logout: Logout
-  login: Login
-  cancel: Cancel
-  import: Import
-  scan: Scan
+  delete: Löschen
+  resend: Erneut senden
+  save: Speichern
+  next: Weiter
+  back: Zurück
+  begin: Starten
+  logout: Abmelden
+  login: Anmelden
+  cancel: Abbrechen
+  import: Importieren
+  scan: Scannen
   sendSnippet: Send Snippet
-  remove: Remove
-  donateEth: Donate Ethereum
-  donateXmr: Donate Monero
+  remove: Entfernen
+  donateEth: Ethereum spenden
+  donateXmr: Monero spenden
   loginInstead: Login instead
-  uploadSettings: Upload Settings
-  showMyInfo: Show My Info
-  invite: Invite
-  addFriend: Add Friend
+  uploadSettings: Upload-Einstellungen
+  showMyInfo: Meine Info anzeigen
+  invite: Einladen
+  addFriend: Freund hinzufügen
   ariaLabel:
-    sidebar: 'Toggles the sidebar'
+    sidebar: 'Seitenleiste anzeigen/ausblenden'
     dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
     modalBackdrop: Clickable backdrop for clicking off a modal to close it
     menuBackdrop: Clickable backdrop for clicking off the menu to close it
@@ -53,7 +53,7 @@ buttons:
     closeModal: Close Modal
 images:
   alt:
-    thumbnail: Thumbnail
+    thumbnail: Vorschaubild
     ownIdentityQR: This is your identity information represented as a QR Code
 input:
   placeholder:
@@ -67,57 +67,57 @@ services:
   crypto:
     keyGenFailed: Key Generation Failed
 routes:
-  home: Home
+  home: Startseite
   chat: Chat
-  logout: Logout
-  login: Login
-  contacts: Contacts
-  settings: Settings
-  profile: Profile
-  faq: F.A.Q.
-  createNewUser: Create New User
+  logout: Abmelden
+  login: Anmelden
+  contacts: Kontakte
+  settings: Einstellungen
+  profile: Profil
+  faq: Häufig gestellte Fragen (FAQ)
+  createNewUser: Neuen Benutzer anlegen
 models:
   identity:
     name: Name
-    publicKey: Public Key
+    publicKey: Öffentlicher Schlüssel
   message:
     errors:
-      timeout: 'Sending timed out.'
+      timeout: 'Verbindung getrennt.'
 ui:
   invite:
-    copyProfile: Copy Link
-    copied: Copied!
+    copyProfile: Link kopieren
+    copied: Kopiert!
   notifications:
     title: emberclear message
     from: message from {name}
     prompt:
       title: emberclear needs your permission to enable notifications.
       enable: Enable Notifications
-      askLater: Ask Next Time
-      neverAsk: Never Ask Again
+      askLater: Jedes Mal nachfragen
+      neverAsk: Nicht erneut nachfragen
   search:
     title: Search for things
     description: Search coming soon
   shortcuts:
-    title: Keyboard Shortcuts
+    title: Tastatenkombination
     key:
       ctrlSlash: <i class='key'>ctrl</i> + <i class='key'>/</i>
       ctrlK: <i class='key'>ctrl</i> + <i class='key'>k</i>
       ctrlSpace: <i class='key'>ctrl</i> + <i class='key'>space</i>
       ctrlH: <i class='key'>ctrl</i> + <i class='key'>h</i>
     actions:
-      search: Search Everything
-      toggleSidebar: Toggle the Sidebar
+      search: Alles durchsuchen
+      toggleSidebar: Seitenleiste anzeigen/ausblenden
       toggleHelp: Toggle Keyboard Help
   sidebar:
-    unread: Unread
+    unread: Ungelesen
     channels:
-      title: Channels
-      none: You are not in any channels
-      placeholder: New Channel Name
+      title: Kanäle
+      none: Sie sind in keinem Raum
+      placeholder: Name des neuen Kanals
     contacts:
-      title: 'Contacts'
-      none: You have no contacts.
+      title: 'Kontakte'
+      none: Keine Kontakte vorhanden
       numOffline: '{num} offline'
   addContact:
     title: Have a friend scan your QR Code, share your link, or scan their QR Code
@@ -204,4 +204,4 @@ ui:
     hideOfflineContacts: Hide offline contacts
     danger:
       title: Danger Zone
-      deleteMessages: Delete Messages
+      deleteMessages: Nachrichten löschen
