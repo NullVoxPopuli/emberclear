@@ -2,7 +2,7 @@
 appname: emberclear
 subheader: Tchat cryptée. Pas d'historique. Pas de log.
 authoredBy: par Preston Sego
-todo: 'TODO: fill this out correctly'
+todo: 'A faire: Remplir ceci correctement'
 qrCode:
   error: QR Code n'a pas pu être généré
 connection:
@@ -53,7 +53,7 @@ buttons:
     closeModal: Fermer
 images:
   alt:
-    thumbnail: Thumbnail
+    thumbnail: Aperçu
     ownIdentityQR: This is your identity information represented as a QR Code
 input:
   placeholder:
