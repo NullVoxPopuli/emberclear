@@ -46,11 +46,11 @@ buttons:
   addFriend: Freund hinzufügen
   ariaLabel:
     sidebar: 'Seitenleiste anzeigen/ausblenden'
-    dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
-    modalBackdrop: Clickable backdrop for clicking off a modal to close it
-    menuBackdrop: Clickable backdrop for clicking off the menu to close it
-    sidebarBackdrop: Clickable backdrop for clicking off the sidebar to hide it
-    closeModal: Close Modal
+    dropdownBackdrop: Klickbarer Hintergrund, um das Dropdown Menü mittels Klick zu schließen
+    modalBackdrop: Klickbarer Hintergrund, um den Dialog mittels Klick zu schließen
+    menuBackdrop: Klickbarer Hintergrund, um das Menü mittels Klick zu schließen
+    sidebarBackdrop: Klickbarer Hintergrund, um die Sidebar mittels Klick auszublenden
+    closeModal: Dialog schließen
 images:
   alt:
     thumbnail: Vorschaubild
@@ -88,7 +88,7 @@ ui:
     copyProfile: Link kopieren
     copied: Kopiert!
   notifications:
-    title: emberclear message
+    title: Emberclear Nachricht
     from: Nachricht von {name}
     prompt:
       title: Emberclear benötigt deine Erlaubnis, um die Benachrichtigungen aktivieren zu können.
@@ -138,7 +138,7 @@ ui:
       received: 'Empfangen: {at}'
     embedMenu:
       code: Code oder Text Ausschnitt
-      embed: Embed from URL
+      embed: Aus URL hinzufügen
       file: Datei von PC senden
       video: Video Chat starten
       audio: Audio Chat starten
@@ -176,7 +176,7 @@ ui:
     overwriteTitle: Möchtest du wirklich eine neue Identität anlegen?
     overwriteQuestion: >
       Dies ist eine zerstörerische Handlung, welche die aktuell konfigurierte Identität löscht und ersetzt. Es existiert keine Möglichkeit zur Wiederherstellung und ohne die mnemonic Passphrase wirst du dich auch nicht mehr mit zuvor konfigurerten Chats verbinden können. <br> <br> Möchtest du wirklich fortfahren?
-    overwriteAbort: No, take me back to safety
+    overwriteAbort: Nein, bring mich zurück in Sicherheit
     overwriteConfirm: Ja, ich bin mir der Risiken bewusst
     introQuestion: Wie möchtest du genannt werden?
     almostReady: Du hast es fast geschafft!
