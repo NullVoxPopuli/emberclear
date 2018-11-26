@@ -1,13 +1,13 @@
 ---
 appname: emberclear
-subheader: Encrypted Chat. No History. No Logs.
-authoredBy: by Preston Sego
+subheader: Verschlüsselter Chat. Kein Verlauf. Keine Logs.
+authoredBy: von Preston Sego
 todo: 'TODO: fill this out correctly'
 qrCode:
-  error: QR Code could not be generated
+  error: QR Code konnte nicht erzeugt werden
 connection:
-  connecting: Connecting...
-  connected: Connected!
+  connecting: Verbinde...
+  connected: Verbunden!
   log:
     push:
       ok: 'push: created. {msg}'
