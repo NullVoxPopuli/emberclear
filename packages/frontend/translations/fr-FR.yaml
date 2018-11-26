@@ -1,105 +1,105 @@
 ---
 appname: emberclear
-subheader: Encrypted Chat. No History. No Logs.
-authoredBy: by Preston Sego
-todo: 'TODO: fill this out correctly'
+subheader: Tchat cryptée. Pas d'historique. Pas de log.
+authoredBy: par Preston Sego
+todo: 'A faire: Remplir ceci correctement'
 qrCode:
-  error: QR Code could not be generated
+  error: QR Code n'a pas pu être généré
 connection:
-  connecting: Connecting...
-  connected: Connected!
+  connecting: Connexion en cours...
+  connected: Connecté !
   log:
     push:
       ok: 'push: created. {msg}'
       error: 'push: message failed. {reasons}'
-      timeout: 'push: Networking issue'
+      timeout: 'push : problème réseau'
   status:
     socket:
       error: An error occurred in the socket connection!
       close: The socket connection has been dropped!
-    timeout: There is a networking issue. waiting...
+    timeout: Problème réseau. Veuillez patienter ...
   errors:
     send:
-      notConnected: Cannot send messages without a connection!
+      notConnected: Impossible d’envoyer des messages sans connexion !
     subscribe:
-      notConnected: Cannot subscribe to a channel without a socket connection!
+      notConnected: Impossible de s’abonner à une chaine sans une connexion socket !
 buttons:
-  delete: delete
-  resend: resend
-  save: Save
-  next: Next
-  back: Back
-  begin: Begin
-  logout: Logout
-  login: Login
-  cancel: Cancel
-  import: Import
-  scan: Scan
-  sendSnippet: Send Snippet
-  remove: Remove
+  delete: supprimer
+  resend: ré-envoyer
+  save: Sauvegarder
+  next: Suivant
+  back: Précédent
+  begin: Démarrer
+  logout: Se déconnecter
+  login: Se connecter
+  cancel: Annuler
+  import: Importer
+  scan: Scanner
+  sendSnippet: Envoyer un Snippet
+  remove: Supprimer
   donateEth: Donate Ethereum
   donateXmr: Donate Monero
   loginInstead: Login instead
-  uploadSettings: Upload Settings
-  showMyInfo: Show My Info
-  invite: Invite
-  addFriend: Add Friend
+  uploadSettings: Uploader les paramètres
+  showMyInfo: Afficher mes infos
+  invite: Inviter
+  addFriend: Ajouter un ami
   ariaLabel:
-    sidebar: 'Toggles the sidebar'
+    sidebar: 'Afficher/Masquer la barre latérale'
     dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
     modalBackdrop: Clickable backdrop for clicking off a modal to close it
     menuBackdrop: Clickable backdrop for clicking off the menu to close it
     sidebarBackdrop: Clickable backdrop for clicking off the sidebar to hide it
-    closeModal: Close Modal
+    closeModal: Fermer
 images:
   alt:
-    thumbnail: Thumbnail
+    thumbnail: Aperçu
     ownIdentityQR: This is your identity information represented as a QR Code
 input:
   placeholder:
     mnemonic: Enter your mnemonic
-    name: Name
+    name: Nom
 status:
   deliveryFailed: 'Message could not be delivered'
-  importing: Importing ...
-  updateAvailable: A new version is available, click here to update.
+  importing: Importation en cours...
+  updateAvailable: Une nouvelle version est disponible, cliquez ici pour mettre à jour.
 services:
   crypto:
-    keyGenFailed: Key Generation Failed
+    keyGenFailed: La génération de clé a échoué
 routes:
-  home: Home
+  home: Accueil
   chat: Chat
-  logout: Logout
-  login: Login
+  logout: Se déconnecter
+  login: Se connecter
   contacts: Contacts
-  settings: Settings
-  profile: Profile
+  settings: Réglages
+  profile: Profil
   faq: F.A.Q.
-  createNewUser: Create New User
+  createNewUser: Créer un nouvel utilisateur
 models:
   identity:
-    name: Name
-    publicKey: Public Key
+    name: Nom
+    publicKey: Clé publique
   message:
     errors:
       timeout: 'Sending timed out.'
 ui:
   invite:
-    copyProfile: Copy Link
-    copied: Copied!
+    copyProfile: Copier le Lien
+    copied: Copié !
   notifications:
     title: emberclear message
-    from: message from {name}
+    from: message de {name}
     prompt:
-      title: emberclear needs your permission to enable notifications.
-      enable: Enable Notifications
+      title: emberclear a besoin de votre autorisation pour activer les notifications.
+      enable: Activer les notifications
       askLater: Ask Next Time
       neverAsk: Never Ask Again
   search:
     title: Search for things
     description: Search coming soon
   shortcuts:
-    title: Keyboard Shortcuts
+    title: Raccourcis clavier
     key:
       ctrlSlash: <i class='key'>ctrl</i> + <i class='key'>/</i>
       ctrlK: <i class='key'>ctrl</i> + <i class='key'>k</i>
@@ -107,35 +107,35 @@ ui:
       ctrlH: <i class='key'>ctrl</i> + <i class='key'>h</i>
     actions:
       search: Search Everything
-      toggleSidebar: Toggle the Sidebar
+      toggleSidebar: Afficher/Masquer la barre latérale
       toggleHelp: Toggle Keyboard Help
   sidebar:
-    unread: Unread
+    unread: Non lu
     channels:
-      title: Channels
+      title: Chaînes
       none: You are not in any channels
       placeholder: New Channel Name
     contacts:
       title: 'Contacts'
       none: You have no contacts.
-      numOffline: '{num} offline'
+      numOffline: '{num} hors connexion'
   addContact:
     title: Have a friend scan your QR Code, share your link, or scan their QR Code
   chat:
-    welcome: Welcome!
+    welcome: Bienvenue !
     message: >
       To get started, you'll need at least one friend.<br /><br />
       Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: There are newer messages
-    viewRecent: view recent messages
+    viewRecent: voir les messages récents
     unreadMessages: '{number} new messages since {time}'
-    markAllAsRead: Mark all as read
+    markAllAsRead: Marquer tout comme lu
     errors:
       contactNotFound: Your contact could not be located
     sender:
-      removed: removed
+      removed: supprimée
     messages:
-      received: 'Received: {at}'
+      received: 'Reçu le: {at}'
     embedMenu:
       code: Code or text snippet
       embed: Embed from URL
@@ -149,10 +149,10 @@ ui:
     whatIsQ: What is emberclear
     whatIsA: >
       emberclear is the open source p2p encrypted chat client that operates over open source mesh nodes on free-tier cloud services.
-    howDoesWorkQ: How does it work?
+    howDoesWorkQ: Comment ça marche ?
     howDoesWorkA: >
       All the encryption is done in the browser -- at no time do private keys leave your computer. Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging across the internet, on any network -- even if the network is compromised.
-    whyQ: Why?
+    whyQ: Pourquoi ?
     whyA: >
       Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
       This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
@@ -166,9 +166,9 @@ ui:
     navigation: Navigation
     wantToSupport: Want to support this project?
     license: >
-      The <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
+      Le code de source <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'></a> utilise la licence <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3,</a>.
   login:
-    title: Login
+    title: Se connecter
     instructions: Please paste or type your mnemonic key.
   setup:
     warning: >
@@ -177,7 +177,7 @@ ui:
     overwriteQuestion: >
       This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. <br> <br> Are you sure you want to do this?
     overwriteAbort: No, take me back to safety
-    overwriteConfirm: Yes, I understand the risks
+    overwriteConfirm: Oui, je comprends les risques
     introQuestion: What would you like to be called?
     almostReady: You are almost ready to begin chatting!
     nameLabel: Your desired alias
@@ -194,14 +194,14 @@ ui:
       Logging out will delete all local data. Please make sure you either have your mnemonic written down or memorized.
       Alternatively, you download your settings on
     theSettingsPage: the Settings page.
-    confirm: Confirm Logout
+    confirm: Confirmer la déconnexion
   settings:
-    title: Settings
+    title: Réglages
     copyProfileToDevice: Copy Profile to Device
-    hideKey: Hide private key
-    showKey: Show private key
-    download: Download Settings
-    hideOfflineContacts: Hide offline contacts
+    hideKey: Masquer la clé privée
+    showKey: Afficher la clé privée
+    download: Télécharger les paramètres
+    hideOfflineContacts: Masquer les contacts hors-ligne
     danger:
       title: Danger Zone
-      deleteMessages: Delete Messages
+      deleteMessages: Supprimer les messages
