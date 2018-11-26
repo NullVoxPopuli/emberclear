@@ -20,7 +20,7 @@ connection:
     timeout: Ein Verbindungsfehler ist aufgetreten. Bitte warten...
   errors:
     send:
-      notConnected: Nachricht kann ohne Internetverbindung nicht gesendet werden!
+      notConnected: Nachrichten können ohne Internetverbindung nicht gesendet werden!
     subscribe:
       notConnected: Cannot subscribe to a channel without a socket connection!
 buttons:
@@ -62,7 +62,7 @@ input:
 status:
   deliveryFailed: 'Die Nachricht konnte nicht zugestellt werden.'
   importing: Wird importiert...
-  updateAvailable: Eine neue Version ist verfügbar. Klicken Sie hier, um die Aktualisierung durchzuführen.
+  updateAvailable: Eine neue Version ist verfügbar. Klicke hier, um die Aktualisierung durchzuführen.
 services:
   crypto:
     keyGenFailed: Erzeugung der Schlüssel fehlgeschlagen
@@ -113,14 +113,14 @@ ui:
     unread: Ungelesen
     channels:
       title: Kanäle
-      none: Sie sind in keinem Raum
+      none: Du bist noch keinem Raum beigetreten
       placeholder: Name des neuen Kanals
     contacts:
       title: 'Kontakte'
       none: Keine Kontakte vorhanden
       numOffline: '{num} offline'
   addContact:
-    title: Lassen Sie einen Freunden Ihren QR Code einscannen, teilen Sie Ihren Link, oder scannen Sie den QR Code eines Freundes
+    title: Lass deine Freunden deinen QR Code einscannen, teile deinen Link, oder scannen den QR Code eines Freundes ein
   chat:
     welcome: Willkommen!
     message: >
@@ -151,7 +151,7 @@ ui:
       Emberclear ist ein quelloffener und verschlüsselter p2p Chat Client, der via Open Source Mesh Knoten im kostenlosen Kontingent der großen Cloud Anbieter läuft.
     howDoesWorkQ: Wie funtioniert das?
     howDoesWorkA: >
-      Die gesamte Verschlüsselung findet lokal im Browser statt -- zu keiner Zeit verlassen die privaten Schlüssel den Computer. Emberclear nutzt Libsodium's öffentliche Schlüssel-Kryptographie, um die Sicherheit der Nachrichten über das gesamte Internet und in jedem Netzwerk zu garantieren -- selbst wenn das genutzte Netzwerk bereits kompromitiert ist.
+      Die gesamte Verschlüsselung findet lokal im Browser statt -- zu keiner Zeit verlassen die privaten Schlüssel deinen Computer. Emberclear nutzt Libsodium's öffentliche Schlüssel-Kryptographie, um die Sicherheit der Nachrichten über das gesamte Internet und in jedem Netzwerk zu garantieren -- selbst wenn das genutzte Netzwerk bereits kompromitiert ist.
     whyQ: Warum?
     whyA: >
       Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
@@ -177,7 +177,7 @@ ui:
     overwriteQuestion: >
       This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. <br> <br> Are you sure you want to do this?
     overwriteAbort: No, take me back to safety
-    overwriteConfirm: Ja, ich bin mir des Risikos bewusst
+    overwriteConfirm: Ja, ich bin mir der Risiken bewusst
     introQuestion: What would you like to be called?
     almostReady: You are almost ready to begin chatting!
     nameLabel: Your desired alias
@@ -194,14 +194,14 @@ ui:
       Logging out will delete all local data. Please make sure you either have your mnemonic written down or memorized.
       Alternatively, you download your settings on
     theSettingsPage: the Settings page.
-    confirm: Confirm Logout
+    confirm: Abmeldung bestätigen
   settings:
-    title: Settings
-    copyProfileToDevice: Copy Profile to Device
-    hideKey: Hide private key
-    showKey: Show private key
-    download: Download Settings
-    hideOfflineContacts: Hide offline contacts
+    title: Einstellungen
+    copyProfileToDevice: Profil auf Gerät kopieren
+    hideKey: Privaten Schlüssel ausblenden
+    showKey: Privaten Schlüssel anzeigen
+    download: Einstellungen herunterladen
+    hideOfflineContacts: Offline Kontakte ausblenden
     danger:
-      title: Danger Zone
+      title: Gefahrenzone
       deleteMessages: Nachrichten löschen
