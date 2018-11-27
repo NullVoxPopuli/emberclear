@@ -1,6 +1,8 @@
-import Service from '@ember/service';
+import Service, { Registry } from '@ember/service';
 import { computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
+
+import IdentityService from 'emberclear/src/services/identity/service';
 
 import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/decorators';
 
@@ -9,9 +11,13 @@ import Toast from 'emberclear/src/services/toast';
 export default class Notifications extends Service {
   @service toast!: Toast;
   @service intl!: Intl;
+  @service identity!: IdentityService;
+  @service router!: Registry['router'];
 
   askToEnableNotifications = true;
   isHiddenUntilBrowserRefresh = false;
+
+
 
   @disableInFastboot
   @syncToLocalStorage
@@ -19,8 +25,18 @@ export default class Notifications extends Service {
     return false;
   }
 
-  @computed('askToEnableNotifications', 'isHiddenUntilBrowserRefresh', 'isNeverGoingToAskAgain')
+  @computed(
+    'askToEnableNotifications',
+    'isHiddenUntilBrowserRefresh',
+    'isNeverGoingToAskAgain',
+    'identity.isLoggedIn',
+    'notInSetup',
+    'router.currentRouteName'
+  )
   get showInAppPrompt() {
+    if (!this.identity.isLoggedIn) return false;
+    if (this.router.currentRouteName.match(/setup/)) return false;
+    if (this.router.currentRouteName.match(/logout/)) return false;
     if (!this.isBrowserCapableOfNotifications()) return false;
     if (this.isPermissionGranted()) return false;
     if (this.isPermissionDenied()) return false;

@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
-import IntlService from 'ember-intl/services/intl';
+import LocaleService from 'emberclear/src/services/locale';
 import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
 
@@ -11,14 +11,13 @@ export default class ApplicationRoute extends Route {
   @service identity!: IdentityService;
   @service relayConnection!: RelayConnection;
   @service fastboot!: FastBoot;
-  @service intl!: IntlService;
+  @service locale!: LocaleService;
 
   async beforeModel() {
-    // TODO: check all the modern web requirements
-    // TODO: make configurable
-    const locale = 'en-us';
 
-    this.intl.setLocale([locale]);
+    // TODO: check all the modern web requirements
+
+    await this.locale.setLocale(this.locale.currentLocale);
 
     if (this.fastboot.isFastBoot) { return; }
 
