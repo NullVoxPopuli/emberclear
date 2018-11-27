@@ -5589,8 +5589,8 @@ ember-service-worker-index@^0.7.0:
   version "1.0.2"
   resolved "https://codeload.github.com/NullVoxPopuli/ember-service-worker-update-notify/tar.gz/98feeab770ff08a5c6d8885267d5ff11f67b0007"
   dependencies:
-    ember-cli-babel "^6.3.0"
-    ember-cli-htmlbars "^2.0.1"
+    ember-cli-babel "^6.16.0"
+    ember-cli-htmlbars "^3.0.0"
 
 "ember-service-worker@github:DockYard/ember-service-worker#c78cb28432af5eeb6e4adc0961fb7f8da025cd14":
   version "0.7.0"

@@ -30,10 +30,6 @@ module.exports = function(environment) {
       EXTEND_PROTOTYPES: false,
     },
 
-    i18n: {
-      defaultLocale: 'en-us',
-    },
-
     fontawesome: {
       defaultPrefix: 'fas', // free-and-solid
       icons: {
@@ -46,7 +42,8 @@ module.exports = function(environment) {
           'angle-down', 'angle-up', 'angle-right', 'times',
           'phone', 'phone-volume', 'share',
           'check-circle', 'exclamation-circle',
-          'check', 'ellipsis-h'
+          'check', 'ellipsis-h',
+          'globe',
         ],
       },
     },

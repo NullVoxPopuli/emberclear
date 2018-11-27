@@ -48,21 +48,25 @@
     </div>
   {{/if}}
 
-  <div class='navbar-end is-hidden-touch'>
-    {{#if this.isLoggedIn}}
-      <a class='navbar-item' {{action (transition-to 'chat')}}>
-        {{t 'routes.chat'}}
-      </a>
+  <div class='navbar-end'>
+    <LocaleSelect />
 
-      <UserDropMenu />
-    {{else}}
-      <a class='navbar-item' {{action (transition-to 'login')}}>
-        {{t 'routes.login'}}
-      </a>
+    <div class='navbar-end is-hidden-touch'>
+      {{#if this.isLoggedIn}}
+        <a class='navbar-item' {{action (transition-to 'chat')}}>
+          {{t 'routes.chat'}}
+        </a>
 
-      <a class='navbar-item' {{action (transition-to 'setup')}}>
-        {{t 'routes.createNewUser'}}
-      </a>
-    {{/if}}
+        <UserDropMenu />
+      {{else}}
+        <a class='navbar-item' {{action (transition-to 'login')}}>
+          {{t 'routes.login'}}
+        </a>
+
+        <a class='navbar-item' {{action (transition-to 'setup')}}>
+          {{t 'routes.createNewUser'}}
+        </a>
+      {{/if}}
+    </div>
   </div>
 </div>
