@@ -14,7 +14,6 @@ export default class ApplicationRoute extends Route {
   @service locale!: LocaleService;
 
   async beforeModel() {
-
     // TODO: check all the modern web requirements
 
     await this.locale.setLocale(this.locale.currentLocale);

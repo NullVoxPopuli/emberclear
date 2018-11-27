@@ -11,6 +11,7 @@ interface IArgs {
 
 export default class SearchModal extends Component<IArgs> {
   @service store;
+  @service fastboot!: FastBoot;
 
   @tracked searchText = '';
   inputId = uuid();
@@ -30,6 +31,8 @@ export default class SearchModal extends Component<IArgs> {
   }
 
   didInsertElement() {
+    if (this.fastboot.isFastBoot) { return; }
+
     this.search.perform('');
     this.inputElement = document.getElementById(this.inputId) as HTMLInputElement;
   }

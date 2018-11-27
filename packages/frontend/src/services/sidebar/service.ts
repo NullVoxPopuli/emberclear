@@ -44,6 +44,8 @@ export default class Sidebar extends Service {
   }
 
   observeIntersectionOf(id: string) {
+    if (this.fastboot.isFastBoot) { return; }
+
     this.ensureUnreadIntersectionObserverExists();
 
     const target = document.getElementById(id);
