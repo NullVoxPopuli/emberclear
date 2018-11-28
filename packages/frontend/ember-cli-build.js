@@ -31,7 +31,7 @@ module.exports = function(defaults) {
     // eslint slows down the dev-build-debug cycle significantly
     // hinting: false disables linting at build time.
     hinting: false,
-    minifyJS: { enabled: false },
+    minifyJS: { enabled: isProduction },
     minifyCSS: { enabled: isProduction },
 
     babel: {

@@ -5,7 +5,7 @@
       {{t 'ui.shortcuts.title'}}
     </h3>
     <span class='m-l-md'>
-      {{t 'ui.shortcuts.key.ctrlSlash' htmlSafe=true}}
+      <Key @label='ctrl' /> + <Key @label='slash' /> <br>
     </span>
   </div>
 
@@ -15,22 +15,22 @@
     <label class='is-uppercase'>
       {{t 'ui.shortcuts.actions.search'}}
     </label><br>
-    {{t 'ui.shortcuts.key.ctrlK' htmlSafe=true}}
+    <Key @label='ctrl' /> + <Key @label='k' /> <br>
   </p>
 
   <p class='content'>
     <label class='is-uppercase'>
       {{t 'ui.shortcuts.actions.toggleSidebar'}}
     </label><br>
-    {{t 'ui.shortcuts.key.ctrlSpace' htmlSafe=true}}
+    <Key @label='ctrl' /> + <Key @label='space' /> <br>
   </p>
 
   <p class='content'>
     <label class='is-uppercase'>
       {{t 'ui.shortcuts.actions.toggleHelp'}}
     </label><br>
-    {{t 'ui.shortcuts.key.ctrlH' htmlSafe=true}} <br>
-    {{t 'ui.shortcuts.key.ctrlSlash' htmlSafe=true}}
+    <Key @label='ctrl' /> + <Key @label='h' /> <br>
+    <Key @label='ctrl' /> + <Key @label='slash' /> <br>
 
   </p>
 
