@@ -62,19 +62,19 @@ input:
 status:
   deliveryFailed: 'Su mensaje no ha podido ser entregado'
   importing: Importando ...
-  updateAvailable: A new version is available, click here to update.
+  updateAvailable: Hay una nueva versión disponible, da clic aquí para actualizar.
 services:
   crypto:
-    keyGenFailed: Key Generation Failed
+    keyGenFailed: Error en la generación de la llave
 routes:
-  home: Home
+  home: Inicio
   chat: Chat
-  logout: Logout
-  login: Login
-  contacts: Contacts
-  settings: Settings
-  profile: Profile
-  faq: F.A.Q.
+  logout: Desconectar
+  login: Conectarse
+  contacts: Contactos
+  settings: Configuración
+  profile: Perfil
+  faq: Preguntas frecuentes
   createNewUser: Create New User
 models:
   identity:
@@ -140,13 +140,13 @@ ui:
       code: Code or text snippet
       embed: Embed from URL
       file: Send File from Computer
-      video: Start Video Chat
-      audio: Start Audio Chat
+      video: Iniciar Video Chat
+      audio: Iniciar Chat de Audio
     codeModal:
-      title: Send Code or Snippet to <strong>{to}</strong>
+      title: Enviar código o fragmento a <strong>{to}</strong>
   faq:
-    title: F.A.Q
-    whatIsQ: What is emberclear
+    title: Preguntas frecuentes
+    whatIsQ: Qué es emberclear
     whatIsA: >
       emberclear is the open source p2p encrypted chat client that operates over open source mesh nodes on free-tier cloud services.
     howDoesWorkQ: How does it work?
