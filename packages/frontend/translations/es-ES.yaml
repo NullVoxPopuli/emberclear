@@ -151,15 +151,15 @@ ui:
       emberclear is the open source p2p encrypted chat client that operates over open source mesh nodes on free-tier cloud services.
     howDoesWorkQ: How does it work?
     howDoesWorkA: >
-      All the encryption is done in the browser -- at no time do private keys leave your computer. Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging across the internet, on any network -- even if the network is compromised.
+      Toda la encriptación es hecha en el navegador, -- las llaves privadas nunca salen de tu computadora. Emberclear utiliza la llave criptográfica pública de libsodium para asegurar el intercambio de mensajes encriptados a través del internet y en cualquier red -- inclusive si la red está comprometida.
     whyQ: '¿Por què?'
     whyA: >
-      Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
-      This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
-      Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
-    notOnlineQ: What happens when I send a message and the recipient is no longer online.
+      Por diversión y aprendizaje más que nada -- con el deseo de proveer un framework para la gente que quiere meterse en aplicaciónes web para que sus herramientas actuales puedan interactuar con sus creaciones.
+      Este proyecto está inspirado también en la falta de confianza en las aplicaciones de chat existentes y de su infraestructura.
+      Por último, la funcionalidad de este proyecto será siempre un clon de lo que sea popular - con la única diferencia de que nunca nada es comprometido por los nodos relays / federated.
+    notOnlineQ: Qué pasa cuando mando un mensaje y la persona ya no está conectada.
     notOnlineA: >
-      The server does not story any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
+      El servidor no guarda ningún mensaje y no mantiene una lista de mensajes sin entregar. Sí una persona no está en línea, el mensaje tiene que ser reenviado manualmente.
     serverStorageQ: Does the server / relay store any of my messages ever?
     serverStorageA: false
   footer:
