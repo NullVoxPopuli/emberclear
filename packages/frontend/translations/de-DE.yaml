@@ -96,15 +96,22 @@ ui:
       askLater: Jedes Mal nachfragen
       neverAsk: Nicht erneut nachfragen
   search:
-    title: Nach Inhalten suchen
+    title: Search for contacts and channels
     description: Suchfunktion folgt in kürze
+    noContacts: No contacts found
+    noChannels: No channels found
+    contacts: Contacts
+    channels: Channels
+    nothingFound: No results found
   shortcuts:
     title: Tastatenkombination
     key:
-      ctrlSlash: <i class='key'>strg</i> + <i class='key'>/</i>
-      ctrlK: <i class='key'>strg</i> + <i class='key'>k</i>
-      ctrlSpace: <i class='key'>strg</i> + <i class='key'>Leertaste</i>
-      ctrlH: <i class='key'>strg</i> + <i class='key'>h</i>
+      ctrl: ctrl
+      i: i
+      slash: /
+      space: space
+      h: h
+      k: k
     actions:
       search: Alles durchsuchen
       toggleSidebar: Seitenleiste anzeigen/ausblenden
