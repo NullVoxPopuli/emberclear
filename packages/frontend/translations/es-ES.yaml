@@ -1,10 +1,10 @@
 ---
 appname: emberclear
 subheader: Chat cifrado. No historia. No registros.
-authoredBy: by Preston Sego
+authoredBy: por Preston Sego
 todo: 'TODO: fill this out correctly'
 qrCode:
-  error: QR Code could not be generated
+  error: No se pudo generar el código QR
 connection:
   connecting: Conectando...
   connected: Conectado!
@@ -12,10 +12,10 @@ connection:
     push:
       ok: 'push: created. {msg}'
       error: 'push: message failed. {reasons}'
-      timeout: 'push: Networking issue'
+      timeout: 'push: Problema de internet'
   status:
     socket:
-      error: An error occurred in the socket connection!
+      error: '¡Se ha producido un error en la conexión por socket!'
       close: The socket connection has been dropped!
     timeout: There is a networking issue. waiting...
   errors:
