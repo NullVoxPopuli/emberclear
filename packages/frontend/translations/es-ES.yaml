@@ -1,6 +1,6 @@
 ---
 appname: emberclear
-subheader: Chat cifrado. No historia. No registros.
+subheader: Chat encriptado. Sin historia. Sin registros.
 authoredBy: por Preston Sego
 todo: 'Por hacer: llenar esto correctamente'
 qrCode:
@@ -8,11 +8,6 @@ qrCode:
 connection:
   connecting: Conectando...
   connected: Conectado!
-  log:
-    push:
-      ok: 'push: creado. {msg}'
-      error: 'push: el mensaje falló. {reasons}'
-      timeout: 'push: Problema de internet'
   status:
     socket:
       error: '¡Se ha producido un error en la conexión por socket!'
