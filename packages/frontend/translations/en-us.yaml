@@ -11,11 +11,6 @@ qrCode:
 connection:
   connecting: Connecting...
   connected: Connected!
-  log:
-    push:
-      ok: 'push: created. {msg}'
-      error: 'push: message failed. {reasons}'
-      timeout: 'push: Networking issue'
 
   status:
     socket:
