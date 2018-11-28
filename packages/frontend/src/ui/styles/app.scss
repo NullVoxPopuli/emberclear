@@ -60,6 +60,14 @@ body {
   right: 0;
   left: 0;
   border-radius: 0;
+
+  @include mobile {
+    top: 0;
+  }
+
+  @include tablet-only {
+    top: 0px;
+  }
 }
 
 .not-allowed {
