@@ -29,6 +29,7 @@
     "lint:js": "yarn eslint . --ext .ts --ext .js",
     "lint:sass": "yarn sass-lint --config .sass-lint.yml src/ui/styles/**/*.scss -q -v",
     "lint:pretty": "yarn prettier \"{config,lib,server,tests/**/*.ts,src/**/*.ts}\"",
+    "lint:all": "yarn lint:hbs && yarn lint:js && yarn lint:sass",
     "lint:fix": "bash -c 'yarn lint --fix'",
     "deploy": "yarn ember deploy production",
     "bundle-analyze": "yarn broccoli-concat-analyser ./concat-stats-for",

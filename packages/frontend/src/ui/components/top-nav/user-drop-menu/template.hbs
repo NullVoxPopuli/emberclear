@@ -52,11 +52,9 @@
     </a>
   </div>
 
-  <div
-    role='button'
-    aria-label={{t 'buttons.ariaLabel.menuBackdrop'}}
-    class='full-overlay {{if this.showDropdown 'is-active'}}'
-    style='z-index: 30'
-    {{action this.closeMenu}}
+  <Backdrop
+    @isActive={{this.showDropdown}}
+    @onClick={{action this.closeMenu}}
+    style='z-index: 30;'
   />
 </div>

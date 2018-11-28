@@ -33,4 +33,10 @@
       {{/each}}
     </div>
   </div>
+
+  <Backdrop
+    @isActive={{this.isActive}}
+    @onClick={{action this.closeMenu}}
+    style='z-index: 30;'
+  />
 </div>

@@ -28,7 +28,6 @@ a {
     color: $navbar-item-color;
     transition-property: all;
     transition-duration: 0.2s;
-
   }
 
   &.is-primary {
@@ -45,6 +44,15 @@ a {
     .navbar-brand a:focus,
     .navbar-brand a:hover {
       color: white;
+    }
+
+    .navbar-item {
+      .dropdown-trigger {
+        a.button.is-primary {
+          background: white;
+          color: $text;
+        }
+      }
     }
   }
 

@@ -40,15 +40,16 @@
     {{/if}}
   </div>
 
-  {{#if (not this.isLoggedIn)}}
-    <div class='navbar-end is-visible-touch'>
-      <a class='navbar-item is-hidden-desktop' {{action (transition-to 'login')}}>
-        {{t 'routes.login'}}
-      </a>
-    </div>
-  {{/if}}
 
-  <div class='navbar-end'>
+  <div class='navbar-end flex-row align-items-center'>
+    {{#if (not this.isLoggedIn)}}
+      <div class='navbar-end is-visible-touch'>
+        <a class='navbar-item is-visible-touch is-hidden-desktop' {{action (transition-to 'login')}}>
+          {{t 'routes.login'}}
+        </a>
+      </div>
+    {{/if}}
+
     <LocaleSelect />
 
     <div class='navbar-end is-hidden-touch'>
