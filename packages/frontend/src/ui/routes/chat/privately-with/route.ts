@@ -4,8 +4,6 @@ import { service } from '@ember-decorators/service';
 import IdentityService from 'emberclear/services/identity/service';
 import { IModel as ChatModel } from 'emberclear/ui/routes/chat/route';
 
-import { disableInFastboot } from 'emberclear/src/utils/decorators';
-
 interface IModelParams {
   u_id: string;
 }
@@ -15,7 +13,6 @@ export default class ChatPrivatelyRoute extends Route {
   @service toast!: Toast;
   @service intl!: Intl;
 
-  @disableInFastboot
   beforeModel(transition: any) {
     const params = transition.params['chat.privately-with'];
     const { u_id } = params as IModelParams;
@@ -25,7 +22,6 @@ export default class ChatPrivatelyRoute extends Route {
     }
   }
 
-  @disableInFastboot
   async model(params: IModelParams) {
     const { u_id } = params;
 

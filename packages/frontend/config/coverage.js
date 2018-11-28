@@ -1,4 +1,5 @@
 module.exports = {
+  useBabelInstrumenter: true,
   excludes: [
     '*/fastboot/**/*',
     '*/concat-stats-for/**/*',

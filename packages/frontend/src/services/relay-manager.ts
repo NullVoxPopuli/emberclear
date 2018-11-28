@@ -1,9 +1,9 @@
-import DS from 'ember-data';
+import StoreService from 'ember-data/store';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
 export default class RelayManager extends Service {
-  @service store!: DS.Store;
+  @service store!: StoreService;
 
   getRelay() {
     // randomly select one that is online?

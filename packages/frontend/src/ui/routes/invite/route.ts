@@ -2,8 +2,6 @@ import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 import { isPresent } from '@ember/utils';
 
-import { disableInFastboot } from 'emberclear/src/utils/decorators';
-
 import { IQueryParams } from './controller';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
@@ -17,7 +15,6 @@ export default class InviteRoute extends Route {
   @service channelManager!: ChannelManager;
   @service redirectManager!: RedirectManager;
 
-  @disableInFastboot
   async beforeModel(transition: any) {
     // identity should be loaded from application route
     if (this.identity.isLoggedIn) return await this.acceptInvite(transition);
@@ -30,7 +27,6 @@ export default class InviteRoute extends Route {
     this.transitionTo('setup');
   }
 
-  // @disableInFastboot
   async acceptInvite(transition: any) {
     const query = transition.queryParams as IQueryParams;
 
