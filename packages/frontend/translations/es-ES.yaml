@@ -16,7 +16,7 @@ connection:
   status:
     socket:
       error: '¡Se ha producido un error en la conexión por socket!'
-      close: The socket connection has been dropped!
+      close: '¡La conexión por socket se ha caído!'
     timeout: There is a networking issue. waiting...
   errors:
     send:
