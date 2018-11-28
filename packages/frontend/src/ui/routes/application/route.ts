@@ -14,8 +14,6 @@ export default class ApplicationRoute extends Route {
     // TODO: check all the modern web requirements
     await this.locale.setLocale(this.locale.currentLocale);
     await this.identity.load();
-
-    this.removeAppLoader();
   }
 
   async model() {
@@ -27,13 +25,5 @@ export default class ApplicationRoute extends Route {
 
   afterModel() {
     this.relayConnection.connect();
-  }
-
-  private removeAppLoader() {
-    const loader = document.querySelector('#app-loader');
-
-    if (loader) {
-      loader.remove();
-    }
   }
 }
