@@ -11,29 +11,73 @@
 
     {{content-for "head"}}
 
-    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link rel="stylesheet" href="{{rootURL}}assets/emberclear.css">
-
-
     {{content-for "head-footer"}}
   </head>
-  <body class='has-navbar-fixed-top'>
+  <style>
+    @keyframes spinAround {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(359deg);
+      }
+    }
+  </style>
+
+  <body
+    style='
+      padding-top: 3.25rem;
+      font-weight: 400;
+      font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    '
+    class='has-navbar-fixed-top'>
+
     {{content-for "body"}}
+
     <div id='app-loader'
-      class='has-background-primary has-text-white'
       style='
+      z-index: 1000;
+      background: #00d1b2; color: white;
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      overflow-y: scroll;
       align-items: center;'>
-      <div class='navbar no-select is-fixed-top has-shadow'></div>
 
-      <h1 class='title has-text-white' style='margin-top: 1rem;'>
+      <div
+        style='
+          box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.12);
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1001;
+          position: fixed;
+          height: 52px;
+          background: white;
+        '
+       ></div>
+
+      <h1
+        style='
+          margin-top: 1rem;
+          margin-bottom: 1.5rem;
+          font-size: 2rem;
+          font-weight: 600;
+          line-height: 1.125;
+        '>
         emberclear
       </h1>
 
-      <h2>Encrypted Chat. No History. No Logs.</h2>
+      <h2
+        style='
+          margin: 0;
+          font-size: 100%;
+          font-weight: 400;
+        '
+      >
+        Encrypted Chat. No History. No Logs.
+      </h2>
       <br>
 
       <div
@@ -41,12 +85,19 @@
           position: fixed;
           bottom: 100px;
           width: 50px; height: 50px;
-        '
-        class='loader'>
+          animation: spinAround 500ms infinite linear;
+          border: 2px solid #dbdbdb;
+          border-radius: 290486px;
+          border-right-color: transparent;
+          border-top-color: transparent;
+          content: "";
+          display: block;
+        '>
       </div>
     </div>
 
-
+    <link async rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link async rel="stylesheet" href="{{rootURL}}assets/emberclear.css">
     <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="{{rootURL}}assets/emberclear.js"></script>
 
