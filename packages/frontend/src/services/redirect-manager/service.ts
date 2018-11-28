@@ -4,12 +4,11 @@ import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 
 
-import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/decorators';
+import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
 
 export default class RedirectManager extends Service {
   @service router!: Registry['router'];
 
-  @disableInFastboot
   @syncToLocalStorage
   get attemptedRoute() {
     return null;

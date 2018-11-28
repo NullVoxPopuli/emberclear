@@ -50,14 +50,6 @@ declare global {
     data: OpenGraphData;
   }
 
-  interface FastBoot {
-    isFastBoot: boolean;
-    request: {
-      path: string;
-      host: string;
-    }
-  }
-
   interface Window {
     devToolsExtension: any
   }

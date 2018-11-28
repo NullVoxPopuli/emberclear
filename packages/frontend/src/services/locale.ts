@@ -2,24 +2,20 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import IntlService from 'ember-intl/services/intl';
 
-import { disableInFastboot, syncToLocalStorage } from 'emberclear/src/utils/decorators';
+import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
 
 const DEFAULT_LOCALE = 'en-us';
 
 export default class LocaleService extends Service {
   @service intl!: IntlService;
-  @service fastboot!: FastBoot;
 
-  @disableInFastboot
   @syncToLocalStorage
   get currentLocale() {
     return DEFAULT_LOCALE;
   }
 
   async setLocale(locale: string = DEFAULT_LOCALE) {
-    if (!this.fastboot.isFastBoot) {
-      this.set('currentLocale', locale);
-    }
+    this.set('currentLocale', locale);
 
     // uncomment for asyncily loaded translations
     // const request = await fetch(`/translations/${locale}.json`);

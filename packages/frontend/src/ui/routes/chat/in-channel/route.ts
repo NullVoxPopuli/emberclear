@@ -4,7 +4,6 @@ import { service } from '@ember-decorators/service';
 import IdentityService from 'emberclear/services/identity/service';
 import { IModel as ChatModel } from 'emberclear/ui/routes/chat/route';
 
-import { disableInFastboot } from 'emberclear/src/utils/decorators';
 
 interface IModelParams {
   channel_id: string;
@@ -13,7 +12,6 @@ interface IModelParams {
 export default class ChatInChannelRoute extends Route {
   @service identity!: IdentityService;
 
-  @disableInFastboot
   async model(params: IModelParams) {
     const { channel_id } = params;
 

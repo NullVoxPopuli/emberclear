@@ -6,7 +6,7 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
 
 // note that by default, the enabled flags on some things
-// like minifying, and prember, by default, already check
+// like minifying by default, already check
 // if environment === 'production'
 //
 // the explicitness is for sanity checking during the
@@ -68,15 +68,6 @@ module.exports = function(defaults) {
       extensions: ['js', 'ts'],
     },
     addons: { blacklist: disabledAddons },
-    prember: {
-      urls: [
-        '/',
-        '/faq',
-        '/chat',
-        '/setup',
-        '/login',
-      ],
-    },
     treeShaking: {
       enabled: true,
     },

@@ -1,14 +1,11 @@
 import Service from '@ember/service';
 
 import { A } from '@ember/array';
-import { service } from '@ember-decorators/service';
 import { notEmpty } from '@ember-decorators/object/computed';
 
-import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/decorators';
+import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
 
 export default class Sidebar extends Service {
-  @service fastboot!: FastBoot;
-
   unreadAbove = A();
   unreadBelow = A();
 
@@ -17,7 +14,6 @@ export default class Sidebar extends Service {
   @notEmpty('unreadAbove') hasUnreadAbove!: boolean;
   @notEmpty('unreadBelow') hasUnreadBelow!: boolean;
 
-  @disableInFastboot
   @syncToLocalStorage
   get isShown(): boolean {
     return false;
@@ -44,8 +40,6 @@ export default class Sidebar extends Service {
   }
 
   observeIntersectionOf(id: string) {
-    if (this.fastboot.isFastBoot) { return; }
-
     this.ensureUnreadIntersectionObserverExists();
 
     const target = document.getElementById(id);

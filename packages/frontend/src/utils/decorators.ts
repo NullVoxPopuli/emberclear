@@ -1,45 +1,4 @@
-import { getOwner } from '@ember/application';
-import { decoratorWithParams } from '@ember-decorators/utils/decorator';
 import { PromiseMonitor } from 'ember-computed-promise-monitor';
-
-function isFastBoot(context: any) {
-  const service = getOwner(context).lookup('service:fastboot');
-
-  return service.isFastBoot;
-}
-
-interface IDecorator {
-  descriptor: PropertyDescriptor;
-  key: string;
-  kind: string;
-  placement: string;
-}
-
-export const disableInFastboot = decoratorWithParams(function<T>({ descriptor }: IDecorator, params: any)  {
-  const options = params && params[0] || {};
-  const fbReturn = options.default;
-  const { get: oldGet, value: oldValue } = descriptor;
-
-  if (oldValue) {
-    descriptor.value = function(...args: any[]): T {
-      if (isFastBoot(this)) return fbReturn;
-
-      return oldValue.apply(this, args);
-    };
-
-    return descriptor;
-  }
-
-  if (oldGet) {
-    descriptor.get = function(): T | undefined {
-      if (isFastBoot(this)) return fbReturn;
-
-      return oldGet.apply(this);
-    };
-  }
-
-  return descriptor;
-});
 
 export function syncToLocalStorage<T>(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const targetName = target.constructor.name;

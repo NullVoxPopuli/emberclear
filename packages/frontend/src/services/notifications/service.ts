@@ -4,7 +4,7 @@ import { service } from '@ember-decorators/service';
 
 import IdentityService from 'emberclear/src/services/identity/service';
 
-import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/decorators';
+import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
 
 import Toast from 'emberclear/src/services/toast';
 
@@ -17,9 +17,6 @@ export default class Notifications extends Service {
   askToEnableNotifications = true;
   isHiddenUntilBrowserRefresh = false;
 
-
-
-  @disableInFastboot
   @syncToLocalStorage
   get isNeverGoingToAskAgain() {
     return false;

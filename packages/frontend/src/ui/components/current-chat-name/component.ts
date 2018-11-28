@@ -13,15 +13,12 @@ const CHANNEL_REGEX = /chat\/in-channel\/(.+)/;
 export default class extends Component {
   @service store!: DS.Store;
   @service router!: Router;
-  @service fastboot!: FastBoot;
 
   @alias('router.currentRouteName') routeName!: string;
   @equal('routeName', 'chat.index') isRootChat!: boolean;
 
   @computed('router.currentURL')
   get chatName() {
-    if (this.fastboot.isFastBoot) return '';
-
     const url = this.router.currentURL;
     const privateMatches = PRIVATE_CHAT_REGEX.exec(url);
 

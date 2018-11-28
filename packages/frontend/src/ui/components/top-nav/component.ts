@@ -5,12 +5,11 @@ import { action, computed } from '@ember-decorators/object';
 import { alias, equal } from '@ember-decorators/object/computed';
 
 import IdentityService from 'emberclear/services/identity/service';
-import Sidebar from 'emberclear/services/sidebar';
+import Sidebar from 'emberclear/services/sidebar/service';
 
 export default class TopNav extends Component {
   @service identity!: IdentityService;
   @service router!: Registry['router'];
-  @service fastboot!: FastBoot;
   @service sidebar!: Sidebar;
 
   @alias('router.currentRouteName') routeName!: string;
@@ -19,11 +18,6 @@ export default class TopNav extends Component {
 
   @computed('isApplication')
   get isChat(): boolean {
-    if (this.fastboot.isFastBoot) {
-      const path = this.fastboot.request.path;
-      return !(path === '' || path === '/');
-    }
-
     return !this.isApplication;
   }
 
