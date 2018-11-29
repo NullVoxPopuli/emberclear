@@ -7,14 +7,13 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   getStore,
-  getService
+  getService,
 } from 'emberclear/tests/helpers';
 
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 import { app } from 'emberclear/tests/helpers/pages/app';
 
 import IdentityService from 'emberclear/src/services/identity/service';
-
 
 module('Acceptance | Settings', function(hooks) {
   setupApplicationTest(hooks);
@@ -56,7 +55,6 @@ module('Acceptance | Settings', function(hooks) {
           assert.equal(actual, newName);
         });
 
-
         skip('confirmation is display', function(assert) {
           const text = app.toast()!.textContent!;
 
@@ -89,7 +87,6 @@ module('Acceptance | Settings', function(hooks) {
       // TODO: how to test downloads?
     });
 
-
     module('Messages exist', function(hooks) {
       hooks.beforeEach(async function(assert) {
         const store = getStore();
@@ -115,5 +112,4 @@ module('Acceptance | Settings', function(hooks) {
       });
     });
   });
-
 });

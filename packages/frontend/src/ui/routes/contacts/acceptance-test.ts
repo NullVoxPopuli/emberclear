@@ -4,8 +4,11 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import {
   clearLocalStorage,
-  setupCurrentUser, setupRelayConnectionMocks,
-  getService, cancelLongRunningTimers, createIdentity
+  setupCurrentUser,
+  setupRelayConnectionMocks,
+  getService,
+  cancelLongRunningTimers,
+  createIdentity,
 } from 'emberclear/tests/helpers';
 
 import Identity from 'emberclear/src/data/models/identity/model';

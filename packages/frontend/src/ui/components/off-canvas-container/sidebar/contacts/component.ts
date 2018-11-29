@@ -1,7 +1,7 @@
 import Component from 'sparkles-component';
 
 import { service } from '@ember-decorators/service';
-import { computed }  from '@ember-decorators/object';
+import { computed } from '@ember-decorators/object';
 import { filterBy, reads } from '@ember-decorators/object/computed';
 
 import Identity, { STATUS } from 'emberclear/src/data/models/identity/model';

@@ -4,7 +4,7 @@ const form = '[data-test-name-form]';
 
 export const nameForm = {
   clickNext: () => click(`${form} [data-test-next]`),
-  enterName: (text: string) => fillIn(`${form} [data-test-name-field]`, text)
+  enterName: (text: string) => fillIn(`${form} [data-test-name-field]`, text),
 };
 
 export const completedPage = {
@@ -15,5 +15,5 @@ export const completedPage = {
 };
 
 export default {
-  nameForm
+  nameForm,
 };

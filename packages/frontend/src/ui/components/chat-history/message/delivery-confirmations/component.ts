@@ -36,7 +36,8 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     this.waitForConfirmation.perform();
   }
 
-  @dropTask * waitForConfirmation(this: DeliveryConfirmation) {
+  @dropTask
+  *waitForConfirmation(this: DeliveryConfirmation) {
     if (this.timedOut) return;
 
     yield timeout(TIMEOUT_MS);
@@ -46,12 +47,13 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     }
   }
 
-  @dropTask * resend(this: DeliveryConfirmation) {
+  @dropTask
+  *resend(this: DeliveryConfirmation) {
     const { message } = this.args;
     let to: Identity | Channel;
 
     // TODO: make the to a polymorphic relationship
-    switch(message.target) {
+    switch (message.target) {
       case TARGET.WHISPER:
         to = yield this.store.findRecord('identity', message.to);
         break;
@@ -69,8 +71,8 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     yield this.waitForConfirmation.perform();
   }
 
-
-  @dropTask * deleteMessage(this: DeliveryConfirmation) {
+  @dropTask
+  *deleteMessage(this: DeliveryConfirmation) {
     const { message } = this.args;
 
     yield message.destroyRecord();

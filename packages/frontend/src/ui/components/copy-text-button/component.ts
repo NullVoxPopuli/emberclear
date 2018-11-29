@@ -7,6 +7,6 @@ export default class CopyTextButton extends Component {
     e.clearSelection();
     this.copied = true;
 
-    setTimeout(() => this.copied = false, 2000);
+    setTimeout(() => (this.copied = false), 2000);
   }
 }

@@ -69,7 +69,6 @@ export default class Notifications extends Service {
     // ask the user if they would like to enable those.
     this.set('askToEnableNotifications', true);
 
-
     this.toast.createToast(status, msg, title, options);
   }
 
@@ -103,7 +102,7 @@ export default class Notifications extends Service {
   }
 
   isBrowserCapableOfNotifications() {
-    return ('Notification' in window);
+    return 'Notification' in window;
   }
 
   showNotification(msg: string, title = '', options = {}) {
@@ -111,7 +110,7 @@ export default class Notifications extends Service {
     const notificationOptions = {
       body: msg,
       // icon: ''
-      ...options
+      ...options,
     };
 
     return new Notification(title || defaultTitle, notificationOptions);
@@ -121,6 +120,6 @@ export default class Notifications extends Service {
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    'notifications': Notifications;
+    notifications: Notifications;
   }
 }

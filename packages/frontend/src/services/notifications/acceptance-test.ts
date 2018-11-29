@@ -1,4 +1,3 @@
-
 import { module, test } from 'qunit';
 import { visit, currentURL, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -8,7 +7,7 @@ import {
   setupRelayConnectionMocks,
   cancelLongRunningTimers,
   setupWindowNotification,
-  getService
+  getService,
 } from 'emberclear/tests/helpers';
 
 import Notifications from './service';
@@ -28,7 +27,7 @@ module('Acceptance | Notifications Service', function(hooks) {
     hooks.beforeEach(async function() {
       await visit('/');
       window.Notification = {
-        permission: undefined
+        permission: undefined,
       };
 
       notifications = getService<Notifications>('notifications');
@@ -51,12 +50,8 @@ module('Acceptance | Notifications Service', function(hooks) {
       });
     });
 
-    module('permission granted', function(hooks) {
+    module('permission granted', function(hooks) {});
 
-    });
-
-    module('permission: later', function(hooks) {
-
-    });
+    module('permission: later', function(hooks) {});
   });
 });

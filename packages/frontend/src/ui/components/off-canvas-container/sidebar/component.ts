@@ -42,5 +42,4 @@ export default class Sidebar extends Component {
     scrollIntoViewOfParent(scrollable, lastRow);
     this.sidebar.clearUnreadAbove();
   }
-
 }

@@ -7,7 +7,7 @@ import RedirectManager from 'emberclear/services/redirect-manager/service';
 import Message from 'emberclear/data/models/message/model';
 
 export interface IModel {
-  messages: Message[]
+  messages: Message[];
 }
 
 export default class ChatRoute extends Route {
@@ -29,7 +29,7 @@ export default class ChatRoute extends Route {
   async model() {
     const messages = await this.store.findAll('message', {
       backgroundReload: true,
-      include: 'sender'
+      include: 'sender',
     });
 
     return { messages };

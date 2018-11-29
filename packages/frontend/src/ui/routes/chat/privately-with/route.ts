@@ -38,7 +38,7 @@ export default class ChatPrivatelyRoute extends Route {
 
     return {
       targetIdentity: record,
-      messages: chatModel.messages
+      messages: chatModel.messages,
     };
   }
 }

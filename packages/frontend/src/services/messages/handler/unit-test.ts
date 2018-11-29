@@ -3,7 +3,8 @@ import { setupTest } from 'ember-qunit';
 import uuid from 'uuid';
 
 import {
-  getService, stubService,
+  getService,
+  stubService,
   attributesForUser,
   setupCurrentUser,
 } from 'emberclear/tests/helpers';
@@ -26,7 +27,7 @@ module('Unit | Service | messages/handler', function(hooks) {
     module('a chat message', function(hooks) {
       hooks.beforeEach(async function() {
         stubService('messages/auto-responder', {
-          messageReceived() {}
+          messageReceived() {},
         });
       });
 
@@ -54,7 +55,7 @@ module('Unit | Service | messages/handler', function(hooks) {
           },
           message: {
             body: 'malformed, cleartext body',
-            contentType: 'is this used?'
+            contentType: 'is this used?',
           },
         });
 
@@ -62,27 +63,16 @@ module('Unit | Service | messages/handler', function(hooks) {
 
         assert.equal(after.length, beforeCount + 1);
       });
-
     });
 
-    module('an emote message', function() {
+    module('an emote message', function() {});
 
-    });
+    module('a delivery confirmation', function() {});
 
-    module('a delivery confirmation', function() {
+    module('a disconnect message', function() {});
 
-    });
+    module('a ping', function() {});
 
-    module('a disconnect message', function() {
-
-    });
-
-    module('a ping', function() {
-
-    });
-
-    module('an unknown type of message', function() {
-
-    });
+    module('an unknown type of message', function() {});
   });
 });

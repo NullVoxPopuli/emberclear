@@ -7,7 +7,6 @@ import { dropTask } from 'ember-concurrency-decorators';
 
 import IdentityService from 'emberclear/services/identity/service';
 
-
 // TODO: https://adfinis-sygroup.github.io/ember-validated-form/latest/
 // use a form validation library ^
 export default class NameEntry extends Component {
@@ -27,7 +26,8 @@ export default class NameEntry extends Component {
     this.create.perform();
   }
 
-  @dropTask * create(this: NameEntry) {
+  @dropTask
+  *create(this: NameEntry) {
     if (this.nameIsBlank) return;
     const exists = yield this.identity.exists();
 

@@ -3,7 +3,6 @@ import { Registry } from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 
-
 import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
 
 export default class RedirectManager extends Service {

@@ -1,8 +1,5 @@
 import { module, test, skip } from 'qunit';
-import {
-  visit, currentURL, settled, waitFor,
-  triggerEvent
-} from '@ember/test-helpers';
+import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import Identity from 'emberclear/src/data/models/identity/model';
@@ -12,7 +9,7 @@ import {
   setupRelayConnectionMocks,
   cancelLongRunningTimers,
   setupCurrentUser,
-  getStore
+  getStore,
 } from 'emberclear/tests/helpers';
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import { toHex } from 'emberclear/src/utils/string-encoding';
@@ -102,7 +99,10 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
         const toastText = app.toast()!.textContent;
 
-        assert.ok(toastText.match(/not be located/), 'toast is displayed saying the user is not found');
+        assert.ok(
+          toastText.match(/not be located/),
+          'toast is displayed saying the user is not found'
+        );
       });
     });
 
@@ -117,7 +117,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
         someone = store.createRecord('identity', {
           id,
-          publicKey, privateKey
+          publicKey,
+          privateKey,
         });
 
         await someone.save();
@@ -142,17 +143,19 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       });
 
       module('the person is not online', function(hooks) {
-        setupRelayConnectionMocks(hooks, {
-          send() {
-            // this error comes from the relay
-            throw {
-              reason: `user with id ${id} not found!`,
-              to_uid: id,
-            };
-          }
-        }, [
-          { in: 'service:messages/dispatcher', as: 'relayConnection' }
-        ]);
+        setupRelayConnectionMocks(
+          hooks,
+          {
+            send() {
+              // this error comes from the relay
+              throw {
+                reason: `user with id ${id} not found!`,
+                to_uid: id,
+              };
+            },
+          },
+          [{ in: 'service:messages/dispatcher', as: 'relayConnection' }]
+        );
 
         hooks.beforeEach(async function() {
           await visit(`/chat/privately-with/${id}`);
@@ -206,13 +209,15 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       });
 
       module('a message is sent to the person', function(hooks) {
-        setupRelayConnectionMocks(hooks, {
-          send() {
-            // should something be asserted here?
-          }
-        }, [
-          { in: 'service:messages/dispatcher', as: 'relayConnection' }
-        ]);
+        setupRelayConnectionMocks(
+          hooks,
+          {
+            send() {
+              // should something be asserted here?
+            },
+          },
+          [{ in: 'service:messages/dispatcher', as: 'relayConnection' }]
+        );
 
         hooks.beforeEach(async function() {
           await visit(`/chat/privately-with/${id}`);
@@ -248,13 +253,10 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           });
 
           module('a confirmation is received', function() {
-            skip('the message is shown, with successful confirmation', function(assert) {
-
-            });
+            skip('the message is shown, with successful confirmation', function(assert) {});
           });
         });
       });
     });
   });
 });
-

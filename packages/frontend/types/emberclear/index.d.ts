@@ -5,13 +5,11 @@ declare global {
     highlightAll: () => void;
   }
 
-
   interface IDecoratorArgs extends Array<any | string | PropertyDescriptor> {
     0: any;
     1: string;
-    2: PropertyDescriptor
+    2: PropertyDescriptor;
   }
-
 
   interface Router {
     currentURL: string;
@@ -51,7 +49,7 @@ declare global {
   }
 
   interface Window {
-    devToolsExtension: any
+    devToolsExtension: any;
   }
 
   interface Array<T> extends Ember.ArrayPrototypeExtensions<T> {}
@@ -109,17 +107,17 @@ declare global {
       name: string;
       uid: string;
       location: string;
-    },
+    };
     message: {
       body: string;
-      contentType: string
-    },
+      contentType: string;
+    };
     channelInfo?: {
       name: string;
       members: ChannelMember[];
       pendingInvitations: ChannelInvitation[];
       blocked: ChannelBlock[];
-    }
+    };
   }
 }
 
@@ -129,10 +127,9 @@ declare global {
 //   declare function assert<T extends boolean>(desc: string, test?: T): T extends true ? void : never;
 // }
 
-
 declare module '@ember/service' {
   interface Registry {
-    'toast': Toast,
-    'intl': Intl,
+    toast: Toast;
+    intl: Intl;
   }
 }

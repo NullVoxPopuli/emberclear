@@ -34,7 +34,7 @@ export default class InviteRoute extends Route {
       const { name, publicKey } = query;
 
       // if (isPresent(publicKey)) {
-        return await this.acceptContactInvite(name!, publicKey!);
+      return await this.acceptContactInvite(name!, publicKey!);
       // }
     }
 
@@ -61,7 +61,6 @@ export default class InviteRoute extends Route {
   }
 
   private hasParams({ name, publicKey }: IQueryParams) {
-
     // TODO: support additional / different params for private channels
     return isPresent(name) && isPresent(publicKey);
   }

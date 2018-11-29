@@ -25,7 +25,8 @@ export default class LoginForm extends Component {
 
   @alias('identity.isLoggedIn') isLoggedIn!: boolean;
 
-  @dropTask * login(this: LoginForm) {
+  @dropTask
+  *login(this: LoginForm) {
     try {
       const name = this.name;
       const privateKey = yield naclBoxPrivateKeyFromMnemonic(this.mnemonic);
@@ -40,13 +41,13 @@ export default class LoginForm extends Component {
     }
   }
 
-
-  @dropTask * uploadSettings(data: string) {
+  @dropTask
+  *uploadSettings(data: string) {
     try {
       yield this.settings.import(data);
 
       this.router.transitionTo('settings');
-    } catch(e) {
+    } catch (e) {
       console.error(e);
       this.toast.error('There was a problem processing your file...');
     }

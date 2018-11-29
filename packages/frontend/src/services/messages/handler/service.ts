@@ -10,7 +10,6 @@ import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';
 import AutoResponder from 'emberclear/src/services/messages/auto-responder';
 
-
 export default class ReceivedMessageHandler extends Service {
   @service store!: DS.Store;
   @service intl!: Intl;
@@ -76,7 +75,6 @@ export default class ReceivedMessageHandler extends Service {
     this.autoResponder.messageReceived(message);
 
     switch (message.target) {
-
       case TARGET.WHISPER:
         return this.handleWhisperChat(message);
 
@@ -106,7 +104,6 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-
   private async decomposeMessage(json: RelayJson) {
     const { id, type, target, message: msg, sender: senderInfo } = json;
 
@@ -131,7 +128,7 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async findOrCreateSender(senderData: RelayJson["sender"]): Promise<Identity> {
+  private async findOrCreateSender(senderData: RelayJson['sender']): Promise<Identity> {
     const { name, uid } = senderData;
 
     if (uid === this.identity.uid) {
@@ -144,6 +141,6 @@ export default class ReceivedMessageHandler extends Service {
 
 declare module '@ember/service' {
   interface Registry {
-    'messages/handler': ReceivedMessageHandler
+    'messages/handler': ReceivedMessageHandler;
   }
 }

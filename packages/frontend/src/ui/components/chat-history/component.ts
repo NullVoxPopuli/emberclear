@@ -29,9 +29,9 @@ export default class ChatHistory extends Component<IArgs> {
 
   // This watches to see if we have scrolled up, and shows the
   // quick link to jump to the bottom.
-  @keepLatestTask * autoScrollToBottom(this: ChatHistory) {
-
-    while(true) {
+  @keepLatestTask
+  *autoScrollToBottom(this: ChatHistory) {
+    while (true) {
       yield timeout(250);
 
       const isScrolledToBottom = this.chatScroller.isLastVisible();
@@ -40,7 +40,9 @@ export default class ChatHistory extends Component<IArgs> {
 
       // HACK: remove eventually....
       // http://ember-concurrency.com/docs/testing-debugging/
-      if (Ember.testing) { return; }
+      if (Ember.testing) {
+        return;
+      }
     }
   }
 }

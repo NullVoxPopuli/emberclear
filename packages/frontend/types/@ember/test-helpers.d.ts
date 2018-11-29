@@ -1,5 +1,5 @@
-import Application from "@ember/application";
-import ApplicationInstance from "@ember/application/instance";
+import Application from '@ember/application';
+import ApplicationInstance from '@ember/application/instance';
 
 interface AppContext {
   element: HTMLElement;

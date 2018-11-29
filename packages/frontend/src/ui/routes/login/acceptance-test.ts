@@ -13,8 +13,9 @@ import {
   visit,
   getService,
   clearLocalStorage,
-  setupCurrentUser, setupRelayConnectionMocks,
-  trackAsyncDataRequests
+  setupCurrentUser,
+  setupRelayConnectionMocks,
+  trackAsyncDataRequests,
 } from 'emberclear/tests/helpers';
 
 const behaviors = {
@@ -41,8 +42,8 @@ const behaviors = {
           assert.equal(currentURL(), '/login');
         });
       });
-    }
-  }
+    },
+  },
 };
 
 module('Acceptance | Login', function(hooks) {

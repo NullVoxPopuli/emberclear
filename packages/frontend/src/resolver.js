@@ -22,7 +22,7 @@ moduleConfig.types = Object.assign(moduleConfig.types, {
   cldr: { definitiveCollection: 'main' },
   'util:intl': { definitiveCollection: 'utils' },
   // ember-gestures
-  'ember-gesture': { definitiveCollection: 'main' }
+  'ember-gesture': { definitiveCollection: 'main' },
 });
 
 moduleConfig.collections.main.types.push('config');

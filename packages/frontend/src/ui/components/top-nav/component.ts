@@ -32,5 +32,4 @@ export default class TopNav extends Component {
   toggleSidebar(this: TopNav) {
     this.sidebar.toggle();
   }
-
 }

@@ -3,11 +3,11 @@ import Message, { TARGET, TYPE } from './model';
 export function selectUnreadDirectMessages(messages: Message[], fromId: string) {
   const filtered = messages.filter(m => {
     return (
-      m.from === fromId
-      && m.unread
-      && m.target !== TARGET.NONE
-      && m.target !== TARGET.MESSAGE
-      && m.type !== TYPE.PING
+      m.from === fromId &&
+      m.unread &&
+      m.target !== TARGET.NONE &&
+      m.target !== TARGET.MESSAGE &&
+      m.type !== TYPE.PING
     );
   });
 

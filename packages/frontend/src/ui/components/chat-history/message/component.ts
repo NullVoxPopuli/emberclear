@@ -86,7 +86,6 @@ export default class extends Component<IArgs> {
     });
   }
 
-
   private makeCodeBlocksFancy() {
     const pres = this.element.querySelectorAll('pre');
 
@@ -103,33 +102,36 @@ export default class extends Component<IArgs> {
     this.setupIntersectionObserver();
   }
 
-
   private setupIntersectionObserver() {
     const { message } = this.args;
 
-    const io = new IntersectionObserver(entries => {
-      const isVisible = (entries[0].intersectionRatio !== 0);
+    const io = new IntersectionObserver(
+      entries => {
+        const isVisible = entries[0].intersectionRatio !== 0;
 
-      const canBeSeen = !message.isSaving && document.hasFocus();
-      if (isVisible && canBeSeen) {
-        this.markRead.perform();
+        const canBeSeen = !message.isSaving && document.hasFocus();
+        if (isVisible && canBeSeen) {
+          this.markRead.perform();
 
-        io.unobserve(this.element);
-        this.io = undefined;
+          io.unobserve(this.element);
+          this.io = undefined;
+        }
+      },
+      {
+        root: document.querySelector('.messages'),
       }
-    }, {
-      root: document.querySelector('.messages'),
-    });
+    );
 
     io.observe(this.element);
 
     this.io = io;
   }
 
-  @task * markRead() {
+  @task
+  *markRead() {
     const { message } = this.args;
 
-    while(true) {
+    while (true) {
       if (message.isSaving || !document.hasFocus()) {
         yield timeout(5);
       } else {

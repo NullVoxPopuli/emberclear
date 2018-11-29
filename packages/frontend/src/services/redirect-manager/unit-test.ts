@@ -10,4 +10,3 @@ module('Unit | Service | redirect-manager', function(hooks) {
     assert.ok(service);
   });
 });
-

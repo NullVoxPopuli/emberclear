@@ -10,7 +10,6 @@ import MessageFactory from 'emberclear/services/messages/factory';
 import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
 
-
 export default class ChatEntry extends Component {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
   @service('messages/factory') messageFactory!: MessageFactory;
@@ -44,7 +43,7 @@ export default class ChatEntry extends Component {
 
   @computed('text', 'isDisabled')
   get isSubmitDisabled() {
-    return  !this.text || this.text.length === 0 || this.isDisabled;
+    return !this.text || this.text.length === 0 || this.isDisabled;
   }
 
   @action

@@ -9,7 +9,8 @@ import {
   setupRelayConnectionMocks,
   setupCurrentUser,
   getService,
-  text, createIdentity
+  text,
+  createIdentity,
 } from 'emberclear/tests/helpers';
 
 import IdentityService from 'emberclear/src/services/identity/service';
@@ -54,7 +55,6 @@ module('Acceptance | Sidebar', function(hooks) {
     });
 
     module('the actual list of contacts', function() {
-
       module('there are 0 contacts', function() {
         test('only the current user is shown', function(assert) {
           const name = getService<IdentityService>('identity')!.name!;
@@ -196,7 +196,6 @@ module('Acceptance | Sidebar', function(hooks) {
 
           assert.notOk(form);
         });
-
 
         test('a channel is created', function(assert) {
           const store = getService<DS.Store>('store');

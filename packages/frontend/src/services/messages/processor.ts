@@ -20,6 +20,6 @@ export default class MessageProcessor extends Service {
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    'messages/processor': MessageProcessor
+    'messages/processor': MessageProcessor;
   }
 }

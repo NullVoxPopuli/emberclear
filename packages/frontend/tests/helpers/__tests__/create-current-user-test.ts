@@ -4,7 +4,10 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import IdentityService from 'emberclear/services/identity/service';
 import {
-  getService, createCurrentUser, setupCurrentUser, clearLocalStorage
+  getService,
+  createCurrentUser,
+  setupCurrentUser,
+  clearLocalStorage,
 } from 'emberclear/tests/helpers';
 
 module('TestHelper | create-current-user', function(hooks) {
@@ -37,7 +40,6 @@ module('TestHelper | create-current-user', function(hooks) {
     assert.equal(after.firstObject.id, 'me');
   });
 
-
   test('the user is set on the identity service', async function(assert) {
     const before = getService<IdentityService>('identity').record;
 
@@ -49,7 +51,6 @@ module('TestHelper | create-current-user', function(hooks) {
 
     assert.deepEqual(after, user);
   });
-
 
   module('user is setup in a beforeEach', function(hooks) {
     setupCurrentUser(hooks);

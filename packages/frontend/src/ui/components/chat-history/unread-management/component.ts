@@ -78,5 +78,4 @@ export default class UnreadManagement extends Component<IArgs> {
 
     return false;
   }
-
 }

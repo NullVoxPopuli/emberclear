@@ -1,9 +1,7 @@
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
-import {
-  isElementWithin, keepInViewPort
-} from './utils';
+import { isElementWithin, keepInViewPort } from './utils';
 
 module('Unit | Utility | dom', function() {
   let container: any;
@@ -21,7 +19,7 @@ module('Unit | Utility | dom', function() {
       container = {
         getBoundingClientRect() {
           return rect;
-        }
+        },
       };
 
       getBoundingClientRect = sinon.stub();

@@ -12,5 +12,4 @@ export default class extends Controller {
 
     return message.target === TARGET.CHANNEL && message.to === target;
   }
-
 }

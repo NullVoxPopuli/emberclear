@@ -7,7 +7,6 @@ type Action = (...args: any[]) => any;
 // but way simpler... cause no promises
 export function queue(actions: Action[] = []) {
   return function(...args: any[]) {
-
     return actions.forEach((action: Action) => action(...args));
   };
 }

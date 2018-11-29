@@ -30,11 +30,10 @@ export const sidebar = {
     form: () => find(channelForm),
     formInput: () => find(`${channelForm} input`),
     fillInput: (text: string) => fillIn(`${channelForm} input`, text),
-    submitForm: () => triggerKeyEvent(`${channelForm} input`, 'keypress', 'Enter')
-  }
-
+    submitForm: () => triggerKeyEvent(`${channelForm} input`, 'keypress', 'Enter'),
+  },
 };
 
 export default {
-  sidebar
+  sidebar,
 };

@@ -43,10 +43,9 @@ export default class RelayConnection extends Service {
     return new Promise((resolve, reject) => {
       channel
         .push('chat', payload)
-        .receive("ok", resolve)
-        .receive("error", reject)
-        .receive("timeout",
-          () => reject({ reason: this.intl.t('models.message.errors.timeout') }));
+        .receive('ok', resolve)
+        .receive('error', reject)
+        .receive('timeout', () => reject({ reason: this.intl.t('models.message.errors.timeout') }));
     });
   }
 
@@ -84,7 +83,7 @@ export default class RelayConnection extends Service {
   }
 
   @dropTask
-  * establishConnection(this: RelayConnection) {
+  *establishConnection(this: RelayConnection) {
     const canConnect = yield this.canConnect();
     if (!canConnect || this.connected) return;
 
@@ -141,7 +140,7 @@ export default class RelayConnection extends Service {
           resolve(channel);
         })
         .receive('error', this.handleError)
-        .receive("timeout", () => console.info(this.intl.t('connection.status.timeout')) );
+        .receive('timeout', () => console.info(this.intl.t('connection.status.timeout')));
     });
 
     return promise;
@@ -149,49 +148,48 @@ export default class RelayConnection extends Service {
 
   onSocketError = () => {
     this.updateStatus('error', this.intl.t('connection.status.socket.error'));
-  }
+  };
 
   onSocketClose = () => {
     this.updateStatus('info', this.intl.t('connection.status.socket.close'));
 
     this.set('connected', false);
-  }
-
+  };
 
   onChannelError = () => {
     console.log('channel errored');
     if (this.socket) this.socket.disconnect();
-  }
+  };
 
   onChannelClose = () => {
     console.log('channel closed');
     if (this.socket) this.socket.disconnect();
-  }
+  };
 
   handleError = (data: string) => {
     console.error(data);
-  }
+  };
 
   handleConnected = () => {
     this.updateStatus('info', this.intl.t('connection.connected'));
 
     // ping for user statuses
     this.dispatcher.pingAll();
-  }
+  };
 
   handleMessage = (data: RelayMessage) => {
     this.processor.receive(data);
-  }
+  };
 
   updateStatus = (level: string, msg: string) => {
     this.set('status', msg);
     this.set('statusLevel', level);
-  }
+  };
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    'relay-connection': RelayConnection
+    'relay-connection': RelayConnection;
   }
 }

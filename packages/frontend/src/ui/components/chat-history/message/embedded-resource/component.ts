@@ -33,8 +33,8 @@ export default class EmbeddedResource extends Component {
     this.setup.perform();
   }
 
-
-  @task * setup(this: EmbeddedResource) {
+  @task
+  *setup(this: EmbeddedResource) {
     this.parseUrl();
     this.fetchOpenGraph();
   }
@@ -44,7 +44,7 @@ export default class EmbeddedResource extends Component {
   async fetchOpenGraph(this: EmbeddedResource) {
     const og = await this.relayManager.getOpenGraph(this.url);
 
-    this.set('hasOgData', !!(og.title));
+    this.set('hasOgData', !!og.title);
     this.set('ogData', og);
     this.set('title', og.title);
     this.set('siteName', og.site_name);

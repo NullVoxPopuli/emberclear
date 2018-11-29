@@ -1,7 +1,4 @@
-import {
-  find, click, waitFor, fillIn,
-  triggerKeyEvent
-} from '@ember/test-helpers';
+import { find, click, waitFor, fillIn, triggerKeyEvent } from '@ember/test-helpers';
 
 const toast = '[data-test-notification-message]';
 
@@ -25,21 +22,21 @@ export const app = {
     shareInfo: {
       isHidden: () => find('[data-test-share-info][aria-modal][aria-hidden]'),
       hide: () => click('[data-test-share-info] [aria-label="Close Modal"]'),
-    }
+    },
   },
 
   userDropdown: {
     open: () => click('[data-test-user-dropdown-toggle]'),
     clickLogout: () => click('[data-test-user-dropdown] [data-test-logout]'),
-    logoutButton: () => find('[data-test-user-dropdown] [data-test-logout]')
+    logoutButton: () => find('[data-test-user-dropdown] [data-test-logout]'),
   },
 
   footer: {
     faq: () => find('[data-test-footer-faq]') as HTMLElement,
-    clickFaq: () => click('[data-test-footer-faq]')
+    clickFaq: () => click('[data-test-footer-faq]'),
   },
 };
 
 export default {
-  app
+  app,
 };

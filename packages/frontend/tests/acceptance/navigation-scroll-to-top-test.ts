@@ -3,11 +3,7 @@ import { module, test } from 'qunit';
 import { visit, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-import {
-  clearLocalStorage,
-  setupRelayConnectionMocks
-} from 'emberclear/tests/helpers';
-
+import { clearLocalStorage, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 
 import { app } from 'emberclear/tests/helpers/pages/app';
 
@@ -22,7 +18,7 @@ module('Acceptance | Navigation Scrolling', function(hooks) {
 
   module('When in a short viewport', function(hooks) {
     hooks.beforeEach(function() {
-      app.scrollContainer().style='height: 300px';
+      app.scrollContainer().style = 'height: 300px';
     });
 
     hooks.afterEach(function() {
@@ -53,6 +49,5 @@ module('Acceptance | Navigation Scrolling', function(hooks) {
         });
       });
     });
-
   });
 });

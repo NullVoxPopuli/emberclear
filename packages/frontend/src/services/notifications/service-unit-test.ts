@@ -3,10 +3,7 @@ import { setupTest } from 'ember-qunit';
 
 import Notifications from './service';
 
-import {
-  setupWindowNotification,
-  getService, stubService
-} from 'emberclear/tests/helpers';
+import { setupWindowNotification, getService, stubService } from 'emberclear/tests/helpers';
 
 module('Unit | Service | notifications', function(hooks) {
   setupTest(hooks);
@@ -22,7 +19,7 @@ module('Unit | Service | notifications', function(hooks) {
   module('not logged in', function(hooks) {
     hooks.beforeEach(function() {
       stubService('identity', {
-        isLoggedIn: false
+        isLoggedIn: false,
       });
     });
 
@@ -37,10 +34,10 @@ module('Unit | Service | notifications', function(hooks) {
   module('logged in, but on a setup route', function(hooks) {
     hooks.beforeEach(function() {
       stubService('identity', {
-        isLoggedIn: true
+        isLoggedIn: true,
       });
       stubService('router', {
-        currentRouteName: 'setup.completed'
+        currentRouteName: 'setup.completed',
       });
     });
 
@@ -55,10 +52,10 @@ module('Unit | Service | notifications', function(hooks) {
   module('logged in, but trying to logout', function(hooks) {
     hooks.beforeEach(function() {
       stubService('identity', {
-        isLoggedIn: true
+        isLoggedIn: true,
       });
       stubService('router', {
-        currentRouteName: 'logout'
+        currentRouteName: 'logout',
       });
     });
 
@@ -73,13 +70,12 @@ module('Unit | Service | notifications', function(hooks) {
   module('already logged in', function(hooks) {
     hooks.beforeEach(function() {
       stubService('identity', {
-        isLoggedIn: true
+        isLoggedIn: true,
       });
       stubService('router', {
-        currentRouteName: 'chat'
+        currentRouteName: 'chat',
       });
     });
-
 
     test('initial checks', function(assert) {
       window.Notification = { permission: undefined };

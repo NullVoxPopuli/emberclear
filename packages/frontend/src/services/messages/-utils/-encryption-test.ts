@@ -20,18 +20,18 @@ module('Integration | Send/Receive Encryption', function(hooks) {
 
     bob = {
       privateKey: bobKeys.privateKey,
-      publicKey: bobKeys.publicKey
+      publicKey: bobKeys.publicKey,
     } as Identity;
 
     alice = {
       privateKey: aliceKeys.privateKey,
-      publicKey: aliceKeys.publicKey
+      publicKey: aliceKeys.publicKey,
     } as Identity;
   });
 
   test('round-trip encrypt-decrypt should return the same message', async function(assert) {
     const message = {
-      body: 'hi'
+      body: 'hi',
     } as Message;
 
     const payload = toPayloadJson(message, alice);

@@ -15,10 +15,10 @@ export default class FileChooser extends Component {
     const fileInput = e.target as HTMLInputElement;
     const file = (fileInput.files && fileInput.files[0]) || new Blob();
 
-    if(!file) return;
-    if(file.size === 0) return;
+    if (!file) return;
+    if (file.size === 0) return;
 
-    fileReader.onload = (event) => {
+    fileReader.onload = event => {
       const content = event.target!.result;
 
       this.onChoose(content);

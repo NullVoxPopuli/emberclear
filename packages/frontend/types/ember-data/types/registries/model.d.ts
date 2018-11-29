@@ -4,4 +4,3 @@
 declare interface ModelRegistry {
   [key: string]: any;
 }
-

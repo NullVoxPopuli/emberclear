@@ -48,15 +48,12 @@ export async function generateSymmetricKey(): Promise<Uint8Array> {
 export async function encryptFor(
   message: Uint8Array,
   recipientPublicKey: Uint8Array,
-  senderPrivateKey: Uint8Array): Promise<Uint8Array> {
-
+  senderPrivateKey: Uint8Array
+): Promise<Uint8Array> {
   const sodium = await libsodium();
   const nonce = await generateNonce();
 
-  const ciphertext = sodium.crypto_box_easy(
-    message, nonce,
-    recipientPublicKey, senderPrivateKey
-  );
+  const ciphertext = sodium.crypto_box_easy(message, nonce, recipientPublicKey, senderPrivateKey);
 
   return concat(nonce, ciphertext);
 }
@@ -64,20 +61,24 @@ export async function encryptFor(
 export async function decryptFrom(
   ciphertextWithNonce: Uint8Array,
   senderPublicKey: Uint8Array,
-  recipientPrivateKey: Uint8Array): Promise<Uint8Array> {
-
+  recipientPrivateKey: Uint8Array
+): Promise<Uint8Array> {
   const sodium = await libsodium();
 
   const [nonce, ciphertext] = await splitNonceFromMessage(ciphertextWithNonce);
   const decrypted = sodium.crypto_box_open_easy(
-    ciphertext, nonce,
-    senderPublicKey, recipientPrivateKey
+    ciphertext,
+    nonce,
+    senderPublicKey,
+    recipientPrivateKey
   );
 
   return decrypted;
 }
 
-export async function splitNonceFromMessage(messageWithNonce: Uint8Array): Promise<[Uint8Array, Uint8Array]> {
+export async function splitNonceFromMessage(
+  messageWithNonce: Uint8Array
+): Promise<[Uint8Array, Uint8Array]> {
   const sodium = await libsodium();
   const bytes = sodium.crypto_box_NONCEBYTES;
 

@@ -32,7 +32,9 @@ module('Unit | Utility | nacl', function() {
     const sender = await nacl.generateAsymmetricKeys();
 
     let bigMsg: number[] = [];
-    for (let i = 0; i < 128; i++) { bigMsg = bigMsg.concat([104, 101, 108, 108, 111]); }
+    for (let i = 0; i < 128; i++) {
+      bigMsg = bigMsg.concat([104, 101, 108, 108, 111]);
+    }
 
     const msgAsUint8 = Uint8Array.from(bigMsg); // hello * 128 = 640 Bytes
     const ciphertext = await nacl.encryptFor(msgAsUint8, receiver.publicKey, sender.privateKey);
@@ -42,6 +44,7 @@ module('Unit | Utility | nacl', function() {
   });
 
   test('splitNonceFromMessage | separates the nonce', async function(assert) {
+    // prettier-ignore
     const msg = [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
     ];

@@ -7,7 +7,7 @@ module.exports = {
   parser: "typescript-eslint-parser",
   plugins: [
     'ember',
-    // 'prettier',
+    'prettier',
     'qunit'
   ],
   extends: [
@@ -16,7 +16,7 @@ module.exports = {
     // prettier disabled, because it does not yet support
     // - multiline object destructuring
     // - multiline arrays (for large arrays)
-    // 'prettier',
+    'prettier',
     'plugin:qunit/recommended',
   ],
   env: {
@@ -24,7 +24,7 @@ module.exports = {
   },
   rules: {
     'semi': ['error', 'always'],
-    // 'prettier/prettier': 'error',
+    'prettier/prettier': 'error',
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
     'no-console': 'warn',
     'no-cond-assign': 'off',

@@ -8,8 +8,11 @@ import RedirectManager from 'emberclear/src/services/redirect-manager/service';
 
 import {
   visit,
-  getService, clearLocalStorage,
-  setupCurrentUser, setupRelayConnectionMocks, cancelLongRunningTimers
+  getService,
+  clearLocalStorage,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
+  cancelLongRunningTimers,
 } from 'emberclear/tests/helpers';
 
 import { app } from 'emberclear/tests/helpers/pages/app';
@@ -119,7 +122,6 @@ module('Acceptance | Invitations', function(hooks) {
           assert.ok(text.includes('Invalid Invite Link'), 'Toast says invite is invalid');
         });
       });
-
     });
 
     module('the url has the required params for a contact invitation', function() {

@@ -7,9 +7,9 @@ import { stubService } from 'emberclear/tests/helpers';
 import { TestContext } from 'ember-test-helpers';
 
 function disableOpenGraphFetching(hooks: NestedHooks, respondWith = {}) {
-  hooks.beforeEach(function () {
+  hooks.beforeEach(function() {
     stubService('relay-manager', {
-      getOpenGraph: (_url: string) => (respondWith)
+      getOpenGraph: (_url: string) => respondWith,
     });
   });
 }
@@ -19,7 +19,9 @@ module('Integration | Component | embedded-resource', function(hooks) {
 
   hooks.beforeEach(() => {
     stubService('relay-connection', {
-      connect() { return; }
+      connect() {
+        return;
+      },
     });
     stubService('chat-scroller', {});
   });
@@ -59,40 +61,27 @@ module('Integration | Component | embedded-resource', function(hooks) {
 
   module('The media preview is collapsable', async function() {
     module('when collapsed', function() {
-      skip('shows nothing', async function(_assert) {
-
-      });
+      skip('shows nothing', async function(_assert) {});
 
       module('clicking the expand icon', function() {
-        skip('shows the content', function(_assert) {
-
-        });
+        skip('shows the content', function(_assert) {});
       });
     });
 
     module('when open', function() {
-      skip('the content is visible', function(_assert) {
-
-      });
+      skip('the content is visible', function(_assert) {});
 
       module('clicking the collapse icon', function() {
-        skip('hides the content', function(_assert) {
-
-        });
+        skip('hides the content', function(_assert) {});
       });
     });
   });
 
   module('Open Graph Data exists', function() {
-    skip('renders the image', async function(_assert) {
+    skip('renders the image', async function(_assert) {});
 
-    });
-
-    skip('there is no sitename', async function(_assert) {
-
-    });
+    skip('there is no sitename', async function(_assert) {});
   });
 
-  module('Open Graph Data does not exist', function() {
-  });
+  module('Open Graph Data does not exist', function() {});
 });
