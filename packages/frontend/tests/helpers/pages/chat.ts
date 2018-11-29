@@ -1,6 +1,4 @@
-import {
-  find, click, fillIn, findAll,
-} from '@ember/test-helpers';
+import { find, click, fillIn, findAll } from '@ember/test-helpers';
 
 export const chat = {
   selectors: {
@@ -26,7 +24,4 @@ export const chat = {
     confirmationsFor: (e: Element) => Array.from(e.querySelectorAll('[data-test-confirmations]')),
     loaderFor: (e: Element) => e.querySelector('.ellipsis-loader'),
   },
-
 };
-
-

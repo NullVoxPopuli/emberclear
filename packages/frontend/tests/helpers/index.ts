@@ -11,7 +11,6 @@ export { trackAsyncDataRequests } from './track-async-data';
 export { cancelLongRunningTimers } from './cancel-long-running-timers';
 export { buildIdentity, attributesForUser, createIdentity } from './user-factory';
 
-
 export async function visit(url: string) {
   try {
     await dangerousVisit(url);

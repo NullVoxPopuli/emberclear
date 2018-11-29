@@ -36,7 +36,7 @@ export const toUint8Array = fromString;
 
 export function toString(uint8Array: Uint8Array): string {
   // return new TextDecoder("utf-8").decode(uint8Array);
-return sodium.to_string(uint8Array);
+  return sodium.to_string(uint8Array);
 }
 
 export function ensureUint8Array(text: string | Uint8Array): Uint8Array {
@@ -82,7 +82,7 @@ export function base64ToHex(base64: string): string | undefined {
 
   for (let i = 0; i < raw.length; i++) {
     const hexChar = raw.charCodeAt(i).toString(16);
-    hex += (hexChar.length === 2 ? hexChar : `0${hexChar}`);
+    hex += hexChar.length === 2 ? hexChar : `0${hexChar}`;
   }
 
   return hex.toUpperCase();

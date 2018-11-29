@@ -2,10 +2,7 @@ import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-import {
-  clearLocalStorage,
-  setupRelayConnectionMocks
-} from 'emberclear/tests/helpers';
+import { clearLocalStorage, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 
 module('Acceptance | Logout', function(hooks) {
   setupApplicationTest(hooks);

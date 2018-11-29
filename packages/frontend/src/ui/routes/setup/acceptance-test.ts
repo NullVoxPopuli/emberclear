@@ -3,13 +3,14 @@ import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-
 import { nameForm } from 'emberclear/tests/helpers/pages/setup';
 
 import {
-  getService, clearLocalStorage,
-  setupCurrentUser, setupRelayConnectionMocks,
-  trackAsyncDataRequests
+  getService,
+  clearLocalStorage,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
+  trackAsyncDataRequests,
 } from 'emberclear/tests/helpers';
 
 module('Acceptance | Setup', function(hooks) {
@@ -76,5 +77,4 @@ module('Acceptance | Setup', function(hooks) {
       });
     });
   });
-
 });

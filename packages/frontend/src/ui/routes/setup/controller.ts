@@ -17,7 +17,8 @@ export default class SetupController extends Controller {
   @match('routeName', /completed/) onCompletedRoute!: boolean;
   @not('onCompletedRoute') onARouteThatWarnsOfDanger!: boolean;
 
-  @and('intendingToReCreate', 'identityAlreadyExists', 'onARouteThatWarnsOfDanger') showWarning!: boolean;
+  @and('intendingToReCreate', 'identityAlreadyExists', 'onARouteThatWarnsOfDanger')
+  showWarning!: boolean;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your controllers.

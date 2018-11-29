@@ -4,7 +4,6 @@ import { action } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 import IdentityService from 'emberclear/services/identity/service';
 
-
 export default class LogoutController extends Controller {
   @service identity!: IdentityService;
 

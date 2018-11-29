@@ -22,7 +22,6 @@ export default class LocaleService extends Service {
     // const translations = await request.json();
 
     // this.intl.addTranslations(locale, translations);
-    this.intl.setLocale([ locale ]);
+    this.intl.setLocale([locale]);
   }
-
 }

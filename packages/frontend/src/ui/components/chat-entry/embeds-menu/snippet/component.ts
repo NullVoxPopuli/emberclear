@@ -28,7 +28,7 @@ export default class SnippetModal extends Component {
       '\n',
       `${codeDelimiter}${this.language}`,
       this.text,
-      codeDelimiter
+      codeDelimiter,
     ];
 
     const message = messageParts.join('\n');

@@ -1,6 +1,6 @@
 import { DS } from 'ember-data';
 
-import { generateAsymmetricKeys } from "emberclear/src/utils/nacl/utils";
+import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 
 import Identity from 'emberclear/data/models/identity/model';
 import IdentityService from 'emberclear/services/identity/service';
@@ -14,7 +14,10 @@ export async function createCurrentUser(): Promise<Identity> {
   const { publicKey, privateKey } = await generateAsymmetricKeys();
 
   const record = store.createRecord('identity', {
-    id: 'me', name: 'Test User', publicKey, privateKey
+    id: 'me',
+    name: 'Test User',
+    publicKey,
+    privateKey,
   });
 
   await record.save();

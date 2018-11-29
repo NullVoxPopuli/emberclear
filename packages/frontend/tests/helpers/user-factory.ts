@@ -1,7 +1,7 @@
 import { DS } from 'ember-data';
 import { run } from '@ember/runloop';
 
-import { generateAsymmetricKeys } from "emberclear/src/utils/nacl/utils";
+import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
 import Identity, { STATUS } from 'emberclear/src/data/models/identity/model';
@@ -24,7 +24,7 @@ export async function buildIdentity(name: string, attributes = {}): Promise<Iden
     name,
     onlineStatus: STATUS.OFFLINE,
     ...defaultAttributes,
-    ...attributes
+    ...attributes,
   });
 
   return record;
@@ -37,4 +37,3 @@ export async function createIdentity(name: string, attributes = {}): Promise<Ide
 
   return record;
 }
-

@@ -7,9 +7,7 @@ declare module 'ember-concurrency-decorators' {
     on?: string;
   }
 
-  type Decorated =
-    IterableIterator<Promise<void>>
-    & { perform: (args?: any[]) => any; };
+  type Decorated = IterableIterator<Promise<void>> & { perform: (args?: any[]) => any };
 
   // export const task: (options?: ConcurrencyOptions) => Decorated;
   // export const dropTask: (fn: any) => Decorated;

@@ -15,7 +15,7 @@ export default class Channel extends Model {
   @attr() protected!: boolean;
   @attr() decryptionKey!: string;
 
-  @hasMany('identity', { async: false })  members!: Identity[];
+  @hasMany('identity', { async: false }) members!: Identity[];
   @hasMany('invitation', { async: false }) pendingInvitations!: Invitation[];
   @hasMany('identity', { async: false }) blacklisted!: Identity[];
 }
@@ -23,6 +23,6 @@ export default class Channel extends Model {
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
 declare module 'ember-data' {
   interface ModelRegistry {
-    'channel': Channel;
+    channel: Channel;
   }
 }

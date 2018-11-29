@@ -26,6 +26,6 @@ export default class MessageAutoResponder extends Service {
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    'messages/auto-responder': MessageAutoResponder
+    'messages/auto-responder': MessageAutoResponder;
   }
 }

@@ -38,7 +38,7 @@ export default class ContactManager extends Service {
     let record = this.store.createRecord('identity', {
       id: uid,
       publicKey,
-      name
+      name,
     });
 
     await record.save();
@@ -55,7 +55,6 @@ export default class ContactManager extends Service {
   async addContact(_info: any) {
     try {
       // const existing = this.find(info.id);
-
       // return? error?
     } catch (e) {
       // maybe find should do the try/catching...

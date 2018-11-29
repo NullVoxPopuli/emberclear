@@ -24,7 +24,7 @@ export default class AddModal extends Component<IArgs> {
 
   @reads('identity.isLoggedIn') isLoggedIn!: boolean;
 
-  @computed('identity.publicKey','identity.name', 'isLoggedIn')
+  @computed('identity.publicKey', 'identity.name', 'isLoggedIn')
   get publicIdentity() {
     if (!this.isLoggedIn) return {};
 
@@ -71,11 +71,13 @@ export default class AddModal extends Component<IArgs> {
       return;
     }
 
-    await this.store.createRecord('identity', {
-      name,
-      id: publicKey,
-      publicKey: fromHex(publicKey)
-    }).save();
+    await this.store
+      .createRecord('identity', {
+        name,
+        id: publicKey,
+        publicKey: fromHex(publicKey),
+      })
+      .save();
 
     this.toast.info(`${identity.name || 'Friend'} added!`);
   }

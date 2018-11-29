@@ -59,14 +59,12 @@ export enum TARGET {
   MESSAGE = 'message',
 }
 
-
 /**
  * NOTE:
  * GUID - used for message receipts / delivery confirmation
  *        and threads
  * */
 export default class Message extends Model {
-
   /**
    * from: the id of an identity
    * */
@@ -102,7 +100,6 @@ export default class Message extends Model {
    * */
   @attr() metadata!: object;
 
-
   @attr() type!: TYPE;
   @attr() target!: TARGET;
 
@@ -125,17 +122,15 @@ export default class Message extends Model {
   // @hasMany('message', { async: false, inverse: 'confirmationFor' }) deliveryConfirmations?: Message[];
   @hasMany('message', { async: false }) deliveryConfirmations?: Message[];
 
-
   @not('readAt') unread!: boolean;
 
   // currently unused
   @attr() contentType!: string;
-
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
 declare module 'ember-data' {
   interface ModelRegistry {
-    'message': Message;
+    message: Message;
   }
 }

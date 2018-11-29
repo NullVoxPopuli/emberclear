@@ -19,8 +19,8 @@ export default class RelayManager extends Service {
       referrer: 'no-referrer',
       cache: 'no-cache',
       headers: {
-        ['Accept']: 'application/json'
-      }
+        ['Accept']: 'application/json',
+      },
     });
 
     const json = await response.json();
@@ -33,15 +33,13 @@ export default class RelayManager extends Service {
     return this.store.createRecord('relay', {
       socket: 'wss://mesh-relay-in-us-1.herokuapp.com/socket',
       og: 'https://mesh-relay-in-us-1.herokuapp.com/open_graph',
-      host: 'mesh-relay-in-us-1.herokuapp.com'
+      host: 'mesh-relay-in-us-1.herokuapp.com',
     });
   }
-
-
 }
 
 declare module '@ember/service' {
   interface Registry {
-    'relay-manager': RelayManager
+    'relay-manager': RelayManager;
   }
 }

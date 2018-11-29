@@ -14,7 +14,7 @@ export default class SettingsAsQrCode extends Component {
 
   @reads('qrCodeTask.lastSuccessful.value') qrCode!: string;
 
-  qrCodeTask = task(function * (this: SettingsAsQrCode) {
+  qrCodeTask = task(function*(this: SettingsAsQrCode) {
     const settings = yield this.settings.buildSettings();
 
     if (!settings) return;
@@ -23,5 +23,4 @@ export default class SettingsAsQrCode extends Component {
 
     return qrCode;
   }).on('didInsertElement');
-
 }

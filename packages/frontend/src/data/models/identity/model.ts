@@ -8,14 +8,14 @@ export const Status = {
   ONLINE: 'online',
   OFFLINE: 'offline',
   AWAY: 'away',
-  BUSY: 'busy'
+  BUSY: 'busy',
 };
 
 export enum STATUS {
   ONLINE = 'online',
   OFFLINE = 'offline',
   AWAY = 'away',
-  BUSY = 'busy'
+  BUSY = 'busy',
 }
 
 export default class Identity extends Model {
@@ -45,6 +45,6 @@ export default class Identity extends Model {
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
 declare module 'ember-data' {
   interface ModelRegistry {
-    'identity': Identity;
+    identity: Identity;
   }
 }

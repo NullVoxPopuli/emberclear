@@ -35,7 +35,6 @@ export default class extends Controller {
     await messages.invoke('destroyRecord');
 
     this.toast.info('All messages have been cleared.');
-
   }
 
   @action
@@ -52,5 +51,4 @@ export default class extends Controller {
 
     link.click();
   }
-
 }

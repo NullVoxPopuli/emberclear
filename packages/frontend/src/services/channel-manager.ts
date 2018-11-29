@@ -6,7 +6,6 @@ import { service } from '@ember-decorators/service';
 import Channel from 'emberclear/data/models/channel';
 import ArrayProxy from '@ember/array/proxy';
 
-
 export default class ChannelManager extends Service {
   @service store!: DS.Store;
 

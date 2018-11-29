@@ -9,7 +9,6 @@ import { PromiseMonitor } from 'ember-computed-promise-monitor';
 const PRIVATE_CHAT_REGEX = /chat\/privately-with\/(.+)/;
 const CHANNEL_REGEX = /chat\/in-channel\/(.+)/;
 
-
 export default class extends Component {
   @service store!: DS.Store;
   @service router!: Router;
@@ -47,10 +46,7 @@ export default class extends Component {
     const name = this.chatName;
 
     if (name instanceof PromiseMonitor) {
-      return (
-        !name.isPending &&
-        name.result !== ''
-      );
+      return !name.isPending && name.result !== '';
     }
 
     return false;
@@ -65,5 +61,4 @@ export default class extends Component {
 
     return new PromiseMonitor<string>(promise);
   }
-
 }

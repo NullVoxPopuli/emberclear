@@ -1,4 +1,4 @@
-import { getContext } from "@ember/test-helpers";
+import { getContext } from '@ember/test-helpers';
 
 export function getService<T>(name: string): T {
   const { owner } = getContext();

@@ -1,6 +1,6 @@
 import { helper as buildHelper } from '@ember/component/helper';
 
-export function gt(params: any[]/*, hash*/) {
+export function gt(params: any[] /*, hash*/) {
   return params[0] > params[1];
 }
 

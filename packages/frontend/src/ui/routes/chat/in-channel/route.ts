@@ -4,7 +4,6 @@ import { service } from '@ember-decorators/service';
 import IdentityService from 'emberclear/services/identity/service';
 import { IModel as ChatModel } from 'emberclear/ui/routes/chat/route';
 
-
 interface IModelParams {
   channel_id: string;
 }
@@ -21,7 +20,7 @@ export default class ChatInChannelRoute extends Route {
 
     return {
       targetChannel,
-      messages: chatModel.messages
+      messages: chatModel.messages,
     };
   }
 }

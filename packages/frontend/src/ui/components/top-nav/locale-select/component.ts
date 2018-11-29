@@ -32,9 +32,7 @@ export default class LocaleSwitcher extends Component<IArgs> {
 
   @computed('currentLocale')
   get currentLanguage() {
-    return this.options
-      .find(( opt: any ) => opt.locale === this.currentLocale)
-      .label;
+    return this.options.find((opt: any) => opt.locale === this.currentLocale).label;
   }
 
   get dropDown(): HTMLElement {

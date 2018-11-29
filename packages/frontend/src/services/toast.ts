@@ -31,7 +31,7 @@ export default class Toast extends Service {
       clearDuration: Ember.testing ? 10 : 4000,
       ...options,
       message: message || 'status',
-      type: status
+      type: status,
     });
   }
 }

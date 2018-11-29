@@ -57,9 +57,17 @@ export default class IdentityService extends Service {
     await this.load();
   }
 
-  async setIdentity(this: IdentityService, name: string, privateKey: Uint8Array, publicKey: Uint8Array) {
+  async setIdentity(
+    this: IdentityService,
+    name: string,
+    privateKey: Uint8Array,
+    publicKey: Uint8Array
+  ) {
     const record = this.store.createRecord('identity', {
-      id: 'me', name, publicKey, privateKey
+      id: 'me',
+      name,
+      publicKey,
+      privateKey,
     });
 
     await record.save();
@@ -104,6 +112,6 @@ export default class IdentityService extends Service {
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    'identity': IdentityService;
+    identity: IdentityService;
   }
 }

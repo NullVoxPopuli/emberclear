@@ -1,4 +1,4 @@
-import Service from "@ember/service";
+import Service from '@ember/service';
 
 export default class IntlService extends Service {
   addTranslations: (locale: string, translations: any) => void;

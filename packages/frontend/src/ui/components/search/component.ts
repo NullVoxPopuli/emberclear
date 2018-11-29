@@ -23,10 +23,7 @@ export default class SearchModal extends Component<IArgs> {
 
   @tracked('identityResults', 'channelResults')
   get hasResults() {
-    return (
-      this.identityResults.length > 0
-      || this.channelResults.length > 0
-    );
+    return this.identityResults.length > 0 || this.channelResults.length > 0;
   }
 
   didInsertElement() {
@@ -42,22 +39,20 @@ export default class SearchModal extends Component<IArgs> {
     this.search.perform(this.searchText);
   }
 
-  @keepLatestTask * search(searchTerm: string) {
+  @keepLatestTask
+  *search(searchTerm: string) {
     const term = new RegExp(searchTerm, 'i');
 
     // https://github.com/genkgo/ember-localforage-adapter/blob/master/addon/adapters/localforage.js#L104
     const identityResults = yield this.store.query('identity', {
-      name: term
+      name: term,
     });
     const channelResults = yield this.store.query('channel', {
-      name: term
+      name: term,
     });
 
-    this.identityResults = identityResults
-      .filter(i => i.id !== 'me')
-      .slice(0, 5);
+    this.identityResults = identityResults.filter(i => i.id !== 'me').slice(0, 5);
 
-    this.channelResults = channelResults
-      .slice(0, 5);
+    this.channelResults = channelResults.slice(0, 5);
   }
 }

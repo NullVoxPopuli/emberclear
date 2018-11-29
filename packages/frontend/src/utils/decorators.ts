@@ -1,6 +1,10 @@
 import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
-export function syncToLocalStorage<T>(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+export function syncToLocalStorage<T>(
+  target: any,
+  propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
   const targetName = target.constructor.name;
   const key = `${targetName}-${propertyKey}`;
 
@@ -11,14 +15,18 @@ export function syncToLocalStorage<T>(target: any, propertyKey: string, descript
     return json.value;
   };
 
-  descriptor.set = (value) => {
+  descriptor.set = value => {
     const lsValue = JSON.stringify({ value });
 
     localStorage.setItem(key, lsValue);
   };
 }
 
-export function monitor<T = any>(_target: any, _propertyKey: string, descriptor: PropertyDescriptor) {
+export function monitor<T = any>(
+  _target: any,
+  _propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
   const { get: oldGet } = descriptor;
   // TODO: assert that a getter exists
   // TODO: assert that a setter does not exist

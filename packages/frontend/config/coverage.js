@@ -6,7 +6,7 @@ module.exports = {
     '*/public/**/*',
     '*/translations/**/*',
     '*/vendor/**/*',
-    '**/*-test*'
+    '**/*-test*',
   ],
-  parallel: true
+  parallel: true,
 };

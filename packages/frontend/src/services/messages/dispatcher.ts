@@ -54,10 +54,11 @@ export default class MessageDispatcher extends Service {
   // the bigger the list of identities, the longer this takes
   //
   // TODO: should this be hard-limited to just messages like PINGs?
-  @task * sendToAll(this: MessageDispatcher, msg: Message) {
+  @task
+  *sendToAll(this: MessageDispatcher, msg: Message) {
     const everyone = yield this.store.findAll('identity');
 
-    everyone.forEach(( identity: Identity ) => {
+    everyone.forEach((identity: Identity) => {
       if (identity.id === 'me') return; // don't send to self
 
       this.sendToUser.perform(msg, identity);
@@ -74,7 +75,8 @@ export default class MessageDispatcher extends Service {
     });
   }
 
-  @task * sendToUser(msg: Message, to: Identity) {
+  @task
+  *sendToUser(msg: Message, to: Identity) {
     const theirPublicKey = to.publicKey as Uint8Array;
     const uid = toHex(theirPublicKey);
 
@@ -105,6 +107,6 @@ export default class MessageDispatcher extends Service {
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    'messages/dispatcher': MessageDispatcher
+    'messages/dispatcher': MessageDispatcher;
   }
 }

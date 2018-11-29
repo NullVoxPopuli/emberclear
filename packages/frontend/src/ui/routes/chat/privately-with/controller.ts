@@ -15,16 +15,13 @@ export default class extends Controller {
     const me = this.identity.uid;
     const chattingWithId = this.uid;
 
-    const isRelevant = (
-      message.target === TARGET.WHISPER && (
-        // we sent this message to someone else (this could incude ourselves)
-        (message.to === chattingWithId && message.from === me)
+    const isRelevant =
+      message.target === TARGET.WHISPER &&
+      // we sent this message to someone else (this could incude ourselves)
+      ((message.to === chattingWithId && message.from === me) ||
         // we received a message from someone else to us (including from ourselves)
-        || (message.from === chattingWithId && message.to === me)
-      )
-    );
+        (message.from === chattingWithId && message.to === me));
 
     return isRelevant;
   }
-
 }

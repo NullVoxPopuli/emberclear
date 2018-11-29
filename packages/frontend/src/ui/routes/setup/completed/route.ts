@@ -4,7 +4,7 @@ import { service } from '@ember-decorators/service';
 import IdentityService from 'emberclear/services/identity/service';
 
 export default class SetupCompletedRoute extends Route {
-  @service identity!: IdentityService
+  @service identity!: IdentityService;
 
   model() {
     return this.identity;

@@ -25,13 +25,15 @@ export default class ConnectionStatus extends Component {
     }
   }
 
-  @task * setToFade() {
+  @task
+  *setToFade() {
     yield timeout(2000);
 
     this.element.classList.add('fade-out');
   }
 
-  @task * removeFade() {
+  @task
+  *removeFade() {
     yield timeout(200);
 
     this.element.classList.remove('fade-out');

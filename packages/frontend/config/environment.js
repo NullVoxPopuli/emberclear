@@ -34,15 +34,28 @@ module.exports = function(environment) {
       defaultPrefix: 'fas', // free-and-solid
       icons: {
         'free-solid-svg-icons': [
-          'qrcode', 'user-circle',
-          'address-book', 'sliders-h', 'sign-out-alt',
+          'qrcode',
+          'user-circle',
+          'address-book',
+          'sliders-h',
+          'sign-out-alt',
           'dot-circle',
           'plus',
-          'code', 'desktop', 'bed', 'video',
-          'angle-down', 'angle-up', 'angle-right', 'times',
-          'phone', 'phone-volume', 'share',
-          'check-circle', 'exclamation-circle',
-          'check', 'ellipsis-h',
+          'code',
+          'desktop',
+          'bed',
+          'video',
+          'angle-down',
+          'angle-up',
+          'angle-right',
+          'times',
+          'phone',
+          'phone-volume',
+          'share',
+          'check-circle',
+          'exclamation-circle',
+          'check',
+          'ellipsis-h',
           'globe',
         ],
       },
@@ -58,11 +71,8 @@ module.exports = function(environment) {
     },
 
     fastboot: {
-      hostWhitelist: [
-        'emberclear.io',
-        /^localhost:\d+$/,
-      ],
-    }
+      hostWhitelist: ['emberclear.io', /^localhost:\d+$/],
+    },
   };
 
   if (environment === 'development') {

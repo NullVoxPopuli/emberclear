@@ -10,14 +10,20 @@ export function setupRelayConnectionMocks(
   overrides = {},
   targets: IMockServiceTarget[] = []
 ) {
-  hooks.beforeEach(function () {
-    stubService('relay-connection', {
-      connect() { return; },
-      ...overrides
-    }, [
-      { in: 'route:application', as: 'relayConnection' },
-      { in: 'route:chat', as: 'relayConnection' },
-      ...targets,
-    ]);
+  hooks.beforeEach(function() {
+    stubService(
+      'relay-connection',
+      {
+        connect() {
+          return;
+        },
+        ...overrides,
+      },
+      [
+        { in: 'route:application', as: 'relayConnection' },
+        { in: 'route:chat', as: 'relayConnection' },
+        ...targets,
+      ]
+    );
   });
 }

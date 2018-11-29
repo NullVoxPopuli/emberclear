@@ -22,7 +22,8 @@ export default class QRCode extends Component<IArgs> {
     this.qrCode.perform();
   }
 
-  @keepLatestTask * qrCode() {
+  @keepLatestTask
+  *qrCode() {
     const { data } = this.args;
     const imageData = yield convertObjectToQRCodeDataURL(data || {});
 

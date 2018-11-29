@@ -1,11 +1,11 @@
-import Message from "emberclear/data/models/message";
-import Identity from "emberclear/data/models/identity/model";
+import Message from 'emberclear/data/models/message';
+import Identity from 'emberclear/data/models/identity/model';
 
 export function buildSender(sender: Identity): RelayJson['sender'] {
   return {
     name: sender.name!,
     uid: sender.uid,
-    location: ''
+    location: '',
   };
 }
 
@@ -14,7 +14,7 @@ export function buildMessage(msg: Message): RelayJson['message'] {
 
   return {
     body,
-    contentType
+    contentType,
   };
 }
 
@@ -28,6 +28,6 @@ export function build(msg: Message, sender: Identity): RelayJson {
     client_version: '',
     time_sent: msg.sentAt,
     sender: buildSender(sender),
-    message: buildMessage(msg)
+    message: buildMessage(msg),
   };
 }

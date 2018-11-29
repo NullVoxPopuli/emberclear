@@ -14,7 +14,8 @@ module('Unit | Utility | string', function() {
 
     test('parses two URLs', function(assert) {
       const url1 = 'https://github.com/emberjs/rfcs/blob/master/text/0143-module-unification.md';
-      const url2 = 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace';
+      const url2 =
+        'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace';
       const input = `sometext something ${url1} sometheng else ${url2}`;
       const expected = [url1, url2];
       const result = string.parseURLs(input);
@@ -25,7 +26,7 @@ module('Unit | Utility | string', function() {
 
   module('parseLanguages', function() {
     test('parses code content', function(assert) {
-      const input = '```hbs {{some-helper}}```' ;
+      const input = '```hbs {{some-helper}}```';
       const expected = ['hbs'];
       const result = string.parseLanguages(input);
 
@@ -64,7 +65,6 @@ module('Unit | Utility | string', function() {
       const result = string.parseLanguages(input);
 
       assert.deepEqual(result, expected);
-
     });
   });
 });

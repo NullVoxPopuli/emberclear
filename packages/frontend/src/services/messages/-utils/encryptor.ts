@@ -1,4 +1,3 @@
-
 import { encryptFor } from 'emberclear/src/utils/nacl/utils';
 import { toUint8Array, toBase64 } from 'emberclear/src/utils/string-encoding';
 
@@ -12,4 +11,3 @@ export async function encryptForSocket(payload: RelayJson, to: Identity, from: I
 
   return await toBase64(encryptedMessage);
 }
-

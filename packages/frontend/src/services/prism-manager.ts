@@ -2,7 +2,7 @@ import Service from '@ember/service';
 import { dropTask, task } from 'ember-concurrency-decorators';
 
 const PRISM_VERSION = '1.15.0';
-const CDN =`https://cdn.jsdelivr.net/combine/`;
+const CDN = `https://cdn.jsdelivr.net/combine/`;
 const PRISM_PATH = `npm/prismjs@${PRISM_VERSION}`;
 const PRISM_PLUGIN_PATH = `${PRISM_PATH}/plugins/`;
 const PRISM_URL = `${CDN}${PRISM_PATH}`;
@@ -29,7 +29,8 @@ export const languages = [
   'crystal',
   'csharp',
   'css',
-  'd', 'dart',
+  'd',
+  'dart',
   'django',
   'docker',
   'elixir',
@@ -83,12 +84,12 @@ export const languages = [
   'visual-basic',
   'wasm',
   'wiki',
-  'yaml'
+  'yaml',
 ];
 
 export default class PrismManager extends Service {
   areEssentialsPresent = false;
-  alreadyAdded: string[] = []
+  alreadyAdded: string[] = [];
 
   // language format:
   //  prism-{language}.min.js
@@ -102,7 +103,7 @@ export default class PrismManager extends Service {
   // TODO: fetch these files asyncily, so we can manage state, and know
   // when to call highlightAll
   @task({ maxConcurrency: 1 })
-  * addLanguage(language: string, element?: HTMLElement) {
+  *addLanguage(language: string, element?: HTMLElement) {
     language = this._expandLanguageAbbreviation(language);
 
     yield this.addEssentials.perform();
@@ -120,8 +121,9 @@ export default class PrismManager extends Service {
     Prism.highlightAll();
   }
 
-  @dropTask * addEssentials() {
-      if (this.areEssentialsPresent) return;
+  @dropTask
+  *addEssentials() {
+    if (this.areEssentialsPresent) return;
 
     const head = document.querySelector('head')!;
     const link = document.createElement('link');
@@ -149,12 +151,17 @@ export default class PrismManager extends Service {
   }
 
   _expandLanguageAbbreviation(language: string) {
-    switch(language) {
-      case 'ts': return 'typescript';
-      case 'rb': return 'ruby';
-      case 'hbs': return 'handlebars';
-      case 'js': return 'javascript';
-      default: return language;
+    switch (language) {
+      case 'ts':
+        return 'typescript';
+      case 'rb':
+        return 'ruby';
+      case 'hbs':
+        return 'handlebars';
+      case 'js':
+        return 'javascript';
+      default:
+        return language;
     }
   }
 }

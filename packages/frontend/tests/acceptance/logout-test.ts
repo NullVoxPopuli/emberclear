@@ -4,10 +4,11 @@ import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
-  stubService, clearLocalStorage,
-  setupCurrentUser, setupRelayConnectionMocks
+  stubService,
+  clearLocalStorage,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
 } from 'emberclear/tests/helpers';
-
 
 import { app } from 'emberclear/tests/helpers/pages/app';
 
@@ -21,7 +22,7 @@ module('Acceptance | Logout', function(hooks) {
       stubService('identity', {
         isLoggedIn: false,
         load() {},
-        exists: () => false
+        exists: () => false,
       });
 
       await visit('/logout');
@@ -58,6 +59,5 @@ module('Acceptance | Logout', function(hooks) {
         });
       });
     });
-
   });
 });

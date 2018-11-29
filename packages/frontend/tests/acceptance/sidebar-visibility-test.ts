@@ -6,8 +6,10 @@ import { setupApplicationTest } from 'ember-qunit';
 import { sidebar } from 'emberclear/tests/helpers/pages/sidebar';
 
 import {
-  stubService, clearLocalStorage,
-  setupCurrentUser, setupRelayConnectionMocks
+  stubService,
+  clearLocalStorage,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
 } from 'emberclear/tests/helpers';
 
 module('Acceptance | Sidebar Visibility', function(hooks) {
@@ -20,7 +22,7 @@ module('Acceptance | Sidebar Visibility', function(hooks) {
       stubService('identity', {
         isLoggedIn: false,
         load() {},
-        exists: () => false
+        exists: () => false,
       });
 
       await visit('/');

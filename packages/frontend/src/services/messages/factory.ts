@@ -22,7 +22,6 @@ export default class MessageFactory extends Service {
         traget: TARGET.CHANNEL,
         to: to.id,
         // TODO: serialize channel info
-
       };
     }
 
@@ -32,7 +31,7 @@ export default class MessageFactory extends Service {
       // all messages sent are read... beacuse..
       // we sent them, so... they are read already...
       readAt: new Date(),
-      ...attributes
+      ...attributes,
     });
 
     return message;
@@ -46,7 +45,7 @@ export default class MessageFactory extends Service {
     return this.build({
       target: TARGET.MESSAGE,
       type: TYPE.DELIVERY_CONFIRMATION,
-      to: forMessage.id
+      to: forMessage.id,
     });
   }
 
@@ -56,15 +55,14 @@ export default class MessageFactory extends Service {
       sentAt: new Date(),
       from: this.identity.uid,
       sender: this.identity.record,
-      ...attributes
+      ...attributes,
     });
   }
 }
 
-
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    'messages/factory': MessageFactory
+    'messages/factory': MessageFactory;
   }
 }

@@ -4,7 +4,7 @@ import { service } from '@ember-decorators/service';
 import IdentityService from 'emberclear/services/identity/service';
 
 export default class SettingsRoute extends Route {
-  @service identity!: IdentityService
+  @service identity!: IdentityService;
 
   async beforeModel() {
     const exists = await this.identity.exists();

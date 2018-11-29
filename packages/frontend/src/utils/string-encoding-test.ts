@@ -2,7 +2,6 @@ import * as stringEncoding from './string-encoding';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | String Encoding', function() {
-
   module('toString / fromString', function() {
     test('converts a sting to and back from uint8', function(assert) {
       const str = 'hello there';
@@ -35,5 +34,4 @@ module('Unit | Utility | String Encoding', function() {
       assert.deepEqual(original, msgAsUint8);
     });
   });
-
 });

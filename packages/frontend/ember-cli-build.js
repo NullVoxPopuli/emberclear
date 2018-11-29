@@ -26,7 +26,6 @@ module.exports = function(defaults) {
   console.log('git version: ', version);
   console.log('---------------\n');
 
-
   let app = new EmberApp(defaults, {
     // eslint slows down the dev-build-debug cycle significantly
     // hinting: false disables linting at build time.
@@ -36,14 +35,14 @@ module.exports = function(defaults) {
 
     babel: {
       // sourceMaps: 'inline'
-    //   plugins: [
-    //     ['@babel/plugin-syntax-decorators', { legacy: true }]
-    //   ]
+      //   plugins: [
+      //     ['@babel/plugin-syntax-decorators', { legacy: true }]
+      //   ]
     },
 
     sourcemaps: {
       enabled: !isProduction,
-      extensions: 'js'
+      extensions: 'js',
     },
 
     'ember-cli-babel': {
@@ -56,7 +55,7 @@ module.exports = function(defaults) {
     },
 
     'ember-test-selectors': {
-      strip: isProduction
+      strip: isProduction,
     },
 
     // autoprefixer: { sourcemap: false },
@@ -73,17 +72,11 @@ module.exports = function(defaults) {
     },
     'asset-cache': {
       version,
-      include:[
-        'assets/**/*',
-        '**/*.html',
-        'index.html',
-      ]
+      include: ['assets/**/*', '**/*.html', 'index.html'],
     },
     'esw-cache-fallback': {
       version,
-      patterns: [
-        '/',
-      ],
+      patterns: ['/'],
     },
     'ember-app-shell': {},
   });
@@ -114,7 +107,7 @@ module.exports = function(defaults) {
 
   // markdown
   app.import('node_modules/showdown/dist/showdown.js', {
-    using: [{ transformation: 'cjs', as: 'showdown' }]
+    using: [{ transformation: 'cjs', as: 'showdown' }],
   });
 
   // qrcode
@@ -123,27 +116,22 @@ module.exports = function(defaults) {
 
   // qrcode scanner
   app.import('node_modules/qr-scanner/qr-scanner.min.js', {
-    using: [{ transformation: 'es6', as: 'qr-scanner' }]
+    using: [{ transformation: 'es6', as: 'qr-scanner' }],
   });
 
   // qr-scanner hardcoded this path.... -.-
-  var qrScannerWorker = new Funnel(
-    'node_modules/qr-scanner/', {
-      include: ['qr-scanner-worker.min.js'],
-      destDir: '/libraries/qr-scanner/'
-    }
-  );
+  var qrScannerWorker = new Funnel('node_modules/qr-scanner/', {
+    include: ['qr-scanner-worker.min.js'],
+    destDir: '/libraries/qr-scanner/',
+  });
 
   // uuid
   app.import('node_modules/uuid/index.js', {
-    using: [{ transformation: 'cjs', as: 'uuid' }]
+    using: [{ transformation: 'cjs', as: 'uuid' }],
   });
 
   // bulma-toast
   app.import('node_modules/bulma/bulma.sass');
 
-  return mergeTrees([
-    app.toTree(),
-    qrScannerWorker
-  ]);
+  return mergeTrees([app.toTree(), qrScannerWorker]);
 };

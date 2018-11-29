@@ -71,7 +71,8 @@ export default class SidebarContact extends Component<IArgs> {
     window.requestIdleCallback(() => this.setupIntersectionObserver());
   }
 
-  @task * findRelevantMessages() {
+  @task
+  *findRelevantMessages() {
     const messages = yield this.store.findAll('message');
 
     this.messages = messages;

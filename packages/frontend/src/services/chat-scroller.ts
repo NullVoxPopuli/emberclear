@@ -3,7 +3,6 @@ import Service from '@ember/service';
 import { isElementWithin } from 'emberclear/src/utils/dom/utils';
 
 export default class ChatScroller extends Service {
-
   // if the last message is close enough to being in view,
   // scroll to the bottom
   maybeNudgeToBottom(appendedMessage: HTMLElement) {
@@ -43,9 +42,7 @@ export default class ChatScroller extends Service {
       const rect = appendedMessage.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
 
-      const isJustOffScreen = (
-        rect.top + rect.bottom >= containerRect.top
-      );
+      const isJustOffScreen = rect.top + rect.bottom >= containerRect.top;
 
       return isJustOffScreen;
     }

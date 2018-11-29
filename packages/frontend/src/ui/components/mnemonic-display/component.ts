@@ -16,8 +16,9 @@ export default class Mnemonic extends Component {
   async updateMnemonic(this: Mnemonic, key?: Uint8Array) {
     let result = '';
 
-    if (!key) { result = this.intl.t('services.crypto.keyGenFailed'); }
-    else result = await mnemonicFromNaClBoxPrivateKey(key);
+    if (!key) {
+      result = this.intl.t('services.crypto.keyGenFailed');
+    } else result = await mnemonicFromNaClBoxPrivateKey(key);
 
     this.set('mnemonic', result);
   }

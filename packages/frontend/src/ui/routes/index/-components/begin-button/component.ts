@@ -9,5 +9,3 @@ export default class BeginButton extends Component {
 
   @reads('identity.isLoggedIn') isLoggedIn!: boolean;
 }
-
-
