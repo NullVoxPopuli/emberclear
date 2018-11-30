@@ -1,5 +1,6 @@
 # [emberclear](https://emberclear.io)
 [![pipeline status](https://gitlab.com/NullVoxPopuli/emberclear/badges/master/pipeline.svg)](https://gitlab.com/NullVoxPopuli/emberclear/commits/master)
+[![Build Status](https://travis-ci.com/NullVoxPopuli/emberclear.svg?branch=master)](https://travis-ci.com/NullVoxPopuli/emberclear)
 [![coverage report](https://gitlab.com/NullVoxPopuli/emberclear/badges/master/coverage.svg)](https://nullvoxpopuli.gitlab.io/emberclear/master/coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3f2faa686db3db3a52f8/maintainability)](https://codeclimate.com/github/NullVoxPopuli/emberclear/maintainability)
 [![bundle analysis](https://img.shields.io/badge/bundle-analysis-blue.svg)](https://nullvoxpopuli.gitlab.io/emberclear/master/bundle.html)
