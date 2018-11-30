@@ -2738,7 +2738,7 @@ broccoli-concat-analyser@^4.2.0:
     workerpool "^2.3.1"
     zlib "^1.0.5"
 
-broccoli-concat@^3.2.2, broccoli-concat@^3.5.1, broccoli-concat@^3.7.1:
+broccoli-concat@^3.2.2, broccoli-concat@^3.7.1, broccoli-concat@^3.7.3:
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.7.3.tgz#0dca01311567ffb13180e6b4eb111824628e4885"
   integrity sha512-2Ma9h81EJ0PRb9n4sW0i8KZlcnpTQfKxcj87zvi5DFe1fd8CTDEdseHDotK2beuA2l+LbgVPfd8EHaBJKm/Y8g==
@@ -4637,16 +4637,16 @@ ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cl
     ensure-posix-path "^1.0.2"
     semver "^5.5.0"
 
-ember-cli-broccoli-sane-watcher@^2.1.1:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-broccoli-sane-watcher/-/ember-cli-broccoli-sane-watcher-2.2.2.tgz#9bb1b04ddeb2c086aecd8693cbaeca1d88dc160c"
-  integrity sha512-9OLy8x3pdNKC/6xR00IjTL8XyiQU3rb2HLyQSAqHuaZpZcSTKkbAse2ERTsELSINoo/zi/W7qPP5vd5SsHsraw==
+ember-cli-broccoli-sane-watcher@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-broccoli-sane-watcher/-/ember-cli-broccoli-sane-watcher-3.0.0.tgz#dc1812c047e1ceec4413d3c41b51a9ffc61b4cfe"
+  integrity sha512-sLn+wy6FJpGMHtSwAGUjQK3nJFvw2b6H8bR2EgMIXxkUI3DYFLi6Xnyxm02XlMTcfTxF10yHFhHJe0O+PcJM7A==
   dependencies:
     broccoli-slow-trees "^3.0.1"
     heimdalljs "^0.2.1"
     heimdalljs-logger "^0.1.7"
     rsvp "^3.0.18"
-    sane "^2.4.1"
+    sane "^4.0.0"
 
 ember-cli-cjs-transform@^1.3.0:
   version "1.3.0"
@@ -5014,9 +5014,10 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     resolve "^1.3.3"
     semver "^5.3.0"
 
-"ember-cli@github:ember-cli/ember-cli#d577278e0174ca091c1e8fc0a3995cf92f6943d4":
+"ember-cli@github:ember-cli/ember-cli#c4087e3ff814ae2e78c59982ac2ba70e75c44688":
   version "3.6.0-beta.1"
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/d577278e0174ca091c1e8fc0a3995cf92f6943d4"
+  uid c4087e3ff814ae2e78c59982ac2ba70e75c44688
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/c4087e3ff814ae2e78c59982ac2ba70e75c44688"
   dependencies:
     amd-name-resolver "^1.2.0"
     babel-plugin-transform-es2015-modules-amd "^6.24.1"
@@ -5026,7 +5027,7 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     broccoli-amd-funnel "^2.0.1"
     broccoli-babel-transpiler "^6.5.0"
     broccoli-builder "^0.18.14"
-    broccoli-concat "^3.5.1"
+    broccoli-concat "^3.7.3"
     broccoli-config-loader "^1.0.1"
     broccoli-config-replace "^1.1.2"
     broccoli-debug "^0.6.4"
@@ -5049,14 +5050,14 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     core-object "^3.1.5"
     dag-map "^2.0.2"
     diff "^3.5.0"
-    ember-cli-broccoli-sane-watcher "^2.1.1"
+    ember-cli-broccoli-sane-watcher "^3.0.0"
     ember-cli-is-package-missing "^1.0.0"
     ember-cli-lodash-subset "^2.0.1"
     ember-cli-normalize-entity-name "^1.0.0"
     ember-cli-preprocess-registry "^3.1.2"
     ember-cli-string-utils "^1.1.0"
     ensure-posix-path "^1.0.2"
-    execa "^0.10.0"
+    execa "^1.0.0"
     exit "^0.1.2"
     express "^4.16.3"
     filesize "^3.6.1"
@@ -6085,19 +6086,6 @@ exec-sh@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/exec-sh/-/exec-sh-0.3.2.tgz#6738de2eb7c8e671d0366aea0b0db8c6f7d7391b"
   integrity sha512-9sLAvzhI5nc8TpuQUh4ahMdCrWT00wPWz7j47/emR5+2qEfoZP5zzUXvx+vdx+H6ohhnsYC31iX04QLYJK8zTg==
-
-execa@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-0.10.0.tgz#ff456a8f53f90f8eccc71a96d11bdfc7f082cb50"
-  integrity sha512-7XOMnz8Ynx1gGo/3hyV9loYNPWM94jG3+3T3Y8tsfSstFmETmENCMU/A/zj8Lyaj1lkgEepKepvd6240tBRvlw==
-  dependencies:
-    cross-spawn "^6.0.0"
-    get-stream "^3.0.0"
-    is-stream "^1.1.0"
-    npm-run-path "^2.0.0"
-    p-finally "^1.0.0"
-    signal-exit "^3.0.0"
-    strip-eof "^1.0.0"
 
 execa@^0.7.0:
   version "0.7.0"
@@ -11149,7 +11137,7 @@ sane@^1.4.1:
     walker "~1.0.5"
     watch "~0.10.0"
 
-sane@^2.4.1, sane@^2.5.2:
+sane@^2.5.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/sane/-/sane-2.5.2.tgz#b4dc1861c21b427e929507a3e751e2a2cb8ab3fa"
   integrity sha1-tNwYYcIbQn6SlQej51HiosuKs/o=
