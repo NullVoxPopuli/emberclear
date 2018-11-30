@@ -23,6 +23,10 @@ before_install:
 install:
   - ./run yarn install --non-interactive
 
+matrix:
+  allow_failures:
+    - name: "Check Types"
+
 jobs:
   fail_fast: true
 
