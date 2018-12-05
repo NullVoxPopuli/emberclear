@@ -53,6 +53,14 @@ before_script:
   - time npm install -g yarn@latest
   - time ./run yarn install
 
+Security via Synk:
+  stage: quality
+  dependencies: [ setup ]
+  script:
+    - time npm install -g snyk
+    - time ( cd ${CI_PROJECT_DIR}/packages/frontend && snyk test --severity-threshold=high )
+
+
 Lint JS/TS:
   stage: quality
   dependencies: [ setup ]
