@@ -102,7 +102,7 @@
     "ember-data": "github:emberjs/data#e5e2ccc1caa340d61c9fc9f2808f1f66633a95a4",
     "ember-decorators": "^3.1.0",
     "ember-elsewhere": "^1.0.4",
-    "ember-exam": "^1.0.0",
+    "ember-exam": "^2.0.0",
     "ember-export-application-global": "^2.0.0",
     "ember-hammertime": "^1.2.4",
     "ember-intl": "^3.1.1",
