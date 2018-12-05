@@ -54,8 +54,7 @@ before_script:
   - time ./run yarn install
 
 Security via Synk:
-  stage: quality
-  dependencies: [ setup ]
+  stage: setup
   script:
     - time npm install -g snyk
     - time ( cd ${CI_PROJECT_DIR}/packages/frontend && snyk test --severity-threshold=high )
