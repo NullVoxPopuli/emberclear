@@ -46,7 +46,6 @@ export async function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Promise<U
   // success!
   if (shortCheck === fullCheck) return shortResult;
   if (fullCheck === checksum) return fullResult;
-  console.log('full', fullResult, 'short', shortResult);
 
   throw 'Checksum could not validate private key';
 }

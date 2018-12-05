@@ -1,9 +1,11 @@
 {{! template-lint-disable no-triple-curlies }}
 
 <div class='flex-row'>
-  <span class='thumbnail-container m-r-md'>
-    <img alt={{t 'images.alt.thumbnail'}} class='thumbnail' src={{og.image}}>
-  </span>
+  {{#if this.hasImage}}
+    <span class='thumbnail-container m-r-md'>
+      <img alt={{t 'images.alt.thumbnail'}} class='thumbnail' src={{og.image}}>
+    </span>
+  {{/if}}
 
   <div>
     <a class='block' rel='noopener' href={{@url}} target='_blank'>

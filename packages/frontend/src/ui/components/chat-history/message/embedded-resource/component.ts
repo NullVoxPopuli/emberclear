@@ -1,33 +1,30 @@
-import Component from '@ember/component';
-import { action } from '@ember-decorators/object';
+import Component, { tracked } from 'sparkles-component';
 import { or } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 import { task } from 'ember-concurrency-decorators';
 
-import RelayConnection from 'emberclear/services/relay-connection';
 import RelayManager from 'emberclear/services/relay-manager';
-import ChatScroller from 'emberclear/services/chat-scroller';
 
 // https://stackoverflow.com/a/8260383/356849
 const YT_PATTERN = /^.*(youtu.be\/|\/v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
 const IMAGE_PATTERN = /(jpg|png|gif)/;
 
-export default class EmbeddedResource extends Component {
-  @service relayConnection!: RelayConnection;
+interface IArgs {
+  url: string;
+}
+
+export default class EmbeddedResource extends Component<IArgs> {
   @service relayManager!: RelayManager;
-  @service chatScroller!: ChatScroller;
 
-  url!: string;
+  @tracked isYouTube = false;
+  @tracked isImage = false;
+  @tracked isCollapsed = false;
+  @tracked embedUrl?: string;
 
-  isYouTube = false;
-  isImage = false;
-  isCollapsed = false;
-  embedUrl?: string;
-
-  hasOgData!: boolean;
-  ogData!: OpenGraphData;
-  title?: string;
-  siteName?: string;
+  @tracked hasOgData!: boolean;
+  @tracked ogData!: OpenGraphData;
+  @tracked title?: string;
+  @tracked siteName?: string;
 
   didInsertElement() {
     this.setup.perform();
@@ -35,6 +32,8 @@ export default class EmbeddedResource extends Component {
 
   @task
   *setup(this: EmbeddedResource) {
+    if (!this.args.url) return;
+
     this.parseUrl();
     this.fetchOpenGraph();
   }
@@ -42,34 +41,31 @@ export default class EmbeddedResource extends Component {
   @or('embedUrl', 'isImage', 'hasOgData') shouldRender!: boolean;
 
   async fetchOpenGraph(this: EmbeddedResource) {
-    const og = await this.relayManager.getOpenGraph(this.url);
+    const og = await this.relayManager.getOpenGraph(this.args.url);
 
-    this.set('hasOgData', !!og.title);
-    this.set('ogData', og);
-    this.set('title', og.title);
-    this.set('siteName', og.site_name);
-
-    this.chatScroller.maybeNudgeToBottom();
+    this.hasOgData = !!og.title;
+    this.ogData = og;
+    this.title = og.title;
+    this.siteName = og.site_name;
   }
 
   parseUrl() {
-    const url = this.url;
+    const { url } = this.args;
 
     let ytMatches = url.match(YT_PATTERN);
 
     if (ytMatches && ytMatches[2]) {
-      this.set('isYouTube', true);
+      this.isYouTube = true;
       const videoId = ytMatches[2];
       const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}`;
 
-      this.set('embedUrl', embedUrl);
+      this.embedUrl = embedUrl;
     } else if (url.match(IMAGE_PATTERN)) {
-      this.set('isImage', true);
+      this.isImage = true;
     }
   }
 
-  @action
   toggleShow() {
-    this.set('isCollapsed', !this.isCollapsed);
+    this.isCollapsed = !this.isCollapsed;
   }
 }

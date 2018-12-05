@@ -28,15 +28,16 @@ module('Integration | Component | embedded-resource', function(hooks) {
 
   module('shouldRender', function() {
     module('there is nothing to display', function(hooks) {
-      disableOpenGraphFetching(hooks);
+      disableOpenGraphFetching(hooks, 'hi');
 
       hooks.beforeEach(async function() {
-        // await render(hbs`{{embedded-resource}}`);
-        // await render(hbs`<EmbeddedResource />`);
+        await render(hbs`
+                     {{chat-history/message/embedded-resource}}
+                     `);
       });
 
-      skip('nothing is rendered', async function(assert) {
-        const text = this.element.innerHTML.trim();
+      test('nothing is rendered', async function(assert) {
+        const text = this.element.innerText.trim();
 
         assert.equal(text, '');
       });
@@ -47,14 +48,18 @@ module('Integration | Component | embedded-resource', function(hooks) {
 
       hooks.beforeEach(async function(this: TestContext) {
         this.set('someUrl', 'https://i.imgur.com/gCyUdeb.gifv');
-        await render(hbs`<EmbeddedResource @url=someUrl />`);
-        // await render(hbs`{{embedded-resource url=someUrl}}`);
+
+        await render(hbs`
+                     {{chat-history/message/embedded-resource
+                      url=someUrl}}
+                     `);
       });
 
-      skip('the rendered content is not blank', function(assert) {
-        const text = this.element.innerText;
+      test('the rendered content is not blank', function(assert) {
+        const text = this.element.innerHTML;
 
-        assert.notEqual(text, '');
+        assert.notEqual(text, '', 'html is not empty');
+        assert.ok(text.includes('imgur'), 'image is included in the html');
       });
     });
   });
