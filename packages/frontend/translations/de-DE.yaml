@@ -91,20 +91,20 @@ ui:
       askLater: Jedes Mal nachfragen
       neverAsk: Nicht erneut nachfragen
   search:
-    title: Search for contacts and channels
+    title: Nach Kontakten und Kanälen suchen
     description: Suchfunktion folgt in kürze
-    noContacts: No contacts found
-    noChannels: No channels found
-    contacts: Contacts
-    channels: Channels
-    nothingFound: No results found
+    noContacts: Keine Kontakte gefunden
+    noChannels: Keine Kanäle gefunden
+    contacts: Kontakte
+    channels: Kanäle
+    nothingFound: Keine Ergebnisse gefunden
   shortcuts:
     title: Tastatenkombination
     key:
-      ctrl: ctrl
+      ctrl: strg
       i: i
       slash: /
-      space: space
+      space: Leertaste
       h: h
       k: k
     actions:
