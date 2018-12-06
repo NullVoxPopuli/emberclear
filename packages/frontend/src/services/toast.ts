@@ -32,6 +32,7 @@ export default class Toast extends Service {
       ...options,
       message: message || 'status',
       type: status,
+      cssClasses: `notification ${status} p-xs has-shadow height-tall`,
     });
   }
 }

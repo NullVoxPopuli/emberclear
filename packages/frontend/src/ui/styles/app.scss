@@ -215,3 +215,12 @@ textarea {
     overflow-wrap: break-word;
   }
 }
+
+
+// matches the toast notification
+div.notification.has-shadow.p-xs.height-tall {
+  div:first-child {
+    display: none;
+  }
+
+}
