@@ -1,3 +1,13 @@
-<h1 class='title'>
-  {{t 'ui.contacts.title' number=contacts.length}}
-</h1>
+<div class='flex-row justify-content-space-between'>
+  <h1 class='title'>
+    {{t 'ui.contacts.title' number=contacts.length}}
+  </h1>
+
+  <button
+    {{action this.addFriend}}
+    class='button'
+  >
+    <span class='icon'>{{fa-icon 'plus'}}</span>
+    <span>{{t 'buttons.addFriend'}}</span>
+  </button>
+</div>
