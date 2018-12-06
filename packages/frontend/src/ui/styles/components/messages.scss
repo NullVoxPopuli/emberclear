@@ -23,6 +23,18 @@
     background-color: #f1f1fa;
   }
 
+  &.justify-received {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &.justify-sent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
   &:not(:last-child) {
     margin-bottom: 0;
   }

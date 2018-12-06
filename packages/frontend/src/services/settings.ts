@@ -42,6 +42,11 @@ export default class Settings extends Service {
     return false;
   }
 
+  @syncToLocalStorage
+  get useLeftRightJustificationForMessages() {
+    return false;
+  }
+
   @computed('identity.privateKey', 'identity.publicKey')
   @monitor
   get downloadUrl() {

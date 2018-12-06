@@ -19,6 +19,9 @@ export default class extends Controller {
   @reads('settings.downloadUrl') downloadSettingsUrl!: string;
   @alias('settings.hideOfflineContacts') hideOfflineContacts!: boolean;
 
+  @alias('settings.useLeftRightJustificationForMessages')
+  useLeftRightJustificationForMessages!: boolean;
+
   @action
   async save() {
     await this.identity.record!.save();

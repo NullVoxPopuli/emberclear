@@ -8,6 +8,8 @@ import PrismManager from 'emberclear/services/prism-manager';
 import ChatScroller from 'emberclear/services/chat-scroller';
 import Message from 'emberclear/data/models/message/model';
 import Identity from 'emberclear/data/models/identity/model';
+import SettingsService from 'emberclear/src/services/settings';
+import IdentityService from 'emberclear/src/services/identity/service';
 
 import { markAsRead } from 'emberclear/src/data/models/message/utils';
 import { parseLanguages, parseURLs } from 'emberclear/src/utils/string/utils';
@@ -23,6 +25,9 @@ interface IArgs {
 export default class extends Component<IArgs> {
   @service prismManager!: PrismManager;
   @service chatScroller!: ChatScroller;
+  @service settings!: SettingsService;
+  @service identity!: IdentityService;
+
   io?: IntersectionObserver;
   element!: HTMLElement;
 
@@ -55,6 +60,17 @@ export default class extends Component<IArgs> {
     const content = this.args.message.body!;
 
     return parseURLs(content);
+  }
+
+  @computed('settings.useLeftRightJustificationForMessages', 'hasSender')
+  get alignment() {
+    if (!this.settings.useLeftRightJustificationForMessages) return '';
+
+    if (this.hasSender && this.sender!.result!.id !== this.identity.id) {
+      return 'justify-received';
+    }
+
+    return 'justify-sent';
   }
 
   didInsertElement() {

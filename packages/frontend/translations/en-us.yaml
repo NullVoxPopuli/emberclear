@@ -267,6 +267,7 @@ ui:
     showKey: Show private key
     download: Download Settings
     hideOfflineContacts: Hide offline contacts
+    useLeftRightJustificationForMessages: Use Left/Right Message Justification
     danger:
       title: Danger Zone
       deleteMessages: Delete Messages

@@ -1,12 +1,18 @@
 {{! template-lint-disable no-triple-curlies }}
 
 <div
+  role='button'
+  {{action (perform this.markRead)}}
   id={{@message.id}}
-  class='message m-l-md m-r-md m-b-md {{if @message.unread 'unread'}}'
+  class='
+    message m-l-md m-r-md m-b-md
+    {{if @message.unread 'unread'}}
+    {{this.alignment}}
+  '
   data-test-chat-message
 >
   <div class='message-header'>
-    <span class='from'>
+    <span class='from p-r-md'>
       {{#if hasSender}}
 
         {{#link-to 'chat.privately-with' @message.from}}
@@ -18,7 +24,7 @@
       {{/if}}
     </span>
 
-    <span class='sentAt has-hover-tip'>
+    <span class='sentAt is-size-7 has-hover-tip'>
       {{format-date
         @message.sentAt
         year='numeric'
@@ -37,9 +43,7 @@
   </div>
 
   <p
-    role='button'
     class='message-body'
-    {{action (perform this.markRead)}}
   >
     {{{messageBody}}}
 
