@@ -1,9 +1,11 @@
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
+import StoreService from 'ember-data/store';
 
 import MessageDispatcher from 'emberclear/src/services/messages/dispatcher';
 import MessageFactory from 'emberclear/src/services/messages/factory';
 import Message from 'emberclear/src/data/models/message/model';
+import Identity from 'emberclear/src/data/models/identity/model';
 
 /**
  * Nothing here should be blocking, as these responses should not matter
@@ -14,12 +16,24 @@ import Message from 'emberclear/src/data/models/message/model';
 export default class MessageAutoResponder extends Service {
   @service('messages/dispatcher') dispatcher!: MessageDispatcher;
   @service('messages/factory') factory!: MessageFactory;
+  @service store!: StoreService;
 
   async messageReceived(respondToMessage: Message) {
     const sender = await respondToMessage.sender;
     const response = this.factory.buildDeliveryConfirmation(respondToMessage);
 
     this.dispatcher.sendToUser.perform(response, sender);
+  }
+
+  async cameOnline(identity: Identity) {
+    const pendingMessages = await this.store.query('message', {
+      queueForResend: true,
+      to: identity.uid,
+    });
+
+    pendingMessages.forEach((message: Message) => {
+      this.dispatcher.sendToUser.perform(message, identity);
+    });
   }
 }
 

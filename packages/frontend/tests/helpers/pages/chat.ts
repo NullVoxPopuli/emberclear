@@ -1,4 +1,37 @@
 import { find, click, fillIn, findAll } from '@ember/test-helpers';
+import {
+  create,
+  collection,
+  is,
+  count,
+  isVisible,
+  text,
+  fillable,
+  clickable,
+} from 'ember-cli-page-object';
+
+export const page = create({
+  textarea: {
+    scope: '[data-test-chat-entry]',
+    isDisabled: is('[disabled]'),
+  },
+  submitButton: {
+    scope: '[data-test-chat-submit]',
+    isDisabled: is('[disabled]'),
+  },
+  numberOfMessages: count('[data-test-chat-message]'),
+  messages: collection('[data-test-chat-message]', {
+    hasLoader: isVisible('.ellipsis-loader'),
+    confirmations: {
+      scope: '[data-test-confirmations]',
+      text: text(),
+      hoverTip: text('.hover-tip'),
+      delete: clickable('[data-test-delete]'),
+      resend: clickable('[data-test-resend]'),
+      autosend: clickable('[data-test-autosend]'),
+    },
+  }),
+});
 
 export const chat = {
   selectors: {

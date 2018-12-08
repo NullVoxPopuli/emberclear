@@ -116,6 +116,13 @@ export default class Message extends Model {
 
   @attr() sendError?: string;
 
+  /**
+   * When a user comes online, they dispatch a bunch of pings to their contacts.
+   * If any of those contacts have queue messages (designated by this boolean)
+   * the messages will automatically be sent to the user who jest came online
+   * */
+  @attr() queueForResend?: boolean;
+
   @belongsTo('identity', { async: false }) sender?: Identity;
 
   // @belongsTo('message', { async: false, inverse: 'deliveryConfirmations' }) confirmationFor?: Message;
