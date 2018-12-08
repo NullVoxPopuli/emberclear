@@ -27,6 +27,7 @@ connection:
 buttons:
   delete: delete
   resend: resend
+  resendAutomatically: resend automatically
   save: Save
   next: Next
   back: Back
@@ -89,6 +90,7 @@ models:
     publicKey: Public Key
 
   message:
+    autosendPending: autosend pending
     errors:
       timeout: 'Sending timed out.'
 

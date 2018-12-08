@@ -9,11 +9,34 @@
 
       <div class='has-hover-tip'>
         {{#if this.deleteMessage.isIdle}}
-          <a {{action (perform this.deleteMessage)}}>{{t 'buttons.delete'}}</a>
+          <a
+            {{action (perform this.deleteMessage)}}
+            data-test-delete
+          >
+            {{t 'buttons.delete'}}
+          </a>
         {{/if}}
         |
         {{#if this.resend.isIdle}}
-          <a {{action (perform this.resend)}}>{{t 'buttons.resend'}}</a>
+          <a
+            {{action (perform this.resend)}}
+            data-test-resend
+          >
+            {{t 'buttons.resend'}}
+          </a>
+        {{/if}}
+        |
+        {{#if this.resendAutomatically.isIdle}}
+          {{#if @message.queueForResend}}
+            {{t 'models.message.autosendPending'}}
+          {{else}}
+            <a
+              {{action (perform this.resendAutomatically)}}
+              data-test-autosend
+            >
+              {{t 'buttons.resendAutomatically'}}
+            </a>
+          {{/if}}
         {{/if}}
 
         {{fa-icon 'exclamation-circle'}}

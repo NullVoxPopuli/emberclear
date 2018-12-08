@@ -28,6 +28,7 @@ module('Unit | Service | messages/handler', function(hooks) {
       hooks.beforeEach(async function() {
         stubService('messages/auto-responder', {
           messageReceived() {},
+          cameOnline() {},
         });
       });
 

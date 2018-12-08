@@ -33,7 +33,14 @@ export default class MessageDispatcher extends Service {
     this.sendTo(message, to);
   }
 
+  // there needs to be a polymorphic relationship in order for this to work
+  // sendMessage(message: Message) {
+  //   return sendTo(message, message.to);
+  // }
+
   async sendTo(message: Message, to: Identity | Channel) {
+    message.set('queueForResend', false);
+
     if (to instanceof Identity) {
       if (to.id === 'me') return;
 

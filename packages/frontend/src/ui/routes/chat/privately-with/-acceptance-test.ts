@@ -1,4 +1,5 @@
 import { module, test, skip } from 'qunit';
+import StoreService from 'ember-data/store';
 import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -10,11 +11,12 @@ import {
   cancelLongRunningTimers,
   setupCurrentUser,
   getStore,
+  getService,
 } from 'emberclear/tests/helpers';
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
-import { chat } from 'emberclear/tests/helpers/pages/chat';
+import { chat, page } from 'emberclear/tests/helpers/pages/chat';
 import { app } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
@@ -203,6 +205,34 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
               assert.notOk(loader, 'loader is no longer present');
               assert.ok(text.includes('could not be delivered'));
+            });
+
+            module('resend is clicked', function(hooks) {
+              skip('implement tests for resending');
+            });
+
+            module('auto-resend is clicked', function(hooks) {
+              hooks.beforeEach(async function() {
+                await page.messages.objectAt(0).confirmations.autosend();
+              });
+
+              test('the message is queued for resend', async function(assert) {
+                const store = getService<StoreService>('store');
+                const messages = await store.query('message', { queueForResend: true });
+
+                assert.equal(messages.length, 1, 'there should only be one queued message');
+              });
+
+              test('the confirmation action area shows that autosend is now pending', function(assert) {
+                const text = page.messages.objectAt(0).confirmations.text;
+
+                assert.notOk(
+                  text.match(/resend automatically/),
+                  'does not show the resend automatically link'
+                );
+
+                assert.ok(text.match(/autosend pending/), 'shows that autosend is pending');
+              });
             });
           });
         });

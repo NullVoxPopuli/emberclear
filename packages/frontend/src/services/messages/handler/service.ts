@@ -110,6 +110,7 @@ export default class ReceivedMessageHandler extends Service {
     const sender = await this.findOrCreateSender(senderInfo);
 
     this.statusManager.markOnline(sender);
+    this.autoResponder.cameOnline(sender);
 
     const message = this.store.createRecord('message', {
       id,

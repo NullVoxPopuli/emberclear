@@ -77,4 +77,12 @@ export default class DeliveryConfirmation extends Component<IArgs> {
 
     yield message.destroyRecord();
   }
+
+  @dropTask
+  *resendAutomatically(this: DeliveryConfirmation) {
+    const { message } = this.args;
+
+    message.set('queueForResend', true);
+    yield message.save();
+  }
 }
