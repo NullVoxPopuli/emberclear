@@ -31,16 +31,26 @@ export default class Notifications extends Service {
     'router.currentRouteName'
   )
   get showInAppPrompt() {
-    if (!this.identity.isLoggedIn) return false;
-    if (this.router.currentRouteName.match(/setup/)) return false;
-    if (this.router.currentRouteName.match(/logout/)) return false;
-    if (!this.isBrowserCapableOfNotifications()) return false;
-    if (this.isPermissionGranted()) return false;
-    if (this.isPermissionDenied()) return false;
-    if (this.isNeverGoingToAskAgain) return false;
-    if (this.isHiddenUntilBrowserRefresh) return false;
+    const promptShouldNotBeShown =
+      !this.identity.isLoggedIn ||
+      this.isOnRouteThatDoesNotShowNotifications ||
+      !this.isBrowserCapableOfNotifications ||
+      this.isPermissionGranted ||
+      this.isPermissionDenied ||
+      this.isNeverGoingToAskAgain ||
+      this.isHiddenUntilBrowserRefresh;
+
+    if (promptShouldNotBeShown) return false;
 
     return this.askToEnableNotifications;
+  }
+
+  get isOnRouteThatDoesNotShowNotifications() {
+    const { currentRouteName } = this.router;
+
+    if (!currentRouteName) return false;
+
+    return currentRouteName.match(/setup/) || currentRouteName.match(/logout/);
   }
 
   info(msg: string, title = '', options = {}) {
@@ -60,7 +70,7 @@ export default class Notifications extends Service {
   }
 
   async display(status: string, msg: string, title: string, options = {}) {
-    if (this.isPermissionGranted()) {
+    if (this.isPermissionGranted) {
       this.showNotification(msg, title, options);
       return;
     }
@@ -72,22 +82,22 @@ export default class Notifications extends Service {
     this.toast.createToast(status, msg, title, options);
   }
 
-  isPermissionGranted() {
-    if (this.isBrowserCapableOfNotifications()) {
+  get isPermissionGranted() {
+    if (this.isBrowserCapableOfNotifications) {
       return Notification.permission === 'granted';
     }
 
     return false;
   }
 
-  isPermissionDenied() {
+  get isPermissionDenied() {
     return Notification.permission === 'denied';
   }
 
   askPermission() {
     return new Promise((resolve, reject) => {
-      if (!this.isBrowserCapableOfNotifications()) return reject();
-      if (this.isPermissionDenied()) return reject();
+      if (!this.isBrowserCapableOfNotifications) return reject();
+      if (this.isPermissionDenied) return reject();
 
       Notification.requestPermission(permission => {
         if (permission === 'granted') {
@@ -101,7 +111,7 @@ export default class Notifications extends Service {
     });
   }
 
-  isBrowserCapableOfNotifications() {
+  get isBrowserCapableOfNotifications() {
     return 'Notification' in window;
   }
 

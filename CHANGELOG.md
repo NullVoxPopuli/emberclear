@@ -1,5 +1,9 @@
 ## Change Log
 
+### 2018-12-09
+
+ - Bugfix: Regression where notification prompt would not hide
+
 ### 2018-12-08
 
  - Chore: Change Log Created

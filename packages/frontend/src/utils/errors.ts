@@ -5,3 +5,5 @@ export class NoCameraError extends Error {
     this.name = 'NoCameraError';
   }
 }
+
+export class ConnectionError extends Error {}

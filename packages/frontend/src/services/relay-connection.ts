@@ -9,6 +9,7 @@ import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import RelayManager from 'emberclear/services/relay-manager';
 
 import { toHex } from 'emberclear/src/utils/string-encoding';
+import { ConnectionError } from 'emberclear/src/utils/errors';
 
 interface ISendPayload {
   to: string;
@@ -34,15 +35,14 @@ export default class RelayConnection extends Service {
 
   async send(this: RelayConnection, to: string, data: string) {
     const payload: ISendPayload = { to, message: data };
-    const channel = await this.getChannel();
+    await this.ensureConnectionToChannel.perform();
 
-    if (!channel) {
+    if (!this.channel) {
       return console.error(this.intl.t('connection.errors.send.notConnected'));
     }
 
     return new Promise((resolve, reject) => {
-      channel
-        .push('chat', payload)
+      this.channel!.push('chat', payload)
         .receive('ok', resolve)
         .receive('error', reject)
         .receive('timeout', () => reject({ reason: this.intl.t('models.message.errors.timeout') }));
@@ -99,30 +99,25 @@ export default class RelayConnection extends Service {
 
     socket.onError(this.onSocketError);
     socket.onClose(this.onSocketClose);
-
-    // establish initial connection to the server
     socket.connect();
 
-    yield this.getChannel();
+    yield this.ensureConnectionToChannel.perform();
   }
 
-  async getChannel(this: RelayConnection): Promise<Channel> {
-    const { socket, channelName, intl } = this;
+  @dropTask
+  *ensureConnectionToChannel(this: RelayConnection) {
+    const { t } = this.intl;
 
-    const promise: Promise<Channel> = new Promise((resolve, reject) => {
-      if (this.channel) {
-        return resolve(this.channel);
-      }
+    if (this.channel) return;
+    if (!this.socket) throw new ConnectionError(t('connection.errors.subscribe.notConnected'));
+    if (!this.channelName) throw new ConnectionError(t('No Channel Name Specified'));
 
-      if (!socket) {
-        return reject(intl.t('connection.errors.subscribe.notConnected'));
-      }
+    yield this.setupChannel();
+  }
 
-      if (!channelName) {
-        return reject('No Channel Name Specified');
-      }
-
-      const channel = socket.channel(channelName, {});
+  private async setupChannel() {
+    return new Promise((resolve, reject) => {
+      const channel = this.socket!.channel(this.channelName!, {});
 
       this.set('channel', channel);
 
@@ -133,17 +128,12 @@ export default class RelayConnection extends Service {
       channel
         .join()
         .receive('ok', () => {
-          this.set('connected', true);
-
-          this.handleConnected();
-
+          this.handleConnected.perform();
           resolve(channel);
         })
-        .receive('error', this.handleError)
+        .receive('error', reject)
         .receive('timeout', () => console.info(this.intl.t('connection.status.timeout')));
     });
-
-    return promise;
   }
 
   onSocketError = () => {
@@ -166,16 +156,14 @@ export default class RelayConnection extends Service {
     if (this.socket) this.socket.disconnect();
   };
 
-  handleError = (data: string) => {
-    console.error(data);
-  };
-
-  handleConnected = () => {
+  @dropTask
+  *handleConnected(this: RelayConnection) {
+    this.set('connected', true);
     this.updateStatus('info', this.intl.t('connection.connected'));
 
     // ping for user statuses
     this.dispatcher.pingAll();
-  };
+  }
 
   handleMessage = (data: RelayMessage) => {
     this.processor.receive(data);
