@@ -1,6 +1,13 @@
 import { module, test, skip } from 'qunit';
 import StoreService from 'ember-data/store';
-import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
+import {
+  getSettledState,
+  visit,
+  currentURL,
+  settled,
+  waitFor,
+  triggerEvent,
+} from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import Identity from 'emberclear/src/data/models/identity/model';
@@ -219,7 +226,6 @@ module('Acceptance | Chat | Privately With', function(hooks) {
               test('the message is queued for resend', async function(assert) {
                 const store = getService<StoreService>('store');
                 const messages = await store.query('message', { queueForResend: true });
-
                 assert.equal(messages.length, 1, 'there should only be one queued message');
               });
 

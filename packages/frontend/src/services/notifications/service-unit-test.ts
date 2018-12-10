@@ -82,9 +82,9 @@ module('Unit | Service | notifications', function(hooks) {
 
       let service = getService<Notifications>('notifications');
 
-      assert.ok(service.isBrowserCapableOfNotifications(), 'Browser is capable of notifications');
-      assert.notOk(service.isPermissionDenied(), 'Permission has not previously been denied');
-      assert.notOk(service.isPermissionGranted(), 'Permission has not previously been granted');
+      assert.ok(service.isBrowserCapableOfNotifications, 'Browser is capable of notifications');
+      assert.notOk(service.isPermissionDenied, 'Permission has not previously been denied');
+      assert.notOk(service.isPermissionGranted, 'Permission has not previously been granted');
       assert.notOk(service.isNeverGoingToAskAgain, 'User did not say to never ask again');
       assert.notOk(service.isHiddenUntilBrowserRefresh, 'User did not say to ask later');
       assert.ok(service.showInAppPrompt, 'The in-app prompt should be shown right away');
@@ -95,9 +95,9 @@ module('Unit | Service | notifications', function(hooks) {
 
       let service = getService<Notifications>('notifications');
 
-      assert.ok(service.isBrowserCapableOfNotifications(), 'Browser is capable of notifications');
-      assert.ok(service.isPermissionDenied(), 'Permission has been denied');
-      assert.notOk(service.isPermissionGranted(), 'Permission has not previously been granted');
+      assert.ok(service.isBrowserCapableOfNotifications, 'Browser is capable of notifications');
+      assert.ok(service.isPermissionDenied, 'Permission has been denied');
+      assert.notOk(service.isPermissionGranted, 'Permission has not previously been granted');
       assert.notOk(service.isNeverGoingToAskAgain, 'User did not say to never ask again');
       assert.notOk(service.isHiddenUntilBrowserRefresh, 'User did not say to ask later');
       assert.notOk(service.showInAppPrompt, 'The in-app prompt should not be shown');
@@ -108,9 +108,9 @@ module('Unit | Service | notifications', function(hooks) {
 
       let service = getService<Notifications>('notifications');
 
-      assert.ok(service.isBrowserCapableOfNotifications(), 'Browser is capable of notifications');
-      assert.notOk(service.isPermissionDenied(), 'Permission has not previously been denied');
-      assert.ok(service.isPermissionGranted(), 'Permission has been granted');
+      assert.ok(service.isBrowserCapableOfNotifications, 'Browser is capable of notifications');
+      assert.notOk(service.isPermissionDenied, 'Permission has not previously been denied');
+      assert.ok(service.isPermissionGranted, 'Permission has been granted');
       assert.notOk(service.isNeverGoingToAskAgain, 'User did not say to never ask again');
       assert.notOk(service.isHiddenUntilBrowserRefresh, 'User did not say to ask later');
       assert.notOk(service.showInAppPrompt, 'The in-app prompt should not be shown right away');
@@ -127,9 +127,9 @@ module('Unit | Service | notifications', function(hooks) {
       });
 
       test('the showInAppPrompt property should still be true', function(assert) {
-        assert.ok(service.isBrowserCapableOfNotifications(), 'Browser is capable of notifications');
-        assert.notOk(service.isPermissionGranted(), 'Permission has not previously been granted');
-        assert.notOk(service.isPermissionDenied(), 'Permission has not previously been denied');
+        assert.ok(service.isBrowserCapableOfNotifications, 'Browser is capable of notifications');
+        assert.notOk(service.isPermissionGranted, 'Permission has not previously been granted');
+        assert.notOk(service.isPermissionDenied, 'Permission has not previously been denied');
         assert.notOk(service.isNeverGoingToAskAgain, 'User did not say to never ask again');
         assert.notOk(service.isHiddenUntilBrowserRefresh, 'User did not say to ask later');
 
