@@ -7,12 +7,21 @@ import Modals from 'emberclear/services/modals';
 
 interface IArgs {
   name: string;
+  initiallyActive?: boolean;
 }
 
 export default class ModalStatic extends Component<IArgs> {
   @service modals!: Modals;
 
   name!: string;
+
+  didInsertElement() {
+    const { initiallyActive, name } = this.args;
+
+    if (initiallyActive) {
+      this.modals.open(name);
+    }
+  }
 
   @computed('args.name')
   get modal() {

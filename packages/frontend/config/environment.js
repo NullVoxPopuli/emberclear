@@ -49,6 +49,7 @@ module.exports = function(environment) {
           'angle-up',
           'angle-right',
           'times',
+          'times-circle',
           'phone',
           'phone-volume',
           'share',

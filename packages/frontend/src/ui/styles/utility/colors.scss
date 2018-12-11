@@ -2,6 +2,10 @@
   background: $background;
 }
 
+.has-background-none {
+  background-color: transparent;
+}
+
 .has-sidebar-background-color {
   background: $sidebar-background;
 }
