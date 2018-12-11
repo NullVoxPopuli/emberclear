@@ -1,5 +1,9 @@
 ## Change Log
 
+### 2018-12-10
+
+ - Enhancement: for browsers that are not compatible, show a compatibility message.
+
 ### 2018-12-09
 
  - Bugfix: Regression where notification prompt would not hide
