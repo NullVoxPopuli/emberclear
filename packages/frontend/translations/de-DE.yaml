@@ -21,6 +21,7 @@ connection:
 buttons:
   delete: Löschen
   resend: Erneut senden
+  resendAutomatically: resend automatically
   save: Speichern
   next: Weiter
   back: Zurück
@@ -76,6 +77,7 @@ models:
     name: Name
     publicKey: Öffentlicher Schlüssel
   message:
+    autosendPending: autosend pending
     errors:
       timeout: 'Verbindung getrennt.'
 ui:
@@ -203,6 +205,7 @@ ui:
     showKey: Privaten Schlüssel anzeigen
     download: Einstellungen herunterladen
     hideOfflineContacts: Offline Kontakte ausblenden
+    useLeftRightJustificationForMessages: Nutze die Linke/Rechte Nachrichten Einstellung
     danger:
       title: Gefahrenzone
       deleteMessages: Nachrichten löschen

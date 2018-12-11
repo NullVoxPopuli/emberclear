@@ -21,6 +21,7 @@ connection:
 buttons:
   delete: delete
   resend: resend
+  resendAutomatically: resend automatically
   save: Save
   next: Next
   back: Back
@@ -76,6 +77,7 @@ models:
     name: Name
     publicKey: Public Key
   message:
+    autosendPending: autosend pending
     errors:
       timeout: 'Sending timed out.'
 ui:
@@ -204,6 +206,7 @@ ui:
     showKey: Show private key
     download: Download Settings
     hideOfflineContacts: Hide offline contacts
+    useLeftRightJustificationForMessages: Use Left/Right Message Justification
     danger:
       title: Danger Zone
       deleteMessages: Delete Messages

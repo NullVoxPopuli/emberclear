@@ -21,6 +21,7 @@ connection:
 buttons:
   delete: eliminar
   resend: volver a enviar
+  resendAutomatically: resend automatically
   save: Guardar
   next: Siguiente
   back: Regresar
@@ -76,6 +77,7 @@ models:
     name: Nombre
     publicKey: Llave Pública
   message:
+    autosendPending: autosend pending
     errors:
       timeout: 'Tiempo de espera agotado.'
 ui:
@@ -204,6 +206,7 @@ ui:
     showKey: Mostrar clave privada
     download: Configurar descargas
     hideOfflineContacts: Ocultar los contactos sin conexión
+    useLeftRightJustificationForMessages: Use Left/Right Message Justification
     danger:
       title: Zona de Peligro
       deleteMessages: Eliminar mensajes
