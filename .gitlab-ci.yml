@@ -55,6 +55,7 @@ before_script:
 
 Security via Synk:
   stage: setup
+  # before_script: [ ]
   script:
     - time npm install -g snyk
     - time ( cd ${CI_PROJECT_DIR}/packages/frontend && snyk test --severity-threshold=high )
@@ -167,6 +168,7 @@ Deploy Production:
     - Merge Coverage
     - Analyze Bundle
     - Build Production
+  before_script: [ ]
   script:
     - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/
     - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
@@ -188,7 +190,7 @@ Deploy Docker Image:
    - Analyze Bundle
   before_script: [ ]
   script:
-    - time ./scripts/publish-docker
+    - time ./scripts/dockerhub
 
 pages:
   stage: deploy
@@ -196,6 +198,7 @@ pages:
   dependencies:
     - Merge Coverage
     - Analyze Bundle
+  before_script: [ ]
   script:
     - mkdir -p public/$CI_COMMIT_REF_NAME
     - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/$CI_COMMIT_REF_NAME
