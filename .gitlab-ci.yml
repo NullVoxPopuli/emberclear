@@ -176,6 +176,7 @@ Deploy Production:
 Deploy Docker Image:
   stage: deploy
   only: [ master ]
+  image: docker
   services:
    - docker:dind
   variables:
@@ -185,6 +186,7 @@ Deploy Docker Image:
    - Build Production
    - Merge Coverage
    - Analyze Bundle
+  before_script: [ ]
   script:
     - time ./scripts/publish-docker
 
