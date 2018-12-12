@@ -31,7 +31,10 @@ export default class MessageAutoResponder extends Service {
       to: identity.uid,
     });
 
-    pendingMessages.forEach((message: Message) => {
+    pendingMessages.forEach(async (message: Message) => {
+      message.set('queueForResend', false);
+      await message.save();
+
       this.dispatcher.sendToUser.perform(message, identity);
     });
   }
