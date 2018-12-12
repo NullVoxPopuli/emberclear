@@ -190,6 +190,7 @@ Deploy Docker Image:
    - Analyze Bundle
   before_script: [ ]
   script:
+    - ls -la ./scripts
     - time ./scripts/dockerhub
 
 pages:
