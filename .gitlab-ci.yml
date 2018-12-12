@@ -173,6 +173,15 @@ Deploy Production:
     - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html public/bundle.html
     - time ./scripts/publish
 
+Deploy Docker Image:
+  stage: deploy
+  only: [ master ]
+  dependencies:
+   - Build Production
+   - Merge Coverage
+   - Analyze Bundle
+  script:
+    - time ./scripts/publish-docker
 
 pages:
   stage: deploy

@@ -12,6 +12,11 @@ An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) pro
 
 
 emberclear is published at: https://emberclear.io
+and can be run locally with docker via
+```
+docker run -p 4201:80 nullvoxpopuli/emberclear -d
+```
+and then can be visited at `http://localhost:4201`.
 
 ## Another Chat App?
 
@@ -21,7 +26,6 @@ Yes, there is a lack of trust that manifests when existing chat apps are closed 
   Here is a table of detailing out some differences between emberclear and other chat apps:
   <img src='https://gitlab.com/NullVoxPopuli/emberclear/raw/master/images/comparison.png'>
 </a>
-
 
 ## Development
 
