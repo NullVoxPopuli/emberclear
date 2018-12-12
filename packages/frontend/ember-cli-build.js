@@ -33,13 +33,6 @@ module.exports = function(defaults) {
     minifyJS: { enabled: isProduction },
     minifyCSS: { enabled: isProduction },
 
-    babel: {
-      // sourceMaps: 'inline'
-      //   plugins: [
-      //     ['@babel/plugin-syntax-decorators', { legacy: true }]
-      //   ]
-    },
-
     sourcemaps: {
       enabled: !isProduction,
       extensions: 'js',
@@ -58,8 +51,6 @@ module.exports = function(defaults) {
       strip: isProduction,
     },
 
-    // autoprefixer: { sourcemap: false },
-
     eslint: {
       testGenerator: 'qunit',
       group: true,
@@ -67,9 +58,6 @@ module.exports = function(defaults) {
       extensions: ['js', 'ts'],
     },
     addons: { blacklist: disabledAddons },
-    treeShaking: {
-      enabled: true,
-    },
     'asset-cache': {
       version,
       include: ['assets/**/*', '**/*.html', 'index.html'],
@@ -129,9 +117,6 @@ module.exports = function(defaults) {
   app.import('node_modules/uuid/index.js', {
     using: [{ transformation: 'cjs', as: 'uuid' }],
   });
-
-  // bulma-toast
-  app.import('node_modules/bulma/bulma.sass');
 
   return mergeTrees([app.toTree(), qrScannerWorker]);
 };
