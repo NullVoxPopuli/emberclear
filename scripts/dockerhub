@@ -7,7 +7,7 @@ GIT_IMAGE="$REPO_NAME:$GIT_TAG"
 
 docker build -t "$REPO_NAME" -f Dockerfile.release .
 
-echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USER --password-stdin
+echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USER --password-stdin
 
 docker tag "$REPO_NAME" "$REPO_NAME:latest"
 docker tag "$REPO_NAME" "$GIT_IMAGE"
