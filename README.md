@@ -14,7 +14,7 @@ An implementation of the [mesh-chat](https://github.com/neuravion/mesh-chat) pro
 emberclear is published at: https://emberclear.io
 and can be run locally with docker via
 ```
-docker run -p 4201:80 nullvoxpopuli/emberclear -d
+docker run -d -p 4201:80 nullvoxpopuli/emberclear
 ```
 and then can be visited at `http://localhost:4201`.
 
