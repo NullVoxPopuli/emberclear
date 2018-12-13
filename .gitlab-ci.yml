@@ -191,7 +191,7 @@ Deploy Docker Image:
   before_script: [ ]
   script:
     - ls -la ./scripts
-    - time bash ./scripts/dockerhub
+    - time sh ./scripts/dockerhub
 
 pages:
   stage: deploy
