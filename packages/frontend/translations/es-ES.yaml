@@ -29,6 +29,7 @@ buttons:
   logout: Desconectar
   login: Conectarse
   cancel: Cancelar
+  close: Close
   import: Importar
   scan: Escanear
   sendSnippet: Enviar Snippet
@@ -47,6 +48,17 @@ buttons:
     menuBackdrop: Elemento accionable para cerrar el menú
     sidebarBackdrop: Elemento accionable para cerrar la barra lateral para esconderla
     closeModal: Cerrar Modal
+compatibility:
+  title: Something is wrong!
+  description: In order to use emberclear, your browser must support the following technologies and features
+  score: Score
+  compatibility: Compatibility
+  camera: Camera
+  notifications: Notifications
+  indexeddb: Indexed DB
+  wasm: WebAssembly
+  serviceWorker: Service Worker
+  webWorker: Web Worker
 images:
   alt:
     thumbnail: Vista previa
