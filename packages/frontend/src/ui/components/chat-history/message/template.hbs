@@ -11,6 +11,8 @@
   '
   data-test-chat-message
 >
+  <ReadWatcher @message={{@message}} @markRead={{action (perform this.markRead)}}/>
+
   <div class='message-header'>
     <span class='from p-r-md'>
       {{#if hasSender}}

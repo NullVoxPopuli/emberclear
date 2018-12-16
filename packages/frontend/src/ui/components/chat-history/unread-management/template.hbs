@@ -5,7 +5,7 @@
     ...attributes
   >
     <div class='field has-shadow height-tall has-addons buttons'>
-      <a {{action this.scrollToFirstUnread}} class='button is-info'>
+      <a {{action this.scrollToFirstUnread}} class='button is-info is-small'>
         <span>
           {{t 'ui.chat.unreadMessages'
             number=this.numberOfUnread
@@ -19,7 +19,7 @@
           }}
         </span>
       </a>
-      <a {{action this.markAllAsRead}} class='button is-danger'>
+      <a {{action this.markAllAsRead}} class='button is-danger is-small'>
         <span>{{t 'ui.chat.markAllAsRead'}}</span>
         <span class='icon is-small'>{{fa-icon 'times'}}</span>
       </a>
