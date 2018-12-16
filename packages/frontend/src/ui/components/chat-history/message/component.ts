@@ -3,20 +3,20 @@ import { computed } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 import PromiseMonitor from 'ember-computed-promise-monitor';
+import { timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
 
 import PrismManager from 'emberclear/services/prism-manager';
 import ChatScroller from 'emberclear/services/chat-scroller';
 import Message from 'emberclear/data/models/message/model';
+import { markAsRead } from 'emberclear/src/data/models/message/utils';
 import Identity from 'emberclear/data/models/identity/model';
 import SettingsService from 'emberclear/src/services/settings';
 import IdentityService from 'emberclear/src/services/identity/service';
 
-import { markAsRead } from 'emberclear/src/data/models/message/utils';
 import { parseLanguages, parseURLs } from 'emberclear/src/utils/string/utils';
 import { convertAndSanitizeMarkdown } from 'emberclear/src/utils/dom/utils';
 import { monitor } from 'emberclear/src/utils/decorators';
-import { timeout } from 'ember-concurrency';
-import { task } from 'ember-concurrency-decorators';
 
 interface IArgs {
   message: Message;
@@ -28,7 +28,6 @@ export default class extends Component<IArgs> {
   @service settings!: SettingsService;
   @service identity!: IdentityService;
 
-  io?: IntersectionObserver;
   element!: HTMLElement;
 
   @computed('message.body')
@@ -86,12 +85,6 @@ export default class extends Component<IArgs> {
     // should this really live here?
     // every inserted message is going to call this....
     this.chatScroller.maybeNudgeToBottom(this.element);
-
-    this.maybeSetupReadWatcher();
-  }
-
-  willDestroyElement() {
-    this.io && this.io.disconnect();
   }
 
   private async addLanguages(text: string) {
@@ -108,39 +101,6 @@ export default class extends Component<IArgs> {
     if (pres && pres.length > 0) {
       pres.forEach(p => p.classList.add('line-numbers'));
     }
-  }
-
-  private maybeSetupReadWatcher() {
-    const { message } = this.args;
-
-    if (message.readAt) return;
-
-    this.setupIntersectionObserver();
-  }
-
-  private setupIntersectionObserver() {
-    const { message } = this.args;
-
-    const io = new IntersectionObserver(
-      entries => {
-        const isVisible = entries[0].intersectionRatio !== 0;
-
-        const canBeSeen = !message.isSaving && document.hasFocus();
-        if (isVisible && canBeSeen) {
-          this.markRead.perform();
-
-          io.unobserve(this.element);
-          this.io = undefined;
-        }
-      },
-      {
-        root: document.querySelector('.messages'),
-      }
-    );
-
-    io.observe(this.element);
-
-    this.io = io;
   }
 
   @task
