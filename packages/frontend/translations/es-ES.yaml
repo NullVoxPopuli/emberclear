@@ -21,7 +21,7 @@ connection:
 buttons:
   delete: eliminar
   resend: volver a enviar
-  resendAutomatically: resend automatically
+  resendAutomatically: reenviar automáticamente
   save: Guardar
   next: Siguiente
   back: Regresar
@@ -29,7 +29,7 @@ buttons:
   logout: Desconectar
   login: Conectarse
   cancel: Cancelar
-  close: Close
+  close: Cerrar
   import: Importar
   scan: Escanear
   sendSnippet: Enviar Snippet
@@ -49,12 +49,12 @@ buttons:
     sidebarBackdrop: Elemento accionable para cerrar la barra lateral para esconderla
     closeModal: Cerrar Modal
 compatibility:
-  title: Something is wrong!
-  description: In order to use emberclear, your browser must support the following technologies and features
-  score: Score
-  compatibility: Compatibility
-  camera: Camera
-  notifications: Notifications
+  title: '¡Algo salió mal!'
+  description: Para poder utilizar el emberclear, su navegador debe soportar las siguientes tecnologías y características
+  score: Calificación
+  compatibility: Compatibilidad
+  camera: Cámara
+  notifications: Notificaciones
   indexeddb: Indexed DB
   wasm: WebAssembly
   serviceWorker: Service Worker
@@ -89,7 +89,7 @@ models:
     name: Nombre
     publicKey: Llave Pública
   message:
-    autosendPending: autosend pending
+    autosendPending: reenvío automático pendiente
     errors:
       timeout: 'Tiempo de espera agotado.'
 ui:
@@ -218,7 +218,7 @@ ui:
     showKey: Mostrar clave privada
     download: Configurar descargas
     hideOfflineContacts: Ocultar los contactos sin conexión
-    useLeftRightJustificationForMessages: Use Left/Right Message Justification
+    useLeftRightJustificationForMessages: Justificar Mensaje a Izquierda/Derecha
     danger:
       title: Zona de Peligro
       deleteMessages: Eliminar mensajes
