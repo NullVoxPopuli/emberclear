@@ -25,6 +25,7 @@ export default class LocaleSwitcher extends Component<IArgs> {
       { locale: 'de-de', label: 'Deutsche' },
       { locale: 'fr-fr', label: 'Français' },
       { locale: 'es-es', label: 'Español' },
+      { locale: 'ru-ru', label: 'Русский' },
     ];
   }
 
