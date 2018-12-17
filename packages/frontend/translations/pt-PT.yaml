@@ -51,7 +51,7 @@ buttons:
 compatibility:
   title: Something is wrong!
   description: In order to use emberclear, your browser must support the following technologies and features
-  score: Score
+  score: Pontuação
   compatibility: Compatibility
   camera: Camera
   notifications: Notifications

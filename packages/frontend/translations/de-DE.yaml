@@ -21,7 +21,7 @@ connection:
 buttons:
   delete: Löschen
   resend: Erneut senden
-  resendAutomatically: resend automatically
+  resendAutomatically: automatisch erneut senden
   save: Speichern
   next: Weiter
   back: Zurück
@@ -29,7 +29,7 @@ buttons:
   logout: Abmelden
   login: Anmelden
   cancel: Abbrechen
-  close: Close
+  close: Schließen
   import: Importieren
   scan: Scannen
   sendSnippet: Ausschnitt senden
@@ -49,13 +49,13 @@ buttons:
     sidebarBackdrop: Klickbarer Hintergrund, um die Sidebar mittels Klick auszublenden
     closeModal: Dialog schließen
 compatibility:
-  title: Something is wrong!
-  description: In order to use emberclear, your browser must support the following technologies and features
-  score: Score
-  compatibility: Compatibility
-  camera: Camera
-  notifications: Notifications
-  indexeddb: Indexed DB
+  title: Leider stimmt etwas nicht!
+  description: Um emberclear nutzen zu können, muss dein Browser die folgenden Technologien und Funktionen unterstützen
+  score: Ergebnis
+  compatibility: Kompatibilität
+  camera: Kamera
+  notifications: Benachrichtigungen
+  indexeddb: Indexierte Datenbank
   wasm: WebAssembly
   serviceWorker: Service Worker
   webWorker: Web Worker
@@ -89,7 +89,7 @@ models:
     name: Name
     publicKey: Öffentlicher Schlüssel
   message:
-    autosendPending: autosend pending
+    autosendPending: automatische Sendung steht aus
     errors:
       timeout: 'Verbindung getrennt.'
 ui:
