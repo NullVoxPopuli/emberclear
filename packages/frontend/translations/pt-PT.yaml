@@ -65,7 +65,7 @@ images:
     ownIdentityQR: This is your identity information represented as a QR Code
 input:
   placeholder:
-    mnemonic: Enter your mnemonic
+    mnemonic: Insere a tua mnemónica
     name: Nome
 status:
   deliveryFailed: 'Mensagem não pôde ser entregue'
@@ -118,54 +118,54 @@ ui:
       ctrl: ctrl
       i: i
       slash: /
-      space: space
+      space: espaço
       h: h
       k: k
     actions:
       search: Pesquisar tudo
       toggleSidebar: Ativar/desativar barra lateral
-      toggleHelp: Toggle Keyboard Help
+      toggleHelp: Ativar/desativar ajuda de teclado
   sidebar:
-    unread: Unread
+    unread: Não lido
     channels:
-      title: Channels
-      none: You are not in any channels
-      placeholder: New Channel Name
+      title: Canais
+      none: Não estás em nenhum canal
+      placeholder: Nome do novo canal
     contacts:
-      title: 'Contacts'
-      none: You have no contacts.
+      title: 'Contactos'
+      none: Não tens contactos.
       numOffline: '{num} offline'
   addContact:
-    title: Have a friend scan your QR Code, share your link, or scan their QR Code
+    title: Pede a um amigo que faça scan ao teu QR Code, partilhe o teu link ou faça scan do seu QR Code
   chat:
-    welcome: Welcome!
+    welcome: Bem-vindo!
     message: >
-      To get started, you'll need at least one friend.<br /><br />
-      Then you'll be able to chat with them and create channels for communicating with groups of friends.
-    newMessages: There are newer messages
-    viewRecent: view recent messages
-    unreadMessages: '{number} new messages since {time}'
-    markAllAsRead: Mark all as read
+      Para começar, precisas de pelo menos um amigo.<br /><br />
+      Depois poderás conversar com ele e criar canais para comunicar com grupos de amigos.
+    newMessages: Existem novas mensagens
+    viewRecent: ver mensagens recentes
+    unreadMessages: '{number} novas mensagens desde {time}'
+    markAllAsRead: Marcar todas como lidas
     errors:
-      contactNotFound: Your contact could not be located
+      contactNotFound: O teu contacto não pôde ser localizado
     sender:
-      removed: removed
+      removed: removido
     messages:
-      received: 'Received: {at}'
+      received: 'Recebido: {at}'
     embedMenu:
-      code: Code or text snippet
-      embed: Embed from URL
-      file: Send File from Computer
-      video: Start Video Chat
-      audio: Start Audio Chat
+      code: Código ou excerto de texto
+      embed: Incorporar de um URL
+      file: Enviar ficheiro do computador
+      video: Iniciar conversação vídeo
+      audio: Iniciar conversação áudio
     codeModal:
-      title: Send Code or Snippet to <strong>{to}</strong>
+      title: Enviar código ou excerto para <strong>{to}</strong>
   faq:
-    title: F.A.Q
-    whatIsQ: What is emberclear
+    title: Questões frequentes
+    whatIsQ: O que é emberclear
     whatIsA: >
-      emberclear is the open source p2p encrypted chat client that operates over open source mesh nodes on free-tier cloud services.
-    howDoesWorkQ: How does it work?
+      emberclear é o cliente de conversações p2p encriptado de código aberto que opera sobre nós de rede de código aberto em serviços de nuvem de camada livre.
+    howDoesWorkQ: Como funciona?
     howDoesWorkA: >
       All the encryption is done in the browser -- at no time do private keys leave your computer. Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging across the internet, on any network -- even if the network is compromised.
     whyQ: Why?
@@ -193,12 +193,12 @@ ui:
     overwriteQuestion: >
       This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. <br> <br> Are you sure you want to do this?
     overwriteAbort: No, take me back to safety
-    overwriteConfirm: Yes, I understand the risks
-    introQuestion: What would you like to be called?
-    almostReady: You are almost ready to begin chatting!
-    nameLabel: Your desired alias
+    overwriteConfirm: Sim, eu compreendo os riscos
+    introQuestion: Como gostarias de ser chamado?
+    almostReady: Estás quase pronto para começar a conversação!
+    nameLabel: A tua alcunha desejada
     mnemonicPrompt: >
-      If you would like to use this account on other computers, please store this mnemonic in a secure place. It will be used to login.
+      Se gostarias de usar esta conta em outros computadores, por favor guarda esta mnemónica num local seguro. Será usada para iniciar sessão.
     note: >
       You may download your settings at any time so that you can upload them to another computer. The settings will include more than just your identity.
   contacts:
