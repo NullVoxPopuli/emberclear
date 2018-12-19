@@ -167,20 +167,20 @@ ui:
       emberclear é o cliente de conversações p2p encriptado de código aberto que opera sobre nós de rede de código aberto em serviços de nuvem de camada livre.
     howDoesWorkQ: Como funciona?
     howDoesWorkA: >
-      All the encryption is done in the browser -- at no time do private keys leave your computer. Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging across the internet, on any network -- even if the network is compromised.
-    whyQ: Why?
+      Toda a encriptação é feita no browser -- em circunstância alguma as chaves privadas saem do computador. Emberclear usa a criptografia de chave pública libsodium para se certificar mensagens seguras e encriptadas na internet ou em qualquer rede -- mesmo que a rede esteja comprometida.
+    whyQ: Porquê?
     whyA: >
-      Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
-      This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
-      Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
-    notOnlineQ: What happens when I send a message and the recipient is no longer online.
+      Parcialmente por diversão e aprendizagem -- pretende-se fornecer uma estrutura para pessoas que desejam entrar em aplicativos web para que suas ferramentas pré-existentes possam interagir com suas criações.
+      Este projeto também é inspirado pela falta de confiança em aplicativos de conversação existentes e na sua infraestrutura.
+      Por fim, este projeto, no que toca à funcionalidade, será um clone do que for popular - com a única diferença fundamental de que nada é registado pelos nós de retransmissão / federados.
+    notOnlineQ: O que acontece quando envio uma mensagem e o destinatário já não está online?
     notOnlineA: >
-      The server does not story any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
-    serverStorageQ: Does the server / relay store any of my messages ever?
+      O servidor não armazena mensagens e não mantém uma fila de mensagens não entregues. Se um destinatário não estiver online, a mensagem precisa de ser reenviada manualmente.
+    serverStorageQ: O servidor / retransmissor armazena alguma das minhas mensagens?
     serverStorageA: false
   footer:
-    navigation: Navigation
-    wantToSupport: Want to support this project?
+    navigation: Navegação
+    wantToSupport: Queres apoiar este projeto?
     license: >
       The <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
   login:
