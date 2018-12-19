@@ -43,10 +43,10 @@ buttons:
   addFriend: Adicionar amigo
   ariaLabel:
     sidebar: 'Ativa/desativar barra lateral'
-    dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
-    modalBackdrop: Clickable backdrop for clicking off a modal to close it
-    menuBackdrop: Clickable backdrop for clicking off the menu to close it
-    sidebarBackdrop: Clickable backdrop for clicking off the sidebar to hide it
+    dropdownBackdrop: Elemento acionável para fechar o menu suspenso
+    modalBackdrop: Elemento acionável para fechar o diálogo
+    menuBackdrop: Elemento acionável para fechar o menu
+    sidebarBackdrop: Elemento acionável para ocultar a barra lateral
     closeModal: Fechar diálogo
 compatibility:
   title: Algo está errado!
@@ -62,7 +62,7 @@ compatibility:
 images:
   alt:
     thumbnail: Miniatura
-    ownIdentityQR: This is your identity information represented as a QR Code
+    ownIdentityQR: Esta é a tua informação de identidade representada como um código QR
 input:
   placeholder:
     mnemonic: Insere a tua mnemónica
@@ -191,8 +191,8 @@ ui:
       Aviso: estás prestes a destruir uma identidade existente. Por favor, certifica-te que fizeste cópia de segurança da mnemónica e / ou configurações
     overwriteTitle: Tens a certeza que pretendes criar uma nova identidade?
     overwriteQuestion: >
-      This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. <br> <br> Are you sure you want to do this?
-    overwriteAbort: No, take me back to safety
+      Esta é uma ação destrutiva, que fará com que a identidade atualmente configurada seja esquecida e substituída. Não há como recuperar, e sem ter a mnemónica guardada em algum lugar, não conseguirás ligar-te com nenhuma das conversações configuradas anteriormente, pois ninguém saberá quem és. <br> <br> Tens a certeza que queres fazer isto?
+    overwriteAbort: Não, regressar
     overwriteConfirm: Sim, eu compreendo os riscos
     introQuestion: Como gostarias de ser chamado?
     almostReady: Estás quase pronto para começar a conversação!
@@ -200,25 +200,25 @@ ui:
     mnemonicPrompt: >
       Se gostarias de usar esta conta em outros computadores, por favor guarda esta mnemónica num local seguro. Será usada para iniciar sessão.
     note: >
-      You may download your settings at any time so that you can upload them to another computer. The settings will include more than just your identity.
+      Podes descarregar as tuas configurações a qualquer momento para poder enviá-las para outro computador. As configurações incluirão mais do que apenas tua identidade.
   contacts:
-    title: 'Contacts ({number})'
-    noContacts: You do not have any contacts. Feel free to import some from your user menu in the top-right corner.
+    title: 'Contactos ({number})'
+    noContacts: Não tens contatos. Sente-te à vontade para importar alguns do menu de utilizador no canto superior direito.
   logout:
-    title: Logging out is destructive
+    title: Terminar sessão é destrutivo
     warning: >
-      Logging out will delete all local data. Please make sure you either have your mnemonic written down or memorized.
-      Alternatively, you download your settings on
-    theSettingsPage: the Settings page.
-    confirm: Confirm Logout
+      Terminar sessão excluirá todos os dados locais. Por favor, certifica-te que tens a tua mnemónica escrita ou memorizada.
+      Como alternativa, podes descarregar as tuas configurações em
+    theSettingsPage: a página de Configurações.
+    confirm: Confirmar terminar sessão
   settings:
-    title: Settings
-    copyProfileToDevice: Copy Profile to Device
-    hideKey: Hide private key
-    showKey: Show private key
-    download: Download Settings
-    hideOfflineContacts: Hide offline contacts
-    useLeftRightJustificationForMessages: Use Left/Right Message Justification
+    title: Configurações
+    copyProfileToDevice: Copiar perfil para dispositivo
+    hideKey: Esconder chave privada
+    showKey: Mostrar chave privada
+    download: Descarregar configurações
+    hideOfflineContacts: Esconder contactos offline
+    useLeftRightJustificationForMessages: Usar justificação de mensagens à esquerda/direita
     danger:
-      title: Danger Zone
-      deleteMessages: Delete Messages
+      title: Zona de perigo
+      deleteMessages: Eliminar mensagens
