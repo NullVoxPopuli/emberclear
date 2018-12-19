@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { RouterService } from 'ember';
 
 import { service } from '@ember-decorators/service';
 import { action } from '@ember-decorators/object';
@@ -17,7 +16,7 @@ export default class LoginForm extends Component {
   @service identity!: IdentityService;
   @service settings!: Settings;
   @service toast!: Toast;
-  @service router!: RouterService;
+  @service router!: Router;
 
   mnemonic = '';
   name = '';
