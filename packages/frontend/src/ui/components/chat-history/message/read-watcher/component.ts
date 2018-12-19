@@ -29,7 +29,7 @@ export default class ReadWatcher extends Component<IArgs> {
     this.io && this.io.disconnect();
     this.io = undefined;
 
-    // window.removeEventListener('focus', this.respondToWindowFocus.bind(this));
+    window.removeEventListener('focus', this.respondToWindowFocus.bind(this));
   }
 
   private markRead() {
@@ -51,7 +51,7 @@ export default class ReadWatcher extends Component<IArgs> {
 
     if (message.readAt) return;
 
-    // window.addEventListener('focus', this.respondToWindowFocus.bind(this));
+    window.addEventListener('focus', this.respondToWindowFocus.bind(this));
     this.setupIntersectionObserver();
   }
 
