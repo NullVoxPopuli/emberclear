@@ -37,8 +37,8 @@
   },
   "dependencies": {
     "bulma": "^0.7.1",
-    "libsodium": "github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855",
-    "libsodium-wrappers": "github:jedisct1/libsodium.js#8fa117918df38f52668feaf9cbc498c633671855",
+    "libsodium": "github:jedisct1/libsodium.js#9d4455cfd8c68a53238475b9f900f42582d7c925",
+    "libsodium-wrappers": "github:jedisct1/libsodium.js#9d4455cfd8c68a53238475b9f900f42582d7c925",
     "phoenix": "^1.3.0",
     "qr-scanner": "github:nimiq/qr-scanner",
     "qrcode": "^1.2.0",

@@ -1,9 +1,9 @@
-import Component from 'sparkles-component';
-import { reads } from '@ember-decorators/object/computed';
+import Component, { tracked } from 'sparkles-component';
+import { computed } from '@ember-decorators/object';
+import { reads, not } from '@ember-decorators/object/computed';
 
 import { convertObjectToQRCodeDataURL } from 'emberclear/src/utils/string-encoding';
-
-import { keepLatestTask } from 'ember-concurrency-decorators';
+import { monitor } from 'emberclear/src/utils/decorators';
 
 interface IArgs {
   data: object;
@@ -11,22 +11,14 @@ interface IArgs {
 }
 
 export default class QRCode extends Component<IArgs> {
-  @reads('qrCode.isIdle') isIdle!: boolean;
-  @reads('qrCode.lastSuccessful.value') qrCodeData!: string;
+  @not('qrCode.isPending') isIdle!: boolean;
+  @reads('qrCode.result') qrCodeData!: string;
 
-  didInsertElement() {
-    this.qrCode.perform();
-  }
-
-  didReceiveAttrs() {
-    this.qrCode.perform();
-  }
-
-  @keepLatestTask
-  *qrCode() {
+  @computed
+  @monitor
+  get qrCode() {
     const { data } = this.args;
-    const imageData = yield convertObjectToQRCodeDataURL(data || {});
 
-    return imageData;
+    return convertObjectToQRCodeDataURL(data || {});
   }
 }
