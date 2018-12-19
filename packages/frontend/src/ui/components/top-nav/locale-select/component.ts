@@ -21,10 +21,11 @@ export default class LocaleSwitcher extends Component<IArgs> {
     super(args);
 
     this.options = [
-      { locale: 'en-us', label: 'English' },
       { locale: 'de-de', label: 'Deutsche' },
-      { locale: 'fr-fr', label: 'Français' },
+      { locale: 'en-us', label: 'English' },
       { locale: 'es-es', label: 'Español' },
+      { locale: 'fr-fr', label: 'Français' },
+      { locale: 'pt-pt', label: 'Português' },
       { locale: 'ru-ru', label: 'Русский' },
     ];
   }
