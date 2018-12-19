@@ -17,103 +17,103 @@ connection:
     send:
       notConnected: Não pode enviar mensagens sem uma conexão!
     subscribe:
-      notConnected: Cannot subscribe to a channel without a socket connection!
+      notConnected: Não pode subscrever um canal sem uma conexão de socket!
 buttons:
-  delete: delete
-  resend: resend
-  resendAutomatically: resend automatically
-  save: Save
-  next: Next
-  back: Back
-  begin: Begin
-  logout: Logout
-  login: Login
-  cancel: Cancel
-  close: Close
-  import: Import
-  scan: Scan
-  sendSnippet: Send Snippet
-  remove: Remove
-  donateEth: Donate Ethereum
-  donateXmr: Donate Monero
-  loginInstead: Login instead
-  uploadSettings: Upload Settings
-  showMyInfo: Show My Info
-  invite: Invite
-  addFriend: Add Friend
+  delete: apagar
+  resend: reenviar
+  resendAutomatically: reenviar automaticamente
+  save: Guardar
+  next: Seguinte
+  back: Anterior
+  begin: Começar
+  logout: Terminar Sessão
+  login: Iniciar sessão
+  cancel: Cancelar
+  close: Fechar
+  import: Importar
+  scan: Procurar
+  sendSnippet: Enviar snippet
+  remove: Remover
+  donateEth: Doar Ethereum
+  donateXmr: Doar Monero
+  loginInstead: Iniciar sessão
+  uploadSettings: Definições de carregamento de ficheiros
+  showMyInfo: Mostrar minha informação
+  invite: Convidar
+  addFriend: Adicionar amigo
   ariaLabel:
-    sidebar: 'Toggles the sidebar'
+    sidebar: 'Ativa/desativar barra lateral'
     dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
     modalBackdrop: Clickable backdrop for clicking off a modal to close it
     menuBackdrop: Clickable backdrop for clicking off the menu to close it
     sidebarBackdrop: Clickable backdrop for clicking off the sidebar to hide it
-    closeModal: Close Modal
+    closeModal: Fechar diálogo
 compatibility:
-  title: Something is wrong!
-  description: In order to use emberclear, your browser must support the following technologies and features
+  title: Algo está errado!
+  description: Para usar o emberclear, o seu browser deve suportar as seguintes tecnologias e funcionalidades
   score: Pontuação
-  compatibility: Compatibility
-  camera: Camera
-  notifications: Notifications
+  compatibility: Compatibilidade
+  camera: Câmera
+  notifications: Notificações
   indexeddb: Indexed DB
   wasm: WebAssembly
   serviceWorker: Service Worker
   webWorker: Web Worker
 images:
   alt:
-    thumbnail: Thumbnail
+    thumbnail: Miniatura
     ownIdentityQR: This is your identity information represented as a QR Code
 input:
   placeholder:
     mnemonic: Enter your mnemonic
-    name: Name
+    name: Nome
 status:
-  deliveryFailed: 'Message could not be delivered'
-  importing: Importing ...
-  updateAvailable: A new version is available, click here to update.
+  deliveryFailed: 'Mensagem não pôde ser entregue'
+  importing: A importar...
+  updateAvailable: Está disponível uma nova versão. Clique para atualizar.
 services:
   crypto:
-    keyGenFailed: Key Generation Failed
+    keyGenFailed: Geração de chave falhou
 routes:
-  home: Home
-  chat: Chat
-  logout: Logout
-  login: Login
-  contacts: Contacts
-  settings: Settings
-  profile: Profile
-  faq: F.A.Q.
-  createNewUser: Create New User
+  home: Início
+  chat: Conversação
+  logout: Terminar Sessão
+  login: Iniciar sessão
+  contacts: Contactos
+  settings: Definições
+  profile: Perfil
+  faq: Questões Frequentes
+  createNewUser: Criar Novo Utilizador
 models:
   identity:
-    name: Name
-    publicKey: Public Key
+    name: Nome
+    publicKey: Chave Pública
   message:
-    autosendPending: autosend pending
+    autosendPending: reenvio pendente
     errors:
-      timeout: 'Sending timed out.'
+      timeout: 'O envio expirou.'
 ui:
   invite:
-    copyProfile: Copy Link
-    copied: Copied!
+    copyProfile: Copiar ligação
+    copied: Copiado!
   notifications:
-    title: emberclear message
-    from: message from {name}
+    title: mensagem de emberclear
+    from: mensagem de {name}
     prompt:
-      title: emberclear needs your permission to enable notifications.
-      enable: Enable Notifications
-      askLater: Ask Next Time
-      neverAsk: Never Ask Again
+      title: emberclear precisa de sua permissão para ativar as notificações.
+      enable: Ativar Notificações
+      askLater: Perguntar da próxima vez
+      neverAsk: Nunca perguntar novamente
   search:
-    title: Search for contacts and channels
-    description: Search coming soon
-    noContacts: No contacts found
-    noChannels: No channels found
-    contacts: Contacts
-    channels: Channels
-    nothingFound: No results found
+    title: Procurar contactos e canais
+    description: Pesquisa brevemente
+    noContacts: Nenhum contacto encontrado
+    noChannels: Nenhum canal encontrado
+    contacts: Contactos
+    channels: Canais
+    nothingFound: Nenhum resultado encontrado
   shortcuts:
-    title: Keyboard Shortcuts
+    title: Atalhos de teclado
     key:
       ctrl: ctrl
       i: i
@@ -122,8 +122,8 @@ ui:
       h: h
       k: k
     actions:
-      search: Search Everything
-      toggleSidebar: Toggle the Sidebar
+      search: Pesquisar tudo
+      toggleSidebar: Ativar/desativar barra lateral
       toggleHelp: Toggle Keyboard Help
   sidebar:
     unread: Unread
