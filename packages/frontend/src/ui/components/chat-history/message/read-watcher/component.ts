@@ -11,6 +11,13 @@ interface IArgs {
 export default class ReadWatcher extends Component<IArgs> {
   messageElement!: Element;
   io?: IntersectionObserver;
+  focusHandler!: () => void;
+
+  constructor(args: IArgs) {
+    super(args);
+
+    this.focusHandler = this.respondToWindowFocus.bind(this);
+  }
 
   didInsertElement() {
     this.messageElement = document.getElementById(this.args.message.id)!;
@@ -29,7 +36,7 @@ export default class ReadWatcher extends Component<IArgs> {
     this.io && this.io.disconnect();
     this.io = undefined;
 
-    window.removeEventListener('focus', this.respondToWindowFocus.bind(this));
+    window.removeEventListener('focus', this.focusHandler);
   }
 
   private markRead() {
@@ -51,7 +58,7 @@ export default class ReadWatcher extends Component<IArgs> {
 
     if (message.readAt) return;
 
-    window.addEventListener('focus', this.respondToWindowFocus.bind(this));
+    window.addEventListener('focus', this.focusHandler);
     this.setupIntersectionObserver();
   }
 

@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
-import DS from 'ember-data';
+import StoreService from 'ember-data/store';
 
-import { visit, settled, waitFor, pauseTest } from '@ember/test-helpers';
+import { visit, settled, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -198,7 +198,7 @@ module('Acceptance | Sidebar', function(hooks) {
         });
 
         test('a channel is created', function(assert) {
-          const store = getService<DS.Store>('store');
+          const store = getService<StoreService>('store');
           const known = store.peekAll('channel');
 
           assert.equal(known.length, 1);

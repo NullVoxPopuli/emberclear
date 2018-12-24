@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('HOST: ', process.env.HOST, 'CI: ', process.env.CI);
-
 module.exports = function(environment) {
   let ENV = {
     'ember-resolver': {
@@ -84,6 +82,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     // Ember.run.backburner.DEBUG = true;
     ENV.host = 'http://localhost:4201';
+    ENV.SW_DISABLED = process.env.SW_DISABLED;
   }
 
   if (environment === 'test') {
@@ -96,6 +95,7 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+    ENV.SW_DISABLED = process.env.SW_DISABLED;
   }
 
   if (environment === 'production') {

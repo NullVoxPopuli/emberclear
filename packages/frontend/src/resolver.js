@@ -11,9 +11,6 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
  */
 
 moduleConfig.types = Object.assign(moduleConfig.types, {
-  config: { definitiveCollection: 'main' },
-  util: { definitiveCollection: 'utils' },
-  'component-manager': { definitiveCollection: 'main' },
   // ember-intl
   'ember-intl@adapter': { definitiveCollection: 'main' },
   'ember-intl@translation': { definitiveCollection: 'main' },
@@ -25,7 +22,6 @@ moduleConfig.types = Object.assign(moduleConfig.types, {
   'ember-gesture': { definitiveCollection: 'main' },
 });
 
-moduleConfig.collections.main.types.push('config');
 moduleConfig.collections.main.types.push('translation');
 
 export default Resolver.extend({
