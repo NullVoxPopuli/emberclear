@@ -1,9 +1,11 @@
-<ServiceWorkerUpdateNotify @pollingInterval={{60000}}>
-  <a
-    class='service-worker-update-notify notification is-info'
-    href={{this.currentURL}}
-    style='z-index: 100;'
-  >
-    {{t 'status.updateAvailable'}}
-  </a>
-</ServiceWorkerUpdateNotify>
+{{#if this.isEnabled}}
+  <ServiceWorkerUpdateNotify @pollingInterval={{60000}}>
+    <a
+      class='service-worker-update-notify notification is-info'
+      href={{this.currentURL}}
+      style='z-index: 100;'
+    >
+      {{t 'status.updateAvailable'}}
+    </a>
+  </ServiceWorkerUpdateNotify>
+{{/if}}

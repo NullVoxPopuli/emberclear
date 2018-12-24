@@ -1,4 +1,4 @@
-import Component, { tracked } from 'sparkles-component';
+import Component from 'sparkles-component';
 import { computed } from '@ember-decorators/object';
 import { reads, not } from '@ember-decorators/object/computed';
 
