@@ -2,6 +2,24 @@ import { module, test } from 'qunit';
 import * as string from './utils';
 
 module('Unit | Utility | string', function() {
+  module('hostFromURL', function() {
+    test('finds the host from a URL', function(assert) {
+      const url = 'wss://mesh-relay-in-us-1.herokuapp.com/socket';
+      const expected = 'mesh-relay-in-us-1.herokuapp.com';
+      const result = string.hostFromURL(url);
+
+      assert.equal(result, expected);
+    });
+
+    test('when the pattern is not matched, null is returned', function(assert) {
+      const url = 'mesh-relay-in-us-1.herokuapp.com/socket';
+      const expected = null;
+      const result = string.hostFromURL(url);
+
+      assert.equal(result, expected);
+    });
+  });
+
   module('parseURLS', function() {
     test('parses one URL', function(assert) {
       const url = 'https://github.com/emberjs/rfcs/blob/master/text/0143-module-unification.md';

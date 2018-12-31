@@ -3,11 +3,17 @@ import { setupTest } from 'ember-qunit';
 
 import Notifications from './service';
 
-import { setupWindowNotification, getService, stubService } from 'emberclear/tests/helpers';
+import {
+  clearLocalStorage,
+  setupWindowNotification,
+  getService,
+  stubService,
+} from 'emberclear/tests/helpers';
 
 module('Unit | Service | notifications', function(hooks) {
   setupTest(hooks);
   setupWindowNotification(hooks);
+  clearLocalStorage(hooks);
 
   // Replace this with your real tests.
   test('it exists', function(assert) {

@@ -6,10 +6,10 @@ import { dropTask } from 'ember-concurrency-decorators';
 import IdentityService from 'emberclear/services/identity/service';
 import MessageProcessor from 'emberclear/services/messages/processor';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import RelayManager from 'emberclear/services/relay-manager';
+import Relay from 'emberclear/src/data/models/relay';
 
 import { toHex } from 'emberclear/src/utils/string-encoding';
-import { ConnectionError } from 'emberclear/src/utils/errors';
+import { ConnectionError, RelayNotSetError } from 'emberclear/src/utils/errors';
 
 interface ISendPayload {
   to: string;
@@ -22,9 +22,9 @@ export default class RelayConnection extends Service {
   @service('messages/dispatcher') dispatcher!: MessageDispatcher;
   @service('notifications') toast!: Toast;
   @service('intl') intl!: Intl;
-  @service relayManager!: RelayManager;
   @service identity!: IdentityService;
 
+  relay?: Relay;
   socket?: Socket;
   channel?: Channel;
   channelName?: string;
@@ -32,6 +32,18 @@ export default class RelayConnection extends Service {
   statusLevel?: string;
 
   connected = false;
+
+  setRelay(relay: Relay) {
+    this.set('relay', relay);
+  }
+
+  getRelay() {
+    if (!this.relay) {
+      throw new RelayNotSetError();
+    }
+
+    return this.relay;
+  }
 
   async send(this: RelayConnection, to: string, data: string) {
     const payload: ISendPayload = { to, message: data };
@@ -90,7 +102,7 @@ export default class RelayConnection extends Service {
     this.updateStatus('info', this.intl.t('connection.connecting'));
 
     const publicKey = this.userChannelId();
-    const url = this.relayManager.getRelay().socket;
+    const url = this.getRelay().socket;
 
     const socket = new Socket(url, { params: { uid: publicKey } });
 

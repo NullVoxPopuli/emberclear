@@ -1,13 +1,6 @@
 import { module, test, skip } from 'qunit';
 import StoreService from 'ember-data/store';
-import {
-  getSettledState,
-  visit,
-  currentURL,
-  settled,
-  waitFor,
-  triggerEvent,
-} from '@ember/test-helpers';
+import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import Identity from 'emberclear/src/data/models/identity/model';
@@ -214,7 +207,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
               assert.ok(text.includes('could not be delivered'));
             });
 
-            module('resend is clicked', function(hooks) {
+            module('resend is clicked', function() {
               skip('implement tests for resending');
             });
 

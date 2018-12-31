@@ -2,12 +2,12 @@ import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
 import LocaleService from 'emberclear/src/services/locale';
-import RelayConnection from 'emberclear/services/relay-connection';
+import RelayManager from 'emberclear/services/relay-manager';
 import IdentityService from 'emberclear/services/identity/service';
 
 export default class ApplicationRoute extends Route {
   @service identity!: IdentityService;
-  @service relayConnection!: RelayConnection;
+  @service relayManager!: RelayManager;
   @service locale!: LocaleService;
 
   async beforeModel() {
@@ -24,6 +24,6 @@ export default class ApplicationRoute extends Route {
   }
 
   afterModel() {
-    this.relayConnection.connect();
+    this.relayManager.connect();
   }
 }

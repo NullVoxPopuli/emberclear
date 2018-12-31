@@ -4,6 +4,7 @@ import {
   collection,
   is,
   count,
+  attribute,
   isVisible,
   text,
   isPresent,
@@ -27,6 +28,13 @@ export const page = create({
     askNever: clickable('[data-test-ask-never]'),
     enable: clickable('[data-test-enable]'),
     dismiss: clickable('[data-test-dismiss]'),
+  },
+  modals: {
+    addContact: {
+      scope: '[data-test-add-contact]',
+      isHidden: attribute('aria-hidden'),
+      hide: clickable('[aria-label="Close Modal"]'),
+    },
   },
 });
 

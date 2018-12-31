@@ -101,6 +101,7 @@ module('Acceptance | Settings', function(hooks) {
 
       module('Clicking the Delete Messages button', function(hooks) {
         hooks.beforeEach(async function() {
+          await visit('/settings/danger-zone');
           await settings.deleteMessages();
         });
 

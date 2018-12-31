@@ -2,6 +2,7 @@
 appname: emberclear
 subheader: Encrypted Chat. No History. No Logs.
 authoredBy: by Preston Sego
+redditCommunity: Reddit Community
 
 todo: 'TODO: fill this out correctly'
 
@@ -28,6 +29,7 @@ buttons:
   delete: delete
   resend: resend
   resendAutomatically: resend automatically
+  enable: Enable
   save: Save
   next: Next
   back: Back
@@ -47,6 +49,7 @@ buttons:
   showMyInfo: Show My Info
   invite: Invite
   addFriend: Add Friend
+  makeDefault: Make Default
   ariaLabel:
     sidebar: 'Toggles the sidebar'
     dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
@@ -78,6 +81,8 @@ input:
     name: Name
 
 status:
+  connected: Connected
+  enabled: Enabled
   deliveryFailed: 'Message could not be delivered'
   importing: Importing ...
   updateAvailable: A new version is available, click here to update.
@@ -277,6 +282,17 @@ ui:
 
   settings:
     title: Settings
+    tabs:
+      profile: Profile Info
+      interface: Interface
+      permissions: Permissions
+      relays: Relays
+      dangerZone: Danger Zone
+    relays:
+      add: Add Relay
+      URLs: URLs
+      socket: socket
+      openGraph: open graph
     copyProfileToDevice: Copy Profile to Device
     hideKey: Hide private key
     showKey: Show private key

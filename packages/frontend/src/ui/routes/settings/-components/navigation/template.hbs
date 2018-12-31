@@ -1,0 +1,29 @@
+<div class='tabs'>
+  <ul>
+    <li class={{if (is-active 'settings.index') 'is-active'}}>
+      {{#link-to 'settings'}}
+        {{t 'ui.settings.tabs.profile'}}
+      {{/link-to}}
+    </li>
+    <li class={{if (is-active 'settings.interface') 'is-active'}}>
+      {{#link-to 'settings.interface'}}
+        {{t 'ui.settings.tabs.interface'}}
+      {{/link-to}}
+    </li>
+    <li class={{if (is-active 'settings.permissions') 'is-active'}}>
+      {{#link-to 'settings.permissions'}}
+        {{t 'ui.settings.tabs.permissions'}}
+      {{/link-to}}
+    </li>
+    <li class={{if (is-active 'settings.relays') 'is-active'}}>
+      {{#link-to 'settings.relays'}}
+        {{t 'ui.settings.tabs.relays'}}
+      {{/link-to}}
+    </li>
+    <li class={{if (is-active 'settings.danger-zone') 'is-active'}}>
+      {{#link-to 'settings.danger-zone'}}
+        {{t 'ui.settings.tabs.dangerZone'}}
+      {{/link-to}}
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,46 @@
+<form {{action 'save' on='submit'}}>
+
+  <Field @label='Name'>
+    {{input data-test-name-field class='input' value=name}}
+  </Field>
+
+  <div class='flex justify-content-end'>
+    <input data-test-save class='button' type='submit' value={{t 'buttons.save' }}>
+  </div>
+</form>
+
+
+<button
+  data-test-show-private-key-toggle
+  class='button'
+  {{action (mut showPrivateKey) (not showPrivateKey)}}
+>
+
+  {{#if showPrivateKey}}
+    {{t 'ui.settings.hideKey'}}
+  {{else}}
+    {{t 'ui.settings.showKey'}}
+  {{/if}}
+
+</button>
+
+{{#if showPrivateKey}}
+  <MnemonicDisplay @privateKey={{identity.privateKey}} />
+{{/if}}
+
+<a {{action downloadSettings}} class='button'>
+  {{t 'ui.settings.download' }}
+</a>
+
+<button
+  disabled
+  class='button'
+  {{action (mut this.showQRSettings) (not this.showQRSettings)}}
+>
+  {{t 'ui.settings.copyProfileToDevice'}}
+</button>
+
+{{#if this.showQRSettings}}
+  <SettingsAsQrCode />
+{{/if}}
+

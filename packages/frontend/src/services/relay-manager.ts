@@ -2,18 +2,40 @@ import StoreService from 'ember-data/store';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
-export default class RelayManager extends Service {
-  @service store!: StoreService;
+import Relay from 'emberclear/src/data/models/relay';
+import ToastService from 'emberclear/src/services/toast';
+import RelayConnection from 'emberclear/src/services/relay-connection';
+import { RelayNotSetError } from 'emberclear/src/utils/errors';
 
-  getRelay() {
-    // randomly select one that is online?
-    return this.populateStoreWithPreconfiguredRelays();
+export default class RelayManager extends Service {
+  @service toast!: ToastService;
+  @service store!: StoreService;
+  @service relayConnection!: RelayConnection;
+
+  async connect() {
+    const relay = await this.getRelay();
+
+    this.relayConnection.setRelay(relay);
+    this.relayConnection.connect();
+  }
+
+  async getRelay(): Promise<Relay> {
+    const relays: Relay[] = await this.store.findAll('relay');
+
+    const relay = relays.toArray().sort(r => r.priority)[0];
+
+    if (!relay) {
+      this.toast.error('there are no available relays.');
+      throw new RelayNotSetError();
+    }
+
+    return relay;
   }
 
   async getOpenGraph(url: string): Promise<OpenGraphData> {
-    const baseUrl = this.getRelay().og;
+    const relay = await this.getRelay();
     const safeUrl = encodeURIComponent(url);
-    const ogUrl = `${baseUrl}?url=${safeUrl}`;
+    const ogUrl = `${relay.og}?url=${safeUrl}`;
     const response = await fetch(ogUrl, {
       credentials: 'omit',
       referrer: 'no-referrer',
@@ -26,15 +48,6 @@ export default class RelayManager extends Service {
     const json = await response.json();
 
     return (json || {}).data;
-  }
-
-  // TODO: these need to be 'find or create'
-  populateStoreWithPreconfiguredRelays() {
-    return this.store.createRecord('relay', {
-      socket: 'wss://mesh-relay-in-us-1.herokuapp.com/socket',
-      og: 'https://mesh-relay-in-us-1.herokuapp.com/open_graph',
-      host: 'mesh-relay-in-us-1.herokuapp.com',
-    });
   }
 }
 

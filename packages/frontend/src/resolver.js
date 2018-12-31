@@ -12,12 +12,14 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
 
 moduleConfig.types = Object.assign(moduleConfig.types, {
   // ember-intl
+  util: { definitiveCollection: 'utils' },
   'ember-intl@adapter': { definitiveCollection: 'main' },
   'ember-intl@translation': { definitiveCollection: 'main' },
   translation: { definitiveCollection: 'main' },
   formats: { definitiveCollection: 'main' },
   cldr: { definitiveCollection: 'main' },
   'util:intl': { definitiveCollection: 'utils' },
+  'intl:util': { definitiveCollection: 'utils' },
   // ember-gestures
   'ember-gesture': { definitiveCollection: 'main' },
 });

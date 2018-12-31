@@ -1,0 +1,23 @@
+<button class='button' {{action this.toggleForm}}>
+  {{#if this.isVisible}}
+    {{t 'buttons.cancel'}}
+  {{else}}
+    {{t 'ui.settings.relays.add'}}
+  {{/if}}
+</button>
+
+{{#if this.isVisible}}
+  <form {{action (perform this.save) on='submit'}}>
+    <Field @label='Socket URL'>
+      {{input class='input' value=this.socketURL}}
+    </Field>
+
+    <Field @label='Open Graph URL'>
+      {{input class='input' value=this.openGraphURL}}
+    </Field>
+
+    <div class='flex justify-content-end'>
+      <input class='button' type='submit' value={{t 'buttons.save'}}>
+    </div>
+  </form>
+{{/if}}
