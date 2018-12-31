@@ -23,7 +23,12 @@ Router.map(function() {
   this.route('login');
   this.route('invite');
   this.route('logout');
-  this.route('settings');
+  this.route('settings', function() {
+    this.route('interface');
+    this.route('permissions');
+    this.route('relays');
+    this.route('danger-zone');
+  });
   this.route('faq');
 });
 

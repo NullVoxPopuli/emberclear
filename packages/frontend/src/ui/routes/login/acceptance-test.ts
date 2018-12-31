@@ -35,7 +35,7 @@ const behaviors = {
           const text = app.toastText();
           const expected = 'There was a problem logging in...';
 
-          assert.ok(text!.includes(expected));
+          assert.contains(text, expected);
         });
 
         test('navigation does not occur', function(assert) {

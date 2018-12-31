@@ -6,7 +6,7 @@ import { service } from '@ember-decorators/service';
 import IdentityService from 'emberclear/services/identity/service';
 import Settings from 'emberclear/services/settings';
 
-export default class extends Controller {
+export default class ProfileController extends Controller {
   @service identity!: IdentityService;
   @service('toast') toast!: Toast;
   @service settings!: Settings;
@@ -14,30 +14,14 @@ export default class extends Controller {
   @alias('identity.record.name') name!: string;
 
   showPrivateKey = false;
-  messagesDeleted = false;
 
   @reads('settings.downloadUrl') downloadSettingsUrl!: string;
-  @alias('settings.hideOfflineContacts') hideOfflineContacts!: boolean;
-
-  @alias('settings.useLeftRightJustificationForMessages')
-  useLeftRightJustificationForMessages!: boolean;
 
   @action
   async save() {
     await this.identity.record!.save();
 
     this.toast.success('Identity Updated');
-  }
-
-  @action
-  async deleteMessages() {
-    this.toast.info('Deleting messages...');
-    this.set('messagesDeleted', true);
-
-    const messages = await this.store.findAll('message');
-    await messages.invoke('destroyRecord');
-
-    this.toast.info('All messages have been cleared.');
   }
 
   @action

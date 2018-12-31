@@ -9,6 +9,7 @@ const contacts = '[data-test-sidebar-contacts]';
 export const sidebar = {
   selectors: {
     offlineCount: '[data-test-offline-count]',
+    contacts,
   },
 
   wrapper: () => find(wrapper),

@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, waitFor } from '@ember/test-helpers';
+import { visit, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -9,11 +9,8 @@ import {
   cancelLongRunningTimers,
   setupWindowNotification,
   refresh,
-  getService,
-  stubService,
 } from 'emberclear/tests/helpers';
-
-import NotificationService from 'emberclear/services/notification';
+import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
 
 import { page as app } from 'emberclear/tests/helpers/pages/app';
 
@@ -21,10 +18,10 @@ const { notificationPrompt: prompt } = app;
 
 module('Acceptance | Notification Permission Prompt', function(hooks) {
   setupApplicationTest(hooks);
+  setupRelayConnectionMocks(hooks);
   clearLocalStorage(hooks);
   cancelLongRunningTimers(hooks);
   setupWindowNotification(hooks);
-  setupRelayConnectionMocks(hooks);
   setupCurrentUser(hooks);
 
   module('permission has not yet been asked for', function(hooks) {
@@ -47,7 +44,7 @@ module('Acceptance | Notification Permission Prompt', function(hooks) {
 
       assert.equal(prompt.isVisible, false, 'prompt hides initially');
 
-      await refresh();
+      await refresh(() => stubConnection());
 
       assert.equal(prompt.isVisible, false, 'still is not shown even after refresh');
     });
@@ -63,7 +60,7 @@ module('Acceptance | Notification Permission Prompt', function(hooks) {
 
       module('on refresh', function(hooks) {
         hooks.beforeEach(async function() {
-          await refresh();
+          await refresh(() => stubConnection());
         });
 
         test('the prompt is shown', function(assert) {

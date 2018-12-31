@@ -14,6 +14,16 @@ QUnit.config.seed = seed;
 QUnit.config.reorder = true;
 QUnit.begin(() => console.info(`Using seed for Qunit: ${seed}`));
 
+QUnit.assert.contains = function(source, sub, message) {
+  let trimmedSource = source.trim();
+  this.pushResult({
+    result: trimmedSource.includes(sub),
+    actual: trimmedSource,
+    expected: sub,
+    message: message || `expected ${trimmedSource} to contain ${sub}`,
+  });
+};
+
 setApplication(Application.create(config.APP));
 
 start({

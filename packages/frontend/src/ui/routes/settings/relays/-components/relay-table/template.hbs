@@ -1,0 +1,43 @@
+<table data-test-relays>
+  <thead>
+    <tr>
+      <th></th>
+      <th>#</th>
+      <th>{{t 'ui.settings.relays.URLs'}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each @relays as |relay|}}
+      <tr>
+        <td>
+          {{#if (eq relay this.activeRelay)}}
+            <span class='tag is-primary'>{{t 'status.connected'}}</span>
+          {{/if}}
+
+          {{#if (not (eq relay.priority 1))}}
+            <a {{action this.makeDefault relay}}>
+              {{t 'buttons.makeDefault'}}
+            </a>
+          {{/if}}
+        </td>
+        <td>{{relay.priority}}</td>
+        <td>
+          <label class='has-text-weight-bold'>
+            {{t 'ui.settings.relays.socket'}}:
+          </label> {{relay.socket}}
+          <br>
+
+          <label class='has-text-weight-bold'>
+            {{t 'ui.settings.relays.openGraph'}}:
+          </label> {{relay.og}}
+        </td>
+        <td>
+          <a {{action this.remove relay}}>
+            {{t 'buttons.remove'}}
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

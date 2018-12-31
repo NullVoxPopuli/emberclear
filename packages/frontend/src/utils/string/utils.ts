@@ -28,3 +28,10 @@ export function parseURLs(text: string): string[] {
 
   return urls.map(u => u.replace('gifv', 'mp4'));
 }
+
+const HOST_FROM_URL_REGEX = /\/\/(.+)\//;
+export function hostFromURL(url: string) {
+  const matches = url.match(HOST_FROM_URL_REGEX);
+
+  return matches && matches[1];
+}

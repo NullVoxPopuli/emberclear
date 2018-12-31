@@ -7,3 +7,4 @@ export class NoCameraError extends Error {
 }
 
 export class ConnectionError extends Error {}
+export class RelayNotSetError extends Error {}

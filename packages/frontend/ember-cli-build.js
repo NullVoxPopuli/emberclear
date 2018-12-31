@@ -15,6 +15,7 @@ module.exports = function(defaults) {
   let disabledAddons = [];
   let environment = EmberApp.env();
   let isProduction = environment === 'production';
+  // let isTest = environment === 'test';
 
   let swDisabled = process.env.SW_DISABLED;
   let version = gitRev.short();
@@ -29,6 +30,7 @@ module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // eslint slows down the dev-build-debug cycle significantly
     // hinting: false disables linting at build time.
+    // tests: isTest,
     hinting: false,
     minifyJS: { enabled: isProduction },
     minifyCSS: { enabled: isProduction },

@@ -15,7 +15,7 @@ import {
 
 import IdentityService from 'emberclear/src/services/identity/service';
 import { sidebar } from 'emberclear/tests/helpers/pages/sidebar';
-import { app } from 'emberclear/tests/helpers/pages/app';
+import { app, page } from 'emberclear/tests/helpers/pages/app';
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 
 module('Acceptance | Sidebar', function(hooks) {
@@ -71,6 +71,7 @@ module('Acceptance | Sidebar', function(hooks) {
       module('there is 1 contact', function(hooks) {
         hooks.beforeEach(async function() {
           await createIdentity('first contact');
+          await waitFor(sidebar.selectors.contacts);
         });
 
         test('there are 2 rows of names', function(assert) {
@@ -83,7 +84,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('offline contacts are to be hidden', function(hooks) {
           hooks.beforeEach(async function() {
-            await visit('/settings');
+            await visit('/settings/interface');
             await settings.toggleHideOfflineContacts();
             await waitFor(sidebar.selectors.offlineCount);
           });
@@ -108,6 +109,7 @@ module('Acceptance | Sidebar', function(hooks) {
         hooks.beforeEach(async function() {
           await createIdentity('first contact');
           await createIdentity('second contact');
+          await waitFor(sidebar.selectors.contacts);
         });
 
         test('there are 3 rows of names', function(assert) {
@@ -116,7 +118,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('offline contacts are to be hidden', function(hooks) {
           hooks.beforeEach(async function() {
-            await visit('/settings');
+            await visit('/settings/interface');
             await settings.toggleHideOfflineContacts();
             await waitFor(sidebar.selectors.offlineCount);
           });
