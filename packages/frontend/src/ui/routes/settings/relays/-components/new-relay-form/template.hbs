@@ -1,4 +1,4 @@
-<button class='button' {{action this.toggleForm}}>
+<button data-test-add-relay class='button' {{action this.toggleForm}}>
   {{#if this.isVisible}}
     {{t 'buttons.cancel'}}
   {{else}}
@@ -7,17 +7,17 @@
 </button>
 
 {{#if this.isVisible}}
-  <form {{action (perform this.save) on='submit'}}>
+  <form {{action (perform this.save) on='submit'}} data-test-add-relay-form>
     <Field @label='Socket URL'>
-      {{input class='input' value=this.socketURL}}
+      {{input data-test-socket-field class='input' value=this.socketURL}}
     </Field>
 
     <Field @label='Open Graph URL'>
-      {{input class='input' value=this.openGraphURL}}
+      {{input data-test-og-field class='input' value=this.openGraphURL}}
     </Field>
 
     <div class='flex justify-content-end'>
-      <input class='button' type='submit' value={{t 'buttons.save'}}>
+      <input data-test-save-relay class='button' type='submit' value={{t 'buttons.save'}}>
     </div>
   </form>
 {{/if}}

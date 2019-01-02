@@ -48,3 +48,29 @@ export async function refresh(mocking: () => void = () => undefined) {
 
   await visit(url);
 }
+
+export async function waitUntilTruthy(func: Function, timeoutMs = 500) {
+  let interval: NodeJS.Timeout;
+
+  const timeout = new Promise((_resolve, reject) => {
+    const id = setTimeout(() => {
+      clearTimeout(id);
+      clearInterval(interval);
+      reject(`Timed out after ${timeoutMs} ms.`);
+    }, timeoutMs);
+  });
+
+  return Promise.race([
+    new Promise(resolve => {
+      let interval = setInterval(async () => {
+        let result = await func();
+
+        if (result) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, 10);
+    }),
+    timeout,
+  ]);
+}

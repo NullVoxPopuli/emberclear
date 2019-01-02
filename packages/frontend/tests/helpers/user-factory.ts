@@ -1,4 +1,4 @@
-import { DS } from 'ember-data';
+import StoreService from 'ember-data/store';
 import { run } from '@ember/runloop';
 
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
@@ -16,7 +16,7 @@ export async function attributesForUser() {
 }
 
 export async function buildIdentity(name: string, attributes = {}): Promise<Identity> {
-  const store = getService<DS.Store>('store');
+  const store = getService<StoreService>('store');
 
   const defaultAttributes = await attributesForUser();
 

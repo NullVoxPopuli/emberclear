@@ -12,11 +12,11 @@
       <tr>
         <td>
           {{#if (eq relay this.activeRelay)}}
-            <span class='tag is-primary'>{{t 'status.connected'}}</span>
+            <span data-test-connected class='tag is-primary'>{{t 'status.connected'}}</span>
           {{/if}}
 
           {{#if (not (eq relay.priority 1))}}
-            <a {{action this.makeDefault relay}}>
+            <a {{action this.makeDefault relay}} data-test-make-default>
               {{t 'buttons.makeDefault'}}
             </a>
           {{/if}}
@@ -33,7 +33,7 @@
           </label> {{relay.og}}
         </td>
         <td>
-          <a {{action this.remove relay}}>
+          <a {{action this.remove relay}} data-test-remove>
             {{t 'buttons.remove'}}
           </a>
         </td>

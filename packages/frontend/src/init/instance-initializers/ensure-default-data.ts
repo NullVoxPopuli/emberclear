@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const defaultRelays = [
+export const defaultRelays = [
   {
     socket: 'wss://mesh-relay-in-us-1.herokuapp.com/socket',
     og: 'https://mesh-relay-in-us-1.herokuapp.com/open_graph',
