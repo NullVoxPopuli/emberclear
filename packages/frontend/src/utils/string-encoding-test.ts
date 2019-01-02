@@ -34,4 +34,36 @@ module('Unit | Utility | String Encoding', function() {
       assert.deepEqual(original, msgAsUint8);
     });
   });
+
+  module('toString / fromString', function() {
+    test('converts to string and back', function(assert) {
+      const msgAsUint8 = Uint8Array.from([104, 101, 108, 108, 111]); // hello
+
+      const str = stringEncoding.toString(msgAsUint8);
+      const original = stringEncoding.fromString(str);
+
+      assert.deepEqual(original, msgAsUint8);
+    });
+  });
+
+  module('to/from base64 string / object', function() {
+    test('converts to base64 and back', function(assert) {
+      const obj = { hi: 'there' };
+
+      const base64 = stringEncoding.convertObjectToBase64String(obj);
+      const original = stringEncoding.convertBase64StringToObject(base64);
+
+      assert.deepEqual(original, obj);
+    });
+  });
+
+  module('base64ToHex', function() {
+    test('converts', function(assert) {
+      const base64 = 'aGVsbG8gdGhlcmU='; // hello there
+      const expected = '68656C6C6F207468657265';
+      const result = stringEncoding.base64ToHex(base64);
+
+      assert.equal(result, expected);
+    });
+  });
 });

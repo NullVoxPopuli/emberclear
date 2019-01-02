@@ -218,7 +218,7 @@ ui:
 
     notOnlineQ: What happens when I send a message and the recipient is no longer online.
     notOnlineA: >
-      The server does not story any messages, and does not keep a queue of undelivered messages.
+      The server does not store any messages, and does not keep a queue of undelivered messages.
       If a recipient is not online, the message will manually need to be resent.
 
     serverStorageQ: Does the server / relay store any of my messages ever?
