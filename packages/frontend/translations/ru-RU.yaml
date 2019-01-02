@@ -2,6 +2,7 @@
 appname: emberclear
 subheader: Зашифрованный чат. Без истории. Без логов.
 authoredBy: от Sego Preston
+redditCommunity: Reddit Community
 todo: 'Позднее: заполнить правильно'
 qrCode:
   error: Ошибка генерации QR кода
@@ -22,6 +23,7 @@ buttons:
   delete: удалить
   resend: переотправить
   resendAutomatically: переотправлять автоматически
+  enable: Enable
   save: Сохранить
   next: Далее
   back: Назад
@@ -41,6 +43,7 @@ buttons:
   showMyInfo: Обо мне
   invite: Пригласить
   addFriend: Добавить друга
+  makeDefault: Make Default
   ariaLabel:
     sidebar: 'Переключить панель'
     dropdownBackdrop: Кликните на фон для закрытия дропдауна
@@ -68,6 +71,8 @@ input:
     mnemonic: Введите ваш мнемонический ключ
     name: Имя
 status:
+  connected: Connected
+  enabled: Enabled
   deliveryFailed: 'Не удалось доставить сообщение'
   importing: Импорт ...
   updateAvailable: Доступна новая версия, нажмите сюда для обновления.
@@ -175,7 +180,7 @@ ui:
       В конечном счете, этот проект по функциональности приблизится к существующим решениям, с одним ключевым отличием в том, что узлы, обслуживающие приложение ничего не отслеживают.
     notOnlineQ: Что произойдёт если я отправил сообщение, а получатель не в сети.
     notOnlineA: >
-      Сервер не хранит отправленных сообщений. При появлении контакта в сети - сообщение необходимо переотправить самостоятельно.
+      The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
     serverStorageQ: Сервер хранит мои сообщения?
     serverStorageA: false
   footer:
@@ -214,6 +219,17 @@ ui:
     confirm: Подтвердить выход
   settings:
     title: Настройки
+    tabs:
+      profile: Profile Info
+      interface: Interface
+      permissions: Permissions
+      relays: Relays
+      dangerZone: Danger Zone
+    relays:
+      add: Add Relay
+      URLs: URLs
+      socket: socket
+      openGraph: open graph
     copyProfileToDevice: Скопировать профиль на устройство
     hideKey: Скрыть приватный ключ
     showKey: Показать приватный ключ

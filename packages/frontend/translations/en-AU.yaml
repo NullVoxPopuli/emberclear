@@ -2,6 +2,7 @@
 appname: emberclear
 subheader: Encrypted Chat. No History. No Logs.
 authoredBy: by Preston Sego
+redditCommunity: Reddit Community
 todo: 'TODO: fill this out correctly'
 qrCode:
   error: QR Code could not be generated
@@ -22,6 +23,7 @@ buttons:
   delete: delete
   resend: resend
   resendAutomatically: resend automatically
+  enable: Enable
   save: Save
   next: Next
   back: Back
@@ -41,6 +43,7 @@ buttons:
   showMyInfo: Show My Info
   invite: Invite
   addFriend: Add Friend
+  makeDefault: Make Default
   ariaLabel:
     sidebar: 'Toggles the sidebar'
     dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
@@ -68,6 +71,8 @@ input:
     mnemonic: Enter your mnemonic
     name: Name
 status:
+  connected: Connected
+  enabled: Enabled
   deliveryFailed: 'Message could not be delivered'
   importing: Importing ...
   updateAvailable: A new version is available, click here to update.
@@ -175,7 +180,7 @@ ui:
       Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
     notOnlineQ: What happens when I send a message and the recipient is no longer online.
     notOnlineA: >
-      The server does not story any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
+      The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
     serverStorageQ: Does the server / relay store any of my messages ever?
     serverStorageA: false
   footer:
@@ -213,6 +218,17 @@ ui:
     confirm: Confirm Logout
   settings:
     title: Settings
+    tabs:
+      profile: Profile Info
+      interface: Interface
+      permissions: Permissions
+      relays: Relays
+      dangerZone: Danger Zone
+    relays:
+      add: Add Relay
+      URLs: URLs
+      socket: socket
+      openGraph: open graph
     copyProfileToDevice: Copy Profile to Device
     hideKey: Hide private key
     showKey: Show private key

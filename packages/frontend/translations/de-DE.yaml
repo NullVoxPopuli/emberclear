@@ -2,6 +2,7 @@
 appname: emberclear
 subheader: Verschlüsselter Chat. Kein Verlauf. Keine Logs.
 authoredBy: von Preston Sego
+redditCommunity: Reddit Community
 todo: 'TODO: Fülle dies korrekt aus'
 qrCode:
   error: QR Code konnte nicht erzeugt werden
@@ -22,6 +23,7 @@ buttons:
   delete: Löschen
   resend: Erneut senden
   resendAutomatically: automatisch erneut senden
+  enable: Enable
   save: Speichern
   next: Weiter
   back: Zurück
@@ -41,6 +43,7 @@ buttons:
   showMyInfo: Meine Info anzeigen
   invite: Einladen
   addFriend: Freund hinzufügen
+  makeDefault: Make Default
   ariaLabel:
     sidebar: 'Seitenleiste anzeigen/ausblenden'
     dropdownBackdrop: Klickbarer Hintergrund, um das Dropdown Menü mittels Klick zu schließen
@@ -68,6 +71,8 @@ input:
     mnemonic: Mnemonic Passphrase eingeben
     name: Name
 status:
+  connected: Connected
+  enabled: Enabled
   deliveryFailed: 'Die Nachricht konnte nicht zugestellt werden.'
   importing: Wird importiert...
   updateAvailable: Eine neue Version ist verfügbar. Klicke hier, um die Aktualisierung durchzuführen.
@@ -175,7 +180,7 @@ ui:
       Am Ende soll das Projekt über alle Funktion der populären Messenger verfügen -- mit einem Unterschied: Weder Server, Relays noch die förderierten Knoten tracken deine Inhalte.
     notOnlineQ: Was passiert wenn ich eine Nachricht sende und der Empfänger nich mehr online ist.
     notOnlineA: >
-      Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
+      The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
     serverStorageQ: Speichert der Server / das Relay meine Nachrichten?
     serverStorageA: false
   footer:
@@ -212,6 +217,17 @@ ui:
     confirm: Abmeldung bestätigen
   settings:
     title: Einstellungen
+    tabs:
+      profile: Profile Info
+      interface: Interface
+      permissions: Permissions
+      relays: Relays
+      dangerZone: Danger Zone
+    relays:
+      add: Add Relay
+      URLs: URLs
+      socket: socket
+      openGraph: open graph
     copyProfileToDevice: Profil auf Gerät kopieren
     hideKey: Privaten Schlüssel ausblenden
     showKey: Privaten Schlüssel anzeigen
