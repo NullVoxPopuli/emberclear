@@ -2,6 +2,7 @@
 appname: emberclear
 subheader: Conversação encriptada. Sem histórico. Sem logs.
 authoredBy: por Preston Sego
+redditCommunity: Reddit Community
 todo: 'A fazer: preencher isto corretamente'
 qrCode:
   error: Código QR não pôde ser gerado
@@ -22,6 +23,7 @@ buttons:
   delete: apagar
   resend: reenviar
   resendAutomatically: reenviar automaticamente
+  enable: Enable
   save: Guardar
   next: Seguinte
   back: Anterior
@@ -41,6 +43,7 @@ buttons:
   showMyInfo: Mostrar minha informação
   invite: Convidar
   addFriend: Adicionar amigo
+  makeDefault: Make Default
   ariaLabel:
     sidebar: 'Ativa/desativar barra lateral'
     dropdownBackdrop: Elemento acionável para fechar o menu suspenso
@@ -68,6 +71,8 @@ input:
     mnemonic: Insere a tua mnemónica
     name: Nome
 status:
+  connected: Connected
+  enabled: Enabled
   deliveryFailed: 'Mensagem não pôde ser entregue'
   importing: A importar...
   updateAvailable: Está disponível uma nova versão. Clique para atualizar.
@@ -175,7 +180,7 @@ ui:
       Por fim, este projeto, no que toca à funcionalidade, será um clone do que for popular - com a única diferença fundamental de que nada é registado pelos nós de retransmissão / federados.
     notOnlineQ: O que acontece quando envio uma mensagem e o destinatário já não está online?
     notOnlineA: >
-      O servidor não armazena mensagens e não mantém uma fila de mensagens não entregues. Se um destinatário não estiver online, a mensagem precisa de ser reenviada manualmente.
+      The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
     serverStorageQ: O servidor / retransmissor armazena alguma das minhas mensagens?
     serverStorageA: false
   footer:
@@ -213,6 +218,17 @@ ui:
     confirm: Confirmar terminar sessão
   settings:
     title: Configurações
+    tabs:
+      profile: Profile Info
+      interface: Interface
+      permissions: Permissions
+      relays: Relays
+      dangerZone: Danger Zone
+    relays:
+      add: Add Relay
+      URLs: URLs
+      socket: socket
+      openGraph: open graph
     copyProfileToDevice: Copiar perfil para dispositivo
     hideKey: Esconder chave privada
     showKey: Mostrar chave privada
