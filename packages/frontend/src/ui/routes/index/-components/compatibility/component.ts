@@ -1,7 +1,14 @@
 import Component, { tracked } from 'sparkles-component';
 import { dropTask } from 'ember-concurrency-decorators';
 
-import { hasWASM, hasCamera, hasIndexedDb } from './-utils/detection';
+import {
+  hasWASM,
+  hasCamera,
+  hasIndexedDb,
+  hasNotifications,
+  hasServiceWorker,
+  hasWebWorker,
+} from './-utils/detection';
 
 export default class Compatibility extends Component {
   @tracked hasCamera!: boolean;
@@ -30,9 +37,9 @@ export default class Compatibility extends Component {
     this.hasIndexedDb = check(yield hasIndexedDb());
     this.hasCamera = check(hasCamera());
     this.hasWASM = check(hasWASM());
-    this.hasNotifications = check('Notification' in window);
-    this.hasServiceWorker = check('ServiceWorker' in window);
-    this.hasWebWorker = check('Worker' in window);
+    this.hasNotifications = check(hasNotifications());
+    this.hasServiceWorker = check(hasServiceWorker());
+    this.hasWebWorker = check(hasWebWorker());
   }
 
   private checkSuccess(value: boolean) {

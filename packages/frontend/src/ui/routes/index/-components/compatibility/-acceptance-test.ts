@@ -5,7 +5,6 @@ import { setupApplicationTest } from 'ember-qunit';
 import {
   clearLocalStorage,
   setupRelayConnectionMocks,
-  cancelLongRunningTimers,
   setupWindowNotification,
 } from 'emberclear/tests/helpers';
 
@@ -13,7 +12,6 @@ module('Acceptance | Compatibility', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  cancelLongRunningTimers(hooks);
   setupWindowNotification(hooks);
 
   // stub things that may not exist (esp in headless / c.i.)

@@ -1,5 +1,5 @@
 import { module, skip, test } from 'qunit';
-import { currentURL, settled, waitFor } from '@ember/test-helpers';
+import { currentURL, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import DS from 'ember-data';
@@ -12,10 +12,11 @@ import {
   clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
-  cancelLongRunningTimers,
+  waitUntilTruthy,
+  clearToasts,
 } from 'emberclear/tests/helpers';
 
-import { app } from 'emberclear/tests/helpers/pages/app';
+import { page as app } from 'emberclear/tests/helpers/pages/app';
 import { chat } from 'emberclear/tests/helpers/pages/chat';
 import { nameForm, completedPage } from 'emberclear/tests/helpers/pages/setup';
 
@@ -23,7 +24,7 @@ module('Acceptance | Invitations', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  cancelLongRunningTimers(hooks);
+  clearToasts(hooks);
 
   module('Is not logged in', function(hooks) {
     hooks.beforeEach(async function() {
@@ -94,6 +95,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('name is missing from a contact invitation', function(hooks) {
         hooks.beforeEach(async function() {
           await visit('/invite?publicKey=whatever');
+          await waitFor(app.toast.scope);
         });
 
         test('a redirect to chat occurs', function(assert) {
@@ -101,7 +103,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('a toast is displayed with an error', function(assert) {
-          const text = app.toast()!.textContent!;
+          const text = app.toast.text;
 
           assert.ok(text.includes('Invalid Invite Link'), 'Toast says invite is invalid');
         });
@@ -110,6 +112,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('publicKey is missing from a contact invitation', function(hooks) {
         hooks.beforeEach(async function() {
           await visit('/invite?name=Test');
+          await waitFor(app.toast.scope);
         });
 
         test('a redirect to chat occurs', function(assert) {
@@ -117,7 +120,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('a toast is displayed with an error', function(assert) {
-          const text = app.toast()!.textContent!;
+          const text = app.toast.text;
 
           assert.ok(text.includes('Invalid Invite Link'), 'Toast says invite is invalid');
         });
@@ -128,6 +131,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('the params are invalid', function(hooks) {
         hooks.beforeEach(async function() {
           await visit('/invite?name=Test&publicKey=abz');
+          await waitFor(app.toast.scope);
         });
 
         test('a redirect to chat occurs', function(assert) {
@@ -135,7 +139,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('a toast is displayed with an error', function(assert) {
-          const text = app.toast()!.textContent!;
+          const text = app.toast.text;
 
           assert.ok(text.includes('There was a problem'), 'Toast says there is a problem');
         });
@@ -149,6 +153,7 @@ module('Acceptance | Invitations', function(hooks) {
             const { name, publicKeyAsHex } = record!;
 
             await visit(`/invite?name=${name}&publicKey=${publicKeyAsHex}`);
+            await waitUntilTruthy(() => app.toast.isVisible);
           });
 
           test('a redirect to your own chat occurs', function(assert) {
@@ -156,7 +161,7 @@ module('Acceptance | Invitations', function(hooks) {
           });
 
           test('a toast is displayed with a warning', function(assert) {
-            const text = app.toast()!.textContent!;
+            const text = app.toast.text;
 
             assert.ok(
               text.includes(`You can't invite yourself...`),

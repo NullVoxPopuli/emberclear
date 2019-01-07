@@ -1,4 +1,4 @@
-import Service, { Registry } from '@ember/service';
+import Service from '@ember/service';
 import { computed } from '@ember-decorators/object';
 import { service } from '@ember-decorators/service';
 
@@ -12,7 +12,7 @@ export default class Notifications extends Service {
   @service toast!: Toast;
   @service intl!: Intl;
   @service identity!: IdentityService;
-  @service router!: Registry['router'];
+  @service router;
 
   askToEnableNotifications = true;
   isHiddenUntilBrowserRefresh = false;

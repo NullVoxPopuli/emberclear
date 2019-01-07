@@ -17,7 +17,7 @@ export default class NameEntry extends Component {
   name!: string;
 
   @computed('name')
-  get nameIsBlank(this: NameEntry): boolean {
+  get nameIsBlank(): boolean {
     return isBlank(this.name);
   }
 

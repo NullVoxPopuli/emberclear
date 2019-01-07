@@ -44,7 +44,7 @@ export default class Toast extends Service {
 
     this.notifications.addNotification({
       autoClear: true,
-      clearDuration: Ember.testing ? 10 : 4000,
+      clearDuration: 4000,
       ...options,
       message: message || 'status',
       type: status,

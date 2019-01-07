@@ -5,7 +5,6 @@ import { setupApplicationTest } from 'ember-qunit';
 import {
   clearLocalStorage,
   setupRelayConnectionMocks,
-  cancelLongRunningTimers,
   setupWindowNotification,
   getService,
 } from 'emberclear/tests/helpers';
@@ -18,7 +17,6 @@ module('Acceptance | Notifications Service', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  cancelLongRunningTimers(hooks);
   setupWindowNotification(hooks);
 
   module('permission has not yet been asked for', function(hooks) {

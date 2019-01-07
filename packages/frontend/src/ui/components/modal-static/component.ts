@@ -1,4 +1,4 @@
-import Component from 'sparkles-component';
+import Component, { tracked } from 'sparkles-component';
 import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
@@ -12,8 +12,6 @@ interface IArgs {
 
 export default class ModalStatic extends Component<IArgs> {
   @service modals!: Modals;
-
-  name!: string;
 
   didInsertElement() {
     const { initiallyActive, name } = this.args;

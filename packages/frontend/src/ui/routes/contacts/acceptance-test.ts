@@ -7,7 +7,6 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   getService,
-  cancelLongRunningTimers,
   createIdentity,
 } from 'emberclear/tests/helpers';
 
@@ -20,7 +19,6 @@ module('Acceptance | Contacts', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  cancelLongRunningTimers(hooks);
 
   module('when not logged in', function(hooks) {
     hooks.beforeEach(async function() {

@@ -21,6 +21,18 @@ export function hasCamera() {
   return 'mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices;
 }
 
+export function hasNotifications() {
+  return 'Notification' in window;
+}
+
+export function hasServiceWorker() {
+  return 'ServiceWorker' in window;
+}
+
+export function hasWebWorker() {
+  return 'Worker' in window;
+}
+
 export function hasIndexedDb() {
   return new Promise((resolve /* , reject */) => {
     let request = indexedDB.open('MyTestDatabase');

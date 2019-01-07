@@ -5,7 +5,6 @@ import { setupApplicationTest } from 'ember-qunit';
 import {
   clearLocalStorage,
   setupRelayConnectionMocks,
-  cancelLongRunningTimers,
   setupCurrentUser,
 } from 'emberclear/tests/helpers';
 
@@ -17,7 +16,6 @@ module('Acceptance | Settings | Relays', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  cancelLongRunningTimers(hooks);
 
   let path = '/settings/permissions';
 

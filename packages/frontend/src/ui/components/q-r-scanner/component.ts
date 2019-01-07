@@ -1,28 +1,27 @@
-import Component from '@ember/component';
+import Component, { tracked } from 'sparkles-component';
 
 import QrScanner from 'qr-scanner';
 // import { NoCameraError } from 'emberclear/src/utils/errors';
 
-// inspiration from previous work here:
-// https://github.com/NullVoxPopuli/tanqueReact/blob/master/js/components/-components/qr-scanner/index.jsx
-export default class QRScanner extends Component {
-  // args
-  onScan!: (qrContent: string) => void;
-  onError!: (error: Error) => void;
+interface IArgs {
+  onScan: (qrContent: string) => void;
+  onError: (error: Error) => void;
+}
 
+export default class QRScanner extends Component<IArgs> {
   scanner?: QrScanner = undefined;
 
-  started = false;
+  @tracked started = false;
 
   didInsertElement() {
     this.mountScanner();
   }
 
-  willDestroyElement() {
-    this.unmountScanner();
+  async destroy() {
+    await this.unmountScanner();
   }
 
-  async unmountScanner(this: QRScanner) {
+  async unmountScanner() {
     if (!this.scanner) return;
 
     this.scanner.stop();
@@ -36,16 +35,16 @@ export default class QRScanner extends Component {
 
     await scanner.start();
 
-    this.set('started', true);
+    this.started = true;
   }
 
   newScanner(): QrScanner {
-    const video = this.element.querySelector('#qr-preview')!;
+    const video = document.querySelector('#qr-preview')!;
     const scanner = new QrScanner(video, (result: string) => {
       scanner.stop();
       scanner._qrWorker.terminate();
 
-      this.onScan(result);
+      this.args.onScan(result);
     });
 
     return scanner;

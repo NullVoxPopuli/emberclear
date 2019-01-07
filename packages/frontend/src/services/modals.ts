@@ -1,9 +1,21 @@
 import Service from '@ember/service';
 import EmberObject from '@ember/object';
 
+interface IModalArgs {
+  name: string;
+  isActive: boolean;
+}
+
 class ModalState extends EmberObject {
   name!: string;
   isActive!: boolean;
+
+  constructor(args: IModalArgs) {
+    super();
+
+    this.name = args.name;
+    this.isActive = args.isActive;
+  }
 }
 
 export default class Modals extends Service {

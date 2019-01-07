@@ -8,13 +8,20 @@ import {
   isVisible,
   text,
   isPresent,
+  notHasClass,
   fillable,
+  property,
   clickable,
 } from 'ember-cli-page-object';
 
 const toast = '[data-test-notification-message]';
 
 export const page = create({
+  toast: {
+    scope: '[data-test-notification-message]',
+    isVisible: isVisible(),
+    text: text(),
+  },
   headerUnread: {
     scope: '[data-test-unread-count]',
     isVisible: isVisible,
@@ -32,7 +39,7 @@ export const page = create({
   modals: {
     addContact: {
       scope: '[data-test-add-contact]',
-      isHidden: attribute('aria-hidden'),
+      isHidden: notHasClass('is-active'),
       hide: clickable('[aria-label="Close Modal"]'),
     },
   },

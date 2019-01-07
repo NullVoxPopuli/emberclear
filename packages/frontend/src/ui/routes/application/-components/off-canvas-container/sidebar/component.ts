@@ -2,7 +2,7 @@ import Component from 'sparkles-component';
 import { service } from '@ember-decorators/service';
 import { reads, alias } from '@ember-decorators/object/computed';
 
-import SidebarService from 'emberclear/services/sidebar';
+import SidebarService from 'emberclear/services/sidebar/service';
 import IdentityService from 'emberclear/services/identity/service';
 import Modals from 'emberclear/services/modals';
 
