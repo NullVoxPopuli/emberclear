@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import StoreService from 'ember-data/store';
 
-import { visit, settled, waitFor } from '@ember/test-helpers';
+import { visit, settled, waitFor, find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -11,11 +11,12 @@ import {
   getService,
   text,
   createIdentity,
+  waitUntilTruthy,
 } from 'emberclear/tests/helpers';
 
 import IdentityService from 'emberclear/src/services/identity/service';
-import { sidebar } from 'emberclear/tests/helpers/pages/sidebar';
-import { app, page } from 'emberclear/tests/helpers/pages/app';
+import { sidebar, page } from 'emberclear/tests/helpers/pages/sidebar';
+import { page as app } from 'emberclear/tests/helpers/pages/app';
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 
 module('Acceptance | Sidebar', function(hooks) {
@@ -27,11 +28,13 @@ module('Acceptance | Sidebar', function(hooks) {
   hooks.beforeEach(async function() {
     await visit('/chat');
     await sidebar.toggle();
+    await waitUntilTruthy(() => sidebar.isOpen());
   });
 
   module('Contacts', function() {
     test('the modals are hidden', function(assert) {
-      assert.ok(app.modals.addContact.isHidden(), 'Add Contact is hidden');
+      console.log(find('[aria-modal][aria-hidden]'));
+      assert.ok(app.modals.addContact.isHidden, 'Add Contact is hidden');
     });
 
     module('the add contact button is clicked', function(hooks) {
@@ -40,7 +43,7 @@ module('Acceptance | Sidebar', function(hooks) {
       });
 
       test('the modal is visible', function(assert) {
-        assert.notOk(app.modals.addContact.isHidden());
+        assert.notOk(app.modals.addContact.isHidden, 'contact modal is hidden');
       });
 
       module('the modal is closed', function(hooks) {
@@ -49,7 +52,7 @@ module('Acceptance | Sidebar', function(hooks) {
         });
 
         test('the modal is no longer visible', function(assert) {
-          assert.ok(app.modals.addContact.isHidden());
+          assert.ok(app.modals.addContact.isHidden, 'contact modal is hidden');
         });
       });
     });
@@ -79,7 +82,7 @@ module('Acceptance | Sidebar', function(hooks) {
         });
 
         test('offline count does not show', function(assert) {
-          assert.notOk(sidebar.contacts.offlineCount());
+          assert.notOk(page.contacts.offlineCount.isVisible, 'offline count is shown');
         });
 
         module('offline contacts are to be hidden', function(hooks) {
@@ -113,7 +116,7 @@ module('Acceptance | Sidebar', function(hooks) {
         });
 
         test('there are 3 rows of names', function(assert) {
-          assert.equal(sidebar.contacts.rows().length, 3);
+          assert.equal(sidebar.contacts.rows().length, 3, 'there are 3 contacts');
         });
 
         module('offline contacts are to be hidden', function(hooks) {

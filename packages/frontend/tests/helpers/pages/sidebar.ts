@@ -1,10 +1,25 @@
 import { find, click, triggerKeyEvent, fillIn, findAll } from '@ember/test-helpers';
 
+import { create, clickable, isVisible, text } from 'ember-cli-page-object';
+
 const wrapper = '[data-test-offcanvas-wrapper]';
 const toggleButton = '[data-test-hamburger-toggle]';
 const sidebarContainer = '[data-test-sidebar-container]';
 const channelForm = '[data-test-channel-form]';
 const contacts = '[data-test-sidebar-contacts]';
+
+export const page = create({
+  scope: '[data-test-offcanvas-wrapper]',
+  contacts: {
+    scope: '[data-test-sidebar-contacts]',
+    clickAdd: clickable('[data-test-add-friend]'),
+    offlineCount: {
+      scope: '[data-test-offline-count]',
+      isVisible: isVisible(),
+      text: text(),
+    },
+  },
+});
 
 export const sidebar = {
   selectors: {

@@ -33,12 +33,27 @@ module.exports = function(defaults) {
     // tests: isTest,
     hinting: false,
     minifyJS: { enabled: isProduction },
+    // TODO: find a way to remove legacy browser support from css
     minifyCSS: { enabled: isProduction },
 
     sourcemaps: {
       enabled: !isProduction,
       extensions: 'js',
     },
+
+    autoImport: {
+      alias: {
+        'qr-scanner': 'qr-scanner/qr-scanner.min.js',
+      },
+      exclude: ['libsodium', 'libsodium-wrappers', 'phoenix', 'showdown', 'qrcode', 'uuid'],
+    },
+
+    // babel: {
+    //   plugins: [
+    //     // require('ember-auto-import/babel-plugin'),
+    //     require('@babel/plugin-transform-typescript'),
+    //   ],
+    // },
 
     'ember-cli-babel': {
       includePolyfill: false,
@@ -104,11 +119,6 @@ module.exports = function(defaults) {
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
 
-  // qrcode scanner
-  app.import('node_modules/qr-scanner/qr-scanner.min.js', {
-    using: [{ transformation: 'es6', as: 'qr-scanner' }],
-  });
-
   // qr-scanner hardcoded this path.... -.-
   var qrScannerWorker = new Funnel('node_modules/qr-scanner/', {
     include: ['qr-scanner-worker.min.js'],
@@ -120,5 +130,8 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'uuid' }],
   });
 
-  return mergeTrees([app.toTree(), qrScannerWorker]);
+  return new Funnel(mergeTrees([app.toTree(), qrScannerWorker]), {
+    exclude: ['**/*-test.{ts,js}', '**/*-tests.{js,ts}'],
+    annotation: 'Module Unification Tests',
+  });
 };

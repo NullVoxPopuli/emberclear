@@ -6,7 +6,6 @@ import { setupApplicationTest } from 'ember-qunit';
 import {
   clearLocalStorage,
   setupRelayConnectionMocks,
-  cancelLongRunningTimers,
   setupCurrentUser,
   getService,
 } from 'emberclear/tests/helpers';
@@ -17,7 +16,6 @@ module('Acceptance | Chat', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  cancelLongRunningTimers(hooks);
   setupCurrentUser(hooks);
 
   module('Unread Messages', function(hooks) {

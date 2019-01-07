@@ -6,7 +6,6 @@ import StoreService from 'ember-data/store';
 import {
   clearLocalStorage,
   setupRelayConnectionMocks,
-  cancelLongRunningTimers,
   setupCurrentUser,
   getService,
 } from 'emberclear/tests/helpers';
@@ -21,7 +20,6 @@ module('Acceptance | Settings | Relays', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  cancelLongRunningTimers(hooks);
 
   let path = '/settings/relays';
 

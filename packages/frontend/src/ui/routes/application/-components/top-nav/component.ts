@@ -26,7 +26,7 @@ export default class TopNav extends Component {
   }
 
   @computed('isChat')
-  get textColor(this: TopNav) {
+  get textColor() {
     if (this.isChat) return 'has-text-white';
 
     return '';

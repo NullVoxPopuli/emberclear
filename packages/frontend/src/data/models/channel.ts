@@ -12,7 +12,7 @@ export default class Channel extends Model {
   // to protect from other people you trust, but
   // maybe don't trust *that* much.
   // TODO: implement this.
-  @attr() protected!: boolean;
+  @attr() public protected!: boolean;
   @attr() decryptionKey!: string;
 
   @hasMany('identity', { async: false }) members!: Identity[];

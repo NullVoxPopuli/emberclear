@@ -1,9 +1,10 @@
-import DS from 'ember-data';
+import StoreService from 'ember-data/store';
 import Component, { tracked } from 'sparkles-component';
 
 import { action, computed } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
+import { task } from 'ember-concurrency-decorators';
 
 import ENV from 'emberclear/config/environment';
 import { toHex, fromHex } from 'emberclear/src/utils/string-encoding';
@@ -18,7 +19,7 @@ interface IArgs {
 export default class AddModal extends Component<IArgs> {
   @service('notifications') toast!: Toast;
   @service identity!: Identity;
-  @service store!: DS.Store;
+  @service store!: StoreService;
 
   @tracked scanning = false;
 
@@ -46,15 +47,14 @@ export default class AddModal extends Component<IArgs> {
     this.scanning = !this.scanning;
   }
 
-  @action
-  async onScan(this: AddModal, identityJson: string) {
+  @task *onScan(this: AddModal, identityJson: string) {
     const identity = JSON.parse(identityJson);
 
-    await this.tryCreate(identity);
+    yield this.tryCreate(identity);
 
     this.scanning = false;
 
-    this.close();
+    this.args.close();
   }
 
   @action
@@ -64,7 +64,14 @@ export default class AddModal extends Component<IArgs> {
 
   async tryCreate(identity: IdentityJson) {
     const { name, publicKey } = identity;
-    const exists = this.store.peekRecord('identity', publicKey);
+
+    if (!name || !publicKey) {
+      this.toast.error('Scan did not contain required information. Please try again.');
+      console.error(identity);
+      return;
+    }
+
+    const exists = await this.store.findRecord('identity', publicKey);
 
     if (exists) {
       this.toast.info('Friend already added!');

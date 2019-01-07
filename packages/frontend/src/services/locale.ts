@@ -9,7 +9,7 @@ const DEFAULT_LOCALE = 'en-us';
 export default class LocaleService extends Service {
   @service intl!: IntlService;
 
-  @syncToLocalStorage
+  @syncToLocalStorage // currentLocale;
   get currentLocale() {
     return DEFAULT_LOCALE;
   }

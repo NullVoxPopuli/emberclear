@@ -6,7 +6,6 @@ import {
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,
-  cancelLongRunningTimers,
   setupWindowNotification,
   refresh,
 } from 'emberclear/tests/helpers';
@@ -20,7 +19,6 @@ module('Acceptance | Notification Permission Prompt', function(hooks) {
   setupApplicationTest(hooks);
   setupRelayConnectionMocks(hooks);
   clearLocalStorage(hooks);
-  cancelLongRunningTimers(hooks);
   setupWindowNotification(hooks);
   setupCurrentUser(hooks);
 

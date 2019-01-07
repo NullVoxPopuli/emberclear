@@ -8,7 +8,6 @@ import Identity from 'emberclear/src/data/models/identity/model';
 import {
   clearLocalStorage,
   setupRelayConnectionMocks,
-  cancelLongRunningTimers,
   setupCurrentUser,
   getStore,
   getService,
@@ -22,7 +21,6 @@ import { app } from 'emberclear/tests/helpers/pages/app';
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
-  cancelLongRunningTimers(hooks);
 
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);
@@ -93,6 +91,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
       test('redirects', async function(assert) {
         await settled();
+        await waitFor(app.selectors.toast);
+
         assert.equal(currentURL(), '/chat');
       });
 

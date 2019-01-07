@@ -24,7 +24,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
   clearLocalStorage(hooks);
 
   test('it exists', function(assert) {
-    let service = getService('messages/auto-responder');
+    let service = getService<AutoResponder>('messages/auto-responder');
     assert.ok(service);
   });
 
