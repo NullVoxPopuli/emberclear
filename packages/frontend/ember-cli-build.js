@@ -49,6 +49,7 @@ module.exports = function(defaults) {
     },
 
     // babel: {
+    //   sourceMaps: 'inline',
     //   plugins: [
     //     // require('ember-auto-import/babel-plugin'),
     //     require('@babel/plugin-transform-typescript'),
@@ -59,6 +60,7 @@ module.exports = function(defaults) {
       includePolyfill: false,
       disablePresetEnv: true,
       disableDebugTooling: isProduction,
+      includeExternalHelpers: true,
       // Will not build if uncommented:
       // disableEmberModulesAPIPolyfill: true
       // compileModules: false,
