@@ -12,11 +12,11 @@ import {
   hasWebWorker,
 } from 'emberclear/src/ui/routes/index/-components/compatibility/-utils/detection';
 
-const seed = Math.random()
-  .toString(36)
-  .substr(2, 5);
+// const seed = Math.random()
+//   .toString(36)
+//   .substr(2, 5);
 
-// const seed = 'y1mh0';
+const seed = 'y1mh0';
 
 QUnit.config.seed = seed;
 QUnit.config.reorder = true;
