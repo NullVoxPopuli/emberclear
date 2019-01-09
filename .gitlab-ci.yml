@@ -34,7 +34,6 @@ before_script:
 
 Security via Synk:
   stage: setup
-  # before_script: [ ]
   script:
     - time npm install -g snyk
     - time ( cd ${CI_PROJECT_DIR}/packages/frontend && snyk test --severity-threshold=high )

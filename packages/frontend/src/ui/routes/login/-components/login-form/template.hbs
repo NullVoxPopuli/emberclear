@@ -11,18 +11,18 @@
   {{#unless this.scanning}}
     <Field>
       {{input
-        data-test-name
+        data-test-name=true
         class='input'
-        value=name
+        value=this.name
         placeholder=(t 'input.placeholder.name')
       }}
     </Field>
 
     <Field>
       {{input
-        data-test-mnemonic
+        data-test-mnemonic=true
         class='input'
-        value=mnemonic
+        value=this.mnemonic
         placeholder=(t 'input.placeholder.mnemonic')
       }}
     </Field>
@@ -37,7 +37,7 @@
         {{t 'buttons.scan'}}
       </button>
 
-      <FileChooser @onChoose={{perform uploadSettings}} as |chooser|>
+      <FileChooser @onChoose={{perform this.uploadSettings}} as |chooser|>
         <button
           data-test-upload-settings
           class='m-l-md button'
@@ -50,7 +50,7 @@
       <button
         data-test-submit-login
         class='m-l-md button'
-        {{action (perform login)}}
+        {{action (perform this.login)}}
       >
         {{t 'buttons.login'}}
       </button>

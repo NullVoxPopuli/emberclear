@@ -30,6 +30,8 @@ Router.map(function() {
     this.route('danger-zone');
   });
   this.route('faq');
+
+  this.route('not-found', { path: '/*path' });
 });
 
 export default Router;

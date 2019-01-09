@@ -1,7 +1,7 @@
 <form {{action 'save' on='submit'}}>
 
   <Field @label='Name'>
-    {{input data-test-name-field class='input' value=name}}
+    {{input data-test-name-field=true class='input' value=this.name}}
   </Field>
 
   <div class='flex justify-content-end'>
@@ -13,10 +13,10 @@
 <button
   data-test-show-private-key-toggle
   class='button'
-  {{action (mut showPrivateKey) (not showPrivateKey)}}
+  {{action (mut this.showPrivateKey) (not this.showPrivateKey)}}
 >
 
-  {{#if showPrivateKey}}
+  {{#if this.showPrivateKey}}
     {{t 'ui.settings.hideKey'}}
   {{else}}
     {{t 'ui.settings.showKey'}}
@@ -24,11 +24,11 @@
 
 </button>
 
-{{#if showPrivateKey}}
-  <MnemonicDisplay @privateKey={{identity.privateKey}} />
+{{#if this.showPrivateKey}}
+  <MnemonicDisplay @privateKey={{this.identity.privateKey}} />
 {{/if}}
 
-<a {{action downloadSettings}} class='button'>
+<a {{action this.downloadSettings}} class='button'>
   {{t 'ui.settings.download' }}
 </a>
 

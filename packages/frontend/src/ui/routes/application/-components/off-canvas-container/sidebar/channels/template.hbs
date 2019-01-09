@@ -9,7 +9,7 @@
 
     <a class='button is-small' {{action this.toggleForm}}>
       <span class='icon' data-test-channel-form-toggle>
-        {{#if isFormVisible}}
+        {{#if this.isFormVisible}}
           {{fa-icon 'times'}}
         {{else}}
           {{fa-icon 'plus'}}
@@ -18,7 +18,7 @@
     </a>
   </p>
 
-  {{#if isFormVisible}}
+  {{#if this.isFormVisible}}
     <ChannelForm @onSubmit={{action this.toggleForm}} />
   {{/if}}
 
