@@ -15,10 +15,10 @@
 
   <div class='message-header'>
     <span class='from p-r-md'>
-      {{#if hasSender}}
+      {{#if this.hasSender}}
 
         {{#link-to 'chat.privately-with' @message.from}}
-          {{senderName}}
+          {{this.senderName}}
         {{/link-to}}
 
       {{else}}
@@ -47,11 +47,11 @@
   <p
     class='message-body'
   >
-    {{{messageBody}}}
+    {{{this.messageBody}}}
 
-    {{#if (is-present urls)}}
+    {{#if (is-present this.urls)}}
       <div class='flex flex-wrap'>
-        {{#each urls as |url|}}
+        {{#each this.urls as |url|}}
           <EmbeddedResource class='flex' @url={{url}} />
         {{/each}}
       </div>

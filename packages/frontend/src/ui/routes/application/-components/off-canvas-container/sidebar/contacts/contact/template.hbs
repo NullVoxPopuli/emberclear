@@ -21,11 +21,11 @@
           <span class='m-l-sm'>{{or @contact.name '[unnamed]'}}</span>
         </span>
 
-        {{#if hasUnread}}
+        {{#if this.hasUnread}}
           <span
             id={{this.unreadElementId}}
             class='tag is-danger is-small is-pulled-right'>
-            {{numberUnread}}
+            {{this.numberUnread}}
           </span>
         {{/if}}
       </a>

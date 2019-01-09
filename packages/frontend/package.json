@@ -120,7 +120,7 @@
     "ember-service-worker-update-notify": "^2.0.0",
     "ember-sinon": "^3.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/f77abaf9d5995916e2ad1f0807b86cc2015c808b.tgz",
-    "ember-template-lint": "1.0.0-beta.6",
+    "ember-template-lint": "1.0.0",
     "ember-test-selectors": "2.0.0",
     "ember-web-app": "^3.0.0-beta.1",
     "eslint-config-prettier": "^3.3.0",

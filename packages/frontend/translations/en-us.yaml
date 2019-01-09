@@ -25,6 +25,11 @@ connection:
     subscribe:
       notConnected: Cannot subscribe to a channel without a socket connection!
 
+errors:
+  notFound:
+    title: Not Found
+    help: The URL could not be navigated to. If the problem persists, please file an issue.
+
 buttons:
   delete: delete
   resend: resend

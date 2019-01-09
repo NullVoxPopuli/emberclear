@@ -1,6 +1,6 @@
 <ChatHistory
   class='flex-grow flex-column'
-  @messages={{messages}}
-  @to={{model.targetChannel}}/>
+  @messages={{this.messages}}
+  @to={{this.model.targetChannel}}/>
 
-<ChatEntry class='p-l-md p-r-md' @to={{model.targetChannel}} />
+<ChatEntry class='p-l-md p-r-md' @to={{this.model.targetChannel}} />
