@@ -25,12 +25,15 @@ export async function initialize(applicationInstance: any) {
   const existingHosts = existing.map(e => e.host);
 
   return await Promise.all(
-    defaultRelays.map(defaultRelay => {
+    defaultRelays.map((defaultRelay, i) => {
       if (existingHosts.includes(defaultRelay.host)) {
         return;
       }
 
-      const record = store.createRecord('relay', defaultRelay);
+      const record = store.createRecord('relay', {
+        ...defaultRelay,
+        priority: i + 1,
+      });
       return record.save();
     })
   );

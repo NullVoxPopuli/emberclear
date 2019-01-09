@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { isPresent } from '@ember/utils';
