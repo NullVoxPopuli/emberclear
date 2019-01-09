@@ -1,6 +1,8 @@
 ## Change Log
 
 ### 2019-01
+ 
+ - Bugfix: configurable relays did not correctly implement relay selection during app boot
 
 ### 2018-12
 
