@@ -133,7 +133,7 @@
     "qunit-dom": "^0.8.0",
     "sass": "^1.13.2",
     "sass-lint": "^1.12.1",
-    "sparkles-component": "github:buschtoens/sparkles-component#refactor/stage-2-decorators",
+    "sparkles-component": "1.3.0",
     "typescript": "^3.2.0",
     "typescript-eslint-parser": "20.1.1"
   },

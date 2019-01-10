@@ -4916,7 +4916,6 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
 
 "ember-cli@github:ember-cli/ember-cli#589b3a8e8181829f9e52b2a568edf3ec95a1b53a":
   version "3.8.0-beta.1"
-  uid "589b3a8e8181829f9e52b2a568edf3ec95a1b53a"
   resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/589b3a8e8181829f9e52b2a568edf3ec95a1b53a"
   dependencies:
     "@babel/plugin-transform-modules-amd" "^7.2.0"
@@ -11329,9 +11328,10 @@ sourcemap-validator@^1.1.0:
     lodash.template "~2.3.x"
     source-map "~0.1.x"
 
-"sparkles-component@github:buschtoens/sparkles-component#refactor/stage-2-decorators":
-  version "1.2.0"
-  resolved "https://codeload.github.com/buschtoens/sparkles-component/tar.gz/d0f93f6ba3e451a6677f252981b46e7aad9fe99f"
+sparkles-component@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/sparkles-component/-/sparkles-component-1.3.0.tgz#1110db66edec300c80e8741229414e86b33004c3"
+  integrity sha512-19yH7S+PsA7Fn4tNk0Bu7ZqS/1P5asliNMD5d21J8YjIzKhlyzj40Ab0kB92lBLbrkxpb6D44KvbvD/TniUTZg==
   dependencies:
     "@ember-decorators/utils" "^4.0.0"
     "@glimmer/env" "^0.1.7"
