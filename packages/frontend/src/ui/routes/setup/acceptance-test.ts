@@ -2,6 +2,7 @@ import { DS } from 'ember-data';
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { percySnapshot } from 'ember-percy';
 
 import { nameForm } from 'emberclear/tests/helpers/pages/setup';
 
@@ -40,6 +41,7 @@ module('Acceptance | Setup', function(hooks) {
 
     test('redirects to setup/new', function(assert) {
       assert.equal(currentURL(), '/setup/new');
+      percySnapshot(assert as any);
     });
 
     module('name is not filled in', function() {
@@ -66,6 +68,7 @@ module('Acceptance | Setup', function(hooks) {
 
       test('proceeds to next page', function(assert) {
         assert.equal(currentURL(), '/setup/completed');
+        percySnapshot(assert as any);
       });
 
       test('sets the "me" identity', function(assert) {

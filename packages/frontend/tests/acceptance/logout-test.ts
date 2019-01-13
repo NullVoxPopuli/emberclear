@@ -2,6 +2,7 @@ import { module, test } from 'qunit';
 
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { percySnapshot } from 'ember-percy';
 
 import {
   stubService,
@@ -30,6 +31,7 @@ module('Acceptance | Logout', function(hooks) {
 
     test('redirects to setup', function(assert) {
       assert.equal(currentURL(), '/setup/new');
+      percySnapshot(assert as any);
     });
   });
 
@@ -47,6 +49,7 @@ module('Acceptance | Logout', function(hooks) {
 
       test('shows the logout button', function(assert) {
         assert.ok(app.userDropdown.logoutButton());
+        percySnapshot(assert as any);
       });
 
       module('clicking logout', function(hooks) {
@@ -56,6 +59,7 @@ module('Acceptance | Logout', function(hooks) {
 
         test('navigates to the logout warning page', function(assert) {
           assert.equal(currentURL(), '/logout');
+          percySnapshot(assert as any);
         });
       });
     });
