@@ -2,6 +2,7 @@ import DS from 'ember-data';
 import { module, test } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { percySnapshot, QUnitAssert } from 'ember-percy';
 
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
 
@@ -36,6 +37,7 @@ const behaviors = {
           const expected = 'There was a problem logging in...';
 
           assert.contains(text, expected);
+          percySnapshot(assert as any);
         });
 
         test('navigation does not occur', function(assert) {
@@ -73,6 +75,7 @@ module('Acceptance | Login', function(hooks) {
 
     test('is not redirected', function(assert) {
       assert.equal(currentURL(), '/login');
+      percySnapshot(assert as any);
     });
 
     behaviors.invalid.clickLogin();
@@ -93,7 +96,7 @@ module('Acceptance | Login', function(hooks) {
       behaviors.invalid.clickLogin();
     });
 
-    module('both name and mnemonic are filled in', function(hooks) {
+    module('both name and mnemonic are filled in', function() {
       module('with valid values', function(hooks) {
         hooks.beforeEach(async function() {
           const mnemonic = await mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
@@ -104,6 +107,7 @@ module('Acceptance | Login', function(hooks) {
 
         test('redirects to chat', function(assert) {
           assert.equal(currentURL(), '/chat');
+          percySnapshot(assert as any);
         });
 
         test('sets the "me" identity', function(assert) {

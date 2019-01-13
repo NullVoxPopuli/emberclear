@@ -1,6 +1,7 @@
 import { module, skip, test } from 'qunit';
 import { currentURL, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { percySnapshot } from 'ember-percy';
 
 import DS from 'ember-data';
 import IdentityService from 'emberclear/src/services/identity/service';
@@ -33,6 +34,7 @@ module('Acceptance | Invitations', function(hooks) {
 
     test('a redirect to setup occurs', function(assert) {
       assert.equal(currentURL(), '/setup/new');
+      percySnapshot(assert as any);
     });
 
     test('there is now a pending redirect', function(assert) {
@@ -57,6 +59,7 @@ module('Acceptance | Invitations', function(hooks) {
 
       test('setup has advanced properly', function(assert) {
         assert.equal(currentURL(), '/setup/completed');
+        percySnapshot(assert as any);
       });
 
       test('redirect is still pending', function(assert) {
@@ -75,6 +78,7 @@ module('Acceptance | Invitations', function(hooks) {
 
         test('the redirect has been evaluated', function(assert) {
           assert.equal(currentURL(), '/chat/privately-with/abcdef123456');
+          percySnapshot(assert as any);
         });
 
         test('the redirect manager has been cleared', function(assert) {
@@ -106,6 +110,7 @@ module('Acceptance | Invitations', function(hooks) {
           const text = app.toast.text;
 
           assert.ok(text.includes('Invalid Invite Link'), 'Toast says invite is invalid');
+          percySnapshot(assert as any);
         });
       });
 
@@ -123,6 +128,7 @@ module('Acceptance | Invitations', function(hooks) {
           const text = app.toast.text;
 
           assert.ok(text.includes('Invalid Invite Link'), 'Toast says invite is invalid');
+          percySnapshot(assert as any);
         });
       });
     });
@@ -142,6 +148,7 @@ module('Acceptance | Invitations', function(hooks) {
           const text = app.toast.text;
 
           assert.ok(text.includes('There was a problem'), 'Toast says there is a problem');
+          percySnapshot(assert as any);
         });
       });
 
@@ -158,6 +165,7 @@ module('Acceptance | Invitations', function(hooks) {
 
           test('a redirect to your own chat occurs', function(assert) {
             assert.equal(currentURL(), '/chat/privately-with/me');
+            percySnapshot(assert as any);
           });
 
           test('a toast is displayed with a warning', function(assert) {
@@ -184,6 +192,7 @@ module('Acceptance | Invitations', function(hooks) {
             assert.expect(1);
 
             assert.equal(currentURL(), `/chat/privately-with/${publicKey}`);
+            percySnapshot(assert as any);
           });
 
           test('the contact is added to the list of contacts', async function(assert) {

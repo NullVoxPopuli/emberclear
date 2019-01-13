@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { visit, currentURL, settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { percySnapshot } from 'ember-percy';
 
 import {
   clearLocalStorage,
@@ -37,6 +38,7 @@ module('Acceptance | Contacts', function(hooks) {
       await visit('/contacts');
 
       assert.equal(currentURL(), '/contacts');
+      percySnapshot(assert as any);
     });
 
     module('a couple contacts exist', function(hooks) {
@@ -55,6 +57,7 @@ module('Acceptance | Contacts', function(hooks) {
         const result = contacts.rows.dom().length;
 
         assert.equal(result, 2);
+        percySnapshot(assert as any);
       });
 
       test('current user does not show up in the contacts', function(assert) {
@@ -74,6 +77,7 @@ module('Acceptance | Contacts', function(hooks) {
           const result = contacts.rows.dom().length;
 
           assert.equal(result, 1);
+          percySnapshot(assert as any);
         });
       });
     });

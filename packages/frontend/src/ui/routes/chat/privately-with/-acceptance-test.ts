@@ -2,6 +2,7 @@ import { module, test, skip } from 'qunit';
 import StoreService from 'ember-data/store';
 import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { percySnapshot } from 'ember-percy';
 
 import Identity from 'emberclear/src/data/models/identity/model';
 
@@ -65,6 +66,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             // assert.equal(chat.messages.all().length, 0, 'history is blank');
             // assert.ok(chat.textarea.isDisabled(), 'textarea is disabled');
             assert.ok(chat.submitButton.isDisabled(), 'submitButton is disabled');
+
+            percySnapshot(assert as any);
           });
         });
 
@@ -77,6 +80,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           test('inputs are disabled', function(assert) {
             // assert.ok(chat.textarea.isDisabled(), 'textarea is disabled');
             assert.ok(chat.submitButton.isDisabled(), 'submitButton is disabled');
+
+            percySnapshot(assert as any);
           });
         });
       });
@@ -102,9 +107,11 @@ module('Acceptance | Chat | Privately With', function(hooks) {
         const toastText = app.toast()!.textContent;
 
         assert.ok(
-          toastText.match(/not be located/),
+          toastText!.match(/not be located/),
           'toast is displayed saying the user is not found'
         );
+
+        percySnapshot(assert as any);
       });
     });
 
@@ -182,6 +189,9 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
               assert.ok(loader, 'a loader is rendererd');
               assert.notOk(text.includes('could not be delivered'), 'no message is rendered yet');
+
+              percySnapshot(assert as any);
+
               await settled();
             });
           });
@@ -205,6 +215,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
               assert.notOk(loader, 'loader is no longer present');
               assert.ok(text.includes('could not be delivered'));
+
+              percySnapshot(assert as any);
             });
 
             module('resend is clicked', function() {
@@ -220,6 +232,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
                 const store = getService<StoreService>('store');
                 const messages = await store.query('message', { queueForResend: true });
                 assert.equal(messages.length, 1, 'there should only be one queued message');
+
+                percySnapshot(assert as any);
               });
 
               test('the confirmation action area shows that autosend is now pending', function(assert) {
@@ -267,6 +281,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
             assert.ok(loader, 'a loader is rendererd');
             assert.notOk(text.includes('could not be delivered'), 'no message is rendered yet');
+
+            percySnapshot(assert as any);
           });
         });
 
@@ -279,6 +295,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             const result = chat.messages.all().length;
 
             assert.equal(result, 1);
+
+            percySnapshot(assert as any);
           });
 
           module('a confirmation is received', function() {

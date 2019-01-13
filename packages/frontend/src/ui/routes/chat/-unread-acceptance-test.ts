@@ -2,6 +2,7 @@ import StoreService from 'ember-data/store';
 import { module, test } from 'qunit';
 import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { percySnapshot } from 'ember-percy';
 
 import {
   clearLocalStorage,
@@ -46,6 +47,8 @@ module('Acceptance | Chat', function(hooks) {
         assert.ok(page.headerUnread.isVisible(), 'indicator is visible');
         assert.ok(page.headerUnread.isVisible(), 'indicator is visible');
         assert.ok(page.headerUnread.text.includes('1'), 'has one unread message');
+
+        percySnapshot(assert as any);
       });
     });
   });
