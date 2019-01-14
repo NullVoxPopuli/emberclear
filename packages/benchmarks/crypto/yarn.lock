@@ -744,10 +744,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@types/libsodium-wrappers@0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@types/libsodium-wrappers/-/libsodium-wrappers-0.7.1.tgz#5036158da801db337b131656b5d1ed4a8fb27d05"
-  integrity sha512-qbDsIuNVOnK5UMZjnbWlEZ3ZMTH7sM9AcJpOd6+mHWu1dld2JoOsx4m1Qn6ExHNr0fE0bjr1LzuEM3sysHGGSA==
+"@types/libsodium-wrappers@0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@types/libsodium-wrappers/-/libsodium-wrappers-0.7.2.tgz#6dd9d49c0d556c2a4d2b16ad0462652e79e3acfe"
+  integrity sha512-EpNrzmFJxwDj9WY28mEmIBnrF1BMB19ExbffbF5soQ3TTU7dGi+uMp+Z+rY7h3w0oVdn+rPxnfT65a8vmPBH2g==
 
 abbrev@1:
   version "1.1.1"
