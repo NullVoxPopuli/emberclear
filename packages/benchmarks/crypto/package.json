@@ -28,6 +28,6 @@
     "@babel/runtime": "7.2.0",
     "@types/libsodium-wrappers": "0.7.2",
     "asyncmark": "0.2.3",
-    "typescript": "3.2.2"
+    "typescript": "3.2.4"
   }
 }
