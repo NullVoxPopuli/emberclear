@@ -15,11 +15,33 @@ $dropdown-content-radius: $radius-small;
 $navbar-dropdown-radius: $radius-small;
 $navbar-dropdown-boxed-shadow: $box-shadow;
 
+
+/*! purgecss start ignore */
 @import 'themes/default';
 // @import 'themes/bulmaswatch/superhero/variables';
 
-@import 'node_modules/bulma/bulma';
+@import 'node_modules/bulma/sass/utilities/_all.sass';
+@import 'node_modules/bulma/sass/base/_all.sass';
+@import 'node_modules/bulma/sass/elements/button';
+@import 'node_modules/bulma/sass/elements/container';
+@import 'node_modules/bulma/sass/elements/content';
+@import 'node_modules/bulma/sass/elements/form';
+@import 'node_modules/bulma/sass/elements/icon';
+@import 'node_modules/bulma/sass/elements/image';
+@import 'node_modules/bulma/sass/elements/notification';
+@import 'node_modules/bulma/sass/elements/table';
+@import 'node_modules/bulma/sass/elements/tag';
+@import 'node_modules/bulma/sass/elements/title';
+@import 'node_modules/bulma/sass/components/card';
+@import 'node_modules/bulma/sass/components/dropdown';
+@import 'node_modules/bulma/sass/components/menu';
+@import 'node_modules/bulma/sass/components/message';
+@import 'node_modules/bulma/sass/components/modal';
+@import 'node_modules/bulma/sass/components/navbar';
+@import 'node_modules/bulma/sass/components/tabs';
+@import 'node_modules/bulma/sass/layout/_all.sass';
 
+/*! purgecss end ignore */
 // @import 'themes/bulmaswatch/superhero/overrides.scss';
 
 $tablet: 480px;
@@ -195,18 +217,18 @@ pre {
 
 
 .resizable-textarea {
-textarea, .textarea-size {
-  max-height: 7rem;
-  overflow: hidden;
-  width: 100%;
-}
+  textarea, .textarea-size {
+    max-height: 7rem;
+    overflow: hidden;
+    width: 100%;
+  }
 
-textarea {
-  height: 100%;
-  position: absolute;
-  resize:none;
-  white-space: normal;
-}
+  textarea {
+    height: 100%;
+    position: absolute;
+    resize:none;
+    white-space: normal;
+  }
 
   .textarea-size {
     visibility: hidden;

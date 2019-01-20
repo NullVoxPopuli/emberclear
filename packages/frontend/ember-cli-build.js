@@ -4,6 +4,7 @@ const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
+const purgecss = require('@fullhuman/postcss-purgecss');
 
 // note that by default, the enabled flags on some things
 // like minifying by default, already check
@@ -68,6 +69,24 @@ module.exports = function(defaults) {
 
     'ember-test-selectors': {
       strip: isProduction,
+    },
+
+    postcssOptions: {
+      compile: {
+        extension: 'scss',
+        enabled: false,
+      },
+      filter: {
+        enabled: false, // total savings: 4KB.
+        plugins: [
+          {
+            module: purgecss,
+            options: {
+              content: ['./src/**/*.hbs', './src/**/.js', './src/**/.ts'],
+            },
+          },
+        ],
+      },
     },
 
     eslint: {
