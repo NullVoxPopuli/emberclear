@@ -16,7 +16,7 @@ stages:
 
 # need an image that has chrome, and eventually firefox
 # image: node:10
-image: danlynn/ember-cli:3.6.1
+image: danlynn/ember-cli:3.7.1
 
 variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
