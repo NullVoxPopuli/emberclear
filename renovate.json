@@ -3,15 +3,15 @@
     "config:base"
   ],
   "automerge": true,
+  "masterIssue": true,
   "packageRules": [
     {
-        "paths": ["packages/frontend/package.json"],
-        "rangeStrategy": "replace"
+      "paths": ["packages/frontend/package.json"],
+      "rangeStrategy": "replace"
     },
     {
-       "paths": ["packages/frontend/Dockerfile"],
-        "enabled": false
+      "paths": ["packages/frontend/Dockerfile"],
+      "enabled": false
     }
-    
   ]
 }
