@@ -18,7 +18,12 @@ export enum STATUS {
   BUSY = 'busy',
 }
 
-export default class Identity extends Model {
+export interface KeyPair {
+  publicKey: Uint8Array;
+  privateKey: Uint8Array;
+}
+
+export default class Identity extends Model implements Partial<KeyPair> {
   @attr() name?: string;
   @attr() publicKey?: Uint8Array;
   @attr() privateKey?: Uint8Array;

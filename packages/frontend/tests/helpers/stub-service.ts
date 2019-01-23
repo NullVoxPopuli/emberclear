@@ -6,7 +6,7 @@ interface IInjection {
   as: string;
 }
 
-export const stubService = (name: string, hash = {}, injections?: Array<IInjection>) => {
+export const stubService = (name: string, hash = {}, injections?: IInjection[]) => {
   let stubbedService;
 
   // TODO: need to be able to use an extended service that uses services. :)
