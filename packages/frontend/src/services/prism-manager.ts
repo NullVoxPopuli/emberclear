@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import { dropTask, task } from 'ember-concurrency-decorators';
+// import Prism from '@types/prismjs';
 
 const PRISM_VERSION = '1.15.0';
 const CDN = `https://cdn.jsdelivr.net/combine/`;

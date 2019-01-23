@@ -48,9 +48,9 @@ module('Unit | Service | messages/handler', function(hooks) {
           type: TYPE.CHAT,
           target: TARGET.WHISPER,
           to: me.record!.uid,
-          time_sent: new Date(),
+          ['time_sent']: new Date(),
           client: 'tests',
-          client_version: '0',
+          ['client_version']: '0',
           sender: {
             uid: sender.id,
             name: `user with id: ${sender.id}`,

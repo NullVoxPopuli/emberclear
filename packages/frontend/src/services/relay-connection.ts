@@ -13,7 +13,7 @@ import { ConnectionError, RelayNotSetError } from 'emberclear/src/utils/errors';
 
 interface ISendPayload {
   to: string;
-  message: String;
+  message: string;
 }
 
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/

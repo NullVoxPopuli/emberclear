@@ -1,4 +1,4 @@
-import Message from 'emberclear/data/models/message';
+import Message from 'emberclear/data/models/message/model';
 import Identity from 'emberclear/data/models/identity/model';
 
 export function buildSender(sender: Identity): RelayJson['sender'] {
@@ -25,8 +25,8 @@ export function build(msg: Message, sender: Identity): RelayJson {
     type: msg.type,
     target: msg.target,
     client: '',
-    client_version: '',
-    time_sent: msg.sentAt,
+    ['client_version']: '',
+    ['time_sent']: msg.sentAt,
     sender: buildSender(sender),
     message: buildMessage(msg),
   };
