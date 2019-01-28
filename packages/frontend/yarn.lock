@@ -5179,10 +5179,10 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     resolve "^1.3.3"
     semver "^5.3.0"
 
-"ember-cli@github:ember-cli/ember-cli#94a678276a96794e3196c8e71c7fc2a76e8dd617":
+"ember-cli@github:ember-cli/ember-cli#eb6fe908da79a98f6dc5052377190a955a92318d":
   version "3.8.0-beta.1"
-  uid "94a678276a96794e3196c8e71c7fc2a76e8dd617"
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/94a678276a96794e3196c8e71c7fc2a76e8dd617"
+  uid eb6fe908da79a98f6dc5052377190a955a92318d
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/eb6fe908da79a98f6dc5052377190a955a92318d"
   dependencies:
     "@babel/plugin-transform-modules-amd" "^7.2.0"
     amd-name-resolver "^1.3.1"
@@ -5262,7 +5262,7 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     sane "^4.0.0"
     semver "^5.5.0"
     silent-error "^1.1.0"
-    sort-package-json "^1.15.0"
+    sort-package-json "^1.18.0"
     symlink-or-copy "^1.2.0"
     temp "0.9.0"
     testem "^2.9.2"
@@ -12171,10 +12171,10 @@ sort-object-keys@^1.1.2:
   resolved "https://registry.yarnpkg.com/sort-object-keys/-/sort-object-keys-1.1.2.tgz#d3a6c48dc2ac97e6bc94367696e03f6d09d37952"
   integrity sha1-06bEjcKsl+a8lDZ2luA/bQnTeVI=
 
-sort-package-json@^1.15.0:
-  version "1.17.1"
-  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-1.17.1.tgz#ab8d7ba8c8e2bbe1805e0650829256f64191c203"
-  integrity sha512-IxcHMpJF2ksT2cTtY3scXErmxbpp79bA7nlToENHCn0ZhoX7fMJk97z9sHDyubRoKzbwzq4r6TZz9DHL5V0LXA==
+sort-package-json@^1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-1.18.0.tgz#d9ece79b1e1818dea67451813f9e504481bebd00"
+  integrity sha512-OkUR/WjlMz4IFOOMhYTpVl9rDaL4XIIOabzTXUBQVck04Dh+DyhjCNnMcndwX2dz+u77Q3MUuj1ncyVjVesB7Q==
   dependencies:
     detect-indent "^5.0.0"
     sort-object-keys "^1.1.2"
