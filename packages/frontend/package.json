@@ -50,7 +50,7 @@
     "@csstools/postcss-sass": "^3.0.0",
     "@ember-decorators/babel-transforms": "^5.0.0",
     "@ember/optional-features": "^0.7.0",
-    "@ember/test-helpers": "1.3.0",
+    "@ember/test-helpers": "1.3.1",
     "@fortawesome/ember-fontawesome": "^0.1.0-8",
     "@fortawesome/free-brands-svg-icons": "^5.6.3",
     "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
