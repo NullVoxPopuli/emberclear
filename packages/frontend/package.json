@@ -93,7 +93,7 @@
     "ember-cli-page-object": "^1.15.0",
     "ember-cli-postcss": "^4.1.1",
     "ember-cli-qunit": "^4.1.1",
-    "ember-cli-sass": "^9.0.1",
+    "ember-cli-sass": "^10.0.0",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-template-lint": "^1.0.0-beta.1",
     "ember-cli-typescript": "^2.0.0-rc.1",
