@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { isPresent } from '@ember/utils';
 
 function statusToClass(status: string) {

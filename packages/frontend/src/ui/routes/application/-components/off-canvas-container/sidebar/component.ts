@@ -1,5 +1,5 @@
 import Component from 'sparkles-component';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { reads, alias } from '@ember-decorators/object/computed';
 
 import SidebarService from 'emberclear/services/sidebar/service';

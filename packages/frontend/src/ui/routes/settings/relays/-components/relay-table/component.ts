@@ -1,6 +1,6 @@
 import Component from 'sparkles-component';
 import StoreService from 'ember-data/store';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { reads } from '@ember-decorators/object/computed';
 
 import Relay from 'emberclear/data/models/relay';

@@ -1,7 +1,7 @@
 import StoreService from 'ember-data/store';
 import Component, { tracked } from 'sparkles-component';
 import { Registry } from '@ember/service';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import { reads, gt } from '@ember-decorators/object/computed';
 import { task } from 'ember-concurrency-decorators';

@@ -1,5 +1,5 @@
 import Component, { tracked } from 'sparkles-component';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import { not, notEmpty } from '@ember-decorators/object/computed';
 import { dropTask } from 'ember-concurrency-decorators';

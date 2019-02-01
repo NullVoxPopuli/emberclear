@@ -1,6 +1,6 @@
 import Component, { tracked } from 'sparkles-component';
 import { or } from '@ember-decorators/object/computed';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { task } from 'ember-concurrency-decorators';
 
 import RelayManager from 'emberclear/services/relay-manager';

@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import localforage from 'localforage';
 import { PromiseMonitor } from 'ember-computed-promise-monitor';

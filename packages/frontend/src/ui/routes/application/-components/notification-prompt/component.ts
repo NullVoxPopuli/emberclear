@@ -1,6 +1,6 @@
 import Component from 'sparkles-component';
 import { reads } from '@ember-decorators/object/computed';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 
 import Notifications from 'emberclear/services/notifications/service';
 

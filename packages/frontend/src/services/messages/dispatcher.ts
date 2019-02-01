@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { task } from 'ember-concurrency-decorators';
 
 // giant block o' types

@@ -1,6 +1,6 @@
 import Component from 'sparkles-component';
 import { filter } from '@ember-decorators/object/computed';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 
 import Identity from 'emberclear/data/models/identity/model';
 import IdentityService from 'emberclear/services/identity/service';

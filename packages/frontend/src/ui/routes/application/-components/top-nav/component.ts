@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import StoreService from 'ember-data/store';
 import { Registry } from '@ember/service';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { action, computed } from '@ember-decorators/object';
 import { alias, equal, gt } from '@ember-decorators/object/computed';
 

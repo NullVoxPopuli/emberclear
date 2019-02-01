@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { action } from '@ember-decorators/object';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 
 export default class extends Controller {
   @service toast!: Toast;

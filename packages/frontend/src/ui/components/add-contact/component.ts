@@ -3,7 +3,7 @@ import Component, { tracked } from 'sparkles-component';
 
 import { action, computed } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { task } from 'ember-concurrency-decorators';
 
 import ENV from 'emberclear/config/environment';

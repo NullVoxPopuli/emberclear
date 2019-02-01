@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { Registry } from '@ember/service';
 import { isBlank } from '@ember/utils';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { computed, action } from '@ember-decorators/object';
 import { dropTask } from 'ember-concurrency-decorators';
 

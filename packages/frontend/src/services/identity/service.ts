@@ -4,7 +4,7 @@ import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
 
 import { computed } from '@ember-decorators/object';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { alias, reads } from '@ember-decorators/object/computed';
 
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';

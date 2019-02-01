@@ -1,6 +1,6 @@
 import Component, { tracked } from 'sparkles-component';
 import StoreService from 'ember-data/store';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { dropTask } from 'ember-concurrency-decorators';
 
 import { hostFromURL } from 'emberclear/src/utils/string/utils';

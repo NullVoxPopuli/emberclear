@@ -3,7 +3,7 @@ import Component, { tracked } from 'sparkles-component';
 import uuid from 'uuid';
 import { later } from '@ember/runloop';
 
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { reads } from '@ember-decorators/object/computed';
 
 import { Registry } from '@ember/service';
