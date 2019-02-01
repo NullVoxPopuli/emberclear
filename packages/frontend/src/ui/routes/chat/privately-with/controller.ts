@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { reads, filter } from '@ember-decorators/object/computed';
 
 import Message, { TARGET } from 'emberclear/src/data/models/message/model';

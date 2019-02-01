@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { and, reads, notEmpty } from '@ember-decorators/object/computed';
 
 import ChatScroller from 'emberclear/services/chat-scroller';

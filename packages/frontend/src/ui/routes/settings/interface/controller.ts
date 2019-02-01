@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { alias } from '@ember-decorators/object/computed';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 
 import Settings from 'emberclear/services/settings';
 

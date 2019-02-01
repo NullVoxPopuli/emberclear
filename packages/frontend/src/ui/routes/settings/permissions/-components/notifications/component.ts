@@ -1,5 +1,5 @@
 import Component, { tracked } from 'sparkles-component';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 
 import NotificationsService from 'emberclear/services/notifications/service';
 

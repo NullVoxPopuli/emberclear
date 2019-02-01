@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import Component, { tracked } from 'sparkles-component';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { timeout } from 'ember-concurrency';
 import { keepLatestTask } from 'ember-concurrency-decorators';
 

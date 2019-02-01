@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { Channel, Socket } from 'phoenix';
 import { dropTask } from 'ember-concurrency-decorators';
 

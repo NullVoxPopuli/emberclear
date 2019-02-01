@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import Component from '@ember/component';
 
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import { alias, equal } from '@ember-decorators/object/computed';
 import { PromiseMonitor } from 'ember-computed-promise-monitor';

@@ -3,7 +3,7 @@ import { later } from '@ember/runloop';
 
 import { action, computed } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';

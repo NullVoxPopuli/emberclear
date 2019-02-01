@@ -1,5 +1,5 @@
 import Component, { tracked } from 'sparkles-component';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { reads } from '@ember-decorators/object/computed';
 import { keepLatestTask } from 'ember-concurrency-decorators';
 import uuid from 'uuid';

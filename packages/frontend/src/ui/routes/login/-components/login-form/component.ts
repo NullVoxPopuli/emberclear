@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember-decorators/service';
 import { action } from '@ember-decorators/object';
 import { alias } from '@ember-decorators/object/computed';
 import { dropTask } from 'ember-concurrency-decorators';
