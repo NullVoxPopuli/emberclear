@@ -23,7 +23,7 @@ buttons:
   delete: Löschen
   resend: Erneut senden
   resendAutomatically: automatisch erneut senden
-  enable: Enable
+  enable: Aktivieren
   save: Speichern
   next: Weiter
   back: Zurück
@@ -43,7 +43,7 @@ buttons:
   showMyInfo: Meine Info anzeigen
   invite: Einladen
   addFriend: Freund hinzufügen
-  makeDefault: Make Default
+  makeDefault: Als Standard festlegen
   ariaLabel:
     sidebar: 'Seitenleiste anzeigen/ausblenden'
     dropdownBackdrop: Klickbarer Hintergrund, um das Dropdown Menü mittels Klick zu schließen
@@ -71,8 +71,8 @@ input:
     mnemonic: Mnemonic Passphrase eingeben
     name: Name
 status:
-  connected: Connected
-  enabled: Enabled
+  connected: Verbunden
+  enabled: Aktiviert
   deliveryFailed: 'Die Nachricht konnte nicht zugestellt werden.'
   importing: Wird importiert...
   updateAvailable: Eine neue Version ist verfügbar. Klicke hier, um die Aktualisierung durchzuführen.
@@ -180,7 +180,7 @@ ui:
       Am Ende soll das Projekt über alle Funktion der populären Messenger verfügen -- mit einem Unterschied: Weder Server, Relays noch die förderierten Knoten tracken deine Inhalte.
     notOnlineQ: Was passiert wenn ich eine Nachricht sende und der Empfänger nich mehr online ist.
     notOnlineA: >
-      The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
+      Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
     serverStorageQ: Speichert der Server / das Relay meine Nachrichten?
     serverStorageA: false
   footer:
@@ -218,16 +218,16 @@ ui:
   settings:
     title: Einstellungen
     tabs:
-      profile: Profile Info
-      interface: Interface
-      permissions: Permissions
+      profile: Profilinfo
+      interface: Benutzeroberfläche
+      permissions: Berechtigungen
       relays: Relays
-      dangerZone: Danger Zone
+      dangerZone: Gefahrenzone
     relays:
-      add: Add Relay
+      add: Relais hinzufügen
       URLs: URLs
-      socket: socket
-      openGraph: open graph
+      socket: Socket
+      openGraph: Open Graph
     copyProfileToDevice: Profil auf Gerät kopieren
     hideKey: Privaten Schlüssel ausblenden
     showKey: Privaten Schlüssel anzeigen
