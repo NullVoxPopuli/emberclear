@@ -17,8 +17,10 @@ export default class ApplicationRoute extends Route {
   }
 
   async model() {
-    const contacts = await this.store.findAll('identity', { backgroundReload: true });
-    const channels = await this.store.findAll('channel', { backgroundReload: true });
+    const [contacts, channels] = await Promise.all([
+      this.store.findAll('identity', { backgroundReload: true }),
+      this.store.findAll('channel', { backgroundReload: true }),
+    ]);
 
     return { contacts, channels };
   }
