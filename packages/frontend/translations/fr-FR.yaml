@@ -2,7 +2,7 @@
 appname: emberclear
 subheader: Tchat cryptée. Pas d'historique. Pas de log.
 authoredBy: par Preston Sego
-redditCommunity: Reddit Community
+redditCommunity: Communautée Reddit
 todo: 'A faire: Remplir ceci correctement'
 qrCode:
   error: QR Code n'a pas pu être généré
@@ -11,8 +11,8 @@ connection:
   connected: Connecté !
   status:
     socket:
-      error: An error occurred in the socket connection!
-      close: The socket connection has been dropped!
+      error: Une erreur s'est produite dans la connexion socket !
+      close: La connexion de socket a été abandonnée !
     timeout: Problème réseau. Veuillez patienter ...
   errors:
     send:
@@ -22,8 +22,8 @@ connection:
 buttons:
   delete: supprimer
   resend: ré-envoyer
-  resendAutomatically: resend automatically
-  enable: Enable
+  resendAutomatically: renvoyer automatiquement
+  enable: Activer
   save: Sauvegarder
   next: Suivant
   back: Précédent
@@ -31,19 +31,19 @@ buttons:
   logout: Se déconnecter
   login: Se connecter
   cancel: Annuler
-  close: Close
+  close: Fermer
   import: Importer
   scan: Scanner
   sendSnippet: Envoyer un Snippet
   remove: Supprimer
-  donateEth: Donate Ethereum
-  donateXmr: Donate Monero
-  loginInstead: Login instead
+  donateEth: Faire un donation en Ethereum
+  donateXmr: Faire un donation en Monero
+  loginInstead: Connexion à la place
   uploadSettings: Uploader les paramètres
   showMyInfo: Afficher mes infos
   invite: Inviter
   addFriend: Ajouter un ami
-  makeDefault: Make Default
+  makeDefault: Définir par défaut
   ariaLabel:
     sidebar: 'Afficher/Masquer la barre latérale'
     dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
