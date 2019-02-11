@@ -79,7 +79,7 @@
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-concat-analyser": "^4.2.0",
     "ember-auto-import": "^1.2.19",
-    "ember-cli": "github:ember-cli/ember-cli#daafa6c2aef3fd504d47f0215ce2862f2e66cd51",
+    "ember-cli": "github:ember-cli/ember-cli#716a2f8e3c26fcee141cb607a029b1bc4ad0f140",
     "ember-cli-app-version": "^3.2.0",
     "ember-cli-babel": "^7.3.0-beta.1",
     "ember-cli-cjs-transform": "^1.3.0",
