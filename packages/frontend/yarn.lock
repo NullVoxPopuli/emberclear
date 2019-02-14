@@ -1274,10 +1274,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.41.tgz#e57c3152eb2e7ec748c733cebd0c095b437c5d37"
   integrity sha512-sPZWEbFMz6qAy9SLY7jh5cgepmsiwqUUHjvEm8lpU6kug2hmmcyuTnwhoGw/GWpI5Npue4EqvsiQQI0eWjW/ZA==
 
-"@types/phoenix@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@types/phoenix/-/phoenix-0.0.4.tgz#6ada6be91dfdc1fa77ed57691f92821920f71d12"
-  integrity sha1-atpr6R39wfp37VdpH5KCGSD3HRI=
+"@types/phoenix@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@types/phoenix/-/phoenix-0.0.5.tgz#d28f5c647ea31e862d073a4436215b6460d91d65"
+  integrity sha512-fi+XVKxZRSXtA7AHQ63QRe2+C3cHb/JXNzy3Av1JMw3ktV53X66adwwReh/vHKMaLr5DAubqW4xa6RF/UEbIRQ==
 
 "@types/prismjs@^1.9.0":
   version "1.9.0"
