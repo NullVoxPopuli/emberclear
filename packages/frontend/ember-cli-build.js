@@ -102,7 +102,7 @@ module.exports = function(defaults) {
     },
     'esw-cache-fallback': {
       version,
-      patterns: ['/'],
+      patterns: [],
     },
     'ember-app-shell': {},
   });
