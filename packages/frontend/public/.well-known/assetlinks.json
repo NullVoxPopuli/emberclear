@@ -3,8 +3,8 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "xyz.appmaker.mfptif",
-      "sha256_cert_fingerprints": ["33:CE:34:41:8A:75:6E:91:16:17:25:81:4D:9F:0F:F8:13:AF:E5:F9:6F:FE:D5:30:02:2E:89:72:BB:99:6C:38"]
+      "package_name": "io.emberclear",
+      "sha256_cert_fingerprints": ["5D:B8:D3:17:B5:D2:01:27:0F:5E:56:ED:BB:A8:94:F5:FF:37:AB:B0:81:86:08:1A:FD:A1:FB:12:7D:A5:4B:D8"]
     }
   }
 ]
