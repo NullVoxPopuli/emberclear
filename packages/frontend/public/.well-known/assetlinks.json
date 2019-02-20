@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "io.emberclear",
-      "sha256_cert_fingerprints": ["5D:B8:D3:17:B5:D2:01:27:0F:5E:56:ED:BB:A8:94:F5:FF:37:AB:B0:81:86:08:1A:FD:A1:FB:12:7D:A5:4B:D8"]
+      "sha256_cert_fingerprints": ["90:A8:86:B8:AC:54:3A:04:92:7D:12:80:08:A8:24:5F:5D:44:DC:EE:18:2A:99:55:C6:52:98:6C:28:A2:4E:52"]
     }
   }
 ]

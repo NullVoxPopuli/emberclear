@@ -4,3 +4,7 @@ dist
 _build
 deps
 *.log
+
+packages/keystore.jks
+packages/upload_certificate.pem
+packages/Google Play Store Info
