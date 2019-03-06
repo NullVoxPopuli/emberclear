@@ -65,7 +65,7 @@
     "@types/ember-testing-helpers": "^0.0.3",
     "@types/ember__test-helpers": "^0.7.6",
     "@types/libsodium-wrappers": "^0.7.0",
-    "@types/phoenix": "^0.0.5",
+    "@types/phoenix": "^1.0.0",
     "@types/prismjs": "^1.9.0",
     "@types/qrcode": "^1.2.0",
     "@types/qunit": "^2.5.1",
