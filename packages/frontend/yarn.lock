@@ -727,17 +727,6 @@
     ember-cli-babel "^7.1.3"
     ember-compatibility-helpers "^1.1.2"
 
-"@ember-decorators/utils@^3.1.2":
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-3.1.5.tgz#8f692582329a88553192e998012c7ca59e547c37"
-  integrity sha512-SqckJdUgnsZGZw6XHdRMeOk7YEdXHOZjJNOeJgNzjUdhS9jWSNu3OQrXcwYjJZBW8ICdqV87lpJB/rozTCezoQ==
-  dependencies:
-    babel-plugin-debug-macros "^0.1.11"
-    ember-cli-babel "^7.1.3"
-    ember-cli-version-checker "^2.1.2"
-    ember-compatibility-helpers "^1.1.2"
-    semver "^5.6.0"
-
 "@ember-decorators/utils@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-4.0.0.tgz#f338e6e2e20bd781e708bf4214976f3520b7ffe3"
@@ -749,7 +738,7 @@
     ember-compatibility-helpers "^1.1.2"
     semver "^5.6.0"
 
-"@ember-decorators/utils@^5.1.4":
+"@ember-decorators/utils@^5.1.4", "@ember-decorators/utils@^5.1.4 || 5.1.2 || ^4.0.0 || ^3.0.0":
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-5.1.4.tgz#e8a18e614b3bd282c548803fd5e94d49d8fbaeee"
   integrity sha512-wWJwhVIG1xwY0PbyWx7GHIkEvqDejzJ6trHtHSsTjBhhLbBtQqJN3DCHe4IltCyvizhzusRiFrZJB1g+eWiXCA==
@@ -2157,6 +2146,13 @@ babel-plugin-ember-modules-api-polyfill@^2.6.0:
   integrity sha512-BSbLv3+ju1mcUUoPe7vPJgnGawrNxp6LfFBRHlNOKeMlQlml9Wo2MRRUrbpNDlmVc761xSKj8+cde7R0Lwpq7g==
   dependencies:
     ember-rfc176-data "^0.3.6"
+
+babel-plugin-ember-modules-api-polyfill@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-ember-modules-api-polyfill/-/babel-plugin-ember-modules-api-polyfill-2.7.0.tgz#dcd6a9999da0d47d8c9185362bda6244ca525f4a"
+  integrity sha512-+QXPqmRngp13d7nKWrBcL6iIixpuyMNq107XV1dKvsvAO5BGFQ0mSk7Dl6/OgG+z2F1KquxkFfdXYBwbREQI6A==
+  dependencies:
+    ember-rfc176-data "^0.3.7"
 
 babel-plugin-feature-flags@^0.3.1:
   version "0.3.1"
@@ -4967,6 +4963,30 @@ ember-cli-babel@^7.4.3:
     ensure-posix-path "^1.0.2"
     semver "^5.5.0"
 
+ember-cli-babel@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.5.0.tgz#af654dcef23630391d2efe85aaa3bdf8b6ca17b7"
+  integrity sha512-wWXqPPQNRxCtEHvYaLBNiIVgCVCy8YqZ0tM8Dpql1D5nGnPDbaK073sS1vlOYBP7xe5Ab2nXhvQkFwUxFacJ2g==
+  dependencies:
+    "@babel/core" "^7.0.0"
+    "@babel/plugin-transform-modules-amd" "^7.0.0"
+    "@babel/plugin-transform-runtime" "^7.2.0"
+    "@babel/polyfill" "^7.0.0"
+    "@babel/preset-env" "^7.0.0"
+    "@babel/runtime" "^7.2.0"
+    amd-name-resolver "^1.2.1"
+    babel-plugin-debug-macros "^0.3.0"
+    babel-plugin-ember-modules-api-polyfill "^2.7.0"
+    babel-plugin-module-resolver "^3.1.1"
+    broccoli-babel-transpiler "^7.1.2"
+    broccoli-debug "^0.6.4"
+    broccoli-funnel "^2.0.1"
+    broccoli-source "^1.1.0"
+    clone "^2.1.2"
+    ember-cli-version-checker "^2.1.2"
+    ensure-posix-path "^1.0.2"
+    semver "^5.5.0"
+
 ember-cli-broccoli-sane-watcher@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-broccoli-sane-watcher/-/ember-cli-broccoli-sane-watcher-3.0.0.tgz#dc1812c047e1ceec4413d3c41b51a9ffc61b4cfe"
@@ -5397,13 +5417,13 @@ ember-computed-promise-monitor@^0.2.0:
     ember-cli-htmlbars "^3.0.0"
     ember-cli-typescript "^2.0.0-rc.2"
 
-ember-concurrency-decorators@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/ember-concurrency-decorators/-/ember-concurrency-decorators-0.5.0.tgz#498c54ee1a6ab643f6be2161145b104cb737f8b0"
-  integrity sha512-zVkyqZd2qn+HqUhrilvdAy8s4ClRV2TIqOL/JU3b+QwXGbuDCEN1tA8CsLmpctKsY51gzqQlKKZbMS5X3tL8Kw==
+ember-concurrency-decorators@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-decorators/-/ember-concurrency-decorators-0.6.0.tgz#999045cbb91c02a8904703dbb5d6948617f73f74"
+  integrity sha512-kZ2TR07ZxYw7IXvtCp98NRJDq22hb/VDoyhpCA0sWgbR8YQ1C0RaRcCc+QrYKQIpuxHh+nByb9n+dPm5142T0g==
   dependencies:
-    "@ember-decorators/utils" "^3.1.2"
-    ember-cli-babel "^7.1.3"
+    "@ember-decorators/utils" "^5.1.4 || 5.1.2 || ^4.0.0 || ^3.0.0"
+    ember-cli-babel "^7.5.0"
 
 ember-concurrency@^0.8.26:
   version "0.8.26"
@@ -5688,6 +5708,11 @@ ember-rfc176-data@^0.3.5, ember-rfc176-data@^0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.6.tgz#7138db8dfccec39c9a832adfbd4c49d670028907"
   integrity sha512-kPY94VCukPUPj+/6sZ9KvphD42KnpX2IS31p5z07OFVIviDogR0cQuld5c7Irzfgq7a0YACj0HlToROFn7dLYQ==
+
+ember-rfc176-data@^0.3.7:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.7.tgz#ecff7d74987d09296d3703343fed934515a4be33"
+  integrity sha512-AbTlD+q7sfyrD4diZqE7r9Y9/Je+HntVn7TlpHAe+nP5BNXxUXJIfDs5w5e3MxPcMs6Dz/yY90YfW8h1oKEvGg==
 
 ember-router-generator@^1.2.3:
   version "1.2.3"
