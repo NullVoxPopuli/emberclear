@@ -23,7 +23,7 @@ android {
         applicationId "io.emberclear"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 342
+        versionCode 343
         versionName "1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [
