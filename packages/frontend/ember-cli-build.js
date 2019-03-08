@@ -99,6 +99,7 @@ module.exports = function(defaults) {
     'asset-cache': {
       version,
       include: ['assets/**/*', '**/*.html', 'index.html'],
+      exclude: ['.well-known/**/*', 'bundle.html', 'favicon.ico', 'robots.txt'],
     },
     'esw-cache-fallback': {
       version,
