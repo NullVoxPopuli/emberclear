@@ -99,7 +99,7 @@
     "ember-cli-typescript": "^2.0.0-rc.1",
     "ember-cli-uglify": "^2.1.0",
     "ember-computed-promise-monitor": "^0.2.0",
-    "ember-concurrency": "^0.8.26",
+    "ember-concurrency": "^0.9.0",
     "ember-concurrency-decorators": "^0.6.0",
     "ember-data": "^3.6.0",
     "ember-decorators": "5.1.4",
