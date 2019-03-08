@@ -101,11 +101,6 @@ module.exports = function(defaults) {
       include: ['assets/**/*', '**/*.html', 'index.html'],
       exclude: ['.well-known/**/*', 'bundle.html', 'favicon.ico', 'robots.txt'],
     },
-    'esw-cache-fallback': {
-      version,
-      patterns: [],
-    },
-    'ember-app-shell': {},
   });
 
   // Use `app.import` to add additional libraries to the generated
