@@ -1,12 +1,13 @@
 <div
   class='flex justify-content-center flex-grow'
   style='min-width: 180px; min-height: 180px;'
+  ...attributes
 >
 
   {{#if this.qrCodeData}}
     <img
       alt={{@alt}}
-      style='min-width: 180px; min-height: 180px;'
+      style='min-width: 100%; min-height: 100%;'
       src={{this.qrCodeData}}
     >
   {{else}}

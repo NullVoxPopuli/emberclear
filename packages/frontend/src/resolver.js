@@ -10,21 +10,40 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
  * to add support for them.
  */
 
+//////////////
+// ember-intl
 moduleConfig.types = Object.assign(moduleConfig.types, {
-  // ember-intl
-  util: { definitiveCollection: 'utils' },
   'ember-intl@adapter': { definitiveCollection: 'main' },
   'ember-intl@translation': { definitiveCollection: 'main' },
   translation: { definitiveCollection: 'main' },
   formats: { definitiveCollection: 'main' },
   cldr: { definitiveCollection: 'main' },
-  'util:intl': { definitiveCollection: 'utils' },
-  'intl:util': { definitiveCollection: 'utils' },
-  // ember-gestures
+  util: { definitiveCollection: 'main' },
+});
+moduleConfig.collections.main.types.push('translation');
+
+//////////////////
+// ember-gestures
+moduleConfig.types = Object.assign(moduleConfig.types, {
   'ember-gesture': { definitiveCollection: 'main' },
 });
 
-moduleConfig.collections.main.types.push('translation');
+//////////////////////////
+// ember-inspector support
+moduleConfig.types = Object.assign(moduleConfig.types, {
+  'data-adapter': { definitiveCollection: 'data' },
+  'container-debug-adapter': { definitiveCollection: 'data' },
+  'resolver-for-debugging': { definitiveCollection: 'data' },
+});
+
+moduleConfig.collections.main.types.push('data');
+
+moduleConfig.collections = Object.assign(moduleConfig.collections, {
+  data: {
+    types: ['data-adapter', 'model'],
+    defaultType: 'model',
+  },
+});
 
 export default Resolver.extend({
   config: moduleConfig,

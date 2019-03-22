@@ -36,13 +36,7 @@ export const page = create({
     enable: clickable('[data-test-enable]'),
     dismiss: clickable('[data-test-dismiss]'),
   },
-  modals: {
-    addContact: {
-      scope: '[data-test-add-contact]',
-      isHidden: notHasClass('is-active'),
-      hide: clickable('[aria-label="Close Modal"]'),
-    },
-  },
+  modals: {},
 });
 
 export const app = {
@@ -56,17 +50,7 @@ export const app = {
 
   scrollContainer: () => find('#scrollContainer') as HTMLElement,
 
-  modals: {
-    addContact: {
-      isHidden: () => find('[data-test-add-contact][aria-modal][aria-hidden]'),
-      hide: () => click('[data-test-add-contact] [aria-label="Close Modal"]'),
-    },
-
-    shareInfo: {
-      isHidden: () => find('[data-test-share-info][aria-modal][aria-hidden]'),
-      hide: () => click('[data-test-share-info] [aria-label="Close Modal"]'),
-    },
-  },
+  modals: {},
 
   userDropdown: {
     open: () => click('[data-test-user-dropdown-toggle]'),

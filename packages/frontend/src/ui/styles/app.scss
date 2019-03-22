@@ -17,7 +17,8 @@ $navbar-dropdown-boxed-shadow: $box-shadow;
 
 
 /*! purgecss start ignore */
-@import 'themes/default';
+// @import 'themes/default';
+@import 'themes/emberclear';
 // @import 'themes/bulmaswatch/superhero/variables';
 
 @import 'node_modules/bulma/sass/utilities/_all.sass';
@@ -63,6 +64,8 @@ $tablet: 480px;
 @import "components/ellipsis-loader";
 @import "bulma-augmentations";
 @import "scrollbar";
+
+@import 'bulma-theme-overrides';
 
 html {
   overflow: hidden;

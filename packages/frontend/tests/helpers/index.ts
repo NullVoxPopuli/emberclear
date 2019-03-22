@@ -6,6 +6,8 @@ import {
   currentURL,
   getSettledState,
 } from '@ember/test-helpers';
+import a11yAuditIf from 'ember-a11y-testing/test-support/audit-if';
+import { percySnapshot } from 'ember-percy';
 
 export { stubService } from './stub-service';
 export { textFor, text } from './text-for';
@@ -35,6 +37,11 @@ export function setupWindowNotification(hooks: NestedHooks) {
   hooks.afterEach(function() {
     window.Notification = originalNotification;
   });
+}
+
+export function assertExternal(assert: any) {
+  percySnapshot(assert);
+  a11yAuditIf();
 }
 
 export async function refresh(mocking: () => void = () => undefined) {

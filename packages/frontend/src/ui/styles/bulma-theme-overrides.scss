@@ -1,0 +1,12 @@
+a {
+  color: $primary;
+}
+a.is-dark, a.is-primary {
+  color: $primary;
+  &.button {
+    color: white !important;
+  }
+}
+.button, .button:hover {
+  color: white;
+}

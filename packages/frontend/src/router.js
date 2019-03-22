@@ -32,6 +32,7 @@ Router.map(function() {
   this.route('faq');
 
   this.route('not-found', { path: '/*path' });
+  this.route('add-friend');
 });
 
 export default Router;
