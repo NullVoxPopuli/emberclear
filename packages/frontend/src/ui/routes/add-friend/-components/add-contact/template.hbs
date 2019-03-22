@@ -1,0 +1,59 @@
+<h3>{{t 'ui.addContact.title'}}</h3>
+
+{{#if this.scanning}}
+  <QRScanner
+    @onScan={{action (perform this.onScan)}}
+    @onError={{action this.onScanError}}
+    @onCancel={{action this.toggleScanning}}
+    class='p-md'
+  />
+{{/if}}
+
+{{#unless this.scanning}}
+
+  {{!--
+  this loggedIn hack is something for force QRCode to re-render
+  I don't know why it doesn't re-render on its own.
+  --}}
+  {{#if this.isLoggedIn}}
+    <QRCode
+      @data={{this.publicIdentity}}
+      @alt={{t 'images.alt.ownIdentityQR'}}
+      style='
+        display: inline-block;
+        min-height: 250px; min-width: 250px;
+        max-height: 300px; max-width: 300px;'
+    />
+  {{/if}}
+
+  <div style='max-width: 300px; margin: 0 auto;'>
+    <div class='flex-grow shareable-url wrap is-hidden-touch'>
+      <a
+        href={{this.url}}
+        target='_blank'
+        rel='noopener'
+      >
+        {{this.url}}
+      </a>
+    </div>
+  </div>
+
+
+
+  <div class='flex justify-content-center'>
+    <div class='field is-grouped'>
+      <p class='control'>
+        <button class='button is-primary' {{action this.toggleScanning}}>
+          <span class='icon'>{{fa-icon 'qrcode' prefix='fas'}}</span>
+          <span>{{t 'buttons.scan'}}</span>
+        </button>
+
+        <CopyTextButton
+          @text={{this.url}}
+          @label={{t 'ui.invite.copyProfile'}}
+        />
+      </p>
+
+    </div>
+  </div>
+{{/unless}}

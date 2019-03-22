@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import StoreService from 'ember-data/store';
 
-import { visit, settled, waitFor, find } from '@ember/test-helpers';
+import { visit, currentURL, settled, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -16,7 +16,6 @@ import {
 
 import IdentityService from 'emberclear/src/services/identity/service';
 import { sidebar, page } from 'emberclear/tests/helpers/pages/sidebar';
-import { page as app } from 'emberclear/tests/helpers/pages/app';
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 
 module('Acceptance | Sidebar', function(hooks) {
@@ -32,28 +31,13 @@ module('Acceptance | Sidebar', function(hooks) {
   });
 
   module('Contacts', function() {
-    test('the modals are hidden', function(assert) {
-      console.log(find('[aria-modal][aria-hidden]'));
-      assert.ok(app.modals.addContact.isHidden, 'Add Contact is hidden');
-    });
-
     module('the add contact button is clicked', function(hooks) {
       hooks.beforeEach(async function() {
         await sidebar.contacts.clickAdd();
       });
 
-      test('the modal is visible', function(assert) {
-        assert.notOk(app.modals.addContact.isHidden, 'contact modal is hidden');
-      });
-
-      module('the modal is closed', function(hooks) {
-        hooks.beforeEach(async function() {
-          await app.modals.addContact.hide();
-        });
-
-        test('the modal is no longer visible', function(assert) {
-          assert.ok(app.modals.addContact.isHidden, 'contact modal is hidden');
-        });
+      test('a navigation occurred', function(assert) {
+        assert.equal(currentURL(), '/add-friend');
       });
     });
 

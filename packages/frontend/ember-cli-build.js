@@ -4,7 +4,6 @@ const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
-const purgecss = require('@fullhuman/postcss-purgecss');
 
 // note that by default, the enabled flags on some things
 // like minifying by default, already check
@@ -29,9 +28,6 @@ module.exports = function(defaults) {
   console.log('---------------\n');
 
   let app = new EmberApp(defaults, {
-    // eslint slows down the dev-build-debug cycle significantly
-    // hinting: false disables linting at build time.
-    // tests: isTest,
     hinting: false,
     minifyJS: { enabled: isProduction },
     // TODO: find a way to remove legacy browser support from css
@@ -49,14 +45,6 @@ module.exports = function(defaults) {
       exclude: ['libsodium', 'libsodium-wrappers', 'phoenix', 'showdown', 'qrcode', 'uuid'],
     },
 
-    // babel: {
-    //   sourceMaps: 'inline',
-    //   plugins: [
-    //     // require('ember-auto-import/babel-plugin'),
-    //     require('@babel/plugin-transform-typescript'),
-    //   ],
-    // },
-
     'ember-cli-babel': {
       includePolyfill: false,
       disablePresetEnv: true,
@@ -69,24 +57,6 @@ module.exports = function(defaults) {
 
     'ember-test-selectors': {
       strip: isProduction,
-    },
-
-    postcssOptions: {
-      compile: {
-        extension: 'scss',
-        enabled: false,
-      },
-      filter: {
-        enabled: false, // total savings: 4KB.
-        plugins: [
-          {
-            module: purgecss,
-            options: {
-              content: ['./src/**/*.hbs', './src/**/.js', './src/**/.ts'],
-            },
-          },
-        ],
-      },
     },
 
     eslint: {
@@ -147,8 +117,5 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'uuid' }],
   });
 
-  return new Funnel(mergeTrees([app.toTree(), qrScannerWorker]), {
-    exclude: ['**/*-test.{ts,js}', '**/*-tests.{js,ts}'],
-    annotation: 'Module Unification Tests',
-  });
+  return mergeTrees([app.toTree(), qrScannerWorker]);
 };

@@ -9,10 +9,10 @@
     </a>
 
     <WithResponsiveness
-      @whenLarge={{action @toggleModal 'add-friend'}}
+      @whenLarge={{action (transition-to 'add-friend')}}
       @whenSmall={{action (queue
         (action @closeSidebar)
-        (action @toggleModal 'add-friend')
+        (action (transition-to 'add-friend'))
       )}}
       as |classNames onClick|
     >

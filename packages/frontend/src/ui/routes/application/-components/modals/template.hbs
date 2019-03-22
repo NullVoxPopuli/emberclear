@@ -4,10 +4,6 @@
   Static Modals / Modals that will /
   could get toggleed from _multiple_ places.
 --}}
-<ModalStatic @name='add-friend' as |isActive actions|>
-  <AddContact @isActive={{isActive}} @close={{actions.close}} />
-</ModalStatic>
-
 <ModalStatic @name='keyboard-shortcuts' as |isActive actions|>
   <KeyboardShortcuts @isActive={{isActive}} @close={{actions.close}} />
 

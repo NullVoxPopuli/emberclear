@@ -7,16 +7,11 @@ import { inject as service } from '@ember-decorators/service';
 import { task } from 'ember-concurrency-decorators';
 
 import ENV from 'emberclear/config/environment';
-import { toHex, fromHex } from 'emberclear/src/utils/string-encoding';
+import { fromHex } from 'emberclear/src/utils/string-encoding';
 
 import Identity from 'emberclear/services/identity/service';
 
-interface IArgs {
-  isActive: boolean;
-  close: () => void;
-}
-
-export default class AddModal extends Component<IArgs> {
+export default class AddModal extends Component {
   @service('notifications') toast!: Toast;
   @service identity!: Identity;
   @service store!: StoreService;
@@ -53,8 +48,6 @@ export default class AddModal extends Component<IArgs> {
     yield this.tryCreate(identity);
 
     this.scanning = false;
-
-    this.args.close();
   }
 
   @action

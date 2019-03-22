@@ -6,9 +6,9 @@
   </p>
 
   <div class='flex-row'>
-    <a class='button' {{action this.toggleModal 'add-friend'}}>
+    {{#link-to 'add-friend' class='button'}}
       <span class='icon'>{{fa-icon 'plus'}}</span>
       <span>{{t 'buttons.addFriend'}}</span>
-    </a>
+    {{/link-to}}
   </div>
 </div>
