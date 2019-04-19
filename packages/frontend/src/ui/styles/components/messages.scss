@@ -14,6 +14,7 @@
 .message {
   position: relative;
   background-color: transparent;
+  padding-bottom: 1rem;
 
   &:hover {
     background: lighten($background, 5);
@@ -45,7 +46,7 @@
     font-size: 0.8rem;
     position: absolute;
     right: 0.5rem;
-    bottom: -0.5rem;
+    bottom: 0rem;
     svg {
       opacity: 0.5;
     }

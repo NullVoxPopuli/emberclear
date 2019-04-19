@@ -1,27 +1,29 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember-decorators/service';
-import { reads, filter } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
 
-import Message, { TARGET } from 'emberclear/src/data/models/message/model';
+import { TARGET } from 'emberclear/src/data/models/message/model';
 import IdentityService from 'emberclear/services/identity/service';
 
 export default class extends Controller {
   @service identity!: IdentityService;
 
-  @reads('model.targetIdentity.uid') uid!: string;
+  get uid() {
+    return this.model.targetIdentity.uid;
+  }
 
-  @filter('model.messages')
-  messages(message: Message, _index: number, _array: Message[]) {
+  get messages() {
     const me = this.identity.uid;
     const chattingWithId = this.uid;
 
-    const isRelevant =
-      message.target === TARGET.WHISPER &&
-      // we sent this message to someone else (this could incude ourselves)
-      ((message.to === chattingWithId && message.from === me) ||
-        // we received a message from someone else to us (including from ourselves)
-        (message.from === chattingWithId && message.to === me));
+    return this.store.peekAll('message').filter(message => {
+      const isRelevant =
+        message.target === TARGET.WHISPER &&
+        // we sent this message to someone else (this could incude ourselves)
+        ((message.to === chattingWithId && message.from === me) ||
+          // we received a message from someone else to us (including from ourselves)
+          (message.from === chattingWithId && message.to === me));
 
-    return isRelevant;
+      return isRelevant;
+    });
   }
 }

@@ -1,5 +1,6 @@
+import Ember from 'ember';
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
 
 function statusToClass(status: string) {
@@ -43,7 +44,7 @@ export default class Toast extends Service {
 
     this.notifications.addNotification({
       autoClear: true,
-      clearDuration: 4000,
+      clearDuration: Ember.testing ? 50 : 4000,
       ...options,
       message: message || 'status',
       type: status,

@@ -1,6 +1,7 @@
-import Component from 'sparkles-component';
-import { inject as service } from '@ember-decorators/service';
-import { reads, alias } from '@ember-decorators/object/computed';
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
+import { reads, alias } from '@ember/object/computed';
 
 import SidebarService from 'emberclear/services/sidebar/service';
 import IdentityService from 'emberclear/services/identity/service';
@@ -19,15 +20,11 @@ export default class Sidebar extends Component {
   @reads('identity.name') name?: string;
   @reads('identity.isLoggedIn') isLoggedIn!: boolean;
 
-  closeSidebar() {
+  @action closeSidebar() {
     this.sidebar.hide();
   }
 
-  toggleModal(name: string) {
-    this.modals.toggle(name);
-  }
-
-  scrollDownToNearestUnread() {
+  @action scrollDownToNearestUnread() {
     const scrollable = document.querySelector('.sidebar-wrapper aside')!;
     const lastRow = scrollable.querySelector('.tag')!;
 
@@ -35,7 +32,7 @@ export default class Sidebar extends Component {
     this.sidebar.clearUnreadBelow();
   }
 
-  scrollUpToNearestUnread() {
+  @action scrollUpToNearestUnread() {
     const scrollable = document.querySelector('.sidebar-wrapper aside')!;
     const lastRow = scrollable.querySelector('.tag')!;
 

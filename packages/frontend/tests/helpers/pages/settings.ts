@@ -4,6 +4,9 @@ import { create, collection, clickable, isVisible, fillable } from 'ember-cli-pa
 const wrapper = '[data-test-settings-wrapper]';
 
 export const page = create({
+  ui: {
+    toggleHideOfflineContacts: clickable('[data-test-hide-offline-contacts]'),
+  },
   relays: {
     addRelay: clickable('[data-test-add-relay]'),
     form: {

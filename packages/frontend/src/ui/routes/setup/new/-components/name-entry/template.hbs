@@ -3,13 +3,13 @@
   {{action this.createIdentity on='submit'}}>
 
   <div class='content'>
-    {{input
-      data-test-name-field=true
+    <Input
+      data-test-name-field
       class='input is-large'
       type='text'
-      placeholder=(t 'ui.setup.nameLabel')
-      value=this.name
-    }}
+      placeholder={{t 'ui.setup.nameLabel'}}
+      @value={{this.name}}
+    />
   </div>
 
   {{#link-to 'login'}}

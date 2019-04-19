@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember-decorators/service';
-import { notEmpty, and, alias, not, match } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
+import { notEmpty, and, alias, not, match } from '@ember/object/computed';
 
 import IdentityService from 'emberclear/services/identity/service';
 

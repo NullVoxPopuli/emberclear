@@ -5,8 +5,8 @@ import { setupApplicationTest } from 'ember-qunit';
 import {
   clearLocalStorage,
   setupRelayConnectionMocks,
-  setupWindowNotification,
   getService,
+  setupWindowNotification,
 } from 'emberclear/tests/helpers';
 
 import Notifications from './service';
@@ -48,8 +48,8 @@ module('Acceptance | Notifications Service', function(hooks) {
       });
     });
 
-    module('permission granted', function(hooks) {});
+    // module('permission granted', function(hooks) {});
 
-    module('permission: later', function(hooks) {});
+    // module('permission: later', function(hooks) {});
   });
 });

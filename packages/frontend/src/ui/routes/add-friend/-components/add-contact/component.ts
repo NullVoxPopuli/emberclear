@@ -1,10 +1,11 @@
 import StoreService from 'ember-data/store';
-import Component, { tracked } from 'sparkles-component';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
 
-import { action, computed } from '@ember-decorators/object';
-import { reads } from '@ember-decorators/object/computed';
-import { inject as service } from '@ember-decorators/service';
-import { task } from 'ember-concurrency-decorators';
+import { action, computed } from '@ember/object';
+import { reads } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import { task } from 'ember-concurrency';
 
 import ENV from 'emberclear/config/environment';
 import { fromHex } from 'emberclear/src/utils/string-encoding';
@@ -37,20 +38,19 @@ export default class AddModal extends Component {
     return encodeURI(uri);
   }
 
-  @action
   toggleScanning(this: AddModal) {
     this.scanning = !this.scanning;
   }
 
-  @task *onScan(this: AddModal, identityJson: string) {
+  @task(function*(identityJson: string) {
     const identity = JSON.parse(identityJson);
 
     yield this.tryCreate(identity);
 
     this.scanning = false;
-  }
+  })
+  onScan;
 
-  @action
   onScanError(e: Error) {
     this.toast.error(e.message);
   }

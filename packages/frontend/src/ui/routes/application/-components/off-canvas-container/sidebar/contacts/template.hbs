@@ -1,6 +1,6 @@
 <Collapsible as |isOpen toggle Icon|>
   <p
-    data-test-sidebar-contacts
+    data-test-sidebar-contacts-header
     class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'
   >
     <a class='flex-row align-items-center' {{action toggle}}>
@@ -8,35 +8,26 @@
       <span class='has-text-black'>{{t 'ui.sidebar.contacts.title'}}</span>
     </a>
 
-    <WithResponsiveness
-      @whenLarge={{action (transition-to 'add-friend')}}
-      @whenSmall={{action (queue
-        (action @closeSidebar)
-        (action (transition-to 'add-friend'))
-      )}}
-      as |classNames onClick|
+    <a
+      data-test-add-friend
+      class='button is-small'
+      href={{url-for 'add-friend'}}
+      {{on 'click' (prevent-default this.onClickAddFriend)}}
     >
-      <a
-        data-test-add-friend
-        class='button is-small {{classNames}}'
-        {{action onClick}}
-      >
-        <span class='icon'>{{fa-icon 'plus'}}</span>
-      </a>
-
-    </WithResponsiveness>
+      <span class='icon'>{{fa-icon 'plus'}}</span>
+    </a>
   </p>
 
   {{#if isOpen}}
-    <ul class='menu-list'>
-      {{#each @contacts as |contact|}}
+    <ul data-test-sidebar-contacts-list class='menu-list'>
+      {{#each this.contacts as |contact|}}
         <Contact
           @contact={{contact}}
           @closeSidebar={{@closeSidebar}}
         />
       {{/each}}
 
-      {{#if (and this.hideOfflineContacts (gt this.numberOffline 0))}}
+      {{#if this.showOfflineCounter}}
         <li data-test-offline-count class='p-l-md m-t-sm has-text-grey-dark is-italic'>
           <small>{{t 'ui.sidebar.contacts.numOffline' num=this.numberOffline}}</small>
         </li>

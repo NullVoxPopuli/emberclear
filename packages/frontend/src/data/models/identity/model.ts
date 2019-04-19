@@ -1,7 +1,8 @@
 import Model from 'ember-data/model';
-import { attr } from '@ember-decorators/data';
-import { computed } from '@ember-decorators/object';
-import { reads } from '@ember-decorators/object/computed';
+import DS from 'ember-data';
+const { attr } = DS;
+import { computed } from '@ember/object';
+import { reads } from '@ember/object/computed';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
 export const Status = {

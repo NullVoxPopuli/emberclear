@@ -19,6 +19,7 @@ export function stubConnection(overrides = {}, targets: IMockServiceTarget[] = [
     'relay-connection',
     {
       setRelay() {},
+      send() {},
       connect() {
         return;
       },

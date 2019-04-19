@@ -12,16 +12,18 @@ import {
   setupCurrentUser,
   getStore,
   getService,
+  waitUntilTruthy,
+  clearToasts,
+  createIdentity,
 } from 'emberclear/tests/helpers';
-import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
-import { toHex } from 'emberclear/src/utils/string-encoding';
 
-import { chat, page } from 'emberclear/tests/helpers/pages/chat';
+import { chat, page, selectors } from 'emberclear/tests/helpers/pages/chat';
 import { app } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
+  clearToasts(hooks);
 
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);
@@ -120,17 +122,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       let id!: string;
 
       hooks.beforeEach(async function() {
-        const store = getStore();
-        const { publicKey, privateKey } = await generateAsymmetricKeys();
-        id = toHex(publicKey);
-
-        someone = store.createRecord('identity', {
-          id,
-          publicKey,
-          privateKey,
-        });
-
-        await someone.save();
+        someone = await createIdentity('someone else');
+        id = someone.id;
       });
 
       module('when first visiting the page', function(hooks) {
@@ -172,13 +165,13 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
         module('a message is sent', function(hooks) {
           hooks.beforeEach(async function() {
-            await chat.textarea.fillIn('a message');
-            chat.submitButton.click();
+            await page.textarea.fillIn('a message');
+            page.submitButton.click();
           });
 
           module('when the message first shows up in the chat history', function(hooks) {
             hooks.beforeEach(async function() {
-              await waitFor(chat.selectors.confirmations);
+              await waitFor(selectors.confirmations);
             });
 
             test('the message is shown, but is waiting for a confirmation', async function(assert) {
@@ -205,6 +198,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
               const result = chat.messages.all().length;
 
               assert.equal(result, 1);
+              assert.equal(page.messages.length, 1, 'there is 1 message in the history window');
             });
 
             test('the message is shown, but with an error', function(assert) {
@@ -264,13 +258,13 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
         hooks.beforeEach(async function() {
           await visit(`/chat/privately-with/${id}`);
-          await chat.textarea.fillIn('a message');
-          chat.submitButton.click();
+          await page.textarea.fillIn('a message');
+          page.submitButton.click();
         });
 
         module('when the message shows up in the chat history', function(hooks) {
           hooks.beforeEach(async function() {
-            await waitFor(chat.selectors.message);
+            await waitFor(selectors.message);
           });
 
           test('the message is shown, but is waiting for a confirmation', function(assert) {

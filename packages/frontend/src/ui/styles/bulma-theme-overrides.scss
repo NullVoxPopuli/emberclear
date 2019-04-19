@@ -4,7 +4,7 @@ a {
 a.is-dark, a.is-primary {
   color: $primary;
   &.button {
-    color: white !important;
+    color: white;
   }
 }
 .button, .button:hover {

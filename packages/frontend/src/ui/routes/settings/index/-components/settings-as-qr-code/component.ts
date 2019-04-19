@@ -1,6 +1,6 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember-decorators/service';
-import { reads } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
+import { reads } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
 import IdentityService from 'emberclear/services/identity/service';
@@ -14,7 +14,7 @@ export default class SettingsAsQrCode extends Component {
 
   @reads('qrCodeTask.lastSuccessful.value') qrCode!: string;
 
-  qrCodeTask = task(function*(this: SettingsAsQrCode) {
+  @(task(function*(this: SettingsAsQrCode) {
     const settings = yield this.settings.buildSettings();
 
     if (!settings) return;
@@ -22,5 +22,6 @@ export default class SettingsAsQrCode extends Component {
     const qrCode = yield convertObjectToQRCodeDataURL(settings);
 
     return qrCode;
-  }).on('didInsertElement');
+  }).on('didInsertElement'))
+  qrCodeTask;
 }

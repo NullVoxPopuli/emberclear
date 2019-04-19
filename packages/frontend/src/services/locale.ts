@@ -1,21 +1,18 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 import IntlService from 'ember-intl/services/intl';
 
-import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
+import { inLocalStorage } from 'emberclear/src/utils/decorators';
 
 const DEFAULT_LOCALE = 'en-us';
 
 export default class LocaleService extends Service {
   @service intl!: IntlService;
 
-  @syncToLocalStorage // currentLocale;
-  get currentLocale() {
-    return DEFAULT_LOCALE;
-  }
+  @inLocalStorage currentLocale = DEFAULT_LOCALE;
 
   async setLocale(locale: string = DEFAULT_LOCALE) {
-    this.set('currentLocale', locale);
+    this.set('currentLocale', locale || DEFAULT_LOCALE);
 
     // uncomment for asyncily loaded translations
     // const request = await fetch(`/translations/${locale}.json`);

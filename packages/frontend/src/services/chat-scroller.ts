@@ -1,11 +1,12 @@
 import Service from '@ember/service';
+import { action } from '@ember/object';
 
 import { isElementWithin } from 'emberclear/src/utils/dom/utils';
 
 export default class ChatScroller extends Service {
   // if the last message is close enough to being in view,
   // scroll to the bottom
-  maybeNudgeToBottom(appendedMessage: HTMLElement) {
+  @action maybeNudgeToBottom(appendedMessage: HTMLElement) {
     if (this.shouldScroll(appendedMessage)) {
       this.scrollToBottom();
     }

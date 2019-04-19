@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
-import { action } from '@ember-decorators/object';
-import { alias, reads } from '@ember-decorators/object/computed';
-import { inject as service } from '@ember-decorators/service';
+import { action } from '@ember/object';
+import { alias, reads } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 
 import IdentityService from 'emberclear/services/identity/service';
 import Settings from 'emberclear/services/settings';

@@ -16,7 +16,8 @@ stages:
 
 # need an image that has chrome, and eventually firefox
 # image: node:10
-image: danlynn/ember-cli:3.9.0
+image: danlynn/ember-cli:latest
+# image: ubuntu:latest
 
 variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
@@ -25,12 +26,19 @@ variables:
   NODE_OPTIONS: --max-old-space-size=2048
   COVERAGE: 'true'
   PERCY_ENABLE: 0
+  CI_BROWSER: chrome
 
 
 # TODO: HACK: for now, it's faster to install everything
 #       than it is to rely on gitlab's slow cache
 before_script:
   # - time npm install -g yarn@latest
+  # - apt install wget
+  # - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  # - dpkg -i google-chrome-stable_current_amd64.deb
+  # - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+  # - nvm install 10
+  # - apt install firefox
   - time ./run yarn install
 
 Security via Synk:
@@ -65,68 +73,80 @@ Check Types:
   script:
     - time ./run yarn tsc
 
-# All Tests:
+Translations:
+  stage: quality
+  dependencies: [ setup ]
+  script: time ./run yarn lint:i18n
+
+
+All Tests:
+  stage: test
+  dependencies: [ setup ]
+  script:
+    - time COVERAGE=true ./run yarn test
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
+
+# Unit Tests:
 #   stage: test
 #   dependencies: [ setup ]
 #   script:
-#     - time ./scripts/install-chrome-apt
-#     - time COVERAGE=true ./run yarn test
+#     - time ./run yarn test:named Unit
 #   artifacts:
 #     paths:
 #       - ${CI_PROJECT_DIR}/packages/frontend/coverage*
 
-Unit Tests:
-  stage: test
-  dependencies: [ setup ]
-  script:
-    - time ./run yarn test:named Unit
-  artifacts:
-    paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
+# Helper Tests:
+#   stage: test
+#   dependencies: [ setup ]
+#   script:
+#     - time ./run yarn test:named Helper
+#   artifacts:
+#     paths:
+#       - ${CI_PROJECT_DIR}/packages/frontend/coverage*
 
-Helper Tests:
-  stage: test
-  dependencies: [ setup ]
-  script:
-    - time ./run yarn test:named Helper
-  artifacts:
-    paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
+# Integration Tests:
+#   stage: test
+#   dependencies: [ setup ]
+#   script:
+#     - time ./run yarn test:named Integration
+#   artifacts:
+#     paths:
+#       - ${CI_PROJECT_DIR}/packages/frontend/coverage*
 
-Integration Tests:
-  stage: test
-  dependencies: [ setup ]
-  script:
-    - time ./run yarn test:named Integration
-  artifacts:
-    paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
+# Application Tests:
+#   stage: test
+#   dependencies: [ setup ]
+#   script:
+#     - google-chrome --version
+#     - node --version
+#     - npm --version
+#     - uname -a
+#     - lsb_release -a
+#     - time COVERAGE=true ./run yarn test
+#     - PERCY_ENABLE=1 ./run yarn test:named Acceptance
+#   artifacts:
+#     paths:
+#       - ${CI_PROJECT_DIR}/packages/frontend/coverage*
 
-Application Tests:
-  stage: test
-  dependencies: [ setup ]
-  script:
-    - PERCY_ENABLE=1 ./run yarn test:named Acceptance
-  artifacts:
-    paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
-
-Application Tests (a11y):
-  stage: test
-  dependencies: [ setup ]
-  # for now -- this is a big task
-  allow_failure: true
-  script:
-    - PERCY_ENABLE=0 ./run yarn test:named Acceptance --query enableA11yAudit=true
+# Application Tests (a11y):
+#   stage: test
+#   dependencies: [ setup ]
+#   # for now -- this is a big task
+#   allow_failure: true
+#   script:
+#     - PERCY_ENABLE=0 ./run yarn test:named Acceptance --query enableA11yAudit=true
 
 Merge Coverage:
   stage: build
   dependencies:
-    - Application Tests
-    - Application Tests (a11y)
-    - Integration Tests
-    - Helper Tests
-    - Unit Tests
+    - All Tests
+    # - Application Tests
+    # - Application Tests (a11y)
+    # - Integration Tests
+    # - Helper Tests
+    # - Unit Tests
   script:
     - time ./run yarn merge-coverage
     - cat ${CI_PROJECT_DIR}/packages/frontend/coverage/coverage-summary.json

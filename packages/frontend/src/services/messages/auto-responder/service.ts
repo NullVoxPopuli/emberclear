@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 import StoreService from 'ember-data/store';
 
 import MessageDispatcher from 'emberclear/src/services/messages/dispatcher';

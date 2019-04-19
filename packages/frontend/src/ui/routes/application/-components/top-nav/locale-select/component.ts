@@ -1,9 +1,11 @@
-import Component, { tracked } from 'sparkles-component';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
+
 import { later } from '@ember/runloop';
 import uuid from 'uuid';
-import { inject as service } from '@ember-decorators/service';
-import { computed } from '@ember-decorators/object';
-import { reads } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { reads } from '@ember/object/computed';
 
 import LocaleService from 'emberclear/src/services/locale';
 import { keepInViewPort } from 'emberclear/src/utils/dom/utils';

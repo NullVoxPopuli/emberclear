@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
 
 import { IQueryParams } from './controller';
@@ -28,7 +28,7 @@ export default class InviteRoute extends Route {
   }
 
   async acceptInvite(transition: any) {
-    const query = transition.queryParams as IQueryParams;
+    const query = transition.to.queryParams as IQueryParams;
 
     if (this.hasParams(query)) {
       const { name, publicKey } = query;

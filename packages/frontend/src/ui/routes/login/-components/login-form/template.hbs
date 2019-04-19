@@ -9,26 +9,23 @@
   {{/if}}
 
   {{#unless this.scanning}}
-    <Field>
-      {{input
-        data-test-name=true
+    <Field @label={{t 'input.label.name'}}>
+      <Input
+        data-test-name
         class='input'
-        value=this.name
-        placeholder=(t 'input.placeholder.name')
-      }}
+        @value={{this.name}}
+      />
     </Field>
 
-    <Field>
-      {{input
-        data-test-mnemonic=true
+    <Field @label={{t 'input.label.mnemonic'}}>
+      <Input
+        data-test-mnemonic
         class='input'
-        value=this.mnemonic
-        placeholder=(t 'input.placeholder.mnemonic')
-      }}
+        @value={{this.mnemonic}}
+      />
     </Field>
 
-    <div class='flex justify-content-end'>
-
+    <Field class='is-grouped m-t-md'>
       <button
         data-test-scan-settings
         class='button'
@@ -40,7 +37,7 @@
       <FileChooser @onChoose={{perform this.uploadSettings}} as |chooser|>
         <button
           data-test-upload-settings
-          class='m-l-md button'
+          class='button'
           {{action chooser.openFileChooser}}
         >
           {{t 'buttons.uploadSettings'}}
@@ -49,13 +46,13 @@
 
       <button
         data-test-submit-login
-        class='m-l-md button'
+        class='button'
         {{action (perform this.login)}}
       >
         {{t 'buttons.login'}}
       </button>
+    </Field>
 
-    </div>
   {{/unless}}
 
 </FocusCard>

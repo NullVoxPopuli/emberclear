@@ -1,6 +1,8 @@
 'use strict';
 
 process.env.EMBER_CLI_MODULE_UNIFICATION = true;
+process.env.EMBER_MODULE_UNIFICATION = true;
+process.env.EMBER_VERSION = 'OCTANE';
 
 module.exports = {
   /**
@@ -9,7 +11,7 @@ module.exports = {
 
     Setting `disableAnalytics` to true will prevent any data from being sent.
   */
-  "disableAnalytics": false,
-  "liveReload": true,
-  "host": "0.0.0.0"
-}
+  disableAnalytics: false,
+  liveReload: true,
+  host: '0.0.0.0',
+};

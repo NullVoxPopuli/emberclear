@@ -1,9 +1,9 @@
 {{#if (has-block)}}
 
-  {{yield this.isChatVisible this.chatName.result}}
+  {{yield this.isChatVisible this.chatName}}
 
-{{else if (not this.chatName.isPending)}}
+{{else}}
 
-  {{this.chatName.result}}
+  {{this.chatName}}
 
 {{/if}}

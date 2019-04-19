@@ -1,7 +1,7 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 import { Channel, Socket } from 'phoenix';
-import { dropTask } from 'ember-concurrency-decorators';
+import { task } from 'ember-concurrency';
 
 import IdentityService from 'emberclear/services/identity/service';
 import MessageProcessor from 'emberclear/services/messages/processor';
@@ -14,6 +14,18 @@ import { ConnectionError, RelayNotSetError } from 'emberclear/src/utils/errors';
 interface ISendPayload {
   to: string;
   message: string;
+}
+
+async function ignoreTaskCancellation(fn) {
+  try {
+    await fn();
+  } catch (e) {
+    if (e.name === 'TaskCancelation') {
+      // ignore
+    } else {
+      throw e;
+    }
+  }
 }
 
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
@@ -45,9 +57,10 @@ export default class RelayConnection extends Service {
     return this.relay;
   }
 
-  async send(this: RelayConnection, to: string, data: string) {
+  async send(to: string, data: string) {
     const payload: ISendPayload = { to, message: data };
-    await this.ensureConnectionToChannel.perform();
+
+    ignoreTaskCancellation(() => this.ensureConnectionToChannel.perform());
 
     if (!this.channel) {
       return console.error(this.intl.t('connection.errors.send.notConnected'));
@@ -62,7 +75,7 @@ export default class RelayConnection extends Service {
   }
 
   // TODO: ensure not already connected
-  async canConnect(this: RelayConnection): Promise<boolean> {
+  async canConnect(): Promise<boolean> {
     return await this.identity.exists();
   }
 
@@ -90,12 +103,11 @@ export default class RelayConnection extends Service {
   //       a channel, then we don't need a room-channel per user.
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
-  async connect(this: RelayConnection) {
+  async connect() {
     this.establishConnection.perform();
   }
 
-  @dropTask
-  *establishConnection(this: RelayConnection) {
+  @(task(function*(this: RelayConnection) {
     const canConnect = yield this.canConnect();
     if (!canConnect || this.connected) return;
 
@@ -114,10 +126,10 @@ export default class RelayConnection extends Service {
     socket.connect();
 
     yield this.ensureConnectionToChannel.perform();
-  }
+  }).drop())
+  establishConnection: any;
 
-  @dropTask
-  *ensureConnectionToChannel(this: RelayConnection) {
+  @(task(function*(this: RelayConnection) {
     const { t } = this.intl;
 
     if (this.channel) return;
@@ -125,7 +137,8 @@ export default class RelayConnection extends Service {
     if (!this.channelName) throw new ConnectionError(t('No Channel Name Specified'));
 
     yield this.setupChannel();
-  }
+  }).drop())
+  ensureConnectionToChannel: any;
 
   private async setupChannel() {
     return new Promise((resolve, reject) => {
@@ -140,7 +153,8 @@ export default class RelayConnection extends Service {
       channel
         .join()
         .receive('ok', () => {
-          this.handleConnected.perform();
+          ignoreTaskCancellation(() => this.handleConnected.perform());
+
           resolve(channel);
         })
         .receive('error', reject)
@@ -168,14 +182,14 @@ export default class RelayConnection extends Service {
     if (this.socket) this.socket.disconnect();
   };
 
-  @dropTask
-  *handleConnected(this: RelayConnection) {
+  @(task(function*(this: RelayConnection) {
     this.set('connected', true);
     this.updateStatus('info', this.intl.t('connection.connected'));
 
     // ping for user statuses
     this.dispatcher.pingAll();
-  }
+  }).drop())
+  handleConnected: any;
 
   handleMessage = (data: RelayMessage) => {
     this.processor.receive(data);

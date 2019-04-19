@@ -1,11 +1,14 @@
 import Model from 'ember-data/model';
-import { attr, hasMany } from '@ember-decorators/data';
+import attr from 'ember-data/attr';
+import { hasMany } from 'ember-data/relationships';
+// import DS from 'ember-data';
+// const { attr, hasMany } = DS;
 
 import Identity from 'emberclear/data/models/identity/model';
 import Invitation from 'emberclear/data/models/invitation';
 
 export default class Channel extends Model {
-  @attr('string') name!: string;
+  @attr() name!: string;
 
   // Optional super-private channel.
   // provides an additional layer of encryption

@@ -1,6 +1,6 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember-decorators/service';
-import { reads } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
+import { reads } from '@ember/object/computed';
 
 import IdentityService from 'emberclear/services/identity/service';
 

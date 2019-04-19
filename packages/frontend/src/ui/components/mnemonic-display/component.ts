@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
 

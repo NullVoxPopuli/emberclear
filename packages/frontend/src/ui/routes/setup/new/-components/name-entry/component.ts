@@ -1,9 +1,10 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { Registry } from '@ember/service';
 import { isBlank } from '@ember/utils';
-import { inject as service } from '@ember-decorators/service';
-import { computed, action } from '@ember-decorators/object';
-import { dropTask } from 'ember-concurrency-decorators';
+import { inject as service } from '@ember/service';
+import { action, computed } from '@ember/object';
+import { task } from 'ember-concurrency';
 
 import IdentityService from 'emberclear/services/identity/service';
 
@@ -13,10 +14,8 @@ export default class NameEntry extends Component {
   @service identity!: IdentityService;
   @service router!: Registry['router'];
 
-  // @tracked
-  name!: string;
+  @tracked name!: string;
 
-  @computed('name')
   get nameIsBlank(): boolean {
     return isBlank(this.name);
   }
@@ -26,8 +25,7 @@ export default class NameEntry extends Component {
     this.create.perform();
   }
 
-  @dropTask
-  *create(this: NameEntry) {
+  @(task(function*(this: NameEntry) {
     if (this.nameIsBlank) return;
     const exists = yield this.identity.exists();
 
@@ -36,5 +34,6 @@ export default class NameEntry extends Component {
     }
 
     this.router.transitionTo('setup.completed');
-  }
+  }).drop())
+  create;
 }

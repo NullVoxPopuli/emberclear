@@ -1,10 +1,10 @@
 import Service from '@ember/service';
-import { computed } from '@ember-decorators/object';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 import IdentityService from 'emberclear/src/services/identity/service';
 
-import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
+import { inLocalStorage } from 'emberclear/src/utils/decorators';
 
 import Toast from 'emberclear/src/services/toast';
 
@@ -14,22 +14,11 @@ export default class Notifications extends Service {
   @service identity!: IdentityService;
   @service router;
 
-  askToEnableNotifications = true;
-  isHiddenUntilBrowserRefresh = false;
+  @tracked askToEnableNotifications = true;
+  @tracked isHiddenUntilBrowserRefresh = false;
 
-  @syncToLocalStorage
-  get isNeverGoingToAskAgain() {
-    return false;
-  }
+  @inLocalStorage isNeverGoingToAskAgain = false;
 
-  @computed(
-    'askToEnableNotifications',
-    'isHiddenUntilBrowserRefresh',
-    'isNeverGoingToAskAgain',
-    'identity.isLoggedIn',
-    'notInSetup',
-    'router.currentRouteName'
-  )
   get showInAppPrompt() {
     const promptShouldNotBeShown =
       !this.identity.isLoggedIn ||
@@ -101,7 +90,7 @@ export default class Notifications extends Service {
 
       Notification.requestPermission(permission => {
         if (permission === 'granted') {
-          this.set('askToEnableNotifications', false);
+          this.askToEnableNotifications = false;
 
           return resolve();
         }

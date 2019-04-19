@@ -1,15 +1,16 @@
 import Controller from '@ember/controller';
-import { reads, filter } from '@ember-decorators/object/computed';
+import { reads } from '@ember/object/computed';
 
-import Message, { TARGET } from 'emberclear/src/data/models/message/model';
+import { TARGET } from 'emberclear/src/data/models/message/model';
 
 export default class extends Controller {
   @reads('model.targetChannel.id') id!: string;
 
-  @filter('model.messages')
-  messages(message: Message, _index: number, _array: Message[]) {
-    const target = this.id;
+  get messages() {
+    return this.store.peekAll('message').filter(message => {
+      const target = this.id;
 
-    return message.target === TARGET.CHANNEL && message.to === target;
+      return message.target === TARGET.CHANNEL && message.to === target;
+    });
   }
 }

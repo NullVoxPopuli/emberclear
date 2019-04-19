@@ -9,4 +9,4 @@ module.exports = {
   endOfLine: 'lf',
   tabs: false,
   tabWidth: 2,
-}
+};

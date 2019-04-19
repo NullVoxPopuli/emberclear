@@ -10,10 +10,19 @@ import {
   clickable,
 } from 'ember-cli-page-object';
 
+export const selectors = {
+  form: '[data-test-chat-entry-form]',
+  textarea: '[data-test-chat-entry]',
+  message: '[data-test-chat-message]',
+  submitButton: '[data-test-chat-submit]',
+  confirmations: '[data-test-confirmations]',
+};
+
 export const page = create({
   textarea: {
     scope: '[data-test-chat-entry]',
     isDisabled: is('[disabled]'),
+    fillIn: fillable(),
   },
   submitButton: {
     scope: '[data-test-chat-submit]',
@@ -34,14 +43,7 @@ export const page = create({
 });
 
 export const chat = {
-  selectors: {
-    form: '[data-test-chat-entry-form]',
-    textarea: '[data-test-chat-entry]',
-    message: '[data-test-chat-message]',
-    submitButton: '[data-test-chat-submit]',
-    confirmations: '[data-test-confirmations]',
-  },
-
+  selectors,
   textarea: {
     fillIn: (text: string) => fillIn('[data-test-chat-entry]', text),
     isDisabled: () => !!find('[data-test-chat-entry][disabled]'),

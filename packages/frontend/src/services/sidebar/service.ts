@@ -1,9 +1,10 @@
 import Service from '@ember/service';
 
 import { A } from '@ember/array';
-import { notEmpty } from '@ember-decorators/object/computed';
+import { action } from '@ember/object';
+import { notEmpty } from '@ember/object/computed';
 
-import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
+import { inLocalStorage } from 'emberclear/src/utils/decorators';
 
 export default class Sidebar extends Service {
   unreadAbove = A();
@@ -14,21 +15,18 @@ export default class Sidebar extends Service {
   @notEmpty('unreadAbove') hasUnreadAbove!: boolean;
   @notEmpty('unreadBelow') hasUnreadBelow!: boolean;
 
-  @syncToLocalStorage
-  get isShown(): boolean {
-    return false;
-  }
+  @inLocalStorage isShown = false;
 
   show() {
-    this.set('isShown', true);
+    this.isShown = true;
   }
 
   hide() {
-    this.set('isShown', false);
+    this.isShown = false;
   }
 
-  toggle() {
-    this.set('isShown', !this.isShown);
+  @action toggle() {
+    this.isShown = !this.isShown;
   }
 
   clearUnreadBelow() {
@@ -39,15 +37,7 @@ export default class Sidebar extends Service {
     this.unreadAbove.clear();
   }
 
-  observeIntersectionOf(id: string) {
-    this.ensureUnreadIntersectionObserverExists();
-
-    const target = document.getElementById(id);
-
-    this.unreadObserver!.observe(target!);
-  }
-
-  private ensureUnreadIntersectionObserverExists() {
+  ensureUnreadIntersectionObserverExists() {
     if (this.unreadObserver) return;
 
     this.unreadObserver = this.createUnreadObserver();

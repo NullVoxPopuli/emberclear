@@ -1,13 +1,9 @@
-<TopNav id='emberclear-topnav'/>
+<TopNav />
 
 <NotificationContainer @position='top-right' />
 <NotificationPrompt />
 
-<OffCanvasContainer
-  class='no-overflow'
-  @contacts={{this.model.contacts}}
-  @channels={{this.model.channels}}
->
+<OffCanvasContainer class='no-overflow'>
   <UpdateChecker />
 
   {{outlet}}

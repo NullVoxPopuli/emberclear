@@ -25,24 +25,15 @@
 
   {{#if isOpen}}
     <ul class='menu-list'>
-
-      {{#each @channels as |channel|}}
-
-        <WithResponsiveness
-          @whenLarge={{action (transition-to 'chat.in-channel' channel.id)}}
-          @whenSmall={{action
-            (queue
-              (action @closeSidebar)
-              (action (transition-to 'chat.in-channel' channel.id)))
-          }} as |classNames onClick|
-        >
-          <li class={{classNames}}>
-            <a {{action onClick}}>
-              #<span class='m-l-sm'>{{channel.name}}</span>
-            </a>
-          </li>
-
-        </WithResponsiveness>
+      {{#each this.channels as |channel|}}
+        <li>
+          <a
+            href={{url-for 'chat.in-channel' channel.id}}
+            {{on 'click' (prevent-default (action this.onClickChannel channel))}}
+          >
+            #<span class='m-l-sm'>{{channel.name}}</span>
+          </a>
+        </li>
       {{else}}
         <li>{{t 'ui.sidebar.channels.none'}}</li>
       {{/each}}

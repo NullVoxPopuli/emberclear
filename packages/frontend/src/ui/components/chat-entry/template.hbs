@@ -1,33 +1,38 @@
-<form
-  data-test-chat-entry-form
-  class='chat-entry flex-row field has-addons flex-grow m-b-sm'
-  {{action this.sendMessage on='submit'}}
->
-  <div class='control flex'>
-    <EmbedsMenu @sendTo={{@to}} />
-  </div>
+<div ...attributes>
+  <form
+    data-test-chat-entry-form
+    class='chat-entry flex-row field has-addons flex-grow m-b-sm'
+    {{on 'submit' (prevent-default this.sendMessage)}}
+  >
+    <div class='control flex'>
+      <EmbedsMenu @sendTo={{@to}} />
+    </div>
 
-  <div class='control flex-grow resizable-textarea'>
-    {{textarea
-      autofocus=true
-      data-test-chat-entry=true
-      disabled=this.isDisabled
-      role='chat-entry'
-      class='input transition-all chat-entry'
-      value=this.text
-      placeholder=this.placeholder
-    }}
-    <div class='textarea-size'></div>
-  </div>
+    <div class='control flex-grow resizable-textarea'>
+      {{!-- TODO: extract to a resizable textarea component --}}
+      <textarea
+        autofocus
+        data-test-chat-entry
+        disabled={{this.isDisabled}}
+        role='chat-entry'
+        class='input transition-all chat-entry'
+        value={{this.text}}
+        placeholder={{this.placeholder}}
+        {{on 'input' (action (mut this.text) value='target.value')}}
+        {{on 'keypress' this.onKeyPress}}
+      />
+      <div class='textarea-size'></div>
+    </div>
 
-  <div class='control flex-column'>
-    <input
-      data-test-chat-submit
-      disabled={{this.isSubmitDisabled}}
-      class='button flex-grow'
-      role='button'
-      type='submit'
-      value='Send'
-    >
-  </div>
-</form>
+    <div class='control flex-column'>
+      <input
+        data-test-chat-submit
+        disabled={{this.isSubmitDisabled}}
+        class='button flex-grow'
+        role='button'
+        type='submit'
+        value='Send'
+      >
+    </div>
+  </form>
+</div>

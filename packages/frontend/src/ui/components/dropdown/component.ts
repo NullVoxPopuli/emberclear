@@ -1,6 +1,6 @@
 import Component from '@ember/component';
-import { notEmpty } from '@ember-decorators/object/computed';
-import { action } from '@ember-decorators/object';
+import { notEmpty } from '@ember/object/computed';
+import { action } from '@ember/object';
 
 export default class Dropdown extends Component {
   classNames = ['dropdown'];

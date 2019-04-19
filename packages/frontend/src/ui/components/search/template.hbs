@@ -1,21 +1,19 @@
-<Modal @isActive={{@isActive}} @close={{action @close}}>
+<Modal @isActive={{@isActive}} @close={{action @close}} role='search'>
 
-  <form {{action this.submitSearch on='submit'}}>
-    <div class='field'>
-      <div class='control'>
-        {{input
-          autofocus=true
-          id=this.inputId
-          type='text'
-          class='input is-large'
-          value=this.searchText
-          placeholder=(t 'ui.search.title')
-          input=(action this.submitSearch)
-        }}
-      </div>
+  <div class='field'>
+    <div class='control'>
+      <input
+        autofocus
+        type='text'
+        class='input is-large'
+        value={{this.searchText}}
+        placeholder={{t 'ui.search.title'}}
+        {{on 'input' this.onInput}}
+        {{did-insert this.submitSearch}}
+        {{did-insert this.focusInput}}
+      >
     </div>
-    <input style='display: none' type='submit' value='submit'>
-  </form>
+  </div>
 
   <div
     class='m-t-lg overflows'

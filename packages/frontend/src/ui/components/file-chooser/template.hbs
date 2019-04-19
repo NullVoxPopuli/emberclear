@@ -1,7 +1,10 @@
 <input
   style='display: none;'
   type='file'
-  onchange={{action this.didChooseFile}}
+  {{on 'change' this.didChooseFile}}
+  {{did-insert this.bindInput}}
 >
 
-{{yield (hash openFileChooser=(action this.openFileChooser))}}
+{{yield (hash
+  openFileChooser=this.openFileChooser
+)}}

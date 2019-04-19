@@ -16,6 +16,10 @@ import {
 
 const toast = '[data-test-notification-message]';
 
+export const selectors = {
+  headerUnread: '[data-test-unread-count]',
+};
+
 export const page = create({
   toast: {
     scope: '[data-test-notification-message]',
@@ -23,10 +27,7 @@ export const page = create({
     text: text(),
   },
   headerUnread: {
-    scope: '[data-test-unread-count]',
-    isVisible: isVisible,
-    isPresent: isPresent(),
-    text: text(),
+    scope: selectors.headerUnread,
   },
   notificationPrompt: {
     scope: '[data-test-notification-prompt]',

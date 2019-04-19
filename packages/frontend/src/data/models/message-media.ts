@@ -1,6 +1,6 @@
 import Model from 'ember-data/model';
-
-import { attr, belongsTo } from '@ember-decorators/data';
+import DS from 'ember-data';
+const { attr, belongsTo } = DS;
 
 import Message from 'emberclear/data/models/message/model';
 

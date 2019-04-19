@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 import uuid from 'uuid';
 
 import IdentityService from 'emberclear/services/identity/service';

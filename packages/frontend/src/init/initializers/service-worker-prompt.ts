@@ -8,7 +8,7 @@ export function initialize(/* application: Application */): void {
     // Stash the event so it can be triggered later.
     const deferredPrompt = event;
 
-    deferredPrompt.prompt();
+    // deferredPrompt.prompt();
   });
 }
 

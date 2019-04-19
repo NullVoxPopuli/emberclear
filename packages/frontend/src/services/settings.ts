@@ -1,6 +1,6 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
-import { computed } from '@ember-decorators/object';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import localforage from 'localforage';
 import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
@@ -10,7 +10,7 @@ import ChannelManager from 'emberclear/services/channel-manager';
 
 import { objectToDataURL, toHex, fromHex } from 'emberclear/src/utils/string-encoding';
 
-import { monitor, syncToLocalStorage } from 'emberclear/src/utils/decorators';
+import { monitor, inLocalStorage } from 'emberclear/src/utils/decorators';
 
 import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
 
@@ -37,15 +37,8 @@ export default class Settings extends Service {
   @service contactManager!: ContactManager;
   @service channelManager!: ChannelManager;
 
-  @syncToLocalStorage
-  get hideOfflineContacts() {
-    return false;
-  }
-
-  @syncToLocalStorage
-  get useLeftRightJustificationForMessages() {
-    return false;
-  }
+  @inLocalStorage hideOfflineContacts = false;
+  @inLocalStorage useLeftRightJustificationForMessages = false;
 
   @computed('identity.privateKey', 'identity.publicKey')
   @monitor

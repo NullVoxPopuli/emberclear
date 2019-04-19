@@ -1,6 +1,6 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember-decorators/service';
-import { action } from '@ember-decorators/object';
+import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import Identity from 'emberclear/data/models/identity/model';

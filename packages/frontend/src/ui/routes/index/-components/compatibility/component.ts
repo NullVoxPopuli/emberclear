@@ -1,5 +1,7 @@
-import Component, { tracked } from 'sparkles-component';
-import { dropTask } from 'ember-concurrency-decorators';
+import Ember from 'ember';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
+import { task } from 'ember-concurrency';
 
 import {
   hasWASM,
@@ -21,7 +23,6 @@ export default class Compatibility extends Component {
   @tracked successCount = 0;
   @tracked totalCount = 0;
 
-  @tracked('successCount', 'totalCount')
   get isNotCompatible() {
     return this.totalCount !== this.successCount;
   }
@@ -30,17 +31,19 @@ export default class Compatibility extends Component {
     this.detectFeatures.perform();
   }
 
-  @dropTask
-  *detectFeatures(this: Compatibility) {
+  @(task(function*() {
     let check = this.checkSuccess.bind(this);
+    if (!Ember.testing) {
+      this.hasIndexedDb = check(yield hasIndexedDb());
+      this.hasWASM = check(hasWASM());
+      this.hasCamera = check(hasCamera());
+      this.hasWebWorker = check(hasWebWorker());
+      this.hasServiceWorker = check(hasServiceWorker());
+    }
 
-    this.hasIndexedDb = check(yield hasIndexedDb());
-    this.hasCamera = check(hasCamera());
-    this.hasWASM = check(hasWASM());
     this.hasNotifications = check(hasNotifications());
-    this.hasServiceWorker = check(hasServiceWorker());
-    this.hasWebWorker = check(hasWebWorker());
-  }
+  }).drop())
+  detectFeatures;
 
   private checkSuccess(value: boolean) {
     if (value) {

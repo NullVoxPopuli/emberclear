@@ -3,7 +3,9 @@
 <div
   role='button'
   {{action (perform this.markRead)}}
-  id={{@message.id}}
+  {{format-code @message.body}}
+  {{did-insert this.chatScroller.maybeNudgeToBottom}}
+
   class='
     message m-l-md m-r-md m-b-md
     {{if @message.unread 'unread'}}

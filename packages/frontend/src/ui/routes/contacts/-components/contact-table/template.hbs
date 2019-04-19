@@ -1,25 +1,26 @@
 <table data-test-contacts>
   <thead>
     <tr>
-      <th></th>
       <th>{{t 'models.identity.name'}}</th>
       <th>{{t 'models.identity.publicKey'}}</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
 
-    {{#each this.contacts as |identity|}}
+    {{#each this.contacts key='id' as |identity|}}
       <tr data-test-contact-row>
-        <td>
-          <a {{action this.remove identity}}>
-            {{t 'buttons.remove'}}
-          </a>
-        </td>
         <td>
           {{identity.name}}
         </td>
         <td>
           {{first-8 identity.publicKeyAsHex}}...
+        </td>
+        <td class='flex justify-content-end'>
+          <button {{on 'click' this.remove identity}}
+            class='button is-danger'>
+            {{t 'buttons.remove'}}
+          </button>
         </td>
       </tr>
     {{/each}}

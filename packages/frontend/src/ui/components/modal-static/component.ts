@@ -1,7 +1,9 @@
-import Component, { tracked } from 'sparkles-component';
-import { inject as service } from '@ember-decorators/service';
-import { computed } from '@ember-decorators/object';
-import { reads } from '@ember-decorators/object/computed';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
+
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { reads } from '@ember/object/computed';
 
 import Modals from 'emberclear/services/modals';
 
@@ -21,7 +23,7 @@ export default class ModalStatic extends Component<IArgs> {
     }
   }
 
-  @computed('args.name')
+  // @computed('args.name')
   get modal() {
     return this.modals.find(this.args.name);
   }

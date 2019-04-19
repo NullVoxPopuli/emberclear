@@ -1,13 +1,30 @@
-import Component from '@ember/component';
-import { action } from '@ember-decorators/object';
-import { tagName } from '@ember-decorators/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
+import { TABLET_WIDTH } from 'emberclear/src/utils/breakpoints';
 
-@tagName('')
+import Channel from 'emberclear/data/models/channel';
+
 export default class Channels extends Component {
-  isFormVisible = false;
+  @service router;
+  @service store;
 
-  @action
-  toggleForm() {
-    this.set('isFormVisible', !this.isFormVisible);
+  @tracked isFormVisible = false;
+
+  get channels() {
+    return this.store.peekAll('channel');
+  }
+
+  @action toggleForm() {
+    this.isFormVisible = !this.isFormVisible;
+  }
+
+  @action onClickChannel(channel: Channel) {
+    if (window.innerWidth < TABLET_WIDTH) {
+      this.args.closeSidebar();
+    }
+
+    this.router.transitionTo('chat.in-channel', channel.id);
   }
 }

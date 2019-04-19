@@ -11,7 +11,7 @@
       <div class='is-hidden-desktop'>
         <HamburgerButton
           @class='flex'
-          @onClick={{action this.toggleSidebar}}
+          @onClick={{this.sidebar.toggle}}
           @isActive={{this.sidebar.isShown}}
         />
 

@@ -1,5 +1,6 @@
 import Model from 'ember-data/model';
-import { attr, belongsTo } from '@ember-decorators/data';
+import DS from 'ember-data';
+const { attr, belongsTo } = DS;
 
 import Identity from 'emberclear/data/models/identity/model';
 

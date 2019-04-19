@@ -13,8 +13,8 @@ import {
   clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
-  waitUntilTruthy,
   clearToasts,
+  waitUntilTruthy,
 } from 'emberclear/tests/helpers';
 
 import { page as app } from 'emberclear/tests/helpers/pages/app';

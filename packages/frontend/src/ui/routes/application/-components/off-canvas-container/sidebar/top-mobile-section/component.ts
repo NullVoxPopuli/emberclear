@@ -1,7 +1,7 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember-decorators/service';
-import { action } from '@ember-decorators/object';
-import { reads, alias } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
+import { reads, alias } from '@ember/object/computed';
 
 import Sidebar from 'emberclear/services/sidebar';
 import IdentityService from 'emberclear/services/identity/service';

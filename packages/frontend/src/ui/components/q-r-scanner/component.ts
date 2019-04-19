@@ -1,4 +1,5 @@
-import Component, { tracked } from 'sparkles-component';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
 
 import QrScanner from 'qr-scanner';
 // import { NoCameraError } from 'emberclear/src/utils/errors';

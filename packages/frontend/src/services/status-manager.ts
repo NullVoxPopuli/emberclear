@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 import Identity, { Status } from 'emberclear/src/data/models/identity/model';
 import ContactManager from 'emberclear/services/contact-manager';
