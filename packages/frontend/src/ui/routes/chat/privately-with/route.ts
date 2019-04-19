@@ -1,8 +1,7 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 import IdentityService from 'emberclear/services/identity/service';
-import { IModel as ChatModel } from 'emberclear/ui/routes/chat/route';
 
 interface IModelParams {
   u_id: string;
@@ -14,8 +13,8 @@ export default class ChatPrivatelyRoute extends Route {
   @service intl!: Intl;
 
   beforeModel(transition: any) {
-    const params = transition.params['chat.privately-with'];
-    const { u_id } = params as IModelParams;
+    let params = transition.to.params;
+    let { u_id } = params as IModelParams;
 
     if (u_id === this.identity.uid) {
       this.transitionTo('chat.privately-with', 'me');
@@ -34,11 +33,9 @@ export default class ChatPrivatelyRoute extends Route {
 
       this.transitionTo('chat.index');
     }
-    const chatModel = this.modelFor('chat') as ChatModel;
 
     return {
       targetIdentity: record,
-      messages: chatModel.messages,
     };
   }
 }

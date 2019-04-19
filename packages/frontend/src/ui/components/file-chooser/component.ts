@@ -1,16 +1,22 @@
-import Component from '@ember/component';
-import { action } from '@ember-decorators/object';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
-export default class FileChooser extends Component {
-  onChoose!: (content: string) => void;
+interface IArgs {
+  onChoose: (content: string) => void;
+}
 
-  @action
-  openFileChooser() {
-    this.element.querySelector('input')!.click();
+export default class FileChooser extends Component<IArgs> {
+  inputElement!: HTMLInputElement;
+
+  @action bindInput(element: HTMLInputElement) {
+    this.inputElement = element;
   }
 
-  @action
-  didChooseFile(e: Event) {
+  @action openFileChooser() {
+    this.inputElement.click();
+  }
+
+  @action didChooseFile(e: Event) {
     const fileReader = new FileReader();
     const fileInput = e.target as HTMLInputElement;
     const file = (fileInput.files && fileInput.files[0]) || new Blob();
@@ -21,7 +27,7 @@ export default class FileChooser extends Component {
     fileReader.onload = event => {
       const content = event.target!.result;
 
-      this.onChoose(content);
+      this.args.onChoose(content);
     };
 
     fileReader.readAsText(file);

@@ -9,11 +9,19 @@
 {{#if this.isVisible}}
   <form {{action (perform this.save) on='submit'}} data-test-add-relay-form>
     <Field @label='Socket URL'>
-      {{input data-test-socket-field=true class='input' value=this.socketURL}}
+      <Input
+        data-test-socket-field
+        class='input'
+        @value={{this.socketURL}}
+      />
     </Field>
 
     <Field @label='Open Graph URL'>
-      {{input data-test-og-field=true class='input' value=this.openGraphURL}}
+      <Input
+        data-test-og-field
+        class='input'
+        @value={{this.openGraphURL}}
+      />
     </Field>
 
     <div class='flex justify-content-end'>

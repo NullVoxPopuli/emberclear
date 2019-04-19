@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 import IdentityService from 'emberclear/services/identity/service';
 import Sidebar from 'emberclear/services/sidebar';

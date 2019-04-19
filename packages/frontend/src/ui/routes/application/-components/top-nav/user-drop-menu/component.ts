@@ -1,10 +1,12 @@
 import { DS } from 'ember-data';
-import Component, { tracked } from 'sparkles-component';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
+
 import uuid from 'uuid';
 import { later } from '@ember/runloop';
 
-import { inject as service } from '@ember-decorators/service';
-import { reads } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
+import { reads } from '@ember/object/computed';
 
 import { Registry } from '@ember/service';
 import IdentityService from 'emberclear/services/identity/service';

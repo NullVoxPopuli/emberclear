@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 import Identity from 'emberclear/src/data/models/identity/model';
 import Notifications from 'emberclear/services/notifications/service';
@@ -8,7 +8,7 @@ import Message, { TYPE, TARGET } from 'emberclear/src/data/models/message/model'
 import IdentityService from 'emberclear/services/identity/service';
 import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';
-import AutoResponder from 'emberclear/src/services/messages/auto-responder';
+import AutoResponder from 'emberclear/src/services/messages/auto-responder/service';
 
 export default class ReceivedMessageHandler extends Service {
   @service store!: DS.Store;
@@ -105,12 +105,30 @@ export default class ReceivedMessageHandler extends Service {
   }
 
   private async decomposeMessage(json: RelayJson) {
-    const { id, type, target, message: msg, sender: senderInfo } = json;
+    const { id, sender: senderInfo } = json;
 
     const sender = await this.findOrCreateSender(senderInfo);
 
     this.statusManager.markOnline(sender);
     this.autoResponder.cameOnline(sender);
+
+    try {
+      // we've already received this message.
+      // it's possible to receive the same message multiple
+      // times if the sending client doesn't properly
+      // make the message as sent
+      const existing = await this.store.findRecord('message', id);
+
+      return existing;
+    } catch (e) {
+      // we have not yet received this message
+      // build a new message record
+      return this.buildNewReceivedMessage(json, sender);
+    }
+  }
+
+  private buildNewReceivedMessage(json: RelayJson, sender: Identity) {
+    const { id, type, target, message: msg } = json;
 
     const message = this.store.createRecord('message', {
       id,

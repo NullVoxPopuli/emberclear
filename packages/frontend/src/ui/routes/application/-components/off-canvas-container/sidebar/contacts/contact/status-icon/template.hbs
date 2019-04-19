@@ -1,11 +1,1 @@
-{{#if (eq @contact.onlineStatus 'online')}}
-  {{fa-icon 'dot-circle' size='xs' class='has-text-success' }}
-{{else if (eq @contact.onlineStatus 'offline')}}
-  {{fa-icon 'dot-circle' size='xs' class='has-text-lighter' }}
-{{else if (eq @contact.onlineStatus 'away')}}
-  {{fa-icon 'dot-circle' size='xs' class='has-text-warning' }}
-{{else if (eq @contact.onlineStatus 'busy')}}
-  {{fa-icon 'dot-circle' size='xs' class='has-text-lighter' }}
-{{else}}
-  {{fa-icon 'dot-circle' size='xs' class='has-text-darker' }}
-{{/if}}
+{{fa-icon 'dot-circle' size='xs' class=(concat 'has-text-' this.color)}}

@@ -5,9 +5,9 @@ import Notifications from './service';
 
 import {
   clearLocalStorage,
-  setupWindowNotification,
   getService,
   stubService,
+  setupWindowNotification,
 } from 'emberclear/tests/helpers';
 
 module('Unit | Service | notifications', function(hooks) {

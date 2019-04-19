@@ -1,9 +1,10 @@
-import Component, { tracked } from 'sparkles-component';
-import { inject as service } from '@ember-decorators/service';
-import { computed } from '@ember-decorators/object';
-import { not, notEmpty } from '@ember-decorators/object/computed';
-import { dropTask } from 'ember-concurrency-decorators';
-import { timeout } from 'ember-concurrency';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
+
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { not, notEmpty } from '@ember/object/computed';
+import { task, timeout } from 'ember-concurrency';
 
 import Message, { TARGET } from 'emberclear/src/data/models/message/model';
 import Identity from 'emberclear/src/data/models/identity/model';
@@ -27,7 +28,7 @@ export default class DeliveryConfirmation extends Component<IArgs> {
   @not('wasReceived') wasSent!: boolean;
   @notEmpty('args.message.deliveryConfirmations') hasDeliveryConfirmations!: boolean;
 
-  @computed('args.message.to')
+  // @computed('args.message.to')
   get wasReceived() {
     return this.args.message.to === this.identity.uid;
   }
@@ -36,8 +37,7 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     this.waitForConfirmation.perform();
   }
 
-  @dropTask
-  *waitForConfirmation(this: DeliveryConfirmation) {
+  @(task(function*() {
     if (this.timedOut) return;
 
     yield timeout(TIMEOUT_MS);
@@ -45,10 +45,10 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     if (!this.hasDeliveryConfirmations) {
       this.timedOut = true;
     }
-  }
+  }).drop())
+  waitForConfirmation;
 
-  @dropTask
-  *resend(this: DeliveryConfirmation) {
+  @(task(function*() {
     const { message } = this.args;
     let to: Identity | Channel;
 
@@ -69,20 +69,21 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     yield this.dispatcher.sendTo(message, to);
 
     yield this.waitForConfirmation.perform();
-  }
+  }).drop())
+  resend;
 
-  @dropTask
-  *deleteMessage(this: DeliveryConfirmation) {
+  @(task(function*() {
     const { message } = this.args;
 
     yield message.destroyRecord();
-  }
+  }).drop())
+  deleteMessage;
 
-  @dropTask
-  *resendAutomatically(this: DeliveryConfirmation) {
+  @(task(function*() {
     const { message } = this.args;
 
     message.set('queueForResend', true);
     yield message.save();
-  }
+  }).drop())
+  resendAutomatically;
 }

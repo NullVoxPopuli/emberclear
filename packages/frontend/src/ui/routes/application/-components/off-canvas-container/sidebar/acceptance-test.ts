@@ -9,14 +9,12 @@ import {
   setupRelayConnectionMocks,
   setupCurrentUser,
   getService,
-  text,
   createIdentity,
-  waitUntilTruthy,
 } from 'emberclear/tests/helpers';
 
 import IdentityService from 'emberclear/src/services/identity/service';
-import { sidebar, page } from 'emberclear/tests/helpers/pages/sidebar';
-import { settings } from 'emberclear/tests/helpers/pages/settings';
+import { page, openSidebar, selectors } from 'emberclear/tests/helpers/pages/sidebar';
+import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 
 module('Acceptance | Sidebar', function(hooks) {
   setupApplicationTest(hooks);
@@ -26,14 +24,13 @@ module('Acceptance | Sidebar', function(hooks) {
 
   hooks.beforeEach(async function() {
     await visit('/chat');
-    await sidebar.toggle();
-    await waitUntilTruthy(() => sidebar.isOpen());
+    await openSidebar();
   });
 
   module('Contacts', function() {
     module('the add contact button is clicked', function(hooks) {
       hooks.beforeEach(async function() {
-        await sidebar.contacts.clickAdd();
+        await page.contacts.header.clickAdd();
       });
 
       test('a navigation occurred', function(assert) {
@@ -45,24 +42,24 @@ module('Acceptance | Sidebar', function(hooks) {
       module('there are 0 contacts', function() {
         test('only the current user is shown', function(assert) {
           const name = getService<IdentityService>('identity')!.name!;
-          const content = text(sidebar.contacts.rows()).trim();
+          const content = page.contacts.list.map(c => c.text).join();
 
           assert.equal(content, name);
         });
 
         test('offline count does not show', function(assert) {
-          assert.notOk(sidebar.contacts.offlineCount());
+          assert.notOk(page.contacts.offlineCount.isVisible);
         });
       });
 
       module('there is 1 contact', function(hooks) {
         hooks.beforeEach(async function() {
           await createIdentity('first contact');
-          await waitFor(sidebar.selectors.contacts);
+          await waitFor(selectors.contacts);
         });
 
         test('there are 2 rows of names', function(assert) {
-          assert.equal(sidebar.contacts.rows().length, 2);
+          assert.equal(page.contacts.list.length, 2);
         });
 
         test('offline count does not show', function(assert) {
@@ -72,20 +69,20 @@ module('Acceptance | Sidebar', function(hooks) {
         module('offline contacts are to be hidden', function(hooks) {
           hooks.beforeEach(async function() {
             await visit('/settings/interface');
-            await settings.toggleHideOfflineContacts();
-            await waitFor(sidebar.selectors.offlineCount);
+            await settings.ui.toggleHideOfflineContacts();
+            await waitFor(selectors.offlineCount);
           });
 
           test('only the current user is shown', function(assert) {
             const name = getService<IdentityService>('identity')!.name!;
-            const content = text(sidebar.contacts.rows());
+            const content = page.contacts.listText;
 
             assert.ok(content.includes(name), 'current user name is present');
-            assert.equal(sidebar.contacts.rows().length, 1, 'one user in the contacts list');
+            assert.equal(page.contacts.list.length, 1, 'one user in the contacts list');
           });
 
           test('offline count is shown', function(assert) {
-            const result = sidebar.contacts.offlineCount()!.textContent;
+            const result = page.contacts.offlineCount.text;
 
             assert.ok(result!.match(/1/));
           });
@@ -96,30 +93,30 @@ module('Acceptance | Sidebar', function(hooks) {
         hooks.beforeEach(async function() {
           await createIdentity('first contact');
           await createIdentity('second contact');
-          await waitFor(sidebar.selectors.contacts);
+          await waitFor(selectors.contacts);
         });
 
         test('there are 3 rows of names', function(assert) {
-          assert.equal(sidebar.contacts.rows().length, 3, 'there are 3 contacts');
+          assert.equal(page.contacts.list.length, 3, 'there are 3 contacts');
         });
 
         module('offline contacts are to be hidden', function(hooks) {
           hooks.beforeEach(async function() {
             await visit('/settings/interface');
-            await settings.toggleHideOfflineContacts();
-            await waitFor(sidebar.selectors.offlineCount);
+            await settings.ui.toggleHideOfflineContacts();
+            await waitFor(selectors.offlineCount);
           });
 
           test('only the current user is shown', function(assert) {
             const name = getService<IdentityService>('identity')!.name!;
-            const content = text(sidebar.contacts.rows());
+            const content = page.contacts.listText;
 
             assert.ok(content.includes(name), 'current user name is present');
-            assert.equal(sidebar.contacts.rows().length, 1, 'one user in the contacts list');
+            assert.equal(page.contacts.list.length, 1, 'one user in the contacts list');
           });
 
           test('offline count is shown', function(assert) {
-            const result = sidebar.contacts.offlineCount()!.textContent;
+            const result = page.contacts.offlineCount.text;
 
             assert.ok(result!.match(/2/));
           });
@@ -137,7 +134,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
   module('Channels', function(hooks) {
     test('the channel form is not visible', function(assert) {
-      const form = sidebar.channels.form();
+      const form = page.channels.form.isVisible;
 
       assert.notOk(form);
     });
@@ -151,23 +148,23 @@ module('Acceptance | Sidebar', function(hooks) {
 
     module('the add channel button is clicked', function(hooks) {
       hooks.beforeEach(async function() {
-        await sidebar.channels.toggleForm();
+        await page.channels.toggleForm();
       });
 
       test('the channel form is now visible', function(assert) {
-        const form = sidebar.channels.form();
+        const form = page.channels.form.isVisible;
 
         assert.ok(form);
       });
 
       module('the cancel button is clicked', function(hooks) {
         hooks.beforeEach(async function() {
-          await sidebar.channels.toggleForm();
+          await page.channels.toggleForm();
           await settled();
         });
 
         test('the channel form is not visible', function(assert) {
-          const form = sidebar.channels.form();
+          const form = page.channels.form.isVisible;
 
           assert.notOk(form);
         });
@@ -175,13 +172,13 @@ module('Acceptance | Sidebar', function(hooks) {
 
       module('the channel form is submitted', function(hooks) {
         hooks.beforeEach(async function() {
-          await sidebar.channels.fillInput('Vertical Flat Plates');
-          await sidebar.channels.submitForm();
+          await page.channels.form.fill('Vertical Flat Plates');
+          await page.channels.form.submit();
           await settled();
         });
 
         test('the form becomes hidden', function(assert) {
-          const form = sidebar.channels.form();
+          const form = page.channels.form.isVisible;
 
           assert.notOk(form);
         });

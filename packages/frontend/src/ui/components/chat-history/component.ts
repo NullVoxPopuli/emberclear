@@ -1,17 +1,16 @@
 import Ember from 'ember';
-import Component, { tracked } from 'sparkles-component';
-import { inject as service } from '@ember-decorators/service';
-import { timeout } from 'ember-concurrency';
-import { keepLatestTask } from 'ember-concurrency-decorators';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
+
+import { inject as service } from '@ember/service';
+import { timeout, task } from 'ember-concurrency';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
-import Message from 'emberclear/src/data/models/message/model';
 import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
 
 interface IArgs {
   to: Identity | Channel;
-  messages: Message[];
 }
 
 export default class ChatHistory extends Component<IArgs> {
@@ -29,8 +28,7 @@ export default class ChatHistory extends Component<IArgs> {
 
   // This watches to see if we have scrolled up, and shows the
   // quick link to jump to the bottom.
-  @keepLatestTask
-  *autoScrollToBottom(this: ChatHistory) {
+  @(task(function*(this: ChatHistory) {
     while (true) {
       yield timeout(250);
 
@@ -44,5 +42,6 @@ export default class ChatHistory extends Component<IArgs> {
         return;
       }
     }
-  }
+  }).keepLatest())
+  autoScrollToBottom;
 }

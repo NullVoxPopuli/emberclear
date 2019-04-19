@@ -5,7 +5,7 @@ export const contacts = {
     dom: () => findAll('[data-test-contacts] [data-test-contact-row]'),
     removeAt: (index: number) => {
       const row = findAll('[data-test-contacts] [data-test-contact-row]')[index];
-      const link = row.querySelector('a')!;
+      const link = row.querySelector('button')!;
 
       return click(link);
     },

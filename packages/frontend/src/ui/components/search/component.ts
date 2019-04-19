@@ -1,8 +1,10 @@
-import Component, { tracked } from 'sparkles-component';
-import { inject as service } from '@ember-decorators/service';
-import { reads } from '@ember-decorators/object/computed';
-import { keepLatestTask } from 'ember-concurrency-decorators';
-import uuid from 'uuid';
+import { later } from '@ember/runloop';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
+import { reads } from '@ember/object/computed';
+import { task } from 'ember-concurrency';
 
 interface IArgs {
   isActive: boolean;
@@ -13,37 +15,31 @@ export default class SearchModal extends Component<IArgs> {
   @service store;
 
   @tracked searchText = '';
-  inputId = uuid();
-  inputElement!: HTMLInputElement;
-
   @tracked identityResults = [];
   @tracked channelResults = [];
 
   @reads('identityResults.length') numContacts!: number;
 
-  @tracked('identityResults', 'channelResults')
   get hasResults() {
     return this.identityResults.length > 0 || this.channelResults.length > 0;
   }
 
-  didInsertElement() {
-    this.search.perform('');
-    this.inputElement = document.getElementById(this.inputId) as HTMLInputElement;
+  @action focusInput(element: HTMLInputElement) {
+    later(this, () => element.focus());
   }
 
-  didUpdate() {
-    this.inputElement.focus();
-  }
-
-  submitSearch() {
+  @action submitSearch() {
     this.search.perform(this.searchText);
   }
 
-  @keepLatestTask
-  *search(searchTerm: string) {
+  @action onInput(e: Event) {
+    this.searchText = (e.target as HTMLInputElement).value;
+    this.submitSearch();
+  }
+
+  @(task(function*(this: SearchModal, searchTerm: string) {
     const term = new RegExp(searchTerm, 'i');
 
-    // https://github.com/genkgo/ember-localforage-adapter/blob/master/addon/adapters/localforage.js#L104
     const identityResults = yield this.store.query('identity', {
       name: term,
     });
@@ -54,5 +50,6 @@ export default class SearchModal extends Component<IArgs> {
     this.identityResults = identityResults.filter(i => i.id !== 'me').slice(0, 5);
 
     this.channelResults = channelResults.slice(0, 5);
-  }
+  }).keepLatest())
+  search: any;
 }

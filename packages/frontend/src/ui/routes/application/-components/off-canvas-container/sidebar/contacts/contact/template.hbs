@@ -1,35 +1,26 @@
 {{#if this.shouldBeRendered}}
-  <WithResponsiveness
-    @whenLarge={{action (transition-to 'chat.privately-with' @contact.id)}}
-    @whenSmall={{action
-      (queue
-        (action @closeSidebar)
-        (action (transition-to 'chat.privately-with' @contact.id)))
-    }} as |classNames onClick|
-  >
+  <li data-test-contact-row {{did-insert (perform this.findRelevantMessages)}}>
+    <a
+      {{on 'click' (prevent-default this.onClick)}}
+      href={{url-for 'chat.privately-with' @contact.id}}
+      class='
+        flex-row align-items-center justify-content-space-between
+        {{if this.isActive 'is-active'}}
+      '
+    >
+      <span data-test-contact-name class='flex-row align-items-center'>
+        <StatusIcon @contact={{@contact}} />
+        <span class='m-l-sm'>{{or @contact.name '[unnamed]'}}</span>
+      </span>
 
-    <li data-test-contact-row class={{classNames}}>
-      <a
-        {{action onClick}}
-        class='
-          flex-row align-items-center justify-content-space-between
-          {{if this.isActive 'is-active'}}
-        '
-      >
-        <span class='flex-row align-items-center'>
-          <StatusIcon @contact={{@contact}} />
-          <span class='m-l-sm'>{{or @contact.name '[unnamed]'}}</span>
+      {{#if this.hasUnread}}
+        <span
+          {{unread-messages-intersection-observer}}
+          class='tag is-danger is-small is-pulled-right'
+        >
+          {{this.numberUnread}}
         </span>
-
-        {{#if this.hasUnread}}
-          <span
-            id={{this.unreadElementId}}
-            class='tag is-danger is-small is-pulled-right'>
-            {{this.numberUnread}}
-          </span>
-        {{/if}}
-      </a>
-    </li>
-
-  </WithResponsiveness>
+      {{/if}}
+    </a>
+  </li>
 {{/if}}

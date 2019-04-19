@@ -1,6 +1,6 @@
 import Component from 'sparkles-component';
-import { computed } from '@ember-decorators/object';
-import { reads, not } from '@ember-decorators/object/computed';
+import { computed } from '@ember/object';
+import { reads, not } from '@ember/object/computed';
 
 import { convertObjectToQRCodeDataURL } from 'emberclear/src/utils/string-encoding';
 import { monitor } from 'emberclear/src/utils/decorators';

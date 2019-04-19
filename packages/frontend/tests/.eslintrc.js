@@ -1,9 +1,9 @@
 module.exports = {
   env: {
-    embertest: true
+    embertest: true,
   },
   rules: {
     // doesn't support deep nesting
-    'qunit/no-identical-names': 'warn'
+    'qunit/no-identical-names': 'warn',
   },
 };

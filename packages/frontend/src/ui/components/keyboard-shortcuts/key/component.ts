@@ -1,11 +1,11 @@
-import Component, { tracked } from 'sparkles-component';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
 
 interface IArgs {
   label: string;
 }
 
 export default class Key extends Component<IArgs> {
-  @tracked
   get i18nKey() {
     const { label } = this.args;
 

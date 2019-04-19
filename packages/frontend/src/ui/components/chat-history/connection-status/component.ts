@@ -1,7 +1,7 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember-decorators/service';
-import { reads } from '@ember-decorators/object/computed';
-import { task } from 'ember-concurrency-decorators';
+import { inject as service } from '@ember/service';
+import { reads } from '@ember/object/computed';
+import { task } from 'ember-concurrency';
 
 import { timeout } from 'ember-concurrency';
 
@@ -25,17 +25,17 @@ export default class ConnectionStatus extends Component {
     }
   }
 
-  @task
-  *setToFade() {
+  @task(function*() {
     yield timeout(2000);
 
     this.element.classList.add('fade-out');
-  }
+  })
+  setToFade;
 
-  @task
-  *removeFade() {
+  @task(function*() {
     yield timeout(200);
 
     this.element.classList.remove('fade-out');
-  }
+  })
+  removeFade;
 }

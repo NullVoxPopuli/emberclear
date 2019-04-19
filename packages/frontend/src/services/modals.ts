@@ -1,42 +1,40 @@
 import Service from '@ember/service';
-import EmberObject from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 interface IModalArgs {
   name: string;
   isActive: boolean;
 }
 
-class ModalState extends EmberObject {
-  name!: string;
-  isActive!: boolean;
+class ModalState {
+  @tracked name!: string;
+  @tracked isActive!: boolean;
 
   constructor(args: IModalArgs) {
-    super();
-
     this.name = args.name;
     this.isActive = args.isActive;
   }
 }
 
 export default class Modals extends Service {
-  modals: ModalState[] = [];
+  @tracked modals: ModalState[] = [];
 
   toggle(name: string) {
     const modal = this.find(name);
 
-    modal.set('isActive', !modal.isActive);
+    modal.isActive = !modal.isActive;
   }
 
   close(name: string) {
     const modal = this.find(name);
 
-    modal.set('isActive', false);
+    modal.isActive = false;
   }
 
   open(name: string) {
     const modal = this.find(name);
 
-    modal.set('isActive', true);
+    modal.isActive = true;
   }
 
   isVisible(name: string) {

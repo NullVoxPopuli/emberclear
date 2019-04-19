@@ -1,7 +1,6 @@
 // https://github.com/DockYard/ember-composable-helpers/blob/master/addon/helpers/toggle.js
 import { helper as buildHelper } from '@ember/component/helper';
-import { get } from '@ember/object';
-import { set } from '@ember/object';
+import { get, set } from '@ember/object';
 import { isPresent } from '@ember/utils';
 
 function nextIndex(length, currentIdx) {

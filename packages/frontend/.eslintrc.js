@@ -1,17 +1,7 @@
 module.exports = {
   root: true,
-  // parserOptions: {
-  //   ecmaVersion: 2017,
-  //   sourceType: 'module'
-  // },
-
   parser: '@typescript-eslint/parser',
-  plugins: [
-    'ember',
-    'prettier',
-    'qunit',
-    '@typescript-eslint',
-  ],
+  plugins: ['ember', 'prettier', 'qunit', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
@@ -19,9 +9,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
-  // env: {
-  //   browser: true
-  // },
   rules: {
     // ember specific
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
@@ -67,9 +54,7 @@ module.exports = {
     //   }
     // },
     {
-      files: [
-        'src/services/prism-manager.ts'
-      ],
+      files: ['src/services/prism-manager.ts'],
       rules: {
         'no-undef': 'off',
       },
@@ -77,6 +62,9 @@ module.exports = {
     // node files
     {
       files: [
+        '.ember-cli.js',
+        '.eslintrc.js',
+        '.prettierrc.js',
         '.template-lintrc.js',
         'ember-cli-build.js',
         'index.js',
@@ -84,20 +72,20 @@ module.exports = {
         'testem.js',
         'blueprints/*/index.js',
         'config/**/*.js',
-        'tests/dummy/config/**/*.js'
+        'tests/dummy/config/**/*.js',
       ],
-      rules: {
-        '@typescript-eslint/camelcase': 'off',
-        '@typescript-eslint/no-var-requires': 'off'
-      },
-      // parserOptions: {
-      //   sourceType: 'script',
-      //   ecmaVersion: 2015
-      // },
+      excludedFiles: ['src/**'],
       env: {
         browser: false,
-        node: true
-      }
-    }
-  ]
+        node: true,
+      },
+      plugins: ['node'],
+      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
+        '@typescript-eslint/camelcase': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+        'node/no-unpublished-require': 'off', // we live dangerously here
+        'node/no-extraneous-require': 'off', // incorrect?
+      }),
+    },
+  ],
 };

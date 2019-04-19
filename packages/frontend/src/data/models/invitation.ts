@@ -1,5 +1,6 @@
 import Model from 'ember-data/model';
-import { attr, hasMany, belongsTo } from '@ember-decorators/data';
+import DS from 'ember-data';
+const { attr, hasMany, belongsTo } = DS;
 
 import Identity from 'emberclear/data/models/identity/model';
 import InvitationResult from 'emberclear/data/models/invitation-result';

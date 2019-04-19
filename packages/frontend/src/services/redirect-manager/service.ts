@@ -1,18 +1,14 @@
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
-import { computed } from '@ember-decorators/object';
+import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
-import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
+import { inLocalStorage } from 'emberclear/src/utils/decorators';
 
 export default class RedirectManager extends Service {
   @service router;
 
-  @syncToLocalStorage
-  get attemptedRoute() {
-    return null;
-  }
+  @inLocalStorage attemptedRoute;
 
-  @computed('attemptedRoute')
   get hasPendingRedirect() {
     return !!this.attemptedRoute;
   }

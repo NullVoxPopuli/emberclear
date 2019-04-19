@@ -1,6 +1,6 @@
 import StoreService from 'ember-data/store';
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 import Relay from 'emberclear/src/data/models/relay';
 import ToastService from 'emberclear/src/services/toast';

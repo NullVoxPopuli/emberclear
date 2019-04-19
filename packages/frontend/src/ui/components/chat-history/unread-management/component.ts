@@ -1,6 +1,6 @@
 import Component from 'sparkles-component';
-import { computed } from '@ember-decorators/object';
-import { gt, reads } from '@ember-decorators/object/computed';
+import { computed } from '@ember/object';
+import { gt, reads } from '@ember/object/computed';
 
 import Message from 'emberclear/src/data/models/message/model';
 import Identity from 'emberclear/src/data/models/identity/model';
@@ -21,7 +21,7 @@ export default class UnreadManagement extends Component<IArgs> {
     this.messagesElement = document.querySelector('.messages') as HTMLElement;
   }
 
-  @computed('to.id', 'args.messages.@each.unread')
+  // @computed('to.id', 'args.messages.@each.unread')
   get unreadMessages() {
     const { to, messages } = this.args;
     const unread = selectUnreadDirectMessages(messages, to.id);

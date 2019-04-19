@@ -81,8 +81,8 @@ images:
     ownIdentityQR: This is your identity information represented as a QR Code
 
 input:
-  placeholder:
-    mnemonic: Enter your mnemonic
+  label:
+    mnemonic: Mnemonic
     name: Name
 
 status:

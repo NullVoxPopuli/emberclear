@@ -4,11 +4,11 @@
   </h5>
 
   <div class='flex-row m-b-md m-r-sm'>
-    {{input
+    <Input
       class='input'
-      value=this.title
       placeholder='Title (optional)'
-    }}
+      @value={{this.title}}
+    />
 
     <div class='select m-l-sm'>
       <select onchange={{action (mut this.language) value='target.value'}}>

@@ -1,96 +1,75 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { later } from '@ember/runloop';
 
-import { action, computed } from '@ember-decorators/object';
-import { reads } from '@ember-decorators/object/computed';
-import { inject as service } from '@ember-decorators/service';
+import { action, computed } from '@ember/object';
+
+import { reads } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
 import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
 
-export default class ChatEntry extends Component {
+interface IArgs {
+  to: Identity | Channel;
+}
+
+export default class ChatEntry extends Component<IArgs> {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
   @service('messages/factory') messageFactory!: MessageFactory;
+  @service store;
 
-  to!: Identity | Channel;
-  // value from the input field
-  text?: string;
-  // disable the text field while sending
-  isDisabled = false;
-
-  didRender() {
-    const mainInput = this.element.querySelector('textarea.chat-entry') as HTMLElement;
-
-    mainInput.onkeypress = this.onKeyPress.bind(this);
-    mainInput.onkeyup = this.onKeyUp.bind(this);
-    mainInput.onkeydown = this.onKeyUp.bind(this);
-  }
+  @tracked text?: string;
+  @tracked isDisabled = false;
 
   @reads('to.name') messageTarget!: string;
 
-  @computed('messageTarget')
   get placeholder() {
     let prefix = '';
 
-    if (this.to instanceof Channel) {
+    if (this.args.to instanceof Channel) {
       prefix = 'everyone in ';
     }
 
     return `Send a message to ${prefix}${this.messageTarget}`;
   }
 
-  @computed('text', 'isDisabled')
   get isSubmitDisabled() {
     return !this.text || this.text.length === 0 || this.isDisabled;
   }
 
-  @action
-  async sendMessage(this: ChatEntry) {
+  @action async sendMessage(this: ChatEntry) {
     if (!this.text) return;
 
-    this.set('isDisabled', true);
+    this.isDisabled = true;
 
     await this.dispatchMessage(this.text);
 
-    this.set('isDisabled', false);
-    this.set('text', '');
-
-    later(this, () => {
-      this.adjustHeightOfTextInput();
+    // removing this later causes the input field to not actually get
+    // cleared
+    later(() => {
+      this.isDisabled = false;
+      this.text = '';
     });
   }
 
-  @action
-  onKeyPress(this: ChatEntry, event: KeyboardEvent) {
+  @action onKeyPress(this: ChatEntry, event: KeyboardEvent) {
     const { keyCode, shiftKey } = event;
 
-    this.adjustHeightOfTextInput();
     // don't submit when shift is being held.
     if (!shiftKey && keyCode === 13) {
-      this.send('sendMessage');
+      this.sendMessage();
 
       // prevent regular 'Enter' from inserting a linebreak
       return false;
     }
 
-    return true;
-  }
-
-  @action
-  onKeyUp(_event: KeyboardEvent) {
-    this.adjustHeightOfTextInput();
-  }
-
-  adjustHeightOfTextInput() {
-    const textarea = this.element.querySelector('textarea') as HTMLTextAreaElement;
-    const sizer = this.element.querySelector('.textarea-size')!;
-
-    sizer.innerHTML = textarea.value + '\n';
+    return false;
   }
 
   async dispatchMessage(text: string) {
-    this.messageDispatcher.send(text, this.to);
+    await this.messageDispatcher.send(text, this.args.to);
   }
 }

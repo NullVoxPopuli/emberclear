@@ -27,11 +27,8 @@
         onclick={{action this.toggleSidebar}}
       >
       </div>
-      <Sidebar
-        class='sidebar-wrapper'
-        @contacts={{@contacts}}
-        @channels={{@channels}}
-      />
+
+      <Sidebar class='sidebar-wrapper' />
 
       <HamburgerButton
         @class='offcanvas-trigger is-flex-tablet-only'

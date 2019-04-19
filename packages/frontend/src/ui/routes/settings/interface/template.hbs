@@ -1,11 +1,20 @@
 <div class='m-b-lg' data-test-interface>
   <label class='checkbox'>
-    {{input data-test-hide-offline-contacts=true type='checkbox' checked=this.hideOfflineContacts}}
+    <input
+      data-test-hide-offline-contacts
+      type='checkbox'
+      checked={{this.settings.hideOfflineContacts}}
+      {{on 'click' (action (mut this.settings.hideOfflineContacts) (not this.settings.hideOfflineContacts))}}
+    >
     {{t 'ui.settings.hideOfflineContacts'}}
   </label>
   <br>
   <label class='checkbox'>
-    {{input type='checkbox' checked=this.useLeftRightJustificationForMessages}}
+    <input
+      type='checkbox'
+      checked={{this.useLeftRightJustificationForMessages}}
+      {{on 'click' (action (mut this.useLeftRightJustificationForMessages) (not this.useLeftRightJustificationForMessages))}}
+    >
     {{t 'ui.settings.useLeftRightJustificationForMessages'}}
   </label>
 </div>

@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
-import { task } from 'ember-concurrency-decorators';
+import { inject as service } from '@ember/service';
+import { task } from 'ember-concurrency';
 
 // giant block o' types
 import RelayConnection from 'emberclear/services/relay-connection';
@@ -61,8 +61,7 @@ export default class MessageDispatcher extends Service {
   // the bigger the list of identities, the longer this takes
   //
   // TODO: should this be hard-limited to just messages like PINGs?
-  @task
-  *sendToAll(this: MessageDispatcher, msg: Message) {
+  @task(function*(this: MessageDispatcher, msg: Message) {
     const everyone = yield this.store.findAll('identity');
 
     everyone.forEach((identity: Identity) => {
@@ -70,7 +69,8 @@ export default class MessageDispatcher extends Service {
 
       this.sendToUser.perform(msg, identity);
     });
-  }
+  })
+  sendToAll: any;
 
   sendToChannel(msg: Message, channel: Channel) {
     const members = channel.members;
@@ -82,8 +82,7 @@ export default class MessageDispatcher extends Service {
     });
   }
 
-  @task
-  *sendToUser(msg: Message, to: Identity) {
+  @task(function*(this: MessageDispatcher, msg: Message, to: Identity) {
     const theirPublicKey = to.publicKey as Uint8Array;
     const uid = toHex(theirPublicKey);
 
@@ -97,18 +96,22 @@ export default class MessageDispatcher extends Service {
       msg.set('receivedAt', new Date());
     } catch (e) {
       const { reason, to_uid: toUid } = e;
-      const error: string = reason;
 
-      msg.set('sendError', error);
+      if (reason) {
+        const error: string = reason;
 
-      if (error.match(/not found/)) {
-        this.statusManager.markOffline(toUid);
-        return;
+        msg.set('sendError', error);
+
+        if (error.match(/not found/)) {
+          this.statusManager.markOffline(toUid);
+          return;
+        }
       }
 
-      console.error(e);
+      console.debug(e.name, e);
     }
-  }
+  })
+  sendToUser: any;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

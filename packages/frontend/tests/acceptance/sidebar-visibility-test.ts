@@ -4,7 +4,7 @@ import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
-import { sidebar } from 'emberclear/tests/helpers/pages/sidebar';
+import { page } from 'emberclear/tests/helpers/pages/sidebar';
 
 import {
   stubService,
@@ -30,7 +30,7 @@ module('Acceptance | Sidebar Visibility', function(hooks) {
     });
 
     test('the sidebar is not visible', function(assert) {
-      assert.notOk(sidebar.isPresent());
+      assert.notOk(page.isPresent);
       percySnapshot(assert as any);
     });
   });
@@ -43,31 +43,31 @@ module('Acceptance | Sidebar Visibility', function(hooks) {
     });
 
     test('the sidebar is visible', function(assert) {
-      assert.ok(sidebar.isPresent());
+      assert.ok(page.isPresent);
       percySnapshot(assert as any);
     });
 
     test('the sidebar is not open', function(assert) {
-      assert.notOk(sidebar.isOpen());
+      assert.notOk(page.isOpen);
     });
 
     module('the sidebar hamburger is clicked', function(hooks) {
       hooks.beforeEach(async function() {
-        await sidebar.toggle();
+        await page.toggle();
       });
 
       test('the sidebar is open', function(assert) {
-        assert.ok(sidebar.isOpen());
+        assert.ok(page.isOpen);
         percySnapshot(assert as any);
       });
 
       module('the sidebar close button is clicked', function(hooks) {
         hooks.beforeEach(async function() {
-          await sidebar.toggle();
+          await page.toggle();
         });
 
         test('the sidebar is closed', function(assert) {
-          assert.notOk(sidebar.isOpen());
+          assert.notOk(page.isOpen);
           percySnapshot(assert as any);
         });
       });

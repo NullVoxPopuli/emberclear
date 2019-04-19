@@ -1,4 +1,4 @@
-import Component, { tracked } from 'sparkles-component';
+import Component from '@glimmer/component';
 
 interface IArgs {
   isActive: boolean;

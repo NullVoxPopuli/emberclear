@@ -15,7 +15,9 @@
 
   <div class='modal-content'>
     <div class='box {{@boxClasses}}'>
-      {{yield}}
+      {{#if @isActive}}
+        {{yield}}
+      {{/if}}
     </div>
   </div>
 

@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
 import { run } from '@ember/runloop';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 import Channel from 'emberclear/data/models/channel';
 import ArrayProxy from '@ember/array/proxy';

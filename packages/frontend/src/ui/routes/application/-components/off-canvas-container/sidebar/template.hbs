@@ -13,25 +13,18 @@
 
       {{#if this.hasUnreadAbove}}
         <UnreadIndicator
-          @onClick={{action this.scrollUpToNearestUnread}}
+          @onClick={{this.scrollUpToNearestUnread}}
           @direction='up'
         />
       {{/if}}
 
-      <Contacts
-        @contacts={{@contacts}}
-        @closeSidebar={{action this.closeSidebar}}
-      />
-
-      <Channels
-        @channels={{@channels}}
-        @closeSidebar={{action this.closeSidebar}}
-      />
+      <Contacts @closeSidebar={{this.closeSidebar}} />
+      <Channels @closeSidebar={{this.closeSidebar}} />
 
       {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
       {{#if this.hasUnreadBelow}}
         <UnreadIndicator
-          @onClick={{action this.scrollDownToNearestUnread}}
+          @onClick={{this.scrollDownToNearestUnread}}
           @direction='down'
         />
       {{/if}}

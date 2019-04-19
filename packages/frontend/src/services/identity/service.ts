@@ -1,11 +1,11 @@
 import DS from 'ember-data';
 import { run } from '@ember/runloop';
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import { isPresent } from '@ember/utils';
 
-import { computed } from '@ember-decorators/object';
-import { inject as service } from '@ember-decorators/service';
-import { alias, reads } from '@ember-decorators/object/computed';
+import { inject as service } from '@ember/service';
+import { reads } from '@ember/object/computed';
 
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import { toHex } from 'emberclear/src/utils/string-encoding';
@@ -23,22 +23,20 @@ import Identity from 'emberclear/data/models/identity/model';
 export default class IdentityService extends Service {
   @service store!: DS.Store;
 
-  record?: Identity;
+  @tracked record?: Identity;
 
   // safety for not accidentally blowing away an existing identity
-  allowOverride = false;
+  @tracked allowOverride = false;
 
   @reads('record.id') id?: string;
   @reads('record.name') name?: string;
   @reads('record.publicKey') publicKey?: Uint8Array;
   @reads('record.privateKey') privateKey?: Uint8Array;
 
-  @computed('name', 'privateKey', 'publicKey')
   get isLoggedIn(): boolean {
     return !!(this.privateKey && this.publicKey);
   }
 
-  @computed('publicKey')
   get uid(): string {
     if (!this.publicKey) return '';
 
@@ -52,7 +50,7 @@ export default class IdentityService extends Service {
     await this.store.unloadAll('identity');
 
     await this.setIdentity(name, privateKey, publicKey);
-    this.set('allowOverride', false);
+    this.allowOverride = false;
 
     await this.load();
   }
@@ -72,7 +70,7 @@ export default class IdentityService extends Service {
 
     await record.save();
 
-    this.set('record', record);
+    this.record = record;
   }
 
   async exists(): Promise<boolean> {
@@ -91,12 +89,12 @@ export default class IdentityService extends Service {
     try {
       const existing = await this.store.findRecord('identity', 'me', { backgroundReload: true });
 
-      run(() => this.set('record', existing));
+      run(() => (this.record = existing));
 
       return existing;
     } catch (e) {
       // no record found
-      run(() => this.set('allowOverride', true));
+      run(() => (this.allowOverride = true));
     }
 
     return null;

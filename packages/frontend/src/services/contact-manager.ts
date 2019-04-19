@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import Service from '@ember/service';
-import { inject as service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
 
 import Identity from 'emberclear/data/models/identity/model';

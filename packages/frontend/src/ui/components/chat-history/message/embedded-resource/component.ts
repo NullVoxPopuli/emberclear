@@ -1,7 +1,9 @@
-import Component, { tracked } from 'sparkles-component';
-import { or } from '@ember-decorators/object/computed';
-import { inject as service } from '@ember-decorators/service';
-import { task } from 'ember-concurrency-decorators';
+import Component from 'sparkles-component';
+import { tracked } from '@glimmer/tracking';
+
+import { or } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import { task } from 'ember-concurrency';
 
 import RelayManager from 'emberclear/services/relay-manager';
 
@@ -30,13 +32,13 @@ export default class EmbeddedResource extends Component<IArgs> {
     this.setup.perform();
   }
 
-  @task
-  *setup(this: EmbeddedResource) {
+  @task(function*() {
     if (!this.args.url) return;
 
     this.parseUrl();
     this.fetchOpenGraph();
-  }
+  })
+  setup;
 
   @or('embedUrl', 'isImage', 'hasOgData') shouldRender!: boolean;
 
