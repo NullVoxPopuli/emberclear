@@ -5411,12 +5411,11 @@ ember-fetch@^6.5.0:
     node-fetch "^2.3.0"
     whatwg-fetch "^3.0.0"
 
-ember-functional-modifiers@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ember-functional-modifiers/-/ember-functional-modifiers-0.3.1.tgz#fb43b31bae5daba755185d704c91f6add498095d"
-  integrity sha512-//R6HtAknpWnKfG3LZrR62PB5kprEgnVHvM8DoOtrKwQMAyXV9d6HiAdhEf8E5cgIIYhyNSup1IBgfF8YUaPtA==
+ember-functional-modifiers@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ember-functional-modifiers/-/ember-functional-modifiers-0.4.0.tgz#2591c462e758e69dc2e5d0b30a9409388a5106d8"
+  integrity sha512-LSvSIb7SJExPZOl30/C9tj2eZrpvtMBZAdMSHFmy0ya3mNl5SMPSgEqhT2umdjH+ufMqs99AaZNsma/UXywc4A==
   dependencies:
-    "@ember-decorators/babel-transforms" "^3.1.5"
     ember-cli-babel "^7.1.2"
     ember-modifier-manager-polyfill "^1.0.3"
 
