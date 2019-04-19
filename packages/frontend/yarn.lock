@@ -4842,7 +4842,7 @@ ember-cli-babel-plugin-helpers@^1.0.0, ember-cli-babel-plugin-helpers@^1.1.0:
   resolved "https://registry.yarnpkg.com/ember-cli-babel-plugin-helpers/-/ember-cli-babel-plugin-helpers-1.1.0.tgz#de3baedd093163b6c2461f95964888c1676325ac"
   integrity sha512-Zr4my8Xn+CzO0gIuFNXji0eTRml5AxZUTDQz/wsNJ5AJAtyFWCY4QtKdoELNNbiCVGt1lq5yLiwTm4scGKu6xA==
 
-ember-cli-babel@7.7.3, ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.2.0, ember-cli-babel@^7.4.2, ember-cli-babel@^7.4.3, ember-cli-babel@^7.5.0, ember-cli-babel@^7.6.0, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
+ember-cli-babel@7.7.3, ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.2.0, ember-cli-babel@^7.4.2, ember-cli-babel@^7.4.3, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
   version "7.7.3"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.7.3.tgz#f94709f6727583d18685ca6773a995877b87b8a0"
   integrity sha512-/LWwyKIoSlZQ7k52P+6agC7AhcOBqPJ5C2u27qXHVVxKvCtg6ahNuRk/KmfZmV4zkuw4EjTZxfJE1PzpFyHkXg==
@@ -5531,12 +5531,12 @@ ember-native-dom-helpers@^0.5.3:
     broccoli-funnel "^1.1.0"
     ember-cli-babel "^6.6.0"
 
-ember-on-modifier@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/ember-on-modifier/-/ember-on-modifier-0.8.0.tgz#db69696c0f54c0e5bcbdd96236541121be8a1a73"
-  integrity sha512-9w3TYcQAaKCk5wuQj4qjRUXO0HBkd0wErOhT0BUWUGMf6C0lWpwM/OyV41glYF7tOhWxyeq1JPB/J9yIhS8jpw==
+ember-on-modifier@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/ember-on-modifier/-/ember-on-modifier-0.12.0.tgz#16d0b308a8d7e23590406cc1f62fd297d024cbdf"
+  integrity sha512-6gRj0GdaU3a3So6R+UQe49DmAnV4V55vpXcKtPqBYf+rUSD/lSAruNsfamQXtx1a5Srb0S6kjuWdI+am278AlA==
   dependencies:
-    ember-cli-babel "^7.6.0"
+    ember-cli-babel "^7.7.3"
     ember-modifier-manager-polyfill "^1.0.3"
 
 ember-oo-modifiers@^0.2.2:
