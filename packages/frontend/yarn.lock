@@ -5178,9 +5178,10 @@ ember-cli-version-checker@^3.0.0, ember-cli-version-checker@^3.0.1, ember-cli-ve
     resolve-package-path "^1.2.6"
     semver "^5.6.0"
 
-"ember-cli@github:ember-cli/ember-cli#b741f7675d3a55e94e474796bc3c6f66ac7aabac":
+"ember-cli@github:ember-cli/ember-cli#de832ae776a79d74f4ce6b620c4794094daee2f8":
   version "3.10.0-beta.1"
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/b741f7675d3a55e94e474796bc3c6f66ac7aabac"
+  uid de832ae776a79d74f4ce6b620c4794094daee2f8
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/de832ae776a79d74f4ce6b620c4794094daee2f8"
   dependencies:
     "@babel/core" "^7.4.3"
     "@babel/plugin-transform-modules-amd" "^7.2.0"
@@ -5256,7 +5257,7 @@ ember-cli-version-checker@^3.0.0, ember-cli-version-checker@^3.0.1, ember-cli-ve
     promise-map-series "^0.2.3"
     quick-temp "^0.1.8"
     resolve "^1.10.0"
-    resolve-package-path "^1.2.6"
+    resolve-package-path "^1.2.7"
     rsvp "^4.8.4"
     sane "^4.1.0"
     semver "^6.0.0"
@@ -10972,7 +10973,7 @@ resolve-from@^4.0.0:
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
   integrity sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==
 
-resolve-package-path@^1.0.11, resolve-package-path@^1.2.6:
+resolve-package-path@^1.0.11, resolve-package-path@^1.2.6, resolve-package-path@^1.2.7:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/resolve-package-path/-/resolve-package-path-1.2.7.tgz#2a7bc37ad96865e239330e3102c31322847e652e"
   integrity sha512-fVEKHGeK85bGbVFuwO9o1aU0n3vqQGrezPc51JGu9UTXpFQfWq5qCeKxyaRUSvephs+06c5j5rPq/dzHGEo8+Q==
