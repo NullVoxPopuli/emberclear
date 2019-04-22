@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import StoreService from 'ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
@@ -19,7 +19,7 @@ import { encryptForSocket } from './-utils/encryptor';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
-  @service store!: DS.Store;
+  @service store!: StoreService;
   @service relayConnection!: RelayConnection;
   @service identity!: IdentityService;
   @service statusManager!: StatusManager;
