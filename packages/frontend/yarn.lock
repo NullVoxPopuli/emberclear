@@ -5436,12 +5436,12 @@ ember-getowner-polyfill@^2.2.0:
     ember-cli-version-checker "^2.1.0"
     ember-factory-for-polyfill "^1.3.1"
 
-ember-hbs-minifier@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ember-hbs-minifier/-/ember-hbs-minifier-0.3.0.tgz#867cad92389cadb12c403bc6b6d30703dea0305a"
-  integrity sha1-hnytkjicrbEsQDvGttMHA96gMFo=
+ember-hbs-minifier@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ember-hbs-minifier/-/ember-hbs-minifier-0.4.0.tgz#15239fbdf34304ef0e56ec341e55c56957a6a5f3"
+  integrity sha512-ezsV/774sO7EhcjEXlv0Hc0li0IFaBDEoA8Fk0tomfq+tKc0bLrgrP9KJwTyzt+AQQZyoEuy27IS9v2WCNlN+g==
   dependencies:
-    object-hash "1.2.0"
+    hash-obj "^1.0.0"
 
 ember-inflector@^3.0.0:
   version "3.0.0"
@@ -7248,6 +7248,14 @@ hash-for-dep@^1.0.2, hash-for-dep@^1.2.3, hash-for-dep@^1.4.7, hash-for-dep@^1.5
     path-root "^0.1.1"
     resolve "^1.10.0"
     resolve-package-path "^1.0.11"
+
+hash-obj@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/hash-obj/-/hash-obj-1.0.0.tgz#de53f9856b16f1e76f6ae04d4f9d31c31aaaea00"
+  integrity sha1-3lP5hWsW8edvauBNT50xwxqq6gA=
+  dependencies:
+    is-obj "^1.0.0"
+    sort-keys "^1.1.0"
 
 hash-string@^1.0.0:
   version "1.0.0"
@@ -9500,11 +9508,6 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-hash@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-1.2.0.tgz#e96af0e96981996a1d47f88ead8f74f1ebc4422b"
-  integrity sha512-smRWXzkvxw72VquyZ0wggySl7PFUtoDhvhpdwgESXxUrH7vVhhp9asfup1+rVLrhsl7L45Ee1Q/l5R2Ul4MwUg==
-
 object-hash@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-1.3.1.tgz#fde452098a951cb145f039bb7d455449ddc126df"
@@ -11574,6 +11577,13 @@ socket.io@^2.1.0:
     socket.io-adapter "~1.1.0"
     socket.io-client "2.2.0"
     socket.io-parser "~3.3.0"
+
+sort-keys@^1.1.0:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-1.1.2.tgz#441b6d4d346798f1b4e49e8920adfba0e543f9ad"
+  integrity sha1-RBttTTRnmPG05J6JIK37oOVD+a0=
+  dependencies:
+    is-plain-obj "^1.0.0"
 
 sort-keys@^2.0.0:
   version "2.0.0"
