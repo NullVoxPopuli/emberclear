@@ -81,7 +81,7 @@
     "broccoli-concat-analyser": "^4.2.0",
     "ember-a11y-testing": "^0.5.7",
     "ember-auto-import": "^1.2.19",
-    "ember-cli": "github:ember-cli/ember-cli#1b600aad5ab1ba61bc5edf7e65a5f85d543c70ce",
+    "ember-cli": "github:ember-cli/ember-cli#d0a6c814248d42333929f3c98de15da2d41051ed",
     "ember-cli-app-version": "^3.2.0",
     "ember-cli-babel": "7.7.3",
     "ember-cli-cjs-transform": "^1.3.0",
