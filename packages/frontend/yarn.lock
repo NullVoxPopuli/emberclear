@@ -5178,10 +5178,10 @@ ember-cli-version-checker@^3.0.0, ember-cli-version-checker@^3.0.1, ember-cli-ve
     resolve-package-path "^1.2.6"
     semver "^5.6.0"
 
-"ember-cli@github:ember-cli/ember-cli#d0a6c814248d42333929f3c98de15da2d41051ed":
-  version "3.10.0-beta.1"
-  uid d0a6c814248d42333929f3c98de15da2d41051ed
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/d0a6c814248d42333929f3c98de15da2d41051ed"
+"ember-cli@github:ember-cli/ember-cli#ffb36c5a9028d9d7d66060f516a501ee284cd788":
+  version "3.10.0-beta.2"
+  uid ffb36c5a9028d9d7d66060f516a501ee284cd788
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/ffb36c5a9028d9d7d66060f516a501ee284cd788"
   dependencies:
     "@babel/core" "^7.4.3"
     "@babel/plugin-transform-modules-amd" "^7.2.0"
@@ -5253,6 +5253,7 @@ ember-cli-version-checker@^3.0.0, ember-cli-version-checker@^3.0.1, ember-cli-ve
     morgan "^1.9.1"
     nopt "^3.0.6"
     npm-package-arg "^6.1.0"
+    p-defer "^2.1.0"
     portfinder "^1.0.20"
     promise-map-series "^0.2.3"
     quick-temp "^0.1.8"
@@ -9668,6 +9669,11 @@ p-defer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-defer/-/p-defer-1.0.0.tgz#9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c"
   integrity sha1-n26xgvbJqozXQwBKfU+WsZaw+ww=
+
+p-defer@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/p-defer/-/p-defer-2.1.0.tgz#d9c97b40f8fb5c256a70b4aabec3c1c8c42f1fae"
+  integrity sha512-xMwL9id1bHn/UfNGFEMFwlULOprQUEOg6vhqSfr6oKxPFB0oSh0zhGq/9/tPSE+cyij2+RW6H8+0Ke4xsPdZ7Q==
 
 p-finally@^1.0.0:
   version "1.0.0"
