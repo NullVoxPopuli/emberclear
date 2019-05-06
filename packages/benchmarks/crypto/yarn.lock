@@ -924,12 +924,10 @@ async-each@^1.0.1:
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.2.tgz#8b8a7ca2a658f927e9f307d6d1a42f4199f0f735"
   integrity sha512-6xrbvN0MOBKSJDdonmSSz2OwFSgxRaVtBDes26mj9KIGtDo+g9xosFRSC+i1gQh2oAN/tQ62AI/pGZGQjVOiRg==
 
-asyncmark@0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/asyncmark/-/asyncmark-0.2.4.tgz#dc7763ff3c547cea595b01225007ce4907e58a1a"
-  integrity sha512-e07kAUsIWTfev73liSzlts1ZcYGCAKM8ZdS3YvYrCTUxZc27p6HHK7vpdSP5wwcQoBL1pxa6LElP001yLtGosQ==
-  optionalDependencies:
-    microtime "^3.0.0"
+asyncmark@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/asyncmark/-/asyncmark-0.3.0.tgz#16e1ba6cc19bdf555840b546bdb0b0b0ec784af3"
+  integrity sha512-nEfUy3zaKhjEqz6motGOIuSo4dsPN78Y7m9eZr6gqLM5/7UGzouQZcCHZAhv6ej0RR0dHPmp8mhrfxQO7W0Tdg==
 
 atob@^2.1.1:
   version "2.1.2"
@@ -1728,14 +1726,6 @@ micromatch@^3.1.10, micromatch@^3.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-microtime@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/microtime/-/microtime-3.0.0.tgz#d140914bde88aa89b4f9fd2a18620b435af0f39b"
-  integrity sha512-SirJr7ZL4ow2iWcb54bekS4aWyBQNVcEDBiwAz9D/sTgY59A+uE8UJU15cp5wyZmPBwg/3zf8lyCJ5NUe1nVlQ==
-  dependencies:
-    node-addon-api "^1.2.0"
-    node-gyp-build "^3.8.0"
-
 minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
@@ -1823,16 +1813,6 @@ needle@^2.2.1:
     debug "^4.1.0"
     iconv-lite "^0.4.4"
     sax "^1.2.4"
-
-node-addon-api@^1.2.0:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-1.6.3.tgz#3998d4593e2dca2ea82114670a4eb003386a9fe1"
-  integrity sha512-FXWH6mqjWgU8ewuahp4spec8LkroFZK2NicOv6bNwZC3kcwZUI8LeZdG80UzTSLLhK4T7MsgNwlYDVRlDdfTDg==
-
-node-gyp-build@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-3.8.0.tgz#0f57efeb1971f404dfcbfab975c284de7c70f14a"
-  integrity sha512-bYbpIHyRqZ7sVWXxGpz8QIRug5JZc/hzZH4GbdT9HTZi6WmKCZ8GLvP8OZ9TTiIBvwPFKgtGrlWQSXDAvYdsPw==
 
 node-modules-regexp@^1.0.0:
   version "1.0.0"
