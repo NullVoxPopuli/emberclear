@@ -1,16 +1,17 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
+
 import RedirectManager from 'emberclear/services/redirect-manager/service';
 
 export default class AddFriendRoute extends Route {
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
   @service redirectManager!: RedirectManager;
 
   beforeModel() {
     // identity should be loaded from application route
-    if (this.identity.isLoggedIn) {
+    if (this.currentUser.isLoggedIn) {
       this.redirectManager.evaluate();
       return;
     }

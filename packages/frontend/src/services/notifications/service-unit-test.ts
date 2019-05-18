@@ -24,7 +24,7 @@ module('Unit | Service | notifications', function(hooks) {
 
   module('not logged in', function(hooks) {
     hooks.beforeEach(function() {
-      stubService('identity', {
+      stubService('currentUser', {
         isLoggedIn: false,
       });
     });
@@ -39,7 +39,7 @@ module('Unit | Service | notifications', function(hooks) {
 
   module('logged in, but on a setup route', function(hooks) {
     hooks.beforeEach(function() {
-      stubService('identity', {
+      stubService('currentUser', {
         isLoggedIn: true,
       });
       stubService('router', {
@@ -57,7 +57,7 @@ module('Unit | Service | notifications', function(hooks) {
 
   module('logged in, but trying to logout', function(hooks) {
     hooks.beforeEach(function() {
-      stubService('identity', {
+      stubService('currentUser', {
         isLoggedIn: true,
       });
       stubService('router', {
@@ -75,7 +75,7 @@ module('Unit | Service | notifications', function(hooks) {
 
   module('already logged in', function(hooks) {
     hooks.beforeEach(function() {
-      stubService('identity', {
+      stubService('currentUser', {
         isLoggedIn: true,
       });
       stubService('router', {

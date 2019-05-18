@@ -6,6 +6,7 @@ import { task } from 'ember-concurrency';
 import { timeout } from 'ember-concurrency';
 
 import RelayConnection from 'emberclear/src/services/relay-connection';
+import Task from 'ember-concurrency/task';
 
 export default class ConnectionStatus extends Component {
   @service relayConnection!: RelayConnection;
@@ -25,17 +26,17 @@ export default class ConnectionStatus extends Component {
     }
   }
 
-  @task(function*() {
+  @task(function*(this: ConnectionStatus) {
     yield timeout(2000);
 
     this.element.classList.add('fade-out');
   })
-  setToFade;
+  setToFade!: Task;
 
-  @task(function*() {
+  @task(function*(this: ConnectionStatus) {
     yield timeout(200);
 
     this.element.classList.remove('fade-out');
   })
-  removeFade;
+  removeFade!: Task;
 }

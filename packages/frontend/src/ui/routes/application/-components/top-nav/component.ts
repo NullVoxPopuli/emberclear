@@ -1,22 +1,23 @@
 import Component from '@ember/component';
 import StoreService from 'ember-data/store';
-import { Registry } from '@ember/service';
 import { inject as service } from '@ember/service';
 
 import { alias, equal } from '@ember/object/computed';
 
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
+
 import Sidebar from 'emberclear/services/sidebar/service';
 import { selectUnreadMessages } from 'emberclear/src/data/models/message/utils';
+import RouterService from '@ember/routing/router-service';
 
 export default class TopNav extends Component {
-  @service identity!: IdentityService;
-  @service router!: Registry['router'];
+  @service currentUser!: CurrentUserService;
+  @service router!: RouterService;
   @service sidebar!: Sidebar;
   @service store!: StoreService;
 
   @alias('router.currentRouteName') routeName!: string;
-  @alias('identity.isLoggedIn') isLoggedIn!: boolean;
+  @alias('currentUser.isLoggedIn') isLoggedIn!: boolean;
   @equal('routeName', 'index') isApplication!: boolean;
 
   get isChat(): boolean {
@@ -40,7 +41,7 @@ export default class TopNav extends Component {
   get unreadMessageCount() {
     if (!this.allMessages) return 0;
 
-    const unread = selectUnreadMessages(this.allMessages);
+    const unread = selectUnreadMessages(this.allMessages.toArray());
 
     return unread.length;
   }

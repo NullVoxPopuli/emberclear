@@ -1,21 +1,22 @@
-import DS from 'ember-data';
+import StoreService from 'ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
 import Identity from 'emberclear/src/data/models/identity/model';
 import Notifications from 'emberclear/services/notifications/service';
 import Message, { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
+
 import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';
 import AutoResponder from 'emberclear/src/services/messages/auto-responder/service';
 
 export default class ReceivedMessageHandler extends Service {
-  @service store!: DS.Store;
+  @service store!: StoreService;
   @service intl!: Intl;
   @service notifications!: Notifications;
   @service statusManager!: StatusManager;
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
   @service contactManager!: ContactManager;
   @service('messages/auto-responder') autoResponder!: AutoResponder;
 
@@ -63,7 +64,7 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleInfoChannelInfo(message: Message, raw: RelayJson) {
+  private async handleInfoChannelInfo(message: Message, _raw: RelayJson) {
     return message;
   }
 
@@ -98,7 +99,7 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleChannelChat(message: Message, raw: RelayJson) {
+  private async handleChannelChat(message: Message, _raw: RelayJson) {
     // TODO: if message is a channel message, deconstruct the channel info
 
     return message;
@@ -136,7 +137,7 @@ export default class ReceivedMessageHandler extends Service {
       target,
       sender,
       from: sender.uid,
-      to: this.identity.uid,
+      to: this.currentUser.uid,
       sentAt: new Date(json.time_sent),
       receivedAt: new Date(),
       body: msg.body,
@@ -150,8 +151,8 @@ export default class ReceivedMessageHandler extends Service {
   private async findOrCreateSender(senderData: RelayJson['sender']): Promise<Identity> {
     const { name, uid } = senderData;
 
-    if (uid === this.identity.uid) {
-      return this.identity.record!;
+    if (uid === this.currentUser.uid) {
+      return this.currentUser.record!;
     }
 
     return await this.contactManager.findOrCreate(uid, name);

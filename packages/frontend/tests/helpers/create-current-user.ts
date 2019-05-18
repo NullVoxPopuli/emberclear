@@ -1,19 +1,18 @@
-import { DS } from 'ember-data';
-
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 
-import Identity from 'emberclear/data/models/identity/model';
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
+import User from 'emberclear/data/models/user/model';
 
 import { getService } from './get-service';
+import { getStore } from './get-store';
 
-export async function createCurrentUser(): Promise<Identity> {
-  const store = getService<DS.Store>('store');
-  const identityService = getService<IdentityService>('identity');
+export async function createCurrentUser(): Promise<User> {
+  const store = getStore();
+  const currentUserService = getService<CurrentUserService>('currentUser');
 
   const { publicKey, privateKey } = await generateAsymmetricKeys();
 
-  const record = store.createRecord('identity', {
+  const record = store.createRecord('user', {
     id: 'me',
     name: 'Test User',
     publicKey,
@@ -22,8 +21,8 @@ export async function createCurrentUser(): Promise<Identity> {
 
   await record.save();
 
-  identityService.set('record', record);
-  identityService.set('allowOverride', false);
+  currentUserService.record = record;
+  currentUserService.allowOverride = false;
 
   return record;
 }

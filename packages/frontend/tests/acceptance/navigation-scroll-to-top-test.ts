@@ -18,17 +18,17 @@ module('Acceptance | Navigation Scrolling', function(hooks) {
 
   module('When in a short viewport', function(hooks) {
     hooks.beforeEach(function() {
-      app.scrollContainer().style = 'height: 300px';
+      (app.scrollContainer()!.style as any) = 'height: 300px';
     });
 
     hooks.afterEach(function() {
-      app.scrollContainer().style = '';
+      (app.scrollContainer()!.style as any) = '';
     });
 
     module('When scrolled to the bottom', function(hooks) {
       hooks.beforeEach(async function() {
         await app.footer.faq().scrollIntoView(false);
-        await triggerEvent(window, 'scroll');
+        await triggerEvent(window as any, 'scroll');
       });
 
       test('the top of the page is not visible', function(assert) {

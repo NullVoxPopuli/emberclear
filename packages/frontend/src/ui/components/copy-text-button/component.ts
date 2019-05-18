@@ -1,11 +1,11 @@
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class CopyTextButton extends Component {
   @tracked copied = false;
 
-  copySuccess(e: any) {
-    e.clearSelection();
+  @action copySuccess() {
     this.copied = true;
 
     setTimeout(() => (this.copied = false), 2000);

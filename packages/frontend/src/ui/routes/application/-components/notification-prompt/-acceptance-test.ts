@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, waitUntil } from '@ember/test-helpers';
+import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {

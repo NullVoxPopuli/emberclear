@@ -1,18 +1,18 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 export default class SetupCompletedRoute extends Route {
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
 
   model() {
-    return this.identity;
+    return this.currentUser;
   }
 
   // ensure we are allowed to be here
   async beforeModel() {
-    const exists = await this.identity.exists();
+    const exists = await this.currentUser.exists();
 
     if (!exists) {
       this.transitionTo('setup.new');

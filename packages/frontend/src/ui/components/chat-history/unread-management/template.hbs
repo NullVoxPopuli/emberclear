@@ -3,9 +3,10 @@
     class='p-absolute top m-sm center-x'
     style='top: 60; z-index: 1000'
     ...attributes
+    {{did-insert this.findMessagesContainer}}
   >
     <div class='field has-shadow height-tall has-addons buttons'>
-      <a {{action this.scrollToFirstUnread}} class='button is-info is-small'>
+      <a {{on 'click' this.scrollToFirstUnread}} class='button is-info is-small'>
         <span>
           {{t 'ui.chat.unreadMessages'
             number=this.numberOfUnread
@@ -19,7 +20,7 @@
           }}
         </span>
       </a>
-      <a {{action this.markAllAsRead}} class='button is-danger is-small'>
+      <a {{on 'click' this.markAllAsRead}} class='button is-danger is-small'>
         <span>{{t 'ui.chat.markAllAsRead'}}</span>
         <span class='icon is-small'>{{fa-icon 'times'}}</span>
       </a>

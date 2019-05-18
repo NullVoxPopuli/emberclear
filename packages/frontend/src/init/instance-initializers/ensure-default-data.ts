@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Relay from 'emberclear/data/models/relay';
 export const defaultRelays = [
   {
     socket: 'wss://mesh-relay-in-us-1.herokuapp.com/socket',
@@ -22,7 +23,7 @@ export async function initialize(applicationInstance: any) {
 
   const store = applicationInstance.lookup('service:store');
   const existing = await store.findAll('relay');
-  const existingHosts = existing.map(e => e.host);
+  const existingHosts = existing.map((e: Relay) => e.host);
 
   return await Promise.all(
     defaultRelays.map((defaultRelay, i) => {

@@ -13,7 +13,7 @@ import {
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 import { app } from 'emberclear/tests/helpers/pages/app';
 
-import IdentityService from 'emberclear/src/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 module('Acceptance | Settings', function(hooks) {
   setupApplicationTest(hooks);
@@ -49,7 +49,7 @@ module('Acceptance | Settings', function(hooks) {
         });
 
         test('the name has changed', function(assert) {
-          const service = getService<IdentityService>('identity');
+          const service = getService<CurrentUserService>('currentUser');
           const actual = service.name;
 
           assert.equal(actual, newName);

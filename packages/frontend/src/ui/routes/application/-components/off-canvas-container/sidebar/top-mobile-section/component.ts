@@ -3,16 +3,16 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { reads, alias } from '@ember/object/computed';
 
-import Sidebar from 'emberclear/services/sidebar';
-import IdentityService from 'emberclear/services/identity/service';
+import Sidebar from 'emberclear/services/sidebar/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 export default class extends Component {
   @service sidebar!: Sidebar;
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
 
   @reads('sidebar.isShown') isShown!: boolean;
-  @alias('identity.name') name?: string;
-  @alias('identity.isLoggedIn') isLoggedIn!: boolean;
+  @alias('currentUser.name') name?: string;
+  @alias('currentUser.isLoggedIn') isLoggedIn!: boolean;
 
   @action
   closeSidebar() {

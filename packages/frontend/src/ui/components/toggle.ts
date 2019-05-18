@@ -3,7 +3,7 @@ import { helper as buildHelper } from '@ember/component/helper';
 import { get, set } from '@ember/object';
 import { isPresent } from '@ember/utils';
 
-function nextIndex(length, currentIdx) {
+function nextIndex(length: number, currentIdx: number) {
   if (currentIdx === -1 || currentIdx + 1 === length) {
     return 0;
   }
@@ -11,7 +11,9 @@ function nextIndex(length, currentIdx) {
   return currentIdx + 1;
 }
 
-export function toggle([prop, obj, ...values]) {
+type PositionalArguments = [string, any, ...any[]];
+
+export function toggle([prop, obj, ...values]: PositionalArguments) {
   return function() {
     let currentValue = get(obj, prop);
 

@@ -2,17 +2,17 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
 import { TARGET } from 'emberclear/src/data/models/message/model';
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 export default class extends Controller {
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
 
   get uid() {
     return this.model.targetIdentity.uid;
   }
 
   get messages() {
-    const me = this.identity.uid;
+    const me = this.currentUser.uid;
     const chattingWithId = this.uid;
 
     return this.store.peekAll('message').filter(message => {

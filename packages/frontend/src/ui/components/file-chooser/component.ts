@@ -25,7 +25,7 @@ export default class FileChooser extends Component<IArgs> {
     if (file.size === 0) return;
 
     fileReader.onload = event => {
-      const content = event.target!.result;
+      const content = (event.target as any)!.result;
 
       this.args.onChoose(content);
     };

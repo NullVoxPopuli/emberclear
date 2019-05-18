@@ -1,16 +1,17 @@
-import Ember from 'ember';
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 import { inject as service } from '@ember/service';
-import { timeout, task } from 'ember-concurrency';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
-import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
+import Contact from 'emberclear/src/data/models/contact/model';
+import Message from 'emberclear/src/data/models/message/model';
 
 interface IArgs {
-  to: Identity | Channel;
+  to: Contact | Channel;
+  messages: Message[];
 }
 
 export default class ChatHistory extends Component<IArgs> {
@@ -18,30 +19,17 @@ export default class ChatHistory extends Component<IArgs> {
 
   @tracked isLastVisible = true;
 
-  didInsertElement() {
-    this.autoScrollToBottom.perform();
-  }
-
-  scrollToBottom() {
+  @action scrollToBottom() {
     this.chatScroller.scrollToBottom();
+    this.determineIfLastIsVisible();
   }
 
-  // This watches to see if we have scrolled up, and shows the
-  // quick link to jump to the bottom.
-  @(task(function*(this: ChatHistory) {
-    while (true) {
-      yield timeout(250);
+  @action determineIfLastIsVisible() {
+    const { messages } = this.args;
+    const lastMessage = messages[messages.length - 1];
 
-      const isScrolledToBottom = this.chatScroller.isLastVisible();
+    const isScrolledToBottom = this.chatScroller.isLastVisible(lastMessage);
 
-      this.isLastVisible = isScrolledToBottom;
-
-      // HACK: remove eventually....
-      // http://ember-concurrency.com/docs/testing-debugging/
-      if (Ember.testing) {
-        return;
-      }
-    }
-  }).keepLatest())
-  autoScrollToBottom;
+    this.isLastVisible = isScrolledToBottom;
+  }
 }

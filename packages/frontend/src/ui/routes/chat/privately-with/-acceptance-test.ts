@@ -4,21 +4,19 @@ import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-h
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
-import Identity from 'emberclear/src/data/models/identity/model';
-
 import {
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,
-  getStore,
   getService,
-  waitUntilTruthy,
   clearToasts,
-  createIdentity,
+  visit as visitIgnoringFailure,
 } from 'emberclear/tests/helpers';
 
 import { chat, page, selectors } from 'emberclear/tests/helpers/pages/chat';
 import { app } from 'emberclear/tests/helpers/pages/app';
+import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import Contact from 'emberclear/src/data/models/contact/model';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
@@ -92,12 +90,11 @@ module('Acceptance | Chat | Privately With', function(hooks) {
     module('someone that does not exist', function(hooks) {
       setupRelayConnectionMocks(hooks);
 
-      hooks.beforeEach(function() {
-        visit('/chat/privately-with/nobody');
+      hooks.beforeEach(async function() {
+        await visitIgnoringFailure('/chat/privately-with/nobody');
       });
 
       test('redirects', async function(assert) {
-        await settled();
         await waitFor(app.selectors.toast);
 
         assert.equal(currentURL(), '/chat');
@@ -118,11 +115,11 @@ module('Acceptance | Chat | Privately With', function(hooks) {
     });
 
     module('someone else', function(hooks) {
-      let someone!: Identity;
+      let someone!: Contact;
       let id!: string;
 
       hooks.beforeEach(async function() {
-        someone = await createIdentity('someone else');
+        someone = await createContact('someone else');
         id = someone.id;
       });
 
@@ -225,6 +222,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
               test('the message is queued for resend', async function(assert) {
                 const store = getService<StoreService>('store');
                 const messages = await store.query('message', { queueForResend: true });
+
                 assert.equal(messages.length, 1, 'there should only be one queued message');
 
                 percySnapshot(assert as any);
@@ -294,7 +292,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           });
 
           module('a confirmation is received', function() {
-            skip('the message is shown, with successful confirmation', function(assert) {});
+            skip('the message is shown, with successful confirmation', function() {});
           });
         });
       });
