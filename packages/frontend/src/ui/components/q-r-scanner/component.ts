@@ -1,6 +1,5 @@
-import Component from '@glimmer/component';
+import Component from 'sparkles-component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
 
 import QrScanner from 'qr-scanner';
 // import { NoCameraError } from 'emberclear/src/utils/errors';
@@ -15,6 +14,10 @@ export default class QRScanner extends Component<IArgs> {
 
   @tracked started = false;
 
+  didInsertElement() {
+    this.mountScanner();
+  }
+
   async destroy() {
     await this.unmountScanner();
   }
@@ -26,7 +29,7 @@ export default class QRScanner extends Component<IArgs> {
     this.scanner._qrWorker && this.scanner._qrWorker.terminate();
   }
 
-  @action async mountScanner(this: QRScanner) {
+  async mountScanner(this: QRScanner) {
     const scanner = this.newScanner();
 
     this.scanner = scanner;

@@ -1,15 +1,15 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import IdentityService from 'emberclear/services/identity/service';
 
 export default class SetupIndexRoute extends Route {
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
 
   async beforeModel() {
-    const exists = await this.currentUser.exists();
+    const exists = await this.identity.exists();
 
-    if (exists && !this.currentUser.allowOverride) {
+    if (exists && !this.identity.allowOverride) {
       this.transitionTo('setup.overwrite');
     }
   }

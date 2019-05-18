@@ -1,14 +1,13 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import StoreService from 'ember-data/store';
+import Identity, { Status } from 'emberclear/src/data/models/identity/model';
 import ContactManager from 'emberclear/services/contact-manager';
-import Contact, { Status } from 'emberclear/src/data/models/contact/model';
 
 // TODO: does this need to be its own service?
 //       should these functions move to the ContactManager?
 export default class StatusManager extends Service {
-  @service store!: StoreService;
+  @service store;
   @service contactManager!: ContactManager;
 
   async markOffline(uid: string) {
@@ -19,7 +18,7 @@ export default class StatusManager extends Service {
     contact.save();
   }
 
-  async markOnline(uid: string | Contact) {
+  async markOnline(uid: string | Identity) {
     let contact;
 
     if (typeof uid === 'string') {

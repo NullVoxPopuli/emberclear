@@ -1,6 +1,8 @@
 import Component from '@glimmer/component';
-import { computed } from '@ember/object';
+import { computed, action } from '@ember/object';
+import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
+import PromiseMonitor from 'ember-computed-promise-monitor';
 import { timeout, task } from 'ember-concurrency';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
@@ -8,11 +10,11 @@ import Message from 'emberclear/data/models/message/model';
 import { markAsRead } from 'emberclear/src/data/models/message/utils';
 import Identity from 'emberclear/data/models/identity/model';
 import SettingsService from 'emberclear/src/services/settings';
-import CurrentUserService from 'emberclear/services/current-user/service';
+import IdentityService from 'emberclear/src/services/identity/service';
 
 import { parseURLs } from 'emberclear/src/utils/string/utils';
 import { convertAndSanitizeMarkdown } from 'emberclear/src/utils/dom/utils';
-import Task from 'ember-concurrency/task';
+import { monitor } from 'emberclear/src/utils/decorators';
 
 interface IArgs {
   message: Message;
@@ -21,7 +23,7 @@ interface IArgs {
 export default class MessageDisplay extends Component<IArgs> {
   @service chatScroller!: ChatScroller;
   @service settings!: SettingsService;
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
 
   get messageBody() {
     const markdown = this.args.message.body;
@@ -38,7 +40,7 @@ export default class MessageDisplay extends Component<IArgs> {
   }
 
   get senderName() {
-    if (this.sender) {
+    if (this.hasSender) {
       return this.sender.name;
     }
 
@@ -55,7 +57,7 @@ export default class MessageDisplay extends Component<IArgs> {
   get alignment() {
     if (!this.settings.useLeftRightJustificationForMessages) return '';
 
-    if (this.hasSender && this.sender!.id !== this.currentUser.id) {
+    if (this.hasSender && this.sender!.result!.id !== this.identity.id) {
       return 'justify-received';
     }
 
@@ -76,5 +78,5 @@ export default class MessageDisplay extends Component<IArgs> {
       }
     }
   })
-  markRead!: Task;
+  markRead;
 }

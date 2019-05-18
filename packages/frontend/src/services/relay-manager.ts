@@ -6,7 +6,6 @@ import Relay from 'emberclear/src/data/models/relay';
 import ToastService from 'emberclear/src/services/toast';
 import RelayConnection from 'emberclear/src/services/relay-connection';
 import { RelayNotSetError } from 'emberclear/src/utils/errors';
-import ArrayProxy from '@ember/array/proxy';
 
 export default class RelayManager extends Service {
   @service toast!: ToastService;
@@ -21,7 +20,7 @@ export default class RelayManager extends Service {
   }
 
   async getRelay(): Promise<Relay> {
-    const relays: ArrayProxy<Relay> = await this.store.findAll('relay');
+    const relays: Relay[] = await this.store.findAll('relay');
 
     const sorted = relays
       .toArray()

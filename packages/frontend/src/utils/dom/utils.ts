@@ -15,10 +15,6 @@ export function isElementWithin(element: HTMLElement, container: HTMLElement): b
 }
 
 export function isInElementWithinViewport(element: Element, container: Element): boolean {
-  if (!element || !container) {
-    return false;
-  }
-
   const containerRect = container.getBoundingClientRect();
   const childRect = element.getBoundingClientRect();
 

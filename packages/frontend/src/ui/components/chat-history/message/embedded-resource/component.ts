@@ -1,4 +1,4 @@
-import Component from '@glimmer/component';
+import Component from 'sparkles-component';
 import { tracked } from '@glimmer/tracking';
 
 import { or } from '@ember/object/computed';
@@ -6,7 +6,6 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 import RelayManager from 'emberclear/services/relay-manager';
-import Task from 'ember-concurrency/task';
 
 // https://stackoverflow.com/a/8260383/356849
 const YT_PATTERN = /^.*(youtu.be\/|\/v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -29,19 +28,17 @@ export default class EmbeddedResource extends Component<IArgs> {
   @tracked title?: string;
   @tracked siteName?: string;
 
-  constructor(owner: any, args: IArgs) {
-    super(owner, args);
-
+  didInsertElement() {
     this.setup.perform();
   }
 
-  @task(function*(this: EmbeddedResource) {
+  @task(function*() {
     if (!this.args.url) return;
 
     this.parseUrl();
-    yield this.fetchOpenGraph();
+    this.fetchOpenGraph();
   })
-  setup!: Task;
+  setup;
 
   @or('embedUrl', 'isImage', 'hasOgData') shouldRender!: boolean;
 

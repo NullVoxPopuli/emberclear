@@ -1,16 +1,16 @@
-import StoreService from 'ember-data/store';
+import DS from 'ember-data';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
 
+import Identity from 'emberclear/data/models/identity/model';
+
 import { fromHex } from 'emberclear/src/utils/string-encoding';
-import Contact from 'emberclear/src/data/models/contact/model';
-import ArrayProxy from '@ember/array/proxy';
 
 export default class ContactManager extends Service {
-  @service store!: StoreService;
+  @service store!: DS.Store;
 
-  async findOrCreate(uid: string, name: string): Promise<Contact> {
+  async findOrCreate(uid: string, name: string): Promise<Identity> {
     return await run(async () => {
       try {
         // an exception thrown here is never caught
@@ -21,7 +21,7 @@ export default class ContactManager extends Service {
     });
   }
 
-  async findAndSetName(uid: string, name: string): Promise<Contact> {
+  async findAndSetName(uid: string, name: string): Promise<Identity> {
     let record = await this.find(uid);
 
     // always update the name
@@ -32,10 +32,10 @@ export default class ContactManager extends Service {
     return record;
   }
 
-  async create(uid: string, name: string): Promise<Contact> {
+  async create(uid: string, name: string): Promise<Identity> {
     const publicKey = fromHex(uid);
 
-    let record = this.store.createRecord('contact', {
+    let record = this.store.createRecord('identity', {
       id: uid,
       publicKey,
       name,
@@ -46,13 +46,13 @@ export default class ContactManager extends Service {
     return record;
   }
 
-  async allContacts(): Promise<ArrayProxy<Contact>> {
-    const contacts = await this.store.findAll('contact');
+  async allContacts(): Promise<Identity[]> {
+    const identities = await this.store.findAll('identity');
 
-    return contacts;
+    return identities.filter(i => i.id !== 'me');
   }
 
-  async addContact(/* _info: any */) {
+  async addContact(_info: any) {
     try {
       // const existing = this.find(info.id);
       // return? error?
@@ -63,7 +63,7 @@ export default class ContactManager extends Service {
   }
 
   find(uid: string) {
-    return this.store.findRecord('contact', uid);
+    return this.store.findRecord('identity', uid);
   }
 }
 

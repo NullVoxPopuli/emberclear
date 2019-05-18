@@ -1,14 +1,14 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import IdentityService from 'emberclear/services/identity/service';
 
 interface IModelParams {
   channel_id: string;
 }
 
 export default class ChatInChannelRoute extends Route {
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
 
   async model(params: IModelParams) {
     const { channel_id } = params;

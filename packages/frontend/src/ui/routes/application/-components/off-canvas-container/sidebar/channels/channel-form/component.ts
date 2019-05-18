@@ -1,14 +1,14 @@
-import StoreService from 'ember-data/store';
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
+import DS from 'ember-data';
 import ChannelManager from 'emberclear/services/channel-manager';
 
 export default class ChannelForm extends Component {
   onSubmit!: () => void;
 
-  @service store!: StoreService;
+  @service store!: DS.Store;
   @service channelManager!: ChannelManager;
 
   newChannelName = '';

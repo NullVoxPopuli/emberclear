@@ -1,11 +1,10 @@
 import Ember from 'ember';
-import Component from '@glimmer/component';
+import Component from 'sparkles-component';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
-import RouterService from '@ember/routing/router-service';
 
 export default class UpdateChecker extends Component {
-  @service router!: RouterService;
+  @service router!: Router;
 
   @reads('router.currentURL') currentURL!: string;
 

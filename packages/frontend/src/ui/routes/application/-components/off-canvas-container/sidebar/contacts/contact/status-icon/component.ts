@@ -1,11 +1,6 @@
 import Component from '@glimmer/component';
-import Contact from 'emberclear/src/data/models/contact/model';
 
-interface IArgs {
-  contact: Contact;
-}
-
-export default class StatusIcon extends Component<IArgs> {
+export default class StatusIcon extends Component {
   get color() {
     switch (this.args.contact.onlineStatus) {
       case 'online':

@@ -1,3 +1,4 @@
+import { DS } from 'ember-data';
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -6,11 +7,11 @@ import { percySnapshot } from 'ember-percy';
 import { nameForm } from 'emberclear/tests/helpers/pages/setup';
 
 import {
+  getService,
   clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
   trackAsyncDataRequests,
-  getStore,
 } from 'emberclear/tests/helpers';
 
 module('Acceptance | Setup', function(hooks) {
@@ -51,7 +52,7 @@ module('Acceptance | Setup', function(hooks) {
       });
 
       test('no record was created', async function(assert) {
-        const store = getStore();
+        const store = getService<DS.Store>('store');
         const known = await store.findAll('identity');
 
         assert.equal(known.length, 0);
@@ -71,11 +72,11 @@ module('Acceptance | Setup', function(hooks) {
       });
 
       test('sets the "me" identity', function(assert) {
-        const store = getStore();
-        const known = store.peekAll('user');
+        const store = getService<DS.Store>('store');
+        const known = store.peekAll('identity');
 
         assert.equal(known.length, 1);
-        assert.equal(known.toArray()[0].id, 'me');
+        assert.equal(known.firstObject.id, 'me');
       });
     });
   });

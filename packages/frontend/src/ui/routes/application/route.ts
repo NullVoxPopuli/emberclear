@@ -3,17 +3,17 @@ import { inject as service } from '@ember/service';
 
 import LocaleService from 'emberclear/src/services/locale';
 import RelayManager from 'emberclear/services/relay-manager';
-import CurrentUserService from 'emberclear/services/current-user/service';
+import IdentityService from 'emberclear/services/identity/service';
 
 export default class ApplicationRoute extends Route {
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
   @service relayManager!: RelayManager;
   @service locale!: LocaleService;
 
   async beforeModel() {
     // TODO: check all the modern web requirements
     await this.locale.setLocale(this.locale.currentLocale);
-    await this.currentUser.load();
+    await this.identity.load();
   }
 
   async model() {

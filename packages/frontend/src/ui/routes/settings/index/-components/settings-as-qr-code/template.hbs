@@ -1,0 +1,11 @@
+{{#if this.qrCodeTask.isRunning}}
+  <div style='width: 180px; height: 180px;' class='loader'></div>
+{{else if (is-present this.qrCode)}}
+  <img
+    alt={{t 'images.alt.ownIdentityQR'}}
+    style='max-width: 350px; max-height: 350px; width: 100%;'
+    src={{this.qrCode}}
+  >
+{{else}}
+  {{t 'qrCode.error'}}
+{{/if}}

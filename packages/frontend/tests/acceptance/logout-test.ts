@@ -20,7 +20,7 @@ module('Acceptance | Logout', function(hooks) {
 
   module('When not logged in', function(hooks) {
     hooks.beforeEach(async function() {
-      stubService('currentUser', {
+      stubService('identity', {
         isLoggedIn: false,
         load() {},
         exists: () => false,

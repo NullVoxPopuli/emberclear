@@ -4,28 +4,25 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { task } from 'ember-concurrency';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
-
+import IdentityService from 'emberclear/services/identity/service';
 import Toast from 'emberclear/services/toast';
 import Settings from 'emberclear/services/settings';
 
 import { naclBoxPrivateKeyFromMnemonic } from 'emberclear/src/utils/mnemonic/utils';
 import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
-import Task from 'ember-concurrency/task';
-import RouterService from '@ember/routing/router-service';
 
 export default class LoginForm extends Component {
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
   @service settings!: Settings;
   @service toast!: Toast;
-  @service router!: RouterService;
+  @service router!: Router;
 
   @tracked mnemonic = '';
   @tracked name = '';
   @tracked scanning = false;
 
   get isLoggedIn() {
-    return this.currentUser.isLoggedIn;
+    return this.identity.isLoggedIn;
   }
 
   @(task(function*(this: LoginForm) {
@@ -34,7 +31,7 @@ export default class LoginForm extends Component {
       const privateKey = yield naclBoxPrivateKeyFromMnemonic(this.mnemonic);
       const publicKey = yield derivePublicKey(privateKey);
 
-      yield this.currentUser.setIdentity(name, privateKey, publicKey);
+      yield this.identity.setIdentity(name, privateKey, publicKey);
 
       this.router.transitionTo('chat');
     } catch (e) {
@@ -42,7 +39,7 @@ export default class LoginForm extends Component {
       this.toast.error('There was a problem logging in...');
     }
   }).drop())
-  login!: Task;
+  login;
 
   @(task(function*(this: LoginForm, data: string) {
     try {
@@ -54,7 +51,7 @@ export default class LoginForm extends Component {
       this.toast.error('There was a problem processing your file...');
     }
   }).drop())
-  uploadSettings!: Task;
+  uploadSettings;
 
   @action toggleScanning(this: LoginForm) {
     this.scanning = !this.scanning;
