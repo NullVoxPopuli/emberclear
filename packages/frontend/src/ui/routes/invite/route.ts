@@ -6,18 +6,18 @@ import { IQueryParams } from './controller';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
 import RedirectManager from 'emberclear/services/redirect-manager/service';
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 export default class InviteRoute extends Route {
   @service toast!: Toast;
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
   @service contactManager!: ContactManager;
   @service channelManager!: ChannelManager;
   @service redirectManager!: RedirectManager;
 
   async beforeModel(transition: any) {
     // identity should be loaded from application route
-    if (this.identity.isLoggedIn) return await this.acceptInvite(transition);
+    if (this.currentUser.isLoggedIn) return await this.acceptInvite(transition);
 
     this.toast.info('Please login or create your account before the invite can be accepted');
 
@@ -43,7 +43,7 @@ export default class InviteRoute extends Route {
   }
 
   private async acceptContactInvite(name: string, publicKey: string) {
-    if (publicKey === this.identity.record!.publicKeyAsHex) {
+    if (publicKey === this.currentUser.record!.publicKeyAsHex) {
       this.toast.warning(`You can't invite yourself... but you can talk to yourself!`);
 
       return this.transitionTo('/chat/privately-with/me');

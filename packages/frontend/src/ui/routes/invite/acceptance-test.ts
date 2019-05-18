@@ -1,10 +1,11 @@
-import { module, skip, test } from 'qunit';
+import { module, test } from 'qunit';
 import { currentURL, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
 import DS from 'ember-data';
-import IdentityService from 'emberclear/src/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
+
 import RedirectManager from 'emberclear/src/services/redirect-manager/service';
 
 import {
@@ -155,7 +156,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('the params are valid', function() {
         module('but the user clicks their own contact invite link', function(hooks) {
           hooks.beforeEach(async function() {
-            const identity = getService<IdentityService>('identity');
+            const identity = getService<CurrentUserService>('currentUser');
             const record = identity.record;
             const { name, publicKeyAsHex } = record!;
 
@@ -198,7 +199,7 @@ module('Acceptance | Invitations', function(hooks) {
           test('the contact is added to the list of contacts', async function(assert) {
             const store = getService<DS.Store>('store');
 
-            const record = await store.findRecord('identity', publicKey);
+            const record = await store.findRecord('contact', publicKey);
 
             assert.ok(record);
           });

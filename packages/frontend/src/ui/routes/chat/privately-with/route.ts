@@ -1,14 +1,14 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService, { currentUserId } from 'emberclear/src/services/current-user/service';
 
 interface IModelParams {
   u_id: string;
 }
 
 export default class ChatPrivatelyRoute extends Route {
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
   @service toast!: Toast;
   @service intl!: Intl;
 
@@ -16,8 +16,8 @@ export default class ChatPrivatelyRoute extends Route {
     let params = transition.to.params;
     let { u_id } = params as IModelParams;
 
-    if (u_id === this.identity.uid) {
-      this.transitionTo('chat.privately-with', 'me');
+    if (u_id === this.currentUser.uid) {
+      this.transitionTo('chat.privately-with', currentUserId);
     }
   }
 
@@ -27,7 +27,11 @@ export default class ChatPrivatelyRoute extends Route {
     let record;
 
     try {
-      record = await this.store.findRecord('identity', u_id);
+      if (u_id === currentUserId) {
+        record = this.currentUser.record;
+      } else {
+        record = await this.store.findRecord('contact', u_id);
+      }
     } catch (error) {
       this.toast.error(error || this.intl.t('ui.chat.errors.contactNotFound'));
 

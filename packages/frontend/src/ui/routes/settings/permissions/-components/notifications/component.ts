@@ -1,4 +1,4 @@
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
@@ -11,7 +11,10 @@ export default class Permissions extends Component {
 
   @tracked isEnabled = false;
 
-  didInsertElement() {
+  constructor(owner: any, args: any) {
+    super(owner, args);
+
+    // manage  enabled state separately from read-only property
     this.isEnabled = this.notifications.isPermissionGranted;
   }
 

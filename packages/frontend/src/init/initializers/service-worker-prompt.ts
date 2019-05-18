@@ -6,7 +6,7 @@ export function initialize(/* application: Application */): void {
     // Prevent Chrome 67 and earlier from automatically showing the prompt
     event.preventDefault();
     // Stash the event so it can be triggered later.
-    const deferredPrompt = event;
+    // const deferredPrompt = event;
 
     // deferredPrompt.prompt();
   });

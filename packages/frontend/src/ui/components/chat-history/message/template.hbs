@@ -1,10 +1,12 @@
 {{! template-lint-disable no-triple-curlies }}
 
 <div
+  id={{@message.id}}
   role='button'
   {{action (perform this.markRead)}}
   {{format-code @message.body}}
   {{did-insert this.chatScroller.maybeNudgeToBottom}}
+  {{read-watcher @message markRead=(action (perform this.markRead))}}
 
   class='
     message m-l-md m-r-md m-b-md
@@ -13,7 +15,6 @@
   '
   data-test-chat-message
 >
-  <ReadWatcher @message={{@message}} @markRead={{action (perform this.markRead)}}/>
 
   <div class='message-header'>
     <span class='from p-r-md'>

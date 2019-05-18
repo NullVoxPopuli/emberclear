@@ -1,4 +1,4 @@
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
@@ -14,10 +14,10 @@ export default class NotificationPrompt extends Component {
   }
 
   neverAskAgain() {
-    this.notifications.set('isNeverGoingToAskAgain', true);
+    this.notifications.isNeverGoingToAskAgain = true;
   }
 
   askNextTime() {
-    this.notifications.set('isHiddenUntilBrowserRefresh', true);
+    this.notifications.isHiddenUntilBrowserRefresh = true;
   }
 }

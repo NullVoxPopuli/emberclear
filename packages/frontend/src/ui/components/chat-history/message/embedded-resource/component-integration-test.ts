@@ -9,7 +9,7 @@ import { TestContext } from 'ember-test-helpers';
 function disableOpenGraphFetching(hooks: NestedHooks, respondWith = {}) {
   hooks.beforeEach(function() {
     stubService('relay-manager', {
-      getOpenGraph: async (_url: string) => await respondWith,
+      getOpenGraph: async (/* url: string */) => await respondWith,
     });
   });
 }
@@ -32,7 +32,7 @@ module('Integration | Component | embedded-resource', function(hooks) {
       });
 
       test('nothing is rendered', async function(assert) {
-        const text = this.element.innerText.trim();
+        const text = (this.element as HTMLElement).innerText.trim();
 
         assert.equal(text, '');
       });
@@ -62,26 +62,26 @@ module('Integration | Component | embedded-resource', function(hooks) {
 
   module('The media preview is collapsable', async function() {
     module('when collapsed', function() {
-      skip('shows nothing', async function(_assert) {});
+      skip('shows nothing', async function() {});
 
       module('clicking the expand icon', function() {
-        skip('shows the content', function(_assert) {});
+        skip('shows the content', function() {});
       });
     });
 
     module('when open', function() {
-      skip('the content is visible', function(_assert) {});
+      skip('the content is visible', function() {});
 
       module('clicking the collapse icon', function() {
-        skip('hides the content', function(_assert) {});
+        skip('hides the content', function() {});
       });
     });
   });
 
   module('Open Graph Data exists', function() {
-    skip('renders the image', async function(_assert) {});
+    skip('renders the image', async function() {});
 
-    skip('there is no sitename', async function(_assert) {});
+    skip('there is no sitename', async function() {});
   });
 
   module('Open Graph Data does not exist', function() {});

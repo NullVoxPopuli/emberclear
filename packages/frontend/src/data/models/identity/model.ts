@@ -5,37 +5,18 @@ import { computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
-export const Status = {
-  ONLINE: 'online',
-  OFFLINE: 'offline',
-  AWAY: 'away',
-  BUSY: 'busy',
-};
-
-export enum STATUS {
-  ONLINE = 'online',
-  OFFLINE = 'offline',
-  AWAY = 'away',
-  BUSY = 'busy',
-}
-
-export interface KeyPair {
+export interface PublicKey {
   publicKey: Uint8Array;
-  privateKey: Uint8Array;
 }
 
-export default class Identity extends Model implements Partial<KeyPair> {
-  @attr() name?: string;
-  @attr() publicKey?: Uint8Array;
-  @attr() privateKey?: Uint8Array;
-  @attr() onlineStatus?: STATUS;
+export default class Identity extends Model implements Partial<PublicKey> {
+  @attr() name!: string;
+  @attr() publicKey!: Uint8Array;
 
   @reads('publicKeyAsHex') uid!: string;
 
   @computed('publicKey')
   get publicKeyAsHex() {
-    if (!this.publicKey) return '';
-
     return toHex(this.publicKey);
   }
 
@@ -46,10 +27,12 @@ export default class Identity extends Model implements Partial<KeyPair> {
 
     return `${name} (${shortKey})`;
   }
+
+  // @hasMany('message', { async: false }) messages!: unknown[];
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
-declare module 'ember-data' {
+declare module 'ember-data/types/registries/model' {
   interface ModelRegistry {
     identity: Identity;
   }

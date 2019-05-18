@@ -3,9 +3,9 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import Identity from 'emberclear/data/models/identity/model';
 
 import { languages as allLanguages } from 'emberclear/src/services/prism-manager';
+import Contact from 'emberclear/src/data/models/contact/model';
 
 const codeDelimiter = '```';
 
@@ -14,7 +14,7 @@ export default class SnippetModal extends Component {
 
   languages = allLanguages;
 
-  sendTo!: Identity;
+  sendTo!: Contact;
   close!: () => void;
 
   text = '';

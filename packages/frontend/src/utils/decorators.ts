@@ -1,4 +1,3 @@
-import { PromiseMonitor } from 'ember-computed-promise-monitor';
 import { tracked } from '@glimmer/tracking';
 
 // https://tc39.github.io/proposal-decorators/#sec-elementdescriptor-specification-type
@@ -19,11 +18,13 @@ import { tracked } from '@glimmer/tracking';
 // }
 //
 
-export function inLocalStorage<T = boolean>(
-  target: any,
-  propertyKey: string,
-  descriptor: PropertyDescriptor
-): PropertyDescriptor {
+export function inLocalStorage<T = boolean, Target = Record<string, any>>(
+  target: Target,
+  propertyKey: keyof Target,
+  // descriptor is undefined for properties
+  // it's only available on methods and such
+  descriptor?: any
+): void /* TS says the return value is ignored... idk if I believe it */ {
   const targetName = target.constructor.name;
   const { get: oldGet, set: oldSet } = tracked(target, propertyKey, descriptor);
 
@@ -32,7 +33,7 @@ export function inLocalStorage<T = boolean>(
     enumerable: true,
     get: function(): T {
       const key = `${targetName}-${propertyKey}`;
-      const initialValue = oldGet.call(this);
+      const initialValue = oldGet!.call(this);
       const lsValue = localStorage.getItem(key);
       const json = (lsValue && JSON.parse(lsValue)) || { value: initialValue };
 
@@ -45,19 +46,9 @@ export function inLocalStorage<T = boolean>(
       localStorage.setItem(key, lsValue);
 
       // this is required to dirty the change tracking system
-      oldSet.call(this, value);
+      oldSet!.call(this, value);
     },
   };
 
-  return newDescriptor as PropertyDescriptor;
-}
-
-export function monitor<T = any>(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-  const { get: oldGet } = descriptor;
-
-  descriptor.get = function() {
-    const promise = oldGet!.apply(this);
-
-    return new PromiseMonitor<T>(promise);
-  };
+  return newDescriptor as any;
 }

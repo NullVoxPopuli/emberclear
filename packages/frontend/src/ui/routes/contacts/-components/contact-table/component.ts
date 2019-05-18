@@ -1,24 +1,19 @@
+import StoreService from 'ember-data/store';
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import Identity from 'emberclear/data/models/identity/model';
-import IdentityService from 'emberclear/services/identity/service';
+import Contact from 'emberclear/src/data/models/contact/model';
 
 export default class ContactsTable extends Component {
-  @service identity!: IdentityService;
-  @service store;
+  @service store!: StoreService;
 
   get contacts() {
-    let myId = this.identity.id;
-
-    return this.store.peekAll('identity').filter(identity => {
-      return identity.id !== myId;
-    });
+    return this.store.peekAll('contact');
   }
 
-  @action remove(identity: Identity) {
-    identity.deleteRecord();
-    identity.save();
+  @action remove(contact: Contact) {
+    contact.deleteRecord();
+    contact.save();
   }
 }

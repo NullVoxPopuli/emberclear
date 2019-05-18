@@ -1,7 +1,8 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
+
 import RelayManager from 'emberclear/services/relay-manager';
 import RedirectManager from 'emberclear/services/redirect-manager/service';
 import Message from 'emberclear/data/models/message/model';
@@ -12,12 +13,12 @@ export interface IModel {
 
 export default class ChatRoute extends Route {
   @service relayManager!: RelayManager;
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
   @service redirectManager!: RedirectManager;
 
   beforeModel() {
     // identity should be loaded from application route
-    if (this.identity.isLoggedIn) {
+    if (this.currentUser.isLoggedIn) {
       this.redirectManager.evaluate();
       return;
     }

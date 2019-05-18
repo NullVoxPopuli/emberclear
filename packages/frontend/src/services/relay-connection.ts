@@ -3,20 +3,22 @@ import { inject as service } from '@ember/service';
 import { Channel, Socket } from 'phoenix';
 import { task } from 'ember-concurrency';
 
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
+
 import MessageProcessor from 'emberclear/services/messages/processor';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import Relay from 'emberclear/src/data/models/relay';
 
 import { toHex } from 'emberclear/src/utils/string-encoding';
 import { ConnectionError, RelayNotSetError } from 'emberclear/src/utils/errors';
+import Task from 'ember-concurrency/task';
 
 interface ISendPayload {
   to: string;
   message: string;
 }
 
-async function ignoreTaskCancellation(fn) {
+async function ignoreTaskCancellation(fn: any) {
   try {
     await fn();
   } catch (e) {
@@ -28,13 +30,16 @@ async function ignoreTaskCancellation(fn) {
   }
 }
 
+// TODO: need a test for trying to send a message when not connected.
+//       There are errors in the console, and I don't know if those
+//       are informational or serious
 // Official phoenix js docs: https://hexdocs.pm/phoenix/js/
 export default class RelayConnection extends Service {
   @service('messages/processor') processor!: MessageProcessor;
   @service('messages/dispatcher') dispatcher!: MessageDispatcher;
   @service('notifications') toast!: Toast;
   @service('intl') intl!: Intl;
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
 
   relay?: Relay;
   socket?: Socket;
@@ -76,11 +81,11 @@ export default class RelayConnection extends Service {
 
   // TODO: ensure not already connected
   async canConnect(): Promise<boolean> {
-    return await this.identity.exists();
+    return await this.currentUser.exists();
   }
 
   userChannelId(): string {
-    const publicKey = this.identity.publicKey;
+    const publicKey = this.currentUser.publicKey;
 
     if (!publicKey) return '';
 
@@ -127,7 +132,7 @@ export default class RelayConnection extends Service {
 
     yield this.ensureConnectionToChannel.perform();
   }).drop())
-  establishConnection: any;
+  establishConnection!: Task;
 
   @(task(function*(this: RelayConnection) {
     const { t } = this.intl;
@@ -138,7 +143,7 @@ export default class RelayConnection extends Service {
 
     yield this.setupChannel();
   }).drop())
-  ensureConnectionToChannel: any;
+  ensureConnectionToChannel!: Task;
 
   private async setupChannel() {
     return new Promise((resolve, reject) => {
@@ -187,9 +192,9 @@ export default class RelayConnection extends Service {
     this.updateStatus('info', this.intl.t('connection.connected'));
 
     // ping for user statuses
-    this.dispatcher.pingAll();
+    yield this.dispatcher.pingAll();
   }).drop())
-  handleConnected: any;
+  handleConnected!: Task;
 
   handleMessage = (data: RelayMessage) => {
     this.processor.receive(data);
