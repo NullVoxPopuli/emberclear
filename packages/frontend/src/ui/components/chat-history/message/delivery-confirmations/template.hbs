@@ -1,4 +1,4 @@
-<div data-test-confirmations class='confirmations' {{did-insert (perform this.waitForConfirmation)}}>
+<div data-test-confirmations class='confirmations'>
 
   {{#if this.wasSent}}
     {{#if this.hasDeliveryConfirmations}}
@@ -19,7 +19,7 @@
         |
         {{#if this.resend.isIdle}}
           <a
-            {{on 'click' (action (perform this.resend))}}
+            {{action (perform this.resend)}}
             data-test-resend
           >
             {{t 'buttons.resend'}}

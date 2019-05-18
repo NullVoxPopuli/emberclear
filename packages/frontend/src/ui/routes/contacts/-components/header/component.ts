@@ -1,12 +1,17 @@
-import Component from '@glimmer/component';
+import Component from 'sparkles-component';
 import { inject as service } from '@ember/service';
 
-import StoreService from 'ember-data/store';
+import IdentityService from 'emberclear/services/identity/service';
 
 export default class extends Component {
-  @service store!: StoreService;
+  @service identity!: IdentityService;
+  @service store;
 
   get contacts() {
-    return this.store.peekAll('contact');
+    let myId = this.identity.id;
+
+    return this.store.peekAll('identity').filter(identity => {
+      return identity.id !== myId;
+    });
   }
 }

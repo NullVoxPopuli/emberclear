@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Component from '@glimmer/component';
+import Component from 'sparkles-component';
 import { tracked } from '@glimmer/tracking';
 import { task } from 'ember-concurrency';
 
@@ -11,7 +11,6 @@ import {
   hasServiceWorker,
   hasWebWorker,
 } from './-utils/detection';
-import Task from 'ember-concurrency/task';
 
 export default class Compatibility extends Component {
   @tracked hasCamera!: boolean;
@@ -28,12 +27,11 @@ export default class Compatibility extends Component {
     return this.totalCount !== this.successCount;
   }
 
-  constructor(owner: any, args: any) {
-    super(owner, args);
+  didInsertElement() {
     this.detectFeatures.perform();
   }
 
-  @(task(function*(this: Compatibility) {
+  @(task(function*() {
     let check = this.checkSuccess.bind(this);
     if (!Ember.testing) {
       this.hasIndexedDb = check(yield hasIndexedDb());
@@ -45,7 +43,7 @@ export default class Compatibility extends Component {
 
     this.hasNotifications = check(hasNotifications());
   }).drop())
-  detectFeatures!: Task;
+  detectFeatures;
 
   private checkSuccess(value: boolean) {
     if (value) {

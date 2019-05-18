@@ -1,7 +1,7 @@
 import { getContext } from '@ember/test-helpers';
 
 export const textFor = (selector: string): string => {
-  const context = getContext();
+  const context = getContext() as any;
   const root = context.element;
 
   const element = root.querySelector(selector);
@@ -13,7 +13,7 @@ export const textFor = (selector: string): string => {
 
 export function text(elements: Element[]): string {
   return Array.from(elements)
-    .map(e => (e.textContent || '').trim())
+    .map(e => e.textContent.trim())
     .join();
 }
 

@@ -1,6 +1,6 @@
 <CopyButton
   class='button has-status-tip {{if this.copied 'is-active'}}'
-  @success={{this.copySuccess}}
+  @success={{action this.copySuccess}}
   @clipboardText={{@text}}
 >
   {{@label}}

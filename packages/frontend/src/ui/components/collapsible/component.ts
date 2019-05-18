@@ -1,4 +1,4 @@
-import Component from '@glimmer/component';
+import Component from 'sparkles-component';
 import { tracked } from '@glimmer/tracking';
 
 export default class Collapsible extends Component {

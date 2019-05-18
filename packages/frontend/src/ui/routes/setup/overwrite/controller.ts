@@ -2,10 +2,10 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import IdentityService from 'emberclear/services/identity/service';
 
 export default class SetupOverwriteController extends Controller {
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
 
   @action
   didClickNo() {
@@ -14,7 +14,7 @@ export default class SetupOverwriteController extends Controller {
 
   @action
   didClickYes(this: SetupOverwriteController) {
-    this.currentUser.set('allowOverride', true);
+    this.identity.set('allowOverride', true);
     this.transitionToRoute('setup');
   }
 }

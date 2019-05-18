@@ -4,17 +4,11 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { TABLET_WIDTH } from 'emberclear/src/utils/breakpoints';
 
-import RouterService from '@ember/routing/router-service';
-import StoreService from 'ember-data/store';
 import Channel from 'emberclear/data/models/channel';
 
-interface IArgs {
-  closeSidebar: () => void;
-}
-
-export default class Channels extends Component<IArgs> {
-  @service router!: RouterService;
-  @service store!: StoreService;
+export default class Channels extends Component {
+  @service router;
+  @service store;
 
   @tracked isFormVisible = false;
 

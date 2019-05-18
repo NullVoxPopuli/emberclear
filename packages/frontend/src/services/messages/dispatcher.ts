@@ -5,10 +5,10 @@ import { task } from 'ember-concurrency';
 
 // giant block o' types
 import RelayConnection from 'emberclear/services/relay-connection';
-import CurrentUserService from 'emberclear/services/current-user/service';
-
+import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';
 import Message from 'emberclear/data/models/message/model';
+import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
 import StatusManager from 'emberclear/services/status-manager';
 import MessageFactory from 'emberclear/services/messages/factory';
@@ -16,19 +16,16 @@ import MessageFactory from 'emberclear/services/messages/factory';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 import { build as toPayloadJson } from './-utils/builder';
 import { encryptForSocket } from './-utils/encryptor';
-import Task from 'ember-concurrency/task';
-import Contact from 'emberclear/src/data/models/contact/model';
-import User from 'emberclear/src/data/models/user/model';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
   @service store!: StoreService;
   @service relayConnection!: RelayConnection;
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
   @service statusManager!: StatusManager;
   @service('messages/factory') messageFactory!: MessageFactory;
 
-  async send(text: string, to: Contact | Channel) {
+  async send(text: string, to: Identity | Channel) {
     const message = this.messageFactory.buildChat(text, to);
 
     await message.save();
@@ -41,14 +38,12 @@ export default class MessageDispatcher extends Service {
   //   return sendTo(message, message.to);
   // }
 
-  async sendTo(message: Message, to: Contact | Channel) {
+  async sendTo(message: Message, to: Identity | Channel) {
     message.set('queueForResend', false);
 
-    if (to instanceof User) {
-      return;
-    }
+    if (to instanceof Identity) {
+      if (to.id === 'me') return;
 
-    if (to instanceof Contact) {
       return await this.sendToUser.perform(message, to);
     }
 
@@ -67,31 +62,33 @@ export default class MessageDispatcher extends Service {
   //
   // TODO: should this be hard-limited to just messages like PINGs?
   @task(function*(this: MessageDispatcher, msg: Message) {
-    const everyone = yield this.store.findAll('contact');
+    const everyone = yield this.store.findAll('identity');
 
-    everyone.forEach((contact: Contact) => {
-      this.sendToUser.perform(msg, contact);
+    everyone.forEach((identity: Identity) => {
+      if (identity.id === 'me') return; // don't send to self
+
+      this.sendToUser.perform(msg, identity);
     });
   })
-  sendToAll!: Task;
+  sendToAll: any;
 
   sendToChannel(msg: Message, channel: Channel) {
     const members = channel.members;
 
     members.forEach(member => {
-      if (member.id === this.currentUser.id) return; // don't send to self
+      if (member.id === this.identity.id) return; // don't send to self
 
       this.sendToUser.perform(msg, member);
     });
   }
 
-  @task(function*(this: MessageDispatcher, msg: Message, to: Contact) {
+  @task(function*(this: MessageDispatcher, msg: Message, to: Identity) {
     const theirPublicKey = to.publicKey as Uint8Array;
     const uid = toHex(theirPublicKey);
 
-    const payload = toPayloadJson(msg, this.currentUser.record!);
+    const payload = toPayloadJson(msg, this.identity.record!);
 
-    const encryptedMessage = yield encryptForSocket(payload, to, this.currentUser.record!);
+    const encryptedMessage = yield encryptForSocket(payload, to, this.identity.record!);
 
     try {
       yield this.relayConnection.send(uid, encryptedMessage);
@@ -114,7 +111,7 @@ export default class MessageDispatcher extends Service {
       console.debug(e.name, e);
     }
   })
-  sendToUser!: Task;
+  sendToUser: any;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

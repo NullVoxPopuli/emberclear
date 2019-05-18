@@ -6,11 +6,6 @@ const KeyboardAwareComponent = Component.extend(EKMixin, EKOnInsertMixin, {
 });
 
 export default class KeyboardPress extends KeyboardAwareComponent {
-  key!: string;
-  onDown?: () => void;
-  onPress?: () => void;
-  onUp?: () => void;
-
   didInsertElement() {
     this._super(...arguments);
 
@@ -21,7 +16,7 @@ export default class KeyboardPress extends KeyboardAwareComponent {
     }
 
     if (onPress) {
-      this.on(keyPress(key), this.eventHandler(onPress));
+      this.on(keyPress(key), this.eventHandler(this.onPress));
     }
 
     if (onUp) {

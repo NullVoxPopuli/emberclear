@@ -2,26 +2,22 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import StoreService from 'ember-data/store';
+import Identity, { STATUS } from 'emberclear/src/data/models/identity/model';
 import SettingsService from 'emberclear/src/services/settings';
 import { TABLET_WIDTH } from 'emberclear/src/utils/breakpoints';
-import RouterService from '@ember/routing/router-service';
-import Contact, { STATUS } from 'emberclear/src/data/models/contact/model';
-import CurrentUserService from 'emberclear/src/services/current-user/service';
 
 interface IArgs {
-  contacts: Contact[];
+  contacts: Identity[];
   closeSidebar: () => void;
 }
 
 export default class ContactsSidebar extends Component<IArgs> {
-  @service currentUser!: CurrentUserService;
   @service settings!: SettingsService;
-  @service router!: RouterService;
-  @service store!: StoreService;
+  @service router;
+  @service store;
 
-  get allContacts(): Contact[] {
-    return this.store.peekAll('contact').toArray();
+  get allContacts(): Identity[] {
+    return this.store.peekAll('identity');
   }
 
   get contacts() {

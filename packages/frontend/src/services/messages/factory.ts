@@ -2,8 +2,7 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import uuid from 'uuid';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
-
+import IdentityService from 'emberclear/services/identity/service';
 import { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
 import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
@@ -11,7 +10,7 @@ import Message from 'emberclear/src/data/models/message/model';
 
 export default class MessageFactory extends Service {
   @service store!: any;
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
 
   buildChat(text: string, to: Identity | Channel) {
     let attributes = {};
@@ -54,8 +53,8 @@ export default class MessageFactory extends Service {
     return this.store.createRecord('message', {
       id: uuid(),
       sentAt: new Date(),
-      from: this.currentUser.uid,
-      sender: this.currentUser.record,
+      from: this.identity.uid,
+      sender: this.identity.record,
       ...attributes,
     });
   }

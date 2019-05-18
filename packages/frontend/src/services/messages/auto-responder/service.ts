@@ -5,7 +5,7 @@ import StoreService from 'ember-data/store';
 import MessageDispatcher from 'emberclear/src/services/messages/dispatcher';
 import MessageFactory from 'emberclear/src/services/messages/factory';
 import Message from 'emberclear/src/data/models/message/model';
-import Contact from 'emberclear/src/data/models/contact/model';
+import Identity from 'emberclear/src/data/models/identity/model';
 
 /**
  * Nothing here should be blocking, as these responses should not matter
@@ -25,17 +25,17 @@ export default class MessageAutoResponder extends Service {
     this.dispatcher.sendToUser.perform(response, sender);
   }
 
-  async cameOnline(contact: Contact) {
+  async cameOnline(identity: Identity) {
     const pendingMessages = await this.store.query('message', {
       queueForResend: true,
-      to: contact.uid,
+      to: identity.uid,
     });
 
     pendingMessages.forEach(async (message: Message) => {
       message.set('queueForResend', false);
       await message.save();
 
-      this.dispatcher.sendToUser.perform(message, contact);
+      this.dispatcher.sendToUser.perform(message, identity);
     });
   }
 }

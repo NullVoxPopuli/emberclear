@@ -8,13 +8,13 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   getService,
+  createIdentity,
 } from 'emberclear/tests/helpers';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import Identity from 'emberclear/src/data/models/identity/model';
+import IdentityService from 'emberclear/src/services/identity/service';
 
 import { contacts } from 'emberclear/tests/helpers/pages/contacts';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import User from 'emberclear/data/models/user/model';
 
 module('Acceptance | Contacts', function(hooks) {
   setupApplicationTest(hooks);
@@ -42,13 +42,13 @@ module('Acceptance | Contacts', function(hooks) {
     });
 
     module('a couple contacts exist', function(hooks) {
-      let me: User;
+      let me: Identity;
 
       hooks.beforeEach(async function() {
-        me = getService<CurrentUserService>('currentUser').record!;
+        me = getService<IdentityService>('identity').record!;
 
-        await createContact('First Contact');
-        await createContact('Second Contact');
+        await createIdentity('First Contact');
+        await createIdentity('Second Contact');
 
         await visit('/contacts');
       });

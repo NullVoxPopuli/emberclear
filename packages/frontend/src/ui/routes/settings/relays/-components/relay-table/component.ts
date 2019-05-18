@@ -1,11 +1,10 @@
-import Component from '@glimmer/component';
+import Component from 'sparkles-component';
 import StoreService from 'ember-data/store';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
 
 import Relay from 'emberclear/data/models/relay';
 import RelayConnection from 'emberclear/src/services/relay-connection';
-import ArrayProxy from '@ember/array/proxy';
 
 interface IArgs {
   relays: Relay[];
@@ -26,7 +25,7 @@ export default class RelayTable extends Component<IArgs> {
     relay.set('priority', 1);
     relay.save();
 
-    const relays: ArrayProxy<Relay> = await this.store.findAll('relay');
+    const relays: Relay[] = await this.store.findAll('relay');
 
     let nextHighestPriority = 2;
 

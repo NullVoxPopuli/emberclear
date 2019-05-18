@@ -1,25 +1,26 @@
-import Modifier from 'ember-oo-modifiers';
-import { assert } from '@ember/debug';
+import Component from 'sparkles-component';
 
 import Message from 'emberclear/data/models/message/model';
 import { isInElementWithinViewport } from 'emberclear/src/utils/dom/utils';
 
-interface NamedArgs {
+interface IArgs {
+  message: Message;
   markRead: () => void;
 }
 
-class ReadWatcher extends Modifier {
+export default class ReadWatcher extends Component<IArgs> {
+  messageElement!: Element;
   io?: IntersectionObserver;
   focusHandler!: () => void;
-  message!: Message;
-  markMessageRead!: () => void;
 
-  didInsertElement([message]: [Message], { markRead }: NamedArgs) {
-    assert(`message must have an id`, undefined !== message.id && null !== message.id);
+  constructor(args: IArgs) {
+    super(args);
 
-    this.message = message;
-    this.markMessageRead = markRead;
     this.focusHandler = this.respondToWindowFocus.bind(this);
+  }
+
+  didInsertElement() {
+    this.messageElement = document.getElementById(this.args.message.id)!;
     this.maybeSetupReadWatcher();
   }
 
@@ -31,24 +32,21 @@ class ReadWatcher extends Modifier {
    * if already read, this method happens to do nothing
    * */
   private disconnect() {
-    this.io && this.io.unobserve(this.element);
+    this.io && this.io.unobserve(this.messageElement);
     this.io && this.io.disconnect();
     this.io = undefined;
 
-    // TODO: having the same focus listener per message may not
-    //       by ideal. Maybe think of a way to do this more generally
-    //       for the entire history, rather than per message.
-    // window.removeEventListener('focus', this.focusHandler);
+    window.removeEventListener('focus', this.focusHandler);
   }
 
   private markRead() {
-    this.markMessageRead();
+    this.args.markRead();
     this.disconnect();
   }
 
   private respondToWindowFocus() {
     const container = document.querySelector('.messages')!;
-    const isVisible = isInElementWithinViewport(this.element, container);
+    const isVisible = isInElementWithinViewport(this.messageElement, container);
 
     if (isVisible) {
       this.markRead();
@@ -56,17 +54,21 @@ class ReadWatcher extends Modifier {
   }
 
   private maybeSetupReadWatcher() {
-    if (this.message.readAt) return;
+    const { message } = this.args;
 
-    // window.addEventListener('focus', this.focusHandler);
+    if (message.readAt) return;
+
+    window.addEventListener('focus', this.focusHandler);
     this.setupIntersectionObserver();
   }
 
   private setupIntersectionObserver() {
+    const { message } = this.args;
+
     const io = new IntersectionObserver(
       entries => {
         const isVisible = entries[0].intersectionRatio !== 0;
-        const canBeSeen = !this.message.isSaving && document.hasFocus();
+        const canBeSeen = !message.isSaving && document.hasFocus();
 
         if (isVisible && canBeSeen) {
           this.markRead();
@@ -77,10 +79,8 @@ class ReadWatcher extends Modifier {
       }
     );
 
-    io.observe(this.element);
+    io.observe(this.messageElement);
 
     this.io = io;
   }
 }
-
-export default Modifier.modifier(ReadWatcher);

@@ -24,7 +24,7 @@ export default class Channel extends Model {
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
-declare module 'ember-data/types/registries/model' {
+declare module 'ember-data' {
   interface ModelRegistry {
     channel: Channel;
   }

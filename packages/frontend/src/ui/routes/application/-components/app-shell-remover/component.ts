@@ -1,9 +1,7 @@
-import Component from '@glimmer/component';
+import Component from 'sparkles-component';
 
 export default class extends Component {
-  constructor(owner: any, args: any) {
-    super(owner, args);
-
+  didInsertElement() {
     this.removeAppLoader();
   }
 

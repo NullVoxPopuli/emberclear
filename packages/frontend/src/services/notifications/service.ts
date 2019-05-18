@@ -2,18 +2,17 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import IdentityService from 'emberclear/src/services/identity/service';
 
 import { inLocalStorage } from 'emberclear/src/utils/decorators';
 
 import Toast from 'emberclear/src/services/toast';
-import RouterService from '@ember/routing/router-service';
 
 export default class Notifications extends Service {
   @service toast!: Toast;
   @service intl!: Intl;
-  @service currentUser!: CurrentUserService;
-  @service router!: RouterService;
+  @service identity!: IdentityService;
+  @service router;
 
   @tracked askToEnableNotifications = true;
   @tracked isHiddenUntilBrowserRefresh = false;
@@ -22,7 +21,7 @@ export default class Notifications extends Service {
 
   get showInAppPrompt() {
     const promptShouldNotBeShown =
-      !this.currentUser.isLoggedIn ||
+      !this.identity.isLoggedIn ||
       this.isOnRouteThatDoesNotShowNotifications ||
       !this.isBrowserCapableOfNotifications ||
       this.isPermissionGranted ||

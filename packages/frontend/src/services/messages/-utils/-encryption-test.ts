@@ -1,12 +1,13 @@
 import { module, test } from 'qunit';
 
+import { KeyPair } from 'emberclear/src/data/models/identity/model';
+
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 
 import { toHex } from 'emberclear/src/utils/string-encoding';
 import { encryptForSocket } from './encryptor';
 import { decryptFromSocket } from './decryptor';
 import { build as toPayloadJson } from './builder';
-import { KeyPair } from 'emberclear/data/models/user/model';
 
 module('Integration | Send/Receive Encryption', function(hooks) {
   let bob!: KeyPair;

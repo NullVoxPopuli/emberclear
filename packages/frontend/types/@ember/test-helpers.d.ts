@@ -1,3 +1,4 @@
+import Application from '@ember/application';
 import ApplicationInstance from '@ember/application/instance';
 
 interface AppContext {

@@ -4,7 +4,7 @@ import { module, test } from 'qunit';
 module('Unit | Utility | nacl', function() {
   test('libsodium uses wasm', async function(assert) {
     const sodium = await nacl.libsodium();
-    const isUsingWasm = (sodium as any).libsodium.usingWasm;
+    const isUsingWasm = sodium.libsodium.usingWasm;
 
     assert.ok(isUsingWasm);
   });

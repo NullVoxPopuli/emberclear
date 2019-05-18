@@ -20,11 +20,6 @@
 
   {{#if isOpen}}
     <ul data-test-sidebar-contacts-list class='menu-list'>
-      <Contact
-        @contact={{this.currentUser.record}}
-        @closeSidebar={{@closeSidebar}}
-      />
-
       {{#each this.contacts as |contact|}}
         <Contact
           @contact={{contact}}

@@ -3,15 +3,14 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
-
-import Sidebar from 'emberclear/services/sidebar/service';
+import IdentityService from 'emberclear/services/identity/service';
+import Sidebar from 'emberclear/services/sidebar';
 
 export default class OffCanvasContainer extends Component {
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
   @service sidebar!: Sidebar;
 
-  @reads('currentUser.isLoggedIn')
+  @reads('identity.isLoggedIn')
   isLoggedIn!: boolean;
 
   @action

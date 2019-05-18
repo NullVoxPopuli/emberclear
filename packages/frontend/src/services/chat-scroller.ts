@@ -2,7 +2,6 @@ import Service from '@ember/service';
 import { action } from '@ember/object';
 
 import { isElementWithin } from 'emberclear/src/utils/dom/utils';
-import Message from 'emberclear/src/data/models/message/model';
 
 export default class ChatScroller extends Service {
   // if the last message is close enough to being in view,
@@ -13,25 +12,21 @@ export default class ChatScroller extends Service {
     }
   }
 
-  isLastVisible(message: Message) {
-    // nothing to show, don't indicate that the last message isn't visible.
-    if (!message) return true;
-
+  isLastVisible() {
     const container = document.querySelector('.message-list') as HTMLElement;
     if (!container) return false;
 
     const messages = container.querySelectorAll('.message')!;
     if (!messages) return false;
 
-    const lastMessage = document.getElementById(message.id);
+    const lastMessage = messages[messages.length - 1] as HTMLElement;
 
     if (lastMessage) {
       return isElementWithin(lastMessage, container);
     }
 
     // nothing to show. last is like... square root of -1... or something.
-    // if there are indeed messages, then the last one might be occluded
-    return messages.length === 0;
+    return true;
   }
 
   scrollToBottom() {

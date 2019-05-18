@@ -36,6 +36,15 @@
       ],
       "*": [
         "types/*"
+      ],
+      "@ember": [
+        "node_modules/@types/ember/index.d.ts"
+      ],
+      "fetch": [
+        "node_modules/ember-fetch/index.d.ts"
+      ],
+      "tweetnacl": [
+        "node_modules/tweetnacl/nacl.d.ts"
       ]
     }
   },
@@ -43,8 +52,5 @@
     "src",
     "tests",
     "types"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }

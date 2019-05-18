@@ -1,6 +1,6 @@
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { hasMany, belongsTo } from 'ember-data/relationships';
+import DS from 'ember-data';
+const { attr, hasMany, belongsTo } = DS;
 import { not } from '@ember/object/computed';
 
 import Identity from 'emberclear/data/models/identity/model';
@@ -124,7 +124,7 @@ export default class Message extends Model {
    * */
   @attr() queueForResend?: boolean;
 
-  @belongsTo('identity', { async: false, polymorphic: true }) sender?: Identity;
+  @belongsTo('identity', { async: false }) sender?: Identity;
 
   // @belongsTo('message', { async: false, inverse: 'deliveryConfirmations' }) confirmationFor?: Message;
   // @hasMany('message', { async: false, inverse: 'confirmationFor' }) deliveryConfirmations?: Message[];
@@ -137,7 +137,7 @@ export default class Message extends Model {
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
-declare module 'ember-data/types/registries/model' {
+declare module 'ember-data' {
   interface ModelRegistry {
     message: Message;
   }

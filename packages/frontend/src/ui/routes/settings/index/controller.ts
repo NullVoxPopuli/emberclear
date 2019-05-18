@@ -3,16 +3,15 @@ import { action } from '@ember/object';
 import { alias, reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
-
+import IdentityService from 'emberclear/services/identity/service';
 import Settings from 'emberclear/services/settings';
 
 export default class ProfileController extends Controller {
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
   @service('toast') toast!: Toast;
   @service settings!: Settings;
 
-  @alias('currentUser.record.name') name!: string;
+  @alias('identity.record.name') name!: string;
 
   showPrivateKey = false;
 
@@ -20,7 +19,7 @@ export default class ProfileController extends Controller {
 
   @action
   async save() {
-    await this.currentUser.record!.save();
+    await this.identity.record!.save();
 
     this.toast.success('Identity Updated');
   }

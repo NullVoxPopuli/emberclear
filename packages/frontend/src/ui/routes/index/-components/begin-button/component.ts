@@ -2,10 +2,10 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import IdentityService from 'emberclear/services/identity/service';
 
 export default class BeginButton extends Component {
-  @service currentUser!: CurrentUserService;
+  @service identity!: IdentityService;
 
-  @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
+  @reads('identity.isLoggedIn') isLoggedIn!: boolean;
 }
