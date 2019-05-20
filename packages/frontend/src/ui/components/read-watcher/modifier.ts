@@ -1,6 +1,4 @@
 import Modifier from 'ember-oo-modifiers';
-import { assert } from '@ember/debug';
-
 import Message from 'emberclear/data/models/message/model';
 import { isInElementWithinViewport } from 'emberclear/src/utils/dom/utils';
 
@@ -15,8 +13,6 @@ class ReadWatcher extends Modifier {
   markMessageRead!: () => void;
 
   didInsertElement([message]: [Message], { markRead }: NamedArgs) {
-    assert(`message must have an id`, undefined !== message.id && null !== message.id);
-
     this.message = message;
     this.markMessageRead = markRead;
     this.focusHandler = this.respondToWindowFocus.bind(this);
