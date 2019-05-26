@@ -9,6 +9,10 @@ export async function libsodium(): Promise<typeof libsodiumWrapper> {
   return sodium as typeof libsodiumWrapper;
 }
 
+export function toString(data: Uint8Array) {
+  return libsodiumWrapper.to_string(data);
+}
+
 export async function genericHash(arr: Uint8Array): Promise<Uint8Array> {
   const sodium = await libsodium();
 

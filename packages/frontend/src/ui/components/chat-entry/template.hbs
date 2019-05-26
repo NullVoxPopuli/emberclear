@@ -11,6 +11,7 @@
     <div class='control flex-grow resizable-textarea'>
       {{!-- TODO: extract to a resizable textarea component --}}
       <textarea
+        {{did-insert this.onInsertTextArea}}
         autofocus
         data-test-chat-entry
         disabled={{this.isDisabled}}
@@ -18,9 +19,10 @@
         class='input transition-all chat-entry'
         value={{this.text}}
         placeholder={{this.placeholder}}
-        {{on 'input' (action (mut this.text) value='target.value')}}
+        {{on 'input' this.onInput}}
         {{on 'keypress' this.onKeyPress}}
       />
+
       <div class='textarea-size'></div>
     </div>
 

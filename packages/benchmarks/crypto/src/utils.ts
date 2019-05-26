@@ -5,12 +5,17 @@ export async function wrapCatch(task) {
     await task();
   } catch(e) {
     console.error(e);
+    throw e;
   }
 }
 
 export function fromString(str: string): Uint8Array {
   // return new TextEncoder().encode(str);
   return libsodiumWrapper.from_string(str);
+}
+
+export function toString(data: Uint8Array): string {
+  return libsodiumWrapper.to_string(data);
 }
 
 export function concat(arr1: Uint8Array, arr2: Uint8Array): Uint8Array {

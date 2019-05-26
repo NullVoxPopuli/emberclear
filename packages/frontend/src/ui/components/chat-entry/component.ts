@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { once } from '@ember/runloop';
+import { once, later } from '@ember/runloop';
 
 import { action } from '@ember/object';
 
@@ -25,6 +25,8 @@ export default class ChatEntry extends Component<IArgs> {
   @tracked text?: string;
   @tracked isDisabled = false;
 
+  textarea!: HTMLTextAreaElement;
+
   @reads('to.name') messageTarget!: string;
 
   get placeholder() {
@@ -41,6 +43,10 @@ export default class ChatEntry extends Component<IArgs> {
     return !this.text || this.text.length === 0 || this.isDisabled;
   }
 
+  @action onInsertTextArea(element: HTMLTextAreaElement) {
+    this.textarea = element;
+  }
+
   @action async sendMessage() {
     if (!this.text) return;
 
@@ -53,10 +59,21 @@ export default class ChatEntry extends Component<IArgs> {
     once(this, () => {
       this.isDisabled = false;
       this.text = '';
+
+      // this feels hacky :-\
+      later(() => {
+        this.textarea.focus();
+      }, 1);
     });
   }
 
-  @action onKeyPress(this: ChatEntry, event: KeyboardEvent) {
+  @action onInput(event: KeyboardEvent) {
+    const value = (event.target as any).value;
+
+    this.text = value;
+  }
+
+  @action onKeyPress(event: KeyboardEvent) {
     const { keyCode, shiftKey } = event;
 
     // don't submit when shift is being held.

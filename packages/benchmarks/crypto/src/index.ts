@@ -10,4 +10,14 @@ async function runBenchmark() {
   await roundTripLong.run();
 }
 
+console.log(`
+  Box Encryption Libraries:
+
+        Name     | Size (min + gzip)
+    -------------|------------------
+    tweet-nacl   | 10.4  kB
+    libsodium    | 192.1 kB
+    js-nacl      | 212.9 kB
+`);
+
 runBenchmark();
