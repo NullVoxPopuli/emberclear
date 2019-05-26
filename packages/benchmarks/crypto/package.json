@@ -28,7 +28,7 @@
     "@babel/preset-typescript": "7.3.3",
     "@babel/register": "7.4.4",
     "@babel/runtime": "7.4.5",
-    "@types/js-nacl": "^1.2.0",
+    "@types/js-nacl": "1.2.0",
     "@types/libsodium-wrappers": "0.7.5",
     "asyncmark": "0.3.0",
     "typescript": "3.4.5"

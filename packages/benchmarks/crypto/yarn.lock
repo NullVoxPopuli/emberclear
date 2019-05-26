@@ -867,7 +867,7 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@types/js-nacl@^1.2.0":
+"@types/js-nacl@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/js-nacl/-/js-nacl-1.2.0.tgz#99805137be345a1aa1da2bb04fd8faa8ec3b0ace"
   integrity sha512-OTCLtGjjj/u7Iel8BHcofprZJNbORJWvd5v+bWR4LtGu6PaJrcBuQg2VPuTQ58of6Dml3SafU0jbh4B9IVbG5Q==
