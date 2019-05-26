@@ -1,4 +1,4 @@
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import StoreService from 'ember-data/store';
@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 import { hostFromURL } from 'emberclear/src/utils/string/utils';
+import Task from 'ember-concurrency/task';
 
 export default class NewRelayForm extends Component {
   @service store!: StoreService;
@@ -14,7 +15,7 @@ export default class NewRelayForm extends Component {
   @tracked socketURL = '';
   @tracked openGraphURL = '';
 
-  @(task(function*() {
+  @(task(function*(this: NewRelayForm) {
     const host = hostFromURL(this.socketURL);
     const existing = yield this.store.findAll('relay');
     const priority = existing.length + 1;
@@ -28,7 +29,7 @@ export default class NewRelayForm extends Component {
     yield record.save();
     this.reset();
   }).drop())
-  save;
+  save!: Task;
 
   toggleForm() {
     this.isVisible = !this.isVisible;

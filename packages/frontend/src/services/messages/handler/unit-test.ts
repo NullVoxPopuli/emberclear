@@ -5,15 +5,16 @@ import uuid from 'uuid';
 import {
   getService,
   stubService,
-  attributesForUser,
   setupCurrentUser,
   clearLocalStorage,
+  getStore,
 } from 'emberclear/tests/helpers';
 
 import { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
-import IdentityService from 'emberclear/src/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 import ReceivedMessageHandler from './service';
+import { attributesForContact } from 'emberclear/tests/helpers/factories/contact-factory';
 
 module('Unit | Service | messages/handler', function(hooks) {
   setupTest(hooks);
@@ -35,13 +36,13 @@ module('Unit | Service | messages/handler', function(hooks) {
       });
 
       test('the message is saved', async function(assert) {
-        const store = getService('store');
+        const store = getStore();
         const service = getService<ReceivedMessageHandler>('messages/handler');
-        const me = getService<IdentityService>('identity');
-        const sender = await attributesForUser();
+        const me = getService<CurrentUserService>('currentUser');
+        const sender = await attributesForContact();
 
         const before = await store.findAll('message');
-        const beforeCount = before.length;
+        const beforeCount = before.toArray().length;
 
         await service.handle({
           id: uuid(),

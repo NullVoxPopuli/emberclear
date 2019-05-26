@@ -1,5 +1,5 @@
 export function setupWindowNotification(hooks: NestedHooks) {
-  let originalNotification;
+  let originalNotification: Window['Notification'];
   hooks.beforeEach(function() {
     originalNotification = window.Notification;
   });

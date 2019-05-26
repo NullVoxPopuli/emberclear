@@ -1,9 +1,11 @@
-<div class='message-list flex-column justify-content-end no-overflow'>
+<div
+  class='message-list flex-column justify-content-end no-overflow'
+  {{did-update this.determineIfLastIsVisible @messages}}
+  {{did-insert this.determineIfLastIsVisible @messages}}
+  {{unread-message-list-observer markRead=(action (perform this.markRead))}}
+>
   <ConnectionStatus class='p-absolute top span transition-all base-z' />
-
-  {{!--
-
-  the vertical collection component does not allow for proper reverse / stick-to-bottom rendering
+  <UnreadManagement @messages={{@messages}} @to={{@to}} />
 
   {{#vertical-collection
     @messages
@@ -11,27 +13,18 @@
     class='messages justify-content-end overflows'
     estimateHeight=100
     staticHeight=false
-    bufferSize=8
-    renderAll=true
+    bufferSize=5
     renderFromLast=true
+    lastVisibleChanged=this.determineIfLastIsVisible
     as |message|
   }}
     <Message @message={{message}} />
 
   {{/vertical-collection}}
 
-  --}}
-
-  <div class='messages justify-content-end overflows'>
-    <UnreadManagement @messages={{@messages}} @to={{@to}} />
-
-    {{#each @messages as |message|}}
-      <Message @message={{message}} />
-    {{/each}}
-  </div>
 
   <a
-    {{action this.scrollToBottom}}
+    {{on 'click' this.scrollToBottom}}
     class='
       new-messages has-text-white flex-row
       transition-all p-l-md p-r-md p-t-xs p-b-xs

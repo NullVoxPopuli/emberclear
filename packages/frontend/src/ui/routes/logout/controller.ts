@@ -2,14 +2,16 @@ import Controller from '@ember/controller';
 import localforage from 'localforage';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 export default class LogoutController extends Controller {
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
 
   @action
   logout(this: LogoutController) {
-    this.identity.set('record', undefined);
+    this.currentUser.set('record', undefined);
+    this.store.unloadAll('user');
+    this.store.unloadAll('contact');
     this.store.unloadAll('identity');
     this.store.unloadAll('contact');
     this.store.unloadAll('channel');

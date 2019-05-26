@@ -1,14 +1,14 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 export default class SettingsRoute extends Route {
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
 
   async beforeModel() {
     // don't need to login, if we are already logged in
-    const exists = await this.identity.exists();
+    const exists = await this.currentUser.exists();
 
     if (exists) {
       this.transitionTo('/');

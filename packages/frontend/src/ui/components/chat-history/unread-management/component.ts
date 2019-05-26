@@ -1,27 +1,28 @@
-import Component from 'sparkles-component';
-import { computed } from '@ember/object';
-import { gt, reads } from '@ember/object/computed';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
 import Message from 'emberclear/src/data/models/message/model';
-import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
+import Contact from 'emberclear/src/data/models/contact/model';
 
 import { selectUnreadDirectMessages, markAsRead } from 'emberclear/src/data/models/message/utils';
 import { scrollIntoViewOfParent, isInElementWithinViewport } from 'emberclear/src/utils/dom/utils';
+import { assert } from '@ember/debug';
 
 interface IArgs {
-  to: Identity | Channel;
+  to: Contact | Channel;
   messages: Message[];
 }
 
 export default class UnreadManagement extends Component<IArgs> {
   messagesElement!: HTMLElement;
 
-  didInsertElement() {
+  @action findMessagesContainer() {
     this.messagesElement = document.querySelector('.messages') as HTMLElement;
+
+    assert(`Messages element not found! Did another error occur?`, !!this.messagesElement);
   }
 
-  // @computed('to.id', 'args.messages.@each.unread')
   get unreadMessages() {
     const { to, messages } = this.args;
     const unread = selectUnreadDirectMessages(messages, to.id);
@@ -29,37 +30,46 @@ export default class UnreadManagement extends Component<IArgs> {
     return unread;
   }
 
-  @reads('unreadMessages.length') numberOfUnread!: number;
-  @gt('numberOfUnread', 0) hasUnreadMessages!: boolean;
+  get numberOfUnread() {
+    return this.unreadMessages.length;
+  }
 
-  @computed('hasUnreadMessages')
+  get hasUnreadMessages() {
+    return this.numberOfUnread > 0;
+  }
+
   get shouldRender() {
     if (!this.hasUnreadMessages) return false;
 
     return this.hasUnreadOffScreen();
   }
 
-  @computed('unreadMessages')
   get firstUnreadMessage(): Message | undefined {
     return this.unreadMessages[0];
   }
 
-  @computed('firstUnreadMessage')
   get dateOfFirstUnreadMessage(): Date | undefined {
     if (this.firstUnreadMessage) {
       return this.firstUnreadMessage.receivedAt;
     }
   }
 
-  markAllAsRead() {
+  @action markAllAsRead() {
     this.unreadMessages.forEach(message => {
       markAsRead(message);
     });
   }
 
-  scrollToFirstUnread() {
+  @action scrollToFirstUnread() {
     if (this.firstUnreadMessage) {
       const firstUnread = document.getElementById(this.firstUnreadMessage.id)!;
+
+      assert(
+        `[scrollToFirstUnread] Attempted to scroll to message that does not exist: ${
+          this.firstUnreadMessage.id
+        }. It may not actually be rendered in the dom.`,
+        !!firstUnread
+      );
 
       scrollIntoViewOfParent(this.messagesElement, firstUnread);
     }

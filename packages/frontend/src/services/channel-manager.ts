@@ -1,13 +1,13 @@
-import DS from 'ember-data';
 import Service from '@ember/service';
 import { run } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 
+import StoreService from 'ember-data/store';
 import Channel from 'emberclear/data/models/channel';
 import ArrayProxy from '@ember/array/proxy';
 
 export default class ChannelManager extends Service {
-  @service store!: DS.Store;
+  @service store!: StoreService;
 
   async findOrCreate(id: string, name: string): Promise<Channel> {
     return await run(async () => {

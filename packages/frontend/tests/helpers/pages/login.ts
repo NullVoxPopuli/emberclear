@@ -1,4 +1,4 @@
-import { find, click, fillIn } from '@ember/test-helpers';
+import { click, fillIn } from '@ember/test-helpers';
 
 const wrapper = '[data-test-focus-card]';
 

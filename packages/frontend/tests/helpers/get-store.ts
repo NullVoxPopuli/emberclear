@@ -1,7 +1,7 @@
-import DS from 'ember-data';
+import StoreService from 'ember-data/store';
 
 import { getService } from './get-service';
 
-export function getStore(): DS.Store {
-  return getService<DS.Store>('store');
+export function getStore(): StoreService {
+  return getService<StoreService>('store');
 }

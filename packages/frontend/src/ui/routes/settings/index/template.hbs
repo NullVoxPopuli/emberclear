@@ -30,7 +30,7 @@
 </button>
 
 {{#if this.showPrivateKey}}
-  <MnemonicDisplay @privateKey={{this.identity.privateKey}} />
+  <MnemonicDisplay @privateKey={{this.currentUser.privateKey}} />
 {{/if}}
 
 <a {{action this.downloadSettings}} class='button'>
@@ -44,8 +44,3 @@
 >
   {{t 'ui.settings.copyProfileToDevice'}}
 </button>
-
-{{#if this.showQRSettings}}
-  <SettingsAsQrCode />
-{{/if}}
-

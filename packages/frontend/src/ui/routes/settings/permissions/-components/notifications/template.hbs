@@ -2,6 +2,7 @@
   <label class='label'>{{t 'compatibility.notifications'}}</label>
 
   {{#if this.isEnabled}}
+    {{!-- TODO: figure out how to disable --}}
     {{t 'status.enabled'}}
   {{else}}
     <button {{action this.askNotifications}} class='button'>

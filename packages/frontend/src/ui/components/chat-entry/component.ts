@@ -1,25 +1,26 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { later } from '@ember/runloop';
+import { once } from '@ember/runloop';
 
-import { action, computed } from '@ember/object';
+import { action } from '@ember/object';
 
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
+import StoreService from 'ember-data/store';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
-import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
+import Contact from 'emberclear/src/data/models/contact/model';
 
 interface IArgs {
-  to: Identity | Channel;
+  to: Contact | Channel;
 }
 
 export default class ChatEntry extends Component<IArgs> {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
   @service('messages/factory') messageFactory!: MessageFactory;
-  @service store;
+  @service store!: StoreService;
 
   @tracked text?: string;
   @tracked isDisabled = false;
@@ -40,7 +41,7 @@ export default class ChatEntry extends Component<IArgs> {
     return !this.text || this.text.length === 0 || this.isDisabled;
   }
 
-  @action async sendMessage(this: ChatEntry) {
+  @action async sendMessage() {
     if (!this.text) return;
 
     this.isDisabled = true;
@@ -49,7 +50,7 @@ export default class ChatEntry extends Component<IArgs> {
 
     // removing this later causes the input field to not actually get
     // cleared
-    later(() => {
+    once(this, () => {
       this.isDisabled = false;
       this.text = '';
     });
