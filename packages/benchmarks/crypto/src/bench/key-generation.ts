@@ -1,23 +1,28 @@
 import { Suite } from 'asyncmark';
 
-import { wrapCatch } from '../utils';
-
 import * as libsodiumjs from '../lib/libsodium';
 import * as tweetNaCl from  '../lib/tweet-nacl';
+import * as jsNaCl from '../lib/js-nacl';
 
 export const keyGeneration = new Suite({
-  before() {
+  async before() {
     console.log('\nKey Generation');
+    await jsNaCl.setInstance();
   }
 });
 
 keyGeneration.add({
   name: 'libsodium',
-  fun: () => wrapCatch(libsodiumjs.generateAsymmetricKeys),
+  fun: libsodiumjs.generateAsymmetricKeys,
 
 });
 
 keyGeneration.add({
   name: 'tweetnacl',
-  fun: () => wrapCatch(tweetNaCl.generateAsymmetricKeys),
+  fun: tweetNaCl.generateAsymmetricKeys,
 });
+
+keyGeneration.add({
+  name: 'js-nacl',
+  fun: jsNaCl.generateAsymmetricKeys,
+})

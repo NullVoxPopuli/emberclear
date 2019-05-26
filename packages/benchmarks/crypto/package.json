@@ -10,8 +10,10 @@
     "debug": "node --inspect-brk=9229 build/index.js"
   },
   "dependencies": {
+    "js-nacl": "^1.3.2",
     "libsodium-wrappers": "^0.7.3",
-    "tweetnacl": "^1.0.0"
+    "tweetnacl": "^1.0.0",
+    "tweetnacl-util": "^0.15.0"
   },
   "devDependencies": {
     "@babel/cli": "7.4.4",
@@ -26,6 +28,7 @@
     "@babel/preset-typescript": "7.3.3",
     "@babel/register": "7.4.4",
     "@babel/runtime": "7.4.5",
+    "@types/js-nacl": "^1.2.0",
     "@types/libsodium-wrappers": "0.7.5",
     "asyncmark": "0.3.0",
     "typescript": "3.4.5"

@@ -1,9 +1,9 @@
 import { Suite } from 'asyncmark';
 import libsodiumWrapper from 'libsodium-wrappers';
 
-import { wrapCatch, fromString } from '../utils';
-import * as libsodiumjs from '../lib/libsodium';
-import * as tweetNaCl from  '../lib/tweet-nacl';
+import { fromString } from '../utils';
+import * as jsNaCl from '../lib/js-nacl';
+import { libsodium, jsnacl, tweetnacl } from '../lib/round-trip-implementations';
 
 const lorem = `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse libero risus, porttitor nec urna ut, pellentesque feugiat ex. Integer viverra enim at pulvinar congue. Nunc et turpis vitae nisi maximus laoreet. Mauris malesuada lorem arcu, ut suscipit ante dictum nec. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas eget ex at ligula accumsan tincidunt ac vel erat. Nunc non nunc et dui feugiat finibus. Fusce efficitur, tortor a viverra consequat, sem nulla viverra quam, imperdiet malesuada dui justo vel lacus. Aenean malesuada gravida eros ut dictum. In vehicula vestibulum lacus vel auctor. Proin rutrum ut felis sit amet sagittis.
@@ -26,43 +26,31 @@ Integer tempus lobortis metus, eu vulputate leo fermentum id. Praesent ut velit 
 
 Proin varius mi augue, sed auctor eros sagittis sed. Phasellus vehicula ex ut venenatis sagittis. Vivamus volutpat euismod lorem. Aliquam tempor quam orci. Cras ut nulla metus. Donec tempor, leo a tempor venenatis, enim ipsum aliquam tellus, id faucibus turpis magna quis ante. Ut sit amet volutpat nisl, at venenatis tellus. Praesent auctor ut risus at accumsan. Vestibulum venenatis viverra tristique. Duis a velit ornare, ultricies ipsum eu, vehicula felis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec et purus consequat, fringilla augue ut, rhoncus nisi. Duis semper metus nunc, non egestas tellus semper et. Suspendisse congue tempus nunc, id vulputate neque consectetur in. Pellentesque rhoncus, justo at dignissim feugiat, ex ligula gravida lacus, ut varius augue libero eget ante.
 `;
-
-const msg = fromString(lorem);
-
-export async function libsodium() {
-  const receiver = await libsodiumjs.generateAsymmetricKeys();
-  const sender = await libsodiumjs.generateAsymmetricKeys();
-
-  const cipherText = await libsodiumjs.encryptFor(msg, receiver.publicKey, sender.privateKey);
-  await libsodiumjs.decryptFrom(cipherText, sender.publicKey, receiver.privateKey);
-
-}
-
-export async function tweetnacl() {
-  const receiver = tweetNaCl.generateAsymmetricKeys();
-  const sender = tweetNaCl.generateAsymmetricKeys();
-
-  const cipherText = await tweetNaCl.encryptFor(msg, receiver.publicKey, sender.secretKey);
-  await tweetNaCl.decryptFrom(cipherText, sender.publicKey, receiver.secretKey);
-
-}
+console.log(lorem.length);
+const msg = fromString(
+  `${lorem}`
+);
 
 
 export const roundTrip = new Suite({
   async before() {
     await libsodiumWrapper.ready;
+    await jsNaCl.setInstance();
     console.log('\nRound-trip Box Encryption (long message)');
-    console.log('libsodium using WASM:', libsodiumWrapper.libsodium.usingWasm);
   }
 });
 
 roundTrip.add({
-  name: 'libsodium',
-  fun: () => wrapCatch(libsodium),
+  name: "libsodium",
+  fun: () => libsodium(msg)
 });
 
 roundTrip.add({
-  name: 'tweetnacl',
-  fun: () => wrapCatch(tweetnacl),
+  name: "tweetnacl",
+  fun: () => tweetnacl(msg)
 });
 
+roundTrip.add({
+  name: "js-nacl",
+  fun: () => jsnacl(msg)
+});
