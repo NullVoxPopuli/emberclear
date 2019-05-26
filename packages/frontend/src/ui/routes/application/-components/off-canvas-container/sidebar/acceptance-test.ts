@@ -9,12 +9,14 @@ import {
   setupRelayConnectionMocks,
   setupCurrentUser,
   getService,
-  createIdentity,
+  getStore,
 } from 'emberclear/tests/helpers';
 
-import IdentityService from 'emberclear/src/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
+
 import { page, openSidebar, selectors } from 'emberclear/tests/helpers/pages/sidebar';
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
+import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 
 module('Acceptance | Sidebar', function(hooks) {
   setupApplicationTest(hooks);
@@ -41,8 +43,8 @@ module('Acceptance | Sidebar', function(hooks) {
     module('the actual list of contacts', function() {
       module('there are 0 contacts', function() {
         test('only the current user is shown', function(assert) {
-          const name = getService<IdentityService>('identity')!.name!;
-          const content = page.contacts.list.map(c => c.text).join();
+          const name = getService<CurrentUserService>('currentUser')!.name!;
+          const content = page.contacts.list.map((c: any) => c.text).join();
 
           assert.equal(content, name);
         });
@@ -54,7 +56,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
       module('there is 1 contact', function(hooks) {
         hooks.beforeEach(async function() {
-          await createIdentity('first contact');
+          await createContact('first contact');
           await waitFor(selectors.contacts);
         });
 
@@ -74,7 +76,7 @@ module('Acceptance | Sidebar', function(hooks) {
           });
 
           test('only the current user is shown', function(assert) {
-            const name = getService<IdentityService>('identity')!.name!;
+            const name = getService<CurrentUserService>('currentUser')!.name!;
             const content = page.contacts.listText;
 
             assert.ok(content.includes(name), 'current user name is present');
@@ -91,8 +93,8 @@ module('Acceptance | Sidebar', function(hooks) {
 
       module('there are 2 contacts', function(hooks) {
         hooks.beforeEach(async function() {
-          await createIdentity('first contact');
-          await createIdentity('second contact');
+          await createContact('first contact');
+          await createContact('second contact');
           await waitFor(selectors.contacts);
         });
 
@@ -108,7 +110,7 @@ module('Acceptance | Sidebar', function(hooks) {
           });
 
           test('only the current user is shown', function(assert) {
-            const name = getService<IdentityService>('identity')!.name!;
+            const name = getService<CurrentUserService>('currentUser')!.name!;
             const content = page.contacts.listText;
 
             assert.ok(content.includes(name), 'current user name is present');
@@ -132,7 +134,7 @@ module('Acceptance | Sidebar', function(hooks) {
     });
   });
 
-  module('Channels', function(hooks) {
+  module('Channels', function() {
     test('the channel form is not visible', function(assert) {
       const form = page.channels.form.isVisible;
 
@@ -140,7 +142,7 @@ module('Acceptance | Sidebar', function(hooks) {
     });
 
     test('there are 0 channels', async function(assert) {
-      const store = getService<DS.Store>('store');
+      const store = getStore();
       const known = await store.findAll('channel');
 
       assert.equal(known.length, 0);

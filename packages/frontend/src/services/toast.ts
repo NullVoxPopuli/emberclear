@@ -21,6 +21,14 @@ export default class Toast extends Service {
   // from ember-cli-notifications
   @service('notification-messages') notifications!: any;
 
+  clear() {
+    this.notifications.clear();
+  }
+
+  clearAll() {
+    this.notifications.clearAll();
+  }
+
   info(msg: string, title = '', options = {}) {
     this.createToast('info', msg, title, options);
   }

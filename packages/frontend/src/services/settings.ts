@@ -2,15 +2,15 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import localforage from 'localforage';
-import { PromiseMonitor } from 'ember-computed-promise-monitor';
+import { PromiseMonitor, monitor } from 'ember-computed-promise-monitor';
 
-import IdentityService from 'emberclear/services/identity/service';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
+import CurrentUserService from './current-user/service';
 
 import { objectToDataURL, toHex, fromHex } from 'emberclear/src/utils/string-encoding';
 
-import { monitor, inLocalStorage } from 'emberclear/src/utils/decorators';
+import { inLocalStorage } from 'emberclear/src/utils/decorators';
 
 import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
 
@@ -33,20 +33,20 @@ interface ISettingsJson {
 }
 
 export default class Settings extends Service {
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
   @service contactManager!: ContactManager;
   @service channelManager!: ChannelManager;
 
   @inLocalStorage hideOfflineContacts = false;
   @inLocalStorage useLeftRightJustificationForMessages = false;
 
-  @computed('identity.privateKey', 'identity.publicKey')
+  @computed('currentUser.privateKey', 'currentUser.publicKey')
   @monitor
   get downloadUrl() {
     return this.buildData();
   }
 
-  @computed('identity.privateKey', 'identity.publicKey')
+  @computed('currentUser.privateKey', 'currentUser.publicKey')
   get settingsObject() {
     const promise = this.buildSettings();
 
@@ -74,7 +74,7 @@ export default class Settings extends Service {
       return await this.contactManager.findOrCreate(contact.publicKey, contact.name);
     });
 
-    await this.identity.setIdentity(name, privateKey, publicKey);
+    await this.currentUser.setIdentity(name, privateKey, publicKey);
   }
 
   async buildData(): Promise<string | undefined> {
@@ -84,7 +84,7 @@ export default class Settings extends Service {
   }
 
   async buildSettings(): Promise<ISettingsJson | undefined> {
-    const { name, publicKey, privateKey } = this.identity;
+    const { name, publicKey, privateKey } = this.currentUser;
 
     if (!privateKey) return;
     if (!publicKey) return;

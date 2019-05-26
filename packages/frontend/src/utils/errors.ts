@@ -7,4 +7,10 @@ export class NoCameraError extends Error {
 }
 
 export class ConnectionError extends Error {}
-export class RelayNotSetError extends Error {}
+export class RelayNotSetError extends Error {
+  name = 'RelayNotSet';
+}
+
+export class CurrentUserNotFound extends Error {
+  name = 'CurrentUserNotFound';
+}

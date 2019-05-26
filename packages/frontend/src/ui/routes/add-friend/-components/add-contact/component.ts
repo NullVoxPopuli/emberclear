@@ -1,31 +1,33 @@
 import StoreService from 'ember-data/store';
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { action, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 import ENV from 'emberclear/config/environment';
-import { fromHex } from 'emberclear/src/utils/string-encoding';
 
-import Identity from 'emberclear/services/identity/service';
+import Task from 'ember-concurrency/task';
+import ContactManager from 'emberclear/services/contact-manager';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 export default class AddModal extends Component {
   @service('notifications') toast!: Toast;
-  @service identity!: Identity;
+  @service currentUser!: CurrentUserService;
   @service store!: StoreService;
+  @service contactManager!: ContactManager;
 
   @tracked scanning = false;
 
-  @reads('identity.isLoggedIn') isLoggedIn!: boolean;
+  @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
 
-  @computed('identity.publicKey', 'identity.name', 'isLoggedIn')
+  @computed('currentUser.publicKey', 'currentUser.name', 'isLoggedIn')
   get publicIdentity() {
     if (!this.isLoggedIn) return {};
 
-    const { name, uid } = this.identity;
+    const { name, uid } = this.currentUser;
 
     return { name, publicKey: uid };
   }
@@ -42,14 +44,14 @@ export default class AddModal extends Component {
     this.scanning = !this.scanning;
   }
 
-  @task(function*(identityJson: string) {
+  @task(function*(this: AddModal, identityJson: string) {
     const identity = JSON.parse(identityJson);
 
     yield this.tryCreate(identity);
 
     this.scanning = false;
   })
-  onScan;
+  onScan!: Task;
 
   onScanError(e: Error) {
     this.toast.error(e.message);
@@ -71,13 +73,7 @@ export default class AddModal extends Component {
       return;
     }
 
-    await this.store
-      .createRecord('identity', {
-        name,
-        id: publicKey,
-        publicKey: fromHex(publicKey),
-      })
-      .save();
+    await this.contactManager.create(publicKey, name);
 
     this.toast.info(`${identity.name || 'Friend'} added!`);
   }

@@ -7,16 +7,16 @@ import {
   getService,
   stubService,
   setupCurrentUser,
-  createIdentity,
   clearLocalStorage,
   waitUntilTruthy,
 } from 'emberclear/tests/helpers';
 
 import Identity from 'emberclear/src/data/models/identity/model';
 import Message, { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
-import IdentityService from 'emberclear/src/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
 
 import AutoResponder from './service';
+import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 
 module('Unit | Service | messages/auto-responder', function(hooks) {
   setupTest(hooks);
@@ -42,11 +42,11 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
           assert.expect(1);
 
           const service = getService<AutoResponder>('messages/auto-responder');
-          const somePerson = await createIdentity('some person');
+          const somePerson = await createContact('some person');
 
           stubService('messages/dispatcher', {
             sendToUser: {
-              perform(_response: Message, _to: Identity) {
+              perform(/* _response: Message, _to: Identity */) {
                 assert.ok(false, 'this method should not get called');
               },
             },
@@ -62,10 +62,10 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
 
         hooks.beforeEach(async function(assert) {
           service = getService<AutoResponder>('messages/auto-responder');
-          somePerson = await createIdentity('some person');
+          somePerson = await createContact('some person');
 
           const store = getService<StoreService>('store');
-          const me = getService<IdentityService>('identity');
+          const me = getService<CurrentUserService>('currentUser');
           let messages = await store.findAll('message');
 
           assert.equal(messages.length, 0, 'there are no messages');
@@ -135,14 +135,14 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
     test('a delivery confirmation is built', async function(assert) {
       assert.expect(5);
 
-      const me = getService<IdentityService>('identity');
+      const me = getService<CurrentUserService>('currentUser');
 
       await me.exists();
 
       const store = getService<StoreService>('store');
       const service = getService<AutoResponder>('messages/auto-responder');
 
-      const sender = await createIdentity('some user');
+      const sender = await createContact('some user');
       const receivedMessage = store.createRecord('message', {
         id: uuid(),
         sender,

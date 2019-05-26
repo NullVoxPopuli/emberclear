@@ -24,7 +24,7 @@
     {{else}}
       <h5 class='is-size-7 is-uppercase'>{{t 'ui.search.contacts'}}</h5>
 
-      {{#each this.identityResults as |identity|}}
+      {{#each this.contactResults as |identity|}}
         <div tablist>
           <Result @to='chat.privately-with' @id={{identity.uid}} @afterSelect={{action @close}}>
             <span>

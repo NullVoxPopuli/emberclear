@@ -4,21 +4,22 @@ import { action } from '@ember/object';
 import { reads, alias } from '@ember/object/computed';
 
 import SidebarService from 'emberclear/services/sidebar/service';
-import IdentityService from 'emberclear/services/identity/service';
+import CurrentUserService from 'emberclear/services/current-user/service';
+
 import Modals from 'emberclear/services/modals';
 
 import { scrollIntoViewOfParent } from 'emberclear/src/utils/dom/utils';
 
 export default class Sidebar extends Component {
   @service sidebar!: SidebarService;
-  @service identity!: IdentityService;
+  @service currentUser!: CurrentUserService;
   @service modals!: Modals;
 
   @reads('sidebar.isShown') isShown!: boolean;
   @alias('sidebar.hasUnreadAbove') hasUnreadAbove!: boolean;
   @alias('sidebar.hasUnreadBelow') hasUnreadBelow!: boolean;
-  @reads('identity.name') name?: string;
-  @reads('identity.isLoggedIn') isLoggedIn!: boolean;
+  @reads('currentUser.name') name?: string;
+  @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
 
   @action closeSidebar() {
     this.sidebar.hide();

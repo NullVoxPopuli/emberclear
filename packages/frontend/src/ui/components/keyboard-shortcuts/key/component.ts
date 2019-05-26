@@ -1,5 +1,4 @@
-import Component from 'sparkles-component';
-import { tracked } from '@glimmer/tracking';
+import Component from '@glimmer/component';
 
 interface IArgs {
   label: string;

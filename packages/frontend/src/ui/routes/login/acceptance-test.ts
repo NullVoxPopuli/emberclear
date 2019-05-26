@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import { module, test } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import { percySnapshot, QUnitAssert } from 'ember-percy';
+import { percySnapshot } from 'ember-percy';
 
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
 
@@ -110,12 +110,12 @@ module('Acceptance | Login', function(hooks) {
           percySnapshot(assert as any);
         });
 
-        test('sets the "me" identity', function(assert) {
+        test('sets the "me" user', function(assert) {
           const store = getService<DS.Store>('store');
-          const known = store.peekAll('identity');
+          const known = store.peekAll('user');
 
           assert.equal(known.length, 1);
-          assert.equal(known.firstObject.id, 'me');
+          assert.equal(known.toArray()[0].id, 'me');
         });
       });
     });
