@@ -2,8 +2,12 @@
   <span class='has-text-success' ...attributes>
     {{fa-icon 'check-circle'}}
   </span>
-{{else}}
+{{else if @required}}
   <span class='has-text-danger' ...attributes>
     {{fa-icon 'times-circle'}}
+  </span>
+{{else}}
+  <span class='has-text-warning' ...attributes>
+    {{fa-icon 'exclamation-circle'}}
   </span>
 {{/if}}

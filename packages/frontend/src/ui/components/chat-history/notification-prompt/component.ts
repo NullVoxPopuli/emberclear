@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
@@ -9,15 +10,15 @@ export default class NotificationPrompt extends Component {
 
   @reads('notifications.showInAppPrompt') isVisible!: boolean;
 
-  enableNotifications() {
+  @action enableNotifications() {
     this.notifications.askPermission();
   }
 
-  neverAskAgain() {
+  @action neverAskAgain() {
     this.notifications.isNeverGoingToAskAgain = true;
   }
 
-  askNextTime() {
+  @action askNextTime() {
     this.notifications.isHiddenUntilBrowserRefresh = true;
   }
 }

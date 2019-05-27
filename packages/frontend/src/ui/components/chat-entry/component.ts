@@ -4,7 +4,6 @@ import { once, later } from '@ember/runloop';
 
 import { action } from '@ember/object';
 
-import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 import StoreService from 'ember-data/store';
@@ -27,16 +26,15 @@ export default class ChatEntry extends Component<IArgs> {
 
   textarea!: HTMLTextAreaElement;
 
-  @reads('to.name') messageTarget!: string;
-
   get placeholder() {
+    const { to } = this.args;
     let prefix = '';
 
-    if (this.args.to instanceof Channel) {
+    if (to instanceof Channel) {
       prefix = 'everyone in ';
     }
 
-    return `Send a message to ${prefix}${this.messageTarget}`;
+    return `Send a message to ${prefix}${to.name}`;
   }
 
   get isSubmitDisabled() {

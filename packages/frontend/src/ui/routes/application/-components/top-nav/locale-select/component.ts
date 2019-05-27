@@ -1,14 +1,10 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { once } from '@ember/runloop';
-import uuid from 'uuid';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
-import { reads } from '@ember/object/computed';
+import { action } from '@ember/object';
 
 import LocaleService from 'emberclear/src/services/locale';
-import { keepInViewPort } from 'emberclear/src/utils/dom/utils';
 
 interface IArgs {}
 
@@ -16,7 +12,8 @@ export default class LocaleSwitcher extends Component<IArgs> {
   @service locale!: LocaleService;
 
   @tracked isActive = false;
-  dropDownId = uuid();
+
+  dropdown!: HTMLDivElement;
 
   options = [
     { locale: 'de-de', label: 'Deutsche' },
@@ -27,11 +24,9 @@ export default class LocaleSwitcher extends Component<IArgs> {
     { locale: 'ru-ru', label: 'Русский' },
   ];
 
-  @reads('locale.currentLocale') currentLocale!: string;
-
-  @computed('currentLocale')
   get currentLanguage() {
-    const current = this.options.find((opt: any) => opt.locale === this.currentLocale);
+    const current = this.options.find((opt: any) => opt.locale === this.locale.currentLocale);
+
     if (current) {
       return current.label;
     }
@@ -39,23 +34,19 @@ export default class LocaleSwitcher extends Component<IArgs> {
     return this.options[1].label;
   }
 
-  get dropDown(): HTMLElement {
-    return document.getElementById(this.dropDownId)!;
+  @action didInsert(element: HTMLDivElement) {
+    this.dropdown = element;
   }
 
-  toggleMenu() {
+  @action toggleMenu() {
     this.isActive = !this.isActive;
-
-    if (this.isActive) {
-      once(this, () => keepInViewPort(this.dropDown));
-    }
   }
 
-  closeMenu() {
+  @action closeMenu() {
     this.isActive = false;
   }
 
-  chooseLanguage(locale: string) {
+  @action chooseLanguage(locale: string) {
     this.locale.setLocale(locale);
   }
 }

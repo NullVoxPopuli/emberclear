@@ -30,16 +30,25 @@
 
         <div class='flex-row justify-content-space-between align-items-end'>
           <div class='flex-column align-items-start'>
-            <Feature @value={{this.hasCamera}} @label={{t 'compatibility.camera'}} />
-            <Feature @value={{this.hasNotifications}} @label={{t 'compatibility.notifications'}} />
-            <Feature @value={{this.hasIndexedDb}} @label={{t 'compatibility.indexeddb'}} />
-            <Feature @value={{this.hasWASM}} @label={{t 'compatibility.wasm'}} />
-            <Feature @value={{this.hasServiceWorker}} @label={{t 'compatibility.serviceWorker'}} />
-            <Feature @value={{this.hasWebWorker}} @label={{t 'compatibility.webWorker'}} />
+            <table>
+              <tbody>
+                <Feature @value={{this.hasCamera}} @label={{t 'compatibility.camera'}} />
+                <Feature @value={{this.hasNotifications}} @label={{t 'compatibility.notifications'}} />
+                <Feature @required={{true}} @value={{this.hasIndexedDb}} @label={{t 'compatibility.indexeddb'}} />
+                <Feature @value={{this.hasWASM}} @label={{t 'compatibility.wasm'}} />
+                <Feature @value={{this.hasServiceWorker}} @label={{t 'compatibility.serviceWorker'}} />
+                <Feature @value={{this.hasWebWorker}} @label={{t 'compatibility.webWorker'}} />
+
+
+              </tbody>
+            </table>
 
             <h3 class='is-size-4'>
               {{t 'compatibility.score'}}: {{this.successCount}} / {{this.totalCount}}
             </h3>
+            <h4>
+              {{t 'compatibility.required'}}: {{this.requiredSuccessCount}} / {{this.totalRequiredCount}}
+            </h4>
 
           </div>
 

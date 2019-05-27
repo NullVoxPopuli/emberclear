@@ -12,6 +12,7 @@ export function hasWASM() {
       }
     }
   } catch (e) {
+    console.error('hasWASM check:', e);
     // deliberately empty
   }
   return false;
@@ -35,7 +36,10 @@ export function hasWebWorker() {
 
 export function hasIndexedDb() {
   return new Promise((resolve /* , reject */) => {
-    let request = indexedDB.open('MyTestDatabase');
+    const hasIDb = 'indexedDB' in window;
+    if (!hasIDb) resolve(false);
+
+    let request = window.indexedDB.open('MyTestDatabase');
 
     request.onerror = function() {
       resolve(false);

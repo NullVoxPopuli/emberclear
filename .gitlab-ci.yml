@@ -15,9 +15,7 @@ stages:
 #     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
 # need an image that has chrome, and eventually firefox
-# image: node:10
 image: danlynn/ember-cli:latest
-# image: ubuntu:latest
 
 variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
@@ -26,105 +24,109 @@ variables:
   NODE_OPTIONS: --max-old-space-size=2048
   PERCY_ENABLE: 0
   CI_BROWSER: chrome
+  FRONTEND: ${CI_PROJECT_DIR}/packages/frontend
 
 
 # TODO: HACK: for now, it's faster to install everything
 #       than it is to rely on gitlab's slow cache
 before_script:
-  # - time npm install -g yarn@latest
-  # - apt install wget
-  # - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  # - dpkg -i google-chrome-stable_current_amd64.deb
-  # - wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-  # - nvm install 10
-  # - apt install firefox
-  - time ./run yarn install
+  - time ( cd ${FRONTEND} && yarn install )
 
-Security via Synk:
+Security:
   stage: setup
+  only:
+    changes:
+      - ${FRONTEND}/**/*
   script:
     - time npm install -g snyk
-    - time ( cd ${CI_PROJECT_DIR}/packages/frontend && snyk test --severity-threshold=high )
+    - time ( cd ${FRONTEND} && snyk test --severity-threshold=high )
 
 
 Lint JS/TS:
   stage: quality
-  dependencies: [ setup ]
-  script:
-    - time ./run yarn lint:js
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
+  script: time ( cd ${FRONTEND} && yarn lint:js )
 
 Lint Templates:
   stage: quality
-  dependencies: [ setup ]
-  script:
-    - time ./run yarn lint:hbs
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
+  script: time ( cd ${FRONTEND} && yarn lint:hbs )
 
 Lint SCSS:
   stage: quality
-  dependencies: [ setup ]
-  script:
-    - time ./run yarn lint:sass
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
+  script: time ( cd ${FRONTEND} && yarn lint:sass )
 
 Check Types:
   stage: quality
-  dependencies: [ setup ]
-  script:
-    - time ./run yarn tsc
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
+  script: time ( cd ${FRONTEND} && yarn tsc )
 
 Translations:
   stage: quality
-  dependencies: [ setup ]
-  script: time ./run yarn lint:i18n
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
+  script: time ( cd ${FRONTEND} && yarn lint:i18n )
 
-
-# All Tests:
-#   stage: test
-#   dependencies: [ setup ]
-#   script:
-#     - time COVERAGE=true ./run yarn test
-#   artifacts:
-#     paths:
-#       - ${CI_PROJECT_DIR}/packages/frontend/coverage*
 
 Unit Tests:
   stage: test
-  dependencies: [ setup ]
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn test:named Unit
   artifacts:
     paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
+      - ${FRONTEND}/coverage*
 
 Helper Tests:
   stage: test
-  dependencies: [ setup ]
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn test:named Helper
   artifacts:
     paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
+      - ${FRONTEND}/coverage*
 
 Integration Tests:
   stage: test
-  dependencies: [ setup ]
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn test:named Integration
   artifacts:
     paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
+      - ${FRONTEND}/coverage*
 
 Application Tests:
   stage: test
-  dependencies: [ setup ]
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
   script:
     - PERCY_ENABLE=1 ./run yarn test:named Acceptance
   artifacts:
     paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/coverage*
+      - ${FRONTEND}/coverage*
 
 Application Tests (a11y):
   stage: test
-  dependencies: [ setup ]
+  dependencies: [ Security ]
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
   # for now -- this is a big task
   allow_failure: true
   script:
@@ -139,50 +141,58 @@ Merge Coverage:
     - Integration Tests
     - Helper Tests
     - Unit Tests
+  only:
+    changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn merge-coverage
-    - cat ${CI_PROJECT_DIR}/packages/frontend/coverage/coverage-summary.json
+    - cat ${FRONTEND}/coverage/coverage-summary.json
   artifacts:
     paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/coverage/
+      - ${FRONTEND}/coverage*
 
 Build Production:
   stage: build
-  dependencies: [ setup ]
-  only: [ master ]
+  only:
+    refs: [ master ]
+    changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn build:production
   artifacts:
     paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/dist
+      - ${FRONTEND}/dist
 
 Analyze Bundle:
   stage: build
-  dependencies: [ setup ]
-  only: [ master ]
+  only:
+    refs: [ master ]
+    changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn analyze
   artifacts:
     paths:
-      - ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html
+      - ${FRONTEND}/public/bundle.html
 
 Deploy Production:
   stage: deploy
-  only: [ master ]
+  only:
+    refs: [ master ]
+    changes: [ '${FRONTEND}/**/*' ]
   dependencies:
     - Merge Coverage
     - Analyze Bundle
     - Build Production
   before_script: [ ]
   script:
-    - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/
-    - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
-    - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html public/bundle.html
+    - mv ${FRONTEND}/coverage public/
+    - cp ${FRONTEND}/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
+    - cp ${FRONTEND}/public/bundle.html public/bundle.html
     - time ./scripts/publish
 
 Deploy Docker Image:
   stage: deploy
-  only: [ master ]
+  only:
+    refs: [ master ]
+    changes: [ '${FRONTEND}/**/*' ]
   image: docker
   services:
    - docker:dind
@@ -200,25 +210,19 @@ Deploy Docker Image:
 
 pages:
   stage: deploy
-  only: [ master ]
+  only:
+    refs: [ master ]
+    changes: [ '${FRONTEND}/**/*' ]
   dependencies:
     - Merge Coverage
     - Analyze Bundle
   before_script: [ ]
   script:
     - mkdir -p public/$CI_COMMIT_REF_NAME
-    - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/$CI_COMMIT_REF_NAME
-    - mv ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html public/$CI_COMMIT_REF_NAME
+    - mv ${FRONTEND}/coverage public/$CI_COMMIT_REF_NAME
+    - mv ${FRONTEND}/public/bundle.html public/$CI_COMMIT_REF_NAME
   artifacts:
     paths:
       - public
     expire_in: 30 days
-
-# Setup is currently worthless, because it's faster
-# to install everything at every stage than to rely on cache...
-setup:
-  stage: setup
-  script:
-    - echo "skip"
-    # - time ./run yarn install
 

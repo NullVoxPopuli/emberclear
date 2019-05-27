@@ -32,9 +32,14 @@ module('Acceptance | Compatibility', function(hooks) {
   });
 
   module('the browser does not support a required feature', function(hooks) {
+    let backupDb: any;
     hooks.beforeEach(async function() {
-      delete window.Notification;
+      backupDb = window.indexedDB;
+      delete (window as any).indexedDB;
       await visit('/');
+    });
+    hooks.afterEach(function() {
+      (window as any).indexedDB = backupDb;
     });
 
     test('the compatibility message is shown', function(assert) {

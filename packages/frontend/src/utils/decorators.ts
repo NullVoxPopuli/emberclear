@@ -29,7 +29,7 @@ export function inLocalStorage<T = boolean, Target = Record<string, any>>(
   const { get: oldGet, set: oldSet } = tracked(target, propertyKey, descriptor);
 
   const newDescriptor = {
-    confgurable: true,
+    configurable: true,
     enumerable: true,
     get: function(): T {
       const key = `${targetName}-${propertyKey}`;

@@ -3,6 +3,7 @@ appname: emberclear
 subheader: Encrypted Chat. No History. No Logs.
 authoredBy: by Preston Sego
 redditCommunity: Reddit Community
+twitter: Twitter
 
 todo: 'TODO: fill this out correctly'
 
@@ -67,6 +68,7 @@ compatibility:
   title: Something is wrong!
   description: In order to use emberclear, your browser must support the following technologies and features
   score: Score
+  required: Required
   compatibility: Compatibility
   camera: Camera
   notifications: Notifications
@@ -126,7 +128,7 @@ ui:
     title: emberclear message
     from: message from {name}
     prompt:
-      title: emberclear needs your permission to enable notifications.
+      title: emberclear needs your permission to enable chat notifications.
       enable: Enable Notifications
       askLater: Ask Next Time
       neverAsk: Never Ask Again
