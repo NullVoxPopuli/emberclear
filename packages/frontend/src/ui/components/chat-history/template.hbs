@@ -4,6 +4,8 @@
   {{did-insert this.determineIfLastIsVisible @messages}}
   {{unread-message-list-observer markRead=(action (perform this.markRead))}}
 >
+
+  <NotificationPrompt />
   <ConnectionStatus class='p-absolute top span transition-all base-z' />
   <UnreadManagement @messages={{@messages}} @to={{@to}} />
 

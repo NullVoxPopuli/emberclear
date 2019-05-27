@@ -27,7 +27,7 @@ export default class ApplicationRoute extends Route {
     // While these models aren't used directly, we'll be reading
     // from cache deep in the component tree
     const [contacts, channels /*messages*/] = await Promise.all([
-      this.store.findAll('identity', { backgroundReload: true }),
+      this.store.findAll('contact', { backgroundReload: true }),
       this.store.findAll('channel', { backgroundReload: true }),
       this.store.findAll('message', { backgroundReload: true }),
     ]);

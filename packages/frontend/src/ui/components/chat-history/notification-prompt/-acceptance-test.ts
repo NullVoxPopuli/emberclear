@@ -28,7 +28,7 @@ module('Acceptance | Notification Permission Prompt', function(hooks) {
         permission: undefined,
       };
 
-      await visit('/');
+      await visit('/chat/privately-with/me');
     });
 
     test('the prompt is shown', function(assert) {

@@ -23,9 +23,11 @@ export default class Compatibility extends Component {
 
   @tracked successCount = 0;
   @tracked totalCount = 0;
+  @tracked requiredSuccessCount = 0;
+  @tracked totalRequiredCount = 0;
 
   get isNotCompatible() {
-    return this.totalCount !== this.successCount;
+    return this.totalRequiredCount !== this.requiredSuccessCount;
   }
 
   constructor(owner: any, args: any) {
@@ -35,8 +37,9 @@ export default class Compatibility extends Component {
 
   @(task(function*(this: Compatibility) {
     let check = this.checkSuccess.bind(this);
+    this.hasIndexedDb = check(yield hasIndexedDb(), { required: true });
+
     if (!Ember.testing) {
-      this.hasIndexedDb = check(yield hasIndexedDb());
       this.hasWASM = check(hasWASM());
       this.hasCamera = check(hasCamera());
       this.hasWebWorker = check(hasWebWorker());
@@ -47,9 +50,17 @@ export default class Compatibility extends Component {
   }).drop())
   detectFeatures!: Task;
 
-  private checkSuccess(value: boolean) {
+  private checkSuccess(value: boolean, { required = false }: { required?: boolean } = {}) {
+    if (required) {
+      this.totalRequiredCount++;
+    }
+
     if (value) {
       this.successCount++;
+
+      if (required) {
+        this.requiredSuccessCount++;
+      }
     }
 
     this.totalCount++;

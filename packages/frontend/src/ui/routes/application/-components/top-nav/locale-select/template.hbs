@@ -1,7 +1,7 @@
-<div class='navbar-item dropdown {{if this.isActive 'is-active'}}'>
+<div class='navbar-item dropdown is-right {{if this.isActive 'is-active'}}'>
   <div class='dropdown-trigger'>
-    <a
-      {{action this.toggleMenu}}
+    <button
+      {{on 'click' (fn this.toggleMenu)}}
       class='button is-primary'
       style='z-index: 31;'
       aria-haspopup='true'
@@ -10,22 +10,22 @@
       <small class='icon'>
         {{fa-icon 'globe'}}
       </small>
-    </a>
+    </button>
   </div>
 
   <div
-    id={{this.dropDownId}}
-    class='dropdown-menu'
+    {{did-insert this.didInsert}}
+    class='dropdown-menu m-r-sm'
     role='menu'
     style='min-width: auto; z-index: 31;'
   >
     <div class='dropdown-content' tablist>
       {{#each this.options as |opt|}}
         <a
-          {{action (queue
-            (action this.chooseLanguage opt.locale)
-            (action this.closeMenu)
-          )}}
+          {{on 'click' (action (queue
+            (fn this.chooseLanguage opt.locale)
+            this.closeMenu
+          ))}}
           class='navbar-item'
         >
           <span>{{opt.label}}</span>
@@ -36,7 +36,7 @@
 
   <Backdrop
     @isActive={{this.isActive}}
-    @onClick={{action this.closeMenu}}
+    @onClick={{this.closeMenu}}
     style='z-index: 30;'
   />
 </div>

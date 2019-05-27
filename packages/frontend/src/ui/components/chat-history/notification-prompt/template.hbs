@@ -3,30 +3,32 @@
     data-test-notification-prompt
     class='
       notification is-info
+      is-radiusless
       has-text-centered
-      is-radiusless p-sm transition-all
+      p-sm transition-all
       has-shadow
     '
     style='margin-bottom: 0;'
   >
-    <button
+    <a
       data-test-dismiss
       class='delete'
-      {{action this.askNextTime}}>
-    </button>
+      {{on 'click' this.askNextTime}}>
+      {{fa-icon 'times'}}
+    </a>
 
     <strong>{{t 'ui.notifications.prompt.title'}}</strong>
 
     <div data-test-enable class='flex justify-content-space-around m-t-sm'>
-      <a {{action this.enableNotifications}}>
+      <a {{on 'click' this.enableNotifications}}>
         {{t 'ui.notifications.prompt.enable'}}
       </a>
 
-      <a data-test-ask-later {{action this.askNextTime}}>
+      <a data-test-ask-later {{on 'click' this.askNextTime}}>
         {{t 'ui.notifications.prompt.askLater'}}
       </a>
 
-      <a data-test-ask-never {{action this.neverAskAgain}}>
+      <a data-test-ask-never {{on 'click' this.neverAskAgain}}>
         {{t 'ui.notifications.prompt.neverAsk'}}
       </a>
     </div>

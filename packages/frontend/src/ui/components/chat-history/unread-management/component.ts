@@ -7,7 +7,6 @@ import Contact from 'emberclear/src/data/models/contact/model';
 
 import { selectUnreadDirectMessages, markAsRead } from 'emberclear/src/data/models/message/utils';
 import { scrollIntoViewOfParent, isInElementWithinViewport } from 'emberclear/src/utils/dom/utils';
-import { assert } from '@ember/debug';
 
 interface IArgs {
   to: Contact | Channel;
@@ -19,8 +18,6 @@ export default class UnreadManagement extends Component<IArgs> {
 
   @action findMessagesContainer() {
     this.messagesElement = document.querySelector('.messages') as HTMLElement;
-
-    assert(`Messages element not found! Did another error occur?`, !!this.messagesElement);
   }
 
   get unreadMessages() {
@@ -63,13 +60,6 @@ export default class UnreadManagement extends Component<IArgs> {
   @action scrollToFirstUnread() {
     if (this.firstUnreadMessage) {
       const firstUnread = document.getElementById(this.firstUnreadMessage.id)!;
-
-      assert(
-        `[scrollToFirstUnread] Attempted to scroll to message that does not exist: ${
-          this.firstUnreadMessage.id
-        }. It may not actually be rendered in the dom.`,
-        !!firstUnread
-      );
 
       scrollIntoViewOfParent(this.messagesElement, firstUnread);
     }
