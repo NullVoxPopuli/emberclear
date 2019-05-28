@@ -21,7 +21,7 @@ module.exports = function(environment) {
     fontawesome: {
       defaultPrefix: 'fas', // free-and-solid
       icons: {
-        'free-brands-svg-icons': ['reddit', 'twitter'],
+        'free-brands-svg-icons': ['reddit', 'twitter', 'monero'],
         'free-solid-svg-icons': [
           'qrcode',
           'user-circle',
