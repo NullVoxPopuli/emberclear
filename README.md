@@ -40,7 +40,6 @@ Question: should the relay finally become part of the same project?
 
 Written in ember for demonstration of
  - progressive web apps
- - server side rendering (via prember, since this is statically hosted)
  - service workers
  - websockets
  - typescript

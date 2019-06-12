@@ -71,6 +71,23 @@ module.exports = function(defaults) {
       include: ['assets/**/*', '**/*.html', 'index.html'],
       exclude: ['.well-known/**/*', 'bundle.html', 'favicon.ico', 'robots.txt'],
     },
+    'esw-index': {
+      version,
+      excludeScope: [/\.well-known/, /bundle.html/, /favicon.ico/, /robots.txt/],
+      // includeScope: [
+      //   // I don't know if all of these need to be here, they all point to the same index file.
+      //   /\/chat(\/.*)?$/,
+      //   /\/setup(\/.*)?$/,
+      //   /\/contacts(\/.*)?$/,
+      //   /\/login(\/.*)?$/,
+      //   /\/invite(\/.*)?$/,
+      //   /\/logout(\/.*)?$/,
+      //   /\/settings(\/.*)?$/,
+      //   /\/faq(\/.*)?$/,
+      //   /\/not-found(\/.*)?$/,
+      //   /\/add-friend(\/.*)?$/,
+      // ],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

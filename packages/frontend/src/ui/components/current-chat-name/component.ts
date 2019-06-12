@@ -1,6 +1,5 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { alias, equal } from '@ember/object/computed';
 import { isPresent } from '@ember/utils';
 import StoreService from 'ember-data/store';
 import RouterService from '@ember/routing/router-service';
@@ -10,48 +9,71 @@ const PRIVATE_CHAT_REGEX = /chat\/privately-with\/(.+)/;
 const CHANNEL_REGEX = /chat\/in-channel\/(.+)/;
 
 export default class extends Component {
-  @service currentUser!: CurrentUserService;
   @service store!: StoreService;
   @service router!: RouterService;
-
-  @alias('router.currentRouteName') routeName!: string;
-  @equal('routeName', 'chat.index') isRootChat!: boolean;
-
-  get chatName() {
-    const url = this.router.currentURL;
-    const privateMatches = PRIVATE_CHAT_REGEX.exec(url);
-
-    // Private Chat
-    if (privateMatches) {
-      const encodedId = privateMatches[1];
-      const id = decodeURI(encodedId);
-
-      if (id === currentUserId) {
-        return this.currentUser.name;
-      }
-
-      return this.getName(id, 'contact');
-    }
-
-    const channelMatches = CHANNEL_REGEX.exec(url);
-
-    if (channelMatches) {
-      const encodedId = channelMatches[1];
-      const id = decodeURI(encodedId);
-
-      return this.getName(id, 'channel', '#');
-    }
-
-    return '';
-  }
+  @service currentUser!: CurrentUserService;
 
   get isChatVisible() {
     return isPresent(this.chatName);
   }
 
-  getName(id: string, modelType: string, prefix = '') {
-    const record = this.store.peekRecord(modelType, id);
+  get record() {
+    if (!this.recordId || !this.recordType) return;
 
-    return `${prefix}${record.name}`;
+    const record = this.store.peekRecord(this.recordType, this.recordId);
+
+    return record;
+  }
+
+  get recordId() {
+    return this.contactId || this.channelId;
+  }
+
+  get recordType() {
+    return this.contactId ? 'contact' : 'channel';
+  }
+
+  get contactId() {
+    return contactIdFrom(this.router.currentURL);
+  }
+
+  get channelId() {
+    return channelIdFrom(this.router.currentURL);
+  }
+
+  get chatName() {
+    if (this.recordId === currentUserId) {
+      return this.currentUser.name;
+    }
+
+    if (this.recordId) {
+      if (this.channelId) {
+        return `#${this.record.name}`;
+      }
+
+      return `${this.record.name}`;
+    }
+
+    return '';
+  }
+}
+
+function contactIdFrom(url: string) {
+  const privateMatches = PRIVATE_CHAT_REGEX.exec(url);
+  const encodedId = privateMatches && privateMatches[1];
+
+  if (encodedId) {
+    const id = decodeURI(encodedId);
+    return id;
+  }
+}
+
+function channelIdFrom(url: string) {
+  const channelMatches = CHANNEL_REGEX.exec(url);
+  const encodedId = channelMatches && channelMatches[1];
+
+  if (encodedId) {
+    const id = decodeURI(encodedId);
+    return id;
   }
 }

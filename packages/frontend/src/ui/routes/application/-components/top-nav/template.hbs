@@ -36,11 +36,14 @@
 
 
     {{#if this.isLoggedIn}}
-      <CurrentChatName class='navbar-item' as |isVisible name|>
+      <CurrentChatName class='navbar-item' as |isVisible name record|>
         {{#if isVisible}}
-          <span class='chat-name p-l-md'>
+          <span class='chat-name p-l-md m-r-sm'>
             {{name}}
           </span>
+          {{#if (is-contact record)}}
+            <StatusIcon @contact={{record}} />
+          {{/if}}
         {{/if}}
       </CurrentChatName>
     {{/if}}
@@ -56,6 +59,7 @@
       </div>
     {{/if}}
 
+    <Install />
     <LocaleSelect />
 
     <div class='navbar-end is-hidden-touch'>
