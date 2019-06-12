@@ -1,0 +1,8 @@
+{{#if this.shouldRender}}
+  <button
+    class='button'
+    {{on 'click' (fn this.install)}}
+  >
+    {{t 'install'}}
+  </button>
+{{/if}}

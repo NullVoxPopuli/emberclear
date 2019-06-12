@@ -5,6 +5,9 @@ import { inject as service } from '@ember/service';
 import Relay from 'emberclear/src/data/models/relay';
 import ToastService from 'emberclear/src/services/toast';
 import RelayConnection from 'emberclear/src/services/relay-connection';
+import ContactsOnlineChecker from 'emberclear/src/services/contacts/online-checker';
+import CurrentUserService from 'emberclear/services/current-user/service';
+
 import { RelayNotSetError } from 'emberclear/src/utils/errors';
 import ArrayProxy from '@ember/array/proxy';
 
@@ -12,12 +15,16 @@ export default class RelayManager extends Service {
   @service toast!: ToastService;
   @service store!: StoreService;
   @service relayConnection!: RelayConnection;
+  @service('contacts/online-checker') onlineChecker!: ContactsOnlineChecker;
+  @service currentUser!: CurrentUserService;
 
   async connect() {
+    if (!(await this.canConnect())) return;
     const relay = await this.getRelay();
 
     this.relayConnection.setRelay(relay);
     this.relayConnection.connect();
+    this.onlineChecker.checkOnlineStatus.perform();
   }
 
   async getRelay(): Promise<Relay> {
@@ -54,6 +61,10 @@ export default class RelayManager extends Service {
     const json = await response.json();
 
     return (json || {}).data;
+  }
+
+  async canConnect(): Promise<boolean> {
+    return await this.currentUser.exists();
   }
 }
 

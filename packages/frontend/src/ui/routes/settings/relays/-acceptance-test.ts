@@ -12,6 +12,7 @@ import {
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 import { defaultRelays } from 'emberclear/src/utils/data/required-data';
+import { settled } from '@ember/test-helpers';
 
 const page = settings.relays;
 
@@ -53,6 +54,7 @@ module('Acceptance | Settings | Relays', function(hooks) {
         assert.equal(page.table.rows.length, 3, 'there are 3 relays');
 
         await page.table.rows.objectAt(1).remove();
+        await settled();
       });
 
       test('there is one less row', function(assert) {

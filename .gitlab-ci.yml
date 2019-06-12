@@ -34,9 +34,9 @@ before_script:
 
 Security:
   stage: setup
-  only:
-    changes:
-      - ${FRONTEND}/**/*
+  # only:
+  #   changes:
+  #     - ${FRONTEND}/**/*
   script:
     - time npm install -g snyk
     - time ( cd ${FRONTEND} && snyk test --severity-threshold=high )
@@ -45,44 +45,44 @@ Security:
 Lint JS/TS:
   stage: quality
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script: time ( cd ${FRONTEND} && yarn lint:js )
 
 Lint Templates:
   stage: quality
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script: time ( cd ${FRONTEND} && yarn lint:hbs )
 
 Lint SCSS:
   stage: quality
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script: time ( cd ${FRONTEND} && yarn lint:sass )
 
 Check Types:
   stage: quality
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script: time ( cd ${FRONTEND} && yarn tsc )
 
 Translations:
   stage: quality
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script: time ( cd ${FRONTEND} && yarn lint:i18n )
 
 
 Unit Tests:
   stage: test
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn test:named Unit
   artifacts:
@@ -92,8 +92,8 @@ Unit Tests:
 Helper Tests:
   stage: test
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn test:named Helper
   artifacts:
@@ -103,8 +103,8 @@ Helper Tests:
 Integration Tests:
   stage: test
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn test:named Integration
   artifacts:
@@ -114,8 +114,8 @@ Integration Tests:
 Application Tests:
   stage: test
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script:
     - PERCY_ENABLE=1 ./run yarn test:named Acceptance
   artifacts:
@@ -125,8 +125,8 @@ Application Tests:
 Application Tests (a11y):
   stage: test
   dependencies: [ Security ]
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   # for now -- this is a big task
   allow_failure: true
   script:
@@ -141,8 +141,8 @@ Merge Coverage:
     - Integration Tests
     - Helper Tests
     - Unit Tests
-  only:
-    changes: [ '${FRONTEND}/**/*' ]
+  # only:
+  #   changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn merge-coverage
     - cat ${FRONTEND}/coverage/coverage-summary.json
@@ -154,7 +154,7 @@ Build Production:
   stage: build
   only:
     refs: [ master ]
-    changes: [ '${FRONTEND}/**/*' ]
+    # changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn build:production
   artifacts:
@@ -165,7 +165,7 @@ Analyze Bundle:
   stage: build
   only:
     refs: [ master ]
-    changes: [ '${FRONTEND}/**/*' ]
+    # changes: [ '${FRONTEND}/**/*' ]
   script:
     - time ./run yarn analyze
   artifacts:
@@ -176,7 +176,7 @@ Deploy Production:
   stage: deploy
   only:
     refs: [ master ]
-    changes: [ '${FRONTEND}/**/*' ]
+    # changes: [ '${FRONTEND}/**/*' ]
   dependencies:
     - Merge Coverage
     - Analyze Bundle
@@ -192,7 +192,7 @@ Deploy Docker Image:
   stage: deploy
   only:
     refs: [ master ]
-    changes: [ '${FRONTEND}/**/*' ]
+    # changes: [ '${FRONTEND}/**/*' ]
   image: docker
   services:
    - docker:dind
@@ -212,7 +212,7 @@ pages:
   stage: deploy
   only:
     refs: [ master ]
-    changes: [ '${FRONTEND}/**/*' ]
+    # changes: [ '${FRONTEND}/**/*' ]
   dependencies:
     - Merge Coverage
     - Analyze Bundle

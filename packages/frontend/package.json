@@ -122,6 +122,7 @@
     "ember-router-scroll": "^1.0.0",
     "ember-service-worker": "^0.7.2",
     "ember-service-worker-asset-cache": "^0.6.2",
+    "ember-service-worker-index": "^0.7.0",
     "ember-service-worker-update-notify": "^2.0.0",
     "ember-sinon": "^4.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/0de75b8f751ae13b14b08f0ee6dd7958737fff34.tgz",
