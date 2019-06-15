@@ -14,7 +14,7 @@ interface FakeBeforeInstallPromptEvent {
 }
 
 export default class WindowService extends Service {
-  @tracked deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
+  deferredInstallPrompt?: FakeBeforeInstallPromptEvent = (window as any).deferredInstallPrompt;
 
   get hasDeferredInstall() {
     return !!this.deferredInstallPrompt;

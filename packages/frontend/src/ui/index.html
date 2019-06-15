@@ -14,17 +14,32 @@
     {{content-for "head"}}
 
     {{content-for "head-footer"}}
+    <style>
+      @keyframes spinAround {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
+    </style>
+    <script>
+      window.deferredInstallPrompt = null;
+
+      function captureInstallPrompt() {
+        if (!window || typeof window.addEventListener !== 'function') return;
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+          event.preventDefault();
+          window.deferredInstallPrompt = event;
+        });
+      }
+
+      captureInstallPrompt();
+    </script>
   </head>
-  <style>
-    @keyframes spinAround {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(359deg);
-      }
-    }
-  </style>
+
 
   <body
     style='
