@@ -31,6 +31,6 @@
     "@types/js-nacl": "1.2.0",
     "@types/libsodium-wrappers": "0.7.5",
     "asyncmark": "0.3.0",
-    "typescript": "3.5.1"
+    "typescript": "3.5.2"
   }
 }
