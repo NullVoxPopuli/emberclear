@@ -7,6 +7,13 @@ export default class Install extends Component {
   @service window!: WindowService;
 
   get shouldRender() {
+    console.log(
+      'shouldRender',
+      'hasDeferred:',
+      this.window.hasDeferredInstall,
+      'isInstalled',
+      this.window.isInstalled
+    );
     return this.window.hasDeferredInstall && !this.window.isInstalled;
   }
 
