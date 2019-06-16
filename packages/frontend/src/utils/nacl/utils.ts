@@ -1,48 +1,36 @@
-import libsodiumWrapper, { KeyPair } from 'libsodium-wrappers';
-
+import nacl from 'tweetnacl';
 import { concat } from 'emberclear/src/utils/arrays/utils';
-
-export async function libsodium(): Promise<typeof libsodiumWrapper> {
-  const sodium = (libsodiumWrapper as any).sodium;
-  await sodium.ready;
-
-  return sodium as typeof libsodiumWrapper;
-}
+import { blake2b } from 'blakejs';
 
 export async function genericHash(arr: Uint8Array): Promise<Uint8Array> {
-  const sodium = await libsodium();
-
-  return sodium.crypto_generichash(32, arr);
+  return blake2b(arr, undefined, 32);
 }
 
-export async function derivePublicKey(privateKey: Uint8Array): Promise<Uint8Array> {
-  const sodium = await libsodium();
+export async function derivePublicKey(privateKey: Uint8Array) {
+  const keypair = nacl.box.keyPair.fromSecretKey(privateKey);
 
-  return sodium.crypto_scalarmult_base(privateKey);
+  return keypair.publicKey;
 }
 
-export async function randomBytes(length: number): Promise<Uint8Array> {
-  const sodium = await libsodium();
-
-  return sodium.randombytes_buf(length);
+export async function randomBytes(length: number) {
+  return nacl.randomBytes(length);
 }
 
-export async function generateNonce(): Promise<Uint8Array> {
-  const sodium = await libsodium();
-
-  return await randomBytes(sodium.crypto_box_NONCEBYTES);
+export async function generateNonce() {
+  return nacl.randomBytes(nacl.box.nonceLength);
 }
 
-export async function generateAsymmetricKeys(): Promise<KeyPair> {
-  const sodium = await libsodium();
+export async function generateAsymmetricKeys() {
+  const keyPair = nacl.box.keyPair();
 
-  return sodium.crypto_box_keypair();
+  return {
+    publicKey: keyPair.publicKey,
+    privateKey: keyPair.secretKey,
+  };
 }
 
-export async function generateSymmetricKey(): Promise<Uint8Array> {
-  const sodium = await libsodium();
-
-  return await randomBytes(sodium.crypto_box_SECRETKEYBYTES);
+export async function generateSymmetricKeys() {
+  return nacl.randomBytes(nacl.secretbox.keyLength);
 }
 
 export async function encryptFor(
@@ -50,10 +38,9 @@ export async function encryptFor(
   recipientPublicKey: Uint8Array,
   senderPrivateKey: Uint8Array
 ): Promise<Uint8Array> {
-  const sodium = await libsodium();
   const nonce = await generateNonce();
 
-  const ciphertext = sodium.crypto_box_easy(message, nonce, recipientPublicKey, senderPrivateKey);
+  const ciphertext = nacl.box(message, nonce, recipientPublicKey, senderPrivateKey);
 
   return concat(nonce, ciphertext);
 }
@@ -63,24 +50,14 @@ export async function decryptFrom(
   senderPublicKey: Uint8Array,
   recipientPrivateKey: Uint8Array
 ): Promise<Uint8Array> {
-  const sodium = await libsodium();
+  const [nonce, ciphertext] = splitNonceFromMessage(ciphertextWithNonce);
+  const decrypted = nacl.box.open(ciphertext, nonce, senderPublicKey, recipientPrivateKey);
 
-  const [nonce, ciphertext] = await splitNonceFromMessage(ciphertextWithNonce);
-  const decrypted = sodium.crypto_box_open_easy(
-    ciphertext,
-    nonce,
-    senderPublicKey,
-    recipientPrivateKey
-  );
-
-  return decrypted;
+  return decrypted as Uint8Array;
 }
 
-export async function splitNonceFromMessage(
-  messageWithNonce: Uint8Array
-): Promise<[Uint8Array, Uint8Array]> {
-  const sodium = await libsodium();
-  const bytes = sodium.crypto_box_NONCEBYTES;
+export function splitNonceFromMessage(messageWithNonce: Uint8Array): [Uint8Array, Uint8Array] {
+  const bytes = nacl.box.nonceLength;
 
   const nonce = messageWithNonce.slice(0, bytes);
   const message = messageWithNonce.slice(bytes, messageWithNonce.length);

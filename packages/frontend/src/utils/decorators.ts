@@ -1,23 +1,5 @@
 import { tracked } from '@glimmer/tracking';
 
-// https://tc39.github.io/proposal-decorators/#sec-elementdescriptor-specification-type
-// interface ElementDescriptor {
-//   descriptor: PropertyDescriptor;
-//   initializer?: () => any; // unknown
-//   key: string;
-//   kind: 'method' | 'field' | 'initializer';
-//   placement: 'own' | 'prototype' | 'static';
-//   finisher?: (klass: any) => any;
-// }
-
-// interface MethodDecorator {
-//   descriptor: PropertyDescriptor;
-//   key: string;
-//   kind: 'method' | 'field' | 'initializer';
-//   placement: 'own' | 'prototype' | 'static';
-// }
-//
-
 export function inLocalStorage<T = boolean, Target = Record<string, any>>(
   target: Target,
   propertyKey: keyof Target,
@@ -51,4 +33,36 @@ export function inLocalStorage<T = boolean, Target = Record<string, any>>(
   };
 
   return newDescriptor as any;
+}
+
+type Teardown = () => void;
+type Setup = () => Teardown | void;
+type Effect = Setup;
+
+/**
+ * wraps setup and teardown so we don't need to separate setup and teardown
+ * in the constructor and willDestroy hook for components/services, etc
+ *
+ * NOTE: only tested on services for now. I don't know if all destroyable things
+ *       use the same "willDestroy"-named hook.
+ */
+export function useEffect(target: any, _propertyKey: string, descriptor?: any) {
+  const { value: fn } = descriptor;
+
+  const { init: oldInit, willDestroy: oldWillDestroy } = target;
+
+  let callback: Effect = fn;
+
+  target.init = function() {
+    oldInit.call(target);
+    callback = callback.call(target);
+  };
+
+  target.willDestroy = function() {
+    if (callback) {
+      callback.call(target);
+    }
+
+    oldWillDestroy.call(target);
+  };
 }

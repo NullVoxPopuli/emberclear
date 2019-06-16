@@ -23,6 +23,16 @@ declare module '@ember/service' {
 }
 
 declare global {
+  interface UserChoice {
+    outcome: 'accepted' | undefined;
+  }
+
+  // why is this not a built in type?
+  interface FakeBeforeInstallPromptEvent {
+    prompt: () => Promise<void>;
+    userChoice: Promise<UserChoice>;
+  }
+
   interface Assert {
     contains: (source?: string | null, sub?: string, message?: string) => void;
   }
@@ -32,6 +42,7 @@ declare global {
       permission: 'denied' | 'granted' | undefined;
     };
     ServiceWorker: {};
+    deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
   }
 
   interface Navigator {

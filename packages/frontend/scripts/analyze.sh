@@ -13,12 +13,12 @@ for filename in ./concat-stats-for/*; do
   if [ $extension == ".json" ]; then
     folderName="${filename//$extension/}"
 
-    if [ ! -d "$folderName" ]; then
-      echo -e "\n${Y}$folderName ${R} does not exist..."
-      echo -e "\tDeleting ${Y}$filename${N}\n"
+    # if [ ! -d "$folderName" ]; then
+    #   echo -e "\n${Y}$folderName ${R} does not exist..."
+    #   echo -e "\tDeleting ${Y}$filename${N}\n"
 
-      rm $filename
-    fi
+    #   rm $filename
+    # fi
   fi
 done
 

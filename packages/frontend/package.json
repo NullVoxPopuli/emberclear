@@ -37,6 +37,7 @@
     "analyze": "./scripts/analyze.sh"
   },
   "dependencies": {
+    "blakejs": "^1.1.0",
     "bulma": "^0.7.1",
     "libsodium": "github:jedisct1/libsodium.js#1eab22596cefded55b96b3569d4c02fc4aa2ee5c",
     "libsodium-wrappers": "github:jedisct1/libsodium.js#1eab22596cefded55b96b3569d4c02fc4aa2ee5c",
@@ -44,6 +45,8 @@
     "qr-scanner": "github:nimiq/qr-scanner",
     "qrcode": "^1.2.0",
     "showdown": "^1.9.0",
+    "tweetnacl": "^1.0.1",
+    "tweetnacl-util": "^0.15.0",
     "url-parse": "^1.4.0",
     "uuid": "^3.2.1"
   },

@@ -2,12 +2,21 @@ import { roundTrip } from './bench/round-trip';
 import { keyGeneration } from './bench/key-generation';
 import { nonceGeneration } from './bench/nonce-generation';
 import { roundTrip as roundTripLong } from './bench/round-trip-long';
+import { base64 } from './bench/base64';
+import { stringConversion } from './bench/stringConvension';
+import { hex } from './bench/hex';
 
 async function runBenchmark() {
+  // encryption-related things
   await roundTrip.run();
   await keyGeneration.run();
   await nonceGeneration.run();
   await roundTripLong.run();
+
+  // conversion
+  await base64.run();
+  await stringConversion.run();
+  await hex.run();
 }
 
 console.log(`
