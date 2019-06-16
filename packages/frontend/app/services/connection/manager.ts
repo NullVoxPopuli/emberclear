@@ -98,6 +98,7 @@ export default class ConnectionManager extends Service {
     this.status.updateStatus(status);
   }
 
+  // TODO: use @use/@resource?
   private async createConnection(relay: Relay) {
     let instance = new Connection({
       relay,

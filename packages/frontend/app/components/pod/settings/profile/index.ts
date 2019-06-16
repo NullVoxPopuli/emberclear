@@ -6,11 +6,13 @@ import { inject as service } from '@ember/service';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import Settings from 'emberclear/services/settings';
+import TransferToDevice from 'emberclear/services/current-user/transfer-to-device';
 
 export default class ProfileSettings extends Component {
   @service currentUser!: CurrentUserService;
   @service('toast') toast!: Toast;
   @service settings!: Settings;
+  @service('current-user/transfer-to-device') transfer!: TransferToDevice;
 
   @alias('currentUser.record.name') name!: string;
 
