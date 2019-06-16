@@ -5359,9 +5359,9 @@ eslint-config-prettier@^5.0.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-plugin-ember@6.5.1:
-  version "6.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-6.5.1.tgz#2fc747ede7b796e1d3587388b1d173886ce16379"
+eslint-plugin-ember@6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-6.6.0.tgz#fa64f0e9fbbe14ae44478b5fa3890fb74d720e5e"
   dependencies:
     ember-rfc176-data "^0.3.9"
     snake-case "^2.1.0"
