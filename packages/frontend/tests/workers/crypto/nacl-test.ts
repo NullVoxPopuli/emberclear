@@ -19,6 +19,14 @@ module('Workers | Crypto | nacl', function() {
     assert.ok(boxKeys.privateKey);
   });
 
+  test('derivePublicKey | works', async function(assert) {
+    const boxKeys = await nacl.generateAsymmetricKeys();
+
+    const publicKey = await nacl.derivePublicKey(boxKeys.privateKey);
+
+    assert.deepEqual(publicKey, boxKeys.publicKey);
+  });
+
   test('encryptFor/decryptFrom | works with Uint8Array', async function(assert) {
     const receiver = await nacl.generateAsymmetricKeys();
     const sender = await nacl.generateAsymmetricKeys();
@@ -58,5 +66,37 @@ module('Workers | Crypto | nacl', function() {
 
     assert.deepEqual(nonce, Uint8Array.from(msg));
     assert.deepEqual(notTheNonce, Uint8Array.from([25]));
+  });
+
+  module('scenario tests', function() {
+    // NOTE: Unless someone can convince me otherwise,
+    //       I don't think signing messages has a place in this app.
+    //
+    //       You'd have to regularly send people your updated signature keys
+    //       as you change machines.
+    //
+    //       Maybe if the data/message private key was derived from the
+    //       signature private key?
+    //
+    //       unsure -- what would be the point of signing if one private key
+    //       is a derivation of the other?
+
+    test('key exchange', function(assert) {
+      assert.expect(0);
+    });
+
+    module('encryption security', function() {
+      test('a stranger cannot descrypt my message if it is not intended for them', async function(assert) {
+        const recipient = await nacl.generateAsymmetricKeys();
+        const stranger = await nacl.generateAsymmetricKeys();
+        const me = await nacl.generateAsymmetricKeys();
+
+        const msgAsUint8 = Uint8Array.from([104, 101, 108, 108, 111]); // hello
+        const ciphertext = await nacl.encryptFor(msgAsUint8, recipient.publicKey, me.privateKey);
+        const decrypted = await nacl.decryptFrom(ciphertext, me.publicKey, stranger.privateKey);
+
+        assert.notDeepEqual(decrypted, msgAsUint8);
+      });
+    });
   });
 });
