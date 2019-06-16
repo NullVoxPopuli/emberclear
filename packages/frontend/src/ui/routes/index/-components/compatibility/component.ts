@@ -4,7 +4,6 @@ import { tracked } from '@glimmer/tracking';
 import { task } from 'ember-concurrency';
 
 import {
-  hasWASM,
   hasCamera,
   hasIndexedDb,
   hasNotifications,
@@ -40,7 +39,6 @@ export default class Compatibility extends Component {
     this.hasIndexedDb = check(yield hasIndexedDb(), { required: true });
 
     if (!Ember.testing) {
-      this.hasWASM = check(hasWASM());
       this.hasCamera = check(hasCamera());
       this.hasWebWorker = check(hasWebWorker());
       this.hasServiceWorker = check(hasServiceWorker());

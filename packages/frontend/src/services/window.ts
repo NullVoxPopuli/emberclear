@@ -1,54 +1,65 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { monitor } from 'ember-computed-promise-monitor';
-import { computed } from '@ember/object';
-
-interface UserChoice {
-  outcome: 'accepted' | undefined;
-}
-
-// why is this not a built in type?
-interface FakeBeforeInstallPromptEvent {
-  prompt: () => Promise<void>;
-  userChoice: Promise<UserChoice>;
-}
+// import { useEffect } from 'emberclear/src/utils/decorators';
 
 export default class WindowService extends Service {
   @tracked deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
-  constructor(...args: any[]) {
-    super(...args);
+  @tracked isInstalled = false;
 
-    let checkForDeferredInstall = setInterval(() => {
-      this.deferredInstallPrompt = (window as any).deferredInstallPrompt;
+  cleanup: any[] = [];
+
+  constructor() {
+    super(...arguments);
+
+    this.cleanup.push(this.checkForDeferredInstall());
+  }
+
+  willDestroy() {
+    this.cleanup.forEach(method => method());
+  }
+
+  // @useEffect
+  checkForDeferredInstall() {
+    const interval = setInterval(() => {
+      this.deferredInstallPrompt = window.deferredInstallPrompt;
 
       if (this.deferredInstallPrompt) {
-        clearInterval(checkForDeferredInstall);
+        clearInterval(interval);
+
+        this.deferredInstallPrompt.userChoice.then(choice => {
+          this.isInstalled = choice.outcome === 'accepted';
+        });
       }
-    }, 100);
+    }, 250);
+
+    return () => clearInterval(interval);
+  }
+
+  get canInstall() {
+    return this.hasDeferredInstall && !this.isInstalled;
   }
 
   get hasDeferredInstall() {
-    console.log(this.deferredInstallPrompt);
     return !!this.deferredInstallPrompt;
-  }
-
-  get isInstalled() {
-    const result = (this.installStatus as any).result as UserChoice;
-
-    return ((result || {}) as UserChoice).outcome === 'accepted';
-  }
-
-  @computed()
-  @monitor
-  get installStatus() {
-    if (!this.deferredInstallPrompt) return;
-
-    return this.deferredInstallPrompt.userChoice;
   }
 
   async promptInstall() {
     if (!this.deferredInstallPrompt) return;
 
     await this.deferredInstallPrompt.prompt();
+
+    await this.evaluateInstallPrompt();
+  }
+
+  async evaluateInstallPrompt() {
+    if (!this.deferredInstallPrompt) return;
+
+    const choice = await this.deferredInstallPrompt.userChoice;
+
+    if (choice.outcome === 'accepted') {
+      this.isInstalled = true;
+    } else {
+      this.deferredInstallPrompt = undefined;
+    }
   }
 }

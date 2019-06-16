@@ -1,4 +1,4 @@
-{{#if this.shouldRender}}
+{{#if this.window.canInstall}}
   <button
     class='button'
     {{on 'click' (fn this.install)}}

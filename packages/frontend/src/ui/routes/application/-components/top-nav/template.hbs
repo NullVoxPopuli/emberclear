@@ -29,7 +29,7 @@
 
     {{#link-to
       'application'
-      class=(concat 'navbar-item ' (if this.isChat this.textColor))
+      class=(concat 'navbar-item is-hidden-touch ' (if this.isChat this.textColor))
     }}
       {{t 'appname'}}
     {{/link-to}}

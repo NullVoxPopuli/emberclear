@@ -57,3 +57,32 @@ export function splitNonceFromMessage(
 
   return [nonce, message];
 }
+
+
+
+export function toHex(array: Uint8Array): string {
+  return nacl.to_hex(array);
+}
+
+export function fromHex(hex: string): Uint8Array {
+  return nacl.from_hex(hex);
+}
+
+// export async function toBase64(array: Uint8Array): Promise<string> {
+//   return utils.encodeBase64(array);
+// }
+
+// export async function fromBase64(base64: string): Promise<Uint8Array> {
+//   return utils.decodeBase64(base64);
+// }
+
+export function fromString(str: string): Uint8Array {
+  return nacl.encode_utf8(str);
+}
+
+export const toUint8Array = fromString;
+
+export function toString(uint8Array: Uint8Array): string {
+  return nacl.decode_utf8(uint8Array);
+}
+

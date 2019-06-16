@@ -1,42 +1,38 @@
 import QRCode from 'qrcode';
-import libsodiumWrapper from 'libsodium-wrappers';
-
-import { libsodium } from 'emberclear/src/utils/nacl/utils';
-
-// for the utils, we don't care about wasm,
-// so the conversions don't need to be async
-const sodium = (libsodiumWrapper as any).sodium as typeof libsodiumWrapper;
+import utils from 'tweetnacl-util';
 
 export function toHex(array: Uint8Array): string {
-  return sodium.to_hex(array);
+  return Array.from(array)
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 export function fromHex(hex: string): Uint8Array {
-  return sodium.from_hex(hex);
+  if (Math.ceil(hex.length / 2) !== hex.length / 2) {
+    throw new Error('hex string is the wrong length');
+  }
+
+  const matches = hex.match(/.{1,2}/g) || [];
+
+  return new Uint8Array(matches.map(byte => parseInt(byte, 16)));
 }
 
 export async function toBase64(array: Uint8Array): Promise<string> {
-  const sodium = await libsodium();
-
-  return sodium.to_base64(array, sodium.base64_variants.ORIGINAL);
+  return utils.encodeBase64(array);
 }
 
 export async function fromBase64(base64: string): Promise<Uint8Array> {
-  const sodium = await libsodium();
-
-  return sodium.from_base64(base64, sodium.base64_variants.ORIGINAL);
+  return utils.decodeBase64(base64);
 }
 
 export function fromString(str: string): Uint8Array {
-  // return new TextEncoder().encode(str);
-  return sodium.from_string(str);
+  return utils.decodeUTF8(str);
 }
 
 export const toUint8Array = fromString;
 
 export function toString(uint8Array: Uint8Array): string {
-  // return new TextDecoder("utf-8").decode(uint8Array);
-  return sodium.to_string(uint8Array);
+  return utils.encodeUTF8(uint8Array);
 }
 
 export function ensureUint8Array(text: string | Uint8Array): Uint8Array {

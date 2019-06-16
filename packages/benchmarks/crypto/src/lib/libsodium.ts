@@ -9,10 +9,6 @@ export async function libsodium(): Promise<typeof libsodiumWrapper> {
   return sodium as typeof libsodiumWrapper;
 }
 
-export function toString(data: Uint8Array) {
-  return libsodiumWrapper.to_string(data);
-}
-
 export async function genericHash(arr: Uint8Array): Promise<Uint8Array> {
   const sodium = await libsodium();
 
@@ -91,3 +87,34 @@ export async function splitNonceFromMessage(
 
   return [nonce, message];
 }
+
+export function toHex(array: Uint8Array): string {
+  return libsodiumWrapper.to_hex(array);
+}
+
+export function fromHex(hex: string): Uint8Array {
+  return libsodiumWrapper.from_hex(hex);
+}
+
+export async function toBase64(array: Uint8Array): Promise<string> {
+  const sodium = await libsodium();
+
+  return sodium.to_base64(array, sodium.base64_variants.ORIGINAL);
+}
+
+export async function fromBase64(base64: string): Promise<Uint8Array> {
+  const sodium = await libsodium();
+
+  return sodium.from_base64(base64, sodium.base64_variants.ORIGINAL);
+}
+
+export function fromString(str: string): Uint8Array {
+  return libsodiumWrapper.from_string(str);
+}
+
+export const toUint8Array = fromString;
+
+export function toString(uint8Array: Uint8Array): string {
+  return libsodiumWrapper.to_string(uint8Array);
+}
+
