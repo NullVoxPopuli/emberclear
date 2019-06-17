@@ -88,6 +88,9 @@ Unit Tests:
   artifacts:
     paths:
       - ${FRONTEND}/coverage*
+      - ${FRONTEND}/junit.xml
+    reports:
+      junit: ${FRONTEND}/junit.xml
 
 Helper Tests:
   stage: test
@@ -99,6 +102,9 @@ Helper Tests:
   artifacts:
     paths:
       - ${FRONTEND}/coverage*
+      - ${FRONTEND}/junit.xml
+    reports:
+      junit: ${FRONTEND}/junit.xml
 
 Integration Tests:
   stage: test
@@ -110,6 +116,9 @@ Integration Tests:
   artifacts:
     paths:
       - ${FRONTEND}/coverage*
+      - ${FRONTEND}/junit.xml
+    reports:
+      junit: ${FRONTEND}/junit.xml
 
 Application Tests:
   stage: test
@@ -121,6 +130,9 @@ Application Tests:
   artifacts:
     paths:
       - ${FRONTEND}/coverage*
+      - ${FRONTEND}/junit.xml
+    reports:
+      junit: ${FRONTEND}/junit.xml
 
 Application Tests (a11y):
   stage: test
@@ -131,6 +143,11 @@ Application Tests (a11y):
   allow_failure: true
   script:
     - PERCY_ENABLE=0 ./run yarn test:named Acceptance --query enableA11yAudit=true
+  artifacts:
+    paths:
+      - ${FRONTEND}/junit.xml
+    reports:
+      junit: ${FRONTEND}/junit.xml
 
 Merge Coverage:
   stage: build
