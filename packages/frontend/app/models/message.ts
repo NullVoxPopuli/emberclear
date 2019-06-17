@@ -51,6 +51,7 @@ export enum TYPE {
   DISCONNECT = 'disconnect',
   DELIVERY_CONFIRMATION = 'delivery-confirmation',
   INFO_CHANNEL_SYNC = 'info-channel-sync',
+  ESTABLISH_DIRECT_RTC = 'establish-direct-rtc',
 }
 
 export enum TARGET {

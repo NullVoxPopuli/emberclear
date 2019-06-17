@@ -40,6 +40,9 @@ export default class ReceivedMessageHandler extends Service {
       case TYPE.INFO_CHANNEL_SYNC:
         return this.handleInfoChannelInfo(message, raw);
 
+      case TYPE.ESTABLISH_DIRECT_RTC:
+        return this.handleEstablishDirectRtc(message, raw);
+
       case TYPE.PING:
         // do nothing, we do not need to send a response
         // at least for now, we have socket-level tools to know
@@ -61,6 +64,10 @@ export default class ReceivedMessageHandler extends Service {
     // blocking?
     await message.save();
 
+    return message;
+  }
+
+  private async handleEstablishDirectRtc(message: Message, _raw: RelayJson) {
     return message;
   }
 
