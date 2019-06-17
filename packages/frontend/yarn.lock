@@ -4620,9 +4620,10 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     resolve-package-path "^1.2.6"
     semver "^5.6.0"
 
-"ember-cli@github:ember-cli/ember-cli#619be9f8ce25ae1cada222421d11d196b41a3a4a":
+"ember-cli@github:ember-cli/ember-cli#ba9e3ea9bcad1c6e2299e40fe265cffe61d7a25b":
   version "3.11.0-beta.3"
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/619be9f8ce25ae1cada222421d11d196b41a3a4a"
+  uid ba9e3ea9bcad1c6e2299e40fe265cffe61d7a25b
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/ba9e3ea9bcad1c6e2299e40fe265cffe61d7a25b"
   dependencies:
     "@babel/core" "^7.4.5"
     "@babel/plugin-transform-modules-amd" "^7.2.0"
@@ -4670,7 +4671,7 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     exit "^0.1.2"
     express "^4.16.4"
     filesize "^4.1.2"
-    find-up "^4.0.0"
+    find-up "^4.1.0"
     find-yarn-workspace-root "^1.2.1"
     fs-extra "^8.0.1"
     fs-tree-diff "^2.0.1"
@@ -5896,11 +5897,12 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-find-up@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/find-up/-/find-up-4.0.0.tgz#c367f8024de92efb75f2d4906536d24682065c3a"
+find-up@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/find-up/-/find-up-4.1.0.tgz#97afe7d6cdc0bc5928584b7c8d7b16e8a9aa5d19"
   dependencies:
     locate-path "^5.0.0"
+    path-exists "^4.0.0"
 
 find-yarn-workspace-root@^1.1.0, find-yarn-workspace-root@^1.2.1:
   version "1.2.1"
@@ -8697,6 +8699,10 @@ path-dirname@^1.0.0:
 path-exists@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-3.0.0.tgz#ce0ebeaa5f78cb18925ea7d810d7b59b010fd515"
+
+path-exists@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-4.0.0.tgz#513bdbe2d3b95d7762e8c1137efa195c6c61b5b3"
 
 path-is-absolute@1.0.1, path-is-absolute@^1.0.0, path-is-absolute@^1.0.1:
   version "1.0.1"
