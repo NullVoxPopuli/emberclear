@@ -1,11 +1,27 @@
-const FailureOnlyReporter = require('testem-failure-only-reporter');
+const MultiReporter = require('testem-multi-reporter');
+const GitLabReporter = require('testem-gitlab-reporter');
+const TAPReporter = require('testem/lib/reporters/tap_reporter');
+const fs = require('fs');
 
 const CI_BROWSER = process.env.CI_BROWSER || 'Chrome';
+
+let reporter = new MultiReporter({
+  reporters: [
+    {
+      ReporterClass: TAPReporter,
+      args: [false, null, { get: () => false }],
+    },
+    {
+      ReporterClass: GitLabReporter,
+      args: [false, fs.createWriteStream('junit.xml'), { get: () => false }],
+    },
+  ],
+});
 
 module.exports = {
   test_page: 'tests/index.html?hidepassed',
   disable_watching: true,
-  reporter: FailureOnlyReporter,
+  reporter,
 
   launch_in_ci: [CI_BROWSER],
   launch_in_dev: ['Chrome'],

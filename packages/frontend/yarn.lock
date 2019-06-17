@@ -10647,13 +10647,17 @@ test-exclude@^5.2.3:
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
 
-testem-failure-only-reporter@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/testem-failure-only-reporter/-/testem-failure-only-reporter-0.0.1.tgz#d096a22b3c78b4d4bdc74d4f8727d75ef8c57b7a"
+testem-gitlab-reporter@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/testem-gitlab-reporter/-/testem-gitlab-reporter-1.0.0.tgz#60b24cfa006c5e3816e611ccbbbd2c28f02923dc"
   dependencies:
-    testem "^2.9.2"
+    xmlbuilder "^13.0.2"
 
-testem@^2.14.0, testem@^2.9.2:
+testem-multi-reporter@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/testem-multi-reporter/-/testem-multi-reporter-1.2.0.tgz#e93abdee54f821eb464232aba6b6483f2802664e"
+
+testem@^2.14.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/testem/-/testem-2.16.0.tgz#da2682f3e02459212b8670b88f9d7cd4d4b0aebb"
   dependencies:
@@ -11350,7 +11354,7 @@ xdg-basedir@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-4.0.0.tgz#4bc8d9984403696225ef83a1573cbbcb4e79db13"
 
-xmlbuilder@^13.0.0:
+xmlbuilder@^13.0.0, xmlbuilder@^13.0.2:
   version "13.0.2"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-13.0.2.tgz#02ae33614b6a047d1c32b5389c1fdacb2bce47a7"
 

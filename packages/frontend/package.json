@@ -144,7 +144,8 @@
     "qunit-dom": "^0.9.0",
     "sass": "^1.16.1",
     "sass-lint": "^1.12.1",
-    "testem-failure-only-reporter": "^0.0.1",
+    "testem-gitlab-reporter": "^1.0.0",
+    "testem-multi-reporter": "^1.2.0",
     "typescript": "^3.4.2"
   },
   "engines": {
