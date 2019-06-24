@@ -4665,10 +4665,10 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     resolve-package-path "^1.2.6"
     semver "^5.6.0"
 
-"ember-cli@github:ember-cli/ember-cli#c5beec19967bfa3e97eae6ebbd521006c967d420":
+"ember-cli@github:ember-cli/ember-cli#3dd23807c744c136a015a1c3e780fb5a61ba2826":
   version "3.11.0-beta.3"
-  uid c5beec19967bfa3e97eae6ebbd521006c967d420
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/c5beec19967bfa3e97eae6ebbd521006c967d420"
+  uid "3dd23807c744c136a015a1c3e780fb5a61ba2826"
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/3dd23807c744c136a015a1c3e780fb5a61ba2826"
   dependencies:
     "@babel/core" "^7.4.5"
     "@babel/plugin-transform-modules-amd" "^7.2.0"
@@ -4750,7 +4750,7 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     resolve-package-path "^1.2.7"
     rsvp "^4.8.5"
     sane "^4.1.0"
-    semver "^6.1.1"
+    semver "^6.1.2"
     silent-error "^1.1.1"
     sort-package-json "^1.22.1"
     symlink-or-copy "^1.2.0"
@@ -10047,9 +10047,9 @@ semver@^6.0.0, semver@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.0.tgz#e95dc415d45ecf03f2f9f83b264a6b11f49c0cca"
 
-semver@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.1.tgz#53f53da9b30b2103cd4f15eab3a18ecbcb210c9b"
+semver@^6.1.2:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.2.tgz#079960381376a3db62eb2edc8a3bfb10c7cfe318"
 
 send@0.17.1:
   version "0.17.1"
