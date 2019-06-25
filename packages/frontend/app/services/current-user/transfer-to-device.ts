@@ -36,6 +36,13 @@ export default class TransferToDevice extends Service {
       case TRANSITION.START:
         console.log('started');
         break;
+      case TRANSITION.SEND_READY:
+      case TRANSITION.SEND_CODE:
+      case TRANSITION.RECEIVE_REQUEST:
+      case TRANSITION.RECEIVE_READY:
+      case TRANSITION.RECEIVE_CODE:
+      case TRANSITION.DATA_SENT:
+      case TRANSITION.DATA_RECEIVED:
       default:
         console.log('not handled', eventName);
 
