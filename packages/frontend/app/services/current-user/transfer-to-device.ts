@@ -1,28 +1,37 @@
-import Service from '@ember/service';
-import { interpret, Interpreter } from 'xstate';
+import StoreService from 'ember-data/store';
+import Service, { inject as service } from '@ember/service';
+import { interpret, Interpreter, State } from 'xstate';
 import { transferToDeviceMachine, Schema, Event, TRANSITION } from './machine';
+import CurrentUserService from '../service';
+import MessageDispatcher from 'emberclear/src/services/messages/dispatcher';
 
+/**
+ * This machine is always available (hence start in the constructor).
+ * At any given moment, a transfer to device may be initiated or received.
+ *
+ * handling messages from the network happens in the
+ * messages/handler service.
+ *
+ * methods in the messages/handler service will call back to here.
+ */
 export default class TransferToDevice extends Service {
+  @service currentUser!: CurrentUserService;
+  @service store!: StoreService;
+  @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
+
   machine: Interpreter<{}, Schema, Event>;
 
   constructor(...args: any[]) {
     super(...args);
 
     this.machine = interpret(transferToDeviceMachine);
-    console.log('machine');
-    this.machine.onTransition(listenerState => {
-      const { event: { type: eventName }, value: currentState } = listenerState;
-      console.log('hi');
-
-      console.log('transitioned', eventName, currentState, listenerState);
-
-      this.handleEvent(eventName);
-    });
-
+    this.machine.onTransition(listenerState => this.handleEvent(listenerState));
     this.machine.start();
   }
 
-  private handleEvent(eventName: string) {
+  private handleEvent(listenerState: State<{}, Event>) {
+    const { event: { type: eventName }, value: currentState } = listenerState;
+
     switch (eventName) {
       case TRANSITION.START:
         console.log('started');
@@ -37,9 +46,7 @@ export default class TransferToDevice extends Service {
     console.log('testing');
     this.machine.send('INITIATE_TRANSFER_REQUEST');
   }
-
 }
-
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
