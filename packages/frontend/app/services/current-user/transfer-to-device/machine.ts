@@ -13,7 +13,7 @@ export interface Schema {
         AUTHORIZED: {}
       }
     },
-    RECEIVED_REQUEST: {
+    SCANNED_TARGET: {
       states: {
         WAITING_FOR_CODE: {},
         WAITING_FOR_DATA: {},
@@ -24,7 +24,7 @@ export interface Schema {
 
 export type Event =
   | { type: 'INITIATE_TRANSFER_REQUEST' }
-  | { type: 'RECEIVE_TRANSFER_REQUEST' }
+  | { type: 'SCAN_TARGET_PROFILE' }
   | { type: 'RECEIVE_READY' }
   | { type: 'RECEIVE_CODE' }
   | { type: 'DATA_SENT' }
@@ -34,7 +34,7 @@ export type Event =
 
 export const TRANSITION = {
   START: 'INITIATE_TRANSFER_REQUEST',
-  RECEIVE_REQUEST: 'RECEIVE_TRANSFER_REQUEST',
+  SCAN_TARGET_PROFILE: 'SCAN_TARGET_PROFILE',
   RECEIVE_READY: 'RECEIVE_READY',
   RECEIVE_CODE: 'RECEIVE_CODE',
   DATA_SENT: 'DATA_SENT',
@@ -50,7 +50,7 @@ export const transferToDeviceMachine = Machine<{}, Schema, Event>({
     'IDLE': {
       on: {
         [TRANSITION.START]: 'WAITING_FOR_START',
-        [TRANSITION.RECEIVE_REQUEST]: 'RECEIVED_REQUEST',
+        [TRANSITION.SCAN_TARGET_PROFILE]: 'SCANNED_TARGET',
       },
     },
 
@@ -90,7 +90,7 @@ export const transferToDeviceMachine = Machine<{}, Schema, Event>({
     // generate ehemeral keys
     //  - scanned public key is originator
     // send "ready" message to originator
-    'RECEIVED_REQUEST': {
+    'SCANNED_TARGET': {
       on: {
         [TRANSITION.SEND_READY]: 'WAITING_FOR_CODE'
       },
