@@ -1741,6 +1741,10 @@ ansi-escapes@^3.0.0, ansi-escapes@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.2.0.tgz#8780b98ff9dbf5638152d1f1fe5c1d7b4442976b"
 
+ansi-html@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/ansi-html/-/ansi-html-0.0.7.tgz#813584021962a9e9e6fd039f940d12f56ca7859e"
+
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
@@ -3319,10 +3323,11 @@ broccoli-uglify-sourcemap@^3.1.0:
     walk-sync "^1.1.3"
     workerpool "^3.1.2"
 
-broccoli@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/broccoli/-/broccoli-3.1.1.tgz#29fb06448b700d32869eed3906209acde49c3c5a"
+broccoli@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/broccoli/-/broccoli-3.1.2.tgz#31a8758aa087a26d62f1dab65c1d0af87cbced73"
   dependencies:
+    ansi-html "^0.0.7"
     broccoli-node-info "^2.0.0"
     broccoli-slow-trees "^3.0.1"
     broccoli-source "^1.1.0"
@@ -4948,10 +4953,10 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     resolve-package-path "^1.2.6"
     semver "^5.6.0"
 
-"ember-cli@github:ember-cli/ember-cli#f35f6bd78cdd08fc33e1a2ab4537b535d270c69a":
+"ember-cli@github:ember-cli/ember-cli#4083f1e0108aee5df3009a8972194b9b81fea966":
   version "3.11.0-beta.3"
-  uid f35f6bd78cdd08fc33e1a2ab4537b535d270c69a
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/f35f6bd78cdd08fc33e1a2ab4537b535d270c69a"
+  uid "4083f1e0108aee5df3009a8972194b9b81fea966"
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/4083f1e0108aee5df3009a8972194b9b81fea966"
   dependencies:
     "@babel/core" "^7.4.5"
     "@babel/plugin-transform-modules-amd" "^7.2.0"
@@ -4959,7 +4964,7 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     babel-plugin-module-resolver "^3.2.0"
     bower-config "^1.4.1"
     bower-endpoint-parser "0.2.2"
-    broccoli "^3.1.1"
+    broccoli "^3.1.2"
     broccoli-amd-funnel "^2.0.1"
     broccoli-babel-transpiler "^7.2.0"
     broccoli-builder "^0.18.14"
@@ -5033,7 +5038,7 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     resolve-package-path "^1.2.7"
     rsvp "^4.8.5"
     sane "^4.1.0"
-    semver "^6.1.3"
+    semver "^6.2.0"
     silent-error "^1.1.1"
     sort-package-json "^1.22.1"
     symlink-or-copy "^1.2.0"
@@ -10848,9 +10853,9 @@ semver@^6.0.0, semver@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.0.tgz#e95dc415d45ecf03f2f9f83b264a6b11f49c0cca"
 
-semver@^6.1.3:
-  version "6.1.3"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-6.1.3.tgz#ef997a1a024f67dd48a7f155df88bb7b5c6c3fc7"
+semver@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.2.0.tgz#4d813d9590aaf8a9192693d6c85b9344de5901db"
 
 send@0.17.1:
   version "0.17.1"
