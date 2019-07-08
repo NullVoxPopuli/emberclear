@@ -821,9 +821,9 @@
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/@types/libsodium-wrappers/-/libsodium-wrappers-0.7.5.tgz#3cdda11ebf6b70bf40cfa2c483d7622897277bc4"
 
-"@types/node@12.6.0":
-  version "12.6.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.0.tgz#3ab4ef2d634d6e0f6d0c85edafdbbb8ae88c9609"
+"@types/node@12.6.1":
+  version "12.6.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.1.tgz#d5544f6de0aae03eefbb63d5120f6c8be0691946"
 
 abbrev@1:
   version "1.1.1"
