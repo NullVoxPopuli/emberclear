@@ -4953,10 +4953,10 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     resolve-package-path "^1.2.6"
     semver "^5.6.0"
 
-"ember-cli@github:ember-cli/ember-cli#4083f1e0108aee5df3009a8972194b9b81fea966":
+"ember-cli@github:ember-cli/ember-cli#491835ab1279a1d67c05bf9a836c169769061e5f":
   version "3.11.0-beta.3"
-  uid "4083f1e0108aee5df3009a8972194b9b81fea966"
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/4083f1e0108aee5df3009a8972194b9b81fea966"
+  uid "491835ab1279a1d67c05bf9a836c169769061e5f"
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/491835ab1279a1d67c05bf9a836c169769061e5f"
   dependencies:
     "@babel/core" "^7.4.5"
     "@babel/plugin-transform-modules-amd" "^7.2.0"
@@ -5023,7 +5023,7 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     json-stable-stringify "^1.0.1"
     leek "0.0.24"
     lodash.template "^4.4.0"
-    markdown-it "^8.4.2"
+    markdown-it "^9.0.0"
     markdown-it-terminal "0.1.0"
     minimatch "^3.0.4"
     morgan "^1.9.1"
@@ -8647,9 +8647,19 @@ markdown-it-terminal@0.1.0:
     lodash.merge "^4.6.0"
     markdown-it "^8.3.1"
 
-markdown-it@^8.3.1, markdown-it@^8.4.2:
+markdown-it@^8.3.1:
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.2.tgz#386f98998dc15a37722aa7722084f4020bdd9b54"
+  dependencies:
+    argparse "^1.0.7"
+    entities "~1.1.1"
+    linkify-it "^2.0.0"
+    mdurl "^1.0.1"
+    uc.micro "^1.0.5"
+
+markdown-it@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-9.0.0.tgz#804e9285d2a0e2457216ed6a1d96e219483f2fb1"
   dependencies:
     argparse "^1.0.7"
     entities "~1.1.1"
