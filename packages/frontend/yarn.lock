@@ -2872,11 +2872,13 @@ broccoli-merge-trees@^3.0.0, broccoli-merge-trees@^3.0.1, broccoli-merge-trees@^
     broccoli-plugin "^1.3.0"
     merge-trees "^2.0.0"
 
-broccoli-middleware@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/broccoli-middleware/-/broccoli-middleware-2.0.1.tgz#093314f13e52fad7fa8c4254a4e4a4560c857a65"
+broccoli-middleware@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/broccoli-middleware/-/broccoli-middleware-2.1.0.tgz#cbb458cb6360bdd79aa75a54057f10fe918157e6"
   dependencies:
+    ansi-html "^0.0.7"
     handlebars "^4.0.4"
+    has-ansi "^3.0.0"
     mime-types "^2.1.18"
 
 broccoli-module-normalizer@^1.3.0:
@@ -4768,10 +4770,10 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     resolve-package-path "^1.2.6"
     semver "^5.6.0"
 
-"ember-cli@github:ember-cli/ember-cli#837b95f8925c7383f8263d814b3f511df046b57a":
-  version "3.11.0-beta.3"
-  uid "837b95f8925c7383f8263d814b3f511df046b57a"
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/837b95f8925c7383f8263d814b3f511df046b57a"
+"ember-cli@github:ember-cli/ember-cli#b5e38b6a30a1a065afe360b814b3e19207b90f8c":
+  version "3.11.0"
+  uid b5e38b6a30a1a065afe360b814b3e19207b90f8c
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/b5e38b6a30a1a065afe360b814b3e19207b90f8c"
   dependencies:
     "@babel/core" "^7.5.4"
     "@babel/plugin-transform-modules-amd" "^7.5.0"
@@ -4790,7 +4792,7 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     broccoli-funnel "^2.0.2"
     broccoli-funnel-reducer "^1.0.0"
     broccoli-merge-trees "^3.0.2"
-    broccoli-middleware "^2.0.1"
+    broccoli-middleware "^2.1.0"
     broccoli-module-normalizer "^1.3.0"
     broccoli-module-unification-reexporter "^1.0.0"
     broccoli-slow-trees "^3.0.1"
@@ -4838,14 +4840,14 @@ ember-cli-version-checker@^3.0.1, ember-cli-version-checker@^3.1.2, ember-cli-ve
     json-stable-stringify "^1.0.1"
     leek "0.0.24"
     lodash.template "^4.5.0"
-    markdown-it "^9.0.0"
+    markdown-it "^9.0.1"
     markdown-it-terminal "0.1.0"
     minimatch "^3.0.4"
     morgan "^1.9.1"
     nopt "^3.0.6"
     npm-package-arg "^6.1.0"
     p-defer "^3.0.0"
-    portfinder "^1.0.20"
+    portfinder "^1.0.21"
     promise-map-series "^0.2.3"
     promise.prototype.finally "^3.1.0"
     quick-temp "^0.1.8"
@@ -6565,6 +6567,12 @@ has-ansi@^2.0.0:
   dependencies:
     ansi-regex "^2.0.0"
 
+has-ansi@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-3.0.0.tgz#36077ef1d15f333484aa7fa77a28606f1c655b37"
+  dependencies:
+    ansi-regex "^3.0.0"
+
 has-binary2@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/has-binary2/-/has-binary2-1.0.3.tgz#7776ac627f3ea77250cfc332dab7ddf5e4f5d11d"
@@ -8059,9 +8067,9 @@ markdown-it@^8.3.1:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-markdown-it@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-9.0.0.tgz#804e9285d2a0e2457216ed6a1d96e219483f2fb1"
+markdown-it@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-9.0.1.tgz#aafe363c43718720b6575fd10625cde6e4ff2d47"
   dependencies:
     argparse "^1.0.7"
     entities "~1.1.1"
@@ -9028,9 +9036,9 @@ pngjs@^3.3.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
 
-portfinder@^1.0.20:
-  version "1.0.20"
-  resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.20.tgz#bea68632e54b2e13ab7b0c4775e9b41bf270e44a"
+portfinder@^1.0.21:
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.21.tgz#60e1397b95ac170749db70034ece306b9a27e324"
   dependencies:
     async "^1.5.2"
     debug "^2.2.0"
