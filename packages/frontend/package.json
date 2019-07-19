@@ -106,7 +106,7 @@
     "ember-concurrency": "1.0.0",
     "ember-data": "^3.9.1",
     "ember-elsewhere": "^1.0.4",
-    "ember-exam": "^3.0.1",
+    "ember-exam": "^4.0.0",
     "ember-export-application-global": "^2.0.0",
     "ember-focus-trap": "^0.3.0",
     "ember-functional-modifiers": "^0.4.0",
