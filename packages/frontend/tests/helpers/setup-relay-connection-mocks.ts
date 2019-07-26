@@ -5,7 +5,7 @@ interface IMockServiceTarget {
   as: string;
 }
 
-export function stubConnection(overrides = {}, targets: IMockServiceTarget[] = []) {
+export function stubConnection(overrides = {}) {
   stubService('relay-manager', {
     getRelay() {},
     getOpenGraph() {},
