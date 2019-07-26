@@ -142,19 +142,15 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       });
 
       module('the person is not online', function(hooks) {
-        setupRelayConnectionMocks(
-          hooks,
-          {
-            send() {
-              // this error comes from the relay
-              throw {
-                reason: `user with id ${id} not found!`,
-                to_uid: id,
-              };
-            },
+        setupRelayConnectionMocks(hooks, {
+          send() {
+            // this error comes from the relay
+            throw {
+              reason: `user with id ${id} not found!`,
+              to_uid: id,
+            };
           },
-          [{ in: 'service:messages/dispatcher', as: 'relayConnection' }]
-        );
+        });
 
         hooks.beforeEach(async function() {
           await visit(`/chat/privately-with/${id}`);

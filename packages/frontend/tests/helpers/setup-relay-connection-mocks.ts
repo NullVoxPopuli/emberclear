@@ -6,27 +6,19 @@ interface IMockServiceTarget {
 }
 
 export function stubConnection(overrides = {}, targets: IMockServiceTarget[] = []) {
-  stubService(
-    'relay-manager',
-    {
-      getRelay() {},
-      getOpenGraph() {},
-      connect() {},
+  stubService('relay-manager', {
+    getRelay() {},
+    getOpenGraph() {},
+    connect() {},
+  });
+  stubService('relay-connection', {
+    setRelay() {},
+    send() {},
+    connect() {
+      return;
     },
-    [{ in: 'route:application', as: 'relayManager' }, { in: 'route:chat', as: 'relayManager' }]
-  );
-  stubService(
-    'relay-connection',
-    {
-      setRelay() {},
-      send() {},
-      connect() {
-        return;
-      },
-      ...overrides,
-    },
-    [{ in: 'service:relay-manager', as: 'relayConnection' }, ...targets]
-  );
+    ...overrides,
+  });
 }
 
 export function setupRelayConnectionMocks(
