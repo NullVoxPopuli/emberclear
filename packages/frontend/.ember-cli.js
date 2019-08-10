@@ -12,4 +12,5 @@ module.exports = {
   disableAnalytics: false,
   liveReload: true,
   host: '0.0.0.0',
+  usePods: true,
 };

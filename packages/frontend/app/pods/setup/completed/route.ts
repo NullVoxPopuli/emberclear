@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 export default class SetupCompletedRoute extends Route {
   @service currentUser!: CurrentUserService;

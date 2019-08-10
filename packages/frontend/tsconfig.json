@@ -29,10 +29,7 @@
         "tests/*"
       ],
       "emberclear/*": [
-        "src/*"
-      ],
-      "emberclear/src/*": [
-        "src/*"
+        "app/*"
       ],
       "*": [
         "types/*"
@@ -40,7 +37,7 @@
     }
   },
   "include": [
-    "src",
+    "app",
     "tests",
     "types"
   ],

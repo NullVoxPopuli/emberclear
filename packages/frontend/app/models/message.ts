@@ -3,7 +3,7 @@ import attr from 'ember-data/attr';
 import { hasMany, belongsTo } from 'ember-data/relationships';
 import { not } from '@ember/object/computed';
 
-import Identity from 'emberclear/data/models/identity/model';
+import Identity from 'emberclear/models/identity';
 
 /**
  * types:

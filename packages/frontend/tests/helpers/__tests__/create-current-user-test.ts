@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 import {
   getService,

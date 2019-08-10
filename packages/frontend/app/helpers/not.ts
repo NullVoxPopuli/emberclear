@@ -5,4 +5,4 @@ export function not(params: any[] /*, hash*/) {
   return !params[0];
 }
 
-export const helper = buildHelper(not);
+export default buildHelper(not);

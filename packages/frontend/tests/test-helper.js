@@ -11,7 +11,7 @@ import {
   hasIndexedDb,
   hasNotifications,
   hasWebWorker,
-} from 'emberclear/src/ui/routes/index/-components/compatibility/-utils/detection';
+} from 'emberclear/ui/routes/index/-components/compatibility/-utils/detection';
 
 const seed = Math.random()
   .toString(36)

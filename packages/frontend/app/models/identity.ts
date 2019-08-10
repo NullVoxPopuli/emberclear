@@ -3,7 +3,7 @@ import DS from 'ember-data';
 const { attr } = DS;
 import { computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
-import { toHex } from 'emberclear/src/utils/string-encoding';
+import { toHex } from 'emberclear/utils/string-encoding';
 
 export interface PublicKey {
   publicKey: Uint8Array;

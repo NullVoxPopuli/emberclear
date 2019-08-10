@@ -28,4 +28,4 @@ export function toggle([prop, obj, ...values]: PositionalArguments) {
   };
 }
 
-export const helper = buildHelper(toggle);
+export default buildHelper(toggle);

@@ -4,8 +4,8 @@ import { hasMany } from 'ember-data/relationships';
 // import DS from 'ember-data';
 // const { attr, hasMany } = DS;
 
-import Identity from 'emberclear/data/models/identity/model';
-import Invitation from 'emberclear/data/models/invitation';
+import Identity from 'emberclear/models/identity';
+import Invitation from 'emberclear/models/invitation';
 
 export default class Channel extends Model {
   @attr() name!: string;

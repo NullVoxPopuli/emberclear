@@ -1,8 +1,8 @@
 import Service from '@ember/service';
 import { action } from '@ember/object';
 
-import { isElementWithin } from 'emberclear/src/utils/dom/utils';
-import Message from 'emberclear/src/data/models/message/model';
+import { isElementWithin } from 'emberclear/utils/dom/utils';
+import Message from 'emberclear/models/message';
 
 export default class ChatScroller extends Service {
   // if the last message is close enough to being in view,

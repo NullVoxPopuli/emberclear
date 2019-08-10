@@ -2,8 +2,8 @@ import Model from 'ember-data/model';
 import DS from 'ember-data';
 const { attr, hasMany, belongsTo } = DS;
 
-import Identity from 'emberclear/data/models/identity/model';
-import InvitationResult from 'emberclear/data/models/invitation-result';
+import Identity from 'emberclear/models/identity';
+import InvitationResult from 'emberclear/models/invitation-result';
 
 export default class Invitation extends Model {
   @attr() createdAt!: Date;

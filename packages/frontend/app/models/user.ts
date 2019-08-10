@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import Identity from '../identity/model';
+import Identity from './identity';
 const { attr } = DS;
 
 export interface KeyPair {

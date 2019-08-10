@@ -5,20 +5,20 @@ import { task } from 'ember-concurrency';
 
 // giant block o' types
 import RelayConnection from 'emberclear/services/relay-connection';
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 import Notifications from 'emberclear/services/notifications/service';
-import Message from 'emberclear/data/models/message/model';
-import Channel from 'emberclear/src/data/models/channel';
+import Message from 'emberclear/models/message';
+import Channel from 'emberclear/models/channel';
 import StatusManager from 'emberclear/services/status-manager';
 import MessageFactory from 'emberclear/services/messages/factory';
 
-import { toHex } from 'emberclear/src/utils/string-encoding';
+import { toHex } from 'emberclear/utils/string-encoding';
 import { build as toPayloadJson } from './-utils/builder';
 import { encryptForSocket } from './-utils/encryptor';
 import Task from 'ember-concurrency/task';
-import Contact from 'emberclear/src/data/models/contact/model';
-import User from 'emberclear/src/data/models/user/model';
+import Contact from 'emberclear/models/contact';
+import User from 'emberclear/models/user';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;

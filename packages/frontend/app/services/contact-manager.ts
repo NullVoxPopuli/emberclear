@@ -3,8 +3,8 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
 
-import { fromHex } from 'emberclear/src/utils/string-encoding';
-import Contact from 'emberclear/src/data/models/contact/model';
+import { fromHex } from 'emberclear/utils/string-encoding';
+import Contact from 'emberclear/models/contact';
 import ArrayProxy from '@ember/array/proxy';
 
 export default class ContactManager extends Service {

@@ -14,4 +14,4 @@ export function preventDefault([fn]: PositionalArgs /*, hash*/) {
   };
 }
 
-export const helper = buildHelper(preventDefault);
+export default buildHelper(preventDefault);

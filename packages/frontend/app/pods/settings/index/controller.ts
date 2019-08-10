@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 import { alias, reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 import Settings from 'emberclear/services/settings';
 

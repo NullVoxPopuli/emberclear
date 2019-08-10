@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService, { currentUserId } from 'emberclear/src/services/current-user/service';
+import CurrentUserService, { currentUserId } from 'emberclear/services/current-user';
 
 interface IModelParams {
   u_id: string;

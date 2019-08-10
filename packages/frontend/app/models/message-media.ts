@@ -2,7 +2,7 @@ import Model from 'ember-data/model';
 import DS from 'ember-data';
 const { attr, belongsTo } = DS;
 
-import Message from 'emberclear/data/models/message/model';
+import Message from 'emberclear/models/message';
 
 export default class MessageMedia extends Model {
   @attr('string') url?: string;

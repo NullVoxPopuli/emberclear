@@ -10,11 +10,11 @@ import {
   getService,
 } from 'emberclear/tests/helpers';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 import { contacts } from 'emberclear/tests/helpers/pages/contacts';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import User from 'emberclear/data/models/user/model';
+import User from 'emberclear/models/user';
 
 module('Acceptance | Contacts', function(hooks) {
   setupApplicationTest(hooks);

@@ -2,12 +2,12 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import uuid from 'uuid';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
-import { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
-import Identity from 'emberclear/src/data/models/identity/model';
-import Channel from 'emberclear/src/data/models/channel';
-import Message from 'emberclear/src/data/models/message/model';
+import { TYPE, TARGET } from 'emberclear/models/message';
+import Identity from 'emberclear/models/identity';
+import Channel from 'emberclear/models/channel';
+import Message from 'emberclear/models/message';
 
 export default class MessageFactory extends Service {
   @service store!: any;

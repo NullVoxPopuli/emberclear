@@ -5,9 +5,9 @@ import { inject as service } from '@ember/service';
 import Task from 'ember-concurrency/task';
 import { task, timeout } from 'ember-concurrency';
 
-import Contact, { STATUS } from 'emberclear/src/data/models/contact/model';
-import MessageDispatcher from 'emberclear/src/services/messages/dispatcher';
-import MessageFactory from 'emberclear/src/services/messages/factory';
+import Contact, { STATUS } from 'emberclear/models/contact';
+import MessageDispatcher from 'emberclear/services/messages/dispatcher';
+import MessageFactory from 'emberclear/services/messages/factory';
 
 const THIRTY_SECONDS = 30000;
 

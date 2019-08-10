@@ -6,4 +6,4 @@ export function add(params: any[] /*, hash*/) {
   }, 0);
 }
 
-export const helper = buildHelper(add);
+export default buildHelper(add);

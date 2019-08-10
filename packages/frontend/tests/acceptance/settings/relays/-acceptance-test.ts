@@ -11,7 +11,7 @@ import {
 } from 'emberclear/tests/helpers';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
-import { defaultRelays } from 'emberclear/src/utils/data/required-data';
+import { defaultRelays } from 'emberclear/utils/data/required-data';
 import { settled } from '@ember/test-helpers';
 
 const page = settings.relays;

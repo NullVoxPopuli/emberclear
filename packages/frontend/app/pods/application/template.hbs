@@ -1,13 +1,13 @@
-<TopNav />
+<Pod::Application::TopNav />
 
 <NotificationContainer @position='top-right' />
 
-<OffCanvasContainer class='no-overflow'>
-  <UpdateChecker />
+<Pod::Application::OffCanvasContainer class='no-overflow'>
+  <Pod::Application::UpdateChecker />
 
   {{outlet}}
 
-</OffCanvasContainer>
+</Pod::Application::OffCanvasContainer>
 
-<Modals />
-<AppShellRemover />
+<Pod::Application::Modals />
+<Pod::Application::AppShellRemover />

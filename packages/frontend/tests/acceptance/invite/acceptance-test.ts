@@ -4,9 +4,9 @@ import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
 import DS from 'ember-data';
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
-import RedirectManager from 'emberclear/src/services/redirect-manager/service';
+import RedirectManager from 'emberclear/services/redirect-manager/service';
 
 import {
   visit,

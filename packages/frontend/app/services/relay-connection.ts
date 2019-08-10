@@ -3,14 +3,14 @@ import { inject as service } from '@ember/service';
 import { Channel, Socket } from 'phoenix';
 import { task } from 'ember-concurrency';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 import MessageProcessor from 'emberclear/services/messages/processor';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import Relay from 'emberclear/src/data/models/relay';
+import Relay from 'emberclear/models/relay';
 
-import { toHex } from 'emberclear/src/utils/string-encoding';
-import { ConnectionError, RelayNotSetError } from 'emberclear/src/utils/errors';
+import { toHex } from 'emberclear/utils/string-encoding';
+import { ConnectionError, RelayNotSetError } from 'emberclear/utils/errors';
 import Task from 'ember-concurrency/task';
 
 interface ISendPayload {

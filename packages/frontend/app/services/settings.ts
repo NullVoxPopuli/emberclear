@@ -8,11 +8,11 @@ import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
 import CurrentUserService from './current-user/service';
 
-import { objectToDataURL, toHex, fromHex } from 'emberclear/src/utils/string-encoding';
+import { objectToDataURL, toHex, fromHex } from 'emberclear/utils/string-encoding';
 
-import { inLocalStorage } from 'emberclear/src/utils/decorators';
+import { inLocalStorage } from 'emberclear/utils/decorators';
 
-import { derivePublicKey } from 'emberclear/src/utils/nacl/utils';
+import { derivePublicKey } from 'emberclear/utils/nacl/utils';
 
 interface IContactJson {
   name: string | undefined;

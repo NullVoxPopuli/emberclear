@@ -1,5 +1,5 @@
 import nacl from 'tweetnacl';
-import { concat } from 'emberclear/src/utils/arrays/utils';
+import { concat } from 'emberclear/utils/arrays/utils';
 import { blake2b } from 'blakejs';
 
 export async function genericHash(arr: Uint8Array): Promise<Uint8Array> {

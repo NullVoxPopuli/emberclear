@@ -1,4 +1,4 @@
-import Message, { TARGET, TYPE } from './model';
+import Message, { TARGET, TYPE } from '../message';
 
 export function selectUnreadDirectMessages(messages: Message[], fromId: string) {
   const filtered = selectUnreadMessages(messages).filter(m => {

@@ -1,6 +1,6 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-// import { useEffect } from 'emberclear/src/utils/decorators';
+// import { useEffect } from 'emberclear/utils/decorators';
 
 export default class WindowService extends Service {
   @tracked deferredInstallPrompt?: FakeBeforeInstallPromptEvent;

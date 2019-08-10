@@ -2,13 +2,13 @@ import StoreService from 'ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import Relay from 'emberclear/src/data/models/relay';
-import ToastService from 'emberclear/src/services/toast';
-import RelayConnection from 'emberclear/src/services/relay-connection';
-import ContactsOnlineChecker from 'emberclear/src/services/contacts/online-checker';
-import CurrentUserService from 'emberclear/services/current-user/service';
+import Relay from 'emberclear/models/relay';
+import ToastService from 'emberclear/services/toast';
+import RelayConnection from 'emberclear/services/relay-connection';
+import ContactsOnlineChecker from 'emberclear/services/contacts/online-checker';
+import CurrentUserService from 'emberclear/services/current-user';
 
-import { RelayNotSetError } from 'emberclear/src/utils/errors';
+import { RelayNotSetError } from 'emberclear/utils/errors';
 import ArrayProxy from '@ember/array/proxy';
 
 export default class RelayManager extends Service {

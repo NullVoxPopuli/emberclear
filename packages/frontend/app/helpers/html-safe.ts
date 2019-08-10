@@ -5,4 +5,4 @@ export function htmlSafe(params: any[] /*, hash*/) {
   return makeSafe(params[0]);
 }
 
-export const helper = buildHelper(htmlSafe);
+export default buildHelper(htmlSafe);

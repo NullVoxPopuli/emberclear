@@ -16,7 +16,7 @@ import {
 import { chat, page, selectors } from 'emberclear/tests/helpers/pages/chat';
 import { app } from 'emberclear/tests/helpers/pages/app';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import Contact from 'emberclear/src/data/models/contact/model';
+import Contact from 'emberclear/models/contact';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);

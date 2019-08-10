@@ -3,7 +3,7 @@ import { run } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 
 import StoreService from 'ember-data/store';
-import Channel from 'emberclear/data/models/channel';
+import Channel from 'emberclear/models/channel';
 import ArrayProxy from '@ember/array/proxy';
 
 export default class ChannelManager extends Service {

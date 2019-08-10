@@ -1,11 +1,11 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 import RelayManager from 'emberclear/services/relay-manager';
 import RedirectManager from 'emberclear/services/redirect-manager/service';
-import Message from 'emberclear/data/models/message/model';
+import Message from 'emberclear/models/message';
 
 export interface IModel {
   messages: Message[];

@@ -1,9 +1,9 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
-import ReceivedMessageHandler from 'emberclear/src/services/messages/handler/service';
+import ReceivedMessageHandler from 'emberclear/services/messages/handler/service';
 
 import { decryptFromSocket } from './-utils/decryptor';
 

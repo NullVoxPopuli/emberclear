@@ -1,5 +1,5 @@
 import { english } from './bip39/wordlists';
-import { genericHash } from 'emberclear/src/utils/nacl/utils';
+import { genericHash } from 'emberclear/utils/nacl/utils';
 
 // https://crypto.stackexchange.com/a/50759/8245
 // BIP 39 describes the implementation of a mnemonic code or mnemonic sentence

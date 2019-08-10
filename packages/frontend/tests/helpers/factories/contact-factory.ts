@@ -1,10 +1,10 @@
 import StoreService from 'ember-data/store';
 
-import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
-import { toHex } from 'emberclear/src/utils/string-encoding';
+import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
+import { toHex } from 'emberclear/utils/string-encoding';
 
 import { getService } from '../get-service';
-import Contact, { STATUS } from 'emberclear/src/data/models/contact/model';
+import Contact, { STATUS } from 'emberclear/models/contact';
 
 export async function attributesForContact() {
   const { publicKey } = await generateAsymmetricKeys();

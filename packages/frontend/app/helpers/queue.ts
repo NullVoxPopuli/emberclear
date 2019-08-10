@@ -11,4 +11,4 @@ export function queue(actions: Action[] = []) {
   };
 }
 
-export const helper = buildHelper(queue);
+export default buildHelper(queue);

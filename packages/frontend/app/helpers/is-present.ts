@@ -5,4 +5,4 @@ export function isPresent(params: any[] /*, hash*/) {
   return eIsPresent(params[0]);
 }
 
-export const helper = buildHelper(isPresent);
+export default buildHelper(isPresent);

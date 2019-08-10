@@ -6,7 +6,7 @@ import { IQueryParams } from './controller';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
 import RedirectManager from 'emberclear/services/redirect-manager/service';
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 export default class InviteRoute extends Route {
   @service toast!: Toast;

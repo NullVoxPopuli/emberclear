@@ -13,7 +13,7 @@ import {
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 import { app } from 'emberclear/tests/helpers/pages/app';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 module('Acceptance | Settings', function(hooks) {
   setupApplicationTest(hooks);

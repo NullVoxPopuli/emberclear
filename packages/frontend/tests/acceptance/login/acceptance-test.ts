@@ -4,7 +4,7 @@ import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
-import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
+import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/utils/mnemonic/utils';
 
 import { samplePrivateKey } from 'emberclear/tests/helpers/fixtures';
 import { app } from 'emberclear/tests/helpers/pages/app';

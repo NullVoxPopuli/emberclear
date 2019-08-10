@@ -1,8 +1,8 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
-import { TARGET } from 'emberclear/src/data/models/message/model';
-import CurrentUserService from 'emberclear/services/current-user/service';
+import { TARGET } from 'emberclear/models/message';
+import CurrentUserService from 'emberclear/services/current-user';
 
 export default class extends Controller {
   @service currentUser!: CurrentUserService;

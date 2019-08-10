@@ -1,5 +1,5 @@
-import Message from 'emberclear/data/models/message/model';
-import Identity from 'emberclear/data/models/identity/model';
+import Message from 'emberclear/models/message';
+import Identity from 'emberclear/models/identity';
 
 export function buildSender(sender: Identity): RelayJson['sender'] {
   return {
