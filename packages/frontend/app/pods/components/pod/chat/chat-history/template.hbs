@@ -5,9 +5,9 @@
   {{unread-message-list-observer markRead=(action (perform this.markRead))}}
 >
 
-  <NotificationPrompt />
-  <ConnectionStatus class='p-absolute top span transition-all base-z' />
-  <UnreadManagement @messages={{@messages}} @to={{@to}} />
+  <Pod::Chat::ChatHistory::NotificationPrompt />
+  <Pod::Chat::ChatHistory::ConnectionStatus class='p-absolute top span transition-all base-z' />
+  <Pod::Chat::ChatHistory::UnreadManagement @messages={{@messages}} @to={{@to}} />
 
   {{#vertical-collection
     @messages
@@ -20,7 +20,7 @@
     lastVisibleChanged=this.determineIfLastIsVisible
     as |message|
   }}
-    <Message @message={{message}} />
+    <Pod::Chat::ChatHistory::Message @message={{message}} />
 
   {{/vertical-collection}}
 

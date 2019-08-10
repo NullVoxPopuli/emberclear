@@ -5,7 +5,7 @@
     {{on 'submit' (prevent-default this.sendMessage)}}
   >
     <div class='control flex'>
-      <EmbedsMenu @sendTo={{@to}} />
+      <Pod::Chat::ChatEntry::EmbedsMenu @sendTo={{@to}} />
     </div>
 
     <div class='control flex-grow resizable-textarea'>

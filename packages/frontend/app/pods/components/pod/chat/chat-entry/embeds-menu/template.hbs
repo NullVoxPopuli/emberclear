@@ -36,5 +36,5 @@
 </Dropdown>
 
 <ModalStatic @name='code-or-snippet' as |isActive actions|>
-  <Snippet @isActive={{isActive}} @close={{action actions.close}} @sendTo={{@sendTo}} />
+  <Pod::Chat::ChatEntry::EmbedsMenu::Snippet @isActive={{isActive}} @close={{action actions.close}} @sendTo={{@sendTo}} />
 </ModalStatic>

@@ -4,6 +4,7 @@ const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
+const { Webpack } = require('@embroider/webpack');
 
 // note that by default, the enabled flags on some things
 // like minifying by default, already check
@@ -76,19 +77,6 @@ module.exports = function(defaults) {
     'esw-index': {
       version,
       excludeScope: [/\.well-known/, /bundle.html/, /favicon.ico/, /robots.txt/],
-      // includeScope: [
-      //   // I don't know if all of these need to be here, they all point to the same index file.
-      //   /\/chat(\/.*)?$/,
-      //   /\/setup(\/.*)?$/,
-      //   /\/contacts(\/.*)?$/,
-      //   /\/login(\/.*)?$/,
-      //   /\/invite(\/.*)?$/,
-      //   /\/logout(\/.*)?$/,
-      //   /\/settings(\/.*)?$/,
-      //   /\/faq(\/.*)?$/,
-      //   /\/not-found(\/.*)?$/,
-      //   /\/add-friend(\/.*)?$/,
-      // ],
     },
   });
 
@@ -110,12 +98,6 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'phoenix' }],
   });
 
-  // libsodium
-  // app.import('node_modules/libsodium/dist/modules/libsodium.js');
-  // app.import('node_modules/libsodium/dist/modules/libsodium-wrappers.js');
-  // app.import('vendor/shims/libsodium.js');
-  // app.import('vendor/shims/libsodium-wrappers.js');
-
   // markdown
   app.import('node_modules/showdown/dist/showdown.js', {
     using: [{ transformation: 'cjs', as: 'showdown' }],
@@ -136,5 +118,13 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'uuid' }],
   });
 
+  // return require('@embroider/compat').compatBuild(app, Webpack, {
+  //   extraPublicTrees: [qrScannerWorker],
+  //   // staticAddonTestSupportTrees
+  //   // staticAddonTrees
+  //   // staticHelpers
+  //   // staticComponents
+  //   // splitAtRoutes
+  // });
   return mergeTrees([app.toTree(), qrScannerWorker]);
 };

@@ -55,11 +55,11 @@
     {{#if (is-present this.urls)}}
       <div class='flex flex-wrap'>
         {{#each this.urls as |url|}}
-          <EmbeddedResource class='flex' @url={{url}} />
+          <Pod::Chat::ChatHistory::Message::EmbeddedResource class='flex' @url={{url}} />
         {{/each}}
       </div>
     {{/if}}
   </p>
 
-  <DeliveryConfirmations @message={{@message}} />
+  <Pod::Chat::ChatHistory::Message::DeliveryConfirmations @message={{@message}} />
 </div>
