@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'emberclear',
-    podModulePrefix: 'emberclear/routes',
+    podModulePrefix: 'emberclear/pods',
 
     environment,
     rootURL: '/',
