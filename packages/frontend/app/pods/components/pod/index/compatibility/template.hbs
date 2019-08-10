@@ -32,12 +32,12 @@
           <div class='flex-column align-items-start'>
             <table>
               <tbody>
-                <Feature @value={{this.hasCamera}} @label={{t 'compatibility.camera'}} />
-                <Feature @value={{this.hasNotifications}} @label={{t 'compatibility.notifications'}} />
-                <Feature @required={{true}} @value={{this.hasIndexedDb}} @label={{t 'compatibility.indexeddb'}} />
-                <Feature @value={{this.hasWASM}} @label={{t 'compatibility.wasm'}} />
-                <Feature @value={{this.hasServiceWorker}} @label={{t 'compatibility.serviceWorker'}} />
-                <Feature @value={{this.hasWebWorker}} @label={{t 'compatibility.webWorker'}} />
+                <Pod::Index::Compatibility::Feature @value={{this.hasCamera}} @label={{t 'compatibility.camera'}} />
+                <Pod::Index::Compatibility::Feature @value={{this.hasNotifications}} @label={{t 'compatibility.notifications'}} />
+                <Pod::Index::Compatibility::Feature @required={{true}} @value={{this.hasIndexedDb}} @label={{t 'compatibility.indexeddb'}} />
+                <Pod::Index::Compatibility::Feature @value={{this.hasWASM}} @label={{t 'compatibility.wasm'}} />
+                <Pod::Index::Compatibility::Feature @value={{this.hasServiceWorker}} @label={{t 'compatibility.serviceWorker'}} />
+                <Pod::Index::Compatibility::Feature @value={{this.hasWebWorker}} @label={{t 'compatibility.webWorker'}} />
 
 
               </tbody>

@@ -3,9 +3,9 @@ import { module, test } from 'qunit';
 import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
 
 import { toHex } from 'emberclear/utils/string-encoding';
-import { encryptForSocket } from './encryptor';
-import { decryptFromSocket } from './decryptor';
-import { build as toPayloadJson } from './builder';
+import { encryptForSocket } from 'emberclear/services/messages/-utils/encryptor';
+import { decryptFromSocket } from 'emberclear/services/messages/-utils/decryptor';
+import { build as toPayloadJson } from 'emberclear/services/messages/-utils/builder';
 import { KeyPair } from 'emberclear/models/user';
 
 module('Integration | Send/Receive Encryption', function(hooks) {

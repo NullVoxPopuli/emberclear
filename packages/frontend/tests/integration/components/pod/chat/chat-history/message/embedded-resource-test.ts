@@ -27,8 +27,8 @@ module('Integration | Component | embedded-resource', function(hooks) {
 
       hooks.beforeEach(async function() {
         await render(hbs`
-                     {{chat-history/message/embedded-resource}}
-                     `);
+          <Pod::Chat::ChatHistory::Message::EmbeddedResource />
+        `);
       });
 
       test('nothing is rendered', async function(assert) {
@@ -45,9 +45,10 @@ module('Integration | Component | embedded-resource', function(hooks) {
         this.set('someUrl', 'https://i.imgur.com/gCyUdeb.gifv');
 
         await render(hbs`
-                     {{chat-history/message/embedded-resource
-                      url=someUrl}}
-                     `);
+          <Pod::Chat::ChatHistory::Message::EmbeddedResource
+            @url={{someUrl}}
+          />
+        `);
       });
 
       // TODO: for some reason I can't stub this component's services

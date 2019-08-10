@@ -12,7 +12,9 @@ module('Integration | Component | metadata-preview', function(hooks) {
     module('there is no image in the og data', function(hooks) {
       hooks.beforeEach(async function(this: TestContext) {
         this.set('data', {});
-        await render(hbs`{{chat-history/message/embedded-resource/metadata-preview}}`);
+        await render(hbs`
+          <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview />
+        `);
       });
 
       test('no image is shown', function(assert) {
@@ -29,10 +31,10 @@ module('Integration | Component | metadata-preview', function(hooks) {
         });
 
         await render(hbs`
-                     {{chat-history/message/embedded-resource/metadata-preview
-                      ogData=data
-                     }}
-                     `);
+          <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
+            @ogData={{data}}
+          />
+        `);
       });
 
       test('an image tag is present', function(assert) {
