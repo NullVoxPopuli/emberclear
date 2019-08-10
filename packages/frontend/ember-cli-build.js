@@ -118,11 +118,11 @@ module.exports = function(defaults) {
 
   // return require('@embroider/compat').compatBuild(app, Webpack, {
   //   extraPublicTrees: [qrScannerWorker],
-  //   // staticAddonTestSupportTrees
-  //   // staticAddonTrees
-  //   // staticHelpers
-  //   // staticComponents
-  //   // splitAtRoutes
+  //   // staticAddonTestSupportTrees: true,
+  //   // staticAddonTrees: true,
+  //   // staticHelpers: true,
+  //   // staticComponents: true,
+  //   // splitAtRoutes: true,
   // });
   return mergeTrees([app.toTree(), qrScannerWorker]);
 };
