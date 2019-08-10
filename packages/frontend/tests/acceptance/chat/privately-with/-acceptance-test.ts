@@ -240,15 +240,11 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       });
 
       module('a message is sent to the person', function(hooks) {
-        setupRelayConnectionMocks(
-          hooks,
-          {
-            send() {
-              // should something be asserted here?
-            },
+        setupRelayConnectionMocks(hooks, {
+          send() {
+            // should something be asserted here?
           },
-          [{ in: 'service:messages/dispatcher', as: 'relayConnection' }]
-        );
+        });
 
         hooks.beforeEach(async function() {
           await visit(`/chat/privately-with/${id}`);

@@ -43,6 +43,8 @@ module.exports = function(defaults) {
         'qr-scanner': 'qr-scanner/qr-scanner.min.js',
       },
       exclude: ['libsodium', 'libsodium-wrappers', 'phoenix', 'showdown', 'qrcode', 'uuid'],
+      webpack: {
+      },
     },
 
     'ember-cli-babel': {
