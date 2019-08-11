@@ -42,6 +42,7 @@
     "phoenix": "^1.4.9",
     "qr-scanner": "github:nimiq/qr-scanner",
     "qrcode": "^1.4.1",
+    "shoelace-css": "^1.0.0-beta24",
     "showdown": "^1.9.0",
     "tweetnacl": "^1.0.1",
     "tweetnacl-util": "^0.15.0",

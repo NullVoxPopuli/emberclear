@@ -13,7 +13,7 @@ module('Integration | Component | metadata-preview', function(hooks) {
       hooks.beforeEach(async function(this: TestContext) {
         this.set('data', {});
         await render(hbs`
-          <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview />
+         <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview />
         `);
       });
 

@@ -27,11 +27,14 @@ class Mnemonic extends Component {
   }
 }
 
-export default Ember._setComponentTemplate(hbs`
+export default Ember._setComponentTemplate(
+  hbs`
   <div
     data-test-mnemonic
     class='has-background-color p-md m-t-lg m-b-lg with-border'
   >
     <div class='level-item is-size-6'>{{this.mnemonic}}</div>
   </div>
-`, Mnemonic);
+`,
+  Mnemonic
+);

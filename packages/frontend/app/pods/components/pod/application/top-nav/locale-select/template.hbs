@@ -1,25 +1,19 @@
-<div class='navbar-item dropdown is-right {{if this.isActive 'is-active'}}'>
-  <div class='dropdown-trigger'>
+<Shadowed>
+  <div class='dropdown dropdown-left {{if this.isActive 'active'}}'>
     <button
       {{on 'click' (fn this.toggleMenu)}}
-      class='button is-primary'
-      style='z-index: 31;'
+      class='has-icon'
       aria-haspopup='true'
       aria-controls='dropdown-menu'
     >
-      <small class='icon'>
-        {{fa-icon 'globe'}}
-      </small>
+      {{fa-icon 'globe'}}
     </button>
-  </div>
 
-  <div
-    {{did-insert this.didInsert}}
-    class='dropdown-menu m-r-sm'
-    role='menu'
-    style='min-width: auto; z-index: 31;'
-  >
-    <div class='dropdown-content' tablist>
+    <div
+      {{did-insert this.didInsert}}
+      class='dropdown-menu'
+      role='menu'
+    >
       {{#each this.options as |opt|}}
         <a
           {{on 'click' (action (queue
@@ -33,10 +27,4 @@
       {{/each}}
     </div>
   </div>
-
-  <Backdrop
-    @isActive={{this.isActive}}
-    @onClick={{this.closeMenu}}
-    style='z-index: 30;'
-  />
-</div>
+</Shadowed>

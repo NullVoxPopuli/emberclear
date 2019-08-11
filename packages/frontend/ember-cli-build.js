@@ -76,6 +76,19 @@ module.exports = function(defaults) {
       version,
       excludeScope: [/\.well-known/, /bundle.html/, /favicon.ico/, /robots.txt/],
     },
+
+    // postcssOptions: {
+    //   compile: {
+    //     enabled: true,
+    //     extension: 'css',
+    //     inputFile: 'app-new.css',
+    //     outputFile: 'emberclear-new.css',
+    //   },
+    //   filter: {
+    //     enabled: true,
+    //     include: ['styles/new-app.css', 'styles/theme.css'],
+    //   },
+    // },
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -106,9 +119,30 @@ module.exports = function(defaults) {
   app.import('vendor/shims/qrcode.js');
 
   // qr-scanner hardcoded this path.... -.-
-  var qrScannerWorker = new Funnel('node_modules/qr-scanner/', {
+  let qrScannerWorker = new Funnel('node_modules/qr-scanner/', {
     include: ['qr-scanner-worker.min.js'],
     destDir: '/libraries/qr-scanner/',
+  });
+
+  // let tempShoelace = new Funnel('node_modules/shoelace-css/source/css', {
+  //   destDir: '/assets/shoelace',
+  // });
+
+  let tempShoelaceDist = new Funnel('node_modules/shoelace-css/dist/', {
+    include: ['shoelace.css'],
+    destDir: '/assets/',
+  });
+
+  let newAppCss = new Funnel('app/styles', {
+    include: ['app-new.css'],
+    destDir: '/assets/',
+    getDestinationPath(relativePath) {
+      if (relativePath === 'app-new.css') {
+        return 'emberclear-new.css';
+      }
+
+      return relativePath;
+    },
   });
 
   // uuid
@@ -123,6 +157,11 @@ module.exports = function(defaults) {
   //   // staticHelpers: true,
   //   // staticComponents: true,
   //   // splitAtRoutes: true,
+  //   skipBabel: [],
   // });
-  return mergeTrees([app.toTree(), qrScannerWorker]);
+  return mergeTrees([app.toTree(), qrScannerWorker,
+    // tempShoelace,
+    newAppCss,
+    tempShoelaceDist
+  ]);
 };

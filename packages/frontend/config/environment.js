@@ -7,9 +7,7 @@ module.exports = function(environment) {
 
     environment,
     rootURL: '/',
-    // locationType: 'auto', // default
-    // https://github.com/dollarshaveclub/ember-router-scroll#installation--usage
-    locationType: 'router-scroll',
+    locationType: 'auto', // default
     historySupportMiddleware: true,
 
     EmberENV: {

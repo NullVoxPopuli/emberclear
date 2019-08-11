@@ -1,0 +1,67 @@
+
+
+/* built, no vars :( */
+@import url('/assets/shoelace.css');
+
+/* @import url('/assets/shoelace/normalize.css'); */
+/* @import url('/assets/shoelace/content.css'); */
+/* @import url('/assets/shoelace/alerts.css'); */
+/* @import url('/assets/shoelace/badges.css'); */
+/* @import url('/assets/shoelace/buttons.css'); */
+/* @import url('/assets/shoelace/dropdowns.css'); */
+/* @import url('/assets/shoelace/file-buttons.css'); */
+/* @import url('/assets/shoelace/forms.css'); */
+/* @import url('/assets/shoelace/grid.css'); */
+/* @import url('/assets/shoelace/loaders.css'); */
+/* @import url('/assets/shoelace/progress-bars.css'); */
+/* @import url('/assets/shoelace/switches.css'); */
+/* @import url('/assets/shoelace/tabs.css'); */
+/* @import url('/assets/shoelace/tables.css'); */
+/* @import url('/assets/shoelace/utilities.css'); */
+
+/* @import url('/assets/theme.css'); */
+
+:root,
+:host {
+  --color-blue: #0074d9;
+  --state-primary: var(--color-blue);
+  --color-dark: black;
+  --link-color: var(--state-primary);
+}
+
+.hero {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 18rem;
+  padding-top:  18rem;
+}
+
+a.has-icon {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: flex-start;
+  grid-gap: 0.5rem;
+}
+
+button.has-icon {
+  display: grid;
+}
+
+svg.svg-inline--fa {
+  height: 1rem;
+  line-height: 1.5rem;
+}
+
+/* TODO: figure out how to do this */
+button.link {
+  height: unset;
+  line-height: unset;
+  text-align: unset;
+  border: none;
+  padding: 0;
+  background: none;
+  color: var(--link-color);
+}
