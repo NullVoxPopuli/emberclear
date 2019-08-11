@@ -1,14 +1,8 @@
-<div
-  class='
-  flex-row align-items-center justify-content-space-between
-  navbar no-select
-  is-fixed-top has-shadow {{if this.isChat 'is-primary'}}'
->
+<div class='top-nav {{if this.isInverted 'is-inverted'}}'>
 
-  <div class='navbar-brand'>
-
+  <div class='left-nav'>
     {{#if this.isLoggedIn}}
-      <div class='is-hidden-desktop'>
+      <div class='hide-xs-up'>
         <HamburgerButton
           @class='flex'
           @onClick={{this.sidebar.toggle}}
@@ -18,7 +12,7 @@
         {{#if this.hasUnread}}
           <span
             data-test-unread-count
-            class='tag is-danger is-small p-absolute'
+            class='badge badge-warning'
             style='left: 2rem; bottom: 0.5rem;'
           >
             {{this.unreadMessageCount}}
@@ -29,14 +23,14 @@
 
     {{#link-to
       'application'
-      class=(concat 'navbar-item is-hidden-touch ' (if this.isChat this.textColor))
+      class=(concat 'left hide-xs-down ' (if this.isChat this.textColor))
     }}
       {{t 'appname'}}
     {{/link-to}}
 
 
     {{#if this.isLoggedIn}}
-      <CurrentChatName class='navbar-item' as |isVisible name record|>
+      <CurrentChatName as |isVisible name record|>
         {{#if isVisible}}
           <span class='chat-name p-l-md m-r-sm'>
             {{name}}
@@ -50,34 +44,30 @@
   </div>
 
 
-  <div class='navbar-end flex-row align-items-center'>
+  <div class='right-nav'>
     {{#if (not this.isLoggedIn)}}
-      <div class='navbar-end is-visible-touch'>
-        <a class='navbar-item is-visible-touch is-hidden-desktop' {{action (transition-to 'login')}}>
-          {{t 'routes.login'}}
-        </a>
-      </div>
+      <a class='hide-sm-up' {{on 'click' (prevent-default (transition-to 'login'))}}>
+        {{t 'routes.login'}}
+      </a>
     {{/if}}
 
     <Pod::Application::TopNav::Install />
     <Pod::Application::TopNav::LocaleSelect />
 
-    <div class='navbar-end is-hidden-touch'>
-      {{#if this.isLoggedIn}}
-        <a class='navbar-item' {{action (transition-to 'chat')}}>
-          {{t 'routes.chat'}}
-        </a>
+    {{#if this.isLoggedIn}}
+      <a class='hide-xs-down' {{action (transition-to 'chat')}}>
+        {{t 'routes.chat'}}
+      </a>
 
-        <Pod::Application::TopNav::UserDropMenu />
-      {{else}}
-        <a class='navbar-item' {{action (transition-to 'login')}}>
-          {{t 'routes.login'}}
-        </a>
+      <Pod::Application::TopNav::UserDropMenu class='hide-xs-down' />
+    {{else}}
+      <a class='hide-xs-down' {{action (transition-to 'login')}}>
+        {{t 'routes.login'}}
+      </a>
 
-        <a class='navbar-item' {{action (transition-to 'setup')}}>
-          {{t 'routes.createNewUser'}}
-        </a>
-      {{/if}}
-    </div>
+      <a class='hide-xs-down' {{action (transition-to 'setup')}}>
+        {{t 'routes.createNewUser'}}
+      </a>
+    {{/if}}
   </div>
 </div>

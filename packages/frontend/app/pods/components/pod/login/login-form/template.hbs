@@ -10,26 +10,18 @@
 
   {{#unless this.scanning}}
     <Field @label={{t 'input.label.name'}}>
-      <Input
-        data-test-name
-        class='input'
-        @value={{this.name}}
-      />
+      <Input data-test-name @value={{this.name}} />
     </Field>
 
     <Field @label={{t 'input.label.mnemonic'}}>
-      <Input
-        data-test-mnemonic
-        class='input'
-        @value={{this.mnemonic}}
-      />
+      <Input data-test-mnemonic @value={{this.mnemonic}} />
     </Field>
 
-    <Field class='is-grouped m-t-md'>
+    <Field>
       <button
         data-test-scan-settings
-        class='button'
-        {{action this.toggleScanning}}
+        class='bg-secondary'
+        {{on 'click' this.toggleScanning}}
       >
         {{t 'buttons.scan'}}
       </button>
@@ -37,8 +29,8 @@
       <FileChooser @onChoose={{perform this.uploadSettings}} as |chooser|>
         <button
           data-test-upload-settings
-          class='button'
-          {{action chooser.openFileChooser}}
+          class='bg-secondary'
+          {{on 'click' chooser.openFileChooser}}
         >
           {{t 'buttons.uploadSettings'}}
         </button>
@@ -46,8 +38,7 @@
 
       <button
         data-test-submit-login
-        class='button'
-        {{action (perform this.login)}}
+        {{on 'click' (perform this.login)}}
       >
         {{t 'buttons.login'}}
       </button>

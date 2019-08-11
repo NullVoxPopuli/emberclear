@@ -20,7 +20,7 @@ export default class TopNav extends Component {
   @alias('currentUser.isLoggedIn') isLoggedIn!: boolean;
   @equal('routeName', 'index') isApplication!: boolean;
 
-  get isChat(): boolean {
+  get isInverted(): boolean {
     return !this.isApplication;
   }
 

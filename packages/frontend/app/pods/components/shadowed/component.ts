@@ -20,7 +20,6 @@ export default Ember._setComponentTemplate(
 
     {{#if this.shadow}}
       {{#-in-element this.shadow}}
-        <style>@import "/assets/emberclear-new.css"</style>
         {{yield}}
       {{/-in-element}}
     {{/if}}

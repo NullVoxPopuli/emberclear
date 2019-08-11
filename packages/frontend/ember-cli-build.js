@@ -6,6 +6,11 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
 const { Webpack } = require('@embroider/webpack');
 
+const autoprefixer = require('autoprefixer');
+const CssImport = require('postcss-import');
+const CSSnext = require('postcss-cssnext');
+const PresetEnv = require('postcss-preset-env');
+
 // note that by default, the enabled flags on some things
 // like minifying by default, already check
 // if environment === 'production'
@@ -77,18 +82,43 @@ module.exports = function(defaults) {
       excludeScope: [/\.well-known/, /bundle.html/, /favicon.ico/, /robots.txt/],
     },
 
-    // postcssOptions: {
-    //   compile: {
-    //     enabled: true,
-    //     extension: 'css',
-    //     inputFile: 'app-new.css',
-    //     outputFile: 'emberclear-new.css',
-    //   },
-    //   filter: {
-    //     enabled: true,
-    //     include: ['styles/new-app.css', 'styles/theme.css'],
-    //   },
-    // },
+    postcssOptions: {
+      compile: {
+        enabled: true,
+        extension: 'css',
+        plugins: [
+          {
+            module: CssImport,
+            options: {
+              path: ['node_modules/shoelace-css/source/css'],
+            },
+          },
+          {
+            module: CSSnext,
+            options: {
+              features: {
+                rem: false,
+              },
+            },
+          },
+          // {
+          //   module: PresetEnv,
+          //   options: { stage: 0 },
+          // },
+        ],
+      },
+      filter: {
+        enabled: true,
+        plugins: [
+          {
+            module: autoprefixer,
+            options: {
+              browsers: ['last 2 versions'], // this will override the config, but just for this plugin
+            },
+          },
+        ],
+      },
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -128,22 +158,22 @@ module.exports = function(defaults) {
   //   destDir: '/assets/shoelace',
   // });
 
-  let tempShoelaceDist = new Funnel('node_modules/shoelace-css/dist/', {
-    include: ['shoelace.css'],
-    destDir: '/assets/',
-  });
+  // let tempShoelaceDist = new Funnel('node_modules/shoelace-css/dist/', {
+  //   include: ['shoelace.css'],
+  //   destDir: '/assets/',
+  // });
 
-  let newAppCss = new Funnel('app/styles', {
-    include: ['app-new.css'],
-    destDir: '/assets/',
-    getDestinationPath(relativePath) {
-      if (relativePath === 'app-new.css') {
-        return 'emberclear-new.css';
-      }
+  // let newAppCss = new Funnel('app/styles', {
+  //   include: ['app-new.css'],
+  //   destDir: '/assets/',
+  //   getDestinationPath(relativePath) {
+  //     if (relativePath === 'app-new.css') {
+  //       return 'emberclear-new.css';
+  //     }
 
-      return relativePath;
-    },
-  });
+  //     return relativePath;
+  //   },
+  // });
 
   // uuid
   app.import('node_modules/uuid/index.js', {
@@ -163,7 +193,7 @@ module.exports = function(defaults) {
     app.toTree(),
     qrScannerWorker,
     // tempShoelace,
-    newAppCss,
-    tempShoelaceDist,
+    // newAppCss,
+    // tempShoelaceDist
   ]);
 };

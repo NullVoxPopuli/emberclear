@@ -13,7 +13,6 @@ class BeginButton extends Component {
 
 export default Ember._setComponentTemplate(
   hbs`
-<Shadowed>
   {{#link-to 'chat' class='button'}}
     {{#if this.isLoggedIn}}
       {{t 'routes.chat'}}
@@ -21,7 +20,6 @@ export default Ember._setComponentTemplate(
       {{t 'buttons.begin'}}
     {{/if}}
   {{/link-to}}
-</Shadowed>
 `,
   BeginButton
 );

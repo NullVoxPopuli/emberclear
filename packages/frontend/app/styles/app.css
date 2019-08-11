@@ -1,0 +1,99 @@
+
+
+@import url('shoelace.css');
+/* @import url('/assets/theme.css'); */
+
+/* variables to actually keep */
+:root {
+  --color-purple: hsl(253, 84%, 53%);
+  --color-gray: #334;
+  --state-primary: var(--color-purple);
+  --link-color: var(--state-dark);
+
+  --grid-gap: 0.5rem;
+  --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.12);
+
+  --top-nav-bg: var(--state-light);
+  --top-nav-shadow: var(--shadow);
+}
+
+.hero {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column
+}
+
+a.has-icon {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: flex-start;
+  grid-gap: 0.5rem;
+}
+
+button.has-icon {
+  display: grid;
+}
+
+svg.svg-inline--fa {
+  height: 1rem;
+  line-height: 1.5rem;
+}
+
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: var(--top-nav-bg);
+  box-shadow: var(--top-nav-shadow);
+  padding-left: var(--grid-gap);
+  padding-right: var(--grid-gap);
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: var(--grid-gap);
+  align-items: center;
+  justify-items: start;
+  justify-content: space-between;
+
+  z-index: 100;
+}
+
+.top-nav.is-inverted {
+  background: var(--state-secondary);
+}
+
+.top-nav.is-inverted > .left-nav > a,
+.top-nav.is-inverted > .right-nav > a {
+  color: var(--state-light);
+}
+
+.top-nav hr {
+  width: 1px;
+  height: 100%;
+}
+
+.top-nav .right-nav {
+  justify-self: end;
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-auto-flow: column;
+
+  align-items: center;
+}
+
+/* TODO: figure out how to do this */
+button.link {
+  height: unset;
+  line-height: unset;
+  text-align: unset;
+  border: none;
+  padding: 0;
+  background: none;
+  color: var(--link-color);
+}
