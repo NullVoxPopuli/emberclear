@@ -159,9 +159,11 @@ module.exports = function(defaults) {
   //   // splitAtRoutes: true,
   //   skipBabel: [],
   // });
-  return mergeTrees([app.toTree(), qrScannerWorker,
+  return mergeTrees([
+    app.toTree(),
+    qrScannerWorker,
     // tempShoelace,
     newAppCss,
-    tempShoelaceDist
+    tempShoelaceDist,
   ]);
 };
