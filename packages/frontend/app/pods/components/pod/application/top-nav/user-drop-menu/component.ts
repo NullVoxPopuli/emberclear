@@ -1,8 +1,6 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-
-import uuid from 'uuid';
-import { once } from '@ember/runloop';
+import { action } from '@ember/object';
 
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
@@ -10,7 +8,6 @@ import { reads } from '@ember/object/computed';
 import StoreService from 'ember-data/store';
 import CurrentUserService from 'emberclear/services/current-user';
 
-import { keepInViewPort } from 'emberclear/utils/dom/utils';
 import RouterService from '@ember/routing/router-service';
 
 export default class UserDropMenu extends Component {
@@ -19,25 +16,23 @@ export default class UserDropMenu extends Component {
   @service router!: RouterService;
 
   @tracked showDropdown = false;
-  @tracked dropDownId = uuid();
 
   @reads('currentUser.name') name?: string;
 
-  get dropDown(): HTMLElement {
-    return document.querySelector(`[id="${this.dropDownId}"]`) as HTMLElement;
-  }
-
+  @action
   closeMenu() {
     this.showDropdown = false;
   }
 
+  @action
   openMenu() {
     this.showDropdown = true;
-
-    once(this, () => keepInViewPort(this.dropDown));
   }
 
-  toggleMenu() {
+  @action
+  toggleMenu(e) {
+    e.preventDefault();
+
     this.showDropdown ? this.closeMenu() : this.openMenu();
   }
 }

@@ -24,7 +24,8 @@ class Mnemonic extends Component {
     this.mnemonic = result
       .split(/((?:\w+ ){5})/g)
       .filter(Boolean)
-      .join('\n');
+      .join('\n')
+      .trim();
   }
 }
 

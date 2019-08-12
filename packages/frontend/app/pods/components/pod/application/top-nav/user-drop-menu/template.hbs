@@ -1,39 +1,21 @@
-<div class='navbar-item has-dropdown {{if this.showDropdown 'is-active'}}'>
+<div class='dropdown dropdown-left {{if this.showDropdown 'active'}}' ...attributes>
   <a
     data-test-user-dropdown-toggle
-    class='navbar-link'
-    style='z-index: 31'
-    {{action this.toggleMenu}}
+    class='dropdown-trigger'
+    {{on 'click' this.toggleMenu}}
   >
-    <span class='icon'>{{fa-icon 'user-circle' prefix='fas'}}</span>
+    {{fa-icon 'user-circle' prefix='fas'}}
     <span>{{this.name}}</span>
-
   </a>
 
-  <div
-    data-test-user-dropdown
-    id={{this.dropDownId}}
-    class='navbar-dropdown'
-    style='z-index: 31; min-width: 200px'>
-    <a
-      class='navbar-item'
-      {{action (queue
-        (action this.closeMenu)
-        (transition-to 'contacts'))
-      }}
-    >
-      <span class='icon'>{{fa-icon 'address-book' prefix='fas'}}</span>
+  <div data-test-user-dropdown class='dropdown-menu'>
+    <a {{on 'click' (queue this.closeMenu (transition-to 'contacts'))}}>
+      {{fa-icon 'address-book' prefix='fas'}}
       <span>{{t 'routes.contacts'}}</span>
     </a>
 
-    <a
-      class='navbar-item'
-      {{action (queue
-        (action this.closeMenu)
-        (transition-to 'settings'))
-      }}
-    >
-      <span class='icon'>{{fa-icon 'sliders-h' prefix='fas'}}</span>
+    <a {{on 'click' (queue this.closeMenu (transition-to 'settings'))}}>
+      {{fa-icon 'sliders-h' prefix='fas'}}
       <span>{{t 'routes.settings'}}</span>
     </a>
 
@@ -41,13 +23,9 @@
 
     <a
       data-test-logout
-      class='navbar-item'
-      {{action (queue
-        (action this.closeMenu)
-        (transition-to 'logout'))
-      }}
+      {{on 'click' (queue this.closeMenu (transition-to 'logout'))}}
     >
-      <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
+      {{fa-icon 'sign-out-alt' prefix='fas'}}
       <span>{{t 'routes.logout'}}</span>
     </a>
   </div>

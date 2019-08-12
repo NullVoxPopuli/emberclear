@@ -34,6 +34,13 @@ a.has-icon {
   grid-gap: 0.5rem;
 }
 
+a .icon {
+  height: 100%;
+  display: flex;
+  align-items:  center;
+  justify-content:  center;
+}
+
 button.has-icon {
   display: grid;
 }
@@ -64,12 +71,18 @@ svg.svg-inline--fa {
   z-index: 100;
 }
 
+.top-nav a:active,
+.top-nav a:hover {
+  text-decoration: none;
+}
+
 .top-nav.is-inverted {
   background: var(--state-secondary);
 }
 
 .top-nav.is-inverted > .left-nav > a,
-.top-nav.is-inverted > .right-nav > a {
+.top-nav.is-inverted > .right-nav > a,
+.top-nav.is-inverted .dropdown-trigger {
   color: var(--state-light);
 }
 
