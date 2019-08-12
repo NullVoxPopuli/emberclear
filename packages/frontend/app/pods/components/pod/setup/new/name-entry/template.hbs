@@ -1,27 +1,26 @@
-<form
-  data-test-name-form
-  {{action this.createIdentity on='submit'}}>
+<form data-test-name-form {{on 'submit' this.createIdentity}}>
 
-  <div class='content'>
+  <Field @label={{t 'models.identity.name'}} @hidden={{true}}>
     <Input
       data-test-name-field
-      class='input is-large'
+      class='input-xl'
       type='text'
       placeholder={{t 'ui.setup.nameLabel'}}
       @value={{this.name}}
     />
+  </Field>
+
+  <div class='cta-with-fallback'>
+    {{#link-to 'login'}}
+      {{t 'buttons.loginInstead'}}
+    {{/link-to}}
+
+    <input
+      data-test-next
+      type='submit'
+      class='button'
+      disabled={{this.nameIsBlank}}
+      value={{t 'buttons.next'}}
+    >
   </div>
-
-  {{#link-to 'login'}}
-    {{t 'buttons.loginInstead'}}
-  {{/link-to}}
-
-  <input
-    data-test-next
-    type='submit'
-    class='button is-pulled-right'
-    disabled={{this.nameIsBlank}}
-    value={{t 'buttons.next'}}
-  >
-
 </form>

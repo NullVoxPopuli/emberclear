@@ -1,25 +1,21 @@
 <FocusCard @title={{t 'ui.setup.almostReady'}}>
 
-  <div data-test-setup-mnemonic class='content'>
+  <p data-test-setup-mnemonic>
     {{t 'ui.setup.mnemonicPrompt'}}
 
     <MnemonicDisplay @privateKey={{this.model.privateKey}} />
 
     {{t 'ui.setup.note'}}
-  </div>
+  </p>
 
-  <div class='is-pulled-right'>
-    <button class='button' {{action (transition-to 'setup.index')}}>
+  <div class='cta-with-fallback'>
+    <LinkTo @route='setup.index' class='button button-secondary'>
       {{t 'buttons.back'}}
-    </button>
+    </LinkTo>
 
-    <button
-      data-test-next
-      class='button'
-      {{action (transition-to 'chat')}}
-    >
+    <LinkTo @route='chat' class='button' data-test-next>
       {{t 'buttons.next'}}
-    </button>
+    </LinkTo>
   </div>
 
 </FocusCard>

@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
 import hbs from 'ember-cli-htmlbars-inline-precompile';
 
@@ -12,10 +13,7 @@ class Mnemonic extends Component {
   @tracked privateKey?: Uint8Array;
   @tracked mnemonic?: string;
 
-  didInsertElement() {
-    this.updateMnemonic(this.privateKey);
-  }
-
+  @action
   async updateMnemonic(this: Mnemonic, key?: Uint8Array) {
     let result = '';
 
@@ -23,18 +21,18 @@ class Mnemonic extends Component {
       result = this.intl.t('services.crypto.keyGenFailed');
     } else result = await mnemonicFromNaClBoxPrivateKey(key);
 
-    this.mnemonic = result;
+    this.mnemonic = result
+      .split(/((?:\w+ ){5})/g)
+      .filter(Boolean)
+      .join('\n');
   }
 }
 
 export default Ember._setComponentTemplate(
   hbs`
-  <div
-    data-test-mnemonic
-    class='has-background-color p-md m-t-lg m-b-lg with-border'
-  >
-    <div class='level-item is-size-6'>{{this.mnemonic}}</div>
-  </div>
+  <pre data-test-mnemonic {{did-insert (fn this.updateMnemonic @privateKey)}}>
+    {{this.mnemonic}}
+  </pre>
 `,
   Mnemonic
 );

@@ -23,7 +23,9 @@ export default class NameEntry extends Component {
   }
 
   @action
-  createIdentity() {
+  createIdentity(e) {
+    e.preventDefault();
+
     this.create.perform();
   }
 

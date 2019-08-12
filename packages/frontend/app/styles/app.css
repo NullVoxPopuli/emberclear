@@ -87,6 +87,18 @@ svg.svg-inline--fa {
   align-items: center;
 }
 
+.cta-with-fallback {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* TODO: figure out how to do this */
 button.link {
   height: unset;

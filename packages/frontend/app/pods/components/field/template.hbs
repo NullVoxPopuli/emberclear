@@ -1,7 +1,12 @@
 <div class='input-field' ...attributes>
 
   {{#if @label}}
-    <label for={{@label}}>{{@label}}</label>
+    <label
+      class={{if @hidden 'hide-xs-up'}}
+      for={{@label}}
+    >
+      {{@label}}
+    </label>
   {{/if}}
 
   {{yield}}
