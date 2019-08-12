@@ -1,6 +1,10 @@
 
 
 @import url('shoelace.css');
+@import './components/top-nav.css';
+
+@import './components/sidebar.css';
+
 /* @import url('/assets/theme.css'); */
 
 /* variables to actually keep */
@@ -15,6 +19,10 @@
 
   --top-nav-bg: var(--state-light);
   --top-nav-shadow: var(--shadow);
+}
+
+.transition-all {
+  transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045);
 }
 
 .hero {
@@ -41,6 +49,11 @@ a .icon {
   justify-content:  center;
 }
 
+.icon-button {
+  width: 1rem;
+  height: 1rem;
+}
+
 button.has-icon {
   display: grid;
 }
@@ -48,56 +61,6 @@ button.has-icon {
 svg.svg-inline--fa {
   height: 1rem;
   line-height: 1.5rem;
-}
-
-.top-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  background: var(--top-nav-bg);
-  box-shadow: var(--top-nav-shadow);
-  padding-left: var(--grid-gap);
-  padding-right: var(--grid-gap);
-
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: var(--grid-gap);
-  align-items: center;
-  justify-items: start;
-  justify-content: space-between;
-
-  z-index: 100;
-}
-
-.top-nav a:active,
-.top-nav a:hover {
-  text-decoration: none;
-}
-
-.top-nav.is-inverted {
-  background: var(--state-secondary);
-}
-
-.top-nav.is-inverted > .left-nav > a,
-.top-nav.is-inverted > .right-nav > a,
-.top-nav.is-inverted .dropdown-trigger {
-  color: var(--state-light);
-}
-
-.top-nav hr {
-  width: 1px;
-  height: 100%;
-}
-
-.top-nav .right-nav {
-  justify-self: end;
-  display: grid;
-  grid-gap: var(--grid-gap);
-  grid-auto-flow: column;
-
-  align-items: center;
 }
 
 .cta-with-fallback {
@@ -111,6 +74,35 @@ svg.svg-inline--fa {
   flex-direction: column;
   justify-content: center;
 }
+
+
+.service-worker-update-notify {
+  position: fixed;
+  z-index: 2;
+  right: 0;
+  left: 0;
+  border-radius: 0;
+
+/*   @include mobile { */
+/*     top: 0; */
+/*   } */
+
+/*   @include tablet-only { */
+/*     top: 0px; */
+/*   } */
+}
+
+.not-allowed {
+  cursor: not-allowed !important;
+}
+
+
+
+.overflows {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 
 /* TODO: figure out how to do this */
 button.link {

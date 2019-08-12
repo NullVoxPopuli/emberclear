@@ -47,6 +47,7 @@ module.exports = function(environment) {
           'check',
           'ellipsis-h',
           'globe',
+          'bars',
         ],
       },
     },

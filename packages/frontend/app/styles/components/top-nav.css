@@ -1,0 +1,58 @@
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: var(--top-nav-bg);
+  box-shadow: var(--top-nav-shadow);
+  padding-left: var(--grid-gap);
+  padding-right: var(--grid-gap);
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: var(--grid-gap);
+  align-items: center;
+  justify-items: start;
+  justify-content: space-between;
+
+  z-index: 100;
+}
+
+.top-nav a:active,
+.top-nav a:hover {
+  text-decoration: none;
+}
+
+.top-nav.is-inverted {
+  background: var(--state-secondary);
+}
+
+.top-nav .navbar-burger {
+  color: var(--link-color);
+}
+
+.top-nav.is-inverted > .left-nav > a,
+.top-nav.is-inverted > .right-nav > a,
+.top-nav.is-inverted .dropdown-trigger {
+  color: var(--state-light);
+}
+
+.top-nav hr {
+  width: 1px;
+  height: 100%;
+}
+
+.top-nav .left-nav,
+.top-nav .right-nav {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-auto-flow: column;
+
+  align-items: center;
+}
+
+.top-nav .right-nav {
+  justify-self: end;
+}
+
