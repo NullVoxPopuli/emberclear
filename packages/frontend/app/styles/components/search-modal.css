@@ -21,6 +21,7 @@ div[role='search'].modal {
     box-sizing: content-box;
 
     & .no-results {
+      display: block;
       font-size: var(--font-size-small);
       font-style: italic;
       color: var(--hint-color);
