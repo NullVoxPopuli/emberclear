@@ -15,6 +15,8 @@ interface IArgs {
   close: () => void;
 }
 
+const MAX_RESULTS = 5;
+
 export default class SearchModal extends Component<IArgs> {
   @service store!: StoreService;
 
@@ -49,9 +51,11 @@ export default class SearchModal extends Component<IArgs> {
       this.store.query('channel', { name: term }),
     ]);
 
-    this.contactResults = contactResults.filter((i: Contact) => i.id !== 'me').slice(0, 5);
+    this.contactResults = contactResults
+      .filter((i: Contact) => i.id !== 'me')
+      .slice(0, MAX_RESULTS);
 
-    this.channelResults = channelResults.slice(0, 5);
+    this.channelResults = channelResults.slice(0, MAX_RESULTS);
   }).keepLatest())
   search!: Task;
 }

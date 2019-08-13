@@ -96,6 +96,9 @@ module.exports = function(defaults) {
             module: CSSnext,
             options: {
               features: {
+                customProperties: {
+                  preserve: true,
+                },
                 rem: false,
               },
             },

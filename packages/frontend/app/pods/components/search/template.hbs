@@ -17,7 +17,7 @@
     >
   </Field>
 
-  <div style='max-height: 250px; margin-right: -1rem; padding-right: 1rem;'>
+  <div class='results'>
     {{#if (not this.hasResults)}}
       {{t 'ui.search.nothingFound'}}
     {{else}}
@@ -35,10 +35,10 @@
           </Search::Result>
         </div>
       {{else}}
-        {{t 'ui.search.noContacts'}}
+        <span class='no-results'>{{t 'ui.search.noContacts'}}</span>
       {{/each}}
 
-      <hr>
+      <br>
       <span class='section-title'>{{t 'ui.search.channels'}}</span>
 
       {{#each this.channelResults as |channel|}}
@@ -53,8 +53,25 @@
           </Search::Result>
         </div>
       {{else}}
-        {{t 'ui.search.noChannels'}}
+        <span class='no-results'>{{t 'ui.search.noChannels'}}</span>
       {{/each}}
     {{/if}}
   </div>
+
+  <footer>
+    <div class='left'>
+      <KeyboardShortcuts::Key @label='tab' />
+      {{t 'ui.shortcuts.label.search.tab'}}
+    </div>
+
+    <div class='right'>
+      <KeyboardShortcuts::Key @label='enter' />
+      {{t 'ui.shortcuts.label.search.enter'}}
+
+      <hr class='vertical'>
+
+      <KeyboardShortcuts::Key @label='esc' />
+      {{t 'ui.shortcuts.label.search.esc'}}
+    </div>
+  </footer>
 </Modal>

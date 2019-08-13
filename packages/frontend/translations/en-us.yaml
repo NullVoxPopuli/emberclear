@@ -148,9 +148,12 @@ ui:
     title: Keyboard Shortcuts
     key:
       ctrl: ctrl
+      esc: esc
+      enter: enter
       i: i
       slash: /
       space: space
+      tab: tab
       h: h
       k: k
 
@@ -158,6 +161,12 @@ ui:
       search: Search Everything
       toggleSidebar: Toggle the Sidebar
       toggleHelp: Toggle Keyboard Help
+
+    label:
+      search:
+        tab: to navigate
+        enter: to select
+        esc: to dismiss
 
   sidebar:
     unread: Unread
