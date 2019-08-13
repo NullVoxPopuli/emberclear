@@ -24,10 +24,20 @@ aside {
       }
     }
 
+
+    & .menu-label {
+      & a.button-xs,
+      & button.button-xs {
+        height: var(--button-height-sm);
+      }
+    }
+
+
     & nav {
       &.contacts,
       &.channels {
         padding-bottom: var(--grid-gap);
+
       }
 
       & a {

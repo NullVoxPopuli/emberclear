@@ -7,8 +7,6 @@ const gitRev = require('git-rev-sync');
 
 const autoprefixer = require('autoprefixer');
 const CssImport = require('postcss-import');
-const CSSnext = require('postcss-cssnext');
-// const PresetEnv = require('postcss-preset-env');
 
 // note that by default, the enabled flags on some things
 // like minifying by default, already check
@@ -93,9 +91,12 @@ module.exports = function(defaults) {
             },
           },
           {
-            module: CSSnext,
+            module: require('postcss-cssnext'),
             options: {
               features: {
+                colorFunction: {
+                  preserveCustomProps: false,
+                },
                 customProperties: {
                   preserve: true,
                 },
@@ -104,8 +105,32 @@ module.exports = function(defaults) {
             },
           },
           // {
-          //   module: PresetEnv,
-          //   options: { stage: 0 },
+          //   module: require('postcss-preset-env'),
+          //   options: {
+          //     stage: 0,
+          //     // browsers: 'last 2 versions',
+          //     // preserve: false,
+          //     features: {
+          //       // abandoned
+          //       'color-function': {
+          //         preserveCustomProps: true,
+          //       },
+          //       // stage 0
+          //       // 'nesting-rules': true,
+          //       // stage 1
+          //       // 'custom-media-queries': true,
+          //       // stage 2
+          //       'color-mod-function': {
+          //         preserveCustomProps: true,
+          //       }, // color()
+          //       // 'color-functional-notation': false,
+          //       // stage 4
+          //       // stage 3
+          //       'custom-properties': {
+          //         preserve: true,
+          //       },
+          //     },
+          //   },
           // },
         ],
       },

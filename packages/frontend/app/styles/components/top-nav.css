@@ -32,6 +32,7 @@
   color: var(--link-color);
 }
 
+.top-nav.is-inverted .burger,
 .top-nav.is-inverted > .left-nav > a,
 .top-nav.is-inverted > .right-nav > a,
 .top-nav.is-inverted .dropdown-trigger {

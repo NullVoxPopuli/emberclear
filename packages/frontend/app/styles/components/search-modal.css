@@ -1,22 +1,27 @@
 div[role='search'].modal {
   overflow: hidden;
+  padding-top: 15vh;
 
   input {
     box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.2);
   }
 
   & .modal-content {
+    align-self: start;
     overflow: hidden;
     min-width: 350px;
   }
 
   & .results {
     max-height: 250px;
+    min-height: 100px;
+    height: auto;
     display: block;
     width: 100%;
     overflow: auto;
-    height: calc(100vh - 250px);
+    /* height: calc(100vh - 250px); */
     padding-right: var(--grid-gap);
+    padding-bottom: var(--grid-gap);
     margin-right: calc(0px - var(--grid-gap));
     box-sizing: content-box;
 

@@ -1,4 +1,4 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
 import hbs from 'ember-cli-htmlbars-inline-precompile';
