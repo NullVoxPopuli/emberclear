@@ -1,26 +1,23 @@
 {{#if this.shouldBeRendered}}
-  <li data-test-contact-row {{did-insert (perform this.findRelevantMessages)}}>
-    <a
-      {{on 'click' (prevent-default this.onClick)}}
-      href={{url-for 'chat.privately-with' @contact.id}}
-      class='
-        flex-row align-items-center justify-content-space-between
-        {{if this.isActive 'is-active'}}
-      '
-    >
-      <span data-test-contact-name class='flex-row align-items-center'>
-        <StatusIcon @contact={{@contact}} />
-        <span class='m-l-sm'>{{or @contact.name '[unnamed]'}}</span>
-      </span>
+  <a
+    data-test-contact-row
+    href={{url-for 'chat.privately-with' @contact.id}}
+    {{did-insert (perform this.findRelevantMessages)}}
+    {{on 'click' (prevent-default this.onClick)}}
+    class={{if this.isActive 'is-active'}}
+  >
+    <span data-test-contact-name>
+      <StatusIcon @contact={{@contact}} />
+      <span>{{or @contact.name '[unnamed]'}}</span>
+    </span>
 
-      {{#if this.hasUnread}}
-        <span
-          {{unread-messages-intersection-observer}}
-          class='tag is-danger is-small is-pulled-right'
-        >
-          {{this.numberUnread}}
-        </span>
-      {{/if}}
-    </a>
-  </li>
+    {{#if this.hasUnread}}
+      <span
+        {{unread-messages-intersection-observer}}
+        class='badge badge-danger'
+      >
+        {{this.numberUnread}}
+      </span>
+    {{/if}}
+  </a>
 {{/if}}

@@ -11,14 +11,41 @@
 :root {
   --color-purple: hsl(253, 84%, 53%);
   --color-gray: #334;
+  --color-medium-gray: #555;
+  --color-light-gray: #efefef;
   --state-primary: var(--color-purple);
+
   --link-color: var(--state-dark);
 
-  --grid-gap: 0.5rem;
+  --grid-gap: 0.75rem;
+  --grid-gap-small: 0.5rem;
+  --grid-gap-tiny: 0.25rem;
   --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.12);
 
   --top-nav-bg: var(--state-light);
   --top-nav-shadow: var(--shadow);
+  --top-nav-height: 50px;
+
+  --sidebar-bg-color: var(--state-light);
+  --sidebar-nav-active-color: var(--color-light-gray);
+  --sidebar-hint-text: var(--color-medium-gray);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+hr {
+  margin: var(--grid-gap) 0;
+}
+
+.dropdown .dropdown-menu {
+  box-shadow: 0 8px 8px rgba(10,10,10,.1);
 }
 
 .transition-all {
@@ -34,6 +61,14 @@
   flex-direction: column
 }
 
+a {
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 a.has-icon {
   display: grid;
   grid-auto-flow: column;
@@ -42,7 +77,8 @@ a.has-icon {
   grid-gap: 0.5rem;
 }
 
-a .icon {
+a .icon,
+button .icon {
   height: 100%;
   display: flex;
   align-items:  center;
@@ -59,6 +95,7 @@ button.has-icon {
 }
 
 svg.svg-inline--fa {
+  width: 1rem;
   height: 1rem;
   line-height: 1.5rem;
 }

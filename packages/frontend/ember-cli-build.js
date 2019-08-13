@@ -4,12 +4,11 @@ const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
-const { Webpack } = require('@embroider/webpack');
 
 const autoprefixer = require('autoprefixer');
 const CssImport = require('postcss-import');
 const CSSnext = require('postcss-cssnext');
-const PresetEnv = require('postcss-preset-env');
+// const PresetEnv = require('postcss-preset-env');
 
 // note that by default, the enabled flags on some things
 // like minifying by default, already check
@@ -26,12 +25,12 @@ module.exports = function(defaults) {
   let swDisabled = process.env.SW_DISABLED;
   let version = gitRev.short();
 
-  console.log('\n---------------');
-  console.log('environment: ', environment);
-  console.log('isProduction: ', isProduction);
-  console.log('SW_DISABLED: ', swDisabled);
-  console.log('git version: ', version);
-  console.log('---------------\n');
+  console.info('\n---------------');
+  console.info('environment: ', environment);
+  console.info('isProduction: ', isProduction);
+  console.info('SW_DISABLED: ', swDisabled);
+  console.info('git version: ', version);
+  console.info('---------------\n');
 
   let app = new EmberApp(defaults, {
     hinting: false,
@@ -180,7 +179,10 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'uuid' }],
   });
 
-  // return require('@embroider/compat').compatBuild(app, Webpack, {
+  // return require('@embroider/compat').compatBuild(
+  // app,
+  // require('@embroider/webpack').Webpack,
+  // {
   //   extraPublicTrees: [qrScannerWorker],
   //   // staticAddonTestSupportTrees: true,
   //   // staticAddonTrees: true,

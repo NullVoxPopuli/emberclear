@@ -4866,6 +4866,11 @@ decompress-response@^3.3.0:
   dependencies:
     mimic-response "^1.0.0"
 
+decouple@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/decouple/-/decouple-0.0.2.tgz#cb373640c37f987a5f6866724ccd424a80f9d9a2"
+  integrity sha1-yzc2QMN/mHpfaGZyTM1CSoD52aI=
+
 deep-extend@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
@@ -6069,6 +6074,10 @@ ember-web-app@^3.0.0:
     jsdom "^15.1.1"
     web-app-manifest-validator "^1.0.0"
     xmlbuilder "^13.0.2"
+
+"emitter@git+https://github.com/Mango/emitter.git#0.0.7":
+  version "0.0.7"
+  resolved "git+https://github.com/Mango/emitter.git#41ab8a3956269c7ed468bde50203e15b3274152f"
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -11718,6 +11727,14 @@ slice-ansi@^2.1.0:
     ansi-styles "^3.2.0"
     astral-regex "^1.0.0"
     is-fullwidth-code-point "^2.0.0"
+
+slideout@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/slideout/-/slideout-1.0.1.tgz#49f2fbd7e4155fe0dbe6d95938f012243565f625"
+  integrity sha1-SfL71+QVX+Db5tlZOPASJDVl9iU=
+  dependencies:
+    decouple "0.0.2"
+    emitter "git+https://github.com/Mango/emitter.git#0.0.7"
 
 snake-case@^2.1.0:
   version "2.1.0"

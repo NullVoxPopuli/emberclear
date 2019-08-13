@@ -1,8 +1,11 @@
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 import { A } from '@ember/array';
 import { action } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
+
+import Slideout from 'slideout';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 
@@ -11,6 +14,8 @@ export default class Sidebar extends Service {
   unreadBelow = A();
 
   unreadObserver?: IntersectionObserver;
+
+  @tracked slideout;
 
   @notEmpty('unreadAbove') hasUnreadAbove!: boolean;
   @notEmpty('unreadBelow') hasUnreadBelow!: boolean;
@@ -26,7 +31,22 @@ export default class Sidebar extends Service {
   }
 
   @action toggle() {
-    this.isShown = !this.isShown;
+    this.slideout.toggle();
+  }
+
+  setup(sidebar: HTMLElement) {
+    this.slideout = new Slideout({
+      panel: document.getElementById('scrollContainer'),
+      menu: sidebar,
+      tolerance: 70,
+    });
+
+    if (this.isShown) {
+      this.slideout.open();
+    }
+
+    this.slideout.on('open', () => this.show());
+    this.slideout.on('close', () => this.hide());
   }
 
   clearUnreadBelow() {

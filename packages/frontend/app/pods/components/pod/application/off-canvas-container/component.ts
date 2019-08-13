@@ -1,4 +1,4 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
@@ -15,7 +15,7 @@ export default class OffCanvasContainer extends Component {
   isLoggedIn!: boolean;
 
   @action
-  toggleSidebar(this: OffCanvasContainer) {
-    this.sidebar.toggle();
+  onInsert(sidebarElement: HTMLElement) {
+    this.sidebar.setup(sidebarElement);
   }
 }

@@ -44,6 +44,7 @@
     "qrcode": "^1.4.1",
     "shoelace-css": "^1.0.0-beta24",
     "showdown": "^1.9.0",
+    "slideout": "^1.0.1",
     "tweetnacl": "^1.0.1",
     "tweetnacl-util": "^0.15.0",
     "url-parse": "^1.4.0",

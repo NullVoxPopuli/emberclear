@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
+  height: var(--top-nav-height);
   background: var(--top-nav-bg);
   box-shadow: var(--top-nav-shadow);
   padding-left: var(--grid-gap);

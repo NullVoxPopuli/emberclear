@@ -178,12 +178,12 @@ export default class RelayConnection extends Service {
   };
 
   onChannelError = () => {
-    console.log('channel errored');
+    console.error('channel errored');
     if (this.socket) this.socket.disconnect();
   };
 
   onChannelClose = () => {
-    console.log('channel closed');
+    console.info('channel closed');
     if (this.socket) this.socket.disconnect();
   };
 

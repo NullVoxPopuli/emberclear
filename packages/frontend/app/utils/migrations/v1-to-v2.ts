@@ -20,11 +20,11 @@ export async function up(appInstance: ApplicationInstance) {
 
   // second, load all the data
   if (isMigrated) {
-    console.log('Migration not needed');
+    console.debug('Migration not needed');
     return;
   }
 
-  console.log('migration needed. Converting old data to { json:api } format');
+  console.debug('migration needed. Converting old data to { json:api } format');
   await migrateIdentities(appInstance);
   await migrateMessages(appInstance);
   await finalize(appInstance);

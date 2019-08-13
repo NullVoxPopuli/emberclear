@@ -1,130 +1,114 @@
-.sidebar-container {
-  position: fixed;
-  background: $sidebar-background;
-  z-index: 29;
-  box-shadow: $box-shadow;
-  min-width: 250px;
+aside {
+  background: var(--state-light);
+  padding: var(--grid-gap);
+  grid-gap: var(--grid-gap);
+
+  user-select: none;
+
+  /*
+  The sidebar is broken up into two sections:
+   - top (most things you'd care about)
+   - bottom (logout)
+  */
+
+  /* the top */
+  & div:first-child {
+    & .menu-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--grid-gap);
+
+      & a:first-child {
+        padding-left: 0;
+      }
+    }
+
+    & nav {
+      &.contacts,
+      &.channels {
+        padding-bottom: var(--grid-gap);
+      }
+
+      & a {
+        display: grid;
+        grid-gap: var(--grid-gap);
+        align-items: center;
+        grid-auto-flow: column;
+        justify-content: start;
+        padding: var(--grid-gap-small) var(--grid-gap);
+        border-radius: var(--button-border-radius);
 
 
-  &.is-sidebar-hidden {
-    left: -300px;
-  }
+        &.is-active {
+          background: var(--sidebar-nav-active-color);
+        }
 
-  &.is-sidebar-visible {
-    left: 0;
+        & > span {
+          display: grid;
+          grid-auto-flow: column;
+          justify-content: start;
+          grid-gap: var(--grid-gap);
+          align-items: center;
+        }
+      }
 
-    & .sidebar-buttons {
-      border-right: 1px solid darken($sidebar-background, 10%);
+      & em.offline {
+        color: var(--sidebar-hint-text);
+        padding-left: var(--grid-gap);
+      }
     }
   }
 
-  & .sidebar-buttons {
-    display: none;
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    top: 52px;
-    width: 3.25rem;
-    z-index: 31;
-    background: $sidebar-background;
-  }
+  /* the bottom */
+  & div + div {
+    align-self: end;
 
-  & aside {
-    height: 100vh;
-    overflow-y: auto;
-    background: var(--state-light);
-    display: flex;
-    justify-content: space-between;
-    flex: column;
-  }
-
-  & .sidebar-wrapper {
-    width: 100%;
-    z-index: 30;
-
-    .menu-label {
-      position: sticky;
-      top: 0px;
-      background: white;
-      z-index: 1;
-      padding-bottom: 8px;
+    & a {
+      display: block;
+      padding-left: var(--grid-gap);
+      padding-right: var(--grid-gap);
     }
-  }
-
-  & .sidebar-underlay {
-    visibility: hidden;
-    opacity: 0;
-    background: rgba(0,0,0,0.12);
-    z-index: 29;
-  }
-
-
-  & .offcanvas-trigger {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 31;
   }
 }
 
+main {
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
+}
 
-/* @include mobile { */
-/*   .sidebar-container { */
-/*     top: 0px; */
-/*     z-index: 31; */
 
-/*     &.is-sidebar-visible { */
-/*       .sidebar-underlay { */
-/*         visibility: visible; */
-/*         opacity: 1; */
-/*       } */
-/*     } */
+.slideout-menu {
+  position: fixed;
+  top: var(--top-nav-height);
+  bottom: 0;
+  width: 256px;
+  overflow-y: auto;
+  z-index: 0;
+  display: none;
+}
 
-/*     .offcanvas-trigger { */
-/*       display: none; */
-/*     } */
-/*   } */
-/* } */
+.slideout-menu-left {
+  left: 0;
+}
 
-/* @include tablet-only { */
-/*   .sidebar-container { */
-/*     min-width: 240px; */
-/*     top: 0px; */
-/*     z-index: 31; */
-/*   } */
-/* } */
+.slideout-menu-right {
+  right: 0;
+}
 
-/* @include desktop { */
-/*   .sidebar-container { */
-/*     position: static; */
-/*     @include default-transition; */
+.slideout-panel {
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  background-color: var(--sidebar-bg-color);
+  min-height: 100vh;
+}
 
-/*     .sidebar-wrapper { */
-/*       width: 100%; */
-/*       @include default-transition; */
-/*     } */
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
 
-/*     .sidebar-buttons { */
-/*       display: block; */
-/*     } */
-
-/*     &.is-sidebar-hidden { */
-/*       min-width: 3.25rem; */
-/*       width: 3.25rem; */
-
-/*       .sidebar-wrapper { */
-/*         margin-left: -100%; */
-/*       } */
-/*     } */
-
-/*     &.is-sidebar-visible { */
-/*       left: 3.25rem; */
-/*       min-width: 16rem; */
-/*       width: 16rem; */
-
-/*       .sidebar-wrapper { */
-/*         margin-left: 3.25rem; */
-/*       } */
-/*     } */
-/*   } */
-/* } */
+.slideout-open .slideout-menu {
+  display: grid;
+}

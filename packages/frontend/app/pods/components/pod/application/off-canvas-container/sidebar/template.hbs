@@ -1,45 +1,42 @@
-<div ...attributes>
-  <aside>
-    <div>
-      <div class='is-hidden-desktop'>
-        <Pod::Application::OffCanvasContainer::Sidebar::TopMobileSection />
-      </div>
-
-      {{#if this.hasUnreadAbove}}
-        <Pod::Application::OffCanvasContainer::Sidebar::UnreadIndicator
-          @onClick={{this.scrollUpToNearestUnread}}
-          @direction='up'
-        />
-      {{/if}}
-
-      <Pod::Application::OffCanvasContainer::Sidebar::Contacts @closeSidebar={{this.closeSidebar}} />
-      <Pod::Application::OffCanvasContainer::Sidebar::Channels @closeSidebar={{this.closeSidebar}} />
-
-      {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
-      {{#if this.hasUnreadBelow}}
-        <Pod::Application::OffCanvasContainer::Sidebar::UnreadIndicator
-          @onClick={{this.scrollDownToNearestUnread}}
-          @direction='down'
-        />
-      {{/if}}
-
+<aside ...attributes>
+  <div>
+    <div class='hide-sm-down'>
+      <Pod::Application::OffCanvasContainer::Sidebar::TopMobileSection />
     </div>
 
-    {{#if this.isLoggedIn}}
-      <div class='align-self-end'>
-        <hr class='divider m-b-sm'>
-
-        <a
-          class='navbar-item flex-row align-items-center'
-          {{action (queue
-            (action this.closeSidebar)
-            (transition-to 'logout'))
-          }}
-        >
-          <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
-          <span>{{t 'routes.logout'}}</span>
-        </a>
-      </div>
+    {{#if this.hasUnreadAbove}}
+      <Pod::Application::OffCanvasContainer::Sidebar::UnreadIndicator
+        @onClick={{this.scrollUpToNearestUnread}}
+        @direction='up'
+      />
     {{/if}}
-  </aside>
-</div>
+
+    <Pod::Application::OffCanvasContainer::Sidebar::Contacts @closeSidebar={{this.closeSidebar}} />
+    <Pod::Application::OffCanvasContainer::Sidebar::Channels @closeSidebar={{this.closeSidebar}} />
+
+    {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
+    {{#if this.hasUnreadBelow}}
+      <Pod::Application::OffCanvasContainer::Sidebar::UnreadIndicator
+        @onClick={{this.scrollDownToNearestUnread}}
+        @direction='down'
+      />
+    {{/if}}
+
+  </div>
+
+  {{#if this.isLoggedIn}}
+    <div>
+      <hr>
+
+      <a
+        {{action (queue
+          (action this.closeSidebar)
+          (transition-to 'logout'))
+        }}
+      >
+        {{fa-icon 'sign-out-alt' prefix='fas'}}
+        {{t 'routes.logout'}}
+      </a>
+    </div>
+  {{/if}}
+</aside>

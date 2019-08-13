@@ -1,25 +1,22 @@
 <Collapsible as |isOpen toggle Icon|>
-  <p
-    data-test-sidebar-contacts-header
-    class='menu-label m-t-sm m-b-sm flex-row justify-content-space-between align-items-center'
-  >
-    <a class='flex-row align-items-center' {{action toggle}}>
-      <Icon class='w-1' @isOpen={{isOpen}} />
-      <span class='has-text-black'>{{t 'ui.sidebar.contacts.title'}}</span>
+  <div data-test-sidebar-contacts-header class='menu-label'>
+    <a class='has-icon' {{on 'click' (prevent-default toggle)}}>
+      <Icon @isOpen={{isOpen}} />
+      {{t 'ui.sidebar.contacts.title'}}
     </a>
 
     <a
       data-test-add-friend
-      class='button is-small'
+      class='button button-xs'
       href={{url-for 'add-friend'}}
       {{on 'click' (prevent-default this.onClickAddFriend)}}
     >
       <span class='icon'>{{fa-icon 'plus'}}</span>
     </a>
-  </p>
+  </div>
 
   {{#if isOpen}}
-    <ul data-test-sidebar-contacts-list class='menu-list'>
+    <nav class='contacts'>
       <Pod::Application::OffCanvasContainer::Sidebar::Contacts::Contact
         @contact={{this.currentUser.record}}
         @closeSidebar={{@closeSidebar}}
@@ -33,11 +30,11 @@
       {{/each}}
 
       {{#if this.showOfflineCounter}}
-        <li data-test-offline-count class='p-l-md m-t-sm has-text-grey-dark is-italic'>
+        <em data-test-offline-count class='offline'>
           <small>{{t 'ui.sidebar.contacts.numOffline' num=this.numberOffline}}</small>
-        </li>
+        </em>
       {{/if}}
-    </ul>
+    </nav>
   {{/if}}
 
 </Collapsible>

@@ -17,7 +17,7 @@ module.exports = {
     'ember/use-brace-expansion': 'off', // won't matter with @tracked
 
     // cleanliness & consistency
-    'no-console': 'warn',
+    'no-console': ['error', { allow: ['debug', 'warn', 'error', 'info'] }],
     'no-cond-assign': 'off',
     'no-useless-escape': 'off',
     'require-yield': 'off',

@@ -1,28 +1,25 @@
 {{#if this.isLoggedIn}}
-  <span class='is-size-4'>{{this.name}}</span>
+  <h4>{{this.name}}</h4>
 
-  <ul class='menu-list'>
-    <li>
-      <a {{action (queue
-        (action this.closeSidebar)
-        (transition-to 'contacts'))
-      }}>
-        <span class='icon'>{{fa-icon 'address-book' prefix='fas'}}</span>
-        <span>{{t 'routes.contacts'}}</span>
-      </a>
-    </li>
+  <nav>
+    <a
+      href={{url-for 'contacts'}}
+      class='has-icon'
+      {{on 'click' (queue this.closeSidebar (transition-to 'contacts'))}}
+    >
+      {{fa-icon 'address-book' prefix='fas'}}
+      {{t 'routes.contacts'}}
+    </a>
 
-    <li>
-      <a {{action (queue
-        (action this.closeSidebar)
-        (transition-to 'settings'))
-      }}>
-        <span class='icon'>{{fa-icon 'sliders-h'}}</span>
-        <span>{{t 'routes.settings'}}</span>
-      </a>
-    </li>
+    <a
+      href={{url-for 'settings'}}
+      class='has-icon'
+      {{on 'click' (queue this.closeSidebar (transition-to 'settings'))}}
+    >
+      {{fa-icon 'sliders-h'}}
+      {{t 'routes.settings'}}
+    </a>
+  </nav>
 
-  </ul>
-
-  <hr class='divider m-b-sm m-t-sm'>
+  <hr>
 {{/if}}
