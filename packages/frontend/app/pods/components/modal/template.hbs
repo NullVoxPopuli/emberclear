@@ -14,17 +14,9 @@
   />
 
   <div class='modal-content'>
-    <div class='box {{@boxClasses}}'>
-      {{#if @isActive}}
-        {{yield}}
-      {{/if}}
-    </div>
+    {{#if @isActive}}
+      {{yield}}
+    {{/if}}
   </div>
-
-  <button
-    class='modal-close is-large'
-    aria-label={{t 'buttons.ariaLabel.closeModal'}}
-    {{action @close}}
-  />
 </div>
 

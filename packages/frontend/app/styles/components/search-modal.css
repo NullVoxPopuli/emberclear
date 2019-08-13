@@ -1,0 +1,28 @@
+[role='search'].modal {
+
+  & .section-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  & .input-field {
+    margin-bottom: var(--grid-gap);
+  }
+
+  & div[tablist] {
+    & a {
+      display: flex;
+      justify-content: space-between;
+      border-radius: var(--component-border-radius);
+      color: var(--search-result-text-color);
+      outline: none;
+      padding: 0 var(--grid-gap-tiny);
+      border: 1px solid transparent;
+
+      &:hover, &:active, &:focus {
+        border: 1px solid var(--search-result-border-color);
+        background: var(--search-result-hover-bg);
+      }
+    }
+  }
+}

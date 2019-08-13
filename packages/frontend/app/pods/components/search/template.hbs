@@ -3,58 +3,54 @@
   @close={{action @close}}
   role='search'>
 
-  <div class='field'>
-    <div class='control'>
-      <input
-        autofocus
-        type='text'
-        class='input is-large'
-        value={{this.searchText}}
-        placeholder={{t 'ui.search.title'}}
-        {{on 'input' this.onInput}}
-        {{did-insert this.submitSearch}}
-        {{did-insert this.focusInput}}
-      >
-    </div>
-  </div>
+  <Field @label={{t 'ui.search.title'}} @hidden={{true}} as |id|>
+    <input
+      autofocus
+      type='text'
+      id={{id}}
+      class='input-lg'
+      value={{this.searchText}}
+      placeholder={{t 'ui.search.title'}}
+      {{on 'input' this.onInput}}
+      {{did-insert this.submitSearch}}
+      {{did-insert this.focusInput}}
+    >
+  </Field>
 
-  <div
-    class='m-t-lg overflows'
-    style='max-height: 250px; margin-right: -1rem; padding-right: 1rem;'
-  >
+  <div style='max-height: 250px; margin-right: -1rem; padding-right: 1rem;'>
     {{#if (not this.hasResults)}}
       {{t 'ui.search.nothingFound'}}
     {{else}}
-      <h5 class='is-size-7 is-uppercase'>{{t 'ui.search.contacts'}}</h5>
+      <span class='section-title'>{{t 'ui.search.contacts'}}</span>
 
       {{#each this.contactResults as |identity|}}
         <div tablist>
-          <Result @to='chat.privately-with' @id={{identity.uid}} @afterSelect={{action @close}}>
+          <Search::Result @to='chat.privately-with' @id={{identity.uid}} @afterSelect={{action @close}}>
             <span>
               @ <strong class='has-text-link'>{{identity.name}}</strong>
             </span>
             <span class='has-text-grey'>
               {{first-8 identity.uid}}
             </span>
-          </Result>
+          </Search::Result>
         </div>
       {{else}}
         {{t 'ui.search.noContacts'}}
       {{/each}}
 
-      <hr class='m-t-sm m-b-sm'>
-      <h5 class='is-size-7 is-uppercase'>{{t 'ui.search.channels'}}</h5>
+      <hr>
+      <span class='section-title'>{{t 'ui.search.channels'}}</span>
 
       {{#each this.channelResults as |channel|}}
         <div tablist>
-          <Result @to='chat.in-channel' @id={{channel.id}} @afterSelect={{action @close}}>
+          <Search::Result @to='chat.in-channel' @id={{channel.id}} @afterSelect={{action @close}}>
             <span>
               # <strong class='has-text-link'>{{channel.name}}</strong>
             </span>
             <span class='has-text-grey'>
               {{first-8 channel.id}}
             </span>
-          </Result>
+          </Search::Result>
         </div>
       {{else}}
         {{t 'ui.search.noChannels'}}

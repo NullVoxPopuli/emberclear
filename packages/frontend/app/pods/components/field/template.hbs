@@ -3,11 +3,11 @@
   {{#if @label}}
     <label
       class={{if @hidden 'hide-xs-up'}}
-      for={{@label}}
+      for={{this.id}}
     >
       {{@label}}
     </label>
   {{/if}}
 
-  {{yield}}
+  {{yield this.id}}
 </div>

@@ -4,6 +4,8 @@
 @import './components/top-nav.css';
 
 @import './components/sidebar.css';
+@import './components/modal.css';
+@import './components/search-modal.css';
 
 /* @import url('/assets/theme.css'); */
 
@@ -29,6 +31,14 @@
   --sidebar-bg-color: var(--state-light);
   --sidebar-nav-active-color: var(--color-light-gray);
   --sidebar-hint-text: var(--color-medium-gray);
+
+  --modal-overlay-color: rgba(0,0,0,0.12);
+  --modal-content-bg: var(--state-light);
+  --modal-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+
+  --search-result-text-color: var(--color-gray);
+  --search-result-hover-bg: var(--color--gray);
+  --search-result-border-color: var(--color-gray);
 }
 
 * {

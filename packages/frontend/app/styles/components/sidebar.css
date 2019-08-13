@@ -32,10 +32,11 @@ aside {
 
       & a {
         display: grid;
+        grid-auto-flow: column;
         grid-gap: var(--grid-gap);
         align-items: center;
-        grid-auto-flow: column;
         justify-content: start;
+
         padding: var(--grid-gap-small) var(--grid-gap);
         border-radius: var(--button-border-radius);
 
@@ -47,9 +48,9 @@ aside {
         & > span {
           display: grid;
           grid-auto-flow: column;
-          justify-content: start;
           grid-gap: var(--grid-gap);
           align-items: center;
+          justify-content: start;
         }
       }
 

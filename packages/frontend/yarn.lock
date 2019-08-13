@@ -5684,15 +5684,6 @@ ember-decorators-polyfill@^1.0.4:
     ember-cli-version-checker "^3.1.3"
     ember-compatibility-helpers "^1.2.0"
 
-ember-elsewhere@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-elsewhere/-/ember-elsewhere-1.1.0.tgz#8663727e95b0b2491fe76a74ed89197e26dd95f0"
-  integrity sha512-lxRsI7zCYwZbJPchkogz2uMpDZRbqzDhove3E6IFrl/kecSlQSOXXRgcC8blfyJ5LwM637frmhlyARHVGFoZ2Q==
-  dependencies:
-    ember-cli-babel "^6.16.0"
-    ember-cli-htmlbars "^3.0.0"
-    ember-let-polyfill "^0.1.0"
-
 ember-exam@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/ember-exam/-/ember-exam-4.0.0.tgz#e7698ba4d792ba2e25a6dc8d92865cea94d2b65b"
@@ -5790,14 +5781,6 @@ ember-keyboard@^4.0.0:
   dependencies:
     babel-plugin-transform-object-rest-spread "^6.26.0"
     ember-cli-babel "^6.6.0"
-
-ember-let-polyfill@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/ember-let-polyfill/-/ember-let-polyfill-0.1.0.tgz#9d37c610441eb41eaaea3a6782bbd4203f5cf0a9"
-  integrity sha512-olLHpS7JnqZcfyYRXcdLATYwDIopKA+ZzI8xswzCIcBYoRgoUJY7E/eW84Unu8ea1jtr/Unx+dQrsU+NrNSoBg==
-  dependencies:
-    ember-cli-babel "^6.16.0"
-    ember-cli-version-checker "^2.1.2"
 
 ember-load-initializers@2.0.0:
   version "2.0.0"
