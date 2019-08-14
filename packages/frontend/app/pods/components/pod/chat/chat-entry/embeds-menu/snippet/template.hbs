@@ -1,16 +1,17 @@
 <Modal @isActive={{@isActive}} @close={{@close}}>
-  <h5 class='is-size-5 m-b-md'>
-    {{t 'ui.chat.codeModal.title' to=@sendTo.name}}
+  <h5>
+    {{t 'ui.chat.codeModal.title'}} <strong>{{@sendTo.name}}</strong>
   </h5>
 
-  <div class='flex-row m-b-md m-r-sm'>
+  <hr>
+
+  <div class='snippet-title-bar'>
     <Input
-      class='input'
       placeholder='Title (optional)'
       @value={{this.title}}
     />
 
-    <div class='select m-l-sm'>
+    <div>
       <select onchange={{action (mut this.language) value='target.value'}}>
         {{#each this.languages as |availableLanguage|}}
           <option value={{availableLanguage}}>{{availableLanguage}}</option>
@@ -21,16 +22,15 @@
 
   {{textarea
     autofocus=true
-    role='snippet-entry'
-    class='input transition-all m-b-md snippet-entry'
+    class='snippet-entry'
     value=this.text
   }}
 
-  <div class='flex-row justify-content-end'>
-    <button class='button m-r-sm' {{action @close}}>
+  <div class='button-group right-aligned'>
+    <button class='button-secondary' {{on 'click' @close}}>
       {{t 'buttons.cancel'}}
     </button>
-    <button class='button is-primary' {{action this.sendMessage}}>
+    <button {{on 'click' this.sendMessage}}>
       {{t 'buttons.sendSnippet'}}
     </button>
   </div>

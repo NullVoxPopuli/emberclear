@@ -1,10 +1,7 @@
 <Dropdown @dir={{'up'}} @buttonIcon='plus' as |closeMenu|>
 
   <ModalStatic @name='code-or-snippet' as |_isActive actions|>
-    <a
-      class='dropdown-item flex align-items-center'
-      {{action (queue (action actions.toggle) closeMenu)}}
-    >
+    <a {{on 'click' (queue (action actions.toggle) closeMenu)}}>
       {{fa-icon 'code'}}
       {{t 'ui.chat.embedMenu.code'}}
     </a>

@@ -207,7 +207,7 @@ ui:
       audio: Start Audio Chat
 
     codeModal:
-      title: Send Code or Snippet to <strong>{to}</strong>
+      title: Send Code or Snippet to
 
   faq:
     title: F.A.Q

@@ -8,7 +8,8 @@
 @import './components/top-nav.css';
 @import './components/sidebar.css';
 @import './components/modal.css';
-@import './components/search-modal.css';
+@import './components/modal-search.css';
+@import './components/modal-snippets.css';
 @import './components/key.css';
 @import './components/messages.css';
 @import './components/hover-tip.css';
@@ -48,6 +49,15 @@ hr {
   transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045);
 }
 
+.button-group {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-auto-flow: column;
+
+  &.right-aligned {
+    justify-content: end;
+  }
+}
 
 .hero {
   height: 100vh;
