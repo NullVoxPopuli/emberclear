@@ -8,7 +8,7 @@
     }
   }
 
-  .hover-tip {
+  & .hover-tip {
     &:hover {
       opacity: 1;
     }
@@ -24,7 +24,7 @@
   position: relative;
 
   &.is-active {
-    .hover-tip {
+    & .hover-tip {
       opacity: 1;
     }
   }
@@ -50,9 +50,9 @@
   }
 }
 
-// custom animations...
+/* custom animations... */
 .has-status-tip.is-active, .has-hover-tip:hover {
-  .floats-up {
+  & .floats-up {
     bottom: 50px;
   }
 }

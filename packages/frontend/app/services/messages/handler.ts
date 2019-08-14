@@ -3,13 +3,13 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
 import Identity from 'emberclear/models/identity';
-import Notifications from 'emberclear/services/notifications/service';
+import Notifications from 'emberclear/services/notifications';
 import Message, { TYPE, TARGET } from 'emberclear/models/message';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';
-import AutoResponder from 'emberclear/services/messages/auto-responder/service';
+import AutoResponder from 'emberclear/services/messages/auto-responder';
 
 export default class ReceivedMessageHandler extends Service {
   @service store!: StoreService;

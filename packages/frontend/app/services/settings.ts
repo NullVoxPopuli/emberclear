@@ -6,7 +6,7 @@ import { PromiseMonitor, monitor } from 'ember-computed-promise-monitor';
 
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
-import CurrentUserService from './current-user/service';
+import CurrentUserService from './current-user';
 
 import { objectToDataURL, toHex, fromHex } from 'emberclear/utils/string-encoding';
 

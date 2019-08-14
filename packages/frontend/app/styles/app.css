@@ -1,67 +1,23 @@
 
 
 @import url('shoelace.css');
-@import './components/top-nav.css';
 
+@import './themes/default.css';
+@import './themes/dark.css';
+
+@import './components/top-nav.css';
 @import './components/sidebar.css';
 @import './components/modal.css';
 @import './components/search-modal.css';
 @import './components/key.css';
+@import './components/messages.css';
+@import './components/hover-tip.css';
+@import './components/ellipsis-loader.css';
+@import './components/chat-entry.css';
 
 /* @import url('/assets/theme.css'); */
 
 /* variables to actually keep */
-:root {
-  --color-purple: hsl(253, 84%, 53%);
-  --color-gray: #334;
-  --color-medium-gray: #555;
-  --color-medium-light-gray: #aaa;
-  --color-light-gray: #efefef;
-  --state-primary: var(--color-purple);
-
-  --link-color: var(--state-dark);
-  --placeholder-color: var(--color-medium-light-gray);
-
-  --grid-gap: 0.75rem;
-  --grid-gap-small: 0.5rem;
-  --grid-gap-tiny: 0.25rem;
-  --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.12);
-  --hint-color: var(--color-medium-gray);
-
-  --top-nav-bg: var(--state-light);
-  --top-nav-shadow: var(--shadow);
-  --top-nav-height: 50px;
-
-  --sidebar-bg-color: var(--state-light);
-  --sidebar-nav-active-color: var(--color-light-gray);
-  --sidebar-hint-text: var(--hint-color);
-
-  --modal-overlay-color: rgba(0,0,0,0.12);
-  --modal-content-bg: var(--state-light);
-  --modal-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-
-  --search-result-text-color: var(--color-gray);
-  --search-result-hover-bg: var(--color--gray);
-  --search-result-border-color: var(--color-gray);
-  --search-divider-color: var(--color-light-gray);
-
-  --key-color: var(--color-light-gray);
-  --key-bg-color: #72767d;
-  --key-border-color: #202225;
-  --key-shadow-color: rgba(35, 39, 42, 0.6);
-}
-
-.dark-theme {
-  --state-light: var(--color-gray);
-  --state-dark: var(--color-white);
-
-  --body-bg-color: var(--color-gray);
-  --body-color: var(--color-white);
-
-  --link-color: var(--color-white);
-
-  --sidebar-bg-color: var(--color-gray);
-}
 
 * {
   box-sizing: border-box;

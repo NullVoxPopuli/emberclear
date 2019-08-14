@@ -6,7 +6,7 @@ import { alias, equal } from '@ember/object/computed';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
-import Sidebar from 'emberclear/services/sidebar/service';
+import Sidebar from 'emberclear/services/sidebar';
 import { selectUnreadMessages } from 'emberclear/models/message/utils';
 import RouterService from '@ember/routing/router-service';
 

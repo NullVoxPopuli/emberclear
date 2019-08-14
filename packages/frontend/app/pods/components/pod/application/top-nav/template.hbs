@@ -2,7 +2,7 @@
 
   <div class='left-nav'>
     {{#if this.isLoggedIn}}
-      <div class='hide-sm-down'>
+      <div class='hide-sm-up'>
         <HamburgerButton
           @class='flex'
           @onClick={{this.sidebar.toggle}}
@@ -30,8 +30,9 @@
 
 
     {{#if this.isLoggedIn}}
-      <CurrentChatName as |isVisible name record|>
+      <CurrentChatName class='current-chat' as |isVisible name record|>
         {{#if isVisible}}
+          <hr class='vertical hide-xs-down'>
           <span class='chat-name'>
             {{name}}
           </span>

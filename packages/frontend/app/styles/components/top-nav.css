@@ -33,6 +33,7 @@
 }
 
 .top-nav.is-inverted .burger,
+.top-nav.is-inverted .chat-name,
 .top-nav.is-inverted > .left-nav > a,
 .top-nav.is-inverted > .right-nav > a,
 .top-nav.is-inverted .dropdown-trigger {
@@ -55,5 +56,17 @@
 
 .top-nav .right-nav {
   justify-self: end;
+}
+
+.top-nav .current-chat {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-auto-flow: column;
+
+  align-items: center;
+
+  & hr {
+    margin: 0 var(--grid-gap-tiny);
+  }
 }
 

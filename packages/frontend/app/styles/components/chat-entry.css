@@ -1,0 +1,15 @@
+form.chat-entry {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: var(--grid-gap);
+  align-items: center;
+  justify-content: stretch;
+
+  & .input-field {
+    margin: 0;
+  }
+
+  & textarea {
+
+  }
+}

@@ -1,5 +1,5 @@
 <div
-  class='message-list flex-column justify-content-end no-overflow'
+  class='message-list'
   {{did-update this.determineIfLastIsVisible @messages}}
   {{did-insert this.determineIfLastIsVisible @messages}}
   {{unread-message-list-observer markRead=(action (perform this.markRead))}}
@@ -12,7 +12,7 @@
   {{#vertical-collection
     @messages
     tagName='div'
-    class='messages justify-content-end overflows'
+    class='messages'
     estimateHeight=100
     staticHeight=false
     bufferSize=5

@@ -5,7 +5,7 @@ import { isPresent } from '@ember/utils';
 import { IQueryParams } from './controller';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
-import RedirectManager from 'emberclear/services/redirect-manager/service';
+import RedirectManager from 'emberclear/services/redirect-manager';
 import CurrentUserService from 'emberclear/services/current-user';
 
 export default class InviteRoute extends Route {

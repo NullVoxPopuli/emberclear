@@ -7,7 +7,7 @@ import { task } from 'ember-concurrency';
 import RelayConnection from 'emberclear/services/relay-connection';
 import CurrentUserService from 'emberclear/services/current-user';
 
-import Notifications from 'emberclear/services/notifications/service';
+import Notifications from 'emberclear/services/notifications';
 import Message from 'emberclear/models/message';
 import Channel from 'emberclear/models/channel';
 import StatusManager from 'emberclear/services/status-manager';

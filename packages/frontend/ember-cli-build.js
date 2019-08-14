@@ -181,49 +181,19 @@ module.exports = function(defaults) {
     destDir: '/libraries/qr-scanner/',
   });
 
-  // let tempShoelace = new Funnel('node_modules/shoelace-css/source/css', {
-  //   destDir: '/assets/shoelace',
-  // });
-
-  // let tempShoelaceDist = new Funnel('node_modules/shoelace-css/dist/', {
-  //   include: ['shoelace.css'],
-  //   destDir: '/assets/',
-  // });
-
-  // let newAppCss = new Funnel('app/styles', {
-  //   include: ['app-new.css'],
-  //   destDir: '/assets/',
-  //   getDestinationPath(relativePath) {
-  //     if (relativePath === 'app-new.css') {
-  //       return 'emberclear-new.css';
-  //     }
-
-  //     return relativePath;
-  //   },
-  // });
-
   // uuid
   app.import('node_modules/uuid/index.js', {
     using: [{ transformation: 'cjs', as: 'uuid' }],
   });
 
-  // return require('@embroider/compat').compatBuild(
-  // app,
-  // require('@embroider/webpack').Webpack,
-  // {
+  // return require('@embroider/compat').compatBuild(app, require('@embroider/webpack').Webpack, {
   //   extraPublicTrees: [qrScannerWorker],
   //   // staticAddonTestSupportTrees: true,
   //   // staticAddonTrees: true,
   //   // staticHelpers: true,
   //   // staticComponents: true,
   //   // splitAtRoutes: true,
-  //   skipBabel: [],
+  //   // skipBabel: [],
   // });
-  return mergeTrees([
-    app.toTree(),
-    qrScannerWorker,
-    // tempShoelace,
-    // newAppCss,
-    // tempShoelaceDist
-  ]);
+  return mergeTrees([app.toTree(), qrScannerWorker]);
 };

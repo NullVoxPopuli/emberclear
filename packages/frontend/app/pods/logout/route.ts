@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
-import Sidebar from 'emberclear/services/sidebar/service';
+import Sidebar from 'emberclear/services/sidebar';
 
 export default class LogoutRoute extends Route {
   @service currentUser!: CurrentUserService;

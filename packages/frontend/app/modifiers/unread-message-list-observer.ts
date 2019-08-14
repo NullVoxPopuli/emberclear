@@ -2,7 +2,7 @@ import Modifier from 'ember-oo-modifiers';
 import StoreService from 'ember-data/store';
 import { inject as service } from '@ember/service';
 
-import SidebarService from 'emberclear/services/sidebar/service';
+import SidebarService from 'emberclear/services/sidebar';
 
 import { isInElementWithinViewport } from 'emberclear/utils/dom/utils';
 import Message from 'emberclear/models/message';

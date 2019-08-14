@@ -5,7 +5,7 @@ import { reads } from '@ember/object/computed';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
-import Sidebar from 'emberclear/services/sidebar/service';
+import Sidebar from 'emberclear/services/sidebar';
 
 export default class OffCanvasContainer extends Component {
   @service currentUser!: CurrentUserService;

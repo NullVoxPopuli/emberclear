@@ -1,13 +1,15 @@
-.message-list {
-  flex: 1 1 0%;
-  display: flex;
-  position: relative;
+.chat-container {
+  height: calc(100vh - var(--top-nav-height));
 
-  .messages {
-    // overflow-y: auto;
-    // min-height: auto;
-    // max-height: 100%;
-    // padding-top: 50px;
+  display: grid;
+  grid-template-rows: 1fr 60px;
+
+  & .chat-entry-container {
+    align-self: end;
+  }
+
+  & .message-list {
+    align-self: end;
   }
 }
 
@@ -40,9 +42,9 @@
     margin-bottom: 0;
   }
 
-  p { padding: 5px; }
+  & p { padding: 5px; }
 
-  .confirmations {
+  & .confirmations {
     font-size: 0.8rem;
     position: absolute;
     right: 0.5rem;
@@ -52,22 +54,22 @@
     }
   }
 
-  .message-body {
+  & .message-body {
     border: none;
     background-color: transparent;
   }
 
-  .message-header {
+  & .message-header {
     color: $text;
     padding: 5px;
     background-color: transparent;
     cursor: default;
 
-    .from {
+    & .from {
       font-style: bold;
     }
 
-    .sentAt {
+    & .sentAt {
       font-weight: lighter;
       color: lighten($grey, 20%);
     }
@@ -76,7 +78,7 @@
 
 .embedded-resource {
   margin: 5px;
-  img, iframe {
+  & img, & iframe {
     max-width: 480px;
     max-height: 270px;
   }
@@ -92,11 +94,11 @@
   left: 15px;
 
   &.hidden {
-    // TODO: use ember-animated
+    /* TODO: use ember-animated */
     bottom: -150px;
   }
 
-  a {
+  & a {
     color: findColorInvert($blue);
   }
 

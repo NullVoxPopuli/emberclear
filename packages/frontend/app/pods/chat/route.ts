@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import RelayManager from 'emberclear/services/relay-manager';
-import RedirectManager from 'emberclear/services/redirect-manager/service';
+import RedirectManager from 'emberclear/services/redirect-manager';
 import Message from 'emberclear/models/message';
 
 export interface IModel {

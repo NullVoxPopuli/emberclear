@@ -1,0 +1,12 @@
+.dark-theme {
+  --state-light: var(--color-gray);
+  --state-dark: var(--color-white);
+
+  --body-bg-color: var(--color-gray);
+  --body-color: var(--color-white);
+
+  --link-color: var(--color-white);
+
+  --sidebar-bg-color: var(--color-gray);
+}
+

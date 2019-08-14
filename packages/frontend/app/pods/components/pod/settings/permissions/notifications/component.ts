@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
 
-import NotificationsService from 'emberclear/services/notifications/service';
+import NotificationsService from 'emberclear/services/notifications';
 
 // TODO: extract per-permission components
 export default class Permissions extends Component {

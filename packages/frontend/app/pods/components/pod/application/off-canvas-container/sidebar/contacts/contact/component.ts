@@ -10,7 +10,7 @@ import { task } from 'ember-concurrency';
 import Message from 'emberclear/models/message';
 import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 import SettingsService from 'emberclear/services/settings';
-import SidebarService from 'emberclear/services/sidebar/service';
+import SidebarService from 'emberclear/services/sidebar';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 import RouterService from '@ember/routing/router-service';
 import Contact, { STATUS } from 'emberclear/models/contact';

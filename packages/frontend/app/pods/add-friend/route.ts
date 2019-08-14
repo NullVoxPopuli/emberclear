@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
-import RedirectManager from 'emberclear/services/redirect-manager/service';
+import RedirectManager from 'emberclear/services/redirect-manager';
 
 export default class AddFriendRoute extends Route {
   @service currentUser!: CurrentUserService;

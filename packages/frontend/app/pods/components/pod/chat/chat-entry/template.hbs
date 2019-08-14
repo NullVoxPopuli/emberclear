@@ -1,30 +1,28 @@
-<div ...attributes>
+<div class='chat-entry-container' ...attributes>
   <form
     data-test-chat-entry-form
-    class='chat-entry flex-row field has-addons flex-grow m-b-sm'
+    class='chat-entry'
     {{on 'submit' (prevent-default this.sendMessage)}}
   >
     <div class='control flex'>
       <Pod::Chat::ChatEntry::EmbedsMenu @sendTo={{@to}} />
     </div>
 
-    <div class='control flex-grow resizable-textarea'>
+    <Field @label={{this.placeholder}} @hidden={{true}} as |id|>
       {{!-- TODO: extract to a resizable textarea component --}}
       <textarea
         {{did-insert this.onInsertTextArea}}
         autofocus
         data-test-chat-entry
+        id={{id}}
         disabled={{this.isDisabled}}
         role='chat-entry'
-        class='input transition-all chat-entry'
         value={{this.text}}
         placeholder={{this.placeholder}}
         {{on 'input' this.onInput}}
         {{on 'keypress' this.onKeyPress}}
       />
-
-      <div class='textarea-size'></div>
-    </div>
+    </Field>
 
     <div class='control flex-column'>
       <input

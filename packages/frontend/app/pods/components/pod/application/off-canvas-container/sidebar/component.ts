@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { reads, alias } from '@ember/object/computed';
 
-import SidebarService from 'emberclear/services/sidebar/service';
+import SidebarService from 'emberclear/services/sidebar';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import Modals from 'emberclear/services/modals';
