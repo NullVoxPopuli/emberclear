@@ -77,6 +77,11 @@ hr {
 
 a {
   cursor: pointer;
+
+  & svg + span,
+  & span + svg {
+    margin-left: var(--grid-gap);
+  }
 }
 
 a:hover {
@@ -152,6 +157,7 @@ svg.svg-inline--fa {
   }
 
   &.invisible {
+    background-color: transparent;
     display: block;
   }
 }

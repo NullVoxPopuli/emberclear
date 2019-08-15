@@ -1,3 +1,7 @@
+{{#if this.isOpen}}
+  <KeyboardPress @key='Escape' @onDown={{this.toggleMenu}} />
+{{/if}}
+
 <div
   class='
     dropdown

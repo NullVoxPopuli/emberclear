@@ -12,11 +12,12 @@
       {{!-- TODO: extract to a resizable textarea component --}}
       <textarea
         {{did-insert this.onInsertTextArea}}
+        {{did-update this.resize this.text}}
         autofocus
         data-test-chat-entry
         id={{id}}
         disabled={{this.isDisabled}}
-        role='chat-entry'
+        role='chat-entry transition-all'
         value={{this.text}}
         placeholder={{this.placeholder}}
         {{on 'input' this.onInput}}

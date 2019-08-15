@@ -5,13 +5,24 @@
   grid-template-rows: 1fr 60px;
   padding: 0 var(--grid-gap);
   padding-bottom: var(--grid-gap);
+  overflow: hidden;
 
   & .chat-entry-container {
     align-self: end;
   }
 
   & .message-list {
+
+    flex: 1 1 0%;
+    display: flex;
+    position: relative;
+
     align-self: end;
+    overflow: hidden;
+
+    & .messages {
+      overflow-y: auto;
+    }
   }
 }
 

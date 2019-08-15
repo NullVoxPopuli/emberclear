@@ -31,7 +31,7 @@ export default class UserDropMenu extends Component {
 
   @action
   toggleMenu(e) {
-    e.preventDefault();
+    e && e.preventDefault();
 
     this.showDropdown ? this.closeMenu() : this.openMenu();
   }

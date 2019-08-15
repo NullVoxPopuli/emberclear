@@ -45,6 +45,10 @@ export default class ChatEntry extends Component<IArgs> {
     this.textarea = element;
   }
 
+  @action resize(element: HTMLTextAreaElement) {
+    element.style.height = `${element.scrollHeight}px`;
+  }
+
   @action async sendMessage() {
     if (!this.text) return;
 
@@ -61,6 +65,7 @@ export default class ChatEntry extends Component<IArgs> {
       // this feels hacky :-\
       later(() => {
         this.textarea.focus();
+        this.textarea.style.height = null;
       }, 1);
     });
   }

@@ -1,3 +1,7 @@
+{{#if this.showDropdown}}
+  <KeyboardPress @key='Escape' @onDown={{this.toggleMenu}} />
+{{/if}}
+
 <div class='dropdown dropdown-left {{if this.showDropdown 'active'}}' ...attributes>
   <a
     data-test-user-dropdown-toggle
@@ -33,6 +37,7 @@
   <Backdrop
     @isActive={{this.showDropdown}}
     @onClick={{action this.closeMenu}}
+    @isInvisible={{this.showDropdown}}
     style='z-index: 30;'
   />
 </div>

@@ -22,7 +22,9 @@ form.chat-entry {
     box-shadow: none;
     resize: none;
     height: var(--chat-entry-line-height);
-    line-height: 1.2rem;
+    line-height: var(--line-height);
+    box-sizing: unset;
+    max-height: 12rem; /* 10x line-height */
   }
 
   & .dropdown-trigger {
