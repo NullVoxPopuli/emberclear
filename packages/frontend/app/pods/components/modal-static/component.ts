@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 
 import Modals from 'emberclear/services/modals';
@@ -29,6 +30,7 @@ export default class ModalStatic extends Component<IArgs> {
 
   @reads('modal.isActive') isActive!: boolean;
 
+  @action
   toggle() {
     if (this.isActive) {
       this.close();
@@ -37,10 +39,12 @@ export default class ModalStatic extends Component<IArgs> {
     }
   }
 
+  @action
   close() {
     this.modals.close(this.args.name);
   }
 
+  @action
   open() {
     this.modals.open(this.args.name);
   }

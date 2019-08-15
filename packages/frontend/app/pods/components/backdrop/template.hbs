@@ -1,7 +1,11 @@
 <div
-  role='button'
-  aria-label={{t 'buttons.ariaLabel.menuBackdrop'}}
-  class='no-select full-overlay {{if @isActive 'is-active'}}'
+  aria-label={{t 'buttons.ariaLabel.modalBackdrop'}}
   ...attributes
-  {{action @onClick}}
+  role='button'
+  class='
+   full-overlay
+   {{if @isInvisible 'invisible'}}
+   {{if @isActive 'active'}}
+  '
+  {{on 'click' @onClick}}
 />

@@ -6,6 +6,7 @@
   left: 0;
   z-index: 1000000;
 
+
   display: none;
   justify-content: center;
   align-items: center;
@@ -14,20 +15,12 @@
     display: flex;
   }
 
-  & .modal-background {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: var(--modal-overlay-color);
-  }
-
   & .modal-content {
+    z-index: 1;
+    transition: all 2s ease 0s;
     margin: 0 var(--grid-gap);
     overflow: auto;
     position: relative;
-    max-height: calc(100vh - 100px);
     background: var(--modal-content-bg);
     padding: var(--grid-gap);
     border-radius: var(--component-border-radius);

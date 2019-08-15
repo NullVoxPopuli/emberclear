@@ -3,6 +3,8 @@
 
   display: grid;
   grid-template-rows: 1fr 60px;
+  padding: 0 var(--grid-gap);
+  padding-bottom: var(--grid-gap);
 
   & .chat-entry-container {
     align-self: end;
@@ -88,18 +90,22 @@
   position: absolute;
   background: $info;
   box-shadow: $box-shadow;
-  color: findColorInvert($blue);
+  /* color: findColorInvert($blue); */
   border-radius: 2px;
   bottom: 10px;
   left: 15px;
+  opacity: 1;
+  z-index: 1;
 
   &.hidden {
     /* TODO: use ember-animated */
-    bottom: -150px;
+    bottom: 50px;
+    opacity: 0;
+    z-index: -1;
   }
 
   & a {
-    color: findColorInvert($blue);
+    /* color: findColorInvert($blue); */
   }
 
 }

@@ -38,4 +38,7 @@
   --key-bg-color: #72767d;
   --key-border-color: #202225;
   --key-shadow-color: rgba(35, 39, 42, 0.6);
+
+  --chat-entry-bg-color: #f3f3f3;
+  --chat-entry-line-height: 1.5rem;
 }

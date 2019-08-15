@@ -2,6 +2,7 @@
   class='
     dropdown
     {{if (eq @dir 'up') 'dropdown-top'}}
+    {{if (eq @dir 'left') 'dropdown-left'}}
     {{if this.isOpen 'active'}}
   '
 >
@@ -17,12 +18,15 @@
     {{/if}}
   </button>
 
-  <Backdrop
-    @isActive={{this.isOpen}}
-    @onClick={{this.closeMenu}}
-    style='z-index: 30;'
-    aria-label={{t 'buttons.ariaLabel.dropdownBackdrop'}}
-  />
+
+  {{#if this.isOpen}}
+    <div
+      class='no-select full-overlay invisible'
+      role='button'
+      aria-label={{t 'buttons.ariaLabel.dropdownBackdrop'}}
+      {{on 'click' this.toggleMenu}}
+    />
+  {{/if}}
 
   <div class='dropdown-menu'>
     {{yield this.closeMenu}}

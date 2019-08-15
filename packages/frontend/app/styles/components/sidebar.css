@@ -86,6 +86,7 @@ aside {
 main {
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
   margin-top: var(--top-nav-height);
+  min-height: calc(100vh - var(--top-nav-height));
 }
 
 
@@ -124,7 +125,6 @@ main {
   z-index: 1;
   will-change: transform;
   background-color: var(--sidebar-bg-color);
-  min-height: 100vh;
 }
 
 .slideout-open,
