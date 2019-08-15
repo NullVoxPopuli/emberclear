@@ -15,6 +15,9 @@
 @import './components/hover-tip.css';
 @import './components/ellipsis-loader.css';
 @import './components/chat-entry.css';
+@import './components/connection-status.css';
+
+@import './utility/transitions.css';
 
 /* @import url('/assets/theme.css'); */
 
@@ -41,12 +44,16 @@ hr {
   }
 }
 
+.is-radiusless {
+  border-radius: 0;
+}
+
 .dropdown .dropdown-menu {
   box-shadow: 0 8px 8px rgba(10,10,10,.1);
 }
 
-.transition-all {
-  transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045);
+.has-shadow {
+  box-shadow: var(--shadow);
 }
 
 .button-group {

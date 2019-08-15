@@ -6,15 +6,15 @@ import { isPresent } from '@ember/utils';
 function statusToClass(status: string) {
   switch (status) {
     case 'info':
-      return 'is-info';
+      return 'alert-info';
     case 'success':
-      return 'is-success';
+      return 'alert-success';
     case 'warning':
-      return 'is-warning';
+      return 'alert-warning';
     case 'error':
-      return 'is-danger';
+      return 'alert-danger';
     default:
-      return 'is-info';
+      return '';
   }
 }
 export default class Toast extends Service {
@@ -57,9 +57,8 @@ export default class Toast extends Service {
       message: message || 'status',
       type: status,
       cssClasses: `
-        notification
-        ${colorClass}
-        p-xs has-shadow height-tall`,
+        alert
+        ${colorClass}`,
     });
   }
 }

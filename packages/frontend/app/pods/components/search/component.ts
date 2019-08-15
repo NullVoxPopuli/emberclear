@@ -9,6 +9,7 @@ import Task from 'ember-concurrency/task';
 import StoreService from 'ember-data/store';
 import Contact from 'emberclear/models/contact';
 import Channel from 'emberclear/models/channel';
+import CurrentUserService from 'emberclear/services/current-user';
 
 interface IArgs {
   isActive: boolean;
@@ -19,6 +20,7 @@ const MAX_RESULTS = 5;
 
 export default class SearchModal extends Component<IArgs> {
   @service store!: StoreService;
+  @service currentUser!: CurrentUserService;
 
   @tracked searchText = '';
   @tracked contactResults: Contact[] = [];
@@ -46,15 +48,17 @@ export default class SearchModal extends Component<IArgs> {
   @(task(function*(this: SearchModal, searchTerm: string) {
     const term = new RegExp(searchTerm, 'i');
 
-    const [contactResults, channelResults] = yield Promise.all([
+    let [contactResults, channelResults] = yield Promise.all([
       this.store.query('contact', { name: term }),
       this.store.query('channel', { name: term }),
     ]);
 
-    this.contactResults = contactResults
-      .filter((i: Contact) => i.id !== 'me')
-      .slice(0, MAX_RESULTS);
+    if (term.test(this.currentUser.name)) {
+      contactResults = contactResults.toArray();
+      contactResults.push(this.currentUser.record);
+    }
 
+    this.contactResults = contactResults.slice(0, MAX_RESULTS);
     this.channelResults = channelResults.slice(0, MAX_RESULTS);
   }).keepLatest())
   search!: Task;

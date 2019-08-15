@@ -1,3 +1,6 @@
-<div class='notification is-{{this.level}} is-radiusless p-t-sm p-b-sm'>
+<div
+  class='transition-all connection-status alert alert-{{this.level}}'
+  {{did-update this.didConnect this.isConnected}}
+>
   {{this.status}}
 </div>

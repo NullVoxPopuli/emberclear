@@ -1,5 +1,6 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
@@ -18,25 +19,26 @@ export default class ConnectionStatus extends Component {
   // TODO: maybe extract the 'when to display this' to a service
   //       as is, whenever you visit a chat, even when you are already
   //       connected, the message shows.
-  didRender() {
+  @action
+  didConnect(element) {
     if (this.isConnected) {
-      this.setToFade.perform();
+      this.setToFade.perform(element);
     } else {
-      this.removeFade.perform();
+      this.removeFade.perform(element);
     }
   }
 
-  @task(function*(this: ConnectionStatus) {
+  @task(function*(this: ConnectionStatus, element: HTMLElement) {
     yield timeout(2000);
 
-    this.element.classList.add('fade-out');
+    element.classList.add('fade-out');
   })
   setToFade!: Task;
 
-  @task(function*(this: ConnectionStatus) {
+  @task(function*(this: ConnectionStatus, element: HTMLElement) {
     yield timeout(200);
 
-    this.element.classList.remove('fade-out');
+    element.classList.remove('fade-out');
   })
   removeFade!: Task;
 }
