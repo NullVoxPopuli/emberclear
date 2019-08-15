@@ -1,13 +1,23 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { notEmpty } from '@ember/object/computed';
 import { action } from '@ember/object';
 
-export default class Dropdown extends Component {
+interface Args {
+  buttonIcon?: string;
+  buttonText?: string;
+  dir?: string;
+}
+
+export default class Dropdown extends Component<Args> {
   @tracked isOpen = false;
 
-  @notEmpty('buttonText') hasButtonText!: boolean;
-  @notEmpty('buttonIcon') hasButtonIcon!: boolean;
+  get hasButtonText() {
+    return Boolean(this.args.buttonText);
+  }
+
+  get hasButtonIcon() {
+    return Boolean(this.args.buttonIcon);
+  }
 
   @action
   toggleMenu() {

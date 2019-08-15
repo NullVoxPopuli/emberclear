@@ -24,4 +24,10 @@ form.chat-entry {
     height: var(--chat-entry-line-height);
     line-height: 1.2rem;
   }
+
+  & .dropdown-trigger {
+    &:after {
+      display: none;
+    }
+  }
 }

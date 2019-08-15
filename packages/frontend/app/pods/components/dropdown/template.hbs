@@ -6,15 +6,17 @@
     {{if this.isOpen 'active'}}
   '
 >
-  <button class='dropdown-trigger' {{on 'click' this.toggleMenu}}>
+  <button
+    class='dropdown-trigger'
+    {{on 'click' this.toggleMenu}}
+    ...attributes
+  >
     {{#if this.hasButtonText}}
-      <span>{{@buttonText}}</span>
+      {{@buttonText}}
     {{/if}}
 
     {{#if this.hasButtonIcon}}
-      <span class='icon is-small'>
-        {{fa-icon @buttonIcon}}
-      </span>
+      {{fa-icon @buttonIcon}}
     {{/if}}
   </button>
 

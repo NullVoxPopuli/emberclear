@@ -1,4 +1,9 @@
-<Dropdown @dir={{'up'}} @buttonIcon='plus' as |closeMenu|>
+<Dropdown
+  @dir={{'up'}}
+  @buttonIcon='plus'
+  class='button-secondary'
+  as |closeMenu|
+>
 
   <ModalStatic @name='code-or-snippet' as |_isActive actions|>
     <a {{on 'click' (queue (action actions.toggle) closeMenu)}}>
