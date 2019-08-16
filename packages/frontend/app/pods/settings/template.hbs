@@ -1,10 +1,6 @@
-<div data-test-settings-wrapper class='section'>
-  <div class='container'>
-    <h1 class='title'>{{t 'ui.settings.title' }}</h1>
-    <Pod::Settings::Navigation />
+<div data-test-settings-wrapper class='container settings'>
+  <h1>{{t 'ui.settings.title' }}</h1>
+  <Pod::Settings::Navigation />
 
-    <div class='content'>
-      {{outlet}}
-    </div>
-  </div>
+  {{outlet}}
 </div>

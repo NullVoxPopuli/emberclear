@@ -20,22 +20,20 @@
     overflow: hidden;
 
     & .messages {
-      flex-grow: 1;
-      display: grid;
-      grid-gap: var(--grid-gap);
+      @apply --grid;
 
+      flex-grow: 1;
       overflow-y: auto;
     }
   }
 }
 
 .message {
+  @apply --grid;
+  @apply --grid-stretch;
+
   position: relative;
   background-color: transparent;
-  display: grid;
-  justify-content: stretch;
-  grid-gap: var(--grid-gap);
-  align-items: center;
   border-radius: var(--component-border-radius);
 
 
@@ -83,9 +81,9 @@
   }
 
   & .message-header {
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: space-between;
+    @apply --column-grid;
+    @apply --grid-space-between;
+
     background-color: transparent;
     cursor: default;
 

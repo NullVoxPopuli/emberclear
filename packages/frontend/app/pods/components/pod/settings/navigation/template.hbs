@@ -1,29 +1,23 @@
 <div class='tabs'>
-  <ul>
-    <li class={{if (is-active 'settings.index') 'is-active'}}>
-      {{#link-to 'settings'}}
-        {{t 'ui.settings.tabs.profile'}}
-      {{/link-to}}
-    </li>
-    <li class={{if (is-active 'settings.interface') 'is-active'}}>
-      {{#link-to 'settings.interface'}}
-        {{t 'ui.settings.tabs.interface'}}
-      {{/link-to}}
-    </li>
-    <li class={{if (is-active 'settings.permissions') 'is-active'}}>
-      {{#link-to 'settings.permissions'}}
-        {{t 'ui.settings.tabs.permissions'}}
-      {{/link-to}}
-    </li>
-    <li class={{if (is-active 'settings.relays') 'is-active'}}>
-      {{#link-to 'settings.relays'}}
-        {{t 'ui.settings.tabs.relays'}}
-      {{/link-to}}
-    </li>
-    <li class={{if (is-active 'settings.danger-zone') 'is-active'}}>
-      {{#link-to 'settings.danger-zone'}}
-        {{t 'ui.settings.tabs.dangerZone'}}
-      {{/link-to}}
-    </li>
-  </ul>
+  <nav>
+    <LinkTo @route='settings' class={{if (is-active 'settings.index') 'active'}}>
+      {{t 'ui.settings.tabs.profile'}}
+    </LinkTo>
+
+    <LinkTo @route='settings.interface' class={{if (is-active 'settings.interface') 'is-active'}}>
+      {{t 'ui.settings.tabs.interface'}}
+    </LinkTo>
+
+    <LinkTo @route='settings.permissions' class={{if (is-active 'settings.permissions') 'is-active'}}>
+      {{t 'ui.settings.tabs.permissions'}}
+    </LinkTo>
+
+    <LinkTo @route='settings.relays' class={{if (is-active 'settings.relays') 'is-active'}}>
+      {{t 'ui.settings.tabs.relays'}}
+    </LinkTo>
+
+    <LinkTo @route='settings.danger-zone' class={{if (is-active 'settings.danger-zone') 'is-active'}}>
+      {{t 'ui.settings.tabs.dangerZone'}}
+    </LinkTo>
+  </nav>
 </div>

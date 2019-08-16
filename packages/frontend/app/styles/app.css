@@ -16,12 +16,35 @@
 @import './components/ellipsis-loader.css';
 @import './components/chat-entry.css';
 @import './components/connection-status.css';
+@import './components/settings-nav.css';
 
 @import './utility/transitions.css';
 
-/* @import url('/assets/theme.css'); */
+:root {
+  --grid {
+    display: grid;
+    grid-gap: var(--grid-gap);
+  }
 
-/* variables to actually keep */
+  --column-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: var(--grid-gap);
+  }
+
+
+  --grid-space-between {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  --grid-stretch {
+    justify-content: stretch;
+    align-items: center;
+  }
+
+}
+
 
 * {
   box-sizing: border-box;

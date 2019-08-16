@@ -1,13 +1,11 @@
 <button
   data-test-delete-messages
   disabled={{this.messagesDeleted}}
-  class='button is-danger is-outlined'
-  {{action 'deleteMessages'}}
+  class='button button-danger'
+  {{on 'click' this.deleteMessages}}
 >
 
-  <span class='icon is-small'>
-    {{fa-icon 'times'}}
-  </span>
+  {{fa-icon 'times'}}
 
   <span>{{t 'ui.settings.danger.deleteMessages'}}</span>
 </button>
