@@ -91,6 +91,11 @@
       font-style: bold;
       font-size: 0.9rem;
       text-decoration: underline;
+      color: var(--chat-message-sender-name);
+
+      & a {
+        color: var(--chat-message-sender-name);
+      }
     }
 
     & .sentAt {

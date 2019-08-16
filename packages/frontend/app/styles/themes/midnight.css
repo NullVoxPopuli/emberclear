@@ -1,17 +1,36 @@
 .dark-theme {
   --color-purple: hsl(253, 84%, 45%);
   --color-gray: #222;
-  --color-white: #aaa;
+  --color-almost-white: #ddd;
+  --color-white: #fff;
   --state-secondary: var(--color-gray);
 
   --body-bg-color: var(--color-gray);
-  --body-color: var(--color-white);
+  --body-color: var(--color-almost-white);
 
-  --link-color: var(--color-white);
+  --link-color: var(--color-almost-white);
+  --link-color-hover: var(--color-white);
 
   --top-nav-bg: #333;
   --top-nav-inverted-color: #aaa;
 
   --sidebar-bg-color: var(--color-gray);
+
+  --modal-content-bg: var(--color-gray);
+  --modal-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
+
+  --search-result-text-color: var(--link-color);
+  --search-result-hover-bg: var(--color-medium-gray);
+  --search-divider-color: var(--color-medium-gray);
+
+
+  --input-color: var(--color-almost-white);
+  --input-bg-color: var(--color-medium-gray);
+  --input-border-color: black;
+
+  --chat-entry-bg-color: var(--top-nav-bg);
+
+  --chat-message-hover-color: #333;
+  --chat-message-sender-name: var(--color-medium-light-gray);
 }
 

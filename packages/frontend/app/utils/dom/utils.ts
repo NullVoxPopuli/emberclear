@@ -12,7 +12,6 @@ export function isElementWithin(element: HTMLElement, container: HTMLElement): b
     rect.bottom <= containerRect.bottom &&
     rect.right <= containerRect.right;
 
-  console.log(isVisible, rect, containerRect);
 
   return isVisible;
 }
