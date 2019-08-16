@@ -18,6 +18,7 @@
 
     /* align-self: end; */
     overflow: hidden;
+    padding-bottom: var(--grid-gap);
 
     & .messages {
       @apply --grid;
@@ -35,6 +36,7 @@
   position: relative;
   background-color: transparent;
   border-radius: var(--component-border-radius);
+  padding: var(--grid-gap);
 
 
   &:hover {
@@ -124,7 +126,8 @@ a.new-messages {
   z-index: 1;
   border-width: 0;
   border-radius: var(--component-border-radius);
-  color: var(--state-light);
+  color: var(--chat-new-messages-notice-color);
+  background: var(--chat-new-messages-notice-bg-color);
   box-shadow: var(--shadow);
   margin: 0;
 

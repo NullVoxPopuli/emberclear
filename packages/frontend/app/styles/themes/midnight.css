@@ -27,10 +27,12 @@
   --input-color: var(--color-almost-white);
   --input-bg-color: var(--color-medium-gray);
   --input-border-color: black;
-
   --chat-entry-bg-color: var(--top-nav-bg);
+
 
   --chat-message-hover-color: #333;
   --chat-message-sender-name: var(--color-medium-light-gray);
+
+  --chat-new-messages-notice-bg-color: var(--color-medium-gray);
 }
 

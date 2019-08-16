@@ -6,6 +6,7 @@
   --color-medium-light-gray: #aaa;
   --color-light-gray: #efefef;
   --state-primary: var(--color-purple);
+  --state-info: var(--color-blue);
 
   --link-color: var(--state-dark);
   --placeholder-color: var(--color-medium-light-gray);
@@ -46,6 +47,8 @@
   --chat-message-hover-color: #f8f8f8;
   --chat-message-sender-name: var(--body-color);
   --chat-message-sent-at: var(--color-medium-gray);
+  --chat-new-messages-notice-color: var(--state-light);
+  --chat-new-messages-notice-bg-color: var(--state-secondary);
 
 
   --alert-bg-color: color(var(--state-primary) shade(75%));
@@ -57,8 +60,8 @@
   --alert-bg-color-success: color(var(--state-success) shade(75%));
   --alert-color-success: color(var(--state-success) tint(75%));
 
-  --alert-bg-color-info: color(var(--state-info) shade(75%));
-  --alert-color-info: color(var(--state-info) tint(75%));
+  --alert-bg-color-info: color(var(--state-info) shade(5%));
+  --alert-color-info: color(var(--state-info) tint(85%));
 
   --alert-bg-color-warning: color(var(--state-warning) shade(75%));
   --alert-color-warning: color(var(--state-warning) tint(75%));
