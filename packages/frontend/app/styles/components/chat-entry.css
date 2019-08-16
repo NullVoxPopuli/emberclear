@@ -1,15 +1,13 @@
 .chat-entry-container {
+  @apply --grid;
+  @apply --grid-stretch;
+
   background: var(--chat-entry-bg-color);
   border-radius: var(--component-border-radius);
   padding: var(--grid-gap);
   box-shadow: inset 0 2px 2px 0px rgba(0, 0, 0, 0.2);
 
-  display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-gap: var(--grid-gap);
-
-  align-items: center;
-  justify-content: stretch;
 
   & .dropdown-trigger {
     &:after {
@@ -19,12 +17,10 @@
 }
 
 form.chat-entry {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-gap: var(--grid-gap);
+  @apply --grid;
+  @apply --grid-stretch;
 
-  align-items: center;
-  justify-content: stretch;
+  grid-template-columns: 1fr auto;
 
   & .input-field {
     margin: 0;

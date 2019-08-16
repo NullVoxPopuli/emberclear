@@ -21,7 +21,16 @@
     }}
   />
 
-  <br>
+  <hr>
+
+
+  <h2>Theme</h2>
+
+  <Switch
+    @value={{this.theme}}
+    @label={{'Midnight'}}
+    {{on 'click' this.useDarkTheme}}
+  />
 
 
 </div>

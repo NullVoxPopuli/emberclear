@@ -37,7 +37,7 @@
 .top-nav.is-inverted > .left-nav > a,
 .top-nav.is-inverted > .right-nav > a,
 .top-nav.is-inverted .dropdown-trigger {
-  color: var(--state-light);
+  color: var(--top-nav-inverted-color);
 }
 
 .top-nav hr {
@@ -47,9 +47,7 @@
 
 .top-nav .left-nav,
 .top-nav .right-nav {
-  display: grid;
-  grid-gap: var(--grid-gap);
-  grid-auto-flow: column;
+  @apply --column-grid;
 
   align-items: center;
 }
@@ -59,9 +57,7 @@
 }
 
 .top-nav .current-chat {
-  display: grid;
-  grid-gap: var(--grid-gap);
-  grid-auto-flow: column;
+  @apply --column-grid;
 
   align-items: center;
 

@@ -14,18 +14,6 @@
   }
 }
 
-@keyframes slide-down-fade-out {
-    0% {
-        opacity:1;
-        transform:  translate(0px,40px)  ;
-    }
-    100% {
-        opacity:0;
-        transform:  translate(0px,0px)  ;
-    }
-
-}
-
 .transition-all {
   transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045);
 }

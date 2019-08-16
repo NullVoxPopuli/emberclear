@@ -110,6 +110,8 @@
 }
 
 a.new-messages {
+  @apply --no-select;
+
   position: absolute;
   bottom: 10px;
   left: var(--grid-gap);

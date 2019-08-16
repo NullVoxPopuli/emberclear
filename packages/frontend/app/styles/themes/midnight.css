@@ -1,0 +1,17 @@
+.dark-theme {
+  --color-purple: hsl(253, 84%, 45%);
+  --color-gray: #222;
+  --color-white: #aaa;
+  --state-secondary: var(--color-gray);
+
+  --body-bg-color: var(--color-gray);
+  --body-color: var(--color-white);
+
+  --link-color: var(--color-white);
+
+  --top-nav-bg: #333;
+  --top-nav-inverted-color: #aaa;
+
+  --sidebar-bg-color: var(--color-gray);
+}
+

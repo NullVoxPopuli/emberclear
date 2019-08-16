@@ -20,6 +20,7 @@
   --top-nav-bg: var(--state-light);
   --top-nav-shadow: var(--shadow);
   --top-nav-height: 50px;
+  --top-nav-inverted-color: var(--state-light);
 
   --sidebar-bg-color: var(--state-light);
   --sidebar-nav-active-color: var(--color-light-gray);

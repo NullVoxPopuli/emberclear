@@ -5,11 +5,14 @@ export function isElementWithin(element: HTMLElement, container: HTMLElement): b
   const rect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();
 
+
   const isVisible =
     rect.top >= containerRect.top &&
     rect.left >= containerRect.left &&
     rect.bottom <= containerRect.bottom &&
     rect.right <= containerRect.right;
+
+  console.log(isVisible, rect, containerRect);
 
   return isVisible;
 }
