@@ -46,7 +46,8 @@ export default class ChatEntry extends Component<IArgs> {
   }
 
   @action resize(element: HTMLTextAreaElement) {
-    element.style.height = `${element.scrollHeight}px`;
+    element.style.cssText = 'height:auto;';
+    element.style.cssText = 'height:' + element.scrollHeight + 'px';
   }
 
   @action async sendMessage() {

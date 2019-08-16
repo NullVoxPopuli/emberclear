@@ -14,7 +14,7 @@
   --grid-gap: 0.75rem;
   --grid-gap-small: 0.5rem;
   --grid-gap-tiny: 0.25rem;
-  --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.12);
+  --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
   --hint-color: var(--color-medium-gray);
 
   --top-nav-bg: var(--state-light);
@@ -41,4 +41,7 @@
 
   --chat-entry-bg-color: #f3f3f3;
   --chat-entry-line-height: 1.5rem;
+
+  --chat-message-hover-color: #f8f8f8;
+  --chat-message-sent-at: var(--color-medium-gray);
 }

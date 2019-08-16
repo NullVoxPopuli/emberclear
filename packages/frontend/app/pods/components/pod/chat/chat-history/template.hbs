@@ -17,6 +17,7 @@
     staticHeight=false
     bufferSize=5
     renderFromLast=true
+    lastReached=this.determineIfLastIsVisible
     lastVisibleChanged=this.determineIfLastIsVisible
     as |message|
   }}
@@ -28,8 +29,8 @@
   <a
     {{on 'click' this.scrollToBottom}}
     class='
-      new-messages has-text-white flex-row
-      transition-all p-l-md p-r-md p-t-xs p-b-xs
+      alert pad-xs bg-secondary
+      new-messages transition-all
       {{if this.isLastVisible 'hidden'}}
     '
   >

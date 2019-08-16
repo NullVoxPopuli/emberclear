@@ -2,7 +2,7 @@
   height: calc(100vh - var(--top-nav-height));
 
   display: grid;
-  grid-template-rows: 1fr 60px;
+  grid-template-rows: 1fr auto;
   padding: 0 var(--grid-gap);
   padding-bottom: var(--grid-gap);
   overflow: hidden;
@@ -12,15 +12,18 @@
   }
 
   & .message-list {
-
     flex: 1 1 0%;
     display: flex;
     position: relative;
 
-    align-self: end;
+    /* align-self: end; */
     overflow: hidden;
 
     & .messages {
+      flex-grow: 1;
+      display: grid;
+      grid-gap: var(--grid-gap);
+
       overflow-y: auto;
     }
   }
@@ -29,10 +32,15 @@
 .message {
   position: relative;
   background-color: transparent;
-  padding-bottom: 1rem;
+  display: grid;
+  justify-content: stretch;
+  grid-gap: var(--grid-gap);
+  align-items: center;
+  border-radius: var(--component-border-radius);
+
 
   &:hover {
-    background: lighten($background, 5);
+    background: var(--chat-message-hover-color);
   }
 
   &.unread {
@@ -55,7 +63,9 @@
     margin-bottom: 0;
   }
 
-  & p { padding: 5px; }
+  & p {
+    margin: 0;
+  }
 
   & .confirmations {
     font-size: 0.8rem;
@@ -73,18 +83,22 @@
   }
 
   & .message-header {
-    color: $text;
-    padding: 5px;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
     background-color: transparent;
     cursor: default;
 
     & .from {
       font-style: bold;
+      font-size: 0.9rem;
+      text-decoration: underline;
     }
 
     & .sentAt {
       font-weight: lighter;
-      color: lighten($grey, 20%);
+      font-size: 0.75rem;
+      color: var(--chat-message-sent-at);
     }
   }
 }
@@ -97,16 +111,17 @@
   }
 }
 
-.new-messages {
+a.new-messages {
   position: absolute;
-  background: $info;
-  box-shadow: $box-shadow;
-  /* color: findColorInvert($blue); */
-  border-radius: 2px;
   bottom: 10px;
-  left: 15px;
+  left: var(--grid-gap);
   opacity: 1;
   z-index: 1;
+  border-width: 0;
+  border-radius: var(--component-border-radius);
+  color: var(--state-light);
+  box-shadow: var(--shadow);
+  margin: 0;
 
   &.hidden {
     /* TODO: use ember-animated */
@@ -115,8 +130,8 @@
     z-index: -1;
   }
 
-  & a {
-    /* color: findColorInvert($blue); */
+  & span + span {
+    text-decoration: underline;
   }
 
 }

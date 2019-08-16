@@ -17,7 +17,7 @@
 >
 
   <div class='message-header'>
-    <span class='from p-r-md'>
+    <span class='from'>
       {{#if this.hasSender}}
 
         {{#link-to 'chat.privately-with' @message.from}}
@@ -29,7 +29,7 @@
       {{/if}}
     </span>
 
-    <span class='sentAt is-size-7 has-hover-tip'>
+    <span class='sentAt'>
       {{format-date
         @message.sentAt
         year='numeric'

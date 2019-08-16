@@ -1,12 +1,13 @@
 <div class='chat-entry-container' ...attributes>
+  <div class='control'>
+    <Pod::Chat::ChatEntry::EmbedsMenu @sendTo={{@to}} />
+  </div>
+
   <form
     data-test-chat-entry-form
     class='chat-entry'
     {{on 'submit' (prevent-default this.sendMessage)}}
   >
-    <div class='control flex'>
-      <Pod::Chat::ChatEntry::EmbedsMenu @sendTo={{@to}} />
-    </div>
 
     <Field @label={{this.placeholder}} @hidden={{true}} as |id|>
       {{!-- TODO: extract to a resizable textarea component --}}
@@ -14,10 +15,11 @@
         {{did-insert this.onInsertTextArea}}
         {{did-update this.resize this.text}}
         autofocus
+        rows='1'
         data-test-chat-entry
         id={{id}}
         disabled={{this.isDisabled}}
-        role='chat-entry transition-all'
+        class='transition-all-fast'
         value={{this.text}}
         placeholder={{this.placeholder}}
         {{on 'input' this.onInput}}
@@ -25,15 +27,13 @@
       />
     </Field>
 
-    <div class='control flex-column'>
-      <input
-        data-test-chat-submit
-        disabled={{this.isSubmitDisabled}}
-        class='button flex-grow'
-        role='button'
-        type='submit'
-        value='Send'
-      >
-    </div>
+    <input
+      data-test-chat-submit
+      disabled={{this.isSubmitDisabled}}
+      class='button flex-grow'
+      role='button'
+      type='submit'
+      value='Send'
+    >
   </form>
 </div>
