@@ -34,5 +34,9 @@
   --chat-message-sender-name: var(--color-medium-light-gray);
 
   --chat-new-messages-notice-bg-color: var(--color-medium-gray);
+
+  --scrollbar-track-hover: #292929;
+  --scrollbar-track-thumb: #666;
+  --scrollbar-track-thumb-hover: #777;
 }
 

@@ -68,4 +68,9 @@
 
   --alert-bg-color-danger: color(var(--state-danger) shade(75%));
   --alert-color-danger: color(var(--state-danger) tint(75%));
+
+
+  --scrollbar-track-hover: #fafafa;
+  --scrollbar-track-thumb: #bababa;
+  --scrollbar-track-thumb-hover: #acacac;
 }
