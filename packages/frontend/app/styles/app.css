@@ -38,6 +38,7 @@
 @import './components/chat-entry.css';
 @import './components/connection-status.css';
 @import './components/settings-nav.css';
+@import './components/contacts.css';
 
 @import './utility/transitions.css';
 
@@ -166,6 +167,22 @@ a.has-icon {
   overflow-x: hidden;
 }
 
+
+.shareable-url {
+  overflow-x: auto;
+  padding: 10px 5px;
+
+  & a {
+    white-space: nowrap;
+  }
+
+  &.wrap {
+    & a {
+      white-space: initial;
+      word-wrap: break-word;
+    }
+  }
+}
 
 /* TODO: figure out how to do this */
 button.link {

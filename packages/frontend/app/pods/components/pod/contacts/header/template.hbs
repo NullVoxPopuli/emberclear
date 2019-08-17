@@ -1,10 +1,10 @@
-<div class='flex-row justify-content-space-between'>
-  <h1 class='title'>
+<header class='contacts'>
+  <h1>
     {{t 'ui.contacts.title' number=this.contacts.length}}
   </h1>
 
   {{#link-to 'add-friend' class='button'}}
-    <span class='icon'>{{fa-icon 'plus'}}</span>
+    {{fa-icon 'plus'}}
     <span>{{t 'buttons.addFriend'}}</span>
   {{/link-to}}
-</div>
+</header>

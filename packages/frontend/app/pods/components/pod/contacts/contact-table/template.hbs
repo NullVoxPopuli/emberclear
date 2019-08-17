@@ -17,8 +17,8 @@
           {{first-8 contact.publicKeyAsHex}}...
         </td>
         <td class='flex justify-content-end'>
-          <button {{on 'click' (action this.remove contact)}}
-            class='button is-danger'>
+          <button {{on 'click' (fn this.remove contact)}}
+            class='button-danger'>
             {{t 'buttons.remove'}}
           </button>
         </td>
