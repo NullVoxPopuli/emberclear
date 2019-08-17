@@ -310,6 +310,10 @@ ui:
       URLs: URLs
       socket: socket
       openGraph: open graph
+    themes:
+      title: Themes
+      midnight: Midnight
+
     copyProfileToDevice: Copy Profile to Device
     hideKey: Hide private key
     showKey: Show private key

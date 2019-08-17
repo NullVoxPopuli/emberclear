@@ -13,11 +13,11 @@
   <hr>
 
 
-  <h2>Theme</h2>
+  <h2>{{t 'ui.settings.themes.title'}}</h2>
 
   <Switch
     @value={{eq 'midnight' this.settings.theme}}
-    @label={{'Midnight'}}
+    @label={{t 'ui.settings.themes.midnight'}}
     {{on 'click' this.useDarkTheme}}
   />
 </div>
