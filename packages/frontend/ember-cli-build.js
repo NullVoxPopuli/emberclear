@@ -87,7 +87,7 @@ module.exports = function(defaults) {
           {
             module: CssImport,
             options: {
-              path: ['node_modules/shoelace-css/source/css'],
+              path: ['node_modules/shoelace-css/source/css', 'app/styles/component-styles'],
             },
           },
           {

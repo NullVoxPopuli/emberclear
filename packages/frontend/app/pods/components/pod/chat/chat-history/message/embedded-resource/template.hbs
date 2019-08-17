@@ -1,22 +1,21 @@
 {{#if this.shouldRender}}
-  <div class='card small embedded-resource'>
+  <div class='embedded-resource'>
 
     <header class='card-header'>
+      <a class='card-header-icon' {{action this.toggleShow}}>
+        {{#if this.isCollapsed}}
+          {{fa-icon 'angle-up'}}
+        {{else}}
+          {{fa-icon 'angle-down'}}
+        {{/if}}
+      </a>
+
       {{#if (is-present this.siteName)}}
         <p class='card-header-title'>
           {{this.siteName}}
         </p>
       {{/if}}
 
-      <a class='card-header-icon' {{action this.toggleShow}}>
-        <span class='icon'>
-          {{#if this.isCollapsed}}
-            {{fa-icon 'angle-up'}}
-          {{else}}
-            {{fa-icon 'angle-down'}}
-          {{/if}}
-        </span>
-      </a>
     </header>
 
     {{#if (not this.isCollapsed)}}

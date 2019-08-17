@@ -1,0 +1,9 @@
+& {
+  .embedded-resource {
+    @apply --grid;
+
+    header {
+      background: red;
+    }
+  }
+}

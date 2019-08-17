@@ -2,7 +2,7 @@
 
 /* @import url('shoelace.css'); */
 
-@import url('normalize.css');
+@import 'normalize.css';
 @import url('content.css');
 @import url('alerts.css');
 @import url('badges.css');
@@ -11,8 +11,8 @@
 @import url('file-buttons.css');
 @import url('forms.css');
 @import url('grid.css');
-/* @import url('loaders.css'); */
 /* @import url('progress-bars.css'); */
+/* @import url('loaders.css'); */
 @import url('switches.css');
 @import url('tabs.css');
 @import url('tables.css');
@@ -41,6 +41,8 @@
 @import './components/contacts.css';
 
 @import './utility/transitions.css';
+
+@import "pod-styles.css";
 
 :root {
   --grid {

@@ -68,6 +68,10 @@ module.exports = function(environment) {
     },
   };
 
+  ENV['ember-component-css'] = {
+    namespacing: false,
+  };
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
