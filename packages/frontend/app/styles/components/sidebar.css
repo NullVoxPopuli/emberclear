@@ -5,11 +5,25 @@ aside {
 
   user-select: none;
 
+  position: fixed;
+  top: var(--top-nav-height);
+  bottom: 0;
+  width: 256px;
+  overflow-y: auto;
+  z-index: 0;
+  display: none;
+  left: 0;
+
+
   /*
   The sidebar is broken up into two sections:
    - top (most things you'd care about)
    - bottom (logout)
   */
+
+  &.active {
+    display: grid;
+  }
 
   /* the top */
   & div:first-child {
@@ -87,6 +101,13 @@ main {
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
   margin-top: var(--top-nav-height);
   min-height: calc(100vh - var(--top-nav-height));
+  z-index: 1;
+  position: relative;
+
+  &.sidebar-open {
+    left: 256px;
+    width: calc(100vw - 256px);
+  }
 }
 
 
@@ -96,43 +117,5 @@ main {
  *
  */
 @media (--breakpoint-sm-up) {
-  main[style*="transform"] {
-    width: calc(100vw - 256px);
-  }
 }
 
-
-.slideout-menu {
-  position: fixed;
-  top: var(--top-nav-height);
-  bottom: 0;
-  width: 256px;
-  overflow-y: auto;
-  z-index: 0;
-  display: none;
-}
-
-.slideout-menu-left {
-  left: 0;
-}
-
-.slideout-menu-right {
-  right: 0;
-}
-
-.slideout-panel {
-  position: relative;
-  z-index: 1;
-  will-change: transform;
-  background-color: var(--sidebar-bg-color);
-}
-
-.slideout-open,
-.slideout-open body,
-.slideout-open .slideout-panel {
-  overflow: hidden;
-}
-
-.slideout-open .slideout-menu {
-  display: grid;
-}

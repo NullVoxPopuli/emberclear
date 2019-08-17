@@ -5,7 +5,7 @@ import { A } from '@ember/array';
 import { action } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
 
-import Slideout from 'slideout';
+import Hammer from 'hammerjs';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 
@@ -31,22 +31,31 @@ export default class Sidebar extends Service {
   }
 
   @action toggle() {
-    this.slideout.toggle();
+    // this.slideout.toggle();
   }
 
   setup(sidebar: HTMLElement) {
-    this.slideout = new Slideout({
-      panel: document.getElementById('scrollContainer'),
-      menu: sidebar,
-      tolerance: 70,
+    // detect hammer events on the whole document
+    let content = document.querySelector('main#scrollContainer');
+    let hammer = new Hammer.Manager(document);
+    let swipe = new Hammer.Swipe({
+      threshold: 70,
+      direction: Hammer.DIRECTION_HORIZONTAL,
     });
 
-    if (this.isShown) {
-      this.slideout.open();
-    }
+    hammer.add(swipe);
 
-    this.slideout.on('open', () => this.show());
-    this.slideout.on('close', () => this.hide());
+    hammer.on('swiperight', () => {
+      sidebar.classList.add('active');
+      content.classList.add('sidebar-open');
+      this.show();
+    });
+
+    hammer.on('swipeleft', () => {
+      sidebar.classList.remove('active');
+      content.classList.remove('sidebar-open');
+      this.hide();
+    });
   }
 
   clearUnreadBelow() {
