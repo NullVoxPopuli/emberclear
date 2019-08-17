@@ -1,6 +1,23 @@
 
 
-@import url('shoelace.css');
+/* @import url('shoelace.css'); */
+
+@import url('normalize.css');
+@import url('content.css');
+@import url('alerts.css');
+@import url('badges.css');
+@import url('buttons.css');
+@import url('dropdowns.css');
+@import url('file-buttons.css');
+@import url('forms.css');
+@import url('grid.css');
+/* @import url('loaders.css'); */
+/* @import url('progress-bars.css'); */
+@import url('switches.css');
+@import url('tabs.css');
+@import url('tables.css');
+@import url('utilities.css');
+@import url('variables.css');
 
 @import './themes/default.css';
 @import './themes/midnight.css';
