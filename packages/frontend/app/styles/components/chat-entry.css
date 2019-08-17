@@ -31,7 +31,6 @@ form.chat-entry {
     background: transparent;
     box-shadow: none;
     resize: none;
-    height: var(--chat-entry-line-height);
     line-height: var(--line-height);
     box-sizing: border-box;
     max-height: 12rem; /* 10x line-height */

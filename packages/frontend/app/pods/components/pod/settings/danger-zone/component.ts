@@ -1,11 +1,17 @@
-import Controller from '@ember/controller';
+import Component from '@ember/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-export default class extends Controller {
-  @service toast!: Toast;
+import CurrentUserService from 'emberclear/services/current-user';
 
-  messagesDeleted = false;
+export default class DangerSettings extends Component {
+  @service toast!: Toast;
+  @service currentUser!: CurrentUserService;
+
+  @tracked showPrivateKey = false;
+  // TODO: should this actually check existence of messages?
+  @tracked messagesDeleted = false;
 
   @action
   async deleteMessages() {
@@ -17,4 +23,5 @@ export default class extends Controller {
 
     this.toast.info('All messages have been cleared.');
   }
+
 }

@@ -32,13 +32,39 @@ interface ISettingsJson {
   channels: IChannelJson[];
 }
 
+export const THEMES = {
+  midnight: 'midnight',
+  default: 'default',
+};
+
+const availableThemes = {
+  [THEMES.midnight]: 'midnight-theme',
+  [THEMES.default]: 'default-theme',
+};
+
 export default class Settings extends Service {
   @service currentUser!: CurrentUserService;
   @service contactManager!: ContactManager;
   @service channelManager!: ChannelManager;
 
   @inLocalStorage hideOfflineContacts = false;
-  @inLocalStorage useLeftRightJustificationForMessages = false;
+  @inLocalStorage theme = THEMES.default;
+
+  selectTheme(themeKey) {
+    this.theme = themeKey;
+    this.applyTheme();
+  }
+
+  applyTheme() {
+    let themeClass = availableThemes[this.theme];
+    let classList = document.body.classList;
+
+    Object.values(availableThemes).forEach(currentClass => {
+      classList.remove(currentClass);
+    });
+
+    classList.add(themeClass);
+  }
 
   @computed('currentUser.privateKey', 'currentUser.publicKey')
   @monitor

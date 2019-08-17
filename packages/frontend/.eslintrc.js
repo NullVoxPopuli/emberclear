@@ -17,6 +17,7 @@ module.exports = {
     'ember/use-brace-expansion': 'off', // won't matter with @tracked
 
     // cleanliness & consistency
+    'prefer-const': 'off', // const has misleading safety implications
     'no-console': ['error', { allow: ['debug', 'warn', 'error', 'info'] }],
     'no-cond-assign': 'off',
     'no-useless-escape': 'off',

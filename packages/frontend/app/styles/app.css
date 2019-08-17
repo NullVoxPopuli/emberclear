@@ -80,7 +80,7 @@
 }
 
 .hero {
-  height: 100vh;
+  height: calc(100vh - var(--top-nav-height));
 
   display: flex;
   justify-content: center;
@@ -103,6 +103,10 @@ a.has-icon {
   height: 1rem;
 }
 
+.cta {
+  display: flex;
+  justify-content: flex-end;
+}
 .cta-with-fallback {
   display: flex;
   justify-content: space-between;

@@ -8,17 +8,20 @@ import CurrentUserService from 'emberclear/services/current-user';
 
 import { ensureRelays } from 'emberclear/utils/data/required-data';
 import { runMigrations } from 'emberclear/utils/migrations';
+import Settings from 'emberclear/services/settings';
 
 export default class ApplicationRoute extends Route {
   @service currentUser!: CurrentUserService;
   @service relayManager!: RelayManager;
   @service locale!: LocaleService;
+  @service settings!: Settings;
 
   async beforeModel() {
     await runMigrations(getOwner(this));
     await ensureRelays(getOwner(this));
 
     // TODO: check all the modern web requirements
+    this.settings.applyTheme();
     await this.locale.setLocale(this.locale.currentLocale);
     await this.currentUser.load();
   }

@@ -1,4 +1,4 @@
-.dark-theme {
+.midnight-theme {
   --color-purple: hsl(253, 84%, 45%);
   --color-gray: #222;
   --color-almost-white: #ddd;
@@ -7,11 +7,17 @@
 
   --body-bg-color: var(--color-gray);
   --body-color: var(--color-almost-white);
+  --body-color-muted: #777;
 
   --link-color: var(--color-almost-white);
   --link-color-hover: var(--color-white);
 
-  --top-nav-bg: #333;
+  --pre-bg-color: #1a1a1a;
+  --pre-color: var(--color-almost-white);
+  --code-color: var(--pre-color);
+  --code-bg-color: var(--pre-pg-color);
+
+  --top-nav-bg: #1a1a1a;
   --top-nav-inverted-color: #aaa;
 
   --sidebar-bg-color: var(--color-gray);
@@ -29,7 +35,6 @@
   --input-border-color: black;
   --chat-entry-bg-color: var(--top-nav-bg);
 
-
   --chat-message-hover-color: #333;
   --chat-message-sender-name: var(--color-medium-light-gray);
 
@@ -38,5 +43,10 @@
   --scrollbar-track-hover: #292929;
   --scrollbar-track-thumb: #666;
   --scrollbar-track-thumb-hover: #777;
+
+  --dropdown-bg-color:#333;
+  --dropdown-color: var(--body-color);
+  --dropdown-border-color: var(--color-medium-gray);
+  --dropdown-divider-color: var(--color-medium-gray);
 }
 

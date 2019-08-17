@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { reads } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
 import { timeout } from 'ember-concurrency';
@@ -12,9 +11,17 @@ import Task from 'ember-concurrency/task';
 export default class ConnectionStatus extends Component {
   @service relayConnection!: RelayConnection;
 
-  @reads('relayConnection.connected') isConnected!: boolean;
-  @reads('relayConnection.status') status!: string;
-  @reads('relayConnection.statusLevel') level!: string;
+  get isConnected() {
+    return this.relayConnection.connected;
+  }
+
+  get status() {
+    return this.relayConnection.status;
+  }
+
+  get statusLevel() {
+    return this.relayConnection.statusLevel;
+  }
 
   // TODO: maybe extract the 'when to display this' to a service
   //       as is, whenever you visit a chat, even when you are already

@@ -1,11 +1,1 @@
-<button
-  data-test-delete-messages
-  disabled={{this.messagesDeleted}}
-  class='button button-danger'
-  {{on 'click' this.deleteMessages}}
->
-
-  {{fa-icon 'times'}}
-
-  <span>{{t 'ui.settings.danger.deleteMessages'}}</span>
-</button>
+<Pod::Settings::DangerZone />

@@ -25,7 +25,6 @@ Router.map(function() {
   this.route('logout');
   this.route('settings', function() {
     this.route('interface');
-    this.route('permissions');
     this.route('relays');
     this.route('danger-zone');
   });
