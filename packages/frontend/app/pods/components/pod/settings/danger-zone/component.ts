@@ -23,5 +23,4 @@ export default class DangerSettings extends Component {
 
     this.toast.info('All messages have been cleared.');
   }
-
 }

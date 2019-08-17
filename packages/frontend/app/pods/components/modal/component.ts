@@ -17,12 +17,10 @@ export default class Modal extends Component<IArgs> {
   //     sprite.applyStyles({ 'z-index': 1 });
   //     move(sprite, { easing: easeIn });
   //   }
-
   //   for (let sprite of keptSprites) {
   //     sprite.applyStyles({ 'z-index': 1 });
   //     move(sprite);
   //   }
-
   //   for (let sprite of removedSprites) {
   //     sprite.applyStyles({ 'z-index': 1 });
   //     sprite.endAtPixel({ y: 1, x: 1 });
