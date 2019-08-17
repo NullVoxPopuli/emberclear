@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { setComponentTemplate } from '@ember/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
@@ -14,7 +15,7 @@ class Shadowed extends Component {
   }
 }
 
-export default Ember._setComponentTemplate(
+export default setComponentTemplate(
   hbs`
     <div {{did-insert this.setElement}}></div>
 

@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import { task } from 'ember-concurrency';
 import Task from 'ember-concurrency/task';
-// import Prism from '@types/prismjs';
+import Prism from '@types/prismjs';
 
 const PRISM_VERSION = '1.15.0';
 const CDN = `https://cdn.jsdelivr.net/combine/`;

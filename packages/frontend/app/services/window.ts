@@ -8,8 +8,8 @@ export default class WindowService extends Service {
 
   cleanup: any[] = [];
 
-  constructor() {
-    super(...arguments);
+  constructor(...args: any[]) {
+    super(...args);
 
     this.cleanup.push(this.checkForDeferredInstall());
   }

@@ -1,16 +1,22 @@
-import ApplicationInstance from '@ember/application/instance';
+// import ApplicationInstance from '@ember/application/instance';
 
-declare module '@ember/test-helpers' {
-  interface AppContext {
-    element: HTMLElement;
-    owner: {
-      application: ApplicationInstance;
-      register: (name: string, obj: any) => void;
-      lookup: <T = any>(name: string) => T;
-    };
-  }
+// declare module '@ember/test-helpers' {
+//   interface AppContext {
+//     element: HTMLElement;
+//     owner: {
+//       application: ApplicationInstance;
+//       register: (name: string, obj: any) => void;
+//       lookup: <T = any>(name: string) => T;
+//     };
+//   }
 
-  export function getContext(): AppContext;
+//   export function getContext(): AppContext;
+// }
+
+// import EmberGlobal from 'ember';
+
+declare module 'ember-cli-htmlbars-inline-precompile' {
+  export default function hbs(template: string, ...args: any[]): string;
 }
 
 declare module '@ember/service' {

@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { setComponentTemplate } from '@ember/component';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
@@ -29,7 +30,7 @@ class Mnemonic extends Component {
   }
 }
 
-export default Ember._setComponentTemplate(
+export default setComponentTemplate(
   hbs`
   <pre data-test-mnemonic {{did-insert (fn this.updateMnemonic @privateKey)}}>
     {{this.mnemonic}}
