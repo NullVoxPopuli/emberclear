@@ -8,6 +8,7 @@ interface Args {
 
 /**
  * NOTE: does not support dynamic width sidebar
+ * NOTE: this only works for a sidebar on the left
  */
 export class SwipeHandler {
   /**
@@ -30,14 +31,9 @@ export class SwipeHandler {
 
   private isDragging = false;
   private initialX = 0;
-  private currentX = 0;
   private isOpening = false;
   private isClosing = false;
 
-  /**
-   * @param HTMLElement mainContent - the content to move.
-   *                    not the sidebar.
-   */
   constructor({ content, sidebarWidth, flickRegion }: Args) {
     this.content = content;
     this.sidebarWidth = sidebarWidth;
@@ -67,14 +63,10 @@ export class SwipeHandler {
   }
 
   handleDrag(e: HammerStatic['Input']) {
-    // left is closing -- 300px -> 0px
-    // right is opening -- 0px -> 300px
     if (!this.isDragging) {
       this.isDragging = true;
       this.initialX = this.content.getBoundingClientRect().left;
     }
-
-    this.currentX = this.content.getBoundingClientRect().left;
 
     // direction is none on a final event / panend
     if (e.direction !== Hammer.DIRECTION_NONE) {
@@ -82,7 +74,6 @@ export class SwipeHandler {
       this.isClosing = e.direction === Hammer.DIRECTION_LEFT;
     }
 
-    let deltaX = 0;
     let deltaXFromStart = e.deltaX;
     let nextX = deltaXFromStart + this.initialX;
     let shouldClose = nextX < this.closeThreshold;
@@ -92,18 +83,8 @@ export class SwipeHandler {
 
     if (isFullyOpen) {
       nextX = this.sidebarWidth;
-      if (this.isOpening) {
-        deltaX = 0;
-      } else {
-        deltaX = nextX - this.currentX;
-      }
     } else if (isFullyClosed) {
       nextX = 0;
-      if (this.isClosing) {
-        deltaX = 0;
-      } else {
-        deltaX = nextX - this.currentX;
-      }
     }
 
     if (e.isFinal) {
@@ -116,19 +97,17 @@ export class SwipeHandler {
         } else {
           nextX = this.sidebarWidth;
         }
-      } else {
-        // if (isOpening) {
+      } else if (this.isOpening) {
         if (shouldOpen) {
           nextX = this.sidebarWidth;
         } else {
           nextX = 0;
         }
       }
-
-      deltaX = nextX - this.currentX;
     }
 
-    this.content.style.setProperty('--dx', `${deltaX}px`);
+    this.content.style.setProperty('--dx', `${nextX}px`);
+    this.content.style.setProperty('width', `${window.innerWidth - nextX}px`);
     this.content.style.transform = `translateX(${nextX}px)`;
   }
 }

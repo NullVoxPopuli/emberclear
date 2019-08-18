@@ -5,10 +5,8 @@ import { A } from '@ember/array';
 import { action } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
 
-import Hammer from 'hammerjs';
-
 import { inLocalStorage } from 'emberclear/utils/decorators';
-import {SwipeHandler} from 'emberclear/services/sidebar/swipe-handler';
+import { SwipeHandler } from 'emberclear/services/sidebar/swipe-handler';
 
 export default class Sidebar extends Service {
   unreadAbove = A();

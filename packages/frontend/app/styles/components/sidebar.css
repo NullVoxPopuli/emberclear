@@ -126,6 +126,12 @@ main {
   }
 }
 
+@media (--breakpoint-sm-up) {
+  aside {
+    /* z-index: 101; /1* one above the top bar *1/ */
+    /* top: var(--top-nav-height); */
+  }
+}
 
 /*
  * on the sm up breakpoint, find a way to
@@ -139,12 +145,6 @@ main {
     &.active {
       left: 0;
 
-    }
-  }
-
-  main {
-    &.sidebar-open {
-      width: calc(100vw - var(--sidenav-width));
     }
   }
 }
