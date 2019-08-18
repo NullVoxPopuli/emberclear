@@ -49,57 +49,102 @@ export default class Sidebar extends Service {
         .getPropertyValue('--sidenav-width')
         .split('px')[0]
     );
+    let flickRegion = 0.35;
+    let openThreshold = sidebarWidth * flickRegion;
+    let closeThreshold = sidebarWidth * (1 - flickRegion);
+
     let isDragging = false;
-    let lastX = 0;
+    let initialX = 0;
+    let currentX;
+    let isOpening = false;
+    let isClosing = false;
 
     function handleDrag(e) {
       // left is closing -- 300px -> 0px
       // right is opening -- 0px -> 300px
       if (!isDragging) {
         isDragging = true;
-        lastX = content.offsetLeft;
+        initialX = content.getBoundingClientRect().left;
       }
 
-      let nextX = e.deltaX + lastX;
+      currentX = content.getBoundingClientRect().left;
 
-      if (nextX > sidebarWidth) {
-        content.style.left = `${sidebarWidth}px`;
-      } else if (nextX < 0) {
-        content.style.left = `${0}px`;
-      } else {
-        content.style.left = `${nextX}px`;
+      // direction is none on a final event / panend
+      if (e.direction !== Hammer.DIRECTION_NONE) {
+        isOpening = e.direction === Hammer.DIRECTION_RIGHT;
+        isClosing = e.direction === Hammer.DIRECTION_LEFT;
+      }
+
+      let deltaX = 0;
+      let deltaXFromStart = e.deltaX;
+      let nextX = deltaXFromStart + initialX;
+      let shouldClose = nextX < closeThreshold;
+      let shouldOpen = nextX > openThreshold;
+      let isFullyOpen = nextX >= sidebarWidth;
+      let isFullyClosed = nextX <= 0;
+
+      if (isFullyOpen) {
+        nextX = sidebarWidth;
+        if (isOpening) {
+          deltaX = 0;
+        } else {
+          deltaX = nextX - currentX;
+        }
+      } else if (isFullyClosed) {
+        nextX = 0;
+        if (isClosing) {
+          deltaX = 0;
+        } else {
+          deltaX = nextX - currentX;
+        }
       }
 
       if (e.isFinal) {
         isDragging = false;
 
         // is far enough?
-        if (e.direction === Hammer.DIRECTION_LEFT) {
-          if (content.offsetLeft < sidebarWidth / 2) {
-            content.style.left = 0;
+        if (isClosing) {
+          if (shouldClose) {
+            nextX = 0;
           } else {
-            content.style.left = `${sidebarWidth}px`;
+            nextX = sidebarWidth;
           }
         } else {
-          // if (e.direction === Hammer.DIRECTION_RIGHT) {
-          if (content.offsetLeft > sidebarWidth / 2) {
-            content.style.left = `${sidebarWidth}px`;
+          // if (isOpening) {
+          if (shouldOpen) {
+            nextX = sidebarWidth;
           } else {
-            content.style.left = 0;
+            nextX = 0;
           }
         }
+
+        deltaX = nextX - currentX;
       }
+      console.log({
+        isClosing,
+        isFullyOpen,
+        isFullyClosed,
+        isOpening,
+        shouldClose,
+        shouldOpen,
+        currentX,
+        nextX,
+        deltaX,
+      });
+
+      content.style.setProperty('--dx', `${deltaX}px`);
+      content.style.transform = `translateX(${nextX}px)`;
     }
 
     let options = {
       dragLockToAxis: true,
       dragBlockHorizontal: true,
-      dragMinDistance: 5,
+      dragMinDistance: 20,
     };
     let hammertime = new Hammer(document, options);
     hammertime.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });
     hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
-    hammertime.on('panleft panright swipeleft swiperight panend', e => {
+    hammertime.on('panleft panright _swipeleft _swiperight panend', e => {
       switch (e.type) {
         case 'swiperight':
           return this.show();

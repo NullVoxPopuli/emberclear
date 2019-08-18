@@ -111,8 +111,14 @@ main {
   width: 100vw;
   background-color: var(--body-bg-color);
 
+  /* transform: translateX(calc(var(--dx, 0))); */
+
   &.sidebar-open {
     left: var(--sidenav-width);
+
+    &[style*="transform"] {
+      left: unset;
+    }
   }
 
   & section {
