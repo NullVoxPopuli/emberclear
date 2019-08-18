@@ -15,7 +15,8 @@ export default class Sidebar extends Service {
 
   unreadObserver?: IntersectionObserver;
 
-  @tracked slideout;
+  @tracked sidebarElement;
+  @tracked contentElement;
 
   @notEmpty('unreadAbove') hasUnreadAbove!: boolean;
   @notEmpty('unreadBelow') hasUnreadBelow!: boolean;
@@ -24,37 +25,95 @@ export default class Sidebar extends Service {
 
   show() {
     this.isShown = true;
+    this.sidebarElement.classList.add('active');
+    this.contentElement.classList.add('sidebar-open');
   }
 
   hide() {
     this.isShown = false;
+    this.sidebarElement.classList.remove('active');
+    this.contentElement.classList.remove('sidebar-open');
   }
 
   @action toggle() {
-    // this.slideout.toggle();
+    this.isShown ? this.hide() : this.show();
   }
 
   setup(sidebar: HTMLElement) {
-    // detect hammer events on the whole document
+    this.sidebarElement = sidebar;
     let content = document.querySelector('main#scrollContainer');
-    let hammer = new Hammer.Manager(document);
-    let swipe = new Hammer.Swipe({
-      threshold: 70,
-      direction: Hammer.DIRECTION_HORIZONTAL,
-    });
+    this.contentElement = content;
 
-    hammer.add(swipe);
+    let sidebarWidth = parseInt(
+      getComputedStyle(document.documentElement)
+        .getPropertyValue('--sidenav-width')
+        .split('px')[0]
+    );
+    let isDragging = false;
+    let lastX = 0;
 
-    hammer.on('swiperight', () => {
-      sidebar.classList.add('active');
-      content.classList.add('sidebar-open');
-      this.show();
-    });
+    function handleDrag(e) {
+      // left is closing -- 300px -> 0px
+      // right is opening -- 0px -> 300px
+      if (!isDragging) {
+        isDragging = true;
+        lastX = content.offsetLeft;
+      }
 
-    hammer.on('swipeleft', () => {
-      sidebar.classList.remove('active');
-      content.classList.remove('sidebar-open');
-      this.hide();
+      let nextX = e.deltaX + lastX;
+
+      if (nextX > sidebarWidth) {
+        content.style.left = `${sidebarWidth}px`;
+      } else if (nextX < 0) {
+        content.style.left = `${0}px`;
+      } else {
+        content.style.left = `${nextX}px`;
+      }
+
+      if (e.isFinal) {
+        isDragging = false;
+
+        // is far enough?
+        if (e.direction === Hammer.DIRECTION_LEFT) {
+          if (content.offsetLeft < sidebarWidth / 2) {
+            content.style.left = 0;
+          } else {
+            content.style.left = `${sidebarWidth}px`;
+          }
+        } else {
+          // if (e.direction === Hammer.DIRECTION_RIGHT) {
+          if (content.offsetLeft > sidebarWidth / 2) {
+            content.style.left = `${sidebarWidth}px`;
+          } else {
+            content.style.left = 0;
+          }
+        }
+      }
+    }
+
+    let options = {
+      dragLockToAxis: true,
+      dragBlockHorizontal: true,
+      dragMinDistance: 5,
+    };
+    let hammertime = new Hammer(document, options);
+    hammertime.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
+    hammertime.on('panleft panright swipeleft swiperight panend', e => {
+      switch (e.type) {
+        case 'swiperight':
+          return this.show();
+        case 'swipeleft':
+          return this.hide();
+        case 'panleft':
+          return handleDrag(e);
+        case 'panright':
+          return handleDrag(e);
+        case 'panend':
+          return handleDrag(e);
+        default:
+          console.info('gesture not handled', e);
+      }
     });
   }
 

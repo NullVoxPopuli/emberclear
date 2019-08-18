@@ -77,6 +77,11 @@
     user-select: none;
   }
 
+  --transition-all {
+    transition: all 0.2s ease-in-out;
+    /* cubic-bezier(0.6, 0, 0.735, 0.045); */
+  }
+
 }
 
 

@@ -1,4 +1,9 @@
 :root {
+  /* functional bits */
+  --sidenav-width: 300px;
+
+
+  /* colors */
   --color-purple: hsl(253, 84%, 53%);
   --color-red: hsl(348, 100%, 41%);
   --color-gray: #334;

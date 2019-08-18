@@ -1,4 +1,8 @@
 .top-nav {
+  @apply --no-select;
+  @apply --column-grid;
+  @apply --grid-space-betwen;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -9,12 +13,7 @@
   padding-left: var(--grid-gap);
   padding-right: var(--grid-gap);
 
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: var(--grid-gap);
-  align-items: center;
   justify-items: start;
-  justify-content: space-between;
 
   z-index: 100;
 }

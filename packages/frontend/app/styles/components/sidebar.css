@@ -1,4 +1,6 @@
 aside {
+  @apply --transition-all;
+
   background: var(--state-light);
   padding: var(--grid-gap);
   grid-gap: var(--grid-gap);
@@ -8,12 +10,10 @@ aside {
   position: fixed;
   top: var(--top-nav-height);
   bottom: 0;
-  width: 256px;
+  width: var(--sidenav-width);
   overflow-y: auto;
   z-index: 0;
-  display: none;
-  left: 0;
-
+  display: grid;
 
   /*
   The sidebar is broken up into two sections:
@@ -85,28 +85,38 @@ aside {
     }
   }
 
-  /* the bottom */
-  & div + div {
+  & footer {
     align-self: end;
+    & div {
+      @apply --column-grid;
 
-    & a {
-      display: block;
-      padding-left: var(--grid-gap);
-      padding-right: var(--grid-gap);
+      & nav {
+        align-self: end;
+        @apply --column-grid;
+      }
     }
   }
 }
 
 main {
+  @apply --transition-all;
+
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
   margin-top: var(--top-nav-height);
-  min-height: calc(100vh - var(--top-nav-height));
+  max-height: calc(100% - var(--top-nav-height));
   z-index: 1;
+  overflow-y: auto;
   position: relative;
+  left: 0;
+  width: 100vw;
+  background-color: var(--body-bg-color);
 
   &.sidebar-open {
-    left: 256px;
-    width: calc(100vw - 256px);
+    left: var(--sidenav-width);
+  }
+
+  & section {
+    min-height: calc(100vh - var(--top-nav-height));
   }
 }
 
@@ -116,6 +126,20 @@ main {
  * fix the width of the of the main content area
  *
  */
-@media (--breakpoint-sm-up) {
+@media (--breakpoint-md-up) {
+  aside {
+    left: calc(0 - var(--sidenav-width));
+
+    &.active {
+      left: 0;
+
+    }
+  }
+
+  main {
+    &.sidebar-open {
+      width: calc(100vw - var(--sidenav-width));
+    }
+  }
 }
 

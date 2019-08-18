@@ -1,9 +1,5 @@
 <aside ...attributes>
   <div>
-    <div class='hide-sm-up'>
-      <Pod::Application::OffCanvasContainer::Sidebar::TopMobileSection />
-    </div>
-
     {{#if this.hasUnreadAbove}}
       <Pod::Application::OffCanvasContainer::Sidebar::UnreadIndicator
         @onClick={{this.scrollUpToNearestUnread}}
@@ -25,18 +21,42 @@
   </div>
 
   {{#if this.isLoggedIn}}
-    <div>
+    <footer>
       <hr>
+      <div>
+        {{this.name}}
 
-      <a
-        {{action (queue
-          (action this.closeSidebar)
-          (transition-to 'logout'))
-        }}
-      >
-        {{fa-icon 'sign-out-alt' prefix='fas'}}
-        {{t 'routes.logout'}}
-      </a>
-    </div>
+        <nav>
+          <a
+            href={{url-for 'contacts'}}
+            class='has-icon'
+            title={{t 'routes.contacts'}}
+            {{on 'click' (queue this.closeSidebar (transition-to 'contacts'))}}
+          >
+            {{fa-icon 'address-book' prefix='fas'}}
+          </a>
+
+          <a
+            href={{url-for 'settings'}}
+            class='has-icon'
+            title={{t 'routes.settings'}}
+            {{on 'click' (queue this.closeSidebar (transition-to 'settings'))}}
+          >
+            {{fa-icon 'sliders-h'}}
+          </a>
+
+          <a
+            href={{url-for 'logout'}}
+            title={{t 'routes.logout'}}
+            {{on 'click' (queue
+              this.closeSidebar
+              (transition-to 'logout'))
+            }}
+          >
+            {{fa-icon 'sign-out-alt' prefix='fas'}}
+          </a>
+        </nav>
+      </div>
+    </footer>
   {{/if}}
 </aside>
