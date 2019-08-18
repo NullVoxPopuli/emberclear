@@ -8,6 +8,7 @@ import { notEmpty } from '@ember/object/computed';
 import Hammer from 'hammerjs';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
+import {SwipeHandler} from 'emberclear/services/sidebar/swipe-handler';
 
 export default class Sidebar extends Service {
   unreadAbove = A();
@@ -41,7 +42,7 @@ export default class Sidebar extends Service {
 
   setup(sidebar: HTMLElement) {
     this.sidebarElement = sidebar;
-    let content = document.querySelector('main#scrollContainer');
+    let content = document.querySelector('main#scrollContainer') as HTMLElement;
     this.contentElement = content;
 
     let sidebarWidth = parseInt(
@@ -49,117 +50,10 @@ export default class Sidebar extends Service {
         .getPropertyValue('--sidenav-width')
         .split('px')[0]
     );
-    let flickRegion = 0.35;
-    let openThreshold = sidebarWidth * flickRegion;
-    let closeThreshold = sidebarWidth * (1 - flickRegion);
 
-    let isDragging = false;
-    let initialX = 0;
-    let currentX;
-    let isOpening = false;
-    let isClosing = false;
+    let handler = new SwipeHandler({ content, sidebarWidth, flickRegion: 0.35 });
 
-    function handleDrag(e) {
-      // left is closing -- 300px -> 0px
-      // right is opening -- 0px -> 300px
-      if (!isDragging) {
-        isDragging = true;
-        initialX = content.getBoundingClientRect().left;
-      }
-
-      currentX = content.getBoundingClientRect().left;
-
-      // direction is none on a final event / panend
-      if (e.direction !== Hammer.DIRECTION_NONE) {
-        isOpening = e.direction === Hammer.DIRECTION_RIGHT;
-        isClosing = e.direction === Hammer.DIRECTION_LEFT;
-      }
-
-      let deltaX = 0;
-      let deltaXFromStart = e.deltaX;
-      let nextX = deltaXFromStart + initialX;
-      let shouldClose = nextX < closeThreshold;
-      let shouldOpen = nextX > openThreshold;
-      let isFullyOpen = nextX >= sidebarWidth;
-      let isFullyClosed = nextX <= 0;
-
-      if (isFullyOpen) {
-        nextX = sidebarWidth;
-        if (isOpening) {
-          deltaX = 0;
-        } else {
-          deltaX = nextX - currentX;
-        }
-      } else if (isFullyClosed) {
-        nextX = 0;
-        if (isClosing) {
-          deltaX = 0;
-        } else {
-          deltaX = nextX - currentX;
-        }
-      }
-
-      if (e.isFinal) {
-        isDragging = false;
-
-        // is far enough?
-        if (isClosing) {
-          if (shouldClose) {
-            nextX = 0;
-          } else {
-            nextX = sidebarWidth;
-          }
-        } else {
-          // if (isOpening) {
-          if (shouldOpen) {
-            nextX = sidebarWidth;
-          } else {
-            nextX = 0;
-          }
-        }
-
-        deltaX = nextX - currentX;
-      }
-      console.log({
-        isClosing,
-        isFullyOpen,
-        isFullyClosed,
-        isOpening,
-        shouldClose,
-        shouldOpen,
-        currentX,
-        nextX,
-        deltaX,
-      });
-
-      content.style.setProperty('--dx', `${deltaX}px`);
-      content.style.transform = `translateX(${nextX}px)`;
-    }
-
-    let options = {
-      dragLockToAxis: true,
-      dragBlockHorizontal: true,
-      dragMinDistance: 20,
-    };
-    let hammertime = new Hammer(document, options);
-    hammertime.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });
-    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
-    hammertime.on('panleft panright _swipeleft _swiperight panend', e => {
-      switch (e.type) {
-        case 'swiperight':
-          return this.show();
-        case 'swipeleft':
-          return this.hide();
-        case 'panleft':
-          return handleDrag(e);
-        case 'panright':
-          return handleDrag(e);
-        case 'panend':
-          return handleDrag(e);
-        default:
-          console.info('gesture not handled', e);
-      }
-    });
+    handler.start();
   }
 
   clearUnreadBelow() {
