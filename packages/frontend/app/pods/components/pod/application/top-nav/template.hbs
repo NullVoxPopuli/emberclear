@@ -2,7 +2,7 @@
 
   <div class='left-nav'>
     {{#if this.isLoggedIn}}
-      <div class='hide-md-up'>
+      <div>
         <HamburgerButton
           @class='flex'
           @onClick={{this.sidebar.toggle}}
@@ -20,27 +20,10 @@
         {{/if}}
       </div>
 
-      {{#link-to
-        'application'
-        class=(concat 'left hide-sm-down ' (if this.isChat this.textColor))
-      }}
+      <LinkTo @route='application' class={{concat 'left hide-sm-down ' (if this.isChat this.textColor)}}>
         {{t 'appname'}}
-      {{/link-to}}
+      </LinkTo>
 
-    {{else}}
-
-      {{#link-to
-        'application'
-        class=(concat 'left ' (if this.isChat this.textColor))
-      }}
-        {{t 'appname'}}
-      {{/link-to}}
-
-
-
-    {{/if}}
-
-    {{#if this.isLoggedIn}}
       <CurrentChatName class='current-chat' as |isVisible name record|>
         {{#if isVisible}}
           <hr class='vertical hide-sm-down'>
@@ -52,7 +35,15 @@
           {{/if}}
         {{/if}}
       </CurrentChatName>
+
+    {{else}}
+
+      <LinkTo @route='application' class={{concat 'left ' (if this.isChat this.textColor)}}>
+        {{t 'appname'}}
+      </LinkTo>
+
     {{/if}}
+
   </div>
 
 

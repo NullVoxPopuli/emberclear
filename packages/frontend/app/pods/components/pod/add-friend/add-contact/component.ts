@@ -32,12 +32,8 @@ export default class AddModal extends Component {
     return { name, publicKey: uid };
   }
 
-  @computed('publicIdentity')
   get url() {
-    const { name, publicKey } = this.publicIdentity;
-    const uri = `${ENV.host}/invite?name=${name}&publicKey=${publicKey}`;
-
-    return encodeURI(uri);
+    return this.currentUser.shareUrl;
   }
 
   toggleScanning(this: AddModal) {

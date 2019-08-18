@@ -5,6 +5,7 @@ import { isPresent } from '@ember/utils';
 
 import { inject as service } from '@ember/service';
 
+import ENV from 'emberclear/config/environment';
 import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
 import { toHex } from 'emberclear/utils/string-encoding';
 import StoreService from 'ember-data/store';
@@ -66,6 +67,12 @@ export default class CurrentUserService extends Service {
     if (!this.publicKey) return '';
 
     return toHex(this.publicKey);
+  }
+
+  get shareUrl(): string {
+    const uri = `${ENV.host}/invite?name=${this.name}&publicKey=${this.publicKey}`;
+
+    return encodeURI(uri);
   }
 
   async create(name: string): Promise<void> {

@@ -65,3 +65,23 @@
   }
 }
 
+.top-nav .user-dropdown-content {
+  @apply --grid;
+  padding: var(--grid-gap);
+  overflow: hidden;
+  font-size: 0.85rem;
+  min-width: 300px;
+
+  & section {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & a, & button {
+    font-size: 0.85rem;
+    padding: 0;
+    height: var(--dropdown-line-height);
+    line-height: var(--dropdown-line-height);
+  }
+}
+

@@ -1,43 +1,45 @@
-{{#if this.showDropdown}}
-  <KeyboardPress @key='Escape' @onDown={{this.toggleMenu}} />
-{{/if}}
+<Dropdown
+  @dir='left'
+  @buttonText={{this.currentUser.name}}
+  ...attributes
+  class='button-link'
+  data-test-user-dropdown
+  as |close|
+>
+  <div class='user-dropdown-content'>
+    <section>
+      <strong>{{this.currentUser.name}}</strong>
+      <em>{{this.currentUser.uid}}</em>
 
-<div class='dropdown dropdown-left {{if this.showDropdown 'active'}}' ...attributes>
-  <a
-    data-test-user-dropdown-toggle
-    class='dropdown-trigger'
-    {{on 'click' this.toggleMenu}}
-  >
-    {{fa-icon 'user-circle' prefix='fas'}}
-    <span>{{this.name}}</span>
-  </a>
+      <LinkTo @route='faq'>
+        {{t 'routes.faq'}}
+      </LinkTo>
 
-  <div data-test-user-dropdown class='dropdown-menu'>
-    <a {{on 'click' (queue this.closeMenu (transition-to 'contacts'))}}>
-      {{fa-icon 'address-book' prefix='fas'}}
-      <span>{{t 'routes.contacts'}}</span>
-    </a>
+      <div class='cta'>
+        <CopyTextButton
+          class='button-link'
+          @text={{this.currentUser.url}}
+          @label={{t 'ui.invite.copyProfile'}}
+        />
 
-    <a {{on 'click' (queue this.closeMenu (transition-to 'settings'))}}>
-      {{fa-icon 'sliders-h' prefix='fas'}}
-      <span>{{t 'routes.settings'}}</span>
-    </a>
+      </div>
+    </section>
 
     <hr class='navbar-divider'>
 
-    <a
-      data-test-logout
-      {{on 'click' (queue this.closeMenu (transition-to 'logout'))}}
-    >
-      {{fa-icon 'sign-out-alt' prefix='fas'}}
-      <span>{{t 'routes.logout'}}</span>
-    </a>
+    <div class='cta-with-fallback'>
+      <a {{on 'click' (queue close (transition-to 'settings'))}}>
+        {{fa-icon 'sliders-h' prefix='fas'}}
+        <span>{{t 'routes.settings'}}</span>
+      </a>
+      <a
+        data-test-logout
+        href={{url-for 'logout'}}
+        {{on 'click' (queue close (transition-to 'logout'))}}
+      >
+        {{fa-icon 'sign-out-alt' prefix='fas'}}
+        <span>{{t 'routes.logout'}}</span>
+      </a>
+    </div>
   </div>
-
-  <Backdrop
-    @isActive={{this.showDropdown}}
-    @onClick={{action this.closeMenu}}
-    @isInvisible={{this.showDropdown}}
-    style='z-index: 30;'
-  />
-</div>
+</Dropdown>
