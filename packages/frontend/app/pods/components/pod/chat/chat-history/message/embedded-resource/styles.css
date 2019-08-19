@@ -5,6 +5,8 @@
       @apply --column-grid;
 
       justify-content: start;
+      font-weight: bold;
+      font-size: 0.9rem;
     }
 
     & .card-content {
