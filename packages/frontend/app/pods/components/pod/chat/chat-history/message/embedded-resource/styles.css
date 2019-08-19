@@ -1,9 +1,22 @@
-& {
   .embedded-resource {
     @apply --grid;
 
-    header {
-      background: red;
+    & header {
+      @apply --column-grid;
+
+      justify-content: start;
+    }
+
+    & .card-content {
+      & > div {
+        @apply --column-grid;
+
+        justify-content: start;
+
+        & .thumbnail-container img {
+          max-height: 50px;
+          max-width: 50px;
+        }
+      }
     }
   }
-}
