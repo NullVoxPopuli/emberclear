@@ -58,7 +58,7 @@ module.exports = {
     //   }
     // },
     {
-      files: ['src/services/prism-manager.ts'],
+      files: ['app/services/prism-manager.ts'],
       rules: {
         'no-undef': 'off',
       },
