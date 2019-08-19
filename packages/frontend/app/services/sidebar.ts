@@ -49,7 +49,12 @@ export default class Sidebar extends Service {
         .split('px')[0]
     );
 
-    let handler = new SwipeHandler({ content, sidebarWidth, flickRegion: 0.35 });
+    let handler = new SwipeHandler({
+      content,
+      sidebarWidth,
+      flickRegion: 0.35,
+      pushUntilWidth: 768,
+    });
 
     handler.start();
   }

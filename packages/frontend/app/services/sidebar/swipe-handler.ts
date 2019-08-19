@@ -4,6 +4,7 @@ interface Args {
   content: HTMLElement;
   sidebarWidth: number;
   flickRegion: number;
+  pushUntilWidth: number;
 }
 
 /**
@@ -26,6 +27,13 @@ export class SwipeHandler {
    */
   flickRegion: number;
 
+  /**
+   * The px width of the window where the animation will "push" the content
+   * out of the way, until this breakpoint, and then the content will be
+   * resized.
+   */
+  pushUntilWidth: number;
+
   private openThreshold: number;
   private closeThreshold: number;
 
@@ -34,13 +42,15 @@ export class SwipeHandler {
   private isOpening = false;
   private isClosing = false;
 
-  constructor({ content, sidebarWidth, flickRegion }: Args) {
+  constructor({ content, sidebarWidth, flickRegion, pushUntilWidth }: Args) {
     this.content = content;
     this.sidebarWidth = sidebarWidth;
     this.flickRegion = flickRegion;
 
     this.openThreshold = sidebarWidth * flickRegion;
     this.closeThreshold = sidebarWidth * (1 - flickRegion);
+
+    this.pushUntilWidth = pushUntilWidth;
   }
 
   start() {
@@ -60,6 +70,9 @@ export class SwipeHandler {
           console.info('gesture not handled', e);
       }
     });
+
+    let boundResize = this.resizeHandler.bind(this);
+    window.addEventListener('resize', boundResize);
   }
 
   handleDrag(e: HammerStatic['Input']) {
@@ -112,8 +125,19 @@ export class SwipeHandler {
       }
     }
 
-    this.content.style.setProperty('--dx', `${nextX}px`);
-    this.content.style.setProperty('width', `${window.innerWidth - nextX}px`);
+    this.content.style.setProperty('--dx', `${nextX}`);
+
+    this.resizeHandler();
+
     this.content.style.transform = `translateX(${nextX}px)`;
+  }
+
+  resizeHandler() {
+    if (window.innerWidth >= this.pushUntilWidth) {
+      let nextX = this.content.style.getPropertyValue('--dx');
+      this.content.style.setProperty('width', `${window.innerWidth - nextX}px`);
+    } else {
+      this.content.style.setProperty('width', null);
+    }
   }
 }
