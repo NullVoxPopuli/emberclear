@@ -1,0 +1,67 @@
+.message {
+  @apply --grid;
+  @apply --grid-stretch;
+
+  position: relative;
+  background-color: transparent;
+  border-radius: var(--component-border-radius);
+  padding: var(--grid-gap);
+
+
+  &:hover {
+    background: var(--chat-message-hover-color);
+  }
+
+  &.unread {
+    background-color: #f1f1fa;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  & p {
+    margin: 0;
+  }
+
+  & .confirmations {
+    font-size: 0.8rem;
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0rem;
+    svg {
+      opacity: 0.5;
+    }
+  }
+
+  & .message-body {
+    border: none;
+    background-color: transparent;
+  }
+
+  & .message-header {
+    @apply --column-grid;
+    @apply --grid-space-between;
+
+    background-color: transparent;
+    cursor: default;
+
+    & .from {
+      font-style: bold;
+      font-size: 0.9rem;
+      text-decoration: underline;
+      color: var(--chat-message-sender-name);
+
+      & a {
+        color: var(--chat-message-sender-name);
+      }
+    }
+
+    & .sentAt {
+      font-weight: lighter;
+      font-size: 0.75rem;
+      color: var(--chat-message-sent-at);
+    }
+  }
+}
+

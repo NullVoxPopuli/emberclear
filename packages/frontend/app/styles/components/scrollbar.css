@@ -1,31 +1,41 @@
- /* Customize website's scrollbar like Mac OS
-Not supports in Firefox and IE */
+/*
+ * NOTE: customizing the scrollbar prevents
+ * the overlay scrollbar effect.
+ *
+ */
 
-/* total width */
-::-webkit-scrollbar {
-  background-color: transparent;
-  width: 0.5rem;
-}
 
-/* background of the scrollbar except button or resizer */
-::-webkit-scrollbar-track {
-  background-color: transparent;
-  border-radius: 1rem;
-}
-::-webkit-scrollbar-track:hover {
-  background-color: var(--scrollbar-track-hover);
-}
+ /* /1* Customize website's scrollbar like Mac OS */
+/* Not supports in Firefox and IE *1/ */
 
-/* scrollbar itself */
-::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-track-thumb);
-  border-radius: 1rem;;
-  border:5px solid transparent;
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--scrollbar-track-thumb-hover);
-}
+/* /1* total width *1/ */
+/* ::-webkit-scrollbar { */
+ /*  background-color: transparent; */
+ /*  width: 0.5rem; */
+ /*  position: fixed; */
+ /*  right: 0; */
+/* } */
 
-/* set button(top and bottom of the scrollbar) */
-::-webkit-scrollbar-button {display:none}
+/* /1* background of the scrollbar except button or resizer *1/ */
+/* ::-webkit-scrollbar-track { */
+ /*  background-color: transparent; */
+ /*  border-radius: 1rem; */
+ /*  margin: 0.5rem; */
+/* } */
+/* ::-webkit-scrollbar-track:hover { */
+ /*  background-color: var(--scrollbar-track-hover); */
+/* } */
+
+/* /1* scrollbar itself *1/ */
+/* ::-webkit-scrollbar-thumb { */
+ /*  background-color: var(--scrollbar-track-thumb); */
+ /*  border-radius: 1rem;; */
+ /*  border:5px solid transparent; */
+/* } */
+/* ::-webkit-scrollbar-thumb:hover { */
+ /*  background-color: var(--scrollbar-track-thumb-hover); */
+/* } */
+
+/* /1* set button(top and bottom of the scrollbar) *1/ */
+/* ::-webkit-scrollbar-button {display:none} */
 

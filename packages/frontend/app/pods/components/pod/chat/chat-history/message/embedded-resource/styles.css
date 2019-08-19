@@ -1,12 +1,18 @@
   .embedded-resource {
     @apply --grid;
+    margin: 5px;
 
-    & header {
+    & > header {
       @apply --column-grid;
 
       justify-content: start;
       font-weight: bold;
       font-size: 0.9rem;
+    }
+
+    & img, & iframe {
+      max-width: 480px;
+      max-height: 270px;
     }
 
     & .card-content {
@@ -15,7 +21,7 @@
 
         justify-content: start;
 
-        & .thumbnail-container img {
+        & > span img {
           max-height: 50px;
           max-width: 50px;
         }
