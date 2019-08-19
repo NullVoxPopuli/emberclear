@@ -74,6 +74,12 @@ export class SwipeHandler {
       this.isClosing = e.direction === Hammer.DIRECTION_LEFT;
     }
 
+    if (this.isOpening) {
+      this.content.style.transition = `width 0.1s linear, transform 0.1s linear`;
+    } else {
+      this.content.style.transition = `width 0.0s linear, transform 0.1s linear`;
+    }
+
     let deltaXFromStart = e.deltaX;
     let nextX = deltaXFromStart + this.initialX;
     let shouldClose = nextX < this.closeThreshold;

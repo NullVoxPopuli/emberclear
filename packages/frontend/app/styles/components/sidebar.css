@@ -1,6 +1,4 @@
 aside {
-  @apply --transition-all;
-
   background: var(--state-light);
   padding: var(--grid-gap);
   grid-gap: var(--grid-gap);
@@ -99,7 +97,10 @@ aside {
 }
 
 main {
-  transition: width 0.0s linear;
+  transition:
+    transform 0.1s linear,
+    width 0.0s linear
+    ;
 
 	will-change: transform;
 
