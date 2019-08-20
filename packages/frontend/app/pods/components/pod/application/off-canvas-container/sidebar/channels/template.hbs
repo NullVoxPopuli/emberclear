@@ -1,6 +1,6 @@
 <Collapsible as |isOpen toggle Icon|>
   <div class='menu-label'>
-    <a class='has-icon' {{on 'click' (prevent-default toggle)}}>
+    <a {{on 'click' (prevent-default toggle)}}>
       <Icon @isOpen={{isOpen}} />
       {{t 'ui.sidebar.channels.title'}}
     </a>

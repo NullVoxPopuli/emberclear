@@ -47,8 +47,11 @@ button .icon {
   justify-content:  center;
 }
 
-button.has-icon {
+button {
   display: grid;
+  & svg {
+    align-self: center;
+  }
 }
 
 svg.svg-inline--fa {

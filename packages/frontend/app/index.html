@@ -41,9 +41,7 @@
   </head>
 
 
-  <body
-    style=''
-  >
+  <body>
 
     {{content-for "body"}}
 
@@ -53,6 +51,7 @@
       background: #333344; color: white;
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       display: flex;
+      padding-top: 13px; /* adjust this for vertical alignment */
       flex-direction: column;
       justify-content: center;
       overflow-y: scroll;
@@ -66,27 +65,33 @@
           right: 0;
           z-index: 1001;
           position: fixed;
-          height: 52px;
+          height: 50px;
           background: white;
         '
        ></div>
 
       <h1
         style='
-          margin-top: 1rem;
-          margin-bottom: 1.5rem;
-          font-size: 2rem;
-          font-weight: 600;
-          line-height: 1.125;
+          margin-top: 0;
+          margin-bottom: 0.5rem;
+          font-size: 2.5rem;
+          font-weight: 300;
+          line-height: 1.1;
+          font-family: -apple-system, system-ui, BlinkMacSystemFont,
+             "Segoe UI", Roboto, "Helvetica Neue",
+             Ubuntu, Arial, sans-serif;
         '>
         emberclear
       </h1>
 
       <p
         style='
-          margin: 0;
-          font-size: 100%;
+          margin-top: 0;
+          margin-bottom: 1.5rem;
           font-weight: 400;
+          font-family: -apple-system, system-ui, BlinkMacSystemFont,
+             "Segoe UI", Roboto, "Helvetica Neue",
+             Ubuntu, Arial, sans-serif;
         '
       >
         Encrypted Chat. No History. No Logs.

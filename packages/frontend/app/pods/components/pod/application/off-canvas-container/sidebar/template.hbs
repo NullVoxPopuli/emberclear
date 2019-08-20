@@ -29,7 +29,6 @@
         <nav>
           <a
             href={{url-for 'contacts'}}
-            class='has-icon'
             title={{t 'routes.contacts'}}
             {{on 'click' (queue this.closeSidebar (transition-to 'contacts'))}}
           >
@@ -38,7 +37,6 @@
 
           <a
             href={{url-for 'settings'}}
-            class='has-icon'
             title={{t 'routes.settings'}}
             {{on 'click' (queue this.closeSidebar (transition-to 'settings'))}}
           >

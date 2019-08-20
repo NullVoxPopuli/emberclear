@@ -45,6 +45,11 @@
 @import "pod-styles.css";
 
 :root {
+  --font-system:
+    -apple-system, system-ui, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue',
+    Ubuntu, Arial, sans-serif;
+
   --grid {
     display: grid;
     grid-gap: var(--grid-gap);
@@ -116,16 +121,6 @@
   align-items: center;
   flex-direction: column
 }
-
-
-a.has-icon {
-  display: grid;
-  grid-auto-flow: column;
-  align-items: center;
-  justify-content: flex-start;
-  grid-gap: 0.5rem;
-}
-
 
 .icon-button {
   width: 1rem;

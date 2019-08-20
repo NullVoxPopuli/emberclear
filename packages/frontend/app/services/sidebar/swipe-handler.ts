@@ -88,7 +88,7 @@ export class SwipeHandler {
     }
 
     if (this.isOpening) {
-      this.content.style.transition = `width 0.1s linear, transform 0.1s linear`;
+      this.content.style.transition = `width 0.11s linear, transform 0.1s linear`;
     } else {
       this.content.style.transition = `width 0.0s linear, transform 0.1s linear`;
     }
