@@ -124,7 +124,7 @@ main {
     }
   }
 
-  & section {
+  & > section {
     min-height: calc(100vh - var(--top-nav-height));
   }
 }

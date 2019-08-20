@@ -2,6 +2,7 @@
   <div
     data-test-notification-prompt
     class='
+      chat-history-notification-prompt
       alert alert-info
       is-radiusless
       text-center
@@ -9,27 +10,33 @@
       has-shadow
     '
   >
-    <a
+    <button
       data-test-dismiss
       class='delete'
-      {{on 'click' this.askNextTime}}>
+      {{on 'click' this.askNextTime}}
+    >
       {{fa-icon 'times'}}
-    </a>
+    </button>
 
-    <strong>{{t 'ui.notifications.prompt.title'}}</strong>
+    <section>
 
-    <div data-test-enable class='flex justify-content-space-around m-t-sm'>
-      <a {{on 'click' this.enableNotifications}}>
-        {{t 'ui.notifications.prompt.enable'}}
-      </a>
+      <strong>{{t 'ui.notifications.prompt.title'}}</strong>
 
-      <a data-test-ask-later {{on 'click' this.askNextTime}}>
-        {{t 'ui.notifications.prompt.askLater'}}
-      </a>
+      <div data-test-enable>
+        <button {{on 'click' this.enableNotifications}}>
+          {{t 'ui.notifications.prompt.enable'}}
+        </button>
 
-      <a data-test-ask-never {{on 'click' this.neverAskAgain}}>
-        {{t 'ui.notifications.prompt.neverAsk'}}
-      </a>
-    </div>
+        <button data-test-ask-later {{on 'click' this.askNextTime}}>
+          {{t 'ui.notifications.prompt.askLater'}}
+        </button>
+
+        <button data-test-ask-never {{on 'click' this.neverAskAgain}}>
+          {{t 'ui.notifications.prompt.neverAsk'}}
+        </button>
+      </div>
+
+    </section>
+
   </div>
 {{/if}}

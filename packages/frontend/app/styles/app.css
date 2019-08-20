@@ -91,6 +91,16 @@
     transition: all 0.1s linear;
   }
 
+  --button-as-link {
+    height: unset;
+    line-height: unset;
+    text-align: unset;
+    display: unset;
+    border: none;
+    padding: 0;
+    background: none;
+    color: var(--link-color);
+  }
 }
 
 

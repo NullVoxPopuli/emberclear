@@ -15,8 +15,8 @@
     flex: 1 1 0%;
     display: flex;
     position: relative;
+    flex-direction: column;
 
-    /* align-self: end; */
     overflow: hidden;
     padding-bottom: var(--grid-gap);
 
