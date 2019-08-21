@@ -32,7 +32,8 @@
 
 .hover-tip {
   opacity: 0;
-  color: black;
+  color: var(--body-color);
+  background: var(--body-bg-color);
 
   z-index: 10;
   position: absolute;

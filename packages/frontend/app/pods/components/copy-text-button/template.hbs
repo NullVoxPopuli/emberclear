@@ -1,7 +1,7 @@
 <CopyButton
-  class='button has-status-tip {{if this.copied 'is-active'}}'
   @success={{this.copySuccess}}
   @clipboardText={{@text}}
+  class='has-status-tip {{if this.copied 'is-active'}}'
   ...attributes
 >
   {{@label}}
