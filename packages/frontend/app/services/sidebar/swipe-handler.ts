@@ -7,6 +7,11 @@ interface Args {
   pushUntilWidth: number;
 }
 
+interface ContentKeyFrame {
+  transform: string;
+  width?: string;
+}
+
 /**
  * NOTE: does not support dynamic width sidebar
  * NOTE: this only works for a sidebar on the left
@@ -158,13 +163,9 @@ export class SwipeHandler {
   finish(nextX: number) {
     let prevX = this.currentLeft;
 
-    let keyFrames = [
-      {
-        transform: `translateX(${prevX}px)`,
-      },
-      {
-        transform: `translateX(${nextX}px)`,
-      },
+    let keyFrames: ContentKeyFrame[] = [
+      { transform: `translateX(${prevX}px)` },
+      { transform: `translateX(${nextX}px)` },
     ];
 
     if (!this.isPushing) {
@@ -173,7 +174,7 @@ export class SwipeHandler {
     }
 
     let easing = 'cubic-bezier(0.215, 0.610, 0.355, 1.000)';
-    let animation = this.content.animate(keyFrames, { duration: 200, easing });
+    let animation = this.content.animate(keyFrames as any /* :( */, { duration: 200, easing });
 
     animation.onfinish = () => {
       this.content.style.transform = `translateX(${nextX}px)`;
