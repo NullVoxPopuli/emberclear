@@ -2,7 +2,7 @@ import StoreService from 'ember-data/store';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { computed } from '@ember/object';
+import { computed, action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
@@ -21,7 +21,6 @@ export default class AddModal extends Component {
 
   @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
 
-  @computed('currentUser.publicKey', 'currentUser.name', 'isLoggedIn')
   get publicIdentity() {
     if (!this.isLoggedIn) return {};
 
@@ -34,7 +33,8 @@ export default class AddModal extends Component {
     return this.currentUser.shareUrl;
   }
 
-  toggleScanning(this: AddModal) {
+  @action
+  toggleScanning() {
     this.scanning = !this.scanning;
   }
 
@@ -47,6 +47,7 @@ export default class AddModal extends Component {
   })
   onScan!: Task;
 
+  @action
   onScanError(e: Error) {
     this.toast.error(e.message);
   }

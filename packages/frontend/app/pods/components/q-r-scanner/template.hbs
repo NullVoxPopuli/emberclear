@@ -1,5 +1,4 @@
 <div
-  class='flex justify-content-center align-items-center'
   style='width: 100%; height: 300px; overflow: hidden'
   ...attributes
   {{did-insert this.mountScanner}}
@@ -17,8 +16,8 @@
 
 </div>
 
-<span class='flex justify-content-space-between m-t-md'>
-  <button class='button' {{action @onCancel}}>
+<div class='mar-t-md'>
+  <button {{on 'click' @onCancel}}>
     {{t 'buttons.cancel'}}
   </button>
-</span>
+</div>

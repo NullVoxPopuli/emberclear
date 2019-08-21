@@ -3,9 +3,8 @@
 {{#if this.scanning}}
   <QRScanner
     @onScan={{action (perform this.onScan)}}
-    @onError={{action this.onScanError}}
-    @onCancel={{action this.toggleScanning}}
-    class='p-md'
+    @onError={{this.onScanError}}
+    @onCancel={{this.toggleScanning}}
   />
 {{/if}}
 
@@ -26,18 +25,8 @@
     />
   {{/if}}
 
-  <div style='max-width: 300px; margin: 0 auto;'>
-    <div class='flex-grow shareable-url wrap hide-xs-down'>
-      <ExternalLink href={{this.url}}>
-        {{this.url}}
-      </ExternalLink>
-    </div>
-  </div>
-
-
-
-  <div class='cta-with-fallback'>
-    <button {{action this.toggleScanning}}>
+  <div class='cta-with-fallback pad-t-md'>
+    <button {{on 'click' this.toggleScanning}}>
       {{fa-icon 'qrcode' prefix='fas'}}
       <span>{{t 'buttons.scan'}}</span>
     </button>
