@@ -7,9 +7,7 @@ import { notEmpty } from '@ember/object/computed';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 import { SwipeHandler } from 'emberclear/services/sidebar/swipe-handler';
-import { buildWaiter } from 'ember-test-waiters';
-
-let waiter = buildWaiter('sidebar-service');
+import { waitForPromise } from 'ember-test-waiters';
 
 export default class Sidebar extends Service {
   unreadAbove = A();
@@ -26,25 +24,19 @@ export default class Sidebar extends Service {
 
   @inLocalStorage isShown = false;
 
-  async show() {
+  show() {
     this.isShown = true;
-    let token = waiter.beginAsync();
 
-    try {
-      await this.slider.open();
-    } finally {
-      waiter.endAsync(token);
+    if (this.slider) {
+      return waitForPromise(this.slider.open());
     }
   }
 
-  async hide() {
+  hide() {
     this.isShown = false;
-    let token = waiter.beginAsync();
 
-    try {
-      await this.slider.close();
-    } finally {
-      waiter.endAsync(token);
+    if (this.slider) {
+      return waitForPromise(this.slider.close());
     }
   }
 

@@ -2,8 +2,6 @@ import { find, triggerKeyEvent } from '@ember/test-helpers';
 import { create, text, clickable, collection, fillable, isPresent } from 'ember-cli-page-object';
 import { getter } from 'ember-cli-page-object/macros';
 
-
-
 const wrapper = '[data-test-offcanvas-wrapper]';
 const toggleButton = '[data-test-hamburger-toggle]';
 const sidebarContainer = '[data-test-sidebar-container]';
