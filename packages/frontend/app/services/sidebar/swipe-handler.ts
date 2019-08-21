@@ -12,7 +12,6 @@ interface ContentKeyFrame {
   width?: string;
 }
 
-
 const easing = 'cubic-bezier(0.215, 0.610, 0.355, 1.000)';
 
 /**
@@ -67,6 +66,14 @@ export class SwipeHandler {
 
   get currentLeft() {
     return this.content.getBoundingClientRect().left;
+  }
+
+  open() {
+    this.finish(this.sidebarWidth);
+  }
+
+  close() {
+    this.finish(0);
   }
 
   start() {

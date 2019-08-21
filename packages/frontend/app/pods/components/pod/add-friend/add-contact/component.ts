@@ -2,7 +2,7 @@ import StoreService from 'ember-data/store';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { computed, action } from '@ember/object';
+import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';

@@ -14,6 +14,7 @@ export default class Sidebar extends Service {
 
   unreadObserver?: IntersectionObserver;
 
+  @tracked slider: SwipeHandler;
   @tracked sidebarElement;
   @tracked contentElement;
 
@@ -24,14 +25,12 @@ export default class Sidebar extends Service {
 
   show() {
     this.isShown = true;
-    this.sidebarElement.classList.add('active');
-    this.contentElement.classList.add('sidebar-open');
+    this.slider.open();
   }
 
   hide() {
     this.isShown = false;
-    this.sidebarElement.classList.remove('active');
-    this.contentElement.classList.remove('sidebar-open');
+    this.slider.close();
   }
 
   @action toggle() {
@@ -56,7 +55,9 @@ export default class Sidebar extends Service {
       pushUntilWidth: 768,
     });
 
-    handler.start();
+    this.slider = handler;
+
+    this.slider.start();
   }
 
   clearUnreadBelow() {
