@@ -13,8 +13,8 @@ import {
 } from 'emberclear/tests/helpers';
 
 import CurrentUserService from 'emberclear/services/current-user';
+import { page, selectors } from 'emberclear/pods/components/pod/application/off-canvas-container/-page';
 
-import { page, openSidebar, selectors } from 'emberclear/tests/helpers/pages/sidebar';
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 
@@ -26,13 +26,13 @@ module('Acceptance | Sidebar', function(hooks) {
 
   hooks.beforeEach(async function() {
     await visit('/chat');
-    await openSidebar();
+    await page.toggle();
   });
 
   module('Contacts', function() {
     module('the add contact button is clicked', function(hooks) {
       hooks.beforeEach(async function() {
-        await page.contacts.header.clickAdd();
+        await page.sidebar.contacts.header.clickAdd();
       });
 
       test('a navigation occurred', function(assert) {
@@ -44,13 +44,13 @@ module('Acceptance | Sidebar', function(hooks) {
       module('there are 0 contacts', function() {
         test('only the current user is shown', function(assert) {
           const name = getService<CurrentUserService>('currentUser')!.name!;
-          const content = page.contacts.list.map((c: any) => c.text).join();
+          const content = page.sidebar.contacts.list.map((c: any) => c.text).join();
 
           assert.equal(content, name);
         });
 
         test('offline count does not show', function(assert) {
-          assert.notOk(page.contacts.offlineCount.isVisible);
+          assert.notOk(page.sidebar.contacts.offlineCount.isVisible);
         });
       });
 
@@ -61,11 +61,11 @@ module('Acceptance | Sidebar', function(hooks) {
         });
 
         test('there are 2 rows of names', function(assert) {
-          assert.equal(page.contacts.list.length, 2);
+          assert.equal(page.sidebar.contacts.list.length, 2);
         });
 
         test('offline count does not show', function(assert) {
-          assert.notOk(page.contacts.offlineCount.isVisible, 'offline count is shown');
+          assert.notOk(page.sidebar.contacts.offlineCount.isVisible, 'offline count is shown');
         });
 
         module('offline contacts are to be hidden', function(hooks) {
@@ -77,14 +77,14 @@ module('Acceptance | Sidebar', function(hooks) {
 
           test('only the current user is shown', function(assert) {
             const name = getService<CurrentUserService>('currentUser')!.name!;
-            const content = page.contacts.listText;
+            const content = page.sidebar.contacts.listText;
 
             assert.ok(content.includes(name), 'current user name is present');
-            assert.equal(page.contacts.list.length, 1, 'one user in the contacts list');
+            assert.equal(page.sidebar.contacts.list.length, 1, 'one user in the contacts list');
           });
 
           test('offline count is shown', function(assert) {
-            const result = page.contacts.offlineCount.text;
+            const result = page.sidebar.contacts.offlineCount.text;
 
             assert.ok(result!.match(/1/));
           });
@@ -99,7 +99,7 @@ module('Acceptance | Sidebar', function(hooks) {
         });
 
         test('there are 3 rows of names', function(assert) {
-          assert.equal(page.contacts.list.length, 3, 'there are 3 contacts');
+          assert.equal(page.sidebar.contacts.list.length, 3, 'there are 3 contacts');
         });
 
         module('offline contacts are to be hidden', function(hooks) {
@@ -111,14 +111,14 @@ module('Acceptance | Sidebar', function(hooks) {
 
           test('only the current user is shown', function(assert) {
             const name = getService<CurrentUserService>('currentUser')!.name!;
-            const content = page.contacts.listText;
+            const content = page.sidebar.contacts.listText;
 
             assert.ok(content.includes(name), 'current user name is present');
-            assert.equal(page.contacts.list.length, 1, 'one user in the contacts list');
+            assert.equal(page.sidebar.contacts.list.length, 1, 'one user in the contacts list');
           });
 
           test('offline count is shown', function(assert) {
-            const result = page.contacts.offlineCount.text;
+            const result = page.sidebar.contacts.offlineCount.text;
 
             assert.ok(result!.match(/2/));
           });
@@ -136,7 +136,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
   module('Channels', function() {
     test('the channel form is not visible', function(assert) {
-      const form = page.channels.form.isVisible;
+      const form = page.sidebar.channels.form.isVisible;
 
       assert.notOk(form);
     });
@@ -150,23 +150,23 @@ module('Acceptance | Sidebar', function(hooks) {
 
     module('the add channel button is clicked', function(hooks) {
       hooks.beforeEach(async function() {
-        await page.channels.toggleForm();
+        await page.sidebar.channels.toggleForm();
       });
 
       test('the channel form is now visible', function(assert) {
-        const form = page.channels.form.isVisible;
+        const form = page.sidebar.channels.form.isVisible;
 
         assert.ok(form);
       });
 
       module('the cancel button is clicked', function(hooks) {
         hooks.beforeEach(async function() {
-          await page.channels.toggleForm();
+          await page.sidebar.channels.toggleForm();
           await settled();
         });
 
         test('the channel form is not visible', function(assert) {
-          const form = page.channels.form.isVisible;
+          const form = page.sidebar.channels.form.isVisible;
 
           assert.notOk(form);
         });
@@ -174,13 +174,13 @@ module('Acceptance | Sidebar', function(hooks) {
 
       module('the channel form is submitted', function(hooks) {
         hooks.beforeEach(async function() {
-          await page.channels.form.fill('Vertical Flat Plates');
-          await page.channels.form.submit();
+          await page.sidebar.channels.form.fill('Vertical Flat Plates');
+          await page.sidebar.channels.form.submit();
           await settled();
         });
 
         test('the form becomes hidden', function(assert) {
-          const form = page.channels.form.isVisible;
+          const form = page.sidebar.channels.form.isVisible;
 
           assert.notOk(form);
         });

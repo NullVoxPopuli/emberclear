@@ -7,6 +7,9 @@ import { notEmpty } from '@ember/object/computed';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 import { SwipeHandler } from 'emberclear/services/sidebar/swipe-handler';
+import { buildWaiter } from 'ember-test-waiters';
+
+let waiter = buildWaiter('sidebar-service');
 
 export default class Sidebar extends Service {
   unreadAbove = A();
@@ -23,14 +26,26 @@ export default class Sidebar extends Service {
 
   @inLocalStorage isShown = false;
 
-  show() {
+  async show() {
     this.isShown = true;
-    this.slider.open();
+    let token = waiter.beginAsync();
+
+    try {
+      await this.slider.open();
+    } finally {
+      waiter.endAsync(token);
+    }
   }
 
-  hide() {
+  async hide() {
     this.isShown = false;
-    this.slider.close();
+    let token = waiter.beginAsync();
+
+    try {
+      await this.slider.close();
+    } finally {
+      waiter.endAsync(token);
+    }
   }
 
   @action toggle() {
@@ -40,6 +55,7 @@ export default class Sidebar extends Service {
   setup(sidebar: HTMLElement) {
     this.sidebarElement = sidebar;
     let content = document.querySelector('main#scrollContainer') as HTMLElement;
+    let container = document.querySelector('.ember-application'); /* body or testing container */
     this.contentElement = content;
 
     let sidebarWidth = parseInt(
@@ -49,6 +65,7 @@ export default class Sidebar extends Service {
     );
 
     let handler = new SwipeHandler({
+      container,
       content,
       sidebarWidth,
       flickRegion: 0.35,

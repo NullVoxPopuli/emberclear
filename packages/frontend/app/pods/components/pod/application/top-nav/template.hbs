@@ -4,7 +4,6 @@
     {{#if this.isLoggedIn}}
       <div>
         <HamburgerButton
-          @class='flex'
           @onClick={{this.sidebar.toggle}}
           @isActive={{this.sidebar.isShown}}
         />

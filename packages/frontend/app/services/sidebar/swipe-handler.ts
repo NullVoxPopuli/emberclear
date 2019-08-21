@@ -1,6 +1,7 @@
 import Hammer from 'hammerjs';
 
 interface Args {
+  container?: HTMLElement;
   content: HTMLElement;
   sidebarWidth: number;
   flickRegion: number;
@@ -19,6 +20,10 @@ const easing = 'cubic-bezier(0.215, 0.610, 0.355, 1.000)';
  * NOTE: this only works for a sidebar on the left
  */
 export class SwipeHandler {
+  /**
+   * The containing content, defaults to the body.
+   */
+  container: HTMLElement;
   /**
    * The content to be moved. Not the sidebar
    */
@@ -49,7 +54,8 @@ export class SwipeHandler {
   private isOpening = false;
   private isClosing = false;
 
-  constructor({ content, sidebarWidth, flickRegion, pushUntilWidth }: Args) {
+  constructor({ container, content, sidebarWidth, flickRegion, pushUntilWidth }: Args) {
+    this.container = container || document.body;
     this.content = content;
     this.sidebarWidth = sidebarWidth;
     this.flickRegion = flickRegion;
@@ -61,23 +67,23 @@ export class SwipeHandler {
   }
 
   get isPushing() {
-    return window.innerWidth < this.pushUntilWidth;
+    return this.container.clientWidth < this.pushUntilWidth;
   }
 
   get currentLeft() {
     return this.content.getBoundingClientRect().left;
   }
 
-  open() {
-    this.finish(this.sidebarWidth);
+  async open() {
+    return this.finish(this.sidebarWidth);
   }
 
-  close() {
-    this.finish(0);
+  async close() {
+    return this.finish(0);
   }
 
   start() {
-    let hammertime = new Hammer(document.body);
+    let hammertime = new Hammer(this.container);
 
     hammertime.get('pan').set({
       direction: Hammer.DIRECTION_HORIZONTAL,
@@ -168,15 +174,20 @@ export class SwipeHandler {
     ];
 
     if (!this.isPushing) {
-      keyFrames[0].width = `${window.innerWidth - prevX}px`;
-      keyFrames[1].width = `${window.innerWidth - nextX}px`;
+      keyFrames[0].width = `${this.container.clientWidth - prevX}px`;
+      keyFrames[1].width = `${this.container.clientWidth - nextX}px`;
     }
 
     let animation = this.content.animate(keyFrames as any /* :( */, { duration: 200, easing });
 
-    animation.onfinish = () => {
-      this.setPosition(nextX);
-    };
+    return new Promise(resolve => {
+      let finisher = () => {
+        this.setPosition(nextX);
+        resolve();
+      };
+
+      animation.onfinish = finisher;
+    });
   }
 
   private setPosition(nextX: number) {
@@ -190,7 +201,7 @@ export class SwipeHandler {
     if (!this.isPushing) {
       let nextX = parseInt(this.content.style.getPropertyValue('--dx'), 10);
 
-      this.content.style.setProperty('width', `${window.innerWidth - nextX}px`);
+      this.content.style.setProperty('width', `${this.container.clientWidth - nextX}px`);
     } else {
       this.content.style.setProperty('width', null);
     }
