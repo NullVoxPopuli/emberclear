@@ -19,10 +19,6 @@ aside {
    - bottom (logout)
   */
 
-  &.active {
-    display: grid;
-  }
-
   /* the top */
   & div:first-child {
     & .menu-label {
@@ -109,41 +105,8 @@ main {
   width: 100vw;
   background-color: var(--body-bg-color);
 
-  /* transform: translateX(calc(var(--dx, 0))); */
-
-  &.sidebar-open {
-    left: var(--sidenav-width);
-
-    &[style*="transform"] {
-      left: unset;
-    }
-  }
-
   & > section {
     min-height: calc(100vh - var(--top-nav-height));
-  }
-}
-
-@media (--breakpoint-sm-up) {
-  aside {
-    /* z-index: 101; /1* one above the top bar *1/ */
-    /* top: var(--top-nav-height); */
-  }
-}
-
-/*
- * on the sm up breakpoint, find a way to
- * fix the width of the of the main content area
- *
- */
-@media (--breakpoint-md-up) {
-  aside {
-    left: calc(0 - var(--sidenav-width));
-
-    &.active {
-      left: 0;
-
-    }
   }
 }
 
