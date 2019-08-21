@@ -26,8 +26,6 @@
 @import './shoelace-overrides.css';
 
 @import './components/scrollbar';
-@import './components/top-nav.css';
-@import './components/sidebar.css';
 @import './components/modal.css';
 @import './components/modal-search.css';
 @import './components/modal-snippets.css';

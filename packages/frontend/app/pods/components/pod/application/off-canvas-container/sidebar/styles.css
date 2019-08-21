@@ -37,6 +37,7 @@ aside {
       & a.button-xs,
       & button.button-xs {
         height: var(--button-height-sm);
+        width: var(--button-height-sm);
       }
     }
 

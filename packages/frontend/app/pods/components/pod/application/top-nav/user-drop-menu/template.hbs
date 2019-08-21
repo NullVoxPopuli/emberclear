@@ -11,11 +11,14 @@
       <strong>{{this.currentUser.name}}</strong>
       <em>{{this.currentUser.uid}}</em>
 
-      <LinkTo @route='faq'>
-        {{t 'routes.faq'}}
-      </LinkTo>
+      <br>
+      <br>
 
-      <div class='cta'>
+      <div class='cta-with-fallback'>
+        <LinkTo @route='faq'>
+          {{t 'routes.faq'}}
+        </LinkTo>
+
         <CopyTextButton
           class='button-link'
           @text={{this.currentUser.shareUrl}}

@@ -44,19 +44,7 @@ export default class Notifications extends Service {
   }
 
   info(msg: string, title = '', options = {}) {
-    return this.display('is-info', msg, title, options);
-  }
-
-  success(msg: string, title = '', options = {}) {
-    return this.display('is-success', msg, title, options);
-  }
-
-  warning(msg: string, title = '', options = {}) {
-    return this.display('is-warning', msg, title, options);
-  }
-
-  error(msg: string, title = '', options = {}) {
-    return this.display('is-danger', msg, title, options);
+    return this.display('info', msg, title, options);
   }
 
   async display(status: string, msg: string, title: string, options = {}) {
@@ -67,7 +55,7 @@ export default class Notifications extends Service {
 
     // Permission to display desktop notifications has not yet been granted.
     // ask the user if they would like to enable those.
-    this.set('askToEnableNotifications', true);
+    this.askToEnableNotifications = true;
 
     this.toast.createToast(status, msg, title, options);
   }

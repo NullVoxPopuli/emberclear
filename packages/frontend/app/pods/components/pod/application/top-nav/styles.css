@@ -82,6 +82,12 @@
     padding: 0;
     height: var(--dropdown-line-height);
     line-height: var(--dropdown-line-height);
+
+    &:hover {
+      background-color: unset;
+      color: var(--color-medium-gray);
+      text-decoration: none;
+    }
   }
 }
 
