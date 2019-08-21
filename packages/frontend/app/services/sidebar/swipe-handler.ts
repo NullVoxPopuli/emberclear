@@ -12,6 +12,9 @@ interface ContentKeyFrame {
   width?: string;
 }
 
+
+const easing = 'cubic-bezier(0.215, 0.610, 0.355, 1.000)';
+
 /**
  * NOTE: does not support dynamic width sidebar
  * NOTE: this only works for a sidebar on the left
@@ -90,7 +93,7 @@ export class SwipeHandler {
     window.addEventListener('resize', boundResize);
   }
 
-  handleDrag(e: HammerStatic['Input']) {
+  private handleDrag(e: HammerStatic['Input']) {
     if (!this.isDragging) {
       if (e.isFinal) {
         return;
@@ -101,6 +104,8 @@ export class SwipeHandler {
     }
 
     // direction is none on a final event / panend
+    // so, we need to make sure we have the last known
+    // isOpening / isClosing set from the last gestrue event.
     if (e.direction !== Hammer.DIRECTION_NONE) {
       this.isOpening = e.direction === Hammer.DIRECTION_RIGHT;
       this.isClosing = e.direction === Hammer.DIRECTION_LEFT;
@@ -111,7 +116,7 @@ export class SwipeHandler {
     let shouldClose = nextX < this.closeThreshold;
     let shouldOpen = nextX > this.openThreshold;
     let isFullyOpen = nextX >= this.sidebarWidth;
-    let isFullyClosed = nextX === 0;
+    let isFullyClosed = nextX <= 0;
 
     if (isFullyOpen) {
       nextX = this.sidebarWidth;
@@ -144,23 +149,10 @@ export class SwipeHandler {
       return this.finish(nextX);
     }
 
-    this.content.style.setProperty('--dx', `${nextX}`);
-
-    this.resizeHandler();
-
-    this.content.style.transform = `translateX(${nextX}px)`;
+    this.setPosition(nextX);
   }
 
-  resizeHandler() {
-    if (!this.isPushing) {
-      let nextX = parseInt(this.content.style.getPropertyValue('--dx'), 10);
-      this.content.style.setProperty('width', `${window.innerWidth - nextX}px`);
-    } else {
-      this.content.style.setProperty('width', null);
-    }
-  }
-
-  finish(nextX: number) {
+  private finish(nextX: number) {
     let prevX = this.currentLeft;
 
     let keyFrames: ContentKeyFrame[] = [
@@ -173,15 +165,27 @@ export class SwipeHandler {
       keyFrames[1].width = `${window.innerWidth - nextX}px`;
     }
 
-    let easing = 'cubic-bezier(0.215, 0.610, 0.355, 1.000)';
     let animation = this.content.animate(keyFrames as any /* :( */, { duration: 200, easing });
 
     animation.onfinish = () => {
-      this.content.style.transform = `translateX(${nextX}px)`;
-
-      if (!this.isPushing) {
-        this.content.style.setProperty('width', `${window.innerWidth - nextX}px`);
-      }
+      this.setPosition(nextX);
     };
+  }
+
+  private setPosition(nextX: number) {
+    this.content.style.setProperty('--dx', `${nextX}`);
+    this.content.style.transform = `translateX(${nextX}px)`;
+
+    this.resizeHandler();
+  }
+
+  private resizeHandler() {
+    if (!this.isPushing) {
+      let nextX = parseInt(this.content.style.getPropertyValue('--dx'), 10);
+
+      this.content.style.setProperty('width', `${window.innerWidth - nextX}px`);
+    } else {
+      this.content.style.setProperty('width', null);
+    }
   }
 }
