@@ -103,11 +103,9 @@
   }
 }
 
-
 .is-radiusless {
   border-radius: 0;
 }
-
 
 .has-shadow {
   box-shadow: var(--shadow);
@@ -200,13 +198,3 @@
   }
 }
 
-/* TODO: figure out how to do this */
-button.link {
-  height: unset;
-  line-height: unset;
-  text-align: unset;
-  border: none;
-  padding: 0;
-  background: none;
-  color: var(--link-color);
-}

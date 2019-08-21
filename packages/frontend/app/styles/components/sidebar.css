@@ -97,11 +97,6 @@ aside {
 }
 
 main {
-  transition:
-    transform 0.1s linear,
-    width 0.0s linear
-    ;
-
 	will-change: transform;
 
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);

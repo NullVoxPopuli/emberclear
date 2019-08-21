@@ -53,17 +53,27 @@ export class SwipeHandler {
     this.pushUntilWidth = pushUntilWidth;
   }
 
+  get isPushing() {
+    return window.innerWidth < this.pushUntilWidth;
+  }
+
+  get currentLeft() {
+    return this.content.getBoundingClientRect().left;
+  }
+
   start() {
     let hammertime = new Hammer(document.body);
 
-    hammertime.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });
-    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_HORIZONTAL });
-    hammertime.on('panleft panright panend', e => {
+    hammertime.get('pan').set({
+      direction: Hammer.DIRECTION_HORIZONTAL,
+      threshold: 15,
+    });
+
+    hammertime.on('panstart panleft panright panend', e => {
       switch (e.type) {
+        case 'panstart':
         case 'panleft':
-          return this.handleDrag(e);
         case 'panright':
-          return this.handleDrag(e);
         case 'panend':
           return this.handleDrag(e);
         default:
@@ -77,8 +87,12 @@ export class SwipeHandler {
 
   handleDrag(e: HammerStatic['Input']) {
     if (!this.isDragging) {
+      if (e.isFinal) {
+        return;
+      }
+
       this.isDragging = true;
-      this.initialX = this.content.getBoundingClientRect().left;
+      this.initialX = this.currentLeft;
     }
 
     // direction is none on a final event / panend
@@ -87,18 +101,12 @@ export class SwipeHandler {
       this.isClosing = e.direction === Hammer.DIRECTION_LEFT;
     }
 
-    if (this.isOpening) {
-      this.content.style.transition = `width 0.11s linear, transform 0.1s linear`;
-    } else {
-      this.content.style.transition = `width 0.0s linear, transform 0.1s linear`;
-    }
-
     let deltaXFromStart = e.deltaX;
     let nextX = deltaXFromStart + this.initialX;
     let shouldClose = nextX < this.closeThreshold;
     let shouldOpen = nextX > this.openThreshold;
     let isFullyOpen = nextX >= this.sidebarWidth;
-    let isFullyClosed = nextX <= 0;
+    let isFullyClosed = nextX === 0;
 
     if (isFullyOpen) {
       nextX = this.sidebarWidth;
@@ -107,9 +115,6 @@ export class SwipeHandler {
     }
 
     if (e.isFinal) {
-      this.isDragging = false;
-
-      // is far enough?
       if (this.isClosing) {
         if (shouldClose) {
           nextX = 0;
@@ -123,6 +128,15 @@ export class SwipeHandler {
           nextX = 0;
         }
       }
+
+      this.content.style.setProperty('--dx', `${nextX}`);
+
+      this.isOpening = false;
+      this.isClosing = false;
+      this.isDragging = false;
+      this.initialX = nextX;
+
+      return this.finish(nextX);
     }
 
     this.content.style.setProperty('--dx', `${nextX}`);
@@ -133,11 +147,40 @@ export class SwipeHandler {
   }
 
   resizeHandler() {
-    if (window.innerWidth >= this.pushUntilWidth) {
-      let nextX = this.content.style.getPropertyValue('--dx');
+    if (!this.isPushing) {
+      let nextX = parseInt(this.content.style.getPropertyValue('--dx'), 10);
       this.content.style.setProperty('width', `${window.innerWidth - nextX}px`);
     } else {
       this.content.style.setProperty('width', null);
     }
+  }
+
+  finish(nextX: number) {
+    let prevX = this.currentLeft;
+
+    let keyFrames = [
+      {
+        transform: `translateX(${prevX}px)`,
+      },
+      {
+        transform: `translateX(${nextX}px)`,
+      },
+    ];
+
+    if (!this.isPushing) {
+      keyFrames[0].width = `${window.innerWidth - prevX}px`;
+      keyFrames[1].width = `${window.innerWidth - nextX}px`;
+    }
+
+    let easing = 'cubic-bezier(0.215, 0.610, 0.355, 1.000)';
+    let animation = this.content.animate(keyFrames, { duration: 200, easing });
+
+    animation.onfinish = () => {
+      this.content.style.transform = `translateX(${nextX}px)`;
+
+      if (!this.isPushing) {
+        this.content.style.setProperty('width', `${window.innerWidth - nextX}px`);
+      }
+    };
   }
 }

@@ -70,7 +70,7 @@ export default class CurrentUserService extends Service {
   }
 
   get shareUrl(): string {
-    const uri = `${ENV.host}/invite?name=${this.name}&publicKey=${this.publicKey}`;
+    const uri = `${ENV.host}/invite?name=${this.name}&publicKey=${this.uid}`;
 
     return encodeURI(uri);
   }

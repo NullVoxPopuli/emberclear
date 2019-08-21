@@ -48,7 +48,8 @@ button .icon {
 }
 
 button {
-  display: grid;
+  /* check scan button if changing this */
+  /* display: grid; */
   & svg {
     align-self: center;
   }
