@@ -107,7 +107,9 @@ main {
   background-color: var(--body-bg-color);
 
   & > section {
-    min-height: calc(100vh - var(--top-nav-height));
+    min-height: calc(
+      100vh - var(--top-nav-height)
+    );
   }
 }
 

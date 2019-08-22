@@ -27,7 +27,7 @@ export default class ConnectionStatus extends Component {
   //       as is, whenever you visit a chat, even when you are already
   //       connected, the message shows.
   @action
-  didConnect(element) {
+  didConnect(element: HTMLElement) {
     if (this.isConnected) {
       this.setToFade.perform(element);
     } else {

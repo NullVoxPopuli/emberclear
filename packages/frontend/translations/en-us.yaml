@@ -284,7 +284,7 @@ ui:
 
   contacts:
     title: 'Contacts ({number})'
-    noContacts: You do not have any contacts. Feel free to import some from your user menu in the top-right corner.
+    noContacts: No contacts found. Feel free to add one of your friends.
 
   logout:
     title: Logging out is destructive

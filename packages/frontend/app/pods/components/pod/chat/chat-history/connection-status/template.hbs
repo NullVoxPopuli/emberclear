@@ -1,6 +1,7 @@
 <div
-  class='transition-all connection-status alert alert-{{this.level}}'
+  class='transition-all connection-status alert alert-{{this.statusLevel}}'
   {{did-update this.didConnect this.isConnected}}
+  {{did-insert this.didConnect}}
 >
   {{this.status}}
 </div>
