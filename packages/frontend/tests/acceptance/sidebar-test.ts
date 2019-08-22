@@ -60,7 +60,6 @@ module('Acceptance | Sidebar', function(hooks) {
       module('there is 1 contact', function(hooks) {
         hooks.beforeEach(async function() {
           await createContact('first contact');
-          await waitFor(selectors.contacts);
         });
 
         test('there are 2 rows of names', function(assert) {
@@ -98,7 +97,6 @@ module('Acceptance | Sidebar', function(hooks) {
         hooks.beforeEach(async function() {
           await createContact('first contact');
           await createContact('second contact');
-          await waitFor(selectors.contacts);
         });
 
         test('there are 3 rows of names', function(assert) {
