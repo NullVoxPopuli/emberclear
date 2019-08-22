@@ -32,7 +32,11 @@ class Mnemonic extends Component {
 
 export default setComponentTemplate(
   hbs`
-  <pre data-test-mnemonic {{did-insert (fn this.updateMnemonic @privateKey)}}>
+  <pre
+    data-test-mnemonic
+    class='wrap'
+    {{did-insert (fn this.updateMnemonic @privateKey)}}
+  >
     {{this.mnemonic}}
   </pre>
 `,

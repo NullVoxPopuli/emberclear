@@ -13,8 +13,8 @@ import {
 import { TYPE, TARGET } from 'emberclear/models/message';
 import CurrentUserService from 'emberclear/services/current-user';
 
-import ReceivedMessageHandler from './service';
 import { attributesForContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import ReceivedMessageHandler from 'emberclear/services/messages/handler';
 
 module('Unit | Service | messages/handler', function(hooks) {
   setupTest(hooks);

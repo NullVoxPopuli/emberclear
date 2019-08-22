@@ -50,7 +50,7 @@ export default class Settings extends Service {
   @inLocalStorage hideOfflineContacts = false;
   @inLocalStorage theme = THEMES.default;
 
-  selectTheme(themeKey) {
+  selectTheme(themeKey: string) {
     this.theme = themeKey;
     this.applyTheme();
   }

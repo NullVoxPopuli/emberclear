@@ -1,4 +1,5 @@
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { Channel, Socket } from 'phoenix';
 import { task } from 'ember-concurrency';
@@ -45,13 +46,14 @@ export default class RelayConnection extends Service {
   socket?: Socket;
   channel?: Channel;
   channelName?: string;
-  status?: string;
-  statusLevel?: string;
 
-  connected = false;
+  @tracked status?: string;
+  @tracked statusLevel?: string;
+
+  @tracked connected = false;
 
   setRelay(relay: Relay) {
-    this.set('relay', relay);
+    this.relay = relay;
   }
 
   getRelay() {
@@ -123,8 +125,8 @@ export default class RelayConnection extends Service {
 
     const socket = new Socket(url, { params: { uid: publicKey } });
 
-    this.set('socket', socket);
-    this.set('channelName', `user:${publicKey}`);
+    this.socket = socket;
+    this.channelName = `user:${publicKey}`;
 
     socket.onError(this.onSocketError);
     socket.onClose(this.onSocketClose);
@@ -149,7 +151,7 @@ export default class RelayConnection extends Service {
     return new Promise((resolve, reject) => {
       const channel = this.socket!.channel(this.channelName!, {});
 
-      this.set('channel', channel);
+      this.channel = channel;
 
       channel.onError(this.onChannelError);
       channel.onClose(this.onChannelClose);
@@ -174,7 +176,7 @@ export default class RelayConnection extends Service {
   onSocketClose = () => {
     this.updateStatus('info', this.intl.t('connection.status.socket.close'));
 
-    this.set('connected', false);
+    this.connected = false;
   };
 
   onChannelError = () => {
@@ -188,7 +190,7 @@ export default class RelayConnection extends Service {
   };
 
   @(task(function*(this: RelayConnection) {
-    this.set('connected', true);
+    this.connected = true;
     this.updateStatus('info', this.intl.t('connection.connected'));
 
     // ping for user statuses
@@ -201,8 +203,8 @@ export default class RelayConnection extends Service {
   };
 
   updateStatus = (level: string, msg: string) => {
-    this.set('status', msg);
-    this.set('statusLevel', level);
+    this.status = msg;
+    this.statusLevel = level;
   };
 }
 

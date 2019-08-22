@@ -1,27 +1,23 @@
-<section class='
-  hero is-large
-  has-background-danger has-text-white
-  centered-content align-items-start-mobile align-items-center-tablet'
->
+<section class='logout-warning hero bg-danger text-light'>
 
-  <div class='hero-body w-60-desktop'>
-    <h1 class='title has-text-white p-b-lg'>
+  <div class='container'>
+    <h1>
       {{t 'ui.logout.title'}}
     </h1>
 
-    <h2 class='subtitle has-text-white'>
+    <h2>
       {{t 'ui.logout.warning'}}
 
-      {{#link-to 'settings' class='underline has-text-white'}}
+      <LinkTo @route='settings'>
         {{t 'ui.logout.theSettingsPage'}}
-      {{/link-to}}
+      </LinkTo>
     </h2>
 
-    <div class='flex justify-content-end'>
-      <a class='button' {{action this.logout}}>
-        <span class='icon'>{{fa-icon 'sign-out-alt' prefix='fas'}}</span>
+    <div class='cta'>
+      <button {{on 'click' this.logout}}>
+        {{fa-icon 'sign-out-alt' prefix='fas'}}
         <span>{{t 'ui.logout.confirm'}}</span>
-      </a>
+      </button>
     </div>
   </div>
 </section>

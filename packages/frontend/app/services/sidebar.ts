@@ -1,6 +1,4 @@
-import Service from '@ember/service';
-import { tracked } from '@glimmer/tracking';
-
+import Service, { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { action } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
@@ -8,16 +6,19 @@ import { notEmpty } from '@ember/object/computed';
 import { inLocalStorage } from 'emberclear/utils/decorators';
 import { SwipeHandler } from 'emberclear/services/sidebar/swipe-handler';
 import { waitForPromise } from 'ember-test-waiters';
+import CurrentUserService from 'emberclear/services/current-user';
+import { valueOfProperty } from 'emberclear/utils/dom/css';
 
 export default class Sidebar extends Service {
+  @service currentUser!: CurrentUserService;
+
   unreadAbove = A();
   unreadBelow = A();
 
   unreadObserver?: IntersectionObserver;
 
-  @tracked slider: SwipeHandler;
-  @tracked sidebarElement;
-  @tracked contentElement;
+  slider?: SwipeHandler;
+  contentElement?: HTMLElement;
 
   @notEmpty('unreadAbove') hasUnreadAbove!: boolean;
   @notEmpty('unreadBelow') hasUnreadBelow!: boolean;
@@ -44,29 +45,35 @@ export default class Sidebar extends Service {
     this.isShown ? this.hide() : this.show();
   }
 
-  setup(sidebar: HTMLElement) {
-    this.sidebarElement = sidebar;
-    let content = document.querySelector('main#scrollContainer') as HTMLElement;
-    let container = document.querySelector('.ember-application'); /* body or testing container */
+  async setup(content: HTMLElement) {
     this.contentElement = content;
 
-    let sidebarWidth = parseInt(
-      getComputedStyle(document.documentElement)
-        .getPropertyValue('--sidenav-width')
-        .split('px')[0]
-    );
+    // TODO: would an async observer be good here?
+    if (!this.currentUser.isLoggedIn) {
+      if (this.slider) {
+        await waitForPromise(this.slider.close());
+        if (this.slider) {
+          this.slider.destroy();
+          this.slider = undefined;
+        }
+      }
 
-    let handler = new SwipeHandler({
+      return;
+    }
+
+    let container = document.querySelector(
+      '.ember-application'
+    ) as HTMLElement; /* body or testing container */
+
+    let sidebarWidth = parseInt(valueOfProperty('sidenav-width'));
+
+    this.slider = new SwipeHandler({
       container,
       content,
       sidebarWidth,
       flickRegion: 0.35,
       pushUntilWidth: 768,
     });
-
-    this.slider = handler;
-
-    this.slider.start();
   }
 
   clearUnreadBelow() {
@@ -114,5 +121,13 @@ export default class Sidebar extends Service {
         this.unreadAbove.addObject(id);
       }
     });
+  }
+
+  private destroy(...args: unknown[]) {
+    if (this.slider) {
+      this.slider.destroy();
+    }
+
+    super.destroy(...args);
   }
 }

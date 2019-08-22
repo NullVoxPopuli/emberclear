@@ -70,6 +70,10 @@ button {
   }
 }
 
+pre.wrap {
+  white-space: inherit;
+}
+
 svg.svg-inline--fa {
   width: 1rem;
   height: 1rem;

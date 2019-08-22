@@ -4,11 +4,15 @@
   <Pod::Application::OffCanvasContainer::Sidebar
     class='sidebar-wrapper'
     id='sidebar'
-    {{did-insert this.onInsert}}
   />
 {{/if}}
 
 
-<main id='scrollContainer' data-scroll-container>
+<main
+  id='scrollContainer'
+  data-scroll-container
+  {{did-insert this.onInsert}}
+  {{did-update this.onInsert this.currentUser.isLoggedIn}}
+>
   {{yield}}
 </main>

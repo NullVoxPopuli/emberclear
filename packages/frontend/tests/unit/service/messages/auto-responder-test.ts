@@ -15,8 +15,8 @@ import Identity from 'emberclear/models/identity';
 import Message, { TYPE, TARGET } from 'emberclear/models/message';
 import CurrentUserService from 'emberclear/services/current-user';
 
-import AutoResponder from './service';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import AutoResponder from 'emberclear/services/messages/auto-responder';
 
 module('Unit | Service | messages/auto-responder', function(hooks) {
   setupTest(hooks);

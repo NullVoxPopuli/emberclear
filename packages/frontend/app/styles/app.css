@@ -120,7 +120,7 @@
 }
 
 .hero {
-  height: calc(100vh - var(--top-nav-height));
+  min-height: calc(100vh - var(--top-nav-height));
 
   display: flex;
   justify-content: center;
@@ -141,6 +141,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .flex-center {

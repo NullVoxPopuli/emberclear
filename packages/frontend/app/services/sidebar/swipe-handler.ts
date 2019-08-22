@@ -46,6 +46,8 @@ export class SwipeHandler {
    */
   pushUntilWidth: number;
 
+  public recognizer: HammerManager;
+
   private openThreshold: number;
   private closeThreshold: number;
 
@@ -55,7 +57,7 @@ export class SwipeHandler {
   private isClosing = false;
 
   constructor({ container, content, sidebarWidth, flickRegion, pushUntilWidth }: Args) {
-    this.container = container || document.body;
+    this.container = container || (document.body as HTMLElement);
     this.content = content;
     this.sidebarWidth = sidebarWidth;
     this.flickRegion = flickRegion;
@@ -64,6 +66,9 @@ export class SwipeHandler {
     this.closeThreshold = sidebarWidth * (1 - flickRegion);
 
     this.pushUntilWidth = pushUntilWidth;
+
+    this.recognizer = new Hammer(this.container);
+    this.start();
   }
 
   get isPushing() {
@@ -82,15 +87,17 @@ export class SwipeHandler {
     return this.finish(0);
   }
 
-  start() {
-    let hammertime = new Hammer(this.container);
+  destroy() {
+    this.recognizer.destroy();
+  }
 
-    hammertime.get('pan').set({
+  start() {
+    this.recognizer.get('pan').set({
       direction: Hammer.DIRECTION_HORIZONTAL,
       threshold: 15,
     });
 
-    hammertime.on('panstart panleft panright panend', e => {
+    this.recognizer.on('panstart panleft panright panend', e => {
       switch (e.type) {
         case 'panstart':
         case 'panleft':

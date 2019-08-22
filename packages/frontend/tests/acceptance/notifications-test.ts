@@ -10,9 +10,10 @@ import {
   setupCurrentUser,
 } from 'emberclear/tests/helpers';
 
-import Notifications from './service';
 
 import { app } from 'emberclear/tests/helpers/pages/app';
+
+import Notifications from 'emberclear/services/notifications';
 
 module('Acceptance | Notifications Service', function(hooks) {
   setupApplicationTest(hooks);

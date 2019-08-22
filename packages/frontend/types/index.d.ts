@@ -28,32 +28,32 @@ declare module '@ember/service' {
   }
 }
 
-declare global {
-  interface UserChoice {
-    outcome: 'accepted' | undefined;
-  }
+// declare Global {
+//   interface UserChoice {
+//     outcome: 'accepted' | undefined;
+//   }
 
-  // why is this not a built in type?
-  interface FakeBeforeInstallPromptEvent {
-    prompt: () => Promise<void>;
-    userChoice: Promise<UserChoice>;
-  }
+//   // why is this not a built in type?
+//   interface FakeBeforeInstallPromptEvent {
+//     prompt: () => Promise<void>;
+//     userChoice: Promise<UserChoice>;
+//   }
 
-  interface Assert {
-    contains: (source?: string | null, sub?: string, message?: string) => void;
-  }
+//   interface Assert {
+//     contains: (source?: string | null, sub?: string, message?: string) => void;
+//   }
 
-  interface Window {
-    Notification: Partial<Notification> & {
-      permission: 'denied' | 'granted' | undefined;
-    };
-    ServiceWorker: {};
-    deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
-  }
+//   interface Window {
+//     Notification: Partial<Notification> & {
+//       permission: 'denied' | 'granted' | undefined;
+//     };
+//     ServiceWorker: {};
+//     deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
+//   }
 
-  interface Navigator {
-    permissions: {
-      revoke(opts: any): Promise<void>;
-    };
-  }
-}
+//   interface Navigator {
+//     permissions: {
+//       revoke(opts: any): Promise<void>;
+//     };
+//   }
+// }

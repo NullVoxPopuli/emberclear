@@ -1,14 +1,14 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import Notifications from './service';
-
 import {
   clearLocalStorage,
   getService,
   stubService,
   setupWindowNotification,
 } from 'emberclear/tests/helpers';
+
+import Notifications from 'emberclear/services/notifications';
 
 module('Unit | Service | notifications', function(hooks) {
   setupTest(hooks);
