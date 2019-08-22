@@ -33,6 +33,7 @@ body > main > section {
   }
 
   & > .center-self {
+    /* kinda */
     align-self: center;
     justify-self: center;
   }
