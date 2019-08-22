@@ -1,6 +1,8 @@
-import { find, triggerKeyEvent } from '@ember/test-helpers';
-import { create, text, clickable, collection, fillable, isPresent } from 'ember-cli-page-object';
+import { find } from '@ember/test-helpers';
+import { create, clickable, isPresent } from 'ember-cli-page-object';
 import { getter } from 'ember-cli-page-object/macros';
+import { sidebarContactsPage } from 'emberclear/pods/components/pod/application/off-canvas-container/sidebar/contacts/-page';
+import { sidebarChannelsPage } from 'emberclear/pods/components/pod/application/off-canvas-container/sidebar/channels/-page';
 
 const wrapper = '[data-test-offcanvas-wrapper]';
 const toggleButton = '[data-test-hamburger-toggle]';
@@ -41,28 +43,8 @@ export const page = create({
   sidebar: {
     scope: 'aside',
 
-    contacts: {
-      header: {
-        scope: '[data-test-sidebar-contacts-header]',
-        clickAdd: clickable('[data-test-add-friend]'),
-      },
-      listText: text('[data-test-contact-row]'),
-      list: collection('[data-test-sidebar-contacts-list] [data-test-contact-row]', {
-        name: text('[data-test-contact-name]'),
-      }),
-      offlineCount: {
-        scope: '[data-test-offline-count]',
-      },
-    },
-
-    channels: {
-      toggleForm: clickable('[data-test-channel-form-toggle]'),
-      form: {
-        scope: channelForm,
-        fill: fillable('input'),
-        submit: () => triggerKeyEvent(`${channelForm} input`, 'keypress', 'Enter'),
-      },
-    },
+    contacts: sidebarContactsPage,
+    channels: sidebarChannelsPage,
 
     footer: {
       scope: 'footer',

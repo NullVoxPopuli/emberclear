@@ -45,7 +45,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
     module('the actual list of contacts', function() {
       module('there are 0 contacts', function() {
-        test('only the current user is shown', function(assert) {
+        test('only the current user is shown', async function(assert) {
           const name = getService<CurrentUserService>('currentUser')!.name!;
           const content = page.sidebar.contacts.list.map((c: any) => c.text).join();
 

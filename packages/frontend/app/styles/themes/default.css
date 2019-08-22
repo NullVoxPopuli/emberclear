@@ -71,8 +71,8 @@
   --alert-bg-color-warning: color(var(--state-warning) shade(75%));
   --alert-color-warning: color(var(--state-warning) tint(75%));
 
-  --alert-bg-color-danger: color(var(--state-danger) shade(75%));
-  --alert-color-danger: color(var(--state-danger) tint(75%));
+  --alert-bg-color-danger: color(var(--state-danger) shade(40%));
+  --alert-color-danger: color(var(--state-danger) tint(100%));
 
 
   --scrollbar-track-hover: #fafafa;

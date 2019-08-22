@@ -28,16 +28,17 @@ hr {
 body > main > section {
   padding: var(--grid-gap);
 
-  &.grid {
-    @apply --grid;
-  }
-
   & > .center-self {
     /* kinda */
     align-self: center;
     justify-self: center;
   }
 }
+
+.grid {
+  @apply --grid;
+}
+
 
 a {
   cursor: pointer;
