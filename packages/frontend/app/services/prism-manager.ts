@@ -134,7 +134,7 @@ export default class PrismManager extends Service {
     head.appendChild(link);
     yield this.addScript(js);
 
-    this.set('areEssentialsPresent', true);
+    this.areEssentialsPresent = true;
   }).drop())
   addEssentials!: Task;
 

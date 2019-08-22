@@ -12,7 +12,7 @@ export default class LocaleService extends Service {
   @inLocalStorage currentLocale = DEFAULT_LOCALE;
 
   async setLocale(locale: string = DEFAULT_LOCALE) {
-    this.set('currentLocale', locale || DEFAULT_LOCALE);
+    this.currentLocale = locale || DEFAULT_LOCALE;
 
     // uncomment for asyncily loaded translations
     // const request = await fetch(`/translations/${locale}.json`);

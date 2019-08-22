@@ -26,6 +26,9 @@
       "emberclear/tests/*": [
         "tests/*"
       ],
+      "emberclear/config/*": [
+        "config/*"
+      ],
       "emberclear/*": [
         "app/*"
       ],

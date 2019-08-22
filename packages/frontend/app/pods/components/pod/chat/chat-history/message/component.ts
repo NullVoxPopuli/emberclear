@@ -51,17 +51,6 @@ export default class MessageDisplay extends Component<IArgs> {
     return parseURLs(content);
   }
 
-  @computed('settings.useLeftRightJustificationForMessages', 'hasSender')
-  get alignment() {
-    if (!this.settings.useLeftRightJustificationForMessages) return '';
-
-    if (this.hasSender && this.sender!.id !== this.currentUser.id) {
-      return 'justify-received';
-    }
-
-    return 'justify-sent';
-  }
-
   @task(function*(this: MessageDisplay) {
     const { message } = this.args;
 

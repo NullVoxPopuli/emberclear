@@ -7,7 +7,7 @@ import Settings, { THEMES } from 'emberclear/services/settings';
 export default class InterfaceSettings extends Component {
   @service settings!: Settings;
 
-  @action useDarkTheme(e) {
+  @action useDarkTheme(e: any) {
     if (e.target.checked) {
       this.settings.selectTheme(THEMES.midnight);
     } else {

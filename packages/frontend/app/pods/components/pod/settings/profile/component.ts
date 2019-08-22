@@ -17,7 +17,7 @@ export default class ProfileSettings extends Component {
   @reads('settings.downloadUrl') downloadSettingsUrl!: string;
 
   @action
-  async save(e) {
+  async save(e: Event) {
     e.preventDefault();
 
     await this.currentUser.record!.save();

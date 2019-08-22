@@ -14,7 +14,7 @@ export default class SetupOverwriteController extends Controller {
 
   @action
   didClickYes(this: SetupOverwriteController) {
-    this.currentUser.set('allowOverride', true);
+    this.currentUser.allowOverride = true;
     this.transitionToRoute('setup');
   }
 }

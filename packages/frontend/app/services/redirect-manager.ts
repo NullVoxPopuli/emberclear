@@ -14,13 +14,13 @@ export default class RedirectManager extends Service {
   }
 
   persistURL(path: string) {
-    this.set('attemptedRoute', path);
+    this.attemptedRoute = path;
   }
 
   evaluate() {
     if (this.hasPendingRedirect) {
       this.router.transitionTo(this.attemptedRoute!);
-      this.set('attemptedRoute', null);
+      this.attemptedRoute = undefined;
 
       return true;
     }

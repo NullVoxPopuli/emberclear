@@ -24,12 +24,6 @@ export default class TopNav extends Component {
     return !this.isApplication;
   }
 
-  get textColor() {
-    if (this.isChat) return 'has-text-white';
-
-    return '';
-  }
-
   get allMessages() {
     return this.store.peekAll('message');
   }
