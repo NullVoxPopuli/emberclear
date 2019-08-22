@@ -63,26 +63,6 @@ module('Acceptance | Settings', function(hooks) {
       });
     });
 
-    module('Showing the private key', function() {
-      test('key is not shown by default', function(assert) {
-        const key = settings.privateKeyText();
-
-        assert.notOk(key);
-      });
-
-      module('Show private key is clicked', function(hooks) {
-        hooks.beforeEach(async function() {
-          await settings.togglePrivateKey();
-        });
-
-        test('the private key is shown', function(assert) {
-          const key = settings.privateKeyText();
-
-          assert.ok(key);
-        });
-      });
-    });
-
     module('Downloading settings', function() {
       // TODO: how to test downloads?
     });

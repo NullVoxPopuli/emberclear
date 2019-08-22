@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import StoreService from 'ember-data/store';
 
-import { visit, currentURL, settled, waitFor } from '@ember/test-helpers';
+import { visit, currentURL, settled, waitFor, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -180,7 +180,9 @@ module('Acceptance | Sidebar', function(hooks) {
           await settled();
         });
 
-        test('the form becomes hidden', function(assert) {
+        test('the form becomes hidden', async function(assert) {
+          // TODO: figure out why settled state doesn't capture this behavior
+          await waitUntil(() => !page.sidebar.channels.form.isVisible);
           const form = page.sidebar.channels.form.isVisible;
 
           assert.notOk(form);

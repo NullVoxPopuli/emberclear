@@ -1,4 +1,4 @@
-import { click, find, fillIn } from '@ember/test-helpers';
+import { click, fillIn } from '@ember/test-helpers';
 import { create, collection, clickable, isVisible, fillable } from 'ember-cli-page-object';
 
 const wrapper = '[data-test-settings-wrapper]';
@@ -36,6 +36,11 @@ export const page = create({
       click: clickable(),
       isVisible: isVisible(),
     },
+    togglePrivateKey: clickable(`[data-test-show-private-key-toggle]`),
+
+    privateKey: {
+      scope: `[data-test-mnemonic]`,
+    },
   },
   interface: {
     scope: '[data-test-interface]',
@@ -48,10 +53,6 @@ export const settings = {
   fillNameField: (text: string) => fillIn(`${wrapper} [data-test-name-field]`, text),
 
   deleteMessages: () => click(`${wrapper} [data-test-delete-messages]`),
-
-  togglePrivateKey: () => click(`${wrapper} [data-test-show-private-key-toggle]`),
-
-  privateKeyText: () => find(`${wrapper} [data-test-mnemonic]`),
 
   toggleHideOfflineContacts: () => click(`${wrapper} [data-test-hide-offline-contacts]`),
 };

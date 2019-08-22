@@ -15,7 +15,7 @@ export default class ChannelForm extends Component {
 
   @action
   onFormSubmit(this: ChannelForm) {
-    this.didSubmitChannelName();
+    return this.didSubmitChannelName();
   }
 
   @action
@@ -31,12 +31,12 @@ export default class ChannelForm extends Component {
     return true;
   }
 
-  private didSubmitChannelName() {
-    this.createChannel();
+  private async didSubmitChannelName() {
+    await this.createChannel();
 
     this.set('newChannelName', '');
 
-    this.onSubmit();
+    return this.onSubmit();
   }
 
   private async createChannel() {

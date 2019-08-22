@@ -8,7 +8,6 @@ import { inLocalStorage } from 'emberclear/utils/decorators';
 
 import Toast from 'emberclear/services/toast';
 import RouterService from '@ember/routing/router-service';
-import WindowService from 'emberclear/services/window';
 
 export default class Notifications extends Service {
   @service toast!: Toast;

@@ -19,7 +19,8 @@ export default class RelayTable extends Component<IArgs> {
 
   remove(relay: Relay) {
     relay.deleteRecord();
-    relay.save();
+
+    return relay.save();
   }
 
   async makeDefault(relay: Relay) {

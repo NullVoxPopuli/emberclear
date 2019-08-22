@@ -27,6 +27,7 @@ hr {
 
 body > main > section {
   padding: var(--grid-gap);
+  padding-bottom: calc(var(--top-nav-height) + var(--grid-gap));
 
   & > .center-self {
     /* kinda */
