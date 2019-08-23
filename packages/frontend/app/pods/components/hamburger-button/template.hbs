@@ -1,0 +1,10 @@
+<a
+  data-test-hamburger-toggle
+  role='button'
+  class='icon-button navbar-burger burger {{@class}} {{if @isActive 'is-active'}}'
+  aria-label={{t 'buttons.ariaLabel.sidebar'}}
+  aria-expanded='false'
+  {{action @onClick}}
+>
+  {{fa-icon 'bars' prefix='fas'}}
+</a>

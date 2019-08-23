@@ -3,11 +3,11 @@
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'emberclear',
+    podModulePrefix: 'emberclear/pods',
+
     environment,
     rootURL: '/',
-    // locationType: 'auto', // default
-    // https://github.com/dollarshaveclub/ember-router-scroll#installation--usage
-    locationType: 'router-scroll',
+    locationType: 'auto', // default
     historySupportMiddleware: true,
 
     EmberENV: {
@@ -47,6 +47,7 @@ module.exports = function(environment) {
           'check',
           'ellipsis-h',
           'globe',
+          'bars',
         ],
       },
     },
@@ -65,6 +66,10 @@ module.exports = function(environment) {
     componentOptions: {
       turnAuditOff: true,
     },
+  };
+
+  ENV['ember-component-css'] = {
+    namespacing: false,
   };
 
   if (environment === 'development') {

@@ -181,8 +181,8 @@ ui:
     notOnlineQ: Was passiert wenn ich eine Nachricht sende und der Empfänger nich mehr online ist.
     notOnlineA: >
       Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
-    serverStorageQ: Speichert der Server / das Relay meine Nachrichten?
-    serverStorageA: false
+    serverStorageQ: "Speichert der Server / das Relay meine Nachrichten?"
+    serverStorageA: "false"
   footer:
     navigation: Navigation
     wantToSupport: Möchtest du das Projekt unterstützen?

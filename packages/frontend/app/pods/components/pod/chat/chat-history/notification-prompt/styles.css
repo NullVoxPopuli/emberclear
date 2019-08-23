@@ -1,0 +1,27 @@
+.chat-history-notification-prompt {
+  @apply --column-grid;
+  grid-template-columns: auto 1fr;
+  padding: var(--grid-gap-small);
+
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+
+  & button {
+    @apply --button-as-link;
+
+    color: currentColor;
+  }
+
+  & > section {
+
+    & div {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+  }
+
+}

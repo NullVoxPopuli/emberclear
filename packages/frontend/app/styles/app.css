@@ -1,0 +1,199 @@
+
+
+/* @import url('shoelace.css'); */
+
+@import 'normalize.css';
+@import url('content.css');
+@import url('alerts.css');
+@import url('badges.css');
+@import url('buttons.css');
+@import url('dropdowns.css');
+@import url('file-buttons.css');
+@import url('forms.css');
+@import url('grid.css');
+/* @import url('progress-bars.css'); */
+/* @import url('loaders.css'); */
+@import url('switches.css');
+@import url('tabs.css');
+@import url('tables.css');
+@import url('utilities.css');
+@import url('variables.css');
+
+@import './themes/default.css';
+@import './themes/midnight.css';
+
+@import './defaults.css';
+@import './shoelace-overrides.css';
+
+@import './components/scrollbar';
+@import './components/modal.css';
+@import './components/modal-search.css';
+@import './components/modal-snippets.css';
+@import './components/key.css';
+@import './components/messages.css';
+@import './components/hover-tip.css';
+@import './components/ellipsis-loader.css';
+@import './components/chat-entry.css';
+@import './components/connection-status.css';
+@import './components/settings-nav.css';
+@import './components/contacts.css';
+
+@import './utility/transitions.css';
+
+@import "pod-styles.css";
+
+:root {
+  --font-system:
+    -apple-system, system-ui, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue',
+    Ubuntu, Arial, sans-serif;
+
+  --grid {
+    display: grid;
+    grid-gap: var(--grid-gap);
+  }
+
+  --column-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: var(--grid-gap);
+  }
+
+
+  --grid-space-between {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  --grid-stretch {
+    justify-content: stretch;
+    align-items: center;
+  }
+
+  --no-select {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  --transition-all {
+    transition: all 0.2s ease-in-out;
+    /* transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045); */
+  }
+
+  --transition-touch {
+    transition: all 0.1s linear;
+  }
+
+  --button-as-link {
+    height: unset;
+    line-height: unset;
+    text-align: unset;
+    display: unset;
+    border: none;
+    padding: 0;
+    background: none;
+    color: var(--link-color);
+  }
+}
+
+.is-radiusless {
+  border-radius: 0;
+}
+
+.has-shadow {
+  box-shadow: var(--shadow);
+}
+
+.button-group {
+  display: grid;
+  grid-gap: var(--grid-gap);
+  grid-auto-flow: column;
+
+  &.right-aligned {
+    justify-content: end;
+  }
+}
+
+.hero {
+  min-height: calc(100vh - var(--top-nav-height));
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column
+}
+
+.icon-button {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cta {
+  display: flex;
+  justify-content: flex-end;
+}
+.cta-with-fallback {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.no-select {
+  @apply --no-select;
+}
+
+
+.service-worker-update-notify {
+  position: fixed;
+  z-index: 2;
+  right: 0;
+  left: 0;
+  border-radius: 0;
+
+/*   @include mobile { */
+/*     top: 0; */
+/*   } */
+
+/*   @include tablet-only { */
+/*     top: 0px; */
+/*   } */
+}
+
+.not-allowed {
+  cursor: not-allowed !important;
+}
+
+.overflows {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.shareable-url {
+  overflow-x: auto;
+  padding: 10px 5px;
+
+  & a {
+    white-space: nowrap;
+  }
+
+  &.wrap {
+    & a {
+      white-space: initial;
+      word-wrap: break-word;
+    }
+  }
+}
+

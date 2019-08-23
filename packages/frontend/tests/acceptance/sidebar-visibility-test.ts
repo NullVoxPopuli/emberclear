@@ -4,7 +4,7 @@ import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
-import { page } from 'emberclear/tests/helpers/pages/sidebar';
+import { page } from 'emberclear/pods/components/pod/application/off-canvas-container/-page';
 
 import {
   stubService,

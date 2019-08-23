@@ -1,0 +1,23 @@
+{{#if this.shouldBeRendered}}
+  <a
+    data-test-contact-row
+    href={{url-for 'chat.privately-with' @contact.id}}
+    {{did-insert (perform this.findRelevantMessages)}}
+    {{on 'click' (prevent-default this.onClick)}}
+    class={{if this.isActive 'is-active'}}
+  >
+    <span data-test-contact-name>
+      <StatusIcon @contact={{@contact}} />
+      <span>{{or @contact.name '[unnamed]'}}</span>
+    </span>
+
+    {{#if this.hasUnread}}
+      <span
+        {{unread-messages-intersection-observer}}
+        class='badge badge-danger'
+      >
+        {{this.numberUnread}}
+      </span>
+    {{/if}}
+  </a>
+{{/if}}

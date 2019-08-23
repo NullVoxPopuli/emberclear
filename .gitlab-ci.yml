@@ -64,6 +64,7 @@ Lint SCSS:
   script: time ( cd ${FRONTEND} && yarn lint:sass )
 
 Check Types:
+  allow_failure: true
   stage: quality
   dependencies: [ Security ]
   # only:

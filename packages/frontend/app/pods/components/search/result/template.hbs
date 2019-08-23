@@ -1,0 +1,12 @@
+<a
+  href={{url-for @to @id}}
+  {{on 'click' (prevent-default
+    (queue
+      (transition-to (url-for @to @id))
+      @afterSelect
+    )
+  )}}
+  ...attributes
+>
+  {{yield}}
+</a>

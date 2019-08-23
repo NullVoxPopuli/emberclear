@@ -17,7 +17,8 @@ module.exports = {
     'ember/use-brace-expansion': 'off', // won't matter with @tracked
 
     // cleanliness & consistency
-    'no-console': 'warn',
+    'prefer-const': 'off', // const has misleading safety implications
+    'no-console': ['error', { allow: ['debug', 'warn', 'error', 'info'] }],
     'no-cond-assign': 'off',
     'no-useless-escape': 'off',
     'require-yield': 'off',
@@ -57,7 +58,7 @@ module.exports = {
     //   }
     // },
     {
-      files: ['src/services/prism-manager.ts'],
+      files: ['app/services/prism-manager.ts'],
       rules: {
         'no-undef': 'off',
       },
@@ -67,6 +68,13 @@ module.exports = {
       files: ['types/**'],
       rules: {
         '@typescript-eslint/no-unused-vars': 'off',
+      },
+    },
+    //tests
+    {
+      files: ['**/*-test.ts', 'tests/**'],
+      rules: {
+        '@typescript-eslint/no-empty-function': 'off',
       },
     },
     // node files

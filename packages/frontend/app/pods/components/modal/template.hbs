@@ -1,0 +1,21 @@
+<KeyboardPress @key='Escape' @onDown={{@close}} />
+
+<div
+  ...attributes
+  aria-modal
+  aria-hidden={{not @isActive}}
+  class='modal {{if @isActive 'is-active'}}'
+>
+
+  <div class='modal-content'>
+    {{#if @isActive}}
+      {{yield}}
+    {{/if}}
+  </div>
+
+
+  <Backdrop @isActive={{true}} @onClick={{@close}} />
+
+</div>
+
+

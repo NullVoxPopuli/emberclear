@@ -1,0 +1,37 @@
+<table data-test-contacts>
+  <thead>
+    <tr>
+      <th>{{t 'models.identity.name'}}</th>
+      <th>{{t 'models.identity.publicKey'}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each this.contacts key='id' as |contact|}}
+      <tr data-test-contact-row>
+        <td>
+          {{contact.name}}
+        </td>
+        <td>
+          {{first-8 contact.publicKeyAsHex}}...
+        </td>
+        <td class='flex justify-content-end'>
+          <button {{on 'click' (fn this.remove contact)}}
+            class='button-danger'>
+            {{t 'buttons.remove'}}
+          </button>
+        </td>
+      </tr>
+    {{/each}}
+
+    {{#if (eq this.contacts.length 0)}}
+      <tr>
+        <td colspan='3'>
+          {{t 'ui.contacts.noContacts'}}
+        </td>
+      </tr>
+    {{/if}}
+
+  </tbody>
+</table>

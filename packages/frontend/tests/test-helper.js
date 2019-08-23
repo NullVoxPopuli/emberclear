@@ -1,4 +1,4 @@
-import Application from '../src/main';
+import Application from 'emberclear/app';
 import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
 import start from 'ember-exam/test-support/start';
@@ -11,7 +11,7 @@ import {
   hasIndexedDb,
   hasNotifications,
   hasWebWorker,
-} from 'emberclear/src/ui/routes/index/-components/compatibility/-utils/detection';
+} from 'emberclear/pods/components/pod/index/compatibility/-utils/detection';
 
 const seed = Math.random()
   .toString(36)

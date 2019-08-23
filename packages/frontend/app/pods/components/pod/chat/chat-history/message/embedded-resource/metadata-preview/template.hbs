@@ -1,0 +1,17 @@
+{{! template-lint-disable no-triple-curlies }}
+
+<div>
+  {{#if this.hasImage}}
+    <span class='thumbnail-container'>
+      <img alt={{t 'images.alt.thumbnail'}} src={{this.og.image}}>
+    </span>
+  {{/if}}
+
+  <div>
+    <ExternalLink href={{@url}}>
+      {{{purify-dom this.og.title}}}
+    </ExternalLink>
+
+    <p>{{{purify-dom this.og.description}}}</p>
+  </div>
+</div>

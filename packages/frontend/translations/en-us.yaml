@@ -148,9 +148,12 @@ ui:
     title: Keyboard Shortcuts
     key:
       ctrl: ctrl
+      esc: esc
+      enter: enter
       i: i
       slash: /
       space: space
+      tab: tab
       h: h
       k: k
 
@@ -158,6 +161,12 @@ ui:
       search: Search Everything
       toggleSidebar: Toggle the Sidebar
       toggleHelp: Toggle Keyboard Help
+
+    label:
+      search:
+        tab: to navigate
+        enter: to select
+        esc: to dismiss
 
   sidebar:
     unread: Unread
@@ -198,7 +207,7 @@ ui:
       audio: Start Audio Chat
 
     codeModal:
-      title: Send Code or Snippet to <strong>{to}</strong>
+      title: Send Code or Snippet to
 
   faq:
     title: F.A.Q
@@ -275,7 +284,7 @@ ui:
 
   contacts:
     title: 'Contacts ({number})'
-    noContacts: You do not have any contacts. Feel free to import some from your user menu in the top-right corner.
+    noContacts: No contacts found. Feel free to add one of your friends.
 
   logout:
     title: Logging out is destructive
@@ -301,6 +310,10 @@ ui:
       URLs: URLs
       socket: socket
       openGraph: open graph
+    themes:
+      title: Themes
+      midnight: Midnight
+
     copyProfileToDevice: Copy Profile to Device
     hideKey: Hide private key
     showKey: Show private key

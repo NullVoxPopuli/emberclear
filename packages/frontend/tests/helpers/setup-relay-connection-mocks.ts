@@ -1,10 +1,5 @@
 import { stubService } from './stub-service';
 
-interface IMockServiceTarget {
-  in: string;
-  as: string;
-}
-
 export function stubConnection(overrides = {}) {
   stubService('relay-manager', {
     getRelay() {},
@@ -21,12 +16,8 @@ export function stubConnection(overrides = {}) {
   });
 }
 
-export function setupRelayConnectionMocks(
-  hooks: NestedHooks,
-  overrides = {},
-  targets: IMockServiceTarget[] = []
-) {
+export function setupRelayConnectionMocks(hooks: NestedHooks, overrides = {}) {
   hooks.beforeEach(function() {
-    stubConnection(overrides, targets);
+    stubConnection(overrides);
   });
 }

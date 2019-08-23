@@ -1,0 +1,13 @@
+<FocusCard @title={{t 'ui.setup.overwriteTitle'}}>
+  <p>{{t 'ui.setup.overwriteQuestion' htmlSafe=true}}</p>
+
+  <div class='cta-with-fallback'>
+    <button {{on  'click' this.didClickNo}} class='card-footer-item'>
+      {{t 'ui.setup.overwriteAbort'}}
+    </button>
+
+    <button {{on  'click' this.didClickYes}} class='card-footer-item'>
+      {{t 'ui.setup.overwriteConfirm'}}
+    </button>
+  </div>
+</FocusCard>

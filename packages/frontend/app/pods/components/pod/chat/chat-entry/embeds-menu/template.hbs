@@ -1,0 +1,42 @@
+<Dropdown
+  @dir={{'up'}}
+  @buttonIcon='plus'
+  class='button-secondary'
+  as |closeMenu|
+>
+
+  <ModalStatic @name='code-or-snippet' as |_isActive actions|>
+    <a {{on 'click' (queue (action actions.toggle) closeMenu)}}>
+      {{fa-icon 'code'}}
+      <span>{{t 'ui.chat.embedMenu.code'}}</span>
+    </a>
+  </ModalStatic>
+
+  <a class='text-muted' disabled>
+    {{fa-icon 'bed'}}
+    <span>{{t 'ui.chat.embedMenu.embed'}}</span>
+  </a>
+
+  <hr class='dropdown-divider'>
+
+  <a class='text-muted' disabled>
+    {{fa-icon 'desktop'}}
+    <span>{{t 'ui.chat.embedMenu.file'}}</span>
+  </a>
+
+  <hr class='dropdown-divider'>
+
+  <a class='text-muted' disabled>
+    {{fa-icon 'video'}}
+    <span>{{t 'ui.chat.embedMenu.video'}}</span>
+  </a>
+
+  <a class='text-muted' disabled>
+    {{fa-icon 'phone'}}
+    <span>{{t 'ui.chat.embedMenu.audio'}}</span>
+  </a>
+</Dropdown>
+
+<ModalStatic @name='code-or-snippet' as |isActive actions|>
+  <Pod::Chat::ChatEntry::EmbedsMenu::Snippet @isActive={{isActive}} @close={{action actions.close}} @sendTo={{@sendTo}} />
+</ModalStatic>

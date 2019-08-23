@@ -1,0 +1,13 @@
+<Pod::Application::TopNav />
+
+<NotificationContainer @position='top-right' />
+
+<Pod::Application::OffCanvasContainer>
+  <Pod::Application::UpdateChecker />
+
+  {{outlet}}
+
+</Pod::Application::OffCanvasContainer>
+
+<Pod::Application::Modals />
+<Pod::Application::AppShellRemover />

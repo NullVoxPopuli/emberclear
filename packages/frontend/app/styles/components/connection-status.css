@@ -1,0 +1,10 @@
+.connection-status {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0;
+  padding: var(--grid-gap);
+  box-shadow: var(--shadow);
+  z-index: 10;
+}

@@ -1,0 +1,17 @@
+{{!--
+  Static Modals / Modals that will /
+  could get toggleed from _multiple_ places.
+--}}
+<ModalStatic @name='keyboard-shortcuts' as |isActive actions|>
+  <KeyboardShortcuts @isActive={{isActive}} @close={{actions.close}} />
+
+  <KeyboardPress @key='ctrl+KeyH' @onDown={{actions.toggle}} />
+  <KeyboardPress @key='ctrl+Slash' @onDown={{actions.toggle}} />
+</ModalStatic>
+
+<ModalStatic @name='search' as |isActive actions|>
+  <Search @isActive={{isActive}} @close={{actions.close}} />
+
+  <KeyboardPress @key='ctrl+KeyK' @onDown={{actions.toggle}} />
+</ModalStatic>
+

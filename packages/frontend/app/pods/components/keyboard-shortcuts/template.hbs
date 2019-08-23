@@ -1,0 +1,37 @@
+<Modal @isActive={{@isActive}} @close={{action @close}}>
+
+  <div class='flex-row align-items-center'>
+    <h3 class='is-size-3'>
+      {{t 'ui.shortcuts.title'}}
+    </h3>
+    <span class='m-l-md'>
+      <KeyboardShortcuts::Key @label='ctrl' /> + <KeyboardShortcuts::Key @label='slash' /> <br>
+    </span>
+  </div>
+
+  <hr>
+
+  <p class='content'>
+    <label class='is-uppercase'>
+      {{t 'ui.shortcuts.actions.search'}}
+    </label><br>
+    <KeyboardShortcuts::Key @label='ctrl' /> + <KeyboardShortcuts::Key @label='k' /> <br>
+  </p>
+
+  <p class='content'>
+    <label class='is-uppercase'>
+      {{t 'ui.shortcuts.actions.toggleSidebar'}}
+    </label><br>
+    <KeyboardShortcuts::Key @label='ctrl' /> + <KeyboardShortcuts::Key @label='space' /> <br>
+  </p>
+
+  <p class='content'>
+    <label class='is-uppercase'>
+      {{t 'ui.shortcuts.actions.toggleHelp'}}
+    </label><br>
+    <KeyboardShortcuts::Key @label='ctrl' /> + <KeyboardShortcuts::Key @label='h' /> <br>
+    <KeyboardShortcuts::Key @label='ctrl' /> + <KeyboardShortcuts::Key @label='slash' /> <br>
+
+  </p>
+
+</Modal>

@@ -6,4 +6,10 @@ export function fillable(selector?: string): any;
 export function text(selector?: string): string;
 export function count(selector?: string): number;
 export function is(selector?: string): boolean;
-export function property(selector?: string): string;
+export function property(selectorOrProperty?: string, selector?: string): string;
+export function hasClass(className: string): boolean;
+export function isPresent(selector?: string): boolean;
+
+declare module 'macros' {
+  export function getter<T>(fn: () => T): T;
+}

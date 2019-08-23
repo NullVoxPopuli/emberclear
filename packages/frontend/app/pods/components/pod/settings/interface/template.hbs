@@ -1,0 +1,23 @@
+<div class='m-b-lg' data-test-interface>
+
+  <Switch
+    data-test-hide-offline-contacts
+    @value={{this.settings.hideOfflineContacts}}
+    @label={{t 'ui.settings.hideOfflineContacts'}}
+    {{on 'click' (action
+      (mut this.settings.hideOfflineContacts)
+      (not this.settings.hideOfflineContacts))
+    }}
+  />
+
+  <hr>
+
+
+  <h2>{{t 'ui.settings.themes.title'}}</h2>
+
+  <Switch
+    @value={{eq 'midnight' this.settings.theme}}
+    @label={{t 'ui.settings.themes.midnight'}}
+    {{on 'click' this.useDarkTheme}}
+  />
+</div>

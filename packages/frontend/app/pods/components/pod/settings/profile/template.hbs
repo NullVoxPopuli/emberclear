@@ -1,0 +1,37 @@
+<div>
+  <form {{on 'submit' this.save}}>
+
+    <Field @label='Name' as |id|>
+      <Input
+        data-test-name-field
+        id={{id}}
+        @value={{this.name}}
+      />
+
+    </Field>
+
+    <div class='cta'>
+      <input
+        data-test-save
+        class='button'
+        type='submit'
+        value={{t 'buttons.save' }}
+      >
+    </div>
+
+  </form>
+
+  <hr>
+
+  <a {{action this.downloadSettings}} class='button'>
+    {{t 'ui.settings.download' }}
+  </a>
+
+  <button
+    disabled
+    class='button'
+    {{action (mut this.showQRSettings) (not this.showQRSettings)}}
+  >
+    {{t 'ui.settings.copyProfileToDevice'}}
+  </button>
+</div>

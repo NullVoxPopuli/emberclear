@@ -1,0 +1,23 @@
+<section class='logout-warning hero bg-danger text-light'>
+
+  <div class='container'>
+    <h1>
+      {{t 'ui.logout.title'}}
+    </h1>
+
+    <h2>
+      {{t 'ui.logout.warning'}}
+
+      <LinkTo @route='settings'>
+        {{t 'ui.logout.theSettingsPage'}}
+      </LinkTo>
+    </h2>
+
+    <div class='cta'>
+      <button {{on 'click' this.logout}}>
+        {{fa-icon 'sign-out-alt' prefix='fas'}}
+        <span>{{t 'ui.logout.confirm'}}</span>
+      </button>
+    </div>
+  </div>
+</section>
