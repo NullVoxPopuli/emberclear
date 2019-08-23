@@ -89,7 +89,6 @@
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-concat-analyser": "^4.2.0",
     "ember-a11y-testing": "^1.0.0",
-    "ember-animated": "^0.7.0",
     "ember-auto-import": "^1.5.2",
     "ember-cli": "^3.13.0-beta.1",
     "ember-cli-app-version": "^3.2.0",
