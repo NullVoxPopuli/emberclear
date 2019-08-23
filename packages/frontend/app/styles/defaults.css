@@ -9,8 +9,12 @@ body, html {
   height: 100vh;
 }
 
-body.no-scrolling {
+html.no-scrolling {
   overflow: hidden;
+
+  & body {
+    overflow: hidden;
+  }
 }
 
 hr {
