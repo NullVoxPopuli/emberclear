@@ -1,16 +1,5 @@
-import ApplicationInstance from '@ember/application/instance';
-
-declare module '@ember/test-helpers' {
-  interface AppContext {
-    element: HTMLElement;
-    owner: {
-      application: ApplicationInstance;
-      register: (name: string, obj: any) => void;
-      lookup: <T = any>(name: string) => T;
-    };
-  }
-
-  export function getContext(): AppContext;
+declare module 'ember-cli-htmlbars-inline-precompile' {
+  export default function hbs(template: TemplateStringsArray, ...args: any[]): string;
 }
 
 declare module '@ember/service' {
@@ -22,32 +11,34 @@ declare module '@ember/service' {
   }
 }
 
-declare global {
-  interface UserChoice {
-    outcome: 'accepted' | undefined;
-  }
+// declare module '@ember/component' {
+//   // TODO:  remove when this is actually a thing that exists?
+//   export function setComponentTemplate(template: string, klass: any): any;
+// }
 
-  // why is this not a built in type?
-  interface FakeBeforeInstallPromptEvent {
-    prompt: () => Promise<void>;
-    userChoice: Promise<UserChoice>;
-  }
+//////////////////////////////////////////////
+// Things that TypeScript should already have
+//////////////////////////////////////////////
+declare interface Window {
+  Notification: Partial<Notification> & {
+    permission: 'denied' | 'granted' | undefined;
+  };
+  ServiceWorker: {};
+  deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
+}
 
-  interface Assert {
-    contains: (source?: string | null, sub?: string, message?: string) => void;
-  }
+declare interface UserChoice {
+  outcome: 'accepted' | undefined;
+}
+// why is this not a built in type?
+declare interface FakeBeforeInstallPromptEvent {
+  prompt: () => Promise<void>;
+  userChoice: Promise<UserChoice>;
+}
 
-  interface Window {
-    Notification: Partial<Notification> & {
-      permission: 'denied' | 'granted' | undefined;
-    };
-    ServiceWorker: {};
-    deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
-  }
-
-  interface Navigator {
-    permissions: {
-      revoke(opts: any): Promise<void>;
-    };
-  }
+////////////////////////////////////////////////
+// Custom things thrown on the global namespace
+////////////////////////////////////////////////
+declare interface Assert {
+  contains: (source?: string | null, sub?: string, message?: string) => void;
 }

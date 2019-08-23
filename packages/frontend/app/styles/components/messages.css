@@ -1,0 +1,58 @@
+.chat-container {
+  height: calc(100vh - var(--top-nav-height));
+
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0 var(--grid-gap);
+  padding-bottom: var(--grid-gap);
+  overflow: hidden;
+
+  & .chat-entry-container {
+    align-self: end;
+  }
+
+  & .message-list {
+    flex: 1 1 0%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+
+    overflow: hidden;
+    padding-bottom: var(--grid-gap);
+
+    & .messages {
+      @apply --grid;
+
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+  }
+}
+
+a.new-messages {
+  @apply --no-select;
+
+  position: absolute;
+  bottom: 10px;
+  left: var(--grid-gap);
+  opacity: 1;
+  z-index: 1;
+  border-width: 0;
+  border-radius: var(--component-border-radius);
+  color: var(--chat-new-messages-notice-color);
+  background: var(--chat-new-messages-notice-bg-color);
+  box-shadow: var(--shadow);
+  margin: 0;
+
+  &.hidden {
+    /* TODO: use ember-animated */
+    bottom: 50px;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  & span + span {
+    text-decoration: underline;
+  }
+
+}

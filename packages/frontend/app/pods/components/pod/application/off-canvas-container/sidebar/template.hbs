@@ -1,0 +1,60 @@
+<aside ...attributes>
+  <div>
+    {{#if this.hasUnreadAbove}}
+      <Pod::Application::OffCanvasContainer::Sidebar::UnreadIndicator
+        @onClick={{this.scrollUpToNearestUnread}}
+        @direction='up'
+      />
+    {{/if}}
+
+    <Pod::Application::OffCanvasContainer::Sidebar::Contacts @closeSidebar={{this.closeSidebar}} />
+    <Pod::Application::OffCanvasContainer::Sidebar::Channels @closeSidebar={{this.closeSidebar}} />
+
+    {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
+    {{#if this.hasUnreadBelow}}
+      <Pod::Application::OffCanvasContainer::Sidebar::UnreadIndicator
+        @onClick={{this.scrollDownToNearestUnread}}
+        @direction='down'
+      />
+    {{/if}}
+
+  </div>
+
+  {{#if this.isLoggedIn}}
+    <footer>
+      <hr>
+      <div>
+        {{this.name}}
+
+        <nav>
+          <a
+            href={{url-for 'contacts'}}
+            title={{t 'routes.contacts'}}
+            {{on 'click' (queue this.closeSidebar (transition-to 'contacts'))}}
+          >
+            {{fa-icon 'address-book' prefix='fas'}}
+          </a>
+
+          <a
+            href={{url-for 'settings'}}
+            title={{t 'routes.settings'}}
+            {{on 'click' (queue this.closeSidebar (transition-to 'settings'))}}
+          >
+            {{fa-icon 'sliders-h'}}
+          </a>
+
+          <a
+            href={{url-for 'logout'}}
+            title={{t 'routes.logout'}}
+            {{on 'click' (queue
+              this.closeSidebar
+              (transition-to 'logout'))
+            }}
+          >
+            {{fa-icon 'sign-out-alt' prefix='fas'}}
+          </a>
+        </nav>
+      </div>
+    </footer>
+  {{/if}}
+</aside>

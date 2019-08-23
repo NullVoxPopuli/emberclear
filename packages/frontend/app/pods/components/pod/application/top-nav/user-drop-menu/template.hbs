@@ -1,0 +1,48 @@
+<Dropdown
+  @dir='left'
+  @buttonText={{this.currentUser.name}}
+  ...attributes
+  class='button-link'
+  data-test-user-dropdown
+  as |close|
+>
+  <div class='user-dropdown-content'>
+    <section>
+      <strong>{{this.currentUser.name}}</strong>
+      <em>{{this.currentUser.uid}}</em>
+
+      <br>
+      <br>
+
+      <div class='cta-with-fallback'>
+        <LinkTo @route='faq'>
+          {{t 'routes.faq'}}
+        </LinkTo>
+
+        <CopyTextButton
+          class='button-link'
+          @text={{this.currentUser.shareUrl}}
+          @label={{t 'ui.invite.copyProfile'}}
+        />
+
+      </div>
+    </section>
+
+    <hr class='navbar-divider'>
+
+    <div class='cta-with-fallback'>
+      <a {{on 'click' (queue close (transition-to 'settings'))}}>
+        {{fa-icon 'sliders-h' prefix='fas'}}
+        <span>{{t 'routes.settings'}}</span>
+      </a>
+      <a
+        data-test-logout
+        href={{url-for 'logout'}}
+        {{on 'click' (queue close (transition-to 'logout'))}}
+      >
+        {{fa-icon 'sign-out-alt' prefix='fas'}}
+        <span>{{t 'routes.logout'}}</span>
+      </a>
+    </div>
+  </div>
+</Dropdown>

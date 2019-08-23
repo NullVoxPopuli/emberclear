@@ -1,7 +1,5 @@
 'use strict';
 
-process.env.EMBER_CLI_MODULE_UNIFICATION = true;
-process.env.EMBER_MODULE_UNIFICATION = true;
 process.env.EMBER_VERSION = 'OCTANE';
 
 module.exports = {
@@ -14,4 +12,5 @@ module.exports = {
   disableAnalytics: false,
   liveReload: true,
   host: '0.0.0.0',
+  usePods: true,
 };

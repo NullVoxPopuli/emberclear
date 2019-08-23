@@ -1,0 +1,46 @@
+<div
+  class='message-list'
+  {{did-update this.determineIfLastIsVisible @messages}}
+  {{did-insert this.determineIfLastIsVisible @messages}}
+  {{unread-message-list-observer markRead=(action (perform this.markRead))}}
+>
+
+  <Pod::Chat::ChatHistory::NotificationPrompt />
+  <Pod::Chat::ChatHistory::ConnectionStatus />
+  <Pod::Chat::ChatHistory::UnreadManagement @messages={{@messages}} @to={{@to}} />
+
+  {{#vertical-collection
+    @messages
+    tagName='div'
+    class='messages'
+    estimateHeight=100
+    staticHeight=false
+    bufferSize=5
+    renderFromLast=true
+    lastReached=this.determineIfLastIsVisible
+    lastVisibleChanged=this.determineIfLastIsVisible
+    as |message|
+  }}
+    <Pod::Chat::ChatHistory::Message @message={{message}} />
+
+  {{/vertical-collection}}
+
+
+  <a
+    {{on 'click' this.scrollToBottom}}
+    class='
+      alert pad-xs
+      new-messages transition-all
+      {{if this.isLastVisible 'hidden'}}
+    '
+  >
+
+    <span class='is-hidden-mobile m-r-sm'>
+      {{t 'ui.chat.newMessages'}}
+    </span>
+
+    <span class='underline'>
+      {{t 'ui.chat.viewRecent'}}
+    </span>
+  </a>
+</div>

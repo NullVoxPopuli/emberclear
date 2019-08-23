@@ -2,37 +2,35 @@
   "compilerOptions": {
     "target": "ES2017",
     "allowJs": true,
-    "experimentalDecorators": true,
     "moduleResolution": "node",
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": false,
     "noEmitOnError": false,
     "noEmit": true,
     "inlineSourceMap": true,
     "inlineSources": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": false,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "baseUrl": ".",
     "module": "es6",
+
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "noFallthroughCasesInSwitch": true,
     "paths": {
-      "emberclear/config/*": [
-        "config/*"
-      ],
       "emberclear/tests/*": [
         "tests/*"
       ],
-      "emberclear/*": [
-        "src/*"
+      "emberclear/config/*": [
+        "config/*"
       ],
-      "emberclear/src/*": [
-        "src/*"
+      "emberclear/*": [
+        "app/*"
       ],
       "*": [
         "types/*"
@@ -40,11 +38,8 @@
     }
   },
   "include": [
-    "src",
-    "tests",
-    "types"
-  ],
-  "exclude": [
-    "node_modules"
+    "app/**/*",
+    "tests/**/*",
+    "types/**/*"
   ]
 }

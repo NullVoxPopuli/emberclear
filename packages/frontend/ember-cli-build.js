@@ -5,6 +5,9 @@ const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
 
+const autoprefixer = require('autoprefixer');
+const CssImport = require('postcss-import');
+
 // note that by default, the enabled flags on some things
 // like minifying by default, already check
 // if environment === 'production'
@@ -20,12 +23,12 @@ module.exports = function(defaults) {
   let swDisabled = process.env.SW_DISABLED;
   let version = gitRev.short();
 
-  console.log('\n---------------');
-  console.log('environment: ', environment);
-  console.log('isProduction: ', isProduction);
-  console.log('SW_DISABLED: ', swDisabled);
-  console.log('git version: ', version);
-  console.log('---------------\n');
+  console.info('\n---------------');
+  console.info('environment: ', environment);
+  console.info('isProduction: ', isProduction);
+  console.info('SW_DISABLED: ', swDisabled);
+  console.info('git version: ', version);
+  console.info('---------------\n');
 
   let app = new EmberApp(defaults, {
     hinting: false,
@@ -74,19 +77,74 @@ module.exports = function(defaults) {
     'esw-index': {
       version,
       excludeScope: [/\.well-known/, /bundle.html/, /favicon.ico/, /robots.txt/],
-      // includeScope: [
-      //   // I don't know if all of these need to be here, they all point to the same index file.
-      //   /\/chat(\/.*)?$/,
-      //   /\/setup(\/.*)?$/,
-      //   /\/contacts(\/.*)?$/,
-      //   /\/login(\/.*)?$/,
-      //   /\/invite(\/.*)?$/,
-      //   /\/logout(\/.*)?$/,
-      //   /\/settings(\/.*)?$/,
-      //   /\/faq(\/.*)?$/,
-      //   /\/not-found(\/.*)?$/,
-      //   /\/add-friend(\/.*)?$/,
-      // ],
+    },
+
+    postcssOptions: {
+      compile: {
+        enabled: true,
+        extension: 'css',
+        plugins: [
+          {
+            module: CssImport,
+            options: {
+              path: ['node_modules/shoelace-css/source/css', 'app/styles/component-styles'],
+            },
+          },
+          {
+            module: require('postcss-cssnext'),
+            options: {
+              features: {
+                colorFunction: {
+                  preserveCustomProps: false,
+                },
+                customProperties: {
+                  preserve: true,
+                },
+                rem: false,
+              },
+            },
+          },
+          // {
+          //   module: require('postcss-preset-env'),
+          //   options: {
+          //     stage: 0,
+          //     // browsers: 'last 2 versions',
+          //     // preserve: false,
+          //     features: {
+          //       // abandoned
+          //       'color-function': {
+          //         preserveCustomProps: true,
+          //       },
+          //       // stage 0
+          //       // 'nesting-rules': true,
+          //       // stage 1
+          //       // 'custom-media-queries': true,
+          //       // stage 2
+          //       'color-mod-function': {
+          //         preserveCustomProps: true,
+          //       }, // color()
+          //       // 'color-functional-notation': false,
+          //       // stage 4
+          //       // stage 3
+          //       'custom-properties': {
+          //         preserve: true,
+          //       },
+          //     },
+          //   },
+          // },
+        ],
+      },
+      filter: {
+        enabled: true,
+        plugins: [
+          {
+            module: autoprefixer,
+            options: {
+              browsers: ['last 2 versions'], // this will override the config, but just for this plugin
+            },
+          },
+        ],
+      },
     },
   });
 
@@ -108,12 +166,6 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'phoenix' }],
   });
 
-  // libsodium
-  // app.import('node_modules/libsodium/dist/modules/libsodium.js');
-  // app.import('node_modules/libsodium/dist/modules/libsodium-wrappers.js');
-  // app.import('vendor/shims/libsodium.js');
-  // app.import('vendor/shims/libsodium-wrappers.js');
-
   // markdown
   app.import('node_modules/showdown/dist/showdown.js', {
     using: [{ transformation: 'cjs', as: 'showdown' }],
@@ -124,7 +176,7 @@ module.exports = function(defaults) {
   app.import('vendor/shims/qrcode.js');
 
   // qr-scanner hardcoded this path.... -.-
-  var qrScannerWorker = new Funnel('node_modules/qr-scanner/', {
+  let qrScannerWorker = new Funnel('node_modules/qr-scanner/', {
     include: ['qr-scanner-worker.min.js'],
     destDir: '/libraries/qr-scanner/',
   });
@@ -134,5 +186,14 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'uuid' }],
   });
 
+  // return require('@embroider/compat').compatBuild(app, require('@embroider/webpack').Webpack, {
+  //   extraPublicTrees: [qrScannerWorker],
+  //   // staticAddonTestSupportTrees: true,
+  //   // staticAddonTrees: true,
+  //   // staticHelpers: true,
+  //   // staticComponents: true,
+  //   // splitAtRoutes: true,
+  //   // skipBabel: [],
+  // });
   return mergeTrees([app.toTree(), qrScannerWorker]);
 };

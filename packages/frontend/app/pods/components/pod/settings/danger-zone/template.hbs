@@ -1,0 +1,32 @@
+<button
+  data-test-show-private-key-toggle
+  class='button'
+  {{action (mut this.showPrivateKey) (not this.showPrivateKey)}}
+>
+
+  {{#if this.showPrivateKey}}
+    {{t 'ui.settings.hideKey'}}
+  {{else}}
+    {{t 'ui.settings.showKey'}}
+  {{/if}}
+
+</button>
+
+{{#if this.showPrivateKey}}
+  <MnemonicDisplay @privateKey={{this.currentUser.privateKey}} />
+{{/if}}
+
+<hr>
+
+
+<button
+  data-test-delete-messages
+  disabled={{this.messagesDeleted}}
+  class='button button-danger'
+  {{on 'click' this.deleteMessages}}
+>
+
+  {{fa-icon 'times'}}
+
+  <span>{{t 'ui.settings.danger.deleteMessages'}}</span>
+</button>

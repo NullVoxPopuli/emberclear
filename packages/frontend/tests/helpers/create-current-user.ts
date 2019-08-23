@@ -1,7 +1,7 @@
-import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
+import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
 
-import CurrentUserService from 'emberclear/services/current-user/service';
-import User from 'emberclear/data/models/user/model';
+import CurrentUserService from 'emberclear/services/current-user';
+import User from 'emberclear/models/user';
 
 import { getService } from './get-service';
 import { getStore } from './get-store';

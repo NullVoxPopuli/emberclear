@@ -1,0 +1,64 @@
+{{! template-lint-disable no-triple-curlies }}
+
+<div
+  id={{@message.id}}
+  role='button'
+  {{action (perform this.markRead)}}
+  {{format-code @message.body}}
+  {{did-insert this.chatScroller.maybeNudgeToBottom}}
+  {{read-watcher @message markRead=(action (perform this.markRead))}}
+
+  class='
+    message m-l-md m-r-md m-b-md
+    {{if @message.unread 'unread'}}
+  '
+  data-test-chat-message
+>
+
+  <div class='message-header'>
+    <span class='from'>
+      {{#if this.hasSender}}
+
+        {{#link-to 'chat.privately-with' @message.from}}
+          {{this.senderName}}
+        {{/link-to}}
+
+      {{else}}
+        <em>{{t 'ui.chat.sender.removed'}}</em>
+      {{/if}}
+    </span>
+
+    <span class='sentAt'>
+      {{format-date
+        @message.sentAt
+        year='numeric'
+        month='numeric'
+        day='numeric'
+        hour='numeric'
+        minute='numeric'
+      }}
+
+      {{#if @message.receivedAt}}
+        <HoverTip>
+          {{t 'ui.chat.messages.received' at=(format-date @message.receivedAt)}}
+        </HoverTip>
+      {{/if}}
+    </span>
+  </div>
+
+  <p
+    class='message-body'
+  >
+    {{{this.messageBody}}}
+
+    {{#if (is-present this.urls)}}
+      <div class='flex flex-wrap'>
+        {{#each this.urls as |url|}}
+          <Pod::Chat::ChatHistory::Message::EmbeddedResource class='flex' @url={{url}} />
+        {{/each}}
+      </div>
+    {{/if}}
+  </p>
+
+  <Pod::Chat::ChatHistory::Message::DeliveryConfirmations @message={{@message}} />
+</div>

@@ -1,0 +1,42 @@
+{{#if this.isVisible}}
+  <div
+    data-test-notification-prompt
+    class='
+      chat-history-notification-prompt
+      alert alert-info
+      is-radiusless
+      text-center
+      transition-all
+      has-shadow
+    '
+  >
+    <button
+      data-test-dismiss
+      class='delete'
+      {{on 'click' this.askNextTime}}
+    >
+      {{fa-icon 'times'}}
+    </button>
+
+    <section>
+
+      <strong>{{t 'ui.notifications.prompt.title'}}</strong>
+
+      <div data-test-enable>
+        <button {{on 'click' this.enableNotifications}}>
+          {{t 'ui.notifications.prompt.enable'}}
+        </button>
+
+        <button data-test-ask-later {{on 'click' this.askNextTime}}>
+          {{t 'ui.notifications.prompt.askLater'}}
+        </button>
+
+        <button data-test-ask-never {{on 'click' this.neverAskAgain}}>
+          {{t 'ui.notifications.prompt.neverAsk'}}
+        </button>
+      </div>
+
+    </section>
+
+  </div>
+{{/if}}

@@ -1,0 +1,12 @@
+<div class='hero pad-md'>
+  <p>
+    <h2>{{t 'ui.chat.welcome'}}</h2>
+
+    {{t 'ui.chat.message' htmlSafe=true}}
+  </p>
+
+  <LinkTo @route='add-friend' class='button'>
+    {{fa-icon 'plus'}}
+    <span>{{t 'buttons.addFriend'}}</span>
+  </LinkTo>
+</div>

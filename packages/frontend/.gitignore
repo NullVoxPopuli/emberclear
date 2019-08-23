@@ -1,8 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# legacy (may accidentally be created via generator)
-/app
 /coverage*
+/junit.xml
 
 # bundle analysis
 /concat-stats-for

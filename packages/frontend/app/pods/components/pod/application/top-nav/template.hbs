@@ -1,0 +1,75 @@
+<div data-test-top-nav class='top-nav {{if this.isInverted 'is-inverted'}}'>
+
+  <div class='left-nav'>
+    {{#if this.isLoggedIn}}
+      <div>
+        <HamburgerButton
+          @onClick={{this.sidebar.toggle}}
+          @isActive={{this.sidebar.isShown}}
+        />
+
+        {{#if this.hasUnread}}
+          <span
+            data-test-unread-count
+            class='badge badge-warning'
+            style='left: 2rem; bottom: 0.5rem;'
+          >
+            {{this.unreadMessageCount}}
+          </span>
+        {{/if}}
+      </div>
+
+      <LinkTo @route='application' class='left hide-sm-down'>
+        {{t 'appname'}}
+      </LinkTo>
+
+      <CurrentChatName class='current-chat' as |isVisible name record|>
+        {{#if isVisible}}
+          <hr class='vertical hide-sm-down'>
+          <span class='chat-name'>
+            {{name}}
+          </span>
+          {{#if (is-contact record)}}
+            <StatusIcon @contact={{record}} />
+          {{/if}}
+        {{/if}}
+      </CurrentChatName>
+
+    {{else}}
+
+      <LinkTo @route='application' class={{concat 'left ' (if this.isChat this.textColor)}}>
+        {{t 'appname'}}
+      </LinkTo>
+
+    {{/if}}
+
+  </div>
+
+
+  <div class='right-nav'>
+    {{#if (not this.isLoggedIn)}}
+      <a class='hide-md-up' {{on 'click' (prevent-default (transition-to 'login'))}}>
+        {{t 'routes.login'}}
+      </a>
+    {{/if}}
+
+    <Pod::Application::TopNav::Install />
+    <Pod::Application::TopNav::LocaleSelect />
+
+    {{#if this.isLoggedIn}}
+      <a class='hide-sm-down' {{action (transition-to 'chat')}}>
+        {{t 'routes.chat'}}
+      </a>
+
+      <Pod::Application::TopNav::UserDropMenu class='hide-xs-down' />
+    {{else}}
+      <a class='hide-sm-down' {{action (transition-to 'login')}}>
+        {{t 'routes.login'}}
+      </a>
+
+      <a class='hide-sm-down' {{action (transition-to 'setup')}}>
+        {{t 'routes.createNewUser'}}
+      </a>
+    {{/if}}
+  </div>
+</div>

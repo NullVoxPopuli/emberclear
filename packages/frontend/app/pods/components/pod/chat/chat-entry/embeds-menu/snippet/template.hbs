@@ -1,0 +1,38 @@
+<Modal @isActive={{@isActive}} @close={{@close}}>
+  <h5>
+    {{t 'ui.chat.codeModal.title'}} <strong>{{@sendTo.name}}</strong>
+  </h5>
+
+  <hr>
+
+  <div class='snippet-title-bar'>
+    <Input
+      placeholder='Title (optional)'
+      @value={{this.title}}
+    />
+
+    <div>
+      <select onchange={{action (mut this.language) value='target.value'}}>
+        {{#each this.languages as |availableLanguage|}}
+          <option value={{availableLanguage}}>{{availableLanguage}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+
+  {{textarea
+    autofocus=true
+    class='snippet-entry'
+    value=this.text
+  }}
+
+  <div class='button-group right-aligned'>
+    <button class='button-secondary' {{on 'click' @close}}>
+      {{t 'buttons.cancel'}}
+    </button>
+    <button {{on 'click' this.sendMessage}}>
+      {{t 'buttons.sendSnippet'}}
+    </button>
+  </div>
+</Modal>
+

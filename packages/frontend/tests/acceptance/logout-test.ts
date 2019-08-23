@@ -11,7 +11,7 @@ import {
   assertExternal,
 } from 'emberclear/tests/helpers';
 
-import { app } from 'emberclear/tests/helpers/pages/app';
+import { page } from 'emberclear/pods/components/pod/application/top-nav/user-drop-menu/-page';
 
 module('Acceptance | Logout', function(hooks) {
   setupApplicationTest(hooks);
@@ -44,17 +44,12 @@ module('Acceptance | Logout', function(hooks) {
 
     module('user dropdown is open', function(hooks) {
       hooks.beforeEach(async function() {
-        await app.userDropdown.open();
-      });
-
-      test('shows the logout button', function(assert) {
-        assert.ok(app.userDropdown.logoutButton());
-        assertExternal(assert as any);
+        await page.toggle();
       });
 
       module('clicking logout', function(hooks) {
         hooks.beforeEach(async function() {
-          await app.userDropdown.clickLogout();
+          await page.logout();
         });
 
         test('navigates to the logout warning page', function(assert) {

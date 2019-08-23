@@ -1,0 +1,40 @@
+<Collapsible as |isOpen toggle Icon|>
+  <div data-test-sidebar-contacts-header class='menu-label'>
+    <a {{on 'click' (prevent-default toggle)}}>
+      <Icon @isOpen={{isOpen}} />
+      {{t 'ui.sidebar.contacts.title'}}
+    </a>
+
+    <a
+      data-test-add-friend
+      class='button button-xs'
+      href={{url-for 'add-friend'}}
+      {{on 'click' (prevent-default this.onClickAddFriend)}}
+    >
+      <span class='icon'>{{fa-icon 'plus'}}</span>
+    </a>
+  </div>
+
+  {{#if isOpen}}
+    <nav class='contacts'>
+      <Pod::Application::OffCanvasContainer::Sidebar::Contacts::Contact
+        @contact={{this.currentUser.record}}
+        @closeSidebar={{@closeSidebar}}
+      />
+
+      {{#each this.contacts as |contact|}}
+        <Pod::Application::OffCanvasContainer::Sidebar::Contacts::Contact
+          @contact={{contact}}
+          @closeSidebar={{@closeSidebar}}
+        />
+      {{/each}}
+
+      {{#if this.showOfflineCounter}}
+        <em data-test-offline-count class='offline'>
+          <small>{{t 'ui.sidebar.contacts.numOffline' num=this.numberOffline}}</small>
+        </em>
+      {{/if}}
+    </nav>
+  {{/if}}
+
+</Collapsible>

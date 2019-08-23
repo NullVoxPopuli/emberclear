@@ -1,0 +1,49 @@
+<FocusCard @title={{t 'ui.login.title'}}>
+
+  {{#if this.scanning}}
+    <QRScanner
+      @onScan={{action this.onScan}}
+      @onError={{action this.onScanError}}
+      @onCancel={{action this.toggleScanning}}
+    />
+  {{/if}}
+
+  {{#unless this.scanning}}
+    <Field @label={{t 'input.label.name'}}>
+      <Input data-test-name @value={{this.name}} />
+    </Field>
+
+    <Field @label={{t 'input.label.mnemonic'}}>
+      <Input data-test-mnemonic @value={{this.mnemonic}} />
+    </Field>
+
+    <Field>
+      <button
+        data-test-scan-settings
+        class='bg-secondary'
+        {{on 'click' this.toggleScanning}}
+      >
+        {{t 'buttons.scan'}}
+      </button>
+
+      <FileChooser @onChoose={{perform this.uploadSettings}} as |chooser|>
+        <button
+          data-test-upload-settings
+          class='bg-secondary'
+          {{on 'click' chooser.openFileChooser}}
+        >
+          {{t 'buttons.uploadSettings'}}
+        </button>
+      </FileChooser>
+
+      <button
+        data-test-submit-login
+        {{on 'click' (perform this.login)}}
+      >
+        {{t 'buttons.login'}}
+      </button>
+    </Field>
+
+  {{/unless}}
+
+</FocusCard>
