@@ -3,7 +3,7 @@ import { create, clickable, isPresent } from 'ember-cli-page-object';
 import { getter } from 'ember-cli-page-object/macros';
 import { sidebarContactsPage } from 'emberclear/pods/components/pod/application/off-canvas-container/sidebar/contacts/-page';
 import { sidebarChannelsPage } from 'emberclear/pods/components/pod/application/off-canvas-container/sidebar/channels/-page';
-import {valueOfProperty} from 'emberclear/utils/dom/css';
+import { valueOfProperty } from 'emberclear/utils/dom/css';
 
 const wrapper = '[data-test-offcanvas-wrapper]';
 const toggleButton = '[data-test-hamburger-toggle]';

@@ -10,7 +10,6 @@ import {
   setupCurrentUser,
 } from 'emberclear/tests/helpers';
 
-
 import { app } from 'emberclear/tests/helpers/pages/app';
 
 import Notifications from 'emberclear/services/notifications';

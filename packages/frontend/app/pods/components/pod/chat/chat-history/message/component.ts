@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { timeout, task } from 'ember-concurrency';
 
