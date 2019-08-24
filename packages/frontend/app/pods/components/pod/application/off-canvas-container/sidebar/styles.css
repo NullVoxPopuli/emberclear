@@ -1,5 +1,6 @@
 aside {
-  display: block;
+  display: grid;
+
   background: var(--state-light);
   padding: var(--grid-gap);
 
@@ -9,7 +10,7 @@ aside {
   top: var(--top-nav-height);
   bottom: 0;
   width: var(--sidenav-width);
-  overflow-y: auto;
+  overflow: hidden;
   z-index: 0;
 
   /*
@@ -19,7 +20,9 @@ aside {
   */
 
   /* the top */
-  & div:first-child {
+  & > div {
+    overflow-y: auto;
+
     & .menu-label {
       display: flex;
       justify-content: space-between;
@@ -81,7 +84,13 @@ aside {
 
   & footer {
     align-self: end;
-    & div {
+    box-shadow: 0 -6px 8px -7px rgba(0, 0, 0, 0.2);
+
+    & > hr {
+      margin-top: 0;
+    }
+
+    & > div {
       @apply --column-grid;
 
       & nav {
