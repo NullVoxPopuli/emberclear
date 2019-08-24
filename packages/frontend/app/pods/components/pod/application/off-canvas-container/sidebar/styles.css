@@ -89,10 +89,11 @@ aside {
 
   & footer {
     align-self: end;
-    box-shadow: 0 -6px 8px -7px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -6px 8px -7px rgba(0, 0, 0, var(--sidebar-footer-shadow-opacity));
 
     & > hr {
       margin-top: 0;
+      border-color: var(--sidebar-hr-border-color);
     }
 
     & > div {

@@ -31,6 +31,8 @@
   --sidebar-bg-color: var(--state-light);
   --sidebar-nav-active-color: var(--color-light-gray);
   --sidebar-hint-text: var(--hint-color);
+  --sidebar-hr-border-color: var(--hr-border-color);
+  --sidebar-footer-shadow-opacity: 0.2;
 
   --modal-overlay-color: rgba(0,0,0,0.12);
   --modal-content-bg: var(--state-light);

@@ -25,6 +25,8 @@
 
   --sidebar-bg-color: var(--color-gray);
   --sidebar-nav-active-color: var(--color-dark-gray);
+  --sidebar-hr-border-color: var(--color-dark-gray);
+  --sidebar-footer-shadow-opacity: 0.6;
 
   --modal-content-bg: var(--color-gray);
   --modal-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
