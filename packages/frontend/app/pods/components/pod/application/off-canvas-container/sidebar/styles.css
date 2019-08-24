@@ -1,8 +1,8 @@
 aside {
   display: grid;
 
-  background: var(--state-light);
-  padding: var(--grid-gap);
+  background: var(--sidebar-bg-color);
+  padding: var(--grid-gap) 0;
 
   user-select: none;
 
@@ -12,6 +12,11 @@ aside {
   width: var(--sidenav-width);
   overflow: hidden;
   z-index: 0;
+
+  & > * {
+    padding-left: var(--grid-gap);
+    padding-right: var(--grid-gap);
+  }
 
   /*
   The sidebar is broken up into two sections:

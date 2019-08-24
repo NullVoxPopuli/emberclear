@@ -1,5 +1,6 @@
 .midnight-theme {
   --color-purple: hsl(253, 84%, 45%);
+  --color-dark-gray: #111;
   --color-gray: #222;
   --color-almost-white: #ddd;
   --color-white: #fff;
@@ -17,10 +18,13 @@
   --code-color: var(--pre-color);
   --code-bg-color: var(--pre-pg-color);
 
+  --table-bg-color: var(--color-gray);
+
   --top-nav-bg: #1a1a1a;
   --top-nav-inverted-color: #aaa;
 
   --sidebar-bg-color: var(--color-gray);
+  --sidebar-nav-active-color: var(--color-dark-gray);
 
   --modal-content-bg: var(--color-gray);
   --modal-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5);
