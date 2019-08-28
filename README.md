@@ -5,6 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/3f2faa686db3db3a52f8/maintainability)](https://codeclimate.com/github/NullVoxPopuli/emberclear/maintainability)
 [![bundle analysis](https://img.shields.io/badge/bundle-analysis-blue.svg)](https://nullvoxpopuli.gitlab.io/emberclear/master/bundle.html)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/emberclear/localized.svg)](https://crowdin.com/project/emberclear)
+[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=SDYxMWtDbjBhcnZnOTBpdGZMbzl6Mktyb2QyT0FUZTlwazByUWF2ZEFUUT0tLVZKaFBZR0kzdTlmZEUxM202QnA3aVE9PQ==--58be570679305f818be70e6aef2c24f1d4dc1698)](https://automate.browserstack.com/public-build/SDYxMWtDbjBhcnZnOTBpdGZMbzl6Mktyb2QyT0FUZTlwazByUWF2ZEFUUT0tLVZKaFBZR0kzdTlmZEUxM202QnA3aVE9PQ==--58be570679305f818be70e6aef2c24f1d4dc1698)
 
 
 
@@ -64,6 +65,11 @@ File Watch Problems?
 ```bash
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 ```
+
+## Special Thanks
+
+<a href='http://browserstack.com' target='_blank'><img src='https://p14.zdusercontent.com/attachment/1015988/tPHKnEGj5UmlAZin6VBzV2PXP?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0.._iQRaP0Z2EIo_bydcVxYgw.a45ScjGVDLEUj-eKschCJj2H2GnIwrb3H7fcFAHZsJIhdlVh2SLlVb3_DQcig6s1S4osAt-jNocejQdDlB-jq4DotpLlG2xXvIOO-MssjlDu5QQbCU5XwPyT2hk_0fHTVyCznoiup70QSnwfUm-xcl0bbxZI8ljgy1wQtzoqTd2CRovrOwfzQNXFg_MQ6TWkx5tkQDzhV0GbxIffZwN6s-4f5AHRNRP-3rbxtuEy6Lkz3WdQXbdynMcL2ElOS4h_zt7hEj0XRs1xNIQQhTsnjay4ZQvYSVfH13_aY3jVgVI.n_nXLbZaW3gj-FJcQxKD4A' width=100></a>
+ - Cross-Browser / Cross-Platform Testing and Automation
 
 
 
