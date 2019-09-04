@@ -10,7 +10,8 @@ on:
       - 'packages/frontend'
 
 jobs:
-  Security:
+  security:
+    name: Security
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -20,7 +21,8 @@ jobs:
     - name: Snyk
       run: cd packages/frontend && snyk test --severity-threshold=high
     
-  Quality:
+  quality:
+    name: Quality
     runs-on: ubuntu-latest
 
     steps:
@@ -39,7 +41,8 @@ jobs:
     - name: Type Checking
       run: ./run yarn lint:types
 
-  Tests:
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -47,8 +50,10 @@ jobs:
     - name: Test
       run: time ./run yarn test
       
-  Deploy:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
+    needs: tests
     
     steps:
     - uses: actions/checkout@v1
@@ -66,8 +71,10 @@ jobs:
         cp ${FRONTEND}/public/bundle.html public/bundle.html
         time ./scripts/publish
 
-  Deploy_Docker:
+  deploy_docker:
+    name: Deploy Docker Image
     runs-on: ubuntu-latest
+    needs: deploy
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
