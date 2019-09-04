@@ -49,6 +49,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
+    - name: Install
+      run: ./run yarn install
     - name: Test
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
