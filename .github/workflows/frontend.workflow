@@ -1,4 +1,4 @@
-name: emberclear frontend
+name: frontend
 
 on:
   push:
