@@ -2,8 +2,8 @@ name: CI
 on:
   push:
     branches: [master]
-    paths:
-      - 'packages/frontend'
+    # paths:
+    #  - 'packages/frontend'
   pull_request:
     branches: [master]
     paths:
