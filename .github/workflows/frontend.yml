@@ -56,6 +56,20 @@ jobs:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       run: time ./run yarn test
       
+  tests_visual:
+    name: Visual Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: Install
+      run: ./run yarn install
+    - name: Test
+      if: github.event == 'pull_request'
+      env:
+        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+      run: PERCY_ENABLE=1 time ./run yarn test --filter Acceptance
+      
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
