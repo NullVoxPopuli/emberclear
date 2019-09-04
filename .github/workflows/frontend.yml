@@ -1,5 +1,4 @@
-name: frontend
-
+name: CI
 on:
   push:
     branches: [master]
