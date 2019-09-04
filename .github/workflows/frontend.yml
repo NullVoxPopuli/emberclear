@@ -1,4 +1,4 @@
-name: CI
+name: Frontend
 on:
   push:
     branches: [master]
@@ -10,7 +10,7 @@ on:
       - 'packages/frontend'
 
 jobs:
-  security:
+  Security:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -20,7 +20,7 @@ jobs:
     - name: Snyk
       run: cd packages/frontend && snyk test --severity-threshold=high
     
-  quality:
+  Quality:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
     - name: Install
       run: ./run yarn install
     - name: "Lint JS/TS"
-      run: yarn lint:js
+      run: ./run yarn lint:js
     - name: Lint Templates
       run: ./run yarn lint:hbs
     - name: Lint Styles
@@ -39,7 +39,7 @@ jobs:
     - name: Type Checking
       run: ./run yarn lint:types
 
-  tests:
+  Tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -47,7 +47,7 @@ jobs:
     - name: Test
       run: time ./run yarn test
       
-  deploy:
+  Deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -66,7 +66,7 @@ jobs:
         cp ${FRONTEND}/public/bundle.html public/bundle.html
         time ./scripts/publish
 
-  deploy_docker:
+  "Deploy Docker":
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
