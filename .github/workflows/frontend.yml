@@ -10,6 +10,16 @@ on:
       - 'packages/frontend'
 
 jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: Install
+      run: npm install -g snyk
+    - name: Snyk
+      run: cd packages/frontend && snyk test --severity-threshold=high
+    
   quality:
     runs-on: ubuntu-latest
 
@@ -17,17 +27,17 @@ jobs:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
     - name: Install
-      run: yarn install
+      run: ./run yarn install
     - name: "Lint JS/TS"
       run: yarn lint:js
     - name: Lint Templates
-      run: yarn lint:hbs
+      run: ./run yarn lint:hbs
     - name: Lint Styles
-      run: yarn lint:sass
+      run: ./run yarn lint:sass
     - name: Lint Translations
-      run: yarn lint:i18n
+      run: ./run yarn lint:i18n
     - name: Type Checking
-      run: yarn lint:types
+      run: ./run yarn lint:types
 
   tests:
     runs-on: ubuntu-latest
@@ -35,7 +45,37 @@ jobs:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
     - name: Test
-      run: yarn test
+      run: time ./run yarn test
+      
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: Install
+      run: ./run yarn install
+    - name: Analyze Bundle
+      run: time ./run yarn analyze
+    - name: Deploy to Netlify
+      env: 
+        FRONTEND: packages/frontend
+      run: |
+        mv ${FRONTEND}/coverage public/
+        cp ${FRONTEND}/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
+        cp ${FRONTEND}/public/bundle.html public/bundle.html
+        time ./scripts/publish
+
+  deploy_docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: Publish to DockerHub
+      env:
+        DOCKER_HOST: tcp://docker:2375/
+        DOCKER_DRIVER: overlay2
+      run: sh ./scripts/dockerhub
 
 
 
