@@ -11,9 +11,6 @@ export default class OffCanvasContainer extends Component {
   @service currentUser!: CurrentUserService;
   @service sidebar!: Sidebar;
 
-  @reads('currentUser.isLoggedIn')
-  isLoggedIn!: boolean;
-
   @action
   onInsert(sidebarElement: HTMLElement) {
     this.sidebar.setup(sidebarElement);

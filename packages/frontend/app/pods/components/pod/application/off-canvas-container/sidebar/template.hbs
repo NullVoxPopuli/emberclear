@@ -27,6 +27,12 @@
         {{this.name}}
 
         <nav>
+          <ModalStatic @name='search' as |isActive actions|>
+            <button {{on 'click' actions.toggle}}>
+              {{fa-icon 'search' prefix='fas'}}
+            </button>
+          </ModalStatic>
+
           <a
             href={{url-for 'contacts'}}
             title={{t 'routes.contacts'}}

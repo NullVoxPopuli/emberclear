@@ -12,6 +12,7 @@ export default class ConnectionStatus extends Component {
   @service relayConnection!: RelayConnection;
 
   get isConnected() {
+    return false;
     return this.relayConnection.connected;
   }
 

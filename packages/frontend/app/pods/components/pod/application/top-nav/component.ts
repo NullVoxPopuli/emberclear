@@ -17,7 +17,6 @@ export default class TopNav extends Component {
   @service store!: StoreService;
 
   @alias('router.currentRouteName') routeName!: string;
-  @alias('currentUser.isLoggedIn') isLoggedIn!: boolean;
   @equal('routeName', 'index') isApplication!: boolean;
 
   get isInverted(): boolean {

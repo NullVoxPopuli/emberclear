@@ -1,4 +1,5 @@
 import ApplicationInstance from '@ember/application/instance';
+import localforage from 'localforage';
 
 /**
  *
@@ -52,7 +53,7 @@ async function getStorage(appInstance: ApplicationInstance) {
   let adapter = appInstance.lookup('adapter:application');
   let namespace = adapter._adapterNamespace();
 
-  let storage = await (window as any).localforage.getItem(namespace);
+  let storage = await localforage.getItem(namespace);
 
   return storage;
 }
@@ -61,7 +62,7 @@ async function updateStorage(appInstance: ApplicationInstance, newValue: any) {
   let adapter = appInstance.lookup('adapter:application');
   let namespace = adapter._adapterNamespace();
 
-  await (window as any).localforage.setItem(namespace, newValue);
+  await localforage.setItem(namespace, newValue);
 }
 
 async function migrateMessages(appInstance: ApplicationInstance) {

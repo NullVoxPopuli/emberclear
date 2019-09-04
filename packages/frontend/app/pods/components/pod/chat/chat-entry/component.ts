@@ -43,6 +43,11 @@ export default class ChatEntry extends Component<IArgs> {
 
   @action onInsertTextArea(element: HTMLTextAreaElement) {
     this.textarea = element;
+    this.focus(element);
+  }
+
+  @action focus(element) {
+    element.focus();
   }
 
   @action resize(element: HTMLTextAreaElement) {

@@ -102,6 +102,10 @@ aside {
       & nav {
         align-self: end;
         @apply --column-grid;
+
+        & button {
+          @apply --button-as-link;
+        }
       }
     }
   }

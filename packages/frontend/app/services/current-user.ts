@@ -10,7 +10,6 @@ import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
 import { toHex } from 'emberclear/utils/string-encoding';
 import StoreService from 'ember-data/store';
 import User from 'emberclear/models/user';
-import { CurrentUserNotFound } from 'emberclear/utils/errors';
 
 export const currentUserId = 'me';
 
@@ -32,25 +31,25 @@ export default class CurrentUserService extends Service {
   @tracked allowOverride = false;
 
   get id() {
-    if (!this.record) throw new CurrentUserNotFound();
+    if (!this.record) return;
 
     return this.record.id;
   }
 
   get name() {
-    if (!this.record) throw new CurrentUserNotFound();
+    if (!this.record) return;
 
     return this.record.name;
   }
 
   get publicKey() {
-    if (!this.record) throw new CurrentUserNotFound();
+    if (!this.record) return;
 
     return this.record.publicKey;
   }
 
   get privateKey() {
-    if (!this.record) throw new CurrentUserNotFound();
+    if (!this.record) return;
 
     return this.record.privateKey;
   }
@@ -97,7 +96,8 @@ export default class CurrentUserService extends Service {
 
     await record.save();
 
-    this.record = record;
+    run(() => (this.record = record));
+    // this.record = record;
   }
 
   async exists(): Promise<boolean> {

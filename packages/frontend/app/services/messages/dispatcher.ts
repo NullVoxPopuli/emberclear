@@ -108,6 +108,8 @@ export default class MessageDispatcher extends Service {
         if (error.match(/not found/)) {
           this.statusManager.markOffline(toUid);
           return;
+        } else if (error.match(/timed out/)) {
+          return;
         }
       }
 

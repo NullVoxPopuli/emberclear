@@ -21,6 +21,7 @@ import DS from 'ember-data';
 import LFQueue from 'ember-localforage-adapter/utils/queue';
 import LFCache from 'ember-localforage-adapter/utils/cache';
 import { v4 as uuid } from 'ember-uuid';
+import localforage from 'localforage';
 
 export default DS.Adapter.extend(Evented, {
   custom: true,
@@ -187,7 +188,7 @@ export default DS.Adapter.extend(Evented, {
 
       storage[modelNamespace] = namespaceData;
 
-      return window.localforage.setItem(this._adapterNamespace(), storage);
+      return localforage.setItem(this._adapterNamespace(), storage);
     });
   },
 
@@ -218,7 +219,7 @@ export default DS.Adapter.extend(Evented, {
   },
 
   _loadData() {
-    return window.localforage.getItem(this._adapterNamespace()).then(storage => {
+    return localforage.getItem(this._adapterNamespace()).then(storage => {
       return storage ? storage : {};
     });
   },

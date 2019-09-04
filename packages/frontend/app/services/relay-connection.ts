@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 import { Channel, Socket } from 'phoenix';
 import { task } from 'ember-concurrency';
 
@@ -67,7 +68,7 @@ export default class RelayConnection extends Service {
   async send(to: string, data: string) {
     const payload: ISendPayload = { to, message: data };
 
-    ignoreTaskCancellation(() => this.ensureConnectionToChannel.perform());
+    await ignoreTaskCancellation(() => this.ensureConnectionToChannel.perform());
 
     if (!this.channel) {
       return console.error(this.intl.t('connection.errors.send.notConnected'));
@@ -202,10 +203,11 @@ export default class RelayConnection extends Service {
     this.processor.receive(data);
   };
 
-  updateStatus = (level: string, msg: string) => {
+  @action
+  updateStatus(level: string, msg: string) {
     this.status = msg;
     this.statusLevel = level;
-  };
+  }
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

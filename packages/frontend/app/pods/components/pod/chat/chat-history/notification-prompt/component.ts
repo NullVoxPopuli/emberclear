@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 import Notifications from 'emberclear/services/notifications';
@@ -8,7 +7,9 @@ import Notifications from 'emberclear/services/notifications';
 export default class NotificationPrompt extends Component {
   @service notifications!: Notifications;
 
-  @reads('notifications.showInAppPrompt') isVisible!: boolean;
+  get isVisible() {
+    return this.notifications.showInAppPrompt;
+  }
 
   @action enableNotifications() {
     this.notifications.askPermission();

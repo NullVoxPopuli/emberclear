@@ -98,6 +98,11 @@
     padding: 0;
     background: none;
     color: var(--link-color);
+
+    &:hover {
+      background: none;
+      color: var(--link-color-hover);
+    }
   }
 }
 

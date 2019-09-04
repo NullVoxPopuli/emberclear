@@ -195,5 +195,6 @@ module.exports = function(defaults) {
   //   // splitAtRoutes: true,
   //   // skipBabel: [],
   // });
+
   return mergeTrees([app.toTree(), qrScannerWorker]);
 };
