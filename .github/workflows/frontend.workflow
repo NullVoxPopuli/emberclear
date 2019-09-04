@@ -1,29 +1,41 @@
 name: emberclear frontend
 
-on: [push]
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'packages/frontend'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'packages/frontend'
 
 jobs:
-  build:
-
+  quality:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x]
 
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: run everything
+    - uses: actions/setup-node@v1
+    - name: Install
       run: |
-        cd packages/frontend
         yarn install
+    - name: Lint
+      run: |
         yarn lint:js
         yarn lint:hbs
         yarn lint:sass
         yarn lint:i18n
-        yarn lint:types
-        yarn test
+    - name: Type Checking
+      run: yarn lint:types
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: Test
+      run: yarn test
+
+
+
