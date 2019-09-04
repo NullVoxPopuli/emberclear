@@ -61,7 +61,7 @@
     "@fortawesome/ember-fontawesome": "^0.1.14",
     "@fortawesome/free-brands-svg-icons": "^5.10.1",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
-    "@glimmer/component": "0.14.0-alpha.11",
+    "@glimmer/component": "0.14.0-alpha.13",
     "@html-next/vertical-collection": "^1.0.0",
     "@types/bip39": "^2.4.0",
     "@types/dompurify": "0.0.33",

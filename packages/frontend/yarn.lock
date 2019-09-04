@@ -1170,16 +1170,16 @@
     "@glimmer/util" "^0.42.0"
     "@glimmer/wire-format" "^0.42.0"
 
-"@glimmer/component@0.14.0-alpha.11":
-  version "0.14.0-alpha.11"
-  resolved "https://registry.yarnpkg.com/@glimmer/component/-/component-0.14.0-alpha.11.tgz#e3a04f6d91bf55d080241bef990843f1daf9f1bc"
-  integrity sha512-UTQD2QfY6X2KX5+serzdapS6LMw8og8wFBUa5ZgiLIsiXhX2FuXkUuoTBXzRLwvHFiBqwW6MEYa6vU0qgJWEzw==
+"@glimmer/component@0.14.0-alpha.13":
+  version "0.14.0-alpha.13"
+  resolved "https://registry.yarnpkg.com/@glimmer/component/-/component-0.14.0-alpha.13.tgz#5e1912bee8a00504e8ea20cc59600956a9c435ee"
+  integrity sha512-dYXfMwIyOUi0XEYJMiGo1/1LiN3QQO0fuUqmEIb5Wj5po3eXch6FV3Vdq5RoekCuVfIUfD32CseEMC8qbj6R/Q==
   dependencies:
     "@glimmer/di" "^0.1.9"
     "@glimmer/env" "^0.1.7"
     "@glimmer/reference" "^0.41.0"
     "@glimmer/runtime" "^0.41.0"
-    "@glimmer/tracking" "^0.14.0-alpha.11"
+    "@glimmer/tracking" "^0.14.0-alpha.13"
     "@glimmer/util" "^0.41.0"
     broccoli-file-creator "^2.1.1"
     broccoli-merge-trees "^3.0.2"
@@ -1299,10 +1299,10 @@
     handlebars "^4.0.13"
     simple-html-tokenizer "^0.5.8"
 
-"@glimmer/tracking@^0.14.0-alpha.11":
-  version "0.14.0-alpha.11"
-  resolved "https://registry.yarnpkg.com/@glimmer/tracking/-/tracking-0.14.0-alpha.11.tgz#a0b7212942e9b0418fe83268c4a145286046b186"
-  integrity sha512-zRHANq6WERaWj7GD1+FbN1zBK7E7N4wQlRQ9XihchABCGz4gysmzw249OvVotsOHPihq9qYDFoQmcUuHxJd6lQ==
+"@glimmer/tracking@^0.14.0-alpha.13":
+  version "0.14.0-alpha.13"
+  resolved "https://registry.yarnpkg.com/@glimmer/tracking/-/tracking-0.14.0-alpha.13.tgz#aac853f3bd1ce2e076b9dec3495e5af84e9156de"
+  integrity sha512-JI6sI/v6c7mjWu4k9++/LVakEyvOxcUqpbJ7W4KwgpcYHtv8giVzQkR3gECJZp+PKRnhnU5OVyG+KsN1ZV2ptQ==
   dependencies:
     "@glimmer/di" "^0.1.9"
     "@glimmer/env" "^0.1.7"
