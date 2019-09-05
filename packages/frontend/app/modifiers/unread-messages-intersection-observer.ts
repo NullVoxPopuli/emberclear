@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 import SidebarService from 'emberclear/services/sidebar';
 
-class UnreadMessagesIntersectionObserver extends Modifier {
+export default class UnreadMessagesIntersectionObserver extends Modifier {
   @service sidebar!: SidebarService;
 
   didInsertElement() {
@@ -20,5 +20,3 @@ class UnreadMessagesIntersectionObserver extends Modifier {
     }
   }
 }
-
-export default Modifier.modifier(UnreadMessagesIntersectionObserver);

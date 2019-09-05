@@ -6,7 +6,7 @@ interface NamedArgs {
   markRead: () => void;
 }
 
-class ReadWatcher extends Modifier {
+export default class ReadWatcher extends Modifier {
   io?: IntersectionObserver;
   message!: Message;
   markMessageRead!: () => void;
@@ -61,5 +61,3 @@ class ReadWatcher extends Modifier {
     this.io = io;
   }
 }
-
-export default Modifier.modifier(ReadWatcher);
