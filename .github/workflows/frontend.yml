@@ -16,6 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
     - name: Install
       run: npm install -g snyk
     - name: Snyk
@@ -30,6 +32,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
     - name: Install
       run: ./run yarn install
     - name: "Lint JS/TS"
@@ -49,6 +53,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
     - name: Install
       run: ./run yarn install
     - name: Test
@@ -62,6 +68,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
     - name: Install
       run: ./run yarn install
     - name: Test
@@ -78,6 +86,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
     - name: Install
       run: ./run yarn install
     - name: Analyze Bundle
@@ -100,6 +110,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
     - name: Publish to DockerHub
       env:
         DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
