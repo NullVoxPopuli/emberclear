@@ -1,15 +1,18 @@
 import Service from '@ember/service';
 import { action } from '@ember/object';
+import { task, timeout } from 'ember-concurrency';
 
 import { isElementWithin } from 'emberclear/utils/dom/utils';
 import Message from 'emberclear/models/message';
+
+const SCROLL_DELAY = 50;
 
 export default class ChatScroller extends Service {
   // if the last message is close enough to being in view,
   // scroll to the bottom
   @action maybeNudgeToBottom(appendedMessage: HTMLElement) {
     if (this.shouldScroll(appendedMessage)) {
-      this.scrollToBottom();
+      this.scrollToBottom.perform();
     }
   }
 
@@ -34,11 +37,18 @@ export default class ChatScroller extends Service {
     return messages.length === 0;
   }
 
-  scrollToBottom() {
-    const element = document.querySelector('.messages')!;
 
-    element.scrollTo(0, element.scrollHeight);
-  }
+  @(task(function*() {
+    yield timeout(SCROLL_DELAY);
+
+    const element = document.querySelector('.messages');
+
+    if (element) {
+      element.scrollTo(0, element.scrollHeight);
+    }
+  }).keepLatest())
+  scrollToBottom!: Task;
+
 
   private shouldScroll(appendedMessage: HTMLElement) {
     const container = document.querySelector('.message-list') as HTMLElement;

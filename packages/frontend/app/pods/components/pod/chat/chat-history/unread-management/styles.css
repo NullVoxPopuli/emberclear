@@ -1,0 +1,10 @@
+.unread-indicator {
+  z-index: 1000;
+  top: var(--grid-gap);
+  position: absolute;
+  margin: 0 auto;
+
+  & .input-group {
+    border-radius: var(--button-border-radius);
+  }
+}

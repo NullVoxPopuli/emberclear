@@ -14,6 +14,7 @@ import Relay from 'emberclear/models/relay';
 import { toHex } from 'emberclear/utils/string-encoding';
 import { ConnectionError, RelayNotSetError } from 'emberclear/utils/errors';
 import Task from 'ember-concurrency/task';
+import ConnectionStatusService from 'emberclear/services/connection/status';
 
 interface ISendPayload {
   to: string;
@@ -39,6 +40,7 @@ async function ignoreTaskCancellation(fn: any) {
 export default class RelayConnection extends Service {
   @service('messages/processor') processor!: MessageProcessor;
   @service('messages/dispatcher') dispatcher!: MessageDispatcher;
+  @service('connection/status') connStatus!: ConnectionStatusService;
   @service('notifications') toast!: Toast;
   @service('intl') intl!: Intl;
   @service currentUser!: CurrentUserService;
@@ -203,10 +205,11 @@ export default class RelayConnection extends Service {
     this.processor.receive(data);
   };
 
-  @action
   updateStatus(level: string, msg: string) {
     this.status = msg;
     this.statusLevel = level;
+
+    this.connStatus.updateStatus(msg, level);
   }
 }
 

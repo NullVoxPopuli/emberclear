@@ -24,7 +24,7 @@ export default class ChatHistory extends Component<IArgs> {
   @tracked isLastVisible = true;
 
   @action scrollToBottom() {
-    this.chatScroller.scrollToBottom();
+    this.chatScroller.scrollToBottom.perform();
     this.determineIfLastIsVisible();
   }
 

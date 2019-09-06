@@ -1,12 +1,11 @@
 {{#if this.shouldRender}}
   <div
-    class='p-absolute top m-sm center-x'
-    style='top: 60; z-index: 1000'
+    class='unread-indicator'
     ...attributes
     {{did-insert this.findMessagesContainer}}
   >
-    <div class='field has-shadow height-tall has-addons buttons'>
-      <a {{on 'click' this.scrollToFirstUnread}} class='button is-info is-small'>
+    <div class='input-group has-shadow'>
+      <button {{on 'click' this.scrollToFirstUnread}} class='button-sm'>
         <span>
           {{t 'ui.chat.unreadMessages'
             number=this.numberOfUnread
@@ -19,11 +18,11 @@
             )
           }}
         </span>
-      </a>
-      <a {{on 'click' this.markAllAsRead}} class='button is-danger is-small'>
+      </button>
+      <button {{on 'click' this.markAllAsRead}} class='button-sm button-danger'>
         <span>{{t 'ui.chat.markAllAsRead'}}</span>
         <span class='icon is-small'>{{fa-icon 'times'}}</span>
-      </a>
+      </button>
     </div>
   </div>
 {{/if}}

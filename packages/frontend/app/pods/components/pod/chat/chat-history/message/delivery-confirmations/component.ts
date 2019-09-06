@@ -3,7 +3,6 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
-import { not, notEmpty } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
 import Message, { TARGET } from 'emberclear/models/message';
@@ -27,11 +26,20 @@ export default class DeliveryConfirmation extends Component<IArgs> {
 
   @tracked timedOut = false;
 
-  @not('wasReceived') wasSent!: boolean;
-  @notEmpty('args.message.deliveryConfirmations') hasDeliveryConfirmations!: boolean;
-
   get wasReceived() {
     return this.args.message.to === this.currentUser.uid;
+  }
+
+  get wasSent() {
+    return !this.wasReceived;
+  }
+
+  get hasDeliveryConfirmations() {
+    let confirmations = this.args.message.deliveryConfirmations
+
+    if (confirmations) {
+      return confirmations.length > 0;
+    }
   }
 
   @(task(function*(this: DeliveryConfirmation) {
