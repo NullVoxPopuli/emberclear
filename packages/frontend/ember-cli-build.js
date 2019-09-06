@@ -42,9 +42,9 @@ module.exports = function(defaults) {
 
     autoImport: {
       alias: {
-        'qrcode': 'qrcode/build/qrcode.min.js',
+        qrcode: 'qrcode/build/qrcode.min.js',
         'qr-scanner': 'qr-scanner/qr-scanner.min.js',
-        'uuid': 'uuid/index.js',
+        uuid: 'uuid/index.js',
       },
       exclude: ['libsodium', 'libsodium-wrappers'],
     },
