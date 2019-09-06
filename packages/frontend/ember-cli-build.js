@@ -42,9 +42,9 @@ module.exports = function(defaults) {
 
     autoImport: {
       alias: {
-        'qrcode': 'qrcode/build/qrcode.min.js',
+        qrcode: 'qrcode/build/qrcode.min.js',
         'qr-scanner': 'qr-scanner/qr-scanner.min.js',
-        'uuid': 'uuid/index.js',
+        uuid: 'uuid/index.js',
       },
       exclude: ['libsodium', 'libsodium-wrappers'],
     },
@@ -168,15 +168,15 @@ module.exports = function(defaults) {
     destDir: '/libraries/qr-scanner/',
   });
 
-  return require('@embroider/compat').compatBuild(app, require('@embroider/webpack').Webpack, {
-    extraPublicTrees: [qrScannerWorker],
-    // staticAddonTestSupportTrees: true,
-    // staticAddonTrees: true,
-    // staticHelpers: true,
-    // staticComponents: true,
-    // splitAtRoutes: true,
-    // skipBabel: [],
-  });
-
-  // return mergeTrees([app.toTree(), qrScannerWorker]);
+  // return require('@embroider/compat').compatBuild(app, require('@embroider/webpack').Webpack, {
+  //   extraPublicTrees: [qrScannerWorker],
+  //   // staticAddonTestSupportTrees: true,
+  //   // staticAddonTrees: true,
+  //   // staticHelpers: true,
+  //   // staticComponents: true,
+  //   // splitAtRoutes: true,
+  //   // skipBabel: [],
+  // });
+  //
+  return mergeTrees([app.toTree(), qrScannerWorker]);
 };

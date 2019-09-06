@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { reads } from '@ember/object/computed';
 
 import CurrentUserService from 'emberclear/services/current-user';
 

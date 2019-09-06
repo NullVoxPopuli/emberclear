@@ -19,14 +19,14 @@ function statusToClass(status: string) {
 }
 export default class Toast extends Service {
   // from ember-cli-notifications
-  // @service('notification-messages') notifications!: any;
+  @service('notification-messages') notifications!: any;
 
   clear() {
-    // this.notifications.clear();
+    this.notifications.clear();
   }
 
   clearAll() {
-    // this.notifications.clearAll();
+    this.notifications.clearAll();
   }
 
   info(msg: string, title = '', options = {}) {
@@ -50,15 +50,15 @@ export default class Toast extends Service {
 
     const colorClass = statusToClass(status);
 
-    // this.notifications.addNotification({
-    //   autoClear: true,
-    //   clearDuration: Ember.testing ? 50 : 4000,
-    //   ...options,
-    //   message: message || 'status',
-    //   type: status,
-    //   cssClasses: `
-    //     alert
-    //     ${colorClass}`,
-    // });
+    this.notifications.addNotification({
+      autoClear: true,
+      clearDuration: Ember.testing ? 50 : 4000,
+      ...options,
+      message: message || 'status',
+      type: status,
+      cssClasses: `
+        alert
+        ${colorClass}`,
+    });
   }
 }
