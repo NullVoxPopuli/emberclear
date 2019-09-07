@@ -52,11 +52,12 @@ export default class Toast extends Service {
 
     this.notifications.addNotification({
       autoClear: true,
-      clearDuration: Ember.testing ? 50 : 4000,
+      clearDuration: Ember.testing ? 100 : 4000,
       ...options,
       message: message || 'status',
       type: status,
       cssClasses: `
+        toast-alert
         alert
         ${colorClass}`,
     });

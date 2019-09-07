@@ -73,6 +73,10 @@ module.exports = function(environment) {
     namespacing: false,
   };
 
+  ENV['ember-cli-notifications'] = {
+    icons: 'fa-5',
+  };
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;

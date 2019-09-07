@@ -5680,10 +5680,9 @@ ember-cli-normalize-entity-name@^1.0.0:
   dependencies:
     silent-error "^1.0.0"
 
-ember-cli-notifications@^4.3.3:
+"ember-cli-notifications@github:basz/ember-cli-notifications#feature/font-awesome-5":
   version "4.3.3"
-  resolved "https://registry.yarnpkg.com/ember-cli-notifications/-/ember-cli-notifications-4.3.3.tgz#3d148789420f8157ea13b0ebe998f10f01c81999"
-  integrity sha512-N+kJreU+gB+lo4/mn/uNDhLhUkrQvd67j7wMXNXuz9ONE+fvgrI3ieMWHdBj5alYUx+G5yUKyoQ5pfwFXSLPIA==
+  resolved "https://codeload.github.com/basz/ember-cli-notifications/tar.gz/96d27c1c6b880a1c1f73c8e9779558ed42f200e2"
   dependencies:
     broccoli-funnel "^2.0.1"
     ember-cli-babel "^6.6.0"
@@ -5977,6 +5976,13 @@ ember-computed-promise-monitor@^0.4.0:
     ember-cli-htmlbars "^3.0.0"
     ember-cli-typescript "^2.0.0-rc.2"
     ember-decorators-polyfill "^1.0.4"
+
+ember-concurrency-test-waiter@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-test-waiter/-/ember-concurrency-test-waiter-0.3.1.tgz#9bdf83c532d17d913bbc29ee934266cd504f015a"
+  integrity sha512-luSu1/nSgkrDVAbIwHlyrJ4Bv3k++1jon3EV2v4+4vNGUPwWK7eRMbymI07YIxEbMf7MZ1e8fvj0jy6Pq/9Yzw==
+  dependencies:
+    ember-cli-babel "^6.6.0"
 
 ember-concurrency@1.0.0:
   version "1.0.0"

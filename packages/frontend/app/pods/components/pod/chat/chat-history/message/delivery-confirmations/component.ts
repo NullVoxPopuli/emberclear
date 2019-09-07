@@ -93,6 +93,6 @@ export default class DeliveryConfirmation extends Component<IArgs> {
 
     message.set('queueForResend', true);
     yield message.save();
-  }).drop())
+  }).drop().withTestWaiter())
   resendAutomatically!: Task;
 }
