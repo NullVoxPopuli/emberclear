@@ -119,7 +119,7 @@ export default class PrismManager extends Service {
     this.alreadyAdded.push(language);
 
     Prism.highlightAll();
-  }).maxConcurrency(1))
+  }).maxConcurrency(1).enqueue())
   addLanguage!: Task;
 
   @(task(function*(this: PrismManager) {
