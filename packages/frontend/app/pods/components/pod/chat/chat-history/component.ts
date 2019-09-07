@@ -43,7 +43,9 @@ export default class ChatHistory extends Component<IArgs> {
         return;
       }
     }
-  }).maxConcurrency(30).enqueue())
+  })
+    .maxConcurrency(30)
+    .enqueue())
   markRead!: Task;
 
   @(task(function*(this: ChatHistory) {
