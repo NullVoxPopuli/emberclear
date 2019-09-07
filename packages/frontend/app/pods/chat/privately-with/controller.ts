@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
-import { TARGET } from 'emberclear/models/message';
+import { TARGET, TYPE } from 'emberclear/models/message';
 import CurrentUserService from 'emberclear/services/current-user';
 
 export default class extends Controller {
@@ -12,12 +12,13 @@ export default class extends Controller {
   }
 
   get messages() {
-    const me = this.currentUser.uid;
-    const chattingWithId = this.uid;
+    let me = this.currentUser.uid;
+    let chattingWithId = this.uid;
 
-    return this.store.peekAll('message').filter(message => {
+    let messages = this.store.peekAll('message').filter(message => {
       const isRelevant =
         message.target === TARGET.WHISPER &&
+        message.type === TYPE.CHAT &&
         // we sent this message to someone else (this could incude ourselves)
         ((message.to === chattingWithId && message.from === me) ||
           // we received a message from someone else to us (including from ourselves)
@@ -25,5 +26,7 @@ export default class extends Controller {
 
       return isRelevant;
     });
+
+    return messages;
   }
 }

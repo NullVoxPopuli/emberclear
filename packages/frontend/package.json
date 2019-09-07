@@ -123,6 +123,7 @@
     "ember-percy": "^1.5.0",
     "ember-purify": "^4.2.0",
     "ember-qunit": "^4.5.1",
+    "ember-render-helpers": "^0.1.0",
     "ember-resolver": "^5.1.3",
     "ember-router-helpers": "github:rwjblue/ember-router-helpers",
     "ember-router-scroll": "^1.2.1",

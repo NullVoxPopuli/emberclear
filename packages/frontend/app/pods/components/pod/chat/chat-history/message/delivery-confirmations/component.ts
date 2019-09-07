@@ -35,10 +35,14 @@ export default class DeliveryConfirmation extends Component<IArgs> {
   }
 
   get hasDeliveryConfirmations() {
-    let confirmations = this.args.message.deliveryConfirmations
+    try {
+      let confirmations = this.args.message.deliveryConfirmations;
 
-    if (confirmations) {
-      return confirmations.length > 0;
+      if (confirmations) {
+        return confirmations.length > 0;
+      }
+    } catch (e) {
+      console.info(e);
     }
   }
 

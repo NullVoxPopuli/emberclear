@@ -18,7 +18,7 @@ export default class DangerSettings extends Component {
   @action
   async deleteMessages() {
     this.toast.info('Deleting messages...');
-    this.set('messagesDeleted', true);
+    this.messagesDeleted = true;
 
     const messages = await this.store.findAll('message');
     await messages.invoke('destroyRecord');
