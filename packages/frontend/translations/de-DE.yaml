@@ -3,7 +3,9 @@ appname: emberclear
 subheader: Verschlüsselter Chat. Kein Verlauf. Keine Logs.
 authoredBy: von Preston Sego
 redditCommunity: Reddit Community
+twitter: Twitter
 todo: 'TODO: Fülle dies korrekt aus'
+install: Install
 qrCode:
   error: QR Code konnte nicht erzeugt werden
 connection:
@@ -19,6 +21,10 @@ connection:
       notConnected: Nachrichten können ohne Internetverbindung nicht gesendet werden!
     subscribe:
       notConnected: Abonnieren eines Kanals ohne Socket Verbindung nicht möglich!
+errors:
+  notFound:
+    title: Not Found
+    help: The URL could not be navigated to. If the problem persists, please file an issue.
 buttons:
   delete: Löschen
   resend: Erneut senden
@@ -55,6 +61,7 @@ compatibility:
   title: Leider stimmt etwas nicht!
   description: Um emberclear nutzen zu können, muss dein Browser die folgenden Technologien und Funktionen unterstützen
   score: Ergebnis
+  required: Required
   compatibility: Kompatibilität
   camera: Kamera
   notifications: Benachrichtigungen
@@ -67,8 +74,8 @@ images:
     thumbnail: Vorschaubild
     ownIdentityQR: Dies ist deine Identität, verpackt in einem QR Code
 input:
-  placeholder:
-    mnemonic: Mnemonic Passphrase eingeben
+  label:
+    mnemonic: Mnemonic
     name: Name
 status:
   connected: Verbunden
@@ -121,15 +128,23 @@ ui:
     title: Tastatenkombination
     key:
       ctrl: strg
+      esc: esc
+      enter: enter
       i: i
       slash: /
       space: Leertaste
+      tab: tab
       h: h
       k: k
     actions:
       search: Alles durchsuchen
       toggleSidebar: Seitenleiste anzeigen/ausblenden
       toggleHelp: Tastaturhilfe einblenden
+    label:
+      search:
+        tab: to navigate
+        enter: to select
+        esc: to dismiss
   sidebar:
     unread: Ungelesen
     channels:
@@ -145,8 +160,7 @@ ui:
   chat:
     welcome: Willkommen!
     message: >
-      Du brauchst mindestens einen Freund, um anfangen zu können.<br /><br />
-      Danach kannst du mit deinen Kontakten chatten und über Kanäle mit Gruppen kommunizieren.
+      Du brauchst mindestens einen Freund, um anfangen zu können.<br /><br /> Danach kannst du mit deinen Kontakten chatten und über Kanäle mit Gruppen kommunizieren.
     newMessages: Es existieren neuere Nachrichten
     viewRecent: Letzte Nachrichten ansehen
     unreadMessages: '{number} neue Nachrichten seit {time}'
@@ -175,14 +189,12 @@ ui:
       Die gesamte Verschlüsselung findet lokal im Browser statt -- zu keiner Zeit verlassen die privaten Schlüssel deinen Computer. Emberclear nutzt Libsodium's öffentliche Schlüssel-Kryptographie, um die Sicherheit der Nachrichten über das gesamte Internet und in jedem Netzwerk zu garantieren -- selbst wenn das genutzte Netzwerk bereits kompromitiert ist.
     whyQ: Warum?
     whyA: >
-      Zum Einen aus Spaß, zum Anderen aus der Freude am Lernen -- Ich wollte schon immer ein Framework für Entwickler erstellen, welches diese dann in bestehende Web Anwendungen integrieren können.
-      Dieses Projekt wurde außerdem von meinem Misstrauen gegenüber bestehender Chat Apps und deren Infrastruktur inspiriert. 
-      Am Ende soll das Projekt über alle Funktion der populären Messenger verfügen -- mit einem Unterschied: Weder Server, Relays noch die förderierten Knoten tracken deine Inhalte.
+      Zum Einen aus Spaß, zum Anderen aus der Freude am Lernen -- Ich wollte schon immer ein Framework für Entwickler erstellen, welches diese dann in bestehende Web Anwendungen integrieren können. Dieses Projekt wurde außerdem von meinem Misstrauen gegenüber bestehender Chat Apps und deren Infrastruktur inspiriert. Am Ende soll das Projekt über alle Funktion der populären Messenger verfügen -- mit einem Unterschied: Weder Server, Relays noch die förderierten Knoten tracken deine Inhalte.
     notOnlineQ: Was passiert wenn ich eine Nachricht sende und der Empfänger nich mehr online ist.
     notOnlineA: >
       Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
-    serverStorageQ: "Speichert der Server / das Relay meine Nachrichten?"
-    serverStorageA: "false"
+    serverStorageQ: Speichert der Server / das Relay meine Nachrichten?
+    serverStorageA: false
   footer:
     navigation: Navigation
     wantToSupport: Möchtest du das Projekt unterstützen?
@@ -228,6 +240,9 @@ ui:
       URLs: URLs
       socket: Socket
       openGraph: Open Graph
+    themes:
+      title: Themes
+      midnight: Midnight
     copyProfileToDevice: Profil auf Gerät kopieren
     hideKey: Privaten Schlüssel ausblenden
     showKey: Privaten Schlüssel anzeigen
