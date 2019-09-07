@@ -16,7 +16,7 @@ export default class ConnectionStatusService extends Service {
     this.showStatusChange.perform();
   }
 
-  @(task(function*(){
+  @(task(function*() {
     this.hasUpdate = true;
     this.hadUpdate = false;
 
@@ -28,6 +28,4 @@ export default class ConnectionStatusService extends Service {
     this.hasUpdate = false;
   }).restartable())
   showStatusChange;
-
-
 }

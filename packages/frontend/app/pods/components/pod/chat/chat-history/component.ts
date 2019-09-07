@@ -28,11 +28,11 @@ export default class ChatHistory extends Component<IArgs> {
   }
 
   @action determineIfLastIsVisible() {
-    console.log('Pending fix for did-update');
+    console.debug('Pending fix for did-update');
     // this._setIsLastVisible.perform();
   }
 
-  @task(function*(message: Message) {
+  @(task(function*(message: Message) {
     let attempts = 0;
     while (attempts < 100) {
       attempts++;
@@ -43,7 +43,7 @@ export default class ChatHistory extends Component<IArgs> {
         return;
       }
     }
-  }).maxConcurrency(30)
+  }).maxConcurrency(30))
   markRead!: Task;
 
   @(task(function*(this: ChatHistory) {
