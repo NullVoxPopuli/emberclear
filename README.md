@@ -17,6 +17,7 @@ and then can be visited at `http://localhost:4201`.
 [![bundle analysis](https://img.shields.io/badge/bundle-analysis-blue.svg)](https://nullvoxpopuli.gitlab.io/emberclear/master/bundle.html)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/emberclear/localized.svg)](https://crowdin.com/project/emberclear)
 [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=SDYxMWtDbjBhcnZnOTBpdGZMbzl6Mktyb2QyT0FUZTlwazByUWF2ZEFUUT0tLVZKaFBZR0kzdTlmZEUxM202QnA3aVE9PQ==--58be570679305f818be70e6aef2c24f1d4dc1698)](https://automate.browserstack.com/public-build/SDYxMWtDbjBhcnZnOTBpdGZMbzl6Mktyb2QyT0FUZTlwazByUWF2ZEFUUT0tLVZKaFBZR0kzdTlmZEUxM202QnA3aVE9PQ==--58be570679305f818be70e6aef2c24f1d4dc1698)
+[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/Open-Source/emberclear)
 
 ### [Phoenix Relay](https://github.com/NullVoxPopuli/mesh-relay-phoenix)
 

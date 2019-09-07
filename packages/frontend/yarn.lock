@@ -6221,12 +6221,11 @@ ember-native-dom-helpers@^0.5.3:
     broccoli-funnel "^1.1.0"
     ember-cli-babel "^6.6.0"
 
-ember-oo-modifiers@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/ember-oo-modifiers/-/ember-oo-modifiers-0.5.0.tgz#042d90b81bfb951fbb2971013edf3e83a6e71e6c"
-  integrity sha512-fZLeQ+MJjZIoZ5gFj3YngDNGJBn16Nf2hBfOCx+mTEGa25V+DKVJVYPVZlyS2yffFKtODwwTP1TzMW2EMnuLgw==
+"ember-oo-modifiers@github:sukima/ember-oo-modifiers#bug/capabilities":
+  version "0.4.0"
+  resolved "https://codeload.github.com/sukima/ember-oo-modifiers/tar.gz/c55ba45042eff3a23c4726695f393e314fdc6f69"
   dependencies:
-    ember-cli-babel "^7.7.3"
+    ember-cli-babel "^7.10.0"
     ember-modifier-manager-polyfill "^1.0.3"
 
 ember-percy@^1.5.0:
