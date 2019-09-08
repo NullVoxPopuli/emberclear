@@ -2,6 +2,8 @@
 
 const execa = require('execa');
 const Listr = require('listr');
+const fetch = require('node-fetch');
+
 const GITHUB_API_URL="https://api.github.com"
 
 const {
