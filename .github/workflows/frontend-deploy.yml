@@ -24,7 +24,7 @@ jobs:
       run: time ./run yarn test
 
   deploy:
-    name: Deploy
+    name: Deploy to Netlify
     runs-on: ubuntu-latest
     timeout-minutes: 5
     needs:
@@ -52,7 +52,7 @@ jobs:
   deploy_docker:
     name: Deploy Docker Image
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: tests
     timeout-minutes: 5
 
     steps:
@@ -62,8 +62,8 @@ jobs:
       env:
         DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-        DOCKER_HOST: tcp://docker:2375/
-        DOCKER_DRIVER: overlay2
+        # DOCKER_HOST: tcp://docker:2375/
+        # DOCKER_DRIVER: overlay2
       run: sh ./scripts/dockerhub
 
 
