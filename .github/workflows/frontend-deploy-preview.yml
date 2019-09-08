@@ -11,22 +11,42 @@ jobs:
     timeout-minutes: 5
 
     steps:
+    - uses: unacast/actions/github-deploy@master
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+
+    - name: Notify GitHub Deploy Is Starting
+      run: |
+
     - name: Install
-      run: ./run yarn install
-    - name: Install Netlify CLI
-      run : npm install -g netlify-cli
+      run: |
+        apt install -y jq
+        npm install -g netlify-cli
+        ./run yarn install
+
     - name: Build
       run: ./run yarn build:production
 
     - name: Deploy a preview to Netlify
-      uses: netlify/actions/cli@master
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      args: deploy --dir=packages/frontend/dist
+      run: |
+        # https://developer.github.com/v3/repos/deployments/#create-a-deployment
+        # POST /repos/:owner/:repo/deployments
+        # curl -sb \
+        #      -H "Authorization: token $GITHUB_TOKEN" \
+        #      -H 'Accept: application/vnd.github.ant-man-preview+json' \
+        #      -X POST \
+        #      --remote-name \
+        #      --location https://api.github.com/repos/$GITHUB_REPOSITORY/deployments\
+        #      --data "{\"ref\": \"$GITHUB_SHA\", \"description\": \"Deploying Branch to Netlify\"}"
+        ${HOME}/bin/deployment-create-status in_progress
 
+        DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | jq '.deploy_url')
+
+        ${HOME}/bin/deployment-create-status success $DEPLOY_URL
 
