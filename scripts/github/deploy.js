@@ -56,6 +56,7 @@ function deploy( ){
   let dir = 'packages/frontend/dist';
   let { stdout } = execa.sync(`netlify deploy --dir=${dir} --json`);
 
+  console.log(stdout, typeof stdout);
   let response = JSON.parse(stdout);
 
   let deployUrl = response['deploy_url'];
