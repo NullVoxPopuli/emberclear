@@ -113,6 +113,10 @@ async function updateStatus(deployId, status, description = '') {
 }
 
 
-tasks.run().catch(err => {
-  updateStatus(deployId, STATUS.FAILURE);
+tasks.run().catch(async err => {
+  try {
+    await updateStatus(deployId, STATUS.FAILURE);
+  } finally {
+    process.exit(1);
+  }
 });
