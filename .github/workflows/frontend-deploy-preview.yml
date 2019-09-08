@@ -21,10 +21,12 @@ jobs:
       run : npm install -g netlify-cli
     - name: Build
       run: ./run yarn build:production
+
     - name: Deploy a preview to Netlify
+      uses: netlify/actions/cli@master
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      run: |
-        time netlify deploy --dir=packages/frontend/dist
+      args: deploy --dir=packages/frontend/dist
+
 
