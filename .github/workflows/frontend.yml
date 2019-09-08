@@ -70,6 +70,22 @@ jobs:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       run: time ./run yarn test
 
+  bundle_analysis:
+    name: Bundle Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install
+      run: ./run yarn install
+    - name: Analyze Bundle
+      run: ./run yarn analyze
+
+
   tests_visual:
     name: Visual Tests
     runs-on: ubuntu-latest
@@ -91,8 +107,12 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    needs: tests
     timeout-minutes: 5
+    needs:
+    - tests
+    - bundle_analysis
+
+    if: github.ref == 'master'
 
     steps:
     - uses: actions/checkout@v1
@@ -108,8 +128,8 @@ jobs:
         FRONTEND: packages/frontend
         NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        # mv ${FRONTEND}/coverage public/
       run: |
-        mv ${FRONTEND}/coverage public/
         cp ${FRONTEND}/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
         cp ${FRONTEND}/public/bundle.html public/bundle.html
         time ./scripts/publish
