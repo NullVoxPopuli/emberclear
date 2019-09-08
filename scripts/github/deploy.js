@@ -88,6 +88,7 @@ async function createDeploy() {
     }
   });
   let text = await response.json();
+  console.log(text, typeof text);
   let json = JSON.parse(text);
 
   return json.id;
