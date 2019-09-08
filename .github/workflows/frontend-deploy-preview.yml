@@ -35,9 +35,6 @@ jobs:
         # Start Deploy, Build, Notify Deploy
         set -e
 
-        # Begin Deployment
-        DEPLOY_ID=$(./scripts/github/create-deploy | jq '.id')
-
         ./scripts/github/update-deploy-state $DEPLOY_ID in_progress
 
         # Install
