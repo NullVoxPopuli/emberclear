@@ -18,8 +18,8 @@ jobs:
 
     - name: Job Dependencies
       run: |
-        curl https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
         npm install -g netlify-cli
+        npm install -g node-jq
 
     - name: "Setup, Build, Deploy"
       env:
@@ -27,12 +27,11 @@ jobs:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       run: |
-        # NOTE: this is brittle, caues it doesn't handle exceptions...
-
+        # Start Deploy, Build, Notify Deploy
         set -e
 
         # Begin Deployment
-        DEPLOY_ID=$(./scripts/github/create-deploy | ./jq-linux64 '.id')
+        DEPLOY_ID=$(./scripts/github/create-deploy | jq '.id')
 
         ./scripts/github/update-deploy-state $DEPLOY_ID in_progress
 
@@ -42,7 +41,7 @@ jobs:
         # Build
         ./run yarn build:production
 
-        DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | ./jq-linux64 '.deploy_url')
+        DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | jq '.deploy_url')
 
         echo ""
         echo "Deploy Preview URL:"
