@@ -48,5 +48,5 @@ jobs:
         echo ""
 
         # Notify of Successful Deployment
-        ./scripts/github/deploy.js success $DEPLOY_URL
+        # ./scripts/github/deploy.js success $DEPLOY_URL
 

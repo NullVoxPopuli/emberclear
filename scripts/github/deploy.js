@@ -16,7 +16,7 @@ const [_node, _script, status, url] = process.argv;
 const tasks = new Listr([
   {
     title: 'Setting Deployment Status: In Progress',
-    task: () => updateStatus(STATUS.IN_PROGRESS),
+    task: () => updateStatus(),
   },
 ]);
 
