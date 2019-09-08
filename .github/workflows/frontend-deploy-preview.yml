@@ -22,7 +22,7 @@ jobs:
 
     - name: Install
       run: |
-        apt install -y jq
+        apt-get install -y jq
         npm install -g netlify-cli
         ./run yarn install
 
