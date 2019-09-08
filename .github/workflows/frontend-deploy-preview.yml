@@ -16,14 +16,43 @@ jobs:
       with:
         node-version: '10.x'
 
+    - name: Start Deploy
+      run: ./scripts/deploy in_progress
+
     - name: Job Dependencies
-      run: npm install -g netlify-cli
+      run: |
+        npm install -g netlify-cli
+        npm install -g node-jq
 
     - name: "Setup, Build, Deploy"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        # ( cd scripts/github && yarn )
+        # ./scripts/github/deploy.js
       run: |
-        ( cd scripts/github && yarn )
-        ./scripts/github/deploy.js
+        # Start Deploy, Build, Notify Deploy
+        set -e
+
+        # Begin Deployment
+        DEPLOY_ID=$(./scripts/github/create-deploy | jq '.id')
+
+        ./scripts/github/update-deploy-state $DEPLOY_ID in_progress
+
+        # Install
+        ./run yarn install
+
+        # Build
+        ./run yarn build:production
+
+        DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | jq '.deploy_url')
+
+        echo ""
+        echo "Deploy Preview URL:"
+        echo $DEPLOY_URL
+        echo ""
+
+        # Notify of Successful Deployment
+        ./scripts/github/deploy.js success $DEPLOY_URL
+
