@@ -40,10 +40,7 @@ Yes, there is a lack of trust that manifests when existing chat apps are closed 
 
 ## Development
 
-```bash
-git submodule update --init --recursive
-cd packages/frontend && yarn start:dev
-```
+See: [CONTRIBUTING.md](https://github.com/NullVoxPopuli/emberclear/blob/master/CONTRIBUTING.md)
 
 Written in ember for demonstration of
  - progressive web apps
@@ -52,19 +49,6 @@ Written in ember for demonstration of
  - typescript
  - all the modern features / best practices of ember
 
-
-#### Debugging
-
-Module Resolution:
-```js
-// shows all detected services
-Object.keys(window.requirejs.entries).filter(b => b.includes("service"))
-```
-
-File Watch Problems?
-```bash
-echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-```
 
 ## Special Thanks
 
