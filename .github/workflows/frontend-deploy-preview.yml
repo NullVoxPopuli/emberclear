@@ -11,20 +11,10 @@ jobs:
     timeout-minutes: 5
 
     steps:
-    - uses: unacast/actions/github-deploy@master
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-
-    - name: Notify GitHub Deploy Is Starting
-
-    - name: Install
-      run: |
-        # apt-get install -y jq
-        curl https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
-        npm install -g netlify-cli
-        ./run yarn install
 
     - name: Build
       run: ./run yarn build:production
@@ -35,10 +25,19 @@ jobs:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       run: |
+        # NOTE: this is brittle, caues it doesn't handle exceptions...
 
+        set -e
+
+        # Begin Deployment
         DEPLOY_ID=$(./scripts/github/create-deploy | ./jq-linux64 '.id')
 
         ./scripts/github/update-deploy-state $DEPLOY_ID in_progress
+
+        # Install
+        curl https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+        npm install -g netlify-cli
+        ./run yarn install
 
         DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | ./jq-linux64 '.deploy_url')
 
@@ -47,5 +46,6 @@ jobs:
         echo $DEPLOY_URL
         echo ""
 
+        # Notify of Successful Deployment
         ./scripts/github/update-deploy-state $DEPLOY_ID success $DEPLOY_URL
 
