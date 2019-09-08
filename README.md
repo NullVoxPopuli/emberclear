@@ -11,12 +11,20 @@ and then can be visited at `http://localhost:4201`.
 
 ### [Frontend](https://github.com/NullVoxPopuli/emberclear/tree/master/packages/frontend)
 
-[![Build Status](https://travis-ci.com/NullVoxPopuli/emberclear.svg?branch=master)](https://travis-ci.com/NullVoxPopuli/emberclear)
+
+![Tests](https://github.com/NullVoxPopuli/emberclear/workflows/Frontend%20Tests/badge.svg)
+![Quality](https://github.com/NullVoxPopuli/emberclear/workflows/Frontend%20Quality/badge.svg)
+![Deploy](https://github.com/NullVoxPopuli/emberclear/workflows/Frontend%20Deploy/badge.svg)
+
+
 [![coverage report](https://gitlab.com/NullVoxPopuli/emberclear/badges/master/coverage.svg)](https://nullvoxpopuli.gitlab.io/emberclear/master/coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3f2faa686db3db3a52f8/maintainability)](https://codeclimate.com/github/NullVoxPopuli/emberclear/maintainability)
 [![bundle analysis](https://img.shields.io/badge/bundle-analysis-blue.svg)](https://nullvoxpopuli.gitlab.io/emberclear/master/bundle.html)
+
+[![Build Status](https://travis-ci.com/NullVoxPopuli/emberclear.svg?branch=master)](https://travis-ci.com/NullVoxPopuli/emberclear)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/emberclear/localized.svg)](https://crowdin.com/project/emberclear)
 [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=SDYxMWtDbjBhcnZnOTBpdGZMbzl6Mktyb2QyT0FUZTlwazByUWF2ZEFUUT0tLVZKaFBZR0kzdTlmZEUxM202QnA3aVE9PQ==--58be570679305f818be70e6aef2c24f1d4dc1698)](https://automate.browserstack.com/public-build/SDYxMWtDbjBhcnZnOTBpdGZMbzl6Mktyb2QyT0FUZTlwazByUWF2ZEFUUT0tLVZKaFBZR0kzdTlmZEUxM202QnA3aVE9PQ==--58be570679305f818be70e6aef2c24f1d4dc1698)
+[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/Open-Source/emberclear)
 
 ### [Phoenix Relay](https://github.com/NullVoxPopuli/mesh-relay-phoenix)
 

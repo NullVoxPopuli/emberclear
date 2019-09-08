@@ -26,6 +26,7 @@
 @import './shoelace-overrides.css';
 
 @import './components/scrollbar';
+@import './components/toasts';
 @import './components/modal.css';
 @import './components/modal-search.css';
 @import './components/modal-snippets.css';
@@ -34,7 +35,6 @@
 @import './components/hover-tip.css';
 @import './components/ellipsis-loader.css';
 @import './components/chat-entry.css';
-@import './components/connection-status.css';
 @import './components/settings-nav.css';
 @import './components/contacts.css';
 
@@ -98,6 +98,11 @@
     padding: 0;
     background: none;
     color: var(--link-color);
+
+    &:hover {
+      background: none;
+      color: var(--link-color-hover);
+    }
   }
 }
 

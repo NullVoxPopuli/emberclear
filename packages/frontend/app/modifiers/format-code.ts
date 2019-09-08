@@ -4,7 +4,7 @@ import { parseLanguages } from 'emberclear/utils/string/utils';
 
 import PrismManager from 'emberclear/services/prism-manager';
 
-class FormatCode extends Modifier {
+export default class FormatCode extends Modifier {
   @service prismManager!: PrismManager;
 
   didInsertElement(text: string) {
@@ -31,5 +31,3 @@ class FormatCode extends Modifier {
     });
   }
 }
-
-export default Modifier.modifier(FormatCode);

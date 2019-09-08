@@ -11,7 +11,7 @@ interface NamedArgs {
   markRead: (message: Message) => void;
 }
 
-class UnreadMessagesIntersectionObserver extends Modifier {
+export default class UnreadMessagesIntersectionObserver extends Modifier {
   @service sidebar!: SidebarService;
   @service store!: StoreService;
 
@@ -44,5 +44,3 @@ class UnreadMessagesIntersectionObserver extends Modifier {
     });
   }
 }
-
-export default Modifier.modifier(UnreadMessagesIntersectionObserver);

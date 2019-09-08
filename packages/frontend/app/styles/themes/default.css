@@ -23,6 +23,9 @@
   --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
   --hint-color: var(--color-medium-gray);
 
+  --alert-padding-y: 0.5rem;
+  --alert-padding-x: 0.5rem;
+
   --top-nav-bg: var(--state-light);
   --top-nav-shadow: var(--shadow);
   --top-nav-height: 50px;

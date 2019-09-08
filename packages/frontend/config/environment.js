@@ -48,6 +48,7 @@ module.exports = function(environment) {
           'ellipsis-h',
           'globe',
           'bars',
+          'search',
         ],
       },
     },
@@ -70,6 +71,10 @@ module.exports = function(environment) {
 
   ENV['ember-component-css'] = {
     namespacing: false,
+  };
+
+  ENV['ember-cli-notifications'] = {
+    icons: 'fa-5',
   };
 
   if (environment === 'development') {

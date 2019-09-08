@@ -1,7 +1,7 @@
 <div
   class='message-list'
-  {{did-update this.determineIfLastIsVisible @messages}}
-  {{did-insert this.determineIfLastIsVisible @messages}}
+  {{did-update this.determineIfLastIsVisible @messages.length}}
+  {{did-insert this.determineIfLastIsVisible}}
   {{unread-message-list-observer markRead=(action (perform this.markRead))}}
 >
 
@@ -15,15 +15,23 @@
     class='messages'
     estimateHeight=100
     staticHeight=false
+    shouldRecycle=false
+    key='id'
     bufferSize=5
     renderFromLast=true
-    lastReached=this.determineIfLastIsVisible
-    lastVisibleChanged=this.determineIfLastIsVisible
     as |message|
   }}
     <Pod::Chat::ChatHistory::Message @message={{message}} />
-
   {{/vertical-collection}}
+
+  {{!--
+  <!-- For Testing if there are issues with occlusion -->
+  <div class='messages'>
+    {{#each @messages as |message|}}
+      <Pod::Chat::ChatHistory::Message @message={{message}} />
+    {{/each}}
+  </div>
+  --}}
 
 
   <a

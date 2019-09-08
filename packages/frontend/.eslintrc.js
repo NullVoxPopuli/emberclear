@@ -13,6 +13,7 @@ module.exports = {
   rules: {
     // ember specific
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
+    'ember/no-incorrect-calls-with-inline-anonymous-functions': 'off', // don't agree with this one.
     'ember/no-ember-testing-in-module-scope': 'off', // needed for tasks atm
     'ember/use-brace-expansion': 'off', // won't matter with @tracked
 

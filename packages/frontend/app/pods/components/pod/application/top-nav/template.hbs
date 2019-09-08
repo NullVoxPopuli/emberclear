@@ -1,7 +1,7 @@
 <div data-test-top-nav class='top-nav {{if this.isInverted 'is-inverted'}}'>
 
   <div class='left-nav'>
-    {{#if this.isLoggedIn}}
+    {{#if this.currentUser.isLoggedIn}}
       <div>
         <HamburgerButton
           @onClick={{this.sidebar.toggle}}
@@ -47,7 +47,7 @@
 
 
   <div class='right-nav'>
-    {{#if (not this.isLoggedIn)}}
+    {{#if (not this.currentUser.isLoggedIn)}}
       <a class='hide-md-up' {{on 'click' (prevent-default (transition-to 'login'))}}>
         {{t 'routes.login'}}
       </a>
@@ -56,7 +56,7 @@
     <Pod::Application::TopNav::Install />
     <Pod::Application::TopNav::LocaleSelect />
 
-    {{#if this.isLoggedIn}}
+    {{#if this.currentUser.isLoggedIn}}
       <a class='hide-sm-down' {{action (transition-to 'chat')}}>
         {{t 'routes.chat'}}
       </a>

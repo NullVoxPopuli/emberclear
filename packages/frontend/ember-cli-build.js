@@ -18,7 +18,6 @@ module.exports = function(defaults) {
   let disabledAddons = [];
   let environment = EmberApp.env();
   let isProduction = environment === 'production';
-  // let isTest = environment === 'test';
 
   let swDisabled = process.env.SW_DISABLED;
   let version = gitRev.short();
@@ -43,9 +42,11 @@ module.exports = function(defaults) {
 
     autoImport: {
       alias: {
+        qrcode: 'qrcode/build/qrcode.min.js',
         'qr-scanner': 'qr-scanner/qr-scanner.min.js',
+        uuid: 'uuid/index.js',
       },
-      exclude: ['libsodium', 'libsodium-wrappers', 'phoenix', 'showdown', 'qrcode', 'uuid'],
+      exclude: ['libsodium', 'libsodium-wrappers'],
     },
 
     'ember-cli-babel': {
@@ -161,31 +162,13 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  // phoenix sockets!
-  app.import('node_modules/phoenix/assets/js/phoenix.js', {
-    using: [{ transformation: 'cjs', as: 'phoenix' }],
-  });
-
-  // markdown
-  app.import('node_modules/showdown/dist/showdown.js', {
-    using: [{ transformation: 'cjs', as: 'showdown' }],
-  });
-
-  // qrcode
-  app.import('node_modules/qrcode/build/qrcode.min.js');
-  app.import('vendor/shims/qrcode.js');
-
   // qr-scanner hardcoded this path.... -.-
   let qrScannerWorker = new Funnel('node_modules/qr-scanner/', {
     include: ['qr-scanner-worker.min.js'],
     destDir: '/libraries/qr-scanner/',
   });
 
-  // uuid
-  app.import('node_modules/uuid/index.js', {
-    using: [{ transformation: 'cjs', as: 'uuid' }],
-  });
-
+  // Embroider is too buggy atm
   // return require('@embroider/compat').compatBuild(app, require('@embroider/webpack').Webpack, {
   //   extraPublicTrees: [qrScannerWorker],
   //   // staticAddonTestSupportTrees: true,
@@ -195,5 +178,6 @@ module.exports = function(defaults) {
   //   // splitAtRoutes: true,
   //   // skipBabel: [],
   // });
+
   return mergeTrees([app.toTree(), qrScannerWorker]);
 };

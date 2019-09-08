@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, settled } from '@ember/test-helpers';
+import { visit, currentURL, settled, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
@@ -71,6 +71,8 @@ module('Acceptance | Contacts', function(hooks) {
         hooks.beforeEach(async function() {
           await contacts.rows.removeAt(1);
           await settled();
+          // TODO: find a better way to do this
+          await waitUntil(() => contacts.rows.dom().length === 1);
         });
 
         test('there is one less contact', function(assert) {

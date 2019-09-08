@@ -6,6 +6,7 @@ declare module 'ember-concurrency' {
   ): PropertyDecorator & {
     drop(): PropertyDecorator;
     keepLatest(): PropertyDecorator;
+    restartable(): PropertyDecorator;
     maxConcurrency(num: number): PropertyDecorator;
   };
   export function timeout(wait: number): Promise<void>;

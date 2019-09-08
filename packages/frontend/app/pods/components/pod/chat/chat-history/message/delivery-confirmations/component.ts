@@ -3,7 +3,6 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
-import { not, notEmpty } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
 import Message, { TARGET } from 'emberclear/models/message';
@@ -27,11 +26,24 @@ export default class DeliveryConfirmation extends Component<IArgs> {
 
   @tracked timedOut = false;
 
-  @not('wasReceived') wasSent!: boolean;
-  @notEmpty('args.message.deliveryConfirmations') hasDeliveryConfirmations!: boolean;
-
   get wasReceived() {
     return this.args.message.to === this.currentUser.uid;
+  }
+
+  get wasSent() {
+    return !this.wasReceived;
+  }
+
+  get hasDeliveryConfirmations() {
+    try {
+      let confirmations = this.args.message.deliveryConfirmations;
+
+      if (confirmations) {
+        return confirmations.length > 0;
+      }
+    } catch (e) {
+      console.info(e);
+    }
   }
 
   @(task(function*(this: DeliveryConfirmation) {
@@ -42,7 +54,9 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     if (!this.hasDeliveryConfirmations) {
       this.timedOut = true;
     }
-  }).drop())
+  })
+    .drop()
+    .withTestWaiter())
   waitForConfirmation!: Task;
 
   @(task(function*(this: DeliveryConfirmation) {
@@ -66,14 +80,18 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     yield this.dispatcher.sendTo(message, to);
 
     yield this.waitForConfirmation.perform();
-  }).drop())
+  })
+    .drop()
+    .withTestWaiter())
   resend!: Task;
 
   @(task(function*(this: DeliveryConfirmation) {
     const { message } = this.args;
 
     yield message.destroyRecord();
-  }).drop())
+  })
+    .drop()
+    .withTestWaiter())
   deleteMessage!: Task;
 
   @(task(function*(this: DeliveryConfirmation) {
@@ -81,6 +99,8 @@ export default class DeliveryConfirmation extends Component<IArgs> {
 
     message.set('queueForResend', true);
     yield message.save();
-  }).drop())
+  })
+    .drop()
+    .withTestWaiter())
   resendAutomatically!: Task;
 }

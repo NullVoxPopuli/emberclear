@@ -1,5 +1,5 @@
 import { visit as dangerousVisit } from '@ember/test-helpers';
-import a11yAuditIf from 'ember-a11y-testing/test-support/audit-if';
+// import a11yAuditIf from 'ember-a11y-testing/test-support/audit-if';
 import { percySnapshot } from 'ember-percy';
 import { getService } from './get-service';
 import Toast from 'emberclear/services/toast';
@@ -27,7 +27,7 @@ export async function visit(url: string) {
 
 export function assertExternal(assert: any) {
   percySnapshot(assert);
-  a11yAuditIf();
+  // a11yAuditIf();
 }
 
 export function clearToasts(hooks: NestedHooks) {

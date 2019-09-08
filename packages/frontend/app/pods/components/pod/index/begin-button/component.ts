@@ -14,13 +14,13 @@ class BeginButton extends Component {
 
 export default setComponentTemplate(
   hbs`
-  {{#link-to 'chat' class='button'}}
+  <LinkTo @route='chat' class='button'>
     {{#if this.isLoggedIn}}
       {{t 'routes.chat'}}
     {{else}}
       {{t 'buttons.begin'}}
     {{/if}}
-  {{/link-to}}
+  </LinkTo>
 `,
   BeginButton
 );

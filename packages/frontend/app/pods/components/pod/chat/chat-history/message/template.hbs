@@ -3,7 +3,7 @@
 <div
   id={{@message.id}}
   role='button'
-  {{action (perform this.markRead)}}
+  {{on 'click' (perform this.markRead)}}
   {{format-code @message.body}}
   {{did-insert this.chatScroller.maybeNudgeToBottom}}
   {{read-watcher @message markRead=(action (perform this.markRead))}}

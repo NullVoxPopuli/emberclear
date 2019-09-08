@@ -19,7 +19,7 @@ if [[ "$BRANCH" == "master" ]]; then
 
   ( cd ./packages/frontend && rm -rf dist tmp )
   time ./run yarn build:production
-  
+
   ( ./scripts/publish )
 else
   echo "current branch ($BRANCH) did not equal 'master'."

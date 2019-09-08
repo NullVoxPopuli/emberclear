@@ -1,6 +1,6 @@
 <KeyboardPress @key='ctrl+Space' @onDown={{this.sidebar.toggle}} />
 
-{{#if this.isLoggedIn}}
+{{#if this.currentUser.isLoggedIn}}
   <Pod::Application::OffCanvasContainer::Sidebar
     class='sidebar-wrapper'
     id='sidebar'

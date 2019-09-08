@@ -15,13 +15,16 @@
     flex: 1 1 0%;
     display: flex;
     position: relative;
-    flex-direction: column;
+    /* flex-direction: column; */
 
     overflow: hidden;
     padding-bottom: var(--grid-gap);
 
     & .messages {
       @apply --grid;
+
+      align-self: flex-end;
+      max-height: 100%;
 
       flex-grow: 1;
       overflow-y: auto;
