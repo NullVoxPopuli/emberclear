@@ -16,6 +16,11 @@ jobs:
       with:
         node-version: '10.x'
 
+    - name: Job Dependencies
+      run: |
+        curl https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+        npm install -g netlify-cli
+
     - name: "Setup, Build, Deploy"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,8 +37,6 @@ jobs:
         ./scripts/github/update-deploy-state $DEPLOY_ID in_progress
 
         # Install
-        curl https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
-        npm install -g netlify-cli
         ./run yarn install
 
         # Build
