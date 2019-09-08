@@ -1,0 +1,98 @@
+name: Frontend Tests
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - 'packages/frontend/*'
+
+jobs:
+  security:
+    name: Dependency Security
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install
+      run: npm install -g snyk
+    - name: Snyk
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: cd packages/frontend && snyk test --severity-threshold=high
+
+  lint_js:
+    name: "Lint JS/TS"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install
+      run: ./run yarn install
+    - name: "Lint JS/TS"
+      run: ./run yarn lint:js
+
+  lint_templates:
+    name: "Lint Templates"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Lint Templates
+      run: ./run yarn lint:hbs
+
+
+  lint_styles:
+    name: "Lint Styles"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Lint Styles
+      run: ./run yarn lint:sass
+
+
+  lint_translations:
+    name: "Lint Translations"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    # This is broken on modern syntax.......
+    - name: Lint Translations
+      run: ./run yarn lint:i18n
+      continue-on-error: true
+
+
+  lint_types:
+    name: "Check Type Correctness"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    # Types on Canary are a mess right now :(
+    - name: Type Checking
+      run: ./run yarn tsc
+      continue-on-error: true
+

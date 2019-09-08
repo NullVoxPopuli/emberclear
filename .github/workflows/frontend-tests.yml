@@ -1,4 +1,4 @@
-name: Frontend
+name: Frontend Tests
 on:
   pull_request:
     branches: [master]
@@ -6,49 +6,6 @@ on:
       - 'packages/frontend/*'
 
 jobs:
-  security:
-    name: Security
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Install
-      run: npm install -g snyk
-    - name: Snyk
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      run: cd packages/frontend && snyk test --severity-threshold=high
-
-  quality:
-    name: Quality
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Install
-      run: ./run yarn install
-    - name: "Lint JS/TS"
-      run: ./run yarn lint:js
-    - name: Lint Templates
-      run: ./run yarn lint:hbs
-    - name: Lint Styles
-      run: ./run yarn lint:sass
-    # This is broken on modern syntax.......
-    - name: Lint Translations
-      run: ./run yarn lint:i18n
-      continue-on-error: true
-    # Types on Canary are a mess right now :(
-    - name: Type Checking
-      run: ./run yarn tsc
-      continue-on-error: true
-
   tests:
     name: Tests
     runs-on: ubuntu-latest
