@@ -16,10 +16,7 @@ jobs:
       with:
         node-version: '10.x'
 
-    - name: Build
-      run: ./run yarn build:production
-
-    - name: Deploy a preview to Netlify
+    - name: "Setup, Build, Deploy"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
@@ -38,6 +35,9 @@ jobs:
         curl https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
         npm install -g netlify-cli
         ./run yarn install
+
+        # Build
+        ./run yarn build:production
 
         DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | ./jq-linux64 '.deploy_url')
 
