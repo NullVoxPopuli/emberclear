@@ -1,0 +1,10 @@
+{
+  "name": "deploy",
+  "version": "1.0.0",
+  "main": "deploy.js",
+  "license": "MIT",
+  "dependencies": {
+    "execa": "^2.0.4",
+    "listr": "^0.14.3"
+  }
+}

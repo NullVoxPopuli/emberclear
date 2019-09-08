@@ -22,5 +22,7 @@ jobs:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       run: |
-        npm install -g netlify-cli node-jq execa listr
+        npm install -g netlify-cli
+
+        ( cd scripts/github && yarn )
         ./scripts/github/deploy.js
