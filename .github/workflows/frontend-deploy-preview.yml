@@ -17,8 +17,7 @@ jobs:
         node-version: '10.x'
 
     - name: Job Dependencies
-      run: |
-        npm install -g netlify-cli
+      run: npm install -g netlify-cli
 
     - name: "Setup, Build, Deploy"
       env:

@@ -64,23 +64,21 @@ function deploy( ){
 }
 
 
-async function updateStatus(deployId, status, targetUrl = '') {
-  let response = await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}`, {
+function updateStatus(deployId, status, targetUrl = '') {
+  return fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}`, {
     method: 'POST',
     headers: {
       ['Authorization']: `token ${GITHUB_TOKEN}`,
-      // ['Content-Type']: `text/jsqn; charset=utf-8`,
+      // ['Content-Type']: `text/json; charset=utf-8`,
       // ['Accept']: '',
       // ['User-Agent']: 'NullVoxPopuli'
     },
     data: {
       state: status,
-      ['target_url']: targetUrl,
+      ['target_url']: targetUrl || `https://github.com/${GITHUB_REPOSITORY}`,
       description: 'Deploy Preview'
     }
   });
-
-  await response.json();
 }
 
 
