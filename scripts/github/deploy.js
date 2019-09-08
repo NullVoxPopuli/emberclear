@@ -10,6 +10,9 @@ const {
   GITHUB_REPOSITORY, GITHUB_TOKEN, GITHUB_SHA
 } = process.env;
 
+
+const cwd = process.cwd();
+
 const STATUS = {
   ERROR: 'error',
   FAILURE: 'failure',
@@ -30,11 +33,11 @@ const tasks = new Listr([
   },
   {
     title: 'Install Dependencies',
-    task: () => execa('./run yarn install'),
+    task: () => execa.sync('./run yarn install', { cwd }),
   },
   {
     title: 'Build for Production',
-    task: () => execa('./run yarn build:production'),
+    task: () => execa.sync('./run yarn build:production', { cwd }),
   },
   {
     title: 'Deploying to Netlify',
