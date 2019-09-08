@@ -25,12 +25,6 @@ let url = '';
 
 const tasks = new Listr([
   {
-    title: 'Creating Deployment',
-    task: async () => {
-      deployId = await createDeploy();
-    }
-  },
-  {
     title: 'Setting Deployment Status: In Progress',
     task: () => updateStatus(deployId, STATUS.IN_PROGRESS),
   },
@@ -70,43 +64,19 @@ function deploy( ){
 }
 
 
-async function createDeploy() {
-  let response = await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/deployments`, {
+async function updateStatus(deployId, status, targetUrl = '') {
+  let response = await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}`, {
     method: 'POST',
     headers: {
       ['Authorization']: `token ${GITHUB_TOKEN}`,
-      ['Content-Type']: `text/jsqn; charset=utf-8`,
+      // ['Content-Type']: `text/jsqn; charset=utf-8`,
       // ['Accept']: '',
-      ['User-Agent']: 'NullVoxPopuli'
-    },
-    data: {
-      ref: GITHUB_SHA,
-      auto_merge: false,
-      required_contexts: [],
-      environment: 'branch',
-      description: 'Deploying',
-    }
-  });
-  let text = await response.json();
-  console.error(text, typeof text);
-  let json = JSON.parse(text);
-
-  return json.id;
-}
-
-async function updateStatus(deployId, status, description = '') {
-  let response = await fetch(`${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/deployments/${deployId}/statuses`, {
-    method: 'POST',
-    headers: {
-      ['Authorization']: `token ${GITHUB_TOKEN}`,
-      ['Content-Type']: `text/jsqn; charset=utf-8`,
-      // ['Accept']: '',
-      ['User-Agent']: 'NullVoxPopuli'
+      // ['User-Agent']: 'NullVoxPopuli'
     },
     data: {
       state: status,
-      ['target_url']: `https://github.com/${GITHUB_REPOSITORY}`,
-      description: `${description}`
+      ['target_url']: targetUrl,
+      description: 'Deploy Preview'
     }
   });
 
