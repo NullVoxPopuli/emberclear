@@ -54,7 +54,9 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     if (!this.hasDeliveryConfirmations) {
       this.timedOut = true;
     }
-  }).drop())
+  })
+    .drop()
+    .withTestWaiter())
   waitForConfirmation!: Task;
 
   @(task(function*(this: DeliveryConfirmation) {
@@ -78,14 +80,18 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     yield this.dispatcher.sendTo(message, to);
 
     yield this.waitForConfirmation.perform();
-  }).drop())
+  })
+    .drop()
+    .withTestWaiter())
   resend!: Task;
 
   @(task(function*(this: DeliveryConfirmation) {
     const { message } = this.args;
 
     yield message.destroyRecord();
-  }).drop())
+  })
+    .drop()
+    .withTestWaiter())
   deleteMessage!: Task;
 
   @(task(function*(this: DeliveryConfirmation) {
