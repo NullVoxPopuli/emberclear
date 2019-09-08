@@ -12,6 +12,7 @@ jobs:
 
     steps:
     - uses: unacast/actions/github-deploy@master
+    - uses: helaili/jq-action@master
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
       with:
@@ -22,7 +23,7 @@ jobs:
 
     - name: Install
       run: |
-        apt-get install -y jq
+        # apt-get install -y jq
         npm install -g netlify-cli
         ./run yarn install
 
