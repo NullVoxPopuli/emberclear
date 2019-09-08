@@ -1,0 +1,16 @@
+#!/bin/bash
+
+GITHUB_API_URL="https://api.github.com"
+
+curl --silent \
+    -X POST "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/deployments" \
+    -H "Authorization: token ${GITHUB_TOKEN}" \
+    -H "Content-Type: text/json; charset=utf-8" \
+    -H "Accept: application/vnd.github.flash-preview+json" \
+    -d @- <<EOF
+{
+    "ref": "${GITHUB_SHA}",
+    "auto_merge": false,
+    "required_contexts": []
+}
+EOF

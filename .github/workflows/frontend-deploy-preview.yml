@@ -18,7 +18,6 @@ jobs:
         node-version: '10.x'
 
     - name: Notify GitHub Deploy Is Starting
-      run: |
 
     - name: Install
       run: |
@@ -36,18 +35,17 @@ jobs:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       run: |
-        # https://developer.github.com/v3/repos/deployments/#create-a-deployment
-        # POST /repos/:owner/:repo/deployments
-        # curl -sb \
-        #      -H "Authorization: token $GITHUB_TOKEN" \
-        #      -H 'Accept: application/vnd.github.ant-man-preview+json' \
-        #      -X POST \
-        #      --remote-name \
-        #      --location https://api.github.com/repos/$GITHUB_REPOSITORY/deployments\
-        #      --data "{\"ref\": \"$GITHUB_SHA\", \"description\": \"Deploying Branch to Netlify\"}"
-        ${HOME}/bin/deployment-create-status in_progress
+
+        DEPLOY_ID=$(./scripts/github/create-deploy | ./jq-linux64 '.id')
+
+        ./scripts/github/update-deploy-state $DEPLOY_ID in_progress
 
         DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | ./jq-linux64 '.deploy_url')
 
-        ${HOME}/bin/deployment-create-status success $DEPLOY_URL
+        echo ""
+        echo "Deploy Preview URL:"
+        echo $DEPLOY_URL
+        echo ""
+
+        ./scripts/github/update-deploy-state $DEPLOY_ID success $DEPLOY_URL
 
