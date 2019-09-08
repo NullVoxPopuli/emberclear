@@ -24,6 +24,7 @@ jobs:
     - name: Deploy a preview to Netlify
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       run: |
-        time netlify deploy
+        time netlify deploy --dir=packages/frontend/dist
 
