@@ -47,6 +47,8 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+    - name: Install
+      run: ./run yarn install
     - name: Lint Templates
       run: ./run yarn lint:hbs
 
@@ -61,6 +63,8 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+    - name: Install
+      run: ./run yarn install
     - name: Lint Styles
       run: ./run yarn lint:sass
 
@@ -75,6 +79,8 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+    - name: Install
+      run: ./run yarn install
     # This is broken on modern syntax.......
     - name: Lint Translations
       run: ./run yarn lint:i18n
@@ -91,6 +97,8 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+    - name: Install
+      run: ./run yarn install
     # Types on Canary are a mess right now :(
     - name: Type Checking
       run: ./run yarn tsc
