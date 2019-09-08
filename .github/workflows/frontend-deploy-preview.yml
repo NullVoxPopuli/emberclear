@@ -33,9 +33,6 @@ jobs:
         # ./scripts/github/deploy.js
       run: |
         # Start Deploy, Build, Notify Deploy
-        set -e
-
-        ./scripts/github/update-deploy-state $DEPLOY_ID in_progress
 
         # Install
         ./run yarn install
