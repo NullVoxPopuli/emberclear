@@ -1,0 +1,71 @@
+name: Frontend Deploy
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'packages/frontend/*'
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install
+      run: ./run yarn install
+    - name: Test
+      env:
+        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+      run: time ./run yarn test
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs:
+    - tests
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install
+      run: ./run yarn install
+    - name: Deploy to Netlify
+      env:
+        FRONTEND: packages/frontend
+        NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        # mv ${FRONTEND}/coverage public/
+      run: |
+        time ./run yarn analyze
+        cp ${FRONTEND}/public/bundle.html public/bundle.html
+        time ./scripts/deploy
+
+  deploy_docker:
+    name: Deploy Docker Image
+    runs-on: ubuntu-latest
+    needs: deploy
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Publish to DockerHub
+      env:
+        DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        DOCKER_HOST: tcp://docker:2375/
+        DOCKER_DRIVER: overlay2
+      run: sh ./scripts/dockerhub
+
+
+

@@ -1,9 +1,5 @@
 name: Frontend
 on:
-  push:
-    branches: [master]
-    paths:
-      - 'packages/frontend/*'
   pull_request:
     branches: [master]
     paths:
@@ -66,8 +62,6 @@ jobs:
     - name: Install
       run: ./run yarn install
     - name: Test
-      env:
-        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       run: time ./run yarn test
 
   bundle_analysis:
@@ -84,7 +78,6 @@ jobs:
       run: ./run yarn install
     - name: Analyze Bundle
       run: ./run yarn analyze
-
 
   tests_visual:
     name: Visual Tests
@@ -103,55 +96,4 @@ jobs:
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       run: PERCY_ENABLE=1 time ./run yarn test --filter Acceptance
-
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    needs:
-    - tests
-    - bundle_analysis
-
-    if: github.ref == 'master'
-
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Install
-      run: ./run yarn install
-    - name: Analyze Bundle
-      run: time ./run yarn analyze
-    - name: Deploy to Netlify
-      env:
-        FRONTEND: packages/frontend
-        NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        # mv ${FRONTEND}/coverage public/
-      run: |
-        cp ${FRONTEND}/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
-        cp ${FRONTEND}/public/bundle.html public/bundle.html
-        time ./scripts/publish
-
-  deploy_docker:
-    name: Deploy Docker Image
-    runs-on: ubuntu-latest
-    needs: deploy
-    timeout-minutes: 5
-
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Publish to DockerHub
-      env:
-        DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
-        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-        DOCKER_HOST: tcp://docker:2375/
-        DOCKER_DRIVER: overlay2
-      run: sh ./scripts/dockerhub
-
-
 
