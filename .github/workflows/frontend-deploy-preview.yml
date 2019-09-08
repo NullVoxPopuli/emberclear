@@ -9,8 +9,6 @@ jobs:
     name: Deploy a preview to Netlify
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs:
-    - tests
 
     steps:
     - uses: actions/checkout@v1
