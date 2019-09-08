@@ -120,7 +120,7 @@
     "ember-load-initializers": "2.1.0",
     "ember-localforage-adapter": "^3.0.0-beta4",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-oo-modifiers": "github:nullvoxpopuli/ember-oo-modifiers#85fd0c1",
+    "ember-oo-modifiers": "github:nullvoxpopuli/ember-oo-modifiers#c2e2619",
     "ember-percy": "^1.5.0",
     "ember-purify": "^4.2.0",
     "ember-qunit": "^4.5.1",
