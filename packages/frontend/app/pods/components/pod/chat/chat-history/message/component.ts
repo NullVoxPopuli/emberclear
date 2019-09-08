@@ -50,7 +50,7 @@ export default class MessageDisplay extends Component<IArgs> {
     return parseURLs(content);
   }
 
-  @task(function*(this: MessageDisplay) {
+  @(task(function*(this: MessageDisplay) {
     const { message } = this.args;
 
     let attempts = 0;
@@ -63,6 +63,6 @@ export default class MessageDisplay extends Component<IArgs> {
         return;
       }
     }
-  })
+  }).withTestWaiter())
   markRead!: Task;
 }

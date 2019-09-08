@@ -2,8 +2,8 @@ name: Frontend Deploy
 on:
   push:
     branches: [master]
-    paths:
-      - 'packages/frontend/*'
+    # paths:
+    #   - 'packages/frontend/*'
 
 jobs:
   tests:
@@ -42,11 +42,12 @@ jobs:
         FRONTEND: packages/frontend
         NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        NETLIFY_CLI_VERSION: 0.4.0
         # mv ${FRONTEND}/coverage public/
       run: |
         time ./run yarn analyze
-        cp ${FRONTEND}/public/bundle.html public/bundle.html
-        time ./scripts/deploy
+        time ./run yarn build:production
+        time ./scripts/publish
 
   deploy_docker:
     name: Deploy Docker Image
@@ -56,9 +57,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: actions/docker/cli@master
     - name: Publish to DockerHub
       env:
         DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
