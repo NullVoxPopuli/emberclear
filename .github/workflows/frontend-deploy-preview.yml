@@ -24,6 +24,7 @@ jobs:
     - name: Install
       run: |
         # apt-get install -y jq
+        curl https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
         npm install -g netlify-cli
         ./run yarn install
 
@@ -47,7 +48,7 @@ jobs:
         #      --data "{\"ref\": \"$GITHUB_SHA\", \"description\": \"Deploying Branch to Netlify\"}"
         ${HOME}/bin/deployment-create-status in_progress
 
-        DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | jq '.deploy_url')
+        DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | ./jq-linux64 '.deploy_url')
 
         ${HOME}/bin/deployment-create-status success $DEPLOY_URL
 
