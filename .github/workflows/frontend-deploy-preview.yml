@@ -8,7 +8,7 @@ jobs:
   deploy:
     name: Deploy a preview to Netlify
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
 
     steps:
     - uses: actions/checkout@v1
@@ -48,5 +48,5 @@ jobs:
         echo ""
 
         # Notify of Successful Deployment
-        # ./scripts/github/deploy.js success $DEPLOY_URL
+        ./scripts/github/deploy.js success $DEPLOY_URL
 
