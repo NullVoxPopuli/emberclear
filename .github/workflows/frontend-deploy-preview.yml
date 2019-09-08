@@ -49,7 +49,7 @@ jobs:
         # Build
         ./run yarn build:production
 
-        DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | jq '.deploy_url')
+        DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | jq '.deploy_url' --raw-output)
 
         echo ""
         echo "Deploy Preview URL:"
