@@ -16,13 +16,48 @@ jobs:
       with:
         node-version: '10.x'
 
+    - name: update deploy status
+      uses: unacast/actions-github-deployment-status@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        status: in_progress
+
+    - name: Job Dependencies
+      run: |
+        npm install -g netlify-cli
+        npm install -g node-jq
+
     - name: "Setup, Build, Deploy"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       run: |
-        npm install -g netlify-cli
+        # Start Deploy, Build, Notify Deploy
 
-        ( cd scripts/github && yarn )
-        ./scripts/github/deploy.js
+        # Begin Deployment
+        # DEPLOY_ID=$(./scripts/github/create-deploy | jq '.id')
+
+        ./scripts/github/update-deploy-state $DEPLOY_ID in_progress
+
+        # Install
+        ./run yarn install
+
+        # Build
+        ./run yarn build:production
+
+        DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | jq '.deploy_url')
+
+        echo ""
+        echo "Deploy Preview URL:"
+        echo $DEPLOY_URL
+        echo ""
+
+        # Notify of Successful Deployment
+        # ./scripts/github/update-deploy-state $DEPLOY_ID success $DEPLOY_URL
+
+    - name: update deploy status
+      uses: unacast/actions-github-deployment-status@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        status: success
