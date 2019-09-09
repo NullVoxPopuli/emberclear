@@ -16,14 +16,6 @@ jobs:
       with:
         node-version: '10.x'
 
-
-    - name: 'deployment pending'
-      uses: 'deliverybot/deployment-status@master'
-      with:
-        state: 'pending'
-        token: '${{ github.token }}'
-
-
     - name: Job Dependencies
       run: |
         # ( cd scripts/github && yarn )
@@ -51,6 +43,9 @@ jobs:
 
         DEPLOY_URL=$(netlify deploy --dir=packages/frontend/dist --json | jq '.deploy_url' --raw-output)
 
+
+        echo "$DEPLOY_URL" > deploy_url.txt
+
         echo ""
         echo "Deploy Preview URL:"
         echo $DEPLOY_URL
@@ -59,16 +54,3 @@ jobs:
         # Notify of Successful Deployment
         # ./scripts/github/deploy.js success $DEPLOY_URL
 
-    - name: 'deployment success'
-      if: success()
-      uses: 'deliverybot/deployment-status@master'
-      with:
-        state: 'success'
-        token: '${{ github.token }}'
-
-    - name: 'deployment failure'
-      if: failure()
-      uses: 'deliverybot/deployment-status@master'
-      with:
-        state: 'failure'
-        token: '${{ github.token }}'
