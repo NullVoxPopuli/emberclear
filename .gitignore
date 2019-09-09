@@ -8,3 +8,6 @@ deps
 packages/keystore.jks
 packages/upload_certificate.pem
 packages/Google Play Store Info
+
+# Local Netlify folder
+.netlify

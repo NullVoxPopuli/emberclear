@@ -5,6 +5,10 @@ GIT_TAG=$GITHUB_SHA
 REPO_NAME="nullvoxpopuli/emberclear"
 GIT_IMAGE="$REPO_NAME:$GIT_TAG"
 
+echo "GIT_TAG: $GIT_TAG"
+echo "REPO_NAME: $REPO_NAME"
+echo "GIT_IMAGE: $GIT_IMAGE"
+
 docker build -t "$REPO_NAME" -f Dockerfile.release .
 
 echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USER --password-stdin
