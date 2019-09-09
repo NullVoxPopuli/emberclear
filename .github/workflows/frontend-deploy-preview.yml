@@ -52,5 +52,18 @@ jobs:
         echo ""
 
         # Notify of Successful Deployment
-        # ./scripts/github/deploy.js success $DEPLOY_URL
 
+    - name: Report success
+      uses: unacast/actions/github-status@v0.9.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        state: success
+
+    - name: Report fail
+      uses: unacast/actions/github-status@v0.9.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        state: failure
+      if: failure()
