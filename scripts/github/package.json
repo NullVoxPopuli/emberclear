@@ -4,6 +4,7 @@
   "main": "deploy.js",
   "license": "MIT",
   "dependencies": {
+    "@octokit/rest": "^16.28.9",
     "execa": "^2.0.4",
     "listr": "^0.14.3",
     "node-fetch": "^2.6.0"

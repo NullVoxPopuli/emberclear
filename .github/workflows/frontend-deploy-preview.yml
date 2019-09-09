@@ -17,21 +17,21 @@ jobs:
         node-version: '10.x'
 
 
-    # - name: 'deployment pending'
-    #   uses: 'deliverybot/deployment-status@master'
-    #   with:
-    #     state: 'pending'
-    #     token: '${{ github.token }}'
+    - name: 'deployment pending'
+      uses: 'deliverybot/deployment-status@master'
+      with:
+        state: 'pending'
+        token: '${{ github.token }}'
 
 
     - name: Job Dependencies
       run: |
-        ( cd scripts/github && yarn )
+        # ( cd scripts/github && yarn )
         npm install -g netlify-cli
         npm install -g node-jq
 
-    - name: Start Deploy
-      run: ./scripts/deploy in_progress
+    # - name: Start Deploy
+    #   run: ./scripts/deploy in_progress
 
     - name: "Setup, Build, Deploy"
       env:
@@ -57,18 +57,18 @@ jobs:
         echo ""
 
         # Notify of Successful Deployment
-        ./scripts/github/deploy.js success $DEPLOY_URL
+        # ./scripts/github/deploy.js success $DEPLOY_URL
 
-    # - name: 'deployment success'
-    #   if: success()
-    #   uses: 'deliverybot/deployment-status@master'
-    #   with:
-    #     state: 'success'
-    #     token: '${{ github.token }}'
+    - name: 'deployment success'
+      if: success()
+      uses: 'deliverybot/deployment-status@master'
+      with:
+        state: 'success'
+        token: '${{ github.token }}'
 
-    # - name: 'deployment failure'
-    #   if: failure()
-    #   uses: 'deliverybot/deployment-status@master'
-    #   with:
-    #     state: 'failure'
-    #     token: '${{ github.token }}'
+    - name: 'deployment failure'
+      if: failure()
+      uses: 'deliverybot/deployment-status@master'
+      with:
+        state: 'failure'
+        token: '${{ github.token }}'
