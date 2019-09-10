@@ -32,6 +32,6 @@
     "@types/libsodium-wrappers": "0.7.5",
     "@types/node": "12.7.4",
     "asyncmark": "0.3.1",
-    "typescript": "3.6.2"
+    "typescript": "3.6.3"
   }
 }
