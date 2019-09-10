@@ -1,6 +1,9 @@
-declare module 'ember-cli-htmlbars-inline-precompile' {
-  export default function hbs(template: TemplateStringsArray, ...args: any[]): string;
-}
+import ApplicationInstance from '@ember/application/instance';
+import '@ember/component';
+import '@ember/service';
+import '@ember/test-helpers';
+import 'ember-cli-htmlbars-inline-precompile';
+import 'qunit';
 
 declare module '@ember/service' {
   interface Registry {
@@ -11,34 +14,53 @@ declare module '@ember/service' {
   }
 }
 
-// declare module '@ember/component' {
-//   // TODO:  remove when this is actually a thing that exists?
-//   export function setComponentTemplate(template: string, klass: any): any;
-// }
-
-//////////////////////////////////////////////
-// Things that TypeScript should already have
-//////////////////////////////////////////////
-declare interface Window {
-  Notification: Partial<Notification> & {
-    permission: 'denied' | 'granted' | undefined;
-  };
-  ServiceWorker: {};
-  deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
+declare module '@ember/component' {
+  // TODO:  remove when this is actually a thing that exists?
+  export function setComponentTemplate(template: string, klass: any): any;
 }
 
-declare interface UserChoice {
-  outcome: 'accepted' | undefined;
-}
-// why is this not a built in type?
-declare interface FakeBeforeInstallPromptEvent {
-  prompt: () => Promise<void>;
-  userChoice: Promise<UserChoice>;
+declare module '@ember/test-helpers' {
+  interface Owner {
+    lookup: <T>(name: string) => T;
+    register: <T>(name: string, mockService: T) => void;
+  }
+  export interface AppContext {
+    element: HTMLElement;
+    owner: Owner & {
+      application: {
+        inject: (within: string, name: string, injected: string) => void;
+      };
+    };
+  }
+
+  export function getContext(): AppContext;
 }
 
 ////////////////////////////////////////////////
 // Custom things thrown on the global namespace
 ////////////////////////////////////////////////
-declare interface Assert {
-  contains: (source?: string | null, sub?: string, message?: string) => void;
+declare global {
+  interface Assert {
+    contains: (source?: string | null, sub?: string, message?: string) => void;
+  }
+
+  //////////////////////////////////////////////
+  // Things that TypeScript should already have
+  //////////////////////////////////////////////
+  interface Window {
+    // Notification: Partial<Notification> & {
+    //   permission: 'denied' | 'granted' | undefined;
+    // };
+    ServiceWorker: {};
+    deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
+  }
+
+  interface UserChoice {
+    outcome: 'accepted' | undefined;
+  }
+  // why is this not a built in type?
+  interface FakeBeforeInstallPromptEvent {
+    prompt: () => Promise<void>;
+    userChoice: Promise<UserChoice>;
+  }
 }

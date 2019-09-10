@@ -1,13 +1,24 @@
 declare module 'ember-concurrency' {
   import Task from 'ember-concurrency/task';
 
+  type TaskDecorator = PropertyDecorator & {
+    drop(): TaskDecorator;
+    keepLatest(): TaskDecorator;
+    restartable(): TaskDecorator;
+    maxConcurrency(num: number): TaskDecorator;
+    enqueue(): TaskDecorator;
+    withTestWaiter(): PropertyDecorator;
+  };
+
   export function task(
     generator: Function
   ): PropertyDecorator & {
-    drop(): PropertyDecorator;
-    keepLatest(): PropertyDecorator;
-    restartable(): PropertyDecorator;
-    maxConcurrency(num: number): PropertyDecorator;
+    drop(): TaskDecorator;
+    keepLatest(): TaskDecorator;
+    restartable(): TaskDecorator;
+    maxConcurrency(num: number): TaskDecorator;
+    enqueue(): TaskDecorator;
+    withTestWaiter(): PropertyDecorator;
   };
   export function timeout(wait: number): Promise<void>;
 }

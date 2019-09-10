@@ -53,7 +53,7 @@ export default class SearchModal extends Component<IArgs> {
       this.store.query('channel', { name: term }),
     ]);
 
-    if (term.test(this.currentUser.name)) {
+    if (term.test(this.currentUser.name || '')) {
       contactResults = contactResults.toArray();
       contactResults.push(this.currentUser.record);
     }

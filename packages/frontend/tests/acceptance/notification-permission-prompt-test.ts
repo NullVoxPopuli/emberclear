@@ -6,8 +6,8 @@ import {
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,
-  setupWindowNotification,
   refresh,
+  getService,
 } from 'emberclear/tests/helpers';
 import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
 
@@ -19,14 +19,11 @@ module('Acceptance | Notification Permission Prompt', function(hooks) {
   setupApplicationTest(hooks);
   setupRelayConnectionMocks(hooks);
   clearLocalStorage(hooks);
-  setupWindowNotification(hooks);
   setupCurrentUser(hooks);
 
   module('permission has not yet been asked for', function(hooks) {
     hooks.beforeEach(async function() {
-      window.Notification = {
-        permission: undefined,
-      };
+      getService<any>('window').Notification = { permission: 'default' };
 
       await visit('/chat/privately-with/me');
     });
@@ -58,7 +55,11 @@ module('Acceptance | Notification Permission Prompt', function(hooks) {
 
       module('on refresh', function(hooks) {
         hooks.beforeEach(async function() {
-          await refresh(() => stubConnection());
+          await refresh(() => {
+            stubConnection();
+            // stub doesn't hold between refreshes
+            getService<any>('window').Notification = { permission: 'default' };
+          });
         });
 
         test('the prompt is shown', function(assert) {
