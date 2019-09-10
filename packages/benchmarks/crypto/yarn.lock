@@ -886,9 +886,9 @@ async-each@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.2.tgz#8b8a7ca2a658f927e9f307d6d1a42f4199f0f735"
 
-asyncmark@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/asyncmark/-/asyncmark-0.3.0.tgz#16e1ba6cc19bdf555840b546bdb0b0b0ec784af3"
+asyncmark@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/asyncmark/-/asyncmark-0.3.1.tgz#85e3638a6a4f08dd9ea7a6d8edfa354c1893a2b6"
 
 atob@^2.1.1:
   version "2.1.2"
