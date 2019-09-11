@@ -6,7 +6,6 @@ import {
   clearLocalStorage,
   setupRelayConnectionMocks,
   getService,
-  setupWindowNotification,
   setupCurrentUser,
 } from 'emberclear/tests/helpers';
 
@@ -18,15 +17,15 @@ module('Acceptance | Notifications Service', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  setupWindowNotification(hooks);
 
   module('permission has not yet been asked for', function(hooks) {
     let notifications!: Notifications;
 
     hooks.beforeEach(async function() {
       await visit('/');
-      window.Notification = {
-        permission: undefined,
+
+      getService<any>('window').Notification = {
+        permission: 'default',
       };
 
       notifications = getService<Notifications>('notifications');
@@ -72,7 +71,7 @@ module('Acceptance | Notifications Service', function(hooks) {
 
         module('permission: undecided', function() {
           test('initial checks', function(assert) {
-            window.Notification = { permission: undefined };
+            getService<any>('window').Notification = { permission: 'default' };
 
             let service = getService<Notifications>('notifications');
 
@@ -90,7 +89,7 @@ module('Acceptance | Notifications Service', function(hooks) {
 
         module('permission: denied', function() {
           test('service state checks', function(assert) {
-            window.Notification = { permission: 'denied' };
+            getService<any>('window').Notification = { permission: 'denied' };
 
             let service = getService<Notifications>('notifications');
 
@@ -108,8 +107,7 @@ module('Acceptance | Notifications Service', function(hooks) {
 
         module('permission: granted', function() {
           test('initial checks', function(assert) {
-            window.Notification = { permission: 'granted' };
-
+            getService<any>('window').Notification = { permission: 'granted' };
             let service = getService<Notifications>('notifications');
 
             assert.ok(
@@ -131,7 +129,7 @@ module('Acceptance | Notifications Service', function(hooks) {
 
     module('permission denied', function(hooks) {
       hooks.beforeEach(function() {
-        window.Notification = { permission: 'denied' };
+        getService<any>('window').Notification = { permission: 'denied' };
       });
 
       module('a notification is attempted', function(hooks) {

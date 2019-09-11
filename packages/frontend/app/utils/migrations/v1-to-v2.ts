@@ -49,7 +49,7 @@ async function finalize(appInstance: ApplicationInstance) {
   await updateStorage(appInstance, storage);
 }
 
-async function getStorage(appInstance: ApplicationInstance) {
+async function getStorage(appInstance: ApplicationInstance): Promise<any> {
   let adapter = appInstance.lookup('adapter:application');
   let namespace = adapter._adapterNamespace();
 

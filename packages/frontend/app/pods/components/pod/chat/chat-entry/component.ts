@@ -46,7 +46,7 @@ export default class ChatEntry extends Component<IArgs> {
     this.focus(element);
   }
 
-  @action focus(element) {
+  @action focus(element: HTMLElement) {
     element.focus();
   }
 

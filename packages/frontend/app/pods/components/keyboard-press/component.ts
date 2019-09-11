@@ -11,8 +11,8 @@ export default class KeyboardPress extends KeyboardAwareComponent {
   onPress?: () => void;
   onUp?: () => void;
 
-  didInsertElement(...args: any[]) {
-    super.didInsertElement(...args);
+  didInsertElement() {
+    super.didInsertElement();
 
     const { key, onDown, onPress, onUp } = this;
 

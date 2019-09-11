@@ -9,7 +9,3 @@ export function is(selector?: string): boolean;
 export function property(selectorOrProperty?: string, selector?: string): string;
 export function hasClass(className: string): boolean;
 export function isPresent(selector?: string): boolean;
-
-declare module 'macros' {
-  export function getter<T>(fn: () => T): T;
-}

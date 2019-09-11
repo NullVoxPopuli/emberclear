@@ -105,8 +105,8 @@ export default class Sidebar extends Service {
       const target = entry.target;
       const id = target.id;
       const { boundingClientRect, rootBounds, isIntersecting } = entry;
-      const isBelow = boundingClientRect.top > rootBounds.bottom;
-      const isAbove = boundingClientRect.top < rootBounds.top;
+      const isBelow = boundingClientRect.top > rootBounds!.bottom;
+      const isAbove = boundingClientRect.top < rootBounds!.top;
 
       if (isIntersecting) {
         this.unreadAbove.removeObject(id);
@@ -123,11 +123,11 @@ export default class Sidebar extends Service {
     });
   }
 
-  private destroy(...args: unknown[]) {
+  public destroy() {
     if (this.slider) {
       this.slider.destroy();
     }
 
-    super.destroy(...args);
+    return super.destroy();
   }
 }

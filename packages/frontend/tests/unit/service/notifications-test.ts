@@ -1,18 +1,12 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import {
-  clearLocalStorage,
-  getService,
-  stubService,
-  setupWindowNotification,
-} from 'emberclear/tests/helpers';
+import { clearLocalStorage, getService, stubService } from 'emberclear/tests/helpers';
 
 import Notifications from 'emberclear/services/notifications';
 
 module('Unit | Service | notifications', function(hooks) {
   setupTest(hooks);
-  setupWindowNotification(hooks);
   clearLocalStorage(hooks);
 
   // Replace this with your real tests.
@@ -30,7 +24,7 @@ module('Unit | Service | notifications', function(hooks) {
     });
 
     test('when undecided', function(assert) {
-      window.Notification = { permission: undefined };
+      getService<any>('window').Notification = { permission: 'default' };
 
       let service = getService<Notifications>('notifications');
       assert.notOk(service.showInAppPrompt, 'The in-app prompt should not be shown');
@@ -48,7 +42,7 @@ module('Unit | Service | notifications', function(hooks) {
       let service!: Notifications;
 
       hooks.beforeEach(async function() {
-        window.Notification = { permission: undefined };
+        getService<any>('window').Notification = { permission: 'default' };
         service = getService<Notifications>('notifications');
 
         await service.info('eh');

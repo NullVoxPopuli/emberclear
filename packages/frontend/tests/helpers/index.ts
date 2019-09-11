@@ -15,7 +15,6 @@ export { trackAsyncDataRequests } from './track-async-data';
 
 export { refresh } from './refresh';
 export { waitUntilTruthy } from './waitUntilTruthy';
-export { setupWindowNotification } from './setupWindowNotification';
 
 export async function visit(url: string) {
   try {

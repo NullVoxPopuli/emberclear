@@ -8,6 +8,9 @@ export default class WindowService extends Service {
 
   cleanup: any[] = [];
 
+  // aliases, to allow for easier / more predictable stubbing
+  Notification = window.Notification;
+
   constructor(...args: any[]) {
     super(...args);
 
@@ -61,5 +64,12 @@ export default class WindowService extends Service {
     } else {
       this.deferredInstallPrompt = undefined;
     }
+  }
+}
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your services.
+declare module '@ember/service' {
+  interface Registry {
+    window: WindowService;
   }
 }

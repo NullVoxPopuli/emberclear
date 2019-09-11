@@ -2,8 +2,8 @@ name: Frontend Quality
 on:
   pull_request:
     branches: [master]
-    paths:
-      - 'packages/frontend/*'
+    # paths:
+    #   - 'packages/frontend/*'
 
 jobs:
   security:
@@ -101,6 +101,5 @@ jobs:
       run: ./run yarn install
     # Types on Canary are a mess right now :(
     - name: Type Checking
-      run: ./run yarn tsc
-      continue-on-error: true
+      run: ./run yarn tsc --skipLibCheck
 

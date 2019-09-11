@@ -2,17 +2,12 @@ import { module, test } from 'qunit';
 import { visit, find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-import {
-  clearLocalStorage,
-  setupRelayConnectionMocks,
-  setupWindowNotification,
-} from 'emberclear/tests/helpers';
+import { clearLocalStorage, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 
 module('Acceptance | Compatibility', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  setupWindowNotification(hooks);
 
   // stub things that may not exist (esp in headless / c.i.)
   hooks.beforeEach(function() {

@@ -8,12 +8,14 @@ import { inLocalStorage } from 'emberclear/utils/decorators';
 
 import Toast from 'emberclear/services/toast';
 import RouterService from '@ember/routing/router-service';
+import WindowService from 'emberclear/services/window';
 
 export default class Notifications extends Service {
   @service toast!: Toast;
   @service intl!: Intl;
   @service currentUser!: CurrentUserService;
   @service router!: RouterService;
+  @service window!: WindowService;
 
   @tracked askToEnableNotifications = true;
   @tracked isHiddenUntilBrowserRefresh = false;
@@ -62,14 +64,14 @@ export default class Notifications extends Service {
 
   get isPermissionGranted() {
     if (this.isBrowserCapableOfNotifications) {
-      return Notification.permission === 'granted';
+      return this.window.Notification.permission === 'granted';
     }
 
     return false;
   }
 
   get isPermissionDenied() {
-    return Notification.permission === 'denied';
+    return this.window.Notification.permission === 'denied';
   }
 
   askPermission() {
@@ -77,7 +79,7 @@ export default class Notifications extends Service {
       if (!this.isBrowserCapableOfNotifications) return reject();
       if (this.isPermissionDenied) return reject();
 
-      Notification.requestPermission(permission => {
+      this.window.Notification.requestPermission(permission => {
         if (permission === 'granted') {
           this.askToEnableNotifications = false;
 

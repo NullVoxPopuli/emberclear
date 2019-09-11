@@ -1,8 +1,8 @@
 import { tracked } from '@glimmer/tracking';
 
-export function inLocalStorage<T = boolean, Target = Record<string, any>>(
-  target: Target,
-  propertyKey: keyof Target,
+export function inLocalStorage<T = boolean>(
+  target: object,
+  propertyKey: string,
   // descriptor is undefined for properties
   // it's only available on methods and such
   descriptor?: any
