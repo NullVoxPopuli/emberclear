@@ -2,8 +2,8 @@ name: Frontend Quality
 on:
   pull_request:
     branches: [master]
-    paths:
-      - 'packages/frontend/*'
+    # paths:
+    #   - 'packages/frontend/*'
 
 jobs:
   security:
