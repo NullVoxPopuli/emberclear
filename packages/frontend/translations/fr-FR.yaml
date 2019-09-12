@@ -3,7 +3,9 @@ appname: emberclear
 subheader: Tchat cryptée. Pas d'historique. Pas de log.
 authoredBy: par Preston Sego
 redditCommunity: Communautée Reddit
+twitter: Twitter
 todo: 'A faire: Remplir ceci correctement'
+install: Install
 qrCode:
   error: QR Code n'a pas pu être généré
 connection:
@@ -19,6 +21,10 @@ connection:
       notConnected: Impossible d’envoyer des messages sans connexion !
     subscribe:
       notConnected: Impossible de s’abonner à une chaine sans une connexion socket !
+errors:
+  notFound:
+    title: Not Found
+    help: The URL could not be navigated to. If the problem persists, please file an issue.
 buttons:
   delete: supprimer
   resend: ré-envoyer
@@ -55,6 +61,7 @@ compatibility:
   title: Something is wrong!
   description: In order to use emberclear, your browser must support the following technologies and features
   score: Score
+  required: Required
   compatibility: Compatibility
   camera: Camera
   notifications: Notifications
@@ -67,9 +74,9 @@ images:
     thumbnail: Aperçu
     ownIdentityQR: This is your identity information represented as a QR Code
 input:
-  placeholder:
-    mnemonic: Enter your mnemonic
-    name: Nom
+  label:
+    mnemonic: Mnemonic
+    name: Name
 status:
   connected: Connected
   enabled: Enabled
@@ -121,15 +128,23 @@ ui:
     title: Raccourcis clavier
     key:
       ctrl: ctrl
+      esc: esc
+      enter: enter
       i: i
       slash: /
       space: space
+      tab: tab
       h: h
       k: k
     actions:
       search: Search Everything
       toggleSidebar: Afficher/Masquer la barre latérale
       toggleHelp: Toggle Keyboard Help
+    label:
+      search:
+        tab: to navigate
+        enter: to select
+        esc: to dismiss
   sidebar:
     unread: Non lu
     channels:
@@ -145,8 +160,7 @@ ui:
   chat:
     welcome: Bienvenue !
     message: >
-      To get started, you'll need at least one friend.<br /><br />
-      Then you'll be able to chat with them and create channels for communicating with groups of friends.
+      To get started, you'll need at least one friend.<br /><br /> Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: There are newer messages
     viewRecent: voir les messages récents
     unreadMessages: '{number} new messages since {time}'
@@ -175,14 +189,12 @@ ui:
       All the encryption is done in the browser -- at no time do private keys leave your computer. Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging across the internet, on any network -- even if the network is compromised.
     whyQ: Pourquoi ?
     whyA: >
-      Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
-      This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
-      Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
+      Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations. This project is also inspired by a lack of trust in existing chat apps and their infrastructure. Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
     notOnlineQ: What happens when I send a message and the recipient is no longer online.
     notOnlineA: >
       The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
     serverStorageQ: Does the server / relay store any of my messages ever?
-    serverStorageA: "false"
+    serverStorageA: false
   footer:
     navigation: Navigation
     wantToSupport: Want to support this project?
@@ -212,8 +224,7 @@ ui:
   logout:
     title: Logging out is destructive
     warning: >
-      Logging out will delete all local data. Please make sure you either have your mnemonic written down or memorized.
-      Alternatively, you download your settings on
+      Logging out will delete all local data. Please make sure you either have your mnemonic written down or memorized. Alternatively, you download your settings on
     theSettingsPage: the Settings page.
     confirm: Confirmer la déconnexion
   settings:
@@ -229,6 +240,9 @@ ui:
       URLs: URLs
       socket: socket
       openGraph: open graph
+    themes:
+      title: Themes
+      midnight: Midnight
     copyProfileToDevice: Copy Profile to Device
     hideKey: Masquer la clé privée
     showKey: Afficher la clé privée
