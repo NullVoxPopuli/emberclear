@@ -16,7 +16,7 @@ export default class ContactsOnlineChecker extends Service {
   @service('messages/dispatcher') dispatcher!: MessageDispatcher;
   @service('messages/factory') messageFactory!: MessageFactory;
 
-  @task(function*(this: ContactsOnlineChecker) {
+  @(task(function*(this: ContactsOnlineChecker) {
     if (Ember.testing) return;
 
     while (true) {
@@ -31,7 +31,7 @@ export default class ContactsOnlineChecker extends Service {
           this.dispatcher.sendToUser.perform(ping, contact);
         });
     }
-  })
+  }).withTestWaiter())
   checkOnlineStatus!: Task;
 }
 

@@ -20,8 +20,8 @@ export default class ReceivedMessageHandler extends Service {
   @service('messages/auto-responder') autoResponder!: AutoResponder;
 
   async handle(raw: RelayJson) {
-    const message = await this.decomposeMessage(raw);
-    const type = message.type;
+    let message = await this.decomposeMessage(raw);
+    let type = message.type;
 
     switch (type) {
       case TYPE.CHAT:
@@ -105,9 +105,9 @@ export default class ReceivedMessageHandler extends Service {
   }
 
   private async decomposeMessage(json: RelayJson) {
-    const { id, sender: senderInfo } = json;
+    let { id, sender: senderInfo } = json;
 
-    const sender = await this.findOrCreateSender(senderInfo);
+    let sender = await this.findOrCreateSender(senderInfo);
 
     this.statusManager.markOnline(sender);
     this.autoResponder.cameOnline(sender);
@@ -117,7 +117,7 @@ export default class ReceivedMessageHandler extends Service {
       // it's possible to receive the same message multiple
       // times if the sending client doesn't properly
       // make the message as sent
-      const existing = await this.store.findRecord('message', id);
+      let existing = await this.store.findRecord('message', id);
 
       return existing;
     } catch (e) {

@@ -3,18 +3,18 @@ import { inject as service } from '@ember/service';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
-import RelayManager from 'emberclear/services/relay-manager';
 import RedirectManager from 'emberclear/services/redirect-manager';
 import Message from 'emberclear/models/message';
+import ConnectionService from 'emberclear/services/connection';
 
 export interface IModel {
   messages: Message[];
 }
 
 export default class ChatRoute extends Route {
-  @service relayManager!: RelayManager;
   @service currentUser!: CurrentUserService;
   @service redirectManager!: RedirectManager;
+  @service connection!: ConnectionService;
 
   beforeModel() {
     // identity should be loaded from application route
@@ -37,6 +37,6 @@ export default class ChatRoute extends Route {
   }
 
   afterModel() {
-    this.relayManager.connect();
+    this.connection.connect();
   }
 }

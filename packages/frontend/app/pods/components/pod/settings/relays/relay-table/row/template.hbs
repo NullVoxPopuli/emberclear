@@ -1,0 +1,29 @@
+<tr>
+  <td>
+    {{#if this.isActive}}
+      <span data-test-connected class='tag is-primary'>{{t 'status.connected'}}</span>
+    {{/if}}
+
+    {{#if (not (eq @relay.priority 1))}}
+      <button {{on 'click' this.makeDefault}} data-test-make-default>
+        {{t 'buttons.makeDefault'}}
+      </button>
+    {{/if}}
+  </td>
+  <td>{{@relay.priority}}</td>
+  <td>
+    <label class='has-text-weight-bold'>
+      {{t 'ui.settings.relays.socket'}}:
+    </label> {{@relay.socket}}
+    <br>
+
+    <label class='has-text-weight-bold'>
+      {{t 'ui.settings.relays.openGraph'}}:
+    </label> {{@relay.og}}
+  </td>
+  <td>
+    <button {{on 'click' this.remove}} data-test-remove>
+      {{t 'buttons.remove'}}
+    </button>
+  </td>
+</tr>

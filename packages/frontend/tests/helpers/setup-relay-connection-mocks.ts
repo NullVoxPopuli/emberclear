@@ -1,18 +1,16 @@
 import { stubService } from './stub-service';
 
 export function stubConnection(overrides = {}) {
-  stubService('relay-manager', {
-    getRelay() {},
+  stubService('connection', {
     getOpenGraph() {},
     connect() {},
-  });
-  stubService('relay-connection', {
-    setRelay() {},
     send() {},
-    connect() {
-      return;
-    },
     ...overrides,
+  });
+  stubService('connection/manager', {
+    connectionPool: {
+      activeConnections: [],
+    },
   });
 }
 

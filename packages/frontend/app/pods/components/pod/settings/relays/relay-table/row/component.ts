@@ -1,29 +1,45 @@
 import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import StoreService from 'ember-data/store';
 import { inject as service } from '@ember/service';
-import { reads } from '@ember/object/computed';
 
 import Relay from 'emberclear/models/relay';
-import RelayConnection from 'emberclear/services/relay-connection';
 import ArrayProxy from '@ember/array/proxy';
+import ConnectionManager from 'emberclear/services/connection/manager';
 
-interface IArgs {
-  relays: Relay[];
+interface Args {
+  relay: Relay;
 }
 
-export default class RelayTable extends Component<IArgs> {
+export default class RelayTableRow extends Component<Args> {
   @service store!: StoreService;
-  @service relayConnection!: RelayConnection;
+  @service('connection/manager') connectionManager!: ConnectionManager;
 
-  @reads('relayConnection.relay') activeRelay!: Relay;
+  get isActive() {
+    let pool = this.connectionManager.connectionPool;
 
-  remove(relay: Relay) {
+    if (!pool) {
+      return false;
+    }
+
+    let active = pool.activeConnections.map(connection => connection.relay);
+
+    return active.includes(this.args.relay);
+  }
+
+  @action
+  remove() {
+    let { relay } = this.args;
+
     relay.deleteRecord();
 
     return relay.save();
   }
 
-  async makeDefault(relay: Relay) {
+  @action
+  async makeDefault() {
+    let { relay } = this.args;
+
     relay.set('priority', 1);
     relay.save();
 

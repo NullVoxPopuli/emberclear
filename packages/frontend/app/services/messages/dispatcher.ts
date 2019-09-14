@@ -4,7 +4,6 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 // giant block o' types
-import RelayConnection from 'emberclear/services/relay-connection';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import Notifications from 'emberclear/services/notifications';
@@ -19,11 +18,12 @@ import { encryptForSocket } from './-utils/encryptor';
 import Task from 'ember-concurrency/task';
 import Contact from 'emberclear/models/contact';
 import User from 'emberclear/models/user';
+import ConnectionService from 'emberclear/services/connection';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
   @service store!: StoreService;
-  @service relayConnection!: RelayConnection;
+  @service connection!: ConnectionService;
   @service currentUser!: CurrentUserService;
   @service statusManager!: StatusManager;
   @service('messages/factory') messageFactory!: MessageFactory;
@@ -94,7 +94,7 @@ export default class MessageDispatcher extends Service {
     const encryptedMessage = yield encryptForSocket(payload, to, this.currentUser.record!);
 
     try {
-      yield this.relayConnection.send(uid, encryptedMessage);
+      yield this.connection.send({ to: uid, message: encryptedMessage });
 
       msg.set('receivedAt', new Date());
     } catch (e) {

@@ -5,8 +5,8 @@ import { or } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
-import RelayManager from 'emberclear/services/relay-manager';
 import Task from 'ember-concurrency/task';
+import ConnectionService from 'emberclear/services/connection';
 
 // https://stackoverflow.com/a/8260383/356849
 const YT_PATTERN = /^.*(youtu.be\/|\/v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -17,7 +17,7 @@ interface IArgs {
 }
 
 export default class EmbeddedResource extends Component<IArgs> {
-  @service relayManager!: RelayManager;
+  @service connection!: ConnectionService;
 
   @tracked isYouTube = false;
   @tracked isImage = false;
@@ -46,7 +46,7 @@ export default class EmbeddedResource extends Component<IArgs> {
   @or('embedUrl', 'isImage', 'hasOgData') shouldRender!: boolean;
 
   async fetchOpenGraph(this: EmbeddedResource) {
-    const og = await this.relayManager.getOpenGraph(this.args.url);
+    const og = await this.connection.getOpenGraph(this.args.url);
 
     this.hasOgData = !!og.title;
     this.ogData = og;
