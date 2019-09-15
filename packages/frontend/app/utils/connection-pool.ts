@@ -28,6 +28,9 @@ export interface PoolConfig<Connectable, EndpointInfo> {
   destroy: (instance: Connectable) => void | Promise<void>;
   isOk: (instance: Connectable) => boolean;
 
+  // hooks
+  onStatusChange: (status: STATUS) => void;
+
   // Min and Max number of instances to make
   minConnections?: number;
   maxConnections?: number;
@@ -101,8 +104,12 @@ export class ConnectionPool<Connectable, EndpointInfo> {
     return this.activeConnections[psuedoBestIndex];
   }
 
+  // TODO: we need a way to monitor status changes within
+  //       a connection
   async hydrate(): Promise<void> {
     if (this.minimumMet) return;
+
+    this.notifyOfStatusChange();
 
     for (let i = 0; i < this.minConnections; i++) {
       let endpoint = this.nextEndpoint();
@@ -110,11 +117,20 @@ export class ConnectionPool<Connectable, EndpointInfo> {
       let connection = await this.config.create(endpoint);
 
       this.connections.push(connection);
+      this.notifyOfStatusChange();
     }
   }
 
   drain() {
     this.activeConnections.forEach(this.config.destroy);
+  }
+
+  private notifyOfStatusChange() {
+    if (!this.config.onStatusChange) {
+      return;
+    }
+
+    this.config.onStatusChange(this.status);
   }
 
   private nextEndpoint(): EndpointInfo {

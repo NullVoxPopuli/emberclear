@@ -2,6 +2,20 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { task, timeout } from 'ember-concurrency';
 import Task from 'ember-concurrency/task';
+import {
+  STATUS,
+  STATUS_UNKNOWN,
+  STATUS_DEGRADED,
+  STATUS_CONNECTED,
+  STATUS_DISCONNECTED,
+} from 'emberclear/utils/connection-pool';
+
+const STATUS_LEVEL_MAP = {
+  [STATUS_UNKNOWN]: 'warning',
+  [STATUS_DEGRADED]: 'warning',
+  [STATUS_CONNECTED]: 'info',
+  [STATUS_DISCONNECTED]: 'danger',
+};
 
 export default class ConnectionStatusService extends Service {
   @tracked hasUpdate = false;
@@ -10,9 +24,9 @@ export default class ConnectionStatusService extends Service {
   @tracked text = '';
   @tracked level = '';
 
-  updateStatus(text: string, level: string) {
+  updateStatus(text: STATUS) {
     this.text = text;
-    this.level = level;
+    this.level = STATUS_LEVEL_MAP[text];
 
     this.showStatusChange.perform();
   }

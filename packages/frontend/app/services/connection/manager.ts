@@ -7,14 +7,16 @@ import ToastService from 'emberclear/services/toast';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import ArrayProxy from '@ember/array/proxy';
-import { pool, ConnectionPool } from 'emberclear/utils/connection-pool';
+import { pool, ConnectionPool, STATUS } from 'emberclear/utils/connection-pool';
 import { Connection } from 'emberclear/services/connection/connection';
 import MessageProcessor from 'emberclear/services/messages/processor';
+import ConnectionStatusService from 'emberclear/services/connection/status';
 
 export default class ConnectionManager extends Service {
   @service toast!: ToastService;
   @service store!: StoreService;
   @service('messages/processor') processor!: MessageProcessor;
+  @service('connection/status') status!: ConnectionStatusService;
   @service currentUser!: CurrentUserService;
 
   connectionPool?: ConnectionPool<Connection, Relay>;
@@ -67,20 +69,10 @@ export default class ConnectionManager extends Service {
     this.connectionPool = await pool<Connection, Relay>({
       endpoints: relays.toArray(),
 
-      create: async endpoint => {
-        let instance = new Connection({
-          relay: endpoint,
-          publicKey: this.currentUser.uid,
-          onData: this.processor.receive.bind(this.processor),
-        });
-
-        // Do connect / subscribe, etc
-        await instance.connect();
-
-        return instance;
-      },
+      create: this.createConnection.bind(this),
       destroy: instance => instance.destroy(),
       isOk: instance => instance.isConnected,
+      onStatusChange: this.updateStatus.bind(this),
 
       minConnections: 1,
     });
@@ -92,6 +84,23 @@ export default class ConnectionManager extends Service {
     }
 
     return super.destroy();
+  }
+
+  private updateStatus(status: STATUS) {
+    this.status.updateStatus(status);
+  }
+
+  private async createConnection(relay: Relay) {
+    let instance = new Connection({
+      relay,
+      publicKey: this.currentUser.uid,
+      onData: this.processor.receive,
+    });
+
+    // Do connect / subscribe, etc
+    await instance.connect();
+
+    return instance;
   }
 }
 

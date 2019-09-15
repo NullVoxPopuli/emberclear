@@ -9,7 +9,7 @@ export default class WindowService extends Service {
   cleanup: any[] = [];
 
   // aliases, to allow for easier / more predictable stubbing
-  Notification = window.Notification;
+  Notification = window.Notification.bind(window);
 
   constructor(...args: any[]) {
     super(...args);
