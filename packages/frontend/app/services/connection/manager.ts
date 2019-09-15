@@ -94,7 +94,7 @@ export default class ConnectionManager extends Service {
     let instance = new Connection({
       relay,
       publicKey: this.currentUser.uid,
-      onData: this.processor.receive,
+      onData: this.processor.receive.bind(this.processor),
     });
 
     // Do connect / subscribe, etc
