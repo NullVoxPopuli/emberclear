@@ -8,12 +8,14 @@ import {
   STATUS_DEGRADED,
   STATUS_CONNECTED,
   STATUS_DISCONNECTED,
+  STATUS_CONNECTING,
 } from 'emberclear/utils/connection-pool';
 
 const STATUS_LEVEL_MAP = {
   [STATUS_UNKNOWN]: 'warning',
   [STATUS_DEGRADED]: 'warning',
   [STATUS_CONNECTED]: 'info',
+  [STATUS_CONNECTING]: 'info',
   [STATUS_DISCONNECTED]: 'danger',
 };
 
