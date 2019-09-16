@@ -54,7 +54,7 @@
     "@embroider/compat": "^0.6.0",
     "@embroider/core": "^0.6.0",
     "@embroider/webpack": "^0.6.0",
-    "@fortawesome/ember-fontawesome": "^0.1.14",
+    "@fortawesome/ember-fontawesome": "^0.2.0",
     "@fortawesome/free-brands-svg-icons": "^5.10.2",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@glimmer/component": "0.14.0-alpha.13",
