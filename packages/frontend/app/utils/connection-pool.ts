@@ -1,5 +1,7 @@
 // min-connections are met
 export const STATUS_CONNECTED = 'connected';
+// initial attempt at achieving min-connections
+export const STATUS_CONNECTING = 'connecting';
 // min-connections are not met
 export const STATUS_DEGRADED = 'degraded';
 // there are no connections
@@ -10,6 +12,7 @@ export const STATUS_UNKNOWN = 'unknown';
 
 export type STATUS =
   | typeof STATUS_CONNECTED
+  | typeof STATUS_CONNECTING
   | typeof STATUS_DEGRADED
   | typeof STATUS_DISCONNECTED
   | typeof STATUS_UNKNOWN;
@@ -29,6 +32,10 @@ export interface PoolConfig<Connectable, EndpointInfo> {
   isOk: (instance: Connectable) => boolean;
 
   // hooks
+  // After Initial setup, degraded may be a possibility
+  // Connecting will only show up during the initial setup.
+  // Connecting kinda means, no connections / degraded, but
+  // we expected connections to happen
   onStatusChange: (status: STATUS) => void;
 
   // Min and Max number of instances to make
@@ -109,7 +116,7 @@ export class ConnectionPool<Connectable, EndpointInfo> {
   async hydrate(): Promise<void> {
     if (this.minimumMet) return;
 
-    this.notifyOfStatusChange();
+    this.notifyOfStatusChange(STATUS_CONNECTING);
 
     for (let i = 0; i < this.minConnections; i++) {
       let endpoint = this.nextEndpoint();
@@ -125,12 +132,12 @@ export class ConnectionPool<Connectable, EndpointInfo> {
     this.activeConnections.forEach(this.config.destroy);
   }
 
-  private notifyOfStatusChange() {
+  private notifyOfStatusChange(status?: STATUS) {
     if (!this.config.onStatusChange) {
       return;
     }
 
-    this.config.onStatusChange(this.status);
+    this.config.onStatusChange(status || this.status);
   }
 
   private nextEndpoint(): EndpointInfo {
