@@ -84,7 +84,7 @@
     "babel-eslint": "^10.0.3",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-concat-analyser": "^4.2.0",
-    "cross-env": "^5.2.1",
+    "cross-env": "^6.0.0",
     "ember-auto-import": "^1.5.2",
     "ember-cli": "^3.13.0-beta.1",
     "ember-cli-app-version": "^3.2.0",
