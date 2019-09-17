@@ -6082,13 +6082,13 @@ ember-focus-trap@^0.3.1:
     ember-modifier-manager-polyfill "^1.1.0"
     focus-trap "^5.0.1"
 
-ember-functional-modifiers@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/ember-functional-modifiers/-/ember-functional-modifiers-0.4.0.tgz#2591c462e758e69dc2e5d0b30a9409388a5106d8"
-  integrity sha512-LSvSIb7SJExPZOl30/C9tj2eZrpvtMBZAdMSHFmy0ya3mNl5SMPSgEqhT2umdjH+ufMqs99AaZNsma/UXywc4A==
+ember-functional-modifiers@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/ember-functional-modifiers/-/ember-functional-modifiers-0.5.0.tgz#85c0d37ccdb45f4ab55037d6c66189faabe79e32"
+  integrity sha512-gOOqVXsgIu+Ch6XhAFVAKfaY3krQMRk2R0rE7HGtPQVEIHXUZKqJ/+cZFXG+XiM+gTvp2jOZ4jjYJ4Daa/jPqg==
   dependencies:
-    ember-cli-babel "^7.1.2"
-    ember-modifier-manager-polyfill "^1.0.3"
+    ember-cli-babel "^7.11.0"
+    ember-modifier-manager-polyfill "^1.1.0"
 
 ember-get-config@^0.2.4:
   version "0.2.4"
