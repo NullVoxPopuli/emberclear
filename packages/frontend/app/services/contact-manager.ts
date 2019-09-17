@@ -1,7 +1,6 @@
 import StoreService from 'ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { run } from '@ember/runloop';
 
 import { fromHex } from 'emberclear/utils/string-encoding';
 import Contact from 'emberclear/models/contact';
@@ -10,26 +9,23 @@ import ArrayProxy from '@ember/array/proxy';
 export default class ContactManager extends Service {
   @service store!: StoreService;
 
-  async findOrCreate(uid: string, name: string): Promise<Contact> {
-    return await run(async () => {
-      try {
-        // an exception thrown here is never caught
-        return await this.findAndSetName(uid, name);
-      } catch (e) {
-        return await this.create(uid, name);
-      }
-    });
+  find(uid: string) {
+    return this.store.findRecord('contact', uid);
   }
 
-  async findAndSetName(uid: string, name: string): Promise<Contact> {
-    let record = await this.find(uid);
+  async findOrCreate(uid: string, name: string): Promise<Contact> {
+    try {
+      // an exception thrown here is never caught
+      return await this.findAndSetName(uid, name);
+    } catch (e) {
+      return await this.create(uid, name);
+    }
+  }
 
-    // always update the name
-    record.set('name', name);
+  async allContacts(): Promise<ArrayProxy<Contact>> {
+    const contacts = await this.store.findAll('contact');
 
-    await record.save();
-
-    return record;
+    return contacts;
   }
 
   async create(uid: string, name: string): Promise<Contact> {
@@ -46,12 +42,6 @@ export default class ContactManager extends Service {
     return record;
   }
 
-  async allContacts(): Promise<ArrayProxy<Contact>> {
-    const contacts = await this.store.findAll('contact');
-
-    return contacts;
-  }
-
   async addContact(/* _info: any */) {
     try {
       // const existing = this.find(info.id);
@@ -62,8 +52,15 @@ export default class ContactManager extends Service {
     }
   }
 
-  find(uid: string) {
-    return this.store.findRecord('contact', uid);
+  private async findAndSetName(uid: string, name: string): Promise<Contact> {
+    let record = await this.find(uid);
+
+    // always update the name
+    record.set('name', name);
+
+    await record.save();
+
+    return record;
   }
 }
 

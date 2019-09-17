@@ -9,35 +9,7 @@
   </thead>
   <tbody>
     {{#each @relays as |relay|}}
-      <tr>
-        <td>
-          {{#if (eq relay this.activeRelay)}}
-            <span data-test-connected class='tag is-primary'>{{t 'status.connected'}}</span>
-          {{/if}}
-
-          {{#if (not (eq relay.priority 1))}}
-            <a {{action this.makeDefault relay}} data-test-make-default>
-              {{t 'buttons.makeDefault'}}
-            </a>
-          {{/if}}
-        </td>
-        <td>{{relay.priority}}</td>
-        <td>
-          <label class='has-text-weight-bold'>
-            {{t 'ui.settings.relays.socket'}}:
-          </label> {{relay.socket}}
-          <br>
-
-          <label class='has-text-weight-bold'>
-            {{t 'ui.settings.relays.openGraph'}}:
-          </label> {{relay.og}}
-        </td>
-        <td>
-          <a {{action this.remove relay}} data-test-remove>
-            {{t 'buttons.remove'}}
-          </a>
-        </td>
-      </tr>
+      <Pod::Settings::Relays::RelayTable::Row @relay={{relay}} />
     {{/each}}
   </tbody>
 </table>

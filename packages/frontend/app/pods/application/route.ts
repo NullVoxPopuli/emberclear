@@ -3,18 +3,18 @@ import { inject as service } from '@ember/service';
 import { getOwner } from '@ember/application';
 
 import LocaleService from 'emberclear/services/locale';
-import RelayManager from 'emberclear/services/relay-manager';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import { ensureRelays } from 'emberclear/utils/data/required-data';
 import { runMigrations } from 'emberclear/utils/migrations';
 import Settings from 'emberclear/services/settings';
+import ConnectionService from 'emberclear/services/connection';
 
 export default class ApplicationRoute extends Route {
   @service currentUser!: CurrentUserService;
-  @service relayManager!: RelayManager;
   @service locale!: LocaleService;
   @service settings!: Settings;
+  @service connection!: ConnectionService;
 
   async beforeModel() {
     await runMigrations(getOwner(this));
@@ -39,6 +39,6 @@ export default class ApplicationRoute extends Route {
   }
 
   afterModel() {
-    this.relayManager.connect();
+    this.connection.connect();
   }
 }

@@ -11,7 +11,14 @@ export function selectUnreadDirectMessages(messages: Message[], fromId: string) 
 export function selectUnreadMessages(messages: Message[]) {
   const filtered = messages.filter(m => {
     return (
-      m.unread && m.target !== TARGET.NONE && m.target !== TARGET.MESSAGE && m.type !== TYPE.PING
+      // ember-data in-flight messages
+      // don't yet have any fields
+      m.from &&
+      m.unread &&
+      // ensure the correct type of message
+      m.target !== TARGET.NONE &&
+      m.target !== TARGET.MESSAGE &&
+      m.type !== TYPE.PING
     );
   });
 
