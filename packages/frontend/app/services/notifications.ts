@@ -81,6 +81,8 @@ export default class Notifications extends Service {
 
       this.window.Notification.requestPermission(permission => {
         if (permission === 'granted') {
+          this.askToEnableNotifications = false;
+
           return resolve();
         } else if (permission === 'denied') {
           this.askToEnableNotifications = false;
