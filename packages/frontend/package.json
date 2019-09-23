@@ -108,7 +108,7 @@
     "ember-computed-promise-monitor": "^0.4.0",
     "ember-concurrency": "1.0.0",
     "ember-concurrency-test-waiter": "^0.3.1",
-    "ember-data": "~3.12.2",
+    "ember-data": "~3.13.0",
     "ember-exam": "^4.0.0",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^6.7.1",
