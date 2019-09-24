@@ -8632,6 +8632,11 @@ is-regex@^1.0.4:
   dependencies:
     has "^1.0.1"
 
+is-regexp@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-regexp/-/is-regexp-1.0.0.tgz#fd2d883545c46bac5a633e7b9a09e87fa2cb5069"
+  integrity sha1-/S2INUXEa6xaYz57mgnof6LLUGk=
+
 is-resolvable@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-resolvable/-/is-resolvable-1.1.0.tgz#fb18f87ce1feb925169c9a407c19318a3206ed88"
@@ -11651,6 +11656,14 @@ querystringify@^2.1.1:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
 
+quibble@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/quibble/-/quibble-0.5.6.tgz#f692fcf22dc8da832b212cde9b11fe88296bd582"
+  integrity sha512-nAqsl6RxhWK36grfglqEXC0ihA3Q+DaCKeqJti/uz8CpiE92590hx3TRob+z89udYqj3PoUpQvjW77T1IR70mw==
+  dependencies:
+    lodash "^4.17.14"
+    resolve "^1.11.1"
+
 quick-temp@^0.1.2, quick-temp@^0.1.3, quick-temp@^0.1.5, quick-temp@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/quick-temp/-/quick-temp-0.1.8.tgz#bab02a242ab8fb0dd758a3c9776b32f9a5d94408"
@@ -13014,6 +13027,14 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
+stringify-object-es5@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/stringify-object-es5/-/stringify-object-es5-2.5.0.tgz#057c3c9a90a127339bb9d1704a290bb7bd0a1ec5"
+  integrity sha1-BXw8mpChJzObudFwSikLt70KHsU=
+  dependencies:
+    is-plain-obj "^1.0.0"
+    is-regexp "^1.0.0"
+
 strip-ansi@^3.0.0, strip-ansi@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
@@ -13229,6 +13250,16 @@ test-exclude@^5.2.3:
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
 
+testdouble@^3.12.4:
+  version "3.12.4"
+  resolved "https://registry.yarnpkg.com/testdouble/-/testdouble-3.12.4.tgz#c8b30a62077212c10c2e05dc4105610d28013df4"
+  integrity sha512-Ake1UjvG6XKYUrVGyNv52xg5lQM079dTQW8/F8GWuE1lbC1NRmkUgtgLrsRr+7SPQZZhIhZp6lHUWXMMBvSHEw==
+  dependencies:
+    lodash "^4.17.15"
+    quibble "^0.5.6"
+    stringify-object-es5 "^2.5.0"
+    theredoc "^1.0.0"
+
 testem-gitlab-reporter@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/testem-gitlab-reporter/-/testem-gitlab-reporter-1.0.0.tgz#60b24cfa006c5e3816e611ccbbbd2c28f02923dc"
@@ -13285,6 +13316,11 @@ text-table@^0.2.0, text-table@~0.2.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/textextensions/-/textextensions-2.5.0.tgz#e21d3831dafa37513dd80666dff541414e314293"
   integrity sha512-1IkVr355eHcomgK7fgj1Xsokturx6L5S2JRT5WcRdA6v5shk9sxWuO/w/VbpQexwkXJMQIa/j1dBi3oo7+HhcA==
+
+theredoc@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/theredoc/-/theredoc-1.0.0.tgz#bcace376af6feb1873efbdd0f91ed026570ff062"
+  integrity sha512-KU3SA3TjRRM932jpNfD3u4Ec3bSvedyo5ITPI7zgWYnKep7BwQQaxlhI9qbO+lKJoRnoAbEVfMcAHRuKVYikDA==
 
 thread-loader@^1.2.0:
   version "1.2.0"
