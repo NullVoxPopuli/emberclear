@@ -80,13 +80,9 @@ export default class Notifications extends Service {
       if (this.isPermissionDenied) return reject();
 
       this.window.Notification.requestPermission(permission => {
-        if (permission === 'granted') {
-          return resolve();
-        } else if (permission === 'denied') {
-          this.askToEnableNotifications = false;
-        }
+        this.askToEnableNotifications = false;
 
-        return reject();
+        return resolve(permission);
       });
     });
   }
