@@ -61,3 +61,18 @@ jobs:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       run: PERCY_ENABLE=1 time ./run yarn test --filter Acceptance
 
+  tests_e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install
+      run: ./run yarn install
+    - name: Test
+      if: github.event == 'pull_request'
+      run: time ./run yarn test:faltest
