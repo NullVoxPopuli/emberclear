@@ -49,9 +49,9 @@ jobs:
         time ./run yarn build:production
         time ./scripts/publish
     - uses: actions/upload-artifact@master
-    with:
-      name: frontend-assets
-      path: packages/frontend/dist/
+      with:
+        name: frontend-assets
+        path: packages/frontend/dist/
 
   deploy_docker:
     name: Deploy Docker Image
