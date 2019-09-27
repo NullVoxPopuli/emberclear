@@ -57,14 +57,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/docker/cli@master
-    - name: Publish to DockerHub
-      env:
-        DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
-        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-        # DOCKER_HOST: tcp://docker:2375/
-        # DOCKER_DRIVER: overlay2
-      run: sh ./scripts/dockerhub
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: nullvoxpopuli/emberclear
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+    
+# Deploy via Script (requires docker environment on VM)    
+#     - uses: actions/docker/cli@master
+#     - name: Publish to DockerHub
+#       env:
+#         DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+#         DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+#         # DOCKER_HOST: tcp://docker:2375/
+#         # DOCKER_DRIVER: overlay2
+#       run: sh ./scripts/dockerhub
 
 
 
