@@ -19,7 +19,7 @@ and then can be visited at `http://localhost:4201`.
 
 [![coverage report](https://gitlab.com/NullVoxPopuli/emberclear/badges/master/coverage.svg)](https://nullvoxpopuli.gitlab.io/emberclear/master/coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3f2faa686db3db3a52f8/maintainability)](https://codeclimate.com/github/NullVoxPopuli/emberclear/maintainability)
-[![bundle analysis](https://img.shields.io/badge/bundle-analysis-blue.svg)](https://nullvoxpopuli.gitlab.io/emberclear/master/bundle.html)
+[![bundle analysis](https://img.shields.io/badge/bundle-analysis-blue.svg)](https://emberclear.io/bundle.html)
 
 [![Build Status](https://travis-ci.com/NullVoxPopuli/emberclear.svg?branch=master)](https://travis-ci.com/NullVoxPopuli/emberclear)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/emberclear/localized.svg)](https://crowdin.com/project/emberclear)
