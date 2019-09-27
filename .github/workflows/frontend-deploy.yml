@@ -61,6 +61,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/download-artifact@master
+      with:
+        name: frontend-assets
+        path: packages/frontend/dist/
+        
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
