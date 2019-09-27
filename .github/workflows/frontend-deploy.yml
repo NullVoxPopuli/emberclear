@@ -61,8 +61,11 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: nullvoxpopuli/emberclear
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        snapshot: true
+        workdir: packages/frontend
+        dockerfile: Dockerfile.release
     
 # Deploy via Script (requires docker environment on VM)    
 #     - uses: actions/docker/cli@master
