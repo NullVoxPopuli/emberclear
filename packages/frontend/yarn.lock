@@ -1093,24 +1093,24 @@
   dependencies:
     verror-extra "^1.0.0"
 
-"@faltest/cli@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/@faltest/cli/-/cli-1.1.0.tgz#90a0658b1b3c097dd0a78a5e77ec78fa0dd1f590"
-  integrity sha512-Qk9kNX1pNsM32JQZ933W5YFIlDSudWq3DFVgBb6o5TdRhZ6/e7NKPSTzdHt9GBo3Lbljr1694AJEfjcGv/6ghg==
+"@faltest/cli@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@faltest/cli/-/cli-1.1.1.tgz#243292393980b245be89d1613dbe8f11f1faf561"
+  integrity sha512-LcjbpsIiinbxe069Pf5zm7LKMyyYhstZHxcjUvFSkiB2FFxp2JSTAxWKSiVbIscri4JGPf+8AstjZ4NnY53dMQ==
   dependencies:
     "@faltest/mocha" "^1.0.0"
-    "@faltest/remote" "^1.3.0"
+    "@faltest/remote" "^1.3.2"
     debug "^4.1.1"
     mocha "^6.2.0"
     yargs "^14.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/@faltest/lifecycle/-/lifecycle-1.0.3.tgz#46c027980492c5719b8495bbb9af2798d82ba67f"
-  integrity sha512-VnSvr1AAlQ4bvmuhkDUp8S3AdPjUhGaD0SmWZzDqX7w/1kNNKX8wyWmsY/FGqFezRkf+7vIQ0qoxHSXCm8Di6w==
+"@faltest/lifecycle@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@faltest/lifecycle/-/lifecycle-1.0.4.tgz#c6c14eef4a890770e06af45c78c1d396e1911de3"
+  integrity sha512-+xRixyzYef1cdnlR8uzgq6dqm2w41EMQVUDebF6lucYlDX3bEZshh25Y5jIvmqi/czMMfMoF+6ad5Bi9hYJTTQ==
   dependencies:
-    "@faltest/remote" "^1.3.0"
+    "@faltest/remote" "^1.3.2"
     callsites "^3.1.0"
     debug "^4.1.1"
   optionalDependencies:
@@ -1125,10 +1125,10 @@
     glob "^7.1.4"
     mocha-helpers "^4.2.0"
 
-"@faltest/remote@^1.3.0":
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/@faltest/remote/-/remote-1.3.1.tgz#0b14bfa14f42630e05ccf984c3471a3b634b3ee6"
-  integrity sha512-/1s54WmslUCn6HHzeakfLAAyGQ34wdn0x7dl6VdGWovwkWSQ+DfsmK51jBp/lvFk1+dfiVL7cCOaV5eQMpHMTg==
+"@faltest/remote@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.npmjs.org/@faltest/remote/-/remote-1.3.2.tgz#566212ddd80c8b5dcab14bd8805d299a9138d237"
+  integrity sha512-f4jeu88aSgCfhw/PsD/m5MpAR7pnqZcGQymrCj3QIjQbJEvemccseHpuvRx4DJQfYCDx+ij1es67o1Qive8AyA==
   dependencies:
     callsites "^3.1.0"
     chromedriver "76.0.1"
