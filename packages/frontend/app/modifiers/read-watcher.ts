@@ -2,11 +2,14 @@ import Modifier from 'ember-class-based-modifier';
 
 import Message from 'emberclear/models/message';
 
-interface NamedArgs {
-  markRead: () => void;
+interface Args {
+  positional: [Message];
+  named: {
+    markRead: () => void;
+  };
 }
 
-export default class ReadWatcher extends Modifier {
+export default class ReadWatcher extends Modifier<Args> {
   io?: IntersectionObserver;
   message!: Message;
   markMessageRead!: () => void;
@@ -14,7 +17,7 @@ export default class ReadWatcher extends Modifier {
   didInstall() {
     let [message] = this.args.positional;
     let { markRead } = this.args.named;
-    
+
     this.message = message;
     this.markMessageRead = markRead;
     this.maybeSetupReadWatcher();
@@ -28,7 +31,10 @@ export default class ReadWatcher extends Modifier {
    * if already read, this method happens to do nothing
    * */
   private disconnect() {
-    this.io && this.io.unobserve(this.element);
+    if (this.element) {
+      this.io && this.io.unobserve(this.element);
+    }
+
     this.io && this.io.disconnect();
     this.io = undefined;
   }
@@ -59,7 +65,9 @@ export default class ReadWatcher extends Modifier {
       }
     );
 
-    io.observe(this.element);
+    if (this.element) {
+      io.observe(this.element);
+    }
 
     this.io = io;
   }

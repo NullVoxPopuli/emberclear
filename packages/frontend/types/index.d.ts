@@ -2,8 +2,9 @@ import ApplicationInstance from '@ember/application/instance';
 import '@ember/component';
 import '@ember/service';
 import '@ember/test-helpers';
-import 'ember-cli-htmlbars-inline-precompile';
+import 'ember-cli-htmlbars';
 import 'qunit';
+
 
 declare module '@ember/service' {
   interface Registry {

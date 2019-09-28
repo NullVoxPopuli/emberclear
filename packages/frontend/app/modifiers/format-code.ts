@@ -4,10 +4,9 @@ import { parseLanguages } from 'emberclear/utils/string/utils';
 
 import PrismManager from 'emberclear/services/prism-manager';
 
-interface Args extends ModifierArgs {
+interface Args {
   positional: [string];
   named: { [key: string]: unknown };
-
 }
 
 export default class FormatCode extends Modifier<Args> {
@@ -25,7 +24,7 @@ export default class FormatCode extends Modifier<Args> {
 
   private makeCodeBlocksFancy() {
     if (!this.element) return;
-    
+
     const pres = this.element.querySelectorAll('pre');
 
     if (pres && pres.length > 0) {

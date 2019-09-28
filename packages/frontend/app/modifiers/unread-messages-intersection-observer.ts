@@ -9,13 +9,13 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
   didInstall() {
     this.sidebar.ensureUnreadIntersectionObserverExists();
 
-    if (this.sidebar.unreadObserver) {
+    if (this.sidebar.unreadObserver && this.element) {
       this.sidebar.unreadObserver.observe(this.element);
     }
   }
 
   willRemove() {
-    if (this.sidebar.unreadObserver) {
+    if (this.sidebar.unreadObserver && this.element) {
       this.sidebar.unreadObserver.unobserve(this.element);
     }
   }

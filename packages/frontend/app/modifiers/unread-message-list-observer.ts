@@ -7,11 +7,14 @@ import SidebarService from 'emberclear/services/sidebar';
 import { isInElementWithinViewport } from 'emberclear/utils/dom/utils';
 import Message from 'emberclear/models/message';
 
-interface NamedArgs {
-  markRead: (message: Message) => void;
+interface Args {
+  positional: [];
+  named: {
+    markRead: (message: Message) => void;
+  };
 }
 
-export default class UnreadMessagesIntersectionObserver extends Modifier {
+export default class UnreadMessagesIntersectionObserver extends Modifier<Args> {
   @service sidebar!: SidebarService;
   @service store!: StoreService;
 
