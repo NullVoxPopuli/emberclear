@@ -199,8 +199,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             module('auto-resend is clicked', function(hooks) {
               hooks.beforeEach(async function() {
                 document.querySelectorAll('.message').forEach(m => console.log(m.innerHTML)),
-
-                await page.messages.objectAt(0).confirmations.autosend();
+                  await page.messages.objectAt(0).confirmations.autosend();
               });
 
               test('the message is queued for resend', async function(assert) {
