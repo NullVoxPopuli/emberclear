@@ -155,7 +155,6 @@
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^1.18.2",
-    "qunit-console-grouper": "^0.1.0",
     "qunit-dom": "^0.9.0",
     "sass-lint": "^1.12.1",
     "testdouble": "^3.12.4",
