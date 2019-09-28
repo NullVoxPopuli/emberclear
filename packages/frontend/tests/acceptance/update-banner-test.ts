@@ -5,7 +5,7 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import {
   setupServiceWorkerUpdater,
-  hasServiceWorkerUpdate,
+  serviceWorkerUpdate,
 } from 'ember-service-worker-update-notify/test-support/updater';
 
 const selector = '.service-worker-update-notify';
@@ -24,7 +24,7 @@ module('Acceptance | Update Banner', function(hooks) {
 
   module('an update is ready', function() {
     test('the notifier can become visible', async function(assert) {
-      await hasServiceWorkerUpdate();
+      await serviceWorkerUpdate();
 
       assert.dom(selector).exists();
     });
