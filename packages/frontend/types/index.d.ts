@@ -2,7 +2,7 @@ import ApplicationInstance from '@ember/application/instance';
 import '@ember/component';
 import '@ember/service';
 import '@ember/test-helpers';
-import 'ember-cli-htmlbars-inline-precompile';
+import 'ember-cli-htmlbars';
 import 'qunit';
 
 declare module '@ember/service' {
@@ -42,6 +42,7 @@ declare module '@ember/test-helpers' {
 declare global {
   interface Assert {
     contains: (source?: string | null, sub?: string, message?: string) => void;
+    notContains: (source?: string | null, sub?: string, message?: string) => void;
   }
 
   //////////////////////////////////////////////

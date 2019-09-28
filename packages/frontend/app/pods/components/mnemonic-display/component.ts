@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import hbs from 'ember-cli-htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/utils/mnemonic/utils';
 

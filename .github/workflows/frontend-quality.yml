@@ -18,6 +18,7 @@ jobs:
     - name: Install
       run: npm install -g snyk
     - name: Snyk
+      if: github.event == 'pull_request'
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: cd packages/frontend && snyk test --severity-threshold=high

@@ -1,4 +1,8 @@
-<div data-test-confirmations class='confirmations' {{did-insert (perform this.waitForConfirmation)}}>
+<div
+  data-test-confirmations
+  class='confirmations'
+  {{did-insert (perform this.waitForConfirmation)}}
+>
 
   {{#if this.wasSent}}
     {{#if this.hasDeliveryConfirmations}}

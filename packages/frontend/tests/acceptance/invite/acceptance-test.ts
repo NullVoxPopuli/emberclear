@@ -19,7 +19,7 @@ import {
 } from 'emberclear/tests/helpers';
 
 import { page as app } from 'emberclear/tests/helpers/pages/app';
-import { chat } from 'emberclear/tests/helpers/pages/chat';
+import { selectors as chatSelectors } from 'emberclear/tests/helpers/pages/chat';
 import { nameForm, completedPage } from 'emberclear/tests/helpers/pages/setup';
 
 module('Acceptance | Invitations', function(hooks) {
@@ -74,7 +74,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('the user clicks passed the mnemonic screen', function(hooks) {
         hooks.beforeEach(async function() {
           await completedPage.clickNext();
-          await waitFor(chat.selectors.form);
+          await waitFor(chatSelectors.form);
         });
 
         test('the redirect has been evaluated', function(assert) {

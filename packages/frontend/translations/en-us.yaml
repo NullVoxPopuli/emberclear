@@ -30,7 +30,8 @@ connection:
 errors:
   notFound:
     title: Not Found
-    help: The URL could not be navigated to. If the problem persists, please file an issue.
+    help: The URL could not be navigated to. If the problem persists,
+    link: please file an issue.
 
 buttons:
   delete: delete
