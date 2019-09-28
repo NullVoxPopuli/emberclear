@@ -59,9 +59,10 @@ describe('smoke', function() {
       document.querySelector('[href="/add-friend"]').click();
     });
 
-    let element = await this.browser.$('[data-clipboard-text]');
-
-    let friendLink = await element.getAttribute('data-clipboard-text');
+    let friendLink = await this.browser.getAttribute(
+      '[data-clipboard-text]',
+      'data-clipboard-text'
+    );
 
     assert.ok(friendLink.length > 0);
   });
