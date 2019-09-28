@@ -42,6 +42,7 @@ declare module '@ember/test-helpers' {
 declare global {
   interface Assert {
     contains: (source?: string | null, sub?: string, message?: string) => void;
+    notContains: (source?: string | null, sub?: string, message?: string) => void;
   }
 
   //////////////////////////////////////////////
