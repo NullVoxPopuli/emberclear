@@ -17,6 +17,7 @@ import { page, selectors } from 'emberclear/tests/helpers/pages/chat';
 import { app } from 'emberclear/tests/helpers/pages/app';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import Contact from 'emberclear/models/contact';
+import { waitUntil } from '@ember/test-helpers';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
@@ -176,6 +177,9 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
           module('the view has settled', function(hooks) {
             hooks.beforeEach(async function() {
+              // waiting on network stuff
+              // impossible to tie in to test waiters
+              await waitUntil(() => page.messages.objectAt(0).confirmations.isLoading);
               await settled();
             });
 
