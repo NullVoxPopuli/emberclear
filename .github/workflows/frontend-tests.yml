@@ -76,7 +76,9 @@ jobs:
     - name: Build
       run: ./run yarn build:production
     - name: Test
-      run: time ./run yarn test:faltest --tag browser1 --headless
+      env:
+        WEBDRIVER_HEADLESS: true
+      run: time ./run yarn test:faltest --tag browser1
 
   tests_e2e_browser2:
     name: E2E Tests Browser 2
@@ -93,4 +95,6 @@ jobs:
     - name: Build
       run: ./run yarn build:production
     - name: Test
-      run: time ./run yarn test:faltest --tag browser2 --headless
+      env:
+        WEBDRIVER_HEADLESS: true
+      run: time ./run yarn test:faltest --tag browser2
