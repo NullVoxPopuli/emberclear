@@ -93,6 +93,7 @@ module.exports = {
         'config/**/*.js',
         'tests/dummy/config/**/*.js',
         'faltest/**/*.js',
+        '.faltestrc.js',
       ],
       excludedFiles: ['src/**'],
       env: {

@@ -21,7 +21,7 @@
     "test": "cross-env SW_DISABLED=true yarn ember exam --random",
     "test:named": "cross-env SW_DISABLED=true yarn ember exam --partition 1 --split 1 --filter ",
     "test:server": "cross-env SW_DISABLED=true yarn ember exam --server",
-    "test:faltest": "faltest faltest/**/*-test.js",
+    "test:faltest": "faltest",
     "merge-coverage": "ember coverage-merge",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "yarn eslint . --ext .ts --ext .js",
