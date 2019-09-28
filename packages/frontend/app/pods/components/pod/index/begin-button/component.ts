@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { setComponentTemplate } from '@ember/component';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
-import hbs from 'ember-cli-htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
