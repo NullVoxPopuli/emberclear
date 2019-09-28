@@ -1,4 +1,4 @@
-import Modifier from 'ember-oo-modifiers';
+import Modifier from 'ember-class-based-modifier';
 import StoreService from 'ember-data/store';
 import { inject as service } from '@ember/service';
 
@@ -18,14 +18,16 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
   focusHandler!: () => void;
   markRead!: (message: Message) => void;
 
-  didInsertElement(_positional: any, { markRead }: NamedArgs) {
+  didInstall() {
+    let { markRead } = this.args.named;
+
     this.focusHandler = this.respondToWindowFocus.bind(this);
     this.markRead = markRead;
 
     window.addEventListener('focus', this.focusHandler);
   }
 
-  willDestroyElement() {
+  willRemove() {
     window.removeEventListener('focus', this.focusHandler);
   }
 

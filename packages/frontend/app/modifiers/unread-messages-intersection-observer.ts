@@ -1,4 +1,4 @@
-import Modifier from 'ember-oo-modifiers';
+import Modifier from 'ember-class-based-modifier';
 import { inject as service } from '@ember/service';
 
 import SidebarService from 'emberclear/services/sidebar';
@@ -6,7 +6,7 @@ import SidebarService from 'emberclear/services/sidebar';
 export default class UnreadMessagesIntersectionObserver extends Modifier {
   @service sidebar!: SidebarService;
 
-  didInsertElement() {
+  didInstall() {
     this.sidebar.ensureUnreadIntersectionObserverExists();
 
     if (this.sidebar.unreadObserver) {
@@ -14,7 +14,7 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
     }
   }
 
-  willDestroyElement() {
+  willRemove() {
     if (this.sidebar.unreadObserver) {
       this.sidebar.unreadObserver.unobserve(this.element);
     }

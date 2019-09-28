@@ -1,4 +1,4 @@
-import Modifier from 'ember-oo-modifiers';
+import Modifier from 'ember-class-based-modifier';
 
 import Message from 'emberclear/models/message';
 
@@ -11,13 +11,16 @@ export default class ReadWatcher extends Modifier {
   message!: Message;
   markMessageRead!: () => void;
 
-  didInsertElement([message]: [Message], { markRead }: NamedArgs) {
+  didInstall() {
+    let [message] = this.args.positional;
+    let { markRead } = this.args.named;
+    
     this.message = message;
     this.markMessageRead = markRead;
     this.maybeSetupReadWatcher();
   }
 
-  willDestroyElement() {
+  willRemove() {
     this.disconnect();
   }
 

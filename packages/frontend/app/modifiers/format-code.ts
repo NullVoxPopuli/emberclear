@@ -1,13 +1,21 @@
-import Modifier from 'ember-oo-modifiers';
+import Modifier from 'ember-class-based-modifier';
 import { inject as service } from '@ember/service';
 import { parseLanguages } from 'emberclear/utils/string/utils';
 
 import PrismManager from 'emberclear/services/prism-manager';
 
-export default class FormatCode extends Modifier {
+interface Args extends ModifierArgs {
+  positional: [string];
+  named: { [key: string]: unknown };
+
+}
+
+export default class FormatCode extends Modifier<Args> {
   @service prismManager!: PrismManager;
 
-  didInsertElement(text: string) {
+  didReceiveArguments() {
+    let text = this.args.positional[0];
+
     // extra code features
     this.makeCodeBlocksFancy();
 
@@ -16,6 +24,8 @@ export default class FormatCode extends Modifier {
   }
 
   private makeCodeBlocksFancy() {
+    if (!this.element) return;
+    
     const pres = this.element.querySelectorAll('pre');
 
     if (pres && pres.length > 0) {
