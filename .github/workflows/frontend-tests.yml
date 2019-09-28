@@ -73,6 +73,7 @@ jobs:
         node-version: '10.x'
     - name: Install
       run: ./run yarn install
+    - name: Build
+      run: ./run yarn build:production
     - name: Test
-      if: github.event == 'pull_request'
-      run: time ./run yarn test:faltest
+      run: time ./run yarn test:faltest --headless
