@@ -3,12 +3,15 @@
 const { setUpWebDriver } = require('@faltest/lifecycle');
 const execa = require('execa');
 const assert = require('assert');
+const path = require('path');
+
+const distLocation = path.join('..', 'frontend', 'dist');
 
 describe('smoke', function() {
   setUpWebDriver.call(this);
 
   before(async function() {
-    this.server = execa('http-server', ['dist'], {
+    this.server = execa('http-server', [distLocation], {
       preferLocal: true,
     });
 
