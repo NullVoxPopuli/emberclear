@@ -13,10 +13,10 @@ import {
 } from 'emberclear/tests/helpers';
 
 import { page, selectors } from 'emberclear/tests/helpers/pages/chat';
-import { app } from 'emberclear/tests/helpers/pages/app';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import Contact from 'emberclear/models/contact';
 import { waitUntil } from '@ember/test-helpers';
+import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
@@ -91,20 +91,15 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       });
 
       test('redirects', async function(assert) {
-        await waitFor(app.selectors.toast);
+        await toast.waitForToast();
 
         assert.equal(currentURL(), '/chat');
       });
 
       test('a message is displayed', async function(assert) {
-        await waitFor(app.selectors.toast);
+        await toast.waitForToast();
 
-        const toastText = app.toast()!.textContent;
-
-        assert.ok(
-          toastText!.match(/not be located/),
-          'toast is displayed saying the user is not found'
-        );
+        assert.contains(toast.text, 'not be located');
 
         percySnapshot(assert as any);
       });

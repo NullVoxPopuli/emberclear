@@ -1,18 +1,11 @@
-import { find, click, waitFor, waitUntil } from '@ember/test-helpers';
-import { create, isVisible, text, clickable } from 'ember-cli-page-object';
-
-const toast = '.toastify';
+import { find, click } from '@ember/test-helpers';
+import { create, isVisible, clickable } from 'ember-cli-page-object';
 
 export const selectors = {
   headerUnread: '[data-test-unread-count]',
 };
 
 export const page = create({
-  toast: {
-    scope: '.toastify',
-    isVisible: isVisible(),
-    text: text(),
-  },
   headerUnread: {
     scope: selectors.headerUnread,
   },
@@ -28,14 +21,6 @@ export const page = create({
 });
 
 export const app = {
-  selectors: {
-    toast: '.toastify',
-  },
-  toast: () => find(toast),
-  toastText: () => find(toast)!.textContent,
-  dismissToast: () => click(toast),
-  waitForToast: () => waitUntil(() => document.querySelector(toast), { timeout: 300 }),
-
   scrollContainer: () => find('#scrollContainer') as HTMLElement,
 
   modals: {},

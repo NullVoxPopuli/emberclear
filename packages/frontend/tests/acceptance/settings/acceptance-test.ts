@@ -11,9 +11,9 @@ import {
 } from 'emberclear/tests/helpers';
 
 import { settings } from 'emberclear/tests/helpers/pages/settings';
-import { app } from 'emberclear/tests/helpers/pages/app';
 
 import CurrentUserService from 'emberclear/services/current-user';
+import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Settings', function(hooks) {
   setupApplicationTest(hooks);
@@ -56,9 +56,7 @@ module('Acceptance | Settings', function(hooks) {
         });
 
         skip('confirmation is display', function(assert) {
-          const text = app.toast()!.textContent!;
-
-          assert.ok(text.includes('Identity Updated'));
+          assert.contains(toast.text, 'Identity Updated');
         });
       });
     });

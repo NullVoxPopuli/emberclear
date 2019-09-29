@@ -14,12 +14,11 @@ import {
   clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
-  waitUntilTruthy,
 } from 'emberclear/tests/helpers';
 
-import { page as app } from 'emberclear/tests/helpers/pages/app';
 import { selectors as chatSelectors } from 'emberclear/tests/helpers/pages/chat';
 import { nameForm, completedPage } from 'emberclear/tests/helpers/pages/setup';
+import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Invitations', function(hooks) {
   setupApplicationTest(hooks);
@@ -98,7 +97,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('name is missing from a contact invitation', function(hooks) {
         hooks.beforeEach(async function() {
           await visit('/invite?publicKey=whatever');
-          await waitFor(app.toast.scope);
+          await toast.waitForToast();
         });
 
         test('a redirect to chat occurs', function(assert) {
@@ -106,9 +105,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('a toast is displayed with an error', function(assert) {
-          const text = app.toast.text;
-
-          assert.ok(text.includes('Invalid Invite Link'), 'Toast says invite is invalid');
+          assert.contains(toast.text, 'Invalid Invite Link');
           percySnapshot(assert as any);
         });
       });
@@ -116,7 +113,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('publicKey is missing from a contact invitation', function(hooks) {
         hooks.beforeEach(async function() {
           await visit('/invite?name=Test');
-          await waitFor(app.toast.scope);
+          await toast.waitForToast();
         });
 
         test('a redirect to chat occurs', function(assert) {
@@ -124,9 +121,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('a toast is displayed with an error', function(assert) {
-          const text = app.toast.text;
-
-          assert.ok(text.includes('Invalid Invite Link'), 'Toast says invite is invalid');
+          assert.contains(toast.text, 'Invalid Invite Link');
           percySnapshot(assert as any);
         });
       });
@@ -136,7 +131,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('the params are invalid', function(hooks) {
         hooks.beforeEach(async function() {
           await visit('/invite?name=Test&publicKey=abz');
-          await waitFor(app.toast.scope);
+          await toast.waitForToast();
         });
 
         test('a redirect to chat occurs', function(assert) {
@@ -144,9 +139,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('a toast is displayed with an error', function(assert) {
-          const text = app.toast.text;
-
-          assert.ok(text.includes('There was a problem'), 'Toast says there is a problem');
+          assert.contains(toast.text, 'There was a problem');
           percySnapshot(assert as any);
         });
       });
@@ -159,7 +152,7 @@ module('Acceptance | Invitations', function(hooks) {
             const { name, publicKeyAsHex } = record!;
 
             await visit(`/invite?name=${name}&publicKey=${publicKeyAsHex}`);
-            await waitUntilTruthy(() => app.toast.isVisible);
+            await toast.waitForToast();
           });
 
           test('a redirect to your own chat occurs', function(assert) {
@@ -168,12 +161,7 @@ module('Acceptance | Invitations', function(hooks) {
           });
 
           test('a toast is displayed with a warning', function(assert) {
-            const text = app.toast.text;
-
-            assert.ok(
-              text.includes(`You can't invite yourself...`),
-              'Toast says you cannot invite yourself'
-            );
+            assert.contains(toast.text, `You can't invite yourself...`);
           });
         });
 
