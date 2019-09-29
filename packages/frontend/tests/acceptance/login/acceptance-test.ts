@@ -17,7 +17,6 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   trackAsyncDataRequests,
-  clearToasts,
 } from 'emberclear/tests/helpers';
 
 const behaviors = {
@@ -54,7 +53,6 @@ module('Acceptance | Login', function(hooks) {
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   trackAsyncDataRequests(hooks);
-  clearToasts(hooks);
 
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);

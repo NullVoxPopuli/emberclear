@@ -21,6 +21,13 @@
   --grid-gap-small: 0.5rem;
   --grid-gap-tiny: 0.25rem;
   --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 1px 2px rgba(0,0,0,0.07),
+               0 2px 4px rgba(0,0,0,0.07),
+               0 4px 8px rgba(0,0,0,0.07),
+               0 8px 16px rgba(0,0,0,0.07),
+               0 16px 32px rgba(0,0,0,0.07),
+               0 32px 64px rgba(0,0,0,0.07);
+
   --hint-color: var(--color-medium-gray);
 
   --alert-padding-y: 0.5rem;
@@ -39,7 +46,7 @@
 
   --modal-overlay-color: rgba(0,0,0,0.12);
   --modal-content-bg: var(--state-light);
-  --modal-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  --modal-shadow: var(--shadow-lg);
 
   --search-result-text-color: var(--color-gray);
   --search-result-hover-bg: var(--color--gray);

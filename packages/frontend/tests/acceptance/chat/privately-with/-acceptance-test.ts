@@ -9,7 +9,6 @@ import {
   setupRelayConnectionMocks,
   setupCurrentUser,
   getService,
-  clearToasts,
   visit as visitIgnoringFailure,
 } from 'emberclear/tests/helpers';
 
@@ -22,7 +21,6 @@ import { waitUntil } from '@ember/test-helpers';
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
-  clearToasts(hooks);
 
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);
