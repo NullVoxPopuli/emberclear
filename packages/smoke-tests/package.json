@@ -7,8 +7,8 @@
     "test": "yarn faltest faltest/**/*-test.js"
   },
   "devDependencies": {
-    "@faltest/cli": "^1.1.1",
-    "@faltest/lifecycle": "^1.0.4",
-    "http-server": "^0.11.1"
+    "@faltest/cli": "1.1.1",
+    "@faltest/lifecycle": "1.0.4",
+    "http-server": "0.11.1"
   }
 }
