@@ -9,7 +9,7 @@
   dependencies:
     verror-extra "^1.0.0"
 
-"@faltest/cli@^1.1.1":
+"@faltest/cli@1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-1.1.1.tgz#243292393980b245be89d1613dbe8f11f1faf561"
   integrity sha512-LcjbpsIiinbxe069Pf5zm7LKMyyYhstZHxcjUvFSkiB2FFxp2JSTAxWKSiVbIscri4JGPf+8AstjZ4NnY53dMQ==
@@ -21,7 +21,7 @@
     yargs "^14.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@^1.0.4":
+"@faltest/lifecycle@1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-1.0.4.tgz#c6c14eef4a890770e06af45c78c1d396e1911de3"
   integrity sha512-+xRixyzYef1cdnlR8uzgq6dqm2w41EMQVUDebF6lucYlDX3bEZshh25Y5jIvmqi/czMMfMoF+6ad5Bi9hYJTTQ==
@@ -1078,7 +1078,7 @@ http-proxy@^1.8.1:
     follow-redirects "^1.0.0"
     requires-port "^1.0.0"
 
-http-server@^0.11.1:
+http-server@0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/http-server/-/http-server-0.11.1.tgz#2302a56a6ffef7f9abea0147d838a5e9b6b6a79b"
   integrity sha512-6JeGDGoujJLmhjiRGlt8yK8Z9Kl0vnl/dQoQZlc4oeqaUoAKQg94NILLfrY3oWzSyFaQCVNTcKE5PZ3cH8VP9w==
