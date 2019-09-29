@@ -30,7 +30,7 @@ export default class Toast extends Service {
 }
 
 function createToast(status: string, message: string, options: any) {
-  let timeout = Ember.testing ? 100 : 4000;
+  let timeout = Ember.testing ? 300 : 4000;
 
   let toast = Toastify({
     text: message,
