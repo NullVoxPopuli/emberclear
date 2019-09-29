@@ -76,7 +76,10 @@ jobs:
     - name: Build
       run: ./run yarn build:production
     - name: Test
-      run: time ./run yarn test:faltest --tag browser1 --headless --timeouts-override 900000
+      run: |
+        cd packages/smoke-tests \
+        && yarn \
+        && yarn test --filter browser1 --headless --timeouts-override 900000
 
   tests_e2e_browser2:
     name: E2E Tests Browser 2
@@ -93,4 +96,7 @@ jobs:
     - name: Build
       run: ./run yarn build:production
     - name: Test
-      run: time ./run yarn test:faltest --tag browser2 --headless --timeouts-override 900000
+      run: |
+        cd packages/smoke-tests \
+        && yarn \
+        && yarn test --filter browser2 --headless --timeouts-override 900000
