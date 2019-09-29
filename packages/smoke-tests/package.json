@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "faltest faltest/**/*-test.js"
+    "test": "yarn faltest faltest/**/*-test.js"
   },
   "devDependencies": {
     "@faltest/cli": "^1.1.1",
