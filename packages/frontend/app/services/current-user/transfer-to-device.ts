@@ -1,11 +1,18 @@
 import StoreService from 'ember-data/store';
 import RouterService from '@ember/routing/router-service';
+import { action } from '@ember/object';
 
 import Service, { inject as service } from '@ember/service';
 import { interpret, Interpreter, State } from 'xstate';
-import { transferToDeviceMachine, Schema, Event, TRANSITION } from './machine';
-import CurrentUserService from '../service';
-import MessageDispatcher from 'emberclear/src/services/messages/dispatcher';
+import {
+  transferToDeviceMachine,
+  Schema,
+  Event,
+  TRANSITION,
+} from './state-machines/transfer-to-device';
+
+import CurrentUserService from '../current-user';
+import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 
 /**
  * This machine is always available (hence start in the constructor).
@@ -33,7 +40,10 @@ export default class TransferToDevice extends Service {
   }
 
   private handleEvent(listenerState: State<{}, Event>) {
-    const { event: { type: eventName }, value: currentState } = listenerState;
+    const {
+      event: { type: eventName },
+      value: currentState,
+    } = listenerState;
 
     // This represents the linear flow of the state machine between the two computers
     switch (eventName) {
@@ -104,12 +114,10 @@ export default class TransferToDevice extends Service {
         break;
       default:
         console.log('not handled', eventName);
-
     }
   }
 
-  test() {
-    console.log('testing');
+  @action start() {
     this.machine.send('INITIATE_TRANSFER_REQUEST');
   }
 }

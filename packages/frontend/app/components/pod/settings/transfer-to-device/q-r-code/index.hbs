@@ -1,0 +1,15 @@
+QR Code here
+
+<QRCode
+  @data={{this.ephemeralInfo}}
+  class='qr-code-large'
+/>
+
+<br>
+
+<CopyTextButton
+  @text={{this.ephemeralUrl}}
+  @label='Copy Link'
+/>
+
+Note: This link expires in 5 minutes.

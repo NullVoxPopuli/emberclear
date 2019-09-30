@@ -6,20 +6,20 @@ import { Machine } from 'xstate';
 //https://statecharts.github.io/xstate-viz/
 export interface Schema {
   states: {
-    IDLE: {},
+    IDLE: {};
     WAITING_FOR_START: {
       states: {
-        WAITING_FOR_AUTH: {},
-        AUTHORIZED: {}
-      }
-    },
+        WAITING_FOR_AUTH: {};
+        AUTHORIZED: {};
+      };
+    };
     SCANNED_TARGET: {
       states: {
-        WAITING_FOR_CODE: {},
-        WAITING_FOR_DATA: {},
-      }
-    }
-  }
+        WAITING_FOR_CODE: {};
+        WAITING_FOR_DATA: {};
+      };
+    };
+  };
 }
 
 export type Event =
@@ -44,10 +44,10 @@ export const TRANSITION = {
 };
 
 export const transferToDeviceMachine = Machine<{}, Schema, Event>({
-  id: 'key-exchange',
+  id: 'transfer-to-device',
   initial: 'IDLE',
   states: {
-    'IDLE': {
+    IDLE: {
       on: {
         [TRANSITION.START]: 'WAITING_FOR_START',
         [TRANSITION.SCAN_TARGET_PROFILE]: 'SCANNED_TARGET',
@@ -58,9 +58,9 @@ export const transferToDeviceMachine = Machine<{}, Schema, Event>({
     // generate ehemeral keys
     // generate QR Code to scan
     //  - only contains public key
-    'WAITING_FOR_START': {
+    WAITING_FOR_START: {
       on: {
-        [TRANSITION.RECEIVE_READY]: 'WAITING_FOR_AUTH'
+        [TRANSITION.RECEIVE_READY]: 'WAITING_FOR_START.WAITING_FOR_AUTH',
       },
       initial: 'WAITING_FOR_AUTH',
       states: {
@@ -71,43 +71,42 @@ export const transferToDeviceMachine = Machine<{}, Schema, Event>({
         // generate code
         // - display code on screen
         // - do NOT send the code.
-        'WAITING_FOR_AUTH': {
+        WAITING_FOR_AUTH: {
           on: {
-            [TRANSITION.RECEIVE_CODE]: 'AUTHORIZED'
-          }
+            [TRANSITION.RECEIVE_CODE]: 'AUTHORIZED',
+          },
         },
 
-        'AUTHORIZED': {
+        AUTHORIZED: {
           on: {
             [TRANSITION.DATA_SENT]: 'IDLE',
-          }
+          },
         },
-      }
+      },
     },
-
 
     // scan QR Code
     // generate ehemeral keys
     //  - scanned public key is originator
     // send "ready" message to originator
-    'SCANNED_TARGET': {
+    SCANNED_TARGET: {
       on: {
-        [TRANSITION.SEND_READY]: 'WAITING_FOR_CODE'
+        [TRANSITION.SEND_READY]: 'WAITING_FOR_CODE',
       },
       initial: 'WAITING_FOR_CODE',
       states: {
-        'WAITING_FOR_CODE': {
+        WAITING_FOR_CODE: {
           on: {
-            [TRANSITION.SEND_CODE]: 'WAITING_FOR_DATA'
-          }
+            [TRANSITION.SEND_CODE]: 'WAITING_FOR_DATA',
+          },
         },
 
-        'WAITING_FOR_DATA': {
+        WAITING_FOR_DATA: {
           on: {
             [TRANSITION.DATA_RECEIVED]: 'IDLE',
-          }
-        }
-      }
+          },
+        },
+      },
     },
   },
 });

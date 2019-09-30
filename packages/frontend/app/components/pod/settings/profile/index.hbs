@@ -27,11 +27,7 @@
     {{t 'ui.settings.download' }}
   </button>
 
-  <button
-    disabled
-    class='button'
-    {{action (mut this.showQRSettings) (not this.showQRSettings)}}
-  >
+  <button {{on 'click' this.transfer.start}}>
     {{t 'ui.settings.copyProfileToDevice'}}
   </button>
 </div>
