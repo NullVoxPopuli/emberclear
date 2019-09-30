@@ -118,7 +118,7 @@ export default class TransferToDevice extends Service {
   }
 
   @action start() {
-    this.machine.send('INITIATE_TRANSFER_REQUEST');
+    this.machine.send(TRANSITION.START);
   }
 }
 

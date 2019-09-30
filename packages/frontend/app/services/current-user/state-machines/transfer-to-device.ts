@@ -41,7 +41,7 @@ export const TRANSITION = {
   SEND_READY: 'SEND_READY',
   SEND_CODE: 'SEND_CODE',
   DATA_RECEIVED: 'DATA_RECEIVED',
-};
+} as const;
 
 export const transferToDeviceMachine = Machine<{}, Schema, Event>({
   id: 'transfer-to-device',
