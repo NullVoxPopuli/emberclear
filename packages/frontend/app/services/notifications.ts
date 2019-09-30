@@ -46,10 +46,10 @@ export default class Notifications extends Service {
   }
 
   info(msg: string, title = '', options = {}) {
-    return this.display('info', msg, title, options);
+    return this.display(msg, title, options);
   }
 
-  async display(status: string, msg: string, title: string, options = {}) {
+  async display(msg: string, title: string, options = {}) {
     if (this.isPermissionGranted) {
       this.showNotification(msg, title, options);
       return;
@@ -59,7 +59,7 @@ export default class Notifications extends Service {
     // ask the user if they would like to enable those.
     this.askToEnableNotifications = true;
 
-    this.toast.createToast(status, msg, title, options);
+    this.toast.info(msg, title, options);
   }
 
   get isPermissionGranted() {

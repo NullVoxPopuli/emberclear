@@ -25,8 +25,8 @@
 @import './defaults.css';
 @import './shoelace-overrides.css';
 
+@import './components/toastify-overrides';
 @import './components/scrollbar';
-@import './components/toasts';
 @import './components/modal.css';
 @import './components/modal-search.css';
 @import './components/modal-snippets.css';
