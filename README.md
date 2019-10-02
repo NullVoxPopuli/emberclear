@@ -1,11 +1,9 @@
 # [emberclear](https://emberclear.io)
 
 emberclear is published at: https://emberclear.io
-and can be run locally via
+and can be run locally with docker via
 ```
-cd emberclear/packages/frontend
-yarn install
-yarn start:dev
+docker run -d -p 4201:80 nullvoxpopuli/emberclear
 ```
 and then can be visited at `http://localhost:4201`.
 
