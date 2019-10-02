@@ -1,5 +1,13 @@
 # Contributing
 
+# Building
+emberclear can be built and run with
+```
+cd emberclear/packages/frontend
+yarn install
+yarn start:dev
+```
+and then can be visited at `http://localhost:4201`.
 
 # For working with the Relay
 ```bash
