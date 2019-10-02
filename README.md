@@ -1,7 +1,7 @@
 # [emberclear](https://emberclear.io)
 
 emberclear is published at: https://emberclear.io
-and can be run locally with docker via
+and can be run locally via
 ```
 cd emberclear/packages/frontend
 yarn install
