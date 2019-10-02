@@ -5,7 +5,7 @@ const emojiDict = new Map([
 export default class EmojiParser {
 
     parseEmoji(message: string): string {
-        let emojiRegex = /:.*:/gi;
+        let emojiRegex = /:[^:]*:/gi;
         let matches = message.match(emojiRegex);
         let emojifiedMessage : string = message;
     
