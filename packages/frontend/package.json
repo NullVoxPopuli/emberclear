@@ -139,7 +139,7 @@
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "^3.0.0-beta.2",
     "ember-test-waiters": "^1.1.1",
-    "ember-web-app": "^3.0.0",
+    "ember-web-app": "^3.0.1",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-ember": "7.1.0",

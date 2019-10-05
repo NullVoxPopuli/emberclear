@@ -6452,7 +6452,7 @@ ember-uuid@^1.0.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-web-app@^3.0.0:
+ember-web-app@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/ember-web-app/-/ember-web-app-3.0.1.tgz#c7cd5d120f38976206cbc1413ade27d4c75fc309"
   integrity sha512-jU1L/fSxnYjb3gkiIXJ4t7xm7pjjg0s2OBQ4cqlroHCaGp4X7VtGvUJ5VUUHRB9pnwUCc12nZjZJyrvTiP6Ctw==
