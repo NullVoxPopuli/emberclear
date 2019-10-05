@@ -1422,10 +1422,10 @@
   resolved "https://registry.yarnpkg.com/@types/dompurify/-/dompurify-0.0.33.tgz#bec490ba5a5b4b31679fb9e5a70e4d2f405516bd"
   integrity sha512-lUN9iC6b4txeaEef2PW7zIdhEKAp0Sw9bymOcXXZ7BaepB0nsDJYcLIrFfgpIkRSoZWBJ8IcYunB2hAXuHL1NA==
 
-"@types/ember-data@^3.1.7":
-  version "3.1.7"
-  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-3.1.7.tgz#7e5cc5236b97c1ff2457d0776dd020f96542e343"
-  integrity sha512-gLesMVU8WExce3r4cO+VDOlSGqi94EfUfOqxf+9FniDPn2EUg3Kej1On9uZyRA2VailCWy2Z9zL2uBtrprVcKQ==
+"@types/ember-data@^3.1.8":
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-3.1.8.tgz#b12055c37b58721a948c5dc8b37384c304a7a622"
+  integrity sha512-WbaQJUoRpjWFpAjxao6TE5wFrr61y1dU1g2IlOuLPLZcHh655FUOP6GGMWKmpSlH1qtbUFAVj90G5FWp3cynVA==
   dependencies:
     "@types/ember" "*"
     "@types/ember__object" "*"
