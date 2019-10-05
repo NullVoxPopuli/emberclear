@@ -1678,7 +1678,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.52.tgz#ddba1f1fdaf1487a0a992ee238c43f5318ba5625"
   integrity sha512-d6UdHtc8HKe3NTruj9mHk2B8EiHZyuG/00aYbUedHvy9sBhtLAX1gaxSNgvcheOvIZavvmpJYlwfHjjxlU/Few==
 
-"@types/phoenix@^1.4.2":
+"@types/phoenix@^1.4.3":
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/@types/phoenix/-/phoenix-1.4.3.tgz#6f102a48f793f2fc9c531a25d48a02c0b2ba89e8"
   integrity sha512-Bo6ZjaVldVb44hebPLZYJOmCpL9FSoD06pbmG6Lh0HQMjKAqDYbO2WSa4LY5pkHiUSQvkiTmQoTHO6S/R/spJQ==
