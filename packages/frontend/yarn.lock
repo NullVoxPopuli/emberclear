@@ -1702,7 +1702,7 @@
   dependencies:
     "@types/qunit" "*"
 
-"@types/qunit@*", "@types/qunit@^2.5.1":
+"@types/qunit@*", "@types/qunit@^2.9.0":
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/@types/qunit/-/qunit-2.9.0.tgz#0b3fcbe2b92f067856adac82ba3afbc66d8835ac"
   integrity sha512-Hx34HZmTJKRay+x3sFdEK62I8Z8YSWYg+rAlNr4M+AbwvNUJYxTTmWEH4a8B9ZN+Fl61awFrw+oRicWLFVugvQ==
