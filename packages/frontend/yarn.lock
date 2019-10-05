@@ -6429,7 +6429,7 @@ ember-template-lint@1.5.3, ember-template-lint@^1.1.0:
   version "0.1.0"
   resolved "https://codeload.github.com/NullVoxPopuli/ember-test-helpers-extra/tar.gz/98e535b3472191a27e83e8d3a1d01ca50ce30042"
 
-ember-test-selectors@^3.0.0-beta.1:
+ember-test-selectors@^3.0.0-beta.2:
   version "3.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-3.0.0-beta.2.tgz#4979d6352d4e8e6308125c849bea230ffde4b8df"
   integrity sha512-LHm2w5bVGKTcKtTuE2fZ0Nqr6s8PBH5mLqozjZIkBeB0nnsuHo+DvvWIs+XB5HQ3kLF+yRoBnCn1uDKILI5R7A==
