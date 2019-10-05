@@ -3384,7 +3384,7 @@ broccoli-clean-css@^1.1.0:
     inline-source-map-comment "^1.0.5"
     json-stable-stringify "^1.0.0"
 
-broccoli-concat-analyser@^4.2.0:
+broccoli-concat-analyser@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/broccoli-concat-analyser/-/broccoli-concat-analyser-4.3.4.tgz#d91574e1cfd75d00198726d067570f64ec01ef50"
   integrity sha512-60nTdxIYkLzP/BabTvXPydjAxC83+FZgPAeS5pq/OJsvRgD8n/rNgrrSsqTKu5/muQ9qDwf3p4qFNgwNbh5K6g==
