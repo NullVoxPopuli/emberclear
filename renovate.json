@@ -24,7 +24,12 @@
         "^@faltest*"
       ],
       "groupName": "FalTest Smoke Testing by CrowdStrike"
+    },
+    {
+      "packagePatterns": [
+        "^@types*"
+      ],
+      "groupName": "Type Definitions"
     }
-
   ]
 }
