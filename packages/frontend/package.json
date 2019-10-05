@@ -51,7 +51,7 @@
   "devDependencies": {
     "@ember/edition-utils": "^1.1.1",
     "@ember/optional-features": "^1.0.0",
-    "@ember/render-modifiers": "^1.0.1",
+    "@ember/render-modifiers": "^1.0.2",
     "@ember/test-helpers": "^1.6.0",
     "@embroider/compat": "^0.7.0",
     "@embroider/core": "^0.7.0",
