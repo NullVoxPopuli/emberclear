@@ -78,7 +78,7 @@
     "@types/qunit-dom": "^0.6.0",
     "@types/rsvp": "^4.0.3",
     "@types/showdown": "^1.7.5",
-    "@types/sinon": "^7.0.13",
+    "@types/sinon": "^7.5.0",
     "@types/url-parse": "^1.1.0",
     "@types/uuid": "^3.4.5",
     "@typescript-eslint/eslint-plugin": "^2.3.1",
