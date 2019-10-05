@@ -27,7 +27,7 @@
     },
     {
       "packagePatterns": [
-        "^@types*"
+        "^@types/*"
       ],
       "groupName": "Type Definitions"
     }
