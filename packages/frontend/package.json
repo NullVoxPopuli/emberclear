@@ -114,7 +114,7 @@
     "ember-exam": "^4.0.3",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^6.7.1",
-    "ember-focus-trap": "^0.3.1",
+    "ember-focus-trap": "^0.3.2",
     "ember-functional-modifiers": "^0.5.0",
     "ember-hbs-minifier": "^0.4.0",
     "ember-intl": "^4.2.0",
