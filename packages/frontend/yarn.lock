@@ -1683,7 +1683,7 @@
   resolved "https://registry.yarnpkg.com/@types/phoenix/-/phoenix-1.4.3.tgz#6f102a48f793f2fc9c531a25d48a02c0b2ba89e8"
   integrity sha512-Bo6ZjaVldVb44hebPLZYJOmCpL9FSoD06pbmG6Lh0HQMjKAqDYbO2WSa4LY5pkHiUSQvkiTmQoTHO6S/R/spJQ==
 
-"@types/prismjs@^1.9.0":
+"@types/prismjs@^1.16.0":
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.0.tgz#4328c9f65698e59f4feade8f4e5d928c748fd643"
   integrity sha512-mEyuziLrfDCQ4juQP1k706BUU/c8OGn/ZFl69AXXY6dStHClKX4P+N8+rhqpul1vRDA2VOygzMRSJJZHyDEOfw==
