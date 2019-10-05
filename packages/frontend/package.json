@@ -86,7 +86,7 @@
     "autoprefixer": "^9.6.2",
     "babel-eslint": "^10.0.3",
     "broccoli-asset-rev": "^3.0.0",
-    "broccoli-concat-analyser": "^4.2.0",
+    "broccoli-concat-analyser": "^4.3.4",
     "cross-env": "^6.0.0",
     "ember-auto-import": "^1.5.2",
     "ember-class-based-modifier": "^0.10.0",
