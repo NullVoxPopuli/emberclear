@@ -6326,7 +6326,7 @@ ember-router-service-polyfill@^1.0.1:
   dependencies:
     ember-cli-babel "^6.8.2"
 
-ember-service-worker-asset-cache@^0.6.2:
+ember-service-worker-asset-cache@^0.6.4:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/ember-service-worker-asset-cache/-/ember-service-worker-asset-cache-0.6.4.tgz#1b3f098a83442c6fc9dbff20f6e231154dde39f2"
   integrity sha512-DGNbiQc54/8c2+VWSMqRNLi+MYD5GWU6pJr4ddHe3pYLwZ8K1rV3HBIlIdNgJcjdzLJTBgk5F2FYoif2x43hgg==
