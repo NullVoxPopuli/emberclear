@@ -26,7 +26,7 @@ jobs:
   deploy:
     name: Deploy to Netlify
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     needs:
     - tests
 
@@ -48,23 +48,43 @@ jobs:
         time ./run yarn analyze
         time ./run yarn build:production
         time ./scripts/publish
+    - uses: actions/upload-artifact@master
+      with:
+        name: frontend-assets
+        path: packages/frontend/dist/
 
   deploy_docker:
     name: Deploy Docker Image
     runs-on: ubuntu-latest
-    needs: tests
+    needs: [tests, deploy]
     timeout-minutes: 5
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/docker/cli@master
-    - name: Publish to DockerHub
-      env:
-        DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
-        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-        # DOCKER_HOST: tcp://docker:2375/
-        # DOCKER_DRIVER: overlay2
-      run: sh ./scripts/dockerhub
+    - uses: actions/download-artifact@master
+      with:
+        name: frontend-assets
+        path: packages/frontend/dist/
+        
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: nullvoxpopuli/emberclear
+        username: ${{ secrets.DOCKERHUB_USER }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        snapshot: true
+        workdir: packages/frontend
+        dockerfile: Dockerfile.release
+    
+# Deploy via Script (requires docker environment on VM)    
+#     - uses: actions/docker/cli@master
+#     - name: Publish to DockerHub
+#       env:
+#         DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+#         DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+#         # DOCKER_HOST: tcp://docker:2375/
+#         # DOCKER_DRIVER: overlay2
+#       run: sh ./scripts/dockerhub
 
 
 

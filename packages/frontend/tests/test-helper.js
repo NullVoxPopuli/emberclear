@@ -49,6 +49,16 @@ QUnit.assert.contains = function(source, sub, message) {
   });
 };
 
+QUnit.assert.notContains = function(source, sub, message) {
+  let trimmedSource = source.trim();
+  this.pushResult({
+    result: !trimmedSource.includes(sub),
+    actual: trimmedSource,
+    expected: sub,
+    message: message || `expected ${trimmedSource} to not contain ${sub}`,
+  });
+};
+
 setApplication(Application.create(config.APP));
 
 start({

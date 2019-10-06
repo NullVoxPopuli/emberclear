@@ -1,4 +1,3 @@
-import { find, click, fillIn, findAll } from '@ember/test-helpers';
 import {
   create,
   collection,
@@ -38,25 +37,7 @@ export const page = create({
       delete: clickable('[data-test-delete]'),
       resend: clickable('[data-test-resend]'),
       autosend: clickable('[data-test-autosend]'),
+      isLoading: isVisible('.ellipsis-loader'),
     },
   }),
 });
-
-export const chat = {
-  selectors,
-  textarea: {
-    fillIn: (text: string) => fillIn('[data-test-chat-entry]', text),
-    isDisabled: () => !!find('[data-test-chat-entry][disabled]'),
-  },
-
-  submitButton: {
-    click: () => click('[data-test-chat-submit]'),
-    isDisabled: () => !!find('[data-test-chat-submit][disabled]'),
-  },
-
-  messages: {
-    all: () => findAll('[data-test-chat-message]'),
-    confirmationsFor: (e: Element) => Array.from(e.querySelectorAll('[data-test-confirmations]')),
-    loaderFor: (e: Element) => e.querySelector('.ellipsis-loader'),
-  },
-};

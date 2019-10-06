@@ -92,6 +92,8 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'tests/dummy/config/**/*.js',
+        'faltest/**/*.js',
+        '.faltestrc.js',
       ],
       excludedFiles: ['src/**'],
       env: {
@@ -105,6 +107,12 @@ module.exports = {
         'node/no-unpublished-require': 'off', // we live dangerously here
         'node/no-extraneous-require': 'off', // incorrect?
       }),
+    },
+    {
+      files: ['faltest/**/*-test.js'],
+      env: {
+        mocha: true,
+      },
     },
   ],
 };

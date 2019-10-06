@@ -7,8 +7,8 @@ import { percySnapshot } from 'ember-percy';
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/utils/mnemonic/utils';
 
 import { samplePrivateKey } from 'emberclear/tests/helpers/fixtures';
-import { app } from 'emberclear/tests/helpers/pages/app';
 import { loginForm } from 'emberclear/tests/helpers/pages/login';
+import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 import {
   visit,
@@ -17,7 +17,6 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   trackAsyncDataRequests,
-  clearToasts,
 } from 'emberclear/tests/helpers';
 
 const behaviors = {
@@ -30,14 +29,13 @@ const behaviors = {
           // also be awaited and not allow us to test the
           // side-effects
           loginForm.submit();
-          await app.waitForToast();
+          await toast.waitForToast();
         });
 
         test('an error message appears', function(assert) {
-          const text = app.toastText();
           const expected = 'There was a problem logging in...';
 
-          assert.contains(text, expected);
+          assert.contains(toast.text, expected);
           percySnapshot(assert as any);
         });
 
@@ -54,7 +52,6 @@ module('Acceptance | Login', function(hooks) {
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   trackAsyncDataRequests(hooks);
-  clearToasts(hooks);
 
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);

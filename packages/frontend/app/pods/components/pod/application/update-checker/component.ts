@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import ENV from 'emberclear/config/environment';
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
@@ -12,8 +11,6 @@ export default class UpdateChecker extends Component {
   @service router!: RouterService;
 
   @reads('router.currentURL') currentURL!: string;
-
-  isEnabled = !Ember.testing;
 
   interval = ENV.environment === 'development' ? FIVE_SECONDS : ONE_MINUTE;
 }

@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, waitFor } from '@ember/test-helpers';
+import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -9,9 +9,8 @@ import {
   setupCurrentUser,
 } from 'emberclear/tests/helpers';
 
-import { app } from 'emberclear/tests/helpers/pages/app';
-
 import Notifications from 'emberclear/services/notifications';
+import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Notifications Service', function(hooks) {
   setupApplicationTest(hooks);
@@ -135,11 +134,11 @@ module('Acceptance | Notifications Service', function(hooks) {
       module('a notification is attempted', function(hooks) {
         hooks.beforeEach(async function() {
           notifications.info('a test message');
-          await waitFor(app.selectors.toast);
+          await toast.waitForToast();
         });
 
         test('a toast is displayed', function(assert) {
-          assert.ok(app.toastText()!.match(/a test message/));
+          assert.contains(toast.text, 'a test message');
         });
       });
     });

@@ -7,11 +7,29 @@
   "packageRules": [
     {
       "paths": ["packages/frontend/package.json"],
-      "rangeStrategy": "replace"
+      "rangeStrategy": "bump"
     },
     {
       "paths": ["packages/frontend/Dockerfile"],
       "enabled": false
+    },
+    {
+      "packagePatterns": [
+        "^@babel*"
+      ],
+      "groupName": "Babel Transpilation"
+    },
+    {
+      "packagePatterns": [
+        "^@faltest*"
+      ],
+      "groupName": "FalTest Smoke Testing by CrowdStrike"
+    },
+    {
+      "packagePatterns": [
+        "^@types/*"
+      ],
+      "groupName": "Type Definitions"
     }
   ]
 }
