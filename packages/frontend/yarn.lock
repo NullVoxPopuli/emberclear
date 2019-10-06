@@ -6252,7 +6252,7 @@ ember-service-worker@^0.8.0:
     hash-for-dep "^1.2.3"
     rollup-plugin-replace "^2.1.0"
 
-ember-sinon@^4.0.0:
+ember-sinon@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ember-sinon/-/ember-sinon-4.1.1.tgz#ff6db9e3b9548e269386d9efe1c381e165f03ba5"
   integrity sha512-CmLjy7LGcTw2uP0WdFSPuXYbI7rwB4U/5EOtVU5h2jXtItrnspLIXBL50kigDzwv+lgE8XhfDVPbJ1QMrIXWXg==
