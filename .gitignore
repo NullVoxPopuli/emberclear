@@ -4,6 +4,7 @@ dist
 _build
 deps
 *.log
+.idea/
 
 packages/keystore.jks
 packages/upload_certificate.pem
