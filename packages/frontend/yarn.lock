@@ -5761,7 +5761,7 @@ ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
   integrity sha1-ObZ3/CgF9VFzc1N2/O8njqpEUqE=
 
-ember-cli-template-lint@^1.0.0-beta.1:
+ember-cli-template-lint@^1.0.0-beta.3:
   version "1.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/ember-cli-template-lint/-/ember-cli-template-lint-1.0.0-beta.3.tgz#48f2fa43e7ad0172685fa171e5acd4d75b873792"
   integrity sha512-ivrvYih+cx7VUlyyMQBmk61Ki+gT5axfppWrk6fSvHaoxHZadXU3zRJMT5DPkeRaayRu0y1dls4wqfrUhzQ1PA==
