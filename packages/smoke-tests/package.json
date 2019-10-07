@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@faltest/cli": "1.4.0",
-    "@faltest/lifecycle": "1.3.0",
+    "@faltest/lifecycle": "1.3.1",
     "http-server": "0.11.1"
   }
 }
