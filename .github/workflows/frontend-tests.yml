@@ -61,8 +61,8 @@ jobs:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       run: PERCY_ENABLE=1 time ./run yarn test --filter Acceptance
 
-  tests_e2e_browser1:
-    name: E2E Tests Browser 1
+  tests_e2e:
+    name: E2E Tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -79,24 +79,4 @@ jobs:
       run: |
         cd packages/smoke-tests \
         && yarn \
-        && yarn test --filter browser1 --headless --timeouts-override 900000
-
-  tests_e2e_browser2:
-    name: E2E Tests Browser 2
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Install
-      run: ./run yarn install
-    - name: Build
-      run: ./run yarn build:production
-    - name: Test
-      run: |
-        cd packages/smoke-tests \
-        && yarn \
-        && yarn test --filter browser2 --headless --timeouts-override 900000
+        && yarn test --headless --timeouts-override 900000
