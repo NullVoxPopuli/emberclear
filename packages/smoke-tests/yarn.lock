@@ -21,13 +21,13 @@
     yargs "^14.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-1.1.0.tgz#82beb9cb810c6550f3ce268a6ec21e9a8a7e5813"
-  integrity sha512-YhZFmM4QYk6sjlaUFNW74p3SEXwUe4PEVXxjFkXoPRl8EeTAzdX020H+bU835vIDC9+E44xSOsGBXy/59JisjA==
+"@faltest/lifecycle@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-1.2.0.tgz#ec2f9af909d86f2fcfb936786684e30fac92d11d"
+  integrity sha512-NwBmy6TJiW9UKf38tAEaqUnmHt6lNtSKCxq2gH/RVjlJER13gZY3DUAu+Jsu/CjMX1Z3l39bfFviLFCgqZUfjA==
   dependencies:
-    "@faltest/remote" "^1.4.0"
-    "@faltest/utils" "^1.0.0"
+    "@faltest/remote" "^1.5.3"
+    "@faltest/utils" "^1.1.0"
   optionalDependencies:
     "@faltest/browser" "^1.0.0"
 
@@ -40,7 +40,7 @@
     glob "^7.1.4"
     mocha-helpers "^4.2.0"
 
-"@faltest/remote@^1.4.0", "@faltest/remote@^1.5.0":
+"@faltest/remote@^1.5.0":
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-1.5.2.tgz#3edc4eeef8703483c8ef30d582f6d3e89dfe442b"
   integrity sha512-mWA7+jtm3ucxVht0Pd8spfcwQVa0QdaXzyNo5TSmV57+zBL9vgyrb+G66cWTnU1leL+EiqUqq8tUbxzZdK7M4A==
@@ -55,7 +55,22 @@
     webdriverio "5.14.3"
     yn "^3.1.1"
 
-"@faltest/utils@^1.0.0", "@faltest/utils@^1.1.0":
+"@faltest/remote@^1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-1.5.3.tgz#919372b041288736ece01f501b6f4fe2b8ee3fa1"
+  integrity sha512-CTHK1svQ9/s3DqfYqsLsSPZSM7h98W28xj82yvNp3/A6xiiB3Np6VDZcsPAPKQs0p9s/tCQb6+nwuG821NJdaw==
+  dependencies:
+    "@faltest/utils" "^1.1.0"
+    chromedriver "76.0.1"
+    execa "^2.0.4"
+    fkill "^6.2.0"
+    geckodriver "1.18.0"
+    get-port "^5.0.0"
+    ps-list "^6.3.0"
+    webdriverio "5.14.3"
+    yn "^3.1.1"
+
+"@faltest/utils@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@faltest/utils/-/utils-1.1.0.tgz#1d7b2313db03dca1cab1ae088ee2b4a3fda1c211"
   integrity sha512-eu7UpGlHJ4wj1Q/BuDPuLbqmRrHAoha6Z75wjCRfOhvgwJe8O2IXYqAe2rLD8xq0s2/gTc80puP5MDQY5PCzuQ==
