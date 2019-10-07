@@ -9,25 +9,25 @@
   dependencies:
     verror-extra "^1.0.0"
 
-"@faltest/cli@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-1.3.0.tgz#060d5fa84618037cc4769e297eb7c1d217dd84c6"
-  integrity sha512-9+BZZ1hrqNkwS6CoWWDV8Xxb8sasRxPnFSfDjrb08VjqW42dhvaxCWX68L2sBOH16q31yH+/ChKoALLKB8IDXQ==
+"@faltest/cli@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-1.4.0.tgz#49df1cfbf20189a92d3ee6f077e38abebb5e0b63"
+  integrity sha512-e8yNgmVO1Fgxihe1VouH8jMO752+OW1871WWuBiuYPN7FOkEhbma/o50jsy+VFIqrhnds6z0oDr3cSUIb5vvNQ==
   dependencies:
     "@faltest/mocha" "^1.0.0"
-    "@faltest/remote" "^1.5.0"
-    "@faltest/utils" "^1.1.0"
+    "@faltest/remote" "^1.5.4"
+    "@faltest/utils" "^1.2.0"
     mocha "^6.2.0"
     yargs "^14.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-1.2.0.tgz#ec2f9af909d86f2fcfb936786684e30fac92d11d"
-  integrity sha512-NwBmy6TJiW9UKf38tAEaqUnmHt6lNtSKCxq2gH/RVjlJER13gZY3DUAu+Jsu/CjMX1Z3l39bfFviLFCgqZUfjA==
+"@faltest/lifecycle@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-1.3.0.tgz#ea461b658a4a6734fc559d8b6dcf48eaf5f02195"
+  integrity sha512-V9MYOaeoNwk40+njtyARjfRpcXBBzel7JD1qPVaQhPntKAfn+sNdkBVwmbDIjsXQ7lyt/7iUZ9ma/yhx3FFSLA==
   dependencies:
-    "@faltest/remote" "^1.5.3"
-    "@faltest/utils" "^1.1.0"
+    "@faltest/remote" "^1.5.4"
+    "@faltest/utils" "^1.2.0"
   optionalDependencies:
     "@faltest/browser" "^1.0.0"
 
@@ -40,12 +40,12 @@
     glob "^7.1.4"
     mocha-helpers "^4.2.0"
 
-"@faltest/remote@^1.5.0":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-1.5.2.tgz#3edc4eeef8703483c8ef30d582f6d3e89dfe442b"
-  integrity sha512-mWA7+jtm3ucxVht0Pd8spfcwQVa0QdaXzyNo5TSmV57+zBL9vgyrb+G66cWTnU1leL+EiqUqq8tUbxzZdK7M4A==
+"@faltest/remote@^1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-1.5.4.tgz#827669be6b74925b0ac9266cf06238515536e960"
+  integrity sha512-feIgIH1dRnSitwNio31xsghXzdacS5pw63g0WhpSdyUORXqHsk9WaiaLzHaO9HpCiYzD+Gd3AIyM/8mvumWOKA==
   dependencies:
-    "@faltest/utils" "^1.1.0"
+    "@faltest/utils" "^1.2.0"
     chromedriver "76.0.1"
     execa "^2.0.4"
     fkill "^6.2.0"
@@ -55,25 +55,10 @@
     webdriverio "5.14.3"
     yn "^3.1.1"
 
-"@faltest/remote@^1.5.3":
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-1.5.3.tgz#919372b041288736ece01f501b6f4fe2b8ee3fa1"
-  integrity sha512-CTHK1svQ9/s3DqfYqsLsSPZSM7h98W28xj82yvNp3/A6xiiB3Np6VDZcsPAPKQs0p9s/tCQb6+nwuG821NJdaw==
-  dependencies:
-    "@faltest/utils" "^1.1.0"
-    chromedriver "76.0.1"
-    execa "^2.0.4"
-    fkill "^6.2.0"
-    geckodriver "1.18.0"
-    get-port "^5.0.0"
-    ps-list "^6.3.0"
-    webdriverio "5.14.3"
-    yn "^3.1.1"
-
-"@faltest/utils@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@faltest/utils/-/utils-1.1.0.tgz#1d7b2313db03dca1cab1ae088ee2b4a3fda1c211"
-  integrity sha512-eu7UpGlHJ4wj1Q/BuDPuLbqmRrHAoha6Z75wjCRfOhvgwJe8O2IXYqAe2rLD8xq0s2/gTc80puP5MDQY5PCzuQ==
+"@faltest/utils@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@faltest/utils/-/utils-1.2.0.tgz#ee5d61b4a24a98b7bac87799cdade6fdab6955f4"
+  integrity sha512-MEkSdJvxYGMBtjjEK/4hSCwxTcYjcmIdmxcPR25C+hUMsBVEPJwM+0M1viGWZJgY16CW28LU8d0w3a5BcahZpw==
   dependencies:
     callsites "^3.1.0"
     debug "^4.1.1"
