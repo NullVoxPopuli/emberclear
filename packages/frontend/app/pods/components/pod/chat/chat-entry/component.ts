@@ -12,7 +12,7 @@ import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
 import Channel from 'emberclear/models/channel';
 import Contact from 'emberclear/models/contact';
-import EmojiParser from './emoji-parser';
+import { unicode } from 'emojis';
 
 interface IArgs {
   to: Contact | Channel;
@@ -58,13 +58,10 @@ export default class ChatEntry extends Component<IArgs> {
   }
 
   @action async sendMessage() {
-    alert('Hello, world!'); // TODO remove
     if (!this.text) return;
 
     this.isDisabled = true;
-    
-    let emojiParser = new EmojiParser();
-    this.text = emojiParser.parseEmoji(this.text)!;
+    this.text = unicode(this.text);
 
     await this.dispatchMessage(this.text);
 
