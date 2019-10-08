@@ -81,7 +81,11 @@ export default class ChatEntry extends Component<IArgs> {
   @action onInput(event: KeyboardEvent) {
     const value = (event.target as any).value;
 
-    this.text = unicode(value);
+    if (value.charAt(value.length - 1) === ':') {
+      this.text = unicode(value);
+    } else {
+      this.text = value;
+    }
   }
 
   @action onKeyPress(event: KeyboardEvent) {
