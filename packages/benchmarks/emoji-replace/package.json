@@ -1,0 +1,34 @@
+{
+  "name": "emoji-replace-benchmarks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel ./src --out-dir ./build --extensions '.ts'",
+    "start": "node build/index.js",
+    "bench": "yarn build && yarn start",
+    "debug": "node --inspect-brk=9229 build/index.js"
+  },
+  "dependencies": {
+    "emojis": "^1.0.10"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.6.2",
+    "@babel/core": "7.6.2",
+    "@babel/node": "7.6.2",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-proposal-decorators": "7.6.0",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "7.6.0",
+    "@babel/plugin-transform-runtime": "7.6.2",
+    "@babel/preset-env": "7.6.2",
+    "@babel/preset-typescript": "7.6.0",
+    "@babel/register": "7.6.2",
+    "@babel/runtime": "7.6.2",
+    "@types/js-nacl": "1.2.0",
+    "@types/libsodium-wrappers": "0.7.5",
+    "@types/node": "12.7.11",
+    "asyncmark": "0.3.1",
+    "typescript": "3.6.3"
+  }
+}
