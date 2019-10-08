@@ -1,15 +1,22 @@
 # Contributing
 
-# Building
+## Building
 emberclear can be built and run with
 ```
-cd emberclear/packages/frontend
+cd packages/frontend
 yarn install
 yarn start:dev
 ```
 and then can be visited at `http://localhost:4201`.
 
-# For working with the Relay
+## Testing
+Run the tests locally with
+```
+cd packages/frontend
+yarn test
+```
+
+## For working with the Relay
 ```bash
 git submodule update --init --recursive
 cd packages/frontend && yarn start:dev
