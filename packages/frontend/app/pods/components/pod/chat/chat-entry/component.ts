@@ -61,7 +61,6 @@ export default class ChatEntry extends Component<IArgs> {
     if (!this.text) return;
 
     this.isDisabled = true;
-    this.text = unicode(this.text);
 
     await this.dispatchMessage(this.text);
 
@@ -82,7 +81,7 @@ export default class ChatEntry extends Component<IArgs> {
   @action onInput(event: KeyboardEvent) {
     const value = (event.target as any).value;
 
-    this.text = value;
+    this.text = unicode(value);
   }
 
   @action onKeyPress(event: KeyboardEvent) {
