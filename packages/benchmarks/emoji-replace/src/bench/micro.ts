@@ -1,8 +1,8 @@
 import { generateEmojisBench } from "./-utils";
 
-const originalString = "I :heart: the :scream: emoji.";
-const expected = "I ❤️ the 😱 emoji.";
-const benchName = "short";
+const originalString = ":scream:";
+const expected = "😱";
+const benchName = "micro";
 
 export const bench = generateEmojisBench({
   originalString,
