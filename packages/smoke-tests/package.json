@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "lint:js": "yarn eslint .",
-    "test": "yarn faltest faltest/**/*-test.js --timeouts-override 900000"
+    "test": "yarn faltest faltest/**/*-test.js --browsers 2 --timeouts-override 900000"
   },
   "devDependencies": {
     "@faltest/cli": "1.4.0",

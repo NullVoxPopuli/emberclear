@@ -6,11 +6,7 @@ const assert = require('assert');
 const { startServer } = require('./helpers/start-server');
 
 describe('smoke', function() {
-  setUpWebDriver.call(this, {
-    overrides: {
-      browsers: 2,
-    },
-  });
+  setUpWebDriver.call(this);
 
   before(async function() {
     let serverInfo = await startServer();
