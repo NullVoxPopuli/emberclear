@@ -6,11 +6,7 @@ import { bench as shortMiss } from "./bench/short-miss";
 import { bench as microMiss } from "./bench/micro-miss";
 import { bench as longMiss } from "./bench/long-miss";
 
-import { bench as base } from "./bench/base";
-
 async function runBenchmark() {
-  await base.run();
-
   await micro.run();
   await short.run();
   await long.run();

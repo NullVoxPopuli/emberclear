@@ -29,54 +29,84 @@ export function generateEmojisBench({
   benchName
 }: Args) {
 
+  // the string must not be the same for each benchmark
+  // or the runtime will optimize!
+  //
+  let i = 0;
   function directReplace() {
-    return unicode(originalString);
+    let str = `${i++} ${originalString}`
+
+    return unicode(str);
   }
 
   function condition() {
-    if (originalString.includes(":")) {
-      return unicode(originalString);
+    let str = `${i++} ${originalString}`
+
+    if (str.includes(":")) {
+      return unicode(str);
     }
 
-    return originalString;
+    return str;
   }
 
-  const EMOJI_REGEX = /:[^:]+:/g;
+  const EMOJI_REGEX = /:[^:]+:/;
 
-  function regex() {
-    if (EMOJI_REGEX.test(originalString)) {
-      return unicode(originalString);
+  function regexTest() {
+    let str = `${i++} ${originalString}`
+
+    if (EMOJI_REGEX.test(str)) {
+      return unicode(str);
     }
 
-    return originalString;
+    return str;
+  }
+
+  function regexMatch() {
+    let str = `${i++} ${originalString}`
+
+    if (str.match(EMOJI_REGEX)) {
+      return unicode(str);
+    }
+
+    return str;
   }
 
   const bench = new Suite({
     async before() {
       assertEq(
-        expected, directReplace(),
+        `0 ${expected}`, directReplace(),
         `${benchName}: direct replace failed`
       );
-      assertEq(expected, condition(), `${benchName}: condition failed`);
-      assertEq(expected, regex(), `${benchName}: condition failed`);
+      assertEq(`1 ${expected}`, condition(), `${benchName}: condition failed`);
+      assertEq(`2 ${expected}`, regexTest(), `${benchName}: condition failed`);
 
       console.log(`\n -- ${benchName} -- `);
     }
   });
 
   bench.add({
-    name: "direct replace",
+    name: "return unchanged",
+    fun: () => originalString,
+  })
+
+  bench.add({
+    name: "direct replace  ",
     fun: () => directReplace()
   });
 
   bench.add({
-    name: "condition for ",
+    name: "condition for   ",
     fun: () => condition()
   });
 
   bench.add({
-    name: "regex match   ",
-    fun: () => regex()
+    name: "regex test      ",
+    fun: () => regexTest()
+  });
+
+  bench.add({
+    name: "regex match     ",
+    fun: () => regexMatch()
   });
 
   return bench;
