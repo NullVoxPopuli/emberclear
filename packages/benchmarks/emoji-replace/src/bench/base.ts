@@ -94,7 +94,7 @@ bench.add({
 });
 
 bench.add({
-  name: "regex match    (hit)",
+  name: "regex test     (hit)",
   fun: () => {
     if (EMOJI_REGEX.test(hit)) {
       return hit;
@@ -105,7 +105,7 @@ bench.add({
 });
 
 bench.add({
-  name: "regex match   (miss)",
+  name: "regex test    (miss)",
   fun: () => {
     if (EMOJI_REGEX.test(miss)) {
       return miss;
@@ -116,9 +116,9 @@ bench.add({
 });
 
 bench.add({
-  name: "regex match in (hit)",
+  name: "regex match    (hit)",
   fun: () => {
-    if (/:[^:]+:/.test(hit)) {
+    if (hit.match(EMOJI_REGEX)) {
       return hit;
     }
 
@@ -127,12 +127,13 @@ bench.add({
 });
 
 bench.add({
-  name: "regex match i (miss)",
+  name: "regex match   (miss)",
   fun: () => {
-    if (/:[^:]+:/.test(miss)) {
+    if (miss.match(EMOJI_REGEX)) {
       return miss;
     }
 
     return miss; // always
   }
 });
+
