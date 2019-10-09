@@ -79,9 +79,10 @@ export default class ChatEntry extends Component<IArgs> {
   }
 
   @action onInput(event: KeyboardEvent) {
+    const EMOJI_REGEX = /:[^:]+:/g;
     const value = (event.target as any).value;
 
-    if (value.charAt(value.length - 1) === ':') {
+    if (value.match(EMOJI_REGEX)) {
       this.text = unicode(value);
     } else {
       this.text = value;
