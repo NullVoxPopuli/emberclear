@@ -40,7 +40,7 @@ export function generateEmojisBench({
     return originalString;
   }
 
-  const EMOJI_REGEX = /:([^:]+:)/g;
+  const EMOJI_REGEX = /:[^:]+:/g;
 
   function regex() {
     if (EMOJI_REGEX.test(originalString)) {
