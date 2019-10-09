@@ -1,10 +1,38 @@
 import { Suite } from "asyncmark";
 import { assertEq } from './-utils';
 
-let hit = 'something :heart:';
-let miss = 'something .heart.';
+let hit = `
+something :heart:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-const EMOJI_REGEX = /:[^:]+:/g;
+smile
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident,
+sunt in culpa qui officia deserunt mollit anim id est laborum.
+something :heart:
+something :heart:
+`;
+let miss = `
+something .heart.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+smile
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident,
+sunt in culpa qui officia deserunt mollit anim id est laborum.
+something .heart.
+something .heart.
+`;
+
+const EMOJI_REGEX = /:[^:]+:/;
 
 export const bench = new Suite({
   async before() {
@@ -59,6 +87,28 @@ bench.add({
   name: "regex match   (miss)",
   fun: () => {
     if (EMOJI_REGEX.test(miss)) {
+      return miss;
+    }
+
+    return miss; // always
+  }
+});
+
+bench.add({
+  name: "regex match in (hit)",
+  fun: () => {
+    if (/:[^:]+:/.test(hit)) {
+      return hit;
+    }
+
+    return hit; //
+  }
+});
+
+bench.add({
+  name: "regex match i (miss)",
+  fun: () => {
+    if (/:[^:]+:/.test(miss)) {
       return miss;
     }
 
