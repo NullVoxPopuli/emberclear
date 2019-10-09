@@ -28,6 +28,7 @@ export function generateEmojisBench({
   expected,
   benchName
 }: Args) {
+
   function directReplace() {
     return unicode(originalString);
   }
@@ -80,3 +81,4 @@ export function generateEmojisBench({
 
   return bench;
 }
+
