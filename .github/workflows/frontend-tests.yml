@@ -79,4 +79,4 @@ jobs:
       run: |
         cd packages/smoke-tests \
         && yarn \
-        && yarn test --headless --timeouts-override 900000
+        && yarn test --headless
