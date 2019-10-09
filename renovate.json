@@ -6,6 +6,10 @@
   "masterIssue": true,
   "packageRules": [
     {
+      "paths": ["packages/benchmarks/**"],
+      "enabled": false
+    },
+    {
       "paths": ["packages/frontend/package.json"],
       "rangeStrategy": "bump"
     },
