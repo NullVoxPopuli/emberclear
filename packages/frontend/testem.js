@@ -20,6 +20,7 @@ let reporter = new MultiReporter({
 
 module.exports = {
   test_page: 'tests/index.html?hidepassed',
+  browser_disconnect_timeout: 120,
   disable_watching: true,
   reporter,
 
