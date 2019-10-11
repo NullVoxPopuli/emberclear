@@ -105,7 +105,7 @@
     "ember-cli-uglify": "^3.0.0",
     "ember-component-css": "^0.7.4",
     "ember-computed-promise-monitor": "^0.4.0",
-    "ember-concurrency": "1.1.0",
+    "ember-concurrency": "1.1.1",
     "ember-concurrency-test-waiter": "^0.3.1",
     "ember-data": "~3.13.1",
     "ember-exam": "^4.0.4",
