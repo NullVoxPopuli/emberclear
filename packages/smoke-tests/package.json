@@ -5,11 +5,12 @@
   "license": "MIT",
   "scripts": {
     "lint:js": "yarn eslint .",
-    "test": "yarn faltest faltest/**/*-test.js --browsers 2 --timeouts-override 900000"
+    "test": "yarn faltest tests/**/*-test.js --browsers 2 --timeouts-override 900000"
   },
   "devDependencies": {
     "@faltest/cli": "1.4.0",
     "@faltest/lifecycle": "1.3.2",
+    "@faltest/page-objects": "1.7.2",
     "babel-eslint": "10.0.3",
     "eslint": "6.5.1",
     "eslint-config-prettier": "6.4.0",
