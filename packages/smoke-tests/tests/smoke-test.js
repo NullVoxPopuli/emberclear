@@ -3,7 +3,7 @@
 const { setUpWebDriver } = require('@faltest/lifecycle');
 const assert = require('assert');
 
-const { startServer } = require('./helpers/start-server');
+const { startServer } = require('../helpers/start-server');
 
 describe('smoke', function() {
   setUpWebDriver.call(this);
