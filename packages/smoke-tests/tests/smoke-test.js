@@ -71,7 +71,7 @@ describe('smoke', function() {
   });
 
   after(async function() {
-    await this.server.kill();
+    this.server.kill();
 
     await this.server;
   });
