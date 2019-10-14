@@ -63,19 +63,18 @@ export default class SidebarContact extends Component<IArgs> {
     return this.numberUnread > 0;
   }
 
-  @tracked messages: Message[] = [];
+  @tracked unreadMessages: Message[] = [];
 
   get numberUnread() {
-    const { contact } = this.args;
-    const messages = selectUnreadDirectMessages(this.messages, contact.id);
-
-    return messages.length;
+    return this.unreadMessages.length;
   }
 
   @task(function*(this: SidebarContact) {
-    const messages = yield this.store.findAll('message');
+    let { contact } = this.args;
+    let messages = yield this.store.findAll('message');
+    let unread = selectUnreadDirectMessages(messages, contact.id);
 
-    this.messages = messages;
+    this.unreadMessages = unread;
   })
   findRelevantMessages!: Task;
 
