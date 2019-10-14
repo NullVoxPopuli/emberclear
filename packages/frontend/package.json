@@ -10,7 +10,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "https://github.com/NullVoxPopuli/emberclear",
+  "repository": "https://github.com/NullVoxPopuli/emberclear.git",
   "scripts": {
     "clean": "rm -rf dist tmp node_modules concat-stats-for coverage*",
     "build": "yarn ember build",

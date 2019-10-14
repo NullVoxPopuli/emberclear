@@ -6,34 +6,51 @@ const Login = require('../page-objects/login');
 const AddFriend = require('../page-objects/add-friend');
 const Chat = require('../page-objects/chat');
 const { startServer } = require('../helpers/start-server');
+const { repository } = require('../../frontend/package');
+const { getStatus } = require('poll-pr-status');
 
 describe('smoke', function() {
   setUpWebDriver.call(this);
 
   before(async function() {
-    let serverInfo = await startServer();
+    if (process.env.GITHUB_ACTIONS) {
+      // wait for the netlify job to start
+      this.timeout(5 * 60 * 1000);
 
-    this.server = serverInfo.server;
-    this.port = serverInfo.port;
+      let status = await getStatus({
+        repository,
+        context: 'deploy/netlify',
+      });
+
+      this.host = status ? status.target_url : 'https://emberclear.io';
+    } else {
+      let serverInfo = await startServer();
+
+      this.server = serverInfo.server;
+      this.host = `http://localhost:${serverInfo.port}`;
+    }
   });
 
   beforeEach(async function() {
-    let host = `http://localhost:${this.port}`;
-
     this.loginPage1 = new Login(this.browsers[0]);
     this.loginPage2 = new Login(this.browsers[1]);
-    this.addFriendPage1 = new AddFriend(host, this.browsers[0]);
-    this.addFriendPage2 = new AddFriend(host, this.browsers[1]);
+    this.addFriendPage1 = new AddFriend(this.host, this.browsers[0]);
+    this.addFriendPage2 = new AddFriend(this.host, this.browsers[1]);
     this.chatPage1 = new Chat(this.browsers[0]);
     this.chatPage2 = new Chat(this.browsers[1]);
 
-    await Promise.all([this.browsers[0].url(host), this.browsers[1].url(host)]);
+    await Promise.all([
+      this.browsers[0].url(this.host),
+      this.browsers[1].url(this.host),
+    ]);
   });
 
   after(async function() {
-    this.server.kill();
+    if (this.server) {
+      this.server.kill();
 
-    await this.server;
+      await this.server;
+    }
   });
 
   it('works', async function() {

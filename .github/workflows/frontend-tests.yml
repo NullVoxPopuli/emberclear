@@ -71,10 +71,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: Install
-      run: ./run yarn install
-    - name: Build
-      run: ./run yarn build:production
     - name: Test
       run: |
         cd packages/smoke-tests \
