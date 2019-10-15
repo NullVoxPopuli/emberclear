@@ -75,4 +75,4 @@ jobs:
       run: |
         cd packages/smoke-tests \
         && yarn \
-        && yarn test --headless
+        && yarn test --target pull-request --headless

@@ -13,21 +13,33 @@ describe('smoke', function() {
   setUpWebDriver.call(this);
 
   before(async function() {
-    if (process.env.GITHUB_ACTIONS) {
-      // wait for the netlify job to start
-      this.timeout(5 * 60 * 1000);
+    switch (process.env.WEBDRIVER_TARGET) {
+      case 'pull-request': {
+        // wait for the netlify job to start
+        this.timeout(5 * 60 * 1000);
 
-      let status = await getStatus({
-        repository,
-        context: 'deploy/netlify',
-      });
+        let status = await getStatus({
+          repository,
+          context: 'deploy/netlify',
+        });
 
-      this.host = status ? status.target_url : 'https://emberclear.io';
-    } else {
-      let serverInfo = await startServer();
+        this.host = status.target_url;
 
-      this.server = serverInfo.server;
-      this.host = `http://localhost:${serverInfo.port}`;
+        break;
+      }
+      case 'local': {
+        let serverInfo = await startServer();
+
+        this.server = serverInfo.server;
+        this.host = `http://localhost:${serverInfo.port}`;
+
+        break;
+      }
+      default: {
+        this.host = 'https://emberclear.io';
+
+        break;
+      }
     }
   });
 
