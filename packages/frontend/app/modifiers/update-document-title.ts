@@ -20,6 +20,6 @@ export default class UpdateDocumentTitle extends Modifier {
   }
 
   didReceiveArguments() {
-    document.title = 'emberclear ${this.unreadMessageCount} ${this.currentUser.name}';
+    document.title = '${this.unreadMessageCount} - emberclear - ${this.currentUser.name}';
   }
 }
