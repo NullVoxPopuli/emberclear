@@ -8,12 +8,12 @@ export default class UpdateDocumentTitle extends Modifier {
     this.originalDocumentTitle = document.title;
   }
 
-  get unreadMessageCount() {
-    return this.args.named.unreadMessageCount;
+  get unreadMessageCount(): number {
+    return <number>this.args.named.unreadMessageCount;
   }
-  
-  get currentUserName() {
-    return this.args.named.currentUserName;
+
+  get currentUserName(): string {
+    return <string>this.args.named.currentUserName;
   }
 
   willDestroy() {
