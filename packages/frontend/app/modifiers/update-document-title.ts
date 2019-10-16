@@ -6,13 +6,13 @@ export default class UpdateDocumentTitle extends Modifier {
   @service currentUser!: CurrentUserService;
   originalDocumentTitle: string;
 
-  constructor(owner, args) {
+  constructor(owner: any, args: any) {
     super(owner, args);
     this.originalDocumentTitle = document.title;
   }
 
   get unreadMessageCount(): number {
-    return <number>this.args.named.unreadMessageCount;
+    return this.args.named.unreadMessageCount as number;
   }
 
   willDestroy() {
