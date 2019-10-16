@@ -1,6 +1,9 @@
 import Modifier from 'ember-class-based-modifier';
+import { inject as service } from '@ember/service';
+import CurrentUserService from 'emberclear/services/current-user';
 
 export default class UpdateDocumentTitle extends Modifier {
+  @service currentUser!: CurrentUserService;
   originalDocumentTitle: string;
 
   constructor(owner, args) {
@@ -12,15 +15,11 @@ export default class UpdateDocumentTitle extends Modifier {
     return <number>this.args.named.unreadMessageCount;
   }
 
-  get currentUserName(): string {
-    return <string>this.args.named.currentUserName;
-  }
-
   willDestroy() {
     document.title = this.originalDocumentTitle;
   }
 
   didReceiveArguments() {
-    document.title = 'emberclear ' + this.unreadMessageCount + ' ' + this.currentUserName;
+    document.title = 'emberclear ${this.unreadMessageCount} ${this.currentUser.name}';
   }
 }
