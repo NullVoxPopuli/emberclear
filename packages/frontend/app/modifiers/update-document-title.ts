@@ -11,15 +11,15 @@ export default class UpdateDocumentTitle extends Modifier {
     this.originalDocumentTitle = document.title;
   }
 
-  get unreadMessageCount(): number {
-    return this.args.named.unreadMessageCount as number;
-  }
-
   willDestroy() {
     document.title = this.originalDocumentTitle;
   }
 
   didReceiveArguments() {
-    document.title = `${this.unreadMessageCount} - emberclear - ${this.currentUser.name}`;
+    let tokens = this.args.positional.join(' | ');
+    document.title = `${tokens} | emberclear`;
+    if(this.currentUser!.name != null){
+      document.title += ` | ${this.currentUser.name}`;
+    }
   }
 }
