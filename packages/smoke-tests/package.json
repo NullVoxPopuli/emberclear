@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "lint:js": "yarn eslint .",
-    "test": "yarn faltest tests/**/*-test.js --browsers 2 --timeouts-override 900000"
+    "test": "yarn faltest --browsers 2 --timeouts-override 900000"
   },
   "devDependencies": {
     "@faltest/cli": "1.4.0",
@@ -17,6 +17,7 @@
     "eslint-plugin-node": "10.0.0",
     "eslint-plugin-prettier": "3.1.1",
     "http-server": "0.11.1",
+    "poll-pr-status": "1.2.1",
     "prettier": "1.18.2"
   }
 }
