@@ -1,4 +1,3 @@
-<head><title>emberclear {{this.unreadMessageCount}} {{this.currentUser.name}}</title></head>
 <div data-test-top-nav class='top-nav {{if this.isInverted 'is-inverted'}}'>
 
   <div class='left-nav'>
@@ -11,6 +10,7 @@
 
         {{#if this.hasUnread}}
           <span
+            {{update-document-title unreadMessageCount=this.unreadMessageCount currentUserName=this.currentUser.name}}
             data-test-unread-count
             class='badge badge-warning'
             style='left: 2rem; bottom: 0.5rem;'
