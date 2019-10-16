@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "blakejs": "^1.1.0",
-    "dompurify": "^2.0.4",
+    "dompurify": "^2.0.6",
     "hammerjs": "^2.0.8",
     "localforage": "^1.7.3",
     "phoenix": "^1.4.10",
@@ -87,7 +87,7 @@
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-concat-analyser": "^4.3.4",
     "cross-env": "^6.0.3",
-    "ember-auto-import": "^1.5.2",
+    "ember-auto-import": "^1.5.3",
     "ember-class-based-modifier": "^0.10.0",
     "ember-cli": "^3.13.1",
     "ember-cli-app-version": "^3.2.0",
@@ -97,7 +97,7 @@
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-dependency-lint": "^1.1.3",
     "ember-cli-htmlbars": "^4.0.5",
-    "ember-cli-inject-live-reload": "^2.0.1",
+    "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-page-object": "^1.15.4",
     "ember-cli-postcss": "^5.0.0",
     "ember-cli-sri": "^2.1.1",
@@ -105,7 +105,7 @@
     "ember-cli-uglify": "^3.0.0",
     "ember-component-css": "^0.7.4",
     "ember-computed-promise-monitor": "^0.4.0",
-    "ember-concurrency": "1.1.0",
+    "ember-concurrency": "1.1.1",
     "ember-concurrency-test-waiter": "^0.3.1",
     "ember-data": "~3.13.1",
     "ember-exam": "^4.0.4",
@@ -130,7 +130,7 @@
     "ember-service-worker-index": "^0.7.0",
     "ember-service-worker-update-notify": "github:topaxi/ember-service-worker-update-notify#testing-and-documentation",
     "ember-sinon": "^4.1.1",
-    "ember-source": "^3.13.2",
+    "ember-source": "^3.13.3",
     "ember-template-lint": "1.5.3",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "^3.0.0-beta.2",
@@ -154,13 +154,13 @@
     "testem-gitlab-reporter": "^1.0.0",
     "testem-multi-reporter": "^1.2.0",
     "ts-node": "^8.4.1",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "engines": {
     "node": "8.* || >= 10.*"
   },
   "volta": {
     "node": "10.16.2",
-    "yarn": "1.19.0"
+    "yarn": "1.19.1"
   }
 }

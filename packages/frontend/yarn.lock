@@ -5288,10 +5288,10 @@ dompurify@^1.0.0:
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-1.0.11.tgz#fe0f4a40d147f7cebbe31a50a1357539cfc1eb4d"
   integrity sha512-XywCTXZtc/qCX3iprD1pIklRVk/uhl8BKpkTxr+ZyMVUzSUg7wkQXRBp/euJ5J5moa1QvfpvaPQVP71z1O59dQ==
 
-dompurify@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.0.4.tgz#8ad181d526aef28089354f3c92ebba6531bbb7fd"
-  integrity sha512-sRl7eWZaQYnZAgNMHxDet/S4FSeWhvJpuFUlCIl4ahOcYAVSKcbnJQX96TR/kwsrYwDD5GQ5MRk2WLH83bRLRQ==
+dompurify@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.0.6.tgz#0a4196c211ce00e848240e52b1d49261af12a3be"
+  integrity sha512-1+AOpCYIKoLER/Ykd/Q/i11slhYy6T29/mmDrTsALH0JcMPB0pt9++8eDTGT70tv6ofmmeptrdqzZpmjMfFLRg==
 
 dot-prop@^5.1.0:
   version "5.1.0"
@@ -5401,6 +5401,40 @@ ember-auto-import@^1.4.1, ember-auto-import@^1.5.2:
     fs-extra "^6.0.1"
     fs-tree-diff "^1.0.0"
     handlebars "~4.1.2"
+    js-string-escape "^1.0.1"
+    lodash "^4.17.10"
+    mkdirp "^0.5.1"
+    pkg-up "^2.0.0"
+    resolve "^1.7.1"
+    rimraf "^2.6.2"
+    symlink-or-copy "^1.2.0"
+    typescript-memoize "^1.0.0-alpha.3"
+    walk-sync "^0.3.3"
+    webpack "~4.28"
+
+ember-auto-import@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.5.3.tgz#b32936f874d1ed7057ad2ed3f6116357820be44b"
+  integrity sha512-7JfdunM1BmLy/lyUXu7uEoi0Gi4+dxkGM23FgIEyW5g7z4MidhP53Fc61t49oPSnq7+J4lLpbH1f6C+mDMgb4A==
+  dependencies:
+    "@babel/core" "^7.1.6"
+    "@babel/preset-env" "^7.0.0"
+    "@babel/traverse" "^7.1.6"
+    "@babel/types" "^7.1.6"
+    "@embroider/core" "^0.4.3"
+    babel-core "^6.26.3"
+    babel-loader "^8.0.6"
+    babel-plugin-syntax-dynamic-import "^6.18.0"
+    babel-template "^6.26.0"
+    babylon "^6.18.0"
+    broccoli-debug "^0.6.4"
+    broccoli-plugin "^1.3.0"
+    debug "^3.1.0"
+    ember-cli-babel "^6.6.0"
+    enhanced-resolve "^4.0.0"
+    fs-extra "^6.0.1"
+    fs-tree-diff "^1.0.0"
+    handlebars "^4.3.1"
     js-string-escape "^1.0.1"
     lodash "^4.17.10"
     mkdirp "^0.5.1"
@@ -5590,13 +5624,13 @@ ember-cli-htmlbars@^4.0.5:
     strip-bom "^4.0.0"
     walk-sync "^2.0.2"
 
-ember-cli-inject-live-reload@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-inject-live-reload/-/ember-cli-inject-live-reload-2.0.1.tgz#1bf3a6ea1747bceddc9f62f7ca8575de6b53ddaf"
-  integrity sha512-vrW/3KSrku+Prqmp7ZkpCxYkabnLrTHDEvV9B1yphTP++dhiV7n7Dv9NrmyubkoF3Inm0xrbbhB5mScvvuTQSg==
+ember-cli-inject-live-reload@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-inject-live-reload/-/ember-cli-inject-live-reload-2.0.2.tgz#95edb543b386239d35959e5ea9579f5382976ac7"
+  integrity sha512-HDD6o/kBHT/kUtazklU0OW23q2jigIN42QmcpFdXUSvJ2/2SYA6yIqSUxWfJgISmtn5gTNZ2KPq1p3dLkhJxSQ==
   dependencies:
     clean-base-url "^1.0.0"
-    ember-cli-version-checker "^2.1.2"
+    ember-cli-version-checker "^3.1.3"
 
 ember-cli-is-package-missing@^1.0.0:
   version "1.0.0"
@@ -5901,10 +5935,10 @@ ember-concurrency-test-waiter@^0.3.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-concurrency@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-1.1.0.tgz#955f6961937c655ecc6ee4c3213e1191dc227ba3"
-  integrity sha512-izwePurc0CMGSvyuZeEyjFrTVBTBQV2k7eYP/b+jYCdh5+J+ajSnx8UYIJ38E7lCukDzeTjDBrQjJxLCNzvDFg==
+ember-concurrency@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-1.1.1.tgz#5fd16431169f204b5829e295d521f4768078549b"
+  integrity sha512-+NLofyiTxssFo9n2IZxJBHCV0Aec6qlD0EJ0KEco3KMoMMLrRdAjrjWLAi3qXqz3lkXnLPeSEp3mFJ5KW+QVbw==
   dependencies:
     ember-cli-babel "^7.7.3"
     ember-compatibility-helpers "^1.2.0"
@@ -6269,10 +6303,10 @@ ember-source-channel-url@^2.0.1:
   dependencies:
     got "^8.0.1"
 
-ember-source@^3.13.2:
-  version "3.13.2"
-  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.13.2.tgz#872a583935ce5827518d8b9c23f81475a8f5dbda"
-  integrity sha512-VBzLziCCdRW4K9YljxL+bGxAG1aaozENaaIDrqmg79OidM6SeTNDEY+y9m2V2YFUGyFkwtqOK1IzcM4GYnnL+w==
+ember-source@^3.13.3:
+  version "3.13.3"
+  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.13.3.tgz#65794f79dec0512d833332575f13c77f9ccae2a1"
+  integrity sha512-aDmzAwpCa4H6ozd+RbsQs9/Pfo4wbnDVe9eb2D05PH9W6zRpiUa+pTluJsUFDfbi+jYGPQnjty2U/UQYBayFvg==
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
     "@babel/plugin-transform-block-scoping" "^7.4.4"
@@ -7790,6 +7824,17 @@ handlebars@^4.1.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.4.0.tgz#22e1a897c5d83023d39801f35f6b65cf97ed8b25"
   integrity sha512-xkRtOt3/3DzTKMOt3xahj2M/EqNhY988T+imYSlMgs5fVhLN2fmKVVj0LtEGmb+3UUYV5Qmm1052Mm3dIQxOvw==
+  dependencies:
+    neo-async "^2.6.0"
+    optimist "^0.6.1"
+    source-map "^0.6.1"
+  optionalDependencies:
+    uglify-js "^3.1.4"
+
+handlebars@^4.3.1:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.4.3.tgz#180bae52c1d0e9ec0c15d7e82a4362d662762f6e"
+  integrity sha512-B0W4A2U1ww3q7VVthTKfh+epHx+q4mCt6iK+zEAzbMBpWQAwxCeKxEGpj/1oQTpzPXDNSOG7hmG14TsISH50yw==
   dependencies:
     neo-async "^2.6.0"
     optimist "^0.6.1"
@@ -13450,10 +13495,10 @@ typescript-memoize@^1.0.0-alpha.3:
   dependencies:
     core-js "2.4.1"
 
-typescript@^3.6.3:
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.3.tgz#fea942fabb20f7e1ca7164ff626f1a9f3f70b4da"
-  integrity sha512-N7bceJL1CtRQ2RiG0AQME13ksR7DiuQh/QehubYcghzv20tnh+MQnQIuJddTmsbqYj+dztchykemz0zFzlvdQw==
+typescript@^3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.4.tgz#b18752bb3792bc1a0281335f7f6ebf1bbfc5b91d"
+  integrity sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg==
 
 uc.micro@^1.0.1, uc.micro@^1.0.5:
   version "1.0.6"

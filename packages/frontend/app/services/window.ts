@@ -5,6 +5,7 @@ import { tracked } from '@glimmer/tracking';
 export default class WindowService extends Service {
   @tracked deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
   @tracked isInstalled = false;
+  @tracked hasDeferredInstall = false;
 
   cleanup: any[] = [];
 
@@ -28,6 +29,7 @@ export default class WindowService extends Service {
 
       if (this.deferredInstallPrompt) {
         clearInterval(interval);
+        this.hasDeferredInstall = true;
 
         this.deferredInstallPrompt.userChoice.then(choice => {
           this.isInstalled = choice.outcome === 'accepted';
@@ -40,10 +42,6 @@ export default class WindowService extends Service {
 
   get canInstall() {
     return this.hasDeferredInstall && !this.isInstalled;
-  }
-
-  get hasDeferredInstall() {
-    return !!this.deferredInstallPrompt;
   }
 
   async promptInstall() {
