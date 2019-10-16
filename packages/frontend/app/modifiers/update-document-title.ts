@@ -18,7 +18,7 @@ export default class UpdateDocumentTitle extends Modifier {
   didReceiveArguments() {
     let tokens = this.args.positional.join(' | ');
     document.title = `${tokens} | emberclear`;
-    if(this.currentUser!.name != null){
+    if (this.currentUser!.name != null) {
       document.title += ` | ${this.currentUser.name}`;
     }
   }
