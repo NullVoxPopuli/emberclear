@@ -29,6 +29,7 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        COVERAGE: true
       run: |
         cd packages/frontend
         ./cc-test-reporter before-build
