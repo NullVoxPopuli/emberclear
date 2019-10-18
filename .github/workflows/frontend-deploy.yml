@@ -18,10 +18,22 @@ jobs:
         node-version: '10.x'
     - name: Install
       run: ./run yarn install
+    - name: Install Code Coverage Reporter
+      env:
+        CC_URL: https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+      run: |
+        cd packages/frontend
+        curl -L $CC_URL > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
     - name: Test
       env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-      run: time ./run yarn test
+      run: |
+        cd packages/frontend
+        ./cc-test-reporter before-build
+        time yarn test
+        ./cc-test-reporter after-build -t lcov --exit-code $? coverage/lcov.info
 
   deploy:
     name: Deploy to Netlify
