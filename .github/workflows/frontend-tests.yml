@@ -38,7 +38,7 @@ jobs:
       run: |
         cd packages/frontend
         ./cc-test-reporter before-build
-        time ./run yarn test
+        time yarn test
         ./cc-test-reporter after-build -t lcov --exit-code $? coverage/lcov.info
 
   bundle_analysis:
