@@ -27,7 +27,7 @@ jobs:
       env:
         CC_URL: https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
       run: |
-        cd packages/frontend \
+        cd packages/frontend
         curl -L $CC_URL > ./cc-test-reporter
         chmod +x ./cc-test-reporter
     - name: Test
@@ -36,7 +36,7 @@ jobs:
         COVERAGE: true
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       run: |
-        cd packages/frontend \
+        cd packages/frontend
         ./cc-test-reporter before-build
         time ./run yarn test
         ./cc-test-reporter after-build -t lcov --exit-code $? coverage/lcov.info
