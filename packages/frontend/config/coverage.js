@@ -7,5 +7,5 @@ module.exports = {
     '*/vendor/**/*',
     '**/*-test*',
   ],
-  parallel: true,
+  parallel: false,
 };
