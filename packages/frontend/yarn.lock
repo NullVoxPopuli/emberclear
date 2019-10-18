@@ -5538,9 +5538,9 @@ ember-cli-broccoli-sane-watcher@^3.0.0:
     ember-on-modifier "^1.0.0"
     fastboot-transform "^0.1.3"
 
-"ember-cli-code-coverage@github:lifeart/ember-cli-code-coverage#patch-2":
+"ember-cli-code-coverage@github:nsf-open/ember-cli-code-coverage#fe27b61f":
   version "1.0.0-beta.8"
-  resolved "https://codeload.github.com/lifeart/ember-cli-code-coverage/tar.gz/72d3b1dce506ef6aff5f8b6299d00a38b2626f12"
+  resolved "https://codeload.github.com/nsf-open/ember-cli-code-coverage/tar.gz/fe27b61f754b575f1cd15691b747c66b43dae964"
   dependencies:
     babel-plugin-istanbul "^5.1.0"
     babel-plugin-transform-async-to-generator "^6.24.1"
