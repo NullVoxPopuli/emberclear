@@ -34,7 +34,7 @@ jobs:
         cd packages/frontend
         ./cc-test-reporter before-build
         time yarn test
-        ./cc-test-reporter after-build -t lcov --exit-code $? coverage/lcov.info
+        ./cc-test-reporter after-build -t lcov -d coverage/lcov.info
 
   deploy:
     name: Deploy to Netlify
