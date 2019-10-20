@@ -2,6 +2,7 @@ const MultiReporter = require('testem-multi-reporter');
 const GitLabReporter = require('testem-gitlab-reporter');
 const TAPReporter = require('testem/lib/reporters/tap_reporter');
 const fs = require('fs');
+const util = require('util')
 
 const CI_BROWSER = process.env.CI_BROWSER || 'Chrome';
 
@@ -21,6 +22,7 @@ let reporter = new MultiReporter({
 module.exports = {
   test_page: 'tests/index.html?hidepassed',
   browser_disconnect_timeout: 120,
+  browser_start_timeout: 30,
   disable_watching: true,
   reporter,
 
@@ -33,7 +35,7 @@ module.exports = {
         // --no-sandbox is needed when running Chrome inside a container
         process.env.TRAVIS || process.env.CI ? '--no-sandbox' : null,
 
-        // '--disable-gpu',
+        process.platform === 'win32' ? '--disable-gpu' : null,
         '--headless',
         '--remote-debugging-port=0',
         '--window-size=1440,900',
@@ -45,3 +47,7 @@ module.exports = {
     },
   },
 };
+
+let {reporter: _,  ...config } = module.exports;
+
+console.dir(config, { depth: 4 });
