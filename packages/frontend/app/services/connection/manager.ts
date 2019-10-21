@@ -78,10 +78,14 @@ export default class ConnectionManager extends Service {
     });
   }
 
-  destroy() {
+  disconnect() {
     if (this.connectionPool) {
       this.connectionPool.drain();
     }
+  }
+
+  destroy() {
+    this.disconnect();
 
     return super.destroy();
   }
