@@ -1,8 +1,6 @@
-import { module, test, skip } from 'qunit';
-import StoreService from 'ember-data/store';
-import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import { percySnapshot } from 'ember-percy';
 
 import { stripIndent } from 'common-tags';
 
@@ -10,15 +8,11 @@ import {
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,
-  getService,
-  visit as visitIgnoringFailure,
 } from 'emberclear/tests/helpers';
 
-import { page, selectors } from 'emberclear/tests/helpers/pages/chat';
+import { page } from 'emberclear/tests/helpers/pages/chat';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import Contact from 'emberclear/models/contact';
-import { waitUntil } from '@ember/test-helpers';
-import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 let codeA = stripIndent`
   \`\`\`ts
