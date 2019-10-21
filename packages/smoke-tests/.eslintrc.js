@@ -10,6 +10,7 @@ module.exports = {
     mocha: true,
     node: true,
     es6: true,
+    browser: true,
   },
   rules: {
     ...require('eslint-plugin-node').configs.recommended.rules,

@@ -29,7 +29,7 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.host = 'http://localhost:4201';
+    ENV.host = 'https://localhost:4201';
     ENV.SW_DISABLED = process.env.SW_DISABLED;
   }
 

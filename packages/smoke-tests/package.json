@@ -1,17 +1,22 @@
 {
   "name": "smoke-tests",
   "version": "0.0.0",
-  "main": "index.js",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "lint:js": "yarn eslint .",
     "test": "yarn faltest --browsers 2 --timeouts-override 900000"
   },
   "devDependencies": {
+    "@faltest/chai": "^1.1.5",
     "@faltest/cli": "2.1.1",
     "@faltest/lifecycle": "2.0.15",
     "@faltest/page-objects": "3.0.10",
     "babel-eslint": "10.1.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-fs": "^2.0.0",
+    "chai-string": "^1.5.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-node": "11.1.0",

@@ -1,6 +1,6 @@
 'use strict';
 
-const { BasePageObject } = require('@faltest/page-objects');
+const BasePageObject = require('./-base');
 
 class Login extends BasePageObject {
   get beginButton() {
@@ -14,8 +14,8 @@ class Login extends BasePageObject {
         await this._browser.execute(() => {
           document.querySelector('[href="/login"]').click();
         });
-      }
-    }
+      },
+    };
     // return this._create('[href="/login"]');
   }
 

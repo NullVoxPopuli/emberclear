@@ -16,7 +16,8 @@ module.exports = {
         args: [
           process.env.CI ? '--no-sandbox' : null,
           '--window-size=1280,720', // 720p
-          '--ignore-certificate-errors'
+          '--ignore-certificate-errors',
+          '--auto-open-devtools-for-tabs'
         ].filter(Boolean)
       }
     }

@@ -10,8 +10,8 @@ async function startServer() {
     preferLocal: true,
   });
 
-  let port = await new Promise(resolve => {
-    server.stdout.on('data', data => {
+  let port = await new Promise((resolve) => {
+    server.stdout.on('data', (data) => {
       let str = data.toString();
       let matches = str.match(/http:\/\/127\.0\.0\.1:(\d+)$/m);
 

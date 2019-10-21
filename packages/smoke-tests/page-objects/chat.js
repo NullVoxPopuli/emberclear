@@ -1,6 +1,6 @@
 'use strict';
 
-const { BasePageObject } = require('@faltest/page-objects');
+const BasePageObject = require('./-base');
 
 class Chat extends BasePageObject {
   get input() {
@@ -9,7 +9,7 @@ class Chat extends BasePageObject {
 
   get sendButton() {
     // TODO: this will be changed to a button soon, instead of an input
-    return this._create('.chat-entry-container input[type="submit"]');
+    return this._create('[data-test-chat-submit]');
   }
 
   get messages() {
@@ -25,9 +25,12 @@ class Chat extends BasePageObject {
     await this.input.setValue(message);
 
     // This is only necessary for CI, but not sure why.
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    await this.sendButton.click();
+    // element is not interactable
+    await this._browser.execute(() => {
+      document.querySelector('[data-test-chat-submit]').click();
+    });
   }
 
   async waitForResponse(user) {

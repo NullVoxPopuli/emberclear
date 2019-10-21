@@ -1,14 +1,8 @@
 'use strict';
 
-const { BasePageObject } = require('@faltest/page-objects');
+const BasePageObject = require('./-base');
 
 class AddFriend extends BasePageObject {
-  constructor(host, ...args) {
-    super(...args);
-
-    this.host = host;
-  }
-
   get addFriendButton() {
     // element click intercepted: Element <a class="button button-xs" href="/add-friend">...</a> is not clickable at point (274, 76). Other element would receive the click: <a class="service-worker-update-notify alert alert-info has-shadow" href="/chat" style="z-index: 100;">...</a>
     // return this._create('[href="/add-friend"]');
@@ -22,12 +16,32 @@ class AddFriend extends BasePageObject {
     };
   }
 
-  async addFriend(user) {
+  async inviteUrl() {
+    let dataAttr = 'data-clipboard-text';
+    let pageObject = this._create(`[${dataAttr}]`);
+
+    await pageObject.waitForInsert();
+
+    let text = await pageObject.getAttribute(dataAttr);
+
+    return text;
+  }
+
+  async visit() {
+    await this.navigateTo('add-friend');
+  }
+
+  async addFriend(key) {
+    let publicKey = key.publicKey || key;
+    let isUrl = publicKey.includes('/');
+
     await this.addFriendButton.click();
 
-    await this._browser.url(
-      `${this.host}/invite?name=${user.name}&publicKey=${user.publicKey}`
-    );
+    let url = isUrl
+      ? publicKey
+      : `${this.host}/invite?name=${key.name}&publicKey=${publicKey}`;
+
+    await this._browser.url(url);
   }
 }
 
