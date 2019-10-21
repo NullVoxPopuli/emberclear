@@ -18,6 +18,10 @@ export default class ConnectionService extends Service {
     this._connect.perform();
   }
 
+  disconnect() {
+    this.manager.disconnect();
+  }
+
   async getOpenGraph(url: string) {
     return this.manager.getOpenGraph(url);
   }
