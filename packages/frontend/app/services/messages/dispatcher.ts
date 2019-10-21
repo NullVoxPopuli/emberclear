@@ -33,7 +33,7 @@ export default class MessageDispatcher extends Service {
 
     await message.save();
 
-    this.sendTo(message, to);
+    await this.sendTo(message, to);
   }
 
   // there needs to be a polymorphic relationship in order for this to work

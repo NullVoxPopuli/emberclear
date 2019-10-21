@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { once, later } from '@ember/runloop';
+import { waitForPromise } from 'ember-test-waiters';
 
 import { action } from '@ember/object';
 
@@ -97,6 +98,6 @@ export default class ChatEntry extends Component<IArgs> {
   }
 
   async dispatchMessage(text: string) {
-    await this.messageDispatcher.send(text, this.args.to);
+    await waitForPromise(this.messageDispatcher.send(text, this.args.to));
   }
 }

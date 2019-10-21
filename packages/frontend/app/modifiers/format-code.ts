@@ -1,6 +1,7 @@
 import Modifier from 'ember-class-based-modifier';
 import { inject as service } from '@ember/service';
 import { parseLanguages } from 'emberclear/utils/string/utils';
+import { later } from '@ember/runloop';
 
 import PrismManager from 'emberclear/services/prism-manager';
 
@@ -36,7 +37,9 @@ export default class FormatCode extends Modifier<Args> {
     const languages = parseLanguages(text);
 
     languages.forEach(language => {
-      this.prismManager.addLanguage.perform(language, this.element);
+      (later as any)(() => {
+        this.prismManager.addLanguage.perform(language, this.element);
+      });
     });
   }
 }

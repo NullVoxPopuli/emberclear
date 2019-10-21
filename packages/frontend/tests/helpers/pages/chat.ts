@@ -30,6 +30,7 @@ export const page = create({
   numberOfMessages: count('[data-test-chat-message]'),
   messages: collection('[data-test-chat-message]', {
     hasLoader: isVisible('.ellipsis-loader'),
+    hasCode: isVisible('.token', { multiple: true }),
     confirmations: {
       scope: '[data-test-confirmations]',
       text: text(),
