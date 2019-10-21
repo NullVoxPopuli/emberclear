@@ -6,7 +6,6 @@ import LocaleService from 'emberclear/services/locale';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import { ensureRelays } from 'emberclear/utils/data/required-data';
-import { runMigrations } from 'emberclear/utils/migrations';
 import Settings from 'emberclear/services/settings';
 import ConnectionService from 'emberclear/services/connection';
 
@@ -17,7 +16,6 @@ export default class ApplicationRoute extends Route {
   @service connection!: ConnectionService;
 
   async beforeModel() {
-    await runMigrations(getOwner(this));
     await ensureRelays(getOwner(this));
 
     // TODO: check all the modern web requirements
