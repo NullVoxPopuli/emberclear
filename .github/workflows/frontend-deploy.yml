@@ -35,8 +35,13 @@ jobs:
         ./cc-test-reporter before-build
         time yarn test
 
-        ./cc-test-reporter format-coverage --prefix packages/frontend --input-type lcov coverage/lcov.info
-        ./cc-test-reporter upload-coverage
+        ./cc-test-reporter format-coverage \
+          --prefix packages/frontend/ \
+          --output ./coverage/coverage.json \
+          --input-type lcov coverage/lcov.info
+
+        ./cc-test-reporter upload-coverage \
+          --input ./coverage/coverage.json
 
   deploy:
     name: Deploy to Netlify
