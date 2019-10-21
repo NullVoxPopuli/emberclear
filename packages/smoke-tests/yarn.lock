@@ -108,10 +108,10 @@
     yargs "^14.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-1.3.2.tgz#6577f313f3fbad9de03d67f3ccfa9d5e33ceb2be"
-  integrity sha512-JPHii34xvarSVAJLBeoDWONqOyfTBZ3KrviFPrSSH22Mn5klF/+u2vmZ1Z/5WYbcT5BjDl+aee8ixucKaFIiyQ==
+"@faltest/lifecycle@1.3.5":
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-1.3.5.tgz#86d779e8d9094bc9f0f874d0870f210f97523d8b"
+  integrity sha512-Dxm7W+GiunPzkWzKr1apKqVZpYRPG2CpBm0NvgQs63pgOaGVaVCmoRDtJh9j+tqSBskdwageYg6ofmpHxd1Hyg==
   dependencies:
     "@faltest/remote" "^1.5.4"
     "@faltest/utils" "^1.2.0"
