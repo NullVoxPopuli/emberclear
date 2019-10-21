@@ -35,7 +35,7 @@ jobs:
         ./cc-test-reporter before-build
         time yarn test
 
-        ./cc-test-reporter format-coverage \
+        ./cc-test-reporter format-coverage -d \
           --prefix packages/frontend/ \
           --output ./coverage/coverage.json \
           --input-type lcov coverage/lcov.info
