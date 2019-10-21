@@ -37,7 +37,7 @@ export default class FormatCode extends Modifier<Args> {
     const languages = parseLanguages(text);
 
     languages.forEach(language => {
-      later(() => {
+      (later as any)(() => {
         this.prismManager.addLanguage.perform(language, this.element);
       });
     });
