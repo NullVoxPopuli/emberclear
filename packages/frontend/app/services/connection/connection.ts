@@ -71,6 +71,11 @@ export class Connection {
       }
 
       this.channel = this.socket.channel(this.channelName!, {});
+      this.socket
+        .channel(`stats`, {})
+        .join()
+        .receive('ok', console.info)
+        .receive('error', console.error);
 
       this.channel.on('chat', this.onData);
 
