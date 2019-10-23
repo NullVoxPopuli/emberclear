@@ -1031,7 +1031,7 @@
     ember-cli-babel "^7.10.0"
     ember-modifier-manager-polyfill "^1.1.0"
 
-"@ember/test-helpers@^1.6.0", "@ember/test-helpers@^1.6.1":
+"@ember/test-helpers@^1.6.0":
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-1.6.1.tgz#5eb0b58486524c54f1b617a83e4ab327b7c62f07"
   integrity sha512-gXLXR0XdZKfyXHFP+QLpG55TlrDtvrZI6TMQVQxdZwsz589kN8idmc01rDjyy53jx430tZTEsdhJvC2LrHXPwg==
@@ -1042,6 +1042,18 @@
     ember-cli-babel "^7.7.3"
     ember-cli-htmlbars-inline-precompile "^2.1.0"
     ember-test-waiters "^1.0.0"
+
+"@ember/test-helpers@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-1.7.0.tgz#c05af19d786e7e141aa1a1e5e9d45cf56f28ccf4"
+  integrity sha512-TbVILhMMA57ssR16gb0jJZnTNxQ9XFVIAwbn8wBY/x7Cb5F8s9EX4QbyzaSxs79cngNCOUklvCIoXrsMA6LEGA==
+  dependencies:
+    broccoli-debug "^0.6.5"
+    broccoli-funnel "^2.0.2"
+    ember-assign-polyfill "^2.6.0"
+    ember-cli-babel "^7.7.3"
+    ember-cli-htmlbars-inline-precompile "^2.1.0"
+    ember-test-waiters "^1.1.1"
 
 "@embroider/babel-loader-7@0.7.0":
   version "0.7.0"
