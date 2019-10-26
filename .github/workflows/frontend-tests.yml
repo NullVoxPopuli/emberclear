@@ -22,14 +22,14 @@ jobs:
       with:
         node-version: '10.x'
     - name: Install
-      run: ./run yarn install
-    - name: Install Code Coverage Reporter
       env:
         CC_URL: https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
       run: |
         cd packages/frontend
+        yarn install
         curl -L $CC_URL > ./cc-test-reporter
         chmod +x ./cc-test-reporter
+
     - name: Test
       env:
         CI_BROWSER: ${{ matrix.ci_browser }}
