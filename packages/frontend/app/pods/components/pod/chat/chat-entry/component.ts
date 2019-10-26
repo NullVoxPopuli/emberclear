@@ -12,6 +12,9 @@ import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
 import Channel from 'emberclear/models/channel';
 import Contact from 'emberclear/models/contact';
+import { unicode } from 'emojis';
+
+const EMOJI_REGEX = /:[^:]+:/g;
 
 interface IArgs {
   to: Contact | Channel;
@@ -80,7 +83,11 @@ export default class ChatEntry extends Component<IArgs> {
   @action onInput(event: KeyboardEvent) {
     const value = (event.target as any).value;
 
-    this.text = value;
+    if (EMOJI_REGEX.test(value)) {
+      this.text = unicode(value);
+    } else {
+      this.text = value;
+    }
   }
 
   @action onKeyPress(event: KeyboardEvent) {

@@ -5,6 +5,7 @@ _build
 deps
 *.log
 .idea/
+.DS_Store
 
 packages/keystore.jks
 packages/upload_certificate.pem
