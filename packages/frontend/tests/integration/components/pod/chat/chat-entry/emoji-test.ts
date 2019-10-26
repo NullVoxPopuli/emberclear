@@ -1,25 +1,27 @@
 import { module, test } from 'qunit';
-import { render, fillIn } from '@ember/test-helpers';
+import { render, typeIn } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import { hbs } from 'ember-cli-htmlbars';
 import { getStore } from 'emberclear/tests/helpers';
+import { TestContext } from 'ember-test-helpers';
 
 module('Integration | Component | chat-entry', function(hooks) {
   setupRenderingTest(hooks);
+  
+  hooks.beforeEach(async function(this: TestContext) {
+    const store = getStore();
+    const testContact = store.createRecord('contact', { name: 'test' });
+    this.set('testContact', testContact);
+    await render(hbs`<Pod::Chat::ChatEntry @to={{this.testContact}} />`);
+  });
 
   module('emoji code replacement', function() {
     module('there are no emoji codes to replace', function() {
       test('result does not contain emoji', async function(assert) {
         assert.expect(1);
 
-        const store = getStore();
-        const testContact = store.createRecord('contact', { name: 'test' });
-        this.set('testContact', testContact);
-
-        await render(hbs`<Pod::Chat::ChatEntry @to={{this.testContact}} />`);
-
         const testString = 'This is a test string with no emoji codes to replace.';
-        await fillIn('textarea', testString);
+        await typeIn('textarea', testString);
 
         const textArea = this.element.querySelector('textarea')!;
         assert.equal(
@@ -32,14 +34,8 @@ module('Integration | Component | chat-entry', function(hooks) {
       test('emoji codes are not replaced when not between colons', async function(assert) {
         assert.expect(1);
 
-        const store = getStore();
-        const testContact = store.createRecord('contact', { name: 'test' });
-        this.set('testContact', testContact);
-
-        await render(hbs`<Pod::Chat::ChatEntry @to={{this.testContact}} />`);
-
         const testString = 'scream smile heartheart heart wave';
-        await fillIn('textarea', testString);
+        await typeIn('textarea', testString);
 
         const textArea = this.element.querySelector('textarea')!;
         assert.equal(
@@ -54,12 +50,6 @@ module('Integration | Component | chat-entry', function(hooks) {
       test('result contains emoji', async function(assert) {
         assert.expect(1);
 
-        const store = getStore();
-        let testContact = store.createRecord('contact', { name: 'test' });
-        this.set('testContact', testContact);
-
-        await render(hbs`<Pod::Chat::ChatEntry @to={{this.testContact}} />`);
-
         const testString = `
           This is a test string with emoji codes to replace. :smile:
           The quick :b:rown fox jumps over the lazy dog.
@@ -67,7 +57,7 @@ module('Integration | Component | chat-entry', function(hooks) {
           ¡:b::a::m:!
         `;
 
-        await fillIn('textarea', testString);
+        await typeIn('textarea', testString);
 
         const textArea = this.element.querySelector('textarea')!;
         const expectedString = `
@@ -82,6 +72,19 @@ module('Integration | Component | chat-entry', function(hooks) {
           expectedString,
           'string with emoji codes should be modified correctly'
         );
+      });
+
+      test('there are multiple transformations of text', async function(assert) {
+        assert.expect(2);
+        const textArea = this.element.querySelector('textarea')!;
+
+        const firstTestString = 'A :dog:';
+        await typeIn('textarea', firstTestString);
+        assert.equal(textArea.value, 'A 🐶');
+        
+        const secondTestString = ' and a :cat: napped.';
+        await typeIn('textarea', secondTestString);
+        assert.equal(textArea.value, 'A 🐶 and a 🐱 napped.');
       });
     });
   });
