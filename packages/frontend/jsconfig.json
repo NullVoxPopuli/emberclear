@@ -4,10 +4,10 @@
   },
   "exclude":[
     "node_modules",
-      "bower_components",
-      "tmp",
-      "vendor",
-      ".git",
-      "dist"
+    "bower_components",
+    "tmp",
+    "vendor",
+    ".git",
+    "dist"
   ]
 }
