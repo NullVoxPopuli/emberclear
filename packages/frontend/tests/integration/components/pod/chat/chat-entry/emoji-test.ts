@@ -29,25 +29,25 @@ module('Integration | Component | chat-entry', function(hooks) {
         );
       });
 
-      // test('emoji codes are not replaced when not between colons', async function(assert) {
-      //   assert.expect(1);
+      test('emoji codes are not replaced when not between colons', async function(assert) {
+        assert.expect(1);
         
-      //   const store = getStore();
-      //   const testContact = store.createRecord('contact', {name: 'test'});
-      //   this.set('testContact', testContact);
+        const store = getStore();
+        const testContact = store.createRecord('contact', {name: 'test'});
+        this.set('testContact', testContact);
         
-      //   await render(hbs`<Pod::Chat::ChatEntry @to={{this.testContact}} />`);
+        await render(hbs`<Pod::Chat::ChatEntry @to={{this.testContact}} />`);
 
-      //   const testString = 'scream smile heartheart heart wave';
-      //   fillIn('textarea', testString);
+        const testString = 'scream smile heartheart heart wave';
+        await fillIn('textarea', testString);
 
-      //   const textArea = this.element.querySelector('textarea')!;
-      //   assert.equal(
-      //     textArea.value,
-      //     testString,
-      //     'emoji codes that are not between colons should not be replaced'
-      //   );
-      // });
+        const textArea = this.element.querySelector('textarea')!;
+        assert.equal(
+          textArea.value,
+          testString,
+          'emoji codes that are not between colons should not be replaced'
+        );
+      });
     });
 
     module('there are emoji codes to replace', function() {
@@ -67,7 +67,7 @@ module('Integration | Component | chat-entry', function(hooks) {
           ¡:b::a::m:!
         `;
 
-        fillIn('textarea', testString);
+        await fillIn('textarea', testString);
 
         const textArea = this.element.querySelector('textarea')!;
         const expectedString = `
