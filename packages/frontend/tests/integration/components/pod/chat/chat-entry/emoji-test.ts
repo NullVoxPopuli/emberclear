@@ -7,7 +7,7 @@ import { TestContext } from 'ember-test-helpers';
 
 module('Integration | Component | chat-entry', function(hooks) {
   setupRenderingTest(hooks);
-  
+
   hooks.beforeEach(async function(this: TestContext) {
     const store = getStore();
     const testContact = store.createRecord('contact', { name: 'test' });
@@ -81,7 +81,7 @@ module('Integration | Component | chat-entry', function(hooks) {
         const firstTestString = 'A :dog:';
         await typeIn('textarea', firstTestString);
         assert.equal(textArea.value, 'A 🐶');
-        
+
         const secondTestString = ' and a :cat: napped.';
         await typeIn('textarea', secondTestString);
         assert.equal(textArea.value, 'A 🐶 and a 🐱 napped.');
