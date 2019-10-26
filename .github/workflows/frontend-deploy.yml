@@ -28,6 +28,7 @@ jobs:
     - name: Test
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         COVERAGE: true
       run: |
