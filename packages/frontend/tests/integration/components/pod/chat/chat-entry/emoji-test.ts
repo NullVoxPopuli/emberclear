@@ -13,9 +13,9 @@ module('Integration | Component | chat-entry', function(hooks) {
         assert.expect(1);
 
         const store = getStore();
-        const testContact = store.createRecord('contact', {name: 'test'});
+        const testContact = store.createRecord('contact', { name: 'test' });
         this.set('testContact', testContact);
-        
+
         await render(hbs`<Pod::Chat::ChatEntry @to={{this.testContact}} />`);
 
         const testString = 'This is a test string with no emoji codes to replace.';
@@ -31,11 +31,11 @@ module('Integration | Component | chat-entry', function(hooks) {
 
       test('emoji codes are not replaced when not between colons', async function(assert) {
         assert.expect(1);
-        
+
         const store = getStore();
-        const testContact = store.createRecord('contact', {name: 'test'});
+        const testContact = store.createRecord('contact', { name: 'test' });
         this.set('testContact', testContact);
-        
+
         await render(hbs`<Pod::Chat::ChatEntry @to={{this.testContact}} />`);
 
         const testString = 'scream smile heartheart heart wave';
@@ -53,11 +53,11 @@ module('Integration | Component | chat-entry', function(hooks) {
     module('there are emoji codes to replace', function() {
       test('result contains emoji', async function(assert) {
         assert.expect(1);
-        
+
         const store = getStore();
-        let testContact = store.createRecord('contact', {name: 'test'});
+        let testContact = store.createRecord('contact', { name: 'test' });
         this.set('testContact', testContact);
-        
+
         await render(hbs`<Pod::Chat::ChatEntry @to={{this.testContact}} />`);
 
         const testString = `
