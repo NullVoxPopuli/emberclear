@@ -16,3 +16,5 @@ time yarn test
 ./cc-test-reporter upload-coverage \
   --debug \
   --input ./coverage/coverage.json
+
+yarn codecov
