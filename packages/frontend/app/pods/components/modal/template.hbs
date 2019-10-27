@@ -2,19 +2,25 @@
 
 <div
   ...attributes
+  data-test-modal
   aria-modal
   aria-hidden={{not @isActive}}
   class='modal {{if @isActive 'is-active'}}'
 >
 
-  <div class='modal-content'>
+  <div
+    data-test-modal-content
+    class='modal-content'
+  >
     {{#if @isActive}}
       {{yield}}
     {{/if}}
   </div>
 
 
-  <Backdrop @isActive={{true}} @onClick={{@close}} />
+  <Backdrop
+    data-test-modal-backdrop
+    @isActive={{true}} @onClick={{@close}} />
 
 </div>
 

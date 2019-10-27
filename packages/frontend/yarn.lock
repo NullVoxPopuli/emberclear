@@ -11872,6 +11872,11 @@ quick-temp@^0.1.2, quick-temp@^0.1.3, quick-temp@^0.1.5, quick-temp@^0.1.8:
     rimraf "^2.5.4"
     underscore.string "~3.3.4"
 
+qunit-assertions-extra@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.npmjs.org/qunit-assertions-extra/-/qunit-assertions-extra-0.8.0.tgz#d770e96d0b9345f50a646f927d32b3a104fe04f8"
+  integrity sha512-xOfofCUHS2S16oOuJgn6kE8QukDpc4Yl3cbfKBvnNKyIUBEeXq0UtzZ1uPTYZP53bOa6NnFYqh3cnEBboxY5eg==
+
 qunit-dom@^0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/qunit-dom/-/qunit-dom-0.9.1.tgz#d861ff8d2402cc7844874a37df85940d62bfbbdf"

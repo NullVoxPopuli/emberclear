@@ -60,6 +60,8 @@ export default class SearchModal extends Component<IArgs> {
 
     this.contactResults = contactResults.slice(0, MAX_RESULTS);
     this.channelResults = channelResults.slice(0, MAX_RESULTS);
-  }).keepLatest())
+  })
+    .keepLatest()
+    .withTestWaiter())
   search!: Task;
 }

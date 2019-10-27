@@ -1,4 +1,5 @@
 <Modal
+  data-test-search-modal
   @isActive={{@isActive}}
   @close={{@close}}
   role='search'>
@@ -23,38 +24,46 @@
     {{else}}
       <span class='section-title'>{{t 'ui.search.contacts'}}</span>
 
-      {{#each this.contactResults as |identity|}}
-        <div tablist>
-          <Search::Result @to='chat.privately-with' @id={{identity.uid}} @afterSelect={{action @close}}>
+      <div tablist data-test-contacts-results>
+        {{#each this.contactResults as |identity|}}
+          <Search::Result
+            @to='chat.privately-with'
+            @id={{identity.uid}}
+            @afterSelect={{@close}}
+          >
             <span>
-              @ <strong class='has-text-link'>{{identity.name}}</strong>
+              @ <strong>{{identity.name}}</strong>
             </span>
-            <span class='has-text-grey'>
+            <span>
               {{first-8 identity.uid}}
             </span>
           </Search::Result>
-        </div>
-      {{else}}
-        <span class='no-results'>{{t 'ui.search.noContacts'}}</span>
-      {{/each}}
+        {{else}}
+          <span class='no-results'>{{t 'ui.search.noContacts'}}</span>
+        {{/each}}
+      </div>
 
       <br>
       <span class='section-title'>{{t 'ui.search.channels'}}</span>
 
-      {{#each this.channelResults as |channel|}}
-        <div tablist>
-          <Search::Result @to='chat.in-channel' @id={{channel.id}} @afterSelect={{action @close}}>
+      <div tablist data-test-channels-results>
+        {{#each this.channelResults as |channel|}}
+          <Search::Result
+            @to='chat.in-channel'
+            @id={{channel.id}}
+            @afterSelect={{@close}}
+          >
             <span>
-              # <strong class='has-text-link'>{{channel.name}}</strong>
+              # <strong>{{channel.name}}</strong>
             </span>
-            <span class='has-text-grey'>
+            <span>
               {{first-8 channel.id}}
             </span>
           </Search::Result>
-        </div>
-      {{else}}
-        <span class='no-results'>{{t 'ui.search.noChannels'}}</span>
-      {{/each}}
+        {{else}}
+          <span class='no-results'>{{t 'ui.search.noChannels'}}</span>
+        {{/each}}
+      </div>
     {{/if}}
   </div>
 

@@ -9,9 +9,11 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   assertExternal,
+  getStore,
 } from 'emberclear/tests/helpers';
 
 import { page } from 'emberclear/pods/components/pod/application/top-nav/user-drop-menu/-page';
+import { page as logoutPage } from 'emberclear/tests/helpers/pages/logout';
 
 module('Acceptance | Logout', function(hooks) {
   setupApplicationTest(hooks);
@@ -37,6 +39,7 @@ module('Acceptance | Logout', function(hooks) {
 
   module('When logged in', function(hooks) {
     setupCurrentUser(hooks);
+    setupRelayConnectionMocks(hooks);
 
     hooks.beforeEach(async function() {
       await visit('/');
@@ -55,6 +58,24 @@ module('Acceptance | Logout', function(hooks) {
         test('navigates to the logout warning page', function(assert) {
           assert.equal(currentURL(), '/logout');
           assertExternal(assert as any);
+        });
+
+        module('confirm logout', function(hooks) {
+          hooks.beforeEach(async function() {
+            await logoutPage.confirmLogout();
+          });
+
+          test('the user is logged out', function(assert) {
+            let store = getStore();
+
+            assert.equal(currentURL(), '/');
+
+            assert.equal(store.peekAll('user').length, 0);
+            assert.equal(store.peekAll('contact').length, 0);
+            assert.equal(store.peekAll('channel').length, 0);
+            assert.equal(store.peekAll('user').length, 0);
+            assert.equal(store.peekAll('user').length, 0);
+          });
         });
       });
     });

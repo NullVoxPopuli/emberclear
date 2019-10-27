@@ -9,6 +9,8 @@ import {
   clickable,
 } from 'ember-cli-page-object';
 
+import { typeIn } from '@ember/test-helpers';
+
 export const selectors = {
   form: '[data-test-chat-entry-form]',
   textarea: '[data-test-chat-entry]',
@@ -22,6 +24,9 @@ export const page = create({
     scope: '[data-test-chat-entry]',
     isDisabled: is('[disabled]'),
     fillIn: fillable(),
+    typeIn(substring: string) {
+      return typeIn('[data-test-chat-entry]', substring);
+    },
   },
   submitButton: {
     scope: '[data-test-chat-submit]',

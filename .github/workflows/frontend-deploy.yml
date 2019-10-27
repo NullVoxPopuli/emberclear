@@ -17,18 +17,12 @@ jobs:
       with:
         node-version: '10.x'
     - name: Install
-      env:
-        CC_URL: https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
       run: |
         cd packages/frontend
         yarn install
-        curl -L $CC_URL > ./cc-test-reporter
-        chmod +x ./cc-test-reporter
 
     - name: Test
       env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       run: |
         cd packages/frontend
