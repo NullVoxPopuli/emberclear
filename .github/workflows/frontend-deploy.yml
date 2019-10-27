@@ -77,9 +77,9 @@ jobs:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_CLI_VERSION: 0.4.0
       run: |
-        mv packages/frontend/coverage packages/frontend/public/
         time ./run yarn analyze
         time ./run yarn build:production
+        mv packages/frontend/coverage packages/frontend/dist/
         time ./scripts/publish
 
     - name: Upload Built Asset Artifacts
