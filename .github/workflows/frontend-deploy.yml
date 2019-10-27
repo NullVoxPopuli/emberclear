@@ -87,24 +87,6 @@ jobs:
         name: frontend-assets
         path: packages/frontend/dist/
 
-  tests_e2e:
-    name: E2E Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    needs:
-    - deploy
-
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Test
-      run: |
-        cd packages/smoke-tests \
-        && yarn \
-        && yarn test --headless
-
   deploy_docker:
     name: Deploy Docker Image
     runs-on: ubuntu-latest
@@ -128,6 +110,25 @@ jobs:
         snapshot: true
         workdir: packages/frontend
         dockerfile: Dockerfile.release
+
+  tests_e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs:
+    - deploy
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Test
+      run: |
+        cd packages/smoke-tests \
+        && yarn \
+        && yarn test --headless
+
 
 # Deploy via Script (requires docker environment on VM)
 #     - uses: actions/docker/cli@master
