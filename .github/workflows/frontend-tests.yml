@@ -41,6 +41,12 @@ jobs:
 
         ./scripts/test-with-coverage.sh
 
+    - name: Upload Coverage to Coveralls
+      uses: coverallsapp/github-action@v1.0.1
+      with:
+        github-token: ${{ secrets.github_token }}
+        path-to-lcov: ./packages/frontend/coverage/lcov.info
+
   bundle_analysis:
     name: Bundle Analysis
     runs-on: ubuntu-latest
