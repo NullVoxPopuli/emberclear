@@ -33,7 +33,6 @@ jobs:
     - name: Test
       env:
         CI_BROWSER: ${{ matrix.ci_browser }}
-        COVERAGE: true
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: |
