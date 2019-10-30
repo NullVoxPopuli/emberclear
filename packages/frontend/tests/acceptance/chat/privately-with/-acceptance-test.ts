@@ -46,6 +46,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
       test('document.title is properly changed', async function(assert) {
         assert.notEqual(document.title, 'emberclear');
+        assert.ok(document.title.startsWith('0 | emberclear | '));
       });
     });
 
