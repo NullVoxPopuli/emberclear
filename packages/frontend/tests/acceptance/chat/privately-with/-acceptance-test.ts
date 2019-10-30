@@ -23,21 +23,20 @@ module('Acceptance | Chat | Privately With', function(hooks) {
   clearLocalStorage(hooks);
 
   module('is not logged in', function(hooks) {
-
     hooks.beforeEach(async function() {
       await visit('/chat/privately-with');
       QUnit.config.altertitle = false;
     });
 
     test('document.title is unchanged', async function(assert) {      
-      assert.equal(document.title, "emberclear");
+      assert.equal(document.title, 'emberclear');
     });
   });
 
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);
 
-    module('anyone', async function(hooks){
+    module('anyone', async function(hooks) {
       setupRelayConnectionMocks(hooks);
 
       hooks.beforeEach(async function() {
@@ -46,7 +45,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       });
 
       test('document.title is properly changed', async function(assert) {
-        assert.notEqual(document.title, "emberclear");
+        assert.notEqual(document.title, 'emberclear');
       });
     });
 
