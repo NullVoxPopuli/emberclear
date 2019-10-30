@@ -41,27 +41,21 @@ export default class SidebarContact extends Component<IArgs> {
   get shouldBeRendered() {
     const { contact } = this.args;
 
-    if (contact.id === currentUserId) {
-      return true;
-    }
+    return 
+      // always show your own chat
+      (contact.id === currentUserId)
 
-    // always show if online
-    if (contact.onlineStatus !== STATUS.OFFLINE) {
-      return true;
-    }
+      // always show if online
+      ||  (contact.onlineStatus !== STATUS.OFFLINE)
 
-    // always show if there are unread messages
-    if (this.hasUnread) {
-      return true;
-    }
+      // always show if there are unread messages 
+      ||  (this.hasUnread)
 
-    // always show if currently viewing the chat
-    if (this.isActive) {
-      return true;
-    }
+      // always show if currently viewing the chat
+      ||  (this.isActive)
 
-    // do not show offline contacts if configured that way
-    return !this.hideOfflineContacts;
+      // do not show offline contacts if configured that way
+      ||  (!this.hideOfflineContacts);
   }
 
   get hasUnread() {
