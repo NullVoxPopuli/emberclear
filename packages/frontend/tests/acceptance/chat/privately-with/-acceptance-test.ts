@@ -17,6 +17,7 @@ import { createContact } from 'emberclear/tests/helpers/factories/contact-factor
 import Contact from 'emberclear/models/contact';
 import { waitUntil } from '@ember/test-helpers';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
+import { assert } from '@ember/debug';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
@@ -29,9 +30,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
     });
 
     test('document.title is unchanged', async function(assert) {
-      const titleBefore = document.title.toString();
-      await settled();
-      assert.equal(document.title, titleBefore);
+      assert.equal(document.title, "emberclear");
     });
   });
 
@@ -39,10 +38,9 @@ module('Acceptance | Chat | Privately With', function(hooks) {
     setupCurrentUser(hooks);
 
     test('document.title is properly changed', async function(assert) {
-      await visit('/chat/privately-with')
-      const titleBefore = document.title.toString();
-      await settled();
-      assert.notEqual(document.title, titleBefore);
+      setupRelayConnectionMocks(hooks);
+      await visit('/chat/privately-with');
+      assert.notEqual(document.title, "emberclear");
     });
 
     module('yourself', function(hooks) {
