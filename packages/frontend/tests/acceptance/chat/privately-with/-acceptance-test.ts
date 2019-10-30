@@ -22,6 +22,14 @@ module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
 
+  module('is not logged in', function(hooks) {
+    test('document.title is unchanged', async function(assert){
+      var titleBefore = document.title;
+      await settled();
+      assert.equal(document.title, titleBefore);
+    });
+  });
+
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);
 
