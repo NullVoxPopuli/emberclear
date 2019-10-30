@@ -55,6 +55,11 @@ export default class SidebarContact extends Component<IArgs> {
       return true;
     }
 
+    // always show if currently viewing the chat
+    if (this.isActive) {
+      return true;
+    }
+
     // do not show offline contacts if configured that way
     return !this.hideOfflineContacts;
   }
