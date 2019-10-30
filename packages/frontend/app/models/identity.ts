@@ -1,8 +1,6 @@
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 const { attr } = DS;
-import { computed } from '@ember/object';
-import { reads } from '@ember/object/computed';
 import { toHex } from 'emberclear/utils/string-encoding';
 
 export interface PublicKey {
@@ -13,14 +11,14 @@ export default class Identity extends Model implements Partial<PublicKey> {
   @attr() name!: string;
   @attr() publicKey!: Uint8Array;
 
-  @reads('publicKeyAsHex') uid!: string;
-
-  @computed('publicKey')
   get publicKeyAsHex() {
     return toHex(this.publicKey);
   }
 
-  @computed('name', 'publicKeyAsHex')
+  get uid() {
+    return this.publicKeyAsHex;
+  }
+
   get displayName() {
     const name = this.name;
     const shortKey = this.publicKeyAsHex.substring(0, 8);

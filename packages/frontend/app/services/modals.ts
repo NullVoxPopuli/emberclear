@@ -14,40 +14,44 @@ class ModalState {
     this.name = args.name;
     this.isActive = args.isActive;
   }
+
+  open() {
+    this.isActive = true;
+  }
+
+  close() {
+    this.isActive = false;
+  }
+
+  toggle() {
+    this.isActive = !this.isActive;
+  }
 }
 
 export default class Modals extends Service {
   @tracked modals: ModalState[] = [];
 
   toggle(name: string) {
-    const modal = this.find(name);
-
-    modal.isActive = !modal.isActive;
+    this.find(name).toggle();
   }
 
   close(name: string) {
-    const modal = this.find(name);
-
-    modal.isActive = false;
+    this.find(name).close();
   }
 
   open(name: string) {
-    const modal = this.find(name);
-
-    modal.isActive = true;
+    this.find(name).open();
   }
 
   isVisible(name: string) {
-    const modal = this.find(name);
-
-    return modal.isActive;
+    return this.find(name).isActive;
   }
 
   find(name: string) {
-    const modal = this.modals.find(m => m.name === name);
+    let modal = this.modals.find(m => m.name === name);
 
     if (!modal) {
-      const newModal = new ModalState({ name, isActive: false });
+      let newModal = new ModalState({ name, isActive: false });
 
       this.modals.push(newModal);
 

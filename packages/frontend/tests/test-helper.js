@@ -5,6 +5,8 @@ import start from 'ember-exam/test-support/start';
 // import { start } from 'ember-qunit';
 import QUnit from 'qunit';
 
+import 'qunit-assertions-extra';
+
 import {
   hasWASM,
   hasCamera,
@@ -38,26 +40,6 @@ QUnit.begin(async () => {
     WebWorker: ${hasWebWorker()}
   `);
 });
-
-QUnit.assert.contains = function(source, sub, message) {
-  let trimmedSource = source.trim();
-  this.pushResult({
-    result: trimmedSource.includes(sub),
-    actual: trimmedSource,
-    expected: sub,
-    message: message || `expected ${trimmedSource} to contain ${sub}`,
-  });
-};
-
-QUnit.assert.notContains = function(source, sub, message) {
-  let trimmedSource = source.trim();
-  this.pushResult({
-    result: !trimmedSource.includes(sub),
-    actual: trimmedSource,
-    expected: sub,
-    message: message || `expected ${trimmedSource} to not contain ${sub}`,
-  });
-};
 
 setApplication(Application.create(config.APP));
 

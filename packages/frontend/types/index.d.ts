@@ -43,6 +43,8 @@ declare global {
   interface Assert {
     contains: (source?: string | null, sub?: string, message?: string) => void;
     notContains: (source?: string | null, sub?: string, message?: string) => void;
+    matches: (source?: string | null, regex?: RegExp, message?: string) => void;
+    notMatches: (source?: string | null, regex?: RegExp, message?: string) => void;
   }
 
   //////////////////////////////////////////////

@@ -2,6 +2,12 @@ type Options = {
   multiple?: boolean;
 };
 
+type EventOptions = {
+  eventProperties: {
+    keyCode: number;
+  };
+};
+
 export function create(page: object): any;
 export function collection(selector: string, page: object): any;
 export function clickable(selector?: string): any;
@@ -13,3 +19,4 @@ export function is(selector?: string): boolean;
 export function property(selectorOrProperty?: string, selector?: string): string;
 export function hasClass(className: string): boolean;
 export function isPresent(selector?: string): boolean;
+export function triggerable(keyEvent: string, selector?: string, options?: EventOptions): any;

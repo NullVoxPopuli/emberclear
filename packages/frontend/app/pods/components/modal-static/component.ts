@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { reads } from '@ember/object/computed';
 
 import Modals from 'emberclear/services/modals';
 
@@ -17,7 +16,7 @@ export default class ModalStatic extends Component<IArgs> {
   constructor(owner: any, args: any) {
     super(owner, args);
 
-    const { initiallyActive, name } = this.args;
+    let { initiallyActive, name } = this.args;
 
     if (initiallyActive) {
       this.modals.open(name);
@@ -28,7 +27,9 @@ export default class ModalStatic extends Component<IArgs> {
     return this.modals.find(this.args.name);
   }
 
-  @reads('modal.isActive') isActive!: boolean;
+  get isActive() {
+    return this.modal.isActive;
+  }
 
   @action
   toggle() {
