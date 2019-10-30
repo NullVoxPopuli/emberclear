@@ -23,8 +23,13 @@ module('Acceptance | Chat | Privately With', function(hooks) {
   clearLocalStorage(hooks);
 
   module('is not logged in', function(hooks) {
-    test('document.title is unchanged', async function(assert){
-      var titleBefore = document.title;
+
+    hooks.beforeEach(async function() {
+      await visit('/chat/privately-with');
+    });
+
+    test('document.title is unchanged', async function(assert) {
+      const titleBefore = document.title.toString();
       await settled();
       assert.equal(document.title, titleBefore);
     });
@@ -32,6 +37,13 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);
+
+    test('document.title is properly changed', async function(assert) {
+      await visit('/chat/privately-with')
+      const titleBefore = document.title.toString();
+      await settled();
+      assert.notEqual(document.title, titleBefore);
+    });
 
     module('yourself', function(hooks) {
       setupRelayConnectionMocks(hooks);
