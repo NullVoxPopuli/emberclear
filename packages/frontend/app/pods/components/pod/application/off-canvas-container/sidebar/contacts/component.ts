@@ -25,13 +25,11 @@ export default class ContactsSidebar extends Component<IArgs> {
   }
 
   get contacts() {
+    const sortedContacts = this.allContacts.sort(compareFunction);
     if (!this.hideOfflineContacts) {
-      return this.allContacts;
+      return sortedContacts;
     }
-
-    return this.allContacts.filter(contact => {
-      return contact.onlineStatus !== STATUS.OFFLINE;
-    });
+    return sortedContacts.filter(shouldBeInSidebar);
   }
 
   get hideOfflineContacts() {
@@ -39,7 +37,7 @@ export default class ContactsSidebar extends Component<IArgs> {
   }
 
   get offlineContacts() {
-    return this.allContacts.filter(contact => contact.onlineStatus === STATUS.OFFLINE);
+    return this.allContacts.filter(contact => !shouldBeInSidebar(contact));
   }
 
   get numberOffline() {
@@ -58,3 +56,16 @@ export default class ContactsSidebar extends Component<IArgs> {
     this.router.transitionTo('add-friend');
   }
 }
+
+const compareFunction = function(contact1: Contact, contact2: Contact) {
+  if (contact1.isPinned === contact2.isPinned) {
+    return 0;
+  } else if (contact1.isPinned) {
+    return -1;
+  }
+  return 1;
+};
+
+const shouldBeInSidebar = function(contact: Contact) {
+  return contact.onlineStatus !== STATUS.OFFLINE || contact.isPinned;
+};

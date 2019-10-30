@@ -1,23 +1,32 @@
 {{#if this.shouldBeRendered}}
-  <a
-    data-test-contact-row
-    href={{url-for 'chat.privately-with' @contact.id}}
-    {{did-insert (perform this.findRelevantMessages)}}
-    {{on 'click' (prevent-default this.onClick)}}
-    class={{if this.isActive 'is-active'}}
-  >
-    <span data-test-contact-name>
-      <StatusIcon @contact={{@contact}} />
-      <span>{{or @contact.name '[unnamed]'}}</span>
-    </span>
-
-    {{#if this.hasUnread}}
-      <span
-        {{unread-messages-intersection-observer}}
-        class='badge badge-danger'
-      >
-        {{this.numberUnread}}
+  <div class='contact-grid'>
+    <a
+      data-test-contact-row
+      href={{url-for 'chat.privately-with' @contact.id}}
+      {{did-insert (perform this.findRelevantMessages)}}
+      {{on 'click' (prevent-default this.onClick)}}
+      class='contact-display {{if this.isActive 'is-active'}}'
+    >
+      <span data-test-contact-name>
+        <StatusIcon @contact={{@contact}} />
+        <span>{{or @contact.name '[unnamed]'}}</span>
       </span>
+
+      {{#if this.hasUnread}}
+        <span
+          {{unread-messages-intersection-observer}}
+          class='badge badge-danger'
+        >
+          {{this.numberUnread}}
+        </span>
+      {{/if}}
+    </a>
+    {{#if this.canBePinned}}
+      <button class='pin-button'
+        {{on 'click' (prevent-default this.onPin)}}
+      >
+        <FaIcon @icon='thumbtack' class='pin-icon' @rotation={{if this.isPinned 0 90}}/>
+      </button>
     {{/if}}
-  </a>
+  </div>
 {{/if}}

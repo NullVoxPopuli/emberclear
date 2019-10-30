@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 
-import { visit, currentURL, settled, waitFor, waitUntil } from '@ember/test-helpers';
+import { visit, currentURL, settled, waitFor, waitUntil, click } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -87,6 +87,29 @@ module('Acceptance | Sidebar', function(hooks) {
             const result = page.sidebar.contacts.offlineCount.text;
 
             assert.matches(result, /1/);
+          });
+        });
+
+        module('pinned contacts are to be shown', function(hooks) {
+          // hooks.beforeEach(async function() {
+          //   const store = getStore();
+          //   const contacts = store.peekAll('contact').toArray();
+          //   const contact = contacts.find(item => item.name === 'first contact');
+          //   console.log("contacts: " + contacts);
+          //   console.log("contact name: " + contact.name);
+          //   contact.isPinned = true;
+          // });
+
+          test('both contacts should be shown', async function(assert){
+            const store = getStore(); 
+            const contacts = store.peekAll('contact').toArray();
+            const contact = contacts.find(item => item.name === 'first contact');
+            const pinButton = document.getElementsByClassName('pin-button')[0];
+            await click(pinButton);
+            const content = page.sidebar.contacts.listText;
+            // console.log("content: " + content);
+            // assert.ok(content.includes(contact.name), 'other user name is present');
+            // assert.equal(page.sidebar.contacts.list.length, 2, 'two users in the contacts list');
           });
         });
       });

@@ -1,0 +1,19 @@
+div.contact-grid {
+    display: grid;
+    grid-template-areas: 'contact pin';
+}
+
+a.contact-display{
+    grid-area: contact;
+}   
+
+button.pin-button{
+    background-color: transparent; 
+    border: none;
+    grid-area: pin;
+    text-align: right;
+}
+
+.pin-icon{
+    color: black;
+}

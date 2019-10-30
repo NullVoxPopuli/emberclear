@@ -32,6 +32,12 @@ export default class SidebarContact extends Component<IArgs> {
 
   @reads('settings.hideOfflineContacts') hideOfflineContacts!: boolean;
 
+  get isPinned() {
+    const { contact } = this.args;
+
+    return contact.isPinned;
+  }
+
   get isActive() {
     const { contact } = this.args;
 
@@ -41,20 +47,19 @@ export default class SidebarContact extends Component<IArgs> {
   get shouldBeRendered() {
     const { contact } = this.args;
 
-    if (contact.id === currentUserId) {
+    let shouldRender =
+      contact.id === currentUserId ||
+      // always show if online
+      contact.onlineStatus !== STATUS.OFFLINE ||
+      // always show if there are unread messages
+      this.hasUnread ||
+      // always show if contact is pinned
+      this.isPinned;
+
+    if (shouldRender) {
       return true;
     }
-
-    // always show if online
-    if (contact.onlineStatus !== STATUS.OFFLINE) {
-      return true;
-    }
-
-    // always show if there are unread messages
-    if (this.hasUnread) {
-      return true;
-    }
-
+    
     // do not show offline contacts if configured that way
     return !this.hideOfflineContacts;
   }
@@ -84,5 +89,17 @@ export default class SidebarContact extends Component<IArgs> {
     }
 
     this.router.transitionTo('chat.privately-with', this.args.contact.id);
+  }
+
+  @action onPin() {
+    const { contact } = this.args;
+    contact.set('isPinned', !contact.isPinned);
+    contact.save();
+  }
+
+  get canBePinned() {
+    const { contact } = this.args;
+    // can't pin your own chat
+    return contact.id !== currentUserId;
   }
 }
