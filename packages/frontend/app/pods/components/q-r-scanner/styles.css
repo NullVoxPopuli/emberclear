@@ -1,1 +1,19 @@
+[data-test-qr-scanner] {
+  & [data-test-error] {
+    @apply --grid;
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    margin: 0 auto;
 
+    & span {
+      align-self: center;
+      justify-self: center;
+    }
+  }
+
+  .loader {
+    width: 250px;
+    height: 250px;
+  }
+}
