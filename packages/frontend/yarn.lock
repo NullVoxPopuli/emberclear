@@ -6295,10 +6295,9 @@ ember-load-initializers@2.1.0:
     ember-cli-babel "^7.10.0"
     ember-cli-typescript "^2.0.0"
 
-ember-localforage-adapter@^3.0.0-beta4:
+"ember-localforage-adapter@github:NullVoxPopuli/ember-localforage-adapter#9423bebe9c72efce0a6c1bbf478e8af8d140b165":
   version "3.0.0-beta4"
-  resolved "https://registry.yarnpkg.com/ember-localforage-adapter/-/ember-localforage-adapter-3.0.0-beta4.tgz#29082de92bbe9c26b58489b52868fde4593c7de1"
-  integrity sha512-cTrWGY2KHPfQ6LHnsqt/Cjv6k6H9ST12OuJBLkIIzVHDcpaaqbYajNwtSn6YpPQQagQBlkcxxUoaRXcQdUNA+w==
+  resolved "https://codeload.github.com/NullVoxPopuli/ember-localforage-adapter/tar.gz/9423bebe9c72efce0a6c1bbf478e8af8d140b165"
   dependencies:
     ember-cli-babel "^6.16.0"
     ember-uuid "^1.0.1"

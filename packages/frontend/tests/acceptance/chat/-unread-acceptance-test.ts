@@ -1,4 +1,3 @@
-import StoreService from 'ember-data/store';
 import { module, test, skip } from 'qunit';
 import { visit, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';

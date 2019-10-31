@@ -1,5 +1,3 @@
-import StoreService from 'ember-data/store';
-
 import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
 import { toHex } from 'emberclear/utils/string-encoding';
 
