@@ -47,7 +47,7 @@ module('Acceptance | Setup', function(hooks) {
         });
 
         test('redirect to main setup', function(assert) {
-          assert.equal(currentURL(), '/setup');
+          assert.equal(currentURL(), '/setup/new');
         });
       });
     });
