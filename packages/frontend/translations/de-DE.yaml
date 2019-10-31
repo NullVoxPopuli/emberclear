@@ -26,6 +26,8 @@ errors:
     title: Nicht gefunden
     help: Die URL konnte nicht aufgerufen werden. Wenn das Problem weiterhin besteht,
     link: öffnen Sie bitte ein Problem.
+  permissions:
+    enableCamera: You may need to allow this site access to your camera.
 buttons:
   delete: Löschen
   resend: Erneut senden
