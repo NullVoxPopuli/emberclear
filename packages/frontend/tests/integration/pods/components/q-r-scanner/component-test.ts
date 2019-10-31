@@ -22,7 +22,7 @@ module('Integration | Component | q-r-scanner', function(hooks) {
   });
 
   test('it renders', async function(assert) {
-    let intl = getService<Intl>('intl');
+    let intl = getService<any>('intl');
 
     this.setProperties({
       onScan: () => undefined,
