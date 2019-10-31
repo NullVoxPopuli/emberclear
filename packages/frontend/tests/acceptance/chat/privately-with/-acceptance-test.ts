@@ -24,11 +24,11 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
   module('is not logged in', function(hooks) {
     hooks.beforeEach(async function() {
-      await visit('/chat/privately-with');
       QUnit.config.altertitle = false;
+      await visit('/chat/privately-with');      
     });
 
-    test('document.title is unchanged', async function(assert) {      
+    test('document.title is unchanged', async function(assert) {
       assert.equal(document.title, 'emberclear');
     });
   });
@@ -40,8 +40,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       setupRelayConnectionMocks(hooks);
 
       hooks.beforeEach(async function() {
-        await visit('/chat/privately-with');
         QUnit.config.altertitle = false;
+        await visit('/chat/privately-with');
       });
 
       test('document.title is properly changed', async function(assert) {
