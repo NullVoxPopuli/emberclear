@@ -1,25 +1,18 @@
-import { create, clickable, fillable } from 'ember-cli-page-object';
+import { click, fillIn } from '@ember/test-helpers';
 
-export const nameForm = create({
-  scope: '[data-test-name-form]',
-  clickNext: clickable('[data-test-next]'),
-  enterName: fillable(`[data-test-name-field]`),
-});
+const form = '[data-test-name-form]';
 
-export const completedPage = create({
+export const nameForm = {
+  clickNext: () => click(`${form} [data-test-next]`),
+  enterName: (text: string) => fillIn(`${form} [data-test-name-field]`, text),
+};
+
+export const completedPage = {
   selectors: {
     mnemonic: '[data-test-setup-mnemonic]',
   },
-  mnemonic: {
-    scope: '[data-test-setup-mnemonic]',
-  },
-  clickNext: clickable(`[data-test-next]`),
-});
-
-export const overwritePage = create({
-  confirm: clickable('[data-test-overwrite-confirm]'),
-  abort: clickable('[data-test-overwrite-abort]'),
-});
+  clickNext: () => click(`[data-test-next]`),
+};
 
 export default {
   nameForm,

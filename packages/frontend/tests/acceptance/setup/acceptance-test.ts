@@ -3,7 +3,7 @@ import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
-import { nameForm, overwritePage } from 'emberclear/tests/helpers/pages/setup';
+import { nameForm } from 'emberclear/tests/helpers/pages/setup';
 
 import {
   clearLocalStorage,
@@ -29,26 +29,6 @@ module('Acceptance | Setup', function(hooks) {
 
       test('redirects to warning', function(assert) {
         assert.equal(currentURL(), '/setup/overwrite');
-      });
-
-      module('desires to navigate away', function(hooks) {
-        hooks.beforeEach(async function() {
-          await overwritePage.abort();
-        });
-
-        test('redirect to root', function(assert) {
-          assert.equal(currentURL(), '/');
-        });
-      });
-
-      module('confirms re-setup', function(hooks) {
-        hooks.beforeEach(async function() {
-          await overwritePage.confirm();
-        });
-
-        test('redirect to main setup', function(assert) {
-          assert.equal(currentURL(), '/setup/new');
-        });
       });
     });
   });
