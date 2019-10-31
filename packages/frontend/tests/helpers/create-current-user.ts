@@ -1,6 +1,5 @@
 import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
 
-import CurrentUserService from 'emberclear/services/current-user';
 import User from 'emberclear/models/user';
 
 import { getService } from './get-service';
@@ -8,7 +7,7 @@ import { getStore } from './get-store';
 
 export async function createCurrentUser(): Promise<User> {
   const store = getStore();
-  const currentUserService = getService<CurrentUserService>('currentUser');
+  const currentUserService = getService('currentUser');
 
   const { publicKey, privateKey } = await generateAsymmetricKeys();
 

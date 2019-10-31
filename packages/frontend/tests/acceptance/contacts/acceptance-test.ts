@@ -10,8 +10,6 @@ import {
   getService,
 } from 'emberclear/tests/helpers';
 
-import CurrentUserService from 'emberclear/services/current-user';
-
 import { contacts } from 'emberclear/tests/helpers/pages/contacts';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import User from 'emberclear/models/user';
@@ -45,7 +43,7 @@ module('Acceptance | Contacts', function(hooks) {
       let me: User;
 
       hooks.beforeEach(async function() {
-        me = getService<CurrentUserService>('currentUser').record!;
+        me = getService('currentUser').record!;
 
         await createContact('First Contact');
         await createContact('Second Contact');

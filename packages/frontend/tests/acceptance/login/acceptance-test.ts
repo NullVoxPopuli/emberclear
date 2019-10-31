@@ -110,7 +110,7 @@ module('Acceptance | Login', function(hooks) {
         });
 
         test('sets the "me" user', function(assert) {
-          const store = getService<DS.Store>('store');
+          const store = getService('store');
           const known = store.peekAll('user');
 
           assert.equal(known.length, 1);

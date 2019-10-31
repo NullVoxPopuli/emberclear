@@ -34,7 +34,7 @@ module('Acceptance | Chat', function(hooks) {
 
     module('Has unread messages', function(hooks) {
       hooks.beforeEach(async function() {
-        const store = getService<StoreService>('store');
+        const store = getService('store');
         const record = store.createRecord('message', {
           target: 'whatever',
           type: 'not ping',

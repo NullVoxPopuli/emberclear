@@ -1,7 +1,6 @@
 import { module, test } from 'qunit';
 import { visit, currentURL, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import StoreService from 'ember-data/store';
 
 import {
   clearLocalStorage,
@@ -37,7 +36,7 @@ module('Acceptance | Settings | Relays', function(hooks) {
     setupCurrentUser(hooks);
 
     hooks.beforeEach(async function() {
-      const store = getService<StoreService>('store');
+      const store = getService('store');
 
       await store.createRecord('relay', defaultRelays[0]).save();
       await store.createRecord('relay', defaultRelays[1]).save();

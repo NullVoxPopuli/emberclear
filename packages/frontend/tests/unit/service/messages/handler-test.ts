@@ -11,10 +11,8 @@ import {
 } from 'emberclear/tests/helpers';
 
 import { TYPE, TARGET } from 'emberclear/models/message';
-import CurrentUserService from 'emberclear/services/current-user';
 
 import { attributesForContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import ReceivedMessageHandler from 'emberclear/services/messages/handler';
 
 module('Unit | Service | messages/handler', function(hooks) {
   setupTest(hooks);
@@ -37,8 +35,8 @@ module('Unit | Service | messages/handler', function(hooks) {
 
       test('the message is saved', async function(assert) {
         const store = getStore();
-        const service = getService<ReceivedMessageHandler>('messages/handler');
-        const me = getService<CurrentUserService>('currentUser');
+        const service = getService('messages/handler');
+        const me = getService('currentUser');
         const sender = await attributesForContact();
 
         const before = await store.findAll('message');

@@ -12,7 +12,6 @@ import {
 
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 
-import CurrentUserService from 'emberclear/services/current-user';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Settings', function(hooks) {
@@ -49,7 +48,7 @@ module('Acceptance | Settings', function(hooks) {
         });
 
         test('the name has changed', function(assert) {
-          const service = getService<CurrentUserService>('currentUser');
+          const service = getService('currentUser');
           const actual = service.name;
 
           assert.equal(actual, newName);

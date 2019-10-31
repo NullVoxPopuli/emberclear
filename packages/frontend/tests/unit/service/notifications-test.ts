@@ -15,8 +15,8 @@ module('Unit | Service | notifications', function(hooks) {
   let windowService!: WindowService;
 
   hooks.beforeEach(function() {
-    service = getService<Notifications>('notifications');
-    windowService = getService<WindowService>('window');
+    service = getService('notifications');
+    windowService = getService('window');
 
     windowService.Notification = td.object({
       permission: 'default',

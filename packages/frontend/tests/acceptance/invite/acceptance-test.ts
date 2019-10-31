@@ -3,11 +3,6 @@ import { currentURL, waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
-import DS from 'ember-data';
-import CurrentUserService from 'emberclear/services/current-user';
-
-import RedirectManager from 'emberclear/services/redirect-manager';
-
 import {
   visit,
   getService,
@@ -36,13 +31,13 @@ module('Acceptance | Invitations', function(hooks) {
     });
 
     test('there is now a pending redirect', function(assert) {
-      const redirect = getService<RedirectManager>('redirect-manager');
+      const redirect = getService('redirect-manager');
 
       assert.ok(redirect.hasPendingRedirect);
     });
 
     test('the url is stored in localstorage for use later', function(assert) {
-      const redirect = getService<RedirectManager>('redirect-manager');
+      const redirect = getService('redirect-manager');
       const url = redirect.attemptedRoute;
 
       assert.equal(url, '/invite?name=Test&publicKey=abcdef123456');
@@ -61,7 +56,7 @@ module('Acceptance | Invitations', function(hooks) {
       });
 
       test('redirect is still pending', function(assert) {
-        const redirect = getService<RedirectManager>('redirect-manager');
+        const redirect = getService('redirect-manager');
         const url = redirect.attemptedRoute;
 
         assert.ok(redirect.hasPendingRedirect, 'redirect is pending');
@@ -80,7 +75,7 @@ module('Acceptance | Invitations', function(hooks) {
         });
 
         test('the redirect manager has been cleared', function(assert) {
-          const redirect = getService<RedirectManager>('redirect-manager');
+          const redirect = getService('redirect-manager');
           const url = redirect.attemptedRoute;
 
           assert.notOk(redirect.hasPendingRedirect, 'redirect is not pending');
@@ -147,7 +142,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('the params are valid', function() {
         module('but the user clicks their own contact invite link', function(hooks) {
           hooks.beforeEach(async function() {
-            const identity = getService<CurrentUserService>('currentUser');
+            const identity = getService('currentUser');
             const record = identity.record;
             const { name, publicKeyAsHex } = record!;
 
@@ -183,7 +178,7 @@ module('Acceptance | Invitations', function(hooks) {
           });
 
           test('the contact is added to the list of contacts', async function(assert) {
-            const store = getService<DS.Store>('store');
+            const store = getService('store');
 
             const record = await store.findRecord('contact', publicKey);
 

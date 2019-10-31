@@ -16,7 +16,7 @@ module('Integration | Component | copy-text-button', function(hooks) {
   });
 
   test('when clicked, the copied message appears', async function(assert) {
-    let expectedText = getService<any>('intl').t('ui.invite.copied');
+    let expectedText = getService('intl').t('ui.invite.copied');
 
     await render(hbs`
       <CopyTextButton
