@@ -2,11 +2,19 @@
   <p>{{t 'ui.setup.overwriteQuestion' htmlSafe=true}}</p>
 
   <div class='cta-with-fallback'>
-    <button {{on  'click' this.didClickNo}} class='card-footer-item'>
+    <button
+      {{on  'click' this.didClickNo}}
+      class='card-footer-item'
+      data-test-overwrite-abort
+    >
       {{t 'ui.setup.overwriteAbort'}}
     </button>
 
-    <button {{on  'click' this.didClickYes}} class='card-footer-item'>
+    <button
+      {{on  'click' this.didClickYes}}
+      class='card-footer-item'
+       data-test-overwrite-confirm
+    >
       {{t 'ui.setup.overwriteConfirm'}}
     </button>
   </div>

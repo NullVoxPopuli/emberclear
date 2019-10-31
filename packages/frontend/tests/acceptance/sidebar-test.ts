@@ -81,14 +81,14 @@ module('Acceptance | Sidebar', function(hooks) {
             const name = getService<CurrentUserService>('currentUser')!.name!;
             const content = page.sidebar.contacts.listText;
 
-            assert.ok(content.includes(name), 'current user name is present');
+            assert.contains(content, name);
             assert.equal(page.sidebar.contacts.list.length, 1, 'one user in the contacts list');
           });
 
           test('offline count is shown', function(assert) {
             const result = page.sidebar.contacts.offlineCount.text;
 
-            assert.ok(result!.match(/1/));
+            assert.matches(result, /1/);
           });
         });
       });
@@ -114,14 +114,14 @@ module('Acceptance | Sidebar', function(hooks) {
             const name = getService<CurrentUserService>('currentUser')!.name!;
             const content = page.sidebar.contacts.listText;
 
-            assert.ok(content.includes(name), 'current user name is present');
+            assert.contains(content, name);
             assert.equal(page.sidebar.contacts.list.length, 1, 'one user in the contacts list');
           });
 
           test('offline count is shown', function(assert) {
             const result = page.sidebar.contacts.offlineCount.text;
 
-            assert.ok(result!.match(/2/));
+            assert.matches(result, /2/);
           });
         });
       });
