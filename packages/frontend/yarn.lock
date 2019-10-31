@@ -6542,7 +6542,7 @@ ember-template-lint@1.6.2:
 
 ember-test-selectors@^3.0.0-beta.2:
   version "3.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-3.0.0-beta.2.tgz#4979d6352d4e8e6308125c849bea230ffde4b8df"
+  resolved "https://registry.npmjs.org/ember-test-selectors/-/ember-test-selectors-3.0.0-beta.2.tgz#4979d6352d4e8e6308125c849bea230ffde4b8df"
   integrity sha512-LHm2w5bVGKTcKtTuE2fZ0Nqr6s8PBH5mLqozjZIkBeB0nnsuHo+DvvWIs+XB5HQ3kLF+yRoBnCn1uDKILI5R7A==
   dependencies:
     calculate-cache-key-for-tree "^2.0.0"

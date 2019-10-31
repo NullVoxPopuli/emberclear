@@ -1,8 +1,10 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 import QrScanner from 'qr-scanner';
+import RouterService from '@ember/routing/router-service';
 // import { NoCameraError } from 'emberclear/utils/errors';
 
 interface IArgs {
@@ -10,9 +12,13 @@ interface IArgs {
   onError: (error: Error) => void;
 }
 
+// TODO: should this be a modifier?
 export default class QRScanner extends Component<IArgs> {
+  @service router!: RouterService;
+
   scanner?: QrScanner = undefined;
 
+  @tracked error?: string;
   @tracked started = false;
 
   async destroy() {
@@ -27,6 +33,20 @@ export default class QRScanner extends Component<IArgs> {
   }
 
   @action async mountScanner(this: QRScanner) {
+    try {
+      await this.start();
+    } catch (e) {
+      if (typeof e === 'string') {
+        this.error = e;
+      } else {
+        console.error(e);
+        this.error = e.message || 'Unknown Error';
+      }
+    }
+  }
+
+  async start() {
+    this.error = '';
     const scanner = this.newScanner();
 
     this.scanner = scanner;
