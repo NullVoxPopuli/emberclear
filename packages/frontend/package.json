@@ -137,6 +137,7 @@
     "ember-source": "^3.13.3",
     "ember-template-lint": "1.6.1",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
+    "ember-test-selectors": "^2.1.0",
     "ember-test-waiters": "^1.1.1",
     "ember-web-app": "^3.0.1",
     "eslint": "^6.6.0",

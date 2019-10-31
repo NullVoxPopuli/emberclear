@@ -1,5 +1,9 @@
-[data-test-qr-scanner] {
-  & [data-test-error] {
+.qr-scanner_container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+
+  & .qr-scanner_error {
     @apply --grid;
     width: 250px;
     height: 250px;

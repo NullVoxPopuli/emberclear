@@ -1,11 +1,10 @@
 <div
-  data-test-qr-scanner
-  style='width: 100%; height: 300px; overflow: hidden'
+  class='qr-scanner_container'
   ...attributes
   {{did-insert this.mountScanner}}
 >
   {{#if this.error}}
-    <div data-test-error>
+    <div class='qr-scanner_error'>
       <span>
         {{this.error}}<br>
         {{t 'errors.permissions.enableCamera'}}

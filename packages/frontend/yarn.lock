@@ -6540,6 +6540,14 @@ ember-template-lint@1.6.1:
   version "0.1.0"
   resolved "https://codeload.github.com/NullVoxPopuli/ember-test-helpers-extra/tar.gz/98e535b3472191a27e83e8d3a1d01ca50ce30042"
 
+ember-test-selectors@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/ember-test-selectors/-/ember-test-selectors-2.1.0.tgz#faebdf06702aaa0bc510d55eb721ce54d2e85793"
+  integrity sha512-c5HmvefmeABH8hg380TSNZiE9VAK1CBeXWrgyXy+IXHtsew4lZHHw7GnqCAqsakxwvmaMARbAKY9KfSAE91s1g==
+  dependencies:
+    ember-cli-babel "^6.8.2"
+    ember-cli-version-checker "^3.1.2"
+
 ember-test-waiters@^1.0.0, ember-test-waiters@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ember-test-waiters/-/ember-test-waiters-1.1.1.tgz#7df6e7a47e0fdca814aa351f7f7f9a006e15fdcd"
