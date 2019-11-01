@@ -1,5 +1,6 @@
+version: 2
 ---
-engines:
+plugins:
   duplication:
     enabled: true
     config:
@@ -9,10 +10,7 @@ engines:
 
   fixme:
     enabled: true
-ratings:
-  paths:
-  - "packages/frontend/**.js"
-exclude_paths:
+exclude_patterns:
 - packages/benchmarks/
 - packages/android-wrapper/
 - packages/relays/
@@ -21,6 +19,6 @@ exclude_paths:
 - packages/frontend/vendor/
 - packages/frontend/dist/
 - packages/frontend/types/
-- **/english.ts
-- **/benchmarks/
-- **/ember-cli-build.js
+- '**/english.ts'
+- '**/benchmarks/'
+- '**/ember-cli-build.js'
