@@ -6324,9 +6324,9 @@ ember-purify@^4.2.0:
     dompurify "^1.0.0"
     ember-cli-babel "^6.6.0"
 
-ember-qunit@^4.5.1:
+ember-qunit@^4.6.0:
   version "4.6.0"
-  resolved "https://registry.npmjs.org/ember-qunit/-/ember-qunit-4.6.0.tgz#ad79fd3ff00073a8779400cc5a4b44829517590f"
+  resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-4.6.0.tgz#ad79fd3ff00073a8779400cc5a4b44829517590f"
   integrity sha512-i5VOGn0RP8XH+5qkYDOZshbqAvO6lHgF65D0gz8vRx4DszCIvJMJO+bbftBTfYMxp6rqG85etAA6pfNxE0DqsQ==
   dependencies:
     "@ember/test-helpers" "^1.7.1"
