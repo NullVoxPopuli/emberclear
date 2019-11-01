@@ -1,5 +1,3 @@
-import StoreService from 'ember-data/store';
-
 import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
 import { toHex } from 'emberclear/utils/string-encoding';
 
@@ -14,7 +12,7 @@ export async function attributesForContact() {
 }
 
 export async function buildContact(name: string, attributes = {}): Promise<Contact> {
-  const store = getService<StoreService>('store');
+  const store = getService('store');
 
   const defaultAttributes = await attributesForContact();
 

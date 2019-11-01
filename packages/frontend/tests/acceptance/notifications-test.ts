@@ -27,7 +27,7 @@ module('Acceptance | Notifications Service', function(hooks) {
         permission: 'default',
       };
 
-      notifications = getService<Notifications>('notifications');
+      notifications = getService('notifications');
     });
 
     module('is logged in', function(hooks) {
@@ -72,7 +72,7 @@ module('Acceptance | Notifications Service', function(hooks) {
           test('initial checks', function(assert) {
             getService<any>('window').Notification = { permission: 'default' };
 
-            let service = getService<Notifications>('notifications');
+            let service = getService('notifications');
 
             assert.ok(
               service.isBrowserCapableOfNotifications,
@@ -90,7 +90,7 @@ module('Acceptance | Notifications Service', function(hooks) {
           test('service state checks', function(assert) {
             getService<any>('window').Notification = { permission: 'denied' };
 
-            let service = getService<Notifications>('notifications');
+            let service = getService('notifications');
 
             assert.ok(
               service.isBrowserCapableOfNotifications,
@@ -107,7 +107,7 @@ module('Acceptance | Notifications Service', function(hooks) {
         module('permission: granted', function() {
           test('initial checks', function(assert) {
             getService<any>('window').Notification = { permission: 'granted' };
-            let service = getService<Notifications>('notifications');
+            let service = getService('notifications');
 
             assert.ok(
               service.isBrowserCapableOfNotifications,

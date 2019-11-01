@@ -1,4 +1,3 @@
-import DS from 'ember-data';
 import { module, test } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -110,7 +109,7 @@ module('Acceptance | Login', function(hooks) {
         });
 
         test('sets the "me" user', function(assert) {
-          const store = getService<DS.Store>('store');
+          const store = getService('store');
           const known = store.peekAll('user');
 
           assert.equal(known.length, 1);

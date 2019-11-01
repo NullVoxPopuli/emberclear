@@ -1,0 +1,32 @@
+version: 2
+plugins:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        javascript:
+          mass_threshold: 50
+
+  # TODO: errors
+  fixme:
+    enabled: false
+
+exclude_patterns:
+- '**/english.ts'
+- '**/benchmarks/'
+- '**/ember-cli-build.js'
+- 'packages/benchmarks/'
+- 'packages/android-wrapper/'
+- 'packages/relays/'
+- 'packages/frontend/config/'
+- 'packages/frontend/tests/'
+- 'packages/frontend/vendor/'
+- 'packages/frontend/dist/'
+- 'packages/frontend/types/'
+- '**/node_modules/'
+- '**/dist/'
+- '**/tests/'
+- '**/config/'
+- '**/script/'
+- '**/vendor/'
+- '**/*.d.ts'

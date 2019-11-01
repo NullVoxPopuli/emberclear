@@ -5,6 +5,8 @@ import start from 'ember-exam/test-support/start';
 // import { start } from 'ember-qunit';
 import QUnit from 'qunit';
 
+// Install Types and assertion extensions
+import 'qunit-dom';
 import 'qunit-assertions-extra';
 
 import {
