@@ -27,7 +27,7 @@ errors:
     help: Die URL konnte nicht aufgerufen werden. Wenn das Problem weiterhin besteht,
     link: öffnen Sie bitte ein Problem.
   permissions:
-    enableCamera: You may need to allow this site access to your camera.
+    enableCamera: Du musst dieser Seite möglicherweise Zugriff zu deiner Kamera geben.
 buttons:
   delete: Löschen
   resend: Erneut senden
