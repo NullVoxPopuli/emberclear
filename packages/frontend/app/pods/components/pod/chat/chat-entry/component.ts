@@ -84,7 +84,12 @@ export default class ChatEntry extends Component<IArgs> {
     const value = (event.target as any).value;
 
     if (EMOJI_REGEX.test(value)) {
+      // replace emoji codes that correspond to unicode emoji
       this.text = unicode(value);
+      // check for and replace emoji codes that correspond to other emoji
+      if (EMOJI_REGEX.test(this.text)) {
+        this.text = this.emoji(this.text);
+      }
     } else {
       this.text = value;
     }
@@ -104,6 +109,14 @@ export default class ChatEntry extends Component<IArgs> {
     return false;
   }
 
+  emoji(input: string) {
+    let emojifiedText = input;
+
+    // TODO
+    
+    return emojifiedText;
+  }
+  
   async dispatchMessage(text: string) {
     await waitForPromise(this.messageDispatcher.send(text, this.args.to));
   }
