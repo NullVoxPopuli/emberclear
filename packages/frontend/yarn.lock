@@ -1825,13 +1825,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/qunit-dom@0.7.0":
-  version "0.7.0"
-  resolved "https://registry.npmjs.org/@types/qunit-dom/-/qunit-dom-0.7.0.tgz#191f63ea7f768ef2c81aec937c3dd18ffaad77cd"
-  integrity sha512-Weg9KnkGQ00FN+JgCVhv0gaQBPtrsgXQ+1Eh2/4DIoeeYuCfJ3hvUKbw0yMKoqYnY5M+F1IN/FKRAdbIatzGQQ==
-  dependencies:
-    qunit-dom "*"
-
 "@types/qunit@^2.9.0":
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/@types/qunit/-/qunit-2.9.0.tgz#0b3fcbe2b92f067856adac82ba3afbc66d8835ac"
@@ -11862,7 +11855,7 @@ qunit-assertions-extra@^0.8.1:
   resolved "https://registry.yarnpkg.com/qunit-assertions-extra/-/qunit-assertions-extra-0.8.1.tgz#c0607cea7d76b2f4c3950e03ab27ae55e3cf243f"
   integrity sha512-nRRGW46s8JcRxt66MNJwaizjLRNWWkco2ZeDdWTUd2zcYz2ZH7K+1U2Fp5sVYH7jzdIleYS6IUympdU4iKvF9w==
 
-qunit-dom@*, qunit-dom@^0.9.1:
+qunit-dom@^0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/qunit-dom/-/qunit-dom-0.9.1.tgz#d861ff8d2402cc7844874a37df85940d62bfbbdf"
   integrity sha512-5MOPPjohXSL+4dE5ZmgWgypqF9XMxJBpobwSVzf/9zNS8PKEdJiRlR09R1Wrc38BTf3Ap2f2YPcNh3H6lEOZ6A==
