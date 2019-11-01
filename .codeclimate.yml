@@ -11,14 +11,14 @@ plugins:
   fixme:
     enabled: true
 exclude_patterns:
-- packages/benchmarks/
-- packages/android-wrapper/
-- packages/relays/
-- packages/frontend/config/
-- packages/frontend/tests/
-- packages/frontend/vendor/
-- packages/frontend/dist/
-- packages/frontend/types/
 - '**/english.ts'
 - '**/benchmarks/'
 - '**/ember-cli-build.js'
+- 'packages/benchmarks/'
+- 'packages/android-wrapper/'
+- 'packages/relays/'
+- 'packages/frontend/config/'
+- 'packages/frontend/tests/'
+- 'packages/frontend/vendor/'
+- 'packages/frontend/dist/'
+- 'packages/frontend/types/'
