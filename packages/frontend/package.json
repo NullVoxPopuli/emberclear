@@ -122,7 +122,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-percy": "^1.6.0",
     "ember-purify": "^4.2.0",
-    "ember-qunit": "^4.5.1",
+    "ember-qunit": "^4.6.0",
     "ember-render-helpers": "^0.1.0",
     "ember-resolver": "^5.3.0",
     "ember-router-helpers": "github:rwjblue/ember-router-helpers",
