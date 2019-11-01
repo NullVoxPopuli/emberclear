@@ -1,5 +1,4 @@
 version: 2
----
 plugins:
   duplication:
     enabled: true
@@ -22,3 +21,10 @@ exclude_patterns:
 - 'packages/frontend/vendor/'
 - 'packages/frontend/dist/'
 - 'packages/frontend/types/'
+- '**/node_modules/'
+- '**/dist/'
+- '**/tests/'
+- '**/config/'
+- '**/script/'
+- '**/vendor/'
+- '**/*.d.ts'
