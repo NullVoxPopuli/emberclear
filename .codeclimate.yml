@@ -7,8 +7,10 @@ plugins:
         javascript:
           mass_threshold: 50
 
+  # TODO: errors
   fixme:
-    enabled: true
+    enabled: false
+
 exclude_patterns:
 - '**/english.ts'
 - '**/benchmarks/'
