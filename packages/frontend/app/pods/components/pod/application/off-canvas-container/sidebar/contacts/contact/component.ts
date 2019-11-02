@@ -59,7 +59,7 @@ export default class SidebarContact extends Component<IArgs> {
     if (shouldRender) {
       return true;
     }
-    
+
     // do not show offline contacts if configured that way
     return !this.hideOfflineContacts;
   }
