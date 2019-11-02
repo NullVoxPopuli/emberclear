@@ -13,6 +13,9 @@
 
     {{content-for "head"}}
 
+    <link rel="manifest" href="{{rootURL}}manifest.webmanifest">
+    <meta name="msapplication-config" content="{{rootURL}}browserconfig.xml">
+
     {{content-for "head-footer"}}
     <style>
       @keyframes spinAround {
@@ -35,6 +38,7 @@
           window.deferredInstallPrompt = event;
         });
       }
+
 
       captureInstallPrompt();
     </script>
