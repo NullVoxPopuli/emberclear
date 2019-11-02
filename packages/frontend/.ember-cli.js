@@ -14,5 +14,10 @@ module.exports = {
   disableAnalytics: false,
   liveReload: true,
   host: '0.0.0.0',
-  usePods: true,
+  // no pods, use co-located components
+  usePods: false,
+  // for service-worker testing
+  // ssl: true,
+  // sslKey: 'local.key',
+  // sslCert: 'local.crt',
 };
