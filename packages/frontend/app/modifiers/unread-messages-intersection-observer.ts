@@ -1,4 +1,4 @@
-import Modifier from 'ember-class-based-modifier';
+import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 
 import SidebarService from 'emberclear/services/sidebar';

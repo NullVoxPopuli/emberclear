@@ -1,4 +1,4 @@
-import Modifier from 'ember-class-based-modifier';
+import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 import { parseLanguages } from 'emberclear/utils/string/utils';
 import { later } from '@ember/runloop';
