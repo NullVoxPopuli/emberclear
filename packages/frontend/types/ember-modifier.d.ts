@@ -32,4 +32,3 @@ declare module 'ember-modifier' {
     willDestroy(): void;
   }
 }
-
