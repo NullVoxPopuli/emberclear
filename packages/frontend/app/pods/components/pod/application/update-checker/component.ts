@@ -1,16 +1,27 @@
-import ENV from 'emberclear/config/environment';
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
 import RouterService from '@ember/routing/router-service';
+import { setComponentTemplate } from '@ember/component';
+import { hbs } from 'ember-cli-htmlbars';
 
-const ONE_MINUTE = 600000;
-const FIVE_SECONDS = 5000;
-
-export default class UpdateChecker extends Component {
+class UpdateChecker extends Component {
   @service router!: RouterService;
 
   @reads('router.currentURL') currentURL!: string;
-
-  interval = ENV.environment === 'development' ? FIVE_SECONDS : ONE_MINUTE;
 }
+
+export default setComponentTemplate(
+  hbs`
+  <ServiceWorkerUpdateNotify>
+    <a
+      class='service-worker-update-notify alert alert-info has-shadow'
+      href={{this.currentURL}}
+      style='z-index: 100;'
+    >
+      {{t 'status.updateAvailable'}}
+    </a>
+  </ServiceWorkerUpdateNotify>
+`,
+  UpdateChecker
+);

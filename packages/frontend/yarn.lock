@@ -5583,14 +5583,6 @@ ember-auto-import@^1.5.3:
     walk-sync "^0.3.3"
     webpack "~4.28"
 
-ember-class-based-modifier@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/ember-class-based-modifier/-/ember-class-based-modifier-0.10.0.tgz#bb40c05440a959d84e9e2f5038e3894773686d19"
-  integrity sha512-GPPOCYmRibGBUfiuq7oHQAGXgM6X8LK2I2crvQadqwbft5PjXDbR6x1xnOQ8TDWeOE0EluahXXOgWgdUVcmaMQ==
-  dependencies:
-    ember-cli-babel "^7.10.0"
-    ember-modifier-manager-polyfill "^1.2.0"
-
 ember-cli-app-version@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ember-cli-app-version/-/ember-cli-app-version-3.2.0.tgz#7b9ad0e1b63ae0518648356ee24c703e922bc26e"
@@ -5740,7 +5732,7 @@ ember-cli-htmlbars@^3.0.0, ember-cli-htmlbars@^3.0.1:
     json-stable-stringify "^1.0.1"
     strip-bom "^3.0.0"
 
-ember-cli-htmlbars@^4.0.8:
+ember-cli-htmlbars@^4.0.1, ember-cli-htmlbars@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.0.8.tgz#e87b62e7040bd478a2d007053bdb1644dd1685b0"
   integrity sha512-B6fzlqmv2E2dl8P6UIYu3bY8nZU2kKfl1VkEIgxFAINfsu9fP65kX/bKzHqGhHF8nAtWBoXZWw6tomHKfUT/Jg==
@@ -6147,14 +6139,6 @@ ember-focus-trap@^0.3.2:
     ember-modifier-manager-polyfill "^1.1.0"
     focus-trap "^5.0.1"
 
-ember-functional-modifiers@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/ember-functional-modifiers/-/ember-functional-modifiers-0.5.0.tgz#85c0d37ccdb45f4ab55037d6c66189faabe79e32"
-  integrity sha512-gOOqVXsgIu+Ch6XhAFVAKfaY3krQMRk2R0rE7HGtPQVEIHXUZKqJ/+cZFXG+XiM+gTvp2jOZ4jjYJ4Daa/jPqg==
-  dependencies:
-    ember-cli-babel "^7.11.0"
-    ember-modifier-manager-polyfill "^1.1.0"
-
 ember-get-config@^0.2.4:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.4.tgz#118492a2a03d73e46004ed777928942021fe1ecd"
@@ -6260,6 +6244,17 @@ ember-modifier-manager-polyfill@^1.0.3, ember-modifier-manager-polyfill@^1.1.0, 
     ember-cli-babel "^7.10.0"
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.2.0"
+
+ember-modifier@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/ember-modifier/-/ember-modifier-1.0.2.tgz#475ca6d0a5b47cde8077903328ad1ec99e562be8"
+  integrity sha512-YyZ6etJpeMTcrtNJvP+NmyJ+uA2DsYAIg4Mxg9ndYPbe6oXnNTnYQbvF7VIIUuY0Z7zfZ0CwCukFVQESBlJ6Eg==
+  dependencies:
+    ember-cli-babel "^7.11.1"
+    ember-cli-is-package-missing "^1.0.0"
+    ember-cli-normalize-entity-name "^1.0.0"
+    ember-cli-string-utils "^1.1.0"
+    ember-modifier-manager-polyfill "^1.2.0"
 
 ember-native-dom-helpers@^0.6.3:
   version "0.6.3"
@@ -6397,13 +6392,14 @@ ember-service-worker-index@^0.7.0:
     broccoli-merge-trees "^3.0.1"
     broccoli-plugin "^1.3.1"
 
-"ember-service-worker-update-notify@github:topaxi/ember-service-worker-update-notify#testing-and-documentation":
-  version "2.3.0"
-  resolved "https://codeload.github.com/topaxi/ember-service-worker-update-notify/tar.gz/d3d3411917a911fa75cdf040e75ab6871c267c5c"
+ember-service-worker-update-notify@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/ember-service-worker-update-notify/-/ember-service-worker-update-notify-3.0.0.tgz#f4aaaa4e31350d6d9ac7210e9cdd64d8f8ba0562"
+  integrity sha512-hfwJD/q+4d7WBsOUeu9ePnHSuG4vGKKd/flCkx2usRQiQLL+K8s1PZvbc/doBXC34UmkC8wJu5Vcu3KYlErbfA==
   dependencies:
     broccoli-replace "^0.12.0"
-    ember-cli-babel "^6.16.0"
-    ember-cli-htmlbars "^3.0.0"
+    ember-cli-babel "^7.12.0"
+    ember-cli-htmlbars "^4.0.1"
 
 ember-service-worker@^0.8.0:
   version "0.8.0"
