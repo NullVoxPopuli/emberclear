@@ -129,14 +129,6 @@ export default class PrismManager extends Service {
   @(task(function*(this: PrismManager) {
     if (this.areEssentialsPresent) return;
 
-    // yield Promise.all([
-    //   import('/prismjs/prism.js'),
-    //   import('/prismjs/plugins/line-numbers/prism-line-numbers.min.js'),
-    //   import('/prismjs/plugins/show-language/prism-show-language.min.js'),
-    //   import('/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'),
-    //   import('/prismjs/plugins/autolinker/prism-autolinker.min.js'),
-    // ]);
-
     addScripts();
     addStyles();
 
@@ -162,6 +154,7 @@ export default class PrismManager extends Service {
 
 function addScripts() {
   addScript('/prismjs/prism.js');
+  addScript('/prismjs/components/prism-core.min.js');
   addScript('/prismjs/plugins/line-numbers/prism-line-numbers.min.js');
   addScript('/prismjs/plugins/show-language/prism-show-language.min.js');
   addScript('/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js');
@@ -169,9 +162,10 @@ function addScripts() {
 }
 
 function addStyles() {
-  addStyle('/prismjs/themes/prism-twilight.css');
+  addStyle('/prismjs/themes/prism.css');
+  // addStyle('/prismjs/themes/prism-twilight.css');
   addStyle('/prismjs/plugins/line-numbers/prism-line-numbers.css');
-  addStyle('/prismjs/plugins/autlinker/autolinker.css');
+  addStyle('/prismjs/plugins/autolinker/prism-autolinker.css');
 }
 
 function addStyle(path: string) {
@@ -188,8 +182,10 @@ function addScript(path: string) {
   let head = document.querySelector('head')!;
   let script = document.createElement('script');
 
-  script.setAttribute('type', 'text/javascript');
+  // script.setAttribute('type', 'text/javascript');
   script.setAttribute('src', path);
+  script.setAttribute('defer', '');
+  script.setAttribute('async', '');
 
   head.appendChild(script);
 }
