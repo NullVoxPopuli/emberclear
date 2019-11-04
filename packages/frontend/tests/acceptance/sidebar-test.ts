@@ -68,6 +68,29 @@ module('Acceptance | Sidebar', function(hooks) {
           assert.notOk(page.sidebar.contacts.offlineCount.isVisible, 'offline count is shown');
         });
 
+        module('pinned contacts are to be shown', function(hooks) {
+          hooks.beforeEach(async function() {
+            const pinButton = document.getElementsByClassName('pin-button')[0];
+            await click(pinButton);
+            await visit('/settings/interface');
+            await settings.ui.toggleHideOfflineContacts();
+          });
+
+          test('both contacts should be shown', function(assert){
+            assert.equal(page.sidebar.contacts.list.length, 2, 'two users in the contacts list');
+          });
+
+          test('offline count does not show', function(assert) {
+            assert.notOk(page.sidebar.contacts.offlineCount.isVisible, 'offline count is shown');
+          });
+
+          test('pinned contact should appear below current user', async function(assert) {
+            const contacts = page.sidebar.contacts.list;
+            assert.equal(contacts[0].name, 'Test User');
+            assert.equal(contacts[1].name, 'first contact');
+          });
+        });
+
         module('offline contacts are to be hidden', function(hooks) {
           hooks.beforeEach(async function() {
             await visit('/settings/interface');
@@ -89,29 +112,6 @@ module('Acceptance | Sidebar', function(hooks) {
             assert.matches(result, /1/);
           });
         });
-
-        module('pinned contacts are to be shown', function(hooks) {
-          // hooks.beforeEach(async function() {
-          //   const store = getStore();
-          //   const contacts = store.peekAll('contact').toArray();
-          //   const contact = contacts.find(item => item.name === 'first contact');
-          //   console.log("contacts: " + contacts);
-          //   console.log("contact name: " + contact.name);
-          //   contact.isPinned = true;
-          // });
-
-          test('both contacts should be shown', async function(assert){
-            const store = getStore(); 
-            const contacts = store.peekAll('contact').toArray();
-            const contact = contacts.find(item => item.name === 'first contact');
-            const pinButton = document.getElementsByClassName('pin-button')[0];
-            await click(pinButton);
-            const content = page.sidebar.contacts.listText;
-            // console.log("content: " + content);
-            // assert.ok(content.includes(contact.name), 'other user name is present');
-            // assert.equal(page.sidebar.contacts.list.length, 2, 'two users in the contacts list');
-          });
-        });
       });
 
       module('there are 2 contacts', function(hooks) {
@@ -122,6 +122,52 @@ module('Acceptance | Sidebar', function(hooks) {
 
         test('there are 3 rows of names', function(assert) {
           assert.equal(page.sidebar.contacts.list.length, 3, 'there are 3 contacts');
+        });
+
+        module('pinned contacts are to be shown', function(hooks) {
+          hooks.beforeEach(async function() {
+            const pinButton = document.getElementsByClassName('pin-button')[0];
+            const pinButton1 = document.getElementsByClassName('pin-button')[1];
+            await click(pinButton);
+            await click(pinButton1);
+            await visit('/settings/interface');
+            await settings.ui.toggleHideOfflineContacts();
+          });
+
+          test('all contacts should be shown', function(assert){
+            assert.equal(page.sidebar.contacts.list.length, 3, 'three users in the contacts list');
+          });
+
+          test('offline count does not show', function(assert) {
+            assert.notOk(page.sidebar.contacts.offlineCount.isVisible, 'offline count is shown');
+          });
+
+          test('two contacts should be shown and one hidden', async function(assert){
+            const pinButton = document.getElementsByClassName('pin-button')[0];
+            await click(pinButton);
+            assert.equal(page.sidebar.contacts.list.length, 2, 'two users in the contacts list');
+          });
+
+          test('offline count shows with one contact', async function(assert) {
+            const pinButton = document.getElementsByClassName('pin-button')[0];
+            await click(pinButton);
+            const result = page.sidebar.contacts.offlineCount.text;
+            assert.matches(result, /1/);
+          });
+
+          test('pinned contacts should appear above offline contacts', async function(assert) {
+            const contacts = page.sidebar.contacts.list;
+            assert.equal(contacts[0].name, 'Test User');
+            assert.equal(contacts[1].name, 'first contact');
+            assert.equal(contacts[2].name, 'second contact');
+            const pinButton = document.getElementsByClassName('pin-button')[0];
+            await click(pinButton);
+            await visit('/settings/interface');
+            await settings.ui.toggleHideOfflineContacts();
+            assert.equal(contacts[0].name, 'Test User');
+            assert.equal(contacts[1].name, 'second contact');
+            assert.equal(contacts[2].name, 'first contact');
+          });
         });
 
         module('offline contacts are to be hidden', function(hooks) {
