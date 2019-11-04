@@ -64,7 +64,7 @@
     "@html-next/vertical-collection": "^1.0.0",
     "@types/bip39": "^2.4.2",
     "@types/common-tags": "^1.8.0",
-    "@types/dompurify": "0.0.33",
+    "@types/dompurify": "2.0.0",
     "@types/ember": "^3.1.1",
     "@types/ember-data": "^3.1.9",
     "@types/ember-qunit": "^3.4.7",
