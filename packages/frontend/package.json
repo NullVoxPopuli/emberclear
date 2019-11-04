@@ -39,6 +39,7 @@
     "hammerjs": "^2.0.8",
     "localforage": "^1.7.3",
     "phoenix": "^1.4.10",
+    "prismjs": "^1.17.1",
     "qr-scanner": "github:nimiq/qr-scanner",
     "qrcode": "^1.4.2",
     "shoelace-css": "^1.0.0-beta24",

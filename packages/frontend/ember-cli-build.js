@@ -36,7 +36,7 @@ module.exports = function(defaults) {
     minifyCSS: { enabled: isProduction },
 
     sourcemaps: {
-      enabled: !isProduction,
+      enabled: true, // !isProduction,
       extensions: 'js',
     },
 
@@ -49,6 +49,11 @@ module.exports = function(defaults) {
       exclude: ['libsodium', 'libsodium-wrappers'],
     },
 
+    // was for enabling dynamic import.
+    // babel: {
+    //   plugins: [require.resolve('ember-auto-import/babel-plugin')],
+    // },
+
     'ember-cli-babel': {
       includePolyfill: false,
       disablePresetEnv: true,
@@ -60,7 +65,7 @@ module.exports = function(defaults) {
     },
 
     'ember-test-selectors': {
-      strip: isProduction,
+      strip: false, // isProduction,
     },
 
     eslint: {
@@ -168,6 +173,11 @@ module.exports = function(defaults) {
     destDir: '/libraries/qr-scanner/',
   });
 
+  let prism = new Funnel('node_modules/prismjs', {
+    include: ['prism.js', 'themes/*', 'plugins/**', 'components/**'],
+    destDir: '/prismjs/',
+  });
+
   // Embroider is too buggy atm
   // return require('@embroider/compat').compatBuild(app, require('@embroider/webpack').Webpack, {
   //   extraPublicTrees: [qrScannerWorker],
@@ -179,5 +189,5 @@ module.exports = function(defaults) {
   //   // skipBabel: [],
   // });
 
-  return mergeTrees([app.toTree(), qrScannerWorker]);
+  return mergeTrees([app.toTree(), qrScannerWorker, prism]);
 };
