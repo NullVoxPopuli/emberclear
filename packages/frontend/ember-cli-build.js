@@ -50,9 +50,9 @@ module.exports = function(defaults) {
     },
 
     // was for enabling dynamic import.
-    // babel: {
-    //   plugins: [require.resolve('ember-auto-import/babel-plugin')],
-    // },
+    babel: {
+      plugins: [require.resolve('ember-auto-import/babel-plugin')],
+    },
 
     'ember-cli-babel': {
       includePolyfill: false,

@@ -104,12 +104,12 @@ export default class PrismManager extends Service {
 
     yield this.addEssentials.perform();
 
+    console.log('adding',language);
     if (this.alreadyAdded.includes(language) && element) {
       return Prism.highlightAllUnder(element);
     }
 
-    addStyles();
-    yield import('prismjs/components/prism-handlebars.min.js');
+    // yield import('prismjs/components/prism-handlebars.min.js');
     yield import('prismjs/components/prism-typescript.min.js');
     // ember-auto-import why
     // yield import(`prismjs/components/prism-${language}.min.js`);
@@ -129,7 +129,7 @@ export default class PrismManager extends Service {
   @(task(function*(this: PrismManager) {
     if (this.areEssentialsPresent) return;
 
-    addScripts();
+    yield addScripts();
     addStyles();
 
     this.areEssentialsPresent = true;
@@ -152,13 +152,21 @@ export default class PrismManager extends Service {
   }
 }
 
-function addScripts() {
-  addScript('/prismjs/prism.js');
-  addScript('/prismjs/components/prism-core.min.js');
-  addScript('/prismjs/plugins/line-numbers/prism-line-numbers.min.js');
-  addScript('/prismjs/plugins/show-language/prism-show-language.min.js');
-  addScript('/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js');
-  addScript('/prismjs/plugins/autolinker/prism-autolinker.min.js');
+async function addScripts() {
+  await import('prismjs').then(Prism => ((window as any).Prism = Prism));
+
+  await Promise.all([
+    import('prismjs/plugins/line-numbers/prism-line-numbers.min.js'),
+    import('prismjs/plugins/show-language/prism-show-language.min.js'),
+    import('prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'),
+    import('prismjs/plugins/autolinker/prism-autolinker.min.js'),
+  ]);
+  // addScript('/prismjs/prism.js');
+  // addScript('/prismjs/components/prism-core.min.js');
+  // addScript('/prismjs/plugins/line-numbers/prism-line-numbers.min.js');
+  // addScript('/prismjs/plugins/show-language/prism-show-language.min.js');
+  // addScript('/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js');
+  // addScript('/prismjs/plugins/autolinker/prism-autolinker.min.js');
 }
 
 function addStyles() {
@@ -184,8 +192,9 @@ function addScript(path: string) {
 
   // script.setAttribute('type', 'text/javascript');
   script.setAttribute('src', path);
+  script.onload = () => console.log('done', path);
   script.setAttribute('defer', '');
-  script.setAttribute('async', '');
+  // script.setAttribute('async', '');
 
   head.appendChild(script);
 }
