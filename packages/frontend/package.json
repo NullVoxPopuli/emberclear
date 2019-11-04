@@ -133,7 +133,7 @@
     "ember-service-worker-update-notify": "^3.0.0",
     "ember-sinon": "^4.1.1",
     "ember-source": "^3.14.1",
-    "ember-template-lint": "1.7.0",
+    "ember-template-lint": "1.8.1",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "^3.0.0-beta.2",
     "ember-test-waiters": "^1.1.1",
