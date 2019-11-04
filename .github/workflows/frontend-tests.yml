@@ -22,16 +22,28 @@ jobs:
       with:
         node-version: '10.x'
     - name: Install
-      run: ./run yarn install
+      run: |
+        cd packages/frontend
+        yarn install
+
     - name: Test
       env:
         CI_BROWSER: ${{ matrix.ci_browser }}
-      run: time ./run yarn test
+      run: |
+        cd packages/frontend
+
+        ./scripts/test-with-coverage.sh
+
+    - name: Upload Coverage to Coveralls
+      uses: coverallsapp/github-action@v1.0.1
+      with:
+        github-token: ${{ secrets.github_token }}
+        path-to-lcov: ./packages/frontend/coverage/lcov.info
 
   bundle_analysis:
     name: Bundle Analysis
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     steps:
     - uses: actions/checkout@v1
@@ -71,12 +83,8 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: Install
-      run: ./run yarn install
-    - name: Build
-      run: ./run yarn build:production
     - name: Test
       run: |
         cd packages/smoke-tests \
         && yarn \
-        && yarn test --headless
+        && yarn test --target pull-request --headless

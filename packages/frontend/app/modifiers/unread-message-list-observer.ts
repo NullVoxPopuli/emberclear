@@ -1,4 +1,4 @@
-import Modifier from 'ember-class-based-modifier';
+import Modifier from 'ember-modifier';
 import StoreService from 'ember-data/store';
 import { inject as service } from '@ember/service';
 

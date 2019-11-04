@@ -1,6 +1,8 @@
 import { find, click } from '@ember/test-helpers';
 import { create, isVisible, clickable } from 'ember-cli-page-object';
 
+import { keyPressFor } from './-key-events';
+
 export const selectors = {
   headerUnread: '[data-test-unread-count]',
 };
@@ -17,7 +19,13 @@ export const page = create({
     enable: clickable('[data-test-enable]'),
     dismiss: clickable('[data-test-dismiss]'),
   },
-  modals: {},
+  modals: {
+    search: {
+      async open() {
+        await keyPressFor(document.body, 75, { ctrlKey: true });
+      },
+    },
+  },
 });
 
 export const app = {

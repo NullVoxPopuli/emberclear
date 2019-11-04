@@ -1,8 +1,6 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import CurrentUserService from 'emberclear/services/current-user';
-
 import {
   getService,
   createCurrentUser,
@@ -42,13 +40,13 @@ module('TestHelper | create-current-user', function(hooks) {
   });
 
   test('the user is set on the identity service', async function(assert) {
-    const before = getService<CurrentUserService>('currentUser').record;
+    const before = getService('currentUser').record;
 
     assert.notOk(before);
 
     const user = await createCurrentUser();
 
-    const after = getService<CurrentUserService>('currentUser').record;
+    const after = getService('currentUser').record;
 
     assert.deepEqual(after, user);
   });
@@ -57,13 +55,13 @@ module('TestHelper | create-current-user', function(hooks) {
     setupCurrentUser(hooks);
 
     test('the user is logged in', function(assert) {
-      const isLoggedIn = getService<CurrentUserService>('currentUser').isLoggedIn;
+      const isLoggedIn = getService('currentUser').isLoggedIn;
 
       assert.ok(isLoggedIn);
     });
 
     test('identity exists', async function(assert) {
-      const exists = await getService<CurrentUserService>('currentUser').exists();
+      const exists = await getService('currentUser').exists();
 
       assert.ok(exists);
     });

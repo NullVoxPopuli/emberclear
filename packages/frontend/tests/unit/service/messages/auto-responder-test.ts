@@ -1,5 +1,4 @@
 import { module, test } from 'qunit';
-import StoreService from 'ember-data/store';
 import { setupTest } from 'ember-qunit';
 import uuid from 'uuid';
 
@@ -13,7 +12,6 @@ import {
 
 import Identity from 'emberclear/models/identity';
 import Message, { TYPE, TARGET } from 'emberclear/models/message';
-import CurrentUserService from 'emberclear/services/current-user';
 
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import AutoResponder from 'emberclear/services/messages/auto-responder';
@@ -24,7 +22,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
   clearLocalStorage(hooks);
 
   test('it exists', function(assert) {
-    let service = getService<AutoResponder>('messages/auto-responder');
+    let service = getService('messages/auto-responder');
     assert.ok(service);
   });
 
@@ -32,7 +30,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
     module('handling messages queued for resend', function() {
       module('there are no pending messages', function(hooks) {
         hooks.beforeEach(async function(assert) {
-          const store = getService<StoreService>('store');
+          const store = getService('store');
           const messages = await store.findAll('message');
 
           assert.equal(messages.length, 0, 'there are no messages');
@@ -41,7 +39,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
         test('no messages are sent', async function(assert) {
           assert.expect(1);
 
-          const service = getService<AutoResponder>('messages/auto-responder');
+          const service = getService('messages/auto-responder');
           const somePerson = await createContact('some person');
 
           stubService('messages/dispatcher', {
@@ -61,11 +59,11 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
         let service: AutoResponder;
 
         hooks.beforeEach(async function(assert) {
-          service = getService<AutoResponder>('messages/auto-responder');
+          service = getService('messages/auto-responder');
           somePerson = await createContact('some person');
 
-          const store = getService<StoreService>('store');
-          const me = getService<CurrentUserService>('currentUser');
+          const store = getService('store');
+          const me = getService('currentUser');
           let messages = await store.findAll('message');
 
           assert.equal(messages.length, 0, 'there are no messages');
@@ -109,7 +107,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
 
           await service.cameOnline(somePerson);
 
-          const store = getService<StoreService>('store');
+          const store = getService('store');
 
           await waitUntilTruthy(async () => {
             let messages = await store.query('message', {
@@ -135,12 +133,12 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
     test('a delivery confirmation is built', async function(assert) {
       assert.expect(5);
 
-      const me = getService<CurrentUserService>('currentUser');
+      const me = getService('currentUser');
 
       await me.exists();
 
-      const store = getService<StoreService>('store');
-      const service = getService<AutoResponder>('messages/auto-responder');
+      const store = getService('store');
+      const service = getService('messages/auto-responder');
 
       const sender = await createContact('some user');
       const receivedMessage = store.createRecord('message', {

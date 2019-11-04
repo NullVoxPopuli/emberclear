@@ -32,6 +32,8 @@ errors:
     title: Not Found
     help: The URL could not be navigated to. If the problem persists,
     link: please file an issue.
+  permissions:
+    enableCamera: You may need to allow this site access to your camera.
 
 buttons:
   delete: delete

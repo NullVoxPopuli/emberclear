@@ -1,11 +1,19 @@
 <div
-  style='width: 100%; height: 300px; overflow: hidden'
+  class='qr-scanner_container'
   ...attributes
   {{did-insert this.mountScanner}}
 >
+  {{#if this.error}}
+    <div class='qr-scanner_error'>
+      <span>
+        {{this.error}}<br>
+        {{t 'errors.permissions.enableCamera'}}
+      </span>
+    </div>
+  {{/if}}
 
   {{#unless this.started}}
-    <div style='width: 250px; height: 250px;' class='loader'></div>
+    <div class='loader'></div>
   {{/unless}}
 
   <video

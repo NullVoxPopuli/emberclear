@@ -22,7 +22,7 @@
         <br><br>
 
         {{t 'ui.footer.wantToSupport'}} <br>
-        <a {{on 'click' (toggle 'showMoneroAddress' this)}}>
+        <a {{on 'click' this.toggleMoneroAddress}}>
           {{fa-icon 'monero' prefix='fab'}} {{t 'buttons.donateXmr'}}
         </a>
         <br>

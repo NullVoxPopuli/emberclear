@@ -4,6 +4,7 @@ export function stubConnection(overrides = {}) {
   stubService('connection', {
     getOpenGraph() {},
     connect() {},
+    disconnect() {},
     send() {},
     ...overrides,
   });

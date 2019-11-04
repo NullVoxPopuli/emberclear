@@ -1,5 +1,4 @@
 import { module, test } from 'qunit';
-import StoreService from 'ember-data/store';
 
 import { visit, currentURL, settled, waitFor, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -12,7 +11,6 @@ import {
   getStore,
 } from 'emberclear/tests/helpers';
 
-import CurrentUserService from 'emberclear/services/current-user';
 import {
   page,
   selectors,
@@ -46,7 +44,7 @@ module('Acceptance | Sidebar', function(hooks) {
     module('the actual list of contacts', function() {
       module('there are 0 contacts', function() {
         test('only the current user is shown', async function(assert) {
-          const name = getService<CurrentUserService>('currentUser')!.name!;
+          const name = getService('currentUser')!.name!;
           const content = page.sidebar.contacts.list.map((c: any) => c.text).join();
 
           assert.equal(content, name);
@@ -78,17 +76,17 @@ module('Acceptance | Sidebar', function(hooks) {
           });
 
           test('only the current user is shown', function(assert) {
-            const name = getService<CurrentUserService>('currentUser')!.name!;
+            const name = getService('currentUser')!.name!;
             const content = page.sidebar.contacts.listText;
 
-            assert.ok(content.includes(name), 'current user name is present');
+            assert.contains(content, name);
             assert.equal(page.sidebar.contacts.list.length, 1, 'one user in the contacts list');
           });
 
           test('offline count is shown', function(assert) {
             const result = page.sidebar.contacts.offlineCount.text;
 
-            assert.ok(result!.match(/1/));
+            assert.matches(result, /1/);
           });
         });
       });
@@ -111,17 +109,17 @@ module('Acceptance | Sidebar', function(hooks) {
           });
 
           test('only the current user is shown', function(assert) {
-            const name = getService<CurrentUserService>('currentUser')!.name!;
+            const name = getService('currentUser')!.name!;
             const content = page.sidebar.contacts.listText;
 
-            assert.ok(content.includes(name), 'current user name is present');
+            assert.contains(content, name);
             assert.equal(page.sidebar.contacts.list.length, 1, 'one user in the contacts list');
           });
 
           test('offline count is shown', function(assert) {
             const result = page.sidebar.contacts.offlineCount.text;
 
-            assert.ok(result!.match(/2/));
+            assert.matches(result, /2/);
           });
         });
       });
@@ -189,7 +187,7 @@ module('Acceptance | Sidebar', function(hooks) {
         });
 
         test('a channel is created', function(assert) {
-          const store = getService<StoreService>('store');
+          const store = getService('store');
           const known = store.peekAll('channel');
 
           assert.equal(known.length, 1);

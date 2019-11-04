@@ -1,5 +1,7 @@
 'use strict';
 
+const ADDON_ENV = require('./addons');
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'emberclear',
@@ -18,63 +20,12 @@ module.exports = function(environment) {
       EXTEND_PROTOTYPES: false,
     },
 
-    fontawesome: {
-      defaultPrefix: 'fas', // free-and-solid
-      icons: {
-        'free-brands-svg-icons': ['reddit', 'twitter', 'monero'],
-        'free-solid-svg-icons': [
-          'qrcode',
-          'user-circle',
-          'address-book',
-          'sliders-h',
-          'sign-out-alt',
-          'dot-circle',
-          'plus',
-          'code',
-          'desktop',
-          'bed',
-          'video',
-          'angle-down',
-          'angle-up',
-          'angle-right',
-          'times',
-          'times-circle',
-          'phone',
-          'phone-volume',
-          'share',
-          'check-circle',
-          'exclamation-circle',
-          'check',
-          'ellipsis-h',
-          'globe',
-          'bars',
-          'search',
-        ],
-      },
-    },
-
-    routerScroll: {
-      scrollElement: '#scrollContainer',
-    },
+    ...ADDON_ENV,
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-  };
-
-  ENV['ember-a11y-testing'] = {
-    componentOptions: {
-      turnAuditOff: true,
-    },
-  };
-
-  ENV['ember-component-css'] = {
-    namespacing: false,
-  };
-
-  ENV['ember-cli-notifications'] = {
-    icons: 'fa-5',
   };
 
   if (environment === 'development') {
