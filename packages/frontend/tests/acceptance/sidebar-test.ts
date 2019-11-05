@@ -68,7 +68,7 @@ module('Acceptance | Sidebar', function(hooks) {
           assert.notOk(page.sidebar.contacts.offlineCount.isVisible, 'offline count is shown');
         });
 
-        module('pinned contacts are to be shown', function(hooks) {
+        module('pinned contact are to be shown', function(hooks) {
           hooks.beforeEach(async function() {
             const pinButton = document.getElementsByClassName('pin-button')[0];
             await click(pinButton);
