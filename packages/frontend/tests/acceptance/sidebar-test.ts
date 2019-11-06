@@ -142,19 +142,6 @@ module('Acceptance | Sidebar', function(hooks) {
             assert.notOk(page.sidebar.contacts.offlineCount.isVisible, 'offline count is shown');
           });
 
-          test('two contacts should be shown and one hidden', async function(assert) {
-            const pinButton = document.getElementsByClassName('pin-button')[0];
-            await click(pinButton);
-            assert.equal(page.sidebar.contacts.list.length, 2, 'two users in the contacts list');
-          });
-
-          test('offline count shows with one contact', async function(assert) {
-            const pinButton = document.getElementsByClassName('pin-button')[0];
-            await click(pinButton);
-            const result = page.sidebar.contacts.offlineCount.text;
-            assert.matches(result, /1/);
-          });
-
           test('pinned contacts should appear above offline contacts', async function(assert) {
             const contacts = page.sidebar.contacts.list;
             assert.equal(contacts[0].name, 'Test User');
@@ -167,6 +154,13 @@ module('Acceptance | Sidebar', function(hooks) {
             assert.equal(contacts[0].name, 'Test User');
             assert.equal(contacts[1].name, 'second contact');
             assert.equal(contacts[2].name, 'first contact');
+          });
+
+          test('two contacts should be shown and one hidden', async function(assert) {
+            const pinButton = document.getElementsByClassName('pin-button')[0];
+            await click(pinButton);
+            assert.equal(page.sidebar.contacts.list.length, 2, 'two users in the contacts list');
+            assert.matches(page.sidebar.contacts.offlineCount.text, /1/);
           });
         });
 
