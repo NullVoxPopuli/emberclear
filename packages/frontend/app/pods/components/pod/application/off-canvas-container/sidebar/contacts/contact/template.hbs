@@ -22,7 +22,7 @@
       {{/if}}
     </a>
     {{#if this.canBePinned}}
-      <button class='pin-button'
+      <button data-test-contact-pin class='pin-button'
         {{on 'click' (prevent-default this.onPin)}}
       >
         <FaIcon @icon='thumbtack' class='pin-icon' @rotation={{if this.isPinned 0 90}}/>

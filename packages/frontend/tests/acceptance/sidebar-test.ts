@@ -127,9 +127,9 @@ module('Acceptance | Sidebar', function(hooks) {
         module('pinned contacts are to be shown', function(hooks) {
           hooks.beforeEach(async function() {
             const pinButton = document.getElementsByClassName('pin-button')[0];
-            const pinButton1 = document.getElementsByClassName('pin-button')[1];
+            const pinButton2 = document.getElementsByClassName('pin-button')[1];
             await click(pinButton);
-            await click(pinButton1);
+            await click(pinButton2);
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
           });
@@ -139,8 +139,8 @@ module('Acceptance | Sidebar', function(hooks) {
           });
 
           test('two contacts should be shown and one hidden', async function(assert) {
-            const pinButton = document.getElementsByClassName('pin-button')[0];
-            await click(pinButton);
+            const firstContact = page.sidebar.contacts.list.objectAt(0);
+            await firstContact.pin();
             assert.equal(page.sidebar.contacts.list.length, 2, 'two users in the contacts list');
             assert.matches(page.sidebar.contacts.offlineCount.text, /1/);
           });
