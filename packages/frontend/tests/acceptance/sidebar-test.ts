@@ -139,10 +139,10 @@ module('Acceptance | Sidebar', function(hooks) {
           });
 
           test('two contacts should be shown and one hidden', async function(assert) {
-            const firstContact = page.sidebar.contacts.list.objectAt(0);
-            await firstContact.pin();
-            assert.equal(page.sidebar.contacts.list.length, 2, 'two users in the contacts list');
-            assert.matches(page.sidebar.contacts.offlineCount.text, /1/);
+            const contacts = page.sidebar.contacts
+            await contacts.list.objectAt(0).pin();
+            assert.equal(contacts.list.length, 2, 'two users in the contacts list');
+            assert.matches(contacts.offlineCount.text, /1/);
           });
 
           test('offline count does not show', function(assert) {
