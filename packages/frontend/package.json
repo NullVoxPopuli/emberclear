@@ -40,7 +40,7 @@
     "localforage": "^1.7.3",
     "phoenix": "^1.4.10",
     "qr-scanner": "github:nimiq/qr-scanner",
-    "qrcode": "^1.4.2",
+    "qrcode": "^1.4.4",
     "shoelace-css": "^1.0.0-beta24",
     "showdown": "^1.9.1",
     "toastify-js": "^1.6.1",
