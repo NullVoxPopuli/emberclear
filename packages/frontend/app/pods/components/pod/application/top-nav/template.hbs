@@ -2,14 +2,14 @@
 
   <div class='left-nav'>
     {{#if this.currentUser.isLoggedIn}}
-      <div>
+      <div {{update-document-title this.unreadMessageCount}}>
         <HamburgerButton
           @onClick={{this.sidebar.toggle}}
           @isActive={{this.sidebar.isShown}}
         />
 
         {{#if this.hasUnread}}
-          <span
+          <span            
             data-test-unread-count
             class='badge badge-warning'
             style='left: 2rem; bottom: 0.5rem;'

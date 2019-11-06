@@ -21,8 +21,31 @@ module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
 
+  module('is not logged in', function(hooks) {
+    hooks.beforeEach(async function() {
+      await visit('/chat/privately-with');
+    });
+
+    test('document.title is unchanged', async function(assert) {
+      assert.ok(document.title.startsWith('emberclear'));
+    });
+  });
+
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);
+
+    module('anyone', async function(hooks) {
+      setupRelayConnectionMocks(hooks);
+
+      hooks.beforeEach(async function() {
+        await visit('/chat/privately-with');
+      });
+
+      test('document.title is properly changed', async function(assert) {
+        assert.notEqual(document.title, 'emberclear');
+        assert.ok(document.title.startsWith('0 | emberclear | '));
+      });
+    });
 
     module('yourself', function(hooks) {
       setupRelayConnectionMocks(hooks);
