@@ -18,7 +18,7 @@ export enum STATUS {
 
 export default class Contact extends Identity {
   @attr() onlineStatus?: STATUS;
-  @attr('boolean', { defaultValue: false }) isPinned!: boolean;
+  @attr('boolean', { defaultValue: false }) isPinned?: boolean;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
