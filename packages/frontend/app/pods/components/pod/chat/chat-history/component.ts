@@ -17,8 +17,6 @@ interface IArgs {
 export default class ChatHistory extends Component<IArgs> {
   @service chatScroller!: ChatScroller;
 
-  @tracked isLastVisible = true;
-
   @action scrollToBottom() {
     this.chatScroller.scrollToBottom.perform();
   }

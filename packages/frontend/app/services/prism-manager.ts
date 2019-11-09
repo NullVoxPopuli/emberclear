@@ -20,11 +20,13 @@ export default class PrismManager extends Service {
   prismLoader: any = undefined;
 
   @task({ maxConcurrency: 1, enqueue: true })
-  *addLanguage(language: string, element: HTMLElement) {
+  *addLanguage(language: string, element?: HTMLElement) {
     yield (this.addEssentials as any).perform();
     yield this.ensureLanguage(language);
 
-    Prism.highlightAllUnder(element);
+    if (element) {
+      Prism.highlightAllUnder(element);
+    }
   }
 
   async ensureLanguage(language: string) {

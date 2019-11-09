@@ -12,8 +12,9 @@ interface Args {
 
 export default class FormatCode extends Modifier<Args> {
   @service prismManager!: PrismManager;
+  text = '';
 
-  didReceiveArguments() {
+  didInstall() {
     let text = this.args.positional[0];
 
     // extra code features
@@ -21,6 +22,20 @@ export default class FormatCode extends Modifier<Args> {
 
     // non-blocking
     this.addLanguages(text);
+  }
+
+
+  // NOTE: this method should not exist, but does
+  //       because vertical-collection recycles
+  //       nodes
+  didUpdateArguments() {
+    let text = this.args.positional[0];
+
+    if (this.text !== text) {
+      this.didInstall();
+    }
+
+    this.text = text;
   }
 
   private makeCodeBlocksFancy() {

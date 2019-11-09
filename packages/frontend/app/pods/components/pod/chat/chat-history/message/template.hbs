@@ -3,10 +3,11 @@
 <div
   id={{@message.id}}
   role='button'
-  {{on 'click' (perform this.markRead)}}
+  {{!-- NOTE: maybe-nudge doesn't need an argument,
+        but vertical-collection recycling requires it --}}
+  {{maybe-nudge-to-bottom @message}}
+  {{read-watcher @message}}
   {{format-code @message.body}}
-  {{maybe-nudge-to-bottom}}
-  {{read-watcher @message markRead=(perform this.markRead)}}
 
   class='
     message m-l-md m-r-md m-b-md
@@ -46,9 +47,7 @@
     </span>
   </div>
 
-  <p
-    class='message-body'
-  >
+  <p class='message-body'>
     {{{this.messageBody}}}
 
     {{#if (is-present this.urls)}}

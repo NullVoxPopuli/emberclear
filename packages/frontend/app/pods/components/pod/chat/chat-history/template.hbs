@@ -1,6 +1,7 @@
 <div
   class='message-list'
   {{unread-message-list-observer}}
+  {{message-scroll-listener @messages}}
 >
 
   <Pod::Chat::ChatHistory::NotificationPrompt />
@@ -13,17 +14,18 @@
     class='messages'
     estimateHeight=100
     staticHeight=false
-    shouldRecycle=false
+    shouldRecycle=true
     key='id'
     bufferSize=5
     renderFromLast=true
+    lastVisibleChanged=this.determineIfLastIsVisible
     as |message|
   }}
     <Pod::Chat::ChatHistory::Message @message={{message}} />
   {{/vertical-collection}}
 
+
   {{!--
-  <!-- For Testing if there are issues with occlusion -->
   <div class='messages'>
     {{#each @messages as |message|}}
       <Pod::Chat::ChatHistory::Message @message={{message}} />
@@ -37,7 +39,7 @@
     class='
       alert pad-xs
       new-messages transition-all
-      {{if this.isLastVisible 'hidden'}}
+      {{if this.chatScroller.isLastVisible 'hidden'}}
     '
   >
 

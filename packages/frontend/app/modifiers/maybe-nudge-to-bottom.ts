@@ -15,4 +15,11 @@ export default class MaybeNudgeToBottom extends Modifier {
       );
     }
   }
+
+  // NOTE: this method should not exist, but does
+  //       because vertical-collection recycles
+  //       nodes
+  didUpdateArguments() {
+    this.didInstall();
+  }
 }
