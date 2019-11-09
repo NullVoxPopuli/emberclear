@@ -2,6 +2,7 @@ import Modifier from 'ember-modifier';
 import StoreService from 'ember-data/store';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
+import Task from 'ember-concurrency/task';
 
 import SidebarService from 'emberclear/services/sidebar';
 import Message from 'emberclear/models/message';
@@ -9,19 +10,13 @@ import Message from 'emberclear/models/message';
 import { isInElementWithinViewport } from 'emberclear/utils/dom/utils';
 import { markAsRead } from 'emberclear/models/message/utils';
 
-interface Args {
-  positional: [];
-}
-
-export default class UnreadMessagesIntersectionObserver extends Modifier<Args> {
+export default class UnreadMessagesIntersectionObserver extends Modifier {
   @service sidebar!: SidebarService;
   @service store!: StoreService;
 
   focusHandler!: () => void;
 
   didInstall() {
-    let { markRead } = this.args.named;
-
     this.focusHandler = this.respondToWindowFocus.bind(this);
 
     window.addEventListener('focus', this.focusHandler);

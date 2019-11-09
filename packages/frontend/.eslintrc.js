@@ -19,7 +19,10 @@ module.exports = {
 
     // cleanliness & consistency
     'prefer-const': 'off', // const has misleading safety implications
-    'no-console': ['error', { allow: ['debug', 'warn', 'error', 'info'] }],
+    'no-console': [
+      'error',
+      { allow: ['debug', 'warn', 'error', 'info', 'group', 'groupEnd', 'groupCollapsed'] },
+    ],
     'no-cond-assign': 'off',
     'no-useless-escape': 'off',
     'require-yield': 'off',

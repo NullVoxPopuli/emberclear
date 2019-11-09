@@ -1,6 +1,103 @@
 import Service from '@ember/service';
-import { task } from 'ember-concurrency';
-import Task from 'ember-concurrency/task';
+// NOTE: using task from ember-concurrency-decorators doesn't
+//       allow for types to be recognized.
+//       Continue using task from ember-concurrency instead.
+//
+//       This file will be where we periodically check if TypeScript
+//       does what we want.
+import { task } from 'ember-concurrency-decorators';
+
+const aliases: Dict = {
+  ts: 'typescript',
+  rb: 'ruby',
+  hbs: 'handlebars',
+  js: 'javascript',
+};
+
+export default class PrismManager extends Service {
+  areEssentialsPresent = false;
+  alreadyAdded: string[] = [];
+  prismLoader: any = undefined;
+
+  @task({ maxConcurrency: 1, enqueue: true })
+  *addLanguage(language: string, element: HTMLElement) {
+    yield (this.addEssentials as any).perform();
+    yield this.ensureLanguage(language);
+
+    Prism.highlightAllUnder(element);
+  }
+
+  async ensureLanguage(language: string) {
+    let name = aliases[language] || language;
+    let hasAbbr = name !== language;
+    let abbr = hasAbbr ? language : undefined;
+
+    if (this.alreadyAdded.includes(language)) {
+      return;
+    }
+
+    console.groupCollapsed(`PrismManager: loading: ${name}`);
+    await this.prismLoader.load(Prism, name);
+    console.debug(`Success: ${Boolean(Prism.languages[name])}`);
+    console.groupEnd();
+
+    if (abbr) {
+      // eslint-disable-next-line require-atomic-updates
+      Prism.languages[abbr] = Prism.languages[name];
+    }
+
+    this.alreadyAdded.push(language);
+  }
+
+  @task({ drop: true })
+  *addEssentials() {
+    if (this.areEssentialsPresent) return;
+
+    let prismLoader = yield addScripts();
+    addStyles();
+
+    this.prismLoader = prismLoader;
+    this.areEssentialsPresent = true;
+  }
+}
+
+async function addScripts() {
+  await import('prismjs').then(Prism => ((window as any).Prism = Prism));
+
+  let modules = await Promise.all([
+    import('prismjs/plugins/line-numbers/prism-line-numbers.min.js'),
+    import('prismjs/plugins/show-language/prism-show-language.min.js'),
+    import('prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'),
+    import('prismjs/plugins/autolinker/prism-autolinker.min.js'),
+    import('prismjs-components-loader'),
+    import('prismjs-components-loader/dist/all-components'),
+  ]);
+
+  let [, , , , prismLoader, allComponents] = modules;
+
+  const PrismLoader = prismLoader.default;
+
+  let loader = new PrismLoader(allComponents.default);
+
+  return loader;
+}
+
+function addStyles() {
+  addStyle('/prismjs/themes/prism.css');
+  // addStyle('/prismjs/themes/prism-twilight.css');
+  addStyle('/prismjs/plugins/line-numbers/prism-line-numbers.css');
+  addStyle('/prismjs/plugins/autolinker/prism-autolinker.css');
+}
+
+function addStyle(path: string) {
+  let head = document.querySelector('head')!;
+  let link = document.createElement('link');
+
+  link.setAttribute('href', path);
+  link.setAttribute('rel', 'stylesheet');
+
+  head.appendChild(link);
+}
 
 export const languages = [
   'actionscript',
@@ -70,107 +167,3 @@ export const languages = [
   'wiki',
   'yaml',
 ];
-
-export default class PrismManager extends Service {
-  areEssentialsPresent = false;
-  alreadyAdded: string[] = [];
-
-  @(task(function*(this: PrismManager, language: string, element?: HTMLElement) {
-    language = this._expandLanguageAbbreviation(language);
-
-    yield this.addEssentials.perform();
-
-    console.log('adding',language);
-    if (this.alreadyAdded.includes(language) && element) {
-      return Prism.highlightAllUnder(element);
-    }
-
-    // yield import('prismjs/components/prism-handlebars.min.js');
-    yield import('prismjs/components/prism-typescript.min.js');
-    // ember-auto-import why
-    // yield import(`prismjs/components/prism-${language}.min.js`);
-
-    this.alreadyAdded.push(language);
-
-    if (element) {
-      return Prism.highlightAllUnder(element);
-    }
-
-    Prism.highlightAll();
-  })
-    .maxConcurrency(1)
-    .enqueue())
-  addLanguage!: Task;
-
-  @(task(function*(this: PrismManager) {
-    if (this.areEssentialsPresent) return;
-
-    yield addScripts();
-    addStyles();
-
-    this.areEssentialsPresent = true;
-  }).drop())
-  addEssentials!: Task;
-
-  _expandLanguageAbbreviation(language: string) {
-    switch (language) {
-      case 'ts':
-        return 'typescript';
-      case 'rb':
-        return 'ruby';
-      case 'hbs':
-        return 'handlebars';
-      case 'js':
-        return 'javascript';
-      default:
-        return language;
-    }
-  }
-}
-
-async function addScripts() {
-  await import('prismjs').then(Prism => ((window as any).Prism = Prism));
-
-  await Promise.all([
-    import('prismjs/plugins/line-numbers/prism-line-numbers.min.js'),
-    import('prismjs/plugins/show-language/prism-show-language.min.js'),
-    import('prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'),
-    import('prismjs/plugins/autolinker/prism-autolinker.min.js'),
-  ]);
-  // addScript('/prismjs/prism.js');
-  // addScript('/prismjs/components/prism-core.min.js');
-  // addScript('/prismjs/plugins/line-numbers/prism-line-numbers.min.js');
-  // addScript('/prismjs/plugins/show-language/prism-show-language.min.js');
-  // addScript('/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js');
-  // addScript('/prismjs/plugins/autolinker/prism-autolinker.min.js');
-}
-
-function addStyles() {
-  addStyle('/prismjs/themes/prism.css');
-  // addStyle('/prismjs/themes/prism-twilight.css');
-  addStyle('/prismjs/plugins/line-numbers/prism-line-numbers.css');
-  addStyle('/prismjs/plugins/autolinker/prism-autolinker.css');
-}
-
-function addStyle(path: string) {
-  let head = document.querySelector('head')!;
-  let link = document.createElement('link');
-
-  link.setAttribute('href', path);
-  link.setAttribute('rel', 'stylesheet');
-
-  head.appendChild(link);
-}
-
-function addScript(path: string) {
-  let head = document.querySelector('head')!;
-  let script = document.createElement('script');
-
-  // script.setAttribute('type', 'text/javascript');
-  script.setAttribute('src', path);
-  script.onload = () => console.log('done', path);
-  script.setAttribute('defer', '');
-  // script.setAttribute('async', '');
-
-  head.appendChild(script);
-}
