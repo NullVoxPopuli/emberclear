@@ -10961,10 +10961,10 @@ performance-now@^2.1.0:
   resolved "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-phoenix@^1.4.10:
-  version "1.4.10"
-  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.4.10.tgz#02ebd5bf57bdbeb3ff43d8de6d44a8af7968991b"
-  integrity sha512-apWRDNUj3c//fwh7F7ixh90qejE2j9FFw+e0qSDzYKzszByGrrv9uSmsqol/7x2E+r0GbkXKaeH93eXTQbhJ1A==
+phoenix@^1.4.11:
+  version "1.4.11"
+  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.4.11.tgz#3e70cd2461600ef3b0d4308e8fef7d2005fe000a"
+  integrity sha512-UkuqKB/+Uy9LNt15v1PpPeoLizcYwF4cFTi1wiMZ2TVX5+2Pj7MbRDFmoUFPc+Z1jsOE/TdQ6kzZohErWMiYlQ==
 
 pify@^2.3.0:
   version "2.3.0"
