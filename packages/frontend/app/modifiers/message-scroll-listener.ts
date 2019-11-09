@@ -12,13 +12,9 @@ interface Args {
 function debounced(fn: any) {
   let queued: any;
   return function debouncedCallback() {
-    let timeout;
     if (queued) cancelAnimationFrame(queued);
-    if (timeout) clearTimeout(timeout);
 
-    timeout = setTimeout(() => {
-      queued = requestAnimationFrame(fn);
-    }, 50);
+    queued = requestAnimationFrame(fn);
   };
 }
 
