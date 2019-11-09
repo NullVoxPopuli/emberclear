@@ -5,7 +5,6 @@ import '@ember/test-helpers';
 import 'ember-cli-htmlbars';
 import 'qunit';
 
-
 declare module '@ember/service' {
   interface Registry {
     ['notification-messages']: {
