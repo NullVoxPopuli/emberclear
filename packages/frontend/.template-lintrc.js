@@ -8,6 +8,7 @@ module.exports = {
     'no-implicit-this': true,
     'no-bare-strings': {
       whitelist: [
+        '&nbsp;',
         '(',
         ')',
         ',',
