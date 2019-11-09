@@ -1,4 +1,4 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { and, reads, notEmpty } from '@ember/object/computed';
 
@@ -11,8 +11,4 @@ export default class MetadataPreview extends Component {
   @reads('ogData') og!: OpenGraphData;
 
   @notEmpty('og.image') hasImage!: boolean;
-
-  didInsertElement() {
-    this.chatScroller.maybeNudgeToBottom(this.element as HTMLElement);
-  }
 }

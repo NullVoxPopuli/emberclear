@@ -5,7 +5,7 @@
   role='button'
   {{on 'click' (perform this.markRead)}}
   {{format-code @message.body}}
-  {{did-insert this.chatScroller.maybeNudgeToBottom}}
+  {{maybe-nudge-to-bottom}}
   {{read-watcher @message markRead=(perform this.markRead)}}
 
   class='

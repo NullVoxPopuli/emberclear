@@ -1,6 +1,6 @@
 {{! template-lint-disable no-triple-curlies }}
 
-<div>
+<div {{maybe-nudge-to-bottom}}>
   {{#if this.hasImage}}
     <span class='thumbnail-container'>
       <img alt={{t 'images.alt.thumbnail'}} src={{this.og.image}}>

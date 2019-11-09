@@ -18,7 +18,6 @@ interface IArgs {
 }
 
 export default class MessageDisplay extends Component<IArgs> {
-  @service chatScroller!: ChatScroller;
   @service settings!: SettingsService;
   @service currentUser!: CurrentUserService;
 
