@@ -5,6 +5,7 @@ import '@ember/test-helpers';
 import 'ember-cli-htmlbars';
 import 'qunit';
 
+
 declare module '@ember/service' {
   interface Registry {
     ['notification-messages']: {
@@ -41,6 +42,7 @@ declare module '@ember/test-helpers' {
 ////////////////////////////////////////////////
 declare global {
   type Dict<T = string> = { [key: string]: T };
+  type TODO<T = any> = T;
 
   //////////////////////////////////////////////
   // Things that TypeScript should already have
