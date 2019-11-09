@@ -40,7 +40,10 @@ export default class ReadWatcher extends Modifier<Args> {
   }
 
   private markRead() {
-    this.markMessageRead();
+    if (this.message.unread) {
+      this.markMessageRead();
+    }
+
     this.disconnect();
   }
 

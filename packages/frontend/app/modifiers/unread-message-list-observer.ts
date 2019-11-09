@@ -1,31 +1,23 @@
 import Modifier from 'ember-modifier';
 import StoreService from 'ember-data/store';
 import { inject as service } from '@ember/service';
+import { task, timeout } from 'ember-concurrency';
+import Task from 'ember-concurrency/task';
 
 import SidebarService from 'emberclear/services/sidebar';
-
-import { isInElementWithinViewport } from 'emberclear/utils/dom/utils';
 import Message from 'emberclear/models/message';
 
-interface Args {
-  positional: [];
-  named: {
-    markRead: (message: Message) => void;
-  };
-}
+import { isInElementWithinViewport } from 'emberclear/utils/dom/utils';
+import { markAsRead } from 'emberclear/models/message/utils';
 
-export default class UnreadMessagesIntersectionObserver extends Modifier<Args> {
+export default class UnreadMessagesIntersectionObserver extends Modifier {
   @service sidebar!: SidebarService;
   @service store!: StoreService;
 
   focusHandler!: () => void;
-  markRead!: (message: Message) => void;
 
   didInstall() {
-    let { markRead } = this.args.named;
-
     this.focusHandler = this.respondToWindowFocus.bind(this);
-    this.markRead = markRead;
 
     window.addEventListener('focus', this.focusHandler);
   }
@@ -44,8 +36,28 @@ export default class UnreadMessagesIntersectionObserver extends Modifier<Args> {
       if (isVisible) {
         const record = this.store.peekRecord('message', message.id);
 
-        this.markRead(record);
+        this.markRead.perform(record);
       }
     });
   }
+
+  @(task(function*(message: Message) {
+    let attempts = 0;
+    while (attempts < 100) {
+      attempts++;
+      if (message.readAt) {
+        return;
+      }
+
+      if (message.isSaving || !document.hasFocus()) {
+        yield timeout(10);
+      } else {
+        yield markAsRead(message);
+        return;
+      }
+    }
+  })
+    .maxConcurrency(30)
+    .enqueue())
+  markRead!: Task;
 }

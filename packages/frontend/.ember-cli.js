@@ -16,6 +16,7 @@ module.exports = {
   host: '0.0.0.0',
   // no pods, use co-located components
   usePods: false,
+  componentStructure: 'nested',
   // for service-worker testing
   ssl: false,
 };

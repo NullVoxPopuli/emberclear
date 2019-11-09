@@ -1,23 +1,103 @@
 import Service from '@ember/service';
-import { task } from 'ember-concurrency';
-import Task from 'ember-concurrency/task';
+// NOTE: using task from ember-concurrency-decorators doesn't
+//       allow for types to be recognized.
+//       Continue using task from ember-concurrency instead.
+//
+//       This file will be where we periodically check if TypeScript
+//       does what we want.
+import { task } from 'ember-concurrency-decorators';
 
-const PRISM_VERSION = '1.15.0';
-const CDN = `https://cdn.jsdelivr.net/combine/`;
-const PRISM_PATH = `npm/prismjs@${PRISM_VERSION}`;
-const PRISM_PLUGIN_PATH = `${PRISM_PATH}/plugins/`;
-const PRISM_URL = `${CDN}${PRISM_PATH}`;
+const aliases: Dict = {
+  ts: 'typescript',
+  rb: 'ruby',
+  hbs: 'handlebars',
+  js: 'javascript',
+};
 
-const linNumJs = `${PRISM_PLUGIN_PATH}line-numbers/prism-line-numbers.min.js`;
-const langJs = `${PRISM_PLUGIN_PATH}show-language/prism-show-language.min.js`;
-const normalWhiteSpaceJs = `${PRISM_PLUGIN_PATH}normalize-whitespace/prism-normalize-whitespace.min.js`;
-const autoLinkJs = `${PRISM_PLUGIN_PATH}autolinker/prism-autolinker.min.js`;
-const js = [PRISM_URL, linNumJs, langJs, normalWhiteSpaceJs, autoLinkJs].join(',');
+export default class PrismManager extends Service {
+  areEssentialsPresent = false;
+  alreadyAdded: string[] = [];
+  prismLoader: any = undefined;
 
-const mainCss = `${PRISM_URL}/themes/prism.min.css`;
-const lineNumCss = `${PRISM_PLUGIN_PATH}line-numbers/prism-line-numbers.min.css`;
-const autolinkerCss = `${PRISM_PLUGIN_PATH}autolinker/prism-autolinker.min.css`;
-const css = [mainCss, lineNumCss, autolinkerCss].join(',');
+  @task({ maxConcurrency: 1, enqueue: true })
+  *addLanguage(language: string, element: HTMLElement) {
+    yield (this.addEssentials as any).perform();
+    yield this.ensureLanguage(language);
+
+    Prism.highlightAllUnder(element);
+  }
+
+  async ensureLanguage(language: string) {
+    let name = aliases[language] || language;
+    let hasAbbr = name !== language;
+    let abbr = hasAbbr ? language : undefined;
+
+    if (this.alreadyAdded.includes(language)) {
+      return;
+    }
+
+    console.groupCollapsed(`PrismManager: loading: ${name}`);
+    await this.prismLoader.load(Prism, name);
+    console.debug(`Success: ${Boolean(Prism.languages[name])}`);
+    console.groupEnd();
+
+    if (abbr) {
+      // eslint-disable-next-line require-atomic-updates
+      Prism.languages[abbr] = Prism.languages[name];
+    }
+
+    this.alreadyAdded.push(language);
+  }
+
+  @task({ drop: true })
+  *addEssentials() {
+    if (this.areEssentialsPresent) return;
+
+    let prismLoader = yield addScripts();
+    addStyles();
+
+    this.prismLoader = prismLoader;
+    this.areEssentialsPresent = true;
+  }
+}
+
+async function addScripts() {
+  await import('prismjs').then(Prism => ((window as any).Prism = Prism));
+
+  let modules = await Promise.all([
+    import('prismjs/plugins/line-numbers/prism-line-numbers.min.js'),
+    import('prismjs/plugins/show-language/prism-show-language.min.js'),
+    import('prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'),
+    import('prismjs/plugins/autolinker/prism-autolinker.min.js'),
+    import('prismjs-components-loader'),
+    import('prismjs-components-loader/dist/all-components'),
+  ]);
+
+  let [, , , , prismLoader, allComponents] = modules;
+
+  const PrismLoader = prismLoader.default;
+
+  let loader = new PrismLoader(allComponents.default);
+
+  return loader;
+}
+
+function addStyles() {
+  addStyle('/prismjs/themes/prism.css');
+  // addStyle('/prismjs/themes/prism-twilight.css');
+  addStyle('/prismjs/plugins/line-numbers/prism-line-numbers.css');
+  addStyle('/prismjs/plugins/autolinker/prism-autolinker.css');
+}
+
+function addStyle(path: string) {
+  let head = document.querySelector('head')!;
+  let link = document.createElement('link');
+
+  link.setAttribute('href', path);
+  link.setAttribute('rel', 'stylesheet');
+
+  head.appendChild(link);
+}
 
 export const languages = [
   'actionscript',
@@ -87,84 +167,3 @@ export const languages = [
   'wiki',
   'yaml',
 ];
-
-export default class PrismManager extends Service {
-  areEssentialsPresent = false;
-  alreadyAdded: string[] = [];
-
-  // language format:
-  //  prism-{language}.min.js
-  // examples:
-  // npm/prismjs@1.14.0/components/prism-typescript.min.js
-  // npm/prismjs@1.14.0/components/prism-jsx.min.js
-  // npm/prismjs@1.14.0/components/prism-tsx.min.js
-  // npm/prismjs@1.14.0/components/prism-markup-templating.min.js
-  // npm/prismjs@1.14.0/components/prism-handlebars.min.js
-  //
-  // TODO: fetch these files asyncily, so we can manage state, and know
-  // when to call highlightAll
-  @(task(function*(this: PrismManager, language: string, element?: HTMLElement) {
-    language = this._expandLanguageAbbreviation(language);
-
-    yield this.addEssentials.perform();
-
-    if (this.alreadyAdded.includes(language) && element) {
-      return Prism.highlightAllUnder(element);
-    }
-
-    const path = `${PRISM_URL}/components/prism-${language}.min.js`;
-
-    yield this.addScript(path);
-
-    this.alreadyAdded.push(language);
-
-    Prism.highlightAll();
-  })
-    .maxConcurrency(1)
-    .enqueue())
-  addLanguage!: Task;
-
-  @(task(function*(this: PrismManager) {
-    if (this.areEssentialsPresent) return;
-
-    const head = document.querySelector('head')!;
-    const link = document.createElement('link');
-
-    link.setAttribute('href', css);
-    link.setAttribute('rel', 'stylesheet');
-
-    head.appendChild(link);
-    yield this.addScript(js);
-
-    this.areEssentialsPresent = true;
-  }).drop())
-  addEssentials!: Task;
-
-  async addScript(path: string) {
-    const head = document.querySelector('head')!;
-    const script = document.createElement('script');
-
-    const file = await fetch(path);
-    const code = await file.text();
-
-    script.setAttribute('type', 'text/javascript');
-    script.innerHTML = code;
-
-    head.appendChild(script);
-  }
-
-  _expandLanguageAbbreviation(language: string) {
-    switch (language) {
-      case 'ts':
-        return 'typescript';
-      case 'rb':
-        return 'ruby';
-      case 'hbs':
-        return 'handlebars';
-      case 'js':
-        return 'javascript';
-      default:
-        return language;
-    }
-  }
-}

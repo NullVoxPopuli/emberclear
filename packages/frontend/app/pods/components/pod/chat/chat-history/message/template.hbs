@@ -6,7 +6,7 @@
   {{on 'click' (perform this.markRead)}}
   {{format-code @message.body}}
   {{did-insert this.chatScroller.maybeNudgeToBottom}}
-  {{read-watcher @message markRead=(action (perform this.markRead))}}
+  {{read-watcher @message markRead=(perform this.markRead)}}
 
   class='
     message m-l-md m-r-md m-b-md

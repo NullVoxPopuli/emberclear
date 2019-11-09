@@ -9,7 +9,6 @@ import ChatScroller from 'emberclear/services/chat-scroller';
 import Channel from 'emberclear/models/channel';
 import Contact from 'emberclear/models/contact';
 import Message from 'emberclear/models/message';
-import { markAsRead } from 'emberclear/models/message/utils';
 import Task from 'ember-concurrency/task';
 
 interface IArgs {
@@ -31,22 +30,6 @@ export default class ChatHistory extends Component<IArgs> {
     console.debug('Pending fix for did-update');
     // this._setIsLastVisible.perform();
   }
-
-  @(task(function*(message: Message) {
-    let attempts = 0;
-    while (attempts < 100) {
-      attempts++;
-      if (message.isSaving || !document.hasFocus()) {
-        yield timeout(10);
-      } else {
-        yield markAsRead(message);
-        return;
-      }
-    }
-  })
-    .maxConcurrency(30)
-    .enqueue())
-  markRead!: Task;
 
   @(task(function*(this: ChatHistory) {
     yield timeout(250);

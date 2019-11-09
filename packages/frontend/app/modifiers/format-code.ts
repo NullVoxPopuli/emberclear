@@ -13,9 +13,14 @@ interface Args {
 export default class FormatCode extends Modifier<Args> {
   @service prismManager!: PrismManager;
 
+  text = '';
+
   didReceiveArguments() {
     let text = this.args.positional[0];
 
+    if (text === this.text) return;
+
+    this.text = text;
     // extra code features
     this.makeCodeBlocksFancy();
 
@@ -38,7 +43,7 @@ export default class FormatCode extends Modifier<Args> {
 
     languages.forEach(language => {
       (later as any)(() => {
-        this.prismManager.addLanguage.perform(language, this.element);
+        (this.prismManager.addLanguage as TODO).perform(language, this.element);
       });
     });
   }

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ESNext",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -17,8 +17,7 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "baseUrl": ".",
-    "module": "es6",
-
+    "module": "esnext",
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "noFallthroughCasesInSwitch": true,

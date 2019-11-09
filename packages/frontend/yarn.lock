@@ -1083,6 +1083,13 @@
     ember-cli-typescript "^2.0.2"
     heimdalljs "^0.3.0"
 
+"@ember-decorators/utils@^6.1.0":
+  version "6.1.1"
+  resolved "https://registry.npmjs.org/@ember-decorators/utils/-/utils-6.1.1.tgz#6b619814942b4fb3747cfa9f540c9f05283d7c5e"
+  integrity sha512-0KqnoeoLKb6AyoSU65TRF5T85wmS4uDn06oARddwNPxxf/lt5jQlh41uX3W7V/fWL9tPu8x1L1Vvpc80MN1+YA==
+  dependencies:
+    ember-cli-babel "^7.1.3"
+
 "@ember-intl/broccoli-cldr-data@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@ember-intl/broccoli-cldr-data/-/broccoli-cldr-data-3.1.0.tgz#119fa9230657c471b08ff6950baff2838ce31ce3"
@@ -5749,7 +5756,7 @@ ember-cli-babel-plugin-helpers@^1.0.0, ember-cli-babel-plugin-helpers@^1.1.0:
   resolved "https://registry.npmjs.org/ember-cli-babel-plugin-helpers/-/ember-cli-babel-plugin-helpers-1.1.0.tgz#de3baedd093163b6c2461f95964888c1676325ac"
   integrity sha512-Zr4my8Xn+CzO0gIuFNXji0eTRml5AxZUTDQz/wsNJ5AJAtyFWCY4QtKdoELNNbiCVGt1lq5yLiwTm4scGKu6xA==
 
-ember-cli-babel@7.12.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.1.4, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.12.0, ember-cli-babel@^7.7.3, ember-cli-babel@^7.8.0:
+ember-cli-babel@7.12.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.1.4, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.12.0, ember-cli-babel@^7.7.3, ember-cli-babel@^7.8.0, ember-cli-babel@^7.9.0:
   version "7.12.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.12.0.tgz#064997d199384be8c88d251f30ef67953d3bddc5"
   integrity sha512-+EGQsbPvh19nNXHCm6rVBx2CdlxQlzxMyhey5hsGViDPriDI4PFYXYaFWdGizDrmZoDcG/Ywpeph3hl0NxGQTg==
@@ -6211,6 +6218,15 @@ ember-computed-promise-monitor@^0.4.0:
     ember-cli-htmlbars "^3.0.0"
     ember-cli-typescript "^2.0.0-rc.2"
     ember-decorators-polyfill "^1.0.4"
+
+ember-concurrency-decorators@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/ember-concurrency-decorators/-/ember-concurrency-decorators-1.0.0.tgz#b327e9e487650f0670870a8233c35bd0b5a7452b"
+  integrity sha512-lvBp22RWjrrOMpVzMNx/un+9wMzAU97G2dEbqgg5t5i4n5oa8PSs4em6NDM+kVFX9hpf5rc1wBnisLbFRBIL6A==
+  dependencies:
+    "@ember-decorators/utils" "^6.1.0"
+    ember-cli-babel "^7.9.0"
+    ember-cli-typescript "^2.0.2"
 
 ember-concurrency-test-waiter@^0.3.1:
   version "0.3.1"
@@ -11731,6 +11747,18 @@ printf@^0.5.1:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/printf/-/printf-0.5.2.tgz#8546e01a1f647b1dff510ae92bdc92beb8c9b2f9"
   integrity sha512-Hn0UuWqTRd94HiCJoiCNGZTnSyXJdIF3t4/4I293hezIzyH4pQ3ai4TlH/SmRCiMvR5aNMxSYWshjQWWW6J8MQ==
+
+prismjs-components-loader@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/prismjs-components-loader/-/prismjs-components-loader-3.0.1.tgz#a2cc123df6319bdee5664d14d8cb1924b5d8a814"
+  integrity sha512-evx26EcxewBeDMLtY+lIBBkPs+m8C7ju3x+sPRgoJzww27MgJvZP9+xLfeHLT6P/AqfKPaBIomfLmJb0fTOoHQ==
+
+prismjs@^1.17.1:
+  version "1.17.1"
+  resolved "https://registry.npmjs.org/prismjs/-/prismjs-1.17.1.tgz#e669fcbd4cdd873c35102881c33b14d0d68519be"
+  integrity sha512-PrEDJAFdUGbOP6xK/UsfkC5ghJsPJviKgnQOoxaDbBjwc8op68Quupwt1DeAFoG8GImPhiKXAvvsH7wDSLsu1Q==
+  optionalDependencies:
+    clipboard "^2.0.0"
 
 private@^0.1.6, private@^0.1.8:
   version "0.1.8"

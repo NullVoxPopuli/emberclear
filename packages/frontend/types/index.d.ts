@@ -40,12 +40,8 @@ declare module '@ember/test-helpers' {
 // Custom things thrown on the global namespace
 ////////////////////////////////////////////////
 declare global {
-  interface Assert {
-    contains: (source?: string | null, sub?: string, message?: string) => void;
-    notContains: (source?: string | null, sub?: string, message?: string) => void;
-    matches: (source?: string | null, regex?: RegExp, message?: string) => void;
-    notMatches: (source?: string | null, regex?: RegExp, message?: string) => void;
-  }
+  type Dict<T = string> = { [key: string]: T };
+  type TODO<T = any> = T;
 
   //////////////////////////////////////////////
   // Things that TypeScript should already have
