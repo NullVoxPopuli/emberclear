@@ -12,6 +12,7 @@ module.exports = {
   ],
   rules: {
     // ember specific
+    'ember/no-new-mixins': 'off', // don't know what to do about ember-keyboard
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
     'ember/no-incorrect-calls-with-inline-anonymous-functions': 'off', // don't agree with this one.
     'ember/no-ember-testing-in-module-scope': 'off', // needed for tasks atm

@@ -75,7 +75,7 @@ export default class ChatEntry extends Component<IArgs> {
       // this feels hacky :-\
       later(() => {
         this.textarea.focus();
-        this.textarea.style.height = null;
+        this.textarea.style.height = '';
       }, 1);
     });
   }
