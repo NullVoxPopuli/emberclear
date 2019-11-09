@@ -8,6 +8,7 @@ interface Args {
   positional: [Message[]];
   named: {};
 }
+
 function debounced(fn: any) {
   let queued: any;
   return function debouncedCallback() {

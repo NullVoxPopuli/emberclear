@@ -24,7 +24,6 @@ export default class FormatCode extends Modifier<Args> {
     this.addLanguages(text);
   }
 
-
   // NOTE: this method should not exist, but does
   //       because vertical-collection recycles
   //       nodes
