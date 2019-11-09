@@ -56,6 +56,11 @@ export default class MessageDisplay extends Component<IArgs> {
     let attempts = 0;
     while (attempts < 100) {
       attempts++;
+
+      if (message.readAt) {
+        return;
+      }
+
       if (message.isSaving || !document.hasFocus()) {
         yield timeout(5);
       } else {

@@ -16,6 +16,9 @@ export default class FormatCode extends Modifier<Args> {
   didReceiveArguments() {
     let text = this.args.positional[0];
 
+    if (text === this.text) return;
+
+    this.text = text;
     // extra code features
     this.makeCodeBlocksFancy();
 

@@ -2,19 +2,6 @@ import Service from '@ember/service';
 import { task } from 'ember-concurrency';
 import Task from 'ember-concurrency/task';
 
-const js = [
-  'prismjs',
-  'prismjs/plugins/line-numbers',
-  'prismjs/plugins/show-language',
-  'prismjs/plugins/normalize-whitespace',
-  'prismjs/plugins/autolinker',
-];
-
-// const mainCss = `${PRISM_URL}/themes/prism.min.css`;
-// const lineNumCss = `${PRISM_PLUGIN_PATH}line-numbers/prism-line-numbers.min.css`;
-// const autolinkerCss = `${PRISM_PLUGIN_PATH}autolinker/prism-autolinker.min.css`;
-// const css = [mainCss, lineNumCss, autolinkerCss].join(',');
-
 export const languages = [
   'actionscript',
   'arduino',
@@ -88,17 +75,6 @@ export default class PrismManager extends Service {
   areEssentialsPresent = false;
   alreadyAdded: string[] = [];
 
-  // language format:
-  //  prism-{language}.min.js
-  // examples:
-  // npm/prismjs@1.14.0/components/prism-typescript.min.js
-  // npm/prismjs@1.14.0/components/prism-jsx.min.js
-  // npm/prismjs@1.14.0/components/prism-tsx.min.js
-  // npm/prismjs@1.14.0/components/prism-markup-templating.min.js
-  // npm/prismjs@1.14.0/components/prism-handlebars.min.js
-  //
-  // TODO: fetch these files asyncily, so we can manage state, and know
-  // when to call highlightAll
   @(task(function*(this: PrismManager, language: string, element?: HTMLElement) {
     language = this._expandLanguageAbbreviation(language);
 
