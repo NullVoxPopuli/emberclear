@@ -58,6 +58,7 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
     }
   })
     .maxConcurrency(30)
-    .enqueue())
+    .enqueue()
+    .withTestWaiter())
   markRead!: Task;
 }
