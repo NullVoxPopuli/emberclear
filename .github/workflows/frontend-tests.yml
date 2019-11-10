@@ -10,10 +10,10 @@ jobs:
     name: Tests
     strategy:
       matrix:
-        # os: [ubuntu-latest, macOS-latest, windows-latest]
+        os: [ubuntu-latest, macOS-latest, windows-latest]
         # browsers: [chrome, firefox, safari, edge]
         ci_browser: [Chrome, Firefox]
-    runs-on: ubuntu-latest
+    runs-on: {{ matrix.os }}
     timeout-minutes: 15
 
     steps:
