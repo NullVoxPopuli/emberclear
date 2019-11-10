@@ -1,14 +1,22 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { and, reads, notEmpty } from '@ember/object/computed';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
 
-export default class MetadataPreview extends Component {
+type Args = {
+  ogData: OpenGraphData;
+};
+
+export default class MetadataPreview extends Component<Args> {
   @service chatScroller!: ChatScroller;
 
-  @and('ogData.title', 'ogData.description') hasOgData!: boolean;
-  @reads('ogData') og!: OpenGraphData;
+  get hasOgData() {
+    let { ogData } = this.args;
 
-  @notEmpty('og.image') hasImage!: boolean;
+    return ogData.title || ogData.description;
+  }
+
+  get hasImage() {
+    return Boolean(this.args.ogData?.image);
+  }
 }

@@ -1,7 +1,7 @@
 import {
   create,
+  attribute,
   collection,
-  is,
   count,
   isVisible,
   text,
@@ -22,7 +22,7 @@ export const selectors = {
 export const page = create({
   textarea: {
     scope: '[data-test-chat-entry]',
-    isDisabled: is('[disabled]'),
+    isDisabled: attribute('disabled'),
     fillIn: fillable(),
     typeIn(substring: string) {
       return typeIn('[data-test-chat-entry]', substring);
@@ -30,7 +30,7 @@ export const page = create({
   },
   submitButton: {
     scope: '[data-test-chat-submit]',
-    isDisabled: is('[disabled]'),
+    isDisabled: attribute('disabled'),
   },
   numberOfMessages: count('[data-test-chat-message]'),
   messages: collection('[data-test-chat-message]', {

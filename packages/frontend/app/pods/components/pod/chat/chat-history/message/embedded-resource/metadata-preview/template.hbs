@@ -3,15 +3,15 @@
 <div {{maybe-nudge-to-bottom this.hasImage}}>
   {{#if this.hasImage}}
     <span class='thumbnail-container'>
-      <img alt={{t 'images.alt.thumbnail'}} src={{this.og.image}}>
+      <img alt={{t 'images.alt.thumbnail'}} src={{this.ogData.image}}>
     </span>
   {{/if}}
 
   <div>
     <ExternalLink href={{@url}}>
-      {{{purify-dom this.og.title}}}
+      {{{purify-dom this.ogData.title}}}
     </ExternalLink>
 
-    <p>{{{purify-dom this.og.description}}}</p>
+    <p>{{{purify-dom this.ogData.description}}}</p>
   </div>
 </div>

@@ -32,7 +32,7 @@ module('Integration | Component | metadata-preview', function(hooks) {
 
         await render(hbs`
           <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
-            @ogData={{data}}
+            @ogData={{this.data}}
           />
         `);
       });

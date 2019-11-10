@@ -58,7 +58,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
         assert.equal(currentURL(), '/chat/privately-with/me');
 
         assert.notOk(page.textarea.isDisabled, 'textarea is enabled');
-        assert.ok(page.submitButton.isDisabled, 'submit button is disabled');
+        assert.equal(page.submitButton.isDisabled, 'disabled', 'submit button is disabled');
         assert.equal(page.messages.length, 0, 'history is blank');
       });
 
@@ -84,7 +84,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           test('inputs are disabled', function(assert) {
             // assert.equal(chat.messages.all().length, 0, 'history is blank');
             // assert.ok(chat.textarea.isDisabled(), 'textarea is disabled');
-            assert.equal(page.submitButton.isDisabled, true, 'submitButton is disabled');
+            assert.equal(page.submitButton.isDisabled, 'disabled', 'submitButton is disabled');
 
             percySnapshot(assert as any);
           });
@@ -97,7 +97,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           });
 
           test('inputs are disabled', function(assert) {
-            assert.equal(page.submitButton.isDisabled, true, 'submitButton is disabled');
+            assert.equal(page.submitButton.isDisabled, 'disabled', 'submitButton is disabled');
 
             percySnapshot(assert as any);
           });
@@ -218,7 +218,6 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             module('auto-resend is clicked', function(hooks) {
               hooks.beforeEach(async function() {
                 // eslint-disable-next-line no-console
-                document.querySelectorAll('.message').forEach(m => console.log(m.innerHTML));
                 await page.messages.objectAt(0).confirmations.autosend();
               });
 
