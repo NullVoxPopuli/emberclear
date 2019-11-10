@@ -372,7 +372,7 @@
 
 "@babel/plugin-proposal-nullish-coalescing-operator@^7.4.4":
   version "7.4.4"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-nullish-coalescing-operator/-/plugin-proposal-nullish-coalescing-operator-7.4.4.tgz#41c360d59481d88e0ce3a3f837df10121a769b39"
+  resolved "https://registry.npmjs.org/@babel/plugin-proposal-nullish-coalescing-operator/-/plugin-proposal-nullish-coalescing-operator-7.4.4.tgz#41c360d59481d88e0ce3a3f837df10121a769b39"
   integrity sha512-Amph7Epui1Dh/xxUxS2+K22/MUi6+6JVTvy3P58tja3B6yKTSjwwx0/d83rF7551D6PVSSoplQb8GCwqec7HRw==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
@@ -396,7 +396,7 @@
 
 "@babel/plugin-proposal-optional-chaining@^7.6.0":
   version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.6.0.tgz#e9bf1f9b9ba10c77c033082da75f068389041af8"
+  resolved "https://registry.npmjs.org/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.6.0.tgz#e9bf1f9b9ba10c77c033082da75f068389041af8"
   integrity sha512-kj4gkZ6qUggkprRq3Uh5KP8XnE1MdIO0J7MhdDX8+rAbB6dJ2UrensGIS+0NPZAaaJ1Vr0PN6oLUgXMU1uMcSg==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
@@ -5960,10 +5960,10 @@ ember-cli-normalize-entity-name@^1.0.0:
   dependencies:
     silent-error "^1.0.0"
 
-ember-cli-page-object@^1.16.0:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-page-object/-/ember-cli-page-object-1.16.0.tgz#8b6d50a6af432e301e02d4332dc525a05b5e1426"
-  integrity sha512-v5jrwfEH6YC4V6tZvx6goPQrIa95uTs2sWb+DrS5YSikIx1mNyavSBil83USoU2ITqXN9i3EG+VnvVcJvTab7w==
+ember-cli-page-object@^1.16.1:
+  version "1.16.1"
+  resolved "https://registry.npmjs.org/ember-cli-page-object/-/ember-cli-page-object-1.16.1.tgz#692af2ce98adb09d6b200e6d23c21c1e1edcd8a1"
+  integrity sha512-R2JOgR7JwIlVHS2I2VjgPI1Vn91Ct+YbkpIeb5dxOwemU494l65I4GzzZ/FsPh46ygcGgiWR4nFlcGSg7hFXXw==
   dependencies:
     broccoli-file-creator "^2.1.1"
     broccoli-merge-trees "^2.0.0"
@@ -11970,6 +11970,13 @@ qunit-assertions-extra@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/qunit-assertions-extra/-/qunit-assertions-extra-0.8.1.tgz#c0607cea7d76b2f4c3950e03ab27ae55e3cf243f"
   integrity sha512-nRRGW46s8JcRxt66MNJwaizjLRNWWkco2ZeDdWTUd2zcYz2ZH7K+1U2Fp5sVYH7jzdIleYS6IUympdU4iKvF9w==
+
+qunit-console-grouper@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/qunit-console-grouper/-/qunit-console-grouper-0.2.0.tgz#41ff6991b28dd53e1c76d83d75700afa5534d550"
+  integrity sha512-HPoUlD3AKFSuucAt1GsZCcrG+u0c3fw/1/L5QhZZfmwBshXnK8ejlfwMGKFOiNV8pTpNajccKYxmKvHz8JJIIg==
+  dependencies:
+    broccoli-funnel "^2.0.2"
 
 qunit-dom@^0.9.1:
   version "0.9.1"

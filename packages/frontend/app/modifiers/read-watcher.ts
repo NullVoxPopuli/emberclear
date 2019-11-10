@@ -1,26 +1,34 @@
 import Modifier from 'ember-modifier';
+import { action } from '@ember/object';
+import { timeout, task } from 'ember-concurrency';
+
+import { markAsRead } from 'emberclear/models/message/utils';
 
 import Message from 'emberclear/models/message';
+import Task from 'ember-concurrency/task';
 
 interface Args {
   positional: [Message];
-  named: {
-    markRead: () => void;
-  };
+  named: {};
 }
 
 export default class ReadWatcher extends Modifier<Args> {
   io?: IntersectionObserver;
   message!: Message;
-  markMessageRead!: () => void;
 
   didInstall() {
     let [message] = this.args.positional;
-    let { markRead } = this.args.named;
 
     this.message = message;
-    this.markMessageRead = markRead;
     this.maybeSetupReadWatcher();
+  }
+
+  // NOTE: this method should not exist, but does
+  //       because vertical-collection recycles
+  //       nodes
+  didUpdateArguments() {
+    this.willRemove();
+    this.didInstall();
   }
 
   willRemove() {
@@ -33,15 +41,18 @@ export default class ReadWatcher extends Modifier<Args> {
   private disconnect() {
     if (this.element) {
       this.io && this.io.unobserve(this.element);
+      this.element.removeEventListener('click', this.markRead);
     }
 
     this.io && this.io.disconnect();
     this.io = undefined;
   }
 
+  // Needs the `this` bound, because of eventListener
+  @action
   private markRead() {
     if (this.message.unread) {
-      this.markMessageRead();
+      this.markReadTask.perform();
     }
 
     this.disconnect();
@@ -51,6 +62,10 @@ export default class ReadWatcher extends Modifier<Args> {
     if (this.message.readAt) return;
 
     this.setupIntersectionObserver();
+
+    if (this.element) {
+      this.element.addEventListener('click', this.markRead);
+    }
   }
 
   private setupIntersectionObserver() {
@@ -74,4 +89,23 @@ export default class ReadWatcher extends Modifier<Args> {
 
     this.io = io;
   }
+
+  @(task(function*(this: ReadWatcher) {
+    let attempts = 0;
+    while (attempts < 100) {
+      attempts++;
+
+      if (this.message.readAt) {
+        return;
+      }
+
+      if (this.message.isSaving || !document.hasFocus()) {
+        yield timeout(5);
+      } else {
+        yield markAsRead(this.message);
+        return;
+      }
+    }
+  }).withTestWaiter())
+  markReadTask!: Task;
 }

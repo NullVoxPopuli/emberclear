@@ -39,9 +39,13 @@ export default class ConnectionManager extends Service {
       },
     });
 
-    let json = await response.json();
+    try {
+      let json = await response.json();
 
-    return (json || {}).data;
+      return (json || {}).data;
+    } catch (e) {
+      return {};
+    }
   }
 
   acquire() {

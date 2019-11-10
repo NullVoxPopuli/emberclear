@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 import { inject as service } from '@ember/service';
@@ -16,8 +15,6 @@ interface IArgs {
 
 export default class ChatHistory extends Component<IArgs> {
   @service chatScroller!: ChatScroller;
-
-  @tracked isLastVisible = true;
 
   @action scrollToBottom() {
     this.chatScroller.scrollToBottom.perform();

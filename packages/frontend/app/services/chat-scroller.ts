@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import { task, timeout } from 'ember-concurrency';
 
 import { isElementWithin } from 'emberclear/utils/dom/utils';
@@ -9,13 +9,15 @@ import Task from 'ember-concurrency/task';
 const SCROLL_DELAY = 20;
 
 export default class ChatScroller extends Service {
+  @tracked isLastVisible = false;
+
   // if the last message is close enough to being in view,
   // scroll to the bottom
-  @action maybeNudgeToBottom(appendedMessage: HTMLElement) {
+  maybeNudgeToBottom(appendedMessage: HTMLElement) {
     this.maybeNudge.perform(appendedMessage);
   }
 
-  isLastVisible(message: Message) {
+  _isLastVisible(message: Message) {
     // nothing to show, don't indicate that the last message isn't visible.
     if (!message) return true;
 
@@ -45,13 +47,13 @@ export default class ChatScroller extends Service {
   }).restartable())
   maybeNudge!: Task;
 
-  @task(function*() {
+  @(task(function*() {
     const element = document.querySelector('.messages');
 
     if (element) {
-      element.scrollTo(0, element.scrollHeight);
+      element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'smooth' });
     }
-  })
+  }).restartable())
   scrollToBottom!: Task;
 
   private shouldScroll(appendedMessage: HTMLElement) {

@@ -1,5 +1,6 @@
 import { module, test, skip } from 'qunit';
 import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
+import { timeout } from 'ember-concurrency';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
@@ -16,6 +17,8 @@ import { createContact } from 'emberclear/tests/helpers/factories/contact-factor
 import Contact from 'emberclear/models/contact';
 import { waitUntil } from '@ember/test-helpers';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
+import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
+import Message from 'emberclear/models/message';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
@@ -58,7 +61,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
         assert.equal(currentURL(), '/chat/privately-with/me');
 
         assert.notOk(page.textarea.isDisabled, 'textarea is enabled');
-        assert.ok(page.submitButton.isDisabled, 'submit button is disabled');
+        assert.equal(page.submitButton.isDisabled, 'disabled', 'submit button is disabled');
         assert.equal(page.messages.length, 0, 'history is blank');
       });
 
@@ -84,7 +87,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           test('inputs are disabled', function(assert) {
             // assert.equal(chat.messages.all().length, 0, 'history is blank');
             // assert.ok(chat.textarea.isDisabled(), 'textarea is disabled');
-            assert.equal(page.submitButton.isDisabled, true, 'submitButton is disabled');
+            assert.equal(page.submitButton.isDisabled, 'disabled', 'submitButton is disabled');
 
             percySnapshot(assert as any);
           });
@@ -97,7 +100,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           });
 
           test('inputs are disabled', function(assert) {
-            assert.equal(page.submitButton.isDisabled, true, 'submitButton is disabled');
+            assert.equal(page.submitButton.isDisabled, 'disabled', 'submitButton is disabled');
 
             percySnapshot(assert as any);
           });
@@ -179,7 +182,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             });
 
             test('the message is shown, but is waiting for a confirmation', async function(assert) {
-              let { confirmations } = page.messages.objectAt(0);
+              let { confirmations } = page.messages.objectAt(0)!;
 
               assert.ok(confirmations.isLoading, 'a loader is rendererd');
               assert.notContains(confirmations.text, 'could not be delivered');
@@ -194,7 +197,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             hooks.beforeEach(async function() {
               // waiting on network stuff
               // impossible to tie in to test waiters
-              await waitUntil(() => page.messages.objectAt(0).confirmations.isLoading);
+              await waitUntil(() => page.messages.objectAt(0)!.confirmations.isLoading);
               await settled();
             });
 
@@ -203,7 +206,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             });
 
             test('the message is shown, but with an error', function(assert) {
-              let { confirmations } = page.messages.objectAt(0);
+              let { confirmations } = page.messages.objectAt(0)!;
 
               assert.notOk(confirmations.isLoading, 'loader is no longer present');
               assert.ok(confirmations.text.includes('could not be delivered'));
@@ -218,8 +221,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             module('auto-resend is clicked', function(hooks) {
               hooks.beforeEach(async function() {
                 // eslint-disable-next-line no-console
-                document.querySelectorAll('.message').forEach(m => console.log(m.innerHTML));
-                await page.messages.objectAt(0).confirmations.autosend();
+                await page.messages.objectAt(0)!.confirmations.autosend();
               });
 
               test('the message is queued for resend', async function(assert) {
@@ -232,7 +234,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
               });
 
               test('the confirmation action area shows that autosend is now pending', function(assert) {
-                const text = page.messages.objectAt(0).confirmations.text;
+                const text = page.messages.objectAt(0)!.confirmations.text;
 
                 assert.notOk(
                   text.match(/resend automatically/),
@@ -265,7 +267,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           });
 
           test('the message is shown, but is waiting for a confirmation', function(assert) {
-            let { confirmations } = page.messages.objectAt(0);
+            let { confirmations } = page.messages.objectAt(0)!;
 
             assert.ok(confirmations.isLoading, 'a loader is rendererd');
             assert.notContains(confirmations.text, 'could not be delivered');
@@ -287,6 +289,75 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
           module('a confirmation is received', function() {
             skip('the message is shown, with successful confirmation', function() {});
+          });
+        });
+      });
+
+      module('scrolling', function(hooks) {
+        setupRelayConnectionMocks(hooks);
+
+        let firstMessage: Message;
+        let lastMessage: Message;
+
+        module('there are no messages', function(hooks) {
+          hooks.beforeEach(async function() {
+            await visit(`/chat/privately-with/${id}`);
+          });
+
+          test('history is not scrollable', function(assert) {
+            assert.equal(page.isScrollable(), false, 'is not scrollable');
+          });
+        });
+
+        module('there are many messages', function(hooks) {
+          hooks.beforeEach(async function(assert) {
+            let currentUser = getService('currentUser').record!;
+
+            let numMessages = 30;
+            for (let i = 0; i < numMessages; i++) {
+              let message = await createMessage(someone, currentUser, 'Test Message');
+
+              if (i === 0) {
+                firstMessage = message;
+              }
+              if (i === numMessages - 1) {
+                lastMessage = message;
+              }
+            }
+
+            let store = getService('store');
+            let messages = store.peekAll('message');
+
+            assert.equal(messages.length, numMessages, 'messages are created');
+
+            await visit(`/chat/privately-with/${id}`);
+          });
+
+          test('most recent messages are shown', async function(assert) {
+            assert.equal(page.isScrollable(), true, 'is scrollable');
+            assert.equal(
+              page.newMessagesFloater.isHidden,
+              true,
+              'more messages below is not visible'
+            );
+
+            assert.ok(page.messages.length < 30, 'not all messages are shown');
+
+            assert.dom(`[data-id="${firstMessage.id}"]`).doesNotExist();
+            assert.dom(`[data-id="${lastMessage.id}"]`).exists();
+          });
+
+          module('after scrolling up a bit', function(hooks) {
+            hooks.beforeEach(async function() {
+              page.scroll(-400);
+              // for animations
+              await timeout(200);
+              await settled();
+            });
+
+            test('the more messages floater is visible', function(assert) {
+              assert.equal(page.newMessagesFloater.isHidden, false);
+            });
           });
         });
       });

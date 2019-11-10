@@ -1,18 +1,37 @@
-import Component from '@ember/component';
+import DOMPurify from 'dompurify';
+import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { and, reads, notEmpty } from '@ember/object/computed';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
 
-export default class MetadataPreview extends Component {
+type Args = {
+  ogData: OpenGraphData;
+};
+
+export default class MetadataPreview extends Component<Args> {
   @service chatScroller!: ChatScroller;
 
-  @and('ogData.title', 'ogData.description') hasOgData!: boolean;
-  @reads('ogData') og!: OpenGraphData;
+  get hasOgData() {
+    return this.hasImage || this.title || this.description;
+  }
 
-  @notEmpty('og.image') hasImage!: boolean;
+  get hasImage() {
+    return Boolean(this.args.ogData && this.args.ogData.image);
+  }
 
-  didInsertElement() {
-    this.chatScroller.maybeNudgeToBottom(this.element as HTMLElement);
+  get title() {
+    let { ogData } = this.args;
+
+    if (!ogData) return '';
+
+    return DOMPurify.sanitize(ogData.title || '');
+  }
+
+  get description() {
+    let { ogData } = this.args;
+
+    if (!ogData) return '';
+
+    return DOMPurify.sanitize(ogData.description || '');
   }
 }
