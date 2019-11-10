@@ -52,6 +52,8 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
     "@ember/edition-utils": "^1.1.1",
     "@ember/optional-features": "^1.1.0",
     "@ember/render-modifiers": "^1.0.2",
