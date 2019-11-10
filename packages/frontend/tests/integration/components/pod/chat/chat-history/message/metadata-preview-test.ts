@@ -8,6 +8,48 @@ import { TestContext } from 'ember-test-helpers';
 module('Integration | Component | metadata-preview', function(hooks) {
   setupRenderingTest(hooks);
 
+  module('no ogData', function(hooks) {
+    hooks.beforeEach(function(this: TestContext) {
+      this.set('data', {});
+    });
+
+    test('nothing is shown', async function(assert) {
+      await render(hbs`
+        <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
+          @ogData={{this.data}}
+        />
+      `);
+
+      assert.dom(this.element).hasNoText();
+    });
+  });
+
+  module('has Open Graph data', function() {
+    test('there is a title', async function(assert) {
+      this.set('data', { title: 'a title' });
+
+      await render(hbs`
+        <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
+          @ogData={{this.data}}
+        />
+      `);
+
+      assert.dom(this.element).hasText('a title');
+    });
+
+    test('there is a description', async function(assert) {
+      this.set('data', { description: 'a description' });
+
+      await render(hbs`
+        <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
+          @ogData={{this.data}}
+        />
+      `);
+
+      assert.dom(this.element).hasText('a description');
+    });
+  });
+
   module('image / thumbnail preview', function() {
     module('there is no image in the og data', function(hooks) {
       hooks.beforeEach(async function(this: TestContext) {
