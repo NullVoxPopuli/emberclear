@@ -35,7 +35,7 @@ module.exports = {
         // --no-sandbox is needed when running Chrome inside a container
         process.env.TRAVIS || process.env.CI ? '--no-sandbox' : null,
 
-        process.platform === 'win32' ? '--disable-gpu' : null,
+        //process.platform === 'win32' ? '--disable-gpu' : null,
         '--headless',
         '--remote-debugging-port=0',
         '--window-size=1440,900',
