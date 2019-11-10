@@ -1,5 +1,6 @@
 import { module, test, skip } from 'qunit';
 import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
+import { timeout } from 'ember-concurrency';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
@@ -349,6 +350,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           module('after scrolling up a bit', function(hooks) {
             hooks.beforeEach(async function() {
               page.scroll(-400);
+              // for animations
+              await timeout(200);
               await settled();
             });
 
