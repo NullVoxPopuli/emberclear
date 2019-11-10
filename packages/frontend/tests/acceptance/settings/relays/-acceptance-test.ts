@@ -53,7 +53,7 @@ module('Acceptance | Settings | Relays', function(hooks) {
       hooks.beforeEach(async function(assert) {
         assert.equal(page.table.rows.length, 3, 'there are 3 relays');
 
-        await page.table.rows.objectAt(1).remove();
+        await page.table.rows.objectAt(1)!.remove();
         await settled();
         // TODO: find a way to make this better
         await waitUntil(() => page.table.rows.length === 2);

@@ -31,7 +31,7 @@ async function submitCodeTo(code: string, to: Contact, assert: Assert) {
   await page.textarea.fillIn(code);
   await page.submitButton.click();
 
-  let { hasCode } = page.messages.objectAt(0);
+  let { hasCode } = page.messages.objectAt(0)!;
 
   assert.ok(hasCode, `code for ${to.name} is present`);
 }
@@ -68,7 +68,7 @@ module('Acceptance | Chat | Privately With | format-code', function(hooks) {
         });
 
         test('the chat history still renders the code snippet', function(assert) {
-          let { hasCode } = page.messages.objectAt(0);
+          let { hasCode } = page.messages.objectAt(0)!;
 
           assert.ok(hasCode, 'code for A is present');
         });
@@ -79,7 +79,7 @@ module('Acceptance | Chat | Privately With | format-code', function(hooks) {
           });
 
           test('the chat history still renders the code snippet', function(assert) {
-            let { hasCode } = page.messages.objectAt(0);
+            let { hasCode } = page.messages.objectAt(0)!;
 
             assert.ok(hasCode, 'code for B is present');
           });

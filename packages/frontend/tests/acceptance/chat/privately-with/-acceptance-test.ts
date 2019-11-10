@@ -179,7 +179,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             });
 
             test('the message is shown, but is waiting for a confirmation', async function(assert) {
-              let { confirmations } = page.messages.objectAt(0);
+              let { confirmations } = page.messages.objectAt(0)!;
 
               assert.ok(confirmations.isLoading, 'a loader is rendererd');
               assert.notContains(confirmations.text, 'could not be delivered');
@@ -194,7 +194,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             hooks.beforeEach(async function() {
               // waiting on network stuff
               // impossible to tie in to test waiters
-              await waitUntil(() => page.messages.objectAt(0).confirmations.isLoading);
+              await waitUntil(() => page.messages.objectAt(0)!.confirmations.isLoading);
               await settled();
             });
 
@@ -203,7 +203,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             });
 
             test('the message is shown, but with an error', function(assert) {
-              let { confirmations } = page.messages.objectAt(0);
+              let { confirmations } = page.messages.objectAt(0)!;
 
               assert.notOk(confirmations.isLoading, 'loader is no longer present');
               assert.ok(confirmations.text.includes('could not be delivered'));
@@ -218,7 +218,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             module('auto-resend is clicked', function(hooks) {
               hooks.beforeEach(async function() {
                 // eslint-disable-next-line no-console
-                await page.messages.objectAt(0).confirmations.autosend();
+                await page.messages.objectAt(0)!.confirmations.autosend();
               });
 
               test('the message is queued for resend', async function(assert) {
@@ -231,7 +231,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
               });
 
               test('the confirmation action area shows that autosend is now pending', function(assert) {
-                const text = page.messages.objectAt(0).confirmations.text;
+                const text = page.messages.objectAt(0)!.confirmations.text;
 
                 assert.notOk(
                   text.match(/resend automatically/),
@@ -264,7 +264,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           });
 
           test('the message is shown, but is waiting for a confirmation', function(assert) {
-            let { confirmations } = page.messages.objectAt(0);
+            let { confirmations } = page.messages.objectAt(0)!;
 
             assert.ok(confirmations.isLoading, 'a loader is rendererd');
             assert.notContains(confirmations.text, 'could not be delivered');

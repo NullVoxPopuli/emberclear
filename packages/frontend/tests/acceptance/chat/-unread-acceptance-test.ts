@@ -50,7 +50,7 @@ module('Acceptance | Chat', function(hooks) {
       skip('1 message is unread', function(assert) {
         assert.ok(page.headerUnread.isPresent, 'indicator is rendered');
         assert.ok(
-          page.headerUnread.text.includes('1'),
+          page.headerUnread.text!.includes('1'),
           `has one unread message. detected text: ${page.headerUnread.text}`
         );
 
