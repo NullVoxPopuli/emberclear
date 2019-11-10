@@ -15,6 +15,7 @@ import Contact from 'emberclear/models/contact';
 import { unicode } from 'emojis';
 
 const EMOJI_REGEX = /:[^:]+:/g;
+const EMOJI_PATH = '/assets/images/emoji';
 
 interface IArgs {
   to: Contact | Channel;
