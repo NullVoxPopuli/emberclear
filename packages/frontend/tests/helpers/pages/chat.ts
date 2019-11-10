@@ -6,6 +6,7 @@ import {
   isVisible,
   text,
   fillable,
+  hasClass,
   clickable,
 } from 'ember-cli-page-object';
 
@@ -20,6 +21,22 @@ export const selectors = {
 };
 
 export const page = create({
+  isScrollable() {
+    let messagesElement = document.querySelector('.messages')!;
+
+    return isScrollable(messagesElement);
+  },
+
+  scroll(amountInPx: number) {
+    let messagesElement = document.querySelector('.messages')!;
+
+    let current = messagesElement.scrollTop;
+    let next = current + amountInPx;
+
+    messagesElement.scrollTo({ left: 0, top: next });
+  },
+
+  // actual page object things
   textarea: {
     scope: '[data-test-chat-entry]',
     isDisabled: attribute('disabled'),
@@ -31,6 +48,10 @@ export const page = create({
   submitButton: {
     scope: '[data-test-chat-submit]',
     isDisabled: attribute('disabled'),
+  },
+  newMessagesFloater: {
+    scope: '[data-test-new-messages-available]',
+    isHidden: hasClass('hidden'),
   },
   numberOfMessages: count('[data-test-chat-message]'),
   messages: collection('[data-test-chat-message]', {
@@ -47,3 +68,7 @@ export const page = create({
     },
   }),
 });
+
+export function isScrollable(element: Element) {
+  return element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
+}

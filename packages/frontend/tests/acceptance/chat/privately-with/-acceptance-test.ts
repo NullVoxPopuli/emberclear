@@ -16,6 +16,8 @@ import { createContact } from 'emberclear/tests/helpers/factories/contact-factor
 import Contact from 'emberclear/models/contact';
 import { waitUntil } from '@ember/test-helpers';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
+import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
+import Message from 'emberclear/models/message';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
@@ -286,6 +288,73 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
           module('a confirmation is received', function() {
             skip('the message is shown, with successful confirmation', function() {});
+          });
+        });
+      });
+
+      module('scrolling', function(hooks) {
+        setupRelayConnectionMocks(hooks);
+
+        let firstMessage: Message;
+        let lastMessage: Message;
+
+        module('there are no messages', function(hooks) {
+          hooks.beforeEach(async function() {
+            await visit(`/chat/privately-with/${id}`);
+          });
+
+          test('history is not scrollable', function(assert) {
+            assert.equal(page.isScrollable(), false, 'is not scrollable');
+          });
+        });
+
+        module('there are many messages', function(hooks) {
+          hooks.beforeEach(async function(assert) {
+            let currentUser = getService('currentUser').record!;
+
+            let numMessages = 30;
+            for (let i = 0; i < numMessages; i++) {
+              let message = await createMessage(someone, currentUser, 'Test Message');
+
+              if (i === 0) {
+                firstMessage = message;
+              }
+              if (i === numMessages - 1) {
+                lastMessage = message;
+              }
+            }
+
+            let store = getService('store');
+            let messages = store.peekAll('message');
+
+            assert.equal(messages.length, numMessages, 'messages are created');
+
+            await visit(`/chat/privately-with/${id}`);
+          });
+
+          test('most recent messages are shown', async function(assert) {
+            assert.equal(page.isScrollable(), true, 'is scrollable');
+            assert.equal(
+              page.newMessagesFloater.isHidden,
+              true,
+              'more messages below is not visible'
+            );
+
+            assert.ok(page.messages.length < 30, 'not all messages are shown');
+
+            assert.dom(`[data-id="${firstMessage.id}"]`).doesNotExist();
+            assert.dom(`[data-id="${lastMessage.id}"]`).exists();
+          });
+
+          module('after scrolling up a bit', function(hooks) {
+            hooks.beforeEach(async function() {
+              page.scroll(-400);
+              await settled();
+            });
+
+            test('the more messages floater is visible', function(assert) {
+              assert.equal(page.newMessagesFloater.isHidden, false);
+            });
           });
         });
       });
