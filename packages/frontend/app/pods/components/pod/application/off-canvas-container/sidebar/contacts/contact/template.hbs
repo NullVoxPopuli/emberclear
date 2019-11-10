@@ -1,7 +1,6 @@
 {{#if this.shouldBeRendered}}
-  <div class='contact-grid'>
+  <div data-test-contact-row class='contact-grid'>
     <a
-      data-test-contact-row
       href={{url-for 'chat.privately-with' @contact.id}}
       {{did-insert (perform this.findRelevantMessages)}}
       {{on 'click' (prevent-default this.onClick)}}

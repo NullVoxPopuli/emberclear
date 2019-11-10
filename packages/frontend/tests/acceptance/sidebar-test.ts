@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 
-import { visit, currentURL, settled, waitFor, waitUntil, click } from '@ember/test-helpers';
+import { visit, currentURL, settled, waitFor, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -70,8 +70,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('pinned contact are to be shown', function(hooks) {
           hooks.beforeEach(async function() {
-            const pinButton = document.getElementsByClassName('pin-button')[0];
-            await click(pinButton);
+            await page.sidebar.contacts.list.objectAt(1).pin();
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
           });
@@ -126,10 +125,9 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('pinned contacts are to be shown', function(hooks) {
           hooks.beforeEach(async function() {
-            const pinButton = document.getElementsByClassName('pin-button')[0];
-            const pinButton2 = document.getElementsByClassName('pin-button')[1];
-            await click(pinButton);
-            await click(pinButton2);
+            const contacts = page.sidebar.contacts;
+            await contacts.list.objectAt(1).pin();
+            await contacts.list.objectAt(2).pin();
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
           });
@@ -139,8 +137,8 @@ module('Acceptance | Sidebar', function(hooks) {
           });
 
           test('two contacts should be shown and one hidden', async function(assert) {
-            const contacts = page.sidebar.contacts
-            await contacts.list.objectAt(0).pin();
+            const contacts = page.sidebar.contacts;
+            await contacts.list.objectAt(1).pin();
             assert.equal(contacts.list.length, 2, 'two users in the contacts list');
             assert.matches(contacts.offlineCount.text, /1/);
           });
@@ -154,8 +152,7 @@ module('Acceptance | Sidebar', function(hooks) {
             assert.equal(contacts[0].name, 'Test User');
             assert.equal(contacts[1].name, 'first contact');
             assert.equal(contacts[2].name, 'second contact');
-            const pinButton = document.getElementsByClassName('pin-button')[0];
-            await click(pinButton);
+            await contacts.objectAt(1).pin();
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
             assert.equal(contacts[0].name, 'Test User');
