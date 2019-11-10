@@ -23,11 +23,13 @@ jobs:
       with:
         node-version: '10.x'
     - name: Install
+      shell: bash
       run: |
         cd packages/frontend
         yarn install
 
     - name: Test
+      shell: bash
       env:
         CI_BROWSER: ${{ matrix.ci_browser }}
       run: |
