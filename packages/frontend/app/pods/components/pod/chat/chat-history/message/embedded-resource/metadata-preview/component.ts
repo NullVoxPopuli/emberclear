@@ -17,6 +17,6 @@ export default class MetadataPreview extends Component<Args> {
   }
 
   get hasImage() {
-    return Boolean(this.args.ogData?.image);
+    return Boolean(this.args.ogData && this.args.ogData.image);
   }
 }
