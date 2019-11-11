@@ -6497,13 +6497,13 @@ ember-raf-scheduler@0.1.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-render-helpers@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/ember-render-helpers/-/ember-render-helpers-0.1.0.tgz#9ae4a35939b168d99983ed94630c7a23b9ab25d3"
-  integrity sha512-6gd79oADJwhZ3isFkHvuKSLlyoI5QTfj0TVdm6gUwUIlS8uRCTRQHt382QCxAoC5wPkhcWSD56kOqGouxcPNAg==
+ember-render-helpers@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ember-render-helpers/-/ember-render-helpers-0.1.1.tgz#616a04d317b4a8a6958432f6af37674ebaecfa3f"
+  integrity sha512-i+6gcWa1hCxI9qGHdacrXjfTUJdR8VCPbOXG8SFNjpqfMFlkh6SNeCMjXgSzRG2Xt7YNSSXEzr0ZvK+C7RUuJw==
   dependencies:
-    ember-cli-babel "^7.7.3"
-    ember-cli-typescript "^2.0.2"
+    ember-cli-babel "^7.12.0"
+    ember-cli-typescript "^3.1.1"
 
 ember-resolver@^5.3.0:
   version "5.3.0"
