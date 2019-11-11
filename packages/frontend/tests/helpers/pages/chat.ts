@@ -12,6 +12,9 @@ import {
 
 import { typeIn } from '@ember/test-helpers';
 
+import { definition as dropdownPage } from 'emberclear/pods/components/dropdown/-page';
+import { definition as embedModal } from 'emberclear/pods/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
+
 export const selectors = {
   form: '[data-test-chat-entry-form]',
   textarea: '[data-test-chat-entry]',
@@ -45,6 +48,16 @@ export const page = create({
       return typeIn('[data-test-chat-entry]', substring);
     },
   },
+
+  chatOptions: {
+    scope: '[data-test-chat-options-dropdown]',
+    ...dropdownPage,
+
+    toggleEmbedModal: clickable('[data-test-embeds-toggle]'),
+  },
+
+  embedModal,
+
   submitButton: {
     scope: '[data-test-chat-submit]',
     isDisabled: attribute('disabled'),

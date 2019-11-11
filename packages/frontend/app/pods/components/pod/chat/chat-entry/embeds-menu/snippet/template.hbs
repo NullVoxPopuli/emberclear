@@ -1,4 +1,8 @@
-<Modal @isActive={{@isActive}} @close={{@close}}>
+<Modal
+  data-test-embeds-snippet-modal
+  @isActive={{@isActive}}
+  @close={{@close}}
+>
   <h5>
     {{t 'ui.chat.codeModal.title'}} <strong>{{@sendTo.name}}</strong>
   </h5>
@@ -27,10 +31,10 @@
   }}
 
   <div class='button-group right-aligned'>
-    <button class='button-secondary' {{on 'click' @close}}>
+    <button data-test-cancel class='button-secondary' {{on 'click' @close}}>
       {{t 'buttons.cancel'}}
     </button>
-    <button {{on 'click' this.sendMessage}}>
+    <button data-test-submit {{on 'click' this.sendMessage}}>
       {{t 'buttons.sendSnippet'}}
     </button>
   </div>
