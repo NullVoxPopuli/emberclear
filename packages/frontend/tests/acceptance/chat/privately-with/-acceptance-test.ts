@@ -304,8 +304,13 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             await visit(`/chat/privately-with/${id}`);
           });
 
-          test('history is not scrollable', function(assert) {
+          test('UI elements are configured appropriately', function(assert) {
             assert.equal(page.isScrollable(), false, 'is not scrollable');
+            assert.equal(
+              page.newMessagesFloater.isHidden,
+              true,
+              'new messages floater is not shown'
+            );
           });
         });
 

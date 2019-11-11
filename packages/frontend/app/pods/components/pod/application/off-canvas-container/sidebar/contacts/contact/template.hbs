@@ -1,5 +1,5 @@
 {{#if this.shouldBeRendered}}
-  <div data-test-contact-row class='contact-grid'>
+  <div data-test-contact-row class='sidebar__contacts__contact'>
     <a
       href={{url-for 'chat.privately-with' @contact.id}}
       {{did-insert (perform this.findRelevantMessages)}}
@@ -21,11 +21,10 @@
       {{/if}}
     </a>
     {{#if this.canBePinned}}
-      <button data-test-contact-pin class='pin-button'
+      <button data-test-contact-pin class='button-link'
         {{on 'click' (prevent-default this.onPin)}}
       >
         <FaIcon
-          class='pin-icon'
           @icon='thumbtack'
           @rotation={{if @contact.isPinned 0 90}}
         />

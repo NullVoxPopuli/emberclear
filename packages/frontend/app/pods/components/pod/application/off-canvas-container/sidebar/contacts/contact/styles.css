@@ -1,0 +1,6 @@
+div.sidebar__contacts__contact {
+  @apply --column-grid;
+
+  grid-template-columns: 1fr auto;
+}
+
