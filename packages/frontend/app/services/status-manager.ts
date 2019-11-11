@@ -16,7 +16,7 @@ export default class StatusManager extends Service {
 
     contact.set('onlineStatus', Status.OFFLINE);
 
-    contact.save();
+    return contact.save();
   }
 
   async markOnline(uid: string | Contact) {

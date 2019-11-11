@@ -17,6 +17,8 @@ import Contact, { STATUS } from 'emberclear/models/contact';
 import Task from 'ember-concurrency/task';
 import { currentUserId } from 'emberclear/services/current-user';
 
+import { PRIVATE_CHAT_REGEX, idFrom } from 'emberclear/utils/route-matchers';
+
 interface IArgs {
   contact: Contact;
   closeSidebar: () => void;
@@ -32,12 +34,6 @@ export default class SidebarContact extends Component<IArgs> {
 
   @reads('settings.hideOfflineContacts') hideOfflineContacts!: boolean;
 
-  get isPinned() {
-    const { contact } = this.args;
-
-    return contact.isPinned;
-  }
-
   get isActive() {
     const { contact } = this.args;
 
@@ -49,12 +45,14 @@ export default class SidebarContact extends Component<IArgs> {
 
     let shouldRender =
       contact.id === currentUserId ||
+      // are we currently on this person's DM?
+      idFrom(PRIVATE_CHAT_REGEX, this.router.currentURL) === contact.uid ||
       // always show if online
       contact.onlineStatus !== STATUS.OFFLINE ||
       // always show if there are unread messages
       this.hasUnread ||
       // always show if contact is pinned
-      this.isPinned;
+      contact.isPinned;
 
     if (shouldRender) {
       return true;
@@ -93,8 +91,10 @@ export default class SidebarContact extends Component<IArgs> {
 
   @action onPin() {
     const { contact } = this.args;
+
     contact.set('isPinned', !contact.isPinned);
-    contact.save();
+
+    return contact.save();
   }
 
   get canBePinned() {
