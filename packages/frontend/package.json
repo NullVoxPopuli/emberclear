@@ -58,7 +58,7 @@
     "@ember/optional-features": "^1.1.0",
     "@ember/render-modifiers": "^1.0.2",
     "@ember/test-helpers": "^1.7.1",
-    "@embroider/compat": "^0.7.1",
+    "@embroider/compat": "^0.8.0",
     "@embroider/core": "^0.7.1",
     "@embroider/webpack": "^0.7.1",
     "@fortawesome/ember-fontawesome": "^0.2.1",
