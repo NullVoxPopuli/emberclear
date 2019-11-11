@@ -4,7 +4,7 @@
       href={{url-for 'chat.privately-with' @contact.id}}
       {{did-insert (perform this.findRelevantMessages)}}
       {{on 'click' (prevent-default this.onClick)}}
-      class='contact-display {{if this.isActive 'is-active'}}'
+      class={{if this.isActive 'is-active'}}
     >
       <span data-test-contact-name>
         <StatusIcon @contact={{@contact}} />

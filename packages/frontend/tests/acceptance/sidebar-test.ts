@@ -92,17 +92,12 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('offline contacts are to be hidden', function(hooks) {
           hooks.beforeEach(async function() {
-            await visit('/settings/interface');
-            await settings.ui.toggleHideOfflineContacts();
-            await waitFor(selectors.offlineCount);
+            await setupOfflineContactsTest();
           });
 
           test('only the current user is shown', function(assert) {
-            const name = getService('currentUser')!.name!;
-            const content = page.sidebar.contacts.listText;
-
-            assert.contains(content, name);
-            assert.equal(page.sidebar.contacts.list.length, 1, 'one user in the contacts list');
+            assert.expect(2);
+            onlyCurrentUserIsShownTest(assert);
           });
 
           test('offline count is shown', function(assert) {
@@ -125,9 +120,9 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('pinned contacts are to be shown', function(hooks) {
           hooks.beforeEach(async function() {
-            const contacts = page.sidebar.contacts;
-            await contacts.list.objectAt(1).pin();
-            await contacts.list.objectAt(2).pin();
+            const contacts = page.sidebar.contacts.list;
+            await contacts.objectAt(1).pin();
+            await contacts.objectAt(2).pin();
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
           });
@@ -163,17 +158,12 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('offline contacts are to be hidden', function(hooks) {
           hooks.beforeEach(async function() {
-            await visit('/settings/interface');
-            await settings.ui.toggleHideOfflineContacts();
-            await waitFor(selectors.offlineCount);
+            await setupOfflineContactsTest();
           });
 
           test('only the current user is shown', function(assert) {
-            const name = getService('currentUser')!.name!;
-            const content = page.sidebar.contacts.listText;
-
-            assert.contains(content, name);
-            assert.equal(page.sidebar.contacts.list.length, 1, 'one user in the contacts list');
+            assert.expect(2);
+            onlyCurrentUserIsShownTest(assert);
           });
 
           test('offline count is shown', function(assert) {
@@ -257,3 +247,17 @@ module('Acceptance | Sidebar', function(hooks) {
     });
   });
 });
+
+async function setupOfflineContactsTest() {
+  await visit('/settings/interface');
+  await settings.ui.toggleHideOfflineContacts();
+  await waitFor(selectors.offlineCount);
+}
+
+function onlyCurrentUserIsShownTest(assert: Assert) {
+  const name = getService('currentUser')!.name!;
+  const content = page.sidebar.contacts.listText;
+
+  assert.contains(content, name);
+  assert.equal(page.sidebar.contacts.list.length, 1, 'one user in the contacts list');
+}
