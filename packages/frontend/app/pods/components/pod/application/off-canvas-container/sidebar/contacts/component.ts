@@ -2,6 +2,8 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
+import { PRIVATE_CHAT_REGEX, idFrom } from 'emberclear/utils/route-matchers';
+
 import StoreService from 'ember-data/store';
 import SettingsService from 'emberclear/services/settings';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
@@ -25,11 +27,24 @@ export default class ContactsSidebar extends Component<IArgs> {
   }
 
   get contacts() {
-    const sortedContacts = this.allContacts.sort(compareFunction);
+    let sortedContacts = this.allContacts.sort(sortByPinned);
+
     if (!this.hideOfflineContacts) {
       return sortedContacts;
     }
-    return sortedContacts.filter(shouldBeInSidebar);
+
+    let url = this.router.currentURL;
+
+    return sortedContacts.filter(contact => {
+      return (
+        // online or other online~ish status
+        contact.onlineStatus !== STATUS.OFFLINE ||
+        // pinned contacts always show
+        contact.isPinned ||
+        // we are currently viewing the contact
+        idFrom(PRIVATE_CHAT_REGEX, url) === contact.uid
+      );
+    });
   }
 
   get hideOfflineContacts() {
@@ -37,7 +52,9 @@ export default class ContactsSidebar extends Component<IArgs> {
   }
 
   get offlineContacts() {
-    return this.allContacts.filter(contact => !shouldBeInSidebar(contact));
+    return this.contacts.filter(contact => {
+      return contact.onlineStatus === STATUS.OFFLINE;
+    });
   }
 
   get numberOffline() {
@@ -57,15 +74,11 @@ export default class ContactsSidebar extends Component<IArgs> {
   }
 }
 
-const compareFunction = function(contact1: Contact, contact2: Contact) {
+function sortByPinned(contact1: Contact, contact2: Contact) {
   if (contact1.isPinned === contact2.isPinned) {
     return 0;
   } else if (contact1.isPinned) {
     return -1;
   }
   return 1;
-};
-
-const shouldBeInSidebar = function(contact: Contact) {
-  return contact.onlineStatus !== STATUS.OFFLINE || contact.isPinned;
-};
+}

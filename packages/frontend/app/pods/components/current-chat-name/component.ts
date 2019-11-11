@@ -5,8 +5,7 @@ import StoreService from 'ember-data/store';
 import RouterService from '@ember/routing/router-service';
 import CurrentUserService, { currentUserId } from 'emberclear/services/current-user';
 
-const PRIVATE_CHAT_REGEX = /chat\/privately-with\/(.+)/;
-const CHANNEL_REGEX = /chat\/in-channel\/(.+)/;
+import { PRIVATE_CHAT_REGEX, CHANNEL_REGEX } from 'emberclear/utils/route-matchers';
 
 export default class extends Component {
   @service store!: StoreService;
