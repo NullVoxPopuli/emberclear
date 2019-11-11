@@ -14,7 +14,7 @@ import {
 import { selectors as chatSelectors } from 'emberclear/tests/helpers/pages/chat';
 import { nameForm, completedPage } from 'emberclear/tests/helpers/pages/setup';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
-import {settled} from '@ember/test-helpers';
+import { settled } from '@ember/test-helpers';
 
 module('Acceptance | Invitations', function(hooks) {
   setupApplicationTest(hooks);

@@ -14,6 +14,6 @@ export default class ContactsTable extends Component {
 
   @action remove(contact: Contact) {
     contact.deleteRecord();
-    contact.save();
+    return contact.save();
   }
 }

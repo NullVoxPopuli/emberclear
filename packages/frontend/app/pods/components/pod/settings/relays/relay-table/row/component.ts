@@ -41,21 +41,20 @@ export default class RelayTableRow extends Component<Args> {
     let { relay } = this.args;
 
     relay.set('priority', 1);
-    relay.save();
+    await relay.save();
 
     const relays: ArrayProxy<Relay> = await this.store.findAll('relay');
 
     let nextHighestPriority = 2;
 
-    relays
-      .toArray()
-      .sort(r => r.priority)
-      .forEach(nonDefaultRelay => {
-        if (nonDefaultRelay.id === relay.id) return;
+    let sortedRelays = relays.toArray().sort(r => r.priority);
 
-        nonDefaultRelay.set('priority', nextHighestPriority);
-        nonDefaultRelay.save();
-        nextHighestPriority++;
-      });
+    for (let nonDefaultRelay of sortedRelays) {
+      if (nonDefaultRelay.id === relay.id) return;
+
+      nonDefaultRelay.set('priority', nextHighestPriority);
+      await nonDefaultRelay.save();
+      nextHighestPriority++;
+    }
   }
 }

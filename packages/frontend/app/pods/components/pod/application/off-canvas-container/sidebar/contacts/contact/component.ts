@@ -43,8 +43,6 @@ export default class SidebarContact extends Component<IArgs> {
   get shouldBeRendered() {
     const { contact } = this.args;
 
-    if (!contact.publicKey) return false;
-
     let shouldRender =
       contact.id === currentUserId ||
       // are we currently on this person's DM?
@@ -93,8 +91,10 @@ export default class SidebarContact extends Component<IArgs> {
 
   @action onPin() {
     const { contact } = this.args;
+
     contact.set('isPinned', !contact.isPinned);
-    contact.save();
+
+    return contact.save();
   }
 
   get canBePinned() {

@@ -23,7 +23,10 @@ export default class ContactsSidebar extends Component<IArgs> {
   @service store!: StoreService;
 
   get allContacts(): Contact[] {
-    return this.store.peekAll('contact').toArray();
+    return this.store
+      .peekAll('contact')
+      .toArray()
+      .filter(contact => contact.publicKey);
   }
 
   get contacts() {
@@ -52,8 +55,10 @@ export default class ContactsSidebar extends Component<IArgs> {
   }
 
   get offlineContacts() {
-    return this.contacts.filter(contact => {
-      return contact.onlineStatus === STATUS.OFFLINE;
+    let contacts = this.contacts;
+
+    return this.allContacts.filter(contact => {
+      return !contacts.includes(contact);
     });
   }
 
