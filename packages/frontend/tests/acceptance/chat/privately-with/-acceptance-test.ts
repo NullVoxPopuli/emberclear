@@ -363,6 +363,22 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             test('the more messages floater is visible', function(assert) {
               assert.equal(page.newMessagesFloater.isHidden, false);
             });
+
+            module('after clicking the new messages floater', function(hooks) {
+              hooks.beforeEach(async function() {
+                await page.newMessagesFloater.click();
+                await timeout(400);
+                await settled();
+              });
+
+              test('most recent messages are shown', async function(assert) {
+                assert.equal(
+                  page.newMessagesFloater.isHidden,
+                  true,
+                  'more messages below is not visible'
+                );
+              });
+            });
           });
         });
       });
