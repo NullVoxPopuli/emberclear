@@ -8,6 +8,7 @@ export const sidebarContactsPage = create({
   listText: text('[data-test-contact-row]'),
   list: collection('[data-test-contact-row]', {
     name: text('[data-test-contact-name]'),
+    pin: clickable('[data-test-contact-pin]'),
   }),
   offlineCount: {
     scope: '[data-test-offline-count]',

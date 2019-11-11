@@ -1,0 +1,13 @@
+div.contact-grid {
+    @apply --column-grid;
+    grid-template-columns: 1fr auto;
+}
+
+button.pin-button{
+    background-color: transparent; 
+    border: none;
+}
+
+.pin-icon{
+    color: black;
+}

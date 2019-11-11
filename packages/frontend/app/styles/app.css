@@ -36,6 +36,7 @@
 @import './components/ellipsis-loader.css';
 @import './components/chat-entry.css';
 @import './components/settings-nav.css';
+@import './components/sidebar.css';
 @import './components/contacts.css';
 
 @import './utility/transitions.css';
