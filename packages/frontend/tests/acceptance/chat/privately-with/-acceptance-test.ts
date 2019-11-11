@@ -304,8 +304,13 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             await visit(`/chat/privately-with/${id}`);
           });
 
-          test('history is not scrollable', function(assert) {
+          test('UI elements are configured appropriately', function(assert) {
             assert.equal(page.isScrollable(), false, 'is not scrollable');
+            assert.equal(
+              page.newMessagesFloater.isHidden,
+              true,
+              'new messages floater is not shown'
+            );
           });
         });
 
@@ -357,6 +362,22 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
             test('the more messages floater is visible', function(assert) {
               assert.equal(page.newMessagesFloater.isHidden, false);
+            });
+
+            module('after clicking the new messages floater', function(hooks) {
+              hooks.beforeEach(async function() {
+                await page.newMessagesFloater.click();
+                await timeout(400);
+                await settled();
+              });
+
+              test('most recent messages are shown', async function(assert) {
+                assert.equal(
+                  page.newMessagesFloater.isHidden,
+                  true,
+                  'more messages below is not visible'
+                );
+              });
             });
           });
         });

@@ -9,7 +9,7 @@ import Task from 'ember-concurrency/task';
 const SCROLL_DELAY = 20;
 
 export default class ChatScroller extends Service {
-  @tracked isLastVisible = false;
+  @tracked isLastVisible = true;
 
   // if the last message is close enough to being in view,
   // scroll to the bottom

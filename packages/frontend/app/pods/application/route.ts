@@ -16,6 +16,9 @@ export default class ApplicationRoute extends Route {
   @service connection!: ConnectionService;
 
   async beforeModel() {
+    (this.store as any).shouldTrackAsyncRequests = true;
+    (this.store as any).generateStackTracesForTrackedRequests = true;
+
     await ensureRelays(getOwner(this));
 
     // TODO: check all the modern web requirements

@@ -1,10 +1,11 @@
 {{#if this.shouldBeRendered}}
-  <div data-test-contact-row class='contact-grid'>
+  <div data-test-contact-row class='sidebar__contacts__contact'>
+
     <a
       href={{url-for 'chat.privately-with' @contact.id}}
+      class={{if this.isActive 'is-active'}}
       {{did-insert (perform this.findRelevantMessages)}}
       {{on 'click' (prevent-default this.onClick)}}
-      class={{if this.isActive 'is-active'}}
     >
       <span data-test-contact-name>
         <StatusIcon @contact={{@contact}} />
@@ -13,19 +14,25 @@
 
       {{#if this.hasUnread}}
         <span
-          {{unread-messages-intersection-observer}}
           class='badge badge-danger'
+          {{unread-messages-intersection-observer}}
         >
           {{this.numberUnread}}
         </span>
       {{/if}}
     </a>
+
     {{#if this.canBePinned}}
-      <button data-test-contact-pin class='pin-button'
+      <button data-test-contact-pin class='button-link'
         {{on 'click' (prevent-default this.onPin)}}
       >
-        <FaIcon @icon='thumbtack' class='pin-icon' @rotation={{if this.isPinned 0 90}}/>
+        <FaIcon
+          class='transition-all-fast'
+          @icon='thumbtack'
+          @rotation={{if @contact.isPinned 0 90}}
+        />
       </button>
     {{/if}}
+
   </div>
 {{/if}}

@@ -121,6 +121,7 @@ module('Acceptance | Sidebar', function(hooks) {
         module('pinned contacts are to be shown', function(hooks) {
           hooks.beforeEach(async function() {
             const contacts = page.sidebar.contacts.list;
+
             await contacts[1].pin();
             await contacts[2].pin();
             await visit('/settings/interface');
@@ -133,6 +134,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
           test('two contacts should be shown and one hidden', async function(assert) {
             const contacts = page.sidebar.contacts;
+
             await contacts.list[1].pin();
             assert.equal(contacts.list.length, 2, 'two users in the contacts list');
             assert.matches(contacts.offlineCount.text, /1/);
