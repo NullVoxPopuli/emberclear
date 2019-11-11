@@ -70,7 +70,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('pinned contact are to be shown', function(hooks) {
           hooks.beforeEach(async function() {
-            await page.sidebar.contacts.list.objectAt(1).pin();
+            await page.sidebar.contacts.list[1].pin();
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
           });
@@ -121,8 +121,8 @@ module('Acceptance | Sidebar', function(hooks) {
         module('pinned contacts are to be shown', function(hooks) {
           hooks.beforeEach(async function() {
             const contacts = page.sidebar.contacts.list;
-            await contacts.objectAt(1).pin();
-            await contacts.objectAt(2).pin();
+            await contacts[1].pin();
+            await contacts[2].pin();
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
           });
@@ -133,7 +133,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
           test('two contacts should be shown and one hidden', async function(assert) {
             const contacts = page.sidebar.contacts;
-            await contacts.list.objectAt(1).pin();
+            await contacts.list[1].pin();
             assert.equal(contacts.list.length, 2, 'two users in the contacts list');
             assert.matches(contacts.offlineCount.text, /1/);
           });
@@ -147,7 +147,7 @@ module('Acceptance | Sidebar', function(hooks) {
             assert.equal(contacts[0].name, 'Test User');
             assert.equal(contacts[1].name, 'first contact');
             assert.equal(contacts[2].name, 'second contact');
-            await contacts.objectAt(1).pin();
+            await contacts[1].pin();
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
             assert.equal(contacts[0].name, 'Test User');
