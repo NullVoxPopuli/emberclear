@@ -43,7 +43,7 @@
     },
     {
       "packagePatterns": [
-        "*typescript-eslint*"
+        ".*typescript-eslint.*"
       ],
       "groupName": "TypeScript ESLint"
     }
