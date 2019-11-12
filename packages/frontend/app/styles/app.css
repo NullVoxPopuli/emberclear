@@ -110,6 +110,10 @@
   border-radius: 0;
 }
 
+.wrap-anywhere {
+  word-wrap: anywhere;
+}
+
 .has-shadow {
   box-shadow: var(--shadow);
 }
