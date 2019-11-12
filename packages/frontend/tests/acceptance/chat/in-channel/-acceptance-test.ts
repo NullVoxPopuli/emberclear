@@ -11,7 +11,6 @@ import {
 
 import { page } from 'emberclear/tests/helpers/pages/chat';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
-import { id } from 'common-tags';
 import { createChannel } from 'emberclear/tests/helpers/factories/channel-factory';
 
 import Channel from 'emberclear/models/channel';
@@ -62,7 +61,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       });
 
       test('does not redirect', function(assert) {
-        assert.equal(currentURL(), `/chat/privately-with/${id}`);
+        assert.equal(currentURL(), `/chat/in-channel/${channel.id}`);
         assert.equal(page.messages.length, 0);
       });
     });

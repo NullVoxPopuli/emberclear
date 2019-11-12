@@ -9,11 +9,20 @@ interface IModelParams {
 
 export default class ChatInChannelRoute extends Route {
   @service currentUser!: CurrentUserService;
+  @service toast!: Toast;
+  @service intl!: Intl;
 
   async model(params: IModelParams) {
-    const { channel_id } = params;
+    let { id } = params;
 
-    const targetChannel = await this.store.findRecord('channel', channel_id);
+    let targetChannel;
+
+    try {
+      targetChannel = await this.store.findRecord('channel', id);
+    } catch (error) {
+      this.toast.error(error || this.intl.t('ui.chat.errors.channelNotFound'));
+      this.transitionTo('chat.index');
+    }
 
     return {
       targetChannel,

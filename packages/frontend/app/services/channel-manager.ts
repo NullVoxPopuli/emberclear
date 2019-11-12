@@ -1,5 +1,4 @@
 import Service from '@ember/service';
-import { run } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 
 import StoreService from 'ember-data/store';
@@ -10,13 +9,11 @@ export default class ChannelManager extends Service {
   @service store!: StoreService;
 
   async findOrCreate(id: string, name: string): Promise<Channel> {
-    return await run(async () => {
-      try {
-        return await this.findAndSetName(id, name);
-      } catch (e) {
-        return await this.create(id, name);
-      }
-    });
+    try {
+      return await this.findAndSetName(id, name);
+    } catch (e) {
+      return await this.create(id, name);
+    }
   }
 
   async findAndSetName(id: string, name: string): Promise<Channel> {

@@ -197,6 +197,7 @@ ui:
     markAllAsRead: Mark all as read
     errors:
       contactNotFound: Your contact could not be located
+      channelNotFound: The channel could not be located.
     sender:
       removed: removed
     messages:
