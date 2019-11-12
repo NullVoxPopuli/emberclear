@@ -157,7 +157,7 @@
     "prettier": "^1.19.1",
     "qunit-assertions-extra": "^0.8.1",
     "qunit-console-grouper": "^0.2.0",
-    "qunit-dom": "^0.9.1",
+    "qunit-dom": "^0.9.2",
     "sass-lint": "^1.13.1",
     "testdouble": "^3.12.4",
     "testem-gitlab-reporter": "^1.0.0",
