@@ -3660,10 +3660,10 @@ broccoli-clean-css@^1.1.0:
     inline-source-map-comment "^1.0.5"
     json-stable-stringify "^1.0.0"
 
-broccoli-concat-analyser@^4.3.4:
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/broccoli-concat-analyser/-/broccoli-concat-analyser-4.3.4.tgz#d91574e1cfd75d00198726d067570f64ec01ef50"
-  integrity sha512-60nTdxIYkLzP/BabTvXPydjAxC83+FZgPAeS5pq/OJsvRgD8n/rNgrrSsqTKu5/muQ9qDwf3p4qFNgwNbh5K6g==
+broccoli-concat-analyser@^4.3.5:
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/broccoli-concat-analyser/-/broccoli-concat-analyser-4.3.5.tgz#6079d41b0b7d1d4592a1575014a19d09188a67c7"
+  integrity sha512-B4XEeAuEFAFxZch47Df0X8+Cn2FX+tzfuwHV0+TemboP0kVSygMQ/uq0yKI205Sp+OxAEgToVjY+2+L/VUMGWA==
   dependencies:
     filesize "^3.3.0"
     fs-extra "^4.0.2"
