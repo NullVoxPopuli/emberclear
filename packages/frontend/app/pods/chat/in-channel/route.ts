@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import CurrentUserService from 'emberclear/services/current-user';
 
 interface IModelParams {
-  channel_id: string;
+  id: string;
 }
 
 export default class ChatInChannelRoute extends Route {
