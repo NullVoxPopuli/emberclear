@@ -22,6 +22,8 @@
 
     & .messages {
       @apply --grid;
+      /* grid-gap of half is also applied to margin of each message */
+      grid-gap: calc(var(--grid-gap) / 2);
 
       align-self: flex-end;
       max-height: 100%;

@@ -16,6 +16,7 @@
   <h2>{{t 'ui.settings.themes.title'}}</h2>
 
   <Switch
+    data-test-theme-midnight
     @value={{eq 'midnight' this.settings.theme}}
     @label={{t 'ui.settings.themes.midnight'}}
     {{on 'click' this.useDarkTheme}}

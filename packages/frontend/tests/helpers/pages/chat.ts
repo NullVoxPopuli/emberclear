@@ -12,6 +12,7 @@ import {
 
 import { typeIn } from '@ember/test-helpers';
 
+import { definition as unreadMessagesFloater } from 'emberclear/pods/components/pod/chat/chat-history/unread-management/-page';
 import { definition as dropdownPage } from 'emberclear/pods/components/dropdown/-page';
 import { definition as embedModal } from 'emberclear/pods/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
 
@@ -57,6 +58,7 @@ export const page = create({
   },
 
   embedModal,
+  unreadMessagesFloater,
 
   submitButton: {
     scope: '[data-test-chat-submit]',

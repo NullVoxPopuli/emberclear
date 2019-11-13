@@ -22,12 +22,15 @@
         <br><br>
 
         {{t 'ui.footer.wantToSupport'}} <br>
-        <a {{on 'click' this.toggleMoneroAddress}}>
+        <a data-test-monero-toggle {{on 'click' this.toggleMoneroAddress}}>
           {{fa-icon 'monero' prefix='fab'}} {{t 'buttons.donateXmr'}}
         </a>
         <br>
         {{#if this.showMoneroAddress}}
-          XMR: 49UPDubdAzJ6TL3KMgxSugMV2KwtmeDmX2M2HZSTkcuS1jabsfZYy2hfyzLygW7DPCjhHojQC5gZMCpLiigVV4YcNbeh6d9
+          <div data-test-monero-address class='wrap-anywhere'>
+            <strong>XMR</strong><br>
+            49UPDubdAzJ6TL3KMgxSugMV2KwtmeDmX2M2HZSTkcuS1jabsfZYy2hfyzLygW7DPCjhHojQC5gZMCpLiigVV4YcNbeh6d9
+          </div>
         {{/if}}
         <br>
 

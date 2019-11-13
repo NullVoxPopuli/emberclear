@@ -23,8 +23,16 @@ export default class MessageDisplay extends Component<IArgs> {
     return convertAndSanitizeMarkdown(markdown);
   }
 
+  get direction() {
+    if (this.sender === this.currentUser.record) {
+      return 'outgoing';
+    }
+
+    return 'incoming';
+  }
+
   get sender(): Identity | undefined {
-    return this.args.message.sender as any;
+    return this.args.message.sender;
   }
 
   get hasSender() {

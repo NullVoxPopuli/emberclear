@@ -1,11 +1,16 @@
 {{#if this.shouldRender}}
   <div
+    data-test-unread-floater
     class='unread-indicator'
     ...attributes
     {{did-insert this.findMessagesContainer}}
   >
     <div class='input-group has-shadow'>
-      <button {{on 'click' this.scrollToFirstUnread}} class='button-sm'>
+      <button
+        data-test-scroll-to-unread
+        class='button-sm'
+        {{on 'click' this.scrollToFirstUnread}}
+        >
         <span>
           {{t 'ui.chat.unreadMessages'
             number=this.numberOfUnread
@@ -19,7 +24,11 @@
           }}
         </span>
       </button>
-      <button {{on 'click' this.markAllAsRead}} class='button-sm button-danger'>
+      <button
+        data-test-mark-all-read
+        class='button-sm button-danger'
+        {{on 'click' this.markAllAsRead}}
+        >
         <span>{{t 'ui.chat.markAllAsRead'}}</span>
       </button>
     </div>

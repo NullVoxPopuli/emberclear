@@ -62,7 +62,10 @@
   --chat-entry-line-height: 1.5rem;
 
   --chat-message-hover-color: #f8f8f8;
-  --chat-message-sender-name: var(--body-color);
+  --chat-message-unread-bg-color: #f1f1fa;
+  --chat-message-sender-name-incoming: var(--body-color);
+  --chat-message-sender-name-outgoing: var(--body-color);
+
   --chat-message-sent-at: var(--color-medium-gray);
   --chat-new-messages-notice-color: var(--state-light);
   --chat-new-messages-notice-bg-color: var(--state-secondary);

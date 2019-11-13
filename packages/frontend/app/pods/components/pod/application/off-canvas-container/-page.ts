@@ -22,7 +22,7 @@ export const selectors = {
 };
 
 export const page = create({
-  toggle: clickable('.top-nav a.navbar-burger'),
+  toggle: clickable('.top-nav button.navbar-burger'),
   isPresent: isPresent('aside'),
 
   isOpen: getter(function() {

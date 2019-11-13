@@ -1,4 +1,5 @@
 import Application from 'emberclear/app';
+import registerWaiter from 'ember-raf-scheduler/test-support/register-waiter';
 import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
 import start from 'ember-exam/test-support/start';
@@ -44,6 +45,8 @@ QUnit.begin(async () => {
 });
 
 setApplication(Application.create(config.APP));
+
+registerWaiter();
 
 start({
   setupTestIsolationValidation: true,
