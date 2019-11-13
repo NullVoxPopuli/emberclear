@@ -1,5 +1,12 @@
-<div class='dropdown dropdown-left {{if this.isActive 'active'}}'>
+<div
+  data-test-locale-select
+  class='
+    dropdown dropdown-left
+    {{if this.isActive 'active'}}
+  '
+>
   <button
+    data-test-locale-toggle
     {{on 'click' (fn this.toggleMenu)}}
     class='button-secondary'
     aria-haspopup='true'
@@ -15,10 +22,10 @@
   >
     {{#each this.options as |opt|}}
       <a
-        {{on 'click' (action (queue
+        {{on 'click' (queue
           (fn this.chooseLanguage opt.locale)
           this.closeMenu
-        ))}}
+        )}}
         class='navbar-item'
       >
         <span>{{opt.label}}</span>
