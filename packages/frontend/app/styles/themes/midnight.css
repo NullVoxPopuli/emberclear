@@ -43,7 +43,9 @@
 
   --chat-message-hover-color: #333;
   --chat-message-unread-bg-color: #2a2a2a;
-  --chat-message-sender-name: var(--color-medium-light-gray);
+  --chat-message-sender-name-incoming: var(--color-fuchsia);
+  --chat-message-sender-name-outgoing: var(--color-orange);
+
 
   --chat-new-messages-notice-bg-color: var(--color-medium-gray);
 

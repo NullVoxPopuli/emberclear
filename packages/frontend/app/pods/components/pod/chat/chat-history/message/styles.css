@@ -6,7 +6,7 @@
   background-color: transparent;
   border-radius: var(--component-border-radius);
   padding: var(--grid-gap);
-
+  margin: calc(var(--grid-gap) / 2) 0;
 
   &:hover {
     background: var(--chat-message-hover-color);
@@ -18,6 +18,41 @@
 
   &:not(:last-child) {
     margin-bottom: 0;
+  }
+
+  &[data-direction='outgoing'] {
+    & .message-header {
+      & .from {
+        color: var(--chat-message-sender-name-outgoing);
+
+        & a {
+          color: var(--chat-message-sender-name-outgoing);
+        }
+      }
+    }
+  }
+
+  &[data-direction='incoming'] {
+    & .message-header {
+      & .from {
+        color: var(--chat-message-sender-name-incoming);
+
+        & a {
+          color: var(--chat-message-sender-name-incoming);
+        }
+      }
+    }
+  }
+
+  &[data-direction='outgoing'] + [data-direction='outgoing'],
+  &[data-direction='incoming'] + [data-direction='incoming'] {
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    & .message-header {
+      display: none;
+    }
   }
 
   & p {
@@ -49,12 +84,7 @@
     & .from {
       font-style: bold;
       font-size: 0.9rem;
-      text-decoration: underline;
-      color: var(--chat-message-sender-name);
-
-      & a {
-        color: var(--chat-message-sender-name);
-      }
+      text-decoration: none;
     }
 
     & .sentAt {
