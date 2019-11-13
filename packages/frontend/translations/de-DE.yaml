@@ -170,6 +170,7 @@ ui:
     markAllAsRead: Alle als gelesen markieren
     errors:
       contactNotFound: Dein Kontakt konnte nicht lokalisiert werden
+      channelNotFound: The channel could not be located.
     sender:
       removed: Entfernt
     messages:
