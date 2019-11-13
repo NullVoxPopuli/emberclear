@@ -1,51 +1,49 @@
-{{#if this.shouldRender}}
-  <div class='embedded-resource'>
+<div class='embedded-resource'>
 
-    <header class='card-header'>
-      <a class='card-header-icon' {{action this.toggleShow}}>
-        {{#if this.isCollapsed}}
-          {{fa-icon 'angle-up'}}
-        {{else}}
-          {{fa-icon 'angle-down'}}
-        {{/if}}
-      </a>
-
-      {{#if (is-present this.siteName)}}
-        <p class='card-header-title'>
-          {{this.siteName}}
-        </p>
-      {{/if}}
-
-    </header>
-
-    {{#if (not this.isCollapsed)}}
-
-      {{#if this.isYouTube}}
-        <iframe
-          allowfullscreen
-          class='card-content'
-          src={{this.embedUrl}}
-          width='560'
-          height='315'
-          frameborder='0'
-          allow='autoplay; encrypted-media'
-        >
-        </iframe>
-
-      {{else if this.isImage}}
-
-        <img alt={{t 'todo'}} class='card-content' src={{@url}}>
-
+  <header class='card-header'>
+    <button class='button-link card-header-icon' {{on 'click' this.toggleShow}}>
+      {{#if this.isCollapsed}}
+        {{fa-icon 'angle-up'}}
       {{else}}
-
-        <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
-          class={{if this.hasOgData 'card-content'}}
-          @url={{@url}}
-          @ogData={{this.ogData}}
-        />
-
+        {{fa-icon 'angle-down'}}
       {{/if}}
+    </button>
+
+    {{#if (is-present @openGraph.site_name)}}
+      <p class='card-header-title'>
+        {{@openGraph.site_name}}
+      </p>
+    {{/if}}
+
+  </header>
+
+  {{#if (not this.isCollapsed)}}
+
+    {{#if this.isYouTube}}
+      <iframe
+        allowfullscreen
+        class='card-content'
+        src={{this.embedUrl}}
+        width='560'
+        height='315'
+        frameborder='0'
+        allow='autoplay; encrypted-media'
+      >
+      </iframe>
+
+    {{else if this.isImage}}
+
+      <img alt={{t 'todo'}} class='card-content' src={{@url}}>
+
+    {{else}}
+
+      <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
+        class={{if @openGraph.title 'card-content'}}
+        @url={{@url}}
+        @ogData={{@openGraph}}
+      />
 
     {{/if}}
-  </div>
-{{/if}}
+
+  {{/if}}
+</div>

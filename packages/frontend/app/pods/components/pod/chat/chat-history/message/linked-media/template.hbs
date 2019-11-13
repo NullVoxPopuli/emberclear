@@ -1,0 +1,21 @@
+{{#if (is-present @urls)}}
+  <div class='flex flex-wrap'>
+
+    {{#each @urls as |url|}}
+
+      <FetchOpenGraph @url={{url}} as |isLoading json|>
+
+        {{#if json.title}}
+          <Pod::Chat::ChatHistory::Message::EmbeddedResource
+            class='flex'
+            @openGraph={{json}}
+            @url={{url}}
+          />
+        {{/if}}
+
+      </FetchOpenGraph>
+
+    {{/each}}
+
+  </div>
+{{/if}}
