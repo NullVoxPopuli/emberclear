@@ -170,6 +170,7 @@ ui:
     markAllAsRead: Пометить все как прочитанные
     errors:
       contactNotFound: Не удаётся найти ваш контакт
+      channelNotFound: The channel could not be located.
     sender:
       removed: удалено
     messages:
