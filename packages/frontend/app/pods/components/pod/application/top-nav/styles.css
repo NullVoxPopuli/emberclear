@@ -29,6 +29,7 @@
 
 .top-nav .navbar-burger {
   color: var(--link-color);
+  margin-left: calc(var(--grid-gap) * -1);
 }
 
 .top-nav.is-inverted .burger,

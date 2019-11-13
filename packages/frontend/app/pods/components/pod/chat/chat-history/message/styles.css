@@ -13,7 +13,7 @@
   }
 
   &.unread {
-    background-color: #f1f1fa;
+    background-color: var(--chat-message-unread-bg-color);
   }
 
   &:not(:last-child) {
