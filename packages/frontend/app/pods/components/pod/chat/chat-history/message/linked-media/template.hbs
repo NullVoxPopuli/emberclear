@@ -11,6 +11,8 @@
             @openGraph={{json}}
             @url={{url}}
           />
+        {{else}}
+          <EmbeddedMedia @url={{url}} />
         {{/if}}
 
       </FetchOpenGraph>

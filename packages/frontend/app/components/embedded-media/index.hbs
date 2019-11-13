@@ -1,0 +1,23 @@
+{{#if this.isYouTube}}
+  <iframe
+    allowfullscreen
+    class='card-content'
+    src={{this.embedUrl}}
+    width='560'
+    height='315'
+    frameborder='0'
+    allow='autoplay; encrypted-media'
+  >
+  </iframe>
+
+{{else if this.isImage}}
+
+  <img alt={{this.alt}} class='card-content' src={{@url}}>
+
+{{else if this.isVideo }}
+
+  <video class='card-content' width='560' height='315' controls loop>
+    <source src={{@url}} type='video/mp4'>
+  </video>
+
+{{/if}}
