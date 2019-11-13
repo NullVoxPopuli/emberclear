@@ -372,7 +372,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
                 await settled();
               });
 
-              test('most recent messages are shown', async function(assert) {
+              skip('most recent messages are shown', async function(assert) {
                 assert.equal(
                   page.newMessagesFloater.isHidden,
                   true,
