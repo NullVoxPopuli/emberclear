@@ -1,8 +1,8 @@
-{{#if this.isYouTube}}
+{{#if @meta.isYouTube}}
   <iframe
     allowfullscreen
     class='card-content'
-    src={{this.embedUrl}}
+    src={{@meta.embedUrl}}
     width='560'
     height='315'
     frameborder='0'
@@ -10,11 +10,11 @@
   >
   </iframe>
 
-{{else if this.isImage}}
+{{else if @meta.isImage}}
 
-  <img alt={{this.alt}} class='card-content' src={{@url}}>
+  <img alt={{@meta.alt}} class='card-content' src={{@url}}>
 
-{{else if this.isVideo }}
+{{else if @meta.isVideo }}
 
   <video class='card-content' width='560' height='315' controls loop>
     <source src={{@url}} type='video/mp4'>

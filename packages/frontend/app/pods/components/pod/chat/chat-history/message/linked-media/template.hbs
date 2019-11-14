@@ -4,14 +4,15 @@
       <FetchOpenGraph @url={{url}} as |isLoading data|>
 
         {{#if (not isLoading)}}
+          {{#if (or data.meta.hasInfo data.meta.hasMedia)}}
 
-          {{!-- TODO: if meta is renderable? --}}
-          <Pod::Chat::ChatHistory::Message::EmbeddedResource
-            class='flex'
-            @url={{url}}
-            @meta={{data.meta}}
-          />
+            <Pod::Chat::ChatHistory::Message::EmbeddedResource
+              class='flex'
+              @url={{url}}
+              @meta={{data.meta}}
+            />
 
+          {{/if}}
         {{/if}}
 
       </FetchOpenGraph>
