@@ -1,5 +1,6 @@
 .metadata-preview {
   @apply --column-grid;
+  justify-content: start;
 
   & .thumbnail-container {
     & img {

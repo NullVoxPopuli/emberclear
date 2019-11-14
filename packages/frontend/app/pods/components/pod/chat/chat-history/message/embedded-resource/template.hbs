@@ -9,9 +9,9 @@
       {{/if}}
     </button>
 
-    {{#if (is-present @openGraph.site_name)}}
+    {{#if (is-present @meta.siteName)}}
       <p class='card-header-title'>
-        {{@openGraph.site_name}}
+        {{@meta.siteName}}
       </p>
     {{/if}}
 
@@ -19,14 +19,13 @@
 
   {{#if (not this.isCollapsed)}}
 
-    {{#if this.hasExtension}}
-      <EmbeddedMedia @url={{@url}} @meta={{@openGraph}} />
+    {{#if @meta.hasExtension}}
+      <EmbeddedMedia @url={{@url}} @meta={{@meta}} />
     {{else}}
 
       <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
-        class={{if @openGraph.title 'card-content'}}
         @url={{@url}}
-        @ogData={{@openGraph}}
+        @ogData={{@meta.openGraph}}
       />
 
     {{/if}}

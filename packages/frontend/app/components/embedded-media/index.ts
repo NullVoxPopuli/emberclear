@@ -1,8 +1,9 @@
 import Component from '@glimmer/component';
+import { NormalizedMeta } from 'emberclear/utils/normalized-meta';
 
 type Args = {
   url: string;
-  meta: OpenGraphData; // maybe?
+  meta: NormalizedMeta;
 };
 
 // https://stackoverflow.com/a/8260383/356849
@@ -12,7 +13,7 @@ const VIDEO_PATTERN = /(\.mp4$)/;
 
 export default class EmbeddedMedia extends Component<Args> {
   get alt() {
-    return this.args.meta['image:meta'];
+    return this.args.meta.alt;
   }
 
   get isYouTube() {

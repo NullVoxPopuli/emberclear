@@ -7,6 +7,7 @@ import { hbs } from 'ember-cli-htmlbars';
 import Task from 'ember-concurrency/task';
 import ConnectionService from 'emberclear/services/connection';
 import ConnectionStatusService from 'emberclear/services/connection/status';
+import { normalizeMeta } from 'emberclear/utils/normalized-meta';
 
 type Args = {
   url: string;
@@ -24,6 +25,15 @@ class FetchOpenGraphComponent extends Component<Args> {
 
   // everything is private API in here.
 
+  get meta() {
+    let { url } = this.args;
+
+    return normalizeMeta({
+      url,
+      openGraph: this.request.lastSuccessful.value,
+    });
+  }
+
   @task(function*(this: FetchOpenGraphComponent) {
     // wait for connectivity
     yield waitUntil(() => this.status.isConnected);
@@ -37,15 +47,18 @@ class FetchOpenGraphComponent extends Component<Args> {
 export default setComponentTemplate(
   hbs`
   {{!--
-    <FetchOpenGraph @url={{...}} as |isLoading json error|>
+    <FetchOpenGraph @url={{...}} as |isLoading data|>
 
     </FetchOpenGraph>
 
   --}}
   {{yield
     this.request.isRunning
-    this.request.lastSuccessful.value
-    this.request.lastErrored.value
+    (hash
+      result=this.request.lastSuccessful.value
+      error=this.request.lastErrored.value
+      meta=this.meta
+    )
   }}
   `,
   FetchOpenGraphComponent
@@ -53,7 +66,7 @@ export default setComponentTemplate(
 
 function waitUntil(callback: () => boolean): Promise<void> {
   return new Promise(resolve => {
-    let interval: number;
+    let interval: any;
 
     interval = setInterval(() => {
       let result = callback();
@@ -62,6 +75,6 @@ function waitUntil(callback: () => boolean): Promise<void> {
         clearInterval(interval);
         resolve();
       }
-    });
+    }, 100);
   });
 }
