@@ -2,25 +2,64 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import { settled } from '@ember/test-helpers';
+import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
+
+const LINKS = {
+  youtube: {
+    webUrl: 'https://www.youtube.com/watch?v=w84fToQ6BXY',
+  },
+  imgur: {
+    page: 'https://imgur.com/msqKHPa',
+    direct: 'https://i.imgur.com/msqKHPa.jpg',
+  },
+  giphy: {
+    page: 'https://giphy.com/gifs/art-control-remedy-kyv4512wnwDOKn9rWq',
+    gif: 'https://media.giphy.com/media/kyv4512wnwDOKn9rWq/giphy.gif',
+    html5: 'https://giphy.com/gifs/kyv4512wnwDOKn9rWq/html5',
+  },
+
+  other: {
+    github: {
+      repo: 'https://github.com/NullVoxPopuli/emberclear',
+    },
+    coveralls: 'https://coveralls.io/github/NullVoxPopuli/emberclear',
+  },
+};
 
 module('Integration | Component | fetch-open-graph', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    assert.expect(3);
 
-    await render(hbs`<FetchOpenGraph />`);
+    this.setProperties({ url: LINKS.youtube.webUrl });
 
-    assert.equal(this.element.textContent.trim(), '');
+    stubConnection({
+      getOpenGraph(...args) {
+        assert.equal(args[0], LINKS.youtube.webUrl);
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(...args);
+          }, 10);
+        });
+      },
+    });
 
-    // Template block usage:
     await render(hbs`
-      <FetchOpenGraph>
-        template block text
+      <FetchOpenGraph @url={{this.url}} as |isLoading data|>
+        <div data-test-content>
+          {{#if (not isLoading)}}
+            {{data}}
+          {{/if}}
+        </div>
       </FetchOpenGraph>
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom('[data-test-content]').hasNoText();
+
+    await settled();
+
+    assert.dom('[data-test-content]').hasAnyText();
   });
 });

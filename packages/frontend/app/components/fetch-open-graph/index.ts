@@ -34,13 +34,13 @@ class FetchOpenGraphComponent extends Component<Args> {
     });
   }
 
-  @task(function*(this: FetchOpenGraphComponent) {
-    // wait for connectivity
+  @(task(function*(this: FetchOpenGraphComponent) {
     yield waitUntil(() => this.status.isConnected);
+
     let og = yield this.connection.getOpenGraph(this.args.url);
 
     return og;
-  })
+  }).withTestWaiter())
   request!: Task;
 }
 

@@ -50,7 +50,6 @@ export function normalizeMeta(data: Args): NormalizedMeta {
     openGraph: og,
 
     embedUrl,
-
   };
 }
 

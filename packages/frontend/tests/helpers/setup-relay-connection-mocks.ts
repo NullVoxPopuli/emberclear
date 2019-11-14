@@ -1,6 +1,9 @@
 import { stubService } from './stub-service';
 
 export function stubConnection(overrides = {}) {
+  stubService('connection/status', {
+    isConnected: true,
+  });
   stubService('connection', {
     getOpenGraph() {},
     connect() {},

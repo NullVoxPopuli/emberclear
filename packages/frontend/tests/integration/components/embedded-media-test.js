@@ -6,21 +6,37 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Component | embedded-media', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  module('rendered media is different based on meta', function() {
+    test('youtube', async function(assert) {
+      this.setProperties({ url: 'url', meta: { isYouTube: true } });
 
-    await render(hbs`<EmbeddedMedia />`);
+      await render(hbs`<EmbeddedMedia @url={{this.url}} @meta={{this.meta}} />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+      assert.dom('iframe').exists();
+    });
 
-    // Template block usage:
-    await render(hbs`
-      <EmbeddedMedia>
-        template block text
-      </EmbeddedMedia>
-    `);
+    test('image', async function(assert) {
+      this.setProperties({ url: 'url', meta: { isImage: true } });
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+      await render(hbs`<EmbeddedMedia @url={{this.url}} @meta={{this.meta}} />`);
+
+      assert.dom('img').exists();
+    });
+
+    test('video', async function(assert) {
+      this.setProperties({ url: 'url', meta: { isVideo: true } });
+
+      await render(hbs`<EmbeddedMedia @url={{this.url}} @meta={{this.meta}} />`);
+
+      assert.dom('video').exists();
+    });
+
+    test('other', async function(assert) {
+      this.setProperties({ url: 'url', meta: {} });
+
+      await render(hbs`<EmbeddedMedia @url={{this.url}} @meta={{this.meta}} />`);
+
+      assert.dom('*').doesNotExist();
+    });
   });
 });
