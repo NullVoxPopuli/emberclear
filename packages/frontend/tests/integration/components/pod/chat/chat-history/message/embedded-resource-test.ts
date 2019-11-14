@@ -6,14 +6,6 @@ import { hbs } from 'ember-cli-htmlbars';
 import { stubService } from 'emberclear/tests/helpers';
 import { TestContext } from 'ember-test-helpers';
 
-function disableOpenGraphFetching(hooks: NestedHooks, respondWith = {}) {
-  hooks.beforeEach(function() {
-    stubService('relay-manager', {
-      getOpenGraph: async (/* url: string */) => await respondWith,
-    });
-  });
-}
-
 module('Integration | Component | embedded-resource', function(hooks) {
   setupRenderingTest(hooks);
 
@@ -23,8 +15,6 @@ module('Integration | Component | embedded-resource', function(hooks) {
 
   module('shouldRender', function() {
     module('there is nothing to display', function(hooks) {
-      disableOpenGraphFetching(hooks, 'hi');
-
       hooks.beforeEach(async function() {
         await render(hbs`
           <Pod::Chat::ChatHistory::Message::EmbeddedResource />
@@ -39,21 +29,26 @@ module('Integration | Component | embedded-resource', function(hooks) {
     });
 
     module('the url is embeddable', function(hooks) {
-      disableOpenGraphFetching(hooks);
-
       hooks.beforeEach(async function(this: TestContext) {
-        this.set('someUrl', 'https://i.imgur.com/gCyUdeb.gifv');
+        this.setProperties({
+          someUrl: 'https://i.imgur.com/gCyUdeb.gifv',
+          meta: {
+            hasExtension: true,
+            isImage: true,
+          },
+        });
 
         await render(hbs`
           <Pod::Chat::ChatHistory::Message::EmbeddedResource
-            @url={{someUrl}}
+            @url={{this.someUrl}}
+            @meta={{this.meta}}
           />
         `);
       });
 
       // TODO: for some reason I can't stub this component's services
-      skip('the rendered content is not blank', function(assert) {
-        const text = this.element.innerHTML;
+      test('the rendered content is not blank', function(assert) {
+        let text = this.element.innerHTML;
 
         assert.notEqual(text, '', 'html is not empty');
         assert.contains(text, 'imgur');

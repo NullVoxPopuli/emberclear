@@ -4,6 +4,7 @@ import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { settled } from '@ember/test-helpers';
 import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
+import { stubService } from 'emberclear/tests/helpers';
 
 const LINKS = {
   youtube: {
@@ -34,6 +35,10 @@ module('Integration | Component | fetch-open-graph', function(hooks) {
     assert.expect(3);
 
     this.setProperties({ url: LINKS.youtube.webUrl });
+
+    stubService('connection/status', {
+      isConnected: true,
+    });
 
     stubConnection({
       getOpenGraph(...args) {

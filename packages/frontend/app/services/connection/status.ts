@@ -53,7 +53,9 @@ export default class ConnectionStatusService extends Service {
     yield timeout(1000);
 
     this.hasUpdate = false;
-  }).restartable())
+  })
+    .restartable()
+    .withTestWaiter())
   showStatusChange!: Task;
 }
 

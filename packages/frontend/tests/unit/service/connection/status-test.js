@@ -2,7 +2,12 @@ import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
 import { getService } from 'emberclear/tests/helpers';
-import { STATUS_CONNECTING } from 'emberclear/utils/connection-pool';
+import {
+  STATUS_CONNECTING,
+  STATUS_CONNECTED,
+  STATUS_UNKNOWN,
+  STATUS_DEGRADED,
+} from 'emberclear/utils/connection-pool';
 import { timeout } from 'ember-concurrency';
 
 module('Unit | Service | connection/status', function(hooks) {
@@ -38,5 +43,25 @@ module('Unit | Service | connection/status', function(hooks) {
     await timeout(1200);
 
     assert.notOk(service.hasUpdate);
+  });
+
+  test('isConnected', function(assert) {
+    let service = getService('connection/status');
+
+    service.updateStatus(STATUS_CONNECTING);
+
+    assert.notOk(service.isConnected);
+
+    service.updateStatus(STATUS_CONNECTED);
+
+    assert.ok(service.isConnected);
+
+    service.updateStatus(STATUS_UNKNOWN);
+
+    assert.notOk(service.isConnected);
+
+    service.updateStatus(STATUS_DEGRADED);
+
+    assert.ok(service.isConnected);
   });
 });

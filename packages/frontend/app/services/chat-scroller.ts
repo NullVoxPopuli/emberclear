@@ -78,3 +78,9 @@ export default class ChatScroller extends Service {
     return false;
   }
 }
+
+declare module '@ember/service' {
+  interface Registry {
+    'chat-scroller': ChatScroller;
+  }
+}
