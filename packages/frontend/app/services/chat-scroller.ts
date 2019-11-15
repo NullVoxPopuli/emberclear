@@ -2,7 +2,6 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { task, timeout } from 'ember-concurrency';
 
-import { isElementVerticallyWithin } from 'emberclear/utils/dom/utils';
 import Message from 'emberclear/models/message';
 import Task from 'ember-concurrency/task';
 
@@ -21,21 +20,7 @@ export default class ChatScroller extends Service {
     // nothing to show, don't indicate that the last message isn't visible.
     if (!message) return true;
 
-    const container = document.querySelector('.message-list') as HTMLElement;
-    if (!container) return false;
-
-    const messages = container.querySelectorAll('.message')!;
-    if (!messages) return false;
-
-    const lastMessage = document.getElementById(message.id);
-
-    if (lastMessage) {
-      return isElementVerticallyWithin(lastMessage, container);
-    }
-
-    // nothing to show. last is like... square root of -1... or something.
-    // if there are indeed messages, then the last one might be occluded
-    return messages.length === 0;
+    return isLastVisible(message.id);
   }
 
   @(task(function*(this: ChatScroller, appendedMessage: HTMLElement) {
@@ -77,6 +62,33 @@ export default class ChatScroller extends Service {
     // Can something that doesn't exist be visible?
     return false;
   }
+}
+
+function isLastVisible(id: string) {
+  const container = document.querySelector('.message-list') as HTMLElement;
+  if (!container) return false;
+
+  const messages = container.querySelectorAll('.message')!;
+  if (!messages) return false;
+
+  const lastMessage = document.getElementById(id) || document.querySelector(`[data-id="${id}"]`);
+
+  if (lastMessage) {
+    return isBottomOfMessageVisible(lastMessage, container);
+  }
+
+  // nothing to show. last is like... square root of -1... or something.
+  // if there are indeed messages, then the last one might be occluded
+  return messages.length === 0;
+}
+
+function isBottomOfMessageVisible(element: HTMLElement, container: HTMLElement): boolean {
+  const rect = element.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+
+  const isVisible = rect.bottom <= containerRect.bottom;
+
+  return isVisible;
 }
 
 declare module '@ember/service' {
