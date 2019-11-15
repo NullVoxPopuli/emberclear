@@ -43,7 +43,7 @@ export default class ReceivedMessageHandler extends Service {
         // do nothing, we do not need to send a response
         // at least for now, we have socket-level tools to know
         // when a message was sent successfully
-        return message;
+        return; // message;
 
       default:
         console.info('Unrecognized message to handle...', raw);

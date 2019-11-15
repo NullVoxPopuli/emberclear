@@ -3,8 +3,14 @@ import { inject as service } from '@ember/service';
 import { once } from '@ember/runloop';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
+import Message from 'emberclear/models/message';
 
-export default class MaybeNudgeToBottom extends Modifier {
+type Args = {
+  positional: [Message];
+  named: {};
+};
+
+export default class MaybeNudgeToBottom extends Modifier<Args> {
   @service chatScroller!: ChatScroller;
 
   didInstall() {

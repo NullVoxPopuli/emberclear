@@ -72,6 +72,13 @@
   & .message-body {
     border: none;
     background-color: transparent;
+
+    & video.card-content,
+    & img.card-content,
+    & iframe.card-content {
+      width: 100%;
+      max-width: 300px;
+    }
   }
 
   & .message-header {
