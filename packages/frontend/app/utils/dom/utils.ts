@@ -1,6 +1,15 @@
 import showdown from 'showdown';
 import DOMPurify from 'dompurify';
 
+export function isElementVerticallyWithin(element: HTMLElement, container: HTMLElement): boolean {
+  const rect = element.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+
+  const isVisible = rect.top >= containerRect.top && rect.bottom <= containerRect.bottom;
+
+  return isVisible;
+}
+
 export function isElementWithin(element: HTMLElement, container: HTMLElement): boolean {
   const rect = element.getBoundingClientRect();
   const containerRect = container.getBoundingClientRect();

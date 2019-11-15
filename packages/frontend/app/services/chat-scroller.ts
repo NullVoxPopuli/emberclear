@@ -2,7 +2,7 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { task, timeout } from 'ember-concurrency';
 
-import { isElementWithin } from 'emberclear/utils/dom/utils';
+import { isElementVerticallyWithin } from 'emberclear/utils/dom/utils';
 import Message from 'emberclear/models/message';
 import Task from 'ember-concurrency/task';
 
@@ -30,7 +30,7 @@ export default class ChatScroller extends Service {
     const lastMessage = document.getElementById(message.id);
 
     if (lastMessage) {
-      return isElementWithin(lastMessage, container);
+      return isElementVerticallyWithin(lastMessage, container);
     }
 
     // nothing to show. last is like... square root of -1... or something.
