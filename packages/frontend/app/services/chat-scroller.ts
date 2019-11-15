@@ -57,7 +57,7 @@ export default class ChatScroller extends Service {
   scrollToBottom!: Task;
 
   private shouldScroll(appendedMessage: HTMLElement) {
-    const container = document.querySelector('.message-list') as HTMLElement;
+    const container = document.querySelector('.messages') as HTMLElement;
     if (!container) return false;
 
     if (appendedMessage) {
