@@ -17,8 +17,10 @@ export default class extends Controller {
     let me = this.currentUser.uid;
     let chattingWithId = this.uid;
     let filteredMessages = messagesForDM(allMessages, me, chattingWithId);
+    // TODO: how does this affect mobile devices?
+    let mostRecent = filteredMessages.slice(-100);
 
-    return filteredMessages;
+    return mostRecent;
   }
 }
 

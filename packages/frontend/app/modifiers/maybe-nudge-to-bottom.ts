@@ -34,11 +34,4 @@ export default class MaybeNudgeToBottom extends Modifier<Args> {
       once(null, () => this.chatScroller.maybeNudge.perform(this.element as HTMLElement));
     }
   }
-
-  // NOTE: this method should not exist, but does
-  //       because vertical-collection recycles
-  //       nodes
-  didUpdateArguments() {
-    this.didInstall();
-  }
 }
