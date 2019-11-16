@@ -315,12 +315,18 @@ module('Acceptance | Chat | Privately With', function(hooks) {
         });
 
         module('there are many messages', function(hooks) {
+          let numMessages = 30;
           hooks.beforeEach(async function(assert) {
             let currentUser = getService('currentUser').record!;
 
-            let numMessages = 30;
             for (let i = 0; i < numMessages; i++) {
-              let message = await createMessage(someone, currentUser, 'Test Message');
+              let message = await createMessage(
+                someone,
+                currentUser,
+                `Test Message\n
+                Line 2\n
+                A third`
+              );
 
               if (i === 0) {
                 firstMessage = message;
@@ -346,7 +352,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
               'more messages below is not visible'
             );
 
-            assert.ok(page.messages.length < 30, 'not all messages are shown');
+            assert.ok(page.messages.length < numMessages, 'not all messages are shown');
 
             assert.dom(`[data-id="${firstMessage.id}"]`).doesNotExist();
             assert.dom(`[data-id="${lastMessage.id}"]`).exists();

@@ -5,16 +5,12 @@ import { task, timeout } from 'ember-concurrency';
 import Message from 'emberclear/models/message';
 import Task from 'ember-concurrency/task';
 
-const SCROLL_DELAY = 20;
+// This is used to give the task time to restart as the view settles
+// and tries to scroll multiple times
+const SCROLL_DELAY = 100;
 
 export default class ChatScroller extends Service {
   @tracked isLastVisible = true;
-
-  // if the last message is close enough to being in view,
-  // scroll to the bottom
-  maybeNudgeToBottom(appendedMessage: HTMLElement) {
-    this.maybeNudge.perform(appendedMessage);
-  }
 
   _isLastVisible(message: Message) {
     // nothing to show, don't indicate that the last message isn't visible.
@@ -23,13 +19,16 @@ export default class ChatScroller extends Service {
     return isLastVisible(message.id);
   }
 
+  // if the last message is close enough to being in view,
+  // scroll to the bottom
   @(task(function*(this: ChatScroller, appendedMessage: HTMLElement) {
     yield timeout(SCROLL_DELAY);
 
-    if (this.shouldScroll(appendedMessage)) {
-      this.scrollToBottom.perform();
-    }
-  }).restartable())
+    // if (this.shouldScroll(appendedMessage)) {
+    // this.scrollToBottom.perform();
+    appendedMessage.scrollIntoView({ behavior: 'smooth' });
+    // }
+  }).drop())
   maybeNudge!: Task;
 
   @(task(function*() {
@@ -49,7 +48,7 @@ export default class ChatScroller extends Service {
       const rect = appendedMessage.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
 
-      let fuzzyness = 20; // px
+      let fuzzyness = 5; // px
       // Check if there the message is within height's delta of the bottom
       // of the container.
       const isJustOffScreen =

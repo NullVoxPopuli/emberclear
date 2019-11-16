@@ -12,26 +12,31 @@
     @messages
     tagName='div'
     class='messages'
-    estimateHeight=10
-    staticHeight=true
-    shouldRecycle=true
     key='id'
     bufferSize=5
+    estimateHeight=10
+    staticHeight=false
+    shouldRecycle=true
     renderFromLast=true
     as |message|
   }}
-    <Pod::Chat::ChatHistory::Message @message={{message}} />
+    <Pod::Chat::ChatHistory::Message
+      @message={{message}}
+      {{maybe-nudge-to-bottom @messages message}}
+    />
   {{/vertical-collection}}
 
 
   {{!--
   <div class='messages'>
     {{#each @messages as |message|}}
-      <Pod::Chat::ChatHistory::Message @message={{message}} />
+      <Pod::Chat::ChatHistory::Message @message={{message}}
+      {{maybe-nudge-to-bottom @messages message}}
+      />
     {{/each}}
   </div>
-  --}}
 
+  --}}
 
   <a
     {{on 'click' this.scrollToBottom}}

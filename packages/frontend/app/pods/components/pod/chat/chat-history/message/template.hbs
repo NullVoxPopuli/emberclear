@@ -1,13 +1,11 @@
 {{! template-lint-disable no-triple-curlies }}
 
 <div
+  ...attributes
   id={{@message.id}}
   data-id={{@message.id}}
   data-direction={{this.direction}}
   role='button'
-  {{!-- NOTE: maybe-nudge doesn't need an argument,
-        but vertical-collection recycling requires it --}}
-  {{maybe-nudge-to-bottom @message}}
   {{read-watcher @message}}
   {{format-code @message.body}}
 
