@@ -354,7 +354,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
             assert.ok(page.messages.length < numMessages, 'not all messages are shown');
 
-            assert.dom(`[data-id="${firstMessage.id}"]`).doesNotExist();
+            assert.dom(`[data-id="${firstMessage.id}"]`).isNotVisible();
             assert.dom(`[data-id="${lastMessage.id}"]`).exists();
             assert.dom(page.unreadMessagesFloater.scope).doesNotExist();
           });
