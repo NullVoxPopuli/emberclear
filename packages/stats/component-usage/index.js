@@ -22,7 +22,28 @@ console.log('searchPath:', searchPath);
 
 const COMPONENT_REGEX = /<([A-Z][\w:]+)/g;
 
-let deleteMe = 10;
+function printStats() {
+  console.log(COMPONENT_INVOCATIONS);
+
+  let groupByCount = {};
+
+  Object.entries(COMPONENT_INVOCATIONS).forEach(([componentName, count]) => {
+    groupByCount[count] = groupByCount[count] || [];
+    groupByCount[count].push(componentName);
+  });
+
+  console.log(groupByCount);
+
+  let numComponentsByInvocation = {};
+
+  Object.entries(groupByCount).forEach(([count, components]) => {
+    numComponentsByInvocation[count] = numComponentsByInvocation[count] || 0;
+    numComponentsByInvocation[count] = numComponentsByInvocation[count] + components.length;
+  });
+
+  console.log(numComponentsByInvocation);
+
+}
 
 walk.walkSync(searchPath, {
   followLinks: true,
@@ -45,12 +66,6 @@ walk.walkSync(searchPath, {
         let componentName = match[1];
         let existing = COMPONENT_INVOCATIONS[componentName] || 0;
         COMPONENT_INVOCATIONS[componentName] = existing + 1;
-
-        if (Object.keys(COMPONENT_INVOCATIONS).length === deleteMe) {
-          console.log(COMPONENT_INVOCATIONS);
-          process.exit(0);
-        }
-
       }
 
       next();
@@ -60,7 +75,7 @@ walk.walkSync(searchPath, {
       next();
     },
     end() {
-      console.log(COMPONENT_INVOCATIONS);
+      printStats();
       console.log('end');
     }
   }
