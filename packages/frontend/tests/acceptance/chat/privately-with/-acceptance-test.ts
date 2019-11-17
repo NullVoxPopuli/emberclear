@@ -376,7 +376,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             module('after clicking the new messages floater', function(hooks) {
               hooks.beforeEach(async function() {
                 await page.newMessagesFloater.click();
-                await timeout(400);
+                await timeout(1400);
                 await settled();
               });
 
