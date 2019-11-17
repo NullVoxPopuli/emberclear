@@ -1,7 +1,10 @@
 import Message, { TARGET, TYPE } from '../message';
 import DS from 'ember-data';
 
-export function selectUnreadDirectMessages(messages: Message[], fromId: string) {
+export function selectUnreadDirectMessages(
+  messages: Message[] | DS.RecordArray<Message>,
+  fromId: string
+) {
   const filtered = selectUnreadMessages(messages).filter(m => {
     return m.from === fromId;
   });
@@ -9,7 +12,7 @@ export function selectUnreadDirectMessages(messages: Message[], fromId: string) 
   return filtered;
 }
 
-export function selectUnreadMessages(messages: Message[]) {
+export function selectUnreadMessages(messages: Message[] | DS.RecordArray<Message>) {
   const filtered = messages.filter(m => {
     return (
       // ember-data in-flight messages

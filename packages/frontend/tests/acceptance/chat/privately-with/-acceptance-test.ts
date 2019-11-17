@@ -296,7 +296,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       module('scrolling', function(hooks) {
         setupRelayConnectionMocks(hooks);
 
-        let firstMessage: Message;
+        // let firstMessage: Message;
         let lastMessage: Message;
 
         module('there are no messages', function(hooks) {
@@ -328,9 +328,9 @@ module('Acceptance | Chat | Privately With', function(hooks) {
                 A third`
               );
 
-              if (i === 0) {
-                firstMessage = message;
-              }
+              // if (i === 0) {
+              //   firstMessage = message;
+              // }
               if (i === numMessages - 1) {
                 lastMessage = message;
               }

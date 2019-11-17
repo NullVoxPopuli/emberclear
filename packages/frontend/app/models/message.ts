@@ -5,8 +5,7 @@ import { not } from '@ember/object/computed';
 
 import Identity from 'emberclear/models/identity';
 
-export const MESSAGE_LIMIT = 100;
-
+export const MESSAGE_LIMIT = 75;
 
 /**
  * types:

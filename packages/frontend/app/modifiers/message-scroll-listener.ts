@@ -38,6 +38,10 @@ export default class MessageScrollListener extends Modifier<Args> {
     this.messagesElement = this.element!.querySelector('.messages')!;
 
     if (this.messagesElement) {
+      if (!this.chatScroller.isViewingOlderMessages) {
+        this.messagesElement.scrollTop = this.messagesElement.scrollHeight;
+      }
+
       this.messagesElement.removeEventListener('scroll', this.scrollHandler);
       this.messagesElement.addEventListener('scroll', this.scrollHandler);
     }

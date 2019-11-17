@@ -12,6 +12,10 @@ const SCROLL_DELAY = 100;
 export default class ChatScroller extends Service {
   @tracked isLastVisible = true;
 
+  get isViewingOlderMessages() {
+    return !this.isLastVisible;
+  }
+
   _isLastVisible(message: Message) {
     // nothing to show, don't indicate that the last message isn't visible.
     if (!message) return true;
@@ -24,10 +28,9 @@ export default class ChatScroller extends Service {
   @(task(function*(this: ChatScroller, appendedMessage: HTMLElement) {
     yield timeout(SCROLL_DELAY);
 
-    // if (this.shouldScroll(appendedMessage)) {
-    // this.scrollToBottom.perform();
-    appendedMessage.scrollIntoView({ behavior: 'smooth' });
-    // }
+    if (this.shouldScroll(appendedMessage)) {
+      appendedMessage.scrollIntoView({ behavior: 'smooth' });
+    }
   }).drop())
   maybeNudge!: Task;
 
@@ -48,7 +51,7 @@ export default class ChatScroller extends Service {
       const rect = appendedMessage.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
 
-      let fuzzyness = 5; // px
+      let fuzzyness = 50; // px
       // Check if there the message is within height's delta of the bottom
       // of the container.
       const isJustOffScreen =

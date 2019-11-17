@@ -6,7 +6,7 @@ import ChatScroller from 'emberclear/services/chat-scroller';
 import Message from 'emberclear/models/message';
 
 type Args = {
-  positional: [Messages[], Message];
+  positional: [Message[], Message];
   named: {};
 };
 

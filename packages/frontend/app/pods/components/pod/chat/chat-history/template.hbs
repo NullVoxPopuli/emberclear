@@ -17,22 +17,5 @@
     {{/each}}
   </div>
 
-  <a
-    {{on 'click' this.scrollToBottom}}
-    data-test-new-messages-available
-    class='
-      alert pad-xs
-      new-messages transition-all
-      {{if this.chatScroller.isLastVisible 'hidden'}}
-    '
-  >
-
-    <span class='is-hidden-mobile m-r-sm'>
-      {{t 'ui.chat.newMessages'}}
-    </span>
-
-    <span class='underline'>
-      {{t 'ui.chat.viewRecent'}}
-    </span>
-  </a>
+  <Chat::ChatHistory::NewMessages />
 </div>
