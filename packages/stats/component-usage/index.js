@@ -6,6 +6,10 @@ const fs = require('fs');
 const path = require('path');
 const cla = require('command-line-args');
 
+const { searchAndExtract } = require('extract-tagged-template-literals');
+
+// const { searchAndExtractHbs } = require('ember-extract-inline-templates');
+
 const COMPONENT_INVOCATIONS = {};
 
 const optionDefinitions = [
@@ -18,16 +22,22 @@ let { path: _searchPath, ignore } = options;
 
 let searchPath = path.join(process.cwd(), _searchPath);
 
+const PERCENT = 100;
+const DECIMAL = 1000;
+
 console.log('searchPath:', searchPath);
 
-const COMPONENT_REGEX = /<([A-Z][\w:]+)/g;
+const COMPONENT_REGEX = /<([A-Z][\w:]+)(.+)?>[^\(]?/g;
 
 function printStats() {
-  console.log(COMPONENT_INVOCATIONS);
+  console.table(COMPONENT_INVOCATIONS);
+  let totalInvocations = 0;
+  let totalComponents = Object.keys(COMPONENT_INVOCATIONS).length;
 
   let groupByCount = {};
 
   Object.entries(COMPONENT_INVOCATIONS).forEach(([componentName, count]) => {
+    totalInvocations += count;
     groupByCount[count] = groupByCount[count] || [];
     groupByCount[count].push(componentName);
   });
@@ -37,11 +47,16 @@ function printStats() {
   let numComponentsByInvocation = {};
 
   Object.entries(groupByCount).forEach(([count, components]) => {
-    numComponentsByInvocation[count] = numComponentsByInvocation[count] || 0;
-    numComponentsByInvocation[count] = numComponentsByInvocation[count] + components.length;
+    numComponentsByInvocation[count] = numComponentsByInvocation[count] || { numberOfComponents: 0, percentOfTotal: -1 };
+    numComponentsByInvocation[count].numberOfComponents += components.length;
   });
 
-  console.log(numComponentsByInvocation);
+  Object.entries(numComponentsByInvocation).forEach(([count, data]) => {
+    numComponentsByInvocation[count].percentOfTotal = Math.round((data.numberOfComponents / totalComponents) * PERCENT * DECIMAL) / DECIMAL;
+  });
+
+
+  console.table(numComponentsByInvocation);
 
 }
 
@@ -57,7 +72,10 @@ walk.walkSync(searchPath, {
       let ext = pathParts[pathParts.length - 1];
 
       if (ext !== 'hbs') {
-        return next();
+        // let hbs = searchAndExtractHbs(contents);
+        let hbs = searchAndExtract(contents, 'hbs');
+
+        contents = hbs;
       }
 
       let matches = contents.matchAll(COMPONENT_REGEX);

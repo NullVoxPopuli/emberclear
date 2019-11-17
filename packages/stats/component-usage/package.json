@@ -13,6 +13,8 @@
     "walk": "^2.3.14"
   },
   "dependencies": {
-    "command-line-args": "^5.1.1"
+    "command-line-args": "^5.1.1",
+    "ember-extract-inline-templates": "github:flashios09/ember-extract-inline-templates",
+    "extract-tagged-template-literals": "^1.0.3"
   }
 }
