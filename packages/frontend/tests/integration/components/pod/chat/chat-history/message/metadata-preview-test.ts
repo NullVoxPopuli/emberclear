@@ -83,7 +83,9 @@ module('Integration | Component | metadata-preview', function(hooks) {
         const img = find('img');
 
         assert.ok(img, 'the html tag is present');
-        assert.equal(img!.getAttribute('alt'), 'Thumbnail', 'has alt text');
+        assert.dom('img').hasAttribute('src');
+        assert.dom('img').hasAttribute('alt');
+        assert.contains(img!.getAttribute('src'), 'https://');
       });
     });
   });

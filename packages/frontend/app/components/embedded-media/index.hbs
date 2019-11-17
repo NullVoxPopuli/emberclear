@@ -1,0 +1,23 @@
+{{#if @meta.isYouTube}}
+  <iframe
+    allowfullscreen
+    class='card-content'
+    src={{@meta.embedUrl}}
+    width='560'
+    height='315'
+    frameborder='0'
+    allow='autoplay; encrypted-media'
+  >
+  </iframe>
+
+{{else if @meta.isImage}}
+
+  <img alt={{@meta.alt}} class='card-content' src={{@url}}>
+
+{{else if @meta.isVideo }}
+
+  <video class='card-content' controls loop>
+    <source src={{@url}} type='video/mp4'>
+  </video>
+
+{{/if}}

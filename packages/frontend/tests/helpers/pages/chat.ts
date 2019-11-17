@@ -6,7 +6,6 @@ import {
   isVisible,
   text,
   fillable,
-  hasClass,
   clickable,
 } from 'ember-cli-page-object';
 
@@ -15,6 +14,7 @@ import { typeIn } from '@ember/test-helpers';
 import { definition as unreadMessagesFloater } from 'emberclear/pods/components/pod/chat/chat-history/unread-management/-page';
 import { definition as dropdownPage } from 'emberclear/pods/components/dropdown/-page';
 import { definition as embedModal } from 'emberclear/pods/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
+import { definition as newMessagesFloater } from 'emberclear/components/chat/chat-history/new-messages/-page';
 
 export const selectors = {
   form: '[data-test-chat-entry-form]',
@@ -64,10 +64,7 @@ export const page = create({
     scope: '[data-test-chat-submit]',
     isDisabled: attribute('disabled'),
   },
-  newMessagesFloater: {
-    scope: '[data-test-new-messages-available]',
-    isHidden: hasClass('hidden'),
-  },
+  newMessagesFloater,
   numberOfMessages: count('[data-test-chat-message]'),
   messages: collection('[data-test-chat-message]', {
     hasLoader: isVisible('.ellipsis-loader'),

@@ -1,13 +1,11 @@
 {{! template-lint-disable no-triple-curlies }}
 
 <div
+  ...attributes
   id={{@message.id}}
   data-id={{@message.id}}
   data-direction={{this.direction}}
   role='button'
-  {{!-- NOTE: maybe-nudge doesn't need an argument,
-        but vertical-collection recycling requires it --}}
-  {{maybe-nudge-to-bottom @message}}
   {{read-watcher @message}}
   {{format-code @message.body}}
 
@@ -52,13 +50,8 @@
   <p class='message-body'>
     {{{this.messageBody}}}
 
-    {{#if (is-present this.urls)}}
-      <div class='flex flex-wrap'>
-        {{#each this.urls as |url|}}
-          <Pod::Chat::ChatHistory::Message::EmbeddedResource class='flex' @url={{url}} />
-        {{/each}}
-      </div>
-    {{/if}}
+    <Pod::Chat::ChatHistory::Message::LinkedMedia @urls={{this.urls}} />
+
   </p>
 
   <Pod::Chat::ChatHistory::Message::DeliveryConfirmations @message={{@message}} />

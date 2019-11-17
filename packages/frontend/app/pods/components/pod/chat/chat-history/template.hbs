@@ -8,47 +8,14 @@
   <Pod::Chat::ChatHistory::ConnectionStatus />
   <Pod::Chat::ChatHistory::UnreadManagement @messages={{@messages}} @to={{@to}} />
 
-  {{#vertical-collection
-    @messages
-    tagName='div'
-    class='messages'
-    estimateHeight=100
-    staticHeight=false
-    shouldRecycle=true
-    key='id'
-    bufferSize=5
-    renderFromLast=true
-    as |message|
-  }}
-    <Pod::Chat::ChatHistory::Message @message={{message}} />
-  {{/vertical-collection}}
-
-
-  {{!--
   <div class='messages'>
     {{#each @messages as |message|}}
-      <Pod::Chat::ChatHistory::Message @message={{message}} />
+      <Pod::Chat::ChatHistory::Message
+        @message={{message}}
+        {{maybe-nudge-to-bottom @messages message}}
+      />
     {{/each}}
   </div>
-  --}}
 
-
-  <a
-    {{on 'click' this.scrollToBottom}}
-    data-test-new-messages-available
-    class='
-      alert pad-xs
-      new-messages transition-all
-      {{if this.chatScroller.isLastVisible 'hidden'}}
-    '
-  >
-
-    <span class='is-hidden-mobile m-r-sm'>
-      {{t 'ui.chat.newMessages'}}
-    </span>
-
-    <span class='underline'>
-      {{t 'ui.chat.viewRecent'}}
-    </span>
-  </a>
+  <Chat::ChatHistory::NewMessages />
 </div>

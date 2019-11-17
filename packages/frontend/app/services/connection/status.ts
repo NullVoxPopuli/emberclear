@@ -26,6 +26,16 @@ export default class ConnectionStatusService extends Service {
   @tracked text = '';
   @tracked level = '';
 
+  get isConnected() {
+    switch (this.text) {
+      case STATUS_CONNECTED:
+      case STATUS_DEGRADED:
+        return true;
+      default:
+        return false;
+    }
+  }
+
   updateStatus(text: STATUS) {
     this.text = text;
     this.level = STATUS_LEVEL_MAP[text];
@@ -43,7 +53,9 @@ export default class ConnectionStatusService extends Service {
     yield timeout(1000);
 
     this.hasUpdate = false;
-  }).restartable())
+  })
+    .restartable()
+    .withTestWaiter())
   showStatusChange!: Task;
 }
 

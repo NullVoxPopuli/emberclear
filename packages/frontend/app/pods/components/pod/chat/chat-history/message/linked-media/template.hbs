@@ -1,0 +1,21 @@
+{{#if (is-present @urls)}}
+  <div class='flex flex-wrap'>
+    {{#each @urls as |url|}}
+      <FetchOpenGraph @url={{url}} as |isLoading data|>
+
+        {{#if (not isLoading)}}
+          {{#if (or data.meta.hasInfo data.meta.hasMedia)}}
+
+            <Pod::Chat::ChatHistory::Message::EmbeddedResource
+              class='flex'
+              @url={{url}}
+              @meta={{data.meta}}
+            />
+
+          {{/if}}
+        {{/if}}
+
+      </FetchOpenGraph>
+    {{/each}}
+  </div>
+{{/if}}

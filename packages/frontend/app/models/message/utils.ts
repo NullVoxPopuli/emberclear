@@ -1,6 +1,10 @@
 import Message, { TARGET, TYPE } from '../message';
+import DS from 'ember-data';
 
-export function selectUnreadDirectMessages(messages: Message[], fromId: string) {
+export function selectUnreadDirectMessages(
+  messages: Message[] | DS.RecordArray<Message>,
+  fromId: string
+) {
   const filtered = selectUnreadMessages(messages).filter(m => {
     return m.from === fromId;
   });
@@ -8,7 +12,7 @@ export function selectUnreadDirectMessages(messages: Message[], fromId: string) 
   return filtered;
 }
 
-export function selectUnreadMessages(messages: Message[]) {
+export function selectUnreadMessages(messages: Message[] | DS.RecordArray<Message>) {
   const filtered = messages.filter(m => {
     return (
       // ember-data in-flight messages
@@ -29,4 +33,28 @@ export async function markAsRead(message: Message) {
   message.set('readAt', new Date());
 
   await message.save();
+}
+
+export function messagesForDM(
+  messages: DS.RecordArray<Message>,
+  me: string,
+  chattingWithId: string
+): Message[] {
+  let result = messages.filter(message => {
+    return isMessageDMBetween(message, me, chattingWithId);
+  });
+
+  return result;
+}
+
+export function isMessageDMBetween(message: Message, me: string, chattingWithId: string) {
+  const isRelevant =
+    message.target === TARGET.WHISPER &&
+    message.type === TYPE.CHAT &&
+    // we sent this message to someone else (this could incude ourselves)
+    ((message.to === chattingWithId && message.from === me) ||
+      // we received a message from someone else to us (including from ourselves)
+      (message.from === chattingWithId && message.to === me));
+
+  return isRelevant;
 }

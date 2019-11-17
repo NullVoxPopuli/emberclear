@@ -84,6 +84,9 @@ module.exports = function(defaults) {
       version,
       excludeScope: [/\.well-known/, /bundle.html/, /favicon.ico/, /robots.txt/],
     },
+    'esw-cache-fallback': {
+      patterns: ['https://(.+)/open_graph?(.+)'],
+    },
 
     postcssOptions: {
       compile: {

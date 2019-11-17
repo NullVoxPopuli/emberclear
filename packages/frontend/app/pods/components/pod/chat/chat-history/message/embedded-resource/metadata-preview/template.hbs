@@ -1,14 +1,14 @@
 {{! template-lint-disable no-triple-curlies }}
 
 {{#if this.hasOgData}}
-  <div {{maybe-nudge-to-bottom this.hasImage}}>
+  <div class='metadata-preview'>
     {{#if this.hasImage}}
       <span class='thumbnail-container'>
-        <img alt={{t 'images.alt.thumbnail'}} src={{this.ogData.image}}>
+        <img alt={{t 'images.alt.thumbnail'}} src={{@ogData.image}}>
       </span>
     {{/if}}
 
-    <div>
+    <div class='metadata-preview__text'>
       {{#if this.title}}
         <ExternalLink href={{@url}}>
           {{{this.title}}}

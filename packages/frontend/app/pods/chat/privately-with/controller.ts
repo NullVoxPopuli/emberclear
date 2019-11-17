@@ -1,9 +1,9 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
-import Message, { TARGET, TYPE } from 'emberclear/models/message';
 import CurrentUserService from 'emberclear/services/current-user';
-import DS from 'ember-data';
+import { messagesForDM } from 'emberclear/models/message/utils';
+import { MESSAGE_LIMIT } from 'emberclear/models/message';
 
 export default class extends Controller {
   @service currentUser!: CurrentUserService;
@@ -17,27 +17,8 @@ export default class extends Controller {
     let me = this.currentUser.uid;
     let chattingWithId = this.uid;
     let filteredMessages = messagesForDM(allMessages, me, chattingWithId);
+    let mostRecent = filteredMessages.slice(0 - MESSAGE_LIMIT);
 
-    return filteredMessages;
+    return mostRecent;
   }
-}
-
-function messagesForDM(
-  messages: DS.RecordArray<Message>,
-  me: string,
-  chattingWithId: string
-): Message[] {
-  let result = messages.filter(message => {
-    const isRelevant =
-      message.target === TARGET.WHISPER &&
-      message.type === TYPE.CHAT &&
-      // we sent this message to someone else (this could incude ourselves)
-      ((message.to === chattingWithId && message.from === me) ||
-        // we received a message from someone else to us (including from ourselves)
-        (message.from === chattingWithId && message.to === me));
-
-    return isRelevant;
-  });
-
-  return result;
 }

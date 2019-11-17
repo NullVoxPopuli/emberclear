@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 import CurrentUserService, { currentUserId } from 'emberclear/services/current-user';
+import ChatScroller from 'emberclear/services/chat-scroller';
 
 interface IModelParams {
   u_id: string;
@@ -9,6 +10,7 @@ interface IModelParams {
 
 export default class ChatPrivatelyRoute extends Route {
   @service currentUser!: CurrentUserService;
+  @service chatScroller!: ChatScroller;
   @service toast!: Toast;
   @service intl!: Intl;
 
@@ -19,6 +21,10 @@ export default class ChatPrivatelyRoute extends Route {
     if (u_id === this.currentUser.uid) {
       this.transitionTo('chat.privately-with', currentUserId);
     }
+
+    // Tells the view to scroll to the bottom.
+    // TODO: is there a way to do this with just CSS?
+    this.chatScroller.isLastVisible = true;
   }
 
   async model(params: IModelParams) {

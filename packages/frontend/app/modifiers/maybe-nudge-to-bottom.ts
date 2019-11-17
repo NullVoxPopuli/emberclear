@@ -3,23 +3,35 @@ import { inject as service } from '@ember/service';
 import { once } from '@ember/runloop';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
+import Message from 'emberclear/models/message';
 
-export default class MaybeNudgeToBottom extends Modifier {
+type Args = {
+  positional: [Message[], Message];
+  named: {};
+};
+
+export default class MaybeNudgeToBottom extends Modifier<Args> {
   @service chatScroller!: ChatScroller;
 
-  didInstall() {
-    if (this.element) {
-      once(
-        this.chatScroller,
-        this.chatScroller.maybeNudgeToBottom.bind(this.chatScroller, this.element as HTMLElement)
-      );
-    }
+  get messages() {
+    return this.args.positional[0];
   }
 
-  // NOTE: this method should not exist, but does
-  //       because vertical-collection recycles
-  //       nodes
-  didUpdateArguments() {
-    this.didInstall();
+  get appendedMessage() {
+    return this.args.positional[1];
+  }
+
+  get lastMessage() {
+    let messages = this.messages;
+
+    return messages[messages.length - 1];
+  }
+
+  didInstall() {
+    if (this.appendedMessage.id !== this.lastMessage.id) return;
+
+    if (this.element) {
+      once(null, () => this.chatScroller.maybeNudge.perform(this.element as HTMLElement));
+    }
   }
 }

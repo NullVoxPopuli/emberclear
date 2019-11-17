@@ -6626,6 +6626,14 @@ ember-service-worker-asset-cache@^0.6.4:
     broccoli-plugin "^1.3.1"
     glob "^7.1.3"
 
+ember-service-worker-cache-fallback@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.npmjs.org/ember-service-worker-cache-fallback/-/ember-service-worker-cache-fallback-0.6.2.tgz#3d497487ccc4b46081e7c52b9b06f9920b2da815"
+  integrity sha512-fiK/euoGVL7JhPHBV0x6fU23ic0FpHhRX0TP4G8OkkRzIRA7VlKA+F7lB7lON1MrvysztBEP6ytUZdNM6MBHnw==
+  dependencies:
+    broccoli-merge-trees "^3.0.2"
+    broccoli-plugin "^1.3.1"
+
 ember-service-worker-index@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/ember-service-worker-index/-/ember-service-worker-index-0.7.0.tgz#2ac9d2f8ebe39d59380bfd26ecc86f817761e958"
