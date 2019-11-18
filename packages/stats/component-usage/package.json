@@ -4,10 +4,25 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node index.ts"
+    "build:js-for-tests": "babel lib --out-dir tmp/tests/lib --extensions '.ts,.js' --plugins @babel/plugin-transform-modules-commonjs",
+    "build:tests": "babel tests --out-dir tmp/tests/tests --extensions '.ts,.js' --plugins @babel/plugin-transform-modules-commonjs",
+    "test": "yarn test:unit",
+    "test:unit": "rm -rf tmp; yarn build:js-for-tests && yarn build:tests && qunit tmp/tests/**/*-test.js"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.7.0",
+    "@babel/plugin-transform-typescript": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
     "@types/node": "^12.12.8",
+    "babel-preset-latest-node": "^3.2.1",
+    "qunit": "^2.9.3",
+    "string.prototype.matchall": "^4.0.0",
     "ts-node": "^8.5.2",
     "typescript": "^3.7.2",
     "walk": "^2.3.14"

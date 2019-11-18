@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+    "lib": ["esnext", "es2020.string"],
+    "target": "es2019",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmitOnError": false
+  },
+  "include": ["lib/*", "lib/**/*"],
+  "exclude": ["__tests__"],
+  "types": ["qunit"]
+}

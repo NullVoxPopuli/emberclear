@@ -6,6 +6,8 @@ const fs = require('fs');
 const path = require('path');
 const cla = require('command-line-args');
 
+const { componentsInContent } = require('./utils');
+
 const { searchAndExtract } = require('extract-tagged-template-literals');
 
 // const { searchAndExtractHbs } = require('ember-extract-inline-templates');
@@ -24,10 +26,6 @@ let searchPath = path.join(process.cwd(), _searchPath);
 
 const PERCENT = 100;
 const DECIMAL = 1000;
-
-console.log('searchPath:', searchPath);
-
-const COMPONENT_REGEX = /<([A-Z][\w:]+)([.]+)?(>|(\/>)?)[^\(]?/g;
 
 function printStats() {
   console.table(COMPONENT_INVOCATIONS);
@@ -78,10 +76,9 @@ walk.walkSync(searchPath, {
         contents = hbs;
       }
 
-      let matches = contents.matchAll(COMPONENT_REGEX);
+      let components = componentsInContent(contents);
 
-      for (let match of matches) {
-        let componentName = match[1];
+      for (let componentName of components) {
         let existing = COMPONENT_INVOCATIONS[componentName] || 0;
         COMPONENT_INVOCATIONS[componentName] = existing + 1;
       }
