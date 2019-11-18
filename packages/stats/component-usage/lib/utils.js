@@ -1,16 +1,18 @@
+const COMPONENT_REGEX = /<([A-Z][\w:]+)([.]+)?(>|(\/>)?)[^\(]?/g;
 
-export const COMPONENT_REGEX = /<([A-Z][\w:]+)([.]+)?(>|(\/>)?)[^\(]?/g;
+module.exports = {
 
-export function componentsInContent(contents) {
-  let result = [];
-  let matches = contents.matchAll(COMPONENT_REGEX);
+  componentsInContent(contents) {
+    let result = [];
+    let matches = contents.matchAll(COMPONENT_REGEX);
 
-  for (let match of matches) {
-    let componentName = match[1];
+    for (let match of matches) {
+      let componentName = match[1];
 
-    result.push(componentName);
+      result.push(componentName);
+    }
+
+    return result;
   }
 
-  return result;
-}
-
+};

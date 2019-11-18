@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const cla = require('command-line-args');
 
-const { componentsInContent } = require('./utils');
+const { componentsInContent } = require('./lib/utils');
 
 const { searchAndExtract } = require('extract-tagged-template-literals');
 
