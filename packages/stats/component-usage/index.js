@@ -27,7 +27,7 @@ const DECIMAL = 1000;
 
 console.log('searchPath:', searchPath);
 
-const COMPONENT_REGEX = /<([A-Z][\w:]+)(.+)?>[^\(]?/g;
+const COMPONENT_REGEX = /<([A-Z][\w:]+)([.]+)?(>|(\/>)?)[^\(]?/g;
 
 function printStats() {
   console.table(COMPONENT_INVOCATIONS);
