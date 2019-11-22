@@ -19,7 +19,7 @@ export default class MessageAutoResponder extends Service {
   @service store!: StoreService;
 
   async messageReceived(respondToMessage: Message) {
-    const sender = await respondToMessage.sender;
+    const sender = respondToMessage.sender;
     const response = this.factory.buildDeliveryConfirmation(respondToMessage);
 
     this.dispatcher.sendToUser.perform(response, sender);
@@ -32,7 +32,7 @@ export default class MessageAutoResponder extends Service {
     });
 
     pendingMessages.forEach(async (message: Message) => {
-      message.set('queueForResend', false);
+      message.queueForResend = false;
       await message.save();
 
       this.dispatcher.sendToUser.perform(message, contact);

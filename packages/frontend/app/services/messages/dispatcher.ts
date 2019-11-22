@@ -42,7 +42,7 @@ export default class MessageDispatcher extends Service {
   // }
 
   async sendTo(message: Message, to: Contact | Channel) {
-    message.set('queueForResend', false);
+    message.queueForResend = false;
 
     if (to instanceof User) {
       return;
@@ -96,14 +96,14 @@ export default class MessageDispatcher extends Service {
     try {
       yield this.connection.send({ to: uid, message: encryptedMessage });
 
-      msg.set('receivedAt', new Date());
+      msg.receivedAt = new Date();
     } catch (e) {
       const { reason, to_uid: toUid } = e;
 
       if (reason) {
         const error: string = reason;
 
-        msg.set('sendError', error);
+        msg.sendError = error;
 
         if (error.match(/not found/)) {
           this.statusManager.markOffline(toUid);

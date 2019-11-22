@@ -14,7 +14,7 @@ export default class StatusManager extends Service {
   async markOffline(uid: string) {
     const contact = await this.contactManager.find(uid);
 
-    contact.set('onlineStatus', Status.OFFLINE);
+    contact.onlineStatus = Status.OFFLINE;
 
     return contact.save();
   }
@@ -28,6 +28,6 @@ export default class StatusManager extends Service {
       contact = uid;
     }
 
-    contact.set('onlineStatus', Status.ONLINE);
+    contact.onlineStatus = Status.ONLINE;
   }
 }
