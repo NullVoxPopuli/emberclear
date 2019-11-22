@@ -68,9 +68,9 @@ module('Integration | Component | metadata-preview', function(hooks) {
 
     module('there is an image in the og data', function(hooks) {
       hooks.beforeEach(async function(this: TestContext) {
-        this.set('data', {
+        this.data = {
           image: 'https://something',
-        });
+        };
 
         await render(hbs`
           <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
