@@ -2,11 +2,8 @@ name: Frontend Quality
 on:
   pull_request:
     # branches: [master]
-    paths-ignore:
-      - 'packages/android-wrapper/**'
-      - 'packages/benchmarks/**'
-      - 'packages/relays/**'
-      - 'packages/relays/**'
+    paths:
+      - 'packages/frontend/**'
 
 jobs:
   security:

@@ -7,6 +7,7 @@ const path = require('path');
 const cla = require('command-line-args');
 
 const { componentsInContent } = require('./lib/utils');
+const { printComponentInvocationStats } = require('./lib/printing');
 
 const { searchAndExtract } = require('extract-tagged-template-literals');
 
@@ -24,38 +25,8 @@ let { path: _searchPath, ignore } = options;
 
 let searchPath = path.join(process.cwd(), _searchPath);
 
-const PERCENT = 100;
-const DECIMAL = 1000;
-
 function printStats() {
-  console.table(COMPONENT_INVOCATIONS);
-  let totalInvocations = 0;
-  let totalComponents = Object.keys(COMPONENT_INVOCATIONS).length;
-
-  let groupByCount = {};
-
-  Object.entries(COMPONENT_INVOCATIONS).forEach(([componentName, count]) => {
-    totalInvocations += count;
-    groupByCount[count] = groupByCount[count] || [];
-    groupByCount[count].push(componentName);
-  });
-
-  console.log(groupByCount);
-
-  let numComponentsByInvocation = {};
-
-  Object.entries(groupByCount).forEach(([count, components]) => {
-    numComponentsByInvocation[count] = numComponentsByInvocation[count] || { numberOfComponents: 0, percentOfTotal: -1 };
-    numComponentsByInvocation[count].numberOfComponents += components.length;
-  });
-
-  Object.entries(numComponentsByInvocation).forEach(([count, data]) => {
-    numComponentsByInvocation[count].percentOfTotal = Math.round((data.numberOfComponents / totalComponents) * PERCENT * DECIMAL) / DECIMAL;
-  });
-
-
-  console.table(numComponentsByInvocation);
-
+  printComponentInvocationStats(COMPONENT_INVOCATIONS);
 }
 
 walk.walkSync(searchPath, {
