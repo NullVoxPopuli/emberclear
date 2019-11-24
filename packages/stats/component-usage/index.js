@@ -17,7 +17,7 @@ const COMPONENT_INVOCATIONS = {};
 
 const optionDefinitions = [
   { name: 'ignore', alias: 'i', type: String, multiple: true },
-  { name: 'path', alias: 'p', type: String, multiple: false },
+  { name: 'path', alias: 'p', type: String, multiple: false, default: 'app/' },
 ];
 
 let options = cla(optionDefinitions);
@@ -27,6 +27,22 @@ let searchPath = path.join(process.cwd(), _searchPath);
 
 function printStats() {
   printComponentInvocationStats(COMPONENT_INVOCATIONS);
+}
+
+function gatherComponentInvocations({ ext, contents }) {
+  if (ext !== 'hbs') {
+    // let hbs = searchAndExtractHbs(contents);
+    let hbs = searchAndExtract(contents, 'hbs');
+
+    contents = hbs;
+  }
+
+  let components = componentsInContent(contents);
+
+  for (let componentName of components) {
+    let existing = COMPONENT_INVOCATIONS[componentName] || 0;
+    COMPONENT_INVOCATIONS[componentName] = existing + 1;
+  }
 }
 
 walk.walkSync(searchPath, {
@@ -40,19 +56,9 @@ walk.walkSync(searchPath, {
       let pathParts = filePath.split('.');
       let ext = pathParts[pathParts.length - 1];
 
-      if (ext !== 'hbs') {
-        // let hbs = searchAndExtractHbs(contents);
-        let hbs = searchAndExtract(contents, 'hbs');
+      let fileInfo = { ext, contents };
 
-        contents = hbs;
-      }
-
-      let components = componentsInContent(contents);
-
-      for (let componentName of components) {
-        let existing = COMPONENT_INVOCATIONS[componentName] || 0;
-        COMPONENT_INVOCATIONS[componentName] = existing + 1;
-      }
+      gatherComponentInvocations(fileInfo);
 
       next();
     },

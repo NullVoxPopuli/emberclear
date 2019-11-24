@@ -3,7 +3,7 @@ on:
   pull_request:
     # branches: [master]
     paths:
-      - 'packages/frontend/**'
+    - 'packages/frontend/**'
 
 jobs:
   security:
