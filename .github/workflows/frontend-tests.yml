@@ -1,7 +1,7 @@
 name: Frontend Tests
 on:
-  pull_request:
-    branches: [master]
+  # pull_request:
+  #   branches: [master]
   paths-ignore:
     - 'packages/android-wrapper/**'
     - 'packages/benchmarks/**'
