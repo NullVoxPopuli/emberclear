@@ -42,7 +42,7 @@ export class Connection {
     if (this.isConnected || this.isConnecting) return;
 
     await this.setupSocket();
-    await this.setupChannel();
+    await this.setupChannels();
   }
 
   private async setupSocket() {
@@ -64,18 +64,30 @@ export class Connection {
     });
   }
 
-  private async setupChannel() {
-    return new Promise((resolve, reject) => {
-      if (!this.socket) {
-        return reject();
-      }
+  private async setupChannels() {
+    await this.setupChatChannel();
+    await this.setupStatsChannel();
+  }
 
-      this.channel = this.socket.channel(this.channelName!, {});
+  private async setupStatsChannel() {
+    return new Promise((resolve, reject) => {
+      if (!this.socket) return reject();
+
       this.socket
         .channel(`stats`, {})
         .join()
-        .receive('ok', console.info)
-        .receive('error', console.error);
+        .receive('ok', () => {
+          resolve();
+        })
+        .receive('error', reject);
+    });
+  }
+
+  private async setupChatChannel() {
+    return new Promise((resolve, reject) => {
+      if (!this.socket) return reject();
+
+      this.channel = this.socket.channel(this.channelName!, {});
 
       this.channel.on('chat', this.onData);
 
