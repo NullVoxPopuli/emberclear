@@ -198,7 +198,7 @@ ui:
     notOnlineA: >
       The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
     serverStorageQ: Сервер хранит мои сообщения?
-    serverStorageA: false
+    serverStorageA: "No."
   footer:
     navigation: Навигация
     wantToSupport: Хотите поддержать проект?
