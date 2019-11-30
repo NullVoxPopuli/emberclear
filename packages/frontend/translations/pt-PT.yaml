@@ -3,7 +3,9 @@ appname: emberclear
 subheader: Conversação encriptada. Sem histórico. Sem logs.
 authoredBy: por Preston Sego
 redditCommunity: Reddit Community
+twitter: Twitter
 todo: 'A fazer: preencher isto corretamente'
+install: Install
 qrCode:
   error: Código QR não pôde ser gerado
 connection:
@@ -19,6 +21,13 @@ connection:
       notConnected: Não pode enviar mensagens sem uma conexão!
     subscribe:
       notConnected: Não pode subscrever um canal sem uma conexão de socket!
+errors:
+  notFound:
+    title: Not Found
+    help: The URL could not be navigated to. If the problem persists,
+    link: please file an issue.
+  permissions:
+    enableCamera: You may need to allow this site access to your camera.
 buttons:
   delete: apagar
   resend: reenviar
@@ -55,6 +64,7 @@ compatibility:
   title: Algo está errado!
   description: Para usar o emberclear, o seu browser deve suportar as seguintes tecnologias e funcionalidades
   score: Pontuação
+  required: Required
   compatibility: Compatibilidade
   camera: Câmera
   notifications: Notificações
@@ -67,9 +77,9 @@ images:
     thumbnail: Miniatura
     ownIdentityQR: Esta é a tua informação de identidade representada como um código QR
 input:
-  placeholder:
-    mnemonic: Insere a tua mnemónica
-    name: Nome
+  label:
+    mnemonic: Mnemonic
+    name: Name
 status:
   connected: Connected
   enabled: Enabled
@@ -121,15 +131,23 @@ ui:
     title: Atalhos de teclado
     key:
       ctrl: ctrl
+      esc: esc
+      enter: enter
       i: i
       slash: /
       space: espaço
+      tab: tab
       h: h
       k: k
     actions:
       search: Pesquisar tudo
       toggleSidebar: Ativar/desativar barra lateral
       toggleHelp: Ativar/desativar ajuda de teclado
+    label:
+      search:
+        tab: to navigate
+        enter: to select
+        esc: to dismiss
   sidebar:
     unread: Não lido
     channels:
@@ -145,14 +163,14 @@ ui:
   chat:
     welcome: Bem-vindo!
     message: >
-      Para começar, precisas de pelo menos um amigo.<br /><br />
-      Depois poderás conversar com ele e criar canais para comunicar com grupos de amigos.
+      Para começar, precisas de pelo menos um amigo.<br /><br /> Depois poderás conversar com ele e criar canais para comunicar com grupos de amigos.
     newMessages: Existem novas mensagens
     viewRecent: ver mensagens recentes
     unreadMessages: '{number} novas mensagens desde {time}'
     markAllAsRead: Marcar todas como lidas
     errors:
       contactNotFound: O teu contacto não pôde ser localizado
+      channelNotFound: The channel could not be located.
     sender:
       removed: removido
     messages:
@@ -175,14 +193,12 @@ ui:
       Toda a encriptação é feita no browser -- em circunstância alguma as chaves privadas saem do computador. Emberclear usa a criptografia de chave pública libsodium para se certificar mensagens seguras e encriptadas na internet ou em qualquer rede -- mesmo que a rede esteja comprometida.
     whyQ: Porquê?
     whyA: >
-      Parcialmente por diversão e aprendizagem -- pretende-se fornecer uma estrutura para pessoas que desejam entrar em aplicativos web para que suas ferramentas pré-existentes possam interagir com suas criações.
-      Este projeto também é inspirado pela falta de confiança em aplicativos de conversação existentes e na sua infraestrutura.
-      Por fim, este projeto, no que toca à funcionalidade, será um clone do que for popular - com a única diferença fundamental de que nada é registado pelos nós de retransmissão / federados.
+      Parcialmente por diversão e aprendizagem -- pretende-se fornecer uma estrutura para pessoas que desejam entrar em aplicativos web para que suas ferramentas pré-existentes possam interagir com suas criações. Este projeto também é inspirado pela falta de confiança em aplicativos de conversação existentes e na sua infraestrutura. Por fim, este projeto, no que toca à funcionalidade, será um clone do que for popular - com a única diferença fundamental de que nada é registado pelos nós de retransmissão / federados.
     notOnlineQ: O que acontece quando envio uma mensagem e o destinatário já não está online?
     notOnlineA: >
       The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
     serverStorageQ: O servidor / retransmissor armazena alguma das minhas mensagens?
-    serverStorageA: "No"
+    serverStorageA: false
   footer:
     navigation: Navegação
     wantToSupport: Queres apoiar este projeto?
@@ -212,8 +228,7 @@ ui:
   logout:
     title: Terminar sessão é destrutivo
     warning: >
-      Terminar sessão excluirá todos os dados locais. Por favor, certifica-te que tens a tua mnemónica escrita ou memorizada.
-      Como alternativa, podes descarregar as tuas configurações em
+      Terminar sessão excluirá todos os dados locais. Por favor, certifica-te que tens a tua mnemónica escrita ou memorizada. Como alternativa, podes descarregar as tuas configurações em
     theSettingsPage: a página de Configurações.
     confirm: Confirmar terminar sessão
   settings:
@@ -229,6 +244,9 @@ ui:
       URLs: URLs
       socket: socket
       openGraph: open graph
+    themes:
+      title: Themes
+      midnight: Midnight
     copyProfileToDevice: Copiar perfil para dispositivo
     hideKey: Esconder chave privada
     showKey: Mostrar chave privada
