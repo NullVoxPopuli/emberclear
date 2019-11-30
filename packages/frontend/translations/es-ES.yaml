@@ -3,7 +3,9 @@ appname: emberclear
 subheader: Chat encriptado. Sin historia. Sin registros.
 authoredBy: por Preston Sego
 redditCommunity: Comunidad de Reddit
+twitter: Twitter
 todo: 'Por hacer: llenar esto correctamente'
+install: Instalar
 qrCode:
   error: No se pudo generar el código QR
 connection:
@@ -19,6 +21,13 @@ connection:
       notConnected: '¡No se puede enviar mensajes sin conexión!'
     subscribe:
       notConnected: '¡No puede suscribirse a un canal sin una conexión de socket!'
+errors:
+  notFound:
+    title: Not Found
+    help: The URL could not be navigated to. If the problem persists,
+    link: please file an issue.
+  permissions:
+    enableCamera: You may need to allow this site access to your camera.
 buttons:
   delete: eliminar
   resend: volver a enviar
@@ -55,6 +64,7 @@ compatibility:
   title: '¡Algo salió mal!'
   description: Para poder utilizar el emberclear, su navegador debe soportar las siguientes tecnologías y características
   score: Calificación
+  required: Required
   compatibility: Compatibilidad
   camera: Cámara
   notifications: Notificaciones
@@ -67,9 +77,9 @@ images:
     thumbnail: Vista previa
     ownIdentityQR: Esta es tu información de identidad representada como un código QR
 input:
-  placeholder:
-    mnemonic: Ingresa tu mnemonic
-    name: Nombre
+  label:
+    mnemonic: Mnemonic
+    name: Name
 status:
   connected: Conectado
   enabled: Habilitado
@@ -121,15 +131,23 @@ ui:
     title: Atajos de teclado
     key:
       ctrl: ctrl
+      esc: esc
+      enter: enter
       i: i
       slash: /
       space: space
+      tab: tab
       h: h
       k: k
     actions:
       search: Buscar en todo
       toggleSidebar: Ocultar/mostrar barra lateral
       toggleHelp: Ocultar/Mostar ayuda de teclado
+    label:
+      search:
+        tab: to navigate
+        enter: to select
+        esc: to dismiss
   sidebar:
     unread: Sin leer
     channels:
@@ -145,14 +163,14 @@ ui:
   chat:
     welcome: '¡Bienvenido!'
     message: >
-      Para comenzar, vas a necesitar al menos un amigo.<br /><br />
-      Después vas a poder conversar con ellos y crear canales para comunicarte con grupos de amigos.
+      Para comenzar, vas a necesitar al menos un amigo.<br /><br /> Después vas a poder conversar con ellos y crear canales para comunicarte con grupos de amigos.
     newMessages: Hay nuevos mensajes
     viewRecent: ver mensajes recientes
     unreadMessages: '{number} mensajes nuevos desde {time}'
     markAllAsRead: Marcar todo como leído
     errors:
       contactNotFound: Tu contacto no pudo ser ubicado
+      channelNotFound: The channel could not be located.
     sender:
       removed: eliminado
     messages:
@@ -175,14 +193,12 @@ ui:
       Toda la encriptación es hecha en el navegador, -- las llaves privadas nunca salen de tu computadora. Emberclear utiliza la llave criptográfica pública de libsodium para asegurar el intercambio de mensajes encriptados a través del internet y en cualquier red -- inclusive si la red está comprometida.
     whyQ: '¿Por què?'
     whyA: >
-      Por diversión y aprendizaje más que nada -- con el deseo de proveer un framework para la gente que quiere meterse en aplicaciónes web para que sus herramientas actuales puedan interactuar con sus creaciones.
-      Este proyecto está inspirado también en la falta de confianza en las aplicaciones de chat existentes y de su infraestructura.
-      Por último, la funcionalidad de este proyecto será siempre un clon de lo que sea popular - con la única diferencia de que nunca nada es comprometido por los nodos relays / federated.
+      Por diversión y aprendizaje más que nada -- con el deseo de proveer un framework para la gente que quiere meterse en aplicaciónes web para que sus herramientas actuales puedan interactuar con sus creaciones. Este proyecto está inspirado también en la falta de confianza en las aplicaciones de chat existentes y de su infraestructura. Por último, la funcionalidad de este proyecto será siempre un clon de lo que sea popular - con la única diferencia de que nunca nada es comprometido por los nodos relays / federated.
     notOnlineQ: Qué pasa cuando mando un mensaje y la persona ya no está conectada.
     notOnlineA: >
       El servidor no guarda ningún mensaje y tampoco mantiene una lista de mensajes por enviar. Si una persona no está en línea, el mensaje tiene que ser reenviado manualmente.
     serverStorageQ: '¿El servidor / relay almacena alguno de mis mensajes alguna vez?'
-    serverStorageA: "No"
+    serverStorageA: "No."
   footer:
     navigation: Navegación
     wantToSupport: '¿Quieres soportar este proyecto?'
@@ -212,8 +228,7 @@ ui:
   logout:
     title: Cerrar sesión es destructivo
     warning: >
-      Cerrar la sesión va a borrar todos los datos locales. Por favor asegúrate de tener tu mnemonic apuntada o memorizada.
-      O bien, puedes descargar la configuración en
+      Cerrar la sesión va a borrar todos los datos locales. Por favor asegúrate de tener tu mnemonic apuntada o memorizada. O bien, puedes descargar la configuración en
     theSettingsPage: la página de Configuración.
     confirm: Confirmar el cierre de sesión
   settings:
@@ -229,6 +244,9 @@ ui:
       URLs: URLs
       socket: socket
       openGraph: open graph
+    themes:
+      title: Themes
+      midnight: Midnight
     copyProfileToDevice: Copiar perfil a dispositivo
     hideKey: Ocultar clave privada
     showKey: Mostrar clave privada
