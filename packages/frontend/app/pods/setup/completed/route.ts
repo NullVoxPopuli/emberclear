@@ -1,7 +1,9 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { getOwner } from '@ember/application';
 
 import CurrentUserService from 'emberclear/services/current-user';
+import { ensureAtLeastOneContact } from 'emberclear/utils/data/required-data';
 
 export default class SetupCompletedRoute extends Route {
   @service currentUser!: CurrentUserService;
@@ -17,5 +19,7 @@ export default class SetupCompletedRoute extends Route {
     if (!exists) {
       this.transitionTo('setup.new');
     }
+
+    await ensureAtLeastOneContact(getOwner(this));
   }
 }
