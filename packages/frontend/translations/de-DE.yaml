@@ -198,7 +198,7 @@ ui:
     notOnlineA: >
       Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
     serverStorageQ: Speichert der Server / das Relay meine Nachrichten?
-    serverStorageA: false
+    serverStorageA: "No."
   footer:
     navigation: Navigation
     wantToSupport: Möchtest du das Projekt unterstützen?
