@@ -176,13 +176,13 @@ ui:
     whyQ: Warum?
     whyA: >
       Zum Einen aus Spaß, zum Anderen aus der Freude am Lernen -- Ich wollte schon immer ein Framework für Entwickler erstellen, welches diese dann in bestehende Web Anwendungen integrieren können.
-      Dieses Projekt wurde außerdem von meinem Misstrauen gegenüber bestehender Chat Apps und deren Infrastruktur inspiriert. 
+      Dieses Projekt wurde außerdem von meinem Misstrauen gegenüber bestehender Chat Apps und deren Infrastruktur inspiriert.
       Am Ende soll das Projekt über alle Funktion der populären Messenger verfügen -- mit einem Unterschied: Weder Server, Relays noch die förderierten Knoten tracken deine Inhalte.
     notOnlineQ: Was passiert wenn ich eine Nachricht sende und der Empfänger nich mehr online ist.
     notOnlineA: >
       Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
     serverStorageQ: "Speichert der Server / das Relay meine Nachrichten?"
-    serverStorageA: "false"
+    serverStorageA: "Nein"
   footer:
     navigation: Navigation
     wantToSupport: Möchtest du das Projekt unterstützen?

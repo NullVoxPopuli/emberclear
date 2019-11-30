@@ -182,7 +182,7 @@ ui:
     notOnlineA: >
       El servidor no guarda ningún mensaje y tampoco mantiene una lista de mensajes por enviar. Si una persona no está en línea, el mensaje tiene que ser reenviado manualmente.
     serverStorageQ: '¿El servidor / relay almacena alguno de mis mensajes alguna vez?'
-    serverStorageA: "false"
+    serverStorageA: "No"
   footer:
     navigation: Navegación
     wantToSupport: '¿Quieres soportar este proyecto?'
