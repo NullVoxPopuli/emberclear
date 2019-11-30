@@ -85,7 +85,7 @@ export default class SidebarContact extends Component<IArgs> {
   @action onPin() {
     const { contact } = this.args;
 
-    contact.set('isPinned', !contact.isPinned);
+    contact.isPinned = !contact.isPinned;
 
     return contact.save();
   }

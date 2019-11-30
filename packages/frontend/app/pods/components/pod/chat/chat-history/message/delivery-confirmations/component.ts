@@ -97,7 +97,8 @@ export default class DeliveryConfirmation extends Component<IArgs> {
   @(task(function*(this: DeliveryConfirmation) {
     const { message } = this.args;
 
-    message.set('queueForResend', true);
+    message.queueForResend = true;
+
     yield message.save();
   })
     .drop()

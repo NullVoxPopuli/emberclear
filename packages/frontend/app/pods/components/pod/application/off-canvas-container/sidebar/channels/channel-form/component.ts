@@ -1,17 +1,20 @@
 import StoreService from 'ember-data/store';
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 import ChannelManager from 'emberclear/services/channel-manager';
 
-export default class ChannelForm extends Component {
-  onSubmit!: () => void;
+type Args = {
+  onSubmit: () => void;
+};
 
+export default class ChannelForm extends Component<Args> {
   @service store!: StoreService;
   @service channelManager!: ChannelManager;
 
-  newChannelName = '';
+  @tracked newChannelName = '';
 
   @action
   onFormSubmit(this: ChannelForm) {
@@ -34,9 +37,9 @@ export default class ChannelForm extends Component {
   private async didSubmitChannelName() {
     await this.createChannel();
 
-    this.set('newChannelName', '');
+    this.newChannelName = '';
 
-    return this.onSubmit();
+    return this.args.onSubmit();
   }
 
   private async createChannel() {

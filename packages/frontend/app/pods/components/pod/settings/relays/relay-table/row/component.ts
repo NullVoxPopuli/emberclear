@@ -40,7 +40,8 @@ export default class RelayTableRow extends Component<Args> {
   async makeDefault() {
     let { relay } = this.args;
 
-    relay.set('priority', 1);
+    relay.priority = 1;
+
     await relay.save();
 
     const relays: ArrayProxy<Relay> = await this.store.findAll('relay');
@@ -52,7 +53,7 @@ export default class RelayTableRow extends Component<Args> {
     for (let nonDefaultRelay of sortedRelays) {
       if (nonDefaultRelay.id === relay.id) return;
 
-      nonDefaultRelay.set('priority', nextHighestPriority);
+      nonDefaultRelay.priority = nextHighestPriority;
       await nonDefaultRelay.save();
       nextHighestPriority++;
     }
