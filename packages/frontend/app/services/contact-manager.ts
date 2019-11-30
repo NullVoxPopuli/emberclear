@@ -56,7 +56,7 @@ export default class ContactManager extends Service {
     let record = await this.find(uid);
 
     // always update the name
-    record.set('name', name);
+    record.name = name;
 
     await record.save();
 

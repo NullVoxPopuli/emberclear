@@ -19,7 +19,7 @@ export default class ChannelManager extends Service {
   async findAndSetName(id: string, name: string): Promise<Channel> {
     let record = await this.find(id);
 
-    record.set('name', name);
+    record.name = name;
 
     await record.save();
 

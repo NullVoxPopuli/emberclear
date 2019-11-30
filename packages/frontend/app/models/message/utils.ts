@@ -30,7 +30,7 @@ export function selectUnreadMessages(messages: Message[] | DS.RecordArray<Messag
 }
 
 export async function markAsRead(message: Message) {
-  message.set('readAt', new Date());
+  message.readAt = new Date();
 
   await message.save();
 }
