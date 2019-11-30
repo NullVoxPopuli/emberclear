@@ -3,7 +3,9 @@ appname: emberclear
 subheader: Зашифрованный чат. Без истории. Без логов.
 authoredBy: от Sego Preston
 redditCommunity: Reddit Community
+twitter: Twitter
 todo: 'Позднее: заполнить правильно'
+install: Install
 qrCode:
   error: Ошибка генерации QR кода
 connection:
@@ -19,6 +21,13 @@ connection:
       notConnected: Не могу отправить сообщение без подключения к сети.
     subscribe:
       notConnected: Не могу подписаться на канал без подключения к сети.
+errors:
+  notFound:
+    title: Not Found
+    help: The URL could not be navigated to. If the problem persists,
+    link: please file an issue.
+  permissions:
+    enableCamera: You may need to allow this site access to your camera.
 buttons:
   delete: удалить
   resend: переотправить
@@ -55,6 +64,7 @@ compatibility:
   title: Что-то пошло не так!
   description: Для работы emberclear ваш браузер должен поддерживать следующие возможности
   score: Поддержка
+  required: Required
   compatibility: Совместимость
   camera: Камера
   notifications: Оповещения
@@ -67,9 +77,9 @@ images:
     thumbnail: Миниатюра
     ownIdentityQR: Это ваш профиль, представленный в виде QR кода
 input:
-  placeholder:
-    mnemonic: Введите ваш мнемонический ключ
-    name: Имя
+  label:
+    mnemonic: Mnemonic
+    name: Name
 status:
   connected: Connected
   enabled: Enabled
@@ -121,15 +131,23 @@ ui:
     title: Горячие клавиши
     key:
       ctrl: ctrl
+      esc: esc
+      enter: enter
       i: i
       slash: /
       space: пробел
+      tab: tab
       h: h
       k: k
     actions:
       search: Искать везде
       toggleSidebar: Переключить панель
       toggleHelp: Переключить подсказки клавиатуры
+    label:
+      search:
+        tab: to navigate
+        enter: to select
+        esc: to dismiss
   sidebar:
     unread: Новые
     channels:
@@ -145,14 +163,14 @@ ui:
   chat:
     welcome: Добро пожаловать!
     message: >
-      Для начала вам необходим хотя бы один контакт.<br /><br />
-      После чего вы сможете начать общение, создавать каналы и общаться с друзьями.
+      Для начала вам необходим хотя бы один контакт.<br /><br /> После чего вы сможете начать общение, создавать каналы и общаться с друзьями.
     newMessages: Новые сообщения
     viewRecent: посмотреть недавние сообщения
     unreadMessages: '{number} новых сообщений с {time}'
     markAllAsRead: Пометить все как прочитанные
     errors:
       contactNotFound: Не удаётся найти ваш контакт
+      channelNotFound: The channel could not be located.
     sender:
       removed: удалено
     messages:
@@ -175,20 +193,17 @@ ui:
       Всё шифрование происходит в браузере - на вашем компьютере ничего не сохраняется. Emberclear использует криптографию libsodium для обеспечения приватности ваших сообщений, даже в случае компроментации сетевого соединения.
     whyQ: Зачем?
     whyA: >
-      Частично для развлечения и обучения, как пример использования фреймворка, для людей, желающих создать своё собственное веб приложение.
-      Этот проект создан после утраты доверия к существующим мессенджерам и их инфраструктуре.
-      В конечном счете, этот проект по функциональности приблизится к существующим решениям, с одним ключевым отличием в том, что узлы, обслуживающие приложение ничего не отслеживают.
+      Частично для развлечения и обучения, как пример использования фреймворка, для людей, желающих создать своё собственное веб приложение. Этот проект создан после утраты доверия к существующим мессенджерам и их инфраструктуре. В конечном счете, этот проект по функциональности приблизится к существующим решениям, с одним ключевым отличием в том, что узлы, обслуживающие приложение ничего не отслеживают.
     notOnlineQ: Что произойдёт если я отправил сообщение, а получатель не в сети.
     notOnlineA: >
       The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
     serverStorageQ: Сервер хранит мои сообщения?
-    serverStorageA: "No"
+    serverStorageA: false
   footer:
     navigation: Навигация
     wantToSupport: Хотите поддержать проект?
     license: >
       <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>исходный код</a> использует <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> лицензию.
-
   login:
     title: Логин
     instructions: Вставьте или напишите ваш мнемонический ключ.
@@ -197,7 +212,7 @@ ui:
       Внимание: Вы хотите удалить существующий аккаунт. Пожалуйста, убедитесь что у вас имеются бекапы настроек и сохранённый мнемонический ключ.
     overwriteTitle: Вы уверены что хотите создать новый профиль?
     overwriteQuestion: >
-      Это действие необратимо и приведёт к тому что текущий профиль будет забыт и перезаписан без возможности восстановления. Без сохранённой мнемонической фразы вы не сможете присоединиться к предыдущим чатам и никто не сможет вас идентифицировать. <br> <br> Вы уверены что хотите продолжить?
+      Это действие необратимо и приведёт к тому что текущий профиль будет забыт и перезаписан без возможности восстановления. Без сохранённой мнемонической фразы вы не сможете присоединиться к предыдущим чатам и никто не сможет вас идентифицировать. <br> <br> Вы уверены что хотите продолжить? 
     overwriteAbort: Нет, вернуться назад
     overwriteConfirm: Да, я понимаю последствия
     introQuestion: Как вас называть?
@@ -213,8 +228,7 @@ ui:
   logout:
     title: Выход из системы необратим
     warning: >
-      Выход из профиля приведёт к удалению всех сохранённых локально данных. Пожалуйста, убедитесь что вы запомнили или записали мнемонический ключ.
-      Или, вы можете скачать ваши настройки
+      Выход из профиля приведёт к удалению всех сохранённых локально данных. Пожалуйста, убедитесь что вы запомнили или записали мнемонический ключ. Или, вы можете скачать ваши настройки
     theSettingsPage: на странице Настроек.
     confirm: Подтвердить выход
   settings:
@@ -230,6 +244,9 @@ ui:
       URLs: URLs
       socket: socket
       openGraph: open graph
+    themes:
+      title: Themes
+      midnight: Midnight
     copyProfileToDevice: Скопировать профиль на устройство
     hideKey: Скрыть приватный ключ
     showKey: Показать приватный ключ
