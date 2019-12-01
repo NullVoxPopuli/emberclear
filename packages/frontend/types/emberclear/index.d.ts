@@ -20,6 +20,20 @@ declare global {
     publicKey: string;
   }
 
+  interface RelayStateJson {
+    relay: { [key: string]: string };
+    ['connection_count']: number;
+    ['connected_relays']: number;
+    ['connected_to_relays']: object;
+  }
+
+  interface RelayState {
+    relay: { [key: string]: string };
+    connectionCount?: number;
+    connectedRelays?: number;
+    connectedToRelays?: object;
+  }
+
   interface OpenGraphData {
     audio?: string;
     ['audio:secure_url']?: string;

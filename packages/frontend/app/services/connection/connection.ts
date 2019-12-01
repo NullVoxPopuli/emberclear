@@ -6,6 +6,7 @@ interface Args {
   relay: Relay;
   publicKey: string;
   onData: (data: RelayMessage) => void;
+  onInfo: (data: RelayState) => void;
 }
 
 export interface OutgoingPayload {
@@ -19,6 +20,7 @@ export class Connection {
   publicKey: string;
   channelName: string;
   onData: (data: RelayMessage) => void;
+  onInfo: (data: RelayState) => void;
 
   isConnected = false;
   isConnecting = false;
@@ -30,19 +32,20 @@ export class Connection {
    * @param [Relay] relay
    * @param [string] publicKey: hex
    */
-  constructor({ relay, publicKey, onData }: Args) {
+  constructor({ relay, publicKey, onData, onInfo }: Args) {
     this.relay = relay;
     this.url = relay.socket;
     this.publicKey = publicKey;
     this.channelName = `user:${publicKey}`;
     this.onData = onData;
+    this.onInfo = onInfo;
   }
 
   async connect() {
     if (this.isConnected || this.isConnecting) return;
 
     await this.setupSocket();
-    await this.setupChannel();
+    await this.setupChannels();
   }
 
   private async setupSocket() {
@@ -64,11 +67,35 @@ export class Connection {
     });
   }
 
-  private async setupChannel() {
+  private async setupChannels() {
+    await this.setupChatChannel();
+    await this.setupStatsChannel();
+  }
+
+  private async setupStatsChannel() {
     return new Promise((resolve, reject) => {
-      if (!this.socket) {
-        return reject();
-      }
+      if (!this.socket) return reject();
+
+      let channel = this.socket.channel(`stats`, {});
+
+      channel.on('state', (data: RelayStateJson) => {
+        let connectionCount = data['connection_count'];
+
+        this.onInfo({ relay: data.relay, connectionCount });
+      });
+
+      channel
+        .join()
+        .receive('ok', () => {
+          resolve();
+        })
+        .receive('error', reject);
+    });
+  }
+
+  private async setupChatChannel() {
+    return new Promise((resolve, reject) => {
+      if (!this.socket) return reject();
 
       this.channel = this.socket.channel(this.channelName!, {});
 

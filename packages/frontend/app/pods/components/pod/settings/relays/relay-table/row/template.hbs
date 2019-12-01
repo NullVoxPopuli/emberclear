@@ -20,6 +20,10 @@
     <label class='has-text-weight-bold'>
       {{t 'ui.settings.relays.openGraph'}}:
     </label> {{@relay.og}}
+
+    <label>
+      {{t 'ui.settings.relays.connectedUsers'}}:
+    </label> {{or @relay.connectionCount 'Unknown'}}
   </td>
   <td>
     <button {{on 'click' this.remove}} data-test-remove>

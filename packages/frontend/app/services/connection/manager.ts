@@ -103,6 +103,12 @@ export default class ConnectionManager extends Service {
       relay,
       publicKey: this.currentUser.uid,
       onData: this.processor.receive.bind(this.processor),
+      onInfo: info => {
+        // TODO: Temporary
+        // TODO: This needs to be pulled out into a web worker (the whole class)
+        // TODO: don't set these directly on the relay?
+        Object.assign(relay, info);
+      },
     });
 
     // Do connect / subscribe, etc
