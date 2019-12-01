@@ -314,6 +314,7 @@ ui:
       URLs: URLs
       socket: socket
       openGraph: open graph
+      connectedUsers: connected users
     themes:
       title: Themes
       midnight: Midnight
