@@ -22,16 +22,16 @@ export const defaultRelays = [
     og: 'https://mesh-relay-in-us-1.herokuapp.com/open_graph',
     host: 'mesh-relay-in-us-1.herokuapp.com',
   },
-  {
-    socket: 'wss://mesh-relay-eu-1.herokuapp.com/socket',
-    og: 'https://mesh-relay-eu-1.herokuapp.com/open_graph',
-    host: 'mesh-relay-eu-1.herokuapp.com',
-  },
-  {
-    socket: 'ws://localhost:4301/socket',
-    og: 'http://localhost:4301/open_graph',
-    host: 'localhost:4301',
-  },
+  // {
+  //   socket: 'wss://mesh-relay-eu-1.herokuapp.com/socket',
+  //   og: 'https://mesh-relay-eu-1.herokuapp.com/open_graph',
+  //   host: 'mesh-relay-eu-1.herokuapp.com',
+  // },
+  // {
+  //   socket: 'ws://localhost:4301/socket',
+  //   og: 'http://localhost:4301/open_graph',
+  //   host: 'localhost:4301',
+  // },
 ];
 
 export async function ensureRelays(applicationInstance: ApplicationInstance) {
