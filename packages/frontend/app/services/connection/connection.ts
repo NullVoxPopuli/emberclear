@@ -6,7 +6,7 @@ interface Args {
   relay: Relay;
   publicKey: string;
   onData: (data: RelayMessage) => void;
-  onInfo: (data: RelayStateJson) => void;
+  onInfo: (data: RelayState) => void;
 }
 
 export interface OutgoingPayload {
@@ -20,7 +20,7 @@ export class Connection {
   publicKey: string;
   channelName: string;
   onData: (data: RelayMessage) => void;
-  onInfo: (data: RelayStateJson) => void;
+  onInfo: (data: RelayState) => void;
 
   isConnected = false;
   isConnecting = false;
@@ -79,12 +79,10 @@ export class Connection {
       let channel = this.socket.channel(`stats`, {});
 
       channel.on('state', (data: RelayStateJson) => {
-        let relayInfo = data.relay;
         let connectionCount = data['connection_count'];
 
-        this.onInfo({ relayInfo, connectionCount });
+        this.onInfo({ relay: data.relay, connectionCount });
       });
-
 
       channel
         .join()

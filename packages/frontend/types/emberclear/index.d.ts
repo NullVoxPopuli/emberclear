@@ -27,6 +27,13 @@ declare global {
     ['connected_to_relays']: object;
   }
 
+  interface RelayState {
+    relay: { [key: string]: string };
+    connectionCount?: number;
+    connectedRelays?: number;
+    connectedToRelays?: object;
+  }
+
   interface OpenGraphData {
     audio?: string;
     ['audio:secure_url']?: string;
