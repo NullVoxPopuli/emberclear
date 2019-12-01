@@ -6,6 +6,7 @@ interface Args {
   relay: Relay;
   publicKey: string;
   onData: (data: RelayMessage) => void;
+  onInfo: (data: RelayStateJson) => void;
 }
 
 export interface OutgoingPayload {
@@ -19,6 +20,7 @@ export class Connection {
   publicKey: string;
   channelName: string;
   onData: (data: RelayMessage) => void;
+  onInfo: (data: RelayStateJson) => void;
 
   isConnected = false;
   isConnecting = false;
@@ -30,12 +32,13 @@ export class Connection {
    * @param [Relay] relay
    * @param [string] publicKey: hex
    */
-  constructor({ relay, publicKey, onData }: Args) {
+  constructor({ relay, publicKey, onData, onInfo }: Args) {
     this.relay = relay;
     this.url = relay.socket;
     this.publicKey = publicKey;
     this.channelName = `user:${publicKey}`;
     this.onData = onData;
+    this.onInfo = onInfo;
   }
 
   async connect() {
@@ -73,8 +76,17 @@ export class Connection {
     return new Promise((resolve, reject) => {
       if (!this.socket) return reject();
 
-      this.socket
-        .channel(`stats`, {})
+      let channel = this.socket.channel(`stats`, {});
+
+      channel.on('state', (data: RelayStateJson) => {
+        let relayInfo = data.relay;
+        let connectionCount = data['connection_count'];
+
+        this.onInfo({ relayInfo, connectionCount });
+      });
+
+
+      channel
         .join()
         .receive('ok', () => {
           resolve();
