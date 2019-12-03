@@ -244,6 +244,7 @@ ui:
       URLs: URLs
       socket: Socket
       openGraph: Open Graph
+      connectedUsers: connected users
     themes:
       title: Themen
       midnight: Mitternacht
