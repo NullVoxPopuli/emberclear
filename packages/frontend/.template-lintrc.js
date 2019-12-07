@@ -4,9 +4,11 @@ module.exports = {
   extends: 'recommended',
   rules: {
     quotes: 'single',
-    'no-inline-styles': false,
+    'link-href-attributes': false, // TODO enable
+    'no-inline-styles': false, // TODO enable :(
     'no-implicit-this': true,
     'no-bare-strings': {
+      // ugh
       whitelist: [
         '&nbsp;',
         '(',
@@ -37,6 +39,8 @@ module.exports = {
         '@',
       ],
     },
+
+    // might be fixed when the href one is fixed
     'no-invalid-interactive': {
       additionalInteractiveTags: ['a'],
     },

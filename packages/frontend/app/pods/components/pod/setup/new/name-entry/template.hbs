@@ -15,12 +15,9 @@
       {{t 'buttons.loginInstead'}}
     {{/link-to}}
 
-    <input
-      data-test-next
-      type='submit'
-      class='button'
-      disabled={{this.nameIsBlank}}
-      value={{t 'buttons.next'}}
-    >
+    <button data-test-next disabled={{this.nameIsBlank}}>
+      {{t 'buttons.next'}}
+    </button>
   </div>
 </form>
+{{this.create.last.error}}

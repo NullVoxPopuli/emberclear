@@ -1,2 +1,2 @@
 /blueprints/*/files/**/*.js
-/src/utils/mnemonic/bip39/wordlists/english.ts
+**/bip39/wordlists/english.ts

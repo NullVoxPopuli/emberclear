@@ -23,9 +23,9 @@
 
   <hr>
 
-  <a {{action this.downloadSettings}} class='button'>
+  <button {{on 'click' this.downloadSettings}} class='button'>
     {{t 'ui.settings.download' }}
-  </a>
+  </button>
 
   <button
     disabled

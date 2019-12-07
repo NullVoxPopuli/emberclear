@@ -12,6 +12,7 @@
 
 # generated as a part of deployment
 /public/bundle.html
+/public/workers/
 
 
 # dependencies

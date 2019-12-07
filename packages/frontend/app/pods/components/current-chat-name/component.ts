@@ -59,7 +59,7 @@ export default class extends Component {
 
 function contactIdFrom(url: string) {
   const privateMatches = PRIVATE_CHAT_REGEX.exec(url);
-  const encodedId = privateMatches && privateMatches[1];
+  const encodedId = privateMatches?.[1];
 
   if (encodedId) {
     const id = decodeURI(encodedId);
@@ -69,7 +69,7 @@ function contactIdFrom(url: string) {
 
 function channelIdFrom(url: string) {
   const channelMatches = CHANNEL_REGEX.exec(url);
-  const encodedId = channelMatches && channelMatches[1];
+  const encodedId = channelMatches?.[1];
 
   if (encodedId) {
     const id = decodeURI(encodedId);

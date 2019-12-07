@@ -12,8 +12,6 @@ import { objectToDataURL, toHex, fromHex } from 'emberclear/utils/string-encodin
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 
-import { derivePublicKey } from 'emberclear/utils/nacl/utils';
-
 interface IContactJson {
   name: string | undefined;
   publicKey: undefined | string /* hex */;
@@ -86,9 +84,9 @@ export default class Settings extends Service {
 
     // start by clearing everything!
     await localforage.clear();
-
     const privateKey = fromHex(privateKeyHex);
-    const publicKey = await derivePublicKey(privateKey);
+
+    await this.currentUser.importFromKey(name, privateKey);
 
     channels.forEach(async (channel: IChannelJson) => {
       return await this.channelManager.findOrCreate(channel.id, channel.name);
@@ -99,8 +97,6 @@ export default class Settings extends Service {
 
       return await this.contactManager.findOrCreate(contact.publicKey, contact.name);
     });
-
-    await this.currentUser.setIdentity(name, privateKey, publicKey);
   }
 
   async buildData(): Promise<string | undefined> {

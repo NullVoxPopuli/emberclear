@@ -37,7 +37,7 @@ module.exports = {
     'qunit/no-identical-names': 'warn', // doesn't support deep nesting
 
     // typescript
-    //
+    '@typescript-eslint/prefer-optional-chain': 'warn', // for now
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-empty-interface': 'off',

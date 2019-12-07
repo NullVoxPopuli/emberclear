@@ -1,4 +1,4 @@
-import QRCode from 'qrcode';
+import utils from 'tweetnacl-util';
 
 export function toHex(array: Uint8Array): string {
   return Array.from(array)
@@ -16,29 +16,30 @@ export function fromHex(hex: string): Uint8Array {
   return new Uint8Array(matches.map(byte => parseInt(byte, 16)));
 }
 
-export async function convertObjectToQRCodeDataURL(object: any): Promise<string> {
-  const string = JSON.stringify(object);
-
-  return await QRCode.toDataURL(string);
+export async function toBase64(array: Uint8Array): Promise<string> {
+  return utils.encodeBase64(array);
 }
 
-export function convertObjectToBase64String(object: any): string {
-  const json = JSON.stringify(object);
-  const base64 = btoa(json);
-
-  return base64;
+export async function fromBase64(base64: string): Promise<Uint8Array> {
+  return utils.decodeBase64(base64);
 }
 
-export function convertBase64StringToObject(base64: string): any {
-  const json = atob(base64);
-  const object = JSON.parse(json);
-
-  return object;
+export function fromString(str: string): Uint8Array {
+  return utils.decodeUTF8(str);
 }
 
-export function objectToDataURL(object: any): string {
-  const string = convertObjectToBase64String(object);
-  return `data:text/json;base64,${string}`;
+export const toUint8Array = fromString;
+
+export function toString(uint8Array: Uint8Array): string {
+  return utils.encodeUTF8(uint8Array);
+}
+
+export function ensureUint8Array(text: string | Uint8Array): Uint8Array {
+  if (text.constructor === Uint8Array) {
+    return text as Uint8Array;
+  }
+
+  return fromString(text as string);
 }
 
 // http://stackoverflow.com/a/39460727

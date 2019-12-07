@@ -1,7 +1,7 @@
-import * as nacl from 'emberclear/utils/nacl/utils';
+import * as nacl from 'emberclear/workers/crypto/utils/nacl';
 import { module, test, skip } from 'qunit';
 
-module('Unit | Utility | nacl', function() {
+module('Workers | Crypto | nacl', function() {
   skip('libsodium uses wasm', async function(assert) {
     assert.expect(0);
     // not using libsodium atm. WASM support seems unstable

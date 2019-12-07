@@ -3,7 +3,7 @@ export const CHANNEL_REGEX = /chat\/in-channel\/(.+)/;
 
 export function idFrom(regex: RegExp, url: string) {
   let matches = regex.exec(url);
-  let id = matches && matches[1];
+  let id = matches?.[1];
 
   return id || '';
 }

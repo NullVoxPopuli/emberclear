@@ -5,7 +5,6 @@ import CurrentUserService from 'emberclear/services/current-user';
 
 import ReceivedMessageHandler from 'emberclear/services/messages/handler';
 
-import { decryptFromSocket } from './-utils/decryptor';
 import { task } from 'ember-concurrency';
 import Task from 'ember-concurrency/task';
 
@@ -28,7 +27,7 @@ export default class MessageProcessor extends Service {
   }
 
   @(task(function*(this: MessageProcessor, socketData: RelayMessage) {
-    const decrypted = yield decryptFromSocket(socketData, this.currentUser.privateKey!);
+    const decrypted = yield this.currentUser.crypto?.decryptFromSocket(socketData);
 
     yield this.handler.handle(decrypted);
   })

@@ -1,4 +1,4 @@
-import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
+import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
 
 import User from 'emberclear/models/user';
 

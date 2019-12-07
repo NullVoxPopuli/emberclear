@@ -6,7 +6,7 @@ export function preventDefault([fn]: PositionalArgs /*, hash*/) {
   return (...args: any[]) => {
     const firstArg = args[0];
 
-    if (firstArg && firstArg.preventDefault) {
+    if (firstArg?.preventDefault) {
       firstArg.preventDefault();
     }
 
