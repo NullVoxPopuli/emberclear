@@ -8,7 +8,7 @@ export function inLocalStorage<T = boolean>(
   descriptor?: any
 ): void /* TS says the return value is ignored... idk if I believe it */ {
   const targetName = target.constructor.name;
-  const { get: oldGet, set: oldSet } = tracked(target, propertyKey, descriptor);
+  const { get: oldGet, set: oldSet } = (tracked as any)(target, propertyKey, descriptor) as any;
 
   const newDescriptor = {
     configurable: true,
