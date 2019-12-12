@@ -10,13 +10,9 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto', // default
-    historySupportMiddleware: true,
 
     EmberENV: {
-      FEATURES: {
-        EMBER_MODULE_UNIFICATION: true,
-        EMBER_METAL_TRACKED_PROPERTIES: true,
-      },
+      FEATURES: {},
       EXTEND_PROTOTYPES: false,
     },
 
