@@ -1,15 +1,15 @@
 import Application from '@ember/application';
-import Resolver from './resolver';
+import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
 
 import defineModifier from 'ember-concurrency-test-waiter/define-modifier';
 
-const App = Application.extend({
-  modulePrefix: config.modulePrefix,
-  podModulePrefix: config.podModulePrefix,
-  Resolver,
-});
+export default class App extends Application {
+  modulePrefix = config.modulePrefix;
+  podModulePrefix = config.podModulePrefix;
+  Resolver = Resolver;
+}
 
 /*
  * This line is added to support initializers in the `app/` directory
@@ -17,5 +17,3 @@ const App = Application.extend({
 loadInitializers(App, config.modulePrefix);
 
 defineModifier();
-
-export default App;

@@ -1,4 +1,4 @@
-import Application from 'emberclear/app';
+import Application from '../app';
 import registerWaiter from 'ember-raf-scheduler/test-support/register-waiter';
 import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
