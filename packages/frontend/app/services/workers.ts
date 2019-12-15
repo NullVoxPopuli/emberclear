@@ -2,8 +2,8 @@ import Service from '@ember/service';
 import { action } from '@ember/object';
 import { PWBHost } from 'promise-worker-bi';
 
-const CRYPTO_PATH = '/workers/crypto.js';
-const NETWORKING_PATH = '/workers/networking.js';
+export const CRYPTO_PATH = '/workers/crypto.js';
+export const NETWORKING_PATH = '/workers/networking.js';
 
 type WorkerRegistry = { [path: string]: PWBHost };
 
@@ -20,7 +20,7 @@ export default class WorkersService extends Service {
     return this.getWorker(NETWORKING_PATH);
   }
 
-  private getWorker(path: string): PWBHost {
+  protected getWorker(path: string): PWBHost {
     if (this.registry[path]) return this.registry[path];
 
     let worker = new Worker(path);

@@ -40,9 +40,7 @@ export type CryptoMessage =
   | EncryptForSocket
   | DerivePublicKey;
 
-let promiseWorker = new PWBWorker();
-
-promiseWorker.register(function(message: CryptoMessage) {
+export function handleMessage(message: CryptoMessage) {
   switch (message.action) {
     case WorkerCryptoAction.LOGIN:
       return login(...message.args);
@@ -57,4 +55,10 @@ promiseWorker.register(function(message: CryptoMessage) {
   }
 
   throw new Error(`unknown message for crypto worker: ${(message as any).action}`);
+}
+
+let promiseWorker = new PWBWorker();
+
+promiseWorker.register(function(message: CryptoMessage) {
+  return handleMessage(message);
 });

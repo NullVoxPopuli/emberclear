@@ -8,6 +8,7 @@ import {
   setupRelayConnectionMocks,
   setupCurrentUser,
   getService,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import { page, selectors } from 'emberclear/tests/helpers/pages/app';
@@ -16,6 +17,7 @@ module('Acceptance | Chat', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
+  setupWorkers(hooks);
   setupCurrentUser(hooks);
 
   module('Unread Messages', function(hooks) {
