@@ -4,6 +4,7 @@ import { getOwner } from '@ember/application';
 
 import LocaleService from 'emberclear/services/locale';
 import CurrentUserService from 'emberclear/services/current-user';
+import StoreService from 'ember-data/store';
 
 import { ensureRelays, ensureAtLeastOneContact } from 'emberclear/utils/data/required-data';
 import Settings from 'emberclear/services/settings';
@@ -14,6 +15,7 @@ export default class ApplicationRoute extends Route {
   @service locale!: LocaleService;
   @service settings!: Settings;
   @service connection!: ConnectionService;
+  @service store!: StoreService;
 
   async beforeModel() {
     (this.store as any).shouldTrackAsyncRequests = true;
