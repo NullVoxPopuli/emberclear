@@ -44,7 +44,7 @@ export default class WorkersService extends Service {
   }
 
   willDestroy() {
-    Object.values(this.registry).map(promiseWorker => {
+    Object.values(this.registry).forEach(promiseWorker => {
       promiseWorker._worker.terminate();
     });
   }

@@ -39,12 +39,10 @@ module.exports = function(defaults) {
     ...postcssConfig,
   });
 
-  let additionalTrees = [];
-
-  additionalTrees.concat(...buildStaticTrees());
+  let additionalTrees = [...buildStaticTrees()];
 
   if (environment !== 'test') {
-    additionalTrees.concat(...buildWorkerTrees({ isProduction }));
+    additionalTrees = [...additionalTrees, ...buildWorkerTrees({ isProduction })];
   }
 
   if (!isProduction) {
