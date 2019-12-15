@@ -8,12 +8,13 @@ import {
   serviceWorkerUpdate,
 } from 'ember-service-worker-update-notify/test-support/updater';
 
-import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks, setupWorkers } from 'emberclear/tests/helpers';
 
 const selector = '.service-worker-update-notify';
 
 module('Acceptance | Update Banner', function(hooks) {
   setupApplicationTest(hooks);
+  setupWorkers(hooks);
   setupServiceWorkerUpdater(hooks);
   setupRelayConnectionMocks(hooks);
 

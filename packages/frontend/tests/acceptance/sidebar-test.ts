@@ -9,6 +9,7 @@ import {
   setupCurrentUser,
   getService,
   getStore,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import {
@@ -21,6 +22,7 @@ import { createContact } from 'emberclear/tests/helpers/factories/contact-factor
 
 module('Acceptance | Sidebar', function(hooks) {
   setupApplicationTest(hooks);
+  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   setupCurrentUser(hooks);

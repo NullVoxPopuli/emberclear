@@ -8,6 +8,7 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   clearLocalStorage,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import { page } from 'emberclear/pods/components/search/-page';
@@ -15,6 +16,7 @@ import { page as app } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Search Modal', function(hooks) {
   setupApplicationTest(hooks);
+  setupWorkers(hooks);
   setupCurrentUser(hooks);
   setupRelayConnectionMocks(hooks);
   clearLocalStorage(hooks);

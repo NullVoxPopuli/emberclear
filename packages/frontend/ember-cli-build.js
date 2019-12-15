@@ -39,8 +39,13 @@ module.exports = function(defaults) {
     ...postcssConfig,
   });
 
-  let funnels = buildStaticTrees();
-  let workers = buildWorkerTrees({ isProduction });
+  let additionalTrees = [];
+
+  additionalTrees.concat(...buildStaticTrees());
+
+  if (environment !== 'test') {
+    additionalTrees.concat(...buildWorkerTrees({ isProduction }));
+  }
 
   if (!isProduction) {
     app.trees.public = new UnwatchedDir('public');
@@ -57,5 +62,5 @@ module.exports = function(defaults) {
   //   // skipBabel: [],
   // });
 
-  return mergeTrees([app.toTree(), ...funnels, ...workers]);
+  return mergeTrees([app.toTree(), ...additionalTrees]);
 };

@@ -14,6 +14,7 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   trackAsyncDataRequests,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/workers/crypto/utils/mnemonic';
 
@@ -47,6 +48,7 @@ const behaviors = {
 
 module('Acceptance | Login', function(hooks) {
   setupApplicationTest(hooks);
+  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   trackAsyncDataRequests(hooks);

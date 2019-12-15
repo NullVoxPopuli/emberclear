@@ -11,10 +11,12 @@ import {
   setupRelayConnectionMocks,
   trackAsyncDataRequests,
   getStore,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 module('Acceptance | Setup', function(hooks) {
   setupApplicationTest(hooks);
+  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   trackAsyncDataRequests(hooks);
