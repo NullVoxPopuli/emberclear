@@ -268,7 +268,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
             await waitFor(selectors.message);
           });
 
-          skip('the message is shown, but is waiting for a confirmation', function(assert) {
+          test('the message is shown, but is waiting for a confirmation', function(assert) {
             let { confirmations } = page.messages.objectAt(0)!;
 
             assert.ok(confirmations.isLoading, 'a loader is rendererd');
