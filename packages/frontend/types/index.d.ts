@@ -52,6 +52,7 @@ declare global {
     // };
     ServiceWorker: {};
     deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
+    ASSET_FINGERPRINT_HASH: string;
   }
 
   interface UserChoice {
