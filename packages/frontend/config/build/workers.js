@@ -5,7 +5,7 @@ const babel = require('rollup-plugin-babel');
 const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const filesize = require('rollup-plugin-filesize');
-const funnel = require('broccoli-funnel');
+const AssetRev = require('broccoli-asset-rev');
 
 const colors = require('colors');
 
@@ -14,7 +14,6 @@ const fs = require('fs');
 
 let cwd = process.cwd();
 let workerRoot = path.join(cwd, 'app', 'workers');
-let outputRoot = path.join(cwd, 'public', 'workers');
 let extensions = ['.js', '.ts'];
 
 let babelConfig = {
@@ -50,7 +49,7 @@ function detectWorkers() {
   return workers;
 }
 
-function configureWorkerTree({ isProduction }) {
+function configureWorkerTree({ isProduction, hash }) {
   return ([name, entryPath]) => {
     let workerDir = path.join(workerRoot, name);
 
@@ -59,7 +58,7 @@ function configureWorkerTree({ isProduction }) {
         input: entryPath,
         output: [
           {
-            file: path.join(outputRoot, `${name}.js`),
+            file: `workers/${name}.js`,
             format: 'esm',
           },
         ],
@@ -103,29 +102,23 @@ function configureWorkerTree({ isProduction }) {
       },
     });
 
-    return funnel(rollupTree, {
-      destDir: 'workers',
+    return new AssetRev(rollupTree, {
+      enabled: true,
+      customHash: hash,
     });
-    // return rollupTree;
   };
 }
 
 module.exports = {
-  buildWorkerTrees({ isProduction, isTest }) {
+  buildWorkerTrees({ isProduction, isTest, hash }) {
     if (isTest) {
       console.info('Env is test. Skipping worker builds.');
       return [];
     }
 
-    console.info(`cwd: ${cwd}`);
-    console.info(`Input: ${workerRoot}`);
-    console.info(`Output: ${outputRoot}`);
-
     let inputs = detectWorkers();
-    let workerBuilder = configureWorkerTree({ isProduction });
+    let workerBuilder = configureWorkerTree({ isProduction, hash });
     let workerTrees = Object.entries(inputs).map(workerBuilder);
-
-    console.info(`Built ${workerTrees.length} workers.`);
 
     return workerTrees;
   },
