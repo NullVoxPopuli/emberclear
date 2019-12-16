@@ -14,7 +14,6 @@ import MessageFactory from 'emberclear/services/messages/factory';
 
 import { toHex } from 'emberclear/utils/string-encoding';
 import { build as toPayloadJson } from './-utils/builder';
-import { encryptForSocket } from './-utils/encryptor';
 import Task from 'ember-concurrency/task';
 import Contact from 'emberclear/models/contact';
 import User from 'emberclear/models/user';
@@ -86,12 +85,18 @@ export default class MessageDispatcher extends Service {
   }
 
   @task(function*(this: MessageDispatcher, msg: Message, to: Contact) {
+    if (!this.currentUser.crypto) {
+      console.info('Crypto Worker not available');
+
+      return;
+    }
+
     const theirPublicKey = to.publicKey as Uint8Array;
     const uid = toHex(theirPublicKey);
 
     const payload = toPayloadJson(msg, this.currentUser.record!);
 
-    const encryptedMessage = yield encryptForSocket(payload, to, this.currentUser.record!);
+    const encryptedMessage = yield this.currentUser.crypto.encryptForSocket(payload, to);
 
     try {
       yield this.connection.send({ to: uid, message: encryptedMessage });

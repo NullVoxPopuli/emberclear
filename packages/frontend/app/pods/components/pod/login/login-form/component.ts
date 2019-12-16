@@ -9,10 +9,10 @@ import CurrentUserService from 'emberclear/services/current-user';
 import Toast from 'emberclear/services/toast';
 import Settings from 'emberclear/services/settings';
 
-import { naclBoxPrivateKeyFromMnemonic } from 'emberclear/utils/mnemonic/utils';
-import { derivePublicKey } from 'emberclear/utils/nacl/utils';
 import Task from 'ember-concurrency/task';
 import RouterService from '@ember/routing/router-service';
+import { naclBoxPrivateKeyFromMnemonic } from 'emberclear/workers/crypto/utils/mnemonic';
+import { derivePublicKey } from 'emberclear/workers/crypto/utils/nacl';
 
 export default class LoginForm extends Component {
   @service currentUser!: CurrentUserService;

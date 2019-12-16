@@ -5,8 +5,8 @@ export const textFor = (selector: string): string => {
   const root = context.element;
 
   const element = root.querySelector(selector);
-  const content = element && element.textContent;
-  const text = (content && content.trim()) || '';
+  const content = element?.textContent;
+  const text = content?.trim() || '';
 
   return text;
 };

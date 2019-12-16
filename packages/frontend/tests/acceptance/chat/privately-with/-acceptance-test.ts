@@ -10,6 +10,7 @@ import {
   setupCurrentUser,
   getService,
   visit as visitIgnoringFailure,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import { page, selectors } from 'emberclear/tests/helpers/pages/chat';
@@ -23,6 +24,7 @@ import Message from 'emberclear/models/message';
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
+  setupWorkers(hooks);
 
   module('is not logged in', function(hooks) {
     hooks.beforeEach(async function() {

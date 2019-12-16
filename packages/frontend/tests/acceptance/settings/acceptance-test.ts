@@ -8,6 +8,7 @@ import {
   setupRelayConnectionMocks,
   getStore,
   getService,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import { settings } from 'emberclear/tests/helpers/pages/settings';
@@ -16,6 +17,7 @@ import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Settings', function(hooks) {
   setupApplicationTest(hooks);
+  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
 

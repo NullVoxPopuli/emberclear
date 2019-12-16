@@ -6,9 +6,9 @@ import {
   toUint11Array,
   naclBoxPrivateKeyFromMnemonic,
   toUint8Array,
-} from 'emberclear/utils/mnemonic/utils';
+} from 'emberclear/workers/crypto/utils/mnemonic';
 
-module('Unit | Utility | mnemonic', function() {
+module('Workers | Crypto | mnemonic', function() {
   const numbers = {
     ['32']: new Uint8Array([0x20]),
     ['64']: new Uint8Array([0x40]),

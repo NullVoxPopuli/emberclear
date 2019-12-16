@@ -7,6 +7,7 @@ import {
   setupRelayConnectionMocks,
   setupCurrentUser,
   getService,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
@@ -17,6 +18,7 @@ const page = settings.relays;
 
 module('Acceptance | Settings | Relays', function(hooks) {
   setupApplicationTest(hooks);
+  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
 

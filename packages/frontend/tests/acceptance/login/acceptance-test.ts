@@ -3,8 +3,6 @@ import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
-import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/utils/mnemonic/utils';
-
 import { samplePrivateKey } from 'emberclear/tests/helpers/fixtures';
 import { loginForm } from 'emberclear/tests/helpers/pages/login';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
@@ -16,7 +14,9 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   trackAsyncDataRequests,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
+import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/workers/crypto/utils/mnemonic';
 
 const behaviors = {
   invalid: {
@@ -48,6 +48,7 @@ const behaviors = {
 
 module('Acceptance | Login', function(hooks) {
   setupApplicationTest(hooks);
+  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   trackAsyncDataRequests(hooks);

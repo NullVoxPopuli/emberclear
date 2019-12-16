@@ -22,9 +22,9 @@
         <br><br>
 
         {{t 'ui.footer.wantToSupport'}} <br>
-        <a data-test-monero-toggle {{on 'click' this.toggleMoneroAddress}}>
+        <button data-test-monero-toggle class='button-link' {{on 'click' this.toggleMoneroAddress}}>
           {{fa-icon 'monero' prefix='fab'}} {{t 'buttons.donateXmr'}}
-        </a>
+        </button>
         <br>
         {{#if this.showMoneroAddress}}
           <div data-test-monero-address class='wrap-anywhere'>

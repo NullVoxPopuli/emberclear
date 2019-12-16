@@ -9,6 +9,12 @@ export function stubConnection(overrides = {}) {
     ...overrides,
   });
   stubService('connection/manager', {
+    setup() {},
+    acquire() {},
+    getOpenGraph() {},
+    disconnect() {},
+    updateStatus() {},
+    createConnection() {},
     connectionPool: {
       activeConnections: [],
     },

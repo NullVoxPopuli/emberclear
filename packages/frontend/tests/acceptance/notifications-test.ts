@@ -7,6 +7,7 @@ import {
   setupRelayConnectionMocks,
   getService,
   setupCurrentUser,
+  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import Notifications from 'emberclear/services/notifications';
@@ -14,6 +15,7 @@ import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Notifications Service', function(hooks) {
   setupApplicationTest(hooks);
+  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
 

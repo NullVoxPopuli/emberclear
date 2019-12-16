@@ -1,5 +1,4 @@
 import QRCode from 'qrcode';
-import utils from 'tweetnacl-util';
 
 export function toHex(array: Uint8Array): string {
   return Array.from(array)
@@ -15,32 +14,6 @@ export function fromHex(hex: string): Uint8Array {
   const matches = hex.match(/.{1,2}/g) || [];
 
   return new Uint8Array(matches.map(byte => parseInt(byte, 16)));
-}
-
-export async function toBase64(array: Uint8Array): Promise<string> {
-  return utils.encodeBase64(array);
-}
-
-export async function fromBase64(base64: string): Promise<Uint8Array> {
-  return utils.decodeBase64(base64);
-}
-
-export function fromString(str: string): Uint8Array {
-  return utils.decodeUTF8(str);
-}
-
-export const toUint8Array = fromString;
-
-export function toString(uint8Array: Uint8Array): string {
-  return utils.encodeUTF8(uint8Array);
-}
-
-export function ensureUint8Array(text: string | Uint8Array): Uint8Array {
-  if (text.constructor === Uint8Array) {
-    return text as Uint8Array;
-  }
-
-  return fromString(text as string);
 }
 
 export async function convertObjectToQRCodeDataURL(object: any): Promise<string> {

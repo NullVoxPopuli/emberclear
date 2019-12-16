@@ -21,7 +21,7 @@
     role='menu'
   >
     {{#each this.options as |opt|}}
-      <a
+      <button
         {{on 'click' (queue
           (fn this.chooseLanguage opt.locale)
           this.closeMenu
@@ -29,7 +29,7 @@
         class='navbar-item'
       >
         <span>{{opt.label}}</span>
-      </a>
+      </button>
     {{/each}}
   </div>
 </div>

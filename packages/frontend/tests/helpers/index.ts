@@ -11,6 +11,8 @@ export { setupRelayConnectionMocks } from './setup-relay-connection-mocks';
 export { getStore } from './get-store';
 export { trackAsyncDataRequests } from './track-async-data';
 
+export { setupWorkers } from './setup-workers';
+
 export { refresh } from './refresh';
 export { waitUntilTruthy } from './waitUntilTruthy';
 

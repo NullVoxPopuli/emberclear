@@ -56,7 +56,7 @@ export function normalizeMeta(data: Args): NormalizedMeta {
 function embedUrlFrom(url: string) {
   let ytMatches = url.match(YT_PATTERN);
 
-  if (ytMatches && ytMatches[2]) {
+  if (ytMatches?.[2]) {
     let videoId = ytMatches[2];
     let embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}`;
 

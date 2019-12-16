@@ -6,10 +6,11 @@ import { isPresent } from '@ember/utils';
 import { inject as service } from '@ember/service';
 
 import ENV from 'emberclear/config/environment';
-import { generateAsymmetricKeys } from 'emberclear/utils/nacl/utils';
 import { toHex } from 'emberclear/utils/string-encoding';
 import StoreService from 'ember-data/store';
 import User from 'emberclear/models/user';
+import WorkersService from './workers';
+import CryptoConnector from './workers/crypto';
 
 export const currentUserId = 'me';
 
@@ -23,7 +24,10 @@ export const currentUserId = 'me';
 // the only time the localstorage copy of the identity is written to
 // is upon update and initial creation of the identity data.
 export default class CurrentUserService extends Service {
+  @service workers!: WorkersService;
   @service store!: StoreService;
+
+  crypto?: CryptoConnector;
 
   @tracked record?: User;
 
@@ -75,7 +79,8 @@ export default class CurrentUserService extends Service {
   }
 
   async create(name: string): Promise<void> {
-    const { publicKey, privateKey } = await generateAsymmetricKeys();
+    await this.hydrateCrypto();
+    const { publicKey, privateKey } = await this.crypto!.generateKeys();
 
     // remove existing record
     await this.store.unloadAll('user');
@@ -96,7 +101,11 @@ export default class CurrentUserService extends Service {
 
     await record.save();
 
-    run(() => (this.record = record));
+    run(() => {
+      this.hydrateCrypto(record);
+
+      this.record = record;
+    });
     // this.record = record;
   }
 
@@ -118,7 +127,11 @@ export default class CurrentUserService extends Service {
         backgroundReload: true,
       });
 
-      run(() => (this.record = existing));
+      run(() => {
+        this.hydrateCrypto(existing);
+
+        this.record = existing;
+      });
 
       return existing;
     } catch (e) {
@@ -133,6 +146,29 @@ export default class CurrentUserService extends Service {
     if (!this.record) return await this.load();
 
     return this.record;
+  }
+
+  hydrateCrypto(user?: User) {
+    if (this.crypto) {
+      if (user) {
+        this.crypto.keys = user;
+      }
+
+      return;
+    }
+
+    this.crypto = new CryptoConnector({
+      workerService: this.workers,
+      keys: user,
+    });
+  }
+
+  async importFromKey(name: string, privateKey: Uint8Array) {
+    this.hydrateCrypto();
+
+    const publicKey = await this.crypto!.derivePublicKey(privateKey);
+
+    await this.setIdentity(name, privateKey, publicKey);
   }
 }
 

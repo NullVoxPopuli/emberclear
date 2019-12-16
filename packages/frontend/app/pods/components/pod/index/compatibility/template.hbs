@@ -1,13 +1,10 @@
 {{#if this.isNotCompatible}}
   <ModalStatic @initiallyActive={{true}} @name='compatibility' as |isActive actions|>
-    <a
-      class='is-block has-text-white m-t-lg is-size-4'
-      {{action actions.open}}
-    >
+    <button {{on 'click' actions.open}}>
       {{fa-icon 'exclamation-circle'}}
       {{this.successCount}} / {{this.totalCount}}
       {{t 'compatibility.compatibility'}}
-    </a>
+    </button>
 
     <Modal
       data-test-compatibility-modal

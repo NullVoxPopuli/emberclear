@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 declare global {
+  type KeyPublic = { publicKey: Uint8Array };
+  type KeyPrivate = { privateKey: Uint8Array };
+  type KeyPair = KeyPublic & KeyPrivate;
+
   interface Prism {
     highlightAll: () => void;
   }
