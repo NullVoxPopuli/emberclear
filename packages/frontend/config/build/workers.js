@@ -113,6 +113,7 @@ function configureWorkerTree({ isProduction }) {
 module.exports = {
   buildWorkerTrees({ isProduction, isTest }) {
     if (isTest) {
+      console.info('Env is test. Skipping worker builds.');
       return [];
     }
 
@@ -120,6 +121,8 @@ module.exports = {
     let inputs = detectWorkers();
     let workerBuilder = configureWorkerTree({ isProduction });
     let workerTrees = Object.entries(inputs).map(workerBuilder);
+
+    console.info(`Built ${workerTrees.length} workers.`);
 
     return workerTrees;
   },
