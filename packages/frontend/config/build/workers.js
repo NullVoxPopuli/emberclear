@@ -5,6 +5,7 @@ const babel = require('rollup-plugin-babel');
 const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const filesize = require('rollup-plugin-filesize');
+const funnel = require('broccoli-funnel');
 
 const colors = require('colors');
 
@@ -102,7 +103,10 @@ function configureWorkerTree({ isProduction }) {
       },
     });
 
-    return rollupTree;
+    return funnel(rollupTree, {
+      destDir: 'workers',
+    });
+    // return rollupTree;
   };
 }
 
