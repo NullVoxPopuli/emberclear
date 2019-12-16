@@ -117,7 +117,10 @@ module.exports = {
       return [];
     }
 
-    // focus tree -- prevents from watching too many things
+    console.info(`cwd: ${cwd}`);
+    console.info(`Input: ${workerRoot}`);
+    console.info(`Output: ${outputRoot}`);
+
     let inputs = detectWorkers();
     let workerBuilder = configureWorkerTree({ isProduction });
     let workerTrees = Object.entries(inputs).map(workerBuilder);
