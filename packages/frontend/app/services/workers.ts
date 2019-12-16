@@ -25,18 +25,19 @@ export default class WorkersService extends Service {
 
     let worker = new Worker(path);
     let promiseWorker = new PWBHost(worker);
+    promiseWorker._hostIDQueue = undefined;
 
     if (!promiseWorker) {
       throw new Error('failed to create promiseWorker?');
     }
 
-    promiseWorker.register(function(message: string) {
-      console.info(`Received message in ${path}: `, message);
-    });
+    // promiseWorker.register(function(message: string) {
+    //   console.info(`Received message in ${path}: `, message);
+    // });
 
-    promiseWorker.registerError(function(err: any) {
-      console.error(`Error in ${path}: `, err);
-    });
+    // promiseWorker.registerError(function(err: any) {
+    //   console.error(`Error in ${path}: `, err);
+    // });
 
     this.registry[path] = promiseWorker;
 

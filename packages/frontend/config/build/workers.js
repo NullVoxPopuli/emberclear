@@ -107,7 +107,11 @@ function configureWorkerTree({ isProduction }) {
 }
 
 module.exports = {
-  buildWorkerTrees({ isProduction }) {
+  buildWorkerTrees({ isProduction, isTest }) {
+    if (isTest) {
+      return [];
+    }
+
     // focus tree -- prevents from watching too many things
     let inputs = detectWorkers();
     let workerBuilder = configureWorkerTree({ isProduction });

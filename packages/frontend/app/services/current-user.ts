@@ -79,7 +79,7 @@ export default class CurrentUserService extends Service {
   }
 
   async create(name: string): Promise<void> {
-    this.hydrateCrypto();
+    await this.hydrateCrypto();
     const { publicKey, privateKey } = await this.crypto!.generateKeys();
 
     // remove existing record

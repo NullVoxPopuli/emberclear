@@ -22,6 +22,12 @@ module.exports = function(defaults) {
   console.info('git version: ', version);
   console.info('---------------\n');
 
+  let env = {
+    isProduction,
+    isTest: environment === 'test',
+    version,
+  };
+
   let app = new EmberApp(defaults, {
     hinting: false,
     minifyJS: { enabled: isProduction },
@@ -34,16 +40,12 @@ module.exports = function(defaults) {
     },
 
     ...addonConfig,
-    ...serviceWorkerConfig({ version }),
-    ...buildbabelConfig({ isProduction }),
+    ...serviceWorkerConfig(env),
+    ...buildbabelConfig(env),
     ...postcssConfig,
   });
 
-  let additionalTrees = [...buildStaticTrees()];
-
-  if (environment !== 'test') {
-    additionalTrees = [...additionalTrees, ...buildWorkerTrees({ isProduction })];
-  }
+  let additionalTrees = [...buildStaticTrees(), ...buildWorkerTrees(env)];
 
   if (!isProduction) {
     app.trees.public = new UnwatchedDir('public');

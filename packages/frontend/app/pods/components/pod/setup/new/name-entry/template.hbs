@@ -15,9 +15,8 @@
       {{t 'buttons.loginInstead'}}
     {{/link-to}}
 
-    <button data-test-next disabled={{this.nameIsBlank}}>
+    <button data-test-next disabled={{or this.nameIsBlank this.create.isRunning}}>
       {{t 'buttons.next'}}
     </button>
   </div>
 </form>
-{{this.create.last.error}}

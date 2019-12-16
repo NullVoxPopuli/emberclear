@@ -1,12 +1,10 @@
 import WorkersService from '../workers';
 import { PWBHost } from 'promise-worker-bi';
 
-type CryptoMessage = import('emberclear/workers/crypto').Login;
-type Login = import('emberclear/workers/crypto').Login;
-type GenerateKeys = import('emberclear/workers/crypto').GenerateKeys;
-type EncryptForSocket = import('emberclear/workers/crypto').EncryptForSocket;
-type DecryptFromSocket = import('emberclear/workers/crypto').DecryptFromSocket;
-type DerivePublicKey = import('emberclear/workers/crypto').DerivePublicKey;
+type GenerateKeys = import('emberclear/workers/crypto/messages').GenerateKeys;
+type EncryptForSocket = import('emberclear/workers/crypto/messages').EncryptForSocket;
+type DecryptFromSocket = import('emberclear/workers/crypto/messages').DecryptFromSocket;
+type DerivePublicKey = import('emberclear/workers/crypto/messages').DerivePublicKey;
 
 type Args = {
   workerService: WorkersService;
@@ -34,17 +32,8 @@ export default class CryptoConnector {
     this.keys = { privateKey, publicKey };
   }
 
-  async login(...args: Login['args']) {
-    let worker = await this.getWorker();
-
-    return await worker.postMessage<KeyPublic, CryptoMessage>({
-      action: Action.LOGIN,
-      args,
-    });
-  }
-
   async generateKeys() {
-    let worker = await this.getWorker();
+    let worker = this.getWorker();
 
     return await worker.postMessage<KeyPair, GenerateKeys>({
       action: Action.GENERATE_KEYS,
@@ -53,7 +42,7 @@ export default class CryptoConnector {
   }
 
   async derivePublicKey(privateKey: Uint8Array) {
-    let worker = await this.getWorker();
+    let worker = this.getWorker();
 
     return await worker.postMessage<Uint8Array, DerivePublicKey>({
       action: Action.DERIVE_PUBLIC_KEY,
@@ -62,7 +51,7 @@ export default class CryptoConnector {
   }
 
   async encryptForSocket(payload: RelayJson, { publicKey }: KeyPublic) {
-    let worker = await this.getWorker();
+    let worker = this.getWorker();
 
     return await worker.postMessage<KeyPair, EncryptForSocket>({
       action: Action.ENCRYPT_FOR_SOCKET,
@@ -71,7 +60,7 @@ export default class CryptoConnector {
   }
 
   async decryptFromSocket(socketData: RelayMessage) {
-    let worker = await this.getWorker();
+    let worker = this.getWorker();
 
     return await worker.postMessage<KeyPair, DecryptFromSocket>({
       action: Action.DECRYPT_FROM_SOCKET,
