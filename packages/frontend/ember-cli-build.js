@@ -10,22 +10,29 @@ const { buildbabelConfig } = require('./config/build/babel');
 const { buildStaticTrees } = require('./config/build/static');
 const { postcssConfig } = require('./config/build/styles');
 const { buildWorkerTrees } = require('./config/build/workers');
+const crypto = require('crypto');
 
 module.exports = function(defaults) {
   let environment = EmberApp.env();
   let isProduction = environment === 'production';
 
   let version = gitRev.short();
+  let hash = crypto
+    .createHash('md5')
+    .update(new Date().getTime().toString())
+    .digest('hex');
 
   console.info('\n---------------');
   console.info('environment: ', environment);
   console.info('git version: ', version);
+  console.info('asset hash: ', hash);
   console.info('---------------\n');
 
   let env = {
     isProduction,
     isTest: environment === 'test',
     version,
+    hash,
   };
 
   let app = new EmberApp(defaults, {
@@ -38,6 +45,9 @@ module.exports = function(defaults) {
       enabled: true, // !isProduction,
       extensions: 'js',
     },
+    fingerprint: {
+      customHash: hash,
+    },
 
     ...addonConfig,
     ...serviceWorkerConfig(env),
@@ -45,7 +55,7 @@ module.exports = function(defaults) {
     ...postcssConfig,
   });
 
-  let additionalTrees = [...buildStaticTrees(), ...buildWorkerTrees(env)];
+  let additionalTrees = [...buildStaticTrees(env), ...buildWorkerTrees(env)];
 
   if (!isProduction) {
     app.trees.public = new UnwatchedDir('public');

@@ -23,7 +23,7 @@ export default class WorkersService extends Service {
   protected getWorker(path: string): PWBHost {
     if (this.registry[path]) return this.registry[path];
 
-    let worker = new Worker(path);
+    let worker = new Worker(`${path}${window.ASSET_FINGERPRINT_HASH}`);
     let promiseWorker = new PWBHost(worker);
     // promiseWorker._hostIDQueue = undefined;
 
