@@ -102,8 +102,11 @@ function configureWorkerTree({ isProduction, hash }) {
       },
     });
 
+    if (!isProduction) {
+      return rollupTree;
+    }
+
     return new AssetRev(rollupTree, {
-      enabled: true,
       customHash: hash,
     });
   };
