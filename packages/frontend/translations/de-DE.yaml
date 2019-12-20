@@ -203,7 +203,7 @@ ui:
     navigation: Navigation
     wantToSupport: Möchtest du das Projekt unterstützen?
     license: >
-      Der <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>Quellcode</a> nutzt eine <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> Lizenz.
+      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
   login:
     title: Anmelden
     instructions: Bitte füge oder tippe deine mnemonic Passphrase ein
