@@ -203,7 +203,7 @@ ui:
     navigation: Navigation
     wantToSupport: Want to support this project?
     license: >
-      Le code de source <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'></a> utilise la licence <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3,</a>.
+      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
   login:
     title: Se connecter
     instructions: Please paste or type your mnemonic key.
