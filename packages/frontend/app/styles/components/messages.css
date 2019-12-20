@@ -1,3 +1,4 @@
+
 .chat-container {
   height: calc(100vh - var(--top-nav-height));
 
@@ -61,3 +62,4 @@ a.new-messages {
   }
 
 }
+

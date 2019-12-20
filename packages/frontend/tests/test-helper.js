@@ -16,7 +16,7 @@ import {
   hasIndexedDb,
   hasNotifications,
   hasWebWorker,
-} from 'emberclear/pods/components/pod/index/compatibility/-utils/detection';
+} from 'emberclear/components/pod/index/compatibility/-utils/detection';
 
 const seed = Math.random()
   .toString(36)

@@ -30,26 +30,3 @@
   }
 
 }
-
-.full-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  animation: fadein 0.5s;
-  background-color: var(--modal-overlay-color);
-  opacity: 0;
-
-  &.active {
-    display: block;
-    opacity: 1;
-  }
-
-  &.invisible {
-    background-color: transparent;
-    display: block;
-  }
-}
-

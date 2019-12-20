@@ -1,5 +1,5 @@
 module.exports = {
-  buildbabelConfig({ isProduction }) {
+  buildBabelConfig({ isProduction }) {
     return {
       // was for enabling dynamic import.
       babel: {

@@ -6,7 +6,7 @@ const gitRev = require('git-rev-sync');
 const UnwatchedDir = require('broccoli-source').UnwatchedDir;
 
 const { addonConfig, serviceWorkerConfig } = require('./config/build/addons');
-const { buildbabelConfig } = require('./config/build/babel');
+const { buildBabelConfig } = require('./config/build/babel');
 const { buildStaticTrees } = require('./config/build/static');
 const { postcssConfig } = require('./config/build/styles');
 const { buildWorkerTrees } = require('./config/build/workers');
@@ -51,7 +51,7 @@ module.exports = function(defaults) {
 
     ...addonConfig,
     ...serviceWorkerConfig(env),
-    ...buildbabelConfig(env),
+    ...buildBabelConfig(env),
     ...postcssConfig,
   });
 

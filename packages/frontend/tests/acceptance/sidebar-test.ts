@@ -15,7 +15,7 @@ import {
 import {
   page,
   selectors,
-} from 'emberclear/pods/components/pod/application/off-canvas-container/-page';
+} from 'emberclear/components/pod/application/off-canvas-container/-page';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';

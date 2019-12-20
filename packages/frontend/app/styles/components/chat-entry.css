@@ -16,7 +16,7 @@
   }
 }
 
-form.chat-entry {
+.chat-entry {
   @apply --grid;
   @apply --grid-stretch;
 

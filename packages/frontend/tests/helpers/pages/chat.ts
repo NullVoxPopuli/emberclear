@@ -11,9 +11,9 @@ import {
 
 import { typeIn } from '@ember/test-helpers';
 
-import { definition as unreadMessagesFloater } from 'emberclear/pods/components/pod/chat/chat-history/unread-management/-page';
-import { definition as dropdownPage } from 'emberclear/pods/components/dropdown/-page';
-import { definition as embedModal } from 'emberclear/pods/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
+import { definition as unreadMessagesFloater } from 'emberclear/components/pod/chat/chat-history/unread-management/-page';
+import { definition as dropdownPage } from 'emberclear/components/dropdown/-page';
+import { definition as embedModal } from 'emberclear/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
 import { definition as newMessagesFloater } from 'emberclear/components/chat/chat-history/new-messages/-page';
 
 export const selectors = {
