@@ -1,5 +1,5 @@
-.settings {
-  & .tabs nav {
-    @apply --column-grid;
+  .settings {
+    & .tabs nav {
+      @apply --column-grid;
+    }
   }
-}

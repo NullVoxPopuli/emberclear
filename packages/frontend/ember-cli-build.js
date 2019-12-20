@@ -1,5 +1,6 @@
 'use strict';
 
+var Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
@@ -10,6 +11,7 @@ const { buildbabelConfig } = require('./config/build/babel');
 const { buildStaticTrees } = require('./config/build/static');
 const { postcssConfig } = require('./config/build/styles');
 const { buildWorkerTrees } = require('./config/build/workers');
+const concat = require('broccoli-concat');
 const crypto = require('crypto');
 
 module.exports = function(defaults) {
@@ -55,7 +57,10 @@ module.exports = function(defaults) {
     ...postcssConfig,
   });
 
-  let additionalTrees = [...buildStaticTrees(env), ...buildWorkerTrees(env)];
+  let additionalTrees = [
+
+    ...buildStaticTrees(env), ...buildWorkerTrees(env)
+  ];
 
   if (!isProduction) {
     app.trees.public = new UnwatchedDir('public');
@@ -72,5 +77,25 @@ module.exports = function(defaults) {
   //   // skipBabel: [],
   // });
 
-  return mergeTrees([app.toTree(), ...additionalTrees]);
+  // let styleFunnel = new Funnel(process.cwd() + '/app', {
+  //   srcDir: 'components/**/*.css',
+  //   exclude: ['styles/**/*'],
+  //   include: ['**/*.css'],
+  //   allowEmpty: true,
+  //   annotation: 'Funnel (emberclear css-concat grab files)',
+  // });
+
+  let tree = concat('app', {
+    outputFile: 'styles/component-styles.css',
+    inputFiles: [
+      '**/*.css'
+    ],
+  });
+  // var StyleManifest = require('broccoli-style-manifest');
+  // let componentStyles = new StyleManifest(styleFunnel, {
+  //   outputFileNameWithoutExtension: 'pod-styles',
+  //   annotation: 'StyleManifest (ember-component-css combining all style files that there are extensions for)'
+  // });
+
+  return mergeTrees([tree, app.toTree(), ...additionalTrees]);
 };

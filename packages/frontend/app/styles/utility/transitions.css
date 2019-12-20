@@ -14,18 +14,18 @@
   }
 }
 
-.transition-all {
-  transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045);
-}
+  .transition-all {
+    transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045);
+  }
 
-.transition-all-fast {
-  transition: all 0.1s cubic-bezier(0.6, 0, 0.735, 0.045);
-}
+  .transition-all-fast {
+    transition: all 0.1s cubic-bezier(0.6, 0, 0.735, 0.045);
+  }
 
-.fade-out {
-  opacity: 0;
-}
+  .fade-out {
+    opacity: 0;
+  }
 
-.fade-in {
-  opacity: 1;
-}
+  .fade-in {
+    opacity: 1;
+  }

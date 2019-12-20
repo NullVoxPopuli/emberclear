@@ -1,0 +1,95 @@
+  .top-nav {
+    @apply --no-select;
+    @apply --column-grid;
+    @apply --grid-space-between;
+
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--top-nav-height);
+    background: var(--top-nav-bg);
+    box-shadow: var(--top-nav-shadow);
+    padding-left: var(--grid-gap);
+    padding-right: var(--grid-gap);
+
+    justify-items: start;
+
+    z-index: 100;
+  }
+
+  .top-nav a:active,
+  .top-nav a:hover {
+    text-decoration: none;
+  }
+
+  .top-nav.inverted {
+    background: var(--state-secondary);
+  }
+
+  .top-nav .navbar-burger {
+    color: var(--link-color);
+    margin-left: calc(var(--grid-gap) * -1);
+  }
+
+  .top-nav.inverted .burger,
+  .top-nav.inverted .chat-name,
+  .top-nav.inverted > .left-nav > a,
+  .top-nav.inverted > .right-nav > a,
+  .top-nav.inverted .dropdown-trigger {
+    color: var(--top-nav-inverted-color);
+  }
+
+  .top-nav hr {
+    width: 1px;
+    height: 100%;
+  }
+
+  .top-nav .left-nav,
+  .top-nav .right-nav {
+    @apply --column-grid;
+
+    align-items: center;
+  }
+
+  .top-nav .right-nav {
+    justify-self: end;
+  }
+
+  .top-nav .current-chat {
+    @apply --column-grid;
+
+    align-items: center;
+
+    & hr {
+      margin: 0 var(--grid-gap-tiny);
+    }
+  }
+
+  .top-nav .user-dropdown-content {
+    @apply --grid;
+    padding: var(--grid-gap);
+    overflow: hidden;
+    font-size: 0.85rem;
+    min-width: 300px;
+
+    & section {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    & a, & button {
+      font-size: 0.85rem;
+      padding: 0;
+      height: var(--dropdown-line-height);
+      line-height: var(--dropdown-line-height);
+
+      &:hover {
+        background-color: unset;
+        color: var(--color-medium-gray);
+        text-decoration: none;
+      }
+    }
+  }
+

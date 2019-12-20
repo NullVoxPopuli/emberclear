@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 
 import { TestContext } from 'ember-test-helpers';
 
-import { page } from 'emberclear/pods/components/modal/-page';
+import { page } from 'emberclear/components/modal/-page';
 
 module('Integration | Component | modal', function(hooks) {
   setupRenderingTest(hooks);

@@ -1,4 +1,4 @@
-header.contacts {
-  @apply --column-grid;
-  @apply --grid-space-between;
-}
+  header.contacts {
+    @apply --column-grid;
+    @apply --grid-space-between;
+  }

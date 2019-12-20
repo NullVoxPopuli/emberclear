@@ -1,11 +1,11 @@
-.dropdown {
-  @apply --no-select;
-}
+  .dropdown {
+    @apply --no-select;
+  }
 
-.dropdown .dropdown-trigger {
-  display: block;
-}
+  .dropdown .dropdown-trigger {
+    display: block;
+  }
 
-.dropdown .dropdown-menu {
-  box-shadow: 0 8px 8px rgba(10,10,10,.1);
-}
+  .dropdown .dropdown-menu {
+    box-shadow: 0 8px 8px rgba(10,10,10,.1);
+  }

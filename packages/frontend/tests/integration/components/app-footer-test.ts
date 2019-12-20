@@ -5,7 +5,7 @@ import { hbs } from 'ember-cli-htmlbars';
 
 import { TestContext } from 'ember-test-helpers';
 
-import { page } from 'emberclear/pods/components/app-footer/-page';
+import { page } from 'emberclear/components/app-footer/-page';
 
 module('Integration | Component | app-footer', function(hooks) {
   setupRenderingTest(hooks);
