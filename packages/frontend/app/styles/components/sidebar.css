@@ -25,25 +25,6 @@ aside {
   & > div {
     overflow-y: auto;
 
-    & .menu-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: var(--grid-gap);
-
-      & a:first-child {
-        padding-left: 0;
-      }
-    }
-
-    & .menu-label {
-      & a.button-xs,
-      & button.button-xs {
-        height: var(--button-height-sm);
-        width: var(--button-height-sm);
-      }
-    }
-
     & nav {
       &.contacts,
       &.channels {
@@ -75,6 +56,23 @@ aside {
       & em.offline {
         color: var(--sidebar-hint-text);
         padding-left: var(--grid-gap);
+      }
+    }
+
+    & .menu-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--grid-gap);
+
+      & a:first-child {
+        padding-left: 0;
+      }
+
+      & a.button-xs,
+      & button.button-xs {
+        height: var(--button-height-sm);
+        width: var(--button-height-sm);
       }
     }
   }

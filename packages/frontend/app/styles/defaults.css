@@ -45,6 +45,15 @@ body > main > section {
   @apply --grid;
 }
 
+button {
+  /* check scan button if changing this */
+
+  /* display: grid; */
+  & svg {
+    align-self: center;
+  }
+}
+
 a {
   cursor: pointer;
 
@@ -64,15 +73,6 @@ button .icon {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-button {
-  /* check scan button if changing this */
-
-  /* display: grid; */
-  & svg {
-    align-self: center;
-  }
 }
 
 pre.wrap {
