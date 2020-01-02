@@ -12,9 +12,7 @@
   box-shadow: var(--top-nav-shadow);
   padding-left: var(--grid-gap);
   padding-right: var(--grid-gap);
-
   justify-items: start;
-
   z-index: 100;
 }
 
@@ -68,6 +66,7 @@
 
 .top-nav .user-dropdown-content {
   @apply --grid;
+
   padding: var(--grid-gap);
   overflow: hidden;
   font-size: 0.85rem;
@@ -78,7 +77,8 @@
     text-overflow: ellipsis;
   }
 
-  & a, & button {
+  & a,
+  & button {
     font-size: 0.85rem;
     padding: 0;
     height: var(--dropdown-line-height);

@@ -1,11 +1,8 @@
 aside {
   display: grid;
-
   background: var(--sidebar-bg-color);
   padding: var(--grid-gap) 0;
-
   user-select: none;
-
   position: fixed;
   top: var(--top-nav-height);
   bottom: 0;
@@ -39,7 +36,6 @@ aside {
       }
     }
 
-
     & .menu-label {
       & a.button-xs,
       & button.button-xs {
@@ -48,12 +44,10 @@ aside {
       }
     }
 
-
     & nav {
       &.contacts,
       &.channels {
         padding-bottom: var(--grid-gap);
-
       }
 
       & a {
@@ -62,10 +56,8 @@ aside {
         grid-gap: var(--grid-gap);
         align-items: center;
         justify-content: start;
-
         padding: var(--grid-gap-small) var(--grid-gap);
         border-radius: var(--button-border-radius);
-
 
         &.is-active {
           background: var(--sidebar-nav-active-color);
@@ -101,6 +93,7 @@ aside {
 
       & nav {
         align-self: end;
+
         @apply --column-grid;
 
         & button {
@@ -112,8 +105,7 @@ aside {
 }
 
 main {
-	will-change: transform;
-
+  will-change: transform;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
   margin-top: var(--top-nav-height);
   max-height: calc(100% - var(--top-nav-height));
@@ -125,9 +117,9 @@ main {
   background-color: var(--body-bg-color);
 
   & > section {
-    min-height: calc(
-      100vh - var(--top-nav-height)
-    );
+    min-height:
+      calc(
+        100vh - var(--top-nav-height)
+      );
   }
 }
-

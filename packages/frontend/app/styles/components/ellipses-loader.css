@@ -4,11 +4,13 @@
 }
 
 .ellipsis-loader span:nth-child(1) {
-  animation-delay: 0.0s;
+  animation-delay: 0s;
 }
+
 .ellipsis-loader span:nth-child(2) {
   animation-delay: 0.1s;
 }
+
 .ellipsis-loader span:nth-child(3) {
   animation-delay: 0.2s;
 }

@@ -63,7 +63,8 @@
     font-size: 0.8rem;
     position: absolute;
     right: 0.5rem;
-    bottom: 0rem;
+    bottom: 0;
+
     svg {
       opacity: 0.5;
     }
@@ -102,4 +103,3 @@
     }
   }
 }
-

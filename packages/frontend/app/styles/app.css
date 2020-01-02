@@ -4,24 +4,24 @@
 @import url('badges');
 @import url('buttons');
 @import url('dropdowns');
+
 /* @import 'shoelace-css/source/css/dropdowns'; */
 @import url('file-buttons');
 @import url('forms');
 @import url('grid');
+
 /* @import url('progress-bars.css'); */
+
 /* @import url('loaders.css'); */
 @import url('switches');
 @import url('tabs');
 @import url('tables');
 @import url('utilities');
 @import url('variables');
-
 @import './themes/default';
 @import './themes/midnight';
-
 @import './defaults';
 @import './shoelace-overrides';
-
 @import './components/backdrop';
 @import './components/chat-entry';
 @import './components/connection-status';
@@ -46,14 +46,19 @@
 @import './components/toastify-overrides';
 @import './components/top-nav';
 @import './components/unread-management';
-
 @import './utility/transitions';
 
 :root {
   --font-system:
-    -apple-system, system-ui, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue',
-    Ubuntu, Arial, sans-serif;
+    -apple-system,
+    system-ui,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Ubuntu,
+    Arial,
+    sans-serif;
 
   --grid {
     display: grid;
@@ -65,7 +70,6 @@
     grid-auto-flow: column;
     grid-gap: var(--grid-gap);
   }
-
 
   --grid-space-between {
     justify-content: space-between;
@@ -89,6 +93,7 @@
 
   --transition-all {
     transition: all 0.2s ease-in-out;
+
     /* transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045); */
   }
 
@@ -112,7 +117,6 @@
     }
   }
 }
-
 
 .is-radiusless {
   border-radius: 0;
@@ -138,11 +142,10 @@
 
 .hero {
   min-height: calc(100vh - var(--top-nav-height));
-
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .icon-button {
@@ -154,6 +157,7 @@
   display: flex;
   justify-content: flex-end;
 }
+
 .cta-with-fallback {
   display: flex;
   justify-content: space-between;
@@ -171,7 +175,6 @@
   @apply --no-select;
 }
 
-
 .service-worker-update-notify {
   position: fixed;
   z-index: 2;
@@ -180,13 +183,17 @@
   border-radius: 0;
   padding: 1rem;
 
-/*   @include mobile { */
-/*     top: 0; */
-/*   } */
+  /*   @include mobile { */
 
-/*   @include tablet-only { */
-/*     top: 0px; */
-/*   } */
+  /*     top: 0; */
+
+  /*   } */
+
+  /*   @include tablet-only { */
+
+  /*     top: 0px; */
+
+  /*   } */
 }
 
 .not-allowed {
@@ -197,7 +204,6 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-
 
 .shareable-url {
   overflow-x: auto;

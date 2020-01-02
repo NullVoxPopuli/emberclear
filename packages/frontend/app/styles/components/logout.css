@@ -1,10 +1,12 @@
 .logout-warning {
   & > div {
     @apply --grid;
+
     grid-gap: calc(var(--grid-gap) * 2);
 
     & h2 > a {
       color: var(--color-light);
+
       &:hover {
         text-decoration: underline;
       }

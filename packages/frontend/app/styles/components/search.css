@@ -3,7 +3,7 @@ div[role='search'].modal {
   padding-top: 15vh;
 
   input {
-    box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.2);
   }
 
   & .modal-content {
@@ -19,6 +19,7 @@ div[role='search'].modal {
     display: block;
     width: 100%;
     overflow: auto;
+
     /* height: calc(100vh - 250px); */
     padding-right: var(--grid-gap);
     padding-bottom: var(--grid-gap);
@@ -38,7 +39,7 @@ div[role='search'].modal {
     font-size: 0.8rem;
     text-transform: uppercase;
     position: sticky;
-    top: 0px;
+    top: 0;
     background: var(--modal-content-bg);
     display: block;
     box-shadow: 0 2px 6px -6px;
@@ -58,7 +59,9 @@ div[role='search'].modal {
       padding: 0 var(--grid-gap-tiny);
       border: 1px solid transparent;
 
-      &:hover, &:active, &:focus {
+      &:hover,
+      &:active,
+      &:focus {
         border: 1px solid var(--search-result-border-color);
         background: var(--search-result-hover-bg);
       }
@@ -78,7 +81,6 @@ div[role='search'].modal {
       display: grid;
       grid-gap: var(--grid-gap-tiny);
       grid-auto-flow: column;
-
       align-items: end;
       line-height: 1.4rem;
 

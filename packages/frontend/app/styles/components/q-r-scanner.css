@@ -5,6 +5,7 @@
 
   & .qr-scanner_error {
     @apply --grid;
+
     width: 250px;
     height: 250px;
     text-align: center;

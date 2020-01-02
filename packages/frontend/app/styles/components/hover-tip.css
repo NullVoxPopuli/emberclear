@@ -35,16 +35,13 @@
   opacity: 0;
   color: var(--body-color);
   background: var(--body-bg-color);
-
   z-index: 10;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   right: 0;
-
   padding: 2px 5px;
   border-radius: var(--component-border-radius);
   line-height: 1.5rem;
-
   transition-property: all;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
@@ -58,10 +55,11 @@
 }
 
 /* custom animations... */
-.has-status-tip.is-active, .has-hover-tip:hover {
+.has-status-tip.is-active,
+.has-hover-tip:hover {
   z-index: 1;
+
   & .floats-up {
     bottom: 50px;
   }
 }
-

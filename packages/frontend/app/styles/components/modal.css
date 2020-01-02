@@ -5,8 +5,6 @@
   right: 0;
   left: 0;
   z-index: 1000000;
-
-
   display: none;
   justify-content: center;
   align-items: center;
@@ -25,8 +23,6 @@
     padding: var(--grid-gap);
     border-radius: var(--component-border-radius);
     box-shadow: var(--modal-shadow);
-
     animation: slide-up-fade-in 0.2s;
   }
-
 }

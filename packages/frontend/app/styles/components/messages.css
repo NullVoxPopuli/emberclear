@@ -1,7 +1,6 @@
 
 .chat-container {
   height: calc(100vh - var(--top-nav-height));
-
   display: grid;
   grid-template-rows: 1fr auto;
   padding: 0 var(--grid-gap);
@@ -16,6 +15,7 @@
     flex: 1 1 0%;
     display: flex;
     position: relative;
+
     /* flex-direction: column; */
 
     overflow: hidden;
@@ -23,12 +23,11 @@
 
     & .messages {
       @apply --grid;
+
       /* grid-gap of half is also applied to margin of each message */
       grid-gap: calc(var(--grid-gap) / 2);
-
       align-self: flex-end;
       max-height: 100%;
-
       flex-grow: 1;
       overflow-y: auto;
     }
@@ -60,6 +59,4 @@ a.new-messages {
   & span + span {
     text-decoration: underline;
   }
-
 }
-
