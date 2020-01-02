@@ -67,7 +67,7 @@ jobs:
     - name: Install
       run: ./run yarn install
     - name: Lint Styles
-      run: ./run yarn lint:sass
+      run: ./run yarn lint:styles
 
 
   lint_translations:

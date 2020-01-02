@@ -14,15 +14,23 @@ module.exports = {
     //   css-modules, while using correct plugin invocation
     //   and configuration, is not easy to configure correctly
     //   for use with shoelace / the existing postcss :-\
-    __cssModules: {
-      // config for https://github.com/salsify/broccoli-css-modules#plugins
-      plugins: {
-        after: [
+
+
+    // config for https://github.com/jeffjewiss/ember-cli-postcss
+    //
+    // NOTE: for https://github.com/ebryn/ember-component-css
+    // component scoping is not used.
+    // ember-component-css is _only_ used for concating
+    // component-css
+    postcssOptions: {
+      compile: {
+        enabled: true,
+        extension: 'css',
+        plugins: [
+          require("stylelint"),
           PostCSSImport({
-            path: ['node_modules/shoelace-css/source/css', 'app/styles'],
+            path: ['node_modules/shoelace-css/source/css'],
           }),
-        ],
-        postprocess: [
           PostCSSNext({
             features: {
               colorFunction: {
@@ -36,50 +44,12 @@ module.exports = {
           }),
         ],
       },
-    },
-
-    // config for https://github.com/jeffjewiss/ember-cli-postcss
-    //
-    // NOTE: for https://github.com/ebryn/ember-component-css
-    // component scoping is not used.
-    // ember-component-css is _only_ used for concating
-    // component-css
-    postcssOptions: {
-      compile: {
-        enabled: true,
-        extension: 'css',
-        plugins: [
-          {
-            module: PostCSSImport,
-            options: {
-              path: ['node_modules/shoelace-css/source/css'],
-            },
-          },
-          {
-            module: PostCSSNext,
-            options: {
-              features: {
-                colorFunction: {
-                  preserveCustomProps: false,
-                },
-                customProperties: {
-                  preserve: true,
-                },
-                rem: false,
-              },
-            },
-          },
-        ],
-      },
       filter: {
         enabled: true,
         plugins: [
-          {
-            module: autoprefixer,
-            options: {
-              browsers: ['last 2 versions'], // this will override the config, but just for this plugin
-            },
-          },
+          autoprefixer({
+            browsers: ['last 2 versions'], // this will override the config, but just for this plugin
+          }),
         ],
       },
     },
