@@ -12,10 +12,7 @@ import {
   setupWorkers,
 } from 'emberclear/tests/helpers';
 
-import {
-  page,
-  selectors,
-} from 'emberclear/components/pod/application/off-canvas-container/-page';
+import { page, selectors } from 'emberclear/components/pod/application/off-canvas-container/-page';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';

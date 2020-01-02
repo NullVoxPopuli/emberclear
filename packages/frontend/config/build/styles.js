@@ -19,10 +19,7 @@ module.exports = {
       plugins: {
         after: [
           PostCSSImport({
-            path: [
-              'node_modules/shoelace-css/source/css',
-              'app/styles'
-            ],
+            path: ['node_modules/shoelace-css/source/css', 'app/styles'],
           }),
         ],
         postprocess: [
