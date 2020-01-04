@@ -1,0 +1,5 @@
+{{#each @model.cryptos as |crypto|}}
+  <QRCode @data={{crypto.address}} />
+  <CopyTextButton @text={{crypto.address}} @label={{crypto.label}} />
+{{/each}}
+

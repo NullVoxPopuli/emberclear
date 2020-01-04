@@ -11,7 +11,7 @@ import 'qunit-dom';
 import 'qunit-assertions-extra';
 
 import {
-  hasWASM,
+  // hasWASM,
   hasCamera,
   hasIndexedDb,
   hasNotifications,
@@ -37,7 +37,6 @@ QUnit.begin(async () => {
 
     IndexedDb: ${await hasIndexedDb()}
     Camera: ${await hasCamera()}
-    WASM: ${await hasWASM()}
     Notifications: ${hasNotifications()}
     ServiceWorker: not tested
     WebWorker: ${hasWebWorker()}

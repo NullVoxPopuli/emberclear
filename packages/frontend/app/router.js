@@ -32,6 +32,7 @@ Router.map(function() {
 
   this.route('not-found', { path: '/*path' });
   this.route('add-friend');
+  this.route('donate');
 });
 
 export default Router;

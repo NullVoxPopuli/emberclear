@@ -15,7 +15,7 @@ import Task from 'ember-concurrency/task';
 export default class Compatibility extends Component {
   @tracked hasCamera!: boolean;
   @tracked hasIndexedDb!: boolean;
-  @tracked hasWASM!: boolean;
+  // @tracked hasWASM!: boolean;
   @tracked hasNotifications!: boolean;
   @tracked hasServiceWorker!: boolean;
   @tracked hasWebWorker!: boolean;

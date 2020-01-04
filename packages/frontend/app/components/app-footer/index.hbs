@@ -21,17 +21,9 @@
         {{t 'ui.footer.license' htmlSafe=true}}
         <br><br>
 
-        {{t 'ui.footer.wantToSupport'}} <br>
-        <button data-test-monero-toggle class='button-link' {{on 'click' this.toggleMoneroAddress}}>
-          {{fa-icon 'monero' prefix='fab'}} {{t 'buttons.donateXmr'}}
-        </button>
-        <br>
-        {{#if this.showMoneroAddress}}
-          <div data-test-monero-address class='wrap-anywhere'>
-            <strong>XMR</strong><br>
-            49UPDubdAzJ6TL3KMgxSugMV2KwtmeDmX2M2HZSTkcuS1jabsfZYy2hfyzLygW7DPCjhHojQC5gZMCpLiigVV4YcNbeh6d9
-          </div>
-        {{/if}}
+        <LinkTo @route='donate'>
+          {{t 'ui.footer.wantToSupport'}} {{t 'buttons.donate'}}
+        </LinkTo>
         <br>
 
         <ExternalLink href='https://reddit.com/r/emberclear'>
