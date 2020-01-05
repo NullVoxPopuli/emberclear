@@ -45,6 +45,7 @@ buttons:
   scan: Сканировать
   sendSnippet: Отправить сниппет
   remove: Удалить
+  donate: Donate
   donateEth: Поддержать в Ethereum
   donateXmr: Поддержать в Monero
   loginInstead: Войти с логином/паролем
