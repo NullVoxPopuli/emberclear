@@ -3,7 +3,7 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import { hbs } from 'ember-cli-htmlbars';
 
-import { page } from 'emberclear/pods/components/pod/settings/interface/-page';
+import { page } from 'emberclear/components/pod/settings/interface/-page';
 import { getService, clearLocalStorage } from 'emberclear/tests/helpers';
 import { THEMES } from 'emberclear/services/settings';
 

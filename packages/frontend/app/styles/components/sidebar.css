@@ -1,0 +1,123 @@
+aside {
+  display: grid;
+  background: var(--sidebar-bg-color);
+  padding: var(--grid-gap) 0;
+  user-select: none;
+  position: fixed;
+  top: var(--top-nav-height);
+  bottom: 0;
+  width: var(--sidenav-width);
+  overflow: hidden;
+  z-index: 0;
+
+  & > * {
+    padding-left: var(--grid-gap);
+    padding-right: var(--grid-gap);
+  }
+
+  /*
+  The sidebar is broken up into two sections:
+   - top (most things you'd care about)
+   - bottom (logout)
+  */
+
+  /* the top */
+  & > div {
+    overflow-y: auto;
+
+    & nav {
+      &.contacts,
+      &.channels {
+        padding-bottom: var(--grid-gap);
+      }
+
+      & a {
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: var(--grid-gap);
+        align-items: center;
+        justify-content: start;
+        padding: var(--grid-gap-small) var(--grid-gap);
+        border-radius: var(--button-border-radius);
+
+        &.is-active {
+          background: var(--sidebar-nav-active-color);
+        }
+
+        & > span {
+          display: grid;
+          grid-auto-flow: column;
+          grid-gap: var(--grid-gap);
+          align-items: center;
+          justify-content: start;
+        }
+      }
+
+      & em.offline {
+        color: var(--sidebar-hint-text);
+        padding-left: var(--grid-gap);
+      }
+    }
+
+    & .menu-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--grid-gap);
+
+      & a:first-child {
+        padding-left: 0;
+      }
+
+      & a.button-xs,
+      & button.button-xs {
+        height: var(--button-height-sm);
+        width: var(--button-height-sm);
+      }
+    }
+  }
+
+  & footer {
+    align-self: end;
+    box-shadow: 0 -6px 8px -7px rgba(0, 0, 0, var(--sidebar-footer-shadow-opacity));
+
+    & > hr {
+      margin-top: 0;
+      border-color: var(--sidebar-hr-border-color);
+    }
+
+    & > div {
+      @apply --column-grid;
+
+      & nav {
+        align-self: end;
+
+        @apply --column-grid;
+
+        & button {
+          @apply --button-as-link;
+        }
+      }
+    }
+  }
+}
+
+main {
+  will-change: transform;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
+  margin-top: var(--top-nav-height);
+  max-height: calc(100% - var(--top-nav-height));
+  z-index: 1;
+  overflow-y: auto;
+  position: relative;
+  left: 0;
+  width: 100vw;
+  background-color: var(--body-bg-color);
+
+  & > section {
+    min-height:
+      calc(
+        100vh - var(--top-nav-height)
+      );
+  }
+}

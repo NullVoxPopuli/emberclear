@@ -3,7 +3,8 @@
   touch-action: pan-y;
 }
 
-body, html {
+body,
+html {
   width: 100%;
   height: 100%;
   height: 100vh;
@@ -44,6 +45,14 @@ body > main > section {
   @apply --grid;
 }
 
+button {
+  /* check scan button if changing this */
+
+  /* display: grid; */
+  & svg {
+    align-self: center;
+  }
+}
 
 a {
   cursor: pointer;
@@ -62,16 +71,8 @@ a .icon,
 button .icon {
   height: 100%;
   display: flex;
-  align-items:  center;
-  justify-content:  center;
-}
-
-button {
-  /* check scan button if changing this */
-  /* display: grid; */
-  & svg {
-    align-self: center;
-  }
+  align-items: center;
+  justify-content: center;
 }
 
 pre.wrap {
@@ -88,3 +89,10 @@ svg.svg-inline--fa {
   height: 1rem;
   line-height: 1.5rem;
 }
+
+/* TODO: this doesn't go here */
+.grid-autoflow {
+  grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
+}
+
+/* TODO: local-ize */

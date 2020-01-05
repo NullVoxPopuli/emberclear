@@ -1,3 +1,36 @@
+.hover-tip {
+  opacity: 0;
+  color: var(--body-color);
+  background: var(--body-bg-color);
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 2px 5px;
+  border-radius: var(--component-border-radius);
+  line-height: 1.5rem;
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  box-shadow: 0 3px 6px 0 rgba(10, 10, 10, 0.2);
+
+  &.overlay {
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+}
+
+/* custom animations... */
+.has-status-tip.is-active,
+.has-hover-tip:hover {
+  z-index: 1;
+
+  & .floats-up {
+    bottom: 50px;
+  }
+}
+
 .has-hover-tip {
   position: relative;
 
@@ -27,39 +60,5 @@
     & .hover-tip {
       opacity: 1;
     }
-  }
-}
-
-.hover-tip {
-  opacity: 0;
-  color: var(--body-color);
-  background: var(--body-bg-color);
-
-  z-index: 10;
-  position: absolute;
-  bottom: 0px;
-  right: 0;
-
-  padding: 2px 5px;
-  border-radius: var(--component-border-radius);
-  line-height: 1.5rem;
-
-  transition-property: all;
-  transition-duration: 0.5s;
-  transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-  box-shadow: 0 3px 6px 0 rgba(10, 10, 10, 0.2);
-
-  &.overlay {
-    bottom: 0;
-    right: 0;
-    left: 0;
-  }
-}
-
-/* custom animations... */
-.has-status-tip.is-active, .has-hover-tip:hover {
-  z-index: 1;
-  & .floats-up {
-    bottom: 50px;
   }
 }

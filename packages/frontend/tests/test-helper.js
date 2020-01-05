@@ -11,12 +11,12 @@ import 'qunit-dom';
 import 'qunit-assertions-extra';
 
 import {
-  hasWASM,
+  // hasWASM,
   hasCamera,
   hasIndexedDb,
   hasNotifications,
   hasWebWorker,
-} from 'emberclear/pods/components/pod/index/compatibility/-utils/detection';
+} from 'emberclear/components/pod/index/compatibility/-utils/detection';
 
 const seed = Math.random()
   .toString(36)
@@ -37,7 +37,6 @@ QUnit.begin(async () => {
 
     IndexedDb: ${await hasIndexedDb()}
     Camera: ${await hasCamera()}
-    WASM: ${await hasWASM()}
     Notifications: ${hasNotifications()}
     ServiceWorker: not tested
     WebWorker: ${hasWebWorker()}

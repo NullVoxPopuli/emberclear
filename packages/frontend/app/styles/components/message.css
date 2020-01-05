@@ -1,0 +1,105 @@
+.message {
+  @apply --grid;
+  @apply --grid-stretch;
+
+  position: relative;
+  background-color: transparent;
+  border-radius: var(--component-border-radius);
+  padding: var(--grid-gap);
+  margin: calc(var(--grid-gap) / 2) 0;
+
+  &:hover {
+    background: var(--chat-message-hover-color);
+  }
+
+  &.unread {
+    background-color: var(--chat-message-unread-bg-color);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  &[data-direction='outgoing'] {
+    & .message-header {
+      & .from {
+        color: var(--chat-message-sender-name-outgoing);
+
+        & a {
+          color: var(--chat-message-sender-name-outgoing);
+        }
+      }
+    }
+  }
+
+  &[data-direction='incoming'] {
+    & .message-header {
+      & .from {
+        color: var(--chat-message-sender-name-incoming);
+
+        & a {
+          color: var(--chat-message-sender-name-incoming);
+        }
+      }
+    }
+  }
+
+  &[data-direction='outgoing'] + [data-direction='outgoing'],
+  &[data-direction='incoming'] + [data-direction='incoming'] {
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    & .message-header {
+      display: none;
+    }
+  }
+
+  & p {
+    margin: 0;
+  }
+
+  & .confirmations {
+    font-size: 0.8rem;
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0;
+
+    svg {
+      opacity: 0.5;
+    }
+  }
+
+  & .message-body {
+    border: none;
+    background-color: transparent;
+
+    & video.card-content,
+    & img.card-content,
+    & iframe.card-content {
+      width: 100%;
+      max-width: 200px;
+      max-height: 200px;
+    }
+  }
+
+  & .message-header {
+    @apply --column-grid;
+    @apply --grid-space-between;
+
+    background-color: transparent;
+    cursor: default;
+
+    & .from {
+      font-style: bold;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    & .sentAt {
+      font-weight: lighter;
+      font-size: 0.75rem;
+      color: var(--chat-message-sent-at);
+    }
+  }
+}

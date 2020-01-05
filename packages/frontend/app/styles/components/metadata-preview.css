@@ -1,0 +1,25 @@
+.metadata-preview {
+  @apply --column-grid;
+
+  justify-content: start;
+
+  & .thumbnail-container {
+    & img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+
+  & .metadata-preview__text {
+    @apply --grid;
+
+    & a {
+      display: block;
+      font-size: 0.85rem;
+    }
+
+    & p {
+      font-size: 0.75rem;
+    }
+  }
+}

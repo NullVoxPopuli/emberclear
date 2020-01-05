@@ -2,7 +2,6 @@
   /* functional bits */
   --sidenav-width: 300px;
 
-
   /* colors */
   --color-purple: hsl(253, 84%, 53%);
   --color-red: hsl(348, 100%, 41%);
@@ -12,81 +11,61 @@
   --color-light-gray: #efefef;
   --state-primary: var(--color-purple);
   --state-info: var(--color-blue);
-
   --link-color: var(--state-dark);
   --placeholder-color: var(--color-medium-light-gray);
   --body-color-muted: var(--color-medium-light-gray);
-
   --grid-gap: 0.75rem;
   --grid-gap-small: 0.5rem;
   --grid-gap-tiny: 0.25rem;
   --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 0px 4px rgba(0,0,0,0.1),
-               0 4px 16px rgba(0,0,0,0.1),
-               0 16px 64px rgba(0,0,0,0.1);
-
+  --shadow-lg:
+    0 0 4px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    0 16px 64px rgba(0, 0, 0, 0.1);
   --hint-color: var(--color-medium-gray);
-
   --alert-padding-y: 0.5rem;
   --alert-padding-x: 0.5rem;
-
   --top-nav-bg: var(--state-light);
   --top-nav-shadow: var(--shadow);
   --top-nav-height: 50px;
   --top-nav-inverted-color: var(--state-light);
-
   --sidebar-bg-color: var(--state-light);
   --sidebar-nav-active-color: var(--color-light-gray);
   --sidebar-hint-text: var(--hint-color);
   --sidebar-hr-border-color: var(--hr-border-color);
   --sidebar-footer-shadow-opacity: 0.2;
-
-  --modal-overlay-color: rgba(0,0,0,0.12);
+  --modal-overlay-color: rgba(0, 0, 0, 0.12);
   --modal-content-bg: var(--state-light);
   --modal-shadow: var(--shadow-lg);
-
   --search-result-text-color: var(--color-gray);
   --search-result-hover-bg: var(--color--gray);
   --search-result-border-color: var(--color-gray);
   --search-divider-color: var(--color-light-gray);
-
   --key-color: var(--color-light-gray);
   --key-bg-color: #72767d;
   --key-border-color: #202225;
   --key-shadow-color: rgba(35, 39, 42, 0.6);
-
   --chat-entry-bg-color: #f3f3f3;
   --chat-entry-line-height: 1.5rem;
-
   --chat-message-hover-color: #f8f8f8;
   --chat-message-unread-bg-color: #f1f1fa;
   --chat-message-sender-name-incoming: var(--body-color);
   --chat-message-sender-name-outgoing: var(--body-color);
-
   --chat-message-sent-at: var(--color-medium-gray);
   --chat-new-messages-notice-color: var(--state-light);
   --chat-new-messages-notice-bg-color: var(--state-secondary);
-
-
   --alert-bg-color: color(var(--state-primary) shade(75%));
   --alert-color: color(var(--state-primary) tint(75%));
-
   --alert-bg-color-secondary: color(var(--state-secondary) shade(75%));
   --alert-color: color(var(--state-primary) tint(75%));
-
   --alert-bg-color-success: color(var(--state-success) shade(75%));
   --alert-color-success: color(var(--state-success) tint(75%));
-
   --alert-bg-color-info: color(var(--state-info) shade(5%));
   --alert-color-info: color(var(--state-info) tint(85%));
-
   --alert-bg-color-warning: color(var(--state-warning) shade(75%));
   --alert-color-warning: color(var(--state-warning) tint(75%));
-
   --alert-bg-color-danger: color(var(--state-danger) shade(40%));
   --alert-color-danger: color(var(--state-danger) tint(100%));
-
-
   --scrollbar-track-hover: #fafafa;
   --scrollbar-track-thumb: #bababa;
   --scrollbar-track-thumb-hover: #acacac;

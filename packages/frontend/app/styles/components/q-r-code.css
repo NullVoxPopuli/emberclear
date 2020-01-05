@@ -1,0 +1,26 @@
+.qr-code-large {
+  min-height: 250px;
+  min-width: 250px;
+  max-height: 300px;
+  max-width: 300px;
+
+  &.inline-block {
+    display: inline-block;
+  }
+}
+
+.qr-code {
+  min-width: 180px;
+  min-height: 180px;
+
+  & > div {
+    min-width: 160px;
+    min-height: 160px;
+    padding: 10px;
+  }
+
+  & > img {
+    min-width: 100%;
+    min-height: 100%;
+  }
+}

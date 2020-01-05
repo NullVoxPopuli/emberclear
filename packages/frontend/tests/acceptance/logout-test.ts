@@ -13,7 +13,7 @@ import {
   setupWorkers,
 } from 'emberclear/tests/helpers';
 
-import { page } from 'emberclear/pods/components/pod/application/top-nav/user-drop-menu/-page';
+import { page } from 'emberclear/components/pod/application/top-nav/user-drop-menu/-page';
 import { page as logoutPage } from 'emberclear/tests/helpers/pages/logout';
 
 module('Acceptance | Logout', function(hooks) {

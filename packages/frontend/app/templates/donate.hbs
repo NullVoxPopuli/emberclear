@@ -1,0 +1,12 @@
+<App::Container::Hero>
+
+  <div class='w-100 grid grid-autoflow'>
+    {{#each @model.cryptos as |crypto|}}
+      <div>
+        <QRCode @data={{crypto.address}} />
+        <CopyTextButton @text={{crypto.address}} @label={{crypto.label}} />
+      </div>
+    {{/each}}
+  </div>
+
+</App::Container::Hero>

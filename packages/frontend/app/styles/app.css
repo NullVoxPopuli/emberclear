@@ -1,52 +1,64 @@
+@import url('normalize');
+@import url('content');
+@import url('alerts');
+@import url('badges');
+@import url('buttons');
+@import url('dropdowns');
 
+/* @import 'shoelace-css/source/css/dropdowns'; */
+@import url('file-buttons');
+@import url('forms');
+@import url('grid');
 
-/* @import url('shoelace.css'); */
-
-@import 'normalize.css';
-@import url('content.css');
-@import url('alerts.css');
-@import url('badges.css');
-@import url('buttons.css');
-@import url('dropdowns.css');
-@import url('file-buttons.css');
-@import url('forms.css');
-@import url('grid.css');
 /* @import url('progress-bars.css'); */
+
 /* @import url('loaders.css'); */
-@import url('switches.css');
-@import url('tabs.css');
-@import url('tables.css');
-@import url('utilities.css');
-@import url('variables.css');
-
-@import './themes/default.css';
-@import './themes/midnight.css';
-
-@import './defaults.css';
-@import './shoelace-overrides.css';
-
+@import url('switches');
+@import url('tabs');
+@import url('tables');
+@import url('utilities');
+@import url('variables');
+@import './themes/default';
+@import './themes/midnight';
+@import './defaults';
+@import './shoelace-overrides';
+@import './components/backdrop';
+@import './components/chat-entry';
+@import './components/connection-status';
+@import './components/contacts';
+@import './components/dismissable-warning';
+@import './components/ellipses-loader';
+@import './components/hover-tip';
+@import './components/key';
+@import './components/logout';
+@import './components/message';
+@import './components/messages';
+@import './components/metadata-preview';
+@import './components/modal';
+@import './components/notification-prompt';
+@import './components/q-r-code';
+@import './components/q-r-scanner';
+@import './components/search';
+@import './components/settings-nav';
+@import './components/sidebar-contact';
+@import './components/sidebar';
+@import './components/snippet';
 @import './components/toastify-overrides';
-@import './components/scrollbar';
-@import './components/modal.css';
-@import './components/modal-search.css';
-@import './components/modal-snippets.css';
-@import './components/key.css';
-@import './components/messages.css';
-@import './components/hover-tip.css';
-@import './components/ellipsis-loader.css';
-@import './components/chat-entry.css';
-@import './components/settings-nav.css';
-@import './components/contacts.css';
-
-@import './utility/transitions.css';
-
-@import "pod-styles.css";
+@import './components/top-nav';
+@import './components/unread-management';
+@import './utility/transitions';
 
 :root {
   --font-system:
-    -apple-system, system-ui, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue',
-    Ubuntu, Arial, sans-serif;
+    -apple-system,
+    system-ui,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Ubuntu,
+    Arial,
+    sans-serif;
 
   --grid {
     display: grid;
@@ -58,7 +70,6 @@
     grid-auto-flow: column;
     grid-gap: var(--grid-gap);
   }
-
 
   --grid-space-between {
     justify-content: space-between;
@@ -82,6 +93,7 @@
 
   --transition-all {
     transition: all 0.2s ease-in-out;
+
     /* transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045); */
   }
 
@@ -130,11 +142,10 @@
 
 .hero {
   min-height: calc(100vh - var(--top-nav-height));
-
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .icon-button {
@@ -146,6 +157,7 @@
   display: flex;
   justify-content: flex-end;
 }
+
 .cta-with-fallback {
   display: flex;
   justify-content: space-between;
@@ -163,7 +175,6 @@
   @apply --no-select;
 }
 
-
 .service-worker-update-notify {
   position: fixed;
   z-index: 2;
@@ -172,13 +183,17 @@
   border-radius: 0;
   padding: 1rem;
 
-/*   @include mobile { */
-/*     top: 0; */
-/*   } */
+  /*   @include mobile { */
 
-/*   @include tablet-only { */
-/*     top: 0px; */
-/*   } */
+  /*     top: 0; */
+
+  /*   } */
+
+  /*   @include tablet-only { */
+
+  /*     top: 0px; */
+
+  /*   } */
 }
 
 .not-allowed {
@@ -189,7 +204,6 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-
 
 .shareable-url {
   overflow-x: auto;
@@ -206,4 +220,3 @@
     }
   }
 }
-
