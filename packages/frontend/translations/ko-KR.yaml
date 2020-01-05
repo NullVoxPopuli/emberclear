@@ -45,6 +45,7 @@ buttons:
   scan: Scan
   sendSnippet: Send Snippet
   remove: Remove
+  donate: Donate
   donateEth: Donate Ethereum
   donateXmr: Donate Monero
   loginInstead: Login instead
