@@ -15,7 +15,6 @@ module.exports = {
     //   and configuration, is not easy to configure correctly
     //   for use with shoelace / the existing postcss :-\
 
-
     // config for https://github.com/jeffjewiss/ember-cli-postcss
     //
     // NOTE: for https://github.com/ebryn/ember-component-css
@@ -27,7 +26,7 @@ module.exports = {
         enabled: true,
         extension: 'css',
         plugins: [
-          require("stylelint"),
+          require('stylelint'),
           PostCSSImport({
             path: ['node_modules/shoelace-css/source/css'],
           }),
