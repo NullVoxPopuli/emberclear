@@ -45,6 +45,7 @@ buttons:
   scan: Scanner
   sendSnippet: Envoyer un Snippet
   remove: Supprimer
+  donate: Donate
   donateEth: Faire un donation en Ethereum
   donateXmr: Faire un donation en Monero
   loginInstead: Connexion à la place
