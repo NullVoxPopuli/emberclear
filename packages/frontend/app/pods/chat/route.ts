@@ -15,6 +15,7 @@ export default class ChatRoute extends Route {
   @service currentUser!: CurrentUserService;
   @service redirectManager!: RedirectManager;
   @service connection!: ConnectionService;
+  @service store;
 
   beforeModel() {
     // identity should be loaded from application route

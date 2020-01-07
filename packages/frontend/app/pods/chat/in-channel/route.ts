@@ -8,6 +8,7 @@ interface IModelParams {
 }
 
 export default class ChatInChannelRoute extends Route {
+  @service store;
   @service currentUser!: CurrentUserService;
   @service toast!: Toast;
   @service intl!: Intl;

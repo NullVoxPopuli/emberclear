@@ -1,4 +1,4 @@
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import Service, { inject as service } from '@ember/service';
 
 import Identity from 'emberclear/models/identity';

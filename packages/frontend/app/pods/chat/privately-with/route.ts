@@ -13,6 +13,7 @@ export default class ChatPrivatelyRoute extends Route {
   @service chatScroller!: ChatScroller;
   @service toast!: Toast;
   @service intl!: Intl;
+  @service store;
 
   beforeModel(transition: any) {
     let params = transition.to.params;

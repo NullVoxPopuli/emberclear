@@ -1,14 +1,11 @@
 // import LFAdapter from 'ember-localforage-adapter/adapters/localforage';
-import { reject, resolve } from 'rsvp';
+import EmberObject from '@ember/object';
+import { reject, resolve, Promise as EmberPromise } from 'rsvp';
 import Evented from '@ember/object/evented';
-import DS from 'ember-data';
 // import LFQueue from 'ember-localforage-adapter/utils/queue';
 // import LFCache from 'ember-localforage-adapter/utils/cache';
 import uuid from 'uuid';
 import localforage from 'localforage';
-
-import { Promise as EmberPromise } from 'rsvp';
-import EmberObject from '@ember/object';
 
 const LFQueue = EmberObject.extend({
   init: function() {
@@ -61,12 +58,16 @@ const LFCache = EmberObject.extend({
   },
 });
 
-const LFAdapter = DS.Adapter.extend(Evented, {
-  defaultSerializer: 'localforage',
+const LFAdapter = EmberObject.extend(Evented, {
   queue: LFQueue.create(),
   cache: LFCache.create(),
   caching: 'model',
+
   coalesceFindRequests: true,
+
+  groupRecordsForFindMany(store, snapshots) {
+    return [snapshots];
+  },
 
   shouldBackgroundReloadRecord() {
     return false;
@@ -75,6 +76,8 @@ const LFAdapter = DS.Adapter.extend(Evented, {
   shouldReloadAll() {
     return true;
   },
+
+
 
   /**
    * This is the main entry point into finding records. The first parameter to

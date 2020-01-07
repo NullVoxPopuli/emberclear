@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import RouterService from '@ember/routing/router-service';
 import CurrentUserService, { currentUserId } from 'emberclear/services/current-user';
 

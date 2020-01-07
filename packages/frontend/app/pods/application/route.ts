@@ -10,6 +10,7 @@ import Settings from 'emberclear/services/settings';
 import ConnectionService from 'emberclear/services/connection';
 
 export default class ApplicationRoute extends Route {
+  @service store;
   @service currentUser!: CurrentUserService;
   @service locale!: LocaleService;
   @service settings!: Settings;

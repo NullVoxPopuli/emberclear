@@ -1,6 +1,5 @@
-import DS from 'ember-data';
+import { attr } from '@ember-data/model';
 import Identity from './identity';
-const { attr } = DS;
 
 export interface KeyPair {
   publicKey: Uint8Array;

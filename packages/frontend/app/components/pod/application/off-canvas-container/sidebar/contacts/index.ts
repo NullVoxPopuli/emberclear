@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 
 import { PRIVATE_CHAT_REGEX, idFrom } from 'emberclear/utils/route-matchers';
 
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import SettingsService from 'emberclear/services/settings';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 import RouterService from '@ember/routing/router-service';

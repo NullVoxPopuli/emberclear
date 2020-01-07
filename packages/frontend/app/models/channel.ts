@@ -1,8 +1,4 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { hasMany } from 'ember-data/relationships';
-// import DS from 'ember-data';
-// const { attr, hasMany } = DS;
+import Model, { attr, hasMany } from '@ember-data/model';
 
 import Identity from 'emberclear/models/identity';
 import Invitation from 'emberclear/models/invitation';

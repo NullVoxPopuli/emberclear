@@ -1,7 +1,5 @@
 import { tracked } from '@glimmer/tracking';
-import Model from 'ember-data/model';
-import DS from 'ember-data';
-const { attr } = DS;
+import Model, { attr } from '@ember-data/model';
 
 export default class Relay extends Model {
   @attr('string') socket!: string;

@@ -1,8 +1,9 @@
 import Message, { TARGET, TYPE } from '../message';
-import DS from 'ember-data';
+
+type RecordArray<T> = Array<T>;
 
 export function selectUnreadDirectMessages(
-  messages: Message[] | DS.RecordArray<Message>,
+  messages: Message[] | RecordArray<Message>,
   fromId: string
 ) {
   const filtered = selectUnreadMessages(messages).filter(m => {
@@ -12,7 +13,7 @@ export function selectUnreadDirectMessages(
   return filtered;
 }
 
-export function selectUnreadMessages(messages: Message[] | DS.RecordArray<Message>) {
+export function selectUnreadMessages(messages: Message[] | RecordArray<Message>) {
   const filtered = messages.filter(m => {
     return (
       // ember-data in-flight messages
@@ -36,7 +37,7 @@ export async function markAsRead(message: Message) {
 }
 
 export function messagesForDM(
-  messages: DS.RecordArray<Message>,
+  messages: RecordArray<Message>,
   me: string,
   chattingWithId: string
 ): Message[] {

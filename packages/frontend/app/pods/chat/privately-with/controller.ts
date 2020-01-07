@@ -7,6 +7,7 @@ import { MESSAGE_LIMIT } from 'emberclear/models/message';
 
 export default class extends Controller {
   @service currentUser!: CurrentUserService;
+  @service store;
 
   get uid() {
     return this.model.targetIdentity.uid;

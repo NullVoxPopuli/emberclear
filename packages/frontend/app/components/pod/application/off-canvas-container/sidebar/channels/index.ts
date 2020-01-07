@@ -5,7 +5,7 @@ import { action } from '@ember/object';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 
 import RouterService from '@ember/routing/router-service';
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import Channel from 'emberclear/models/channel';
 
 interface IArgs {

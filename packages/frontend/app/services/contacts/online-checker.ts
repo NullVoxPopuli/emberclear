@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import Task from 'ember-concurrency/task';

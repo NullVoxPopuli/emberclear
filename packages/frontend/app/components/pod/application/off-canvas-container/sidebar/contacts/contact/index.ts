@@ -1,4 +1,4 @@
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import Component from '@glimmer/component';
 
 import { inject as service } from '@ember/service';

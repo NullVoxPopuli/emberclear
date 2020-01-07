@@ -49,6 +49,10 @@ module.exports = function(defaults) {
       customHash: hash,
     },
 
+    emberData: {
+      compatWith: '3.16.0',
+    },
+
     ...addonConfig,
     ...serviceWorkerConfig(env),
     ...buildBabelConfig(env),

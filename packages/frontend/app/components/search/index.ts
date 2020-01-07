@@ -6,7 +6,7 @@ import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 import Task from 'ember-concurrency/task';
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import Contact from 'emberclear/models/contact';
 import Channel from 'emberclear/models/channel';
 import CurrentUserService from 'emberclear/services/current-user';

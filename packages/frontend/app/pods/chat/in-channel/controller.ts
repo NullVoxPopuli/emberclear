@@ -1,9 +1,12 @@
+import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 import { reads } from '@ember/object/computed';
 
 import { TARGET } from 'emberclear/models/message';
 
 export default class extends Controller {
+  @service store;
+
   @reads('model.targetChannel.id') id!: string;
 
   get messages() {

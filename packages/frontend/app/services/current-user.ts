@@ -7,7 +7,7 @@ import { inject as service } from '@ember/service';
 
 import ENV from 'emberclear/config/environment';
 import { toHex } from 'emberclear/utils/string-encoding';
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import User from 'emberclear/models/user';
 import WorkersService from './workers';
 import CryptoConnector from './workers/crypto';

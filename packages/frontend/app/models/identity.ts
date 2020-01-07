@@ -1,6 +1,4 @@
-import Model from 'ember-data/model';
-import DS from 'ember-data';
-const { attr } = DS;
+import Model, { attr } from '@ember-data/model';
 import { toHex } from 'emberclear/utils/string-encoding';
 
 export interface PublicKey {
