@@ -5867,10 +5867,10 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-els-addon-typed-templates@^2.0.21:
-  version "2.0.21"
-  resolved "https://registry.npmjs.org/els-addon-typed-templates/-/els-addon-typed-templates-2.0.21.tgz#88991831cae90d5f1f96248e503bd1822257399a"
-  integrity sha512-aWIN7c/mB8qLqStT9F+2LRZ0gCkUn+lVyIBGxaHMOkwkt8jR/k6rvn30dfiD2MBSCX62ci0kZ1kcv0T4k3aicQ==
+els-addon-typed-templates@^2.2.11:
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/els-addon-typed-templates/-/els-addon-typed-templates-2.2.11.tgz#20a0093b17f38ca391ac2a7104ee681342c0c4cd"
+  integrity sha512-xdrprZ2MHSauLFDUgOPkUO4SOONI+DetT5PJrFGXdWXYsLbh2UrNnpOajjOxVyecFgZwWNoY+ri9fnPO5m7DKg==
   dependencies:
     "@glimmer/interfaces" "^0.44.0"
     "@glimmer/opcode-compiler" "^0.44.0"
