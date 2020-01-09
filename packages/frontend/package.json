@@ -102,7 +102,7 @@
     "common-tags": "^1.8.0",
     "core-js": "^3.6.2",
     "cross-env": "^6.0.3",
-    "els-addon-typed-templates": "^2.0.21",
+    "els-addon-typed-templates": "^2.2.11",
     "ember-auto-import": "^1.5.3",
     "ember-cli": "^3.15.1",
     "ember-cli-app-version": "^3.2.0",
