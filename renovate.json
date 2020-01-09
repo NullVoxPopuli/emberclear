@@ -4,6 +4,9 @@
   ],
   "automerge": true,
   "masterIssue": true,
+  "ignorePaths": [
+      "packages/android-wrapper"
+  ],
   "packageRules": [
     {
       "paths": ["packages/benchmarks/**"],
