@@ -100,7 +100,7 @@
     "codecov": "^3.6.1",
     "colors": "^1.4.0",
     "common-tags": "^1.8.0",
-    "core-js": "^3.6.2",
+    "core-js": "^3.6.3",
     "cross-env": "^6.0.3",
     "els-addon-typed-templates": "^2.2.11",
     "ember-auto-import": "^1.5.3",
