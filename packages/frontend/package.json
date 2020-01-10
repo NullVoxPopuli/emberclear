@@ -39,7 +39,7 @@
     "hammerjs": "^2.0.8",
     "localforage": "^1.7.3",
     "phoenix": "^1.4.11",
-    "prismjs": "^1.17.1",
+    "prismjs": "^1.18.0",
     "prismjs-components-loader": "^3.0.1",
     "promise-worker-bi": "^4.0.0",
     "qr-scanner": "github:nimiq/qr-scanner",
