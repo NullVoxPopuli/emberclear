@@ -180,7 +180,7 @@
     "testem-gitlab-reporter": "^1.0.0",
     "testem-multi-reporter": "^1.2.0",
     "ts-node": "^8.5.4",
-    "typescript": "3.7.3"
+    "typescript": "3.7.4"
   },
   "engines": {
     "node": ">= 10.*"
