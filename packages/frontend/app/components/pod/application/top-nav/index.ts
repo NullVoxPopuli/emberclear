@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import { inject as service } from '@ember/service';
 
 import CurrentUserService from 'emberclear/services/current-user';

@@ -1,10 +1,11 @@
 import Message, { TARGET, TYPE } from '../message';
-import DS from 'ember-data';
+
+type RecordArray<T> = Array<T>;
 
 export function selectUnreadDirectMessages(
-  messages: Message[] | DS.RecordArray<Message>,
+  messages: Message[] | RecordArray<Message> | TODO<any>,
   fromId: string
-) {
+): Message[] {
   const filtered = selectUnreadMessages(messages).filter(m => {
     return m.from === fromId;
   });
@@ -12,8 +13,10 @@ export function selectUnreadDirectMessages(
   return filtered;
 }
 
-export function selectUnreadMessages(messages: Message[] | DS.RecordArray<Message>) {
-  const filtered = messages.filter(m => {
+export function selectUnreadMessages(
+  messages: Message[] | RecordArray<Message> | TODO<any>
+): Message[] {
+  const filtered = messages.filter((m: Message) => {
     return (
       // ember-data in-flight messages
       // don't yet have any fields
@@ -36,11 +39,11 @@ export async function markAsRead(message: Message) {
 }
 
 export function messagesForDM(
-  messages: DS.RecordArray<Message>,
+  messages: RecordArray<Message> | TODO<any>,
   me: string,
   chattingWithId: string
 ): Message[] {
-  let result = messages.filter(message => {
+  let result = messages.filter((message: Message) => {
     return isMessageDMBetween(message, me, chattingWithId);
   });
 

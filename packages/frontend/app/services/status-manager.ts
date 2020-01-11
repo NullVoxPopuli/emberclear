@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import ContactManager from 'emberclear/services/contact-manager';
 import Contact, { Status } from 'emberclear/models/contact';
 

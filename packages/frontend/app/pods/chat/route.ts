@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
+import StoreService from '@ember-data/store';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import RedirectManager from 'emberclear/services/redirect-manager';
@@ -15,6 +16,7 @@ export default class ChatRoute extends Route {
   @service currentUser!: CurrentUserService;
   @service redirectManager!: RedirectManager;
   @service connection!: ConnectionService;
+  @service store!: StoreService;
 
   beforeModel() {
     // identity should be loaded from application route

@@ -7,7 +7,7 @@ import { action } from '@ember/object';
 
 import { inject as service } from '@ember/service';
 
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
 import Channel from 'emberclear/models/channel';

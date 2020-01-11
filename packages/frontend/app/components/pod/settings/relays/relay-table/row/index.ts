@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import { inject as service } from '@ember/service';
 
 import Relay from 'emberclear/models/relay';

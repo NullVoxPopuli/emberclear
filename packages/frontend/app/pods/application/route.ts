@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { getOwner } from '@ember/application';
 
+import StoreService from '@ember-data/store';
 import LocaleService from 'emberclear/services/locale';
 import CurrentUserService from 'emberclear/services/current-user';
 
@@ -10,6 +11,7 @@ import Settings from 'emberclear/services/settings';
 import ConnectionService from 'emberclear/services/connection';
 
 export default class ApplicationRoute extends Route {
+  @service store!: StoreService;
   @service currentUser!: CurrentUserService;
   @service locale!: LocaleService;
   @service settings!: Settings;

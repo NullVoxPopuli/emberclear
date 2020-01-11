@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 import CurrentUserService from 'emberclear/services/current-user';
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 
 export default class DangerSettings extends Component {
   @service store!: StoreService;

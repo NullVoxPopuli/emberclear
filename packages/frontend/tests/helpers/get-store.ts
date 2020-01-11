@@ -1,4 +1,4 @@
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 
 import { getService } from './get-service';
 

@@ -1,5 +1,5 @@
 import Modifier from 'ember-modifier';
-import StoreService from 'ember-data/store';
+import StoreService from '@ember-data/store';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 import Task from 'ember-concurrency/task';
