@@ -44,7 +44,7 @@
     "promise-worker-bi": "^4.0.0",
     "qr-scanner": "github:nimiq/qr-scanner",
     "qrcode": "^1.4.4",
-    "shoelace-css": "^1.0.0-beta24",
+    "shoelace-css": "^1.0.0-beta9",
     "showdown": "^1.9.1",
     "toastify-js": "^1.6.2",
     "tweetnacl": "^1.0.1",
