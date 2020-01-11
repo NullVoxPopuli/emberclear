@@ -47,7 +47,7 @@ function singularize(str) {
 
 export default class ApplicationSerializer {
   static create() {
-    return new this();
+    return new ApplicationSerializer();
   }
 
   normalizeResponse(_store, _schema, jsonApiDocument) {
