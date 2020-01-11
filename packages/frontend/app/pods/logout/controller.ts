@@ -3,13 +3,14 @@ import localforage from 'localforage';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
+import StoreService from '@ember-data/store';
 import CurrentUserService from 'emberclear/services/current-user';
 import ConnectionService from 'emberclear/services/connection';
 
 export default class LogoutController extends Controller {
   @service currentUser!: CurrentUserService;
   @service connection!: ConnectionService;
-  @service store;
+  @service store!: StoreService;
 
   @action
   async logout(this: LogoutController) {

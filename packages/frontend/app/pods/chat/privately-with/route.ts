@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
+import StoreService from '@ember-data/store';
 import CurrentUserService, { currentUserId } from 'emberclear/services/current-user';
 import ChatScroller from 'emberclear/services/chat-scroller';
 
@@ -13,7 +14,7 @@ export default class ChatPrivatelyRoute extends Route {
   @service chatScroller!: ChatScroller;
   @service toast!: Toast;
   @service intl!: Intl;
-  @service store;
+  @service store!: StoreService;
 
   beforeModel(transition: any) {
     let params = transition.to.params;

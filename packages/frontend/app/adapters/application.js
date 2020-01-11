@@ -77,8 +77,6 @@ const LFAdapter = EmberObject.extend(Evented, {
     return true;
   },
 
-
-
   /**
    * This is the main entry point into finding records. The first parameter to
    * this method is the model's name as a string.
@@ -244,7 +242,7 @@ const LFAdapter = EmberObject.extend(Evented, {
     }
 
     return this._loadData().then(storage => {
-      const namespaceData = (storage && storage[modelNamespace]) || { records: {} };
+      const namespaceData = storage?.[modelNamespace] || { records: {} };
 
       if (this.caching === 'model') {
         this.cache.set(modelNamespace, namespaceData);
