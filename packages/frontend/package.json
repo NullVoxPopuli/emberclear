@@ -73,7 +73,7 @@
     "@glimmer/component": "1.0.0",
     "@glimmer/tracking": "^1.0.0",
     "@html-next/vertical-collection": "^1.0.0",
-    "@rollup/plugin-node-resolve": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^7.0.0",
     "@types/bip39": "^3.0.0",
     "@types/common-tags": "^1.8.0",
     "@types/dompurify": "2.0.1",
