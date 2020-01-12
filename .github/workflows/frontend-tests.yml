@@ -81,11 +81,11 @@ jobs:
 
     steps:
     - name: 'Wait for status checks'
-        id: waitforstatuschecks
-        uses: "WyriHaximus/github-action-wait-for-status@master"
-        with:
-          ignoreActions: tests_e2e,"E2E Tests"
-          checkInterval: 30
+      id: waitforstatuschecks
+      uses: "WyriHaximus/github-action-wait-for-status@master"
+      with:
+        ignoreActions: tests_e2e,"E2E Tests"
+        checkInterval: 30
 
     - uses: actions/checkout@v1
     - uses: rwjblue/setup-volta@v1
