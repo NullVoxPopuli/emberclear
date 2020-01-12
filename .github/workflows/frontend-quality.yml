@@ -4,6 +4,8 @@ on:
     branches: [master]
     # paths:
     #   - 'packages/frontend/*'
+env:
+  cwd: packages/frontend
 
 jobs:
   security:
@@ -12,16 +14,15 @@ jobs:
     timeout-minutes: 5
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: rwjblue/setup-volta@v1
     - name: Install
       run: npm install -g snyk
     - name: Snyk
+      working-directory: ${{ env.cwd }}
       if: github.event == 'pull_request'
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      run: cd packages/frontend && snyk test --severity-threshold=high
+      run: snyk test --severity-threshold=high
 
   lint_js:
     name: "Lint JS/TS"
@@ -30,13 +31,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: rwjblue/setup-volta@v1
+
     - name: Install
-      run: ./run yarn install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
+
     - name: "Lint JS/TS"
-      run: ./run yarn lint:js
+      working-directory: ${{ env.cwd }}
+      run: yarn lint:js
 
   lint_templates:
     name: "Lint Templates"
@@ -45,13 +48,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: rwjblue/setup-volta@v1
+
     - name: Install
-      run: ./run yarn install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
+
     - name: Lint Templates
-      run: ./run yarn lint:hbs
+      working-directory: ${{ env.cwd }}
+      run: yarn lint:hbs
 
 
   lint_styles:
@@ -61,13 +66,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: rwjblue/setup-volta@v1
     - name: Install
-      run: ./run yarn install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
+
     - name: Lint Styles
-      run: ./run yarn lint:styles
+      working-directory: ${{ env.cwd }}
+      run: yarn lint:styles
 
 
   lint_translations:
@@ -77,14 +83,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: rwjblue/setup-volta@v1
+
     - name: Install
-      run: ./run yarn install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
+
     # This is broken on modern syntax.......
     - name: Lint Translations
-      run: ./run yarn lint:i18n
+      working-directory: ${{ env.cwd }}
+      run: yarn lint:i18n
       continue-on-error: true
 
 
@@ -95,12 +103,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: rwjblue/setup-volta@v1
+
     - name: Install
-      run: ./run yarn install
-    # Types on Canary are a mess right now :(
+      working-directory: ${{ env.cwd }}
+      run: yarn install
+
     - name: Type Checking
-      run: ./run yarn tsc --skipLibCheck
+      working-directory: ${{ env.cwd }}
+      run: yarn tsc --skipLibCheck
 

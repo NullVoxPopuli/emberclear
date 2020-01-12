@@ -4,6 +4,8 @@ on:
     branches: [master]
     # paths:
     #   - 'packages/frontend/*'
+env:
+  cwd: packages/frontend
 
 jobs:
   tests:
@@ -18,21 +20,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
+    - uses: rwjblue/setup-volta@v1
     - name: Install
-      run: |
-        cd packages/frontend
-        yarn install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
 
     - name: Test
+      working-directory: ${{ env.cwd }}
       env:
         CI_BROWSER: ${{ matrix.ci_browser }}
-      run: |
-        cd packages/frontend
-
-        ./scripts/test-with-coverage.sh
+      run: ./scripts/test-with-coverage.sh
 
     - name: Upload Coverage to Coveralls
       uses: coverallsapp/github-action@v1.0.1
@@ -47,13 +44,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
+    - uses: rwjblue/setup-volta@v1
+
     - name: Install
-      run: ./run yarn install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
+
     - name: Analyze Bundle
-      run: ./run yarn analyze
+      working-directory: ${{ env.cwd }}
+      run: yarn analyze
 
   tests_visual:
     name: Visual Tests
@@ -62,16 +61,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
+    - uses: rwjblue/setup-volta@v1
+
     - name: Install
-      run: ./run yarn install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
+
     - name: Test
+      working-directory: ${{ env.cwd }}
       if: github.event == 'pull_request'
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-      run: PERCY_ENABLE=1 time ./run yarn test --filter Acceptance
+      run: PERCY_ENABLE=1 time yarn test --filter Acceptance
 
   tests_e2e:
     name: E2E Tests
@@ -79,12 +80,16 @@ jobs:
     timeout-minutes: 15
 
     steps:
+    - name: 'Wait for status checks'
+        id: waitforstatuschecks
+        uses: "WyriHaximus/github-action-wait-for-status@master"
+        with:
+          ignoreActions: tests_e2e,"E2E Tests"
+          checkInterval: 30
+
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
+    - uses: rwjblue/setup-volta@v1
+
     - name: Test
-      run: |
-        cd packages/smoke-tests \
-        && yarn \
-        && yarn test --target pull-request --headless
+      working-directory: packages/smoke-tests
+      run: yarn && yarn test --target pull-request --headless

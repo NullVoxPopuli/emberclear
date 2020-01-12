@@ -4,37 +4,32 @@ on:
     branches: [master]
     # paths:
     #   - 'packages/frontend/*'
+env:
+  cwd: packages/frontend
 
 jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: rwjblue/setup-volta@v1
     - name: Install
-      run: |
-        cd packages/frontend
-        yarn install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
 
     - name: Test
+      working-directory: ${{ env.cwd }}
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-      run: |
-        cd packages/frontend
-
-        ./scripts/test-with-coverage.sh
+      run: ./scripts/test-with-coverage.sh
 
     - name: Upload Coverage to Coveralls
       uses: coverallsapp/github-action@v1.0.1
       with:
         github-token: ${{ secrets.github_token }}
         path-to-lcov: ./packages/frontend/coverage/lcov.info
-
 
     - name: Upload Coverage Artifacts
       uses: actions/upload-artifact@v1
@@ -51,9 +46,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: rwjblue/setup-volta@v1
 
     - name: Download Coverage Artifacts
       uses: actions/download-artifact@v1
@@ -61,7 +54,8 @@ jobs:
         name: coverage
         path: packages/frontend/coverage/
     - name: Install
-      run: ./run yarn install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
 
     - name: Deploy to Netlify
       env:
@@ -71,8 +65,12 @@ jobs:
         NETLIFY_CLI_VERSION: 0.4.0
       run: |
         mv packages/frontend/coverage packages/frontend/public/
-        time ./run yarn analyze
-        time ./run yarn build:production
+
+        ( cd packages/frontend \
+          && time yarn analyze \
+          && time yarn build:production
+        )
+
         time ./scripts/publish
 
     - name: Upload Built Asset Artifacts
@@ -114,9 +112,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
+    - uses: rwjblue/setup-volta@v1
     - name: Test
       run: |
         cd packages/smoke-tests \
