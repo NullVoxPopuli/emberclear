@@ -113,8 +113,16 @@ jobs:
     - deploy
 
     steps:
+    - name: 'Wait for status checks'
+      id: waitforstatuschecks
+      uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
+      with:
+        ignoreActions: tests_e2e,"E2E Tests"
+        checkInterval: 30
+
     - uses: actions/checkout@v1
     - uses: rwjblue/setup-volta@v1
+
     - name: Test
       run: |
         cd packages/smoke-tests \
