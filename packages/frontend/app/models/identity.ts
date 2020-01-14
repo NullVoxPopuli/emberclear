@@ -8,9 +8,14 @@ export interface PublicKey {
 export default class Identity extends Model implements Partial<PublicKey> {
   @attr() name!: string;
   @attr() publicKey!: Uint8Array;
+  @attr() verified!: boolean;
 
   get publicKeyAsHex() {
     return toHex(this.publicKey);
+  }
+
+  get verification() {
+    return this.verified ? 'models.identity.verified' : 'models.identity.unverified';
   }
 
   get uid() {

@@ -103,6 +103,9 @@ models:
   identity:
     name: Nom
     publicKey: Clé publique
+    verification: Statut de vérification
+    verified: vérifié
+    unverified: non vérifié
   message:
     autosendPending: autosend pending
     errors:

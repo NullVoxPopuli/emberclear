@@ -103,6 +103,9 @@ models:
   identity:
     name: Nombre
     publicKey: Llave Pública
+    verification: Estado de verificación
+    verified: verificado
+    unverified: inconfirmado
   message:
     autosendPending: reenvío automático pendiente
     errors:

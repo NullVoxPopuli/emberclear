@@ -103,6 +103,9 @@ models:
   identity:
     name: Имя
     publicKey: Публичный ключ
+    verification: Статус проверки
+    verified: подтвержденному
+    unverified: непроверенный
   message:
     autosendPending: ожидание отправки
     errors:

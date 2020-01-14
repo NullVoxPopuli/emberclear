@@ -3,6 +3,7 @@
     <tr>
       <th>{{t 'models.identity.name'}}</th>
       <th>{{t 'models.identity.publicKey'}}</th>
+      <th>{{t 'models.identity.verification'}}</th>
       <th></th>
     </tr>
   </thead>
@@ -15,6 +16,13 @@
         </td>
         <td>
           {{first-8 contact.publicKeyAsHex}}...
+        </td>
+        <td>
+          <a class='button' 
+            href={{url-for 'chat.privately-with' contact.id}}
+            {{on 'click' (transition-to (url-for 'chat.privately-with' contact.id))}}>
+            {{t contact.verification}}
+          </a>
         </td>
         <td class='flex justify-content-end'>
           <button

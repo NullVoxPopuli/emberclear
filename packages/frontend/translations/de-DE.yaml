@@ -103,6 +103,9 @@ models:
   identity:
     name: Name
     publicKey: Öffentlicher Schlüssel
+    verification: Bestätigungsstatus
+    verified: verifiziert
+    unverified: nicht verifiziert
   message:
     autosendPending: automatische Sendung steht aus
     errors:
