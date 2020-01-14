@@ -41,7 +41,7 @@
     "phoenix": "^1.4.11",
     "prismjs": "^1.19.0",
     "prismjs-components-loader": "^3.0.1",
-    "promise-worker-bi": "^4.0.0",
+    "promise-worker-bi": "^4.0.1",
     "qr-scanner": "github:nimiq/qr-scanner",
     "qrcode": "^1.4.4",
     "shoelace-css": "^1.0.0-beta24",

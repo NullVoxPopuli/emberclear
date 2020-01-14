@@ -12412,10 +12412,10 @@ promise-map-series@^0.2.1, promise-map-series@^0.2.3:
   dependencies:
     rsvp "^3.0.14"
 
-promise-worker-bi@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/promise-worker-bi/-/promise-worker-bi-4.0.0.tgz#46cfe5f3cacedd3a4155d13938c0db41eea89bda"
-  integrity sha512-65nrAQ23vp8EHeDpZcbWSL4BYfVcRiwInWTJy+hPWbXP9Hc7OIr3oDrRX5oLZSo7OhBZoUZEl/Q3aAq3L6zt1A==
+promise-worker-bi@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/promise-worker-bi/-/promise-worker-bi-4.0.1.tgz#c75e19d171552c083c771324cbe535bff553462a"
+  integrity sha512-WlEfzU6OIku9IaXUB531EKbGqjD178W58y2WSRQZ5uGHvFod5JXRT1++o4Lik1PUMyO3PZibuGa09cIk/9Vf6w==
 
 promise.prototype.finally@^3.1.0, promise.prototype.finally@^3.1.1:
   version "3.1.1"
