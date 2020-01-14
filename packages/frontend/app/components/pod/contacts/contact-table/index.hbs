@@ -19,8 +19,8 @@
         </td>
         <td>
           <a class='button' 
-            href={{url-for 'chat.privately-with' contact.id}}
-            {{on 'click' (transition-to (url-for 'chat.privately-with' contact.id))}}>
+            href={{url-for 'contacts.verify-friend' contact.id}}
+            {{on 'click' (transition-to (url-for 'contacts.verify-friend' contact.id))}}>
             {{t contact.verification}}
           </a>
         </td>
