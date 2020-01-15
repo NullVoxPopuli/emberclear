@@ -6890,6 +6890,14 @@ ember-test-waiters@^1.1.1:
   dependencies:
     ember-cli-babel "^7.1.2"
 
+ember-test-waiters@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ember-test-waiters/-/ember-test-waiters-1.2.0.tgz#c12ead4313934c24cff41857020cacdbf8e6effe"
+  integrity sha512-aEw7YuutLuJT4NUuPTNiGFwgTYl23ThqmBxSkfFimQAn+keWjAftykk3dlFELuhsJhYW/S8YoVjN0bSAQRLNtw==
+  dependencies:
+    ember-cli-babel "^7.11.0"
+    semver "^6.3.0"
+
 ember-uuid@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/ember-uuid/-/ember-uuid-1.0.1.tgz#d638c61a189dd74b960dacd332b31f996fa7bf86"
