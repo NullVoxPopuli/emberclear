@@ -7,12 +7,12 @@ import { Machine } from 'xstate';
 
 export interface Schema {
   states: {
-    IDLE: {},
-    CONNECTED: {},
-    REMOTE_INITIATED: {},
-    WE_INITIATED: {},
-    RATCHET_COMPLETE: {}
-  }
+    IDLE: {};
+    CONNECTED: {};
+    REMOTE_INITIATED: {};
+    WE_INITIATED: {};
+    RATCHET_COMPLETE: {};
+  };
 }
 
 export type Event =
@@ -21,7 +21,7 @@ export type Event =
   | { type: 'ONLINE_CONFIRMED' }
   | { type: 'RECEIVED_KEY' }
   | { type: 'COMPLETED' }
-  | { type: 'SENT_KEY' }
+  | { type: 'SENT_KEY' };
 
 const TRANSITION = {
   CONNECT: 'CONNECT',

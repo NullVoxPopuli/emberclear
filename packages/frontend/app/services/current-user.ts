@@ -148,6 +148,7 @@ export default class CurrentUserService extends Service {
     return this.record;
   }
 
+  // TODO: use @use/@resource?
   hydrateCrypto(user?: User) {
     if (this.crypto) {
       if (user) {

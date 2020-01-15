@@ -9,7 +9,6 @@ import CurrentUserService from 'emberclear/services/current-user';
 import { ensureRelays, ensureAtLeastOneContact } from 'emberclear/utils/data/required-data';
 import Settings from 'emberclear/services/settings';
 import ConnectionService from 'emberclear/services/connection';
-import TransferToDevice from 'emberclear/services/current-user/transfer-to-device';
 
 export default class ApplicationRoute extends Route {
   @service store!: StoreService;
@@ -17,7 +16,6 @@ export default class ApplicationRoute extends Route {
   @service locale!: LocaleService;
   @service settings!: Settings;
   @service connection!: ConnectionService;
-  @service('current-user/transfer-to-device') transfer!: TransferToDevice;
 
   async beforeModel() {
     (this.store as any).shouldTrackAsyncRequests = true;
@@ -31,7 +29,6 @@ export default class ApplicationRoute extends Route {
     await this.currentUser.load();
 
     await ensureAtLeastOneContact(getOwner(this));
-    this.transfer.test();
   }
 
   async model() {

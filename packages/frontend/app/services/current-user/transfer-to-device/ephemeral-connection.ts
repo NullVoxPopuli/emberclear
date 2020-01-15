@@ -1,9 +1,17 @@
-import Service from '@ember/service';
+import Service, { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
+
+import { toHex } from 'emberclear/utils/string-encoding';
+
+import { Connection } from 'emberclear/services/connection/connection';
+
 import Task from 'ember-concurrency/task';
-import {generateAsymmetricKeys} from 'emberclear/utils/nacl/utils';
-import {toHex} from 'emberclear/utils/string-encoding';
+import ArrayProxy from '@ember/array/proxy';
+import Relay from 'emberclear/models/relay';
+import StoreService from '@ember-data/store';
 import TransferToDevice from 'emberclear/services/current-user/transfer-to-device';
+import WorkersService from 'emberclear/services/workers';
+import CryptoConnector from 'emberclear/services/workers/crypto';
 
 const EXPIRE_IN = 300000; // five minutes
 
@@ -22,23 +30,72 @@ const EXPIRE_IN = 300000; // five minutes
  *
  */
 export default class EphemeralConnection extends Service {
-  private privateKey?: Uint8Array;
-  private publicKey?: Uint8Array;
-  private channelKey?: string;
+  @service workers!: WorkersService;
+  @service store!: StoreService;
 
-  @(task(function*(this: EphemeralConnection) {
-    yield this.generateKeys();
+  crypto?: CryptoConnector;
 
-  })) start!: Task;
+  @task(function*(this: EphemeralConnection) {
+    this.hydrateCrypto();
+    const keys = yield this.crypto!.generateKeys();
 
-  private async generateKeys() {
-    let keyPair = await generateAsymmetricKeys();
+    this.hydrateCrypto(keys);
 
-    this.privateKey = keyPair.privateKey;
-    this.publicKey = keyPair.publicKey;
-    this.channelKey = `ect-${toHex(this.publicKey)}`;
+    let channelKey = `ect-${toHex(keys.publicKey)}`;
+
+    // TODO: is it possible to re-use the existing connection pool?
+
+    // TODO: copy / extract ConnectionManager#setup
+    let relays = yield this.store.findAll('relay') as ArrayProxy<Relay>;
+
+    yield this.createConnection(relays[0], channelKey);
+    // TODO: figure out how to join additional channels
+    //       or to create new connections outside the realm of a "service"
+    //       see: ConnectionManager#createConnection
+
+    // TODO if the transfer completes, return early
+
+    yield timeout(EXPIRE_IN);
+
+    // TODO: teardown the connection and destroy the crypto keys
+  })
+  start!: Task;
+
+  // TODO: use @use/@resource?
+  hydrateCrypto(user?: KeyPair) {
+    if (this.crypto) {
+      if (user) {
+        this.crypto.keys = user;
+      }
+
+      return;
+    }
+
+    this.crypto = new CryptoConnector({
+      workerService: this.workers,
+      keys: user,
+    });
   }
 
+  // TODO: use @use/@resource?
+  // ref: Connection/Manager
+  private async createConnection(relay: Relay, channel: string) {
+    let instance = new Connection({
+      relay,
+      publicKey: channel,
+      onData: data => {
+        console.debug('onData', data);
+      },
+      onInfo: info => {
+        console.debug('onInfo', info);
+      },
+    });
+
+    // Do connect / subscribe, etc
+    await instance.connect();
+
+    return instance;
+  }
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

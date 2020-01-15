@@ -42,7 +42,7 @@ export default class TransferToDevice extends Service {
   private handleEvent(listenerState: State<{}, Event>) {
     const {
       event: { type: eventName },
-      value: currentState,
+      // value: currentState,
     } = listenerState;
 
     // This represents the linear flow of the state machine between the two computers
@@ -113,7 +113,7 @@ export default class TransferToDevice extends Service {
         this.router.transitionTo('login.import-from-device.done');
         break;
       default:
-        console.log('not handled', eventName);
+        console.error('not handled', eventName);
     }
   }
 
