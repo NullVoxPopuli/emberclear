@@ -5,13 +5,23 @@ import { Machine } from 'xstate';
 //
 //https://statecharts.github.io/xstate-viz/
 
-const STATE = {
-  IDLE: 'IDLE',
-  CONNECTED: 'CONNECTED',
-  REMOTE_INITIATED: 'REMOTE_INITIATED',
-  WE_INITIATED: 'WE_INITIATED',
-  RATCHET_COMPLETE: 'RATCHET_COMPLETE',
-};
+export interface Schema {
+  states: {
+    IDLE: {},
+    CONNECTED: {},
+    REMOTE_INITIATED: {},
+    WE_INITIATED: {},
+    RATCHET_COMPLETE: {}
+  }
+}
+
+export type Event =
+  | { type: 'CONNECT' }
+  | { type: 'DISCONNECT' }
+  | { type: 'ONLINE_CONFIRMED' }
+  | { type: 'RECEIVED_KEY' }
+  | { type: 'COMPLETED' }
+  | { type: 'SENT_KEY' }
 
 const TRANSITION = {
   CONNECT: 'CONNECT',
@@ -21,31 +31,31 @@ const TRANSITION = {
   COMPLETED: 'COMPLETED',
 };
 
-export const ratchetMachine = Machine({
+export const ratchetMachine = Machine<{}, Schema, Event>({
   id: 'key-exchange',
-  initial: STATE.IDLE,
+  initial: 'IDLE',
   states: {
-    [STATE.IDLE]: {
-      on: { [TRANSITION.CONNECT]: [STATE.CONNECTED] },
+    IDLE: {
+      on: { [TRANSITION.CONNECT]: ['CONNECTED'] },
     },
 
-    [STATE.CONNECTED]: {
+    CONNECTED: {
       on: {
-        ONLINE_CONFIRMED: STATE.WE_INITIATED,
-        RECEIVED_KEY: STATE.REMOTE_INITIATED,
+        ONLINE_CONFIRMED: 'WE_INITIATED',
+        RECEIVED_KEY: 'REMOTE_INITIATED',
       },
     },
 
-    [STATE.REMOTE_INITIATED]: {
-      on: { SENT_KEY: STATE.RATCHET_COMPLETE },
+    REMOTE_INITIATED: {
+      on: { SENT_KEY: 'RATCHET_COMPLETE' },
     },
 
-    [STATE.WE_INITIATED]: {
-      on: { RECEIVED_KEY: STATE.RATCHET_COMPLETE },
+    WE_INITIATED: {
+      on: { RECEIVED_KEY: 'RATCHET_COMPLETE' },
     },
 
-    [STATE.RATCHET_COMPLETE]: {
-      on: { [TRANSITION.DISCONNECT]: STATE.IDLE },
+    RATCHET_COMPLETE: {
+      on: { [TRANSITION.DISCONNECT]: 'IDLE' },
     },
   },
 });
