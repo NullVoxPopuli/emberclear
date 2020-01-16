@@ -123,7 +123,7 @@
     "ember-cli-typescript": "^3.1.2",
     "ember-cli-uglify": "^3.0.0",
     "ember-computed-promise-monitor": "^0.4.0",
-    "ember-concurrency": "1.1.4",
+    "ember-concurrency": "1.1.5",
     "ember-concurrency-decorators": "^1.0.0",
     "ember-concurrency-test-waiter": "^0.3.1",
     "ember-exam": "^4.0.9",
