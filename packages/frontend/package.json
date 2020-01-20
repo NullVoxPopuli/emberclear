@@ -50,7 +50,7 @@
     "tweetnacl": "^1.0.1",
     "tweetnacl-util": "^0.15.0",
     "url-parse": "^1.4.7",
-    "uuid": "^3.3.3"
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
