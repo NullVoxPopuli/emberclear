@@ -22,11 +22,7 @@ Router.map(function() {
   this.route('contacts');
 
   this.route('login', function() {
-    this.route('import-from-device', function() {
-      this.route('enter-code');
-      this.route('waiting-for-data');
-      this.route('done');
-    });
+    this.route('import');
   });
 
   this.route('invite');
@@ -36,11 +32,7 @@ Router.map(function() {
     this.route('relays');
     this.route('danger-zone');
 
-    this.route('transfer-to-device', function() {
-      this.route('waiting-for-auth');
-      this.route('send-data');
-      this.route('done');
-    });
+    this.route('transfer');
   });
   this.route('faq');
 
