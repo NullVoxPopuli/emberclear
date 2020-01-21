@@ -1,112 +1,201 @@
 import { Machine } from 'xstate';
+import { Context, Schema, Event } from './tranfer-to-device.types';
 
-// Stateless machine definition
-// machine.transition(...) is a pure function used by the interpreter.
+// https://xstate.js.org/viz/?gist=23cf0c840cf6403ae6a3f37e9095735f
+// "Transfer Account to a new Device"
 //
-//https://statecharts.github.io/xstate-viz/
-export interface Schema {
-  states: {
-    IDLE: {};
-    WAITING_FOR_START: {
-      states: {
-        WAITING_FOR_AUTH: {};
-        AUTHORIZED: {};
-      };
-    };
-    SCANNED_TARGET: {
-      states: {
-        WAITING_FOR_CODE: {};
-        WAITING_FOR_DATA: {};
-      };
-    };
-  };
-}
-
-export type Event =
-  | { type: 'INITIATE_TRANSFER_REQUEST' }
-  | { type: 'SCAN_TARGET_PROFILE' }
-  | { type: 'RECEIVE_READY' }
-  | { type: 'RECEIVE_CODE' }
-  | { type: 'DATA_SENT' }
-  | { type: 'SEND_READY' }
-  | { type: 'SEND_CODE' }
-  | { type: 'DATA_RECEIVED' };
-
-export const TRANSITION = {
-  START: 'INITIATE_TRANSFER_REQUEST',
-  SCAN_TARGET_PROFILE: 'SCAN_TARGET_PROFILE',
-  RECEIVE_READY: 'RECEIVE_READY',
-  RECEIVE_CODE: 'RECEIVE_CODE',
-  DATA_SENT: 'DATA_SENT',
-  SEND_READY: 'SEND_READY',
-  SEND_CODE: 'SEND_CODE',
-  DATA_RECEIVED: 'DATA_RECEIVED',
-} as const;
-
-export const transferToDeviceMachine = Machine<{}, Schema, Event>({
+// This could be two machines
+// but they are mutually exclusive.
+// so the lightweight top-level machine
+// maintains that mutual exclusivity
+export const transferToDeviceMachine = Machine<Context, Schema, Event>({
   id: 'transfer-to-device',
-  initial: 'IDLE',
+  initial: 'idle',
+
   states: {
-    IDLE: {
+    idle: {
       on: {
-        [TRANSITION.START]: 'WAITING_FOR_START',
-        [TRANSITION.SCAN_TARGET_PROFILE]: 'SCANNED_TARGET',
-      },
+        // 1. (Source)
+        //    Initiate Intent to Transfer
+        //    Wait for Destination device to Scan Code
+        //    NOTE: QR Code only contains ephemeral Public Key
+        SOURCE_INITIATE: 'source',
+        // 2. (Destination)
+        //    On Login Screen click,
+        //    "Transfer Profile from another device"
+        DESTINATION_SCANNED_SOURCE_QR_CODE: 'destination',
+    },
     },
 
-    // START
-    // generate ehemeral keys
-    // generate QR Code to scan
-    //  - only contains public key
-    WAITING_FOR_START: {
+    source: {
+      onDone: 'idle',
+      initial: 'wait_for_scan_from_destination',
+      entry: [
+        'generateEphemeralKeys',
+        'establishConnection'
+      ],
+      exit: ['destroyConnection'],
       on: {
-        [TRANSITION.RECEIVE_READY]: 'WAITING_FOR_START.WAITING_FOR_AUTH',
+
       },
-      initial: 'WAITING_FOR_AUTH',
       states: {
-        // this is where the originator waits for
-        // the new device to send a code confirm that
-        // they are owned by the same person.
-        //
-        // generate code
-        // - display code on screen
-        // - do NOT send the code.
-        WAITING_FOR_AUTH: {
+        // after we send confirmation of existence
+        // generate a random code / transition
+        // to a page that shows this code in a
+        // friendly way. DO NOT SEND THIS CODE.
+        wait_for_scan_from_destination: {
           on: {
-            [TRANSITION.RECEIVE_CODE]: 'AUTHORIZED',
+            RECEIVED_TRANSFER_REQUEST: {
+              target: 'wait_for_auth',
+            }
+          }
+        },
+
+        wait_for_auth: {
+          entry: [
+            'generateSecretCode'
+          ],
+          on: {
+           RECEIVED_CODE: [
+            {
+              target: 'destination_authorized',
+              cond: 'isCodeCorrect',
+              actions: ['onAuthorizationSuccess']
+            },
+            {
+              target: 'wait_for_auth',
+              actions: ['onAuthorizationFailure']
+            }
+          ]
           },
         },
 
-        AUTHORIZED: {
+
+        // authorized
+        destination_authorized: {
+          entry: ['hashData', 'sendData'],
           on: {
-            [TRANSITION.DATA_SENT]: 'IDLE',
-          },
+            ALL_DATA_SENT: 'wait_for_verification_hash',
+          }
         },
-      },
+
+        wait_for_verification_hash: {
+
+          on: {
+            RECEIVED_VERIFICATION_HASH: [
+              {
+                target: 'finished',
+                cond: 'isHashCorrect',
+                actions: ['onDataVerificationSuccess']
+              },
+              {
+                target: 'data_send_failure',
+                actions: ['onDataVerificationFailure']
+              }
+            ]
+          }
+        },
+
+        data_send_failure: {
+          on: {
+            RETRY: {
+              target: 'destination_authorized',
+              actions: [
+                // transitionTo: pending auth
+                'onSendRetry',
+              ],
+            }
+          }
+        },
+
+
+        finished: {
+          entry: ['onDataSent'],
+          type: 'final'
+        }
+      }
     },
 
-    // scan QR Code
-    // generate ehemeral keys
-    //  - scanned public key is originator
-    // send "ready" message to originator
-    SCANNED_TARGET: {
+    destination: {
+      entry: ['establishConnection', 'sendHello'],
+      onDone: 'idle',
+      initial: 'wait_for_confirmation_of_connection',
       on: {
-        [TRANSITION.SEND_READY]: 'WAITING_FOR_CODE',
+
       },
-      initial: 'WAITING_FOR_CODE',
       states: {
-        WAITING_FOR_CODE: {
+        // once received, transition to input screen
+        // to authorize. The code is NOT sent.
+        wait_for_confirmation_of_connection: {
           on: {
-            [TRANSITION.SEND_CODE]: 'WAITING_FOR_DATA',
+            CONFIRMATION_RECEIVED: 'enter_code'
+          }
+        },
+
+        enter_code: {
+          entry: ['transitionToCodeEntry'],
+          on: {
+            SUBMIT_CODE: {
+              target: 'wait_for_validation',
+              actions: ['waiting']
+            }
+          }
+        },
+
+        wait_for_validation: {
+          on: {
+            VALIDATION_RECEIVED: [
+              {
+                target: 'receiving_data',
+                cond: 'isCodeCorrect',
+                actions: ['flashCodeConfirmed']
+              },
+              {
+                target: 'enter_code',
+                actions: ['raiseFailedAuth']
+              }
+            ]
           },
         },
 
-        WAITING_FOR_DATA: {
+        receiving_data: {
           on: {
-            [TRANSITION.DATA_RECEIVED]: 'IDLE',
-          },
+            ALL_DATA_SENT: 'wait_for_data_hash_verification'
+          }
         },
-      },
+
+        wait_for_data_hash_verification: {
+          entry: ['sendDataHash'],
+          on: {
+            VERIFICATION_RESPONSE_RECEIVED: [
+              {
+                target: 'finished',
+                cond: 'isHashCorrect',
+                actions: ['onHashCorrect'],
+              },
+              {
+                target: 'data_receive_failure',
+                actions: ['onHashFailure'],
+              }
+            ]
+          }
+        },
+
+        data_receive_failure: {
+          on: {
+            RETRY: {
+              target: 'wait_for_validation',
+              actions: ['onReceiveRetry'],
+            }
+          }
+        },
+
+
+        finished: {
+          type: 'final',
+          entry: 'onDataReceived'
+        }
+      }
     },
   },
 });
