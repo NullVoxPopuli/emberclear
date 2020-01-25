@@ -6808,10 +6808,10 @@ ember-modifier-manager-polyfill@^1.0.3, ember-modifier-manager-polyfill@^1.1.0, 
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.2.0"
 
-ember-modifier@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/ember-modifier/-/ember-modifier-1.0.2.tgz#475ca6d0a5b47cde8077903328ad1ec99e562be8"
-  integrity sha512-YyZ6etJpeMTcrtNJvP+NmyJ+uA2DsYAIg4Mxg9ndYPbe6oXnNTnYQbvF7VIIUuY0Z7zfZ0CwCukFVQESBlJ6Eg==
+ember-modifier@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ember-modifier/-/ember-modifier-1.0.3.tgz#ab18250666aad17c0d9170feb178e954148eb4ed"
+  integrity sha512-vWuFyvdkULUyasvEXxe5lcfuPZV/Uqe+b0IQ1yU+TY1RSJnFdVUu/CVHT8Bu4HUJInqzAihwPMTwty7fypzi5Q==
   dependencies:
     ember-cli-babel "^7.11.1"
     ember-cli-is-package-missing "^1.0.0"
