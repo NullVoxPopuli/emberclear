@@ -1081,19 +1081,19 @@
     ember-cli-test-info "^1.0.0"
     ember-cli-typescript "^3.1.1"
 
-"@ember-data/model@3.16.0-beta.0":
-  version "3.16.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@ember-data/model/-/model-3.16.0-beta.0.tgz#c0546a5dffbf87ad43e7bc92645c6137b25910c2"
-  integrity sha512-CXPBN2q5R7pB+CRiSitc4qWx1QQg9BmQ3OT+N4TIslm1Ve51yjZS7EFqblJo2ppN7fBss2FbrBWn2286cseqEA==
+"@ember-data/model@3.16.0":
+  version "3.16.0"
+  resolved "https://registry.yarnpkg.com/@ember-data/model/-/model-3.16.0.tgz#9c9c3a52662fe530ce951425496c0cf862dd1813"
+  integrity sha512-9OQx//9YRBqBdMAPP85vBJEXZ54FtBdgu0evFiyMWDCwaA3rG1xBELEsLlrtDltbag3MU0H99YXLppqAFROjXw==
   dependencies:
-    "@ember-data/canary-features" "3.16.0-beta.0"
-    "@ember-data/private-build-infra" "3.16.0-beta.0"
-    "@ember-data/store" "3.16.0-beta.0"
+    "@ember-data/canary-features" "3.16.0"
+    "@ember-data/private-build-infra" "3.16.0"
+    "@ember-data/store" "3.16.0"
     "@ember/edition-utils" "^1.2.0"
     ember-cli-babel "^7.13.2"
     ember-cli-string-utils "^1.1.0"
     ember-cli-test-info "^1.0.0"
-    ember-cli-typescript "^3.1.1"
+    ember-cli-typescript "^3.1.3"
     ember-compatibility-helpers "^1.2.0"
     inflection "1.12.0"
 
