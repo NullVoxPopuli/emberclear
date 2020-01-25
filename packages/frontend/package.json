@@ -59,7 +59,7 @@
     "@ember-data/debug": "3.16.0-beta.0",
     "@ember-data/model": "3.16.0-beta.0",
     "@ember-data/record-data": "3.16.0",
-    "@ember-data/store": "3.16.0-beta.0",
+    "@ember-data/store": "3.16.0",
     "@ember/edition-utils": "^1.2.0",
     "@ember/optional-features": "^1.3.0",
     "@ember/render-modifiers": "^1.0.2",
