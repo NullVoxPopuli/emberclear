@@ -21,7 +21,11 @@
           <a class='button' 
             href={{url-for 'contacts.verify-friend' contact.id}}
             {{on 'click' (transition-to (url-for 'contacts.verify-friend' contact.id))}}>
-            {{t contact.verification}}
+            {{#if contact.verification}}
+              {{t 'models.identity.verified'}}
+            {{else}}
+              {{t 'models.identity.unverified'}}
+            {{/if}}
           </a>
         </td>
         <td class='flex justify-content-end'>

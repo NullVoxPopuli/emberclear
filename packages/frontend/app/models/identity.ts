@@ -15,7 +15,7 @@ export default class Identity extends Model implements Partial<PublicKey> {
   }
 
   get verification() {
-    return this.verified ? 'models.identity.verified' : 'models.identity.unverified';
+    return this.verified;
   }
 
   get uid() {
