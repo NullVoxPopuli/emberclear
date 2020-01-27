@@ -11,5 +11,4 @@ export default class extends Controller {
   get uid() {
     return this.model.targetIdentity.uid;
   }
-
 }
