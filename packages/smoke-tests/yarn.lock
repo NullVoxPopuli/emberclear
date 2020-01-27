@@ -97,22 +97,22 @@
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
 
-"@faltest/cli@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.0.7.tgz#1833c098707017b32aab13daa8fb2d56ed17e7d8"
-  integrity sha512-M5H9X7HdwqRUZO0p70A9BLXpkNEjFLxYjo2iQA8UBrVtSo3o13r+SfM7VarvBC+nzeDuNesUkgeWvha1WV8BMg==
+"@faltest/cli@2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.0.8.tgz#7dc15ceecd2bd8dd2158a4b35b12908e796a118c"
+  integrity sha512-P9tmRj4zd3yfC9rMADA+naO1SBrpWTXSGHtx5oFbrpZdDpLFDQE41Ue0AOnm9Ol0ivhB05+J8VSTJVFx5Ei1Lg==
   dependencies:
     "@faltest/mocha" "^1.0.7"
     "@faltest/remote" "^3.0.9"
     "@faltest/utils" "^2.0.4"
-    mocha "^7.0.0"
+    mocha "^7.0.1"
     yargs "^15.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@2.0.11":
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-2.0.11.tgz#445266b65a18958d823325f5ba91b65d2191c581"
-  integrity sha512-8f2TOUbziQoYVE1BrMxWxAhOpuQBVpky00HfOnWpZtootyWF3Wa9JrW54GF6EyM+C1wu/+LafRNFO21F11pqCg==
+"@faltest/lifecycle@2.0.12":
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-2.0.12.tgz#5caadde8cf42424567af9904bd6a1701b3c9be39"
+  integrity sha512-WozR6Yi+6q8dHSCf9XL4RkU3HAToMyeAylJgD9kYeISNl20yn7oUDfudykHJaUZyCV4wTTNPvSbp0CrhaquGoQ==
   dependencies:
     "@faltest/remote" "^3.0.9"
     "@faltest/utils" "^2.0.4"
@@ -128,10 +128,10 @@
     glob "^7.1.4"
     mocha-helpers "^4.2.1"
 
-"@faltest/page-objects@3.0.6":
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.0.6.tgz#6d45905b40f46ca6c459f9e7553cbcf262633778"
-  integrity sha512-Gt6rhuc6gQu1iAF0TyaVtuviJNWlLf+14jFBF0CvFrIM2AaE44nF+StX3ejjFtAW9JwKZLE/BveoWm++G9ttNA==
+"@faltest/page-objects@3.0.7":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.0.7.tgz#ffb34acd6e2bf5219b142b0074056bee32404522"
+  integrity sha512-OYurRDT0rWLuQ72QmjyFpTBWfiVsrx/ha1wrBjc54M4Y1rb15IzU4ye/9Z8zvuKOoN9vKAWkkIIQrhmOP6W1Hg==
   dependencies:
     "@faltest/browser" "^2.0.5"
     verror-extra "^1.0.0"
@@ -2106,10 +2106,10 @@ mocha-helpers@^4.2.1:
     commondir "^1.0.1"
     titleize "^2.1.0"
 
-mocha@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-7.0.0.tgz#c60d14bf3de9601f549b3ff5be657eb8381c54bf"
-  integrity sha512-CirsOPbO3jU86YKjjMzFLcXIb5YiGLUrjrXFHoJ3e2z9vWiaZVCZQ2+gtRGMPWF+nFhN6AWwLM/juzAQ6KRkbA==
+mocha@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-7.0.1.tgz#276186d35a4852f6249808c6dd4a1376cbf6c6ce"
+  integrity sha512-9eWmWTdHLXh72rGrdZjNbG3aa1/3NRPpul1z0D979QpEnFdCG0Q5tv834N+94QEN2cysfV72YocQ3fn87s70fg==
   dependencies:
     ansi-colors "3.2.3"
     browser-stdout "1.3.1"
