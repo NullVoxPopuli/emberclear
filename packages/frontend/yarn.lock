@@ -6726,10 +6726,10 @@ ember-concurrency-decorators@^1.0.0:
     ember-cli-babel "^7.9.0"
     ember-cli-typescript "^2.0.2"
 
-ember-concurrency-test-waiter@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/ember-concurrency-test-waiter/-/ember-concurrency-test-waiter-0.3.1.tgz#9bdf83c532d17d913bbc29ee934266cd504f015a"
-  integrity sha512-luSu1/nSgkrDVAbIwHlyrJ4Bv3k++1jon3EV2v4+4vNGUPwWK7eRMbymI07YIxEbMf7MZ1e8fvj0jy6Pq/9Yzw==
+ember-concurrency-test-waiter@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-test-waiter/-/ember-concurrency-test-waiter-0.3.2.tgz#3d1ea28d78bb1ed26c374233cb84673db43e9f57"
+  integrity sha512-7AkltohwutNhwknycqd7sF0bh6MhkJKB3WdyHpV4RnPMZzILaIGfFHsosy33eMQ3sC46iwA7QE9TSOMEQZOCGQ==
   dependencies:
     ember-cli-babel "^6.6.0"
 
