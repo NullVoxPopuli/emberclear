@@ -6,4 +6,4 @@ interface IArgs {
   to: Contact;
 }
 
-export default class VerifyModal extends Component<IArgs> {}
+export default class VerifyFriend extends Component<IArgs> {}

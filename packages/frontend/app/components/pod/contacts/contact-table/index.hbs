@@ -18,15 +18,17 @@
           {{first-8 contact.publicKeyAsHex}}...
         </td>
         <td>
-          <a class='button' 
-            href={{url-for 'contacts.verify-friend' contact.id}}
-            {{on 'click' (transition-to (url-for 'contacts.verify-friend' contact.id))}}>
+          <LinkTo 
+            class='button'
+            @route='contacts.verify-friend' 
+            @model={{contact.id}} 
+          >
             {{#if contact.verification}}
               {{t 'models.identity.verified'}}
             {{else}}
               {{t 'models.identity.unverified'}}
             {{/if}}
-          </a>
+          </LinkTo>
         </td>
         <td class='flex justify-content-end'>
           <button

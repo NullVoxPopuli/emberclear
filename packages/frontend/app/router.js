@@ -18,9 +18,8 @@ Router.map(function() {
     this.route('overwrite');
   });
 
-  this.route('contacts', function() {
-    this.route('verify-friend', { path: '/verify-friend/:u_id' });
-  });
+  this.route('contacts');
+  this.route('contacts.verify-friend', { path: 'contacts/verify-friend/:user_id' });
   this.route('login');
   this.route('invite');
   this.route('logout');
