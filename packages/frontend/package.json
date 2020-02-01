@@ -47,7 +47,7 @@
     "shoelace-css": "^1.0.0-beta24",
     "showdown": "^1.9.1",
     "toastify-js": "^1.6.2",
-    "tweetnacl": "^1.0.1",
+    "tweetnacl": "^1.0.2",
     "tweetnacl-util": "^0.15.1",
     "url-parse": "^1.4.7",
     "uuid": "^3.4.0"
