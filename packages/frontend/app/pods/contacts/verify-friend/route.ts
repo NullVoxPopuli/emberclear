@@ -17,9 +17,6 @@ export default class VerifyFriendRoute extends Route {
   beforeModel(transition: any) {
     let params = transition.to.params;
     let { user_id } = params as IModelParams;
-    console.log('user_id: ', user_id);
-    console.log('this.currentUser.uid: ', this.currentUser.uid);
-    console.log('current_user_id: ', currentUserId);
     if (user_id === this.currentUser.uid) {
       this.transitionTo('contacts');
     }
@@ -31,8 +28,6 @@ export default class VerifyFriendRoute extends Route {
     let record;
 
     try {
-      console.log('user_id: ', user_id);
-      console.log('current_user_id: ', currentUserId);
       if (user_id === currentUserId) {
         record = this.currentUser.record;
       } else {
@@ -43,7 +38,7 @@ export default class VerifyFriendRoute extends Route {
 
       this.transitionTo('contacts');
     }
-    this.transitionTo('contacts.verify-friend',user_id)
+    this.transitionTo('contacts.verify-friend', user_id);
     return {
       targetIdentity: record,
     };
