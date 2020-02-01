@@ -28,6 +28,12 @@
     },
     {
       "packagePatterns": [
+        "^@ember-data*"
+      ],
+      "groupName": "Ember Data"
+    },
+    {
+      "packagePatterns": [
         "^@faltest*"
       ],
       "groupName": "FalTest Smoke Testing by CrowdStrike"
