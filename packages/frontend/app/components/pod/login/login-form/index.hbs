@@ -27,7 +27,7 @@
         {{t 'buttons.scan'}}
       </button>
 
-      <FileChooser @onChoose={{perform this.uploadSettings}} as |chooser|>
+      <FileChooser @onChoose={{this.onChooseFile}} as |chooser|>
         <button
           data-test-upload-settings
           type='button'
@@ -41,7 +41,7 @@
       <button
         data-test-submit-login
         type='submit'
-        {{on 'click' (perform this.login)}}
+        {{on 'click' this.onSubmit}}
       >
         {{t 'buttons.login'}}
       </button>

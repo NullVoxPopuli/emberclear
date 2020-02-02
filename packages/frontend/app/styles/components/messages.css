@@ -34,7 +34,7 @@
   }
 }
 
-a.new-messages {
+button.new-messages {
   @apply --no-select;
 
   position: absolute;

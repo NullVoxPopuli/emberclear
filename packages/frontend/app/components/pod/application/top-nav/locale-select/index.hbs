@@ -24,7 +24,7 @@
     {{#each this.options as |opt|}}
       <button
         type='button'
-        class='navbar-item'
+        class='button-link navbar-item'
         {{on 'click' (queue
           (fn this.chooseLanguage opt.locale)
           this.closeMenu

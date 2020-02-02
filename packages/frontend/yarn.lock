@@ -3888,6 +3888,13 @@ broccoli-node-info@^2.1.0:
   resolved "https://registry.npmjs.org/broccoli-node-info/-/broccoli-node-info-2.1.0.tgz#ca84560e8570ff78565bea1699866ddbf58ad644"
   integrity sha512-l6qDuboJThHfRVVWQVaTs++bFdrFTP0gJXgsWenczc1PavRVUmL1Eyb2swTAXXMpDOnr2zhNOBLx4w9AxkqbPQ==
 
+broccoli-output-wrapper@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/broccoli-output-wrapper/-/broccoli-output-wrapper-2.0.0.tgz#f1e0b9b2f259a67fd41a380141c3c20b096828e6"
+  integrity sha512-V/ozejo+snzNf75i/a6iTmp71k+rlvqjE3+jYfimuMwR1tjNNRdtfno+NGNQB2An9bIAeqZnKhMDurAznHAdtA==
+  dependencies:
+    heimdalljs-logger "^0.1.10"
+
 broccoli-output-wrapper@^3.1.1:
   version "3.2.0"
   resolved "https://registry.npmjs.org/broccoli-output-wrapper/-/broccoli-output-wrapper-3.2.0.tgz#6340e92f5ac81c6f85e6197af822c21628933f35"

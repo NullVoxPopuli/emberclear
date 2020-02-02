@@ -2,7 +2,7 @@
 
 {{#if this.scanning}}
   <QRScanner
-    @onScan={{perform this.onScan}}
+    @onScan={{this.onScan}}
     @onError={{this.onScanError}}
     @onCancel={{this.toggleScanning}}
   />

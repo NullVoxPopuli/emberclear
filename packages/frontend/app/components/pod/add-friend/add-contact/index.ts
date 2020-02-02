@@ -45,7 +45,12 @@ export default class AddModal extends Component {
 
     this.scanning = false;
   })
-  onScan!: Task;
+  handleScan!: Task;
+
+  @action
+  onScan(json: string) {
+    this.handleScan.perform(json);
+  }
 
   @action
   onScanError(e: Error) {

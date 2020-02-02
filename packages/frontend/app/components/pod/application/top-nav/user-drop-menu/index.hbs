@@ -31,7 +31,10 @@
     <hr class='navbar-divider'>
 
     <div class='cta-with-fallback'>
-      <a {{on 'click' (queue close (transition-to 'settings'))}}>
+      <a
+        href={{url-for 'settings'}}
+        {{on 'click' (queue close (transition-to 'settings'))}}
+      >
         {{fa-icon 'sliders-h' prefix='fas'}}
         <span>{{t 'routes.settings'}}</span>
       </a>

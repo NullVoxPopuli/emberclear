@@ -64,6 +64,14 @@ export default class LoginForm extends Component {
     this.uploadSettings.perform(settingsJson);
   }
 
+  @action onChooseFile(...args: any[]) {
+    this.uploadSettings.perform(...args);
+  }
+
+  @action onSubmit() {
+    this.login.perform();
+  }
+
   @action onScanError(e: Error) {
     this.toast.error(e.message);
   }

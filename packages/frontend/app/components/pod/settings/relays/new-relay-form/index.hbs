@@ -12,7 +12,7 @@
 </button>
 
 {{#if this.isVisible}}
-  <form {{on 'submit' (perform this.save)}} data-test-add-relay-form>
+  <form {{on 'submit' (prevent-default this.submit)}} data-test-add-relay-form>
     <Field @label='Socket URL'>
       <Input
         data-test-socket-field
