@@ -8,6 +8,9 @@ module.exports = function(environment) {
     podModulePrefix: 'emberclear/pods',
 
     environment,
+    isProduction: environment === 'production',
+    isDevelopment: environment === 'development',
+    isTest: environment === 'test',
     rootURL: '/',
     locationType: 'auto', // default
 
@@ -24,7 +27,7 @@ module.exports = function(environment) {
     },
   };
 
-  if (environment === 'development') {
+  if (ENV.isDevelopment) {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -34,7 +37,7 @@ module.exports = function(environment) {
     ENV.SW_DISABLED = process.env.SW_DISABLED;
   }
 
-  if (environment === 'test') {
+  if (ENV.isTest) {
     // Testem prefers this...
     ENV.locationType = 'none';
 
@@ -66,7 +69,7 @@ module.exports = function(environment) {
     };
   }
 
-  if (environment === 'production') {
+  if (ENV.isProduction) {
     // here you can enable a production-specific feature
     // github pages:
     ENV.host = process.env.HOST || 'https://emberclear.io';

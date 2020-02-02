@@ -14,10 +14,12 @@ export default class App extends Application {
   Resolver = Resolver;
 }
 
-Sentry.init({
-  dsn: 'https://cf1cbf0969314ecfb5fee114482fccbe@sentry.io/1422271',
-  integrations: [new Integrations.Ember()],
-});
+if (config.isProduction) {
+  Sentry.init({
+    dsn: 'https://cf1cbf0969314ecfb5fee114482fccbe@sentry.io/1422271',
+    integrations: [new Integrations.Ember()],
+  });
+}
 
 /*
  * This line is added to support initializers in the `app/` directory
