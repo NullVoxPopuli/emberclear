@@ -42,10 +42,7 @@ jobs:
 ##############################################################
 
   embroider_tests:
-    name: "Tests (E M B R O I D E R)"
-    strategy:
-      matrix:
-        ci_browser: [Chrome]
+    name: "E M B R O I D E R"
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -59,7 +56,7 @@ jobs:
     - name: Test
       working-directory: ${{ env.cwd }}
       env:
-        CI_BROWSER: ${{ matrix.ci_browser }}
+        CI_BROWSER: 'Chrome'
         EMBROIDER: 'true'
       run: ./scripts/test-with-coverage.sh
 
