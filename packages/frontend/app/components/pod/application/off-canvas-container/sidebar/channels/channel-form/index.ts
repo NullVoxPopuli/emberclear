@@ -22,6 +22,11 @@ export default class ChannelForm extends Component<Args> {
   }
 
   @action
+  onInput({ target = {} as HTMLInputElement }) {
+    this.newChannelName = target.value;
+  }
+
+  @action
   onKeyPress(this: ChannelForm, event: KeyboardEvent) {
     const { keyCode } = event;
 

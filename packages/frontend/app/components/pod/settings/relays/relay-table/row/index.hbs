@@ -5,7 +5,11 @@
     {{/if}}
 
     {{#if (not (eq @relay.priority 1))}}
-      <button {{on 'click' this.makeDefault}} data-test-make-default>
+      <button
+        data-test-make-default
+        type='button'
+        {{on 'click' this.makeDefault}}
+      >
         {{t 'buttons.makeDefault'}}
       </button>
     {{/if}}
@@ -26,7 +30,11 @@
     </label> {{or @relay.connectionCount 'Unknown'}}
   </td>
   <td>
-    <button {{on 'click' this.remove}} data-test-remove>
+    <button
+      data-test-remove
+      type='button'
+      {{on 'click' this.remove}}
+    >
       {{t 'buttons.remove'}}
     </button>
   </td>
