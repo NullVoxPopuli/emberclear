@@ -59,6 +59,7 @@ jobs:
         CI_BROWSER: 'Chrome'
         EMBROIDER: 'true'
       run: ./scripts/test-with-coverage.sh
+      continue-on-error: true
 
 ##############################################################
 
