@@ -1,6 +1,7 @@
-<form data-test-channel-form>
+<form data-test-channel-form {{on 'submit' (prevent-default this.onFormSubmit)}}>
   <input
     class='input'
+    type='text'
     placeholder={{t 'ui.sidebar.channels.placeholder'}}
     value={{this.newChannelName}}
     {{on 'input' this.onInput}}

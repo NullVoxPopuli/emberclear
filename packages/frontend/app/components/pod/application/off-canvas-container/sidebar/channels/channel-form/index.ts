@@ -17,7 +17,7 @@ export default class ChannelForm extends Component<Args> {
   @tracked newChannelName = '';
 
   @action
-  onFormSubmit(this: ChannelForm) {
+  onFormSubmit() {
     return this.didSubmitChannelName();
   }
 

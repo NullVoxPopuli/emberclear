@@ -48,6 +48,7 @@ button.new-messages {
   background: var(--chat-new-messages-notice-bg-color);
   box-shadow: var(--shadow);
   margin: 0;
+  line-height: 0.75rem;
 
   &.hidden {
     /* TODO: use ember-animated */
