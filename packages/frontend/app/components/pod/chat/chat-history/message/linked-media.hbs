@@ -3,7 +3,7 @@
     {{#each @urls as |url|}}
       <FetchOpenGraph @url={{url}} as |isLoading data|>
 
-        {{#if (not isLoading)}}
+        {{#unless isLoading}}
           {{#if (or data.meta.hasInfo data.meta.hasMedia)}}
 
             <Pod::Chat::ChatHistory::Message::EmbeddedResource
@@ -13,7 +13,7 @@
             />
 
           {{/if}}
-        {{/if}}
+        {{/unless}}
 
       </FetchOpenGraph>
     {{/each}}

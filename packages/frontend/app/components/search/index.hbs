@@ -19,9 +19,11 @@
   </Field>
 
   <div class='results'>
-    {{#if (not this.hasResults)}}
+    {{#unless this.hasResults}}
       {{t 'ui.search.nothingFound'}}
-    {{else}}
+    {{/unless}}
+
+    {{#if this.hasResults}}
       <span class='section-title'>{{t 'ui.search.contacts'}}</span>
 
       <div tablist data-test-contacts-results>

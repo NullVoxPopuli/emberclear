@@ -16,7 +16,7 @@
     />
 
     <div>
-      <select onchange={{action (mut this.language) value='target.value'}}>
+      <select {{on 'change' this.chooseLanguage}}>
         {{#each this.languages as |availableLanguage|}}
           <option value={{availableLanguage}}>{{availableLanguage}}</option>
         {{/each}}
@@ -24,17 +24,26 @@
     </div>
   </div>
 
-  {{textarea
-    autofocus=true
+  <Textarea
+    autofocus={{true}}
     class='snippet-entry'
-    value=this.text
-  }}
+    @value={{this.text}}
+  />
 
   <div class='button-group right-aligned'>
-    <button data-test-cancel class='button-secondary' {{on 'click' @close}}>
+    <button
+      data-test-cancel
+      type='button'
+      class='button-secondary'
+      {{on 'click' @close}}
+    >
       {{t 'buttons.cancel'}}
     </button>
-    <button data-test-submit {{on 'click' this.sendMessage}}>
+    <button
+      data-test-submit
+      type='button'
+      {{on 'click' this.sendMessage}}
+    >
       {{t 'buttons.sendSnippet'}}
     </button>
   </div>

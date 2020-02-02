@@ -1,5 +1,5 @@
 <a
-  {{action @onClick}}
+  {{on 'click' @onClick}}
   class='
     p-absolute {{if (eq @direction 'down') 'bottom' 'top'}}
     button is-info is-small

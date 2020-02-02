@@ -4,10 +4,7 @@
     data-test-hide-offline-contacts
     @value={{this.settings.hideOfflineContacts}}
     @label={{t 'ui.settings.hideOfflineContacts'}}
-    {{on 'click' (action
-      (mut this.settings.hideOfflineContacts)
-      (not this.settings.hideOfflineContacts))
-    }}
+    {{on 'click' this.toggleHideOffline}}
   />
 
   <hr>

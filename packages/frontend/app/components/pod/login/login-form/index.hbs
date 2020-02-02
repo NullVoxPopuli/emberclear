@@ -2,9 +2,9 @@
 
   {{#if this.scanning}}
     <QRScanner
-      @onScan={{action this.onScan}}
-      @onError={{action this.onScanError}}
-      @onCancel={{action this.toggleScanning}}
+      @onScan={{this.onScan}}
+      @onError={{this.onScanError}}
+      @onCancel={{this.toggleScanning}}
     />
   {{/if}}
 
@@ -20,6 +20,7 @@
     <Field>
       <button
         data-test-scan-settings
+        type='button'
         class='bg-secondary'
         {{on 'click' this.toggleScanning}}
       >
@@ -29,6 +30,7 @@
       <FileChooser @onChoose={{perform this.uploadSettings}} as |chooser|>
         <button
           data-test-upload-settings
+          type='button'
           class='bg-secondary'
           {{on 'click' chooser.openFileChooser}}
         >
@@ -38,6 +40,7 @@
 
       <button
         data-test-submit-login
+        type='submit'
         {{on 'click' (perform this.login)}}
       >
         {{t 'buttons.login'}}

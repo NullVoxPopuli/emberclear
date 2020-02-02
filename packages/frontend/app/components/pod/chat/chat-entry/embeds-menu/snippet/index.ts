@@ -43,4 +43,9 @@ export default class SnippetModal extends Component<Args> {
     this.messageDispatcher.send(message, sendTo);
     close();
   }
+
+  @action
+  chooseLanguage({ target = {} as HTMLSelectElement }) {
+    this.language = target.value;
+  }
 }

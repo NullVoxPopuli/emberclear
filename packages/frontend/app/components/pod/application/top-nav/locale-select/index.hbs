@@ -7,10 +7,11 @@
 >
   <button
     data-test-locale-toggle
-    {{on 'click' (fn this.toggleMenu)}}
+    type='button'
     class='button-secondary'
     aria-haspopup='true'
     aria-controls='dropdown-menu'
+    {{on 'click' this.toggleMenu}}
   >
     {{fa-icon 'globe'}}
   </button>
@@ -22,11 +23,12 @@
   >
     {{#each this.options as |opt|}}
       <button
+        type='button'
+        class='navbar-item'
         {{on 'click' (queue
           (fn this.chooseLanguage opt.locale)
           this.closeMenu
         )}}
-        class='navbar-item'
       >
         <span>{{opt.label}}</span>
       </button>

@@ -3,17 +3,19 @@
 
   <div class='cta-with-fallback'>
     <button
-      {{on  'click' this.didClickNo}}
-      class='card-footer-item'
       data-test-overwrite-abort
+      type='button'
+      class='card-footer-item'
+      {{on  'click' this.didClickNo}}
     >
       {{t 'ui.setup.overwriteAbort'}}
     </button>
 
     <button
-      {{on  'click' this.didClickYes}}
+      data-test-overwrite-confirm
+      type='button'
       class='card-footer-item'
-       data-test-overwrite-confirm
+      {{on  'click' this.didClickYes}}
     >
       {{t 'ui.setup.overwriteConfirm'}}
     </button>

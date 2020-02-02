@@ -3,8 +3,8 @@
     {{t 'ui.contacts.title' number=this.contacts.length}}
   </h1>
 
-  {{#link-to 'add-friend' class='button'}}
+  <LinkTo @route='add-friend' class='button'>
     {{fa-icon 'plus'}}
     <span>{{t 'buttons.addFriend'}}</span>
-  {{/link-to}}
+  </LinkTo>
 </header>

@@ -16,6 +16,11 @@ export default class DangerSettings extends Component {
   @tracked messagesDeleted = false;
 
   @action
+  togglePrivateKey() {
+    this.showPrivateKey = !this.showPrivateKey;
+  }
+
+  @action
   async deleteMessages() {
     this.toast.info('Deleting messages...');
     this.messagesDeleted = true;

@@ -8,6 +8,7 @@
 
   <ModalStatic @name='code-or-snippet' as |_isActive actions|>
     <button
+      type='button'
       class='button-link'
       data-test-embeds-toggle
       {{on 'click' (queue actions.toggle closeMenu)}}
@@ -17,26 +18,26 @@
     </button>
   </ModalStatic>
 
-  <button class='button-link text-muted' disabled>
+  <button type='button' class='button-link text-muted' disabled>
     {{fa-icon 'bed'}}
     <span>{{t 'ui.chat.embedMenu.embed'}}</span>
   </button>
 
   <hr class='dropdown-divider'>
 
-  <button class='button-link text-muted' disabled>
+  <button type='button' class='button-link text-muted' disabled>
     {{fa-icon 'desktop'}}
     <span>{{t 'ui.chat.embedMenu.file'}}</span>
   </button>
 
   <hr class='dropdown-divider'>
 
-  <button class='button-link text-muted' disabled>
+  <button type='button' class='button-link text-muted' disabled>
     {{fa-icon 'video'}}
     <span>{{t 'ui.chat.embedMenu.video'}}</span>
   </button>
 
-  <button class='button-link text-muted' disabled>
+  <button type='button' class='button-link text-muted' disabled>
     {{fa-icon 'phone'}}
     <span>{{t 'ui.chat.embedMenu.audio'}}</span>
   </button>

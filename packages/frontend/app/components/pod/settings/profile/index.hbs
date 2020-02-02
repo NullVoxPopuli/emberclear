@@ -23,14 +23,14 @@
 
   <hr>
 
-  <button {{on 'click' this.downloadSettings}} class='button'>
+  <button type='button' {{on 'click' this.downloadSettings}} class='button'>
     {{t 'ui.settings.download' }}
   </button>
 
   <button
     disabled
+    type='button'
     class='button'
-    {{action (mut this.showQRSettings) (not this.showQRSettings)}}
   >
     {{t 'ui.settings.copyProfileToDevice'}}
   </button>

@@ -2,7 +2,7 @@
 
 {{#if this.scanning}}
   <QRScanner
-    @onScan={{action (perform this.onScan)}}
+    @onScan={{perform this.onScan}}
     @onError={{this.onScanError}}
     @onCancel={{this.toggleScanning}}
   />
@@ -23,7 +23,7 @@
   {{/if}}
 
   <div class='cta-with-fallback pad-t-md'>
-    <button {{on 'click' this.toggleScanning}}>
+    <button type='button' {{on 'click' this.toggleScanning}}>
       {{fa-icon 'qrcode' prefix='fas'}}
       <span>{{t 'buttons.scan'}}</span>
     </button>
