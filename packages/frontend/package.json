@@ -33,6 +33,8 @@
     "analyze": "./scripts/analyze.sh"
   },
   "dependencies": {
+    "@sentry/browser": "^5.11.2",
+    "@sentry/integrations": "^5.11.1",
     "blakejs": "^1.1.0",
     "dompurify": "^2.0.7",
     "emojis": "^1.0.10",
