@@ -68,8 +68,14 @@ module.exports = function(defaults) {
   }
 
   if (EMBROIDER) {
-    // Embroider is too buggy atm
-    return require('@embroider/compat').compatBuild(app, require('@embroider/webpack').Webpack, {
+    console.info('\n--------------------------');
+    console.info('\nE M B R O I D E R\n');
+    console.info('--------------------------\n');
+
+    const { compatBuild } = require('@embroider/compat');
+    const { Webpack } = require('@embroider/webpack');
+
+    return compatBuild(app, Webpack, {
       extraPublicTrees: additionalTrees,
       // staticAddonTestSupportTrees: true,
       // staticAddonTrees: true,
