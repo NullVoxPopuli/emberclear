@@ -12,6 +12,8 @@ const { postcssConfig } = require('./config/build/styles');
 const { buildWorkerTrees } = require('./config/build/workers');
 const crypto = require('crypto');
 
+const { EMBROIDER } = process.env;
+
 module.exports = function(defaults) {
   let environment = EmberApp.env();
   let isProduction = environment === 'production';
@@ -65,16 +67,24 @@ module.exports = function(defaults) {
     app.trees.public = new UnwatchedDir('public');
   }
 
-  // Embroider is too buggy atm
-  // return require('@embroider/compat').compatBuild(app, require('@embroider/webpack').Webpack, {
-  //   extraPublicTrees: [qrScannerWorker],
-  //   // staticAddonTestSupportTrees: true,
-  //   // staticAddonTrees: true,
-  //   // staticHelpers: true,
-  //   // staticComponents: true,
-  //   // splitAtRoutes: true,
-  //   // skipBabel: [],
-  // });
+  if (EMBROIDER) {
+    console.info('\n--------------------------');
+    console.info('\nE M B R O I D E R\n');
+    console.info('--------------------------\n');
+
+    const { compatBuild } = require('@embroider/compat');
+    const { Webpack } = require('@embroider/webpack');
+
+    return compatBuild(app, Webpack, {
+      extraPublicTrees: additionalTrees,
+      // staticAddonTestSupportTrees: true,
+      // staticAddonTrees: true,
+      // staticHelpers: true,
+      // staticComponents: true,
+      // splitAtRoutes: true,
+      // skipBabel: [],
+    });
+  }
 
   return mergeTrees([app.toTree(), ...additionalTrees]);
 };
