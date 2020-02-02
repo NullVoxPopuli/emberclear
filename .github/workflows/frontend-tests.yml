@@ -37,6 +37,30 @@ jobs:
         github-token: ${{ secrets.github_token }}
         path-to-lcov: ./packages/frontend/coverage/lcov.info
 
+
+    name: Tests (E M B R O I D E R)
+    strategy:
+      matrix:
+        # os: [ubuntu-latest, macOS-latest, windows-latest]
+        # browsers: [chrome, firefox, safari, edge]
+        ci_browser: [Chrome]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: rwjblue/setup-volta@v1
+    - name: Install
+      working-directory: ${{ env.cwd }}
+      run: yarn install
+
+    - name: Test
+      working-directory: ${{ env.cwd }}
+      env:
+        CI_BROWSER: ${{ matrix.ci_browser }}
+        EMBROIDER: 'true'
+      run: ./scripts/test-with-coverage.sh
+
   bundle_analysis:
     name: Bundle Analysis
     runs-on: ubuntu-latest
