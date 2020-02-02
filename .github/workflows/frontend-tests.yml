@@ -39,6 +39,7 @@ jobs:
 
 ##############################################################
 
+  embroider_tests:
     name: "Tests (E M B R O I D E R)"
     strategy:
       matrix:
