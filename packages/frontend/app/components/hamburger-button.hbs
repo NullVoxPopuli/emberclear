@@ -1,9 +1,10 @@
 <button
   data-test-hamburger-toggle
+  type='button'
   class='button-link navbar-burger burger {{@class}} {{if @isActive 'is-active'}}'
   aria-label={{t 'buttons.ariaLabel.sidebar'}}
   aria-expanded='false'
-  {{action @onClick}}
+  {{on 'click' @onClick}}
 >
   {{fa-icon 'bars' prefix='fas'}}
 </button>

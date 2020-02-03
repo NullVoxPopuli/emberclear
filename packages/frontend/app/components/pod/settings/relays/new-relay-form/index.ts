@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import StoreService from '@ember-data/store';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
@@ -14,6 +15,10 @@ export default class NewRelayForm extends Component {
   @tracked isVisible = false;
   @tracked socketURL = '';
   @tracked openGraphURL = '';
+
+  @action submit() {
+    this.save.perform();
+  }
 
   @(task(function*(this: NewRelayForm) {
     const host = hostFromURL(this.socketURL);
@@ -31,10 +36,12 @@ export default class NewRelayForm extends Component {
   }).drop())
   save!: Task;
 
+  @action
   toggleForm() {
     this.isVisible = !this.isVisible;
   }
 
+  @action
   private reset() {
     this.isVisible = false;
     this.socketURL = '';

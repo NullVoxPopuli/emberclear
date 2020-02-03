@@ -14,7 +14,11 @@
     </h2>
 
     <div class='cta'>
-      <button {{on 'click' this.logout}} data-test-confirm-logout>
+      <button
+        data-test-confirm-logout
+        type='button'
+        {{on 'click' this.logout}}
+      >
         {{fa-icon 'sign-out-alt' prefix='fas'}}
         <span>{{t 'ui.logout.confirm'}}</span>
       </button>

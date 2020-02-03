@@ -2,7 +2,11 @@
 <div class='embedded-resource'>
 
   <header class='card-header'>
-    <button class='button-link card-header-icon' {{on 'click' this.toggleShow}}>
+    <button
+      type='button'
+      class='button-link card-header-icon'
+      {{on 'click' this.toggleShow}}
+    >
       {{#if this.isCollapsed}}
         {{fa-icon 'angle-up'}}
       {{else}}
@@ -18,7 +22,7 @@
 
   </header>
 
-  {{#if (not this.isCollapsed)}}
+  {{#if this.isOpen}}
 
     {{#if @meta.hasExtension}}
       <EmbeddedMedia @url={{@url}} @meta={{@meta}} />

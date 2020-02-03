@@ -14,4 +14,8 @@ export default class InterfaceSettings extends Component {
       this.settings.selectTheme(THEMES.default);
     }
   }
+
+  @action toggleHideOffline() {
+    this.settings.hideOfflineContacts = !this.settings.hideOfflineContacts;
+  }
 }

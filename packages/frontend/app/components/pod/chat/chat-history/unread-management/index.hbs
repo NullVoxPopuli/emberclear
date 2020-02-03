@@ -8,6 +8,7 @@
     <div class='input-group has-shadow'>
       <button
         data-test-scroll-to-unread
+        type='button'
         class='button-sm'
         {{on 'click' this.scrollToFirstUnread}}
         >
@@ -26,6 +27,7 @@
       </button>
       <button
         data-test-mark-all-read
+        type='button'
         class='button-sm button-danger'
         {{on 'click' this.markAllAsRead}}
         >

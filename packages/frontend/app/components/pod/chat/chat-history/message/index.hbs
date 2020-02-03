@@ -20,9 +20,9 @@
     <span class='from'>
       {{#if this.hasSender}}
 
-        {{#link-to 'chat.privately-with' @message.from}}
+        <LinkTo @route='chat.privately-with' @model={{@message.from}}>
           {{this.senderName}}
-        {{/link-to}}
+        </LinkTo>
 
       {{else}}
         <em>{{t 'ui.chat.sender.removed'}}</em>

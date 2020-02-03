@@ -11,6 +11,10 @@ interface IArgs {
 export default class EmbeddedResource extends Component<IArgs> {
   @tracked isCollapsed = false;
 
+  get isOpen() {
+    return !this.isCollapsed;
+  }
+
   @action toggleShow() {
     this.isCollapsed = !this.isCollapsed;
   }

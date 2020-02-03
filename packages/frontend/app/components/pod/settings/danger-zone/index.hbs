@@ -1,7 +1,8 @@
 <button
   data-test-show-private-key-toggle
+  type='button'
   class='button'
-  {{action (mut this.showPrivateKey) (not this.showPrivateKey)}}
+  {{on 'click' this.togglePrivateKey}}
 >
 
   {{#if this.showPrivateKey}}
@@ -21,6 +22,7 @@
 
 <button
   data-test-delete-messages
+  type='button'
   disabled={{this.messagesDeleted}}
   class='button button-danger'
   {{on 'click' this.deleteMessages}}

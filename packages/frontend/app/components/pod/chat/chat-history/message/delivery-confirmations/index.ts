@@ -3,6 +3,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 
 import Message, { TARGET } from 'emberclear/models/message';
@@ -104,4 +105,21 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     .drop()
     .withTestWaiter())
   resendAutomatically!: Task;
+
+  // TODO: does this have to be redundant? I have to be doing something wrong
+  @action doDelete() {
+    this.deleteMessage.perform();
+  }
+
+  @action doResend() {
+    this.resend.perform();
+  }
+
+  @action doQueue() {
+    this.resendAutomatically.perform();
+  }
+
+  @action doWait() {
+    this.waitForConfirmation.perform();
+  }
 }

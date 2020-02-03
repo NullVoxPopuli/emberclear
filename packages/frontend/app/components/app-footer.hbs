@@ -5,12 +5,11 @@
       <div class='col mar-t-md'>
         <h4>{{t 'ui.footer.navigation'}}</h4>
 
-        {{#link-to 'application'}}{{t 'routes.home'}}{{/link-to}}<br>
-        {{#link-to 'chat'}}{{t 'routes.chat'}}{{/link-to}}<br>
-        {{#link-to 'settings'}}{{t 'routes.settings'}}{{/link-to}}<br>
-        {{#link-to 'setup'}}{{t 'routes.createNewUser'}}{{/link-to}}<br>
-
-        {{#link-to 'faq' data-test-footer-faq=true}}{{t 'routes.faq'}}{{/link-to}}<br>
+        <LinkTo @route='application'>{{t 'routes.home'}}</LinkTo><br>
+        <LinkTo @route='chat'>{{t 'routes.chat'}}</LinkTo><br>
+        <LinkTo @route='settings'>{{t 'routes.settings'}}</LinkTo><br>
+        <LinkTo @route='setup'>{{t 'routes.createNewUser'}}</LinkTo><br>
+        <LinkTo @route='faq' data-test-footer-faq>{{t 'routes.faq'}}</LinkTo><br>
       </div>
 
 

@@ -22,7 +22,7 @@
     </a>
 
     {{#if this.canBePinned}}
-      <button data-test-contact-pin class='button-link'
+      <button type='button' data-test-contact-pin class='button-link'
         {{on 'click' (prevent-default this.onPin)}}
       >
         <FaIcon

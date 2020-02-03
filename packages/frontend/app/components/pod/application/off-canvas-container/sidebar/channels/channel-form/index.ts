@@ -5,6 +5,8 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 import ChannelManager from 'emberclear/services/channel-manager';
+import { dropTask } from 'ember-concurrency-decorators';
+import Task from 'ember-concurrency/task';
 
 type Args = {
   onSubmit: () => void;
@@ -17,8 +19,13 @@ export default class ChannelForm extends Component<Args> {
   @tracked newChannelName = '';
 
   @action
-  onFormSubmit(this: ChannelForm) {
-    return this.didSubmitChannelName();
+  onFormSubmit() {
+    return ((this.didSubmitChannelName as any) as Task).perform();
+  }
+
+  @action
+  onInput({ target = {} as HTMLInputElement }) {
+    this.newChannelName = target.value;
   }
 
   @action
@@ -26,7 +33,7 @@ export default class ChannelForm extends Component<Args> {
     const { keyCode } = event;
 
     if (keyCode === 13) {
-      this.didSubmitChannelName();
+      ((this.didSubmitChannelName as any) as Task).perform();
 
       return false;
     }
@@ -34,12 +41,13 @@ export default class ChannelForm extends Component<Args> {
     return true;
   }
 
-  private async didSubmitChannelName() {
-    await this.createChannel();
+  @dropTask
+  *didSubmitChannelName() {
+    yield this.createChannel();
 
     this.newChannelName = '';
 
-    return this.args.onSubmit();
+    yield this.args.onSubmit();
   }
 
   private async createChannel() {

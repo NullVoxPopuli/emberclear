@@ -11,11 +11,15 @@
   </Field>
 
   <div class='cta-with-fallback'>
-    {{#link-to 'login'}}
+    <LinkTo @route='login'>
       {{t 'buttons.loginInstead'}}
-    {{/link-to}}
+    </LinkTo>
 
-    <button data-test-next disabled={{or this.nameIsBlank this.create.isRunning}}>
+    <button
+      data-test-next
+      type='submit'
+      disabled={{or this.nameIsBlank this.create.isRunning}}
+    >
       {{t 'buttons.next'}}
     </button>
   </div>

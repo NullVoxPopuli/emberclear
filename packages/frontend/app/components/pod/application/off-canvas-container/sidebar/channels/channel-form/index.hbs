@@ -1,9 +1,10 @@
-<form data-test-channel-form>
+<form data-test-channel-form {{on 'submit' (prevent-default this.onFormSubmit)}}>
   <input
     class='input'
+    type='text'
     placeholder={{t 'ui.sidebar.channels.placeholder'}}
     value={{this.newChannelName}}
-    oninput={{action (mut this.newChannelName) value='target.value'}}
-    onkeypress={{action this.onKeyPress}}
+    {{on 'input' this.onInput}}
+    {{on 'keypress' this.onKeyPress}}
   >
 </form>

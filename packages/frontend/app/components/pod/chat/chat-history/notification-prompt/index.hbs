@@ -12,6 +12,7 @@
   >
     <button
       data-test-dismiss
+      type='button'
       class='delete'
       {{on 'click' this.askNextTime}}
     >
@@ -23,15 +24,15 @@
       <strong>{{t 'ui.notifications.prompt.title'}}</strong>
 
       <div data-test-enable>
-        <button {{on 'click' this.enableNotifications}}>
+        <button type='button' {{on 'click' this.enableNotifications}}>
           {{t 'ui.notifications.prompt.enable'}}
         </button>
 
-        <button data-test-ask-later {{on 'click' this.askNextTime}}>
+        <button data-test-ask-later type='button' {{on 'click' this.askNextTime}}>
           {{t 'ui.notifications.prompt.askLater'}}
         </button>
 
-        <button data-test-ask-never {{on 'click' this.neverAskAgain}}>
+        <button data-test-ask-never type='button' {{on 'click' this.neverAskAgain}}>
           {{t 'ui.notifications.prompt.neverAsk'}}
         </button>
       </div>

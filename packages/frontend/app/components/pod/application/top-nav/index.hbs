@@ -47,29 +47,29 @@
 
 
   <div class='right-nav'>
-    {{#if (not this.currentUser.isLoggedIn)}}
-      <a class='hide-md-up' {{on 'click' (prevent-default (transition-to 'login'))}}>
+    {{#unless this.currentUser.isLoggedIn}}
+      <LinkTo @route='login' class='hide-md-up'>
         {{t 'routes.login'}}
-      </a>
-    {{/if}}
+      </LinkTo>
+    {{/unless}}
 
     <Pod::Application::TopNav::Install />
     <Pod::Application::TopNav::LocaleSelect />
 
     {{#if this.currentUser.isLoggedIn}}
-      <a class='hide-sm-down' {{action (transition-to 'chat')}}>
+      <LinkTo @route='chat' class='hide-sm-down'>
         {{t 'routes.chat'}}
-      </a>
+      </LinkTo>
 
       <Pod::Application::TopNav::UserDropMenu class='hide-xs-down' />
     {{else}}
-      <a class='hide-sm-down' {{action (transition-to 'login')}}>
+      <LinkTo @route='login' class='hide-sm-down'>
         {{t 'routes.login'}}
-      </a>
+      </LinkTo>
 
-      <a class='hide-sm-down' {{action (transition-to 'setup')}}>
+      <LinkTo @route='setup' class='hide-sm-down'>
         {{t 'routes.createNewUser'}}
-      </a>
+      </LinkTo>
     {{/if}}
   </div>
 </div>

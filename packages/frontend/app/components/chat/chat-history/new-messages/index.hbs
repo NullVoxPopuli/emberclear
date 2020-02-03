@@ -1,11 +1,12 @@
-<a
-  {{on 'click' this.scrollToBottom}}
+<button
+  type='button'
   data-test-new-messages-available
   class='
     alert pad-xs
     new-messages transition-all
     {{if this.chatScroller.isLastVisible 'hidden'}}
   '
+  {{on 'click' this.scrollToBottom}}
 >
 
   <span class='is-hidden-mobile m-r-sm'>
@@ -15,4 +16,4 @@
   <span class='underline'>
     {{t 'ui.chat.viewRecent'}}
   </span>
-</a>
+</button>

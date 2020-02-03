@@ -1,11 +1,12 @@
-<a
-  {{action @onClick}}
+<button
+  type='button'
   class='
     p-absolute {{if (eq @direction 'down') 'bottom' 'top'}}
     button is-info is-small
     m-b-sm
     '
   style='margin-top: 60px; z-index: 100;'
+  {{on 'click' @onClick}}
 >
   <span class='icon'>
     {{#if (eq @direction 'down')}}
@@ -24,4 +25,4 @@
       {{fa-icon 'angle-up'}}
     {{/if}}
   </span>
-</a>
+</button>
