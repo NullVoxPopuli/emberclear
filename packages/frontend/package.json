@@ -150,7 +150,7 @@
     "ember-service-worker-index": "^0.7.0",
     "ember-service-worker-update-notify": "^3.0.0",
     "ember-sinon": "^4.1.1",
-    "ember-source": "^3.16.0",
+    "ember-source": "^3.16.1",
     "ember-template-lint": "2.0.0-beta.5",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "^3.0.0",
