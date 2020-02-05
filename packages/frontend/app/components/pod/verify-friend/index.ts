@@ -3,7 +3,7 @@ import Component from '@glimmer/component';
 import Contact from 'emberclear/models/contact';
 
 interface IArgs {
-  to: Contact;
+  contact: Contact;
 }
 
 export default class VerifyFriend extends Component<IArgs> {}

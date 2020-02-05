@@ -17,8 +17,10 @@ export default class VerifyFriendRoute extends Route {
   beforeModel(transition: any) {
     let params = transition.to.params;
     let { user_id } = params as IModelParams;
-    if (user_id === this.currentUser.uid) {
+
+    if (user_id === this.currentUser.uid || user_id === currentUserId) {
       this.transitionTo('contacts');
+      this.toast.error(this.intl.t('ui.verifyContact.verifyYourselfWarning'));
     }
   }
 
@@ -33,12 +35,13 @@ export default class VerifyFriendRoute extends Route {
       } else {
         record = await this.store.findRecord('contact', user_id);
       }
+      this.transitionTo('contacts.verify-friend', user_id);
     } catch (error) {
       this.toast.error(error || this.intl.t('ui.chat.errors.contactNotFound'));
 
       this.transitionTo('contacts');
     }
-    this.transitionTo('contacts.verify-friend', user_id);
+
     return {
       targetIdentity: record,
     };

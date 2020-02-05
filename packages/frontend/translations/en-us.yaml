@@ -61,6 +61,7 @@ buttons:
   invite: Invite
   addFriend: Add Friend
   makeDefault: Make Default
+  regenerateCode: Regenerate Code
   ariaLabel:
     sidebar: 'Toggles the sidebar'
     dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
@@ -187,6 +188,10 @@ ui:
 
   addContact:
     title: Have a friend scan your QR Code, share your link, or scan their QR Code
+
+  verifyContact:
+    title: Please have {alias} verify by either scanning the QR Code or entering the text code
+    verifyYourselfWarning: Can't verify yourself
 
   chat:
     welcome: Welcome!
