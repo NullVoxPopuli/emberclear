@@ -1,10 +1,7 @@
 declare module 'qr-scanner' {
-  // https://stackoverflow.com/questions/39019502/seeking-typescript-type-definition-new-callable-clarification
-  // interface IScanner {
-  //   new (options: IOptions): Scanner;
-  // }
-
   class QrScanner {
+    static WORKER_PATH: string;
+
     constructor(element: Element, onDecode: (result: string) => void, canvasSize?: number);
 
     _qrWorker: Worker;

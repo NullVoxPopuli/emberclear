@@ -39,6 +39,7 @@ export default class AddModal extends Component {
   }
 
   @task(function*(this: AddModal, identityJson: string) {
+    debugger;
     const identity = JSON.parse(identityJson);
 
     yield this.tryCreate(identity);
@@ -68,6 +69,7 @@ export default class AddModal extends Component {
 
     const exists = await this.store.findRecord('identity', publicKey);
 
+    debugger;
     if (exists) {
       this.toast.info('Friend already added!');
       return;

@@ -5,10 +5,10 @@ const writeFile = require('broccoli-file-creator');
 
 module.exports = {
   buildStaticTrees({ isProduction, hash }) {
-    // qr-scanner hardcoded this path.... -.-
+    // QRScanner uses a WebWorker to do all the image processing
     let qrScannerWorker = new Funnel('node_modules/qr-scanner/', {
       include: ['qr-scanner-worker.min.js'],
-      destDir: '/libraries/qr-scanner/',
+      destDir: '/assets/',
     });
 
     let prism = new Funnel('node_modules/prismjs', {

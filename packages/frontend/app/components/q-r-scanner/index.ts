@@ -10,6 +10,7 @@ import RouterService from '@ember/routing/router-service';
 interface IArgs {
   onScan: (qrContent: string) => void;
   onError: (error: Error) => void;
+  onCancel: () => void;
 }
 
 // TODO: should this be a modifier?
@@ -45,6 +46,11 @@ export default class QRScanner extends Component<IArgs> {
     }
   }
 
+  @action cancel() {
+    this.unmountScanner();
+    this.args.onCancel();
+  }
+
   async start() {
     this.error = '';
     const scanner = this.newScanner();
@@ -57,10 +63,10 @@ export default class QRScanner extends Component<IArgs> {
   }
 
   newScanner(): QrScanner {
+    QrScanner.WORKER_PATH = '/assets/qr-scanner-worker.min.js';
     const video = document.querySelector('#qr-preview')!;
     const scanner = new QrScanner(video, (result: string) => {
-      scanner.stop();
-      scanner._qrWorker.terminate();
+      this.unmountScanner();
 
       this.args.onScan(result);
     });
