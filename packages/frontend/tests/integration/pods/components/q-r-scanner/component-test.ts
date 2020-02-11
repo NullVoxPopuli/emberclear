@@ -2,7 +2,9 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+
 import { getService } from 'emberclear/tests/helpers';
+import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Integration | Component | q-r-scanner', function(hooks) {
   setupRenderingTest(hooks);
@@ -26,11 +28,10 @@ module('Integration | Component | q-r-scanner', function(hooks) {
 
     this.setProperties({
       onScan: () => undefined,
-      onCancel: () => undefined,
     });
-    await render(hbs`<QRScanner @onScan={{this.onScan}} @onCancel={{this.onCancel}}/>`);
 
-    assert.dom('span').containsText('Camera not found');
-    assert.dom('span').containsText(intl.t('errors.permissions.enableCamera'));
+    await render(hbs`<QRScanner @onScan={{this.onScan}} />`);
+
+    assert.contains(toast.text, intl.t('errors.permissions.enableCamera'));
   });
 });
