@@ -83,8 +83,8 @@ jobs:
     - name: Upload Bundle Analysis Artifacts
       uses: actions/upload-artifact@v1
       with:
-        name: bundle-analysis
-        path: packages/frontend/public/bundle.html
+        name: built_bundle_analysis
+        path: packages/frontend/public/
 
 ##############################################################
 
@@ -136,23 +136,22 @@ jobs:
     name: Deploy Preview
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: 
-    - bundle_analysis
-    - tests
+    needs: [tests, bundle_analysis]
 
     steps:
     - uses: actions/checkout@v1
     - uses: rwjblue/setup-volta@v1
+            
+    - name: Download Built Bundle Analysis Artifacts
+      uses: actions/download-artifact@master
+      with:
+        name: built_bundle_analysis
+        path: packages/frontend/public/
 
     - name: Install and Build
       working-directory: ${{ env.cwd }}
       run: yarn install && yarn build:production
-      
-    - name: Download Built Bundle Analysis Artifacts
-      uses: actions/download-artifact@master
-      with:
-        name: bundle-analysis
-        path: packages/frontend/public/index.html
+
 
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v0.2.0
