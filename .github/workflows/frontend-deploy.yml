@@ -15,7 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: rwjblue/setup-volta@v1
-      working-directory: ${{ env.cwd }}
 
     - name: Install
       working-directory: ${{ env.cwd }}
