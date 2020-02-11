@@ -79,6 +79,12 @@ jobs:
     - name: Analyze Bundle
       working-directory: ${{ env.cwd }}
       run: yarn analyze
+      
+    - name: Upload Bundle Analysis Artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: bundle-analysis
+        path: packages/frontend/public/bundle.html
 
 ##############################################################
 
@@ -104,22 +110,52 @@ jobs:
 
 ##############################################################
 
-  tests_e2e:
-    name: E2E Tests
+#   tests_e2e:
+#     name: E2E Tests
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 15
+
+#     steps:
+#     - name: 'Wait for status checks'
+#       id: waitforstatuschecks
+#       uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
+#       with:
+#         ignoreActions: tests_e2e,"E2E Tests"
+#         checkInterval: 30
+
+#     - uses: actions/checkout@v1
+#     - uses: rwjblue/setup-volta@v1
+
+#     - name: Test
+#       working-directory: packages/smoke-tests
+#       run: yarn && yarn test --target pull-request --headless
+
+
+##############################################################
+  deploy_preview:
+    name: Deploy Preview
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
-    - name: 'Wait for status checks'
-      id: waitforstatuschecks
-      uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
-      with:
-        ignoreActions: tests_e2e,"E2E Tests"
-        checkInterval: 30
-
     - uses: actions/checkout@v1
     - uses: rwjblue/setup-volta@v1
 
-    - name: Test
-      working-directory: packages/smoke-tests
-      run: yarn && yarn test --target pull-request --headless
+    - name: Install and Build
+      working-directory: ${{ env.cwd }}
+      run: yarn install && yarn build:production
+      
+    - name: Download Built Bundle Analysis Artifacts
+      uses: actions/download-artifact@master
+      with:
+        name: bundle-analysis
+        path: packages/frontend/public/index.html
+
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v0.2.0
+      with:
+        publish-dir: './packages/frontend/dist/'
+        production-branch: __handled_separately__
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
