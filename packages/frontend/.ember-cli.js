@@ -19,6 +19,6 @@ module.exports = {
   componentStructure: 'nested',
   // for service-worker and other PWA testing
   ssl: true,
-  "ssl-key": "./config/emberclear-local.key",
-  "ssl-cert": "./config/emberclear-local.crt",
+  'ssl-key': './config/emberclear-local.key',
+  'ssl-cert': './config/emberclear-local.crt',
 };

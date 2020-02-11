@@ -1,31 +1,14 @@
 <div
   class='qr-scanner_container'
   ...attributes
-  {{did-insert this.mountScanner}}
+  {{did-insert this.start}}
 >
-  {{#if this.error}}
-    <div class='qr-scanner_error'>
-      <span>
-        {{this.error}}<br>
-        {{t 'errors.permissions.enableCamera'}}
-      </span>
-    </div>
-  {{/if}}
 
-  {{#unless this.started}}
+  <JsqrScanner
+    @cameraStream={{this.cameraStream}}
+    @onData={{this.handleData}}
+  >
     <div class='loader'></div>
-  {{/unless}}
+  </JsqrScanner>
 
-  <video
-    id='qr-preview'
-    class='w-100 {{if this.started 'is-block' 'is-hidden'}}'
-    autoplay='autoplay'
-  />
-
-</div>
-
-<div class='mar-t-md'>
-  <button type='button' {{on 'click' this.cancel}}>
-    {{t 'buttons.cancel'}}
-  </button>
 </div>

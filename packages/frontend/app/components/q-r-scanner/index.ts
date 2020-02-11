@@ -3,7 +3,6 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import QrScanner from 'qr-scanner';
 import RouterService from '@ember/routing/router-service';
 // import { NoCameraError } from 'emberclear/utils/errors';
 
@@ -17,60 +16,42 @@ interface IArgs {
 export default class QRScanner extends Component<IArgs> {
   @service router!: RouterService;
 
-  scanner?: QrScanner = undefined;
+  @tracked cameraStream?: MediaStream;
+  @tracked lastDetectedData?: string;
 
-  @tracked error?: string;
-  @tracked started = false;
-
-  async destroy() {
-    await this.unmountScanner();
+  get isCameraActive() {
+    return this.cameraStream !== undefined;
   }
 
-  async unmountScanner() {
-    if (!this.scanner) return;
-
-    this.scanner.stop();
-    this.scanner._qrWorker && this.scanner._qrWorker.terminate();
-  }
-
-  @action async mountScanner(this: QRScanner) {
+  @action
+  async toggleCamera() {
     try {
-      await this.start();
+      this.isCameraActive ? this.stop() : await this.start();
     } catch (e) {
-      if (typeof e === 'string') {
-        this.error = e;
-      } else {
-        console.error(e);
-        this.error = e.message || 'Unknown Error';
-      }
+      this.args.onError(e);
     }
   }
 
-  @action cancel() {
-    this.unmountScanner();
-    this.args.onCancel();
+  @action
+  handleData(data: string) {
+    this.args.onScan(data);
   }
 
+  @action
   async start() {
-    this.error = '';
-    const scanner = this.newScanner();
+    let options = { video: { facingMode: 'environment' } };
+    let stream = await navigator.mediaDevices.getUserMedia(options);
 
-    this.scanner = scanner;
-
-    await scanner.start();
-
-    this.started = true;
+    this.cameraStream = stream;
   }
 
-  newScanner(): QrScanner {
-    QrScanner.WORKER_PATH = '/assets/qr-scanner-worker.min.js';
-    const video = document.querySelector('#qr-preview')!;
-    const scanner = new QrScanner(video, (result: string) => {
-      this.unmountScanner();
+  private stop() {
+    this.cameraStream?.getTracks().forEach(track => track.stop());
+    this.cameraStream = undefined;
+  }
 
-      this.args.onScan(result);
-    });
-
-    return scanner;
+  willDestroy() {
+    this.stop();
+    super.willDestroy();
   }
 }
