@@ -88,25 +88,25 @@ jobs:
 
 ##############################################################
 
-  tests_visual:
-    name: Visual Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+#   tests_visual:
+#     name: Visual Tests
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 15
 
-    steps:
-    - uses: actions/checkout@v1
-    - uses: rwjblue/setup-volta@v1
+#     steps:
+#     - uses: actions/checkout@v1
+#     - uses: rwjblue/setup-volta@v1
 
-    - name: Install
-      working-directory: ${{ env.cwd }}
-      run: yarn install
+#     - name: Install
+#       working-directory: ${{ env.cwd }}
+#       run: yarn install
 
-    - name: Test
-      working-directory: ${{ env.cwd }}
-      if: github.event == 'pull_request'
-      env:
-        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-      run: PERCY_ENABLE=1 time yarn test --filter Acceptance
+#     - name: Test
+#       working-directory: ${{ env.cwd }}
+#       if: github.event == 'pull_request'
+#       env:
+#         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+#       run: PERCY_ENABLE=1 time yarn test --filter Acceptance
 
 ##############################################################
 
@@ -136,6 +136,10 @@ jobs:
     name: Deploy Preview
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    needs: 
+    - bundle_analysis
+    - tests
+
     steps:
     - uses: actions/checkout@v1
     - uses: rwjblue/setup-volta@v1
