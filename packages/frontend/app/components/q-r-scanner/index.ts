@@ -3,68 +3,52 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import QrScanner from 'qr-scanner';
-import RouterService from '@ember/routing/router-service';
-// import { NoCameraError } from 'emberclear/utils/errors';
-
 interface IArgs {
   onScan: (qrContent: string) => void;
-  onError: (error: Error) => void;
 }
 
-// TODO: should this be a modifier?
 export default class QRScanner extends Component<IArgs> {
-  @service router!: RouterService;
+  @service intl!: Intl;
+  @service toast!: Toast;
 
-  scanner?: QrScanner = undefined;
+  @tracked cameraStream?: MediaStream;
+  @tracked lastDetectedData?: string;
 
-  @tracked error?: string;
-  @tracked started = false;
-
-  async destroy() {
-    await this.unmountScanner();
+  get isCameraActive() {
+    return this.cameraStream !== undefined;
   }
 
-  async unmountScanner() {
-    if (!this.scanner) return;
-
-    this.scanner.stop();
-    this.scanner._qrWorker && this.scanner._qrWorker.terminate();
+  @action
+  async toggleCamera() {
+    this.isCameraActive ? this.stop() : await this.start();
   }
 
-  @action async mountScanner(this: QRScanner) {
+  @action
+  handleData(data: string) {
+    this.args.onScan(data);
+  }
+
+  @action
+  async start() {
+    let options = { video: { facingMode: 'environment' } };
     try {
-      await this.start();
+      let stream = await navigator.mediaDevices.getUserMedia(options);
+
+      this.cameraStream = stream;
     } catch (e) {
-      if (typeof e === 'string') {
-        this.error = e;
-      } else {
-        console.error(e);
-        this.error = e.message || 'Unknown Error';
-      }
+      let msg = this.intl.t('errors.permissions.enableCamera');
+
+      this.toast.error(msg);
     }
   }
 
-  async start() {
-    this.error = '';
-    const scanner = this.newScanner();
-
-    this.scanner = scanner;
-
-    await scanner.start();
-
-    this.started = true;
+  private stop() {
+    this.cameraStream?.getTracks().forEach(track => track.stop());
+    this.cameraStream = undefined;
   }
 
-  newScanner(): QrScanner {
-    const video = document.querySelector('#qr-preview')!;
-    const scanner = new QrScanner(video, (result: string) => {
-      scanner.stop();
-      scanner._qrWorker.terminate();
-
-      this.args.onScan(result);
-    });
-
-    return scanner;
+  willDestroy() {
+    this.stop();
+    super.willDestroy();
   }
 }

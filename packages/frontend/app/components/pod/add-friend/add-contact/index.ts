@@ -12,7 +12,7 @@ import ContactManager from 'emberclear/services/contact-manager';
 import CurrentUserService from 'emberclear/services/current-user';
 
 export default class AddModal extends Component {
-  @service('notifications') toast!: Toast;
+  @service toast!: Toast;
   @service currentUser!: CurrentUserService;
   @service store!: StoreService;
   @service contactManager!: ContactManager;
@@ -39,9 +39,13 @@ export default class AddModal extends Component {
   }
 
   @task(function*(this: AddModal, identityJson: string) {
-    const identity = JSON.parse(identityJson);
+    try {
+      const identity = JSON.parse(identityJson);
 
-    yield this.tryCreate(identity);
+      yield this.tryCreate(identity);
+    } catch (e) {
+      this.toast.error(e);
+    }
 
     this.scanning = false;
   })
@@ -50,11 +54,6 @@ export default class AddModal extends Component {
   @action
   onScan(json: string) {
     this.handleScan.perform(json);
-  }
-
-  @action
-  onScanError(e: Error) {
-    this.toast.error(e.message);
   }
 
   async tryCreate(identity: IdentityJson) {
@@ -66,7 +65,7 @@ export default class AddModal extends Component {
       return;
     }
 
-    const exists = await this.store.findRecord('identity', publicKey);
+    let exists = this.store.peekRecord('contact', publicKey);
 
     if (exists) {
       this.toast.info('Friend already added!');

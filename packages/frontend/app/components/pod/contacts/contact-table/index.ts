@@ -12,8 +12,10 @@ export default class ContactsTable extends Component {
     return this.store.peekAll('contact');
   }
 
-  @action remove(contact: Contact) {
+  @action
+  async remove(contact: Contact) {
     contact.deleteRecord();
-    return contact.save();
+    await contact.save();
+    contact.unloadRecord();
   }
 }

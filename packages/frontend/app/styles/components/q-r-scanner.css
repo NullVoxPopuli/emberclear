@@ -1,6 +1,6 @@
 .qr-scanner_container {
   width: 100%;
-  height: 300px;
+  height: auto;
   overflow: hidden;
 
   & .qr-scanner_error {
