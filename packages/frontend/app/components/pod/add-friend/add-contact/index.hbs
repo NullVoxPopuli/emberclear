@@ -1,20 +1,14 @@
 <h3>{{t 'ui.addContact.title'}}</h3>
 
 {{#if this.scanning}}
-  <QRScanner
-    @onScan={{this.onScan}}
-    @onError={{this.onScanError}}
-    @onCancel={{this.toggleScanning}}
-  />
-{{/if}}
-
-{{#unless this.scanning}}
+  <QRScanner @onScan={{this.onScan}} />
+{{else}}
   <QRCode
     @data={{this.publicIdentity}}
     @alt={{t 'images.alt.ownIdentityQR'}}
     class='qr-code-large inline-block'
   />
-{{/unless}}
+{{/if}}
 
 <div class='cta-with-fallback pad-t-md'>
   <button type='button' {{on 'click' this.toggleScanning}}>

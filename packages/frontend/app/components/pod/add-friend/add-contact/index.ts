@@ -56,11 +56,6 @@ export default class AddModal extends Component {
     this.handleScan.perform(json);
   }
 
-  @action
-  onScanError(e: Error) {
-    this.toast.error(e.message);
-  }
-
   async tryCreate(identity: IdentityJson) {
     const { name, publicKey } = identity;
 

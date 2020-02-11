@@ -3,18 +3,13 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import RouterService from '@ember/routing/router-service';
-// import { NoCameraError } from 'emberclear/utils/errors';
-
 interface IArgs {
   onScan: (qrContent: string) => void;
-  onError: (error: Error) => void;
-  onCancel: () => void;
 }
 
-// TODO: should this be a modifier?
 export default class QRScanner extends Component<IArgs> {
-  @service router!: RouterService;
+  @service intl!: Intl;
+  @service toast!: Toast;
 
   @tracked cameraStream?: MediaStream;
   @tracked lastDetectedData?: string;
@@ -25,11 +20,7 @@ export default class QRScanner extends Component<IArgs> {
 
   @action
   async toggleCamera() {
-    try {
-      this.isCameraActive ? this.stop() : await this.start();
-    } catch (e) {
-      this.args.onError(e);
-    }
+    this.isCameraActive ? this.stop() : await this.start();
   }
 
   @action
@@ -40,9 +31,15 @@ export default class QRScanner extends Component<IArgs> {
   @action
   async start() {
     let options = { video: { facingMode: 'environment' } };
-    let stream = await navigator.mediaDevices.getUserMedia(options);
+    try {
+      let stream = await navigator.mediaDevices.getUserMedia(options);
 
-    this.cameraStream = stream;
+      this.cameraStream = stream;
+    } catch (e) {
+      let msg = this.intl.t('errors.permissions.enableCamera');
+
+      this.toast.error(msg);
+    }
   }
 
   private stop() {
