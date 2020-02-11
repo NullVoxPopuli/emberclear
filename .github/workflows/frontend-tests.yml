@@ -16,7 +16,11 @@ jobs:
       matrix:
         # os: [ubuntu-latest, macOS-latest, windows-latest]
         # browsers: [chrome, firefox, safari, edge]
-        ci_browser: [Chrome, Firefox]
+        ci_browser:
+        - Chrome
+        # Firefox is flaky in Github........
+        # - Firefox
+
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -79,7 +83,7 @@ jobs:
     - name: Analyze Bundle
       working-directory: ${{ env.cwd }}
       run: yarn analyze
-      
+
     - name: Upload Bundle Analysis Artifacts
       uses: actions/upload-artifact@v1
       with:
@@ -141,7 +145,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: rwjblue/setup-volta@v1
-            
+
     - name: Download Built Bundle Analysis Artifacts
       uses: actions/download-artifact@master
       with:
