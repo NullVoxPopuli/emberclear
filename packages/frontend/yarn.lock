@@ -6578,9 +6578,9 @@ ember-intl@^4.2.3:
     silent-error "^1.1.1"
     walk-sync "^2.0.1"
 
-ember-jsqr@^0.8.1:
+ember-jsqr@^0.8.2:
   version "0.8.2"
-  resolved "https://registry.npmjs.org/ember-jsqr/-/ember-jsqr-0.8.2.tgz#3cbccc4cfe05ce2cca9be7176bbce26fa7583759"
+  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.8.2.tgz#3cbccc4cfe05ce2cca9be7176bbce26fa7583759"
   integrity sha512-5FiYnOIyF1xZFGWsYgGaXGh0ZOdVoqiD4HicN8Dxhm5sxmFWwRqhjdMoc+WJdh15iq/LhDtuYAjbZpHocyPkyQ==
   dependencies:
     "@glimmer/component" "^1.0.0"
