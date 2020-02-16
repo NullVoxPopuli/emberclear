@@ -6571,10 +6571,10 @@ ember-intl@^4.2.3:
     silent-error "^1.1.1"
     walk-sync "^2.0.1"
 
-ember-jsqr@^0.8.2:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.8.2.tgz#3cbccc4cfe05ce2cca9be7176bbce26fa7583759"
-  integrity sha512-5FiYnOIyF1xZFGWsYgGaXGh0ZOdVoqiD4HicN8Dxhm5sxmFWwRqhjdMoc+WJdh15iq/LhDtuYAjbZpHocyPkyQ==
+ember-jsqr@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.9.0.tgz#faeb7ba9e3b3d19e6262759ff4e6145defc60142"
+  integrity sha512-LeNAaGI0tgDSbw4ywBYdcn/JtUBI5KopSAdxkoDQViXoLCh0k9htvIKTzuzuzsmN+5hy+HSGvMbPy/v7gbV2Ig==
   dependencies:
     "@glimmer/component" "^1.0.0"
     "@glimmer/tracking" "^1.0.0"
