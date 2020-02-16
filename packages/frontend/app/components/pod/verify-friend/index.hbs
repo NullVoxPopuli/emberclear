@@ -1,8 +1,16 @@
 <h3>{{t 'ui.verifyContact.title' alias=@contact.name}}</h3>
 
 <div class='container'>
+    {{#if this.isLoggedIn}}
+        <QRCode
+            @data={{this.publicIdentity}}
+            @alt={{t 'images.alt.ownIdentityQR'}}
+            class='qr-code-large inline-block'
+        />
+    {{/if}}
+
     <div class='cta-with-fallback pad-t-md'>
-        <button type='button'>
+        <button type='button' {{on 'click' this.doSomething}}>
             <span>{{t 'buttons.regenerateCode'}}</span>
         </button>
 
