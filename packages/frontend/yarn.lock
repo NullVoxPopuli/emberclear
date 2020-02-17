@@ -6524,12 +6524,12 @@ ember-get-config@^0.2.4:
     broccoli-file-creator "^1.1.1"
     ember-cli-babel "^6.3.0"
 
-ember-hbs-minifier@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.npmjs.org/ember-hbs-minifier/-/ember-hbs-minifier-0.4.1.tgz#01a0346f27e30162e6857f00357ef250215fe6f6"
-  integrity sha512-6ZHdosApR28gZbvFnaAzkCAvMIV6YRJpeBAMbcjxvc+Q/AywGXO+XfodBe1wKEMEZjwadxBBNatwDv+G5ynG+A==
+ember-hbs-minifier@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/ember-hbs-minifier/-/ember-hbs-minifier-0.5.0.tgz#92cc1f60186ee81dcb36563cd908cbea363bf217"
+  integrity sha512-QG6KCGTXwZFNYelmATnNsONwUpR2msXKyMxwRf84uaWCJZuVzUknEwVm8VOcjPkkdb1pRDkwboEkUoS22RRqJQ==
   dependencies:
-    hash-obj "^2.0.0"
+    hash-obj "^3.0.0"
 
 ember-inflector@^3.0.1:
   version "3.0.1"
@@ -8669,14 +8669,14 @@ hash-for-dep@^1.0.2, hash-for-dep@^1.2.3, hash-for-dep@^1.4.7, hash-for-dep@^1.5
     resolve "^1.10.0"
     resolve-package-path "^1.0.11"
 
-hash-obj@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/hash-obj/-/hash-obj-2.0.0.tgz#dc50b5ef9f724cface4985dcec98dd98dacd103e"
-  integrity sha512-A+HRqvu8VeDDiSn0KyhMff12RrN8VkvLEkvyPVteTiqUKoKYsIaNo2oeu0l6nehhiTWjkzsCfvi7ZOIUgr9wjw==
+hash-obj@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hash-obj/-/hash-obj-3.0.0.tgz#50fd0bf521f03eb18d55fa7f34b05cbf4e4c7852"
+  integrity sha512-mIORCoyREluZ2U0iSd4lnrQZ37V50gEKSHirRsCTTxsZvs1NtifSH/dMu07gB7897z/f1yEh/7KN6TeBT7ct7Q==
   dependencies:
     is-obj "^2.0.0"
-    sort-keys "^3.0.0"
-    type-fest "^0.4.1"
+    sort-keys "^4.0.0"
+    type-fest "^0.8.1"
 
 hash.js@^1.0.0, hash.js@^1.0.3:
   version "1.1.7"
@@ -13868,10 +13868,10 @@ sort-keys@^2.0.0:
   dependencies:
     is-plain-obj "^1.0.0"
 
-sort-keys@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/sort-keys/-/sort-keys-3.0.0.tgz#fa751737e3da363ef80632d4fd78e324d661fe9a"
-  integrity sha512-77XUKMiZN5LvQXZ9sgWfJza19AvYIDwaDGwGiULM+B5XYru8Z90Oh06JvqDlJczvjjYvssrV0aK1GI6+YXvn5A==
+sort-keys@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-4.0.0.tgz#56dc5e256637bfe3fec8db0dc57c08b1a2be22d6"
+  integrity sha512-hlJLzrn/VN49uyNkZ8+9b+0q9DjmmYcYOnbMQtpkLrYpPwRApDPZfmqbUfJnAA3sb/nRib+nDot7Zi/1ER1fuA==
   dependencies:
     is-plain-obj "^2.0.0"
 
@@ -14949,11 +14949,6 @@ type-detect@4.0.8:
   version "4.0.8"
   resolved "https://registry.npmjs.org/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
-
-type-fest@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.npmjs.org/type-fest/-/type-fest-0.4.1.tgz#8bdf77743385d8a4f13ba95f610f5ccd68c728f8"
-  integrity sha512-IwzA/LSfD2vC1/YDYMv/zHP4rDF1usCwllsDpbolT3D4fUepIO7f9K70jjmUewU/LmGUKJcwcVtDCpnKk4BPMw==
 
 type-fest@^0.6.0:
   version "0.6.0"
