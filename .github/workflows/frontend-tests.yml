@@ -190,6 +190,33 @@ jobs:
 
 ##############################################################
 
+  asset_size_reporting:
+    name: Asset Sizes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: []
+
+    steps:
+    - uses: actions/checkout@v2-beta
+      width:
+        fetch-depth: 0
+    - uses: rwjblue/setup-volta@v1
+
+    - name: Download Built App Artifacts
+      uses: actions/download-artifact@master
+      with:
+        name: built_app
+        path: packages/frontend/dist/
+
+    - uses: NullVoxPopuli/ember-asset-size-action@support-working-directory
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        working-directory: packages/frontend/
+        use-pr-artifacts: true
+
+
+##############################################################
+
   lhci:
     name: Lighthouse CI
     runs-on: ubuntu-latest
