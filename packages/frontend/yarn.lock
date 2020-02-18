@@ -5742,11 +5742,6 @@ domhandler@^2.3.0:
   dependencies:
     domelementtype "1"
 
-dompurify@^1.0.0:
-  version "1.0.11"
-  resolved "https://registry.npmjs.org/dompurify/-/dompurify-1.0.11.tgz#fe0f4a40d147f7cebbe31a50a1357539cfc1eb4d"
-  integrity sha512-XywCTXZtc/qCX3iprD1pIklRVk/uhl8BKpkTxr+ZyMVUzSUg7wkQXRBp/euJ5J5moa1QvfpvaPQVP71z1O59dQ==
-
 dompurify@^2.0.8:
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.0.8.tgz#6ef89d2d227d041af139c7b01d9f67ed59c2eb3c"
@@ -5931,7 +5926,7 @@ ember-cli-babel-plugin-helpers@^1.0.0, ember-cli-babel-plugin-helpers@^1.1.0:
   resolved "https://registry.npmjs.org/ember-cli-babel-plugin-helpers/-/ember-cli-babel-plugin-helpers-1.1.0.tgz#de3baedd093163b6c2461f95964888c1676325ac"
   integrity sha512-Zr4my8Xn+CzO0gIuFNXji0eTRml5AxZUTDQz/wsNJ5AJAtyFWCY4QtKdoELNNbiCVGt1lq5yLiwTm4scGKu6xA==
 
-ember-cli-babel@7.18.0:
+ember-cli-babel@7.18.0, ember-cli-babel@^7.18.0:
   version "7.18.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.18.0.tgz#e979b73eee00cd93f63452c6170d045e8832f29c"
   integrity sha512-OLPfYD8wSfCrmGHcUf8zEfySSvbAL+5Qp2RWLycJIMaBZhg+SncKj5kVkL3cPJR5n2hVHPdfmKTQIYjOYl6FnQ==
@@ -6668,16 +6663,15 @@ ember-percy@^1.6.0:
     percy-client "^3.0.13"
     walk "^2.3.9"
 
-ember-purify@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.npmjs.org/ember-purify/-/ember-purify-4.2.0.tgz#be02bc0953220c92851490db87a85353a98d3e4c"
-  integrity sha1-vgK8CVMiDJKFFJDbh6hTU6mNPkw=
+ember-purify@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ember-purify/-/ember-purify-5.0.0.tgz#df3baaf2aaf2c863275a929a48e9c8e25f6a2dde"
+  integrity sha512-BfR68/sZxgdIhwzCPIurNyHIq53li6uYdZ/EIGIJwimlhyWv36DyWrym+oqkteMNfbClHtFeuhiS4U/50+JLNQ==
   dependencies:
-    broccoli-funnel "^2.0.0"
-    broccoli-merge-trees "^2.0.0"
-    broccoli-stew "^1.5.0"
-    dompurify "^1.0.0"
-    ember-cli-babel "^6.6.0"
+    dompurify "^2.0.8"
+    ember-auto-import "^1.5.3"
+    ember-cli-babel "^7.18.0"
+    ember-cli-htmlbars "^4.2.2"
 
 ember-qunit@^4.6.0:
   version "4.6.0"
