@@ -5841,10 +5841,10 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-els-addon-typed-templates@^2.2.14:
-  version "2.2.14"
-  resolved "https://registry.yarnpkg.com/els-addon-typed-templates/-/els-addon-typed-templates-2.2.14.tgz#c55ffa17b7d3b7a251c56e0f102057407978777e"
-  integrity sha512-+GICEbtm/Ji1vZxjB96eJb7bCGpcS3+kx5fjd8QeVd/YUb4b3ZAWL41HFkCWrH4LdsCB2FOaufwvZkqiHz44SA==
+els-addon-typed-templates@^2.2.16:
+  version "2.2.16"
+  resolved "https://registry.yarnpkg.com/els-addon-typed-templates/-/els-addon-typed-templates-2.2.16.tgz#1a1cc8de05e2c52d1eccf63f39e4d7c07b9c43bb"
+  integrity sha512-ASwc8RJ9ixp88D/p3hsUAiyq3GtparpzXlW0uzMU5A19bBJEuvoNSBfW5hCAtl48mHbHr6AjsPo6xiVY6dfLaA==
   dependencies:
     "@glimmer/interfaces" "^0.44.0"
     "@glimmer/opcode-compiler" "^0.44.0"
