@@ -97,10 +97,10 @@
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
 
-"@faltest/cli@2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.0.8.tgz#7dc15ceecd2bd8dd2158a4b35b12908e796a118c"
-  integrity sha512-P9tmRj4zd3yfC9rMADA+naO1SBrpWTXSGHtx5oFbrpZdDpLFDQE41Ue0AOnm9Ol0ivhB05+J8VSTJVFx5Ei1Lg==
+"@faltest/cli@2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.0.9.tgz#40b4e640e384546958e67231990f4c6bc8bb0c82"
+  integrity sha512-orz9Iv8wj6QZYnUWjP8JU7yWPXo5pZouoSGOc7S+d3+jjrWSIl/pfoxjwjL9ZqCmr2Kwzj+yGpzsF7kjZ9W8AA==
   dependencies:
     "@faltest/mocha" "^1.0.7"
     "@faltest/remote" "^3.0.9"
@@ -109,10 +109,10 @@
     yargs "^15.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@2.0.12":
-  version "2.0.12"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-2.0.12.tgz#5caadde8cf42424567af9904bd6a1701b3c9be39"
-  integrity sha512-WozR6Yi+6q8dHSCf9XL4RkU3HAToMyeAylJgD9kYeISNl20yn7oUDfudykHJaUZyCV4wTTNPvSbp0CrhaquGoQ==
+"@faltest/lifecycle@2.0.13":
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-2.0.13.tgz#13c976655da203f206932482070a304d64c5b232"
+  integrity sha512-beKzuEcjkDSlb4buj3PGJ5odaPSSz0bXVHcXbkbhxa0gImJOOu4Tjgfew79yRMY5QDVw4J6m3nUykfXWmgWfhA==
   dependencies:
     "@faltest/remote" "^3.0.9"
     "@faltest/utils" "^2.0.4"
@@ -128,10 +128,10 @@
     glob "^7.1.4"
     mocha-helpers "^4.2.1"
 
-"@faltest/page-objects@3.0.7":
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.0.7.tgz#ffb34acd6e2bf5219b142b0074056bee32404522"
-  integrity sha512-OYurRDT0rWLuQ72QmjyFpTBWfiVsrx/ha1wrBjc54M4Y1rb15IzU4ye/9Z8zvuKOoN9vKAWkkIIQrhmOP6W1Hg==
+"@faltest/page-objects@3.0.8":
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.0.8.tgz#3fa0639ef02a6ece99803113bc9339d35005d988"
+  integrity sha512-DJ15o89jWzAHx16qbU2D2Lek2Cb3Ac/hYQYLs5eHjKJ3kau8HdMCAWmNitvKU/N+XIUglZBNvgZSXpVR08mNBw==
   dependencies:
     "@faltest/browser" "^2.0.5"
     verror-extra "^1.0.0"
