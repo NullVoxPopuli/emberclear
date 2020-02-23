@@ -5,6 +5,7 @@
     "no-descending-specificity": null,
   },
   "ignoreFiles": [
+    "concat-stats-for/**",
     "dist/**",
     "node_modules/**",
     "public/**",
