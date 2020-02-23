@@ -26,7 +26,7 @@
     "lint:hbs": "ember-template-lint .",
     "lint:types": "tsc --skipLibCheck",
     "lint:js": "yarn eslint . --ext .ts --ext .js",
-    "lint:styles": "yarn stylelint **/*.css",
+    "lint:styles": "yarn stylelint app/",
     "lint:all": "yarn lint:hbs && yarn lint:js && yarn lint:sass",
     "lint:i18n": "npx ember-intl-analyzer",
     "bundle-analyze": "yarn broccoli-concat-analyser ./concat-stats-for",
