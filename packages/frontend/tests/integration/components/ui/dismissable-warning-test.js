@@ -13,14 +13,5 @@ module('Integration | Component | ui/dismissable-warning', function(hooks) {
     await render(hbs`<Ui::DismissableWarning />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <Ui::DismissableWarning>
-        template block text
-      </Ui::DismissableWarning>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

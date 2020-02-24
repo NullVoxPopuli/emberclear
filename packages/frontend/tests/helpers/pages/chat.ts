@@ -12,7 +12,7 @@ import {
 import { typeIn } from '@ember/test-helpers';
 
 import { definition as unreadMessagesFloater } from 'emberclear/components/pod/chat/chat-history/unread-management/-page';
-import { definition as dropdownPage } from 'lib/ui/addon/components/ui/dropdown/-page';
+import { definition as dropdownPage } from 'ui/components/ui/dropdown/-page';
 import { definition as embedModal } from 'emberclear/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
 import { definition as newMessagesFloater } from 'emberclear/components/chat/chat-history/new-messages/-page';
 

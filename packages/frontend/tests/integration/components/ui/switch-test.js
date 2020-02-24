@@ -13,14 +13,5 @@ module('Integration | Component | ui/switch', function(hooks) {
     await render(hbs`<Ui::Switch />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <Ui::Switch>
-        template block text
-      </Ui::Switch>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

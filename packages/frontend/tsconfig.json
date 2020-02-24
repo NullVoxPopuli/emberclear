@@ -31,6 +31,9 @@
       "emberclear/*": [
         "app/*"
       ],
+      "ui/*": [
+        "lib/ui/addon/*"
+      ],
       "*": [
         "types/*"
       ]
@@ -39,6 +42,6 @@
   "include": [
     "app/**/*",
     "tests/**/*",
-    "types/**/*", "lib/ui/addon/components/ui/file-chooser/index.ts", "lib/ui/addon/components/ui/dropdown/-page.ts", "lib/ui/addon/components/ui/dropdown/index.ts", "lib/ui/addon/components/ui/collapsible/index.ts", "lib/ui/addon/components/field/field.ts", "lib/ui/addon/components/ui/switch/-page.ts", "lib/ui/addon/components/ui/switch/index.ts"
+    "types/**/*"
   ]
 }

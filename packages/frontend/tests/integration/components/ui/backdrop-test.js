@@ -9,18 +9,10 @@ module('Integration | Component | ui/backdrop', function(hooks) {
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
+    this.handler = () => {};
 
-    await render(hbs`<Ui::Backdrop />`);
+    await render(hbs`<Ui::Backdrop @onClick={{this.handler}} />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <Ui::Backdrop>
-        template block text
-      </Ui::Backdrop>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });
