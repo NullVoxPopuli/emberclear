@@ -16,7 +16,7 @@ export default setComponentTemplate(
   hbs`
   {{yield this.isOpen
     this.toggle
-    (component 'collapsible/icon')
+    (component 'ui/collapsible/icon')
   }}
 `,
   Collapsible

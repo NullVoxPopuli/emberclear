@@ -1,4 +1,4 @@
-<FocusCard @title={{t 'ui.login.title'}}>
+<Ui::FocusCard @title={{t 'ui.login.title'}}>
 
   {{#if this.scanning}}
     <QRScanner
@@ -27,7 +27,7 @@
         {{t 'buttons.scan'}}
       </button>
 
-      <FileChooser @onChoose={{this.onChooseFile}} as |chooser|>
+      <Ui::FileChooser @onChoose={{this.onChooseFile}} as |chooser|>
         <button
           data-test-upload-settings
           type='button'
@@ -36,7 +36,7 @@
         >
           {{t 'buttons.uploadSettings'}}
         </button>
-      </FileChooser>
+      </Ui::FileChooser>
 
       <button
         data-test-submit-login
@@ -49,4 +49,4 @@
 
   {{/unless}}
 
-</FocusCard>
+</Ui::FocusCard>

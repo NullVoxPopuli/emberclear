@@ -8,14 +8,14 @@ module('Integration | Component | collapsible', function(hooks) {
 
   test('is interactible', async function(assert) {
     await render(hbs`
-      <Collapsible as |isOpen toggle Icon|>
+      <Ui::Collapsible as |isOpen toggle Icon|>
         <span class='is-open'>{{isOpen}}</span>
 
         <button class='toggle' {{on 'click' toggle}}>
           <Icon @isOpen={{isOpen}} />
           Toggle
         </button>
-      </Collapsible>
+      </Ui::Collapsible>
     `);
 
     assert.equal(find('.is-open')!.textContent, 'true');

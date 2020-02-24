@@ -29,9 +29,9 @@ export default setComponentTemplate(
   >
     {{@label}}
 
-    <HoverTip @animationClasses='floats-up'>
+    <Ui::HoverTip @animationClasses='floats-up'>
       {{t 'ui.invite.copied'}}
-    </HoverTip>
+    </Ui::HoverTip>
   </CopyButton>
   `,
   CopyTextButton

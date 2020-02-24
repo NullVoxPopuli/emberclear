@@ -1,4 +1,4 @@
-<Dropdown
+<Ui::Dropdown
   @dir={{'up'}}
   @buttonIcon='plus'
   class='button-secondary'
@@ -41,7 +41,7 @@
     {{fa-icon 'phone'}}
     <span>{{t 'ui.chat.embedMenu.audio'}}</span>
   </button>
-</Dropdown>
+</Ui::Dropdown>
 
 <ModalStatic @name='code-or-snippet' as |isActive actions|>
   <Pod::Chat::ChatEntry::EmbedsMenu::Snippet

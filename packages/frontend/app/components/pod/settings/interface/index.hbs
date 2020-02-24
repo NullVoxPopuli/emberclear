@@ -1,6 +1,6 @@
 <div class='m-b-lg' data-test-interface>
 
-  <Switch
+  <Ui::Switch
     data-test-hide-offline-contacts
     @value={{this.settings.hideOfflineContacts}}
     @label={{t 'ui.settings.hideOfflineContacts'}}
@@ -12,7 +12,7 @@
 
   <h2>{{t 'ui.settings.themes.title'}}</h2>
 
-  <Switch
+  <Ui::Switch
     data-test-theme-midnight
     @value={{eq 'midnight' this.settings.theme}}
     @label={{t 'ui.settings.themes.midnight'}}

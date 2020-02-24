@@ -40,9 +40,9 @@
       }}
 
       {{#if @message.receivedAt}}
-        <HoverTip>
+        <Ui::HoverTip>
           {{t 'ui.chat.messages.received' at=(format-date @message.receivedAt)}}
-        </HoverTip>
+        </Ui::HoverTip>
       {{/if}}
     </span>
   </div>
