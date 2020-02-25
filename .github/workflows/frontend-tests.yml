@@ -90,6 +90,29 @@ jobs:
         name: built_bundle_analysis
         path: packages/frontend/public/
 
+
+  build_app:
+    name: Build App
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: rwjblue/setup-volta@v1
+
+    - name: Install
+      working-directory: ${{ env.cwd }}
+      
+    - name: Install and Build
+      working-directory: ${{ env.cwd }}
+      run: yarn install && yarn build:production
+
+    - name: Upload App Artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: built_app
+        path: packages/frontend/dist/
+
 ##############################################################
 
 #   tests_visual:
@@ -166,3 +189,25 @@ jobs:
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+##############################################################
+
+  lhci:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    needs: [build_app]
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: rwjblue/setup-volta@v1
+      
+    - name: Download Built App Artifacts
+      uses: actions/download-artifact@master
+      with:
+        name: built_app
+        path: packages/frontend/dist/
+
+    - name: run Lighthouse
+      run: |
+        volta install @lhci/cli@0.3.x
+        lhci autorun --upload.target=packages/frontend/dist || echo "LHCI failed!"
