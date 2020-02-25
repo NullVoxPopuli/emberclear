@@ -6784,10 +6784,10 @@ ember-router-generator@^2.0.0:
     ember-cli-htmlbars "^3.0.0"
     ember-router-service-polyfill "^1.0.1"
 
-ember-router-scroll@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ember-router-scroll/-/ember-router-scroll-3.0.0.tgz#e4f143b7dced4ca0fcfe41f4c5fece999a17c078"
-  integrity sha512-8ZTLuNwP/QgGCJdNF1QE7Gg78d/txR/gEW2mlOgZpC+PCrtp/tOF5HiScNcW2zKDV/QwjAVbYoUSK1QIwKao2Q==
+ember-router-scroll@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/ember-router-scroll/-/ember-router-scroll-3.1.1.tgz#cbec4db8352c27eeb22166de86e03bcbfbe337bd"
+  integrity sha512-+MjLhgqYb+6ltVa9oIHzVJkTzT5ivteBRm8Z0G8IZHSv8JgGwRhoN+gY6CtdiX5izUtkzbVEWPO0ss0auScnuQ==
   dependencies:
     ember-app-scheduler "^4.0.0"
     ember-cli-babel "^7.11.1"
