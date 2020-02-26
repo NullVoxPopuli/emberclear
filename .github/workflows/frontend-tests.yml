@@ -99,8 +99,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: rwjblue/setup-volta@v1
-
-
     - name: Install and Build
       working-directory: ${{ env.cwd }}
       run: yarn install && yarn build:production
@@ -173,10 +171,11 @@ jobs:
         name: built_bundle_analysis
         path: packages/frontend/public/
 
-    - name: Install and Build
-      working-directory: ${{ env.cwd }}
-      run: yarn install && yarn build:production
-
+    - name: Download Built App Artifacts
+      uses: actions/download-artifact@master
+      with:
+        name: built_app
+        path: packages/frontend/dist/
 
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v0.2.0
@@ -198,7 +197,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: rwjblue/setup-volta@v1
-      
+
     - name: Download Built App Artifacts
       uses: actions/download-artifact@master
       with:
@@ -208,4 +207,4 @@ jobs:
     - name: run Lighthouse
       run: |
         volta install @lhci/cli@0.3.x
-        lhci autorun --upload.target=packages/frontend/dist || echo "LHCI failed!"
+        lhci autorun --staticDistDir=packages/frontend/dist
