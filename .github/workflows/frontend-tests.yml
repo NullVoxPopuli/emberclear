@@ -205,8 +205,15 @@ jobs:
         path: packages/frontend/dist/
 
     - name: run Lighthouse
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       run: |
         volta install @lhci/cli@0.3.x
-        ls -la packages/frontend/dist/
+        cd packages/frontend
 
-        lhci autorun --staticDistDir="$PWD/packages/frontend/dist/"
+        lhci collect \
+          --upload.target=temporary-public-storage \
+          --staticDistDir=./dist \
+          --githubToken $GITHUB_TOKEN \
+          --githubAppToken $LHCI_GITHUB_APP_TOKEN
