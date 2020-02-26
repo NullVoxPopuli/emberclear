@@ -207,4 +207,6 @@ jobs:
     - name: run Lighthouse
       run: |
         volta install @lhci/cli@0.3.x
+        ls -la packages/frontend/dist/
+
         lhci autorun --staticDistDir="$PWD/packages/frontend/dist/"
