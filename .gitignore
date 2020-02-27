@@ -13,3 +13,6 @@ packages/Google Play Store Info
 
 # Local Netlify folder
 .netlify
+
+# Local lighthouse ci
+.lighthouseci

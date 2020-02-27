@@ -90,6 +90,26 @@ jobs:
         name: built_bundle_analysis
         path: packages/frontend/public/
 
+
+  build_app:
+    name: Build App
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: rwjblue/setup-volta@v1
+    - name: Install and Build
+      run: |
+        ( cd packages/frontend && yarn install && yarn build:production )
+        cp ./scripts/_redirects packages/frontend/dist
+
+    - name: Upload App Artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: built_app
+        path: packages/frontend/dist/
+
 ##############################################################
 
 #   tests_visual:
@@ -152,10 +172,11 @@ jobs:
         name: built_bundle_analysis
         path: packages/frontend/public/
 
-    - name: Install and Build
-      working-directory: ${{ env.cwd }}
-      run: yarn install && yarn build:production
-
+    - name: Download Built App Artifacts
+      uses: actions/download-artifact@master
+      with:
+        name: built_app
+        path: packages/frontend/dist/
 
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v0.2.0
@@ -166,3 +187,34 @@ jobs:
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+##############################################################
+
+  lhci:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    needs: [build_app]
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: rwjblue/setup-volta@v1
+
+    - name: Download Built App Artifacts
+      uses: actions/download-artifact@master
+      with:
+        name: built_app
+        path: packages/frontend/dist/
+
+    - name: run Lighthouse
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      run: |
+        volta install @lhci/cli@0.3.x
+        cd packages/frontend
+
+        lhci collect \
+          --upload.target=temporary-public-storage \
+          --staticDistDir=./dist \
+          --githubToken $GITHUB_TOKEN \
+          --githubAppToken $LHCI_GITHUB_APP_TOKEN
