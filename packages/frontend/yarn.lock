@@ -12652,9 +12652,9 @@ querystringify@^2.1.1:
   resolved "https://registry.npmjs.org/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
 
-quibble@^0.5.6:
+quibble@^0.5.7:
   version "0.5.7"
-  resolved "https://registry.npmjs.org/quibble/-/quibble-0.5.7.tgz#34ea5467eee32dfa37968742a5af21b02cd6ebe0"
+  resolved "https://registry.yarnpkg.com/quibble/-/quibble-0.5.7.tgz#34ea5467eee32dfa37968742a5af21b02cd6ebe0"
   integrity sha512-QnHxlD12qhGGjvoEW4PIp8tA80tKjh5CxTg5wLTPp/aqvHElBA+Ag3JN0dWlHY96CUaJqSGmLxTLi+7wbysyZw==
   dependencies:
     lodash "^4.17.14"
@@ -14639,13 +14639,13 @@ test-exclude@^5.2.3:
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
 
-testdouble@^3.12.5:
-  version "3.12.5"
-  resolved "https://registry.yarnpkg.com/testdouble/-/testdouble-3.12.5.tgz#fbc3a1a178a8251621e77dfa9f64a8e194b0175a"
-  integrity sha512-HxATrZ9Olip3bl/oW56uINeMAGDKjy2Q5CdoaCVTxcixN+BIOuPbiLDZ3OaE3d8vKsb4IZZr5Km5fTLZ5ha26g==
+testdouble@^3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/testdouble/-/testdouble-3.13.0.tgz#a1b74db46284991f2d35f11b0239bc2b220953e6"
+  integrity sha512-koLssZcTF1ou1hVD7rYvxOjx3xQHODDH1ajKckL8iID05Y2BEm/+U1YDrQV3lIejCqAp7uwbVNVHyhK7ikUxsg==
   dependencies:
     lodash "^4.17.15"
-    quibble "^0.5.6"
+    quibble "^0.5.7"
     stringify-object-es5 "^2.5.0"
     theredoc "^1.0.0"
 
