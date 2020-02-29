@@ -160,7 +160,7 @@ jobs:
     name: Deploy Preview
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: [tests, bundle_analysis]
+    needs: [tests, bundle_analysis, build_app]
 
     steps:
     - uses: actions/checkout@v1
@@ -194,7 +194,7 @@ jobs:
     name: Asset Sizes
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: []
+    needs: [build_app]
 
     steps:
     - uses: actions/checkout@v2-beta
