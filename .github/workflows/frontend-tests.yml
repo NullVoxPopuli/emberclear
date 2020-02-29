@@ -198,7 +198,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2-beta
-      width:
+      with:
         fetch-depth: 0
     - uses: rwjblue/setup-volta@v1
 
