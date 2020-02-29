@@ -2011,10 +2011,10 @@
   resolved "https://registry.npmjs.org/@types/url-parse/-/url-parse-1.4.3.tgz#fba49d90f834951cb000a674efee3d6f20968329"
   integrity sha512-4kHAkbV/OfW2kb5BLVUuUMoumB3CP8rHqlw48aHvFy5tf9ER0AfOonBlX29l/DD68G70DmyhRlSYfQPSYpC5Vw==
 
-"@types/uuid@^3.4.7":
-  version "3.4.7"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.7.tgz#51d42247473bc00e38cc8dfaf70d936842a36c03"
-  integrity sha512-C2j2FWgQkF1ru12SjZJyMaTPxs/f6n90+5G5qNakBxKXjTBc/YTSelHh4Pz1HUDwxFXD9WvpQhOGCDC+/Y4mIQ==
+"@types/uuid@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-7.0.0.tgz#9f6993ccc8210efa90bda7e1afabbb06a9f860cd"
+  integrity sha512-RiX1I0lK9WFLFqy2xOxke396f0wKIzk5sAll0tL4J4XDYJXURI7JOs96XQb3nP+2gEpQ/LutBb66jgiT5oQshQ==
 
 "@types/vfile-message@*":
   version "2.0.0"
@@ -2958,14 +2958,6 @@ babel-plugin-ember-modules-api-polyfill@^2.12.0, babel-plugin-ember-modules-api-
   integrity sha512-ZQU4quX0TJ1yYyosPy5PFigKdCFEVHJ6H0b3hwjxekIP9CDwzk0OhQuKhCOPti+d52VWjjCjxu2BrXEih29mFw==
   dependencies:
     ember-rfc176-data "^0.3.12"
-
-babel-plugin-filter-imports@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/babel-plugin-filter-imports/-/babel-plugin-filter-imports-3.0.0.tgz#a849683837ad29960da17492fb32789ab6b09a11"
-  integrity sha512-p/chjzVTgCxUqyLM0q/pfWVZS7IJTwGQMwNg0LOvuQpKiTftQgZDtkGB8XvETnUw19rRcL7bJCTopSwibTN2tA==
-  dependencies:
-    "@babel/types" "^7.4.0"
-    lodash "^4.17.11"
 
 babel-plugin-filter-imports@^4.0.0:
   version "4.0.0"
@@ -6868,23 +6860,23 @@ ember-source-channel-url@^2.0.1:
   dependencies:
     got "^8.0.1"
 
-ember-source@^3.16.3:
-  version "3.16.3"
-  resolved "https://registry.npmjs.org/ember-source/-/ember-source-3.16.3.tgz#080ded36d6b43ed1ee8e9a13ed4cebf27a50db6a"
-  integrity sha512-A5IuTBDnxM4zK5IOaoePOchmgaKm4iYuYfQZVsvuPoczm89SBTKuQZnsXFp2ZI8Sc17ALm1Euc9Lc10TNy2KXw==
+ember-source@^3.17.0-beta.6:
+  version "3.17.0-beta.6"
+  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.17.0-beta.6.tgz#967dd8a62e3b9533c153af6c5f4ef7be1e6a83be"
+  integrity sha512-MuuYCsHwG7Xa5ywSrOnFHQYHdyEUleIwhOyi+g0a0jEs+738qjnU9l5QzEUcp6MTO0RJFT0gP1ZX2SRf15evSA==
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
     "@babel/plugin-transform-block-scoping" "^7.6.2"
     "@babel/plugin-transform-object-assign" "^7.2.0"
     "@ember/edition-utils" "^1.2.0"
     babel-plugin-debug-macros "^0.3.3"
-    babel-plugin-filter-imports "^3.0.0"
+    babel-plugin-filter-imports "^4.0.0"
     broccoli-concat "^3.7.4"
     broccoli-debug "^0.6.4"
     broccoli-funnel "^2.0.2"
     broccoli-merge-trees "^3.0.2"
-    chalk "^2.4.2"
-    ember-cli-babel "^7.11.0"
+    chalk "^3.0.0"
+    ember-cli-babel "^7.13.2"
     ember-cli-get-component-path-option "^1.0.0"
     ember-cli-is-package-missing "^1.0.0"
     ember-cli-normalize-entity-name "^1.0.0"
@@ -6894,7 +6886,7 @@ ember-source@^3.16.3:
     ember-router-generator "^2.0.0"
     inflection "^1.12.0"
     jquery "^3.4.1"
-    resolve "^1.11.1"
+    resolve "^1.14.2"
     semver "^6.1.1"
     silent-error "^1.1.1"
 
