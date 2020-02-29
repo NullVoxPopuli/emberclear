@@ -2959,14 +2959,6 @@ babel-plugin-ember-modules-api-polyfill@^2.12.0, babel-plugin-ember-modules-api-
   dependencies:
     ember-rfc176-data "^0.3.12"
 
-babel-plugin-filter-imports@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/babel-plugin-filter-imports/-/babel-plugin-filter-imports-3.0.0.tgz#a849683837ad29960da17492fb32789ab6b09a11"
-  integrity sha512-p/chjzVTgCxUqyLM0q/pfWVZS7IJTwGQMwNg0LOvuQpKiTftQgZDtkGB8XvETnUw19rRcL7bJCTopSwibTN2tA==
-  dependencies:
-    "@babel/types" "^7.4.0"
-    lodash "^4.17.11"
-
 babel-plugin-filter-imports@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-filter-imports/-/babel-plugin-filter-imports-4.0.0.tgz#068f8da15236a96a9602c36dc6f4a6eeca70a4f4"
@@ -5899,7 +5891,7 @@ ember-ast-helpers@0.3.5:
     "@glimmer/compiler" "^0.27.0"
     "@glimmer/syntax" "^0.27.0"
 
-ember-auto-import@^1.4.1, ember-auto-import@^1.5.2, ember-auto-import@^1.5.3:
+ember-auto-import@^1.5.2, ember-auto-import@^1.5.3:
   version "1.5.3"
   resolved "https://registry.npmjs.org/ember-auto-import/-/ember-auto-import-1.5.3.tgz#b32936f874d1ed7057ad2ed3f6116357820be44b"
   integrity sha512-7JfdunM1BmLy/lyUXu7uEoi0Gi4+dxkGM23FgIEyW5g7z4MidhP53Fc61t49oPSnq7+J4lLpbH1f6C+mDMgb4A==
@@ -6550,15 +6542,15 @@ ember-export-application-global@^2.0.1:
   resolved "https://registry.npmjs.org/ember-export-application-global/-/ember-export-application-global-2.0.1.tgz#b120a70e322ab208defc9e2daebe8d0dfc2dcd46"
   integrity sha512-B7wiurPgsxsSGzJuPFkpBWnaeuCu2PGpG2BjyrfA1VcL7//o+5RSnZqiCEY326y7qmxb2GoCgo0ft03KBU0rRw==
 
-ember-focus-trap@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.npmjs.org/ember-focus-trap/-/ember-focus-trap-0.3.2.tgz#575239d2a2018b0cf17f825562396f15beb23c1b"
-  integrity sha512-tjJDZw1NJm0m6dlKswY/DuGTYD22yMUw8j3ZMsv5EbZ+/U+gB1ktyq2w5/mgvFVzRB4QmYxSr3h/tOGCkXy1yA==
+ember-focus-trap@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ember-focus-trap/-/ember-focus-trap-0.4.0.tgz#b69a3a65a49784e2b3a19082655a585cfdaad473"
+  integrity sha512-NHKjTS1xoSS+fURDhAp5oyR7ZTTBnC4KVGw/VlUbFolx7jdLCePHuQdhnrhT02B1VP1dlX2RxnNvNiT2IcoA1w==
   dependencies:
-    ember-auto-import "^1.4.1"
-    ember-cli-babel "^7.11.0"
-    ember-modifier-manager-polyfill "^1.1.0"
-    focus-trap "^5.0.1"
+    ember-auto-import "^1.5.3"
+    ember-cli-babel "^7.18.0"
+    ember-modifier-manager-polyfill "^1.2.0"
+    focus-trap "^5.1.0"
 
 ember-get-config@^0.2.4:
   version "0.2.4"
@@ -6868,23 +6860,23 @@ ember-source-channel-url@^2.0.1:
   dependencies:
     got "^8.0.1"
 
-ember-source@^3.16.3:
-  version "3.16.3"
-  resolved "https://registry.npmjs.org/ember-source/-/ember-source-3.16.3.tgz#080ded36d6b43ed1ee8e9a13ed4cebf27a50db6a"
-  integrity sha512-A5IuTBDnxM4zK5IOaoePOchmgaKm4iYuYfQZVsvuPoczm89SBTKuQZnsXFp2ZI8Sc17ALm1Euc9Lc10TNy2KXw==
+ember-source@^3.17.0-beta.6:
+  version "3.17.0-beta.6"
+  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.17.0-beta.6.tgz#967dd8a62e3b9533c153af6c5f4ef7be1e6a83be"
+  integrity sha512-MuuYCsHwG7Xa5ywSrOnFHQYHdyEUleIwhOyi+g0a0jEs+738qjnU9l5QzEUcp6MTO0RJFT0gP1ZX2SRf15evSA==
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
     "@babel/plugin-transform-block-scoping" "^7.6.2"
     "@babel/plugin-transform-object-assign" "^7.2.0"
     "@ember/edition-utils" "^1.2.0"
     babel-plugin-debug-macros "^0.3.3"
-    babel-plugin-filter-imports "^3.0.0"
+    babel-plugin-filter-imports "^4.0.0"
     broccoli-concat "^3.7.4"
     broccoli-debug "^0.6.4"
     broccoli-funnel "^2.0.2"
     broccoli-merge-trees "^3.0.2"
-    chalk "^2.4.2"
-    ember-cli-babel "^7.11.0"
+    chalk "^3.0.0"
+    ember-cli-babel "^7.13.2"
     ember-cli-get-component-path-option "^1.0.0"
     ember-cli-is-package-missing "^1.0.0"
     ember-cli-normalize-entity-name "^1.0.0"
@@ -6894,7 +6886,7 @@ ember-source@^3.16.3:
     ember-router-generator "^2.0.0"
     inflection "^1.12.0"
     jquery "^3.4.1"
-    resolve "^1.11.1"
+    resolve "^1.14.2"
     semver "^6.1.1"
     silent-error "^1.1.1"
 
@@ -8015,9 +8007,9 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-focus-trap@^5.0.1:
+focus-trap@^5.1.0:
   version "5.1.0"
-  resolved "https://registry.npmjs.org/focus-trap/-/focus-trap-5.1.0.tgz#64a0bfabd95c382103397dbc96bfef3a3cf8e5ad"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-5.1.0.tgz#64a0bfabd95c382103397dbc96bfef3a3cf8e5ad"
   integrity sha512-CkB/nrO55069QAUjWFBpX6oc+9V90Qhgpe6fBWApzruMq5gnlh90Oo7iSSDK7pKiV5ugG6OY2AXM5mxcmL3lwQ==
   dependencies:
     tabbable "^4.0.0"
