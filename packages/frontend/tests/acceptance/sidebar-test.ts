@@ -171,7 +171,7 @@ module('Acceptance | Sidebar', function(hooks) {
           });
 
           test('only the current user is shown', function(assert) {
-            assert.expect(2);
+            assert.expect(4);
 
             onlyCurrentUserIsShownTest(assert);
 

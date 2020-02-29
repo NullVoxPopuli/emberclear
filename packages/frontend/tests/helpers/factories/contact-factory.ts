@@ -1,7 +1,7 @@
 import { toHex } from 'emberclear/utils/string-encoding';
 
 import { getService } from '../get-service';
-import Contact, { STATUS } from 'emberclear/models/contact';
+import Contact, { Status } from 'emberclear/models/contact';
 import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
 
 export async function attributesForContact() {
@@ -18,7 +18,7 @@ export async function buildContact(name: string, attributes = {}): Promise<Conta
 
   const record = store.createRecord('contact', {
     name,
-    onlineStatus: STATUS.OFFLINE,
+    onlineStatus: Status.OFFLINE,
     ...defaultAttributes,
     ...attributes,
   });

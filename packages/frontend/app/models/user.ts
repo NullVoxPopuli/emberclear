@@ -12,7 +12,7 @@ export default class User extends Identity implements Partial<KeyPair> {
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
 declare module 'ember-data/types/registries/model' {
-  interface ModelRegistry {
+  export default interface ModelRegistry {
     user: User;
   }
 }

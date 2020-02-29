@@ -10,7 +10,7 @@ import SettingsService from 'emberclear/services/settings';
 import SidebarService from 'emberclear/services/sidebar';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 import RouterService from '@ember/routing/router-service';
-import Contact, { STATUS } from 'emberclear/models/contact';
+import Contact, { Status } from 'emberclear/models/contact';
 import { currentUserId } from 'emberclear/services/current-user';
 
 import { PRIVATE_CHAT_REGEX, idFrom } from 'emberclear/utils/route-matchers';
@@ -44,7 +44,7 @@ export default class SidebarContact extends Component<IArgs> {
       // are we currently on this person's DM?
       idFrom(PRIVATE_CHAT_REGEX, this.router.currentURL) === contact.uid ||
       // always show if online
-      contact.onlineStatus !== STATUS.OFFLINE ||
+      contact.onlineStatus !== Status.OFFLINE ||
       // always show if there are unread messages
       this.hasUnread ||
       // always show if contact is pinned

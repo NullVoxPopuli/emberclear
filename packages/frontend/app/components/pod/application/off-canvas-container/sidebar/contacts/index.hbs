@@ -20,7 +20,7 @@
   </div>
 
   {{#if isOpen}}
-    <nav class='contacts'>
+    <nav class='contacts' data-test-contacts-list>
       <Pod::Application::OffCanvasContainer::Sidebar::Contacts::Contact
         @contact={{this.currentUser.record}}
         @closeSidebar={{@closeSidebar}}

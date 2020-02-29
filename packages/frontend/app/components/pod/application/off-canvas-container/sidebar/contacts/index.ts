@@ -8,7 +8,7 @@ import StoreService from '@ember-data/store';
 import SettingsService from 'emberclear/services/settings';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 import RouterService from '@ember/routing/router-service';
-import Contact, { STATUS } from 'emberclear/models/contact';
+import Contact, { Status } from 'emberclear/models/contact';
 import CurrentUserService from 'emberclear/services/current-user';
 import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 
@@ -44,7 +44,7 @@ export default class ContactsSidebar extends Component<IArgs> {
     return sortedContacts.filter(contact => {
       return (
         // online or other online~ish status
-        contact.onlineStatus !== STATUS.OFFLINE ||
+        contact.onlineStatus !== Status.OFFLINE ||
         // pinned contacts always show
         contact.isPinned ||
         // we are currently viewing the contact
