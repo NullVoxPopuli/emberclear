@@ -1,14 +1,23 @@
 import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
-import CurrentUserService from 'emberclear/services/current-user';
+
+import CurrentChatService from '../services/current-chat';
 
 export default class UpdateDocumentTitle extends Modifier {
-  @service currentUser!: CurrentUserService;
+  @service currentChat!: CurrentChatService;
+  @service intl!: Intl;
+
   originalDocumentTitle: string;
+  appName: string;
 
   constructor(owner: any, args: any) {
     super(owner, args);
     this.originalDocumentTitle = document.title;
+    this.appName = this.intl.t('appname');
+  }
+
+  get tokens() {
+    return this.args.positional.filter(token => token);
   }
 
   willDestroy() {
@@ -16,10 +25,16 @@ export default class UpdateDocumentTitle extends Modifier {
   }
 
   didReceiveArguments() {
-    let tokens = this.args.positional.join(' | ');
-    document.title = `${tokens} | emberclear`;
-    if (this.currentUser!.name != null) {
-      document.title += ` | ${this.currentUser.name}`;
+    let tokens = this.tokens;
+
+    let currentChat = this.currentChat.name;
+
+    if (currentChat) {
+      tokens.push(currentChat);
     }
+
+    tokens.push(this.appName);
+
+    document.title = tokens.join(' | ');
   }
 }
