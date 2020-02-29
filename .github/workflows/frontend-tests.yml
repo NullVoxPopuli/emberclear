@@ -210,7 +210,7 @@ jobs:
 
     - uses: NullVoxPopuli/ember-asset-size-action@support-working-directory
       with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        repo-token: "${{ secrets.GITHUB_PAT }}"
         working-directory: ${{ env.cwd }}
         use-pr-artifacts: true
 
