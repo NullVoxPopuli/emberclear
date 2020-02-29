@@ -47,10 +47,10 @@ export default class extends Component {
 
     if (this.recordId) {
       if (this.channelId) {
-        return `#${this.record.name}`;
+        return `#${this.record?.name}`;
       }
 
-      return `${this.record.name}`;
+      return `${this.record?.name}`;
     }
 
     return '';

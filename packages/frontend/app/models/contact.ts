@@ -6,14 +6,10 @@ export const Status = {
   OFFLINE: 'offline',
   AWAY: 'away',
   BUSY: 'busy',
-};
+} as const;
 
-export enum STATUS {
-  ONLINE = 'online',
-  OFFLINE = 'offline',
-  AWAY = 'away',
-  BUSY = 'busy',
-}
+type StatusKeys = keyof typeof Status;
+type STATUS = typeof Status[StatusKeys];
 
 export default class Contact extends Identity {
   @attr() onlineStatus?: STATUS;
@@ -22,7 +18,7 @@ export default class Contact extends Identity {
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
 declare module 'ember-data/types/registries/model' {
-  interface ModelRegistry {
+  export default interface ModelRegistry {
     contact: Contact;
   }
 }

@@ -2,7 +2,7 @@
  * Catch-all for ember-data.
  */
 declare module 'ember-data/types/registries/model' {
-  interface ModelRegistry {
+  export default interface ModelRegistry {
     [key: string]: any;
   }
 }

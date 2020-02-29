@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 import Task from 'ember-concurrency/task';
 import { task, timeout } from 'ember-concurrency';
 
-import Contact, { STATUS } from 'emberclear/models/contact';
+import Contact, { Status } from 'emberclear/models/contact';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
 
@@ -26,7 +26,7 @@ export default class ContactsOnlineChecker extends Service {
 
       this.store
         .peekAll('contact')
-        .filter((contact: Contact) => contact.onlineStatus !== STATUS.OFFLINE)
+        .filter((contact: Contact) => contact.onlineStatus !== Status.OFFLINE)
         .forEach(contact => {
           this.dispatcher.sendToUser.perform(ping, contact);
         });

@@ -16,6 +16,9 @@ import { page, selectors } from 'emberclear/components/pod/application/off-canva
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import Contact from 'emberclear/models/contact';
+import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
+import { getCurrentUser } from 'emberclear/tests/helpers';
 
 module('Acceptance | Sidebar', function(hooks) {
   setupApplicationTest(hooks);
@@ -108,9 +111,12 @@ module('Acceptance | Sidebar', function(hooks) {
       });
 
       module('there are 2 contacts', function(hooks) {
+        let firstContact!: Contact;
+        let secondContact!: Contact;
+
         hooks.beforeEach(async function() {
-          await createContact('first contact');
-          await createContact('second contact');
+          firstContact = await createContact('first contact');
+          secondContact = await createContact('second contact');
         });
 
         test('there are 3 rows of names', function(assert) {
@@ -148,9 +154,11 @@ module('Acceptance | Sidebar', function(hooks) {
             assert.equal(contacts[0].name, 'Test User');
             assert.equal(contacts[1].name, 'first contact');
             assert.equal(contacts[2].name, 'second contact');
+
             await contacts[1].pin();
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
+
             assert.equal(contacts[0].name, 'Test User');
             assert.equal(contacts[1].name, 'second contact');
             assert.equal(contacts[2].name, 'first contact');
@@ -163,14 +171,34 @@ module('Acceptance | Sidebar', function(hooks) {
           });
 
           test('only the current user is shown', function(assert) {
-            assert.expect(2);
+            assert.expect(4);
+
             onlyCurrentUserIsShownTest(assert);
+
+            const content = page.sidebar.contacts.listText;
+
+            assert.notContains(content, firstContact.name);
+            assert.notContains(content, secondContact.name);
           });
 
           test('offline count is shown', function(assert) {
             const result = page.sidebar.contacts.offlineCount.text;
 
             assert.matches(result, /2/);
+          });
+
+          module(`but one of them has sent us a message we haven't read`, function(hooks) {
+            hooks.beforeEach(async function() {
+              await createMessage(getCurrentUser()!, firstContact, 'test', {
+                readAt: undefined,
+              });
+            });
+
+            test('the unread message causes the person to be shown', function(assert) {
+              const content = page.sidebar.contacts.listText;
+
+              assert.contains(content, firstContact.name);
+            });
           });
         });
       });

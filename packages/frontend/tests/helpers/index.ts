@@ -4,7 +4,7 @@ import { percySnapshot } from 'ember-percy';
 
 export { stubService } from './stub-service';
 export { textFor, text } from './text-for';
-export { createCurrentUser, setupCurrentUser } from './create-current-user';
+export * from './create-current-user';
 export { getService } from './get-service';
 export { clearLocalStorage } from './clear-local-storage';
 export { setupRelayConnectionMocks } from './setup-relay-connection-mocks';

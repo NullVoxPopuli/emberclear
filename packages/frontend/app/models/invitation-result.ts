@@ -12,7 +12,7 @@ export default class InvitationResult extends Model {
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
 declare module 'ember-data/types/registries/model' {
-  interface ModelRegistry {
+  export default interface ModelRegistry {
     'invitation-result': InvitationResult;
   }
 }
