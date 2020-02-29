@@ -127,7 +127,7 @@
     "ember-concurrency-test-waiter": "^0.3.2",
     "ember-exam": "^4.0.9",
     "ember-export-application-global": "^2.0.1",
-    "ember-focus-trap": "^0.3.2",
+    "ember-focus-trap": "^0.4.0",
     "ember-hbs-minifier": "^0.5.0",
     "ember-inflector": "^3.0.1",
     "ember-intl": "^4.2.4",
