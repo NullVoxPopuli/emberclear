@@ -2,8 +2,7 @@ name: Frontend Tests
 on:
   pull_request:
     branches: [master]
-    # paths:
-    #   - 'packages/frontend/*'
+
 env:
   cwd: packages/frontend
 
