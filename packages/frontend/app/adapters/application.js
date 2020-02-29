@@ -4,7 +4,7 @@ import { reject, resolve, Promise as EmberPromise } from 'rsvp';
 import Evented from '@ember/object/evented';
 // import LFQueue from 'ember-localforage-adapter/utils/queue';
 // import LFCache from 'ember-localforage-adapter/utils/cache';
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 import localforage from 'localforage';
 
 const LFQueue = EmberObject.extend({

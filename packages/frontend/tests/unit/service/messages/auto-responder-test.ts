@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 import {
   getService,

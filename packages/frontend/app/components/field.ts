@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { setComponentTemplate } from '@ember/component';
 import { hbs } from 'ember-cli-htmlbars';
 
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 class Field extends Component {
   id = uuid();

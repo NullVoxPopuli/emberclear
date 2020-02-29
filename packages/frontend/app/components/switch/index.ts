@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 export default class Field extends Component {
   id = uuid();
