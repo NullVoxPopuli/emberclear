@@ -8,7 +8,15 @@ class Login extends BasePageObject {
   }
 
   get logInInsteadButton() {
-    return this._create('[href="/login"]');
+    //element not interactable
+    return {
+      click: async () => {
+        await this._browser.execute(() => {
+          document.querySelector('[href="/login"]').click();
+        });
+      }
+    }
+    // return this._create('[href="/login"]');
   }
 
   get name() {

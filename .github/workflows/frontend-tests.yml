@@ -45,25 +45,25 @@ jobs:
 
 ##############################################################
 
-  embroider_tests:
-    name: "E M B R O I D E R"
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+  # embroider_tests:
+  #   name: "E M B R O I D E R"
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 15
 
-    steps:
-    - uses: actions/checkout@v1
-    - uses: rwjblue/setup-volta@v1
-    - name: Install
-      working-directory: ${{ env.cwd }}
-      run: yarn install
+  #   steps:
+  #   - uses: actions/checkout@v1
+  #   - uses: rwjblue/setup-volta@v1
+  #   - name: Install
+  #     working-directory: ${{ env.cwd }}
+  #     run: yarn install
 
-    - name: Test
-      working-directory: ${{ env.cwd }}
-      env:
-        CI_BROWSER: 'Chrome'
-        EMBROIDER: 'true'
-      run: ./scripts/test-with-coverage.sh
-      continue-on-error: true
+  #   - name: Test
+  #     working-directory: ${{ env.cwd }}
+  #     env:
+  #       CI_BROWSER: 'Chrome'
+  #       EMBROIDER: 'true'
+  #     run: ./scripts/test-with-coverage.sh
+  #     continue-on-error: true
 
 ##############################################################
 
