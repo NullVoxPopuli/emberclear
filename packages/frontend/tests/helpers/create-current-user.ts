@@ -31,3 +31,7 @@ export function setupCurrentUser(hooks: NestedHooks) {
     await createCurrentUser();
   });
 }
+
+export function getCurrentUser() {
+  return getService('currentUser').record;
+}

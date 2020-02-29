@@ -10,6 +10,7 @@ import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 import RouterService from '@ember/routing/router-service';
 import Contact, { STATUS } from 'emberclear/models/contact';
 import CurrentUserService from 'emberclear/services/current-user';
+import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 
 interface IArgs {
   contacts: Contact[];
@@ -38,6 +39,8 @@ export default class ContactsSidebar extends Component<IArgs> {
 
     let url = this.router.currentURL;
 
+    let allMessages = this.store.peekAll('message').toArray();
+
     return sortedContacts.filter(contact => {
       return (
         // online or other online~ish status
@@ -45,7 +48,9 @@ export default class ContactsSidebar extends Component<IArgs> {
         // pinned contacts always show
         contact.isPinned ||
         // we are currently viewing the contact
-        idFrom(PRIVATE_CHAT_REGEX, url) === contact.uid
+        idFrom(PRIVATE_CHAT_REGEX, url) === contact.uid ||
+        // the contact has sent us messages that we haven't seen yet
+        selectUnreadDirectMessages(allMessages, contact.id).length > 0
       );
     });
   }
