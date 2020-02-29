@@ -39,6 +39,10 @@ module('Acceptance | Chat | Privately With', function(hooks) {
   module('is logged in', function(hooks) {
     setupCurrentUser(hooks);
 
+    test('document.title is unchanged', async function(assert) {
+      assert.ok(document.title.startsWith('emberclear'));
+    });
+
     module('anyone', async function(hooks) {
       setupRelayConnectionMocks(hooks);
 
@@ -47,8 +51,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
       });
 
       test('document.title is properly changed', async function(assert) {
-        assert.notEqual(document.title, 'emberclear');
-        assert.ok(document.title.startsWith('0 | emberclear | '));
+        assert.equal(document.title, 'emberclear');
       });
     });
 
@@ -154,6 +157,10 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
         test('there are 0 messages to start with', function(assert) {
           assert.equal(page.messages.length, 0);
+        });
+
+        test('document.title is changed', async function(assert) {
+          assert.equal(document.title, `${someone.name} | emberclear`);
         });
       });
 

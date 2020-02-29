@@ -1,11 +1,11 @@
 <div ...attributes>
   {{#if (has-block)}}
 
-    {{yield this.isChatVisible this.chatName this.record}}
+    {{yield this.isChatVisible this.currentChat.name this.currentChat.record}}
 
   {{else}}
 
-    {{this.chatName}}
+    {{this.currentChat.name}}
 
   {{/if}}
 </div>

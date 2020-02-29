@@ -33,4 +33,8 @@ export default class TopNav extends Component {
 
     return unread.length;
   }
+
+  get unreadMessageText() {
+    return this.unreadMessageCount || '';
+  }
 }

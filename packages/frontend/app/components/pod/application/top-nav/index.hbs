@@ -2,7 +2,7 @@
 
   <div class='left-nav'>
     {{#if this.currentUser.isLoggedIn}}
-      <div {{update-document-title this.unreadMessageCount}}>
+      <div {{update-document-title this.unreadMessageText}}>
         <HamburgerButton
           @onClick={{this.sidebar.toggle}}
           @isActive={{this.sidebar.isShown}}
