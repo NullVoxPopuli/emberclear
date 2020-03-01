@@ -1,5 +1,10 @@
 <FocusCard @title={{t 'ui.login.title'}}>
 
+  {{#if this.uploadSettings.isRunning}}
+    <EllipsisLoader /><br>
+    Loaded {{this.contacts.length}} Contacts...
+  {{/if}}
+
   {{#if this.scanning}}
     <QRScanner
       @onScan={{this.onScan}}

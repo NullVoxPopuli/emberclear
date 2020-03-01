@@ -19,10 +19,15 @@ export default class LoginForm extends Component {
   @service settings!: Settings;
   @service toast!: Toast;
   @service router!: RouterService;
+  @service store;
 
   @tracked mnemonic = '';
   @tracked name = '';
   @tracked scanning = false;
+
+  get contacts() {
+    return this.store.peekAll('contact');
+  }
 
   get isLoggedIn() {
     return this.currentUser.isLoggedIn;

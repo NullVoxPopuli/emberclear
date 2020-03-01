@@ -26,7 +26,11 @@
         @closeSidebar={{@closeSidebar}}
       />
 
-      {{#vertical-collection this.contacts estimateHeight=40 staticHeight=true bufferSize=5 as |contact|}}
+      {{#vertical-collection
+        this.contacts
+        estimateHeight=40 staticHeight=true bufferSize=5
+        as |contact|
+      }}
         <Pod::Application::OffCanvasContainer::Sidebar::Contacts::Contact
           @contact={{contact}}
           @closeSidebar={{@closeSidebar}}
