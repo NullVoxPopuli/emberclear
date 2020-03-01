@@ -26,7 +26,7 @@
         @closeSidebar={{@closeSidebar}}
       />
 
-      {{#vertical-collection
+      {{!-- {{#vertical-collection
         this.contacts
         estimateHeight=40 staticHeight=true bufferSize=5
         as |contact|
@@ -35,7 +35,7 @@
           @contact={{contact}}
           @closeSidebar={{@closeSidebar}}
         />
-      {{/vertical-collection}}
+      {{/vertical-collection}} --}}
 
       {{#if this.showOfflineCounter}}
         <em data-test-offline-count class='offline'>
