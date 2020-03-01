@@ -45,7 +45,7 @@
     "qrcode": "^1.4.4",
     "shoelace-css": "^1.0.0-beta24",
     "showdown": "^1.9.1",
-    "toastify-js": "^1.6.2",
+    "toastify-js": "^1.7.0",
     "tweetnacl": "^1.0.3",
     "tweetnacl-util": "^0.15.1",
     "url-parse": "^1.4.7",

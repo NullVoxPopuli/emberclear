@@ -14632,10 +14632,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-toastify-js@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/toastify-js/-/toastify-js-1.6.2.tgz#38af35625797d3d3f51fa09851f0bda449271423"
-  integrity sha512-ECQzgjTjxaElfwp/8e8qoIYx7U5rU2G54e5aiPMv+UtmGOYEitrtNp/Kr8uMgntnQNrDZEQJNGjBtoNnEgR5EA==
+toastify-js@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/toastify-js/-/toastify-js-1.7.0.tgz#d6b44937ae2844a19c25fcc69ee5933165dbf666"
+  integrity sha512-GmPy4zJ/ulCfmCHlfCtgcB+K2xhx2AXW3T/ZZOSjyjaIGevhz+uvR8HSCTay/wBq4tt2mUnBqlObP1sSWGlsnQ==
 
 toidentifier@1.0.0:
   version "1.0.0"
