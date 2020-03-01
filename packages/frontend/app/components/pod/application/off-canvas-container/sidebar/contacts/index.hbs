@@ -26,12 +26,12 @@
         @closeSidebar={{@closeSidebar}}
       />
 
-      {{#each this.contacts as |contact|}}
+      {{#vertical-collection this.contacts estimateHeight=40 staticHeight=true bufferSize=5 as |contact|}}
         <Pod::Application::OffCanvasContainer::Sidebar::Contacts::Contact
           @contact={{contact}}
           @closeSidebar={{@closeSidebar}}
         />
-      {{/each}}
+      {{/vertical-collection}}
 
       {{#if this.showOfflineCounter}}
         <em data-test-offline-count class='offline'>
