@@ -20,22 +20,26 @@
   </div>
 
   {{#if isOpen}}
-    <nav class='contacts' data-test-contacts-list>
+    <nav class='contacts' style='height: 200px; overflow: scroll;' data-test-contacts-list>
       <Pod::Application::OffCanvasContainer::Sidebar::Contacts::Contact
         @contact={{this.currentUser.record}}
         @closeSidebar={{@closeSidebar}}
       />
 
-      {{!-- {{#vertical-collection
-        this.contacts
-        estimateHeight=40 staticHeight=true bufferSize=5
-        as |contact|
-      }}
-        <Pod::Application::OffCanvasContainer::Sidebar::Contacts::Contact
-          @contact={{contact}}
-          @closeSidebar={{@closeSidebar}}
-        />
-      {{/vertical-collection}} --}}
+      {{#if this.contactManager.isImporting}}
+        <EllipsisLoader />
+      {{else}}
+        {{#vertical-collection
+          this.contacts
+          estimateHeight=40 staticHeight=true bufferSize=5
+          as |contact|
+        }}
+          <Pod::Application::OffCanvasContainer::Sidebar::Contacts::Contact
+            @contact={{contact}}
+            @closeSidebar={{@closeSidebar}}
+          />
+        {{/vertical-collection}}
+      {{/if}}
 
       {{#if this.showOfflineCounter}}
         <em data-test-offline-count class='offline'>

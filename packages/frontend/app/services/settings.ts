@@ -92,11 +92,7 @@ export default class Settings extends Service {
       await this.channelManager.findOrCreate(channel.id, channel.name);
     }
 
-    for await (let contact of contacts) {
-      if (!contact.publicKey || !contact.name) return Promise.resolve();
-
-      await this.contactManager.findOrCreate(contact.publicKey, contact.name);
-    }
+    await this.contactManager.import(contacts);
   }
 
   async buildData(): Promise<string | undefined> {

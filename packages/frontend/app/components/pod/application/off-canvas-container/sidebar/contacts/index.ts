@@ -11,6 +11,7 @@ import RouterService from '@ember/routing/router-service';
 import Contact, { Status } from 'emberclear/models/contact';
 import CurrentUserService from 'emberclear/services/current-user';
 import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
+import ContactManager from 'emberclear/services/contact-manager';
 
 interface IArgs {
   contacts: Contact[];
@@ -22,6 +23,7 @@ export default class ContactsSidebar extends Component<IArgs> {
   @service settings!: SettingsService;
   @service router!: RouterService;
   @service store!: StoreService;
+  @service contactManager!: ContactManager;
 
   get allContacts(): Contact[] {
     return this.store
@@ -41,6 +43,7 @@ export default class ContactsSidebar extends Component<IArgs> {
 
     let allMessages = this.store.peekAll('message').toArray();
 
+    console.log(sortedContacts.length);
     return sortedContacts.filter(contact => {
       return (
         // online or other online~ish status

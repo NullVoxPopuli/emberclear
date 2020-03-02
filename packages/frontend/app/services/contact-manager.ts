@@ -1,5 +1,6 @@
 import StoreService from '@ember-data/store';
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 import { fromHex } from 'emberclear/utils/string-encoding';
@@ -9,9 +10,27 @@ import ArrayProxy from '@ember/array/proxy';
 export default class ContactManager extends Service {
   @service store!: StoreService;
 
+  @tracked isImporting = false;
+
   find(uid: string) {
     return this.store.findRecord('contact', uid);
   }
+
+  async import(contacts: IdentityJson[]) {
+    this.isImporting = true;
+
+    try {
+      for await (let contact of contacts) {
+        if (!contact.publicKey || !contact.name) return Promise.resolve();
+
+        await this.findOrCreate(contact.publicKey, contact.name);
+      }
+    } finally {
+      this.isImporting = false;
+    }
+  }
+
+
 
   async findOrCreate(uid: string, name: string): Promise<Contact> {
     try {
