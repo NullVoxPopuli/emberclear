@@ -105,7 +105,7 @@
     "colors": "^1.4.0",
     "common-tags": "^1.8.0",
     "core-js": "^3.6.4",
-    "cross-env": "^7.0.1",
+    "cross-env": "^7.0.2",
     "els-addon-typed-templates": "^2.2.16",
     "ember-auto-import": "^1.5.3",
     "ember-cli": "^3.16.0",
