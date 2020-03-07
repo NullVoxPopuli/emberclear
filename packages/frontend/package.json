@@ -172,7 +172,7 @@
     "qunit-assertions-extra": "^0.8.1",
     "qunit-console-grouper": "^0.2.0",
     "qunit-dom": "^1.1.0",
-    "rollup": "^2.0.1",
+    "rollup": "^2.0.2",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-filesize": "^6.2.1",
