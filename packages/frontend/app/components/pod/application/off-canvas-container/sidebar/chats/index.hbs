@@ -1,0 +1,53 @@
+{{!-- <div data-test-sidebar-contacts-header class='menu-label'>
+  <button
+    type='button'
+    class='button-link'
+    {{on 'click' (prevent-default toggle)}}
+  >
+    <Icon @isOpen={{isOpen}} />
+    {{t 'ui.sidebar.contacts.title'}}
+  </button>
+
+  <a
+    data-test-add-friend
+    class='button button-xs'
+    href={{url-for 'add-friend'}}
+    {{on 'click' (prevent-default this.onClickAddFriend)}}
+  >
+    <span class='icon'>{{fa-icon 'plus'}}</span>
+  </a>
+</div> --}}
+
+<nav class='contacts' style='height: 100%; overflow-y: auto;' data-test-contacts-list>
+  {{#if this.contactManager.isImporting}}
+    <EllipsisLoader />
+  {{else}}
+    {{#vertical-collection
+      this.chats
+      estimateHeight=40 staticHeight=true bufferSize=5
+      as |chat|
+    }}
+      {{#if (or (is-contact chat) (is-current-user chat))}}
+        <Pod::Application::OffCanvasContainer::Sidebar::Chats::Contact
+          @contact={{chat}}
+        />
+      {{else}}
+        {{!-- TODO: Channel component --}}
+        <a
+          href={{url-for 'chat.in-channel' chat.id}}
+          {{on 'click' (prevent-default (fn this.onClickChannel chat))}}
+        >
+          <span>#</span><span>{{chat.name}}</span>
+        </a>
+      {{/if}}
+    {{/vertical-collection}}
+  {{/if}}
+
+  {{#if this.showOfflineCounter}}
+    <em data-test-offline-count class='offline'>
+      <small>{{t 'ui.sidebar.contacts.numOffline' num=this.numberOffline}}</small>
+    </em>
+  {{/if}}
+</nav>
+
+

@@ -12,6 +12,8 @@ import Contact, { Status } from 'emberclear/models/contact';
 import CurrentUserService from 'emberclear/services/current-user';
 import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 import ContactManager from 'emberclear/services/contact-manager';
+import SidebarService from 'emberclear/services/sidebar';
+import Channel from 'emberclear/models/channel';
 
 interface IArgs {
   contacts: Contact[];
@@ -24,12 +26,18 @@ export default class ContactsSidebar extends Component<IArgs> {
   @service router!: RouterService;
   @service store!: StoreService;
   @service contactManager!: ContactManager;
+  @service sidebar!: SidebarService;
 
   get allContacts(): Contact[] {
     return this.store
       .peekAll('contact')
       .toArray()
       .filter(contact => contact.publicKey);
+  }
+
+
+  get allChannels() {
+    return this.store.peekAll('channel');
   }
 
   get contacts() {
@@ -43,7 +51,6 @@ export default class ContactsSidebar extends Component<IArgs> {
 
     let allMessages = this.store.peekAll('message').toArray();
 
-    console.log(sortedContacts.length);
     return sortedContacts.filter(contact => {
       return (
         // online or other online~ish status
@@ -56,6 +63,10 @@ export default class ContactsSidebar extends Component<IArgs> {
         selectUnreadDirectMessages(allMessages, contact.id).length > 0
       );
     });
+  }
+
+  get chats() {
+    return [this.currentUser.record, ...this.contacts, this.allChannels];
   }
 
   get hideOfflineContacts() {
@@ -80,10 +91,18 @@ export default class ContactsSidebar extends Component<IArgs> {
 
   @action onClickAddFriend() {
     if (window.innerWidth < TABLET_WIDTH) {
-      this.args.closeSidebar();
+      this.sidebar.hide();
     }
 
     this.router.transitionTo('add-friend');
+  }
+
+  @action onClickChannel(channel: Channel) {
+    if (window.innerWidth < TABLET_WIDTH) {
+      this.sidebar.hide();
+    }
+
+    this.router.transitionTo('chat.in-channel', channel.id);
   }
 }
 

@@ -7,8 +7,9 @@
       />
     {{/if}}
 
-    <Pod::Application::OffCanvasContainer::Sidebar::Contacts @closeSidebar={{this.closeSidebar}} />
-    <Pod::Application::OffCanvasContainer::Sidebar::Channels @closeSidebar={{this.closeSidebar}} />
+    <Pod::Application::OffCanvasContainer::Sidebar::Chats />
+    {{!-- <Pod::Application::OffCanvasContainer::Sidebar::Contacts @closeSidebar={{this.closeSidebar}} />
+    <Pod::Application::OffCanvasContainer::Sidebar::Channels @closeSidebar={{this.closeSidebar}} /> --}}
 
     {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
     {{#if this.hasUnreadBelow}}
@@ -36,7 +37,7 @@
           <a
             href={{url-for 'contacts'}}
             title={{t 'routes.contacts'}}
-            {{on 'click' (queue this.closeSidebar (transition-to 'contacts'))}}
+            {{on 'click' (queue this.sidebar.hide (transition-to 'contacts'))}}
           >
             {{fa-icon 'address-book' prefix='fas'}}
           </a>
@@ -44,7 +45,7 @@
           <a
             href={{url-for 'settings'}}
             title={{t 'routes.settings'}}
-            {{on 'click' (queue this.closeSidebar (transition-to 'settings'))}}
+            {{on 'click' (queue this.sidebar.hide (transition-to 'settings'))}}
           >
             {{fa-icon 'sliders-h'}}
           </a>
@@ -53,7 +54,7 @@
             href={{url-for 'logout'}}
             title={{t 'routes.logout'}}
             {{on 'click' (queue
-              this.closeSidebar
+              this.sidebar.hide
               (transition-to 'logout'))
             }}
           >

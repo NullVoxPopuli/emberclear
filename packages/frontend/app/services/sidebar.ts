@@ -25,7 +25,7 @@ export default class Sidebar extends Service {
 
   @inLocalStorage isShown = false;
 
-  show() {
+  @action show() {
     this.isShown = true;
 
     if (this.slider) {
@@ -33,7 +33,7 @@ export default class Sidebar extends Service {
     }
   }
 
-  hide() {
+  @action hide() {
     this.isShown = false;
 
     if (this.slider) {

@@ -1,0 +1,36 @@
+<div data-test-contact-row class='sidebar__contacts__contact'>
+
+  <a
+    href={{url-for 'chat.privately-with' @contact.id}}
+    class={{if this.isActive 'is-active'}}
+    {{on 'click' (prevent-default this.onClick)}}
+  >
+    <span data-test-contact-name>
+      <StatusIcon @contact={{@contact}} />
+      <span>{{or @contact.name '[unnamed]'}}</span>
+    </span>
+
+    {{#if this.hasUnread}}
+      <span
+        class='badge badge-danger'
+        {{unread-messages-intersection-observer}}
+      >
+        {{this.numberUnread}}
+      </span>
+    {{/if}}
+  </a>
+
+  {{#if this.canBePinned}}
+    <button type='button' data-test-contact-pin class='button-link'
+      {{on 'click' (prevent-default this.togglePin)}}
+    >
+      <FaIcon
+        class='transition-all-fast'
+        @icon='thumbtack'
+        @rotation={{if @contact.isPinned 0 90}}
+      />
+    </button>
+  {{/if}}
+
+</div>
+

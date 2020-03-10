@@ -21,10 +21,6 @@ export default class Sidebar extends Component {
   @reads('currentUser.name') name?: string;
   @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
 
-  @action closeSidebar() {
-    this.sidebar.hide();
-  }
-
   @action scrollDownToNearestUnread() {
     const scrollable = document.querySelector('.sidebar-wrapper aside')!;
     const lastRow = scrollable.querySelector('.tag')!;
