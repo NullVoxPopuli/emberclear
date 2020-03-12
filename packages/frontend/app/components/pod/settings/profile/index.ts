@@ -38,5 +38,6 @@ export default class ProfileSettings extends Component {
     link.setAttribute('href', settings);
 
     link.click();
+    link.remove();
   }
 }
