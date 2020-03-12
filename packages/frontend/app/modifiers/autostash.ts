@@ -1,9 +1,8 @@
 import Modifier from 'ember-modifier';
 
 interface Args {
-  positional: [];
+  positional: [string];
   named: {
-    data: string;
     when: string;
     restore: (data: string) => void;
   };
@@ -21,7 +20,8 @@ export default class Autostash extends Modifier<Args> {
   didReceiveArguments() {
     if (!this.lastWhen) return;
 
-    let { data, when, restore } = this.args.named;
+    let data = this.args.positional[0];
+    let { when, restore } = this.args.named;
 
     if (when === this.lastWhen) {
       return set(when, data);
