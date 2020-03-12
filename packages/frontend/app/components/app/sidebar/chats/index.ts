@@ -13,7 +13,6 @@ import CurrentUserService from 'emberclear/services/current-user';
 import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 import ContactManager from 'emberclear/services/contact-manager';
 import SidebarService from 'emberclear/services/sidebar';
-import Channel from 'emberclear/models/channel';
 
 interface IArgs {
   contacts: Contact[];
@@ -40,6 +39,7 @@ export default class ContactsSidebar extends Component<IArgs> {
     return this.store.peekAll('channel');
   }
 
+  // TODO: This is too expensive. Push into adapter
   get contacts() {
     let sortedContacts = this.allContacts.sort(sortByPinned);
 
@@ -66,7 +66,7 @@ export default class ContactsSidebar extends Component<IArgs> {
   }
 
   get chats() {
-    return [this.currentUser.record, ...this.contacts, this.allChannels];
+    return ['add-contact', this.currentUser.record, ...this.contacts, this.allChannels];
   }
 
   get hideOfflineContacts() {
@@ -97,13 +97,6 @@ export default class ContactsSidebar extends Component<IArgs> {
     this.router.transitionTo('add-friend');
   }
 
-  @action onClickChannel(channel: Channel) {
-    if (window.innerWidth < TABLET_WIDTH) {
-      this.sidebar.hide();
-    }
-
-    this.router.transitionTo('chat.in-channel', channel.id);
-  }
 }
 
 function sortByPinned(contact1: Contact, contact2: Contact) {

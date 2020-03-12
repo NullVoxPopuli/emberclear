@@ -1,19 +1,17 @@
 <aside ...attributes>
   <div>
     {{#if this.hasUnreadAbove}}
-      <Pod::Application::OffCanvasContainer::Sidebar::UnreadIndicator
+      <App::Sidebar::UnreadIndicator
         @onClick={{this.scrollUpToNearestUnread}}
         @direction='up'
       />
     {{/if}}
 
-    <Pod::Application::OffCanvasContainer::Sidebar::Chats />
-    {{!-- <Pod::Application::OffCanvasContainer::Sidebar::Contacts @closeSidebar={{this.closeSidebar}} />
-    <Pod::Application::OffCanvasContainer::Sidebar::Channels @closeSidebar={{this.closeSidebar}} /> --}}
+    <App::Sidebar::Chats />
 
     {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
     {{#if this.hasUnreadBelow}}
-      <Pod::Application::OffCanvasContainer::Sidebar::UnreadIndicator
+      <App::Sidebar::UnreadIndicator
         @onClick={{this.scrollDownToNearestUnread}}
         @direction='down'
       />
