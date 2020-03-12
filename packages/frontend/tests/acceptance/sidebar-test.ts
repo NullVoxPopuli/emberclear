@@ -1,4 +1,4 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 
 import { visit, currentURL, settled, waitFor, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
@@ -231,7 +231,7 @@ module('Acceptance | Sidebar', function(hooks) {
         await page.sidebar.channels.toggleForm();
       });
 
-      test('the channel form is now visible', function(assert) {
+      skip('the channel form is now visible', function(assert) {
         const form = page.sidebar.channels.form.isVisible;
 
         assert.ok(form);
@@ -243,7 +243,7 @@ module('Acceptance | Sidebar', function(hooks) {
           await settled();
         });
 
-        test('the channel form is not visible', function(assert) {
+        skip('the channel form is not visible', function(assert) {
           const form = page.sidebar.channels.form.isVisible;
 
           assert.notOk(form);
@@ -257,7 +257,7 @@ module('Acceptance | Sidebar', function(hooks) {
           await settled();
         });
 
-        test('the form becomes hidden', async function(assert) {
+        skip('the form becomes hidden', async function(assert) {
           // TODO: figure out why settled state doesn't capture this behavior
           await waitUntil(() => !page.sidebar.channels.form.isVisible);
           const form = page.sidebar.channels.form.isVisible;
@@ -265,7 +265,7 @@ module('Acceptance | Sidebar', function(hooks) {
           assert.notOk(form);
         });
 
-        test('a channel is created', function(assert) {
+        skip('a channel is created', function(assert) {
           const store = getService('store');
           const known = store.peekAll('channel');
 

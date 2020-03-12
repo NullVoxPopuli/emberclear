@@ -39,6 +39,10 @@ export default class ChatEntry extends Component<IArgs> {
     return `Send a message to ${prefix}${to.name}`;
   }
 
+  get isSubmitDisabled() {
+    return this.isDisabled || !this.text || this.text.length === 0;
+  }
+
   @action async sendMessage() {
     if (!this.text) return;
 

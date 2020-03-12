@@ -11,7 +11,7 @@ module('Integration | Component | application/top-nav/locale-select', function(h
   clearLocalStorage(hooks);
 
   hooks.beforeEach(async function() {
-    await render(hbs`<Pod::Application::TopNav::LocaleSelect />`);
+    await render(hbs`<App::TopNav::LocaleSelect />`);
   });
 
   test('starts closed', function(assert) {

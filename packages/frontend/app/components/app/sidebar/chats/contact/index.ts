@@ -14,7 +14,6 @@ import { currentUserId } from 'emberclear/services/current-user';
 
 interface IArgs {
   contact: Contact;
-  closeSidebar: () => void;
 }
 
 // TODO: need to write tests for the different states
@@ -49,7 +48,7 @@ export default class SidebarContact extends Component<IArgs> {
 
   @action onClick() {
     if (window.innerWidth < TABLET_WIDTH) {
-      this.args.closeSidebar();
+      this.sidebar.hide();
     }
 
     this.router.transitionTo('chat.privately-with', this.args.contact.id);

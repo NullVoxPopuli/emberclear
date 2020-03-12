@@ -1,8 +1,7 @@
 import { find } from '@ember/test-helpers';
 import { create, clickable, isPresent } from 'ember-cli-page-object';
 import { getter } from 'ember-cli-page-object/macros';
-import { sidebarContactsPage } from 'emberclear/components/app/sidebar/contacts/-page';
-import { sidebarChannelsPage } from 'emberclear/components/app/sidebar/channels/-page';
+import { sidebarChannelsPage, sidebarContactsPage } from 'emberclear/components/app/sidebar/chats/-page';
 import { valueOfProperty } from 'emberclear/utils/dom/css';
 
 const wrapper = '[data-test-offcanvas-wrapper]';

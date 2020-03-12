@@ -1,4 +1,5 @@
-import { create, text, clickable, collection } from 'ember-cli-page-object';
+import { triggerKeyEvent } from '@ember/test-helpers';
+import { create, text, clickable, collection, fillable } from 'ember-cli-page-object';
 
 export const sidebarContactsPage = create({
   header: {
@@ -12,5 +13,16 @@ export const sidebarContactsPage = create({
   }),
   offlineCount: {
     scope: '[data-test-offline-count]',
+  },
+});
+
+const channelForm = '[data-test-channel-form]';
+
+export const sidebarChannelsPage = create({
+  toggleForm: clickable('[data-test-channel-form-toggle]'),
+  form: {
+    scope: channelForm,
+    fill: fillable('input'),
+    submit: () => triggerKeyEvent(`${channelForm} input`, 'keypress', 'Enter'),
   },
 });
