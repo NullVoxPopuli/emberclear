@@ -34,35 +34,35 @@ export default class ContactsSidebar extends Component<IArgs> {
       .filter(contact => contact.publicKey);
   }
 
-
   get allChannels() {
     return this.store.peekAll('channel');
   }
 
   // TODO: This is too expensive. Push into adapter
   get contacts() {
-    let sortedContacts = this.allContacts.sort(sortByPinned);
-
     if (!this.hideOfflineContacts) {
-      return sortedContacts;
+      return this.allContacts.sort(sortByPinned);
     }
 
     let url = this.router.currentURL;
+    let urlId = idFrom(PRIVATE_CHAT_REGEX, url);
 
-    let allMessages = this.store.peekAll('message').toArray();
+    let allMessages = this.store.peekAll('message');
 
-    return sortedContacts.filter(contact => {
-      return (
-        // online or other online~ish status
-        contact.onlineStatus !== Status.OFFLINE ||
-        // pinned contacts always show
-        contact.isPinned ||
-        // we are currently viewing the contact
-        idFrom(PRIVATE_CHAT_REGEX, url) === contact.uid ||
-        // the contact has sent us messages that we haven't seen yet
-        selectUnreadDirectMessages(allMessages, contact.id).length > 0
-      );
-    });
+    return this.allContacts
+      .filter(contact => {
+        return (
+          // online or other online~ish status
+          contact.onlineStatus !== Status.OFFLINE ||
+          // pinned contacts always show
+          contact.isPinned ||
+          // we are currently viewing the contact
+          urlId === contact.uid ||
+          // the contact has sent us messages that we haven't seen yet
+          selectUnreadDirectMessages(allMessages, contact.id).length > 0
+        );
+      })
+      .sort(sortByPinned);
   }
 
   get chats() {
@@ -96,7 +96,6 @@ export default class ContactsSidebar extends Component<IArgs> {
 
     this.router.transitionTo('add-friend');
   }
-
 }
 
 function sortByPinned(contact1: Contact, contact2: Contact) {

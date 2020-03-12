@@ -65,10 +65,6 @@ aside {
       align-items: center;
       padding-bottom: var(--grid-gap);
 
-      & a:first-child {
-        padding-left: 0;
-      }
-
       & a.button-xs,
       & button.button-xs {
         height: var(--button-height-sm);
