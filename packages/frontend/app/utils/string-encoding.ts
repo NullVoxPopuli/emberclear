@@ -37,8 +37,8 @@ export function convertBase64StringToObject(base64: string): any {
 }
 
 export function objectToDataURL(object: any): string {
-  const string = convertObjectToBase64String(object);
-  return `data:text/json;base64,${string}`;
+  const string = JSON.stringify(object);
+  return `data:text/json;charset=utf-8,${encodeURIComponent(string)}`;
 }
 
 // http://stackoverflow.com/a/39460727
