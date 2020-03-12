@@ -22,7 +22,7 @@
         </div>
       {{else if (or (is-contact chat) (is-current-user chat))}}
         <App::Sidebar::Chats::Contact @contact={{chat}} />
-      {{else}}
+      {{else if chat}}
         <App::Sidebar::Chats::Channel @channel={{chat}} />
       {{/if}}
     {{/vertical-collection}}

@@ -1,6 +1,6 @@
 <a
-  href={{url-for 'chat.in-channel' @contact.id}}
-  {{on 'click' (prevent-default (fn this.onClickChannel @contact))}}
+  href={{url-for 'chat.in-channel' @channel.id}}
+  {{on 'click' (prevent-default (fn this.onClickChannel @channel))}}
 >
-  <span>#</span><span>{{@contact.name}}</span>
+  <span>#</span><span>{{@channel.name}}</span>
 </a>
