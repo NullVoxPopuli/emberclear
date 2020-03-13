@@ -2,7 +2,7 @@
 
   {{#if this.uploadSettings.isRunning}}
     <EllipsisLoader /><br>
-    Loaded {{this.contacts.length}} Contacts...
+    {{t 'ui.login.loading' num=this.contacts.length}}
   {{/if}}
 
   {{#if this.scanning}}

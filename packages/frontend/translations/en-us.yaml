@@ -257,6 +257,7 @@ ui:
   login:
     title: Login
     instructions: Please paste or type your mnemonic key.
+    loading: Loaded {num} Contacts...
 
   setup:
     warning: >
