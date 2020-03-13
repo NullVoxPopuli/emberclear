@@ -63,7 +63,6 @@ module.exports = {
               imageSet: false,
               // calc: false,
               // applyRule: false,
-
             },
           }),
         ],

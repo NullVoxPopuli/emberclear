@@ -30,8 +30,6 @@ export default class ContactManager extends Service {
     }
   }
 
-
-
   async findOrCreate(uid: string, name: string): Promise<Contact> {
     try {
       // an exception thrown here is never caught

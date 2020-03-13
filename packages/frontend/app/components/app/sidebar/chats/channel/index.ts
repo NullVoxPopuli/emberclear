@@ -10,7 +10,7 @@ import Channel from 'emberclear/models/channel';
 
 type Args = {
   channel: Channel;
-}
+};
 
 export default class SidebarChannel extends Component<Args> {
   @service sidebar!: SidebarService;

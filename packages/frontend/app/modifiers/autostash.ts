@@ -43,7 +43,6 @@ function set(key: string, value: string) {
   window.localStorage.setItem(lsKey, value);
 }
 
-
 function lookup(key: string) {
   let lsKey = `${LS_KEY}${key}`;
 
