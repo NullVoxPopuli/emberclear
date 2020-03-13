@@ -208,6 +208,7 @@ ui:
   login:
     title: Login
     instructions: Please paste or type your mnemonic key.
+    loading: Loaded {num} Contacts...
   setup:
     warning: >
       Warning: You are about to destroy an existing identity. Please be sure you have backed up the mnemonic and / or settings
