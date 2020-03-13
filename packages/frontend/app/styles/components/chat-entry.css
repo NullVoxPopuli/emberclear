@@ -34,6 +34,7 @@
     box-sizing: border-box;
     height: var(--line-height) rem; /* inital */
     max-height: 12rem; /* 10x line-height */
+
     /* required for line breaks to render correctly during authoring */
     white-space: pre-wrap;
   }
