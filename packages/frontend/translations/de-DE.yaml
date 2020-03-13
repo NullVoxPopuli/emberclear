@@ -208,6 +208,7 @@ ui:
   login:
     title: Anmelden
     instructions: Bitte füge oder tippe deine mnemonic Passphrase ein
+    loading: Loaded {num} Contacts...
   setup:
     warning: >
       Achtung: Du bist dabei eine bereits existierende Identität zu löschen. Bitte stelle sicher, dass du die menmonic Passphrase und / oder die Einstellungen gesichert hast.
