@@ -208,6 +208,7 @@ ui:
   login:
     title: Iniciar sesión
     instructions: Por favor pega o escribe tu llave mnemonic.
+    loading: Loaded {num} Contacts...
   setup:
     warning: >
       Cuidado: Estás a punto de destruir una identidad existente. Por favor asegúrate de tener en respaldo tu configuración y / o mnemonic
