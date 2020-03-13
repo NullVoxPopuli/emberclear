@@ -5,7 +5,6 @@ const ADDON_ENV = require('./addons');
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'emberclear',
-    podModulePrefix: 'emberclear/pods',
 
     environment,
     rootURL: '/',
