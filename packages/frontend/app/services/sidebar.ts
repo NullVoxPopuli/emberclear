@@ -25,7 +25,7 @@ export default class Sidebar extends Service {
 
   @inLocalStorage isShown = false;
 
-  show() {
+  @action show() {
     this.isShown = true;
 
     if (this.slider) {
@@ -33,7 +33,7 @@ export default class Sidebar extends Service {
     }
   }
 
-  hide() {
+  @action hide() {
     this.isShown = false;
 
     if (this.slider) {
@@ -105,8 +105,8 @@ export default class Sidebar extends Service {
       const target = entry.target;
       const id = target.id;
       const { boundingClientRect, rootBounds, isIntersecting } = entry;
-      const isBelow = boundingClientRect.top > rootBounds!.bottom;
-      const isAbove = boundingClientRect.top < rootBounds!.top;
+      const isBelow = rootBounds ? boundingClientRect.top > rootBounds.bottom : false;
+      const isAbove = rootBounds ? boundingClientRect.top < rootBounds.top : false;
 
       if (isIntersecting) {
         this.unreadAbove.removeObject(id);

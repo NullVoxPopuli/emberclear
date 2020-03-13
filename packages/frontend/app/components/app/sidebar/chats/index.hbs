@@ -1,0 +1,46 @@
+<nav class='contacts' style='height: 100%; overflow-y: auto;' data-test-contacts-list>
+  {{#if this.contactManager.isImporting}}
+    <EllipsisLoader />
+  {{else}}
+    {{#each this.chats as |chat|}}
+    {{!-- TODO: this needs to be pulled out into an async rendered thing,
+      and can't be rendered on initial load. the possibility for
+      too much data is too high.
+
+      Need to go back to my original sidebar idea from long ago
+      --}}
+    {{!-- {{#vertical-collection
+      this.chats
+      estimateHeight=40 staticHeight=true bufferSize=5
+      as |chat|
+    }} --}}
+      {{#if (eq chat 'add-contact')}}
+        <div data-test-sidebar-contacts-header class='menu-label'>
+          {{t 'ui.sidebar.contacts.title'}}
+
+          <a
+            data-test-add-friend
+            class='button button-xs'
+            href={{url-for 'add-friend'}}
+            {{on 'click' (prevent-default this.onClickAddFriend)}}
+          >
+            <span class='icon'>{{fa-icon 'plus'}}</span>
+          </a>
+        </div>
+      {{else if (or (is-contact chat) (is-current-user chat))}}
+        <App::Sidebar::Chats::Contact @contact={{chat}} />
+      {{else if (is-channel chat)}}
+        <App::Sidebar::Chats::Channel @channel={{chat}} />
+      {{/if}}
+    {{!-- {{/vertical-collection}} --}}
+    {{/each}}
+  {{/if}}
+
+  {{#if this.showOfflineCounter}}
+    <em data-test-offline-count class='offline'>
+      <small>{{t 'ui.sidebar.contacts.numOffline' num=this.numberOffline}}</small>
+    </em>
+  {{/if}}
+</nav>
+
+

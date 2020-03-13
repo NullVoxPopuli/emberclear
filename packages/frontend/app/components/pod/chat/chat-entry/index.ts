@@ -1,9 +1,8 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { once, later } from '@ember/runloop';
 import { waitForPromise } from 'ember-test-waiters';
 
-import { action } from '@ember/object';
+import { action, set } from '@ember/object';
 
 import { inject as service } from '@ember/service';
 
@@ -25,10 +24,10 @@ export default class ChatEntry extends Component<IArgs> {
   @service('messages/factory') messageFactory!: MessageFactory;
   @service store!: StoreService;
 
-  @tracked text?: string;
   @tracked isDisabled = false;
+  @tracked isSubmitDisabled = true;
 
-  textarea!: HTMLTextAreaElement;
+  text?: string;
 
   get placeholder() {
     const { to } = this.args;
@@ -41,24 +40,6 @@ export default class ChatEntry extends Component<IArgs> {
     return `Send a message to ${prefix}${to.name}`;
   }
 
-  get isSubmitDisabled() {
-    return !this.text || this.text.length === 0 || this.isDisabled;
-  }
-
-  @action onInsertTextArea(element: HTMLTextAreaElement) {
-    this.textarea = element;
-    this.focus(element);
-  }
-
-  @action focus(element: HTMLElement) {
-    element.focus();
-  }
-
-  @action resize(element: HTMLTextAreaElement) {
-    element.style.cssText = 'height:auto;';
-    element.style.cssText = 'height:' + element.scrollHeight + 'px';
-  }
-
   @action async sendMessage() {
     if (!this.text) return;
 
@@ -66,27 +47,25 @@ export default class ChatEntry extends Component<IArgs> {
 
     await this.dispatchMessage(this.text);
 
-    // removing this later causes the input field to not actually get
-    // cleared
-    once(this, () => {
-      this.isDisabled = false;
-      this.text = '';
+    this.isDisabled = false;
+    this.updateText('');
+  }
 
-      // this feels hacky :-\
-      later(() => {
-        this.textarea.focus();
-        this.textarea.style.height = '';
-      }, 1);
-    });
+  @action updateText(text: string) {
+    set(this, 'text', text);
+
+    this.isSubmitDisabled = this.isDisabled || !text || text.length === 0;
   }
 
   @action onInput(event: KeyboardEvent) {
     const value = (event.target as any).value;
 
+    // TODO: only test the regex since the last detected `:`
+    // (for perf)
     if (EMOJI_REGEX.test(value)) {
-      this.text = unicode(value);
+      this.updateText(unicode(value));
     } else {
-      this.text = value;
+      this.updateText(value);
     }
   }
 
@@ -101,7 +80,7 @@ export default class ChatEntry extends Component<IArgs> {
       return false;
     }
 
-    return false;
+    return true;
   }
 
   async dispatchMessage(text: string) {

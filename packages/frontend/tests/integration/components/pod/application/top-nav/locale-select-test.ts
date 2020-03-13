@@ -3,7 +3,7 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import { hbs } from 'ember-cli-htmlbars';
 
-import { page } from 'emberclear/components/pod/application/top-nav/locale-select/-page';
+import { page } from 'emberclear/components/app/top-nav/locale-select/-page';
 import { clearLocalStorage } from 'emberclear/tests/helpers';
 
 module('Integration | Component | application/top-nav/locale-select', function(hooks) {
@@ -11,7 +11,7 @@ module('Integration | Component | application/top-nav/locale-select', function(h
   clearLocalStorage(hooks);
 
   hooks.beforeEach(async function() {
-    await render(hbs`<Pod::Application::TopNav::LocaleSelect />`);
+    await render(hbs`<App::TopNav::LocaleSelect />`);
   });
 
   test('starts closed', function(assert) {

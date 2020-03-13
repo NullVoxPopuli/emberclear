@@ -53,15 +53,15 @@
       </LinkTo>
     {{/unless}}
 
-    <Pod::Application::TopNav::Install />
-    <Pod::Application::TopNav::LocaleSelect />
+    <App::TopNav::Install />
+    <App::TopNav::LocaleSelect />
 
     {{#if this.currentUser.isLoggedIn}}
       <LinkTo @route='chat' class='hide-sm-down'>
         {{t 'routes.chat'}}
       </LinkTo>
 
-      <Pod::Application::TopNav::UserDropMenu class='hide-xs-down' />
+      <App::TopNav::UserDropMenu class='hide-xs-down' />
     {{else}}
       <LinkTo @route='login' class='hide-sm-down'>
         {{t 'routes.login'}}

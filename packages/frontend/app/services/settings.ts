@@ -88,15 +88,11 @@ export default class Settings extends Service {
 
     await this.currentUser.importFromKey(name, privateKey);
 
-    channels.forEach(async (channel: IChannelJson) => {
-      return await this.channelManager.findOrCreate(channel.id, channel.name);
-    });
+    for await (let channel of channels) {
+      await this.channelManager.findOrCreate(channel.id, channel.name);
+    }
 
-    contacts.forEach(async (contact: IContactJson) => {
-      if (!contact.publicKey || !contact.name) return Promise.resolve();
-
-      return await this.contactManager.findOrCreate(contact.publicKey, contact.name);
-    });
+    await this.contactManager.import(contacts);
   }
 
   async buildData(): Promise<string | undefined> {

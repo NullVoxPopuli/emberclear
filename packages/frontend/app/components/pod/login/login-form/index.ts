@@ -6,6 +6,7 @@ import { task } from 'ember-concurrency';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
+import StoreService from '@ember-data/store';
 import Toast from 'emberclear/services/toast';
 import Settings from 'emberclear/services/settings';
 
@@ -19,10 +20,15 @@ export default class LoginForm extends Component {
   @service settings!: Settings;
   @service toast!: Toast;
   @service router!: RouterService;
+  @service store!: StoreService;
 
   @tracked mnemonic = '';
   @tracked name = '';
   @tracked scanning = false;
+
+  get contacts() {
+    return this.store.peekAll('contact');
+  }
 
   get isLoggedIn() {
     return this.currentUser.isLoggedIn;

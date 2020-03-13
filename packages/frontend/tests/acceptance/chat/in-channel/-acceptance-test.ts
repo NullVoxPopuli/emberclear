@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest, skip } from 'ember-qunit';
 
 import {
   clearLocalStorage,
@@ -60,7 +60,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
         await visit(`/chat/in-channel/${channel.id}`);
       });
 
-      test('does not redirect', function(assert) {
+      skip('does not redirect', function(assert) {
         assert.equal(currentURL(), `/chat/in-channel/${channel.id}`);
         assert.equal(page.messages.length, 0);
       });

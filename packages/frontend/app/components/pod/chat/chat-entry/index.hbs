@@ -12,19 +12,20 @@
     <Field @label={{this.placeholder}} @hidden={{true}} as |id|>
       {{!-- TODO: extract to a resizable textarea component --}}
       <textarea
-        {{did-insert this.onInsertTextArea}}
-        {{did-update this.resize this.text}}
-        {{did-update this.focus @to}}
-        autofocus
+        {{autofocus this.isDisabled}}
+        {{autoresize this.text}}
+        {{autostash this.text when=@to.id restore=this.updateText}}
+
+        {{on 'input' this.onInput}}
+        {{on 'keypress' this.onKeyPress}}
+
         rows='1'
         data-test-chat-entry
         id={{id}}
         disabled={{this.isDisabled}}
-        class='transition-all-fast'
         value={{this.text}}
+        class='transition-all-fast'
         placeholder={{this.placeholder}}
-        {{on 'input' this.onInput}}
-        {{on 'keypress' this.onKeyPress}}
       />
     </Field>
 

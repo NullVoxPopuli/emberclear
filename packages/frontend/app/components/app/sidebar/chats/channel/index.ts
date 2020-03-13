@@ -1,34 +1,24 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 
 import RouterService from '@ember/routing/router-service';
-import StoreService from '@ember-data/store';
+import SidebarService from 'emberclear/services/sidebar';
 import Channel from 'emberclear/models/channel';
 
-interface IArgs {
-  closeSidebar: () => void;
-}
+type Args = {
+  channel: Channel;
+};
 
-export default class Channels extends Component<IArgs> {
+export default class SidebarChannel extends Component<Args> {
+  @service sidebar!: SidebarService;
   @service router!: RouterService;
-  @service store!: StoreService;
-
-  @tracked isFormVisible = false;
-
-  get channels() {
-    return this.store.peekAll('channel');
-  }
-
-  @action toggleForm() {
-    this.isFormVisible = !this.isFormVisible;
-  }
 
   @action onClickChannel(channel: Channel) {
     if (window.innerWidth < TABLET_WIDTH) {
-      this.args.closeSidebar();
+      this.sidebar.hide();
     }
 
     this.router.transitionTo('chat.in-channel', channel.id);
