@@ -208,6 +208,7 @@ ui:
   login:
     title: Iniciar sessão
     instructions: Por favor cola ou digita a tua chave-mnemónica.
+    loading: Loaded {num} Contacts...
   setup:
     warning: >
       Aviso: estás prestes a destruir uma identidade existente. Por favor, certifica-te que fizeste cópia de segurança da mnemónica e / ou configurações
