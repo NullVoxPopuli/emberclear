@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
 
-import { IQueryParams } from './controller';
+import { IQueryParams } from 'emberclear/controllers/invite';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
 import RedirectManager from 'emberclear/services/redirect-manager';
