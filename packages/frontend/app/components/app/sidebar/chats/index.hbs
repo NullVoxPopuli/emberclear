@@ -2,11 +2,18 @@
   {{#if this.contactManager.isImporting}}
     <EllipsisLoader />
   {{else}}
-    {{#vertical-collection
+    {{#each this.chats as |chat|}}
+    {{!-- TODO: this needs to be pulled out into an async rendered thing,
+      and can't be rendered on initial load. the possibility for
+      too much data is too high.
+
+      Need to go back to my original sidebar idea from long ago
+      --}}
+    {{!-- {{#vertical-collection
       this.chats
       estimateHeight=40 staticHeight=true bufferSize=5
       as |chat|
-    }}
+    }} --}}
       {{#if (eq chat 'add-contact')}}
         <div data-test-sidebar-contacts-header class='menu-label'>
           {{t 'ui.sidebar.contacts.title'}}
@@ -22,10 +29,11 @@
         </div>
       {{else if (or (is-contact chat) (is-current-user chat))}}
         <App::Sidebar::Chats::Contact @contact={{chat}} />
-      {{else if chat}}
+      {{else if (is-channel chat)}}
         <App::Sidebar::Chats::Channel @channel={{chat}} />
       {{/if}}
-    {{/vertical-collection}}
+    {{!-- {{/vertical-collection}} --}}
+    {{/each}}
   {{/if}}
 
   {{#if this.showOfflineCounter}}

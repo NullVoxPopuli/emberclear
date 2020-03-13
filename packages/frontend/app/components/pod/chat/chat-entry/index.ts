@@ -25,6 +25,7 @@ export default class ChatEntry extends Component<IArgs> {
   @service store!: StoreService;
 
   @tracked isDisabled = false;
+  @tracked isSubmitDisabled = true;
 
   text?: string;
 
@@ -37,10 +38,6 @@ export default class ChatEntry extends Component<IArgs> {
     }
 
     return `Send a message to ${prefix}${to.name}`;
-  }
-
-  get isSubmitDisabled() {
-    return this.isDisabled || !this.text || this.text.length === 0;
   }
 
   @action async sendMessage() {
@@ -56,6 +53,8 @@ export default class ChatEntry extends Component<IArgs> {
 
   @action updateText(text: string) {
     set(this, 'text', text);
+
+    this.isSubmitDisabled = this.isDisabled || !text || text.length === 0;
   }
 
   @action onInput(event: KeyboardEvent) {
@@ -81,7 +80,7 @@ export default class ChatEntry extends Component<IArgs> {
       return false;
     }
 
-    return false;
+    return true;
   }
 
   async dispatchMessage(text: string) {
