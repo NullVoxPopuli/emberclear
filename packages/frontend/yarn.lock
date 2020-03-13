@@ -1274,14 +1274,6 @@
     "@glimmer/interfaces" "^0.42.2"
     "@glimmer/vm" "^0.42.2"
 
-"@glimmer/encoder@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.npmjs.org/@glimmer/encoder/-/encoder-0.44.0.tgz#b612683aad3dcf90540b81030f1e5b79bbc9f9d7"
-  integrity sha512-6/P4Ya2/2EYfa6ukNFTHdcxbdwI60dgEtUBCrFIlF4Dmqg6OiRBx65SeFhmZiWhHCvvHaDUjc8TTt7GeXeQEYw==
-  dependencies:
-    "@glimmer/interfaces" "^0.44.0"
-    "@glimmer/vm" "^0.44.0"
-
 "@glimmer/env@0.1.7", "@glimmer/env@^0.1.7":
   version "0.1.7"
   resolved "https://registry.npmjs.org/@glimmer/env/-/env-0.1.7.tgz#fd2d2b55a9029c6b37a6c935e8c8871ae70dfa07"
@@ -1299,11 +1291,6 @@
   resolved "https://registry.npmjs.org/@glimmer/interfaces/-/interfaces-0.42.2.tgz#9cf8d6f8f5eee6bfcfa36919ca68ae716e1f78db"
   integrity sha512-7LOuQd02cxxNNHChzdHMAU8/qOeQvTro141CU5tXITP7z6aOv2D2gkFdau97lLQiVxezGrh8J7h8GCuF7TEqtg==
 
-"@glimmer/interfaces@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.npmjs.org/@glimmer/interfaces/-/interfaces-0.44.0.tgz#0896204815f05fd8907b5703cbaee9d1b9edf5d3"
-  integrity sha512-O1VBrB1uhWh/XpBRaMbT5zncZiJJNTAqe0rnhRr4JicrlmNoIC4/5ADRgDORj5oBxuENjuZ+6UTul3WCOHETiw==
-
 "@glimmer/interfaces@^0.47.9":
   version "0.47.9"
   resolved "https://registry.npmjs.org/@glimmer/interfaces/-/interfaces-0.47.9.tgz#4c50b5343815045318bba38915f780ae39f14590"
@@ -1316,19 +1303,6 @@
   resolved "https://registry.npmjs.org/@glimmer/low-level/-/low-level-0.42.2.tgz#52c745414d1d04c4245c369bd132c0e786c816ef"
   integrity sha512-s+Q44SnKdTBTnkgX0deBlVNnNPVas+Pg8xEnwky9VrUqOHKsIZRrPgfVULeC6bIdFXtXOKm5CjTajhb9qnQbXQ==
 
-"@glimmer/opcode-compiler@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.npmjs.org/@glimmer/opcode-compiler/-/opcode-compiler-0.44.0.tgz#7c27408827e1367e17f1f0f63a1d8c0b8df129a0"
-  integrity sha512-tLwHcEI9EIgEHOS2fGu3ke8FrA5MtQuTZPfrRL4Q29ofssKMJTN8IcPgpVVVEMozTX4Yoqutipv5VwM9FFul1g==
-  dependencies:
-    "@glimmer/encoder" "^0.44.0"
-    "@glimmer/interfaces" "^0.44.0"
-    "@glimmer/program" "^0.44.0"
-    "@glimmer/reference" "^0.44.0"
-    "@glimmer/util" "^0.44.0"
-    "@glimmer/vm" "^0.44.0"
-    "@glimmer/wire-format" "^0.44.0"
-
 "@glimmer/program@^0.42.2":
   version "0.42.2"
   resolved "https://registry.npmjs.org/@glimmer/program/-/program-0.42.2.tgz#fe504679ca4df6251dd5fcf3003699bb51fa41fa"
@@ -1338,29 +1312,12 @@
     "@glimmer/interfaces" "^0.42.2"
     "@glimmer/util" "^0.42.2"
 
-"@glimmer/program@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.npmjs.org/@glimmer/program/-/program-0.44.0.tgz#93e7feebac2e43f60af21a815e4d0c5bc5d4c9c1"
-  integrity sha512-y1EKDBb+/bxhufEygGmbtv2UX0BMPkCXJZ/cEqykYMjRpL1CvmB+TEks87QflGNGJ0vAMw/Li2ihi303r6p9XA==
-  dependencies:
-    "@glimmer/encoder" "^0.44.0"
-    "@glimmer/interfaces" "^0.44.0"
-    "@glimmer/util" "^0.44.0"
-
 "@glimmer/reference@^0.42.1", "@glimmer/reference@^0.42.2":
   version "0.42.2"
   resolved "https://registry.npmjs.org/@glimmer/reference/-/reference-0.42.2.tgz#57874e27c825fb7041b5295b5eb153f3f3f92f8f"
   integrity sha512-XuhbRjr3M9Q/DP892jGxVfPE6jaGGHu5w9ppGMnuTY7Vm/x+A+68MCiaREhDcEwJlzGg4UkfVjU3fdgmUIrc5Q==
   dependencies:
     "@glimmer/util" "^0.42.2"
-
-"@glimmer/reference@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.npmjs.org/@glimmer/reference/-/reference-0.44.0.tgz#5478f993e5c3d75bf63951c1a35caa63a9758dac"
-  integrity sha512-rNK2WhP656EfjCZCK7sh7gdYD+uXK5OF4JAQXmJLmYGLMpYsTII3qXGalQqqsdN7MH0PvdGRgPQOirg+nm1i8Q==
-  dependencies:
-    "@glimmer/util" "^0.44.0"
-    "@glimmer/validator" "^0.44.0"
 
 "@glimmer/runtime@^0.42.1":
   version "0.42.2"
@@ -1393,16 +1350,6 @@
     "@glimmer/interfaces" "^0.42.2"
     "@glimmer/util" "^0.42.2"
     handlebars "^4.0.13"
-    simple-html-tokenizer "^0.5.8"
-
-"@glimmer/syntax@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.npmjs.org/@glimmer/syntax/-/syntax-0.44.0.tgz#66a4d0a5047becb210259e7678b6efa9c14dbc6f"
-  integrity sha512-B/kLng2z9Cf/7jbfY7p50Q/3ouUouVT5jBgGVVTJJHvtCbrNszdMj3XY0v3hLxB83TASXf1dwJh3CNni82JnOQ==
-  dependencies:
-    "@glimmer/interfaces" "^0.44.0"
-    "@glimmer/util" "^0.44.0"
-    handlebars "^4.5.1"
     simple-html-tokenizer "^0.5.8"
 
 "@glimmer/syntax@^0.47.9":
@@ -1459,14 +1406,6 @@
     "@glimmer/interfaces" "^0.42.2"
     "@glimmer/util" "^0.42.2"
 
-"@glimmer/vm@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.npmjs.org/@glimmer/vm/-/vm-0.44.0.tgz#19c67a073a2e74aa05228734c6ac9c5987f3d75c"
-  integrity sha512-dko48uNQi6s1jSMn79h6lhcCBz8coBxXzdi//TpMFAboTEtRuyxQ2FEfIFACyamGQ7tmPKcrSzrT6zTj5eJUJA==
-  dependencies:
-    "@glimmer/interfaces" "^0.44.0"
-    "@glimmer/util" "^0.44.0"
-
 "@glimmer/wire-format@^0.27.0":
   version "0.27.0"
   resolved "https://registry.npmjs.org/@glimmer/wire-format/-/wire-format-0.27.0.tgz#1d1729814da57b99f2dbbe718f71456259484b11"
@@ -1481,14 +1420,6 @@
   dependencies:
     "@glimmer/interfaces" "^0.42.2"
     "@glimmer/util" "^0.42.2"
-
-"@glimmer/wire-format@^0.44.0":
-  version "0.44.0"
-  resolved "https://registry.npmjs.org/@glimmer/wire-format/-/wire-format-0.44.0.tgz#0970152d900bdadb6520eb9c183a76f50a0015de"
-  integrity sha512-tBTMaVKNMwddn2ffIcaZuYPMDfiRf6TF77oU4MEdF8y6E7XJJ5UcYrRUchYFizoE1V60f+Udh7zxZyjyDjW2/Q==
-  dependencies:
-    "@glimmer/interfaces" "^0.44.0"
-    "@glimmer/util" "^0.44.0"
 
 "@html-next/vertical-collection@^1.0.0":
   version "1.0.0"
@@ -5828,22 +5759,6 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-els-addon-typed-templates@^2.2.16:
-  version "2.2.16"
-  resolved "https://registry.npmjs.org/els-addon-typed-templates/-/els-addon-typed-templates-2.2.16.tgz#1a1cc8de05e2c52d1eccf63f39e4d7c07b9c43bb"
-  integrity sha512-ASwc8RJ9ixp88D/p3hsUAiyq3GtparpzXlW0uzMU5A19bBJEuvoNSBfW5hCAtl48mHbHr6AjsPo6xiVY6dfLaA==
-  dependencies:
-    "@glimmer/interfaces" "^0.44.0"
-    "@glimmer/opcode-compiler" "^0.44.0"
-    "@glimmer/syntax" "^0.44.0"
-    "@simple-dom/interface" "^1.4.0"
-    camelcase "^5.3.1"
-    lodash "^4.17.15"
-    typescript "^3.7.3"
-    vscode-languageserver "^5.2.1"
-    vscode-uri "^2.1.1"
-    walk-sync "^2.0.2"
-
 ember-app-scheduler@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/ember-app-scheduler/-/ember-app-scheduler-4.0.1.tgz#670fc0c28a28367a1aea7e5286d0d73e90561e19"
@@ -6004,19 +5919,20 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.12.0, ember-cli-babel@^6.16.0,
   version "1.0.0-beta.8"
   resolved "https://codeload.github.com/kategengler/ember-cli-code-coverage/tar.gz/5aa0e1911a12a010f14303cb339e5a3ec7c1bc25"
   dependencies:
-    babel-plugin-istanbul "^5.1.0"
+    "@babel/register" "^7.6.0"
+    babel-plugin-istanbul "^5.2.0"
     babel-plugin-transform-async-to-generator "^6.24.1"
-    body-parser "^1.18.3"
+    body-parser "^1.19.0"
     co "^4.6.0"
-    ember-cli-babel "^7.1.0"
-    ember-cli-version-checker "^2.1.2"
+    ember-cli-babel "^7.11.0"
+    ember-cli-version-checker "^3.1.3"
     extend "^3.0.2"
-    fs-extra "^5.0.0"
-    istanbul-api "^2.0.6"
+    fs-extra "^8.1.0"
+    istanbul-api "^2.1.6"
     lodash.concat "^4.5.0"
-    node-dir "^0.1.16"
-    rsvp "^4.8.3"
-    walk-sync "^0.3.3"
+    node-dir "^0.1.17"
+    rsvp "^4.8.5"
+    walk-sync "^2.0.2"
 
 ember-cli-dependency-checker@^3.2.0:
   version "3.2.0"
@@ -14905,7 +14821,7 @@ typescript-memoize@^1.0.0-alpha.3:
   dependencies:
     core-js "2.4.1"
 
-typescript@3.7.5, typescript@^3.7.3:
+typescript@3.7.5:
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
   integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
@@ -15304,42 +15220,6 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.npmjs.org/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
-
-vscode-jsonrpc@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-4.0.0.tgz#a7bf74ef3254d0a0c272fab15c82128e378b3be9"
-  integrity sha512-perEnXQdQOJMTDFNv+UF3h1Y0z4iSiaN9jIlb0OqIYgosPCZGYh/MCUlkFtV2668PL69lRDO32hmvL2yiidUYg==
-
-vscode-languageserver-protocol@3.14.1:
-  version "3.14.1"
-  resolved "https://registry.npmjs.org/vscode-languageserver-protocol/-/vscode-languageserver-protocol-3.14.1.tgz#b8aab6afae2849c84a8983d39a1cf742417afe2f"
-  integrity sha512-IL66BLb2g20uIKog5Y2dQ0IiigW0XKrvmWiOvc0yXw80z3tMEzEnHjaGAb3ENuU7MnQqgnYJ1Cl2l9RvNgDi4g==
-  dependencies:
-    vscode-jsonrpc "^4.0.0"
-    vscode-languageserver-types "3.14.0"
-
-vscode-languageserver-types@3.14.0:
-  version "3.14.0"
-  resolved "https://registry.npmjs.org/vscode-languageserver-types/-/vscode-languageserver-types-3.14.0.tgz#d3b5952246d30e5241592b6dde8280e03942e743"
-  integrity sha512-lTmS6AlAlMHOvPQemVwo3CezxBp0sNB95KNPkqp3Nxd5VFEnuG1ByM0zlRWos0zjO3ZWtkvhal0COgiV1xIA4A==
-
-vscode-languageserver@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.npmjs.org/vscode-languageserver/-/vscode-languageserver-5.2.1.tgz#0d2feddd33f92aadf5da32450df498d52f6f14eb"
-  integrity sha512-GuayqdKZqAwwaCUjDvMTAVRPJOp/SLON3mJ07eGsx/Iq9HjRymhKWztX41rISqDKhHVVyFM+IywICyZDla6U3A==
-  dependencies:
-    vscode-languageserver-protocol "3.14.1"
-    vscode-uri "^1.0.6"
-
-vscode-uri@^1.0.6:
-  version "1.0.8"
-  resolved "https://registry.npmjs.org/vscode-uri/-/vscode-uri-1.0.8.tgz#9769aaececae4026fb6e22359cb38946580ded59"
-  integrity sha512-obtSWTlbJ+a+TFRYGaUumtVwb+InIUVI0Lu0VBUAPmj2cU5JutEXg3xUE0c2J5Tcy7h2DEKVJBFi+Y9ZSFzzPQ==
-
-vscode-uri@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.npmjs.org/vscode-uri/-/vscode-uri-2.1.1.tgz#5aa1803391b6ebdd17d047f51365cf62c38f6e90"
-  integrity sha512-eY9jmGoEnVf8VE8xr5znSah7Qt1P/xsCdErz+g8HYZtJ7bZqKH5E3d+6oVNm1AC/c6IHUDokbmVXKOi4qPAC9A==
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"

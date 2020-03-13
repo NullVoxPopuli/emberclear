@@ -105,8 +105,8 @@ export default class Sidebar extends Service {
       const target = entry.target;
       const id = target.id;
       const { boundingClientRect, rootBounds, isIntersecting } = entry;
-      const isBelow = boundingClientRect.top > rootBounds!.bottom;
-      const isAbove = boundingClientRect.top < rootBounds!.top;
+      const isBelow = rootBounds ? boundingClientRect.top > rootBounds.bottom : false;
+      const isAbove = rootBounds ? boundingClientRect.top < rootBounds.top : false;
 
       if (isIntersecting) {
         this.unreadAbove.removeObject(id);
