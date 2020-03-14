@@ -1,6 +1,5 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-// import { useEffect } from 'emberclear/utils/decorators';
 
 export default class WindowService extends Service {
   @tracked deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
@@ -22,7 +21,6 @@ export default class WindowService extends Service {
     this.cleanup.forEach(method => method());
   }
 
-  // @useEffect
   checkForDeferredInstall() {
     const interval = setInterval(() => {
       this.deferredInstallPrompt = window.deferredInstallPrompt;
