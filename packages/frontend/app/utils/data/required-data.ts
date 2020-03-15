@@ -9,7 +9,7 @@ export async function ensureAtLeastOneContact(owner: ApplicationInstance) {
 
   let currentUser = owner.lookup('service:currentUser');
 
-  if (currentUser.record && currentUser.record.uid === NVP_PK) return;
+  if (currentUser.record?.uid === NVP_PK) return;
 
   let contactManager = owner.lookup('service:contact-manager');
 

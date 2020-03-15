@@ -40,11 +40,11 @@ export default class ReadWatcher extends Modifier<Args> {
    * */
   private disconnect() {
     if (this.element) {
-      this.io && this.io.unobserve(this.element);
+      this.io?.unobserve(this.element);
       this.element.removeEventListener('click', this.markRead);
     }
 
-    this.io && this.io.disconnect();
+    this.io?.disconnect();
     this.io = undefined;
   }
 

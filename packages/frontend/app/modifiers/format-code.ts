@@ -28,7 +28,7 @@ export default class FormatCode extends Modifier<Args> {
 
     const pres = this.element.querySelectorAll('pre');
 
-    if (pres && pres.length > 0) {
+    if (pres?.length > 0) {
       pres.forEach(p => p.classList.add('line-numbers'));
     }
   }

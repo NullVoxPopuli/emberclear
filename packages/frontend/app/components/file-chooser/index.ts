@@ -19,7 +19,7 @@ export default class FileChooser extends Component<IArgs> {
   @action didChooseFile(e: Event) {
     const fileReader = new FileReader();
     const fileInput = e.target as HTMLInputElement;
-    const file = (fileInput.files && fileInput.files[0]) || new Blob();
+    const file = fileInput.files?.[0] || new Blob();
 
     if (!file) return;
     if (file.size === 0) return;
