@@ -1,4 +1,4 @@
-import { tracked } from '@glimmer/tracking';
+import { get, notifyPropertyChange } from '@ember/object';
 
 export function inLocalStorage<T = boolean>(
   target: object,
@@ -7,19 +7,21 @@ export function inLocalStorage<T = boolean>(
   // it's only available on methods and such
   descriptor?: any
 ): void /* TS says the return value is ignored... idk if I believe it */ {
-  const targetName = target.constructor.name;
-  const { get: oldGet, set: oldSet } = (tracked as any)(target, propertyKey, descriptor) as any;
+  let targetName = target.constructor.name;
+  let { initializer } = descriptor;
 
   const newDescriptor = {
     configurable: true,
     enumerable: true,
     get: function(): T {
-      const key = `${targetName}-${propertyKey}`;
-      const initialValue = oldGet!.call(this);
+      let key = `${targetName}-${propertyKey}`;
       const lsValue = localStorage.getItem(key);
-      const json = (lsValue && JSON.parse(lsValue)) || { value: initialValue };
+      const value = (lsValue && JSON.parse(lsValue))?.value || initializer?.();
 
-      return json.value;
+      // Entagle with tracking system
+      get(this as any, key);
+
+      return value;
     },
     set: function(value: T) {
       const key = `${targetName}-${propertyKey}`;
@@ -28,41 +30,9 @@ export function inLocalStorage<T = boolean>(
       localStorage.setItem(key, lsValue);
 
       // this is required to dirty the change tracking system
-      oldSet!.call(this, value);
+      notifyPropertyChange(this, key);
     },
   };
 
   return newDescriptor as any;
-}
-
-type Teardown = () => void;
-type Setup = () => Teardown | void;
-type Effect = Setup;
-
-/**
- * wraps setup and teardown so we don't need to separate setup and teardown
- * in the constructor and willDestroy hook for components/services, etc
- *
- * NOTE: only tested on services for now. I don't know if all destroyable things
- *       use the same "willDestroy"-named hook.
- */
-export function useEffect(target: any, _propertyKey: string, descriptor?: any) {
-  const { value: fn } = descriptor;
-
-  const { init: oldInit, willDestroy: oldWillDestroy } = target;
-
-  let callback: Effect = fn;
-
-  target.init = function() {
-    oldInit.call(target);
-    callback = callback.call(target);
-  };
-
-  target.willDestroy = function() {
-    if (callback) {
-      callback.call(target);
-    }
-
-    oldWillDestroy.call(target);
-  };
 }

@@ -2,8 +2,6 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
 import Message from 'emberclear/models/message';
-import Identity from 'emberclear/models/identity';
-import SettingsService from 'emberclear/services/settings';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import { parseURLs } from 'emberclear/utils/string/utils';
@@ -14,7 +12,6 @@ interface IArgs {
 }
 
 export default class MessageDisplay extends Component<IArgs> {
-  @service settings!: SettingsService;
   @service currentUser!: CurrentUserService;
 
   get messageBody() {
@@ -24,27 +21,11 @@ export default class MessageDisplay extends Component<IArgs> {
   }
 
   get direction() {
-    if (this.sender === this.currentUser.record) {
+    if (this.args.message.sender === this.currentUser.record) {
       return 'outgoing';
     }
 
     return 'incoming';
-  }
-
-  get sender(): Identity | undefined {
-    return this.args.message.sender;
-  }
-
-  get hasSender() {
-    return this.sender;
-  }
-
-  get senderName() {
-    if (this.sender) {
-      return this.sender.name;
-    }
-
-    return '';
   }
 
   get urls() {

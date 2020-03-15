@@ -16,36 +16,7 @@
   data-test-chat-message
 >
 
-  <div class='message-header'>
-    <span class='from'>
-      {{#if this.hasSender}}
-
-        <LinkTo @route='chat.privately-with' @model={{@message.from}}>
-          {{this.senderName}}
-        </LinkTo>
-
-      {{else}}
-        <em>{{t 'ui.chat.sender.removed'}}</em>
-      {{/if}}
-    </span>
-
-    <span class='sentAt'>
-      {{format-date
-        @message.sentAt
-        year='numeric'
-        month='numeric'
-        day='numeric'
-        hour='numeric'
-        minute='numeric'
-      }}
-
-      {{#if @message.receivedAt}}
-        <HoverTip>
-          {{t 'ui.chat.messages.received' at=(format-date @message.receivedAt)}}
-        </HoverTip>
-      {{/if}}
-    </span>
-  </div>
+  <Pod::Chat::ChatHistory::Message::Header @message={{@message}} />
 
   <p class='message-body'>
     {{{this.messageBody}}}
