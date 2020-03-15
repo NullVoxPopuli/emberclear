@@ -5893,6 +5893,16 @@ ember-autoresize-modifier@^0.2.0:
     ember-cli-babel "^7.17.2"
     ember-cli-htmlbars "^4.2.2"
 
+ember-autostash-modifier@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/ember-autostash-modifier/-/ember-autostash-modifier-0.0.3.tgz#230aad4da27bccfe452a500db03bf46b7bb09344"
+  integrity sha512-TIgyCs9tX/+lntmf+VQMCJtb/zFgDd51vUu9W8FXZJXmIE5FoVNaNDgf7zBUNNtRkVUgW8UqHKLfWwKiPnGnug==
+  dependencies:
+    ember-cli-babel "^7.17.2"
+    ember-cli-htmlbars "^4.2.2"
+    ember-cli-typescript "^3.1.3"
+    ember-modifier "^1.0.3"
+
 ember-cli-app-version@^3.2.0:
   version "3.2.0"
   resolved "https://registry.npmjs.org/ember-cli-app-version/-/ember-cli-app-version-3.2.0.tgz#7b9ad0e1b63ae0518648356ee24c703e922bc26e"
