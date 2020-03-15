@@ -16,12 +16,12 @@ export function inLocalStorage<T = boolean>(
     get: function(): T {
       let key = `${targetName}-${propertyKey}`;
       const lsValue = localStorage.getItem(key);
-      const json = (lsValue && JSON.parse(lsValue)) || { value: initializer() };
+      const value = (lsValue && JSON.parse(lsValue))?.value || initializer?.();
 
       // Entagle with tracking system
-      get(this, key);
+      get(this as any, key);
 
-      return json.value;
+      return value;
     },
     set: function(value: T) {
       const key = `${targetName}-${propertyKey}`;
