@@ -94,7 +94,7 @@
     "@types/showdown": "^1.9.3",
     "@types/sinon": "^7.5.2",
     "@types/url-parse": "^1.4.3",
-    "@types/uuid": "^7.0.0",
+    "@types/uuid": "^7.0.1",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "@typescript-eslint/parser": "^2.23.0",
     "autoprefixer": "^9.7.4",
