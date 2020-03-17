@@ -2006,10 +2006,10 @@
   resolved "https://registry.npmjs.org/@types/url-parse/-/url-parse-1.4.3.tgz#fba49d90f834951cb000a674efee3d6f20968329"
   integrity sha512-4kHAkbV/OfW2kb5BLVUuUMoumB3CP8rHqlw48aHvFy5tf9ER0AfOonBlX29l/DD68G70DmyhRlSYfQPSYpC5Vw==
 
-"@types/uuid@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-7.0.1.tgz#6c7290f24c06dada2d3939bb16d65415588bafc8"
-  integrity sha512-nWG+LfyZLiaaOUxcqpvK4MDQNm5qaLM1LtwbGJ7MgoZ+twQHpQ9Bd46COkiJur75iXRqDFR26mPgWSJIrlemsg==
+"@types/uuid@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-7.0.2.tgz#d680a9c596ef84abf5c4c07a32ffd66d582526f8"
+  integrity sha512-8Ly3zIPTnT0/8RCU6Kg/G3uTICf9sRwYOpUzSIM3503tLIKcnJPRuinHhXngJUy2MntrEf6dlpOHXJju90Qh5w==
 
 "@types/vfile-message@*":
   version "2.0.0"
