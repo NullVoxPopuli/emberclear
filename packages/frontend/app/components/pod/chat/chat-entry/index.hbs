@@ -14,7 +14,7 @@
       <textarea
         {{autofocus this.isDisabled}}
         {{autoresize this.text}}
-        {{autostash @to.id}}
+        {{autostash @to.id this.text}}
 
         {{on 'input' this.onInput}}
         {{on 'keypress' this.onKeyPress}}
