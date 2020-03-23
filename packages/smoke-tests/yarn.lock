@@ -113,10 +113,10 @@
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
 
-"@faltest/cli@2.0.9":
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.0.9.tgz#40b4e640e384546958e67231990f4c6bc8bb0c82"
-  integrity sha512-orz9Iv8wj6QZYnUWjP8JU7yWPXo5pZouoSGOc7S+d3+jjrWSIl/pfoxjwjL9ZqCmr2Kwzj+yGpzsF7kjZ9W8AA==
+"@faltest/cli@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.1.0.tgz#b4c499e17b0633b4cb488a6d230e242ad85ed1d0"
+  integrity sha512-CMseQqNSwON8tVPigHsE9gIPHn2AFr+T72ILMFroOrIEE54l1cOMdRyMpjAFiC8TdpLpcB8g1k2vbdZN9UjJHg==
   dependencies:
     "@faltest/mocha" "^1.0.7"
     "@faltest/remote" "^3.0.9"
