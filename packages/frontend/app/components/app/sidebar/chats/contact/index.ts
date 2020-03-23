@@ -46,7 +46,8 @@ export default class SidebarContact extends Component<IArgs> {
     return unread;
   }
 
-  @action onClick() {
+  @action
+  onClick() {
     if (window.innerWidth < TABLET_WIDTH) {
       this.sidebar.hide();
     }
@@ -54,7 +55,8 @@ export default class SidebarContact extends Component<IArgs> {
     this.router.transitionTo('chat.privately-with', this.args.contact.id);
   }
 
-  @action togglePin() {
+  @action
+  togglePin() {
     const { contact } = this.args;
 
     contact.isPinned = !contact.isPinned;

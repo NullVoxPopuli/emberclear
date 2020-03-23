@@ -89,7 +89,8 @@ export default class ContactsSidebar extends Component<IArgs> {
     return this.hideOfflineContacts && this.numberOffline > 0;
   }
 
-  @action onClickAddFriend() {
+  @action
+  onClickAddFriend() {
     if (window.innerWidth < TABLET_WIDTH) {
       this.sidebar.hide();
     }

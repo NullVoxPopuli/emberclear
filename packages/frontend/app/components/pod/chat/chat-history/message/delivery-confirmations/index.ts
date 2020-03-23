@@ -107,19 +107,23 @@ export default class DeliveryConfirmation extends Component<IArgs> {
   resendAutomatically!: Task;
 
   // TODO: does this have to be redundant? I have to be doing something wrong
-  @action doDelete() {
+  @action
+  doDelete() {
     this.deleteMessage.perform();
   }
 
-  @action doResend() {
+  @action
+  doResend() {
     this.resend.perform();
   }
 
-  @action doQueue() {
+  @action
+  doQueue() {
     this.resendAutomatically.perform();
   }
 
-  @action doWait() {
+  @action
+  doWait() {
     this.waitForConfirmation.perform();
   }
 }

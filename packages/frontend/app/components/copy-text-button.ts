@@ -10,7 +10,8 @@ import { hbs } from 'ember-cli-htmlbars';
 class CopyTextButton extends Component {
   @tracked copied = false;
 
-  @action async copySuccess() {
+  @action
+  async copySuccess() {
     this.copied = true;
 
     await timeout(2000);

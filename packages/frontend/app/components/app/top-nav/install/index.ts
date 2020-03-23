@@ -6,7 +6,8 @@ import WindowService from 'emberclear/services/window';
 export default class Install extends Component {
   @service window!: WindowService;
 
-  @action install() {
+  @action
+  install() {
     this.window.promptInstall();
   }
 }

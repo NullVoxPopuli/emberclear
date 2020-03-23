@@ -34,19 +34,23 @@ export default class LocaleSwitcher extends Component<IArgs> {
     return this.options[1].label;
   }
 
-  @action didInsert(element: HTMLDivElement) {
+  @action
+  didInsert(element: HTMLDivElement) {
     this.dropdown = element;
   }
 
-  @action toggleMenu() {
+  @action
+  toggleMenu() {
     this.isActive = !this.isActive;
   }
 
-  @action closeMenu() {
+  @action
+  closeMenu() {
     this.isActive = false;
   }
 
-  @action chooseLanguage(locale: string) {
+  @action
+  chooseLanguage(locale: string) {
     this.locale.setLocale(locale);
   }
 }

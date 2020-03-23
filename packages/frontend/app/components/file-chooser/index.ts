@@ -8,15 +8,18 @@ interface IArgs {
 export default class FileChooser extends Component<IArgs> {
   inputElement!: HTMLInputElement;
 
-  @action bindInput(element: HTMLInputElement) {
+  @action
+  bindInput(element: HTMLInputElement) {
     this.inputElement = element;
   }
 
-  @action openFileChooser() {
+  @action
+  openFileChooser() {
     this.inputElement.click();
   }
 
-  @action didChooseFile(e: Event) {
+  @action
+  didChooseFile(e: Event) {
     const fileReader = new FileReader();
     const fileInput = e.target as HTMLInputElement;
     const file = fileInput.files?.[0] || new Blob();

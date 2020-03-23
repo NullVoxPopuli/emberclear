@@ -16,7 +16,8 @@ export default class NewRelayForm extends Component {
   @tracked socketURL = '';
   @tracked openGraphURL = '';
 
-  @action submit() {
+  @action
+  submit() {
     this.save.perform();
   }
 

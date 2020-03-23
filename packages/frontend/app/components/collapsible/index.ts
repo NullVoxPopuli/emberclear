@@ -7,7 +7,8 @@ import { hbs } from 'ember-cli-htmlbars';
 class Collapsible extends Component {
   @tracked isOpen = true;
 
-  @action toggle() {
+  @action
+  toggle() {
     this.isOpen = !this.isOpen;
   }
 }
