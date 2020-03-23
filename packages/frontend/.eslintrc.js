@@ -1,11 +1,12 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['ember', 'prettier', 'qunit', '@typescript-eslint'],
+  plugins: ['ember', 'prettier', 'qunit', '@typescript-eslint', 'decorator-position'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
     'plugin:qunit/recommended',
+    'plugin:decorator-position/ember',
     'plugin:@typescript-eslint/recommended',
     'prettier',
     'prettier/@typescript-eslint',
