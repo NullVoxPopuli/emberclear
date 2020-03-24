@@ -21,7 +21,8 @@ export default class Sidebar extends Component {
   @reads('currentUser.name') name?: string;
   @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
 
-  @action scrollDownToNearestUnread() {
+  @action
+  scrollDownToNearestUnread() {
     const scrollable = document.querySelector('.sidebar-wrapper aside')!;
     const lastRow = scrollable.querySelector('.tag')!;
 
@@ -29,7 +30,8 @@ export default class Sidebar extends Component {
     this.sidebar.clearUnreadBelow();
   }
 
-  @action scrollUpToNearestUnread() {
+  @action
+  scrollUpToNearestUnread() {
     const scrollable = document.querySelector('.sidebar-wrapper aside')!;
     const lastRow = scrollable.querySelector('.tag')!;
 

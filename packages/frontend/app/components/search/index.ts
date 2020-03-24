@@ -32,15 +32,18 @@ export default class SearchModal extends Component<IArgs> {
     return this.contactResults.length > 0 || this.channelResults.length > 0;
   }
 
-  @action focusInput(element: HTMLInputElement) {
+  @action
+  focusInput(element: HTMLInputElement) {
     once(this, () => element.focus());
   }
 
-  @action submitSearch() {
+  @action
+  submitSearch() {
     this.search.perform(this.searchText);
   }
 
-  @action onInput(e: Event) {
+  @action
+  onInput(e: Event) {
     this.searchText = (e.target as HTMLInputElement).value;
     this.submitSearch();
   }

@@ -62,23 +62,28 @@ export default class LoginForm extends Component {
   }).drop())
   uploadSettings!: Task;
 
-  @action toggleScanning(this: LoginForm) {
+  @action
+  toggleScanning(this: LoginForm) {
     this.scanning = !this.scanning;
   }
 
-  @action onScan(this: LoginForm, settingsJson: string) {
+  @action
+  onScan(this: LoginForm, settingsJson: string) {
     this.uploadSettings.perform(settingsJson);
   }
 
-  @action onChooseFile(...args: any[]) {
+  @action
+  onChooseFile(...args: any[]) {
     this.uploadSettings.perform(...args);
   }
 
-  @action onSubmit() {
+  @action
+  onSubmit() {
     this.login.perform();
   }
 
-  @action onScanError(e: Error) {
+  @action
+  onScanError(e: Error) {
     this.toast.error(e.message);
   }
 }

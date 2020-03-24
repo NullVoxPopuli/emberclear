@@ -11,15 +11,18 @@ export default class NotificationPrompt extends Component {
     return this.notifications.showInAppPrompt;
   }
 
-  @action enableNotifications() {
+  @action
+  enableNotifications() {
     this.notifications.askPermission();
   }
 
-  @action neverAskAgain() {
+  @action
+  neverAskAgain() {
     this.notifications.isNeverGoingToAskAgain = true;
   }
 
-  @action askNextTime() {
+  @action
+  askNextTime() {
     this.notifications.isHiddenUntilBrowserRefresh = true;
   }
 }

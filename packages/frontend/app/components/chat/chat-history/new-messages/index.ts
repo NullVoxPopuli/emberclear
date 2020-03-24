@@ -7,7 +7,8 @@ import ChatScroller from 'emberclear/services/chat-scroller';
 export default class ChatNewMessages extends Component {
   @service chatScroller!: ChatScroller;
 
-  @action scrollToBottom() {
+  @action
+  scrollToBottom() {
     this.chatScroller.scrollToBottom.perform();
   }
 }

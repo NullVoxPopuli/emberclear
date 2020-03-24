@@ -16,7 +16,8 @@ export default class SidebarChannel extends Component<Args> {
   @service sidebar!: SidebarService;
   @service router!: RouterService;
 
-  @action onClickChannel(channel: Channel) {
+  @action
+  onClickChannel(channel: Channel) {
     if (window.innerWidth < TABLET_WIDTH) {
       this.sidebar.hide();
     }

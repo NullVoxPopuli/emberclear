@@ -40,7 +40,8 @@ export default class ChatEntry extends Component<IArgs> {
     return `Send a message to ${prefix}${to.name}`;
   }
 
-  @action async sendMessage() {
+  @action
+  async sendMessage() {
     if (!this.text) return;
 
     this.isDisabled = true;
@@ -51,13 +52,15 @@ export default class ChatEntry extends Component<IArgs> {
     this.updateText('');
   }
 
-  @action updateText(text: string) {
+  @action
+  updateText(text: string) {
     set(this, 'text', text);
 
     this.isSubmitDisabled = this.isDisabled || !text || text.length === 0;
   }
 
-  @action onInput(event: KeyboardEvent) {
+  @action
+  onInput(event: KeyboardEvent) {
     const value = (event.target as any).value;
 
     // TODO: only test the regex since the last detected `:`
@@ -69,7 +72,8 @@ export default class ChatEntry extends Component<IArgs> {
     }
   }
 
-  @action onKeyPress(event: KeyboardEvent) {
+  @action
+  onKeyPress(event: KeyboardEvent) {
     const { keyCode, shiftKey } = event;
 
     // don't submit when shift is being held.

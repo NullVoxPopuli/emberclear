@@ -16,7 +16,8 @@ interface IArgs {
 export default class UnreadManagement extends Component<IArgs> {
   messagesElement!: HTMLElement;
 
-  @action findMessagesContainer() {
+  @action
+  findMessagesContainer() {
     // TODO: remove this,
     //       scrolling should be handled by the chat-scroller service
     this.messagesElement = document.querySelector('.messages') as HTMLElement;
@@ -53,13 +54,15 @@ export default class UnreadManagement extends Component<IArgs> {
     }
   }
 
-  @action markAllAsRead() {
+  @action
+  markAllAsRead() {
     this.unreadMessages.forEach(message => {
       markAsRead(message);
     });
   }
 
-  @action scrollToFirstUnread() {
+  @action
+  scrollToFirstUnread() {
     if (this.firstUnreadMessage) {
       const firstUnread = document.getElementById(this.firstUnreadMessage.id)!;
 

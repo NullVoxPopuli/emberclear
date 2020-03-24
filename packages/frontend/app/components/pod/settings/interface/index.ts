@@ -7,7 +7,8 @@ import Settings, { THEMES } from 'emberclear/services/settings';
 export default class InterfaceSettings extends Component {
   @service settings!: Settings;
 
-  @action useDarkTheme(e: any) {
+  @action
+  useDarkTheme(e: any) {
     if (e.target.checked) {
       this.settings.selectTheme(THEMES.midnight);
     } else {
@@ -15,7 +16,8 @@ export default class InterfaceSettings extends Component {
     }
   }
 
-  @action toggleHideOffline() {
+  @action
+  toggleHideOffline() {
     this.settings.hideOfflineContacts = !this.settings.hideOfflineContacts;
   }
 }

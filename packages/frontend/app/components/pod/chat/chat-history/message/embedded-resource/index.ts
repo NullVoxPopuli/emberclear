@@ -15,7 +15,8 @@ export default class EmbeddedResource extends Component<IArgs> {
     return !this.isCollapsed;
   }
 
-  @action toggleShow() {
+  @action
+  toggleShow() {
     this.isCollapsed = !this.isCollapsed;
   }
 }
