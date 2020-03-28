@@ -6,7 +6,7 @@
       data-test-overwrite-abort
       type='button'
       class='card-footer-item'
-      {{on  'click' this.didClickNo}}
+      {{on  'click' @prev}}
     >
       {{t 'ui.setup.overwriteAbort'}}
     </button>
@@ -15,7 +15,7 @@
       data-test-overwrite-confirm
       type='button'
       class='card-footer-item'
-      {{on  'click' this.didClickYes}}
+      {{on  'click' @next}}
     >
       {{t 'ui.setup.overwriteConfirm'}}
     </button>

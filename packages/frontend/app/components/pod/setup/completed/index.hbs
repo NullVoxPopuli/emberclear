@@ -3,7 +3,7 @@
   <p data-test-setup-mnemonic>
     {{t 'ui.setup.mnemonicPrompt'}}
 
-    <MnemonicDisplay @privateKey={{this.model.privateKey}} />
+    <MnemonicDisplay @privateKey={{this.currentUser.privateKey}} />
 
     {{t 'ui.setup.note'}}
   </p>
