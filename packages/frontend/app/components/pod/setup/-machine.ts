@@ -1,27 +1,24 @@
 import { Machine, send, assign } from 'xstate';
 
-export interface Context {
-
-}
+export interface Context {}
 
 export type Schema = {
   states: {
-    idle: {},
-    creating: {},
-    overwrite: {},
-    completed: {},
-  },
+    idle: {};
+    creating: {};
+    overwrite: {};
+    completed: {};
+  };
   guards: {
     isLoggedIn: () => boolean;
-  }
-}
+  };
+};
 
 export type Event =
   | { type: 'CREATE' }
   | { type: 'SUBMIT_NAME' }
   | { type: 'DO_IT_ANYWAY' }
-  | { type: 'CANCEL' }
-  ;
+  | { type: 'CANCEL' };
 
 export function setupMachine() {
   return Machine<Context, Schema, Event>({
@@ -40,8 +37,8 @@ export function setupMachine() {
             {
               target: 'creating',
             },
-          ]
-        }
+          ],
+        },
       },
       creating: {
         entry: assign({
@@ -49,7 +46,7 @@ export function setupMachine() {
         }),
         on: {
           SUBMIT_NAME: 'completed',
-        }
+        },
       },
       overwrite: {
         entry: assign({
@@ -59,18 +56,16 @@ export function setupMachine() {
         on: {
           DO_IT_ANYWAY: {
             target: 'creating',
-            actions: ['logout']
+            actions: ['logout'],
           },
           CANCEL: {
-            actions: ['redirectHome']
-          }
-
-        }
+            actions: ['redirectHome'],
+          },
+        },
       },
       completed: {
-        type: 'final'
+        type: 'final',
       },
-    }
+    },
   });
-
 }

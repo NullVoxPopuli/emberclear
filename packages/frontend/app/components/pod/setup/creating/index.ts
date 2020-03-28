@@ -11,7 +11,7 @@ import { perform } from 'emberclear/utils/ember-concurrency';
 
 type Args = {
   next: () => void;
-}
+};
 
 export default class NameEntry extends Component<Args> {
   @service currentUser!: CurrentUserService;
@@ -29,7 +29,7 @@ export default class NameEntry extends Component<Args> {
     perform(this.create);
   }
 
-  @dropTask({ withTestWaiter: true  })
+  @dropTask({ withTestWaiter: true })
   *create() {
     if (this.nameIsBlank) return;
 
