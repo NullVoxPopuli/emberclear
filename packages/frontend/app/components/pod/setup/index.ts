@@ -4,9 +4,9 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import { interpret, Interpreter, EventObject, State } from 'xstate';
+import { interpret, createMachine, Interpreter, State, StateNode } from 'xstate';
 
-import { setupMachine, Context, Schema } from './-machine';
+import { machineConfig, Context, Schema, Event } from './-machine';
 
 import CurrentUserService from 'emberclear/services/current-user';
 import RouterService from '@ember/routing/router-service';
@@ -19,45 +19,37 @@ export default class SetupWizard extends Component<Args> {
   @service session!: SessionService;
   @service router!: RouterService;
 
-  @tracked state?: State<Context, EventObject, any, any>;
+  @tracked current?: State<Context, Event, Schema>;
 
-  machine: Interpreter<Context, Schema, EventObject, any>;
+  interpreter: Interpreter<Context, Schema, Event>;
 
   constructor(owner: unknown, args: Args) {
     super(owner, args);
 
-    this.machine = interpret(
-      setupMachine().withConfig({
-        actions: {
-          logout: () => this.session.logout(),
-          redirectHome: () => this.router.transitionTo('application'),
-        },
-        guards: {
-          isLoggedIn: () => this.currentUser.isLoggedIn,
-        },
-      })
-    );
+    let configuredMachine: StateNode<Context, Schema, Event> = createMachine<Context, Event>(
+      machineConfig
+    ).withConfig({
+      actions: {
+        logout: () => this.session.logout(),
+        redirectHome: () => this.router.transitionTo('application'),
+      },
+      guards: {
+        isLoggedIn: () => this.currentUser.isLoggedIn,
+      },
+    });
 
-    this.machine.onTransition(state => (this.state = state)).start();
+    this.interpreter = interpret(configuredMachine);
+    this.interpreter.onTransition(state => (this.current = state)).start();
   }
 
   willDestroy() {
-    this.machine.stop();
+    this.interpreter.stop();
 
     super.willDestroy();
   }
 
-  // get showWarning() {
-  //   let identityAlreadyExists = this.currentUser.record?.privateKey;
-  //   let intendingToReCreate = !this.currentUser.allowOverride;
-  //   let onCompletedRoute = router.currentRouteName.match(/completed/);
-  //   let onARouteThatWarnsOfDanger = !onCompletedRoute;
-
-  //   return (intendingToReCreate && identityAlreadyExists && onARouteThatWarnsOfDanger);
-  // }
-
   @action
   transition(transitionName: string) {
-    this.machine.send(transitionName);
+    this.interpreter.send(transitionName);
   }
 }

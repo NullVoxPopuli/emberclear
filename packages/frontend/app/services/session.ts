@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 import StoreService from '@ember-data/store';
 import CurrentUserService from 'emberclear/services/current-user';
 import ConnectionService from 'emberclear/services/connection';
+
 export default class SessionService extends Service {
   @service currentUser!: CurrentUserService;
   @service connection!: ConnectionService;

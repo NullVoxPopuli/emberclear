@@ -1,71 +1,65 @@
-import { Machine, send, assign } from 'xstate';
+import { send, MachineConfig, EventObject } from 'xstate';
 
-export interface Context {}
+export interface Context {
+  next?: string;
+  prev?: string;
+}
 
-export type Schema = {
+export interface Schema {
   states: {
     idle: {};
     creating: {};
     overwrite: {};
     completed: {};
   };
+  actions: {
+    logout: <T>() => T;
+    redirectHome: <T>() => T;
+  };
   guards: {
     isLoggedIn: () => boolean;
   };
-};
+}
 
-export type Event =
-  | { type: 'CREATE' }
-  | { type: 'SUBMIT_NAME' }
-  | { type: 'DO_IT_ANYWAY' }
-  | { type: 'CANCEL' };
+export type Event = { type: 'NEXT' } | { type: 'PREV' } | EventObject;
 
-export function setupMachine() {
-  return Machine<Context, Schema, Event>({
-    id: 'setup-user',
-    initial: 'idle',
-    context: {},
-    states: {
-      idle: {
-        entry: send('CREATE'),
-        on: {
-          CREATE: [
-            {
-              target: 'overwrite',
-              cond: 'isLoggedIn',
-            },
-            {
-              target: 'creating',
-            },
-          ],
-        },
-      },
-      creating: {
-        entry: assign({
-          next: () => 'SUBMIT_NAME',
-        }),
-        on: {
-          SUBMIT_NAME: 'completed',
-        },
-      },
-      overwrite: {
-        entry: assign({
-          next: () => 'DO_IT_ANYWAY',
-          prev: () => 'CANCEL',
-        }),
-        on: {
-          DO_IT_ANYWAY: {
+export const machineConfig: MachineConfig<Context, Schema, Event> = {
+  id: 'setup-user',
+  initial: 'idle',
+  context: {},
+  states: {
+    idle: {
+      entry: send('NEXT'),
+      on: {
+        NEXT: [
+          {
+            target: 'overwrite',
+            cond: 'isLoggedIn',
+          },
+          {
             target: 'creating',
-            actions: ['logout'],
           },
-          CANCEL: {
-            actions: ['redirectHome'],
-          },
-        },
-      },
-      completed: {
-        type: 'final',
+        ],
       },
     },
-  });
-}
+    creating: {
+      on: {
+        NEXT: 'completed',
+      },
+    },
+    overwrite: {
+      on: {
+        NEXT: {
+          target: 'creating',
+          actions: ['logout'],
+        },
+        PREV: {
+          actions: ['redirectHome'],
+        },
+      },
+    },
+    completed: {
+      type: 'final',
+    },
+  },
+};
