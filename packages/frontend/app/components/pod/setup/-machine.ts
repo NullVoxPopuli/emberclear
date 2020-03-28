@@ -45,6 +45,7 @@ export const machineConfig: MachineConfig<Context, Schema, Event> = {
     creating: {
       on: {
         NEXT: 'completed',
+        PREV: 'idle',
       },
     },
     overwrite: {
