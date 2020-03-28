@@ -10,7 +10,7 @@ import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 import RouterService from '@ember/routing/router-service';
 import Contact, { Status } from 'emberclear/models/contact';
 import CurrentUserService from 'emberclear/services/current-user';
-import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
+// import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 import ContactManager from 'emberclear/services/contact-manager';
 import SidebarService from 'emberclear/services/sidebar';
 
@@ -47,7 +47,10 @@ export default class ContactsSidebar extends Component<IArgs> {
     let url = this.router.currentURL;
     let urlId = idFrom(PRIVATE_CHAT_REGEX, url);
 
-    let allMessages = this.store.peekAll('message');
+    // TODO: looking at all messages here is too expensive.
+    //       maybe make showing contacts based on unread messages
+    //       a background job or something.
+    // let allMessages = this.store.peekAll('message');
 
     return this.allContacts
       .filter(contact => {
@@ -59,7 +62,8 @@ export default class ContactsSidebar extends Component<IArgs> {
           // we are currently viewing the contact
           urlId === contact.uid ||
           // the contact has sent us messages that we haven't seen yet
-          selectUnreadDirectMessages(allMessages, contact.id).length > 0
+          // selectUnreadDirectMessages(allMessages, contact.id).length > 0
+          false
         );
       })
       .sort(sortByPinned);

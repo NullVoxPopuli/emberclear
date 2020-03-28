@@ -54,11 +54,6 @@ module('Acceptance | Invitations', function(hooks) {
         await waitFor('[data-test-setup-mnemonic]');
       });
 
-      test('setup has advanced properly', function(assert) {
-        assert.equal(currentURL(), '/setup/completed');
-        percySnapshot(assert as any);
-      });
-
       test('redirect is still pending', function(assert) {
         const redirect = getService('redirect-manager');
         const url = redirect.attemptedRoute;
