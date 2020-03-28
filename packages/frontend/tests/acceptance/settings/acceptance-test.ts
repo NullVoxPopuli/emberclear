@@ -27,7 +27,7 @@ module('Acceptance | Settings', function(hooks) {
     });
 
     test('is redirected to setup', function(assert) {
-      assert.equal(currentURL(), '/setup/new');
+      assert.equal(currentURL(), '/setup');
     });
   });
 

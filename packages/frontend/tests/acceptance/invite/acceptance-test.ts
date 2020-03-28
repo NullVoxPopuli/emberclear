@@ -10,6 +10,7 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   setupWorkers,
+  visit as visitIgnoringTransitionAborts,
 } from 'emberclear/tests/helpers';
 
 import { selectors as chatSelectors } from 'emberclear/tests/helpers/pages/chat';
@@ -25,11 +26,11 @@ module('Acceptance | Invitations', function(hooks) {
 
   module('Is not logged in', function(hooks) {
     hooks.beforeEach(async function() {
-      await visit('/invite?name=Test&publicKey=abcdef123456');
+      await visitIgnoringTransitionAborts('/invite?name=Test&publicKey=abcdef123456');
     });
 
     test('a redirect to setup occurs', function(assert) {
-      assert.equal(currentURL(), '/setup/new');
+      assert.equal(currentURL(), '/setup');
       percySnapshot(assert as any);
     });
 

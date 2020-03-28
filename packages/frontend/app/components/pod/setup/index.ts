@@ -43,9 +43,9 @@ export default class SetupWizard extends Component<Args> {
   }
 
   willDestroy() {
-    this.interpreter.stop();
-
     super.willDestroy();
+
+    this.interpreter.stop();
   }
 
   @action

@@ -8,6 +8,7 @@ import {
   setupCurrentUser,
   getService,
   setupWorkers,
+  visit as visitIgnoringTransitionAborts,
 } from 'emberclear/tests/helpers';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
@@ -26,11 +27,11 @@ module('Acceptance | Settings | Relays', function(hooks) {
 
   module('when not logged in', function(hooks) {
     hooks.beforeEach(async function() {
-      await visit(path);
+      await visitIgnoringTransitionAborts(path);
     });
 
     test('is redirected to setup', function(assert) {
-      assert.equal(currentURL(), '/setup/new');
+      assert.equal(currentURL(), '/setup');
     });
   });
 
