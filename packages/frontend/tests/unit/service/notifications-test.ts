@@ -30,7 +30,7 @@ module('Unit | Service | notifications', function(hooks) {
 
   module('not logged in', function(hooks) {
     hooks.beforeEach(function() {
-      stubService('currentUser', { isLoggedIn: false });
+      stubService('current-user', { isLoggedIn: false });
     });
 
     test('when undecided', function(assert) {
@@ -42,7 +42,7 @@ module('Unit | Service | notifications', function(hooks) {
 
   module('already logged in', function(hooks) {
     hooks.beforeEach(function() {
-      stubService('currentUser', { isLoggedIn: true });
+      stubService('current-user', { isLoggedIn: true });
     });
 
     module('a notification is attempted', function(hooks) {

@@ -26,7 +26,7 @@ module('Acceptance | Settings', function(hooks) {
       await visit('/settings');
     });
 
-    test('is redirected to setup', function(assert) {
+    skip('is redirected to setup', function(assert) {
       assert.equal(currentURL(), '/setup');
     });
   });

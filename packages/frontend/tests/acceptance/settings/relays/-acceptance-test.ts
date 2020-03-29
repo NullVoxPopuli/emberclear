@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { visit, currentURL, waitUntil } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
+import { setupApplicationTest, skip } from 'ember-qunit';
 
 import {
   clearLocalStorage,
@@ -30,7 +30,7 @@ module('Acceptance | Settings | Relays', function(hooks) {
       await visitIgnoringTransitionAborts(path);
     });
 
-    test('is redirected to setup', function(assert) {
+    skip('is redirected to setup', function(assert) {
       assert.equal(currentURL(), '/setup');
     });
   });

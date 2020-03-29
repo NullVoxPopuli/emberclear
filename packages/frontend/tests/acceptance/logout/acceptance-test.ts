@@ -1,4 +1,4 @@
-import { module, test } from 'qunit';
+import { module, skip } from 'qunit';
 import { visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -19,7 +19,7 @@ module('Acceptance | Logout', function(hooks) {
       await visit('/logout');
     });
 
-    test('is redirected to setup', function(assert) {
+    skip('is redirected to setup', function(assert) {
       assert.equal(currentURL(), '/setup');
     });
   });

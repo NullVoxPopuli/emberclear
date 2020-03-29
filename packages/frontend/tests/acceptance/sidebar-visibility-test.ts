@@ -22,7 +22,7 @@ module('Acceptance | Sidebar Visibility', function(hooks) {
 
   module('When not logged in', function(hooks) {
     hooks.beforeEach(async function() {
-      stubService('currentUser', {
+      stubService('current-user', {
         isLoggedIn: false,
         load() {},
         exists: () => false,
