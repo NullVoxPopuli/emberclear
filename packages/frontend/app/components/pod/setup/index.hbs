@@ -1,0 +1,16 @@
+
+{{#let
+  (component (concat 'pod/setup/' this.current.value))
+  as |ComponentForCurrentState|
+}}
+
+  <div class='container center-self'>
+
+    <ComponentForCurrentState
+      @next={{fn this.transition 'NEXT'}}
+      @prev={{fn this.transition 'PREV'}}
+    />
+
+  </div>
+
+{{/let}}

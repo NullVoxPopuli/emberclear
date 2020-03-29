@@ -3,16 +3,12 @@
   <p data-test-setup-mnemonic>
     {{t 'ui.setup.mnemonicPrompt'}}
 
-    <MnemonicDisplay @privateKey={{this.model.privateKey}} />
+    <MnemonicDisplay @privateKey={{this.currentUser.privateKey}} />
 
     {{t 'ui.setup.note'}}
   </p>
 
-  <div class='cta-with-fallback'>
-    <LinkTo @route='setup.index' class='button button-secondary'>
-      {{t 'buttons.back'}}
-    </LinkTo>
-
+  <div class='cta'>
     <LinkTo @route='chat' class='button' data-test-next>
       {{t 'buttons.next'}}
     </LinkTo>

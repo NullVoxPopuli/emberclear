@@ -20,7 +20,9 @@ export async function visit(url: string) {
   try {
     await dangerousVisit(url);
   } catch (e) {
-    // console.error('visit wrapper around default visit helper', e);
+    if (!e.message.includes('TransitionAborted')) {
+      throw e;
+    }
   }
 }
 

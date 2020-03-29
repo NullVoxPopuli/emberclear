@@ -37,7 +37,7 @@ module('Acceptance | Notifications Service', function(hooks) {
 
       module('visits the setup route', function(hooks) {
         hooks.beforeEach(async function() {
-          await visit('/setup/completed');
+          await visit('/setup');
         });
 
         test('notifications should not be shown', function(assert) {

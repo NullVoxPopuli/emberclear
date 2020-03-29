@@ -3,18 +3,18 @@ import { tracked } from '@glimmer/tracking';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { task } from 'ember-concurrency';
+import { dropTask } from 'ember-concurrency-decorators';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
-import RouterService from '@ember/routing/router-service';
-import Task from 'ember-concurrency/task';
+import { perform } from 'emberclear/utils/ember-concurrency';
 
-// TODO: https://adfinis-sygroup.github.io/ember-validated-form/latest/
-// use a form validation library ^
-export default class NameEntry extends Component {
+type Args = {
+  next: () => void;
+};
+
+export default class NameEntry extends Component<Args> {
   @service currentUser!: CurrentUserService;
-  @service router!: RouterService;
 
   @tracked name!: string;
 
@@ -26,20 +26,19 @@ export default class NameEntry extends Component {
   createIdentity(e: Event) {
     e.preventDefault();
 
-    this.create.perform();
+    perform(this.create);
   }
 
-  @(task(function*(this: NameEntry) {
+  @dropTask({ withTestWaiter: true })
+  *create() {
     if (this.nameIsBlank) return;
+
     const exists = yield this.currentUser.exists();
 
     if (!exists) {
       yield this.currentUser.create(this.name);
     }
 
-    this.router.transitionTo('setup.completed');
-  })
-    .drop()
-    .withTestWaiter())
-  create!: Task;
+    this.args.next();
+  }
 }

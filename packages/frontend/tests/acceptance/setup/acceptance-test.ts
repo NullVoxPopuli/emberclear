@@ -30,7 +30,9 @@ module('Acceptance | Setup', function(hooks) {
       });
 
       test('redirects to warning', function(assert) {
-        assert.equal(currentURL(), '/setup/overwrite');
+        let text = this.owner.lookup('service:intl').t('ui.setup.overwriteTitle');
+
+        assert.dom('[data-test-focus-card]').containsText(text);
       });
 
       module('desires to navigate away', function(hooks) {
@@ -49,7 +51,11 @@ module('Acceptance | Setup', function(hooks) {
         });
 
         test('redirect to main setup', function(assert) {
-          assert.equal(currentURL(), '/setup/new');
+          let text = this.owner.lookup('service:intl').t('ui.setup.introQuestion');
+
+          assert.dom('[data-test-focus-card]').containsText(text);
+
+          assert.equal(currentURL(), '/setup');
         });
       });
     });
@@ -60,16 +66,13 @@ module('Acceptance | Setup', function(hooks) {
       await visit('/setup');
     });
 
-    test('redirects to setup/new', function(assert) {
-      assert.equal(currentURL(), '/setup/new');
-      percySnapshot(assert as any);
-    });
-
     module('name is not filled in', function() {
       test('proceeding is disallowed', async function(assert) {
         await nameForm.clickNext();
 
-        assert.equal(currentURL(), '/setup/new');
+        let text = this.owner.lookup('service:intl').t('ui.setup.almostReady');
+
+        assert.dom('[data-test-focus-card]').doesNotContainText(text);
       });
 
       test('no record was created', async function(assert) {
@@ -88,7 +91,10 @@ module('Acceptance | Setup', function(hooks) {
       });
 
       test('proceeds to next page', function(assert) {
-        assert.equal(currentURL(), '/setup/completed');
+        let text = this.owner.lookup('service:intl').t('ui.setup.almostReady');
+
+        assert.dom('[data-test-focus-card]').containsText(text);
+
         percySnapshot(assert as any);
       });
 

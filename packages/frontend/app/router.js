@@ -12,11 +12,7 @@ Router.map(function() {
     this.route('in-channel', { path: '/in-channel/:id' });
   });
 
-  this.route('setup', function() {
-    this.route('new');
-    this.route('completed');
-    this.route('overwrite');
-  });
+  this.route('setup');
 
   this.route('contacts');
   this.route('login');

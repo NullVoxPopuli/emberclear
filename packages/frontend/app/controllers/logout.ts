@@ -1,26 +1,15 @@
 import Controller from '@ember/controller';
-import localforage from 'localforage';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import StoreService from '@ember-data/store';
-import CurrentUserService from 'emberclear/services/current-user';
-import ConnectionService from 'emberclear/services/connection';
+import SessionService from 'emberclear/services/session';
 
 export default class LogoutController extends Controller {
-  @service currentUser!: CurrentUserService;
-  @service connection!: ConnectionService;
-  @service store!: StoreService;
+  @service session!: SessionService;
 
   @action
-  async logout(this: LogoutController) {
-    this.connection.disconnect();
-    this.currentUser.record = undefined;
-
-    this.store.unloadAll();
-
-    localforage.clear();
-    localStorage.clear();
+  async logout() {
+    await this.session.logout();
 
     this.transitionToRoute('application');
   }

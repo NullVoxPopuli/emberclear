@@ -40,13 +40,13 @@ module('TestHelper | create-current-user', function(hooks) {
   });
 
   test('the user is set on the identity service', async function(assert) {
-    const before = getService('currentUser').record;
+    const before = getService('current-user').record;
 
     assert.notOk(before);
 
     const user = await createCurrentUser();
 
-    const after = getService('currentUser').record;
+    const after = getService('current-user').record;
 
     assert.deepEqual(after, user);
   });
@@ -55,13 +55,13 @@ module('TestHelper | create-current-user', function(hooks) {
     setupCurrentUser(hooks);
 
     test('the user is logged in', function(assert) {
-      const isLoggedIn = getService('currentUser').isLoggedIn;
+      const isLoggedIn = getService('current-user').isLoggedIn;
 
       assert.ok(isLoggedIn);
     });
 
     test('identity exists', async function(assert) {
-      const exists = await getService('currentUser').exists();
+      const exists = await getService('current-user').exists();
 
       assert.ok(exists);
     });

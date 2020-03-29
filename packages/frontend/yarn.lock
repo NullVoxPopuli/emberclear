@@ -1096,17 +1096,6 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-transform-typescript" "^7.9.0"
 
-"@babel/register@^7.6.0":
-  version "7.8.6"
-  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.8.6.tgz#a1066aa6168a73a70c35ef28cc5865ccc087ea69"
-  integrity sha512-7IDO93fuRsbyml7bAafBQb3RcBGlCpU4hh5wADA2LJEEcYk92WkwFZ0pHyIi2fb5Auoz1714abETdZKCOxN0CQ==
-  dependencies:
-    find-cache-dir "^2.0.0"
-    lodash "^4.17.13"
-    make-dir "^2.1.0"
-    pirates "^4.0.0"
-    source-map-support "^0.5.16"
-
 "@babel/runtime@^7.0.0-beta.55", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.4":
   version "7.8.4"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.8.4.tgz#d79f5a2040f7caa24d53e563aad49cbc05581308"
@@ -2612,6 +2601,19 @@
     "@webassemblyjs/wast-parser" "1.7.11"
     "@xtuc/long" "4.2.1"
 
+"@xstate/graph@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@xstate/graph/-/graph-1.0.0.tgz#657168ce35001bb915d419dc2bea9cd89d17b038"
+  integrity sha512-QinBh+O7CEqqb//SSeJU++tdKex635Hzx0xCgF+yYtDs0RIx99qscRJXlIr2mjaV1g0c/j9wAgc/ZChd6mzgDA==
+
+"@xstate/test@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@xstate/test/-/test-0.3.0.tgz#366ffd9eb349a5244d8e6d085d85b86879f4bca7"
+  integrity sha512-s9QlyyER/ox606+Ihw0TlQBDniU+OIveS1VQtm56FL+kKbUQGHO0NTBXX33z18MjrFt2hmmjgehs3wHB0RQ6sg==
+  dependencies:
+    "@xstate/graph" "^1.0.0"
+    chalk "^2.4.2"
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.npmjs.org/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -3377,7 +3379,7 @@ babel-plugin-htmlbars-inline-precompile@^3.0.1:
   resolved "https://registry.npmjs.org/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-3.0.1.tgz#e1e38a4087f446578e419a21c112530c8df02345"
   integrity sha512-ZiFY0nQjtdMPGIDwp/5LYOs6rCr54QfcSV5nPbrA7C++Fv4Vb2Q/qrKYx78t+dwmARJztnOBlObFk4z8veHxNA==
 
-babel-plugin-istanbul@^5.2.0:
+babel-plugin-istanbul@^5.1.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-istanbul/-/babel-plugin-istanbul-5.2.0.tgz#df4ade83d897a92df069c4d9a25cf2671293c854"
   integrity sha512-5LphC0USA8t4i1zCtjbbNb6jJj/9+X6P37Qfirc/70EQ34xKlMW+a1RHGwxGI+SwWpNwZ27HqvzAobeqaXwiZw==
@@ -3900,7 +3902,7 @@ bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   resolved "https://registry.npmjs.org/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
   integrity sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
 
-body-parser@1.19.0, body-parser@^1.15.0, body-parser@^1.19.0:
+body-parser@1.19.0, body-parser@^1.15.0, body-parser@^1.18.3:
   version "1.19.0"
   resolved "https://registry.npmjs.org/body-parser/-/body-parser-1.19.0.tgz#96b2709e57c9c4e09a6fd66a8fd979844f69f08a"
   integrity sha512-dhEPs72UPbDnAQJ9ZKMNTP6ptJaionhP5cBb541nXPlW60Jepo9RV/a4fX4XWW9CuFNK22krhrj1+rgzifNCsw==
@@ -6443,20 +6445,19 @@ ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cl
   version "1.0.0-beta.8"
   resolved "https://codeload.github.com/kategengler/ember-cli-code-coverage/tar.gz/5aa0e1911a12a010f14303cb339e5a3ec7c1bc25"
   dependencies:
-    "@babel/register" "^7.6.0"
-    babel-plugin-istanbul "^5.2.0"
+    babel-plugin-istanbul "^5.1.0"
     babel-plugin-transform-async-to-generator "^6.24.1"
-    body-parser "^1.19.0"
+    body-parser "^1.18.3"
     co "^4.6.0"
-    ember-cli-babel "^7.11.0"
-    ember-cli-version-checker "^3.1.3"
+    ember-cli-babel "^7.1.0"
+    ember-cli-version-checker "^2.1.2"
     extend "^3.0.2"
-    fs-extra "^8.1.0"
-    istanbul-api "^2.1.6"
+    fs-extra "^5.0.0"
+    istanbul-api "^2.0.6"
     lodash.concat "^4.5.0"
-    node-dir "^0.1.17"
-    rsvp "^4.8.5"
-    walk-sync "^2.0.2"
+    node-dir "^0.1.16"
+    rsvp "^4.8.3"
+    walk-sync "^0.3.3"
 
 ember-cli-dependency-checker@^3.2.0:
   version "3.2.0"
@@ -9923,7 +9924,7 @@ isstream@~0.1.2:
   resolved "https://registry.npmjs.org/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
-istanbul-api@^2.1.6:
+istanbul-api@^2.0.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/istanbul-api/-/istanbul-api-2.1.6.tgz#d61702a9d1c66ad89d92e66d401e16b0bda4a35f"
   integrity sha512-x0Eicp6KsShG1k1rMgBAi/1GgY7kFGEBwQpw3PXGEmu+rBcBNhqU8g2DgY9mlepAsLPzrzrbqSgCGANnki4POA==
@@ -11271,7 +11272,7 @@ no-case@^3.0.3:
     lower-case "^2.0.1"
     tslib "^1.10.0"
 
-node-dir@^0.1.17:
+node-dir@^0.1.16:
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/node-dir/-/node-dir-0.1.17.tgz#5f5665d93351335caabef8f1c554516cf5f1e4e5"
   integrity sha1-X1Zl2TNRM1yqvvjxxVRRbPXx5OU=
@@ -11321,11 +11322,6 @@ node-modules-path@^1.0.0, node-modules-path@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/node-modules-path/-/node-modules-path-1.0.2.tgz#e3acede9b7baf4bc336e3496b58e5b40d517056e"
   integrity sha512-6Gbjq+d7uhkO7epaKi5DNgUJn7H0gEyA4Jg0Mo1uQOi3Rk50G83LtmhhFyw0LxnAFhtlspkiiw52ISP13qzcBg==
-
-node-modules-regexp@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/node-modules-regexp/-/node-modules-regexp-1.0.0.tgz#8d9dbe28964a4ac5712e9131642107c71e90ec40"
-  integrity sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=
 
 node-notifier@^5.0.1:
   version "5.4.3"
@@ -12027,13 +12023,6 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.npmjs.org/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
-
-pirates@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.1.tgz#643a92caf894566f91b2b986d2c66950a8e2fb87"
-  integrity sha512-WuNqLTbMI3tmfef2TKxlQmAiLHKtFhlsCZnPIpuv2Ow0RDVO8lfy1Opf4NUzlMXLjPl+Men7AuVdX6TA+s+uGA==
-  dependencies:
-    node-modules-regexp "^1.0.0"
 
 pixrem@^4.0.0:
   version "4.0.1"
@@ -13085,6 +13074,11 @@ qunit-dom@^1.1.0:
   dependencies:
     broccoli-funnel "^3.0.2"
     broccoli-merge-trees "^4.1.0"
+
+qunit-xstate-test@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/qunit-xstate-test/-/qunit-xstate-test-0.1.0.tgz#f3127137fea944085be19afbc78d4e5c33357f2b"
+  integrity sha512-rHsw9Fbw1E/VkRRKxjyP63d0emRmfR42LGvGIEyh1OnduLse6PbCiFce0qT60pmC5Y6OTYasl8BD0AOOp2quLA==
 
 qunit@^2.9.3:
   version "2.9.3"
@@ -14374,7 +14368,7 @@ source-map-support@^0.4.15:
   dependencies:
     source-map "^0.5.6"
 
-source-map-support@^0.5.16, source-map-support@^0.5.6, source-map-support@~0.5.10, source-map-support@~0.5.12:
+source-map-support@^0.5.6, source-map-support@~0.5.10, source-map-support@~0.5.12:
   version "0.5.16"
   resolved "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.16.tgz#0ae069e7fe3ba7538c64c98515e35339eac5a042"
   integrity sha512-efyLRJDr68D9hBBNIPWFjhpFzURh+KJykQwvMyW5UiZzYwoF6l4YMMDIJJEyFWxWCqfyxLzz6tSfUFR+kXXsVQ==
@@ -16235,6 +16229,11 @@ xmlhttprequest-ssl@~1.5.4:
   version "1.5.5"
   resolved "https://registry.npmjs.org/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.5.tgz#c2876b06168aadc40e57d97e81191ac8f4398b3e"
   integrity sha1-wodrBhaKrcQOV9l+gRkayPQ5iz4=
+
+xstate@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/xstate/-/xstate-4.8.0.tgz#1aefa1f7828f84f61c356785615ffc0824ebf5a2"
+  integrity sha512-xHSYQtCHLkcrFRxa5lK4Lp1rnKt00a80jcKFMQiMBuE+6MvTYv7twwqYpzjsJoKFjGZB3GGEpZAuY1dmlPTh/g==
 
 xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.2"

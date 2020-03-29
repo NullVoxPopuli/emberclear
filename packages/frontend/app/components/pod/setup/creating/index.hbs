@@ -1,0 +1,30 @@
+<FocusCard @title={{t 'ui.setup.introQuestion'}}>
+
+  <form data-test-name-form {{on 'submit' this.createIdentity}}>
+
+    <Field @label={{t 'models.identity.name'}} @hidden={{true}}>
+      <Input
+        data-test-name-field
+        class='input-xl'
+        type='text'
+        placeholder={{t 'ui.setup.nameLabel'}}
+        @value={{this.name}}
+      />
+    </Field>
+
+    <div class='cta-with-fallback'>
+      <LinkTo @route='login'>
+        {{t 'buttons.loginInstead'}}
+      </LinkTo>
+
+      <button
+        data-test-next
+        type='submit'
+        disabled={{or this.nameIsBlank this.create.isRunning}}
+      >
+        {{t 'buttons.next'}}
+      </button>
+    </div>
+  </form>
+
+</FocusCard>

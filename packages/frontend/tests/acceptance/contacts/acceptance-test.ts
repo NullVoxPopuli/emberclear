@@ -25,7 +25,7 @@ module('Acceptance | Contacts', function(hooks) {
     });
 
     test('is redirected to setup', function(assert) {
-      assert.equal(currentURL(), '/setup/new');
+      assert.equal(currentURL(), '/setup');
     });
   });
 
@@ -43,7 +43,7 @@ module('Acceptance | Contacts', function(hooks) {
       let me: User;
 
       hooks.beforeEach(async function() {
-        me = getService('currentUser').record!;
+        me = getService('current-user').record!;
 
         await createContact('First Contact');
         await createContact('Second Contact');

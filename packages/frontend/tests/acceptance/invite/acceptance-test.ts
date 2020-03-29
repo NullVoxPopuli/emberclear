@@ -29,7 +29,7 @@ module('Acceptance | Invitations', function(hooks) {
     });
 
     test('a redirect to setup occurs', function(assert) {
-      assert.equal(currentURL(), '/setup/new');
+      assert.equal(currentURL(), '/setup');
       percySnapshot(assert as any);
     });
 
@@ -51,11 +51,6 @@ module('Acceptance | Invitations', function(hooks) {
         await nameForm.enterName('My Name');
         await nameForm.clickNext();
         await waitFor('[data-test-setup-mnemonic]');
-      });
-
-      test('setup has advanced properly', function(assert) {
-        assert.equal(currentURL(), '/setup/completed');
-        percySnapshot(assert as any);
       });
 
       test('redirect is still pending', function(assert) {
@@ -146,7 +141,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('the params are valid', function() {
         module('but the user clicks their own contact invite link', function(hooks) {
           hooks.beforeEach(async function() {
-            const identity = getService('currentUser');
+            const identity = getService('current-user');
             const record = identity.record;
             const { name, publicKeyAsHex } = record!;
 

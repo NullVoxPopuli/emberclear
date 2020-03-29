@@ -260,10 +260,6 @@ ui:
     loading: Loaded {num} Contacts...
 
   setup:
-    warning: >
-      Warning: You are about to destroy an existing identity.
-      Please be sure you have backed up the mnemonic and / or
-      settings
     overwriteTitle: Are you sure you want to create a new identity?
     overwriteQuestion: >
       This is a destructive action, that will
