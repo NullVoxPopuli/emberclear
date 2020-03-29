@@ -46,7 +46,11 @@ export default class ChatEntry extends Component<IArgs> {
 
     this.isDisabled = true;
 
-    await this.dispatchMessage(this.text);
+    if (this.text.charAt(0) == '?') {
+      this.processCommand(this.text);
+    } else {
+      await this.dispatchMessage(this.text);
+    }
 
     this.isDisabled = false;
     this.updateText('');
@@ -87,6 +91,64 @@ export default class ChatEntry extends Component<IArgs> {
     }
 
     return true;
+  }
+
+  processCommand(text: String) {
+    if(message.author.bot) return;
+    if(message.content.indexOf(config.prefix) !== 0) return;
+
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g)
+    const command = args.shift().toLowerCase()
+    const channel = message.channel.name
+    const author = message.author
+
+    if (command === "test" || command === "t") {
+      // TODO
+    }
+
+    else if (command === "state" || command === "s") {
+        // TODO 
+    } 
+
+	else if (command === "create-channel" || command === "c") {
+	}
+
+	else if (command === "add-member" || command === "a") {
+			}
+
+	else if (command === "remove-member" || command === "r") {
+	}
+
+	else if (command === "change-admin" || command === "p") {
+	}
+
+	else if (command === "vote" || command === "v") {
+		}
+
+	else if (command === "change-user-context-admin"  || command === "ucp") {
+	}
+
+	else if (command === "change-user-context-add-member" || command === "uca") {
+	}
+
+	else if (command === "change-user-context-remove-member" || command === "ucr") {
+	}
+
+	else if (command === "view-user-context" || command === "ucv") {
+	}
+	
+	else if (command === "cancel-vote" || command === "cv") {
+	}
+
+	else if (command === "reset" || command === "rs") {
+	}
+
+	else if (command === "sync-discord-roles" || command === "d") {
+		}
+	
+	else {
+    // TODO help message
+  }
   }
 
   async dispatchMessage(text: string) {
