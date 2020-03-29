@@ -26,11 +26,9 @@ export default class SetupWizard extends Component<Args> {
   constructor(owner: unknown, args: Args) {
     super(owner, args);
 
-    let configuredMachine: StateNode<Context, Schema, Event> = createMachine<Context, Event>(
-      machineConfig
-    ).withConfig({
+    let configuredMachine = createMachine<Context, Event>(machineConfig).withConfig({
       actions: {
-        logout: () => this.session.logout(),
+        logout: () =>  this.session.logout(),
         redirectHome: () => this.router.transitionTo('application'),
       },
       guards: {
@@ -39,7 +37,10 @@ export default class SetupWizard extends Component<Args> {
     });
 
     this.interpreter = interpret(configuredMachine);
-    this.interpreter.onTransition(state => (this.current = state)).start();
+    this.interpreter
+      .onTransition(state => (this.current = state))
+      .onDone(() => console.info('Setup Wizard Completed'))
+      .start();
   }
 
   willDestroy() {

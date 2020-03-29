@@ -26,7 +26,6 @@ export type Event = { type: 'NEXT' } | { type: 'PREV' } | EventObject;
 export const machineConfig: MachineConfig<Context, Schema, Event> = {
   id: 'setup-user',
   initial: 'idle',
-  context: {},
   states: {
     idle: {
       entry: send('NEXT'),

@@ -14,7 +14,9 @@ import {
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 
 import { toast } from 'emberclear/tests/helpers/pages/toast';
+import Ember from 'ember';
 
+Ember.run.backburner.DEBUG = true;
 module('Acceptance | Settings', function(hooks) {
   setupApplicationTest(hooks);
   setupWorkers(hooks);
