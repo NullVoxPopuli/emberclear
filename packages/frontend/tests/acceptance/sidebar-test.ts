@@ -194,7 +194,7 @@ module('Acceptance | Sidebar', function(hooks) {
               });
             });
 
-            test('the unread message causes the person to be shown', function(assert) {
+            skip('the unread message causes the person to be shown', function(assert) {
               const content = page.sidebar.contacts.listText;
 
               assert.contains(content, firstContact.name);

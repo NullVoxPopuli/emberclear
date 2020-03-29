@@ -11,7 +11,6 @@ import {
   assertExternal,
   getStore,
   setupWorkers,
-  visit as visitIgnoringTransitionAborts,
 } from 'emberclear/tests/helpers';
 
 import { page } from 'emberclear/components/app/top-nav/user-drop-menu/-page';
@@ -31,7 +30,11 @@ module('Acceptance | Logout', function(hooks) {
         exists: () => false,
       });
 
-      await visitIgnoringTransitionAborts('/logout');
+      try {
+        await visit('/logout');
+      } catch (e) {
+        console.error('hi', e);
+      }
     });
 
     test('redirects to setup', function(assert) {

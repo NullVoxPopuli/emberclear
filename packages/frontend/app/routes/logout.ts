@@ -16,7 +16,7 @@ export default class LogoutRoute extends Route {
     const exists = await this.currentUser.exists();
 
     if (!exists) {
-      this.transitionTo('setup');
+      return this.transitionTo('setup');
     }
   }
 }
