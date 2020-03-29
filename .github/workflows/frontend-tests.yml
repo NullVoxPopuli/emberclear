@@ -37,8 +37,8 @@ jobs:
         CI_BROWSER: ${{ matrix.ci_browser }}
       # run: ./scripts/test-with-coverage.sh
       run: |
-        yarn ember test --query=filter=Acceptance%20%7C%20Logout&testId=42738f08
-
+        # yarn ember test --query=filter=Acceptance%20%7C%20Logout&testId=42738f08
+        yarn ember test --query=filter=Acceptance%20%7C%20Logout%20%3E%20when%20not%20logged%20in%3A%20is%20redirected%20to%20setup
     # - name: Upload Coverage to Coveralls
     #   uses: coverallsapp/github-action@v1.0.1
     #   with:
