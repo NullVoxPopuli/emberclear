@@ -1,9 +1,5 @@
 name: Frontend Tests
-on:
-  pull_request: {}
-    # branches: [master]
-    # paths:
-    #   - 'packages/frontend/*'
+on: [push]
 env:
   cwd: packages/frontend
 
