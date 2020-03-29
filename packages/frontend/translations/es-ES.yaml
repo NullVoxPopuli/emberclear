@@ -210,8 +210,6 @@ ui:
     instructions: Por favor pega o escribe tu llave mnemonic.
     loading: Loaded {num} Contacts...
   setup:
-    warning: >
-      Cuidado: Estás a punto de destruir una identidad existente. Por favor asegúrate de tener en respaldo tu configuración y / o mnemonic
     overwriteTitle: '¿Estás seguro de crear una nueva identidad?'
     overwriteQuestion: >
       Esta es una acción destructiva que causará que la identidad actual sea olvidada y reemplazada. No hay manera de recuperarla y sin tener la mnemonic guardada en algún lugar, no podrás conectarte con ninguno de los chats previos ya que ninguno sabrá quién eres. <br><br> ¿Estás seguro de querer hacer esto?
