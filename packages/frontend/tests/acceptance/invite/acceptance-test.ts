@@ -10,7 +10,6 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   setupWorkers,
-  visit as visitIgnoringTransitionAborts,
 } from 'emberclear/tests/helpers';
 
 import { selectors as chatSelectors } from 'emberclear/tests/helpers/pages/chat';
@@ -26,7 +25,7 @@ module('Acceptance | Invitations', function(hooks) {
 
   module('Is not logged in', function(hooks) {
     hooks.beforeEach(async function() {
-      await visitIgnoringTransitionAborts('/invite?name=Test&publicKey=abcdef123456');
+      await visit('/invite?name=Test&publicKey=abcdef123456');
     });
 
     test('a redirect to setup occurs', function(assert) {
@@ -142,7 +141,7 @@ module('Acceptance | Invitations', function(hooks) {
       module('the params are valid', function() {
         module('but the user clicks their own contact invite link', function(hooks) {
           hooks.beforeEach(async function() {
-            const identity = getService('currentUser');
+            const identity = getService('current-user');
             const record = identity.record;
             const { name, publicKeyAsHex } = record!;
 

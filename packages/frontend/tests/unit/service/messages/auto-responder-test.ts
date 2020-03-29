@@ -63,7 +63,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
           somePerson = await createContact('some person');
 
           const store = getService('store');
-          const me = getService('currentUser');
+          const me = getService('current-user');
           let messages = await store.findAll('message');
 
           assert.equal(messages.length, 0, 'there are no messages');
@@ -133,7 +133,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
     test('a delivery confirmation is built', async function(assert) {
       assert.expect(5);
 
-      const me = getService('currentUser');
+      const me = getService('current-user');
 
       await me.exists();
 

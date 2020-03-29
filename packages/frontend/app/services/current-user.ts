@@ -1,4 +1,3 @@
-import { run } from '@ember/runloop';
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { isPresent } from '@ember/utils';
@@ -30,9 +29,6 @@ export default class CurrentUserService extends Service {
   crypto?: CryptoConnector;
 
   @tracked record?: User;
-
-  // safety for not accidentally blowing away an existing identity
-  @tracked allowOverride = false;
 
   get id() {
     if (!this.record) return;
@@ -86,7 +82,6 @@ export default class CurrentUserService extends Service {
     await this.store.unloadAll('user');
 
     await this.setIdentity(name, privateKey, publicKey);
-    this.allowOverride = false;
 
     await this.load();
   }
@@ -101,12 +96,9 @@ export default class CurrentUserService extends Service {
 
     await record.save();
 
-    run(() => {
-      this.hydrateCrypto(record);
+    this.hydrateCrypto(record);
 
-      this.record = record;
-    });
-    // this.record = record;
+    this.record = record;
   }
 
   async exists(): Promise<boolean> {
@@ -127,16 +119,14 @@ export default class CurrentUserService extends Service {
         backgroundReload: true,
       });
 
-      run(() => {
-        this.hydrateCrypto(existing);
+      this.hydrateCrypto(existing);
 
-        this.record = existing;
-      });
+      this.record = existing;
 
       return existing;
     } catch (e) {
       // no record found
-      run(() => (this.allowOverride = true));
+      console.error(e);
     }
 
     return null;

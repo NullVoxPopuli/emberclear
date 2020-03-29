@@ -28,7 +28,7 @@ export default class SetupWizard extends Component<Args> {
 
     let configuredMachine = createMachine<Context, Event>(machineConfig).withConfig({
       actions: {
-        logout: () =>  this.session.logout(),
+        logout: () => this.session.logout(),
         redirectHome: () => this.router.transitionTo('application'),
       },
       guards: {

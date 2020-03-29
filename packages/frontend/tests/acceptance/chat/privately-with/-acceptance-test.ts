@@ -326,7 +326,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
         module('there are many messages', function(hooks) {
           let numMessages = 50;
           hooks.beforeEach(async function(assert) {
-            let currentUser = getService('currentUser').record!;
+            let currentUser = getService('current-user').record!;
 
             for (let i = 0; i < numMessages; i++) {
               let message = await createMessage(
@@ -402,7 +402,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
         module('there are many unread messages', function() {
           hooks.beforeEach(async function() {
-            // let currentUser = getService('currentUser').record!;
+            // let currentUser = getService('current-user').record!;
             // let numMessages = 30;
             // for (let i = 0; i < numMessages; i++) {
             //   await createMessage(currentUser, someone, 'Test Message');

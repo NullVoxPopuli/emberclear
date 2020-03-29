@@ -7,7 +7,7 @@ import { getStore } from './get-store';
 
 export async function createCurrentUser(): Promise<User> {
   const store = getStore();
-  const currentUserService = getService('currentUser');
+  const currentUserService = getService('current-user');
 
   const { publicKey, privateKey } = await generateAsymmetricKeys();
 
@@ -33,5 +33,5 @@ export function setupCurrentUser(hooks: NestedHooks) {
 }
 
 export function getCurrentUser() {
-  return getService('currentUser').record;
+  return getService('current-user').record;
 }

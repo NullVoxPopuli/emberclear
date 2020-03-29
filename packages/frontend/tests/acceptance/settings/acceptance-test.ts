@@ -50,7 +50,7 @@ module('Acceptance | Settings', function(hooks) {
         });
 
         test('the name has changed', function(assert) {
-          const service = getService('currentUser');
+          const service = getService('current-user');
           const actual = service.name;
 
           assert.equal(actual, newName);

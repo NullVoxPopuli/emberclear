@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { visit, currentURL, waitUntil } from '@ember/test-helpers';
-import { setupApplicationTest, skip } from 'ember-qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
 import {
   clearLocalStorage,
@@ -8,7 +8,6 @@ import {
   setupCurrentUser,
   getService,
   setupWorkers,
-  visit as visitIgnoringTransitionAborts,
 } from 'emberclear/tests/helpers';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
@@ -27,10 +26,10 @@ module('Acceptance | Settings | Relays', function(hooks) {
 
   module('when not logged in', function(hooks) {
     hooks.beforeEach(async function() {
-      await visitIgnoringTransitionAborts(path);
+      await visit(path);
     });
 
-    skip('is redirected to setup', function(assert) {
+    test('is redirected to setup', function(assert) {
       assert.equal(currentURL(), '/setup');
     });
   });

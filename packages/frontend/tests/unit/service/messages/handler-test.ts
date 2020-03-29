@@ -36,7 +36,7 @@ module('Unit | Service | messages/handler', function(hooks) {
       test('the message is saved', async function(assert) {
         const store = getStore();
         const service = getService('messages/handler');
-        const me = getService('currentUser');
+        const me = getService('current-user');
         const sender = await attributesForContact();
 
         const before = await store.findAll('message');

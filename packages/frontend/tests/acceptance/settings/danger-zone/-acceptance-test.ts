@@ -7,7 +7,6 @@ import {
   setupRelayConnectionMocks,
   setupCurrentUser,
   setupWorkers,
-  visit as visitAllowingAbort,
 } from 'emberclear/tests/helpers';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
@@ -24,7 +23,7 @@ module('Acceptance | Settings | Danger Zone', function(hooks) {
 
   module('when not logged in', function(hooks) {
     hooks.beforeEach(async function() {
-      await visitAllowingAbort(path);
+      await visit(path);
     });
 
     test('is redirected to setup', function(assert) {

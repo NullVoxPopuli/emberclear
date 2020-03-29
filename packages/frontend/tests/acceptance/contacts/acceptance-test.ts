@@ -8,7 +8,6 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   getService,
-  visit as visitIgnoringTransitionAborts,
 } from 'emberclear/tests/helpers';
 
 import { contacts } from 'emberclear/tests/helpers/pages/contacts';
@@ -22,7 +21,7 @@ module('Acceptance | Contacts', function(hooks) {
 
   module('when not logged in', function(hooks) {
     hooks.beforeEach(async function() {
-      await visitIgnoringTransitionAborts('/contacts');
+      await visit('/contacts');
     });
 
     test('is redirected to setup', function(assert) {
@@ -44,7 +43,7 @@ module('Acceptance | Contacts', function(hooks) {
       let me: User;
 
       hooks.beforeEach(async function() {
-        me = getService('currentUser').record!;
+        me = getService('current-user').record!;
 
         await createContact('First Contact');
         await createContact('Second Contact');
