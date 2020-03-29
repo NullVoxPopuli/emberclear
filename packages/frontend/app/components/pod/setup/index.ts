@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import { interpret, createMachine, Interpreter, State, StateNode } from 'xstate';
+import { interpret, createMachine, Interpreter, State } from 'xstate';
 
 import { machineConfig, Context, Schema, Event } from './-machine';
 
