@@ -21,7 +21,6 @@ export async function createCurrentUser(): Promise<User> {
   await record.save();
 
   currentUserService.record = record;
-  currentUserService.allowOverride = false;
 
   return record;
 }

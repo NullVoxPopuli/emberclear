@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 
 import { visit, currentURL } from '@ember/test-helpers';
-import { setupApplicationTest, skip } from 'ember-qunit';
+import { setupApplicationTest } from 'ember-qunit';
 
 import {
   stubService,
@@ -37,7 +37,7 @@ module('Acceptance | Logout', function(hooks) {
       }
     });
 
-    skip('redirects to setup', function(assert) {
+    test('redirects to setup', function(assert) {
       assert.equal(currentURL(), '/setup');
       assertExternal(assert as any);
     });
