@@ -45,6 +45,7 @@ buttons:
   scan: Сканировать
   sendSnippet: Отправить сниппет
   remove: Удалить
+  donate: Donate
   donateEth: Поддержать в Ethereum
   donateXmr: Поддержать в Monero
   loginInstead: Войти с логином/паролем
@@ -203,13 +204,12 @@ ui:
     navigation: Навигация
     wantToSupport: Хотите поддержать проект?
     license: >
-      <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>исходный код</a> использует <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> лицензию.
+      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
   login:
     title: Логин
     instructions: Вставьте или напишите ваш мнемонический ключ.
+    loading: Loaded {num} Contacts...
   setup:
-    warning: >
-      Внимание: Вы хотите удалить существующий аккаунт. Пожалуйста, убедитесь что у вас имеются бекапы настроек и сохранённый мнемонический ключ.
     overwriteTitle: Вы уверены что хотите создать новый профиль?
     overwriteQuestion: >
       Это действие необратимо и приведёт к тому что текущий профиль будет забыт и перезаписан без возможности восстановления. Без сохранённой мнемонической фразы вы не сможете присоединиться к предыдущим чатам и никто не сможет вас идентифицировать. <br> <br> Вы уверены что хотите продолжить? 

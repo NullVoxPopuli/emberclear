@@ -45,6 +45,7 @@ buttons:
   scan: Scannen
   sendSnippet: Ausschnitt senden
   remove: Entfernen
+  donate: Donate
   donateEth: Ethereum spenden
   donateXmr: Monero spenden
   loginInstead: Stattdessen anmelden
@@ -203,13 +204,12 @@ ui:
     navigation: Navigation
     wantToSupport: Möchtest du das Projekt unterstützen?
     license: >
-      Der <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>Quellcode</a> nutzt eine <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> Lizenz.
+      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
   login:
     title: Anmelden
     instructions: Bitte füge oder tippe deine mnemonic Passphrase ein
+    loading: Loaded {num} Contacts...
   setup:
-    warning: >
-      Achtung: Du bist dabei eine bereits existierende Identität zu löschen. Bitte stelle sicher, dass du die menmonic Passphrase und / oder die Einstellungen gesichert hast.
     overwriteTitle: Möchtest du wirklich eine neue Identität anlegen?
     overwriteQuestion: >
       Dies ist eine zerstörerische Handlung, welche die aktuell konfigurierte Identität löscht und ersetzt. Es existiert keine Möglichkeit zur Wiederherstellung und ohne die mnemonic Passphrase wirst du dich auch nicht mehr mit zuvor konfigurerten Chats verbinden können. <br> <br> Möchtest du wirklich fortfahren?

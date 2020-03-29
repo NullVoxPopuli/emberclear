@@ -45,6 +45,7 @@ buttons:
   scan: Escanear
   sendSnippet: Enviar Snippet
   remove: Remover
+  donate: Donate
   donateEth: Donar Ethereum
   donateXmr: Donar dinero
   loginInstead: Iniciar sesión
@@ -203,13 +204,12 @@ ui:
     navigation: Navegación
     wantToSupport: '¿Quieres soportar este proyecto?'
     license: >
-      El <a href='https://gitlab.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>código fuente</a> utiliza la <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>licencia</a> GPL-3.
+      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
   login:
     title: Iniciar sesión
     instructions: Por favor pega o escribe tu llave mnemonic.
+    loading: Loaded {num} Contacts...
   setup:
-    warning: >
-      Cuidado: Estás a punto de destruir una identidad existente. Por favor asegúrate de tener en respaldo tu configuración y / o mnemonic
     overwriteTitle: '¿Estás seguro de crear una nueva identidad?'
     overwriteQuestion: >
       Esta es una acción destructiva que causará que la identidad actual sea olvidada y reemplazada. No hay manera de recuperarla y sin tener la mnemonic guardada en algún lugar, no podrás conectarte con ninguno de los chats previos ya que ninguno sabrá quién eres. <br><br> ¿Estás seguro de querer hacer esto?
