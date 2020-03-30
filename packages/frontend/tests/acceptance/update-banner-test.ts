@@ -12,22 +12,22 @@ import { setupRelayConnectionMocks, setupWorkers } from 'emberclear/tests/helper
 
 const selector = '.service-worker-update-notify';
 
-module('Acceptance | Update Banner', function(hooks) {
+module('Acceptance | Update Banner', function (hooks) {
   setupApplicationTest(hooks);
   setupWorkers(hooks);
   setupServiceWorkerUpdater(hooks);
   setupRelayConnectionMocks(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await visit('/');
   });
 
-  test('the notifier is not visible', function(assert) {
+  test('the notifier is not visible', function (assert) {
     assert.dom(selector).doesNotExist();
   });
 
-  module('an update is ready', function() {
-    test('the notifier can become visible', async function(assert) {
+  module('an update is ready', function () {
+    test('the notifier can become visible', async function (assert) {
       await serviceWorkerUpdate();
 
       assert.dom(selector).exists();

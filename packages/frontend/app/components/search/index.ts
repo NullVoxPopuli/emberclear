@@ -48,7 +48,7 @@ export default class SearchModal extends Component<IArgs> {
     this.submitSearch();
   }
 
-  @(task(function*(this: SearchModal, searchTerm: string) {
+  @(task(function* (this: SearchModal, searchTerm: string) {
     const term = new RegExp(searchTerm, 'i');
 
     let [contactResults, channelResults] = yield Promise.all([

@@ -9,11 +9,11 @@ import {
   getStore,
 } from 'emberclear/tests/helpers';
 
-module('TestHelper | create-current-user', function(hooks) {
+module('TestHelper | create-current-user', function (hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
 
-  test('a new user is created and kept in cache', async function(assert) {
+  test('a new user is created and kept in cache', async function (assert) {
     const before = getStore().peekAll('user');
 
     assert.equal(before.length, 0);
@@ -26,7 +26,7 @@ module('TestHelper | create-current-user', function(hooks) {
     assert.equal(after.toArray()[0].id, 'me');
   });
 
-  test('a new user is created and stored', async function(assert) {
+  test('a new user is created and stored', async function (assert) {
     const before = await getStore().findAll('user');
 
     assert.equal(before.length, 0);
@@ -39,7 +39,7 @@ module('TestHelper | create-current-user', function(hooks) {
     assert.equal(after.toArray()[0].id, 'me');
   });
 
-  test('the user is set on the identity service', async function(assert) {
+  test('the user is set on the identity service', async function (assert) {
     const before = getService('current-user').record;
 
     assert.notOk(before);
@@ -51,16 +51,16 @@ module('TestHelper | create-current-user', function(hooks) {
     assert.deepEqual(after, user);
   });
 
-  module('user is setup in a beforeEach', function(hooks) {
+  module('user is setup in a beforeEach', function (hooks) {
     setupCurrentUser(hooks);
 
-    test('the user is logged in', function(assert) {
+    test('the user is logged in', function (assert) {
       const isLoggedIn = getService('current-user').isLoggedIn;
 
       assert.ok(isLoggedIn);
     });
 
-    test('identity exists', async function(assert) {
+    test('identity exists', async function (assert) {
       const exists = await getService('current-user').exists();
 
       assert.ok(exists);

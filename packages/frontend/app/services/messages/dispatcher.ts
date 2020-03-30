@@ -65,7 +65,7 @@ export default class MessageDispatcher extends Service {
   // the bigger the list of identities, the longer this takes
   //
   // TODO: should this be hard-limited to just messages like PINGs?
-  @task(function*(this: MessageDispatcher, msg: Message) {
+  @task(function* (this: MessageDispatcher, msg: Message) {
     const everyone = yield this.store.findAll('contact');
 
     everyone.forEach((contact: Contact) => {
@@ -77,14 +77,14 @@ export default class MessageDispatcher extends Service {
   sendToChannel(msg: Message, channel: Channel) {
     const members = channel.members;
 
-    members.forEach(member => {
+    members.forEach((member) => {
       if (member.id === this.currentUser.id) return; // don't send to self
 
       this.sendToUser.perform(msg, member);
     });
   }
 
-  @task(function*(this: MessageDispatcher, msg: Message, to: Contact) {
+  @task(function* (this: MessageDispatcher, msg: Message, to: Contact) {
     if (!this.currentUser.crypto) {
       console.info('Crypto Worker not available');
 

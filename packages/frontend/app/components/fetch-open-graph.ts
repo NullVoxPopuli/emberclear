@@ -34,7 +34,7 @@ class FetchOpenGraphComponent extends Component<Args> {
     });
   }
 
-  @(task(function*(this: FetchOpenGraphComponent) {
+  @(task(function* (this: FetchOpenGraphComponent) {
     yield waitUntil(() => this.status.isConnected);
 
     let og = yield this.connection.getOpenGraph(this.args.url);
@@ -65,7 +65,7 @@ export default setComponentTemplate(
 );
 
 function waitUntil(callback: () => boolean): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     let interval: any;
 
     interval = setInterval(() => {

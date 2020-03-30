@@ -16,27 +16,27 @@ import Message, { TYPE, TARGET } from 'emberclear/models/message';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import AutoResponder from 'emberclear/services/messages/auto-responder';
 
-module('Unit | Service | messages/auto-responder', function(hooks) {
+module('Unit | Service | messages/auto-responder', function (hooks) {
   setupTest(hooks);
   setupCurrentUser(hooks);
   clearLocalStorage(hooks);
 
-  test('it exists', function(assert) {
+  test('it exists', function (assert) {
     let service = getService('messages/auto-responder');
     assert.ok(service);
   });
 
-  module('cameOnline', function() {
-    module('handling messages queued for resend', function() {
-      module('there are no pending messages', function(hooks) {
-        hooks.beforeEach(async function(assert) {
+  module('cameOnline', function () {
+    module('handling messages queued for resend', function () {
+      module('there are no pending messages', function (hooks) {
+        hooks.beforeEach(async function (assert) {
           const store = getService('store');
           const messages = await store.findAll('message');
 
           assert.equal(messages.length, 0, 'there are no messages');
         });
 
-        test('no messages are sent', async function(assert) {
+        test('no messages are sent', async function (assert) {
           assert.expect(1);
 
           const service = getService('messages/auto-responder');
@@ -54,11 +54,11 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
         });
       });
 
-      module('there are pending messages', function(hooks) {
+      module('there are pending messages', function (hooks) {
         let somePerson: Identity;
         let service: AutoResponder;
 
-        hooks.beforeEach(async function(assert) {
+        hooks.beforeEach(async function (assert) {
           service = getService('messages/auto-responder');
           somePerson = await createContact('some person');
 
@@ -94,7 +94,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
           assert.equal(pendingMessages.length, 2, 'there are 2 pending messages');
         });
 
-        test('there are no longer any queued messages', async function(assert) {
+        test('there are no longer any queued messages', async function (assert) {
           assert.expect(6);
 
           stubService('messages/dispatcher', {
@@ -129,8 +129,8 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
     });
   });
 
-  module('messageReceived', function() {
-    test('a delivery confirmation is built', async function(assert) {
+  module('messageReceived', function () {
+    test('a delivery confirmation is built', async function (assert) {
       assert.expect(5);
 
       const me = getService('current-user');

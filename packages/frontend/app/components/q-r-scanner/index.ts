@@ -43,7 +43,7 @@ export default class QRScanner extends Component<IArgs> {
   }
 
   private stop() {
-    this.cameraStream?.getTracks().forEach(track => track.stop());
+    this.cameraStream?.getTracks().forEach((track) => track.stop());
     this.cameraStream = undefined;
   }
 

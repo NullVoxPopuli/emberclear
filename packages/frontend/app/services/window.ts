@@ -18,7 +18,7 @@ export default class WindowService extends Service {
   }
 
   willDestroy() {
-    this.cleanup.forEach(method => method());
+    this.cleanup.forEach((method) => method());
   }
 
   checkForDeferredInstall() {
@@ -29,7 +29,7 @@ export default class WindowService extends Service {
         clearInterval(interval);
         this.hasDeferredInstall = true;
 
-        this.deferredInstallPrompt.userChoice.then(choice => {
+        this.deferredInstallPrompt.userChoice.then((choice) => {
           this.isInstalled = choice.outcome === 'accepted';
         });
       }

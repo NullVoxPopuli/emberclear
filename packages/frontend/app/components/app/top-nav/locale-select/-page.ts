@@ -8,7 +8,7 @@ export const definition = {
     text: text('span'),
   }),
   optionFor(lang: string) {
-    return this.options.findOne(option => {
+    return this.options.findOne((option) => {
       return option.text === lang;
     });
   },

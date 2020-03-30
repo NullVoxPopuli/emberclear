@@ -6,7 +6,7 @@ export function selectUnreadDirectMessages(
   messages: Message[] | RecordArray<Message> | TODO<any>,
   fromId: string
 ): Message[] {
-  const filtered = selectUnreadMessages(messages).filter(m => {
+  const filtered = selectUnreadMessages(messages).filter((m) => {
     return m.from === fromId;
   });
 

@@ -64,7 +64,7 @@ export default class PrismManager extends Service {
 }
 
 async function addScripts() {
-  await import('prismjs').then(Prism => ((window as any).Prism = Prism));
+  await import('prismjs').then((Prism) => ((window as any).Prism = Prism));
 
   let modules = await Promise.all([
     import('prismjs/plugins/line-numbers/prism-line-numbers.min.js'),

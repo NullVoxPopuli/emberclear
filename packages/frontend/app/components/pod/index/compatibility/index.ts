@@ -34,7 +34,7 @@ export default class Compatibility extends Component {
     this.detectFeatures.perform();
   }
 
-  @(task(function*(this: Compatibility) {
+  @(task(function* (this: Compatibility) {
     let check = this.checkSuccess.bind(this);
     this.hasIndexedDb = check(yield hasIndexedDb(), { required: true });
 

@@ -30,7 +30,7 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
     const container = document.querySelector('.messages')!;
     const messages = container.querySelectorAll('.message');
 
-    messages.forEach(message => {
+    messages.forEach((message) => {
       const isVisible = isInElementWithinViewport(message, container);
 
       if (isVisible) {
@@ -41,7 +41,7 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
     });
   }
 
-  @(task(function*(message: Message) {
+  @(task(function* (message: Message) {
     let attempts = 0;
     while (attempts < 100) {
       attempts++;

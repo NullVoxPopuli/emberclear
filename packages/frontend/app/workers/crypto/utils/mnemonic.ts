@@ -32,7 +32,7 @@ export async function naclBoxPrivateKeyFromMnemonic(mnemonic: string): Promise<U
   const words = mnemonic.split(' ');
   const key = words.slice(0, 24);
   const checksum = words[words.length - 1];
-  const nums = key.map(word => english.indexOf(word));
+  const nums = key.map((word) => english.indexOf(word));
 
   // verify with the checksum, to see if we need to chop off the last
   // byte or something
@@ -63,7 +63,7 @@ export async function computeChecksum(nums: Uint8Array): Promise<string> {
 }
 
 function applyWords(nums: number[]): string[] {
-  return nums.map(n => english[n]);
+  return nums.map((n) => english[n]);
 }
 
 // https://stackoverflow.com/a/50285590/356849

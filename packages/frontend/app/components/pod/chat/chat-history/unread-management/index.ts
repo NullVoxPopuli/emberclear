@@ -56,7 +56,7 @@ export default class UnreadManagement extends Component<IArgs> {
 
   @action
   markAllAsRead() {
-    this.unreadMessages.forEach(message => {
+    this.unreadMessages.forEach((message) => {
       markAsRead(message);
     });
   }

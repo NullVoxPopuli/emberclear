@@ -1,9 +1,9 @@
 import { module, test } from 'qunit';
 import * as string from 'emberclear/utils/string/utils';
 
-module('Unit | Utility | string', function() {
-  module('hostFromURL', function() {
-    test('finds the host from a URL', function(assert) {
+module('Unit | Utility | string', function () {
+  module('hostFromURL', function () {
+    test('finds the host from a URL', function (assert) {
       const url = 'wss://mesh-relay-in-us-1.herokuapp.com/socket';
       const expected = 'mesh-relay-in-us-1.herokuapp.com';
       const result = string.hostFromURL(url);
@@ -11,7 +11,7 @@ module('Unit | Utility | string', function() {
       assert.equal(result, expected);
     });
 
-    test('when the pattern is not matched, null is returned', function(assert) {
+    test('when the pattern is not matched, null is returned', function (assert) {
       const url = 'mesh-relay-in-us-1.herokuapp.com/socket';
       const expected = null;
       const result = string.hostFromURL(url);
@@ -20,8 +20,8 @@ module('Unit | Utility | string', function() {
     });
   });
 
-  module('parseURLS', function() {
-    test('parses one URL', function(assert) {
+  module('parseURLS', function () {
+    test('parses one URL', function (assert) {
       const url = 'https://github.com/emberjs/rfcs/blob/master/text/0143-module-unification.md';
       const input = `sometext something ${url}`;
       const expected = [url];
@@ -30,7 +30,7 @@ module('Unit | Utility | string', function() {
       assert.deepEqual(result, expected);
     });
 
-    test('parses two URLs', function(assert) {
+    test('parses two URLs', function (assert) {
       const url1 = 'https://github.com/emberjs/rfcs/blob/master/text/0143-module-unification.md';
       const url2 =
         'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace';
@@ -42,8 +42,8 @@ module('Unit | Utility | string', function() {
     });
   });
 
-  module('parseLanguages', function() {
-    test('parses code content', function(assert) {
+  module('parseLanguages', function () {
+    test('parses code content', function (assert) {
       const input = '```hbs {{some-helper}}```';
       const expected = ['hbs'];
       const result = string.parseLanguages(input);
@@ -51,7 +51,7 @@ module('Unit | Utility | string', function() {
       assert.deepEqual(result, expected);
     });
 
-    test('parses code in the middle of text', function(assert) {
+    test('parses code in the middle of text', function (assert) {
       const input = `
         some text
         \`\`\`hbs
@@ -64,7 +64,7 @@ module('Unit | Utility | string', function() {
       assert.deepEqual(result, expected);
     });
 
-    test('parses multiple languages from large text', function(assert) {
+    test('parses multiple languages from large text', function (assert) {
       const input = `
         some text
         blah blah blah

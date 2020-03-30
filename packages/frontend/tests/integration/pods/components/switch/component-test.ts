@@ -5,16 +5,16 @@ import { hbs } from 'ember-cli-htmlbars';
 
 import { page } from 'emberclear/components/switch/-page';
 
-module('Integration | Component | switch', function(hooks) {
+module('Integration | Component | switch', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     await render(hbs`<Switch @label='test' />`);
 
     assert.equal(page.label, 'test');
   });
 
-  test('can be toggled', async function(assert) {
+  test('can be toggled', async function (assert) {
     await render(hbs`
       <Switch
         @value={{true}}

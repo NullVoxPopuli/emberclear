@@ -25,7 +25,7 @@ export default class ChatScroller extends Service {
 
   // if the last message is close enough to being in view,
   // scroll to the bottom
-  @(task(function*(this: ChatScroller, appendedMessage: HTMLElement) {
+  @(task(function* (this: ChatScroller, appendedMessage: HTMLElement) {
     yield timeout(SCROLL_DELAY);
 
     if (this.shouldScroll(appendedMessage)) {
@@ -34,7 +34,7 @@ export default class ChatScroller extends Service {
   }).drop())
   maybeNudge!: Task;
 
-  @(task(function*() {
+  @(task(function* () {
     const element = document.querySelector('.messages');
 
     if (element) {

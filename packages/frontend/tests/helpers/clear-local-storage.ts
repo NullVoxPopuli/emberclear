@@ -15,11 +15,11 @@ async function cleanEverything() {
 }
 
 export function clearLocalStorage(hooks: NestedHooks) {
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await cleanEverything();
   });
 
-  hooks.afterEach(async function() {
+  hooks.afterEach(async function () {
     await cleanEverything();
   });
 }

@@ -26,7 +26,7 @@ export default class MessageProcessor extends Service {
     this._receive.perform(socketData);
   }
 
-  @(task(function*(this: MessageProcessor, socketData: RelayMessage) {
+  @(task(function* (this: MessageProcessor, socketData: RelayMessage) {
     const decrypted = yield this.currentUser.crypto?.decryptFromSocket(socketData);
 
     yield this.handler.handle(decrypted);

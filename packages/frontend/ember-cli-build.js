@@ -14,15 +14,12 @@ const crypto = require('crypto');
 
 const { EMBROIDER } = process.env;
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let environment = EmberApp.env();
   let isProduction = environment === 'production';
 
   let version = gitRev.short();
-  let hash = crypto
-    .createHash('md5')
-    .update(new Date().getTime().toString())
-    .digest('hex');
+  let hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex');
 
   console.info('\n---------------');
   console.info('environment: ', environment);

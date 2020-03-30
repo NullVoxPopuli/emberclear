@@ -6,8 +6,8 @@ class Router extends EmberRouterScroll {
   rootURL = config.rootURl;
 }
 
-Router.map(function() {
-  this.route('chat', function() {
+Router.map(function () {
+  this.route('chat', function () {
     this.route('privately-with', { path: '/privately-with/:u_id' });
     this.route('in-channel', { path: '/in-channel/:id' });
   });
@@ -18,7 +18,7 @@ Router.map(function() {
   this.route('login');
   this.route('invite');
   this.route('logout');
-  this.route('settings', function() {
+  this.route('settings', function () {
     this.route('interface');
     this.route('relays');
     this.route('danger-zone');

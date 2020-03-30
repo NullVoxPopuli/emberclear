@@ -7,12 +7,12 @@ import { page } from 'emberclear/components/pod/settings/interface/-page';
 import { getService, clearLocalStorage } from 'emberclear/tests/helpers';
 import { THEMES } from 'emberclear/services/settings';
 
-module('Integration | Component | settings/interface', function(hooks) {
+module('Integration | Component | settings/interface', function (hooks) {
   setupRenderingTest(hooks);
   clearLocalStorage(hooks);
 
-  module('Hide Offline Contacts', function() {
-    test('state matches service', async function(assert) {
+  module('Hide Offline Contacts', function () {
+    test('state matches service', async function (assert) {
       await render(hbs`<Pod::Settings::Interface />`);
 
       let settingsService = getService('settings');
@@ -27,9 +27,9 @@ module('Integration | Component | settings/interface', function(hooks) {
     });
   });
 
-  module('Themes', function() {
-    module('Selecting Midnight', function() {
-      test('data is sync with the settings service', async function(assert) {
+  module('Themes', function () {
+    module('Selecting Midnight', function () {
+      test('data is sync with the settings service', async function (assert) {
         await render(hbs`<Pod::Settings::Interface />`);
 
         let settingsService = getService('settings');

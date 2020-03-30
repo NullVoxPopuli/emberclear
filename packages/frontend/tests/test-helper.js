@@ -18,9 +18,7 @@ import {
   hasWebWorker,
 } from 'emberclear/components/pod/index/compatibility/-utils/detection';
 
-const seed = Math.random()
-  .toString(36)
-  .substr(2, 5);
+const seed = Math.random().toString(36).substr(2, 5);
 
 // const seed = 'y1mh0';
 

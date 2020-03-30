@@ -34,7 +34,7 @@ export default class ConnectionService extends Service {
     }
   }
 
-  @(task(function*(this: ConnectionService) {
+  @(task(function* (this: ConnectionService) {
     let canConnect = yield this.canConnect();
 
     if (!canConnect) return;

@@ -3,10 +3,10 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, find, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | collapsible', function(hooks) {
+module('Integration | Component | collapsible', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('is interactible', async function(assert) {
+  test('is interactible', async function (assert) {
     await render(hbs`
       <Collapsible as |isOpen toggle Icon|>
         <span class='is-open'>{{isOpen}}</span>

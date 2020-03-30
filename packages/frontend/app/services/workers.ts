@@ -31,11 +31,11 @@ export default class WorkersService extends Service {
       throw new Error('failed to create promiseWorker?');
     }
 
-    promiseWorker.register(function(message: string) {
+    promiseWorker.register(function (message: string) {
       console.info(`Received message in ${path}: `, message);
     });
 
-    promiseWorker.registerError(function(err: any) {
+    promiseWorker.registerError(function (err: any) {
       console.error(`Error in ${path}: `, err);
     });
 
@@ -45,7 +45,7 @@ export default class WorkersService extends Service {
   }
 
   willDestroy() {
-    Object.values(this.registry).forEach(promiseWorker => {
+    Object.values(this.registry).forEach((promiseWorker) => {
       promiseWorker._worker.terminate();
     });
   }

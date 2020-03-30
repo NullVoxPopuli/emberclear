@@ -5,6 +5,6 @@ type Message = import('./messages').CryptoMessage;
 
 let promiseWorker = new PWBWorker();
 
-promiseWorker.register(function(message: Message) {
+promiseWorker.register(function (message: Message) {
   return handleMessage(message);
 });

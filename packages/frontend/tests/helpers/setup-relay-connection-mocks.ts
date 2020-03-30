@@ -22,7 +22,7 @@ export function stubConnection(overrides = {}) {
 }
 
 export function setupRelayConnectionMocks(hooks: NestedHooks, overrides = {}) {
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     stubConnection(overrides);
   });
 }

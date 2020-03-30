@@ -54,7 +54,7 @@ function createToast(status: string, message: string, options: any) {
 
   // this is a hack, and this should really be an
   // onRemove callback
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, timeout + 5);
   });
 }

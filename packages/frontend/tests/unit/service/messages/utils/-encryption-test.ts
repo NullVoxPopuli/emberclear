@@ -6,11 +6,11 @@ import { KeyPair } from 'emberclear/models/user';
 import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
 import { encryptForSocket, decryptFromSocket } from 'emberclear/workers/crypto/utils/socket';
 
-module('Integration | Send/Receive Encryption', function(hooks) {
+module('Integration | Send/Receive Encryption', function (hooks) {
   let bob!: KeyPair;
   let alice!: KeyPair;
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     const bobKeys = await generateAsymmetricKeys();
     const aliceKeys = await generateAsymmetricKeys();
 
@@ -25,7 +25,7 @@ module('Integration | Send/Receive Encryption', function(hooks) {
     };
   });
 
-  test('round-trip encrypt-decrypt should return the same message', async function(assert) {
+  test('round-trip encrypt-decrypt should return the same message', async function (assert) {
     const message: any = {
       body: 'hi',
     };

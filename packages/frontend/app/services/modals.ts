@@ -48,7 +48,7 @@ export default class Modals extends Service {
   }
 
   find(name: string) {
-    let modal = this.modals.find(m => m.name === name);
+    let modal = this.modals.find((m) => m.name === name);
 
     if (!modal) {
       let newModal = new ModalState({ name, isActive: false });

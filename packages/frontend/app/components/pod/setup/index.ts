@@ -38,7 +38,7 @@ export default class SetupWizard extends Component<Args> {
 
     this.interpreter = interpret(configuredMachine);
     this.interpreter
-      .onTransition(state => (this.current = state))
+      .onTransition((state) => (this.current = state))
       .onDone(() => console.info('Setup Wizard Completed'))
       .start();
   }

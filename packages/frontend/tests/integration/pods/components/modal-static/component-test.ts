@@ -12,11 +12,11 @@ let page = create({
   close: clickable('[data-test-close]'),
 });
 
-module('Integration | Component | modal-static', function(hooks) {
+module('Integration | Component | modal-static', function (hooks) {
   setupRenderingTest(hooks);
 
-  module('yielded data is interactable', function(hooks) {
-    hooks.beforeEach(async function() {
+  module('yielded data is interactable', function (hooks) {
+    hooks.beforeEach(async function () {
       await render(hbs`
         <ModalStatic @name='interactable' as |isActive actions|>
           <span data-test-active>{{isActive}}</span>
@@ -28,7 +28,7 @@ module('Integration | Component | modal-static', function(hooks) {
       `);
     });
 
-    test('is toggleable', async function(assert) {
+    test('is toggleable', async function (assert) {
       assert.equal(page.isActive, 'false');
 
       await page.toggle();
@@ -38,7 +38,7 @@ module('Integration | Component | modal-static', function(hooks) {
       assert.equal(page.isActive, 'false');
     });
 
-    test('can be opened', async function(assert) {
+    test('can be opened', async function (assert) {
       assert.equal(page.isActive, 'false');
 
       await page.open();
@@ -48,7 +48,7 @@ module('Integration | Component | modal-static', function(hooks) {
       assert.equal(page.isActive, 'true');
     });
 
-    test('can be closed', async function(assert) {
+    test('can be closed', async function (assert) {
       assert.equal(page.isActive, 'false');
 
       await page.toggle();

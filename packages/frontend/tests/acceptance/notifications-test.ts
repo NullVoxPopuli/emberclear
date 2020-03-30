@@ -13,16 +13,16 @@ import {
 import Notifications from 'emberclear/services/notifications';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 
-module('Acceptance | Notifications Service', function(hooks) {
+module('Acceptance | Notifications Service', function (hooks) {
   setupApplicationTest(hooks);
   setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
 
-  module('permission has not yet been asked for', function(hooks) {
+  module('permission has not yet been asked for', function (hooks) {
     let notifications!: Notifications;
 
-    hooks.beforeEach(async function() {
+    hooks.beforeEach(async function () {
       await visit('/');
 
       getService<any>('window').Notification = {
@@ -32,15 +32,15 @@ module('Acceptance | Notifications Service', function(hooks) {
       notifications = getService('notifications');
     });
 
-    module('is logged in', function(hooks) {
+    module('is logged in', function (hooks) {
       setupCurrentUser(hooks);
 
-      module('visits the setup route', function(hooks) {
-        hooks.beforeEach(async function() {
+      module('visits the setup route', function (hooks) {
+        hooks.beforeEach(async function () {
           await visit('/setup');
         });
 
-        test('notifications should not be shown', function(assert) {
+        test('notifications should not be shown', function (assert) {
           assert.ok(
             notifications.isOnRouteThatDoesNotShowNotifications,
             'the logout route does not allow notifications'
@@ -50,12 +50,12 @@ module('Acceptance | Notifications Service', function(hooks) {
         });
       });
 
-      module('visits the logout page', function(hooks) {
-        hooks.beforeEach(async function() {
+      module('visits the logout page', function (hooks) {
+        hooks.beforeEach(async function () {
           await visit('/logout');
         });
 
-        test('notifications should not be shown', function(assert) {
+        test('notifications should not be shown', function (assert) {
           assert.ok(
             notifications.isOnRouteThatDoesNotShowNotifications,
             'the logout route does not allow notifications'
@@ -65,13 +65,13 @@ module('Acceptance | Notifications Service', function(hooks) {
         });
       });
 
-      module('visits the chat route', function(hooks) {
-        hooks.beforeEach(async function() {
+      module('visits the chat route', function (hooks) {
+        hooks.beforeEach(async function () {
           await visit('chat');
         });
 
-        module('permission: undecided', function() {
-          test('initial checks', function(assert) {
+        module('permission: undecided', function () {
+          test('initial checks', function (assert) {
             getService<any>('window').Notification = { permission: 'default' };
 
             let service = getService('notifications');
@@ -88,8 +88,8 @@ module('Acceptance | Notifications Service', function(hooks) {
           });
         });
 
-        module('permission: denied', function() {
-          test('service state checks', function(assert) {
+        module('permission: denied', function () {
+          test('service state checks', function (assert) {
             getService<any>('window').Notification = { permission: 'denied' };
 
             let service = getService('notifications');
@@ -106,8 +106,8 @@ module('Acceptance | Notifications Service', function(hooks) {
           });
         });
 
-        module('permission: granted', function() {
-          test('initial checks', function(assert) {
+        module('permission: granted', function () {
+          test('initial checks', function (assert) {
             getService<any>('window').Notification = { permission: 'granted' };
             let service = getService('notifications');
 
@@ -128,18 +128,18 @@ module('Acceptance | Notifications Service', function(hooks) {
       });
     });
 
-    module('permission denied', function(hooks) {
-      hooks.beforeEach(function() {
+    module('permission denied', function (hooks) {
+      hooks.beforeEach(function () {
         getService<any>('window').Notification = { permission: 'denied' };
       });
 
-      module('a notification is attempted', function(hooks) {
-        hooks.beforeEach(async function() {
+      module('a notification is attempted', function (hooks) {
+        hooks.beforeEach(async function () {
           notifications.info('a test message');
           await toast.waitForToast();
         });
 
-        test('a toast is displayed', function(assert) {
+        test('a toast is displayed', function (assert) {
           assert.contains(toast.text, 'a test message');
         });
       });

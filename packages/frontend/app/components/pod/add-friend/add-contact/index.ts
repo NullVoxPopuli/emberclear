@@ -38,7 +38,7 @@ export default class AddModal extends Component {
     this.scanning = !this.scanning;
   }
 
-  @task(function*(this: AddModal, identityJson: string) {
+  @task(function* (this: AddModal, identityJson: string) {
     try {
       const identity = JSON.parse(identityJson);
 
