@@ -47,7 +47,7 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     }
   }
 
-  @(task(function*(this: DeliveryConfirmation) {
+  @(task(function* (this: DeliveryConfirmation) {
     if (this.timedOut) return;
 
     yield timeout(TIMEOUT_MS);
@@ -60,7 +60,7 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     .withTestWaiter())
   waitForConfirmation!: Task;
 
-  @(task(function*(this: DeliveryConfirmation) {
+  @(task(function* (this: DeliveryConfirmation) {
     const { message } = this.args;
     let to: Contact | Channel;
 
@@ -86,7 +86,7 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     .withTestWaiter())
   resend!: Task;
 
-  @(task(function*(this: DeliveryConfirmation) {
+  @(task(function* (this: DeliveryConfirmation) {
     const { message } = this.args;
 
     yield message.destroyRecord();
@@ -95,7 +95,7 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     .withTestWaiter())
   deleteMessage!: Task;
 
-  @(task(function*(this: DeliveryConfirmation) {
+  @(task(function* (this: DeliveryConfirmation) {
     const { message } = this.args;
 
     message.queueForResend = true;

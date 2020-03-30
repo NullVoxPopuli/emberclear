@@ -97,7 +97,7 @@ export class SwipeHandler {
       threshold: 15,
     });
 
-    this.recognizer.on('panstart panleft panright panend', e => {
+    this.recognizer.on('panstart panleft panright panend', (e) => {
       switch (e.type) {
         case 'panstart':
         case 'panleft':
@@ -187,7 +187,7 @@ export class SwipeHandler {
 
     let animation = this.content.animate(keyFrames as any /* :( */, { duration: 200, easing });
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       let finisher = () => {
         this.setPosition(nextX);
         resolve();

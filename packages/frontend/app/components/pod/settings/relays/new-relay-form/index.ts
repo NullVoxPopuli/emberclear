@@ -21,7 +21,7 @@ export default class NewRelayForm extends Component {
     this.save.perform();
   }
 
-  @(task(function*(this: NewRelayForm) {
+  @(task(function* (this: NewRelayForm) {
     const host = hostFromURL(this.socketURL);
     const existing = yield this.store.findAll('relay');
     const priority = existing.length + 1;

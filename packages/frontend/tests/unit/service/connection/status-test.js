@@ -10,16 +10,16 @@ import {
 } from 'emberclear/utils/connection-pool';
 import { timeout } from 'ember-concurrency';
 
-module('Unit | Service | connection/status', function(hooks) {
+module('Unit | Service | connection/status', function (hooks) {
   setupTest(hooks);
 
   // Replace this with your real tests.
-  test('it exists', function(assert) {
+  test('it exists', function (assert) {
     let service = getService('connection/status');
     assert.ok(service);
   });
 
-  test('updating the status sets properties', async function(assert) {
+  test('updating the status sets properties', async function (assert) {
     let service = getService('connection/status');
 
     assert.equal(service.text, '');
@@ -45,7 +45,7 @@ module('Unit | Service | connection/status', function(hooks) {
     assert.notOk(service.hasUpdate);
   });
 
-  test('isConnected', function(assert) {
+  test('isConnected', function (assert) {
     let service = getService('connection/status');
 
     service.updateStatus(STATUS_CONNECTING);

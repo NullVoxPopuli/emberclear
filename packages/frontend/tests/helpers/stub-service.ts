@@ -22,7 +22,7 @@ export const stubService = (name: keyof Registry, hash = {}, injections?: IInjec
   owner.register(serviceName, stubbedService);
 
   if (injections) {
-    injections.forEach(injection => {
+    injections.forEach((injection) => {
       owner.application.inject(injection.in, injection.as, serviceName);
     });
   }

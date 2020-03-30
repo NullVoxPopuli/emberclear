@@ -41,10 +41,10 @@ export function hasIndexedDb() {
 
     let request = window.indexedDB.open('MyTestDatabase');
 
-    request.onerror = function() {
+    request.onerror = function () {
       resolve(false);
     };
-    request.onsuccess = function() {
+    request.onsuccess = function () {
       resolve(true);
     };
   });

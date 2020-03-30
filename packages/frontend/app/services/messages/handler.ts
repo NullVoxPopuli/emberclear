@@ -172,7 +172,7 @@ export default class ReceivedMessageHandler extends Service {
       if (numTooMany > 0) {
         let oldMessages = forDM.splice(0, numTooMany);
 
-        await Promise.all(oldMessages.map(oldMessage => oldMessage.destroyRecord()));
+        await Promise.all(oldMessages.map((oldMessage) => oldMessage.destroyRecord()));
       }
     }
   }

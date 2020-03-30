@@ -26,7 +26,7 @@ export async function createCurrentUser(): Promise<User> {
 }
 
 export function setupCurrentUser(hooks: NestedHooks) {
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await createCurrentUser();
   });
 }

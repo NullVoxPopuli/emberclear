@@ -13,7 +13,7 @@ export function inLocalStorage<T = boolean>(
   const newDescriptor = {
     configurable: true,
     enumerable: true,
-    get: function(): T {
+    get: function (): T {
       let key = `${targetName}-${propertyKey}`;
       const lsValue = localStorage.getItem(key);
       const value = (lsValue && JSON.parse(lsValue))?.value || initializer?.();
@@ -23,7 +23,7 @@ export function inLocalStorage<T = boolean>(
 
       return value;
     },
-    set: function(value: T) {
+    set: function (value: T) {
       const key = `${targetName}-${propertyKey}`;
       const lsValue = JSON.stringify({ value });
 

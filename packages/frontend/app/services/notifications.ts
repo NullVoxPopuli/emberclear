@@ -79,7 +79,7 @@ export default class Notifications extends Service {
       if (!this.isBrowserCapableOfNotifications) return reject();
       if (this.isPermissionDenied) return reject();
 
-      this.window.Notification.requestPermission(permission => {
+      this.window.Notification.requestPermission((permission) => {
         this.askToEnableNotifications = false;
 
         return resolve(permission);

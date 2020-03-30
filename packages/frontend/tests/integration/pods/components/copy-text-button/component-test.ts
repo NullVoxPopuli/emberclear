@@ -7,15 +7,15 @@ import { triggerCopySuccess } from 'ember-cli-clipboard/test-support';
 
 import { getService } from 'emberclear/tests/helpers';
 
-module('Integration | Component | copy-text-button', function(hooks) {
+module('Integration | Component | copy-text-button', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     await render(hbs`<CopyTextButton @text="To be copied" @label="Copy" />`);
     assert.dom('button').hasNoClass('is-active');
   });
 
-  test('when clicked, the copied message appears', async function(assert) {
+  test('when clicked, the copied message appears', async function (assert) {
     let expectedText = getService('intl').t('ui.invite.copied');
 
     await render(hbs`

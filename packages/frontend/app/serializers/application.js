@@ -27,11 +27,11 @@ function enforceSingularTypesInDocument(document) {
 function singularizeResource(resource) {
   resource.type = singularize(resource.type);
   if (resource.relationships) {
-    Object.keys(resource.relationships).forEach(key => {
+    Object.keys(resource.relationships).forEach((key) => {
       let data = resource.relationships[key].data;
 
       if (Array.isArray(data)) {
-        data.forEach(r => {
+        data.forEach((r) => {
           r.type = singularize(r.type);
         });
       } else if (data) {
@@ -85,7 +85,7 @@ export default class ApplicationSerializer {
           return;
         }
 
-        relatedSnapshots.map(related => {
+        relatedSnapshots.map((related) => {
           if (!related.id) {
             throw new Error(`Attempting to save a relationship that has no id`);
           }

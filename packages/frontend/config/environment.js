@@ -2,7 +2,7 @@
 
 const ADDON_ENV = require('./addons');
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'emberclear',
 

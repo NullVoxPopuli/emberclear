@@ -57,7 +57,7 @@ export default class Settings extends Service {
     let themeClass = availableThemes[this.theme];
     let classList = document.body.classList;
 
-    Object.values(availableThemes).forEach(currentClass => {
+    Object.values(availableThemes).forEach((currentClass) => {
       classList.remove(currentClass);
     });
 
@@ -114,11 +114,11 @@ export default class Settings extends Service {
       version: 1,
       name: name || '',
       privateKey: toHex(privateKey),
-      contacts: contacts.map(c => ({
+      contacts: contacts.map((c) => ({
         name: c.name,
         publicKey: c.publicKey && toHex(c.publicKey),
       })),
-      channels: channels.map(c => ({
+      channels: channels.map((c) => ({
         // TODO: add members list
         id: c.id,
         name: c.name,

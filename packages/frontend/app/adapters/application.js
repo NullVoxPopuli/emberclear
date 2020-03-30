@@ -8,7 +8,7 @@ import { v4 as uuid } from 'uuid';
 import localforage from 'localforage';
 
 const LFQueue = EmberObject.extend({
-  init: function() {
+  init: function () {
     this.queue = [resolve()];
   },
 
@@ -27,7 +27,7 @@ const LFQueue = EmberObject.extend({
 });
 
 const LFCache = EmberObject.extend({
-  init: function() {
+  init: function () {
     this.data = new Map();
   },
 
@@ -87,7 +87,7 @@ const LFAdapter = EmberObject.extend(Evented, {
    * @param {Object|String|Integer|null} id
    */
   findRecord(store, type, id) {
-    return this._getNamespaceData(type).then(namespaceData => {
+    return this._getNamespaceData(type).then((namespaceData) => {
       const record = namespaceData.records[id];
 
       if (!record) {
@@ -99,19 +99,19 @@ const LFAdapter = EmberObject.extend(Evented, {
   },
 
   findAll(store, type) {
-    return this._getNamespaceData(type).then(namespaceData => {
+    return this._getNamespaceData(type).then((namespaceData) => {
       const records = [];
 
       for (let id in namespaceData.records) {
         records.push(namespaceData.records[id]);
       }
 
-      return { data: records.map(record => record.data) };
+      return { data: records.map((record) => record.data) };
     });
   },
 
   findMany(store, type, ids) {
-    return this._getNamespaceData(type).then(namespaceData => {
+    return this._getNamespaceData(type).then((namespaceData) => {
       const records = [];
 
       for (let i = 0; i < ids.length; i++) {
@@ -127,7 +127,7 @@ const LFAdapter = EmberObject.extend(Evented, {
   },
 
   queryRecord(store, type, query) {
-    return this._getNamespaceData(type).then(namespaceData => {
+    return this._getNamespaceData(type).then((namespaceData) => {
       const record = this._query(namespaceData.records, query, true);
 
       if (!record) {
@@ -152,9 +152,9 @@ const LFAdapter = EmberObject.extend(Evented, {
    *  { complete: true, name: /foo|bar/ }
    */
   query(store, type, query) {
-    return this._getNamespaceData(type).then(namespaceData => {
+    return this._getNamespaceData(type).then((namespaceData) => {
       let records = this._query(namespaceData.records, query);
-      let result = { data: records.map(record => record.data) };
+      let result = { data: records.map((record) => record.data) };
 
       return result;
     });
@@ -199,8 +199,8 @@ const LFAdapter = EmberObject.extend(Evented, {
   updateRecord: updateOrCreate,
 
   deleteRecord(store, type, snapshot) {
-    return this.queue.attach(resolve => {
-      this._getNamespaceData(type).then(namespaceData => {
+    return this.queue.attach((resolve) => {
+      this._getNamespaceData(type).then((namespaceData) => {
         delete namespaceData.records[snapshot.id];
 
         this._setNamespaceData(type, namespaceData).then(() => {
@@ -219,7 +219,7 @@ const LFAdapter = EmberObject.extend(Evented, {
   _setNamespaceData(type, namespaceData) {
     const modelNamespace = this._modelNamespace(type);
 
-    return this._loadData().then(storage => {
+    return this._loadData().then((storage) => {
       if (this.caching !== 'none') {
         this.cache.set(modelNamespace, namespaceData);
       }
@@ -234,14 +234,14 @@ const LFAdapter = EmberObject.extend(Evented, {
     const modelNamespace = this._modelNamespace(type);
 
     if (this.caching !== 'none') {
-      const cache = this.cache.get(modelNamespace);
+      const cache = this.cache.get(modelNamespace); // eslint-disable-line
 
       if (cache) {
         return resolve(cache);
       }
     }
 
-    return this._loadData().then(storage => {
+    return this._loadData().then((storage) => {
       const namespaceData = storage?.[modelNamespace] || { records: {} };
 
       if (this.caching === 'model') {
@@ -257,7 +257,7 @@ const LFAdapter = EmberObject.extend(Evented, {
   },
 
   _loadData() {
-    return localforage.getItem(this._adapterNamespace()).then(storage => {
+    return localforage.getItem(this._adapterNamespace()).then((storage) => {
       return storage ? storage : {};
     });
   },
@@ -267,13 +267,13 @@ const LFAdapter = EmberObject.extend(Evented, {
   },
 
   _adapterNamespace() {
-    return this.get('namespace') || 'DS.LFAdapter';
+    return this.namespace || 'DS.LFAdapter';
   },
 });
 
 function updateOrCreate(store, type, snapshot) {
-  return this.queue.attach(resolve => {
-    this._getNamespaceData(type).then(namespaceData => {
+  return this.queue.attach((resolve) => {
+    this._getNamespaceData(type).then((namespaceData) => {
       const serializer = store.serializerFor(type.modelName);
       const recordHash = serializer.serialize(snapshot, { includeId: true });
       // update(id comes from snapshot) or create(id comes from serialization)

@@ -31,7 +31,7 @@ export default class ContactsSidebar extends Component<IArgs> {
     return this.store
       .peekAll('contact')
       .toArray()
-      .filter(contact => contact.publicKey);
+      .filter((contact) => contact.publicKey);
   }
 
   get allChannels() {
@@ -53,7 +53,7 @@ export default class ContactsSidebar extends Component<IArgs> {
     // let allMessages = this.store.peekAll('message');
 
     return this.allContacts
-      .filter(contact => {
+      .filter((contact) => {
         return (
           // online or other online~ish status
           contact.onlineStatus !== Status.OFFLINE ||
@@ -80,7 +80,7 @@ export default class ContactsSidebar extends Component<IArgs> {
   get offlineContacts() {
     let contacts = this.contacts;
 
-    return this.allContacts.filter(contact => {
+    return this.allContacts.filter((contact) => {
       return !contacts.includes(contact);
     });
   }

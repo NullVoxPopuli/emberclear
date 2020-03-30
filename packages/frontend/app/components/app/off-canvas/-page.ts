@@ -27,7 +27,7 @@ export const page = create({
   toggle: clickable('.top-nav button.navbar-burger'),
   isPresent: isPresent('aside'),
 
-  isOpen: getter(function() {
+  isOpen: getter(function () {
     let element = find('main') as HTMLElement;
     let style = element.getAttribute('style') || '';
     let sidebarWidth = valueOfProperty('sidenav-width');

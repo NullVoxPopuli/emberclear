@@ -7,10 +7,10 @@ import { TestContext } from 'ember-test-helpers';
 
 import { page } from 'emberclear/components/modal/-page';
 
-module('Integration | Component | modal', function(hooks) {
+module('Integration | Component | modal', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(async function(this: TestContext) {
+  hooks.beforeEach(async function (this: TestContext) {
     this.setProperties({
       active: true,
       close: () => {
@@ -27,7 +27,7 @@ module('Integration | Component | modal', function(hooks) {
       </Modal>`);
   });
 
-  test('it renders and pressing escape closes', async function(assert) {
+  test('it renders and pressing escape closes', async function (assert) {
     assert.equal(page.modalContent.text, 'Modal Content');
 
     await page.pressEscape();
@@ -35,7 +35,7 @@ module('Integration | Component | modal', function(hooks) {
     assert.equal(page.modalContent.text, '');
   });
 
-  test('it renders and clicking the backdrop closes', async function(assert) {
+  test('it renders and clicking the backdrop closes', async function (assert) {
     assert.equal(page.modalContent.text, 'Modal Content');
 
     await page.backdrop.click();

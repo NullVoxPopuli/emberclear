@@ -8,18 +8,18 @@ import {
   setupWorkers,
 } from 'emberclear/tests/helpers';
 
-module('Acceptance | Logout', function(hooks) {
+module('Acceptance | Logout', function (hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupWorkers(hooks);
   setupRelayConnectionMocks(hooks);
 
-  module('when not logged in', function(hooks) {
-    hooks.beforeEach(async function() {
+  module('when not logged in', function (hooks) {
+    hooks.beforeEach(async function () {
       await visit('/logout');
     });
 
-    test('is redirected to setup', function(assert) {
+    test('is redirected to setup', function (assert) {
       assert.equal(currentURL(), '/setup');
     });
   });

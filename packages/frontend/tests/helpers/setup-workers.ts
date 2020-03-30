@@ -13,7 +13,7 @@ type CryptoMessage = import('emberclear/workers/crypto/messages').CryptoMessage;
  * host, the tests freak out when the internet connection is interrupted.
  */
 export function setupWorkers(hooks: NestedHooks) {
-  hooks.beforeEach(function(this: TestContext) {
+  hooks.beforeEach(function (this: TestContext) {
     class WorkersProxy extends WorkersService {
       getWorker(path: string) {
         switch (path) {

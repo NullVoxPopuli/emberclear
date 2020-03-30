@@ -5,15 +5,15 @@ import { hbs } from 'ember-cli-htmlbars';
 
 import { TestContext } from 'ember-test-helpers';
 
-module('Integration | Component | metadata-preview', function(hooks) {
+module('Integration | Component | metadata-preview', function (hooks) {
   setupRenderingTest(hooks);
 
-  module('no ogData', function(hooks) {
-    hooks.beforeEach(function(this: TestContext) {
+  module('no ogData', function (hooks) {
+    hooks.beforeEach(function (this: TestContext) {
       this.set('data', {});
     });
 
-    test('nothing is shown', async function(assert) {
+    test('nothing is shown', async function (assert) {
       await render(hbs`
         <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview
           @ogData={{this.data}}
@@ -24,8 +24,8 @@ module('Integration | Component | metadata-preview', function(hooks) {
     });
   });
 
-  module('has Open Graph data', function() {
-    test('there is a title', async function(assert) {
+  module('has Open Graph data', function () {
+    test('there is a title', async function (assert) {
       this.set('data', { title: 'a title' });
 
       await render(hbs`
@@ -37,7 +37,7 @@ module('Integration | Component | metadata-preview', function(hooks) {
       assert.dom(this.element).hasText('a title');
     });
 
-    test('there is a description', async function(assert) {
+    test('there is a description', async function (assert) {
       this.set('data', { description: 'a description' });
 
       await render(hbs`
@@ -50,24 +50,24 @@ module('Integration | Component | metadata-preview', function(hooks) {
     });
   });
 
-  module('image / thumbnail preview', function() {
-    module('there is no image in the og data', function(hooks) {
-      hooks.beforeEach(async function(this: TestContext) {
+  module('image / thumbnail preview', function () {
+    module('there is no image in the og data', function (hooks) {
+      hooks.beforeEach(async function (this: TestContext) {
         this.set('data', {});
         await render(hbs`
          <Pod::Chat::ChatHistory::Message::EmbeddedResource::MetadataPreview />
         `);
       });
 
-      test('no image is shown', function(assert) {
+      test('no image is shown', function (assert) {
         const img = find('img');
 
         assert.notOk(img);
       });
     });
 
-    module('there is an image in the og data', function(hooks) {
-      hooks.beforeEach(async function(this: TestContext) {
+    module('there is an image in the og data', function (hooks) {
+      hooks.beforeEach(async function (this: TestContext) {
         this.setProperties({
           data: {
             image: 'https://something',
@@ -81,7 +81,7 @@ module('Integration | Component | metadata-preview', function(hooks) {
         `);
       });
 
-      test('an image tag is present', function(assert) {
+      test('an image tag is present', function (assert) {
         const img = find('img');
 
         assert.ok(img, 'the html tag is present');

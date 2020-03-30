@@ -17,7 +17,7 @@ export default class UpdateDocumentTitle extends Modifier {
   }
 
   get tokens() {
-    return this.args.positional.filter(token => token);
+    return this.args.positional.filter((token) => token);
   }
 
   willDestroy() {

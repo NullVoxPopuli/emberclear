@@ -16,7 +16,7 @@ export const definition = {
     let select = document.querySelector(`${scope} select`)!;
     let options = select.querySelectorAll('option')!;
 
-    let option = Array.from(options).find(option => {
+    let option = Array.from(options).find((option) => {
       return option.textContent!.toLowerCase().includes(language.toLowerCase());
     });
 

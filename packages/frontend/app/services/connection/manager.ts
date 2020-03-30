@@ -74,8 +74,8 @@ export default class ConnectionManager extends Service {
       endpoints: relays.toArray(),
 
       create: this.createConnection.bind(this),
-      destroy: instance => instance.destroy(),
-      isOk: instance => instance.isConnected,
+      destroy: (instance) => instance.destroy(),
+      isOk: (instance) => instance.isConnected,
       onStatusChange: this.updateStatus.bind(this),
 
       minConnections: 1,
@@ -103,7 +103,7 @@ export default class ConnectionManager extends Service {
       relay,
       publicKey: this.currentUser.uid,
       onData: this.processor.receive.bind(this.processor),
-      onInfo: info => {
+      onInfo: (info) => {
         // TODO: Temporary
         // TODO: This needs to be pulled out into a web worker (the whole class)
         // TODO: don't set these directly on the relay?

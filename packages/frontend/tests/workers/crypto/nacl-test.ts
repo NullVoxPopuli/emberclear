@@ -1,8 +1,8 @@
 import * as nacl from 'emberclear/workers/crypto/utils/nacl';
 import { module, test, skip } from 'qunit';
 
-module('Workers | Crypto | nacl', function() {
-  skip('libsodium uses wasm', async function(assert) {
+module('Workers | Crypto | nacl', function () {
+  skip('libsodium uses wasm', async function (assert) {
     assert.expect(0);
     // not using libsodium atm. WASM support seems unstable
     // (or libsodium is unstable between updates)
@@ -12,14 +12,14 @@ module('Workers | Crypto | nacl', function() {
     // assert.ok(isUsingWasm);
   });
 
-  test('generateAsymmetricKeys | works', async function(assert) {
+  test('generateAsymmetricKeys | works', async function (assert) {
     const boxKeys = await nacl.generateAsymmetricKeys();
 
     assert.ok(boxKeys.publicKey);
     assert.ok(boxKeys.privateKey);
   });
 
-  test('encryptFor/decryptFrom | works with Uint8Array', async function(assert) {
+  test('encryptFor/decryptFrom | works with Uint8Array', async function (assert) {
     const receiver = await nacl.generateAsymmetricKeys();
     const sender = await nacl.generateAsymmetricKeys();
 
@@ -30,7 +30,7 @@ module('Workers | Crypto | nacl', function() {
     assert.deepEqual(msgAsUint8, decrypted);
   });
 
-  test('encryptFor/decryptFrom | works with large data', async function(assert) {
+  test('encryptFor/decryptFrom | works with large data', async function (assert) {
     const receiver = await nacl.generateAsymmetricKeys();
     const sender = await nacl.generateAsymmetricKeys();
 
@@ -46,7 +46,7 @@ module('Workers | Crypto | nacl', function() {
     assert.deepEqual(msgAsUint8, decrypted);
   });
 
-  test('splitNonceFromMessage | separates the nonce', async function(assert) {
+  test('splitNonceFromMessage | separates the nonce', async function (assert) {
     // prettier-ignore
     const msg = [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24

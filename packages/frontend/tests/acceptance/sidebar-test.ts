@@ -20,89 +20,89 @@ import Contact from 'emberclear/models/contact';
 import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
 import { getCurrentUser } from 'emberclear/tests/helpers';
 
-module('Acceptance | Sidebar', function(hooks) {
+module('Acceptance | Sidebar', function (hooks) {
   setupApplicationTest(hooks);
   setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   setupCurrentUser(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     await visit('/chat');
     await page.toggle();
   });
 
-  module('Contacts', function() {
-    module('the add contact button is clicked', function(hooks) {
-      hooks.beforeEach(async function() {
+  module('Contacts', function () {
+    module('the add contact button is clicked', function (hooks) {
+      hooks.beforeEach(async function () {
         await page.sidebar.contacts.header.clickAdd();
       });
 
-      test('a navigation occurred', function(assert) {
+      test('a navigation occurred', function (assert) {
         assert.equal(currentURL(), '/add-friend');
       });
     });
 
-    module('the actual list of contacts', function() {
-      module('there are 0 contacts', function() {
-        test('only the current user is shown', async function(assert) {
+    module('the actual list of contacts', function () {
+      module('there are 0 contacts', function () {
+        test('only the current user is shown', async function (assert) {
           const name = getService('current-user')!.name!;
           const content = page.sidebar.contacts.list.map((c: any) => c.text).join();
 
           assert.equal(content, name);
         });
 
-        test('offline count does not show', function(assert) {
+        test('offline count does not show', function (assert) {
           assert.notOk(page.sidebar.contacts.offlineCount.isVisible);
         });
       });
 
-      module('there is 1 contact', function(hooks) {
-        hooks.beforeEach(async function() {
+      module('there is 1 contact', function (hooks) {
+        hooks.beforeEach(async function () {
           await createContact('first contact');
         });
 
-        test('there are 2 rows of names', function(assert) {
+        test('there are 2 rows of names', function (assert) {
           assert.equal(page.sidebar.contacts.list.length, 2);
         });
 
-        test('offline count does not show', function(assert) {
+        test('offline count does not show', function (assert) {
           assert.notOk(page.sidebar.contacts.offlineCount.isVisible, 'offline count is shown');
         });
 
-        module('pinned contact are to be shown', function(hooks) {
-          hooks.beforeEach(async function() {
+        module('pinned contact are to be shown', function (hooks) {
+          hooks.beforeEach(async function () {
             await page.sidebar.contacts.list[1].pin();
             await visit('/settings/interface');
             await settings.ui.toggleHideOfflineContacts();
           });
 
-          test('both contacts should be shown', function(assert) {
+          test('both contacts should be shown', function (assert) {
             assert.equal(page.sidebar.contacts.list.length, 2, 'two users in the contacts list');
           });
 
-          test('offline count does not show', function(assert) {
+          test('offline count does not show', function (assert) {
             assert.notOk(page.sidebar.contacts.offlineCount.isVisible, 'offline count is shown');
           });
 
-          test('pinned contact should appear below current user', async function(assert) {
+          test('pinned contact should appear below current user', async function (assert) {
             const contacts = page.sidebar.contacts.list;
             assert.equal(contacts[0].name, 'Test User');
             assert.equal(contacts[1].name, 'first contact');
           });
         });
 
-        module('offline contacts are to be hidden', function(hooks) {
-          hooks.beforeEach(async function() {
+        module('offline contacts are to be hidden', function (hooks) {
+          hooks.beforeEach(async function () {
             await setupOfflineContactsTest();
           });
 
-          test('only the current user is shown', function(assert) {
+          test('only the current user is shown', function (assert) {
             assert.expect(2);
             onlyCurrentUserIsShownTest(assert);
           });
 
-          test('offline count is shown', function(assert) {
+          test('offline count is shown', function (assert) {
             const result = page.sidebar.contacts.offlineCount.text;
 
             assert.matches(result, /1/);
@@ -110,21 +110,21 @@ module('Acceptance | Sidebar', function(hooks) {
         });
       });
 
-      module('there are 2 contacts', function(hooks) {
+      module('there are 2 contacts', function (hooks) {
         let firstContact!: Contact;
         let secondContact!: Contact;
 
-        hooks.beforeEach(async function() {
+        hooks.beforeEach(async function () {
           firstContact = await createContact('first contact');
           secondContact = await createContact('second contact');
         });
 
-        test('there are 3 rows of names', function(assert) {
+        test('there are 3 rows of names', function (assert) {
           assert.equal(page.sidebar.contacts.list.length, 3, 'there are 3 contacts');
         });
 
-        module('pinned contacts are to be shown', function(hooks) {
-          hooks.beforeEach(async function() {
+        module('pinned contacts are to be shown', function (hooks) {
+          hooks.beforeEach(async function () {
             const contacts = page.sidebar.contacts.list;
 
             await contacts[1].pin();
@@ -133,11 +133,11 @@ module('Acceptance | Sidebar', function(hooks) {
             await settings.ui.toggleHideOfflineContacts();
           });
 
-          test('all contacts should be shown', function(assert) {
+          test('all contacts should be shown', function (assert) {
             assert.equal(page.sidebar.contacts.list.length, 3, 'three users in the contacts list');
           });
 
-          test('two contacts should be shown and one hidden', async function(assert) {
+          test('two contacts should be shown and one hidden', async function (assert) {
             const contacts = page.sidebar.contacts;
 
             await contacts.list[1].pin();
@@ -145,11 +145,11 @@ module('Acceptance | Sidebar', function(hooks) {
             assert.matches(contacts.offlineCount.text, /1/);
           });
 
-          test('offline count does not show', function(assert) {
+          test('offline count does not show', function (assert) {
             assert.notOk(page.sidebar.contacts.offlineCount.isVisible, 'offline count is shown');
           });
 
-          test('pinned contacts should appear above offline contacts', async function(assert) {
+          test('pinned contacts should appear above offline contacts', async function (assert) {
             const contacts = page.sidebar.contacts.list;
             assert.equal(contacts[0].name, 'Test User');
             assert.equal(contacts[1].name, 'first contact');
@@ -165,12 +165,12 @@ module('Acceptance | Sidebar', function(hooks) {
           });
         });
 
-        module('offline contacts are to be hidden', function(hooks) {
-          hooks.beforeEach(async function() {
+        module('offline contacts are to be hidden', function (hooks) {
+          hooks.beforeEach(async function () {
             await setupOfflineContactsTest();
           });
 
-          test('only the current user is shown', function(assert) {
+          test('only the current user is shown', function (assert) {
             assert.expect(4);
 
             onlyCurrentUserIsShownTest(assert);
@@ -181,20 +181,20 @@ module('Acceptance | Sidebar', function(hooks) {
             assert.notContains(content, secondContact.name);
           });
 
-          test('offline count is shown', function(assert) {
+          test('offline count is shown', function (assert) {
             const result = page.sidebar.contacts.offlineCount.text;
 
             assert.matches(result, /2/);
           });
 
-          module(`but one of them has sent us a message we haven't read`, function(hooks) {
-            hooks.beforeEach(async function() {
+          module(`but one of them has sent us a message we haven't read`, function (hooks) {
+            hooks.beforeEach(async function () {
               await createMessage(getCurrentUser()!, firstContact, 'test', {
                 readAt: undefined,
               });
             });
 
-            skip('the unread message causes the person to be shown', function(assert) {
+            skip('the unread message causes the person to be shown', function (assert) {
               const content = page.sidebar.contacts.listText;
 
               assert.contains(content, firstContact.name);
@@ -203,8 +203,8 @@ module('Acceptance | Sidebar', function(hooks) {
         });
       });
 
-      module('there are enough contacts to scroll', function(hooks) {
-        hooks.before(async function() {
+      module('there are enough contacts to scroll', function (hooks) {
+        hooks.before(async function () {
           // TODO: these need implementing
           // Need a way to set the window size
         });
@@ -212,52 +212,52 @@ module('Acceptance | Sidebar', function(hooks) {
     });
   });
 
-  module('Channels', function() {
-    test('the channel form is not visible', function(assert) {
+  module('Channels', function () {
+    test('the channel form is not visible', function (assert) {
       const form = page.sidebar.channels.form.isVisible;
 
       assert.notOk(form);
     });
 
-    test('there are 0 channels', async function(assert) {
+    test('there are 0 channels', async function (assert) {
       const store = getStore();
       const known = await store.findAll('channel');
 
       assert.equal(known.length, 0);
     });
 
-    module('the add channel button is clicked', function(hooks) {
-      hooks.beforeEach(async function() {
+    module('the add channel button is clicked', function (hooks) {
+      hooks.beforeEach(async function () {
         await page.sidebar.channels.toggleForm();
       });
 
-      skip('the channel form is now visible', function(assert) {
+      skip('the channel form is now visible', function (assert) {
         const form = page.sidebar.channels.form.isVisible;
 
         assert.ok(form);
       });
 
-      module('the cancel button is clicked', function(hooks) {
-        hooks.beforeEach(async function() {
+      module('the cancel button is clicked', function (hooks) {
+        hooks.beforeEach(async function () {
           await page.sidebar.channels.toggleForm();
           await settled();
         });
 
-        skip('the channel form is not visible', function(assert) {
+        skip('the channel form is not visible', function (assert) {
           const form = page.sidebar.channels.form.isVisible;
 
           assert.notOk(form);
         });
       });
 
-      module('the channel form is submitted', function(hooks) {
-        hooks.beforeEach(async function() {
+      module('the channel form is submitted', function (hooks) {
+        hooks.beforeEach(async function () {
           await page.sidebar.channels.form.fill('Vertical Flat Plates');
           await page.sidebar.channels.form.submit();
           await settled();
         });
 
-        skip('the form becomes hidden', async function(assert) {
+        skip('the form becomes hidden', async function (assert) {
           // TODO: figure out why settled state doesn't capture this behavior
           await waitUntil(() => !page.sidebar.channels.form.isVisible);
           const form = page.sidebar.channels.form.isVisible;
@@ -265,7 +265,7 @@ module('Acceptance | Sidebar', function(hooks) {
           assert.notOk(form);
         });
 
-        skip('a channel is created', function(assert) {
+        skip('a channel is created', function (assert) {
           const store = getService('store');
           const known = store.peekAll('channel');
 

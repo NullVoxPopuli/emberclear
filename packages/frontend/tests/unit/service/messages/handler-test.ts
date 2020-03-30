@@ -14,26 +14,26 @@ import { TYPE, TARGET } from 'emberclear/models/message';
 
 import { attributesForContact } from 'emberclear/tests/helpers/factories/contact-factory';
 
-module('Unit | Service | messages/handler', function(hooks) {
+module('Unit | Service | messages/handler', function (hooks) {
   setupTest(hooks);
   setupCurrentUser(hooks);
   clearLocalStorage(hooks);
 
-  test('it exists', function(assert) {
+  test('it exists', function (assert) {
     let service = getService('messages/handler');
     assert.ok(service);
   });
 
-  module('handle', function() {
-    module('a chat message', function(hooks) {
-      hooks.beforeEach(async function() {
+  module('handle', function () {
+    module('a chat message', function (hooks) {
+      hooks.beforeEach(async function () {
         stubService('messages/auto-responder', {
           messageReceived() {},
           cameOnline() {},
         });
       });
 
-      test('the message is saved', async function(assert) {
+      test('the message is saved', async function (assert) {
         const store = getStore();
         const service = getService('messages/handler');
         const me = getService('current-user');
@@ -67,14 +67,14 @@ module('Unit | Service | messages/handler', function(hooks) {
       });
     });
 
-    module('an emote message', function() {});
+    module('an emote message', function () {});
 
-    module('a delivery confirmation', function() {});
+    module('a delivery confirmation', function () {});
 
-    module('a disconnect message', function() {});
+    module('a disconnect message', function () {});
 
-    module('a ping', function() {});
+    module('a ping', function () {});
 
-    module('an unknown type of message', function() {});
+    module('an unknown type of message', function () {});
   });
 });

@@ -22,7 +22,7 @@ export default class RelayTableRow extends Component<Args> {
       return false;
     }
 
-    let active = pool.activeConnections.map(connection => connection.relay);
+    let active = pool.activeConnections.map((connection) => connection.relay);
 
     return active.includes(this.args.relay);
   }
@@ -48,7 +48,7 @@ export default class RelayTableRow extends Component<Args> {
 
     let nextHighestPriority = 2;
 
-    let sortedRelays = relays.toArray().sort(r => r.priority);
+    let sortedRelays = relays.toArray().sort((r) => r.priority);
 
     for (let nonDefaultRelay of sortedRelays) {
       if (nonDefaultRelay.id === relay.id) return;

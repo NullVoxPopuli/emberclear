@@ -70,7 +70,7 @@ export default class ReadWatcher extends Modifier<Args> {
 
   private setupIntersectionObserver() {
     const io = new IntersectionObserver(
-      entries => {
+      (entries) => {
         const isVisible = entries[0].intersectionRatio !== 0;
         const canBeSeen = !this.message.isSaving && document.hasFocus();
 
@@ -90,7 +90,7 @@ export default class ReadWatcher extends Modifier<Args> {
     this.io = io;
   }
 
-  @(task(function*(this: ReadWatcher) {
+  @(task(function* (this: ReadWatcher) {
     let attempts = 0;
     while (attempts < 100) {
       attempts++;

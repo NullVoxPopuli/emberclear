@@ -28,10 +28,10 @@ const LINKS = {
   },
 };
 
-module('Integration | Component | fetch-open-graph', function(hooks) {
+module('Integration | Component | fetch-open-graph', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     assert.expect(3);
 
     this.setProperties({ url: LINKS.youtube.webUrl });
@@ -43,7 +43,7 @@ module('Integration | Component | fetch-open-graph', function(hooks) {
     stubConnection({
       getOpenGraph(...args) {
         assert.equal(args[0], LINKS.youtube.webUrl);
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           setTimeout(() => {
             resolve(...args);
           }, 10);

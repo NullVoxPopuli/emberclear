@@ -2,7 +2,7 @@ import utils from 'tweetnacl-util';
 
 export function toHex(array: Uint8Array): string {
   return Array.from(array)
-    .map(b => b.toString(16).padStart(2, '0'))
+    .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
 }
 
@@ -13,7 +13,7 @@ export function fromHex(hex: string): Uint8Array {
 
   const matches = hex.match(/.{1,2}/g) || [];
 
-  return new Uint8Array(matches.map(byte => parseInt(byte, 16)));
+  return new Uint8Array(matches.map((byte) => parseInt(byte, 16)));
 }
 
 export async function toBase64(array: Uint8Array): Promise<string> {

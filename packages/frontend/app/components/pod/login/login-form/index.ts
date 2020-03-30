@@ -34,7 +34,7 @@ export default class LoginForm extends Component {
     return this.currentUser.isLoggedIn;
   }
 
-  @(task(function*(this: LoginForm) {
+  @(task(function* (this: LoginForm) {
     try {
       const name = this.name;
       const privateKey = yield naclBoxPrivateKeyFromMnemonic(this.mnemonic);
@@ -50,7 +50,7 @@ export default class LoginForm extends Component {
   }).drop())
   login!: Task;
 
-  @(task(function*(this: LoginForm, data: string) {
+  @(task(function* (this: LoginForm, data: string) {
     try {
       yield this.settings.import(data);
 

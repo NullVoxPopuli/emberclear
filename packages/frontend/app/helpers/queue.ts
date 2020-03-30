@@ -6,7 +6,7 @@ type Action = (...args: any[]) => any;
 // https://github.com/DockYard/ember-composable-helpers/blob/master/addon/helpers/queue.js
 // but way simpler... cause no promises
 export function queue(actions: Action[] = []) {
-  return function(...args: any[]) {
+  return function (...args: any[]) {
     return actions.forEach((action: Action) => action(...args));
   };
 }

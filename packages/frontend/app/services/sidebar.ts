@@ -104,7 +104,7 @@ export default class Sidebar extends Service {
   }
 
   private handleIntersectionEvent(entries: IntersectionObserverEntry[]) {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       const target = entry.target;
       const id = target.id;
       const { boundingClientRect, rootBounds, isIntersecting } = entry;

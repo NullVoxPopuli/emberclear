@@ -29,14 +29,14 @@ export default class FormatCode extends Modifier<Args> {
     const pres = this.element.querySelectorAll('pre');
 
     if (pres?.length > 0) {
-      pres.forEach(p => p.classList.add('line-numbers'));
+      pres.forEach((p) => p.classList.add('line-numbers'));
     }
   }
 
   private async addLanguages(text: string) {
     const languages = parseLanguages(text);
 
-    languages.forEach(language => {
+    languages.forEach((language) => {
       (later as any)(() => {
         (this.prismManager.addLanguage as TODO).perform(language, this.element);
       });

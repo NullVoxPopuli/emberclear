@@ -63,7 +63,7 @@ const converter = new showdown.Converter({
 });
 
 // NOTE: sanitizing by default removes target="_blank"
-DOMPurify.addHook('afterSanitizeAttributes', function(node: any) {
+DOMPurify.addHook('afterSanitizeAttributes', function (node: any) {
   if ('target' in node) {
     node.setAttribute('target', '_blank');
     node.setAttribute('rel', 'noopener');
