@@ -22,9 +22,9 @@ export const MESSAGE_LIMIT = 75;
  *
  * DISCONNECT: a courtesy message to notify your contacts that you
  *             are about to go offline.
- * 
+ *
  * INFO_CHANNEL_SYNC: a system message that is sent without a body to request channel context and returned with a body of channel context
- * 
+ *
  * CHANNEL_VOTE: a system message used to distribute votes within a channel
  *
  * Properties of:
@@ -55,7 +55,7 @@ export enum TYPE {
   DISCONNECT = 'disconnect',
   DELIVERY_CONFIRMATION = 'delivery-confirmation',
   INFO_CHANNEL_SYNC = 'info-channel-sync',
-  CHANNEL_VOTE = 'channtel-vote'
+  CHANNEL_VOTE = 'channtel-vote',
 }
 
 export enum TARGET {
