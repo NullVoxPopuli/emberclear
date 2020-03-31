@@ -11,5 +11,5 @@ type ECTask<Args, Return> = (
 ) => Generator<Promise<boolean> | Promise<void>, Return, unknown>;
 
 export function taskFor<Args extends any[], Return = void>(generatorFn: ECTask<Args, Return>) {
-  return (generatorFn as any) as Task<Args>;
+  return (generatorFn as any) as Task<Args, Return>;
 }

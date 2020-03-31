@@ -41,7 +41,7 @@ declare module 'ember-concurrency/task' {
    * method on this object to cancel all running or enqueued
    * `TaskInstance`s.
    */
-  export default class Task<PerformArgs extends any[] = any[]> {
+  export default class Task<PerformArgs extends any[] = any[], PerformReturn> {
     /**
      * `true` if any current task instances are running.
      */
@@ -119,7 +119,7 @@ declare module 'ember-concurrency/task' {
 
     readonly name: string;
 
-    perform(...args: PerformArgs): TaskInstance;
+    perform(...args: PerformArgs): TaskInstance<PerformReturn>;
 
     /**
      * Cancels all running or queued `TaskInstance`s for this Task.
@@ -160,13 +160,13 @@ declare module 'ember-concurrency/task-instance' {
    * because concurrency policy enforced by a
    * `TaskProperty` Modifier canceled the task instance.
    */
-  export default class TaskInstance {
+  export default class TaskInstance<Return = any> {
     /**
      * If this TaskInstance runs to completion by returning a property
      * other than a rejecting promise, this property will be set
      * with that value.
      */
-    readonly value: any;
+    readonly value: Return;
 
     /**
      * If this TaskInstance is canceled or throws an error (or yields
