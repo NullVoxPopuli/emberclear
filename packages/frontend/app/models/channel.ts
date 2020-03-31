@@ -18,7 +18,7 @@ export default class Channel extends Model {
 
   @hasMany('identity', { async: false }) members!: Identity[];
   @attr() admin!: Identity;
-  @hasMany('vote', { async: false} ) activeVotes!: Vote[];
+  @hasMany('vote', { async: false }) activeVotes!: Vote[];
   @attr() contextChain!: ChannelContextChain;
   // @hasMany('invitation', { async: false }) pendingInvitations!: Invitation[];
   // @hasMany('identity', { async: false }) blacklisted!: Identity[];
