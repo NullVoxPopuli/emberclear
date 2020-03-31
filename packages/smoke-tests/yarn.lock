@@ -144,10 +144,10 @@
     glob "^7.1.4"
     mocha-helpers "^4.2.1"
 
-"@faltest/page-objects@3.0.8":
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.0.8.tgz#3fa0639ef02a6ece99803113bc9339d35005d988"
-  integrity sha512-DJ15o89jWzAHx16qbU2D2Lek2Cb3Ac/hYQYLs5eHjKJ3kau8HdMCAWmNitvKU/N+XIUglZBNvgZSXpVR08mNBw==
+"@faltest/page-objects@3.0.9":
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.0.9.tgz#c87bbd37b608c91ab4d4856e7c07b74e7d68d949"
+  integrity sha512-aDccxEyJdYxfmdc1qffNRj18rswU+oIGmH3glVDfqSpeFTRUVka02gR+R1Fd1SvWG00nAFDyh9sR+vhP4qAZ7g==
   dependencies:
     "@faltest/browser" "^2.0.5"
     verror-extra "^1.0.0"
