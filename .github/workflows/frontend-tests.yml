@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 15
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
     - name: Install
       working-directory: ${{ env.cwd }}
@@ -51,7 +51,7 @@ jobs:
   #   timeout-minutes: 15
 
   #   steps:
-  #   - uses: actions/checkout@v1
+  #   - uses: actions/checkout@v2
   #   - uses: rwjblue/setup-volta@v1
   #   - name: Install
   #     working-directory: ${{ env.cwd }}
@@ -73,7 +73,7 @@ jobs:
     timeout-minutes: 10
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
 
     - name: Install
@@ -97,7 +97,7 @@ jobs:
     timeout-minutes: 10
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
     - name: Install and Build
       run: |
@@ -118,7 +118,7 @@ jobs:
 #     timeout-minutes: 15
 
 #     steps:
-#     - uses: actions/checkout@v1
+#     - uses: actions/checkout@v2
 #     - uses: rwjblue/setup-volta@v1
 
 #     - name: Install
@@ -147,7 +147,7 @@ jobs:
 #         ignoreActions: tests_e2e,"E2E Tests"
 #         checkInterval: 30
 
-#     - uses: actions/checkout@v1
+#     - uses: actions/checkout@v2
 #     - uses: rwjblue/setup-volta@v1
 
 #     - name: Test
@@ -163,7 +163,7 @@ jobs:
     needs: [tests, bundle_analysis]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
 
     - name: Download Built Bundle Analysis Artifacts
@@ -196,7 +196,7 @@ jobs:
     needs: [build_app]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
 
     - name: Download Built App Artifacts
