@@ -41,7 +41,7 @@ declare module 'ember-concurrency/task' {
    * method on this object to cancel all running or enqueued
    * `TaskInstance`s.
    */
-  export default class Task<PerformArgs extends Array<any>> {
+  export default class Task<PerformArgs extends any[] = any[]> {
     /**
      * `true` if any current task instances are running.
      */

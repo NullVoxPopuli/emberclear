@@ -6,6 +6,10 @@ export function perform<Return = void>(
   return ((generatorFn as any) as Task).perform();
 }
 
-export function taskFor<T>(generatorFn: () => T) {
-  return (generatorFn as any) as Task<Parameters<T>>;
+type ECTask<Args, Return> = (
+  ...args: Args
+) => Generator<Promise<boolean> | Promise<void>, Return, unknown>;
+
+export function taskFor<Args extends any[], Return = void>(generatorFn: ECTask<Args, Return>) {
+  return (generatorFn as any) as Task<Args>;
 }
