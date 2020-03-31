@@ -93,7 +93,7 @@
     "@types/qunit": "^2.9.0",
     "@types/rsvp": "^4.0.3",
     "@types/showdown": "^1.9.3",
-    "@types/sinon": "^7.5.2",
+    "@types/sinon": "^9.0.0",
     "@types/url-parse": "^1.4.3",
     "@types/uuid": "^7.0.2",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
