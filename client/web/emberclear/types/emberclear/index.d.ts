@@ -129,6 +129,23 @@ declare global {
     previousChain?: StandardChannelContextChain;
   }
 
+  interface ChannelContextChain {
+    admin: ChannelMember;
+    members: ChannelMember[];
+    supportingVote: Vote;
+    previousChain: ChannelContextChain;
+  }
+
+  // interface ChannelInvitation {
+  //   invitePublicKey: string;
+  //   result: MemberResult[];
+  // }
+
+  // interface ChannelBlock {
+  //   blockedPublicKey: string;
+  //   result: MemberResult[];
+  // }
+
   interface StandardMessage {
     id: string;
     to: string;

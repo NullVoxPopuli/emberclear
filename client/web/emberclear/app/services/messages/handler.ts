@@ -42,6 +42,9 @@ export default class ReceivedMessageHandler extends Service {
       case TYPE.INFO_CHANNEL_SYNC_REQUEST:
         return this.handleInfoChannelInfo(message, raw);
 
+      case TYPE.CHANNEL_VOTE:
+        return this.handleChannelVote(message, raw);
+
       case TYPE.PING:
         // do nothing, we do not need to send a response
         // at least for now, we have socket-level tools to know
@@ -68,6 +71,12 @@ export default class ReceivedMessageHandler extends Service {
   }
 
   private async handleInfoChannelInfo(message: Message, _raw: StandardMessage) {
+    // TODO: channel sync code
+    return message;
+  }
+
+  private async handleChannelVote(message: Message, _raw: StandardMessage) {
+    // TODO: channel vote code
     return message;
   }
 
