@@ -179,7 +179,7 @@ jobs:
         path: packages/frontend/dist/
 
     - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v0.2.0
+      uses: nwtgck/actions-netlify@v1.0
       with:
         publish-dir: './packages/frontend/dist/'
         production-branch: __handled_separately__
