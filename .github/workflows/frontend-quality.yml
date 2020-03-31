@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
     - name: Install
       run: volta install snyk
@@ -30,7 +30,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
 
     - name: Install
@@ -47,7 +47,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
 
     - name: Install
@@ -65,7 +65,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
     - name: Install
       working-directory: ${{ env.cwd }}
@@ -82,7 +82,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
 
     - name: Install
@@ -102,7 +102,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
 
     - name: Install
