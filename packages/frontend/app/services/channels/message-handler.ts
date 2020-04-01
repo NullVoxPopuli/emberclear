@@ -1,7 +1,6 @@
 import Service, { inject as service } from '@ember/service';
 import Message from 'emberclear/models/message';
 import StoreService from '@ember-data/store';
-import Channel from 'emberclear/models/channel';
 import Notifications from 'emberclear/services/notifications';
 
 export default class ReceivedChannelMessageHandler extends Service {
@@ -9,12 +8,11 @@ export default class ReceivedChannelMessageHandler extends Service {
   @service intl!: Intl;
   @service notifications!: Notifications;
 
-  public async handleChannelMessage(message: Message, _raw: RelayJson) {
+  public async handleChannelMessage(message: Message, raw: RelayJson) {
     // check if channel exists
-    let channelMetadata: Channel = message.metadata;
     let existingChannel = undefined;
     try {
-      existingChannel = await this.store.findRecord('channel', channelMetadata.id);
+      existingChannel = await this.store.findRecord('channel', raw.channelInfo!.uid);
     } catch (e) {
       // TODO: handle if user not in channel
     }
@@ -28,6 +26,8 @@ export default class ReceivedChannelMessageHandler extends Service {
       const msg = this.intl.t('ui.notificatoin.from', { senderName });
 
       this.notifications.info(msg);
+
+      // TODO: check to look for tampered or mismatched context and handle accordingly
     }
     return message;
   }
