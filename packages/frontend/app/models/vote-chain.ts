@@ -14,8 +14,9 @@ export default class VoteChain extends Model {
   @hasMany('identity', { async: false }) no!: Identity[];
   @attr() target!: Identity;
   @attr() action!: VOTE_ACTION;
-  @attr() previousVoteKey!: Identity;
-  @attr() previousVoteChain!: VoteChain; //declare as encrypted
+  @attr() key!: Identity;
+  @attr() previousVoteChain!: VoteChain;
+  @attr() signature!: Uint8Array;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

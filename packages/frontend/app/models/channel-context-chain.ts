@@ -1,12 +1,12 @@
 import Model, { attr, hasMany } from '@ember-data/model';
 
 import Identity from 'emberclear/models/identity';
-import Vote from './vote';
+import VoteChain from './vote-chain';
 
 export default class ChannelContextChain extends Model {
   @attr() admin!: Identity;
   @hasMany('identity', { async: false }) members!: Identity[];
-  @attr() supportingVote!: Vote;
+  @attr() supportingVote!: VoteChain;
   @attr() previousChain!: ChannelContextChain;
 }
 

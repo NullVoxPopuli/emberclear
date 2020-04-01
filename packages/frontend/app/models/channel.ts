@@ -1,8 +1,8 @@
 import Model, { attr, hasMany } from '@ember-data/model';
 
 import Identity from 'emberclear/models/identity';
-import Vote from './vote';
 import ChannelContextChain from './channel-context-chain';
+import VoteChain from './vote-chain';
 // import Invitation from 'emberclear/models/invitation';
 
 export default class Channel extends Model {
@@ -18,7 +18,7 @@ export default class Channel extends Model {
 
   @hasMany('identity', { async: false }) members!: Identity[];
   @attr() admin!: Identity;
-  @hasMany('vote', { async: false }) activeVotes!: Vote[];
+  @hasMany('vote-chain', { async: false }) activeVotes!: VoteChain[];
   @attr() contextChain!: ChannelContextChain;
   // @hasMany('invitation', { async: false }) pendingInvitations!: Invitation[];
   // @hasMany('identity', { async: false }) blacklisted!: Identity[];
