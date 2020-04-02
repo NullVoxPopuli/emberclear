@@ -3,7 +3,6 @@ import Model, { attr, hasMany } from '@ember-data/model';
 import Identity from 'emberclear/models/identity';
 import ChannelContextChain from './channel-context-chain';
 import VoteChain from './vote-chain';
-// import Invitation from 'emberclear/models/invitation';
 
 export default class Channel extends Model {
   @attr() name!: string;
@@ -20,8 +19,6 @@ export default class Channel extends Model {
   @attr() admin!: Identity;
   @hasMany('vote-chain', { async: false }) activeVotes!: VoteChain[];
   @attr() contextChain!: ChannelContextChain;
-  // @hasMany('invitation', { async: false }) pendingInvitations!: Invitation[];
-  // @hasMany('identity', { async: false }) blacklisted!: Identity[];
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
