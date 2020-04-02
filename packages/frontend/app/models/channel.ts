@@ -1,7 +1,8 @@
 import Model, { attr, hasMany } from '@ember-data/model';
 
 import Identity from 'emberclear/models/identity';
-import Invitation from 'emberclear/models/invitation';
+import ChannelContextChain from './channel-context-chain';
+import VoteChain from './vote-chain';
 
 export default class Channel extends Model {
   @attr() name!: string;
@@ -11,12 +12,13 @@ export default class Channel extends Model {
   // to protect from other people you trust, but
   // maybe don't trust *that* much.
   // TODO: implement this.
-  @attr() public protected!: boolean;
-  @attr() decryptionKey!: string;
+  // @attr() public protected!: boolean;
+  // @attr() decryptionKey!: string;
 
   @hasMany('identity', { async: false }) members!: Identity[];
-  @hasMany('invitation', { async: false }) pendingInvitations!: Invitation[];
-  @hasMany('identity', { async: false }) blacklisted!: Identity[];
+  @attr() admin!: Identity;
+  @hasMany('vote-chain', { async: false }) activeVotes!: VoteChain[];
+  @attr() contextChain!: ChannelContextChain;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
