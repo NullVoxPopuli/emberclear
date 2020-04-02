@@ -1,7 +1,8 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { task, timeout } from 'ember-concurrency';
-import Task from 'ember-concurrency/task';
+import { timeout } from 'ember-concurrency';
+import { restartableTask } from 'ember-concurrency-decorators';
+
 import {
   STATUS,
   STATUS_UNKNOWN,
@@ -10,6 +11,7 @@ import {
   STATUS_DISCONNECTED,
   STATUS_CONNECTING,
 } from 'emberclear/utils/connection-pool';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 const STATUS_LEVEL_MAP = {
   [STATUS_UNKNOWN]: 'warning',
@@ -40,10 +42,11 @@ export default class ConnectionStatusService extends Service {
     this.text = text;
     this.level = STATUS_LEVEL_MAP[text];
 
-    this.showStatusChange.perform();
+    taskFor(this.showStatusChange).perform();
   }
 
-  @(task(function* (this: ConnectionStatusService) {
+  @restartableTask({ withTestWaiter: true })
+  *showStatusChange() {
     this.hasUpdate = true;
     this.hadUpdate = false;
 
@@ -53,10 +56,7 @@ export default class ConnectionStatusService extends Service {
     yield timeout(1000);
 
     this.hasUpdate = false;
-  })
-    .restartable()
-    .withTestWaiter())
-  showStatusChange!: Task;
+  }
 }
 
 declare module '@ember/service' {

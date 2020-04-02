@@ -1,11 +1,12 @@
 import Modifier from 'ember-modifier';
 import { action } from '@ember/object';
-import { timeout, task } from 'ember-concurrency';
+import { timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
 
 import { markAsRead } from 'emberclear/models/message/utils';
 
 import Message from 'emberclear/models/message';
-import Task from 'ember-concurrency/task';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 interface Args {
   positional: [Message];
@@ -52,7 +53,7 @@ export default class ReadWatcher extends Modifier<Args> {
   @action
   private markRead() {
     if (this.message.unread) {
-      this.markReadTask.perform();
+      taskFor(this.markReadTask).perform();
     }
 
     this.disconnect();
@@ -90,7 +91,8 @@ export default class ReadWatcher extends Modifier<Args> {
     this.io = io;
   }
 
-  @(task(function* (this: ReadWatcher) {
+  @task({ withTestWaiter: true })
+  *markReadTask() {
     let attempts = 0;
     while (attempts < 100) {
       attempts++;
@@ -106,6 +108,5 @@ export default class ReadWatcher extends Modifier<Args> {
         return;
       }
     }
-  }).withTestWaiter())
-  markReadTask!: Task;
+  }
 }

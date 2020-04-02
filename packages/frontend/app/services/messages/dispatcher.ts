@@ -1,7 +1,7 @@
 import StoreService from '@ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
 
 // giant block o' types
 import CurrentUserService from 'emberclear/services/current-user';
@@ -14,10 +14,10 @@ import MessageFactory from 'emberclear/services/messages/factory';
 
 import { toHex } from 'emberclear/utils/string-encoding';
 import { build as toPayloadJson } from './-utils/builder';
-import Task from 'ember-concurrency/task';
 import Contact from 'emberclear/models/contact';
 import User from 'emberclear/models/user';
 import ConnectionService from 'emberclear/services/connection';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
@@ -48,7 +48,7 @@ export default class MessageDispatcher extends Service {
     }
 
     if (to instanceof Contact) {
-      return await this.sendToUser.perform(message, to);
+      return await taskFor(this.sendToUser).perform(message, to);
     }
 
     // Otherwise, Channel Message
@@ -58,21 +58,21 @@ export default class MessageDispatcher extends Service {
   async pingAll() {
     const ping = this.messageFactory.buildPing();
 
-    this.sendToAll.perform(ping);
+    taskFor(this.sendToAll).perform(ping);
   }
 
   // the downside to end-to-end encryption
   // the bigger the list of identities, the longer this takes
   //
   // TODO: should this be hard-limited to just messages like PINGs?
-  @task(function* (this: MessageDispatcher, msg: Message) {
+  @task
+  *sendToAll(msg: Message) {
     const everyone = yield this.store.findAll('contact');
 
     everyone.forEach((contact: Contact) => {
-      this.sendToUser.perform(msg, contact);
+      taskFor(this.sendToUser).perform(msg, contact);
     });
-  })
-  sendToAll!: Task;
+  }
 
   sendToChannel(msg: Message, channel: Channel) {
     const members = channel.members;
@@ -80,11 +80,12 @@ export default class MessageDispatcher extends Service {
     members.forEach((member) => {
       if (member.id === this.currentUser.id) return; // don't send to self
 
-      this.sendToUser.perform(msg, member);
+      taskFor(this.sendToUser).perform(msg, member);
     });
   }
 
-  @task(function* (this: MessageDispatcher, msg: Message, to: Contact) {
+  @task
+  *sendToUser(msg: Message, to: Contact) {
     if (!this.currentUser.crypto) {
       console.info('Crypto Worker not available');
 
@@ -120,8 +121,7 @@ export default class MessageDispatcher extends Service {
 
       console.debug(e.name, e);
     }
-  })
-  sendToUser!: Task;
+  }
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

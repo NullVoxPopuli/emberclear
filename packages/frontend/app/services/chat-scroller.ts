@@ -1,9 +1,9 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { task, timeout } from 'ember-concurrency';
+import { timeout } from 'ember-concurrency';
+import { dropTask, restartableTask } from 'ember-concurrency-decorators';
 
 import Message from 'emberclear/models/message';
-import Task from 'ember-concurrency/task';
 
 // This is used to give the task time to restart as the view settles
 // and tries to scroll multiple times
@@ -25,23 +25,23 @@ export default class ChatScroller extends Service {
 
   // if the last message is close enough to being in view,
   // scroll to the bottom
-  @(task(function* (this: ChatScroller, appendedMessage: HTMLElement) {
+  @dropTask
+  *maybeNudge(appendedMessage: HTMLElement) {
     yield timeout(SCROLL_DELAY);
 
     if (this.shouldScroll(appendedMessage)) {
       appendedMessage.scrollIntoView({ behavior: 'smooth' });
     }
-  }).drop())
-  maybeNudge!: Task;
+  }
 
-  @(task(function* () {
+  @restartableTask
+  *scrollToBottom() {
     const element = document.querySelector('.messages');
 
     if (element) {
       element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'smooth' });
     }
-  }).restartable())
-  scrollToBottom!: Task;
+  }
 
   private shouldScroll(appendedMessage: HTMLElement) {
     const container = document.querySelector('.messages') as HTMLElement;

@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { task } from 'ember-concurrency';
 
 import {
   hasCamera,
@@ -10,7 +9,9 @@ import {
   hasServiceWorker,
   hasWebWorker,
 } from './-utils/detection';
-import Task from 'ember-concurrency/task';
+
+import { dropTask } from 'ember-concurrency-decorators';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 export default class Compatibility extends Component {
   @tracked hasCamera!: boolean;
@@ -31,10 +32,11 @@ export default class Compatibility extends Component {
 
   constructor(owner: any, args: any) {
     super(owner, args);
-    this.detectFeatures.perform();
+    taskFor(this.detectFeatures).perform();
   }
 
-  @(task(function* (this: Compatibility) {
+  @dropTask
+  *detectFeatures() {
     let check = this.checkSuccess.bind(this);
     this.hasIndexedDb = check(yield hasIndexedDb(), { required: true });
 
@@ -45,8 +47,7 @@ export default class Compatibility extends Component {
     }
 
     this.hasNotifications = check(hasNotifications());
-  }).drop())
-  detectFeatures!: Task;
+  }
 
   private checkSuccess(value: boolean, { required = false }: { required?: boolean } = {}) {
     if (required) {

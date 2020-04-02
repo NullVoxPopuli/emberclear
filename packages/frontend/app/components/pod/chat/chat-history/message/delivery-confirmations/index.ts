@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { task, timeout } from 'ember-concurrency';
+import { timeout } from 'ember-concurrency';
 
 import Message, { TARGET } from 'emberclear/models/message';
 import Channel from 'emberclear/models/channel';
@@ -12,7 +12,9 @@ import Contact from 'emberclear/models/contact';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import Task from 'ember-concurrency/task';
+
+import { dropTask } from 'ember-concurrency-decorators';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 const TIMEOUT_MS = 1000;
 
@@ -47,7 +49,8 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     }
   }
 
-  @(task(function* (this: DeliveryConfirmation) {
+  @dropTask({ withTestWaiter: true })
+  *waitForConfirmation() {
     if (this.timedOut) return;
 
     yield timeout(TIMEOUT_MS);
@@ -55,12 +58,10 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     if (!this.hasDeliveryConfirmations) {
       this.timedOut = true;
     }
-  })
-    .drop()
-    .withTestWaiter())
-  waitForConfirmation!: Task;
+  }
 
-  @(task(function* (this: DeliveryConfirmation) {
+  @dropTask({ withTestWaiter: true })
+  *resend() {
     const { message } = this.args;
     let to: Contact | Channel;
 
@@ -80,50 +81,43 @@ export default class DeliveryConfirmation extends Component<IArgs> {
 
     yield this.dispatcher.sendTo(message, to);
 
-    yield this.waitForConfirmation.perform();
-  })
-    .drop()
-    .withTestWaiter())
-  resend!: Task;
+    yield taskFor(this.waitForConfirmation).perform();
+  }
 
-  @(task(function* (this: DeliveryConfirmation) {
+  @dropTask({ withTestWaiter: true })
+  *deleteMessage() {
     const { message } = this.args;
 
     yield message.destroyRecord();
-  })
-    .drop()
-    .withTestWaiter())
-  deleteMessage!: Task;
+  }
 
-  @(task(function* (this: DeliveryConfirmation) {
+  @dropTask({ withTestWaiter: true })
+  *resendAutomatically() {
     const { message } = this.args;
 
     message.queueForResend = true;
 
     yield message.save();
-  })
-    .drop()
-    .withTestWaiter())
-  resendAutomatically!: Task;
+  }
 
   // TODO: does this have to be redundant? I have to be doing something wrong
   @action
   doDelete() {
-    this.deleteMessage.perform();
+    taskFor(this.deleteMessage).perform();
   }
 
   @action
   doResend() {
-    this.resend.perform();
+    taskFor(this.resend).perform();
   }
 
   @action
   doQueue() {
-    this.resendAutomatically.perform();
+    taskFor(this.resendAutomatically).perform();
   }
 
   @action
   doWait() {
-    this.waitForConfirmation.perform();
+    taskFor(this.waitForConfirmation).perform();
   }
 }

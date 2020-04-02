@@ -6,6 +6,7 @@ import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
 import Message from 'emberclear/models/message';
 import Contact from 'emberclear/models/contact';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 /**
  * Nothing here should be blocking, as these responses should not matter
@@ -22,7 +23,9 @@ export default class MessageAutoResponder extends Service {
     const sender = respondToMessage.sender;
     const response = this.factory.buildDeliveryConfirmation(respondToMessage);
 
-    this.dispatcher.sendToUser.perform(response, sender);
+    if (sender) {
+      taskFor(this.dispatcher.sendToUser).perform(response, sender);
+    }
   }
 
   async cameOnline(contact: Contact) {
@@ -35,7 +38,7 @@ export default class MessageAutoResponder extends Service {
       message.queueForResend = false;
       await message.save();
 
-      this.dispatcher.sendToUser.perform(message, contact);
+      taskFor(this.dispatcher.sendToUser).perform(message, contact);
     });
   }
 }

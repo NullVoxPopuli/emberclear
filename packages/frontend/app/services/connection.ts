@@ -1,12 +1,12 @@
 import Service, { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency';
-import Task from 'ember-concurrency/task';
+import { dropTask } from 'ember-concurrency-decorators';
 
 import ConnectionManager from 'emberclear/services/connection/manager';
 import CurrentUserService from 'emberclear/services/current-user';
 import ContactsOnlineChecker from 'emberclear/services/contacts/online-checker';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import { OutgoingPayload } from 'emberclear/services/connection/connection';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 export default class ConnectionService extends Service {
   @service currentUser!: CurrentUserService;
@@ -15,7 +15,7 @@ export default class ConnectionService extends Service {
   @service('contacts/online-checker') onlineChecker!: ContactsOnlineChecker;
 
   connect() {
-    this._connect.perform();
+    taskFor(this._connect).perform();
   }
 
   disconnect() {
@@ -34,7 +34,8 @@ export default class ConnectionService extends Service {
     }
   }
 
-  @(task(function* (this: ConnectionService) {
+  @dropTask({ withTestWaiter: true })
+  private *_connect() {
     let canConnect = yield this.canConnect();
 
     if (!canConnect) return;
@@ -42,11 +43,8 @@ export default class ConnectionService extends Service {
     yield this.manager.setup();
 
     yield this.dispatcher.pingAll();
-    this.onlineChecker.checkOnlineStatus.perform();
-  })
-    .drop()
-    .withTestWaiter())
-  private _connect!: Task;
+    taskFor(this.onlineChecker.checkOnlineStatus).perform();
+  }
 
   private canConnect(): Promise<boolean> {
     return this.currentUser.exists();

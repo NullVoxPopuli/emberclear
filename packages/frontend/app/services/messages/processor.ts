@@ -1,12 +1,10 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
+import { enqueueTask } from 'ember-concurrency-decorators';
 
 import CurrentUserService from 'emberclear/services/current-user';
-
 import ReceivedMessageHandler from 'emberclear/services/messages/handler';
-
-import { task } from 'ember-concurrency';
-import Task from 'ember-concurrency/task';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 export default class MessageProcessor extends Service {
   @service currentUser!: CurrentUserService;
@@ -23,18 +21,15 @@ export default class MessageProcessor extends Service {
    *
    */
   receive(socketData: RelayMessage) {
-    this._receive.perform(socketData);
+    taskFor(this._receive).perform(socketData);
   }
 
-  @(task(function* (this: MessageProcessor, socketData: RelayMessage) {
+  @enqueueTask({ withTestWaiter: true, maxConcurrency: 1 })
+  *_receive(socketData: RelayMessage) {
     const decrypted = yield this.currentUser.crypto?.decryptFromSocket(socketData);
 
     yield this.handler.handle(decrypted);
-  })
-    .enqueue()
-    .maxConcurrency(1)
-    .withTestWaiter())
-  private _receive!: Task;
+  }
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

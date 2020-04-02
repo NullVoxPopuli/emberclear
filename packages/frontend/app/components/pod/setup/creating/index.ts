@@ -7,7 +7,7 @@ import { dropTask } from 'ember-concurrency-decorators';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
-import { perform } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 type Args = {
   next: () => void;
@@ -26,7 +26,7 @@ export default class NameEntry extends Component<Args> {
   createIdentity(e: Event) {
     e.preventDefault();
 
-    perform(this.create);
+    taskFor(this.create).perform();
   }
 
   @dropTask({ withTestWaiter: true })

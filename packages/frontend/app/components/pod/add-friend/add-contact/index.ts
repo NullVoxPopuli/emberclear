@@ -5,11 +5,11 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
 
-import Task from 'ember-concurrency/task';
 import ContactManager from 'emberclear/services/contact-manager';
 import CurrentUserService from 'emberclear/services/current-user';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 export default class AddModal extends Component {
   @service toast!: Toast;
@@ -38,7 +38,8 @@ export default class AddModal extends Component {
     this.scanning = !this.scanning;
   }
 
-  @task(function* (this: AddModal, identityJson: string) {
+  @task
+  *handleScan(identityJson: string) {
     try {
       const identity = JSON.parse(identityJson);
 
@@ -48,12 +49,11 @@ export default class AddModal extends Component {
     }
 
     this.scanning = false;
-  })
-  handleScan!: Task;
+  }
 
   @action
   onScan(json: string) {
-    this.handleScan.perform(json);
+    taskFor(this.handleScan).perform(json);
   }
 
   async tryCreate(identity: IdentityJson) {

@@ -4,6 +4,7 @@ import { once } from '@ember/runloop';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
 import Message from 'emberclear/models/message';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 type Args = {
   positional: [Message[], Message];
@@ -31,7 +32,7 @@ export default class MaybeNudgeToBottom extends Modifier<Args> {
     if (this.appendedMessage.id !== this.lastMessage.id) return;
 
     if (this.element) {
-      once(null, () => this.chatScroller.maybeNudge.perform(this.element as HTMLElement));
+      once(null, () => taskFor(this.chatScroller.maybeNudge).perform(this.element as HTMLElement));
     }
   }
 }
