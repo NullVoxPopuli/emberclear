@@ -22,7 +22,7 @@ module('Routing | Feature Flags', function (hooks) {
 
   hooks.afterEach(async function () {
     await visit('/'); // clear search params
-  })
+  });
 
   test('Query Param is present', async function (assert) {
     await visit('/?_features=channels');
