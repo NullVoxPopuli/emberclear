@@ -4,48 +4,50 @@ import { visit } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 import { setupRouter, setupCurrentUser } from 'emberclear/tests/helpers';
+import { TestContext } from 'ember-test-helpers';
 
 module('Routing | Feature Flags', function (hooks) {
   setupApplicationTest(hooks);
   setupCurrentUser(hooks);
   setupRouter(hooks);
 
-  module('Query Param is present', function () {
-    test('helpers work', async function (assert) {
-      this.owner.register(
-        'template:application',
-        hbs`<div id='foo'>{{has-feature-flag 'channels'}}</div>`
-      );
-
-      await visit('/?_features=channels');
-
-      assert.dom('#foo').hasText('true');
-    });
+  hooks.beforeEach(function (this: TestContext) {
+    this.owner.register(
+      'template:application',
+      hbs`<div id='foo'>{{has-feature-flag 'channels'}}</div>{{outlet}}`
+    );
+    this.owner.register('template:chat', hbs`<div id='bar'>{{has-feature-flag 'channels'}}</div>`);
   });
 
-  module('Not Query Param is present', function () {
-    test('helpers work', async function (assert) {
-      this.owner.register(
-        'template:application',
-        hbs`<div id='foo'>{{has-feature-flag 'channels'}}</div>`
-      );
+  test('Query Param is present', async function (assert) {
+    await visit('/?_features=channels');
 
-      await visit('/');
+    assert.dom('#foo').hasText('true');
 
-      assert.dom('#foo').hasText('false');
-    });
+    await visit('/chat?_features=channels');
+
+    assert.dom('#bar').hasText('true');
+  });
+
+  test('No Query Param are initially present', async function (assert) {
+    await visit('/');
+
+    assert.dom('#foo').hasText('false');
+
+    await visit('/chat?_features=channels');
+
+    assert.dom('#bar').hasText('true');
   });
 
   module('Different Query Param is present', function () {
     test('helpers work', async function (assert) {
-      this.owner.register(
-        'template:application',
-        hbs`<div id='foo'>{{has-feature-flag 'channels'}}</div>`
-      );
-
       await visit('/?_features=video-calling');
 
       assert.dom('#foo').hasText('false');
+
+      await visit('/chat?_features=channels');
+
+      assert.dom('#bar').hasText('true');
     });
   });
 });
