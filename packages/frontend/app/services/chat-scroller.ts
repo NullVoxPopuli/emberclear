@@ -1,10 +1,9 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { task, timeout } from 'ember-concurrency';
+import { timeout } from 'ember-concurrency';
 import { dropTask, restartableTask } from 'ember-concurrency-decorators';
 
 import Message from 'emberclear/models/message';
-import Task from 'ember-concurrency/task';
 
 // This is used to give the task time to restart as the view settles
 // and tries to scroll multiple times

@@ -7,7 +7,6 @@ import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency-decorators';
 
-import Task from 'ember-concurrency/task';
 import ContactManager from 'emberclear/services/contact-manager';
 import CurrentUserService from 'emberclear/services/current-user';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
