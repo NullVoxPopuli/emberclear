@@ -3,12 +3,13 @@ import { setupApplicationTest } from 'ember-qunit';
 import { visit } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-import { setupRouter, setupCurrentUser } from 'emberclear/tests/helpers';
+import { setupRouter, setupCurrentUser, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { TestContext } from 'ember-test-helpers';
 
 module('Routing | Feature Flags', function (hooks) {
   setupApplicationTest(hooks);
   setupCurrentUser(hooks);
+  setupRelayConnectionMocks(hooks);
   setupRouter(hooks);
 
   hooks.beforeEach(function (this: TestContext) {
@@ -18,6 +19,10 @@ module('Routing | Feature Flags', function (hooks) {
     );
     this.owner.register('template:chat', hbs`<div id='bar'>{{has-feature-flag 'channels'}}</div>`);
   });
+
+  hooks.afterEach(async function () {
+    await visit('/'); // clear search params
+  })
 
   test('Query Param is present', async function (assert) {
     await visit('/?_features=channels');
