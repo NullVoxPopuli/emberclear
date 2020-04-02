@@ -6,7 +6,7 @@ import { action } from '@ember/object';
 
 import ChannelManager from 'emberclear/services/channel-manager';
 import { dropTask } from 'ember-concurrency-decorators';
-import Task from 'ember-concurrency/task';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 type Args = {
   onSubmit: () => void;
@@ -20,7 +20,7 @@ export default class ChannelForm extends Component<Args> {
 
   @action
   onFormSubmit() {
-    return ((this.didSubmitChannelName as any) as Task).perform();
+    return taskFor(this.didSubmitChannelName).perform();
   }
 
   @action
@@ -33,7 +33,7 @@ export default class ChannelForm extends Component<Args> {
     const { keyCode } = event;
 
     if (keyCode === 13) {
-      ((this.didSubmitChannelName as any) as Task).perform();
+      taskFor(this.didSubmitChannelName).perform();
 
       return false;
     }

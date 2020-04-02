@@ -4,12 +4,14 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
-import { task } from 'ember-concurrency';
-import Task from 'ember-concurrency/task';
+
 import StoreService from '@ember-data/store';
 import Contact from 'emberclear/models/contact';
 import Channel from 'emberclear/models/channel';
 import CurrentUserService from 'emberclear/services/current-user';
+
+import { restartableTask } from 'ember-concurrency-decorators';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 interface IArgs {
   isActive: boolean;
@@ -39,7 +41,7 @@ export default class SearchModal extends Component<IArgs> {
 
   @action
   submitSearch() {
-    this.search.perform(this.searchText);
+    taskFor(this.search).perform(this.searchText);
   }
 
   @action
@@ -48,7 +50,8 @@ export default class SearchModal extends Component<IArgs> {
     this.submitSearch();
   }
 
-  @(task(function* (this: SearchModal, searchTerm: string) {
+  @restartableTask({ withTestWaiter: true })
+  *search(searchTerm: string) {
     const term = new RegExp(searchTerm, 'i');
 
     let [contactResults, channelResults] = yield Promise.all([
@@ -63,8 +66,5 @@ export default class SearchModal extends Component<IArgs> {
 
     this.contactResults = contactResults.slice(0, MAX_RESULTS);
     this.channelResults = channelResults.slice(0, MAX_RESULTS);
-  })
-    .keepLatest()
-    .withTestWaiter())
-  search!: Task;
+  }
 }

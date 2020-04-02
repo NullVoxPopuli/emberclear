@@ -2,12 +2,13 @@ import Ember from 'ember';
 import StoreService from '@ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import Task from 'ember-concurrency/task';
-import { task, timeout } from 'ember-concurrency';
+import { timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
 
 import Contact, { Status } from 'emberclear/models/contact';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 const THIRTY_SECONDS = 30000;
 
@@ -16,7 +17,8 @@ export default class ContactsOnlineChecker extends Service {
   @service('messages/dispatcher') dispatcher!: MessageDispatcher;
   @service('messages/factory') messageFactory!: MessageFactory;
 
-  @(task(function* (this: ContactsOnlineChecker) {
+  @task({ withTestWaiter: true })
+  *checkOnlineStatus() {
     if (Ember.testing) return;
 
     while (true) {
@@ -28,11 +30,10 @@ export default class ContactsOnlineChecker extends Service {
         .peekAll('contact')
         .filter((contact: Contact) => contact.onlineStatus !== Status.OFFLINE)
         .forEach((contact) => {
-          this.dispatcher.sendToUser.perform(ping, contact);
+          taskFor(this.dispatcher.sendToUser).perform(ping, contact);
         });
     }
-  }).withTestWaiter())
-  checkOnlineStatus!: Task;
+  }
 }
 
 declare module '@ember/service' {

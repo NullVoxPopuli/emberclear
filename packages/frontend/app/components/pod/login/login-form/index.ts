@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { task } from 'ember-concurrency';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
@@ -10,10 +9,11 @@ import StoreService from '@ember-data/store';
 import Toast from 'emberclear/services/toast';
 import Settings from 'emberclear/services/settings';
 
-import Task from 'ember-concurrency/task';
 import RouterService from '@ember/routing/router-service';
 import { naclBoxPrivateKeyFromMnemonic } from 'emberclear/workers/crypto/utils/mnemonic';
 import { derivePublicKey } from 'emberclear/workers/crypto/utils/nacl';
+import { dropTask } from 'ember-concurrency-decorators';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 export default class LoginForm extends Component {
   @service currentUser!: CurrentUserService;
@@ -34,7 +34,8 @@ export default class LoginForm extends Component {
     return this.currentUser.isLoggedIn;
   }
 
-  @(task(function* (this: LoginForm) {
+  @dropTask
+  *login() {
     try {
       const name = this.name;
       const privateKey = yield naclBoxPrivateKeyFromMnemonic(this.mnemonic);
@@ -47,10 +48,10 @@ export default class LoginForm extends Component {
       console.error(e);
       this.toast.error('There was a problem logging in...');
     }
-  }).drop())
-  login!: Task;
+  }
 
-  @(task(function* (this: LoginForm, data: string) {
+  @dropTask
+  *uploadSettings(data: string) {
     try {
       yield this.settings.import(data);
 
@@ -59,8 +60,7 @@ export default class LoginForm extends Component {
       console.error(e);
       this.toast.error('There was a problem processing your file...');
     }
-  }).drop())
-  uploadSettings!: Task;
+  }
 
   @action
   toggleScanning(this: LoginForm) {
@@ -69,17 +69,17 @@ export default class LoginForm extends Component {
 
   @action
   onScan(this: LoginForm, settingsJson: string) {
-    this.uploadSettings.perform(settingsJson);
+    taskFor(this.uploadSettings).perform(settingsJson);
   }
 
   @action
-  onChooseFile(...args: any[]) {
-    this.uploadSettings.perform(...args);
+  onChooseFile(data: string) {
+    taskFor(this.uploadSettings).perform(data);
   }
 
   @action
   onSubmit() {
-    this.login.perform();
+    taskFor(this.login).perform();
   }
 
   @action
