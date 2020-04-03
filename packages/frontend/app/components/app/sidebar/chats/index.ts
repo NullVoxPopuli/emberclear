@@ -42,7 +42,7 @@ export default class ContactsSidebar extends Component<IArgs> {
   }
 
   // TODO: This is too expensive. Push into adapter
-  @computed('hideOfflineContacts', 'router.currentURL', 'allChannels', 'allContacts.@each.{onlineStatus,isPinned}')
+  @computed('hideOfflineContacts', 'router.currentURL', 'allContacts.@each.{onlineStatus,isPinned}')
   get contacts() {
     if (!this.hideOfflineContacts) {
       return this.allContacts.sort(sortByPinned);
