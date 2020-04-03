@@ -57,8 +57,8 @@ module('Workers | Crypto | nacl', function () {
     const sender = await nacl.generateAsymmetricKeys();
 
     const msgAsUint8 = Uint8Array.from([104, 101, 108, 108, 111]); // hello
-    const signedText = await nacl.signMessage(msgAsUint8, sender.privateKey);
-    const openedText = await nacl.openSignedMessage(signedText, sender.publicKey);
+    const signedText = await nacl.sign(msgAsUint8, sender.privateKey);
+    const openedText = await nacl.openSigned(signedText, sender.publicKey);
 
     assert.deepEqual(msgAsUint8, openedText);
   });
@@ -72,8 +72,8 @@ module('Workers | Crypto | nacl', function () {
     }
 
     const msgAsUint8 = Uint8Array.from(bigMsg); // hello * 128 = 640 Bytes
-    const signedText = await nacl.signMessage(msgAsUint8, sender.privateKey);
-    const openedText = await nacl.openSignedMessage(signedText, sender.publicKey);
+    const signedText = await nacl.sign(msgAsUint8, sender.privateKey);
+    const openedText = await nacl.openSigned(signedText, sender.publicKey);
 
     assert.deepEqual(msgAsUint8, openedText);
   });
