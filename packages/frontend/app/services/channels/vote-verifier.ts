@@ -1,5 +1,6 @@
 import Service, { inject as service } from '@ember/service';
 import VoteChain from 'emberclear/models/vote-chain';
+import Identity from 'emberclear/models/identity';
 
 export default class VoteVerifier extends Service {
   verify(voteToVerify: VoteChain): boolean {
@@ -18,21 +19,19 @@ export default class VoteVerifier extends Service {
   }
 
   private generateSortedVoteString(vote: VoteChain): string {
-    let toReturn = '{remaining:';
-    let remainingSorted = vote.remaining
-      .map((ident) => ident.publicKey)
-      .sort((a, b) => (a < b ? -1 : 1));
-    toReturn = toReturn + remainingSorted;
-    toReturn = toReturn + ',yes:';
-    let yesSorted = vote.yes.map((ident) => ident.publicKey).sort((a, b) => (a < b ? -1 : 1));
-    toReturn = toReturn + yesSorted;
-    toReturn = toReturn + ',no:';
-    let noSorted = vote.no.map((ident) => ident.publicKey).sort((a, b) => (a < b ? -1 : 1));
-    toReturn = toReturn + noSorted;
-    toReturn = toReturn + ',target:' + vote.target.publicKey;
-    toReturn = toReturn + ',action:' + vote.action;
-    toReturn = toReturn + ',key:' + vote.key.publicKey;
-    toReturn = toReturn + ',prevVoteSignature:' + vote.previousVoteChain.signature + '}';
-    return toReturn;
+    let toReturn = [
+      this.toSortedPublicKeys(vote.remaining),
+      this.toSortedPublicKeys(vote.yes),
+      this.toSortedPublicKeys(vote.no),
+      vote.target.publicKey,
+      vote.action,
+      vote.key.publicKey,
+      vote.previousVoteChain.signature,
+    ];
+    return JSON.stringify(toReturn);
+  }
+
+  private toSortedPublicKeys(identities: Identity[]) {
+    return identities.map((identity) => identity.publicKey).sort();
   }
 }
