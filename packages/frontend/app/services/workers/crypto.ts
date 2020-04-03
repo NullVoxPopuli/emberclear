@@ -1,6 +1,6 @@
 import WorkersService from '../workers';
 import { PWBHost } from 'promise-worker-bi';
-import { SignMessage, OpenSignedMessage, HashMessage } from 'emberclear/workers/crypto/messages';
+import { Sign, OpenSigned, Hash } from 'emberclear/workers/crypto/messages';
 
 type GenerateKeys = import('emberclear/workers/crypto/messages').GenerateKeys;
 type GenerateSigningKeys = import('emberclear/workers/crypto/messages').GenerateSigningKeys;
@@ -20,9 +20,9 @@ enum WorkerCryptoAction {
   DECRYPT_FROM_SOCKET = 2,
   ENCRYPT_FOR_SOCKET = 3,
   GENERATE_SIGNING_KEYS = 4,
-  SIGN_MESSAGE = 5,
-  OPEN_SIGNED_MESSAGE = 6,
-  HASH_MESSAGE = 7,
+  SIGN = 5,
+  OPEN_SIGNED = 6,
+  HASH = 7,
   // TODO: should find a way to not need these
   DERIVE_PUBLIC_KEY = 100,
   DERIVE_PUBLIC_SIGNING_KEY = 101,
@@ -94,29 +94,29 @@ export default class CryptoConnector {
     });
   }
 
-  async signMessage(message: Uint8Array, senderPrivateKey: Uint8Array) {
+  async sign(message: Uint8Array, senderPrivateKey: Uint8Array) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<Uint8Array, SignMessage>({
-      action: Action.SIGN_MESSAGE,
+    return await worker.postMessage<Uint8Array, Sign>({
+      action: Action.SIGN,
       args: [message, senderPrivateKey],
     });
   }
 
-  async openSignedMessage(signedMessage: Uint8Array, senderPublicKey: Uint8Array) {
+  async openSigned(signedMessage: Uint8Array, senderPublicKey: Uint8Array) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<Uint8Array, OpenSignedMessage>({
-      action: Action.OPEN_SIGNED_MESSAGE,
+    return await worker.postMessage<Uint8Array, OpenSigned>({
+      action: Action.OPEN_SIGNED,
       args: [signedMessage, senderPublicKey],
     });
   }
 
-  async hashMessage(message: Uint8Array) {
+  async hash(message: Uint8Array) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<Uint8Array, HashMessage>({
-      action: Action.HASH_MESSAGE,
+    return await worker.postMessage<Uint8Array, Hash>({
+      action: Action.HASH,
       args: [message],
     });
   }

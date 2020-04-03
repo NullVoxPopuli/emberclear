@@ -22,21 +22,18 @@ export async function randomBytes(length: number) {
   return nacl.randomBytes(length);
 }
 
-export async function signMessage(
-  message: Uint8Array,
-  senderPrivateKey: Uint8Array
-): Promise<Uint8Array> {
+export async function sign(message: Uint8Array, senderPrivateKey: Uint8Array): Promise<Uint8Array> {
   return nacl.sign(message, senderPrivateKey);
 }
 
-export async function openSignedMessage(
+export async function openSigned(
   signedMessage: Uint8Array,
   senderPublicKey: Uint8Array
 ): Promise<Uint8Array> {
   return nacl.sign.open(signedMessage, senderPublicKey)!;
 }
 
-export async function hashMessage(message: Uint8Array): Promise<Uint8Array> {
+export async function hash(message: Uint8Array): Promise<Uint8Array> {
   return nacl.hash(message);
 }
 
