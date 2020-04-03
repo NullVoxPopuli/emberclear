@@ -1,6 +1,6 @@
 import WorkersService from '../workers';
 import { PWBHost } from 'promise-worker-bi';
-import { SignMessage, OpenSignedMessage } from 'emberclear/workers/crypto/messages';
+import { SignMessage, OpenSignedMessage, HashMessage } from 'emberclear/workers/crypto/messages';
 
 type GenerateKeys = import('emberclear/workers/crypto/messages').GenerateKeys;
 type GenerateSigningKeys = import('emberclear/workers/crypto/messages').GenerateSigningKeys;
@@ -22,6 +22,7 @@ enum WorkerCryptoAction {
   GENERATE_SIGNING_KEYS = 4,
   SIGN_MESSAGE = 5,
   OPEN_SIGNED_MESSAGE = 6,
+  HASH_MESSAGE = 7,
   // TODO: should find a way to not need these
   DERIVE_PUBLIC_KEY = 100,
   DERIVE_PUBLIC_SIGNING_KEY = 101,
@@ -108,6 +109,15 @@ export default class CryptoConnector {
     return await worker.postMessage<Uint8Array, OpenSignedMessage>({
       action: Action.OPEN_SIGNED_MESSAGE,
       args: [signedMessage, senderPublicKey],
+    });
+  }
+
+  async hashMessage(message: Uint8Array) {
+    let worker = this.getWorker();
+
+    return await worker.postMessage<Uint8Array, HashMessage>({
+      action: Action.HASH_MESSAGE,
+      args: [message],
     });
   }
 }

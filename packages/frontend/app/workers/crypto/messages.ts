@@ -5,6 +5,7 @@ import {
   generateSigningKeys,
   signMessage,
   openSignedMessage,
+  hashMessage,
 } from './utils/nacl';
 import { decryptFromSocket, encryptForSocket } from './utils/socket';
 import { login } from './actions';
@@ -17,6 +18,7 @@ enum WorkerCryptoAction {
   GENERATE_SIGNING_KEYS = 4,
   SIGN_MESSAGE = 5,
   OPEN_SIGNED_MESSAGE = 6,
+  HASH_MESSAGE = 7,
   // TODO: should find a way to not need these
   DERIVE_PUBLIC_KEY = 100,
   DERIVE_PUBLIC_SIGNING_KEY = 101,
@@ -50,6 +52,10 @@ export type OpenSignedMessage = {
   action: WorkerCryptoAction.OPEN_SIGNED_MESSAGE;
   args: Parameters<typeof openSignedMessage>;
 };
+export type HashMessage = {
+  action: WorkerCryptoAction.HASH_MESSAGE;
+  args: Parameters<typeof hashMessage>;
+};
 export type DerivePublicKey = {
   action: WorkerCryptoAction.DERIVE_PUBLIC_KEY;
   args: Parameters<typeof derivePublicKey>;
@@ -68,7 +74,8 @@ export type CryptoMessage =
   | DerivePublicKey
   | DerivePublicSigningKey
   | SignMessage
-  | OpenSignedMessage;
+  | OpenSignedMessage
+  | HashMessage;
 
 export function handleMessage(message: CryptoMessage) {
   switch (message.action) {
@@ -84,6 +91,8 @@ export function handleMessage(message: CryptoMessage) {
       return signMessage(...message.args);
     case WorkerCryptoAction.OPEN_SIGNED_MESSAGE:
       return openSignedMessage(...message.args);
+    case WorkerCryptoAction.HASH_MESSAGE:
+      return hashMessage(...message.args);
     case WorkerCryptoAction.DERIVE_PUBLIC_KEY:
       return derivePublicKey(...message.args);
     case WorkerCryptoAction.DERIVE_PUBLIC_SIGNING_KEY:

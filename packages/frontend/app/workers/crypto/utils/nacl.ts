@@ -36,6 +36,10 @@ export async function openSignedMessage(
   return nacl.sign.open(signedMessage, senderPublicKey)!;
 }
 
+export async function hashMessage(message: Uint8Array): Promise<Uint8Array> {
+  return nacl.hash(message);
+}
+
 export async function generateNonce() {
   return nacl.randomBytes(nacl.box.nonceLength);
 }
