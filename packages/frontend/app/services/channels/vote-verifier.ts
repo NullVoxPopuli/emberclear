@@ -31,7 +31,7 @@ export default class VoteVerifier extends Service {
     return JSON.stringify(toReturn);
   }
 
-  private toSortedPublicKeys(identities: Identity[]) {
+  private toSortedPublicKeys(identities: Identity[]): Uint8Array[] {
     return identities.map((identity) => identity.publicKey).sort();
   }
 }
