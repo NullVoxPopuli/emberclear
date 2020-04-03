@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { action } from '@ember/object';
+import { action, computed } from '@ember/object';
+import { dependentKeyCompat } from '@ember/object/compat';
 
 import { PRIVATE_CHAT_REGEX, idFrom } from 'emberclear/utils/route-matchers';
 
@@ -27,6 +28,7 @@ export default class ContactsSidebar extends Component<IArgs> {
   @service contactManager!: ContactManager;
   @service sidebar!: SidebarService;
 
+  @dependentKeyCompat
   get allContacts(): Contact[] {
     return this.store
       .peekAll('contact')
@@ -34,11 +36,13 @@ export default class ContactsSidebar extends Component<IArgs> {
       .filter((contact) => contact.publicKey);
   }
 
+  @dependentKeyCompat
   get allChannels() {
     return this.store.peekAll('channel');
   }
 
   // TODO: This is too expensive. Push into adapter
+  @computed('hideOfflineContacts', 'router.currentURL', 'allChannels', 'allContacts.@each.{onlineStatus,isPinned}')
   get contacts() {
     if (!this.hideOfflineContacts) {
       return this.allContacts.sort(sortByPinned);
