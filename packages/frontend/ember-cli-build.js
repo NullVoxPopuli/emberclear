@@ -39,6 +39,9 @@ module.exports = function (defaults) {
     minifyJS: { enabled: isProduction },
     minifyCSS: { enabled: isProduction },
 
+    autoprefixer: {
+      sourcemaps: false,
+    },
     sourcemaps: {
       enabled: true, // !isProduction,
       extensions: 'js',
