@@ -80,14 +80,8 @@ export default class CurrentUserService extends Service {
     return toHex(this.publicKey);
   }
 
-  get signingKeyHex(): string {
-    if(!this.publicSigningKey) return '';
-
-    return toHex(this.publicSigningKey);
-  }
-
   get shareUrl(): string {
-    const uri = `${ENV.host}/invite?name=${this.name}&publicKey=${this.uid}&publicSigningKey=${this.signingKeyHex}`;
+    const uri = `${ENV.host}/invite?name=${this.name}&publicKey=${this.uid}`;
 
     return encodeURI(uri);
   }
