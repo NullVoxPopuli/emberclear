@@ -6,8 +6,14 @@ export interface KeyPair {
   privateKey: Uint8Array;
 }
 
-export default class User extends Identity implements Partial<KeyPair> {
+export interface SigningKeyPair {
+  publicSigningKey: Uint8Array;
+  privateSigningKey: Uint8Array;
+}
+
+export default class User extends Identity implements Partial<KeyPair>, Partial<SigningKeyPair> {
   @attr() privateKey!: Uint8Array;
+  @attr() privateSigningKey!: Uint8Array;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

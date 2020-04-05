@@ -2,9 +2,11 @@ import WorkersService from '../workers';
 import { PWBHost } from 'promise-worker-bi';
 
 type GenerateKeys = import('emberclear/workers/crypto/messages').GenerateKeys;
+type GenerateSigningKeys = import('emberclear/workers/crypto/messages').GenerateSigningKeys;
 type EncryptForSocket = import('emberclear/workers/crypto/messages').EncryptForSocket;
 type DecryptFromSocket = import('emberclear/workers/crypto/messages').DecryptFromSocket;
 type DerivePublicKey = import('emberclear/workers/crypto/messages').DerivePublicKey;
+type DerivePublicSigningKey = import('emberclear/workers/crypto/messages').DerivePublicSigningKey;
 
 type Args = {
   workerService: WorkersService;
@@ -16,8 +18,10 @@ enum WorkerCryptoAction {
   GENERATE_KEYS = 1,
   DECRYPT_FROM_SOCKET = 2,
   ENCRYPT_FOR_SOCKET = 3,
+  GENERATE_SIGNING_KEYS = 4,
   // TODO: should find a way to not need these
   DERIVE_PUBLIC_KEY = 100,
+  DERIVE_PUBLIC_SIGNING_KEY = 101,
 }
 
 const Action = WorkerCryptoAction;
@@ -41,12 +45,30 @@ export default class CryptoConnector {
     });
   }
 
+  async generateSigningKeys() {
+    let worker = this.getWorker();
+
+    return await worker.postMessage<SigningKeyPair, GenerateSigningKeys>({
+      action: Action.GENERATE_SIGNING_KEYS,
+      args: [],
+    });
+  }
+
   async derivePublicKey(privateKey: Uint8Array) {
     let worker = this.getWorker();
 
     return await worker.postMessage<Uint8Array, DerivePublicKey>({
       action: Action.DERIVE_PUBLIC_KEY,
       args: [privateKey],
+    });
+  }
+
+  async derivePublicSigningKey(privateSigningKey: Uint8Array) {
+    let worker = this.getWorker();
+
+    return await worker.postMessage<Uint8Array, DerivePublicSigningKey>({
+      action: Action.DERIVE_PUBLIC_SIGNING_KEY,
+      args: [privateSigningKey],
     });
   }
 
