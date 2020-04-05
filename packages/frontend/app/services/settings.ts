@@ -15,7 +15,6 @@ import { inLocalStorage } from 'emberclear/utils/decorators';
 interface IContactJson {
   name: string | undefined;
   publicKey: undefined | string /* hex */;
-  publicSigningKey: undefined | string /* hex */;
 }
 
 interface IChannelJson {
@@ -123,7 +122,6 @@ export default class Settings extends Service {
       contacts: contacts.map((c) => ({
         name: c.name,
         publicKey: c.publicKey && toHex(c.publicKey),
-        publicSigningKey: c.publicSigningKey && toHex(c.publicSigningKey),
       })),
       channels: channels.map((c) => ({
         // TODO: add members list
