@@ -81,7 +81,13 @@ export default class Settings extends Service {
   async import(settings: string) {
     const json = JSON.parse(settings);
 
-    const { name, privateKey: privateKeyHex, privateSigningKey: privateSigningKeyHex, contacts, channels } = json;
+    const {
+      name,
+      privateKey: privateKeyHex,
+      privateSigningKey: privateSigningKeyHex,
+      contacts,
+      channels,
+    } = json;
 
     // start by clearing everything!
     await localforage.clear();

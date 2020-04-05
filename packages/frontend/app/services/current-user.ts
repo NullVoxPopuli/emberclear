@@ -87,14 +87,20 @@ export default class CurrentUserService extends Service {
     await this.load();
   }
 
-  async setIdentity(name: string, privateKey: Uint8Array, publicKey: Uint8Array, privateSigningKey: Uint8Array, publicSigningKey: Uint8Array) {
+  async setIdentity(
+    name: string,
+    privateKey: Uint8Array,
+    publicKey: Uint8Array,
+    privateSigningKey: Uint8Array,
+    publicSigningKey: Uint8Array
+  ) {
     const record = this.store.createRecord('user', {
       id: currentUserId,
       name,
       publicKey,
       privateKey,
       publicSigningKey,
-      privateSigningKey
+      privateSigningKey,
     });
 
     await record.save();

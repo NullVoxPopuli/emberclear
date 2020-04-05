@@ -40,7 +40,7 @@ export async function generateSymmetricKeys() {
 }
 
 export async function generateSigningKeys() {
-  const keyPair =  nacl.sign.keyPair();
+  const keyPair = nacl.sign.keyPair();
 
   return {
     publicSigningKey: keyPair.publicKey,

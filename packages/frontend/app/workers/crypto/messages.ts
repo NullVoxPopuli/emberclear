@@ -1,4 +1,9 @@
-import { derivePublicKey, derivePublicSigningKey, generateAsymmetricKeys, generateSigningKeys } from './utils/nacl';
+import {
+  derivePublicKey,
+  derivePublicSigningKey,
+  generateAsymmetricKeys,
+  generateSigningKeys,
+} from './utils/nacl';
 import { decryptFromSocket, encryptForSocket } from './utils/socket';
 import { login } from './actions';
 
@@ -24,7 +29,7 @@ export type GenerateKeys = {
 export type GenerateSigningKeys = {
   action: WorkerCryptoAction.GENERATE_SIGNING_KEYS;
   args: Parameters<typeof generateSigningKeys>;
-}
+};
 export type DecryptFromSocket = {
   action: WorkerCryptoAction.DECRYPT_FROM_SOCKET;
   args: Parameters<typeof decryptFromSocket>;
@@ -39,8 +44,8 @@ export type DerivePublicKey = {
 };
 export type DerivePublicSigningKey = {
   action: WorkerCryptoAction.DERIVE_PUBLIC_SIGNING_KEY;
-  args: Parameters<typeof derivePublicSigningKey>
-}
+  args: Parameters<typeof derivePublicSigningKey>;
+};
 
 export type CryptoMessage =
   | Login
