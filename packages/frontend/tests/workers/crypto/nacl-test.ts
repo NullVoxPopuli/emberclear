@@ -24,7 +24,7 @@ module('Workers | Crypto | nacl', function () {
 
     assert.ok(signingKeys.publicSigningKey);
     assert.ok(signingKeys.privateSigningKey);
-  })
+  });
 
   test('encryptFor/decryptFrom | works with Uint8Array', async function (assert) {
     const receiver = await nacl.generateAsymmetricKeys();

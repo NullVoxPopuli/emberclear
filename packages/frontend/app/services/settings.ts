@@ -112,10 +112,8 @@ export default class Settings extends Service {
   async buildSettings(): Promise<ISettingsJson | undefined> {
     const { name, publicKey, privateKey, publicSigningKey, privateSigningKey } = this.currentUser;
 
-    if (!privateKey) return;
-    if (!publicKey) return;
-    if (!privateSigningKey) return;
-    if (!publicSigningKey) return;
+    if (!privateKey || !publicKey) return;
+    if (!privateSigningKey || !publicSigningKey) return;
 
     const contacts = await this.contactManager.allContacts();
     const channels = await this.channelManager.allChannels();
