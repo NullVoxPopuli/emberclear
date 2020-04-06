@@ -6573,10 +6573,10 @@ ember-cli-normalize-entity-name@^1.0.0:
   dependencies:
     silent-error "^1.0.0"
 
-ember-cli-page-object@^1.16.2:
-  version "1.16.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-page-object/-/ember-cli-page-object-1.16.2.tgz#3e0c8688c4634b13ad3129089f1e827a5d8a123f"
-  integrity sha512-1ce495Tp6R5P1FnXYGvfHDe+QtkRwz5RzcxiO9qNSUN7j13iSo6vbiB/12t3nNNOIW/k/BshsQHgD83L7xZOpw==
+ember-cli-page-object@^1.17.1:
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-page-object/-/ember-cli-page-object-1.17.1.tgz#7632c4fdc5782987ca4cf898d6f103b4e10e4d6f"
+  integrity sha512-WheaTjqhkhndhNdWGrnQ7R0C6pt1qfH9Jj10zH6YjIY7vwpftbmUPVxDBZIhpTKdfJtAJV2T0E0WmQX5fYj+SQ==
   dependencies:
     broccoli-file-creator "^2.1.1"
     broccoli-merge-trees "^2.0.0"
@@ -6584,7 +6584,7 @@ ember-cli-page-object@^1.16.2:
     ember-cli-babel "^6.16.0"
     ember-cli-node-assets "^0.2.2"
     ember-native-dom-helpers "^0.6.3"
-    jquery "^3.2.1"
+    jquery "3.4.1"
     rsvp "^4.7.0"
 
 ember-cli-path-utils@^1.0.0:
@@ -10038,9 +10038,9 @@ jest-worker@^24.9.0:
     merge-stream "^2.0.0"
     supports-color "^6.1.0"
 
-jquery@^3.2.1, jquery@^3.4.1:
+jquery@3.4.1, jquery@^3.4.1:
   version "3.4.1"
-  resolved "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
 
 js-reporters@1.2.1:
