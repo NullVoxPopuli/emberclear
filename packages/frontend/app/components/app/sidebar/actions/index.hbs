@@ -1,5 +1,5 @@
 <nav class='actions' style='height: 100%; overflow-y: auto;' data-test-actions-list>
-  {{#each this.actions as |action|}}
-    <App::Sidebar::Actions::Action @action={{action}} />
+  {{#each this.actions as |action_item|}}
+    <App::Sidebar::Actions::Action @action={{action_item}} />
   {{/each}}
 </nav>
