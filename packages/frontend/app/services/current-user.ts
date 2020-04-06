@@ -54,6 +54,18 @@ export default class CurrentUserService extends Service {
     return this.record.privateKey;
   }
 
+  get publicSigningKey() {
+    if (!this.record) return;
+
+    return this.record.publicSigningKey;
+  }
+
+  get privateSigningKey() {
+    if (!this.record) return;
+
+    return this.record.privateSigningKey;
+  }
+
   get isLoggedIn(): boolean {
     if (!this.record) {
       return false;
