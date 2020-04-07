@@ -11,7 +11,7 @@ import Settings from 'emberclear/services/settings';
 
 import RouterService from '@ember/routing/router-service';
 import { naclBoxPrivateKeyFromMnemonic } from 'emberclear/workers/crypto/utils/mnemonic';
-import { derivePublicKey } from 'emberclear/workers/crypto/utils/nacl';
+import { derivePublicKey, generateSigningKeys } from 'emberclear/workers/crypto/utils/nacl';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 
@@ -40,8 +40,15 @@ export default class LoginForm extends Component {
       const name = this.name;
       const privateKey = yield naclBoxPrivateKeyFromMnemonic(this.mnemonic);
       const publicKey = yield derivePublicKey(privateKey);
+      const { publicSigningKey, privateSigningKey } = yield generateSigningKeys();
 
-      yield this.currentUser.setIdentity(name, privateKey, publicKey);
+      yield this.currentUser.setIdentity(
+        name,
+        privateKey,
+        publicKey,
+        privateSigningKey,
+        publicSigningKey
+      );
 
       this.router.transitionTo('chat');
     } catch (e) {
