@@ -54,7 +54,7 @@ module('Workers | Crypto | nacl', function () {
   });
 
   test('sign/open | works with Uint8Array', async function (assert) {
-    const sender = await nacl.generateAsymmetricKeys();
+    const sender = await nacl.generateSigningKeys();
 
     const msgAsUint8 = Uint8Array.from([104, 101, 108, 108, 111]); // hello
     const signedText = await nacl.sign(msgAsUint8, sender.privateKey);
@@ -64,7 +64,7 @@ module('Workers | Crypto | nacl', function () {
   });
 
   test('sign/open | works with large data', async function (assert) {
-    const sender = await nacl.generateAsymmetricKeys();
+    const sender = await nacl.generateSigningKeys();
 
     let bigMsg: number[] = [];
     for (let i = 0; i < 128; i++) {
