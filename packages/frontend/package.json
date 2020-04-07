@@ -175,7 +175,7 @@
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
-    "prettier": "^2.0.2",
+    "prettier": "^2.0.4",
     "qunit-assertions-extra": "^0.8.1",
     "qunit-console-grouper": "^0.2.0",
     "qunit-dom": "^1.1.0",
