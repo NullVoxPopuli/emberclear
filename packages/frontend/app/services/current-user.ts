@@ -54,6 +54,18 @@ export default class CurrentUserService extends Service {
     return this.record.privateKey;
   }
 
+  get publicSigningKey() {
+    if (!this.record) return;
+
+    return this.record.publicSigningKey;
+  }
+
+  get privateSigningKey() {
+    if (!this.record) return;
+
+    return this.record.privateSigningKey;
+  }
+
   get isLoggedIn(): boolean {
     if (!this.record) {
       return false;
@@ -77,21 +89,30 @@ export default class CurrentUserService extends Service {
   async create(name: string): Promise<void> {
     await this.hydrateCrypto();
     const { publicKey, privateKey } = await this.crypto!.generateKeys();
+    const { publicSigningKey, privateSigningKey } = await this.crypto!.generateSigningKeys();
 
     // remove existing record
     await this.store.unloadAll('user');
 
-    await this.setIdentity(name, privateKey, publicKey);
+    await this.setIdentity(name, privateKey, publicKey, privateSigningKey, publicSigningKey);
 
     await this.load();
   }
 
-  async setIdentity(name: string, privateKey: Uint8Array, publicKey: Uint8Array) {
+  async setIdentity(
+    name: string,
+    privateKey: Uint8Array,
+    publicKey: Uint8Array,
+    privateSigningKey: Uint8Array,
+    publicSigningKey: Uint8Array
+  ) {
     const record = this.store.createRecord('user', {
       id: currentUserId,
       name,
       publicKey,
       privateKey,
+      publicSigningKey,
+      privateSigningKey,
     });
 
     await record.save();
@@ -153,12 +174,13 @@ export default class CurrentUserService extends Service {
     });
   }
 
-  async importFromKey(name: string, privateKey: Uint8Array) {
+  async importFromKey(name: string, privateKey: Uint8Array, privateSigningKey: Uint8Array) {
     this.hydrateCrypto();
 
     const publicKey = await this.crypto!.derivePublicKey(privateKey);
+    const publicSigningKey = await this.crypto!.derivePublicSigningKey(privateSigningKey);
 
-    await this.setIdentity(name, privateKey, publicKey);
+    await this.setIdentity(name, privateKey, publicKey, privateSigningKey, publicSigningKey);
   }
 }
 

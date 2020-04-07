@@ -12,6 +12,12 @@ export async function derivePublicKey(privateKey: Uint8Array) {
   return keypair.publicKey;
 }
 
+export async function derivePublicSigningKey(privateSigningKey: Uint8Array) {
+  const keyPair = nacl.sign.keyPair.fromSecretKey(privateSigningKey);
+
+  return keyPair.publicKey;
+}
+
 export async function randomBytes(length: number) {
   return nacl.randomBytes(length);
 }
@@ -31,6 +37,15 @@ export async function generateAsymmetricKeys() {
 
 export async function generateSymmetricKeys() {
   return nacl.randomBytes(nacl.secretbox.keyLength);
+}
+
+export async function generateSigningKeys() {
+  const keyPair = nacl.sign.keyPair();
+
+  return {
+    publicSigningKey: keyPair.publicKey,
+    privateSigningKey: keyPair.secretKey,
+  };
 }
 
 export async function encryptFor(

@@ -5,6 +5,10 @@ declare global {
   type KeyPrivate = { privateKey: Uint8Array };
   type KeyPair = KeyPublic & KeyPrivate;
 
+  type SigningKeyPublic = { publicSigningKey: Uint8Array };
+  type SigningKeyPrivate = { privateSigningKey: Uint8Array };
+  type SigningKeyPair = SigningKeyPublic & SigningKeyPrivate;
+
   interface Prism {
     highlightAll: () => void;
   }

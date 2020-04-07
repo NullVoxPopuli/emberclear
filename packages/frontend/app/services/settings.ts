@@ -26,6 +26,7 @@ interface ISettingsJson {
   version: number;
   name: string;
   privateKey: string; // hex
+  privateSigningKey: string; // hex
   contacts: IContactJson[];
   channels: IChannelJson[];
 }
@@ -80,13 +81,20 @@ export default class Settings extends Service {
   async import(settings: string) {
     const json = JSON.parse(settings);
 
-    const { name, privateKey: privateKeyHex, contacts, channels } = json;
+    const {
+      name,
+      privateKey: privateKeyHex,
+      privateSigningKey: privateSigningKeyHex,
+      contacts,
+      channels,
+    } = json;
 
     // start by clearing everything!
     await localforage.clear();
     const privateKey = fromHex(privateKeyHex);
+    const privateSigningKey = fromHex(privateSigningKeyHex);
 
-    await this.currentUser.importFromKey(name, privateKey);
+    await this.currentUser.importFromKey(name, privateKey, privateSigningKey);
 
     for await (let channel of channels) {
       await this.channelManager.findOrCreate(channel.id, channel.name);
@@ -102,10 +110,10 @@ export default class Settings extends Service {
   }
 
   async buildSettings(): Promise<ISettingsJson | undefined> {
-    const { name, publicKey, privateKey } = this.currentUser;
+    const { name, publicKey, privateKey, publicSigningKey, privateSigningKey } = this.currentUser;
 
-    if (!privateKey) return;
-    if (!publicKey) return;
+    if (!privateKey || !publicKey) return;
+    if (!privateSigningKey || !publicSigningKey) return;
 
     const contacts = await this.contactManager.allContacts();
     const channels = await this.channelManager.allChannels();
@@ -114,6 +122,7 @@ export default class Settings extends Service {
       version: 1,
       name: name || '',
       privateKey: toHex(privateKey),
+      privateSigningKey: toHex(privateSigningKey),
       contacts: contacts.map((c) => ({
         name: c.name,
         publicKey: c.publicKey && toHex(c.publicKey),
