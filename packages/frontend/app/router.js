@@ -15,6 +15,7 @@ Router.map(function () {
   this.route('setup');
 
   this.route('contacts');
+  this.route('contacts.verify-friend', { path: 'contacts/verify-friend/:user_id' });
   this.route('login');
   this.route('invite');
   this.route('logout');

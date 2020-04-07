@@ -3,6 +3,7 @@
     <tr>
       <th>{{t 'models.identity.name'}}</th>
       <th>{{t 'models.identity.publicKey'}}</th>
+      <th>{{t 'models.identity.verification'}}</th>
       <th></th>
     </tr>
   </thead>
@@ -15,6 +16,19 @@
         </td>
         <td>
           {{first-8 contact.publicKeyAsHex}}...
+        </td>
+        <td>
+          <LinkTo 
+            class='button'
+            @route='contacts.verify-friend' 
+            @model={{contact.id}} 
+          >
+            {{#if contact.verification}}
+              {{t 'models.identity.verified'}}
+            {{else}}
+              {{t 'models.identity.unverified'}}
+            {{/if}}
+          </LinkTo>
         </td>
         <td class='flex justify-content-end'>
           <button
