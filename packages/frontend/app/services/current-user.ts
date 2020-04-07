@@ -103,15 +103,9 @@ export default class CurrentUserService extends Service {
     name: string,
     privateKey: Uint8Array,
     publicKey: Uint8Array,
-    privateSigningKey?: Uint8Array,
-    publicSigningKey?: Uint8Array
+    privateSigningKey: Uint8Array,
+    publicSigningKey: Uint8Array
   ) {
-    if (!privateSigningKey || !publicSigningKey) {
-      let signingKeyPair = await this.crypto!.generateSigningKeys();
-      privateSigningKey = signingKeyPair.privateSigningKey;
-      publicSigningKey = signingKeyPair.publicSigningKey;
-    }
-
     const record = this.store.createRecord('user', {
       id: currentUserId,
       name,
