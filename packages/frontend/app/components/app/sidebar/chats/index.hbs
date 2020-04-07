@@ -2,7 +2,7 @@
   {{#if this.contactManager.isImporting}}
     <EllipsisLoader />
   {{else}}
-    {{#each this.chats as |chat|}}
+    {{#each this.chats key='@id' as |chat|}}
     {{!-- TODO: this needs to be pulled out into an async rendered thing,
       and can't be rendered on initial load. the possibility for
       too much data is too high.
