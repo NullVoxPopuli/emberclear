@@ -1,5 +1,6 @@
 import WorkersService from '../workers';
 import { PWBHost } from 'promise-worker-bi';
+import { Sign, OpenSigned, Hash } from 'emberclear/workers/crypto/messages';
 
 type GenerateKeys = import('emberclear/workers/crypto/messages').GenerateKeys;
 type GenerateSigningKeys = import('emberclear/workers/crypto/messages').GenerateSigningKeys;
@@ -19,6 +20,9 @@ enum WorkerCryptoAction {
   DECRYPT_FROM_SOCKET = 2,
   ENCRYPT_FOR_SOCKET = 3,
   GENERATE_SIGNING_KEYS = 4,
+  SIGN = 5,
+  OPEN_SIGNED = 6,
+  HASH = 7,
   // TODO: should find a way to not need these
   DERIVE_PUBLIC_KEY = 100,
   DERIVE_PUBLIC_SIGNING_KEY = 101,
@@ -87,6 +91,33 @@ export default class CryptoConnector {
     return await worker.postMessage<KeyPair, DecryptFromSocket>({
       action: Action.DECRYPT_FROM_SOCKET,
       args: [socketData, this.keys.privateKey],
+    });
+  }
+
+  async sign(message: Uint8Array, senderPrivateKey: Uint8Array) {
+    let worker = this.getWorker();
+
+    return await worker.postMessage<Uint8Array, Sign>({
+      action: Action.SIGN,
+      args: [message, senderPrivateKey],
+    });
+  }
+
+  async openSigned(signedMessage: Uint8Array, senderPublicKey: Uint8Array) {
+    let worker = this.getWorker();
+
+    return await worker.postMessage<Uint8Array, OpenSigned>({
+      action: Action.OPEN_SIGNED,
+      args: [signedMessage, senderPublicKey],
+    });
+  }
+
+  async hash(message: Uint8Array) {
+    let worker = this.getWorker();
+
+    return await worker.postMessage<Uint8Array, Hash>({
+      action: Action.HASH,
+      args: [message],
     });
   }
 }

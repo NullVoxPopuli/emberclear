@@ -53,6 +53,31 @@ module('Workers | Crypto | nacl', function () {
     assert.deepEqual(msgAsUint8, decrypted);
   });
 
+  test('sign/open | works with Uint8Array', async function (assert) {
+    const sender = await nacl.generateSigningKeys();
+
+    const msgAsUint8 = Uint8Array.from([104, 101, 108, 108, 111]); // hello
+    const signedText = await nacl.sign(msgAsUint8, sender.privateSigningKey);
+    const openedText = await nacl.openSigned(signedText, sender.publicSigningKey);
+
+    assert.deepEqual(msgAsUint8, openedText);
+  });
+
+  test('sign/open | works with large data', async function (assert) {
+    const sender = await nacl.generateSigningKeys();
+
+    let bigMsg: number[] = [];
+    for (let i = 0; i < 128; i++) {
+      bigMsg = bigMsg.concat([104, 101, 108, 108, 111]);
+    }
+
+    const msgAsUint8 = Uint8Array.from(bigMsg); // hello * 128 = 640 Bytes
+    const signedText = await nacl.sign(msgAsUint8, sender.privateSigningKey);
+    const openedText = await nacl.openSigned(signedText, sender.publicSigningKey);
+
+    assert.deepEqual(msgAsUint8, openedText);
+  });
+
   test('splitNonceFromMessage | separates the nonce', async function (assert) {
     // prettier-ignore
     const msg = [

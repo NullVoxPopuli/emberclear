@@ -22,6 +22,21 @@ export async function randomBytes(length: number) {
   return nacl.randomBytes(length);
 }
 
+export async function sign(message: Uint8Array, senderPrivateKey: Uint8Array): Promise<Uint8Array> {
+  return nacl.sign(message, senderPrivateKey);
+}
+
+export async function openSigned(
+  signedMessage: Uint8Array,
+  senderPublicKey: Uint8Array
+): Promise<Uint8Array> {
+  return nacl.sign.open(signedMessage, senderPublicKey)!;
+}
+
+export async function hash(message: Uint8Array): Promise<Uint8Array> {
+  return nacl.hash(message);
+}
+
 export async function generateNonce() {
   return nacl.randomBytes(nacl.box.nonceLength);
 }
