@@ -92,10 +92,14 @@ export default class ReceivedMessageHandler extends Service {
     await this.trimMessages(message);
     await message.save();
 
-    const name = message.sender!.name;
-    const msg = this.intl.t('ui.notifications.from', { name });
+    if (message.sender) {
+      message.sender.numUnread++;
 
-    this.notifications.info(msg);
+      let name = message.sender.name;
+      let msg = this.intl.t('ui.notifications.from', { name });
+
+      this.notifications.info(msg);
+    }
 
     return message;
   }
@@ -150,6 +154,9 @@ export default class ReceivedMessageHandler extends Service {
   }
 
   /**
+   * TODO: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
+   * TODO: https://developer.mozilla.org/en-US/docs/Web/API/IDBIndex/openCursor
+   *
    * Trims messages for a message group down to 100.... because list occlusion isn't a thing yet
    * on the web (or is very very difficult to implement in JS)
    *

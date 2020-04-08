@@ -35,7 +35,7 @@
           <a
             href={{url-for 'contacts'}}
             title={{t 'routes.contacts'}}
-            {{on 'click' (queue this.sidebar.hide (transition-to 'contacts'))}}
+            {{on 'click' (handle-sidebar-click (transition-to 'contacts'))}}
           >
             {{fa-icon 'address-book' prefix='fas'}}
           </a>
@@ -43,7 +43,7 @@
           <a
             href={{url-for 'settings'}}
             title={{t 'routes.settings'}}
-            {{on 'click' (queue this.sidebar.hide (transition-to 'settings'))}}
+            {{on 'click' (handle-sidebar-click (transition-to 'settings'))}}
           >
             {{fa-icon 'sliders-h'}}
           </a>
@@ -51,10 +51,7 @@
           <a
             href={{url-for 'logout'}}
             title={{t 'routes.logout'}}
-            {{on 'click' (queue
-              this.sidebar.hide
-              (transition-to 'logout'))
-            }}
+            {{on 'click' (handle-sidebar-click (transition-to 'logout'))}}
           >
             {{fa-icon 'sign-out-alt' prefix='fas'}}
           </a>

@@ -4,7 +4,6 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 import SettingsService from 'emberclear/services/settings';
 import SidebarService from 'emberclear/services/sidebar';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
@@ -25,25 +24,11 @@ export default class SidebarContact extends Component<IArgs> {
   @service sidebar!: SidebarService;
 
   get isActive() {
-    const { contact } = this.args;
-
-    return this.router.currentURL.includes(contact.id);
+    return this.router.currentURL.includes(this.args.contact.id);
   }
 
   get hasUnread() {
-    return this.numberUnread > 0;
-  }
-
-  get numberUnread() {
-    return this.unreadMessages.length;
-  }
-
-  get unreadMessages() {
-    let { contact } = this.args;
-    let messages = this.store.peekAll('message');
-    let unread = selectUnreadDirectMessages(messages, contact.id);
-
-    return unread;
+    return this.args.contact.numUnread > 0;
   }
 
   @action

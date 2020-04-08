@@ -1,4 +1,6 @@
 import Model, { attr } from '@ember-data/model';
+import { tracked } from '@glimmer/tracking';
+
 import { toHex } from 'emberclear/utils/string-encoding';
 
 export interface PublicKey {
@@ -11,6 +13,10 @@ export default class Identity extends Model implements Partial<PublicKey> {
   @attr() publicKey!: Uint8Array;
   @attr() publicSigningKey!: Uint8Array;
 
+  // non-persisted data
+  @tracked numUnread = 0;
+
+  // human-readable data
   get publicKeyAsHex() {
     return toHex(this.publicKey);
   }

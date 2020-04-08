@@ -1,4 +1,8 @@
-<div data-test-contact-row class='sidebar__contacts__contact'>
+<div
+  data-test-contact-row
+  class='sidebar__contacts__contact'
+  {{has-unread @contact}}
+>
 
   <a
     href={{url-for 'chat.privately-with' @contact.id}}
@@ -15,14 +19,17 @@
         class='badge badge-danger'
         {{unread-messages-intersection-observer}}
       >
-        {{this.numberUnread}}
+        {{@contact.numUnread}}
       </span>
     {{/if}}
   </a>
 
   {{#if this.canBePinned}}
-    <button type='button' data-test-contact-pin class='button-link'
-      {{on 'click' (prevent-default this.togglePin)}}
+    <button
+      data-test-contact-pin
+      type='button'
+      class='button-link'
+      {{on 'click' this.togglePin}}
     >
       <FaIcon
         class='transition-all-fast'
