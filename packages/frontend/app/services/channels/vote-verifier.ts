@@ -53,3 +53,10 @@ export default class VoteVerifier extends Service {
     return identities.map((identity) => identity.publicKey).sort();
   }
 }
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your services.
+declare module '@ember/service' {
+  interface Registry {
+    'channels/vote-verifier': VoteVerifier;
+  }
+}
