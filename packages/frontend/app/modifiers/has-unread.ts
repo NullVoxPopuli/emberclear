@@ -10,7 +10,6 @@ import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 type Contact = import('emberclear/models/contact').default;
 type StoreService = import('@ember-data/store').default;
 
-
 interface Args {
   positional: [Contact];
   named: {};

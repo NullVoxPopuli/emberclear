@@ -6,6 +6,7 @@
   aria-hidden={{not @isActive}}
   class='modal {{if @isActive 'is-active'}}'
   {{focus-trap
+    isActive=@isActive
     focusTrapOptions=(hash
       escapeDeactivates=false
     )

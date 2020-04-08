@@ -5,7 +5,7 @@ import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 
 type SidebarService = import('emberclear/services/sidebar').default;
 
-type Args = [() => void];;
+type Args = [() => void];
 
 export default class HandleSidebarClick extends Helper {
   @service sidebar!: SidebarService;

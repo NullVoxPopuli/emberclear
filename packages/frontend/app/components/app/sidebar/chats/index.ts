@@ -39,10 +39,7 @@ export default class ContactsSidebar extends Component<IArgs> {
 
   get contacts() {
     if (!this.hideOfflineContacts) {
-      return this.allContacts
-        .sort(sortByPinned)
-        .filter(searchByName(this.searchText))
-        .slice(0, 40);
+      return this.allContacts.sort(sortByPinned).filter(searchByName(this.searchText)).slice(0, 40);
     }
 
     let urlId = this.idFromURL;
@@ -128,5 +125,5 @@ function searchByName(text: string) {
 
   return (contact: Contact) => {
     return term.test(contact.name);
-  }
+  };
 }
