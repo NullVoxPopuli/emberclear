@@ -1,24 +1,42 @@
 import Service, { inject as service } from '@ember/service';
 import VoteChain from 'emberclear/models/vote-chain';
 import Identity from 'emberclear/models/identity';
+import CryptoConnector from '../workers/crypto';
+import WorkersService from '../workers';
 
 export default class VoteVerifier extends Service {
-  verify(voteToVerify: VoteChain): boolean {
+  @service workers!: WorkersService;
+  crypto?: CryptoConnector;
+
+  async verify(voteToVerify: VoteChain): Promise<boolean> {
     if (voteToVerify.previousVoteChain == undefined) {
       return true;
     }
 
-    let voteToVerifyActualString: string = this.generateSortedVoteString(voteToVerify);
-    let voteToVerifyExpectedHash: string = undefined; // NaCl.sign.open(voteToVerify.signature, voteToVerify.key)
+    this.connectCrypto();
 
-    let voteToVerifyActualHash: string = undefined; // Hash voteToVerifyActualString
+    let voteToVerifyActual: Uint8Array = this.generateSortedVote(voteToVerify);
+    let voteToVerifyExpectedHash: Uint8Array = await this.crypto!.openSigned(
+      voteToVerify.signature,
+      voteToVerify.key.publicSigningKey
+    );
+
+    let voteToVerifyActualHash: Uint8Array = await this.crypto!.hash(voteToVerifyActual);
     if (voteToVerifyActualHash !== voteToVerifyExpectedHash) {
       return false;
     }
     return this.verify(voteToVerify.previousVoteChain);
   }
 
-  private generateSortedVoteString(vote: VoteChain): string {
+  private connectCrypto() {
+    if (this.crypto) return;
+
+    this.crypto = new CryptoConnector({
+      workerService: this.workers,
+    });
+  }
+
+  private generateSortedVote(vote: VoteChain): Uint8Array {
     let toReturn = [
       this.toSortedPublicKeys(vote.remaining),
       this.toSortedPublicKeys(vote.yes),
@@ -28,7 +46,7 @@ export default class VoteVerifier extends Service {
       vote.key.publicKey,
       vote.previousVoteChain.signature,
     ];
-    return JSON.stringify(toReturn);
+    return new TextEncoder().encode(JSON.stringify(toReturn));
   }
 
   private toSortedPublicKeys(identities: Identity[]): Uint8Array[] {
