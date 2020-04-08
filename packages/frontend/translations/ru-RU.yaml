@@ -150,6 +150,7 @@ ui:
         enter: to select
         esc: to dismiss
   sidebar:
+    find: Find...
     unread: Новые
     channels:
       title: Каналы
