@@ -150,6 +150,7 @@ ui:
         enter: zum Auswählen
         esc: zum Abbrechen
   sidebar:
+    find: Find...
     unread: Ungelesen
     channels:
       title: Kanäle
