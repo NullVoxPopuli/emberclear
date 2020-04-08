@@ -23,7 +23,7 @@ module('Integration | Component | modal', function (hooks) {
         @isActive={{this.active}}
         @close={{this.close}}
       >
-        Modal Content
+        <a href=''>Modal Content</a>
       </Modal>`);
   });
 

@@ -5,7 +5,7 @@
   aria-modal
   aria-hidden={{not @isActive}}
   class='modal {{if @isActive 'is-active'}}'
-  {{focus-trap isActive=@isActive}}
+  {{focus-trap isActive=(and @isActive (not @disableFocusTrap))}}
 >
 
   <div
