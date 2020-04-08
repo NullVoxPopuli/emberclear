@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
@@ -10,7 +11,6 @@ import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 import RouterService from '@ember/routing/router-service';
 import Contact, { Status } from 'emberclear/models/contact';
 import CurrentUserService from 'emberclear/services/current-user';
-// import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 import ContactManager from 'emberclear/services/contact-manager';
 import SidebarService from 'emberclear/services/sidebar';
 
@@ -27,30 +27,22 @@ export default class ContactsSidebar extends Component<IArgs> {
   @service contactManager!: ContactManager;
   @service sidebar!: SidebarService;
 
-  get allContacts(): Contact[] {
-    return this.store
-      .peekAll('contact')
-      .toArray()
-      .filter((contact) => contact.publicKey);
+  @tracked searchText = '';
+
+  get allContacts() {
+    return this.store.peekAll('contact').toArray();
   }
 
   get allChannels() {
     return this.store.peekAll('channel');
   }
 
-  // TODO: This is too expensive. Push into adapter
   get contacts() {
     if (!this.hideOfflineContacts) {
-      return this.allContacts.sort(sortByPinned);
+      return this.allContacts.sort(sortByPinned).filter(searchByName(this.searchText)).slice(0, 40);
     }
 
-    let url = this.router.currentURL;
-    let urlId = idFrom(PRIVATE_CHAT_REGEX, url);
-
-    // TODO: looking at all messages here is too expensive.
-    //       maybe make showing contacts based on unread messages
-    //       a background job or something.
-    // let allMessages = this.store.peekAll('message');
+    let urlId = this.idFromURL;
 
     return this.allContacts
       .filter((contact) => {
@@ -60,17 +52,24 @@ export default class ContactsSidebar extends Component<IArgs> {
           // pinned contacts always show
           contact.isPinned ||
           // we are currently viewing the contact
-          urlId === contact.uid ||
+          contact.uid === urlId ||
           // the contact has sent us messages that we haven't seen yet
-          // selectUnreadDirectMessages(allMessages, contact.id).length > 0
-          false
+          contact.numUnread > 0
         );
       })
-      .sort(sortByPinned);
+      .sort(sortByPinned)
+      .filter(searchByName(this.searchText))
+      .slice(0, 40);
   }
 
   get chats() {
     return ['add-contact', this.currentUser.record, ...this.contacts, this.allChannels];
+  }
+
+  get idFromURL() {
+    let url = this.router.currentURL;
+
+    return idFrom(PRIVATE_CHAT_REGEX, url);
   }
 
   get hideOfflineContacts() {
@@ -101,6 +100,11 @@ export default class ContactsSidebar extends Component<IArgs> {
 
     this.router.transitionTo('add-friend');
   }
+
+  @action
+  handleSearch(e: Event) {
+    this.searchText = (e.target as HTMLInputElement).value;
+  }
 }
 
 function sortByPinned(contact1: Contact, contact2: Contact) {
@@ -110,4 +114,16 @@ function sortByPinned(contact1: Contact, contact2: Contact) {
     return -1;
   }
   return 1;
+}
+
+function searchByName(text: string) {
+  if (!text) {
+    return (contact: Contact) => contact;
+  }
+
+  let term = new RegExp(text, 'i');
+
+  return (contact: Contact) => {
+    return term.test(contact.name);
+  };
 }
