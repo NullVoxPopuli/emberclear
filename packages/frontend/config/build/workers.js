@@ -26,7 +26,6 @@ let babelConfig = {
       require('@babel/preset-env'),
       {
         useBuiltIns: 'usage',
-        corejs: 3,
         targets: '> 5%, not IE 11, not dead',
       },
     ],
