@@ -77,6 +77,7 @@ module.exports = function (defaults) {
         plugins: CONCAT_STATS
           ? [
               new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
                 // generateStatsFile: true,
                 openAnalyzer: false,
                 reportFilename: path.join(
@@ -84,11 +85,11 @@ module.exports = function (defaults) {
                   'concat-stats-for',
                   'ember-auto-import.html'
                 ),
-                statsFilename: path.join(
-                  process.cwd(),
-                  'concat-stats-for',
-                  'ember-auto-import.json'
-                ),
+                // statsFilename: path.join(
+                //   process.cwd(),
+                //   'concat-stats-for',
+                //   'ember-auto-import.json'
+                // ),
               }),
             ]
           : [],
