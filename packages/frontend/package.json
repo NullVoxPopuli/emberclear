@@ -191,7 +191,7 @@
     "stylelint-config-standard": "^20.0.0",
     "testdouble": "^3.13.1",
     "typescript": "3.7.5",
-    "webpack-bundle-analyzer": "3.6.1"
+    "webpack-bundle-analyzer": "^3.6.1"
   },
   "engines": {
     "node": ">= 10.*"
