@@ -108,7 +108,7 @@
     "codecov": "^3.6.5",
     "colors": "^1.4.0",
     "common-tags": "^1.8.0",
-    "core-js": "^3.6.4",
+    "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
     "ember-auto-import": "^1.5.3",
     "ember-autofocus-modifier": "^1.0.1",
