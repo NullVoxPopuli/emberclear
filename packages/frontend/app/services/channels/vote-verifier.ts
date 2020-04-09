@@ -2,7 +2,7 @@ import Service, { inject as service } from '@ember/service';
 import VoteChain from 'emberclear/models/vote-chain';
 import CryptoConnector from '../workers/crypto';
 import WorkersService from '../workers';
-import VoteSorter from 'emberclear/tests/unit/service/channels/vote-sorter';
+import VoteSorter from 'emberclear/services/channels/vote-sorter';
 
 export default class VoteVerifier extends Service {
   @service workers!: WorkersService;
