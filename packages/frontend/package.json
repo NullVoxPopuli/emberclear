@@ -15,7 +15,6 @@
     "clean": "rm -rf dist tmp node_modules concat-stats-for coverage*",
     "build": "yarn ember build",
     "build:production": "yarn build --environment production && sed -i -e 's/{{ROOT_URL}}/\\//g' dist/index.html",
-    "build:production:analyze": "cross-env CONCAT_STATS=true yarn build:production",
     "ramdisk": "./scripts/node_modules-to-ramdisk.sh",
     "start:sw": "yarn ember serve -p 4201",
     "start:dev": "yarn start",
@@ -190,7 +189,8 @@
     "stylelint": "^13.3.0",
     "stylelint-config-standard": "^20.0.0",
     "testdouble": "^3.13.1",
-    "typescript": "3.7.5"
+    "typescript": "3.7.5",
+    "webpack-bundle-analyzer": "3.6.1"
   },
   "engines": {
     "node": ">= 10.*"

@@ -49,7 +49,7 @@ function detectWorkers() {
   return workers;
 }
 
-function configureWorkerTree({ isProduction, hash }) {
+function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
   return ([name, entryPath]) => {
     let workerDir = path.join(workerRoot, name);
 
@@ -60,6 +60,11 @@ function configureWorkerTree({ isProduction, hash }) {
           {
             file: `workers/${name}.js`,
             format: 'esm',
+            ...(
+              CONCAT_STATS
+              ? { sourcemap: 'inline' }
+              : {}
+            ),
           },
         ],
         plugins: [
