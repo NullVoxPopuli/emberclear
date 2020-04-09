@@ -1948,10 +1948,10 @@
   resolved "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
-"@types/phoenix@^1.4.3":
-  version "1.4.3"
-  resolved "https://registry.npmjs.org/@types/phoenix/-/phoenix-1.4.3.tgz#6f102a48f793f2fc9c531a25d48a02c0b2ba89e8"
-  integrity sha512-Bo6ZjaVldVb44hebPLZYJOmCpL9FSoD06pbmG6Lh0HQMjKAqDYbO2WSa4LY5pkHiUSQvkiTmQoTHO6S/R/spJQ==
+"@types/phoenix@^1.4.4":
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/@types/phoenix/-/phoenix-1.4.4.tgz#2f27bcdc19741f276d6409d9b52452f7f09767a9"
+  integrity sha512-ZXStCzImEr/GYTb6GRENFm4sRhbpNbHjFTCMrdHSFc+Az85urbwnsMBtvmFXDOEeOLXyWl7W810HtG5QWXbazQ==
 
 "@types/prismjs@^1.16.0":
   version "1.16.0"
