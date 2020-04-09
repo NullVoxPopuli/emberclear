@@ -10,7 +10,7 @@ export default class VoteSorter extends Service {
       this.toSortedPublicKeys(vote.no),
       vote.target.publicKey,
       vote.action,
-      vote.key.publicKey,
+      vote.key.publicSigningKey,
       vote.previousVoteChain.signature,
     ];
     return new TextEncoder().encode(JSON.stringify(toReturn));
