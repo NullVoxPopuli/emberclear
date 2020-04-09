@@ -66,13 +66,14 @@ function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
         ],
         plugins: [
           ...(CONCAT_STATS
-            ? visualizer({
-                gzipSize: true,
-                brotliSize: true,
-                // json: true,
-                // filename: path.join(process.cwd(), 'concat-stats-for', `${name}.html`),
-                // filename: `${name}.html`,
-              })
+            ? [
+                visualizer({
+                  gzipSize: true,
+                  brotliSize: true,
+                  // json: true,
+                  filename: `bundle/${name}.html`,
+                }),
+              ]
             : []),
           resolve({
             extensions,
@@ -103,21 +104,23 @@ function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
 }
 
 module.exports = {
-  buildWorkerTrees({ isProduction, isTest, hash }) {
+  buildWorkerTrees(env) {
+    let { isTest } = env;
+
     if (isTest) {
       console.info('Env is test. Skipping worker builds.');
       return [];
     }
 
     let inputs = detectWorkers();
-    let workerBuilder = configureWorkerTree({ isProduction, hash });
+    let workerBuilder = configureWorkerTree(env);
     let workerTrees = Object.entries(inputs).map(workerBuilder);
 
     return workerTrees;
   },
 };
 
-function printSizes(out, outputOptions, info) {
+function printSizes(opt, outputOptions, info) {
   let primaryColor = opt.theme === 'dark' ? 'green' : 'black';
   let secondaryColor = opt.theme === 'dark' ? 'yellow' : 'blue';
 

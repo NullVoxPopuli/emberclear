@@ -19,7 +19,10 @@ CONCAT_STATS=true yarn build:production
 
 
 # begin analysis
-# yarn bundle-analyze
+yarn bundle-analyze
 
 # copy to public folder for deployment
-cp ./concat-stats-for/index.html ./public/bundle.html
+mkdir -p ./public/bundle
+cp ./concat-stats-for/index.html ./public/bundle/broccoli.html
+cp ./dist/bundle/* ./public/bundle/
+cp ./concat-stats-for/ember-auto-import.html ./public/bundle/

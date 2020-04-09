@@ -76,18 +76,23 @@ module.exports = function (defaults) {
         // devtool: CONCAT_STATS ? 'inline-source-map' : 'none',
         plugins: CONCAT_STATS
           ? [
-            new BundleAnalyzerPlugin({
-              generateStatsFile: true,
-              openAnalyzer: false,
-              statsFilename: path.join(
-                process.cwd(),
-                'concat-stats-for',
-                'ember-auto-import.json',
-              ),
-            }),
-          ]
-          : []
-      }
+              new BundleAnalyzerPlugin({
+                // generateStatsFile: true,
+                openAnalyzer: false,
+                reportFilename: path.join(
+                  process.cwd(),
+                  'concat-stats-for',
+                  'ember-auto-import.html'
+                ),
+                statsFilename: path.join(
+                  process.cwd(),
+                  'concat-stats-for',
+                  'ember-auto-import.json'
+                ),
+              }),
+            ]
+          : [],
+      },
     },
 
     // Why are configs split up this way?
