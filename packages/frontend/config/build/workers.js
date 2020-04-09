@@ -5,6 +5,8 @@ const babel = require('rollup-plugin-babel');
 const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const filesize = require('rollup-plugin-filesize');
+const visualizer = require('rollup-plugin-visualizer');
+
 const AssetRev = require('broccoli-asset-rev');
 
 const colors = require('colors');
@@ -60,14 +62,18 @@ function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
           {
             file: `workers/${name}.js`,
             format: 'esm',
-            ...(
-              CONCAT_STATS
-              ? { sourcemap: 'inline' }
-              : {}
-            ),
           },
         ],
         plugins: [
+          ...(CONCAT_STATS
+            ? visualizer({
+                gzipSize: true,
+                brotliSize: true,
+                // json: true,
+                // filename: path.join(process.cwd(), 'concat-stats-for', `${name}.html`),
+                // filename: `${name}.html`,
+              })
+            : []),
           resolve({
             extensions,
             browser: true,
@@ -81,28 +87,7 @@ function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
           }),
           babel(babelConfig),
           ...(isProduction ? [terser()] : []),
-          filesize({
-            render(opt, outputOptions, info) {
-              let primaryColor = opt.theme === 'dark' ? 'green' : 'black';
-              let secondaryColor = opt.theme === 'dark' ? 'yellow' : 'blue';
-
-              let title = colors[primaryColor].bold;
-              let value = colors[secondaryColor];
-
-              let file = outputOptions.file.replace(cwd, '');
-
-              let values = [
-                '\n',
-                'Built Web Worker:',
-                `${title('Destination: ')}${value(file)}`,
-                `${title('Bundle Size: ')} ${value(info.bundleSize)}`,
-                `${title('Minified Size: ')} ${value(info.minSize)}`,
-                `${title('Gzipped Size: ')} ${value(info.gzipSize)}`,
-              ];
-
-              return values.join('\n');
-            },
-          }),
+          filesize({ render: printSizes }),
         ],
       },
     });
@@ -131,3 +116,24 @@ module.exports = {
     return workerTrees;
   },
 };
+
+function printSizes(out, outputOptions, info) {
+  let primaryColor = opt.theme === 'dark' ? 'green' : 'black';
+  let secondaryColor = opt.theme === 'dark' ? 'yellow' : 'blue';
+
+  let title = colors[primaryColor].bold;
+  let value = colors[secondaryColor];
+
+  let file = outputOptions.file.replace(cwd, '');
+
+  let values = [
+    '\n',
+    'Built Web Worker:',
+    `${title('Destination: ')}${value(file)}`,
+    `${title('Bundle Size: ')} ${value(info.bundleSize)}`,
+    `${title('Minified Size: ')} ${value(info.minSize)}`,
+    `${title('Gzipped Size: ')} ${value(info.gzipSize)}`,
+  ];
+
+  return values.join('\n');
+}
