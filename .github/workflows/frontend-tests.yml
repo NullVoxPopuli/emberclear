@@ -184,6 +184,8 @@ jobs:
         mv ./deploy/app/* ./deploy/dist/
         mkdir -p ./deploy/dist/bundle/
         cp ./deploy/bundle-analysis/* ./deploy/dist/bundle/
+        ls -la ./deploy/dist/
+        ls -la ./deploy/dist/bundle/
 
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v1.0
