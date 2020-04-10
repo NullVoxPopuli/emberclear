@@ -72,7 +72,12 @@ module.exports = function (defaults) {
     },
 
     autoImport: {
-      exclude: ['tweetnacl'],
+      // tweetnacl is required for tests...
+      // TODO: maybe figure out a way to use the actual workers
+      // TODO: maybe split the workers out to a separate package
+      //       so they can be tested separately and then this project
+      //       can test the integration with the workers
+      exclude: isProduction ? ['tweetnacl'] : [],
       webpack: {
         plugins: CONCAT_STATS
           ? [
