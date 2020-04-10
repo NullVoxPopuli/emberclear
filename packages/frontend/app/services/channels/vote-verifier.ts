@@ -17,14 +17,20 @@ export default class VoteVerifier extends Service {
     this.connectCrypto();
 
     let voteToVerifyActual: Uint8Array = this.voteSorter.generateSortedVote(voteToVerify);
+    let voteToVerifyActualHash: Uint8Array = await this.crypto!.hash(voteToVerifyActual);
+    
     let voteToVerifyExpectedHash: Uint8Array = await this.crypto!.openSigned(
       voteToVerify.signature,
       voteToVerify.key.publicSigningKey
     );
 
-    let voteToVerifyActualHash: Uint8Array = await this.crypto!.hash(voteToVerifyActual);
-    if (voteToVerifyActualHash !== voteToVerifyExpectedHash) {
+    if(voteToVerifyActualHash.length !== voteToVerifyExpectedHash.length) {
       return false;
+    }
+    for(var i = 0; i < voteToVerifyActualHash.length; i++) {
+      if (voteToVerifyActualHash[i] !== voteToVerifyExpectedHash[i]) {
+        return false;
+      }
     }
     return this.verify(voteToVerify.previousVoteChain);
   }
