@@ -28,7 +28,7 @@ let babelConfig = {
         useBuiltIns: 'usage',
         targets: '> 2%, not IE 11, not dead',
         corejs: {
-          version: 3
+          version: 3,
         },
       },
     ],
