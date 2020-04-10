@@ -177,7 +177,7 @@
     "prettier": "^2.0.4",
     "qunit-assertions-extra": "^0.8.1",
     "qunit-console-grouper": "^0.2.0",
-    "qunit-dom": "^1.1.0",
+    "qunit-dom": "^1.2.0",
     "qunit-xstate-test": "^0.1.0",
     "rollup": "^2.4.0",
     "rollup-plugin-babel": "^4.4.0",
