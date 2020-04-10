@@ -26,7 +26,7 @@ let babelConfig = {
       require('@babel/preset-env'),
       {
         useBuiltIns: 'usage',
-        targets: '> 5%, not IE 11, not dead',
+        targets: '> 2%, not IE 11, not dead',
       },
     ],
     require('@babel/preset-typescript'),
