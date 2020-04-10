@@ -10,7 +10,7 @@ export default class VoteVerifier extends Service {
   crypto?: CryptoConnector;
 
   async verify(voteToVerify: VoteChain): Promise<boolean> {
-    if (voteToVerify.previousVoteChain == undefined) {
+    if (voteToVerify.previousVoteChain === undefined) {
       return true;
     }
 
