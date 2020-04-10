@@ -15,7 +15,7 @@ export default class VoteChain extends Model {
   @attr() target!: Identity;
   @attr() action!: VOTE_ACTION;
   @attr() key!: Identity;
-  @attr() previousVoteChain!: VoteChain;
+  @attr() previousVoteChain?: VoteChain;
   @attr() signature!: Uint8Array;
 }
 
