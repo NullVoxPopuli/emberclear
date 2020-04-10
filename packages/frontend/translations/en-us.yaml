@@ -8,6 +8,8 @@ twitter: Twitter
 todo: 'TODO: fill this out correctly'
 install: Install
 
+bundle-analysis: JS Bundle Analysis
+
 qrCode:
   error: QR Code could not be generated
 
@@ -250,6 +252,7 @@ ui:
 
   footer:
     navigation: Navigation
+    about: About
     wantToSupport: Want to support this project?
     license: >
       The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a>

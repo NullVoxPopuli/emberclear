@@ -72,24 +72,18 @@ module.exports = function (defaults) {
     },
 
     autoImport: {
+      exclude: ['tweetnacl'],
       webpack: {
-        // devtool: CONCAT_STATS ? 'inline-source-map' : 'none',
         plugins: CONCAT_STATS
           ? [
               new BundleAnalyzerPlugin({
                 analyzerMode: 'static',
-                // generateStatsFile: true,
                 openAnalyzer: false,
                 reportFilename: path.join(
                   process.cwd(),
                   'concat-stats-for',
                   'ember-auto-import.html'
                 ),
-                // statsFilename: path.join(
-                //   process.cwd(),
-                //   'concat-stats-for',
-                //   'ember-auto-import.json'
-                // ),
               }),
             ]
           : [],

@@ -26,6 +26,5 @@ yarn bundle-analyze
 mkdir -p ./public/bundle
 cp ./concat-stats-for/index.html ./public/bundle/broccoli.html
 cp ./concat-stats-for/ember-auto-import.html ./public/bundle/
-# I forgot what direction this goes
+# copy from dist to public, because we build one more time without CONCAT_STATS
 cp ./dist/bundle/* ./public/bundle/
-cp ./public/bundle/* ./dist/bundle/

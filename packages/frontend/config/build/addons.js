@@ -11,11 +11,11 @@ function serviceWorkerConfig({ version }) {
     'asset-cache': {
       version,
       include: ['assets/**/*', '**/*.html', 'index.html'],
-      exclude: ['.well-known/**/*', 'bundle.html', 'bundle/**', 'favicon.ico', 'robots.txt'],
+      exclude: ['.well-known/**/*', 'bundle.html', 'bundle/**/*.html', 'bundle/*.html', 'favicon.ico', 'robots.txt'],
     },
     'esw-index': {
       version,
-      excludeScope: [/\.well-known/, /bundle.html/, /favicon.ico/, /robots.txt/],
+      excludeScope: [/\.well-known/, /bundle.html/, /bundle\/(.+)\.html/, /favicon.ico/, /robots.txt/],
     },
     'esw-cache-fallback': {
       patterns: ['https://(.+)/open_graph?(.+)'],
