@@ -88,7 +88,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: built_bundle_analysis
-        path: packages/frontend/public/
+        path: packages/frontend/public/bundle
 
 
   build_app:
@@ -170,13 +170,20 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: built_bundle_analysis
-        path: packages/frontend/public/
+        path: ./deploy/bundle-analysis/
 
     - name: Download Built App Artifacts
       uses: actions/download-artifact@master
       with:
         name: built_app
-        path: packages/frontend/dist/
+        path: ./deploy/app/
+
+    - name: Combine Bundle Analysis with App
+      run: |
+        mkdir -p ./deploy/dist/
+        mv ./deploy/app/* ./deploy/dist/
+        mkdir -p ./deploy/dist/bundle/
+        cp ./deploy/bundle-analysis/* ./deploy/dist/bundle/
 
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v1.0
