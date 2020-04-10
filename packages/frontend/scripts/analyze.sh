@@ -26,4 +26,6 @@ yarn bundle-analyze
 mkdir -p ./public/bundle
 cp ./concat-stats-for/index.html ./public/bundle/broccoli.html
 cp ./concat-stats-for/ember-auto-import.html ./public/bundle/
+# I forgot what direction this goes
 cp ./dist/bundle/* ./public/bundle/
+cp ./public/bundle/* ./dist/bundle/
