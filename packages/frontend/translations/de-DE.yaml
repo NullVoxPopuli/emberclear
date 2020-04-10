@@ -6,6 +6,7 @@ redditCommunity: Reddit Community
 twitter: Twitter
 todo: 'TODO: Fülle dies korrekt aus'
 install: Installieren
+bundle-analysis: JS Bundle Analysis
 qrCode:
   error: QR Code konnte nicht erzeugt werden
 connection:
@@ -203,6 +204,7 @@ ui:
     serverStorageA: "No."
   footer:
     navigation: Navigation
+    about: About
     wantToSupport: Möchtest du das Projekt unterstützen?
     license: >
       The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
