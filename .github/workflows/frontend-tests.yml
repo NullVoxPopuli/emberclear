@@ -180,12 +180,10 @@ jobs:
 
     - name: Combine Bundle Analysis with App
       run: |
-        mkdir -p ./deploy/dist/
-        mv ./deploy/app/* ./deploy/dist/
         mkdir -p ./deploy/dist/bundle/
+        mv ./deploy/app/* ./deploy/dist/
         cp ./deploy/bundle-analysis/* ./deploy/dist/bundle/
-        ls -la ./deploy/dist/
-        ls -la ./deploy/dist/bundle/
+        cp ./scripts/_redirects ./deploy/dist/
 
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v1.0
