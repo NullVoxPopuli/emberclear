@@ -4,26 +4,27 @@ R="\e[31m"
 Y="\e[33m"
 N="\e[0m"
 
-yarn build:production:analyze
+# outputs the following files:
+# - concats-stats-for/
+#   - #-emberclear.js.json
+#   - #-vendor.js.json
+#   - #-vendor.css.json
+#   - ember-auto-import.json
+#
+rm -rf public/bundle
+# ember-auto-import.json was not a part of
+# broccoli-concat-analyzer, so that file needs
+# to be stitched into the index.html file
+CONCAT_STATS=true yarn build:production
 
-# rm files that do not have corresponding folders
-for filename in ./concat-stats-for/*; do
-  extension=${filename: -5}
 
-  if [ $extension == ".json" ]; then
-    folderName="${filename//$extension/}"
-
-    # if [ ! -d "$folderName" ]; then
-    #   echo -e "\n${Y}$folderName ${R} does not exist..."
-    #   echo -e "\tDeleting ${Y}$filename${N}\n"
-
-    #   rm $filename
-    # fi
-  fi
-done
 
 # begin analysis
 yarn bundle-analyze
 
 # copy to public folder for deployment
-cp ./concat-stats-for/index.html ./public/bundle.html
+mkdir -p ./public/bundle
+cp ./concat-stats-for/index.html ./public/bundle/broccoli.html
+cp ./concat-stats-for/ember-auto-import.html ./public/bundle/
+# copy from dist to public, because we build one more time without CONCAT_STATS
+cp ./dist/bundle/* ./public/bundle/

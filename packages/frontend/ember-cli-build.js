@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const gitRev = require('git-rev-sync');
@@ -11,8 +12,9 @@ const { buildStaticTrees } = require('./config/build/static');
 const { postcssConfig } = require('./config/build/styles');
 const { buildWorkerTrees } = require('./config/build/workers');
 const crypto = require('crypto');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const { EMBROIDER } = process.env;
+const { EMBROIDER, CONCAT_STATS } = process.env;
 
 module.exports = function (defaults) {
   let environment = EmberApp.env();
@@ -32,6 +34,7 @@ module.exports = function (defaults) {
     isTest: environment === 'test',
     version,
     hash,
+    CONCAT_STATS,
   };
 
   let app = new EmberApp(defaults, {
@@ -66,6 +69,30 @@ module.exports = function (defaults) {
 
     emberData: {
       compatWith: '3.16.0',
+    },
+
+    autoImport: {
+      // tweetnacl is required for tests...
+      // TODO: maybe figure out a way to use the actual workers
+      // TODO: maybe split the workers out to a separate package
+      //       so they can be tested separately and then this project
+      //       can test the integration with the workers
+      exclude: isProduction ? ['tweetnacl'] : [],
+      webpack: {
+        plugins: CONCAT_STATS
+          ? [
+              new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
+                openAnalyzer: false,
+                reportFilename: path.join(
+                  process.cwd(),
+                  'concat-stats-for',
+                  'ember-auto-import.html'
+                ),
+              }),
+            ]
+          : [],
+      },
     },
 
     // Why are configs split up this way?

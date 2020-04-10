@@ -39,7 +39,7 @@ jobs:
 
     - name: "Lint JS/TS"
       working-directory: ${{ env.cwd }}
-      run: yarn lint:js
+      run: yarn lint:js --quiet
 
   lint_templates:
     name: "Lint Templates"
