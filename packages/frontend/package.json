@@ -157,7 +157,7 @@
     "ember-service-worker-update-notify": "^3.0.0",
     "ember-sinon": "^5.0.0",
     "ember-source": "^3.17.3",
-    "ember-template-lint": "2.5.1",
+    "ember-template-lint": "2.5.2",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "^4.0.0",
     "ember-test-waiters": "^2.0.1",
