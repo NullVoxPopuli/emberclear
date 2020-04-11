@@ -177,6 +177,9 @@ ui:
 
   sidebar:
     find: Find...
+    keepTyping: '{num} characters left to search...'
+    results: '{num} results'
+
     unread: Unread
     channels:
       title: Channels

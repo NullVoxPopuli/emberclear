@@ -29,6 +29,15 @@ aside {
       &.contacts,
       &.channels {
         padding-bottom: var(--grid-gap);
+
+        & .results-info {
+          font-size: 0.75rem;
+          position: absolute;
+          top: 1.25rem;
+          right: 1.25rem;
+          height: 1rem;
+          line-height: 1rem;
+        }
       }
 
       & a {
