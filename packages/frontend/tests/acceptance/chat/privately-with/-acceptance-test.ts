@@ -354,6 +354,9 @@ module('Acceptance | Chat | Privately With', function (hooks) {
             // because scrollIntoView doesn't tie in to the test waiters?
             // TODO: make this happen with a special version of scroll in to view
             await timeout(1000);
+            // for some reason scroll events aren't triggered unless a message is deleted?
+            // but only while testing?
+            await page.messages[page.messages.length - 1].confirmations.delete();
           });
 
           test('most recent messages are shown', async function (assert) {
@@ -374,7 +377,7 @@ module('Acceptance | Chat | Privately With', function (hooks) {
             hooks.beforeEach(async function () {
               page.scroll(-400);
               // for animations
-              await timeout(200);
+              await timeout(400);
               await settled();
             });
 

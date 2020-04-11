@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import { restartableTask } from 'ember-concurrency-decorators';
 
 import { PRIVATE_CHAT_REGEX, idFrom } from 'emberclear/utils/route-matchers';
@@ -92,7 +91,6 @@ export default class SidebarChatData extends Component<Args> {
     return this.settings.hideOfflineContacts;
   }
 
-  @computed('allContacts', 'contacts')
   get offlineContacts() {
     let contacts = this.contacts;
 

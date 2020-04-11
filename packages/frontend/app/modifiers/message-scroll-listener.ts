@@ -9,15 +9,6 @@ interface Args {
   named: {};
 }
 
-function debounced(fn: any) {
-  let queued: any;
-  return function debouncedCallback() {
-    if (queued) cancelAnimationFrame(queued);
-
-    queued = requestAnimationFrame(fn);
-  };
-}
-
 export default class MessageScrollListener extends Modifier<Args> {
   @service chatScroller!: ChatScroller;
 
@@ -29,9 +20,19 @@ export default class MessageScrollListener extends Modifier<Args> {
   }
 
   didInstall() {
-    this.scrollHandler = debounced(this.determineIfLastIsVisible.bind(this));
+    let ticking = false;
+    let determine = this.determineIfLastIsVisible.bind(this);
 
-    this.messagesElement = this.element!.querySelector('.messages')!;
+    this.scrollHandler = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          determine();
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
   }
 
   didReceiveArguments() {
