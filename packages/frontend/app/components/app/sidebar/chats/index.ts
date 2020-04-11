@@ -5,13 +5,13 @@ import { action } from '@ember/object';
 
 import ContactManager from 'emberclear/services/contact-manager';
 
-const REQUIRED_CHARACTERS_TO_SEARCH = 3;
+const REQUIRED_CHARACTERS_TO_SEARCH = 2;
 
 export default class ContactsSidebar extends Component<{}> {
   @service contactManager!: ContactManager;
   @service intl!: Intl;
 
-  @tracked searchText = '';
+  @tracked searchText?: string;
 
   @tracked _searchText = '';
 
@@ -21,6 +21,11 @@ export default class ContactsSidebar extends Component<{}> {
 
     if (this.hasEnoughToSearch) {
       this.searchText = this._searchText;
+      return;
+    }
+
+    if (this.searchText !== undefined) {
+      this.searchText = undefined;
     }
   }
 

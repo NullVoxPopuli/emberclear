@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
-import { action } from '@ember/object';
+import { computed } from '@ember/object';
+import { restartableTask } from 'ember-concurrency-decorators';
 
 import { PRIVATE_CHAT_REGEX, idFrom } from 'emberclear/utils/route-matchers';
 
@@ -9,13 +9,14 @@ import StoreService from '@ember-data/store';
 import SettingsService from 'emberclear/services/settings';
 import RouterService from '@ember/routing/router-service';
 import Contact, { Status } from 'emberclear/models/contact';
+import Channel from 'emberclear/models/channel';
 import CurrentUserService from 'emberclear/services/current-user';
 import ContactManager from 'emberclear/services/contact-manager';
 import SidebarService from 'emberclear/services/sidebar';
 
 type Args = {
   searchText?: string;
-}
+};
 
 export default class SidebarChatData extends Component<Args> {
   @service currentUser!: CurrentUserService;
@@ -60,17 +61,21 @@ export default class SidebarChatData extends Component<Args> {
           contact.uid === urlId ||
           // the contact has sent us messages that we haven't seen yet
           contact.numUnread > 0
+          // false
         );
-      })
+      });
     }
 
-    if (searchText) {
+    if (searchText !== undefined) {
       contacts = contacts.filter(searchByName(searchText));
     }
 
-    return contacts
-      .sort(sortByPinned)
-      .slice(0, 40);
+    return contacts.sort(sortByPinned).slice(0, 40);
+  }
+
+  @restartableTask({ withTestWaiter: true })
+  *searchContacts(_searchTerm: string) {
+    // TODO: do I want to search this way instead? using query? like in the search modal?
   }
 
   get chats() {
@@ -87,6 +92,7 @@ export default class SidebarChatData extends Component<Args> {
     return this.settings.hideOfflineContacts;
   }
 
+  @computed('allContacts', 'contacts')
   get offlineContacts() {
     let contacts = this.contacts;
 
@@ -113,10 +119,10 @@ function sortByPinned(contact1: Contact, contact2: Contact) {
   return 1;
 }
 
-function searchByName(text: string) {
+function searchByName<T extends Contact | Channel>(text: string) {
   let term = new RegExp(text, 'i');
 
-  return (contact: Contact) => {
+  return (contact: T) => {
     return term.test(contact.name);
   };
 }

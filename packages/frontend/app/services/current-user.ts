@@ -103,8 +103,8 @@ export default class CurrentUserService extends Service {
     name: string,
     privateKey: Uint8Array,
     publicKey: Uint8Array,
-    privateSigningKey: Uint8Array,
-    publicSigningKey: Uint8Array
+    privateSigningKey?: Uint8Array,
+    publicSigningKey?: Uint8Array
   ) {
     const record = this.store.createRecord('user', {
       id: currentUserId,
@@ -174,11 +174,15 @@ export default class CurrentUserService extends Service {
     });
   }
 
-  async importFromKey(name: string, privateKey: Uint8Array, privateSigningKey: Uint8Array) {
+  async importFromKey(name: string, privateKey: Uint8Array, privateSigningKey?: Uint8Array) {
     this.hydrateCrypto();
 
     const publicKey = await this.crypto!.derivePublicKey(privateKey);
-    const publicSigningKey = await this.crypto!.derivePublicSigningKey(privateSigningKey);
+
+    let publicSigningKey;
+    if (privateSigningKey) {
+      publicSigningKey = await this.crypto!.derivePublicSigningKey(privateSigningKey);
+    }
 
     await this.setIdentity(name, privateKey, publicKey, privateSigningKey, publicSigningKey);
   }
