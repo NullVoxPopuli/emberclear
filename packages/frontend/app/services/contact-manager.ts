@@ -16,7 +16,7 @@ export default class ContactManager extends Service {
     return this.store.findRecord('contact', uid);
   }
 
-  async import(contacts: IdentityJson[]) {
+  async import(contacts: Partial<IdentityJson>[]) {
     this.isImporting = true;
 
     try {

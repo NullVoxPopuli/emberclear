@@ -13,8 +13,8 @@ import { objectToDataURL, toHex, fromHex } from 'emberclear/utils/string-encodin
 import { inLocalStorage } from 'emberclear/utils/decorators';
 
 interface IContactJson {
-  name: string | undefined;
-  publicKey: undefined | string /* hex */;
+  name?: string;
+  publicKey?: string /* hex */;
 }
 
 interface IChannelJson {
