@@ -6413,6 +6413,15 @@ ember-cli-version-checker@^5.0.1:
     semver "^7.1.3"
     silent-error "^1.1.1"
 
+ember-cli-version-checker@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-5.0.2.tgz#7e96157be4b13b083a68078b188820193275d8c4"
+  integrity sha512-cqFrIg9++GKdpMv2DP8pryAhTcmCYUL2hzHatLwkcJe23s+ioZ0JQWte0avxZ5lJnwn5e3kzUKkLkDfHDFBMUw==
+  dependencies:
+    resolve-package-path "^2.0.0"
+    semver "^7.1.3"
+    silent-error "^1.1.1"
+
 ember-cli@^3.17.0:
   version "3.17.0"
   resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.17.0.tgz#d846027c01f1835c7903b6bff073c2a80885202e"
@@ -6806,17 +6815,17 @@ ember-render-helpers@^0.1.1:
     ember-cli-babel "^7.12.0"
     ember-cli-typescript "^3.1.1"
 
-ember-resolver@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.npmjs.org/ember-resolver/-/ember-resolver-7.0.0.tgz#07ca86b3bae373395b44bba784b8c133f75d61c2"
-  integrity sha512-tqyWk9E1P5LL42x7AnVoE25a/YWe0WcwAr8LXasm5V7Az3vFR/zbFtwN0oI3tpoSP/nCoGWDct6dRYlXrQjqBQ==
+ember-resolver@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/ember-resolver/-/ember-resolver-8.0.0.tgz#cc48682c1e2f5d208499b1ecdcac1e43839683bd"
+  integrity sha512-M0P1++26h9KuEpg14VDrg37daneXrj9Hv9kuM0Xzsm38guma9JzO1+BvJcL/u5EGiJSUjtLtYvakk/6feFlo6A==
   dependencies:
     babel-plugin-debug-macros "^0.3.3"
-    broccoli-funnel "^2.0.2"
-    broccoli-merge-trees "^3.0.0"
-    ember-cli-babel "^7.13.2"
-    ember-cli-version-checker "^3.1.3"
-    resolve "^1.14.0"
+    broccoli-funnel "^3.0.2"
+    broccoli-merge-trees "^4.2.0"
+    ember-cli-babel "^7.18.0"
+    ember-cli-version-checker "^5.0.2"
+    resolve "^1.15.1"
 
 ember-rfc176-data@^0.3.12:
   version "0.3.12"
@@ -13336,7 +13345,7 @@ resolve@1.9.0:
   dependencies:
     path-parse "^1.0.6"
 
-resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.11.1, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.0, resolve@^1.14.2, resolve@^1.15.1, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.7.1, resolve@^1.8.1:
+resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.11.1, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.15.1, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.7.1, resolve@^1.8.1:
   version "1.15.1"
   resolved "https://registry.npmjs.org/resolve/-/resolve-1.15.1.tgz#27bdcdeffeaf2d6244b95bb0f9f4b4653451f3e8"
   integrity sha512-84oo6ZTtoTUpjgNEr5SJyzQhzL72gaRodsSfyxC/AXRvwu0Yse9H8eF9IpGo7b8YetZhlI6v7ZQ6bKBFV/6S7w==
