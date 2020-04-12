@@ -95,6 +95,8 @@ export default class Notifications extends Service {
     const defaultTitle = this.intl.t('ui.notifications.title');
     const notificationOptions = {
       body: msg,
+      // tag needed to prevent duplicates
+      tag: msg,
       // icon: ''
       ...options,
     };
