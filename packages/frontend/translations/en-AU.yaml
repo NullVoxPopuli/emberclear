@@ -4,6 +4,7 @@ subheader: Encrypted Chat. No History. No Logs.
 authoredBy: by Preston Sego
 redditCommunity: Reddit Community
 twitter: Twitter
+emberjs: Ember.JS
 todo: 'TODO: fill this out correctly'
 install: Install
 bundle-analysis: JS Bundle Analysis
@@ -152,6 +153,8 @@ ui:
         esc: to dismiss
   sidebar:
     find: Find...
+    keepTyping: '{num} characters left to search...'
+    results: '{num} results'
     unread: Unread
     channels:
       title: Channels
