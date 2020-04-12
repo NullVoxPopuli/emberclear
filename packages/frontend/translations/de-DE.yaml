@@ -4,6 +4,7 @@ subheader: Verschlüsselter Chat. Kein Verlauf. Keine Logs.
 authoredBy: von Preston Sego
 redditCommunity: Reddit Community
 twitter: Twitter
+emberjs: Ember.JS
 todo: 'TODO: Fülle dies korrekt aus'
 install: Installieren
 bundle-analysis: JS Bundle Analysis
@@ -152,6 +153,8 @@ ui:
         esc: zum Abbrechen
   sidebar:
     find: Find...
+    keepTyping: '{num} characters left to search...'
+    results: '{num} results'
     unread: Ungelesen
     channels:
       title: Kanäle

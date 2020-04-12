@@ -4,6 +4,7 @@ subheader: Conversação encriptada. Sem histórico. Sem logs.
 authoredBy: por Preston Sego
 redditCommunity: Reddit Community
 twitter: Twitter
+emberjs: Ember.JS
 todo: 'A fazer: preencher isto corretamente'
 install: Install
 bundle-analysis: JS Bundle Analysis
@@ -152,6 +153,8 @@ ui:
         esc: to dismiss
   sidebar:
     find: Find...
+    keepTyping: '{num} characters left to search...'
+    results: '{num} results'
     unread: Não lido
     channels:
       title: Canais

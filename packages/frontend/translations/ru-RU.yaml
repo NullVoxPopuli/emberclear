@@ -4,6 +4,7 @@ subheader: Зашифрованный чат. Без истории. Без ло
 authoredBy: от Sego Preston
 redditCommunity: Reddit Community
 twitter: Twitter
+emberjs: Ember.JS
 todo: 'Позднее: заполнить правильно'
 install: Install
 bundle-analysis: JS Bundle Analysis
@@ -152,6 +153,8 @@ ui:
         esc: to dismiss
   sidebar:
     find: Find...
+    keepTyping: '{num} characters left to search...'
+    results: '{num} results'
     unread: Новые
     channels:
       title: Каналы
