@@ -4,6 +4,7 @@ subheader: Tchat cryptée. Pas d'historique. Pas de log.
 authoredBy: par Preston Sego
 redditCommunity: Communautée Reddit
 twitter: Twitter
+emberjs: Ember.JS
 todo: 'A faire: Remplir ceci correctement'
 install: Install
 bundle-analysis: JS Bundle Analysis
@@ -152,6 +153,8 @@ ui:
         esc: to dismiss
   sidebar:
     find: Find...
+    keepTyping: '{num} characters left to search...'
+    results: '{num} results'
     unread: Non lu
     channels:
       title: Chaînes
