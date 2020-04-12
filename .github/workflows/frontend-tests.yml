@@ -134,33 +134,37 @@ jobs:
 
 ##############################################################
 
-#   tests_e2e:
-#     name: E2E Tests
-#     runs-on: ubuntu-latest
-#     timeout-minutes: 15
+  tests_e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [deploy_preview]
 
-#     steps:
-#     - name: 'Wait for status checks'
-#       id: waitforstatuschecks
-#       uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
-#       with:
-#         ignoreActions: tests_e2e,"E2E Tests"
-#         checkInterval: 30
+    steps:
+    - uses: actions/checkout@v2
+    - uses: volta-cli/action@v1
 
-#     - uses: actions/checkout@v2
-#     - uses: rwjblue/setup-volta@v1
+    - name: Get Deploy URL
+      uses: actions/download-artifact@master
+      with:
+        name: deploy-url
+        path: ./
 
-#     - name: Test
-#       working-directory: packages/smoke-tests
-#       run: yarn && yarn test --target pull-request --headless
+    - name: Test
+      run: |
+        export DEPLOY_URL=$(cat ./deploy-url.txt)
+        cd packages/smoke-tests
+        yarn
+        yarn test --target pull-request --headless
 
 
 ##############################################################
+
   deploy_preview:
     name: Deploy Preview
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: [tests, bundle_analysis]
+    needs: [tests, bundle_analysis, build_app]
 
     steps:
     - uses: actions/checkout@v2
@@ -186,6 +190,7 @@ jobs:
         cp ./scripts/_redirects ./deploy/dist/
 
     - name: Deploy to Netlify
+      id: deploy
       uses: nwtgck/actions-netlify@v1.0
       with:
         publish-dir: './deploy/dist'
@@ -194,6 +199,15 @@ jobs:
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+    - run: echo "${{ steps.deploy.outputs.deploy-url }}" > deploy-url.txt
+
+    - name: Upload URL as Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: deploy-url
+        path: deploy-url.txt
+
 
 ##############################################################
 

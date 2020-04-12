@@ -1,9 +1,11 @@
 const execa = require('execa');
 const path = require('path');
 
-const distLocation = path.join('..', 'frontend', 'dist');
+const distLocation = path.join(process.cwd(), '..', 'frontend', 'dist');
 
 async function startServer() {
+  console.info(`Starting server at ${distLocation}`);
+
   let server = execa('http-server', [distLocation], {
     preferLocal: true,
   });
