@@ -27,9 +27,95 @@ module('Acceptance | Sidebar', function (hooks) {
   setupRelayConnectionMocks(hooks);
   setupCurrentUser(hooks);
 
+  let t: Intl['t'];
+
   hooks.beforeEach(async function () {
     await visit('/chat');
     await page.toggle();
+
+    let intl = getService('intl');
+
+    t = intl.t.bind(intl);
+  });
+
+  module('Search', function () {
+    module('There are contacts', function (hooks) {
+      let contacts!: Contact[];
+
+      hooks.beforeEach(async function () {
+        contacts = [
+          await createContact('Contact AA'),
+          await createContact('Contact BB'),
+          await createContact('Contact BBC'),
+        ];
+      });
+
+      test('all contacts are visible', function (assert) {
+        assert.expect(3);
+
+        let content = page.sidebar.contacts.listText;
+
+        for (let contact of contacts) {
+          assert.contains(content, contact.name);
+        }
+      });
+
+      module('1 letter is entered', function (hooks) {
+        hooks.beforeEach(async function () {
+          await page.sidebar.search('A');
+        });
+
+        test('help text is shown', function (assert) {
+          assert.contains(page.sidebar.searchInfo, t('ui.sidebar.keepTyping', { num: 1 }));
+        });
+
+        test('all contacts are still visible', function (assert) {
+          assert.expect(3);
+
+          let content = page.sidebar.contacts.listText;
+
+          for (let contact of contacts) {
+            assert.contains(content, contact.name);
+          }
+        });
+      });
+
+      module('2 letters are entered', function (hooks) {
+        hooks.beforeEach(async function () {
+          await page.sidebar.search('BB');
+        });
+
+        test('help text is shown', function (assert) {
+          assert.contains(page.sidebar.searchInfo, t('ui.sidebar.results', { num: 2 }));
+        });
+
+        test('Matches are shown', function (assert) {
+          let content = page.sidebar.contacts.listText;
+
+          assert.notContains(content, 'AA');
+          assert.contains(content, 'BB');
+          assert.contains(content, 'BBC');
+        });
+      });
+
+      module('offline contacts are hidden', function (hooks) {
+        hooks.beforeEach(async function () {
+          await setupOfflineContactsTest();
+        });
+
+        module('1 letter is entered', function (hooks) {
+          hooks.beforeEach(async function () {
+            await page.sidebar.search('B');
+          });
+        });
+
+        module('2 letters are entered', function (hooks) {
+          hooks.beforeEach(async function () {
+            await page.sidebar.search('B');
+          });
+        });
+      });
+    });
   });
 
   module('Contacts', function () {

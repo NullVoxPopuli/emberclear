@@ -2,47 +2,37 @@
   {{#if this.contactManager.isImporting}}
     <EllipsisLoader />
   {{else}}
+
     <input
       class='input mar-b-sm'
       type='text'
+      data-test-sidebar-search
       placeholder={{t 'ui.sidebar.find'}}
-      value={{this.searchText}}
       {{on 'input' this.handleSearch}}
     >
 
-    {{#each this.chats as |chat|}}
-    {{!-- {{#vertical-collection
-      this.chats
-      estimateHeight=40 staticHeight=true bufferSize=5
-      as |chat|
-    }} --}}
-      {{#if (eq chat 'add-contact')}}
-        <div data-test-sidebar-contacts-header class='menu-label'>
-          {{t 'ui.sidebar.contacts.title'}}
+    <App::Sidebar::Chats::Data @searchText={{this.searchText}} as |data|>
 
-          <a
-            data-test-add-friend
-            class='button button-xs'
-            href={{url-for 'add-friend'}}
-            {{on 'click' (prevent-default this.onClickAddFriend)}}
-          >
-            <span class='icon'>{{fa-icon 'plus'}}</span>
-          </a>
-        </div>
-      {{else if (or (is-contact chat) (is-current-user chat))}}
-        <App::Sidebar::Chats::Contact @contact={{chat}} />
-      {{else if (is-channel chat)}}
-        <App::Sidebar::Chats::Channel @channel={{chat}} />
+      {{#if this._searchText}}
+        <span data-test-search-info class='results-info'>
+          {{#if this.hasEnoughToSearch}}
+            {{t 'ui.sidebar.results' num=(sub data.chats.length 2)}}
+          {{else}}
+            {{t 'ui.sidebar.keepTyping' num=this.remainingCharacters}}
+          {{/if}}
+        </span>
       {{/if}}
-    {{!-- {{/vertical-collection}} --}}
-    {{/each}}
+
+      <App::Sidebar::Chats::List @chats={{data.chats}} />
+
+      {{#if data.showOfflineCounter}}
+        <App::Sidebar::Chats::OfflineCounter @numberOffline={{data.numberOffline}} />
+      {{/if}}
+
+    </App::Sidebar::Chats::Data>
+
   {{/if}}
 
-  {{#if this.showOfflineCounter}}
-    <em data-test-offline-count class='offline'>
-      <small>{{t 'ui.sidebar.contacts.numOffline' num=this.numberOffline}}</small>
-    </em>
-  {{/if}}
 </nav>
 
 

@@ -1,5 +1,6 @@
 import Model, { attr } from '@ember-data/model';
 import { tracked } from '@glimmer/tracking';
+import { computed } from '@ember/object';
 
 import { toHex } from 'emberclear/utils/string-encoding';
 
@@ -21,6 +22,9 @@ export default class Identity extends Model implements Partial<PublicKey> {
     return toHex(this.publicKey);
   }
 
+  // Needed otherwise this regularly invalidates
+  // TODO: will the public key ever change? who knows
+  @computed()
   get uid() {
     return this.publicKeyAsHex;
   }

@@ -13,8 +13,8 @@ import { objectToDataURL, toHex, fromHex } from 'emberclear/utils/string-encodin
 import { inLocalStorage } from 'emberclear/utils/decorators';
 
 interface IContactJson {
-  name: string | undefined;
-  publicKey: undefined | string /* hex */;
+  name?: string;
+  publicKey?: string /* hex */;
 }
 
 interface IChannelJson {
@@ -26,7 +26,7 @@ interface ISettingsJson {
   version: number;
   name: string;
   privateKey: string; // hex
-  privateSigningKey: string; // hex
+  privateSigningKey?: string; // hex
   contacts: IContactJson[];
   channels: IChannelJson[];
 }
@@ -79,7 +79,7 @@ export default class Settings extends Service {
   }
 
   async import(settings: string) {
-    const json = JSON.parse(settings);
+    const json = JSON.parse(settings) as ISettingsJson;
 
     const {
       name,
@@ -92,7 +92,12 @@ export default class Settings extends Service {
     // start by clearing everything!
     await localforage.clear();
     const privateKey = fromHex(privateKeyHex);
-    const privateSigningKey = fromHex(privateSigningKeyHex);
+
+    let privateSigningKey;
+
+    if (privateSigningKeyHex) {
+      privateSigningKey = fromHex(privateSigningKeyHex);
+    }
 
     await this.currentUser.importFromKey(name, privateKey, privateSigningKey);
 

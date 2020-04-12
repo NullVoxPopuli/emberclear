@@ -58,6 +58,11 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
         yield timeout(10);
       } else {
         yield markAsRead(message);
+
+        if (message.sender && message.sender.numUnread > 0) {
+          message.sender.numUnread--;
+        }
+
         return;
       }
     }

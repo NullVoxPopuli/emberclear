@@ -21,14 +21,16 @@ export default class ApplicationRoute extends Route {
     (this.store as any).shouldTrackAsyncRequests = true;
     (this.store as any).generateStackTracesForTrackedRequests = true;
 
-    await ensureRelays(getOwner(this));
-
     // TODO: check all the modern web requirements
     this.settings.applyTheme();
+
     await this.locale.setLocale(this.locale.currentLocale);
     await this.currentUser.load();
 
-    await ensureAtLeastOneContact(getOwner(this));
+    if (this.currentUser.isLoggedIn) {
+      await ensureRelays(getOwner(this));
+      await ensureAtLeastOneContact(getOwner(this));
+    }
   }
 
   async model() {
@@ -44,6 +46,8 @@ export default class ApplicationRoute extends Route {
   }
 
   afterModel() {
-    this.connection.connect();
+    if (this.currentUser.isLoggedIn) {
+      this.connection.connect();
+    }
   }
 }
