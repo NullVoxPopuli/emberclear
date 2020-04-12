@@ -8,6 +8,7 @@ module.exports = {
     'plugin:qunit/recommended',
     'plugin:decorator-position/ember',
     'plugin:@typescript-eslint/recommended',
+    'plugin:compat/recommended',
     'prettier',
     'prettier/@typescript-eslint',
   ],

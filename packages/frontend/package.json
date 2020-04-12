@@ -10,6 +10,7 @@
     "doc": "doc",
     "test": "tests"
   },
+  "browserslist": ["> 3%", "not IE 11", "not dead", "not Safari 13", "not and_uc 12"],
   "repository": "https://github.com/NullVoxPopuli/emberclear.git",
   "scripts": {
     "clean": "rm -rf dist tmp node_modules concat-stats-for coverage*",
@@ -164,6 +165,7 @@
     "ember-web-app": "^4.0.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-compat": "^3.5.1",
     "eslint-plugin-decorator-position": "^2.0.2",
     "eslint-plugin-ember": "8.2.0",
     "eslint-plugin-node": "^11.1.0",
