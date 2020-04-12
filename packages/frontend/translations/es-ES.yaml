@@ -4,6 +4,7 @@ subheader: Chat encriptado. Sin historia. Sin registros.
 authoredBy: por Preston Sego
 redditCommunity: Comunidad de Reddit
 twitter: Twitter
+emberjs: Ember.JS
 todo: 'Por hacer: llenar esto correctamente'
 install: Instalar
 bundle-analysis: JS Bundle Analysis
@@ -152,6 +153,8 @@ ui:
         esc: to dismiss
   sidebar:
     find: Find...
+    keepTyping: '{num} characters left to search...'
+    results: '{num} results'
     unread: Sin leer
     channels:
       title: Canales
