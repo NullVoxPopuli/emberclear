@@ -1,6 +1,5 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { restartableTask } from 'ember-concurrency-decorators';
 
 import { PRIVATE_CHAT_REGEX, idFrom } from 'emberclear/utils/route-matchers';
 
@@ -60,7 +59,6 @@ export default class SidebarChatData extends Component<Args> {
           contact.uid === urlId ||
           // the contact has sent us messages that we haven't seen yet
           contact.numUnread > 0
-          // false
         );
       });
     }
@@ -70,11 +68,6 @@ export default class SidebarChatData extends Component<Args> {
     }
 
     return contacts.sort(sortByPinned).slice(0, 40);
-  }
-
-  @restartableTask({ withTestWaiter: true })
-  *searchContacts(_searchTerm: string) {
-    // TODO: do I want to search this way instead? using query? like in the search modal?
   }
 
   get chats() {

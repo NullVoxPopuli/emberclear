@@ -6,6 +6,7 @@
     <input
       class='input mar-b-sm'
       type='text'
+      data-test-sidebar-search
       placeholder={{t 'ui.sidebar.find'}}
       {{on 'input' this.handleSearch}}
     >
@@ -13,7 +14,7 @@
     <App::Sidebar::Chats::Data @searchText={{this.searchText}} as |data|>
 
       {{#if this._searchText}}
-        <span class='results-info'>
+        <span data-test-search-info class='results-info'>
           {{#if this.hasEnoughToSearch}}
             {{t 'ui.sidebar.results' num=(sub data.chats.length 2)}}
           {{else}}

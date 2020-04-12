@@ -1,5 +1,5 @@
 import { find } from '@ember/test-helpers';
-import { create, clickable, isPresent } from 'ember-cli-page-object';
+import { create, clickable, isPresent, fillable, text } from 'ember-cli-page-object';
 import { getter } from 'ember-cli-page-object/macros';
 import {
   sidebarChannelsPage,
@@ -41,6 +41,9 @@ export const page = create({
 
   sidebar: {
     scope: 'aside',
+
+    search: fillable('[data-test-sidebar-search]'),
+    searchInfo: text('[data-test-search-info]'),
 
     contacts: sidebarContactsPage,
     channels: sidebarChannelsPage,
