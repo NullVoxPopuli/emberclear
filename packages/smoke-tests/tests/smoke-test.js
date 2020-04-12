@@ -6,32 +6,33 @@ const Login = require('../page-objects/login');
 const AddFriend = require('../page-objects/add-friend');
 const Chat = require('../page-objects/chat');
 const { startServer } = require('../helpers/start-server');
-const { repository } = require('../../frontend/package');
-const { getStatus } = require('poll-pr-status');
 
 describe('smoke', function() {
-  setUpWebDriver.call(this);
-
   before(async function() {
     switch (process.env.WEBDRIVER_TARGET) {
       case 'pull-request': {
-        // wait for the netlify job to start
-        this.timeout(5 * 60 * 1000);
+        console.info('---- DEPLOY PREVIEW ----');
+        console.info(process.env.DEPLOY_URL);
 
-        let status = await getStatus({
-          repository,
-          context: 'deploy/netlify',
-        });
+        this.host = process.env.DEPLOY_URL;
 
-        this.host = status.target_url;
+        if (!this.host) {
+          throw new Error(`host not set. Did you forget to set $DEPLOY_URL?`);
+        }
 
         break;
       }
       case 'local': {
-        let serverInfo = await startServer();
+        let { server, port } = await startServer();
 
-        this.server = serverInfo.server;
-        this.host = `http://localhost:${serverInfo.port}`;
+        this.server = server;
+
+        this.host = `http://localhost:${port}`;
+
+        break;
+      }
+      case 'ember': {
+        this.host = `https://localhost:4201`;
 
         break;
       }
@@ -42,6 +43,8 @@ describe('smoke', function() {
       }
     }
   });
+
+  setUpWebDriver.call(this);
 
   beforeEach(async function() {
     this.loginPage1 = new Login(this.browsers[0]);
