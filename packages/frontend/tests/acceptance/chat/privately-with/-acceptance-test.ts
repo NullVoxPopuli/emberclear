@@ -325,6 +325,7 @@ module('Acceptance | Chat | Privately With', function (hooks) {
 
         module('there are many messages', function (hooks) {
           let numMessages = 50;
+
           hooks.beforeEach(async function (assert) {
             let currentUser = getService('current-user').record!;
 
@@ -337,9 +338,6 @@ module('Acceptance | Chat | Privately With', function (hooks) {
                 A third`
               );
 
-              // if (i === 0) {
-              //   firstMessage = message;
-              // }
               if (i === numMessages - 1) {
                 lastMessage = message;
               }
@@ -356,7 +354,8 @@ module('Acceptance | Chat | Privately With', function (hooks) {
             await timeout(1000);
             // for some reason scroll events aren't triggered unless a message is deleted?
             // but only while testing?
-            await page.messages[page.messages.length - 1].confirmations.delete();
+            // NOTE: don't delete the last message, because we test that it exists
+            await page.messages[page.messages.length - 2].confirmations.delete();
           });
 
           test('most recent messages are shown', async function (assert) {
