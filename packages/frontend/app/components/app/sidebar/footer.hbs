@@ -10,6 +10,15 @@
 
       <a
         class='button button-link'
+        href={{url-for 'qr'}}
+        title={{t 'routes.qr'}}
+        {{on 'click' (handle-sidebar-click (transition-to 'qr'))}}
+      >
+        <FaIcon @icon='qrcode' />
+      </a>
+
+      <a
+        class='button button-link'
         href={{url-for 'contacts'}}
         title={{t 'routes.contacts'}}
         {{on 'click' (handle-sidebar-click (transition-to 'contacts'))}}

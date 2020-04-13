@@ -45,6 +45,10 @@ body > main > section {
   @apply --grid;
 }
 
+.grid-column {
+  @apply --column-grid;
+}
+
 button {
   /* check scan button if changing this */
 

@@ -16,22 +16,22 @@ export function fromHex(hex: string): Uint8Array {
   return new Uint8Array(matches.map((byte) => parseInt(byte, 16)));
 }
 
-export async function convertObjectToQRCodeDataURL(object: any): Promise<string> {
-  const string = JSON.stringify(object);
+export async function convertObjectToQRCodeDataURL<T extends object>(object: T): Promise<string> {
+  const str = JSON.stringify(object);
 
-  return await QRCode.toDataURL(string);
+  return await QRCode.toDataURL(str);
 }
 
 export function convertObjectToUint8Array<T>(object: T): Uint8Array {
-  const string = JSON.stringify(object);
+  const str = JSON.stringify(object);
 
-  return new TextEncoder().encode(string);
+  return new TextEncoder().encode(str);
 }
 
 export function convertUint8ArrayToObject<T>(array: Uint8Array): T {
-  const string = new TextDecoder().decode(array);
+  const str = new TextDecoder().decode(array);
 
-  return JSON.parse(string);
+  return JSON.parse(str);
 }
 
 export function convertObjectToBase64String(object: any): string {
@@ -43,14 +43,14 @@ export function convertObjectToBase64String(object: any): string {
 
 export function convertBase64StringToObject(base64: string): any {
   const json = atob(base64);
-  const object = JSON.parse(json);
+  const obj = JSON.parse(json);
 
-  return object;
+  return obj;
 }
 
-export function objectToDataURL(object: any): string {
-  const string = JSON.stringify(object);
-  return `data:text/json;charset=utf-8,${encodeURIComponent(string)}`;
+export function objectToDataURL(obj: any): string {
+  const str = JSON.stringify(obj);
+  return `data:text/json;charset=utf-8,${encodeURIComponent(str)}`;
 }
 
 // http://stackoverflow.com/a/39460727

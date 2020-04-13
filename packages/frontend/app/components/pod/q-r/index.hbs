@@ -1,0 +1,43 @@
+{{#switch-state this.current as |when ctx|}}
+
+  {{#if (call when.is 'error')}}
+
+    <ErrorCard @message={{this.ctx.error}} @retry={{fn this.transition 'RETRY'}} />
+
+  {{else if (call when.any 'scanning' 'scanned')}}
+
+    <QRScanner @onScan={{this.handleScan}} />
+
+  {{else if (call when.is 'loginToANewDevice.askPermission')}}
+
+    <Pod::QR::Login::Ask
+      @code={{ctx.data.verify}}
+      @allow={{fn this.transition 'ALLOW'}}
+      @deny={{fn this.transition 'DENY'}}
+    />
+
+  {{else if (call when.is 'loginToANewDevice.transferAllowed')}}
+
+    Transferring Data
+
+  {{else if (call when.is 'loginToANewDevice.transferDenied')}}
+
+    Why'd you even scan the QR Code then? Retry or exit?
+
+  {{else if (call when.is 'loginToANewDevice.transferComplete')}}
+
+    You are now logged in on the other device
+
+  {{else if (call when.is 'loginToANewDevice.transferError')}}
+
+    Oh no something went wrong. Retry?
+
+  {{else}}
+
+    <ErrorCard @message={{'Unknown State'}} @retry={{fn this.transition 'RETRY'}} />
+
+  {{/if}}
+
+
+{{/switch-state}}
+

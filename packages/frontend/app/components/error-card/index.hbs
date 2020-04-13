@@ -1,0 +1,18 @@
+<div class='card'>
+
+  <header>
+    An Error occurred!
+  </header>
+
+  <p>
+    {{@message}}
+  </p>
+
+  <footer class='cta'>
+    {{#if @retry}}
+      <button type='button' class='button-secondary' {{on 'click' @retry}}>
+        Retry
+      </button>
+    {{/if}}
+  </footer>
+</div>

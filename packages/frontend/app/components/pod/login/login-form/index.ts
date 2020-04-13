@@ -15,7 +15,7 @@ import { derivePublicKey, generateSigningKeys } from 'emberclear/workers/crypto/
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 
-export default class LoginForm extends Component {
+export default class LoginForm extends Component<{}> {
   @service currentUser!: CurrentUserService;
   @service settings!: Settings;
   @service toast!: Toast;
@@ -24,7 +24,6 @@ export default class LoginForm extends Component {
 
   @tracked mnemonic = '';
   @tracked name = '';
-  @tracked scanning = false;
 
   get contacts() {
     return this.store.peekAll('contact');
@@ -70,16 +69,6 @@ export default class LoginForm extends Component {
   }
 
   @action
-  toggleScanning(this: LoginForm) {
-    this.scanning = !this.scanning;
-  }
-
-  @action
-  onScan(this: LoginForm, settingsJson: string) {
-    taskFor(this.uploadSettings).perform(settingsJson);
-  }
-
-  @action
   onChooseFile(data: string) {
     taskFor(this.uploadSettings).perform(data);
   }
@@ -87,10 +76,5 @@ export default class LoginForm extends Component {
   @action
   onSubmit() {
     taskFor(this.login).perform();
-  }
-
-  @action
-  onScanError(e: Error) {
-    this.toast.error(e.message);
   }
 }

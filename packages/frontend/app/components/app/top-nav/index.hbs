@@ -54,6 +54,11 @@
     {{/unless}}
 
     <App::TopNav::Install />
+
+    <LinkTo @route='qr'>
+      <FaIcon @icon='qrcode' />
+    </LinkTo>
+
     <App::TopNav::LocaleSelect />
 
     {{#if this.currentUser.isLoggedIn}}
