@@ -33,7 +33,39 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
   module('vote is valid', function (hooks) {
     test('when only one chain', async function (assert) {
       const store = getStore();
-      let currentVote = store.createRecord('vote-chain');
+      let user1SigningKeys = await crypto.generateSigningKeys();
+      let user1Keys = await crypto.generateKeys();
+      let user1 = store.createRecord('user', {
+        privateKey: user1Keys.privateKey,
+        publicKey: user1Keys.publicKey,
+        privateSigningKey: user1SigningKeys.privateSigningKey,
+        publicSigningKey: user1SigningKeys.publicSigningKey,
+      });
+
+      let userToAddSigningKeys = await crypto.generateSigningKeys();
+      let userToAddKeys = await crypto.generateKeys();
+      let userToAdd = store.createRecord('user', {
+        privateKey: userToAddKeys.privateKey,
+        publicKey: userToAddKeys.publicKey,
+        privateSigningKey: userToAddSigningKeys.privateSigningKey,
+        publicSigningKey: userToAddSigningKeys.publicSigningKey,
+      });
+
+      let currentVote = store.createRecord('vote-chain', {
+        yes: [user1],
+        no: [],
+        remaining: [],
+        action: VOTE_ACTION.ADD,
+        target: userToAdd,
+        key: user1,
+        previousVoteChain: undefined,
+        signature: undefined,
+      });
+      currentVote.signature = await crypto.sign(
+        await crypto.hash(voteSorter.generateSortedVote(currentVote)),
+        user1.privateSigningKey
+      );
+
       assert.ok(await service.verify(currentVote));
     });
 
