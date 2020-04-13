@@ -25,10 +25,10 @@ export default class ApplicationRoute extends Route {
     this.settings.applyTheme();
 
     await this.locale.setLocale(this.locale.currentLocale);
+    await ensureRelays(getOwner(this));
     await this.currentUser.load();
 
     if (this.currentUser.isLoggedIn) {
-      await ensureRelays(getOwner(this));
       await ensureAtLeastOneContact(getOwner(this));
     }
   }

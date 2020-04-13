@@ -140,9 +140,11 @@ export default class CurrentUserService extends Service {
         backgroundReload: true,
       });
 
-      this.hydrateCrypto(existing);
+      await this.hydrateCrypto(existing);
 
       this.record = existing;
+
+      await this.migrate();
 
       return existing;
     } catch (e) {
@@ -157,6 +159,23 @@ export default class CurrentUserService extends Service {
     if (!this.record) return await this.load();
 
     return this.record;
+  }
+
+  async migrate() {
+    if (!this.record || !this.crypto) {
+      return;
+    }
+
+    if (!this.privateSigningKey) {
+      let { publicSigningKey, privateSigningKey } = await this.crypto.generateSigningKeys();
+
+      this.record.setProperties({
+        publicSigningKey,
+        privateSigningKey,
+      });
+
+      await this.record.save();
+    }
   }
 
   hydrateCrypto(user?: User) {

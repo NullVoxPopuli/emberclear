@@ -1,0 +1,15 @@
+<div class='right text-center'>
+  {{#if this.isLoading}}
+    <EllipsisLoader />
+  {{else}}
+    <QRCode @data={{this.qrData}} />
+    <h4 class='manual-verification-code text-center'>
+      {{this.verification}}
+    </h4>
+
+    <h3>Log in with QR Code</h3>
+    <p>
+      Scan this with emberclear to login and have all your data transferred instantly.
+    </p>
+  {{/if}}
+</div>

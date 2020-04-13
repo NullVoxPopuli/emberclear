@@ -117,7 +117,7 @@ declare global {
     result: MemberResult[];
   }
 
-  interface RelayJson {
+  interface StandardMessage {
     id: string;
     to: string;
     type: string;
@@ -141,6 +141,26 @@ declare global {
       blocked: ChannelBlock[];
     };
   }
+
+  type LoginSYN = { type: 'SYN'; data: string };
+  type LoginACK = { type: 'ACK' };
+  type LoginHash = { type: 'HASH'; data: string };
+  type LoginData = {
+    type: 'DATA';
+    hash: string;
+    data: {
+      version: number;
+      name: string;
+      privateKey: string;
+      privateSigningKey?: string;
+      contacts: { name: string; publicKey: string }[];
+      channels: { id: string; name: string }[];
+    };
+  };
+
+  type LoginMessage = LoginData | LoginACK | LoginSYN | LoginHash;
+
+  type RelayJson = StandardMessage | LoginMessage;
 }
 
 //

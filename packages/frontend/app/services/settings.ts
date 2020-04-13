@@ -81,6 +81,10 @@ export default class Settings extends Service {
   async import(settings: string) {
     const json = JSON.parse(settings) as ISettingsJson;
 
+    await this.importData(json);
+  }
+
+  async importData(json: ISettingsJson) {
     const {
       name,
       privateKey: privateKeyHex,
@@ -114,11 +118,16 @@ export default class Settings extends Service {
     return objectToDataURL(toDownload);
   }
 
-  async buildSettings(): Promise<ISettingsJson | undefined> {
-    const { name, publicKey, privateKey, publicSigningKey, privateSigningKey } = this.currentUser;
+  async buildSettings(): Promise<ISettingsJson> {
+    const { name, privateKey, privateSigningKey } = this.currentUser;
 
-    if (!privateKey || !publicKey) return;
-    if (!privateSigningKey || !publicSigningKey) return;
+    if (!privateKey) {
+      throw new Error('User does not have a private key');
+    }
+
+    if (!privateSigningKey) {
+      throw new Error('User does not have a signing key');
+    }
 
     const contacts = await this.contactManager.allContacts();
     const channels = await this.channelManager.allChannels();
@@ -128,11 +137,11 @@ export default class Settings extends Service {
       name: name || '',
       privateKey: toHex(privateKey),
       privateSigningKey: toHex(privateSigningKey),
-      contacts: contacts.map((c) => ({
+      contacts: contacts.toArray().map((c) => ({
         name: c.name,
         publicKey: c.publicKey && toHex(c.publicKey),
       })),
-      channels: channels.map((c) => ({
+      channels: channels.toArray().map((c) => ({
         // TODO: add members list
         id: c.id,
         name: c.name,

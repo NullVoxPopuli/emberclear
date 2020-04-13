@@ -23,6 +23,7 @@
 @import './defaults';
 @import './shoelace-overrides';
 @import './components/backdrop';
+@import './components/card';
 @import './components/chat-entry';
 @import './components/connection-status';
 @import './components/contacts';
@@ -218,5 +219,37 @@
       white-space: initial;
       word-wrap: break-word;
     }
+  }
+}
+
+.login-form-contents {
+  @apply --grid;
+  align-items: center;
+  justify-content: space-between;
+  justify-items: center;
+
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+
+  & .left {
+    & p {
+      @apply --column-grid;
+      align-items: center;
+      justify-content: start;
+    }
+  }
+
+  & .right {
+    & .manual-verification-code {
+      margin-top: -1.5rem;
+      font-weight: bold;
+    }
+  }
+}
+
+@media (--breakpoint-sm-up) {
+  /* sm screens and above */
+  .login-form-contents {
+    grid-template-columns: 55% 35%;
   }
 }

@@ -1,57 +1,53 @@
-<FocusCard @title={{t 'ui.login.title'}}>
+<FocusCard @title="Welcome Back!">
 
   {{#if this.uploadSettings.isRunning}}
     <EllipsisLoader /><br>
     {{t 'ui.login.loading' num=this.contacts.length}}
   {{/if}}
 
-  {{#if this.scanning}}
-    <QRScanner
-      @onScan={{this.onScan}}
-      @onError={{this.onScanError}}
-      @onCancel={{this.toggleScanning}}
-    />
-  {{/if}}
+  <div class='login-form-contents'>
+    <div class='left'>
+      <Field @label={{t 'input.label.name'}}>
+        <Input data-test-name @value={{this.name}} />
+      </Field>
 
-  {{#unless this.scanning}}
-    <Field @label={{t 'input.label.name'}}>
-      <Input data-test-name @value={{this.name}} />
-    </Field>
+      <Field @label={{t 'input.label.mnemonic'}}>
+        <Input data-test-mnemonic @value={{this.mnemonic}} />
+      </Field>
 
-    <Field @label={{t 'input.label.mnemonic'}}>
-      <Input data-test-mnemonic @value={{this.mnemonic}} />
-    </Field>
+      <div class='cta-with-fallback'>
+        <FileChooser @onChoose={{this.onChooseFile}} as |chooser|>
+          <button
+            data-test-upload-settings
+            type='button'
+            class='button-secondary'
+            {{on 'click' chooser.openFileChooser}}
+          >
+            {{t 'buttons.uploadSettings'}}
+          </button>
+        </FileChooser>
 
-    <Field>
-      <button
-        data-test-scan-settings
-        type='button'
-        class='bg-secondary'
-        {{on 'click' this.toggleScanning}}
-      >
-        {{t 'buttons.scan'}}
-      </button>
-
-      <FileChooser @onChoose={{this.onChooseFile}} as |chooser|>
         <button
-          data-test-upload-settings
-          type='button'
-          class='bg-secondary'
-          {{on 'click' chooser.openFileChooser}}
+          data-test-submit-login
+          type='submit'
+          {{on 'click' this.onSubmit}}
         >
-          {{t 'buttons.uploadSettings'}}
+          {{t 'buttons.login'}}
         </button>
-      </FileChooser>
 
-      <button
-        data-test-submit-login
-        type='submit'
-        {{on 'click' this.onSubmit}}
-      >
-        {{t 'buttons.login'}}
-      </button>
-    </Field>
+      </div>
 
-  {{/unless}}
+      <hr>
+
+      <footer>
+        Note that without another logged in device or your mnemonic, your account
+        will be unrecoverable as there is no central storage to recovery from.
+      </footer>
+    </div>
+
+    <Pod::Login::LoginForm::TransferPrompt />
+  </div>
+
+
 
 </FocusCard>

@@ -1,0 +1,25 @@
+<div class='row row-center'>
+  <div class='col-12 col-sm-8'>
+    <header>
+      <h2>Verify</h2>
+    </header>
+    <p>
+      Do you want to login to a new device?
+      <br>
+      Be sure that the code matches the code below the QR Image on the device.
+      <h2 class='text-center mar-xs mar-b-xl'>
+        <code class='has-shadow'>{{@code}}</code>
+      </h2>
+    </p>
+
+    <footer class='cta-with-fallback'>
+      <button type='button' class='button-secondary' {{on 'click' @deny}}>
+        Deny
+      </button>
+
+      <button type='button' {{on 'click' @allow}}>
+        Allow
+      </button>
+    </footer>
+  </div>
+</div>

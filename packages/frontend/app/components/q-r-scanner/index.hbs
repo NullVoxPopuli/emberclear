@@ -4,11 +4,15 @@
   {{did-insert this.start}}
 >
 
-  <JSQR::Scanner
-    @cameraStream={{this.cameraStream}}
-    @onData={{this.handleData}}
-  >
-    <div class='loader'></div>
-  </JSQR::Scanner>
+  {{#if this.cameraStream}}
+    <JSQR::Scanner
+      @cameraStream={{this.cameraStream}}
+      @onData={{this.handleData}}
+    >
+      <div class='loader'></div>
+    </JSQR::Scanner>
+  {{else}}
+    Awaiting Camera Access
+  {{/if}}
 
 </div>

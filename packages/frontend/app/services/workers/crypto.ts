@@ -79,16 +79,16 @@ export default class CryptoConnector {
   async encryptForSocket(payload: RelayJson, { publicKey }: KeyPublic) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<KeyPair, EncryptForSocket>({
+    return await worker.postMessage<string, EncryptForSocket>({
       action: Action.ENCRYPT_FOR_SOCKET,
       args: [payload, { publicKey }, { privateKey: this.keys.privateKey }],
     });
   }
 
-  async decryptFromSocket(socketData: RelayMessage) {
+  async decryptFromSocket<ExpectedReturn = any>(socketData: RelayMessage) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<KeyPair, DecryptFromSocket>({
+    return await worker.postMessage<ExpectedReturn, DecryptFromSocket>({
       action: Action.DECRYPT_FROM_SOCKET,
       args: [socketData, this.keys.privateKey],
     });

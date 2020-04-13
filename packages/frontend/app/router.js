@@ -29,6 +29,7 @@ Router.map(function () {
   this.route('donate');
 
   this.route('not-found', { path: '/*path' });
+  this.route('qr');
 });
 
 export default Router;
