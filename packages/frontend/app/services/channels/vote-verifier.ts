@@ -2,17 +2,16 @@ import Service, { inject as service } from '@ember/service';
 import VoteChain from 'emberclear/models/vote-chain';
 import CryptoConnector from '../workers/crypto';
 import WorkersService from '../workers';
-import VoteSorter from './vote-sorter';
+import { generateSortedVote } from './-utils/vote-sorter';
 
 export default class VoteVerifier extends Service {
   @service workers!: WorkersService;
-  @service('channels/vote-sorter') voteSorter!: VoteSorter;
   crypto?: CryptoConnector;
 
   async verify(voteToVerify: VoteChain): Promise<boolean> {
     this.connectCrypto();
 
-    let voteToVerifyActual: Uint8Array = this.voteSorter.generateSortedVote(voteToVerify);
+    let voteToVerifyActual: Uint8Array = generateSortedVote(voteToVerify);
     let voteToVerifyActualHash: Uint8Array = await this.crypto!.hash(voteToVerifyActual);
 
     let voteToVerifyExpectedHash: Uint8Array = await this.crypto!.openSigned(

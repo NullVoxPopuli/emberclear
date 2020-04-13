@@ -1,23 +1,13 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { clearLocalStorage, getService, getStore } from 'emberclear/tests/helpers';
-import VoteSorter from 'emberclear/services/channels/vote-sorter';
+import { clearLocalStorage, getStore } from 'emberclear/tests/helpers';
 import { VOTE_ACTION } from 'emberclear/models/vote-chain';
+import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
 
 module('Unit | Service | channels/vote-sorter', function (hooks) {
   setupTest(hooks);
   clearLocalStorage(hooks);
-
-  let service!: VoteSorter;
-
-  hooks.beforeEach(function () {
-    service = getService('channels/vote-sorter');
-  });
-
-  test('it exists', function (assert) {
-    assert.ok(service);
-  });
 
   module('vote is sorted properly', function () {
     test('when ran', function (assert) {
@@ -54,7 +44,7 @@ module('Unit | Service | channels/vote-sorter', function (hooks) {
       currentVote.remaining.push(remaining1);
       currentVote.remaining.push(remaining2);
 
-      let result = JSON.parse(new TextDecoder().decode(service.generateSortedVote(currentVote)));
+      let result = JSON.parse(new TextDecoder().decode(generateSortedVote(currentVote)));
       assert.ok(
         result[0].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
