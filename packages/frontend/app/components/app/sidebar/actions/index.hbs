@@ -1,5 +1,15 @@
 <nav class='actions' style='height: 100%; overflow-y: auto;' data-test-actions-list>
-  {{#each this.actions as |action_item|}}
-    <App::Sidebar::Actions::Action @action={{action_item}} />
-  {{/each}}
+
+	<div data-test-sidebar-actions-header class='menu-label'>
+      {{t 'ui.sidebar.actions.title'}}
+      <a>
+        <span class='icon'>{{fa-icon 'plus'}}</span>
+      </a>
+    </div>
+
+	{{#each this.actions as |action_item|}}
+		<App::Sidebar::Actions::Action @action={{action_item}} />
+		<App::Sidebar::Actions::ResponsePanel />
+	{{/each}}
+
 </nav>
