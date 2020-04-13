@@ -10,10 +10,6 @@ export default class VoteVerifier extends Service {
   crypto?: CryptoConnector;
 
   async verify(voteToVerify: VoteChain): Promise<boolean> {
-    if (voteToVerify.previousVoteChain === undefined) {
-      return true;
-    }
-
     this.connectCrypto();
 
     let voteToVerifyActual: Uint8Array = this.voteSorter.generateSortedVote(voteToVerify);
@@ -27,11 +23,17 @@ export default class VoteVerifier extends Service {
     if (voteToVerifyActualHash.length !== voteToVerifyExpectedHash.length) {
       return false;
     }
+
     for (let i = 0; i < voteToVerifyActualHash.length; i++) {
       if (voteToVerifyActualHash[i] !== voteToVerifyExpectedHash[i]) {
         return false;
       }
     }
+
+    if (voteToVerify.previousVoteChain === undefined) {
+      return true;
+    }
+
     return this.verify(voteToVerify.previousVoteChain);
   }
 
