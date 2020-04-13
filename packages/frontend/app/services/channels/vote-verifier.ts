@@ -20,14 +20,8 @@ export default class VoteVerifier extends Service {
       voteToVerify.key.publicSigningKey
     );
 
-    if (voteToVerifyActualHash.length !== voteToVerifyExpectedHash.length) {
+    if (!this.checkVoteHashes(voteToVerifyActualHash, voteToVerifyExpectedHash)) {
       return false;
-    }
-
-    for (let i = 0; i < voteToVerifyActualHash.length; i++) {
-      if (voteToVerifyActualHash[i] !== voteToVerifyExpectedHash[i]) {
-        return false;
-      }
     }
 
     if (voteToVerify.previousVoteChain === undefined) {
@@ -35,6 +29,20 @@ export default class VoteVerifier extends Service {
     }
 
     return this.verify(voteToVerify.previousVoteChain);
+  }
+
+  private checkVoteHashes(actual: Uint8Array, expected: Uint8Array): boolean {
+    if (actual.length !== expected.length) {
+      return false;
+    }
+
+    for (let i = 0; i < actual.length; i++) {
+      if (actual[i] !== expected[i]) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   private connectCrypto() {

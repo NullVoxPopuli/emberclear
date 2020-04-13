@@ -19,7 +19,7 @@ module('Unit | Service | channels/vote-sorter', function (hooks) {
     assert.ok(service);
   });
 
-  module('vote is sorted properly', function (hooks) {
+  module('vote is sorted properly', function () {
     test('when ran', function (assert) {
       const store = getStore();
       let currentVote = store.createRecord('vote-chain');

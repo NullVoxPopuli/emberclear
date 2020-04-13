@@ -30,7 +30,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
     assert.ok(service);
   });
 
-  module('vote is valid', function (hooks) {
+  module('vote is valid', function () {
     test('when only one chain', async function (assert) {
       const store = getStore();
       let user1SigningKeys = await crypto.generateSigningKeys();
@@ -166,7 +166,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
     });
   });
 
-  module('vote is not valid', function (hooks) {
+  module('vote is not valid', function () {
     test('when there are many chains', async function (assert) {
       const store = getStore();
 
