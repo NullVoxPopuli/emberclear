@@ -22,6 +22,12 @@ export async function convertObjectToQRCodeDataURL(object: any): Promise<string>
   return await QRCode.toDataURL(string);
 }
 
+export function convertObjectToUint8Array(object: any): Uint8Array {
+  const string = JSON.stringify(object);
+
+  return new TextEncoder().encode(string);
+}
+
 export function convertObjectToBase64String(object: any): string {
   const json = JSON.stringify(object);
   const base64 = btoa(json);
