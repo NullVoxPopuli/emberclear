@@ -3,6 +3,7 @@ import VoteChain from 'emberclear/models/vote-chain';
 import CryptoConnector from '../workers/crypto';
 import WorkersService from '../workers';
 import { generateSortedVote } from './-utils/vote-sorter';
+import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
 
 export default class VoteVerifier extends Service {
   @service workers!: WorkersService;
@@ -19,7 +20,7 @@ export default class VoteVerifier extends Service {
       voteToVerify.key.publicSigningKey
     );
 
-    if (!this.checkVoteHashes(voteToVerifyActualHash, voteToVerifyExpectedHash)) {
+    if (!equalsUint8Array(voteToVerifyActualHash, voteToVerifyExpectedHash)) {
       return false;
     }
 
@@ -28,20 +29,6 @@ export default class VoteVerifier extends Service {
     }
 
     return this.verify(voteToVerify.previousVoteChain);
-  }
-
-  private checkVoteHashes(actual: Uint8Array, expected: Uint8Array): boolean {
-    if (actual.length !== expected.length) {
-      return false;
-    }
-
-    for (let i = 0; i < actual.length; i++) {
-      if (actual[i] !== expected[i]) {
-        return false;
-      }
-    }
-
-    return true;
   }
 
   private connectCrypto() {
