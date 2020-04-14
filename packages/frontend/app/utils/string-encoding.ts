@@ -28,6 +28,12 @@ export function convertObjectToUint8Array(object: any): Uint8Array {
   return new TextEncoder().encode(string);
 }
 
+export function convertUint8ArrayToObject(array: Uint8Array): any {
+  const string = new TextDecoder().decode(array);
+
+  return JSON.parse(string);
+}
+
 export function convertObjectToBase64String(object: any): string {
   const json = JSON.stringify(object);
   const base64 = btoa(json);
