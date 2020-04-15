@@ -51,7 +51,7 @@ export default class ChatEntry extends Component<IArgs> {
     this.isDisabled = true;
 
     if (this.session.hasFeatureFlag('text_commands') && this.text.charAt(0) == '?') {
-      this.commandHandler.handleCommand(this.text);
+      this.commandHandler.parseCommand(this.text);
     } else {
       await this.dispatchMessage(this.text);
     }
