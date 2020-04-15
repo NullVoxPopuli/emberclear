@@ -25,6 +25,7 @@ export default class ChatEntry extends Component<IArgs> {
   @service('messages/factory') messageFactory!: MessageFactory;
   @service('messages/command-handler') commandHandler!: CommandHandler;
   @service store!: StoreService;
+  @service session;
 
   @tracked isDisabled = false;
   @tracked isSubmitDisabled = true;
@@ -48,7 +49,7 @@ export default class ChatEntry extends Component<IArgs> {
 
     this.isDisabled = true;
 
-    if (this.text.charAt(0) == '?') {
+    if (this.session.hasFeatureFlag('text_commands') && this.text.charAt(0) == '?') {
       this.commandHandler.handleCommand(this.text);
     } else {
       await this.dispatchMessage(this.text);
