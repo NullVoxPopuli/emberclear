@@ -125,3 +125,10 @@ export default class CommandHandler extends Service {
     alert(commands.join('\n'));
   }
 }
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your services.
+declare module '@ember/service' {
+  interface Registry {
+    'messages/command-handler': CommandHandler;
+  }
+}
