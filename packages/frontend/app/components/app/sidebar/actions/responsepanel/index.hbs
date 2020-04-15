@@ -1,11 +1,11 @@
-<a {{on 'click' (prevent-default this.yes())}}>
+<button {{on 'click' this.yes}}>
 	<span class='icon'>{{fa-icon 'check'}}</span>
-</a>
+</button>
 
-<a {{on 'click' (prevent-default this.no())}}>
+<button {{on 'click' this.no}}>
 	<span class='icon'>{{fa-icon 'remove'}}</span>
-</a>
+</button>
 
-<a {{on 'click' (prevent-default this.dismiss())}}>
+<button {{on 'click' this.dismiss}}>
 	<span class='icon'>{{fa-icon 'minus'}}</span>
-</a>
+</button>
