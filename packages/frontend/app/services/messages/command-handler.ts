@@ -1,6 +1,23 @@
 import Service from '@ember/service';
 
 export default class CommandHandler extends Service {
+  commands = [
+    '(t) test',
+    '(s) state',
+    '(a) add-member [user] [role]',
+    '(r) remove-member [user] [role]',
+    '(p) change-admin [user] [role]',
+    '(v) vote [yes/no] <user>',
+    '(c) create-channel [role]',
+    '(cv) cancel-vote',
+    '(ucp) change-user-context-admin [user] [role]',
+    '(uca) change-user-context-add-user [user] [role]',
+    '(ucr) change-user-context-remove-user [user] [role]',
+    '(ucv) view-user-context [user] [role]',
+    '(rs) reset',
+    '(d) sync-discord-roles [user]',
+  ];
+
   handleCommand(text: string) {
     const args = text.slice(1).trim().split(/ +/g);
     const command = args[0];
@@ -11,51 +28,29 @@ export default class CommandHandler extends Service {
     // TODO author
     // const author = message.author;
 
-    if (command === "state" || command === "s") {
+    if (command === 'state' || command === 's') {
       this.printState();
-    } 
-
-    else if (command === "add-member" || command === "a") {
+    } else if (command === 'add-member' || command === 'a') {
       this.addMember();
-    }
-
-    else if (command === "remove-member" || command === "r") {
+    } else if (command === 'remove-member' || command === 'r') {
       this.removeMember();
-    }
-
-    else if (command === "change-admin" || command === "p") {
+    } else if (command === 'change-admin' || command === 'p') {
       this.changeAdmin();
-    }
-
-    else if (command === "vote" || command === "v") {
+    } else if (command === 'vote' || command === 'v') {
       this.vote();
-    }
-
-    else if (command === "change-user-context-admin"  || command === "ucp") {
+    } else if (command === 'change-user-context-admin' || command === 'ucp') {
       this.changeUserContextAdmin();
-    }
-
-    else if (command === "change-user-context-add-member" || command === "uca") {
+    } else if (command === 'change-user-context-add-member' || command === 'uca') {
       this.changeUserContextAddMember();
-    }
-
-    else if (command === "change-user-context-remove-member" || command === "ucr") {
+    } else if (command === 'change-user-context-remove-member' || command === 'ucr') {
       this.changeUserContextRemoveMember();
-    }
-
-    else if (command === "view-user-context" || command === "ucv") {
+    } else if (command === 'view-user-context' || command === 'ucv') {
       this.viewUserContext();
-    }
-
-    else if (command === "cancel-vote" || command === "cv") {
+    } else if (command === 'cancel-vote' || command === 'cv') {
       this.cancelVote();
-    }
-
-    else if (command === "reset" || command === "rs") {
+    } else if (command === 'reset' || command === 'rs') {
       this.reset();
-    }
-
-    else {
+    } else {
       this.showHelp();
     }
   }
@@ -106,23 +101,7 @@ export default class CommandHandler extends Service {
 
   showHelp() {
     // TODO replace with system message
-    const commands = [
-      "(t) test",
-      "(s) state",
-      "(a) add-member [user] [role]",
-      "(r) remove-member [user] [role]",
-      "(p) change-admin [user] [role]",
-      "(v) vote [yes/no] <user>",
-      "(c) create-channel [role]",
-      "(cv) cancel-vote",
-      "(ucp) change-user-context-admin [user] [role]",
-      "(uca) change-user-context-add-user [user] [role]",
-      "(ucr) change-user-context-remove-user [user] [role]",
-      "(ucv) view-user-context [user] [role]",
-      "(rs) reset",
-      "(d) sync-discord-roles [user]"
-    ];
-    alert(commands.join('\n'));
+    alert(this.commands.join('\n'));
   }
 }
 
