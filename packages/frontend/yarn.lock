@@ -6017,13 +6017,13 @@ ember-autoresize-modifier@^0.2.0:
     ember-cli-babel "^7.17.2"
     ember-cli-htmlbars "^4.2.2"
 
-ember-autostash-modifier@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/ember-autostash-modifier/-/ember-autostash-modifier-0.1.3.tgz#53fa2c2d7da8827dd1a943f3b98b51eef6f2c3c1"
-  integrity sha512-/j5fewi8glT1pn0a/y2WBou9bGXN3VFJ0b0q3WFiz7iG5L98LN2agVW4ORqA7UGcbUWRXaU/N6O7ukWHHCXBvw==
+ember-autostash-modifier@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/ember-autostash-modifier/-/ember-autostash-modifier-0.1.4.tgz#29f66a3102bf6ef28e70d89f68602b0b8cc68a95"
+  integrity sha512-2Zqc1kRDnjb9iBnrOcxxRm37yL3jVziKCF8rCOCjvUMXScG4zvqkJojZGePXWgTNgpt1cWa8WnFqhI3j4Z7JEg==
   dependencies:
     ember-cli-babel "7.19.0"
-    ember-cli-htmlbars "4.2.3"
+    ember-cli-htmlbars "4.3.1"
     ember-cli-typescript "3.1.3"
     ember-modifier "1.0.3"
     ember-template-lint "2.5.2"
@@ -6174,10 +6174,10 @@ ember-cli-htmlbars-inline-precompile@^2.1.0:
     heimdalljs-logger "^0.1.9"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.2.3.tgz#ca1a4ce3806594f0a69a1ada3eed749a125cc2bf"
-  integrity sha512-AA5N5a7T+9Bc3m+5X076WFYIN4EQL0o/g8acPBZnEolFJhc3TmnSlWay4JwEuvszA1MLFKmZET/VD9CfRw8+EQ==
+ember-cli-htmlbars@4.3.1, ember-cli-htmlbars@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.3.1.tgz#4af8adc21ab3c4953f768956b7f7d207782cb175"
+  integrity sha512-CW6AY/yzjeVqoRtItOKj3hcYzc5dWPRETmeCzr2Iqjt5vxiVtpl0z5VTqHqIlT5fsFx6sGWBQXNHIe+ivYsxXQ==
   dependencies:
     "@ember/edition-utils" "^1.2.0"
     babel-plugin-htmlbars-inline-precompile "^3.0.1"
@@ -6198,26 +6198,6 @@ ember-cli-htmlbars@^4.0.1, ember-cli-htmlbars@^4.0.9, ember-cli-htmlbars@^4.2.0,
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.3.0.tgz#841b16f59076b13664a2bb9b8e94902f35c3c18c"
   integrity sha512-/UlxHqKWEw8xDDANleh1onLK0ekJ54Ky76tl0XG2+Uo5TqFzLB8U9WMQhjbitBlV/CnMQc08ujZB+vAWvegdvQ==
-  dependencies:
-    "@ember/edition-utils" "^1.2.0"
-    babel-plugin-htmlbars-inline-precompile "^3.0.1"
-    broccoli-debug "^0.6.5"
-    broccoli-persistent-filter "^2.3.1"
-    broccoli-plugin "^3.1.0"
-    common-tags "^1.8.0"
-    ember-cli-babel-plugin-helpers "^1.1.0"
-    fs-tree-diff "^2.0.1"
-    hash-for-dep "^1.5.1"
-    heimdalljs-logger "^0.1.10"
-    json-stable-stringify "^1.0.1"
-    semver "^6.3.0"
-    strip-bom "^4.0.0"
-    walk-sync "^2.0.2"
-
-ember-cli-htmlbars@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.3.1.tgz#4af8adc21ab3c4953f768956b7f7d207782cb175"
-  integrity sha512-CW6AY/yzjeVqoRtItOKj3hcYzc5dWPRETmeCzr2Iqjt5vxiVtpl0z5VTqHqIlT5fsFx6sGWBQXNHIe+ivYsxXQ==
   dependencies:
     "@ember/edition-utils" "^1.2.0"
     babel-plugin-htmlbars-inline-precompile "^3.0.1"
