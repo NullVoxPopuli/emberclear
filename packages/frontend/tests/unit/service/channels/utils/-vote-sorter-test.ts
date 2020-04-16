@@ -3,12 +3,11 @@ import { setupTest } from 'ember-qunit';
 
 import { clearLocalStorage, getStore } from 'emberclear/tests/helpers';
 import { VOTE_ACTION } from 'emberclear/models/vote-chain';
-import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
+import { generateSortedVote, VOTE_ORDERING } from 'emberclear/services/channels/-utils/vote-sorter';
 import {
   convertObjectToUint8Array,
   convertUint8ArrayToObject,
 } from 'emberclear/utils/string-encoding';
-import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
 
 module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
   setupTest(hooks);
@@ -54,28 +53,45 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
 
       let result = convertUint8ArrayToObject(generateSortedVote(currentVote));
       assert.ok(
-        result[0].every(
+        result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
             !index || array[index - 1] <= current
         )
       );
       assert.ok(
-        result[1].every(
+        result[VOTE_ORDERING.yes].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
             !index || array[index - 1] <= current
         )
       );
       assert.ok(
-        result[2].every(
+        result[VOTE_ORDERING.no].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
             !index || array[index - 1] <= current
         )
       );
 
-      assert.ok(equalsUint8Array(result[3], currentUser.publicKey));
-      assert.equal(result[4], VOTE_ACTION.ADD);
-      assert.ok(equalsUint8Array(result[5], currentUser.publicSigningKey));
-      assert.ok(equalsUint8Array(result[6], firstVote.signature));
+      assert.ok(keyEquals(result[VOTE_ORDERING.targetKey], currentUser.publicKey));
+      assert.equal(result[VOTE_ORDERING.action], VOTE_ACTION.ADD);
+      assert.ok(keyEquals(result[VOTE_ORDERING.voterSigningKey], currentUser.publicSigningKey));
+      assert.ok(keyEquals(result[VOTE_ORDERING.previousChainSignature], firstVote.signature));
     });
   });
 });
+
+function keyEquals(arr: number[], uint8array: Uint8Array): boolean {
+  if (arr.length !== uint8array.length) {
+    return false;
+  }
+
+  console.error(arr);
+  console.error(uint8array);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== uint8array[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}

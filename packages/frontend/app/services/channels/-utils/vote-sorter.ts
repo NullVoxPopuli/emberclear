@@ -2,6 +2,16 @@ import VoteChain from 'emberclear/models/vote-chain';
 import Identity from 'emberclear/models/identity';
 import { convertObjectToUint8Array } from 'emberclear/utils/string-encoding';
 
+export const VOTE_ORDERING = {
+  remaining: 0,
+  yes: 1,
+  no: 2,
+  targetKey: 3,
+  action: 4,
+  voterSigningKey: 5,
+  previousChainSignature: 6,
+};
+
 export function generateSortedVote(vote: VoteChain): Uint8Array {
   let toReturn = [
     toSortedPublicKeys(vote.remaining),
