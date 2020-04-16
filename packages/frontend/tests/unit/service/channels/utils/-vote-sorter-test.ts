@@ -80,12 +80,9 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
 });
 
 function keyEquals(arr: number[], uint8array: Uint8Array): boolean {
-  if (arr.length !== uint8array.length) {
+  if (Object.keys(arr).length !== uint8array.length) {
     return false;
   }
-
-  console.error(arr);
-  console.error(uint8array);
 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] !== uint8array[i]) {
