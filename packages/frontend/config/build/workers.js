@@ -107,13 +107,6 @@ function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
 
 module.exports = {
   buildWorkerTrees(env) {
-    let { isTest } = env;
-
-    if (isTest) {
-      console.info('Env is test. Skipping worker builds.');
-      return [];
-    }
-
     let inputs = detectWorkers();
     let workerBuilder = configureWorkerTree(env);
     let workerTrees = Object.entries(inputs).map(workerBuilder);
