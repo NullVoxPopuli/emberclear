@@ -56,19 +56,19 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
         result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
             !index || array[index - 1] <= current
-        )
+        ), 'ensure remaining keys are sorted'
       );
       assert.ok(
         result[VOTE_ORDERING.yes].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
             !index || array[index - 1] <= current
-        )
+        ), 'ensure yes keys are sorted'
       );
       assert.ok(
         result[VOTE_ORDERING.no].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
             !index || array[index - 1] <= current
-        )
+        ), 'ensure no keys are sorted'
       );
 
       assert.ok(keyEquals(result[VOTE_ORDERING.targetKey], currentUser.publicKey));
@@ -84,7 +84,7 @@ function keyEquals(arr: number[], uint8array: Uint8Array): boolean {
     return false;
   }
 
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < uint8array.length; i++) {
     if (arr[i] !== uint8array[i]) {
       return false;
     }
