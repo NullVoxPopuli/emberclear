@@ -7,6 +7,7 @@ import CryptoConnector from 'emberclear/services/workers/crypto';
 import WorkersService from 'emberclear/services/workers';
 import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
+import { buildUser } from 'emberclear/tests/helpers/factories/user-factory';
 
 module('Unit | Service | channels/vote-verifier', function (hooks) {
   setupTest(hooks);
@@ -31,23 +32,8 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
   module('vote is valid', function () {
     test('when only one chain', async function (assert) {
       const store = getStore();
-      let user1SigningKeys = await crypto.generateSigningKeys();
-      let user1Keys = await crypto.generateKeys();
-      let user1 = store.createRecord('user', {
-        privateKey: user1Keys.privateKey,
-        publicKey: user1Keys.publicKey,
-        privateSigningKey: user1SigningKeys.privateSigningKey,
-        publicSigningKey: user1SigningKeys.publicSigningKey,
-      });
-
-      let userToAddSigningKeys = await crypto.generateSigningKeys();
-      let userToAddKeys = await crypto.generateKeys();
-      let userToAdd = store.createRecord('user', {
-        privateKey: userToAddKeys.privateKey,
-        publicKey: userToAddKeys.publicKey,
-        privateSigningKey: userToAddSigningKeys.privateSigningKey,
-        publicSigningKey: userToAddSigningKeys.publicSigningKey,
-      });
+      let user1 = await buildUser('user1');
+      let userToAdd = await buildUser('userToAdd');
 
       let currentVote = store.createRecord('vote-chain', {
         yes: [user1],
@@ -70,50 +56,11 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
     test('when there are many chains', async function (assert) {
       const store = getStore();
 
-      let user1SigningKeys = await crypto.generateSigningKeys();
-      let user1Keys = await crypto.generateKeys();
-      let user1 = store.createRecord('user', {
-        privateKey: user1Keys.privateKey,
-        publicKey: user1Keys.publicKey,
-        privateSigningKey: user1SigningKeys.privateSigningKey,
-        publicSigningKey: user1SigningKeys.publicSigningKey,
-      });
-
-      let user2SigningKeys = await crypto.generateSigningKeys();
-      let user2Keys = await crypto.generateKeys();
-      let user2 = store.createRecord('user', {
-        privateKey: user2Keys.privateKey,
-        publicKey: user2Keys.publicKey,
-        privateSigningKey: user2SigningKeys.privateSigningKey,
-        publicSigningKey: user2SigningKeys.publicSigningKey,
-      });
-
-      let user3SigningKeys = await crypto.generateSigningKeys();
-      let user3Keys = await crypto.generateKeys();
-      let user3 = store.createRecord('user', {
-        privateKey: user3Keys.privateKey,
-        publicKey: user3Keys.publicKey,
-        privateSigningKey: user3SigningKeys.privateSigningKey,
-        publicSigningKey: user3SigningKeys.publicSigningKey,
-      });
-
-      let user4SigningKeys = await crypto.generateSigningKeys();
-      let user4Keys = await crypto.generateKeys();
-      let user4 = store.createRecord('user', {
-        privateKey: user4Keys.privateKey,
-        publicKey: user4Keys.publicKey,
-        privateSigningKey: user4SigningKeys.privateSigningKey,
-        publicSigningKey: user4SigningKeys.publicSigningKey,
-      });
-
-      let userToAddSigningKeys = await crypto.generateSigningKeys();
-      let userToAddKeys = await crypto.generateKeys();
-      let userToAdd = store.createRecord('user', {
-        privateKey: userToAddKeys.privateKey,
-        publicKey: userToAddKeys.publicKey,
-        privateSigningKey: userToAddSigningKeys.privateSigningKey,
-        publicSigningKey: userToAddSigningKeys.publicSigningKey,
-      });
+      let user1 = await buildUser('user1');
+      let user2 = await buildUser('user2');
+      let user3 = await buildUser('user3');
+      let user4 = await buildUser('user4');
+      let userToAdd = await buildUser('userToAdd');
 
       let firstVote = store.createRecord('vote-chain', {
         yes: [user1],
@@ -168,50 +115,11 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
     test('when there are many chains', async function (assert) {
       const store = getStore();
 
-      let user1SigningKeys = await crypto.generateSigningKeys();
-      let user1Keys = await crypto.generateKeys();
-      let user1 = store.createRecord('user', {
-        privateKey: user1Keys.privateKey,
-        publicKey: user1Keys.publicKey,
-        privateSigningKey: user1SigningKeys.privateSigningKey,
-        publicSigningKey: user1SigningKeys.publicSigningKey,
-      });
-
-      let user2SigningKeys = await crypto.generateSigningKeys();
-      let user2Keys = await crypto.generateKeys();
-      let user2 = store.createRecord('user', {
-        privateKey: user2Keys.privateKey,
-        publicKey: user2Keys.publicKey,
-        privateSigningKey: user2SigningKeys.privateSigningKey,
-        publicSigningKey: user2SigningKeys.publicSigningKey,
-      });
-
-      let user3SigningKeys = await crypto.generateSigningKeys();
-      let user3Keys = await crypto.generateKeys();
-      let user3 = store.createRecord('user', {
-        privateKey: user3Keys.privateKey,
-        publicKey: user3Keys.publicKey,
-        privateSigningKey: user3SigningKeys.privateSigningKey,
-        publicSigningKey: user3SigningKeys.publicSigningKey,
-      });
-
-      let user4SigningKeys = await crypto.generateSigningKeys();
-      let user4Keys = await crypto.generateKeys();
-      let user4 = store.createRecord('user', {
-        privateKey: user4Keys.privateKey,
-        publicKey: user4Keys.publicKey,
-        privateSigningKey: user4SigningKeys.privateSigningKey,
-        publicSigningKey: user4SigningKeys.publicSigningKey,
-      });
-
-      let userToAddSigningKeys = await crypto.generateSigningKeys();
-      let userToAddKeys = await crypto.generateKeys();
-      let userToAdd = store.createRecord('user', {
-        privateKey: userToAddKeys.privateKey,
-        publicKey: userToAddKeys.publicKey,
-        privateSigningKey: userToAddSigningKeys.privateSigningKey,
-        publicSigningKey: userToAddSigningKeys.publicSigningKey,
-      });
+      let user1 = await buildUser('user1');
+      let user2 = await buildUser('user2');
+      let user3 = await buildUser('user3');
+      let user4 = await buildUser('user4');
+      let userToAdd = await buildUser('userToAdd');
 
       let firstVote = store.createRecord('vote-chain', {
         yes: [user1],
