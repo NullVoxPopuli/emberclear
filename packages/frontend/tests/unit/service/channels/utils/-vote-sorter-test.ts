@@ -14,7 +14,7 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
   clearLocalStorage(hooks);
 
   module('vote is sorted properly', function () {
-    test('when ran', function (assert) {
+    test('when ran with previous vote', function (assert) {
       const store = getStore();
       let yes1 = store.createRecord('identity', {
         publicKey: new Uint8Array([21, 32]),
@@ -75,6 +75,67 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
       assert.equal(result[VOTE_ORDERING.action], VOTE_ACTION.ADD);
       assert.ok(keyEquals(result[VOTE_ORDERING.voterSigningKey], currentUser.publicSigningKey));
       assert.ok(keyEquals(result[VOTE_ORDERING.previousChainSignature], firstVote.signature));
+      assert.equal(Object.keys(result).length, 7);
+    });
+
+    test('when ran without previous vote', function (assert) {
+      const store = getStore();
+      let yes1 = store.createRecord('identity', {
+        publicKey: new Uint8Array([21, 32]),
+      });
+      let yes2 = store.createRecord('identity', {
+        publicKey: new Uint8Array([11, 7]),
+      });
+      let no1 = store.createRecord('identity', {
+        publicKey: new Uint8Array([47, 75]),
+      });
+      let no2 = store.createRecord('identity', {
+        publicKey: new Uint8Array([32, 19]),
+      });
+      let remaining1 = store.createRecord('identity', {
+        publicKey: new Uint8Array([54, 32]),
+      });
+      let remaining2 = store.createRecord('identity', {
+        publicKey: new Uint8Array([20, 98]),
+      });
+      let currentUser = store.createRecord('identity', {
+        publicKey: convertObjectToUint8Array('key'),
+        publicSigningKey: convertObjectToUint8Array('signingKey'),
+      });
+      let currentVote = store.createRecord('vote-chain', {
+        action: VOTE_ACTION.ADD,
+        key: currentUser,
+        target: currentUser,
+        yes: [yes1, yes2],
+        no: [no1, no2],
+        remaining: [remaining2, remaining1],
+      });
+
+      let result = convertUint8ArrayToObject(generateSortedVote(currentVote));
+      assert.ok(
+        result[VOTE_ORDERING.remaining].every(
+          (current: Uint8Array, index: number, array: Uint8Array[]) =>
+            !index || array[index - 1] <= current
+        ), 'ensure remaining keys are sorted'
+      );
+      assert.ok(
+        result[VOTE_ORDERING.yes].every(
+          (current: Uint8Array, index: number, array: Uint8Array[]) =>
+            !index || array[index - 1] <= current
+        ), 'ensure yes keys are sorted'
+      );
+      assert.ok(
+        result[VOTE_ORDERING.no].every(
+          (current: Uint8Array, index: number, array: Uint8Array[]) =>
+            !index || array[index - 1] <= current
+        ), 'ensure no keys are sorted'
+      );
+
+      assert.ok(keyEquals(result[VOTE_ORDERING.targetKey], currentUser.publicKey));
+      assert.equal(result[VOTE_ORDERING.action], VOTE_ACTION.ADD);
+      assert.ok(keyEquals(result[VOTE_ORDERING.voterSigningKey], currentUser.publicSigningKey));
+      assert.equal(result[VOTE_ORDERING.previousChainSignature], undefined);
+      assert.equal(Object.keys(result).length, 7);
     });
   });
 });
