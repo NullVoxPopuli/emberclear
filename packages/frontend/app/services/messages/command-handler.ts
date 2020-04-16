@@ -69,20 +69,24 @@ export default class CommandHandler extends Service {
 
     for (let textCommand of this.commands) {
       if (textCommand.name === command || textCommand.aliases.includes(command!)) {
-        let paramCount = 0;
-        textCommand.params.forEach((_param) => {
-          paramCount++;
-        });
-        if (args.length !== paramCount) {
-          this.showHelp('Incorrect parameters. Expected ' + paramCount + ', got ' + args.length);
-          return;
-        }
-        textCommand.execute(args);
+        this.handleCommand(textCommand, args);
         return;
       }
     }
 
     this.showHelp('Command not found.');
+  }
+
+  handleCommand(textCommand: TextCommand, args: string[]): void {
+    let paramCount = 0;
+    textCommand.params.forEach((_param) => {
+      paramCount++;
+    });
+    if (args.length !== paramCount) {
+      this.showHelp('Incorrect parameters. Expected ' + paramCount + ', got ' + args.length);
+      return;
+    }
+    textCommand.execute(args);
   }
 
   printState(): void {
