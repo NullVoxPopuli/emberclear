@@ -90,47 +90,47 @@ export default class CommandHandler extends Service {
   }
 
   printState(): void {
-    alert('Viewing state.');
+    //TODO
   }
 
-  addMember(args: string[]): void {
-    alert('Adding member ' + args[0]);
+  addMember(_args: string[]): void {
+    //TODO
   }
 
-  removeMember(args: string[]): void {
-    alert('Removing member ' + args[0]);
+  removeMember(_args: string[]): void {
+    //TODO
   }
 
-  changeAdmin(args: string[]): void {
-    alert('Promoting member ' + args[0]);
+  changeAdmin(_args: string[]): void {
+    //TODO
   }
 
-  vote(args: string[]): void {
-    alert('Voting ' + args[1] + ' for vote ' + args[0]);
+  vote(_args: string[]): void {
+    //TODO
   }
 
-  changeUserContextAdmin(args: string[]): void {
-    alert('Changing admin to ' + args[0]);
+  changeUserContextAdmin(_args: string[]): void {
+    //TODO
   }
 
-  changeUserContextAddMember(args: string[]): void {
-    alert('Adding member ' + args[0]);
+  changeUserContextAddMember(_args: string[]): void {
+    //TODO
   }
 
-  changeUserContextRemoveMember(args: string[]): void {
-    alert('Removing member ' + args[0]);
+  changeUserContextRemoveMember(_args: string[]): void {
+    //TODO
   }
 
-  viewUserContext(args: string[]): void {
-    alert('Viewing user ' + args[0] + "'s context");
+  viewUserContext(_args: string[]): void {
+    //TODO
   }
 
-  cancelVote(args: string[]): void {
-    alert('Cancelling vote ' + args[0]);
+  cancelVote(_args: string[]): void {
+    //TODO
   }
 
   reset(): void {
-    alert('Resetting channel.');
+    //TODO
   }
 
   showHelp(error: string): void {
