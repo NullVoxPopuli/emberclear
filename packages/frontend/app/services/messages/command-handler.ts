@@ -1,16 +1,29 @@
 import Service from '@ember/service';
 
 class TextCommand {
-  names!: string[];
+  name!: string;
+  aliases!: string[];
   params!: string[];
   execute!: (args: string[] | void) => void;
 
-  toString(): string {
+  constructor(
+    name: string,
+    aliases: string[],
+    params: string[],
+    execute: (args: string[] | void) => void
+  ) {
+    this.name = name;
+    this.aliases = aliases;
+    this.params = params;
+    this.execute = execute;
+  }
+
+  helpString(): string {
     let commandString = '';
-    this.names.slice(1).forEach((alias) => {
+    this.aliases.forEach((alias) => {
       commandString += '(' + alias + ') ';
     });
-    commandString += this.names.objectAt(0);
+    commandString += this.name;
     this.params.forEach((parameter) => {
       commandString += ' ';
       commandString += '[' + parameter + ']';
@@ -22,81 +35,52 @@ class TextCommand {
 
 export default class CommandHandler extends Service {
   commands: TextCommand[] = [
-    {
-      names: ['state', 's'],
-      params: [],
-      execute: this.printState,
-    },
-    {
-      names: ['add-member', 'a'],
-      params: ['user'],
-      execute: this.addMember,
-    },
-    {
-      names: ['remove-member', 'r'],
-      params: ['user'],
-      execute: this.removeMember,
-    },
-    {
-      names: ['promote-member', 'p'],
-      params: ['user'],
-      execute: this.changeAdmin,
-    },
-    {
-      names: ['vote', 'v'],
-      params: ['vote', 'choice'],
-      execute: this.vote,
-    },
-    {
-      names: ['cancel-vote', 'cv'],
-      params: ['vote'],
-      execute: this.cancelVote,
-    },
-    {
-      names: ['change-user-context-admin', 'ucp'],
-      params: ['user'],
-      execute: this.changeUserContextAdmin,
-    },
-    {
-      names: ['change-user-context-add-member', 'uca'],
-      params: ['user'],
-      execute: this.changeUserContextAddMember,
-    },
-    {
-      names: ['change-user-context-remove-member', 'ucr'],
-      params: ['user'],
-      execute: this.changeUserContextRemoveMember,
-    },
-    {
-      names: ['view-user-context', 'ucv'],
-      params: ['user'],
-      execute: this.viewUserContext,
-    },
+    new TextCommand('state', ['s'], [], this.printState),
+    new TextCommand('add-member', ['a'], ['user'], this.addMember),
+    new TextCommand('remove-member', ['r'], ['user'], this.removeMember),
+    new TextCommand('promote-member', ['p'], ['user'], this.changeAdmin),
+    new TextCommand('vote', ['v'], ['vote', 'choice'], this.vote),
+    new TextCommand('cancel-vote', ['cv'], ['vote'], this.cancelVote),
+    new TextCommand('change-user-context-admin', ['ucp'], ['user'], this.changeUserContextAdmin),
+    new TextCommand(
+      'change-user-context-add-member',
+      ['uca'],
+      ['user'],
+      this.changeUserContextAddMember
+    ),
+    new TextCommand(
+      'change-user-context-remove-member',
+      ['ucr'],
+      ['user'],
+      this.changeUserContextRemoveMember
+    ),
+    new TextCommand('view-user-context', ['ucv'], ['user'], this.viewUserContext),
   ];
 
   //TODO: get the author and channel of the command
   parseCommand(text: string) {
     const args = text.slice(1).trim().split(/ +/g);
-    const command = args.pop();
+    const command = args.shift();
 
     if (command === undefined) {
       this.showHelp('No command provided.');
       return;
     }
 
-    this.commands.forEach((textCommand) => {
-      if (textCommand.names.includes(command!)) {
+    for (let textCommand of this.commands) {
+      if (textCommand.name === command || textCommand.aliases.includes(command!)) {
         let paramCount = 0;
         textCommand.params.forEach((_param) => {
           paramCount++;
         });
         if (args.length !== paramCount) {
           this.showHelp('Incorrect parameters. Expected ' + paramCount + ', got ' + args.length);
+          return;
         }
         textCommand.execute(args);
         return;
       }
-    });
+    }
 
     this.showHelp('Command not found.');
   }
@@ -149,7 +133,7 @@ export default class CommandHandler extends Service {
     // TODO replace with system message
     let helpString = 'Error: ' + error + '\n';
     this.commands.forEach((textCommand) => {
-      helpString += textCommand.toString;
+      helpString += textCommand.helpString();
     });
     alert(helpString);
   }
