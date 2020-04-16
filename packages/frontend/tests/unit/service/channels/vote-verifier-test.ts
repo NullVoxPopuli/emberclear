@@ -3,26 +3,19 @@ import { setupTest } from 'ember-qunit';
 
 import { clearLocalStorage, getService, getStore } from 'emberclear/tests/helpers';
 import VoteVerifier from 'emberclear/services/channels/vote-verifier';
-import CryptoConnector from 'emberclear/services/workers/crypto';
-import WorkersService from 'emberclear/services/workers';
 import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
 import { buildUser } from 'emberclear/tests/helpers/factories/user-factory';
+import { sign, hash } from 'emberclear/workers/crypto/utils/nacl';
 
 module('Unit | Service | channels/vote-verifier', function (hooks) {
   setupTest(hooks);
   clearLocalStorage(hooks);
 
   let service!: VoteVerifier;
-  let workers!: WorkersService;
-  let crypto!: CryptoConnector;
 
   hooks.beforeEach(function () {
     service = getService('channels/vote-verifier');
-    workers = getService('workers');
-    crypto = new CryptoConnector({
-      workerService: workers,
-    });
   });
 
   test('it exists', function (assert) {
@@ -45,8 +38,8 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
-      currentVote.signature = await crypto.sign(
-        await crypto.hash(generateSortedVote(currentVote)),
+      currentVote.signature = await sign(
+        await hash(generateSortedVote(currentVote)),
         user1.privateSigningKey
       );
 
@@ -72,8 +65,8 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
-      firstVote.signature = await crypto.sign(
-        await crypto.hash(generateSortedVote(firstVote)),
+      firstVote.signature = await sign(
+        await hash(generateSortedVote(firstVote)),
         user1.privateSigningKey
       );
 
@@ -87,8 +80,8 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: firstVote,
         signature: undefined,
       });
-      secondVote.signature = await crypto.sign(
-        await crypto.hash(generateSortedVote(secondVote)),
+      secondVote.signature = await sign(
+        await hash(generateSortedVote(secondVote)),
         user2.privateSigningKey
       );
 
@@ -102,8 +95,8 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: secondVote,
         signature: undefined,
       });
-      currentVote.signature = await crypto.sign(
-        await crypto.hash(generateSortedVote(currentVote)),
+      currentVote.signature = await sign(
+        await hash(generateSortedVote(currentVote)),
         user3.privateSigningKey
       );
 
@@ -131,8 +124,8 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
-      firstVote.signature = await crypto.sign(
-        await crypto.hash(generateSortedVote(firstVote)),
+      firstVote.signature = await sign(
+        await hash(generateSortedVote(firstVote)),
         user1.privateSigningKey
       );
 
@@ -146,8 +139,8 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: firstVote,
         signature: undefined,
       });
-      secondVote.signature = await crypto.sign(
-        await crypto.hash(generateSortedVote(secondVote)),
+      secondVote.signature = await sign(
+        await hash(generateSortedVote(secondVote)),
         user2.privateSigningKey
       );
       secondVote.no = [user4];
@@ -163,8 +156,8 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: secondVote,
         signature: undefined,
       });
-      currentVote.signature = await crypto.sign(
-        await crypto.hash(generateSortedVote(currentVote)),
+      currentVote.signature = await sign(
+        await hash(generateSortedVote(currentVote)),
         user3.privateSigningKey
       );
 
