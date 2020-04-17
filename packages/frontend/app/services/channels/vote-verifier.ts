@@ -17,9 +17,9 @@ export default class VoteVerifier extends Service {
     }
 
     let voteToVerifyActual: Uint8Array = generateSortedVote(voteToVerify);
-    let voteToVerifyActualHash: Uint8Array = await this.crypto!.hash(voteToVerifyActual);
+    let voteToVerifyActualHash: Uint8Array = await this.crypto.hash(voteToVerifyActual);
 
-    let voteToVerifyExpectedHash: Uint8Array = await this.crypto!.openSigned(
+    let voteToVerifyExpectedHash: Uint8Array = await this.crypto.openSigned(
       voteToVerify.signature,
       voteToVerify.key.publicSigningKey
     );
