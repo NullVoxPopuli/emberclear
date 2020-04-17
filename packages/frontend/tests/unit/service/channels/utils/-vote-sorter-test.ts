@@ -8,36 +8,22 @@ import {
   convertObjectToUint8Array,
   convertUint8ArrayToObject,
 } from 'emberclear/utils/string-encoding';
+import { buildUser } from 'emberclear/tests/helpers/factories/user-factory';
 
 module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
   setupTest(hooks);
   clearLocalStorage(hooks);
 
   module('vote is sorted properly', function () {
-    test('when ran with previous vote', function (assert) {
+    test('when ran with previous vote', async function (assert) {
       const store = getStore();
-      let yes1 = store.createRecord('identity', {
-        publicKey: new Uint8Array([21, 32]),
-      });
-      let yes2 = store.createRecord('identity', {
-        publicKey: new Uint8Array([11, 7]),
-      });
-      let no1 = store.createRecord('identity', {
-        publicKey: new Uint8Array([47, 75]),
-      });
-      let no2 = store.createRecord('identity', {
-        publicKey: new Uint8Array([32, 19]),
-      });
-      let remaining1 = store.createRecord('identity', {
-        publicKey: new Uint8Array([54, 32]),
-      });
-      let remaining2 = store.createRecord('identity', {
-        publicKey: new Uint8Array([20, 98]),
-      });
-      let currentUser = store.createRecord('identity', {
-        publicKey: convertObjectToUint8Array('key'),
-        publicSigningKey: convertObjectToUint8Array('signingKey'),
-      });
+      let yes1 = await buildUser('yes1');
+      let yes2 = await buildUser('yes2');
+      let no1 = await buildUser('no1');
+      let no2 = await buildUser('no2');
+      let remaining1 = await buildUser('remaining1');
+      let remaining2 = await buildUser('remaining2');
+      let currentUser = await buildUser('currentUser');
       let firstVote = store.createRecord('vote-chain', {
         signature: convertObjectToUint8Array('firstVoteSignature'),
       });
@@ -81,30 +67,15 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
       assert.equal(Object.keys(result).length, 7);
     });
 
-    test('when ran without previous vote', function (assert) {
+    test('when ran without previous vote', async function (assert) {
       const store = getStore();
-      let yes1 = store.createRecord('identity', {
-        publicKey: new Uint8Array([21, 32]),
-      });
-      let yes2 = store.createRecord('identity', {
-        publicKey: new Uint8Array([11, 7]),
-      });
-      let no1 = store.createRecord('identity', {
-        publicKey: new Uint8Array([47, 75]),
-      });
-      let no2 = store.createRecord('identity', {
-        publicKey: new Uint8Array([32, 19]),
-      });
-      let remaining1 = store.createRecord('identity', {
-        publicKey: new Uint8Array([54, 32]),
-      });
-      let remaining2 = store.createRecord('identity', {
-        publicKey: new Uint8Array([20, 98]),
-      });
-      let currentUser = store.createRecord('identity', {
-        publicKey: convertObjectToUint8Array('key'),
-        publicSigningKey: convertObjectToUint8Array('signingKey'),
-      });
+      let yes1 = await buildUser('yes1');
+      let yes2 = await buildUser('yes2');
+      let no1 = await buildUser('no1');
+      let no2 = await buildUser('no2');
+      let remaining1 = await buildUser('remaining1');
+      let remaining2 = await buildUser('remaining2');
+      let currentUser = await buildUser('currentUser');
       let currentVote = store.createRecord('vote-chain', {
         action: VOTE_ACTION.ADD,
         key: currentUser,
