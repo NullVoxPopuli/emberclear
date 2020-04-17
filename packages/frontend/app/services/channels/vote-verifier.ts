@@ -12,6 +12,10 @@ export default class VoteVerifier extends Service {
   async verify(voteToVerify: VoteChain): Promise<boolean> {
     this.connectCrypto();
 
+    if (!this.crypto) {
+      return false;
+    }
+
     let voteToVerifyActual: Uint8Array = generateSortedVote(voteToVerify);
     let voteToVerifyActualHash: Uint8Array = await this.crypto!.hash(voteToVerifyActual);
 
