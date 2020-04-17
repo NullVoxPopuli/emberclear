@@ -7,10 +7,12 @@ import {
   generateSortedVote,
   VOTE_ORDERING,
   SortedVote,
+  SortedVoteHex,
 } from 'emberclear/services/channels/-utils/vote-sorter';
 import {
   convertObjectToUint8Array,
   convertUint8ArrayToObject,
+  fromHex,
 } from 'emberclear/utils/string-encoding';
 import { buildUser } from 'emberclear/tests/helpers/factories/user-factory';
 import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
@@ -42,7 +44,18 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
         remaining: [remaining2, remaining1],
       });
 
-      let result = convertUint8ArrayToObject<SortedVote>(generateSortedVote(currentVote));
+      let resultHex = convertUint8ArrayToObject<SortedVoteHex>(generateSortedVote(currentVote));
+      let result: SortedVote = [
+        resultHex[VOTE_ORDERING.remaining].map((vote) => fromHex(vote)),
+        resultHex[VOTE_ORDERING.yes].map((vote) => fromHex(vote)),
+        resultHex[VOTE_ORDERING.no].map((vote) => fromHex(vote)),
+        fromHex(resultHex[VOTE_ORDERING.targetKey]),
+        resultHex[VOTE_ORDERING.action],
+        fromHex(resultHex[VOTE_ORDERING.voterSigningKey]),
+        resultHex[VOTE_ORDERING.previousChainSignature]
+          ? fromHex(resultHex[VOTE_ORDERING.previousChainSignature]!)
+          : undefined,
+      ];
       assert.ok(
         result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
@@ -94,7 +107,18 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
         remaining: [remaining2, remaining1],
       });
 
-      let result = convertUint8ArrayToObject<SortedVote>(generateSortedVote(currentVote));
+      let resultHex = convertUint8ArrayToObject<SortedVoteHex>(generateSortedVote(currentVote));
+      let result: SortedVote = [
+        resultHex[VOTE_ORDERING.remaining].map((vote) => fromHex(vote)),
+        resultHex[VOTE_ORDERING.yes].map((vote) => fromHex(vote)),
+        resultHex[VOTE_ORDERING.no].map((vote) => fromHex(vote)),
+        fromHex(resultHex[VOTE_ORDERING.targetKey]),
+        resultHex[VOTE_ORDERING.action],
+        fromHex(resultHex[VOTE_ORDERING.voterSigningKey]),
+        resultHex[VOTE_ORDERING.previousChainSignature]
+          ? fromHex(resultHex[VOTE_ORDERING.previousChainSignature]!)
+          : undefined,
+      ];
       assert.ok(
         result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>

@@ -1,6 +1,6 @@
 import VoteChain, { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import Identity from 'emberclear/models/identity';
-import { convertObjectToUint8Array } from 'emberclear/utils/string-encoding';
+import { convertObjectToUint8Array, toHex } from 'emberclear/utils/string-encoding';
 
 export const VOTE_ORDERING = {
   remaining: 0,
@@ -22,19 +22,32 @@ export type SortedVote = [
   Uint8Array | undefined
 ];
 
+export type SortedVoteHex = [
+  string[],
+  string[],
+  string[],
+  string,
+  VOTE_ACTION,
+  string,
+  string | undefined
+];
+
 export function generateSortedVote(vote: VoteChain): Uint8Array {
-  let toReturn: SortedVote = [
+  let toReturn: SortedVoteHex = [
     toSortedPublicKeys(vote.remaining),
     toSortedPublicKeys(vote.yes),
     toSortedPublicKeys(vote.no),
-    vote.target.publicKey,
+    toHex(vote.target.publicKey),
     vote.action,
-    vote.key.publicSigningKey,
-    vote.previousVoteChain?.signature,
+    toHex(vote.key.publicSigningKey),
+    vote.previousVoteChain ? toHex(vote.previousVoteChain.signature) : undefined,
   ];
-  return convertObjectToUint8Array<SortedVote>(toReturn);
+  return convertObjectToUint8Array<SortedVoteHex>(toReturn);
 }
 
-function toSortedPublicKeys(identities: Identity[]): Uint8Array[] {
-  return identities.map((identity) => identity.publicKey).sort();
+function toSortedPublicKeys(identities: Identity[]): string[] {
+  return identities
+    .map((identity) => identity.publicKey)
+    .sort()
+    .map((key) => toHex(key));
 }
