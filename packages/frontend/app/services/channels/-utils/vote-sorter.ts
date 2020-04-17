@@ -1,4 +1,4 @@
-import VoteChain from 'emberclear/models/vote-chain';
+import VoteChain, { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import Identity from 'emberclear/models/identity';
 import { convertObjectToUint8Array } from 'emberclear/utils/string-encoding';
 
@@ -10,10 +10,20 @@ export const VOTE_ORDERING = {
   action: 4,
   voterSigningKey: 5,
   previousChainSignature: 6,
-};
+} as const;
+
+export type SortedVote = [
+  Uint8Array[],
+  Uint8Array[],
+  Uint8Array[],
+  Uint8Array,
+  VOTE_ACTION,
+  Uint8Array,
+  Uint8Array | undefined
+];
 
 export function generateSortedVote(vote: VoteChain): Uint8Array {
-  let toReturn = [
+  let toReturn: SortedVote = [
     toSortedPublicKeys(vote.remaining),
     toSortedPublicKeys(vote.yes),
     toSortedPublicKeys(vote.no),
@@ -22,7 +32,7 @@ export function generateSortedVote(vote: VoteChain): Uint8Array {
     vote.key.publicSigningKey,
     vote.previousVoteChain?.signature,
   ];
-  return convertObjectToUint8Array(toReturn);
+  return convertObjectToUint8Array<SortedVote>(toReturn);
 }
 
 function toSortedPublicKeys(identities: Identity[]): Uint8Array[] {

@@ -3,12 +3,17 @@ import { setupTest } from 'ember-qunit';
 
 import { clearLocalStorage, getStore } from 'emberclear/tests/helpers';
 import { VOTE_ACTION } from 'emberclear/models/vote-chain';
-import { generateSortedVote, VOTE_ORDERING } from 'emberclear/services/channels/-utils/vote-sorter';
+import {
+  generateSortedVote,
+  VOTE_ORDERING,
+  SortedVote,
+} from 'emberclear/services/channels/-utils/vote-sorter';
 import {
   convertObjectToUint8Array,
   convertUint8ArrayToObject,
 } from 'emberclear/utils/string-encoding';
 import { buildUser } from 'emberclear/tests/helpers/factories/user-factory';
+import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
 
 module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
   setupTest(hooks);
@@ -37,7 +42,7 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
         remaining: [remaining2, remaining1],
       });
 
-      let result = convertUint8ArrayToObject(generateSortedVote(currentVote));
+      let result = convertUint8ArrayToObject<SortedVote>(generateSortedVote(currentVote));
       assert.ok(
         result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
@@ -60,11 +65,15 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
         'ensure no keys are sorted'
       );
 
-      assert.ok(keyEquals(result[VOTE_ORDERING.targetKey], currentUser.publicKey));
+      assert.ok(equalsUint8Array(result[VOTE_ORDERING.targetKey], currentUser.publicKey));
       assert.equal(result[VOTE_ORDERING.action], VOTE_ACTION.ADD);
-      assert.ok(keyEquals(result[VOTE_ORDERING.voterSigningKey], currentUser.publicSigningKey));
-      assert.ok(keyEquals(result[VOTE_ORDERING.previousChainSignature], firstVote.signature));
-      assert.equal(Object.keys(result).length, 7);
+      assert.ok(
+        equalsUint8Array(result[VOTE_ORDERING.voterSigningKey], currentUser.publicSigningKey)
+      );
+      assert.ok(
+        equalsUint8Array(result[VOTE_ORDERING.previousChainSignature]!, firstVote.signature)
+      );
+      assert.equal(result.length, 7);
     });
 
     test('when ran without previous vote', async function (assert) {
@@ -85,7 +94,7 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
         remaining: [remaining2, remaining1],
       });
 
-      let result = convertUint8ArrayToObject(generateSortedVote(currentVote));
+      let result = convertUint8ArrayToObject<SortedVote>(generateSortedVote(currentVote));
       assert.ok(
         result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
@@ -108,25 +117,13 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
         'ensure no keys are sorted'
       );
 
-      assert.ok(keyEquals(result[VOTE_ORDERING.targetKey], currentUser.publicKey));
+      assert.ok(equalsUint8Array(result[VOTE_ORDERING.targetKey], currentUser.publicKey));
       assert.equal(result[VOTE_ORDERING.action], VOTE_ACTION.ADD);
-      assert.ok(keyEquals(result[VOTE_ORDERING.voterSigningKey], currentUser.publicSigningKey));
+      assert.ok(
+        equalsUint8Array(result[VOTE_ORDERING.voterSigningKey], currentUser.publicSigningKey)
+      );
       assert.equal(result[VOTE_ORDERING.previousChainSignature], undefined);
-      assert.equal(Object.keys(result).length, 7);
+      assert.equal(result.length, 7);
     });
   });
 });
-
-function keyEquals(arr: number[], uint8array: Uint8Array): boolean {
-  if (Object.keys(arr).length !== uint8array.length) {
-    return false;
-  }
-
-  for (let i = 0; i < uint8array.length; i++) {
-    if (arr[i] !== uint8array[i]) {
-      return false;
-    }
-  }
-
-  return true;
-}
