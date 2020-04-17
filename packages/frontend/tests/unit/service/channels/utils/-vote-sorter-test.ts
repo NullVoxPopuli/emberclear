@@ -45,17 +45,7 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
       });
 
       let resultHex = convertUint8ArrayToObject<SortedVoteHex>(generateSortedVote(currentVote));
-      let result: SortedVote = [
-        resultHex[VOTE_ORDERING.remaining].map((vote) => fromHex(vote)),
-        resultHex[VOTE_ORDERING.yes].map((vote) => fromHex(vote)),
-        resultHex[VOTE_ORDERING.no].map((vote) => fromHex(vote)),
-        fromHex(resultHex[VOTE_ORDERING.targetKey]),
-        resultHex[VOTE_ORDERING.action],
-        fromHex(resultHex[VOTE_ORDERING.voterSigningKey]),
-        resultHex[VOTE_ORDERING.previousChainSignature]
-          ? fromHex(resultHex[VOTE_ORDERING.previousChainSignature]!)
-          : undefined,
-      ];
+      let result = sortedVoteHexToSortedVote(resultHex);
       assert.ok(
         result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
@@ -108,17 +98,7 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
       });
 
       let resultHex = convertUint8ArrayToObject<SortedVoteHex>(generateSortedVote(currentVote));
-      let result: SortedVote = [
-        resultHex[VOTE_ORDERING.remaining].map((vote) => fromHex(vote)),
-        resultHex[VOTE_ORDERING.yes].map((vote) => fromHex(vote)),
-        resultHex[VOTE_ORDERING.no].map((vote) => fromHex(vote)),
-        fromHex(resultHex[VOTE_ORDERING.targetKey]),
-        resultHex[VOTE_ORDERING.action],
-        fromHex(resultHex[VOTE_ORDERING.voterSigningKey]),
-        resultHex[VOTE_ORDERING.previousChainSignature]
-          ? fromHex(resultHex[VOTE_ORDERING.previousChainSignature]!)
-          : undefined,
-      ];
+      let result = sortedVoteHexToSortedVote(resultHex);
       assert.ok(
         result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
@@ -151,3 +131,18 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
     });
   });
 });
+
+function sortedVoteHexToSortedVote(sortedVoteHex: SortedVoteHex): SortedVote {
+  let sortedVote: SortedVote = [
+    sortedVoteHex[VOTE_ORDERING.remaining].map((vote) => fromHex(vote)),
+    sortedVoteHex[VOTE_ORDERING.yes].map((vote) => fromHex(vote)),
+    sortedVoteHex[VOTE_ORDERING.no].map((vote) => fromHex(vote)),
+    fromHex(sortedVoteHex[VOTE_ORDERING.targetKey]),
+    sortedVoteHex[VOTE_ORDERING.action],
+    fromHex(sortedVoteHex[VOTE_ORDERING.voterSigningKey]),
+    sortedVoteHex[VOTE_ORDERING.previousChainSignature]
+      ? fromHex(sortedVoteHex[VOTE_ORDERING.previousChainSignature]!)
+      : undefined,
+  ];
+  return sortedVote;
+}
