@@ -22,13 +22,13 @@ export async function convertObjectToQRCodeDataURL(object: any): Promise<string>
   return await QRCode.toDataURL(string);
 }
 
-export function convertObjectToUint8Array(object: any): Uint8Array {
+export function convertObjectToUint8Array<T>(object: T): Uint8Array {
   const string = JSON.stringify(object);
 
   return new TextEncoder().encode(string);
 }
 
-export function convertUint8ArrayToObject(array: Uint8Array): any {
+export function convertUint8ArrayToObject<T>(array: Uint8Array): T {
   const string = new TextDecoder().decode(array);
 
   return JSON.parse(string);
