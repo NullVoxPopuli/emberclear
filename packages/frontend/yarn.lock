@@ -6111,20 +6111,19 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.12.0, ember-cli-babel@^6.16.0,
   version "1.0.0-beta.8"
   resolved "https://codeload.github.com/kategengler/ember-cli-code-coverage/tar.gz/5aa0e1911a12a010f14303cb339e5a3ec7c1bc25"
   dependencies:
-    "@babel/register" "^7.6.0"
-    babel-plugin-istanbul "^5.2.0"
+    babel-plugin-istanbul "^5.1.0"
     babel-plugin-transform-async-to-generator "^6.24.1"
-    body-parser "^1.19.0"
+    body-parser "^1.18.3"
     co "^4.6.0"
-    ember-cli-babel "^7.11.0"
-    ember-cli-version-checker "^3.1.3"
+    ember-cli-babel "^7.1.0"
+    ember-cli-version-checker "^2.1.2"
     extend "^3.0.2"
-    fs-extra "^8.1.0"
-    istanbul-api "^2.1.6"
+    fs-extra "^5.0.0"
+    istanbul-api "^2.0.6"
     lodash.concat "^4.5.0"
-    node-dir "^0.1.17"
-    rsvp "^4.8.5"
-    walk-sync "^2.0.2"
+    node-dir "^0.1.16"
+    rsvp "^4.8.3"
+    walk-sync "^0.3.3"
 
 ember-cli-dependency-checker@^3.2.0:
   version "3.2.0"
@@ -7311,10 +7310,10 @@ eslint-plugin-decorator-position@^2.0.2:
     ember-rfc176-data "^0.3.12"
     snake-case "^3.0.3"
 
-eslint-plugin-ember@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-8.2.0.tgz#90c14c82a6e81280c27baaf64b62c1c4786b5f26"
-  integrity sha512-QJhqkYoLOoEm2jodozxztGA5nxvc6pmeUJCdhxIyDCCRGb7+E/FS6dfJ/WMqTbiePlmNJ0EZSOUgUG54LdHsRQ==
+eslint-plugin-ember@8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-8.4.0.tgz#bf66c1abf76b1039c8c253bf755b06382dd5c2b9"
+  integrity sha512-jzSpyA3+aQrEHydo3Tz8cNAbgmtYVlp0eSe8X52OsHYLdVc7i4vzMwA+ptfO06dzpLQNHWW5ziprB5hoAEt95A==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     ember-rfc176-data "^0.3.12"
