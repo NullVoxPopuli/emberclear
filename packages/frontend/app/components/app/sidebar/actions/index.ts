@@ -31,22 +31,19 @@ export default class ActionsSidebar extends Component<IArgs> {
 
   get allActions(): Action[] {
     //TODO: filter to only current channel
-    /*return this.store
+    return this.store
       .peekAll('action')
       .toArray()
-      .filter((action) => action.response !== ACTION_RESPONSE.DISMISSED);*/
+      .filter((action) => action.response !== ACTION_RESPONSE.DISMISSED);
   }
 
-  get actions(): Action[] {
-    /*
+  get new_actions(): Action[] {
     return this.allActions.sort(sortByOldest);
-    */
   }
 
   @action
   async addAction() {
     //TODO: leave this to another method
-    /*
     const name = 'user1';
     const { publicKey } = await generateAsymmetricKeys();
     const { publicSigningKey, privateSigningKey } = await generateSigningKeys();
@@ -82,7 +79,7 @@ export default class ActionsSidebar extends Component<IArgs> {
       vote: currentVote,
       response: ACTION_RESPONSE.NONE,
       timestamp: Date.now(),
-    })*/
+    })
   }
 }
 

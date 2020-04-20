@@ -2,14 +2,14 @@
 
 	<div data-test-sidebar-actions-header class='menu-label'>
       {{t 'ui.sidebar.actions.title'}}
-      {{!--<button>
+      <button {{on 'click' this.addAction}}>
         <span class='icon'>{{fa-icon 'plus'}}</span>
-      </button>--}}
+      </button>
     </div>
 
-	{{!--{{#each this.actions as |action_item|}}
+	{{#each this.new_actions as |action_item|}}
 		<App::Sidebar::Actions::Action @action={{action_item}} />
 		<App::Sidebar::Actions::ResponsePanel />
-	{{/each}}--}}
+	{{/each}}
 
 </nav>
