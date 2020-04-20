@@ -36,6 +36,7 @@ ENV['fontawesome'] = {
       'bars',
       'search',
       'thumbtack',
+      'minus',
     ],
   },
 };
