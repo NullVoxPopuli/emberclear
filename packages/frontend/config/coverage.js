@@ -6,6 +6,7 @@ module.exports = {
     '*/translations/**/*',
     '*/vendor/**/*',
     '**/*-test*',
+    '*/app/services/messages/command-handler.ts',
   ],
   parallel: false,
 };
