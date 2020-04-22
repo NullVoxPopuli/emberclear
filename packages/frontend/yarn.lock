@@ -7295,10 +7295,10 @@ eslint-config-prettier@^6.11.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-plugin-decorator-position@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-2.0.2.tgz#b3a673c83c8f0ba0576d4e2d68ca9eb0c64cf84c"
-  integrity sha512-+NUhHJJyiGcYpu8YZbqTxvtFl3Nm2iPDNul9gH+3vCYe/BY3sDr2lLLp5qZ/OAPn3zyN+R+E7ADgpy5RbMGCog==
+eslint-plugin-decorator-position@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-2.0.3.tgz#76eca3a8227af6117121d0200534e56267a55555"
+  integrity sha512-O7ljoCAf5zlOjwch5RMIpk2Oy8HpWHXL+uhSuWzDDwrJaE++XIEv3VAk8pxxXH9qic9f5Nm9U61DtBfzNW6YKg==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     ember-rfc176-data "^0.3.12"
