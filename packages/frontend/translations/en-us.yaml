@@ -13,6 +13,8 @@ bundle-analysis: JS Bundle Analysis
 
 qrCode:
   error: QR Code could not be generated
+  malformed: QR Code is malfomed
+  waitingForCamera: Awaaiting Camera Access
 
 connection:
   connecting: Connecting...
@@ -31,6 +33,8 @@ connection:
       notConnected: Cannot subscribe to a channel without a socket connection!
 
 errors:
+  genericTitle: "An Error occurred!"
+  genericRetry: "Oh no! Something went wrong. Retry?"
   notFound:
     title: Not Found
     help: The URL could not be navigated to. If the problem persists,
@@ -39,6 +43,9 @@ errors:
     enableCamera: You may need to allow this site access to your camera.
 
 buttons:
+  allow: Allow
+  deny: Deny
+  retry: Retry
   delete: delete
   resend: resend
   resendAutomatically: resend automatically
@@ -263,9 +270,20 @@ ui:
       uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
 
   login:
-    title: Login
+    title: "Welcome Back!"
     instructions: Please paste or type your mnemonic key.
     loading: Loaded {num} Contacts...
+    success: "Logged In!"
+    warning: "Note that without another logged in device or your mnemonic, your account will be unrecoverable as there is no central storage to recovery from."
+    transfer:
+      title: "Log in with QR Code"
+      prompt: "Scan this with emberclear to login and have all your data transferred instantly."
+      inProgress: Transferring Data...
+      success: "You are now logged in on the other device"
+    verify:
+      title: Verify
+      prompt1: "Do you want to login to a new device?"
+      prompt2: "Be sure that the code matches the code below the QR Image on the device."
 
   setup:
     overwriteTitle: Are you sure you want to create a new identity?

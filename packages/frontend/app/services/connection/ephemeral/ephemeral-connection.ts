@@ -1,7 +1,8 @@
 // import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
-import { setOwner } from '@ember/application';
+import { setOwner, getOwner } from '@ember/application';
 import { assert } from '@ember/debug';
+import { associateDestroyableChild, registerDestructor } from '@ember/destroyable';
 
 import { pool, STATUS, ConnectionPool } from 'emberclear/utils/connection-pool';
 import { toHex, fromHex } from 'emberclear/utils/string-encoding';
@@ -31,29 +32,38 @@ export class EphemeralConnection {
   };
 
   /**
-   * For creating new instances of ephemeral connections.
+   * For creating new instances of ephemeral connections
+   * within ember apps.
+   * ( requires on object with an owner and is destroyable )
    *
    * This is deliberately not called create, because
    * this should not be called be the Ember D.I. System
    * as creation of these instances is *async*... and async
    * constructors don't exist.
    *
+   * Additionally, it has a different signature.
+   * There is no "automatic" way to have a destroyable created,
+   * so given a "caller", we can register the destructor.
+   *
    * When this method finishes running, you will have
    * - public/private keys
    * - a new connection(pool) to the relays
    *
-   * @param owner Ember D.I. Container
+   * @param parent Ember Container Object (must be destroyable)
    * @param publicKeyAsHex string
    */
   static async build<SubClass extends EphemeralConnection>(
     /* hack to get inheritence in static methods */
     this: { new (hex?: string): SubClass },
     /* the actual params to this method */
-    owner: unknown,
+    parent: unknown,
     publicKeyAsHex?: string
   ): Promise<SubClass> {
     let instance = new this(publicKeyAsHex);
-    setOwner(instance, owner);
+
+    setOwner(instance, getOwner(parent));
+    associateDestroyableChild(parent, instance);
+    registerDestructor(instance, instance.destroy());
 
     await instance.hydrateCrypto();
     assert('Crypto failed to initialize', instance.crypto);

@@ -21,7 +21,7 @@ const parseScannedData = assign((context: Context, event: ScanEvent) => {
   if (!isValid) {
     return {
       ...context,
-      error: context.t('qr.scan.malformed'),
+      error: context.t('qrCode.malformed'),
       parseError: undefined,
     };
   }
@@ -35,6 +35,11 @@ const parseScannedData = assign((context: Context, event: ScanEvent) => {
   };
 });
 
+const handleError = assign((context: Context, event: ErrorEvent) => {
+  return { ...context, error: event.data };
+});
+
+// https://xstate.js.org/viz/?gist=ae6c4b8e7d1c9b05a5510c5bf0303890
 export const machineConfig: MachineConfig<Context, Schema, Event> = {
   id: 'scan-qr-code',
   strict: true,
@@ -60,15 +65,15 @@ export const machineConfig: MachineConfig<Context, Schema, Event> = {
         PARSED: [
           {
             target: 'loginToANewDevice',
-            cond: ({ intent }) => intent === 'login',
+            cond: 'isQRLogin',
           },
           {
             target: 'addFriend',
-            cond: ({ intent }) => intent === 'add-friend',
+            cond: 'isQRAddFriend',
           },
           {
             target: 'error',
-            cond: ({ error }) => error === 'error',
+            cond: 'hasError',
           },
           // parseError is ignored, and we go back to scanning
           { target: 'scanning' },
@@ -81,13 +86,25 @@ export const machineConfig: MachineConfig<Context, Schema, Event> = {
       },
     },
     loginToANewDevice: {
-      initial: 'askPermission',
+      initial: 'determineIfAllowed',
       on: {
         RETRY: 'scanning',
       },
       states: {
+        determineIfAllowed: {
+          entry: send('CHECK_LOGGED_IN'),
+          on: {
+            CHECK_LOGGED_IN: [
+              {
+                target: 'askPermission',
+                cond: 'isLoggedIn',
+              },
+              { target: 'notLoggedIn' },
+            ],
+          },
+        },
+        notLoggedIn: {},
         askPermission: {
-          // TODO: need condition to check if logged in
           on: {
             DENY: 'transferDenied',
             ALLOW: 'transferAllowed',
@@ -102,12 +119,7 @@ export const machineConfig: MachineConfig<Context, Schema, Event> = {
             onDone: 'transferComplete',
             onError: {
               target: 'transferError',
-              actions: assign({
-                error: (_context, event: ErrorEvent) => {
-                  console.error(event.data);
-                  return event.data;
-                },
-              }),
+              actions: [handleError],
             },
           },
         },
@@ -129,7 +141,7 @@ export const machineConfig: MachineConfig<Context, Schema, Event> = {
             HANDLE_EXISTENCE: [
               {
                 target: 'contactExists',
-                cond: ({ exists }) => exists,
+                cond: 'isContactKnown',
               },
               {
                 target: 'needToAddContact',

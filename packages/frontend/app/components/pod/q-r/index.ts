@@ -6,8 +6,8 @@ import { inject as service } from '@ember/service';
 import { interpret, createMachine, Interpreter, State } from 'xstate';
 import { machineConfig, Context, Schema, Event } from './-machine';
 
-import { getOwner } from '@ember/application';
-import { TransferDataConnection } from './login/transfer-data-connection';
+import { SendDataConnection } from 'emberclear/services/connection/ephemeral/login/send-data';
+import CurrentUserService from 'emberclear/services/current-user';
 
 /*
 TODO:
@@ -26,6 +26,7 @@ type Args = {};
 
 export default class QRScan extends Component<Args> {
   @service intl!: Intl;
+  @service currentUser!: CurrentUserService;
 
   @tracked current?: State<Context, Event, Schema>;
 
@@ -41,13 +42,14 @@ export default class QRScan extends Component<Args> {
       .withConfig({
         services: {
           transferData: this.transferData.bind(this),
-        },
-        actions: {
-          // logout: () => this.session.logout(),
-          // redirectHome: () => this.router.transitionTo('application'),
+          addContact: this.addContact.bind(this),
         },
         guards: {
-          // isLoggedIn: () => this.currentUser.isLoggedIn,
+          isQRLogin: ({ intent }) => intent === 'login',
+          isQRAddFriend: ({ intent }) => intent === 'add-friend',
+          hasError: ({ error }) => error === 'error',
+          isContactKnown: () => false,
+          isLoggedIn: () => this.currentUser.isLoggedIn,
         },
       });
 
@@ -59,7 +61,7 @@ export default class QRScan extends Component<Args> {
   }
 
   get state() {
-    return this.current?.value;
+    return this.current?.toStrings();
   }
 
   get ctx() {
@@ -90,7 +92,13 @@ export default class QRScan extends Component<Args> {
     let { pub } = this.current.context.data;
 
     // Errors will be thrown if anything goes wrong...
-    let connection = await TransferDataConnection.build(getOwner(this), pub);
+    // TODO:
+    // bubble events to the machine. https://bit.ly/3byNb9l
+    let connection = await SendDataConnection.build(this, pub);
     await connection.transferToDevice();
+  }
+
+  addContact() {
+    // TODO
   }
 }

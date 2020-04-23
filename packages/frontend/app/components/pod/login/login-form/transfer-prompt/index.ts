@@ -1,11 +1,10 @@
 import Component from '@glimmer/component';
-import { getOwner } from '@ember/application';
 import { computed } from '@ember/object';
 
 import { dropTask } from 'ember-concurrency-decorators';
 
 import { taskFor } from 'emberclear/utils/ember-concurrency';
-import { ReceiveDataConnection } from 'emberclear/services/connection/receive-data-connection';
+import { ReceiveDataConnection } from 'emberclear/services/connection/ephemeral/login/receive-data';
 
 export default class TransferPrompt extends Component<{}> {
   constructor(owner: unknown, args: {}) {
@@ -33,22 +32,19 @@ export default class TransferPrompt extends Component<{}> {
 
   @dropTask
   *setupEphemeralConnection() {
-    let ephemeralConnection = yield ReceiveDataConnection.build(getOwner(this));
+    let ephemeralConnection = yield ReceiveDataConnection.build(this);
 
     let { hexId: pub } = ephemeralConnection;
     let verification = randomFourLetters();
 
     let qrData = ['login', { pub, verify: verification }];
 
+    // TODO: need to have UI feedback here... as importing can be kinda slow.
+    //       - do I let a state machine be in charge of importing?
+    //       - should the importing behavior be pulled out of settings?
     ephemeralConnection.wait();
 
     return { qrData, ephemeralConnection, verification };
-  }
-
-  willDestroy() {
-    this.result?.ephemeralConnection?.destroy();
-
-    super.willDestroy();
   }
 }
 

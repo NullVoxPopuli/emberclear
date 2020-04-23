@@ -1,43 +1,47 @@
-{{#switch-state this.current as |when ctx|}}
 
-  {{#if (call when.is 'error')}}
+{{#if (includes this.state 'error')}}
 
-    <ErrorCard @message={{this.ctx.error}} @retry={{fn this.transition 'RETRY'}} />
+  <ErrorCard
+    @message={{this.ctx.error}}
+    @retry={{fn this.transition 'RETRY'}}
+  />
 
-  {{else if (call when.any 'scanning' 'scanned')}}
+{{else if (or
+  (includes this.state 'scanning')
+  (includes this.state 'scanned')
+  (includes this.state 'loginToANewDevice.determineIfAllowed')
+)}}
 
-    <QRScanner @onScan={{this.handleScan}} />
+  <QRScanner @onScan={{this.handleScan}} />
 
-  {{else if (call when.is 'loginToANewDevice.askPermission')}}
+{{else if (includes this.state 'loginToANewDevice.askPermission')}}
 
-    <Pod::QR::Login::Ask
-      @code={{ctx.data.verify}}
-      @allow={{fn this.transition 'ALLOW'}}
-      @deny={{fn this.transition 'DENY'}}
-    />
+  <Pod::QR::Login::Ask
+    @code={{this.ctx.data.verify}}
+    @allow={{fn this.transition 'ALLOW'}}
+    @deny={{fn this.transition 'DENY'}}
+  />
 
-  {{else if (call when.is 'loginToANewDevice.transferAllowed')}}
+{{else if (includes this.state 'loginToANewDevice.transferAllowed')}}
 
-    Transferring Data
+  {{t 'ui.login.transfer.inProgress'}}
 
-  {{else if (call when.is 'loginToANewDevice.transferDenied')}}
+{{else if (includes this.state 'loginToANewDevice.transferComplete')}}
 
-    Why'd you even scan the QR Code then? Retry or exit?
+  {{t 'ui.login.transfer.success'}}
 
-  {{else if (call when.is 'loginToANewDevice.transferComplete')}}
+{{else if (includes this.state 'loginToANewDevice.transferError')}}
 
-    You are now logged in on the other device
+  {{t 'errors.genericRetry'}}
 
-  {{else if (call when.is 'loginToANewDevice.transferError')}}
+{{else}}
 
-    Oh no something went wrong. Retry?
+  <ErrorCard
+    @message={{t 'errors.genericRetry'}}
+    @retry={{fn this.transition 'RETRY'}}
+  />
 
-  {{else}}
-
-    <ErrorCard @message={{'Unknown State'}} @retry={{fn this.transition 'RETRY'}} />
-
-  {{/if}}
+{{/if}}
 
 
-{{/switch-state}}
 

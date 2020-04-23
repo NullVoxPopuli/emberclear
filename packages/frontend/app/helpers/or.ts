@@ -1,7 +1,13 @@
 import { helper as buildHelper } from '@ember/component/helper';
 
 export function or(params: any[] /*, hash*/) {
-  return params[0] || params[1];
+  let result = false;
+
+  for (let i of params) {
+    result = result || i;
+  }
+
+  return result;
 }
 
 export default buildHelper(or);

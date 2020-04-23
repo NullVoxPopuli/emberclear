@@ -224,16 +224,16 @@
 
 .login-form-contents {
   @apply --grid;
+
   align-items: center;
   justify-content: space-between;
   justify-items: center;
-
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-
 
   & .left {
     & p {
       @apply --column-grid;
+
       align-items: center;
       justify-content: start;
     }
