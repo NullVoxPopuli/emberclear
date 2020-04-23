@@ -2,7 +2,7 @@ type EventObject = import('xstate').EventObject;
 
 export interface Context {
   intent?: string;
-  data?: string;
+  data?: QRData[1];
   error?: string;
   parseError?: Error;
   t: Intl['t'];
@@ -29,6 +29,8 @@ type HandleExistenceEvent = { type: 'HANDLE_EXISTENCE' };
 interface LoginSubMachine {
   Schema: {
     states: {
+      determineIfAllowed: {};
+      notLoggedIn: {};
       askPermission: {};
       transferDenied: {};
       transferAllowed: {};
@@ -67,7 +69,6 @@ export interface Schema {
     transferData: (ephemeralPublicKeyAsHex: string) => Promise<void>;
     addContact: (publicKeyAsHex: string, name: string) => Promise<void>;
   };
-  guards: {};
 }
 
 export type Event = LoginSubMachine['Event'] | AddContactSubMachine['Event'];

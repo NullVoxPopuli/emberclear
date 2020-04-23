@@ -1,39 +1,52 @@
 import RSVP from 'rsvp';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { dropTask } from 'ember-concurrency-decorators';
+
+import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 import Toast from 'emberclear/services/toast';
 import SettingsService from 'emberclear/services/settings';
 import RouterService from '@ember/routing/router-service';
 
-import { EphemeralConnection } from './ephemeral-connection';
+import { EphemeralConnection } from '../ephemeral-connection';
+import { UnknownMessageError } from '../../errors';
 
 export class ReceiveDataConnection extends EphemeralConnection {
   @service router!: RouterService;
   @service settings!: SettingsService;
   @service toast!: Toast;
+  @service intl!: Intl;
 
   waitForSYN = RSVP.defer<string>();
   waitForData = RSVP.defer<LoginData>();
 
   @action
   async wait() {
-    let senderPublicKey = await this.waitForSYN.promise;
+    this.waitForSYN = RSVP.defer();
+    this.waitForData = RSVP.defer();
+
+    await taskFor(this._wait).perform();
+  }
+
+  @dropTask
+  *_wait() {
+    let senderPublicKey = yield this.waitForSYN.promise;
 
     this.setTarget(senderPublicKey);
 
-    await this.send({ type: 'ACK' });
+    yield this.send({ type: 'ACK' });
 
-    let { hash, data } = await this.waitForData.promise;
+    let { hash, data } = yield this.waitForData.promise;
 
-    let dataHash = '111';
+    let dataHash = '111'; // TODO implement this
 
-    await this.send({ type: 'HASH', data: dataHash });
+    yield this.send({ type: 'HASH', data: dataHash });
 
     if (hash === dataHash) {
-      await this.settings.importData(data);
+      yield this.settings.importData(data);
 
-      this.toast.success('Logged in!');
+      this.toast.success(this.intl.t('ui.login.success'));
       this.router.transitionTo('chat');
     }
   }
@@ -48,7 +61,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
       case 'DATA':
         return this.waitForData.resolve(decrypted);
       default:
-        throw new Error('Unknown message received');
+        throw new UnknownMessageError();
     }
   }
 }

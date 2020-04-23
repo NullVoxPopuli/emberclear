@@ -1,16 +1,11 @@
 .card {
   min-width: 300px;
   border-radius: var(--component-border-radius);
-  /* box-shadow: var(--shadow); */
 
   @apply --transition-all;
 
   & header {
-    /* border-top-right-radius: var(--component-border-radius); */
-    /* border-top-left-radius: var(--component-border-radius); */
     padding: var(--spacing-sm) var(--spacing-md);
-    /* background: var(--state-danger); */
-    /* color: var(--state-light); */
     color: var(--state-danger);
   }
 

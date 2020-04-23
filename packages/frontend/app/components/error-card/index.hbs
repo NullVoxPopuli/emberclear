@@ -1,8 +1,6 @@
 <div class='card'>
 
-  <header>
-    An Error occurred!
-  </header>
+  <header>{{t 'errors.genericTitle'}}</header>
 
   <p>
     {{@message}}
@@ -11,7 +9,7 @@
   <footer class='cta'>
     {{#if @retry}}
       <button type='button' class='button-secondary' {{on 'click' @retry}}>
-        Retry
+        {{t 'buttons.retry'}}
       </button>
     {{/if}}
   </footer>

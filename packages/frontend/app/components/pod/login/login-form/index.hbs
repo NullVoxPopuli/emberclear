@@ -1,4 +1,4 @@
-<FocusCard @title="Welcome Back!">
+<FocusCard @title={{t 'ui.login.title'}}>
 
   {{#if this.uploadSettings.isRunning}}
     <EllipsisLoader /><br>
@@ -39,10 +39,7 @@
 
       <hr>
 
-      <footer>
-        Note that without another logged in device or your mnemonic, your account
-        will be unrecoverable as there is no central storage to recovery from.
-      </footer>
+      <footer>{{t 'ui.login.warning'}}</footer>
     </div>
 
     <Pod::Login::LoginForm::TransferPrompt />

@@ -131,6 +131,7 @@
     "ember-concurrency": "1.1.7",
     "ember-concurrency-decorators": "^1.0.0",
     "ember-concurrency-test-waiter": "^0.3.2",
+    "ember-destroyable-polyfill": "^0.4.0",
     "ember-exam": "^5.0.1",
     "ember-export-application-global": "^2.0.1",
     "ember-focus-trap": "^0.4.0",
