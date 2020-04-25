@@ -1,4 +1,3 @@
-
 {{#if (includes this.state 'error')}}
 
   <ErrorCard
@@ -6,15 +5,11 @@
     @retry={{fn this.transition 'RETRY'}}
   />
 
-{{else if (or
-  (includes this.state 'scanning')
-  (includes this.state 'scanned')
-  (includes this.state 'loginToANewDevice.determineIfAllowed')
-)}}
+{{else if (includes this.state 'scanner')}}
 
   <QRScanner @onScan={{this.handleScan}} />
 
-{{else if (includes this.state 'loginToANewDevice.askPermission')}}
+{{else if (includes this.state 'loginToDevice.askPermission')}}
 
   <Pod::QR::Login::Ask
     @code={{this.ctx.data.verify}}
@@ -22,19 +17,19 @@
     @deny={{fn this.transition 'DENY'}}
   />
 
-{{else if (includes this.state 'loginToANewDevice.transferAllowed')}}
+{{else if (includes this.state 'loginToDevice.transferAllowed')}}
 
   {{t 'ui.login.transfer.inProgress'}}
 
-{{else if (includes this.state 'loginToANewDevice.transferComplete')}}
+{{else if (includes this.state 'loginToDevice.transferComplete')}}
 
   {{t 'ui.login.transfer.success'}}
 
-{{else if (includes this.state 'loginToANewDevice.transferError')}}
-
-  {{t 'errors.genericRetry'}}
-
 {{else}}
+
+  {{!-- template-lint-disable --}}
+  {{log this.state}}
+  {{!-- template-lint-enable --}}
 
   <ErrorCard
     @message={{t 'errors.genericRetry'}}

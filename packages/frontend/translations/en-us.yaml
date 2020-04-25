@@ -279,11 +279,16 @@ ui:
       title: "Log in with QR Code"
       prompt: "Scan this with emberclear to login and have all your data transferred instantly."
       inProgress: Transferring Data...
-      success: "You are now logged in on the other device"
+      success: "You are about to be logged in on the other device!"
     verify:
       title: Verify
       prompt1: "Do you want to login to a new device?"
       prompt2: "Be sure that the code matches the code below the QR Image on the device."
+      received: Received login request
+      waitingOnApproval: Waiting for approval and Data
+      receivedData: Received data
+      importing: Importing data
+      failed: "Something went wrong. Please try again."
 
   setup:
     overwriteTitle: Are you sure you want to create a new identity?
