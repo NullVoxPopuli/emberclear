@@ -1,135 +1,117 @@
 import { MachineConfig, assign, send } from 'xstate';
 
-import { Context, ScanEvent, Schema, ErrorEvent, QRData } from './-types';
+import { Context, ScanEvent, Schema, QRData } from './-types';
+import { MalformedQRCodeError } from 'emberclear/utils/errors';
 
-const parseScannedData = assign((context: Context, event: ScanEvent) => {
-  let { data } = event;
-  let parsed: QRData;
-
-  try {
-    parsed = JSON.parse(data);
-  } catch (e) {
-    // JSON malformed. likely that the QR Code was a partial read.
-    return {
-      ...context,
-      parseError: e,
-    };
-  }
+function parseScannedData(data: ScanEvent['data']) {
+  let parsed = JSON.parse(data) as QRData;
 
   let isValid = Array.isArray(parsed);
 
   if (!isValid) {
-    return {
-      ...context,
-      error: context.t('qrCode.malformed'),
-      parseError: undefined,
-    };
+    throw new MalformedQRCodeError();
   }
 
-  return {
-    ...context,
-    parseError: undefined,
-    error: undefined,
-    intent: parsed[0],
-    data: parsed[1],
-  };
-});
-
-const handleError = assign((context: Context, event: ErrorEvent) => {
-  return { ...context, error: event.data };
-});
+  return Promise.resolve(parsed);
+}
 
 // https://xstate.js.org/viz/?gist=ae6c4b8e7d1c9b05a5510c5bf0303890
 export const machineConfig: MachineConfig<Context, Schema, Event> = {
   id: 'scan-qr-code',
   strict: true,
-  initial: 'scanning',
+  initial: 'scanner',
   context: {
     intent: undefined,
     data: undefined,
     error: undefined,
-    parseError: undefined,
-    t: () => '',
   },
   states: {
-    scanning: {
-      on: {
-        SCAN: {
-          target: 'scanned',
+    scanner: {
+      id: 'scanner',
+      initial: 'scanning',
+      onDone: [
+        {
+          target: '#loginToDevice',
+          cond: 'isQRLogin',
+        },
+        {
+          target: '#addFriend',
+          cond: 'isQRAddFriend',
+        },
+        // else: unrecognized target, ignore and
+        // keep scanning until we recognize a code
+      ],
+      states: {
+        scanning: {
+          on: {
+            SCAN: 'parsing',
+          },
+        },
+        parsing: {
+          invoke: {
+            id: 'parseScan',
+            src: (_, event: ScanEvent) => parseScannedData(event.data),
+            onDone: {
+              target: 'scanned',
+              actions: assign({
+                intent: (_, event) => event.data[0],
+                data: (_, event) => event.data[1],
+              }),
+            },
+            onError: { target: '#error' },
+          },
+          on: {
+            PARSED: 'scanned',
+          },
+        },
+        scanned: {
+          type: 'final',
         },
       },
     },
-    scanned: {
-      entry: [parseScannedData, send('PARSED')],
-      on: {
-        PARSED: [
-          {
-            target: 'loginToANewDevice',
-            cond: 'isQRLogin',
-          },
-          {
-            target: 'addFriend',
-            cond: 'isQRAddFriend',
-          },
-          {
-            target: 'error',
-            cond: 'hasError',
-          },
-          // parseError is ignored, and we go back to scanning
-          { target: 'scanning' },
-        ],
-      },
-    },
     error: {
+      id: 'error',
       on: {
-        RETRY: 'scanning',
+        RETRY: '#scanner',
       },
     },
-    loginToANewDevice: {
-      initial: 'determineIfAllowed',
-      on: {
-        RETRY: 'scanning',
-      },
+    loginToDevice: {
+      id: 'loginToDevice',
+      initial: 'checkLogin',
       states: {
-        determineIfAllowed: {
-          entry: send('CHECK_LOGGED_IN'),
+        checkLogin: {
           on: {
-            CHECK_LOGGED_IN: [
+            '': [
               {
                 target: 'askPermission',
                 cond: 'isLoggedIn',
               },
-              { target: 'notLoggedIn' },
+              { target: '#error' },
             ],
           },
         },
-        notLoggedIn: {},
         askPermission: {
           on: {
-            DENY: 'transferDenied',
+            DENY: '#error',
             ALLOW: 'transferAllowed',
           },
         },
-        transferDenied: {},
         transferAllowed: {
           exit: ['destroyConnection'],
           invoke: {
             id: 'transfer-data',
             src: 'transferData',
             onDone: 'transferComplete',
-            onError: {
-              target: 'transferError',
-              actions: [handleError],
-            },
+            onError: '#error',
           },
         },
         transferComplete: {
           type: 'final',
         },
-        transferError: {},
       },
     },
     addFriend: {
+      id: 'addFriend',
       initial: 'determineExistence',
       // context: {
       //   exists: false,

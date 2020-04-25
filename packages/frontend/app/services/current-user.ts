@@ -148,8 +148,13 @@ export default class CurrentUserService extends Service {
 
       return existing;
     } catch (e) {
-      // no record found
-      console.error(e);
+      // When the user doesn't exist, e is undefined???
+      // why?
+      // TODO: when implementing custom indexeddb adapter..
+      //       don't throw undefined? lol
+      if (e) {
+        throw e;
+      }
     }
 
     return null;

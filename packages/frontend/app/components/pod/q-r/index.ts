@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { DEBUG } from '@glimmer/env';
 
 import { interpret, createMachine, Interpreter, State } from 'xstate';
 import { machineConfig, Context, Schema, Event } from './-machine';
@@ -35,25 +36,21 @@ export default class QRScan extends Component<Args> {
   constructor(owner: unknown, args: Args) {
     super(owner, args);
 
-    let configuredMachine = createMachine<Context, Event>(machineConfig)
-      .withContext({
-        t: this.intl.t.bind(this.intl),
-      })
-      .withConfig({
-        services: {
-          transferData: this.transferData.bind(this),
-          addContact: this.addContact.bind(this),
-        },
-        guards: {
-          isQRLogin: ({ intent }) => intent === 'login',
-          isQRAddFriend: ({ intent }) => intent === 'add-friend',
-          hasError: ({ error }) => error === 'error',
-          isContactKnown: () => false,
-          isLoggedIn: () => this.currentUser.isLoggedIn,
-        },
-      });
+    let configuredMachine = createMachine<Context, Event>(machineConfig).withConfig({
+      services: {
+        transferData: this.transferData.bind(this),
+        addContact: this.addContact.bind(this),
+      },
+      guards: {
+        isQRLogin: ({ intent }) => intent === 'login',
+        isQRAddFriend: ({ intent }) => intent === 'add-friend',
+        hasError: ({ error }) => error === 'error',
+        isContactKnown: () => false,
+        isLoggedIn: () => this.currentUser.isLoggedIn,
+      },
+    });
 
-    this.interpreter = interpret(configuredMachine);
+    this.interpreter = interpret(configuredMachine, { devTools: DEBUG });
     this.interpreter
       .onTransition((state) => (this.current = state))
       .onDone(() => console.info('QR Wizard Completed'))

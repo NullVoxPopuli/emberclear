@@ -1,6 +1,8 @@
 <div class='right text-center'>
   {{#if this.isLoading}}
     <EllipsisLoader />
+    <br>
+    {{this.taskMessage}}
   {{else}}
     <QRCode @data={{this.qrData}} />
     <h4 class='manual-verification-code text-center'>

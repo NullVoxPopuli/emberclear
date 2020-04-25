@@ -21,8 +21,15 @@ export default class TransferPrompt extends Component<{}> {
     return this.result?.qrData;
   }
 
+  get taskMessage() {
+    let message = taskFor(this.setupEphemeralConnection).lastSuccessful?.value?.ephemeralConnection
+      ?.taskMsg;
+
+    return message;
+  }
+
   get isLoading() {
-    return taskFor(this.setupEphemeralConnection).isRunning;
+    return Boolean(this.taskMessage);
   }
 
   @computed('setupEphemeralConnection.lastSuccessful.value')
@@ -39,9 +46,6 @@ export default class TransferPrompt extends Component<{}> {
 
     let qrData = ['login', { pub, verify: verification }];
 
-    // TODO: need to have UI feedback here... as importing can be kinda slow.
-    //       - do I let a state machine be in charge of importing?
-    //       - should the importing behavior be pulled out of settings?
     ephemeralConnection.wait();
 
     return { qrData, ephemeralConnection, verification };

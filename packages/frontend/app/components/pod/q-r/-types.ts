@@ -4,8 +4,6 @@ export interface Context {
   intent?: string;
   data?: QRData[1];
   error?: string;
-  parseError?: Error;
-  t: Intl['t'];
 }
 
 export type LoginQRData = [
@@ -23,19 +21,29 @@ export type ScanEvent = { type: 'SCAN'; data: string };
 type AllowEvent = { type: 'ALLOW' };
 type RetryEvent = { type: 'RETRY' };
 type DenyEvent = { type: 'DENY' };
-type ParsedEvent = { type: 'PARSED' };
 type HandleExistenceEvent = { type: 'HANDLE_EXISTENCE' };
+
+type ParsedEvent = { type: 'PARSED' };
+
+interface ScannerSubMachine {
+  Schema: {
+    states: {
+      scanning: {};
+      parsing: {};
+      scanned: {};
+    };
+  };
+
+  Event: ScanEvent | ParsedEvent | RetryEvent | EventObject;
+}
 
 interface LoginSubMachine {
   Schema: {
     states: {
-      determineIfAllowed: {};
-      notLoggedIn: {};
+      checkLogin: {};
       askPermission: {};
-      transferDenied: {};
       transferAllowed: {};
       transferComplete: {};
-      transferError: {};
     };
   };
 
@@ -56,10 +64,9 @@ interface AddContactSubMachine {
 
 export interface Schema {
   states: {
-    scanning: {};
-    scanned: {};
     error: {};
-    loginToANewDevice: LoginSubMachine['Schema'];
+    scanner: ScannerSubMachine['Schema'];
+    loginToDevice: LoginSubMachine['Schema'];
     addFriend: AddContactSubMachine['Schema'];
   };
   actions: {
@@ -68,6 +75,7 @@ export interface Schema {
   services: {
     transferData: (ephemeralPublicKeyAsHex: string) => Promise<void>;
     addContact: (publicKeyAsHex: string, name: string) => Promise<void>;
+    parseScannedData: Function;
   };
 }
 
