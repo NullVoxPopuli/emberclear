@@ -79,4 +79,7 @@ export interface Schema {
   };
 }
 
-export type Event = LoginSubMachine['Event'] | AddContactSubMachine['Event'];
+export type Events =
+  | LoginSubMachine['Event']
+  | AddContactSubMachine['Event']
+  | ScannerSubMachine['Event'];

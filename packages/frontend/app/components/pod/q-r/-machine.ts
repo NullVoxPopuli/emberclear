@@ -1,9 +1,10 @@
 import { MachineConfig, assign, send } from 'xstate';
 
-import { Context, ScanEvent, Schema, QRData } from './-types';
-import { MalformedQRCodeError } from 'emberclear/utils/errors';
+import { Context, ScanEvent, Schema, QRData, Events } from './-types';
+import { MalformedQRCodeError, UnrecognizedQRCodeError } from 'emberclear/utils/errors';
 
-function parseScannedData(data: ScanEvent['data']) {
+function parseScannedData(_: Context, event: ScanEvent) {
+  let { data } = event;
   let parsed = JSON.parse(data) as QRData;
 
   let isValid = Array.isArray(parsed);
@@ -12,11 +13,18 @@ function parseScannedData(data: ScanEvent['data']) {
     throw new MalformedQRCodeError();
   }
 
+  // TODO: assert using JSON schema
+  if (parsed[0] === 'login') {
+    if (!parsed[1].pub) {
+      throw new UnrecognizedQRCodeError();
+    }
+  }
+
   return Promise.resolve(parsed);
 }
 
 // https://xstate.js.org/viz/?gist=ae6c4b8e7d1c9b05a5510c5bf0303890
-export const machineConfig: MachineConfig<Context, Schema, Event> = {
+export const machineConfig: MachineConfig<Context, Schema, Events> = {
   id: 'scan-qr-code',
   strict: true,
   initial: 'scanner',
@@ -50,7 +58,7 @@ export const machineConfig: MachineConfig<Context, Schema, Event> = {
         parsing: {
           invoke: {
             id: 'parseScan',
-            src: (_, event: ScanEvent) => parseScannedData(event.data),
+            src: parseScannedData,
             onDone: {
               target: 'scanned',
               actions: assign({

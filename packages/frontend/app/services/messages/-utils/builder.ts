@@ -1,7 +1,7 @@
 import Message from 'emberclear/models/message';
 import Identity from 'emberclear/models/identity';
 
-export function buildSender(sender: Identity): RelayJson['sender'] {
+export function buildSender(sender: Identity): StandardMessage['sender'] {
   return {
     name: sender.name!,
     uid: sender.uid,
@@ -9,7 +9,7 @@ export function buildSender(sender: Identity): RelayJson['sender'] {
   };
 }
 
-export function buildMessage(msg: Message): RelayJson['message'] {
+export function buildMessage(msg: Message): StandardMessage['message'] {
   const { body, contentType } = msg;
 
   return {

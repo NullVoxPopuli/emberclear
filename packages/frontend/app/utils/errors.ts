@@ -1,4 +1,5 @@
 export class MalformedQRCodeError extends Error {}
+export class UnrecognizedQRCodeError extends Error {}
 
 export class NoCameraError extends Error {
   constructor(...props: any[]) {
