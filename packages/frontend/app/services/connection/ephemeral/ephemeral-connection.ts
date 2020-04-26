@@ -63,7 +63,7 @@ export class EphemeralConnection {
 
     setOwner(instance, getOwner(parent));
     associateDestroyableChild(parent, instance);
-    registerDestructor(instance, instance.teardown());
+    registerDestructor(instance, instance.teardown.bind(instance));
 
     await instance.hydrateCrypto();
     assert('Crypto failed to initialize', instance.crypto);
