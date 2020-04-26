@@ -230,6 +230,9 @@
   justify-items: center;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 
+  /* For animating the transition to data Transfer */
+  position: relative;
+
   & .left {
     & p {
       @apply --column-grid;
@@ -240,10 +243,12 @@
   }
 
   & .right {
-    & .manual-verification-code {
-      margin-top: -1.5rem;
-      font-weight: bold;
-    }
+    background: var(--body-bg-color);
+
+
+    /* For animating the transition to data Transfer */
+    box-shadow: 0 0 0 0;
+    padding: 0;
   }
 }
 
@@ -252,4 +257,34 @@
   .login-form-contents {
     grid-template-columns: 55% 35%;
   }
+
+  [data-transfer-started] {
+    & h1.title,
+    & .login-form-contents .left,
+    & .login-form-contents .right {
+      opacity: 100%;
+
+      /* transition: all 0.4s cubic-bezier(0.6, 0, 0.735, 0.045); */
+      transition: all 0.4s ease-in-out;
+    }
+
+    & .login-form-contents .right {
+    }
+  }
+
+  div[data-transfer-started='true'] {
+    & h1.title,
+    & .login-form-contents .left {
+      opacity: 30%;
+    }
+
+    & .right {
+      width: max-content;
+      box-shadow: var(--shadow-lg);
+      padding: 2rem;
+      border-radius: var(--component-border-radius);
+      transform: scale(1.5) translateX(-25%);
+    }
+  }
+
 }

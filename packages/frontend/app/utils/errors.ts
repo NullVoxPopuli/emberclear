@@ -1,3 +1,5 @@
+export class ConnectionDoesNotExistError extends Error {}
+export class CurrentUserMustHaveAName extends Error {}
 export class MalformedQRCodeError extends Error {}
 export class UnrecognizedQRCodeError extends Error {}
 

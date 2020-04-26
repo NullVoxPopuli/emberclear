@@ -9,6 +9,13 @@
 
   <QRScanner @onScan={{this.handleScan}} />
 
+{{else if (includes this.state 'loginToDevice.setupConnection' )}}
+
+  <p>
+    <EllipsisLoader /><br>
+    {{t 'ui.login.transfer.establishConnection'}}
+  </p>
+
 {{else if (includes this.state 'loginToDevice.askPermission')}}
 
   <Pod::QR::Login::Ask
@@ -19,7 +26,10 @@
 
 {{else if (includes this.state 'loginToDevice.transferAllowed')}}
 
-  {{t 'ui.login.transfer.inProgress'}}
+  <p>
+    <EllipsisLoader /><br>
+    {{t 'ui.login.transfer.inProgress'}}
+  </p>
 
 {{else if (includes this.state 'loginToDevice.transferComplete')}}
 
@@ -28,6 +38,7 @@
 {{else}}
 
   {{!-- template-lint-disable --}}
+  {{log 'error occurred'}}
   {{log this.state}}
   {{!-- template-lint-enable --}}
 

@@ -19,24 +19,29 @@ export class ReceiveDataConnection extends EphemeralConnection {
   @service toast!: Toast;
   @service intl!: Intl;
 
-  waitForSYN = RSVP.defer<string>();
+  waitForSYN = RSVP.defer<PublicIdentity>();
   waitForData = RSVP.defer<LoginData>();
 
   @tracked taskMsg = '';
+  @tracked senderName = '';
 
   @action
-  async wait() {
+  wait(updateTransferStatus: Function) {
     this.waitForSYN = RSVP.defer();
     this.waitForData = RSVP.defer();
 
-    await taskFor(this._wait).perform();
+    taskFor(this._wait).perform(updateTransferStatus);
   }
 
   @dropTask
-  *_wait() {
-    let senderPublicKey = yield this.waitForSYN.promise;
+  *_wait(updateTransferStatus: Function) {
+    let { id: senderPublicKey, name } = yield this.waitForSYN.promise;
 
+    this.senderName = name;
     this.taskMsg = this.intl.t('ui.login.verify.received');
+
+    updateTransferStatus(true);
+
     this.setTarget(senderPublicKey);
 
     yield this.send({ type: 'ACK' });
@@ -57,10 +62,13 @@ export class ReceiveDataConnection extends EphemeralConnection {
       this.taskMsg = '';
       this.toast.success(this.intl.t('ui.login.success'));
       this.router.transitionTo('chat');
+
+      updateTransferStatus(false);
       return;
     }
 
     this.taskMsg = this.intl.t('ui.login.verify.failed');
+    updateTransferStatus(false);
   }
 
   @action

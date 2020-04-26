@@ -28,6 +28,11 @@ declare global {
     publicKey: string;
   }
 
+  interface PublicIdentity {
+    id: string;
+    name: string;
+  }
+
   interface RelayStateJson {
     relay: { [key: string]: string };
     ['connection_count']: number;
@@ -142,7 +147,7 @@ declare global {
     };
   }
 
-  type LoginSYN = { type: 'SYN'; data: string };
+  type LoginSYN = { type: 'SYN'; data: PublicIdentity };
   type LoginACK = { type: 'ACK' };
   type LoginHash = { type: 'HASH'; data: string };
   type LoginData = {

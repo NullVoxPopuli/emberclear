@@ -60,11 +60,14 @@ export const machineConfig: MachineConfig<Context, Schema, Events> = {
             id: 'parseScan',
             src: parseScannedData,
             onDone: {
-              target: 'scanned',
-              actions: assign({
-                intent: (_, event) => event.data[0],
-                data: (_, event) => event.data[1],
-              }),
+              // target: 'scanned',
+              actions: [
+                assign({
+                  intent: (_, event) => event.data[0],
+                  data: (_, event) => event.data[1],
+                }),
+                send('PARSED'),
+              ],
             },
             onError: { target: '#error' },
           },
@@ -91,11 +94,19 @@ export const machineConfig: MachineConfig<Context, Schema, Events> = {
           on: {
             '': [
               {
-                target: 'askPermission',
+                target: 'setupConnection',
                 cond: 'isLoggedIn',
               },
               { target: '#error' },
             ],
+          },
+        },
+        setupConnection: {
+          invoke: {
+            id: 'setup-connection',
+            src: 'setupConnection',
+            onDone: 'askPermission',
+            onError: '#error',
           },
         },
         askPermission: {

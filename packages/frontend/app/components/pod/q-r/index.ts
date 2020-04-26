@@ -10,6 +10,7 @@ import { Context, Schema, Events, LoginQRData } from './-types';
 
 import { SendDataConnection } from 'emberclear/services/connection/ephemeral/login/send-data';
 import CurrentUserService from 'emberclear/services/current-user';
+import { ConnectionDoesNotExistError } from 'emberclear/utils/errors';
 
 type Args = {};
 
@@ -21,11 +22,14 @@ export default class QRScan extends Component<Args> {
 
   interpreter: Interpreter<Context, Schema, Events>;
 
+  connection?: SendDataConnection;
+
   constructor(owner: unknown, args: Args) {
     super(owner, args);
 
     let configuredMachine = createMachine<Context, Events>(machineConfig).withConfig({
       services: {
+        setupConnection: this.setupConnection.bind(this),
         transferData: this.transferData.bind(this),
         addContact: this.addContact.bind(this),
       },
@@ -69,7 +73,7 @@ export default class QRScan extends Component<Args> {
     this.interpreter.send(transitionName);
   }
 
-  async transferData() {
+  async setupConnection() {
     if (!this.current) {
       throw new Error('No State' /* but what we make */);
     }
@@ -79,11 +83,17 @@ export default class QRScan extends Component<Args> {
     // the `intent` is "login"
     let { pub } = this.current.context.data as LoginQRData[1];
 
-    // Errors will be thrown if anything goes wrong...
-    // TODO:
-    // bubble events to the machine. https://bit.ly/3byNb9l
-    let connection = await SendDataConnection.build(this, pub);
-    await connection.transferToDevice();
+    this.connection = await SendDataConnection.build(this, pub);
+
+    await this.connection.establishContact();
+  }
+
+  async transferData() {
+    if (!this.connection) {
+      throw new ConnectionDoesNotExistError();
+    }
+
+    await this.connection.transferToDevice();
   }
 
   addContact() {

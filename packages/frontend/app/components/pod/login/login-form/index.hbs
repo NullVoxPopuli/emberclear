@@ -1,4 +1,5 @@
-<FocusCard @title={{t 'ui.login.title'}}>
+{{!-- data-transfer-started value is string true/false --}}
+<FocusCard @title={{t 'ui.login.title'}} data-transfer-started='{{this.hasTransferStarted}}'>
 
   {{#if this.uploadSettings.isRunning}}
     <EllipsisLoader /><br>
@@ -42,7 +43,10 @@
       <footer>{{t 'ui.login.warning'}}</footer>
     </div>
 
-    <Pod::Login::LoginForm::TransferPrompt />
+    <Pod::Login::LoginForm::TransferPrompt
+      @updateTransferStatus={{this.updateTransferStatus}}
+    />
+
   </div>
 
 
