@@ -17,6 +17,10 @@ export default class WindowService extends Service {
     this.cleanup.push(this.checkForDeferredInstall());
   }
 
+  get location() {
+    return window.location;
+  }
+
   willDestroy() {
     this.cleanup.forEach((method) => method());
   }

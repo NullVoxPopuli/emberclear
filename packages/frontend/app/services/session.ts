@@ -8,6 +8,7 @@ import CurrentUserService from 'emberclear/services/current-user';
 import ConnectionService from 'emberclear/services/connection';
 import RouterService from '@ember/routing/router-service';
 import Ember from 'ember';
+import WindowService from './window';
 
 const FLAG_KEY = '_features';
 
@@ -16,6 +17,7 @@ export default class SessionService extends Service {
   @service connection!: ConnectionService;
   @service router!: RouterService;
   @service store!: StoreService;
+  @service window!: WindowService;
 
   @action
   async logout() {
@@ -29,7 +31,7 @@ export default class SessionService extends Service {
 
     if (!Ember.testing) {
       // lazy way to reset all the services
-      window.location.href = '/';
+      this.window.location.href = '/';
     }
   }
 

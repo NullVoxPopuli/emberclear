@@ -21,6 +21,8 @@ declare module 'ember-concurrency' {
     withTestWaiter(): PropertyDecorator;
   };
   export function timeout(wait: number): Promise<void>;
+
+  export function didCancel(error: Error): boolean;
 }
 
 declare module 'ember-concurrency/task' {
@@ -235,7 +237,7 @@ declare module 'ember-concurrency/task-instance' {
      * either the exception thrown from the task function, or
      * an error with a `.name` property with value `"TaskCancelation"`.
      */
-    then(cb?: (value: any) => void): Promise<any>;
+    then(cb?: (value: any) => void, error?: (value: Error) => void): Promise<any>;
 
     catch(cb?: (value: any) => void): Promise<any>;
 
