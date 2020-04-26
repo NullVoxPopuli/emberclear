@@ -7,6 +7,7 @@ import StoreService from '@ember-data/store';
 import CurrentUserService from 'emberclear/services/current-user';
 import ConnectionService from 'emberclear/services/connection';
 import RouterService from '@ember/routing/router-service';
+import Ember from 'ember';
 
 const FLAG_KEY = '_features';
 
@@ -25,6 +26,11 @@ export default class SessionService extends Service {
 
     localforage.clear();
     localStorage.clear();
+
+    if (!Ember.testing) {
+      // lazy way to reset all the services
+      window.location.href = '/';
+    }
   }
 
   @action
