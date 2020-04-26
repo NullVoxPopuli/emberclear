@@ -1,13 +1,38 @@
-<div class='right text-center'>
+<div
+  class='right text-center'
+  {{focus-trap isActive=this.isLoading}}
+>
   {{#if this.isLoading}}
+    <KeyboardPress @key='Escape' @onDown={{this.cancel}} />
+
+    {{#if this.fromUser}}
+      <h3 class='text-center'>
+        {{this.fromUser}}
+      </h3>
+      <br>
+      <h4 class='text-bold text-center'>
+        <code class='has-shadow'>
+          {{this.verification}}
+        </code>
+      </h4>
+      <br>
+    {{/if}}
+
     <EllipsisLoader />
     <br>
     {{this.taskMessage}}
+
+    <div class='text-center mar-t-md'>
+      <button
+        type='button'
+        class='button-secondary button-xs'
+        {{on 'click' this.cancel}}
+      >
+        {{t 'buttons.cancel'}}
+      </button>
+    </div>
   {{else}}
     <QRCode @data={{this.qrData}} />
-    <h4 class='manual-verification-code text-center'>
-      {{this.verification}}
-    </h4>
 
     <h3>{{t 'ui.login.transfer.title'}}</h3>
     <p>{{t 'ui.login.transfer.prompt'}}

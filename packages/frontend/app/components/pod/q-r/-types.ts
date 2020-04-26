@@ -41,6 +41,7 @@ interface LoginSubMachine {
   Schema: {
     states: {
       checkLogin: {};
+      setupConnection: {};
       askPermission: {};
       transferAllowed: {};
       transferComplete: {};

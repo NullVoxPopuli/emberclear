@@ -24,6 +24,7 @@ export default class LoginForm extends Component<{}> {
 
   @tracked mnemonic = '';
   @tracked name = '';
+  @tracked hasTransferStarted = false;
 
   get contacts() {
     return this.store.peekAll('contact');
@@ -66,6 +67,11 @@ export default class LoginForm extends Component<{}> {
       console.error(e);
       this.toast.error('There was a problem processing your file...');
     }
+  }
+
+  @action
+  updateTransferStatus(nextValue: boolean) {
+    this.hasTransferStarted = nextValue;
   }
 
   @action
