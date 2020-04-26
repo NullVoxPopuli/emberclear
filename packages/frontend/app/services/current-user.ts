@@ -10,6 +10,9 @@ import StoreService from '@ember-data/store';
 import User from 'emberclear/models/user';
 import WorkersService from './workers';
 import CryptoConnector from './workers/crypto';
+import { dropTask } from 'ember-concurrency-decorators';
+import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { timeout } from 'ember-concurrency';
 
 export const currentUserId = 'me';
 
@@ -130,10 +133,6 @@ export default class CurrentUserService extends Service {
     return isPresent(identity.privateKey);
   }
 
-  async ensureLoaded(): Promise<boolean> {
-    return await this.exists();
-  }
-
   async load(): Promise<User | null> {
     try {
       const existing = await this.store.findRecord('user', currentUserId, {
@@ -144,7 +143,7 @@ export default class CurrentUserService extends Service {
 
       this.record = existing;
 
-      await this.migrate();
+      taskFor(this.migrate).perform();
 
       return existing;
     } catch (e) {
@@ -166,20 +165,26 @@ export default class CurrentUserService extends Service {
     return this.record;
   }
 
-  async migrate() {
+  @dropTask
+  *migrate() {
+    // This is a super HACK :(
+    // for some reason, I can't find and update a record in the same
+    // async function... why?
+    yield timeout(1000);
+
     if (!this.record || !this.crypto) {
       return;
     }
 
     if (!this.privateSigningKey) {
-      let { publicSigningKey, privateSigningKey } = await this.crypto.generateSigningKeys();
+      let { publicSigningKey, privateSigningKey } = yield this.crypto.generateSigningKeys();
 
       this.record.setProperties({
         publicSigningKey,
         privateSigningKey,
       });
 
-      await this.record.save();
+      yield this.record?.save();
     }
   }
 

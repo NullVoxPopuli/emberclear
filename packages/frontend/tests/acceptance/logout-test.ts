@@ -5,12 +5,10 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import {
   stubService,
-  clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
   assertExternal,
-  getStore,
-  setupWorkers,
+  setupEmberclearTest,
 } from 'emberclear/tests/helpers';
 
 import { page } from 'emberclear/components/app/top-nav/user-drop-menu/-page';
@@ -18,9 +16,7 @@ import { page as logoutPage } from 'emberclear/tests/helpers/pages/logout';
 
 module('Acceptance | Logout', function (hooks) {
   setupApplicationTest(hooks);
-  setupWorkers(hooks);
-  clearLocalStorage(hooks);
-  setupRelayConnectionMocks(hooks);
+  setupEmberclearTest(hooks);
 
   module('When not logged in', function (hooks) {
     hooks.beforeEach(async function () {
@@ -72,15 +68,7 @@ module('Acceptance | Logout', function (hooks) {
           });
 
           test('the user is logged out', function (assert) {
-            let store = getStore();
-
             assert.equal(currentURL(), '/');
-
-            assert.equal(store.peekAll('user').length, 0);
-            assert.equal(store.peekAll('contact').length, 0);
-            assert.equal(store.peekAll('channel').length, 0);
-            assert.equal(store.peekAll('user').length, 0);
-            assert.equal(store.peekAll('user').length, 0);
           });
         });
       });

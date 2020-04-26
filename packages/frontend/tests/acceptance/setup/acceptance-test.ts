@@ -6,19 +6,15 @@ import { percySnapshot } from 'ember-percy';
 import { nameForm, overwritePage } from 'emberclear/tests/helpers/pages/setup';
 
 import {
-  clearLocalStorage,
   setupCurrentUser,
-  setupRelayConnectionMocks,
   trackAsyncDataRequests,
   getStore,
-  setupWorkers,
+  setupEmberclearTest,
 } from 'emberclear/tests/helpers';
 
 module('Acceptance | Setup', function (hooks) {
   setupApplicationTest(hooks);
-  setupWorkers(hooks);
-  clearLocalStorage(hooks);
-  setupRelayConnectionMocks(hooks);
+  setupEmberclearTest(hooks);
   trackAsyncDataRequests(hooks);
 
   module('is logged in', function (hooks) {

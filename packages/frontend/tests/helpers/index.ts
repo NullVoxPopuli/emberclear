@@ -13,6 +13,7 @@ export { getStore } from './get-store';
 export { trackAsyncDataRequests } from './track-async-data';
 
 export { setupWorkers } from './setup-workers';
+export { setupEmberclearTest } from './setup-test';
 
 export { refresh } from './refresh';
 export { waitUntilTruthy } from './waitUntilTruthy';

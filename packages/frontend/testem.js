@@ -1,3 +1,5 @@
+const FailureOnlyReporter = require('testem-failure-only-reporter');
+
 const CI_BROWSER = process.env.CI_BROWSER || 'Chrome';
 
 module.exports = {
@@ -6,6 +8,9 @@ module.exports = {
 
   launch_in_ci: [CI_BROWSER],
   launch_in_dev: ['Chrome'],
+
+  reporter: FailureOnlyReporter,
+
   browser_args: {
     Firefox: {
       mode: 'ci',
