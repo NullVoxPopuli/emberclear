@@ -16,7 +16,7 @@ declare module '@ember/service' {
 
 declare module '@ember/component' {
   // TODO:  remove when this is actually a thing that exists?
-  export function setComponentTemplate(template: string, klass: any): any;
+  export function setComponentTemplate(template: TemplateFactory, klass: any): any;
 }
 
 declare module '@ember/test-helpers' {

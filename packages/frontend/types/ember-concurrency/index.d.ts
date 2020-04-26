@@ -43,7 +43,7 @@ declare module 'ember-concurrency/task' {
    * method on this object to cancel all running or enqueued
    * `TaskInstance`s.
    */
-  export default class Task<PerformArgs extends any[] = any[], PerformReturn> {
+  export default class Task<PerformArgs extends any[] = any[], PerformReturn = void> {
     /**
      * `true` if any current task instances are running.
      */
@@ -67,42 +67,42 @@ declare module 'ember-concurrency/task' {
     /**
      * The most recently started task instance.
      */
-    readonly last: TaskInstance;
+    readonly last: TaskInstance<PerformArgs, PerformReturn>;
 
     /**
      * The most recent task instance that is currently running.
      */
-    readonly lastRunning: TaskInstance;
+    readonly lastRunning: TaskInstance<PerformArgs, PerformReturn>;
 
     /**
      * The most recently performed task instance.
      */
-    readonly lastPerformed: TaskInstance;
+    readonly lastPerformed: TaskInstance<PerformArgs, PerformReturn>;
 
     /**
      * The most recent task instance that succeeded.
      */
-    readonly lastSuccessful: TaskInstance;
+    readonly lastSuccessful: TaskInstance<PerformArgs, PerformReturn>;
 
     /**
      * The most recently completed task instance.
      */
-    readonly lastComplete: TaskInstance;
+    readonly lastComplete: TaskInstance<PerformArgs, PerformReturn>;
 
     /**
      * The most recent task instance that errored.
      */
-    readonly lastErrored: TaskInstance;
+    readonly lastErrored: TaskInstance<PerformArgs, PerformReturn>;
 
     /**
      * The most recently canceled task instance.
      */
-    readonly lastCanceled: TaskInstance;
+    readonly lastCanceled: TaskInstance<PerformArgs, PerformReturn>;
 
     /**
      * The most recent task instance that is incomplete.
      */
-    readonly lastIncompleted: TaskInstance;
+    readonly lastIncompleted: TaskInstance<PerformArgs, PerformReturn>;
 
     /**
      * The number of times this task has been performed.
@@ -121,7 +121,7 @@ declare module 'ember-concurrency/task' {
 
     readonly name: string;
 
-    perform(...args: PerformArgs): TaskInstance<PerformReturn>;
+    perform(...args: PerformArgs): TaskInstance<PerformArgs, PerformReturn>;
 
     /**
      * Cancels all running or queued `TaskInstance`s for this Task.
@@ -162,7 +162,7 @@ declare module 'ember-concurrency/task-instance' {
    * because concurrency policy enforced by a
    * `TaskProperty` Modifier canceled the task instance.
    */
-  export default class TaskInstance<Return = any> {
+  export default class TaskInstance<Args extends any[] = any[], Return = void> {
     /**
      * If this TaskInstance runs to completion by returning a property
      * other than a rejecting promise, this property will be set
@@ -227,7 +227,7 @@ declare module 'ember-concurrency/task-instance' {
      */
     readonly state: TaskInstanceState;
 
-    task: Task;
+    task: Task<Args, Return>;
 
     cancel(reason?: string): void;
 
@@ -237,10 +237,13 @@ declare module 'ember-concurrency/task-instance' {
      * either the exception thrown from the task function, or
      * an error with a `.name` property with value `"TaskCancelation"`.
      */
-    then(cb?: (value: any) => void, error?: (value: Error) => void): Promise<any>;
+    then<ThenReturn = void, ErrorReturn = void>(
+      cb?: (result: Return) => ThenReturn,
+      error?: (value: Error) => ErrorReturn
+    ): Promise<ThenReturn>;
 
-    catch(cb?: (value: any) => void): Promise<any>;
+    catch(cb?: (value: Error) => void): Promise<void>;
 
-    finally(cb?: (value: any) => void): Promise<any>;
+    finally(cb?: () => void): Promise<void>;
   }
 }
