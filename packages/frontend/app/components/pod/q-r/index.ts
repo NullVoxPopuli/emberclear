@@ -5,38 +5,26 @@ import { inject as service } from '@ember/service';
 import { DEBUG } from '@glimmer/env';
 
 import { interpret, createMachine, Interpreter, State } from 'xstate';
-import { machineConfig, Context, Schema, Event } from './-machine';
+import { machineConfig } from './-machine';
+import { Context, Schema, Events, LoginQRData } from './-types';
 
 import { SendDataConnection } from 'emberclear/services/connection/ephemeral/login/send-data';
 import CurrentUserService from 'emberclear/services/current-user';
 
-/*
-TODO:
-- State Machine
-  - Logged in
-    - scan add friend code
-    - scan login to another device code
-    - any other code is unrecognized
-  - Not Logged in
-    - scan add-friend code
-      - will need to store code data while going through the setup process
-    - any other code is unrecognized
-
-*/
 type Args = {};
 
 export default class QRScan extends Component<Args> {
   @service intl!: Intl;
   @service currentUser!: CurrentUserService;
 
-  @tracked current?: State<Context, Event, Schema>;
+  @tracked current?: State<Context, Events, Schema>;
 
-  interpreter: Interpreter<Context, Schema, Event>;
+  interpreter: Interpreter<Context, Schema, Events>;
 
   constructor(owner: unknown, args: Args) {
     super(owner, args);
 
-    let configuredMachine = createMachine<Context, Event>(machineConfig).withConfig({
+    let configuredMachine = createMachine<Context, Events>(machineConfig).withConfig({
       services: {
         transferData: this.transferData.bind(this),
         addContact: this.addContact.bind(this),
@@ -86,7 +74,10 @@ export default class QRScan extends Component<Args> {
       throw new Error('No State' /* but what we make */);
     }
 
-    let { pub } = this.current.context.data;
+    // The State-Machine prevents this method from being called
+    // without an existing `pub` (which is always present when)
+    // the `intent` is "login"
+    let { pub } = this.current.context.data as LoginQRData[1];
 
     // Errors will be thrown if anything goes wrong...
     // TODO:

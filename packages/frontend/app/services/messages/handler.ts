@@ -20,7 +20,7 @@ export default class ReceivedMessageHandler extends Service {
   @service contactManager!: ContactManager;
   @service('messages/auto-responder') autoResponder!: AutoResponder;
 
-  async handle(raw: RelayJson) {
+  async handle(raw: StandardMessage) {
     let message = await this.decomposeMessage(raw);
     let type = message.type;
 
@@ -52,7 +52,7 @@ export default class ReceivedMessageHandler extends Service {
     }
   }
 
-  private async handleDeliveryConfirmation(message: Message, raw: RelayJson) {
+  private async handleDeliveryConfirmation(message: Message, raw: StandardMessage) {
     const targetMessage = await this.store.findRecord('message', raw.to);
 
     // targetMessage.set('confirmationFor', message);
@@ -64,7 +64,7 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleInfoChannelInfo(message: Message, _raw: RelayJson) {
+  private async handleInfoChannelInfo(message: Message, _raw: StandardMessage) {
     return message;
   }
 
@@ -72,7 +72,7 @@ export default class ReceivedMessageHandler extends Service {
     this.statusManager.markOffline(message.from);
   }
 
-  private async handleChat(message: Message, raw: RelayJson) {
+  private async handleChat(message: Message, raw: StandardMessage) {
     this.autoResponder.messageReceived(message);
 
     switch (message.target) {
@@ -104,13 +104,13 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleChannelChat(message: Message, _raw: RelayJson) {
+  private async handleChannelChat(message: Message, _raw: StandardMessage) {
     // TODO: if message is a channel message, deconstruct the channel info
 
     return message;
   }
 
-  private async decomposeMessage(json: RelayJson) {
+  private async decomposeMessage(json: StandardMessage) {
     let { id, sender: senderInfo } = json;
 
     let sender = await this.findOrCreateSender(senderInfo);
@@ -133,7 +133,7 @@ export default class ReceivedMessageHandler extends Service {
     }
   }
 
-  private buildNewReceivedMessage(json: RelayJson, sender: Identity) {
+  private buildNewReceivedMessage(json: StandardMessage, sender: Identity) {
     const { id, type, target, message: msg } = json;
 
     const message = this.store.createRecord('message', {
@@ -184,7 +184,7 @@ export default class ReceivedMessageHandler extends Service {
     }
   }
 
-  private async findOrCreateSender(senderData: RelayJson['sender']): Promise<Identity> {
+  private async findOrCreateSender(senderData: StandardMessage['sender']): Promise<Identity> {
     const { name, uid } = senderData;
 
     if (uid === this.currentUser.uid) {
