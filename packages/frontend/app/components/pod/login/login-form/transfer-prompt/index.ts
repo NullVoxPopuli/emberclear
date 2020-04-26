@@ -42,7 +42,7 @@ export default class TransferPrompt extends Component<{}> {
 
   @dropTask
   *setupEphemeralConnection() {
-    let ephemeralConnection = yield ReceiveDataConnection.build(this);
+    let ephemeralConnection: ReceiveDataConnection = yield ReceiveDataConnection.build(this);
 
     let { hexId: pub } = ephemeralConnection;
     let verification = randomFourLetters();

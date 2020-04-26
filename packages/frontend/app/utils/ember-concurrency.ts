@@ -47,7 +47,7 @@ export function taskService<TEvent extends Event<any>, Args extends any[], Retur
 
     taskInstance.then(
       (data: TEvent['data']) => callback({ type: 'DONE', data }),
-      (error) =>
+      (error: Error) =>
         didCancel(error) ? callback({ type: 'CANCEL' }) : callback({ type: 'ERROR', error })
     );
 
