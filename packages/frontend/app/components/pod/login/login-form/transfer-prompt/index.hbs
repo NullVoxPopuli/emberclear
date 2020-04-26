@@ -1,7 +1,4 @@
-<div
-  class='right text-center'
-  {{focus-trap isActive=this.isLoading}}
->
+<div class='right text-center'>
   {{#if this.isLoading}}
     <KeyboardPress @key='Escape' @onDown={{this.cancel}} />
 
@@ -22,15 +19,17 @@
     <br>
     {{this.taskMessage}}
 
-    <div class='text-center mar-t-md'>
-      <button
-        type='button'
-        class='button-secondary button-xs'
-        {{on 'click' this.cancel}}
-      >
-        {{t 'buttons.cancel'}}
-      </button>
-    </div>
+    {{#if this.fromUser}}
+      <div class='text-center mar-t-md' {{focus-trap}}>
+        <button
+          type='button'
+          class='button-secondary button-xs'
+          {{on 'click' this.cancel}}
+        >
+          {{t 'buttons.cancel'}}
+        </button>
+      </div>
+    {{/if}}
   {{else}}
     <QRCode @data={{this.qrData}} />
 

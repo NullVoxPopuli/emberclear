@@ -9,6 +9,7 @@ import {
   setupRelayConnectionMocks,
   clearLocalStorage,
   setupWorkers,
+  trackAsyncDataRequests,
 } from 'emberclear/tests/helpers';
 
 import { page } from 'emberclear/components/search/-page';
@@ -16,6 +17,7 @@ import { page as app } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Search Modal', function (hooks) {
   setupApplicationTest(hooks);
+  trackAsyncDataRequests(hooks);
   setupWorkers(hooks);
   setupCurrentUser(hooks);
   setupRelayConnectionMocks(hooks);
@@ -23,10 +25,16 @@ module('Acceptance | Search Modal', function (hooks) {
 
   module('there are more results than what are initially displayed', function (hooks) {
     hooks.beforeEach(async function (assert) {
-      // NOTE: contact names are 1-indexed
-      for (let i = 0; i < 10; i++) {
-        await createContact(`Contact #${i + 1}`);
-      }
+      await createContact(`Contact #1`);
+      await createContact(`Contact #2`);
+      await createContact(`Contact #3`);
+      await createContact(`Contact #4`);
+      await createContact(`Contact #5`);
+      await createContact(`Contact #6`);
+      await createContact(`Contact #7`);
+      await createContact(`Contact #8`);
+      await createContact(`Contact #9`);
+      await createContact(`Contact #10`);
 
       let contacts = await getStore().findAll('contact');
       assert.equal(contacts.length, 10);

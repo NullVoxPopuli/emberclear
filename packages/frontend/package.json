@@ -191,6 +191,7 @@
     "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0",
     "testdouble": "^3.13.1",
+    "testem-failure-only-reporter": "^0.0.1",
     "typescript": "3.7.5",
     "webpack-bundle-analyzer": "^3.7.0"
   },

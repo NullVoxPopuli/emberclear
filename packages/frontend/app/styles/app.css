@@ -245,7 +245,6 @@
   & .right {
     background: var(--body-bg-color);
 
-
     /* For animating the transition to data Transfer */
     box-shadow: 0 0 0 0;
     padding: 0;
@@ -267,9 +266,6 @@
       /* transition: all 0.4s cubic-bezier(0.6, 0, 0.735, 0.045); */
       transition: all 0.4s ease-in-out;
     }
-
-    & .login-form-contents .right {
-    }
   }
 
   div[data-transfer-started='true'] {
@@ -286,5 +282,4 @@
       transform: scale(1.5) translateX(-25%);
     }
   }
-
 }

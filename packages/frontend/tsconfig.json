@@ -9,7 +9,6 @@
     "alwaysStrict": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": false,
     "noEmitOnError": true,

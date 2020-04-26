@@ -83,6 +83,7 @@ module.exports = {
     {
       files: ['**/*-test.ts', 'tests/**'],
       rules: {
+        'ember/no-test-import-export': 'off', // this rule is incomplete
         '@typescript-eslint/no-empty-function': 'off',
       },
     },
