@@ -5,12 +5,15 @@ import { dropTask } from 'ember-concurrency-decorators';
 
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 import { ReceiveDataConnection } from 'emberclear/services/connection/ephemeral/login/receive-data';
+import Ember from 'ember';
 
 export default class TransferPrompt extends Component<{}> {
   constructor(owner: unknown, args: {}) {
     super(owner, args);
 
-    taskFor(this.setupEphemeralConnection).perform();
+    if (!Ember.testing) {
+      taskFor(this.setupEphemeralConnection).perform();
+    }
   }
 
   get verification() {
