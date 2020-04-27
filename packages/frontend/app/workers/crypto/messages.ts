@@ -90,6 +90,8 @@ export type CryptoMessage =
 
 export function handleMessage(message: CryptoMessage) {
   switch (message.action) {
+    case WorkerCryptoAction.LOGIN:
+      return login(...message.args);
     case WorkerCryptoAction.GENERATE_KEYS:
       return generateAsymmetricKeys();
     case WorkerCryptoAction.GENERATE_SIGNING_KEYS:
