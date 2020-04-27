@@ -5979,13 +5979,14 @@ ember-autofocus-modifier@^1.0.1:
     ember-cli-babel "^7.11.1"
     ember-modifier "^1.0.2"
 
-ember-autoresize-modifier@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/ember-autoresize-modifier/-/ember-autoresize-modifier-0.2.0.tgz#aa68df324ab54b60c68d3ac67e969ec2c0018f6a"
-  integrity sha512-avCCof35b2FbG2LlGW7sICzTBpUNJU7va3IZ0WoFLHxX56dONFGoVEnqcff8P7y9QVLPeE0OYp20/IQQotFZpw==
+ember-autoresize-modifier@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ember-autoresize-modifier/-/ember-autoresize-modifier-0.2.1.tgz#c2d7f4e35b0f6293cc050e4beb24021faa109aa3"
+  integrity sha512-mMPjb6xJdkLWBld+uz7HglCa0sQgkYHo4BSmYabfgRgADFk5LLO44DWqM7JxhUu2wWRzkZnpOBMuTN1cT311jw==
   dependencies:
     ember-cli-babel "^7.17.2"
     ember-cli-htmlbars "^4.2.2"
+    ember-modifier "^1.0.3"
 
 ember-autostash-modifier@^0.1.4:
   version "0.1.4"
