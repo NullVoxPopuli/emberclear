@@ -10,10 +10,10 @@ import Toast from 'emberclear/services/toast';
 import Settings from 'emberclear/services/settings';
 
 import RouterService from '@ember/routing/router-service';
-import { naclBoxPrivateKeyFromMnemonic } from 'emberclear/workers/crypto/utils/mnemonic';
-import { derivePublicKey, generateSigningKeys } from 'emberclear/workers/crypto/utils/nacl';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
+import CryptoConnector from 'emberclear/services/workers/crypto';
+import WorkersService from 'emberclear/services/workers';
 
 export default class LoginForm extends Component<{}> {
   @service currentUser!: CurrentUserService;
@@ -21,6 +21,7 @@ export default class LoginForm extends Component<{}> {
   @service toast!: Toast;
   @service router!: RouterService;
   @service store!: StoreService;
+  @service workers!: WorkersService;
 
   @tracked mnemonic = '';
   @tracked name = '';
@@ -37,18 +38,11 @@ export default class LoginForm extends Component<{}> {
   @dropTask
   *login() {
     try {
-      const name = this.name;
-      const privateKey = yield naclBoxPrivateKeyFromMnemonic(this.mnemonic);
-      const publicKey = yield derivePublicKey(privateKey);
-      const { publicSigningKey, privateSigningKey } = yield generateSigningKeys();
+      let name = this.name;
+      let crypto = new CryptoConnector({ workerService: this.workers });
+      let keys = yield crypto.login(this.mnemonic);
 
-      yield this.currentUser.setIdentity(
-        name,
-        privateKey,
-        publicKey,
-        privateSigningKey,
-        publicSigningKey
-      );
+      yield this.currentUser.setIdentity(name, keys);
 
       this.router.transitionTo('chat');
     } catch (e) {

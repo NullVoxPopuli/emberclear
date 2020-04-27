@@ -97,25 +97,16 @@ export default class CurrentUserService extends Service {
     // remove existing record
     await this.store.unloadAll('user');
 
-    await this.setIdentity(name, privateKey, publicKey, privateSigningKey, publicSigningKey);
+    await this.setIdentity(name, { privateKey, publicKey, privateSigningKey, publicSigningKey });
 
     await this.load();
   }
 
-  async setIdentity(
-    name: string,
-    privateKey: Uint8Array,
-    publicKey: Uint8Array,
-    privateSigningKey?: Uint8Array,
-    publicSigningKey?: Uint8Array
-  ) {
+  async setIdentity(name: string, keys: KeyPair & Partial<SigningKeyPair>) {
     const record = this.store.createRecord('user', {
       id: currentUserId,
       name,
-      publicKey,
-      privateKey,
-      publicSigningKey,
-      privateSigningKey,
+      ...keys,
     });
 
     await record.save();
@@ -213,7 +204,7 @@ export default class CurrentUserService extends Service {
       publicSigningKey = await this.crypto!.derivePublicSigningKey(privateSigningKey);
     }
 
-    await this.setIdentity(name, privateKey, publicKey, privateSigningKey, publicSigningKey);
+    await this.setIdentity(name, { privateKey, publicKey, privateSigningKey, publicSigningKey });
   }
 }
 

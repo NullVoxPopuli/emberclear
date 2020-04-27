@@ -2,6 +2,8 @@ import WorkersService from '../workers';
 import { PWBHost } from 'promise-worker-bi';
 import { Sign, OpenSigned, Hash } from 'emberclear/workers/crypto/messages';
 
+type Login = import('emberclear/workers/crypto/messages').Login;
+type MnemonicFromPrivateKey = import('emberclear/workers/crypto/messages').MnemonicFromPrivateKey;
 type GenerateKeys = import('emberclear/workers/crypto/messages').GenerateKeys;
 type GenerateSigningKeys = import('emberclear/workers/crypto/messages').GenerateSigningKeys;
 type EncryptForSocket = import('emberclear/workers/crypto/messages').EncryptForSocket;
@@ -15,6 +17,7 @@ type Args = {
 };
 
 enum WorkerCryptoAction {
+  // Generation
   LOGIN = 0,
   GENERATE_KEYS = 1,
   DECRYPT_FROM_SOCKET = 2,
@@ -23,6 +26,10 @@ enum WorkerCryptoAction {
   SIGN = 5,
   OPEN_SIGNED = 6,
   HASH = 7,
+
+  // Conversions
+  MNEMONIC_FROM_PRIVATE_KEY = 50,
+
   // TODO: should find a way to not need these
   DERIVE_PUBLIC_KEY = 100,
   DERIVE_PUBLIC_SIGNING_KEY = 101,
@@ -38,6 +45,24 @@ export default class CryptoConnector {
     let { privateKey, publicKey } = keys || ({} as KeyPair);
     this.getWorker = workerService.getCryptoWorker;
     this.keys = { privateKey, publicKey };
+  }
+
+  async login(mnemonic: string) {
+    let worker = this.getWorker();
+
+    return await worker.postMessage<KeyPair & SigningKeyPair, Login>({
+      action: Action.LOGIN,
+      args: [mnemonic],
+    });
+  }
+
+  async mnemonicFromNaClBoxPrivateKey(key?: Uint8Array) {
+    let worker = this.getWorker();
+
+    return await worker.postMessage<string, MnemonicFromPrivateKey>({
+      action: Action.MNEMONIC_FROM_PRIVATE_KEY,
+      args: [key || this.keys.publicKey],
+    });
   }
 
   async generateKeys() {

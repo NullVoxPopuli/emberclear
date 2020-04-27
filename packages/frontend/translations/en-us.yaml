@@ -116,6 +116,7 @@ services:
 routes:
   home: Home
   chat: Chat
+  qr: QR
   logout: Logout
   login: Login
   contacts: Contacts
