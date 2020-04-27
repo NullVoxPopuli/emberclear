@@ -18,6 +18,7 @@
     "ramdisk": "./scripts/node_modules-to-ramdisk.sh",
     "start:sw": "yarn ember serve -p 4201",
     "start:dev": "yarn start",
+    "start:prod": "yarn start --environment production",
     "start:fast": "yarn ramdisk && yarn start",
     "start": "cross-env SW_DISABLED=true yarn ember serve -p 4201",
     "test": "cross-env SW_DISABLED=true yarn ember exam --random",

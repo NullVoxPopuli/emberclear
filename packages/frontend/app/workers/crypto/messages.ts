@@ -9,9 +9,11 @@ import {
 } from './utils/nacl';
 import { decryptFromSocket, encryptForSocket } from './utils/socket';
 import { login } from './actions';
+import { mnemonicFromNaClBoxPrivateKey } from './utils/mnemonic';
 
 enum WorkerCryptoAction {
-  LOGIN = 0, // TODO: figure this out
+  // Generation
+  LOGIN = 0,
   GENERATE_KEYS = 1,
   DECRYPT_FROM_SOCKET = 2,
   ENCRYPT_FOR_SOCKET = 3,
@@ -19,6 +21,10 @@ enum WorkerCryptoAction {
   SIGN = 5,
   OPEN_SIGNED = 6,
   HASH = 7,
+
+  // Conversions
+  MNEMONIC_FROM_PRIVATE_KEY = 50,
+
   // TODO: should find a way to not need these
   DERIVE_PUBLIC_KEY = 100,
   DERIVE_PUBLIC_SIGNING_KEY = 101,
@@ -27,6 +33,10 @@ enum WorkerCryptoAction {
 export type Login = {
   action: WorkerCryptoAction.LOGIN;
   args: Parameters<typeof login>;
+};
+export type MnemonicFromPrivateKey = {
+  action: WorkerCryptoAction.MNEMONIC_FROM_PRIVATE_KEY;
+  args: Parameters<typeof mnemonicFromNaClBoxPrivateKey>;
 };
 export type GenerateKeys = {
   action: WorkerCryptoAction.GENERATE_KEYS;
@@ -71,6 +81,7 @@ export type CryptoMessage =
   | GenerateSigningKeys
   | DecryptFromSocket
   | EncryptForSocket
+  | MnemonicFromPrivateKey
   | DerivePublicKey
   | DerivePublicSigningKey
   | Sign
@@ -97,6 +108,8 @@ export function handleMessage(message: CryptoMessage) {
       return derivePublicKey(...message.args);
     case WorkerCryptoAction.DERIVE_PUBLIC_SIGNING_KEY:
       return derivePublicSigningKey(...message.args);
+    case WorkerCryptoAction.MNEMONIC_FROM_PRIVATE_KEY:
+      return mnemonicFromNaClBoxPrivateKey(...message.args);
     default:
       throw new Error(`unknown message for crypto worker: ${(message as any).action}`);
   }

@@ -23,7 +23,7 @@ export default class SessionService extends Service {
     this.connection.disconnect();
 
     // clears the store after a refresh
-    localforage.clear();
+    await localforage.clear();
     localStorage.clear();
 
     // lazy way to reset all the services

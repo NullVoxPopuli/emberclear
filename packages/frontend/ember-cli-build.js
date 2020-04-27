@@ -77,7 +77,7 @@ module.exports = function (defaults) {
       // TODO: maybe split the workers out to a separate package
       //       so they can be tested separately and then this project
       //       can test the integration with the workers
-      exclude: isProduction ? ['tweetnacl'] : [],
+      exclude: ['tweetnacl'],
       webpack: {
         plugins: CONCAT_STATS
           ? [

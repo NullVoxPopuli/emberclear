@@ -5,21 +5,30 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 import { hbs } from 'ember-cli-htmlbars';
-import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/workers/crypto/utils/mnemonic';
+import WorkersService from 'emberclear/services/workers';
+import CryptoConnector from 'emberclear/services/workers/crypto';
 
-class Mnemonic extends Component {
+type Args = {
+  crypto?: CryptoConnector;
+};
+
+class Mnemonic extends Component<Args> {
   @service('intl') intl!: Intl;
+  @service workers!: WorkersService;
 
   @tracked privateKey?: Uint8Array;
   @tracked mnemonic?: string;
 
   @action
-  async updateMnemonic(this: Mnemonic, key?: Uint8Array) {
+  async updateMnemonic() {
     let result = '';
+    let { crypto } = this.args;
 
-    if (!key) {
+    if (!crypto) {
       result = this.intl.t('services.crypto.keyGenFailed');
-    } else result = await mnemonicFromNaClBoxPrivateKey(key);
+    } else {
+      result = await crypto.mnemonicFromNaClBoxPrivateKey();
+    }
 
     this.mnemonic = result
       .split(/((?:\w+ ){5})/g)
@@ -34,7 +43,7 @@ export default setComponentTemplate(
   <pre
     data-test-mnemonic
     class='wrap'
-    {{did-insert (fn this.updateMnemonic @privateKey)}}
+    {{did-insert this.updateMnemonic}}
   >
     {{this.mnemonic}}
   </pre>
