@@ -102,6 +102,7 @@ services:
 routes:
   home: Домой
   chat: Чат
+  qr: QR
   logout: Выход
   login: Вход
   contacts: Контакты
