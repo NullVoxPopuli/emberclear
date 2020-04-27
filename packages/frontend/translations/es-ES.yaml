@@ -102,6 +102,7 @@ services:
 routes:
   home: Inicio
   chat: Chat
+  qr: QR
   logout: Desconectar
   login: Conectarse
   contacts: Contactos
