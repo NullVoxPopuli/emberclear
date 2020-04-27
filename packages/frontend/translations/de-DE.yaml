@@ -10,6 +10,8 @@ install: Installieren
 bundle-analysis: JS Bundle Analysis
 qrCode:
   error: QR Code konnte nicht erzeugt werden
+  malformed: QR Code is malfomed
+  waitingForCamera: Awaaiting Camera Access
 connection:
   connecting: Verbinde...
   connected: Verbunden!
@@ -24,6 +26,8 @@ connection:
     subscribe:
       notConnected: Abonnieren eines Kanals ohne Socket Verbindung nicht möglich!
 errors:
+  genericTitle: "An Error occurred!"
+  genericRetry: "Oh no! Something went wrong. Retry?"
   notFound:
     title: Nicht gefunden
     help: Die URL konnte nicht aufgerufen werden. Wenn das Problem weiterhin besteht,
@@ -31,6 +35,9 @@ errors:
   permissions:
     enableCamera: Du musst dieser Seite möglicherweise Zugriff zu deiner Kamera geben.
 buttons:
+  allow: Allow
+  deny: Deny
+  retry: Retry
   delete: Löschen
   resend: Erneut senden
   resendAutomatically: automatisch erneut senden
@@ -95,6 +102,7 @@ services:
 routes:
   home: Startseite
   chat: Chat
+  qr: QR
   logout: Abmelden
   login: Anmelden
   contacts: Kontakte
@@ -212,9 +220,26 @@ ui:
     license: >
       The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
   login:
-    title: Anmelden
+    title: "Welcome Back!"
     instructions: Bitte füge oder tippe deine mnemonic Passphrase ein
     loading: Loaded {num} Contacts...
+    success: "Logged In!"
+    warning: "Note that without another logged in device or your mnemonic, your account will be unrecoverable as there is no central storage to recovery from."
+    transfer:
+      title: "Log in with QR Code"
+      prompt: "Scan this with emberclear to login and have all your data transferred instantly."
+      establishConnection: "Establishing Connection..."
+      inProgress: Transferring Data...
+      success: "You are about to be logged in on the other device!"
+    verify:
+      title: Verify
+      prompt1: "Do you want to login to a new device?"
+      prompt2: "Be sure that the code matches the code below the QR Image on the device."
+      received: Received login request
+      waitingOnApproval: Waiting for approval
+      receivedData: Received data
+      importing: Importing data
+      failed: "Something went wrong. Please try again."
   setup:
     overwriteTitle: Möchtest du wirklich eine neue Identität anlegen?
     overwriteQuestion: >
