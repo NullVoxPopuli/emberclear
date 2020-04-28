@@ -13,7 +13,11 @@ const { buildWorkerTrees } = require('./config/build/workers');
 const crypto = require('crypto');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const { EMBROIDER, CONCAT_STATS } = process.env;
+let { EMBROIDER, CONCAT_STATS } = process.env;
+
+if (EMBROIDER !== 'true') {
+  EMBROIDER = true;
+}
 
 module.exports = function (defaults) {
   let environment = EmberApp.env();
@@ -113,10 +117,10 @@ module.exports = function (defaults) {
 
     return compatBuild(app, Webpack, {
       extraPublicTrees: additionalTrees,
-      // staticAddonTestSupportTrees: true,
-      // staticAddonTrees: true,
-      // staticHelpers: true,
-      // staticComponents: true,
+      staticAddonTestSupportTrees: true,
+      staticAddonTrees: true,
+      staticHelpers: true,
+      staticComponents: true,
       // splitAtRoutes: true,
       // skipBabel: [],
     });
