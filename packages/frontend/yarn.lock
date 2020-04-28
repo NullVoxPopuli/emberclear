@@ -1341,13 +1341,6 @@
   resolved "https://registry.npmjs.org/@glimmer/interfaces/-/interfaces-0.42.2.tgz#9cf8d6f8f5eee6bfcfa36919ca68ae716e1f78db"
   integrity sha512-7LOuQd02cxxNNHChzdHMAU8/qOeQvTro141CU5tXITP7z6aOv2D2gkFdau97lLQiVxezGrh8J7h8GCuF7TEqtg==
 
-"@glimmer/interfaces@^0.50.1":
-  version "0.50.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.50.1.tgz#008620d9b42e296ce89669415e4830354b83c4fb"
-  integrity sha512-ye9fWev8QxK8Y8+NzCa0uJDArFURbVhAahSFyPT25UdalYCWEmJmqD7k1KezZk2N7ZPxLPaBjOk9ifzDPRGHgg==
-  dependencies:
-    "@simple-dom/interface" "^1.4.0"
-
 "@glimmer/interfaces@^0.51.1":
   version "0.51.1"
   resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.51.1.tgz#c5637669ff83c630d91c700598b9963225d656f2"
@@ -1409,16 +1402,6 @@
     handlebars "^4.0.13"
     simple-html-tokenizer "^0.5.8"
 
-"@glimmer/syntax@^0.50.0":
-  version "0.50.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.50.1.tgz#86100fa077d7afd9f82c4e91d194d5d7211516eb"
-  integrity sha512-je/0+o/UZukP/lxJJQxgCmk4mUFJpJEAAhqxPtaj054Tofj3X+9CdQwjVU22B8F8j1AIUDr1hRgIop4k0lPbiQ==
-  dependencies:
-    "@glimmer/interfaces" "^0.50.1"
-    "@glimmer/util" "^0.50.1"
-    handlebars "^4.5.1"
-    simple-html-tokenizer "^0.5.9"
-
 "@glimmer/syntax@^0.51.1":
   version "0.51.1"
   resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.51.1.tgz#24cb4f01693bd934075d03087bdc76ab6bff0524"
@@ -1451,15 +1434,6 @@
   version "0.44.0"
   resolved "https://registry.npmjs.org/@glimmer/util/-/util-0.44.0.tgz#45df98d73812440206ae7bda87cfe04aaae21ed9"
   integrity sha512-duAsm30uVK9jSysElCbLyU6QQYO2X9iLDLBIBUcCqck9qN1o3tK2qWiHbGK5d6g8E2AJ4H88UrfElkyaJlGrwg==
-
-"@glimmer/util@^0.50.1":
-  version "0.50.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.50.1.tgz#9e85e005d2fd563f979c5fba99563bfe75edf2a9"
-  integrity sha512-LaoSboa+BXjunun8wwVEV+FOH5oHc8AckfsmyHsHltFTwIRpjb0w0AQzeHzHXHMVhfpYHB06xlFO9naSEztB1Q==
-  dependencies:
-    "@glimmer/env" "0.1.7"
-    "@glimmer/interfaces" "^0.50.1"
-    "@simple-dom/interface" "^1.4.0"
 
 "@glimmer/util@^0.51.1":
   version "0.51.1"
@@ -5124,11 +5098,6 @@ commander@^4.1.1:
   resolved "https://registry.npmjs.org/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
   integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
 
-commander@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-5.0.0.tgz#dbf1909b49e5044f8fdaf0adc809f0c0722bdfd0"
-  integrity sha512-JrDGPAKjMGSP1G0DUoaceEJ3DZgAfr/q6X7FVk4+U5KxUSKviYGM2k6zWkfyyBHy5rAtzgYJFa1ro2O9PtoxwQ==
-
 commander@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
@@ -6019,16 +5988,16 @@ ember-autoresize-modifier@^0.2.1:
     ember-cli-htmlbars "^4.2.2"
     ember-modifier "^1.0.3"
 
-ember-autostash-modifier@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/ember-autostash-modifier/-/ember-autostash-modifier-0.1.4.tgz#29f66a3102bf6ef28e70d89f68602b0b8cc68a95"
-  integrity sha512-2Zqc1kRDnjb9iBnrOcxxRm37yL3jVziKCF8rCOCjvUMXScG4zvqkJojZGePXWgTNgpt1cWa8WnFqhI3j4Z7JEg==
+ember-autostash-modifier@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/ember-autostash-modifier/-/ember-autostash-modifier-0.1.5.tgz#cec68d49f5c2783c317d017b04161df9551b6f09"
+  integrity sha512-zM1VGq45eowDbMPhKm1RYisxPC9mlVZDMAx4vyQz5phlG7GraqDc8Y/I2sMW1m6hCvndo9+TFqqHs5WuMUkxAQ==
   dependencies:
     ember-cli-babel "7.19.0"
     ember-cli-htmlbars "4.3.1"
     ember-cli-typescript "3.1.3"
     ember-modifier "1.0.3"
-    ember-template-lint "2.5.2"
+    ember-template-lint "2.6.0"
     eslint "6.8.0"
 
 ember-cli-app-version@^3.2.0:
@@ -6947,19 +6916,6 @@ ember-source@^3.18.0:
     semver "^6.1.1"
     silent-error "^1.1.1"
 
-ember-template-lint@2.5.2:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.5.2.tgz#f1f9c3b1f3355f1a82870fbc81f672ae80e375fe"
-  integrity sha512-IwZziVgoWzqbfLCAQiCkwQ3jv6ZsPF2/pvu7ep3giAdNWbQKVx5NFrktQ+cy8tOG+QYmgrN9v7+8BkMgmE+21Q==
-  dependencies:
-    chalk "^4.0.0"
-    ember-template-recast "^4.1.2"
-    find-up "^4.1.0"
-    globby "^11.0.0"
-    micromatch "^4.0.2"
-    resolve "^1.15.1"
-    yargs "^15.3.1"
-
 ember-template-lint@2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.6.0.tgz#e36ddca9af1e32be2931c539342de92e3d351525"
@@ -6973,21 +6929,6 @@ ember-template-lint@2.6.0:
     micromatch "^4.0.2"
     resolve "^1.17.0"
     yargs "^15.3.1"
-
-ember-template-recast@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-4.1.2.tgz#1999c49df482a042fe3ad02712d62b6d3566addd"
-  integrity sha512-ySBuPVKnGPvJ+y+5MEZ7qHE1p2LunM2CV9RUES0CP4O+fksPNwl79HPV+8rL0gJvN2nUOfkatNF6pcWNxxXaxg==
-  dependencies:
-    "@glimmer/syntax" "^0.50.0"
-    async-promise-queue "^1.0.5"
-    colors "^1.4.0"
-    commander "^5.0.0"
-    globby "^11.0.0"
-    ora "^4.0.3"
-    slash "^3.0.0"
-    tmp "^0.1.0"
-    workerpool "^5.0.4"
 
 ember-template-recast@^4.1.4:
   version "4.1.4"
@@ -8660,7 +8601,7 @@ hammerjs@^2.0.8:
   resolved "https://registry.npmjs.org/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
   integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
 
-handlebars@^4.0.11, handlebars@^4.0.13, handlebars@^4.0.4, handlebars@^4.0.6, handlebars@^4.1.2, handlebars@^4.3.1, handlebars@^4.4.2, handlebars@^4.5.1, handlebars@^4.7.3, handlebars@^4.7.4:
+handlebars@^4.0.11, handlebars@^4.0.13, handlebars@^4.0.4, handlebars@^4.0.6, handlebars@^4.1.2, handlebars@^4.3.1, handlebars@^4.4.2, handlebars@^4.7.3, handlebars@^4.7.4:
   version "4.7.6"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.6.tgz#d4c05c1baf90e9945f77aa68a7a219aa4a7df74e"
   integrity sha512-1f2BACcBfiwAfStCKZNrUCgqNZkGsAT7UM3kkYtXuLo0KnaVfjKOyf7PRzB6++aK9STyT1Pd2ZCPe3EGOXleXA==
@@ -11390,20 +11331,6 @@ ora@^3.4.0:
     cli-spinners "^2.0.0"
     log-symbols "^2.2.0"
     strip-ansi "^5.2.0"
-    wcwidth "^1.0.1"
-
-ora@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.npmjs.org/ora/-/ora-4.0.3.tgz#752a1b7b4be4825546a7a3d59256fa523b6b6d05"
-  integrity sha512-fnDebVFyz309A73cqCipVL1fBZewq4vwgSHfxh43vVy31mbyoQ8sCH3Oeaog/owYOs/lLlGVPCISQonTneg6Pg==
-  dependencies:
-    chalk "^3.0.0"
-    cli-cursor "^3.1.0"
-    cli-spinners "^2.2.0"
-    is-interactive "^1.0.0"
-    log-symbols "^3.0.0"
-    mute-stream "0.0.8"
-    strip-ansi "^6.0.0"
     wcwidth "^1.0.1"
 
 ora@^4.0.4:
