@@ -1,4 +1,4 @@
-import WorkersService from '../workers';
+import WorkersService from '../../services/workers';
 import { PWBHost } from 'promise-worker-bi';
 import { Sign, OpenSigned, Hash } from 'emberclear/workers/crypto/messages';
 

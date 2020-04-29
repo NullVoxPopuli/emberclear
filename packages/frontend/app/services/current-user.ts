@@ -9,7 +9,7 @@ import { toHex } from 'emberclear/utils/string-encoding';
 import StoreService from '@ember-data/store';
 import User from 'emberclear/models/user';
 import WorkersService from './workers';
-import CryptoConnector from './workers/crypto';
+import CryptoConnector from '../utils/workers/crypto';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 import { timeout } from 'ember-concurrency';

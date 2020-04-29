@@ -7,7 +7,7 @@ import {
   STATUS_CONNECTED,
   STATUS_UNKNOWN,
   STATUS_DEGRADED,
-} from 'emberclear/utils/connection-pool';
+} from 'emberclear/utils/connection/connection-pool';
 import { timeout } from 'ember-concurrency';
 
 module('Unit | Service | connection/status', function (hooks) {

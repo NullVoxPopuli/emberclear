@@ -11,7 +11,7 @@ import SettingsService from 'emberclear/services/settings';
 import RouterService from '@ember/routing/router-service';
 
 import { EphemeralConnection } from '../ephemeral-connection';
-import { UnknownMessageError } from '../../errors';
+import { UnknownMessageError } from 'emberclear/utils/errors';
 
 export class ReceiveDataConnection extends EphemeralConnection {
   @service router!: RouterService;

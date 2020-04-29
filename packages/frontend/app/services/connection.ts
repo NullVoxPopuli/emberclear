@@ -5,7 +5,7 @@ import ConnectionManager from 'emberclear/services/connection/manager';
 import CurrentUserService from 'emberclear/services/current-user';
 import ContactsOnlineChecker from 'emberclear/services/contacts/online-checker';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import { OutgoingPayload } from 'emberclear/services/connection/connection';
+import { OutgoingPayload } from 'emberclear/utils/connection/connection';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 export default class ConnectionService extends Service {

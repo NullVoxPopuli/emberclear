@@ -11,12 +11,14 @@ import { Context, Schema, Events, LoginQRData } from './-types';
 import { SendDataConnection } from 'emberclear/services/connection/ephemeral/login/send-data';
 import CurrentUserService from 'emberclear/services/current-user';
 import { ConnectionDoesNotExistError } from 'emberclear/utils/errors';
+import QRManager from 'emberclear/services/qr-manager';
 
 type Args = {};
 
 export default class QRScan extends Component<Args> {
   @service intl!: Intl;
   @service currentUser!: CurrentUserService;
+  @service qrManager!: QRManager;
 
   @tracked current?: State<Context, Events, Schema>;
 
@@ -83,9 +85,7 @@ export default class QRScan extends Component<Args> {
     // the `intent` is "login"
     let { pub } = this.current.context.data as LoginQRData[1];
 
-    this.connection = await SendDataConnection.build(this, pub);
-
-    await this.connection.establishContact();
+    this.connection = await this.qrManager.login.setupConnection(this, pub);
   }
 
   async transferData() {

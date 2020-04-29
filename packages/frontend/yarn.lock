@@ -6202,20 +6202,19 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.12.0, ember-cli-babel@^6.16.0,
   version "1.0.0-beta.8"
   resolved "https://codeload.github.com/kategengler/ember-cli-code-coverage/tar.gz/5aa0e1911a12a010f14303cb339e5a3ec7c1bc25"
   dependencies:
-    "@babel/register" "^7.6.0"
-    babel-plugin-istanbul "^5.2.0"
+    babel-plugin-istanbul "^5.1.0"
     babel-plugin-transform-async-to-generator "^6.24.1"
-    body-parser "^1.19.0"
+    body-parser "^1.18.3"
     co "^4.6.0"
-    ember-cli-babel "^7.11.0"
-    ember-cli-version-checker "^3.1.3"
+    ember-cli-babel "^7.1.0"
+    ember-cli-version-checker "^2.1.2"
     extend "^3.0.2"
-    fs-extra "^8.1.0"
-    istanbul-api "^2.1.6"
+    fs-extra "^5.0.0"
+    istanbul-api "^2.0.6"
     lodash.concat "^4.5.0"
-    node-dir "^0.1.17"
-    rsvp "^4.8.5"
-    walk-sync "^2.0.2"
+    node-dir "^0.1.16"
+    rsvp "^4.8.3"
+    walk-sync "^0.3.3"
 
 ember-cli-dependency-checker@^3.2.0:
   version "3.2.0"
@@ -6237,6 +6236,16 @@ ember-cli-dependency-lint@^1.1.3:
     broccoli-plugin "^1.3.0"
     chalk "^2.3.0"
     semver "^5.5.0"
+
+ember-cli-deprecation-workflow@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-deprecation-workflow/-/ember-cli-deprecation-workflow-1.0.1.tgz#3305a6879af7f074216a54963d92491c411ce7e0"
+  integrity sha512-tns8l4FLz8zmhmNRH7ywihs4XNTTuQysl+POYTpiyjb4zPNKv0cUJBCT/MklYFWBCo/5DcVzabhLODJZcScUfg==
+  dependencies:
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^3.0.1"
+    broccoli-plugin "^1.3.1"
+    ember-debug-handlers-polyfill "^1.1.1"
 
 ember-cli-get-component-path-option@^1.0.0:
   version "1.0.0"
@@ -6631,6 +6640,11 @@ ember-config-service@^1.0.0:
   dependencies:
     ember-cli-babel "^6.16.0"
     ember-getowner-polyfill "2.2.0"
+
+ember-debug-handlers-polyfill@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ember-debug-handlers-polyfill/-/ember-debug-handlers-polyfill-1.1.1.tgz#e9ae0a720271a834221179202367421b580002ef"
+  integrity sha512-lO7FBAqJjzbL+IjnWhVfQITypPOJmXdZngZR/Vdn513W4g/Q6Sjicao/mDzeDCb48Y70C4Facwk0LjdIpSZkRg==
 
 ember-decorators-polyfill@^1.0.4, ember-decorators-polyfill@^1.0.6:
   version "1.1.1"

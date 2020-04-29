@@ -19,3 +19,6 @@ export class RelayNotSetError extends Error {
 export class CurrentUserNotFound extends Error {
   name = 'CurrentUserNotFound';
 }
+
+export class UnknownMessageError extends Error {}
+export class DataTransferFailed extends Error {}

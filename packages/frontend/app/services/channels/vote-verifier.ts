@@ -1,6 +1,6 @@
 import Service, { inject as service } from '@ember/service';
 import VoteChain from 'emberclear/models/vote-chain';
-import CryptoConnector from '../workers/crypto';
+import CryptoConnector from '../../utils/workers/crypto';
 import WorkersService from '../workers';
 import { generateSortedVote } from './-utils/vote-sorter';
 import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';

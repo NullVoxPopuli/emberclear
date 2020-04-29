@@ -1,4 +1,4 @@
-<div class='row row-center'>
+<div class='row row-center' data-test-login-confirm>
   <div class='col-12 col-sm-8'>
     <header>
       <h2>{{t 'ui.login.verify.title'}}</h2>
@@ -8,17 +8,17 @@
       <br>
       {{t 'ui.login.verify.prompt2'}}
 
-      <h2 class='text-center mar-xs mar-b-xl'>
+      <h2 data-test-code class='text-center mar-xs mar-b-xl'>
         <code class='has-shadow'>{{@code}}</code>
       </h2>
     </p>
 
     <footer class='cta-with-fallback'>
-      <button type='button' class='button-secondary' {{on 'click' @deny}}>
+      <button data-test-deny type='button' class='button-secondary' {{on 'click' @deny}}>
         {{t 'buttons.deny'}}
       </button>
 
-      <button type='button' {{on 'click' @allow}}>
+      <button data-test-allow type='button' {{on 'click' @allow}}>
         {{t 'buttons.allow'}}
       </button>
     </footer>
