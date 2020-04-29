@@ -10,6 +10,12 @@ import Modals from 'emberclear/services/modals';
 
 import { scrollIntoViewOfParent } from 'emberclear/utils/dom/utils';
 
+enum Tab {
+  Contacts = 'contacts-tab',
+  Channels = 'channels-tab',
+  Actions = 'actions-tab',
+}
+
 export default class Sidebar extends Component {
   @service sidebar!: SidebarService;
   @service currentUser!: CurrentUserService;
@@ -20,6 +26,7 @@ export default class Sidebar extends Component {
   @alias('sidebar.hasUnreadBelow') hasUnreadBelow!: boolean;
   @reads('currentUser.name') name?: string;
   @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
+  @alias('sidebar.selectedTab') selectedTab!: Tab;
 
   @action
   scrollDownToNearestUnread() {
@@ -37,5 +44,13 @@ export default class Sidebar extends Component {
 
     scrollIntoViewOfParent(scrollable, lastRow);
     this.sidebar.clearUnreadAbove();
+  }
+
+  @action
+  switchTo(tab: Tab) {
+    const activeTab = document.querySelector('.sidebar-tab-selected')! as HTMLElement;
+    const selectedTab = document.getElementById(tab) as HTMLElement;
+    activeTab.classList.remove('.sidebar-tab-selected');
+    selectedTab.classList.add('.sidebar-tab-selected');
   }
 }

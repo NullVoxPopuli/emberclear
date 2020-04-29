@@ -1,5 +1,27 @@
 <aside ...attributes>
   <div>
+    <nav class='sidebar-nav'>
+      <a
+        id='contacts-tab'
+        class='sidebar-tab sidebar-tab-selected'
+        @onClick={{this.switchTo}}
+      >
+          Contacts
+      </a>
+
+      <a id='channels-tab' class='sidebar-tab'
+        {{!-- @onClick={{this.switchTo Tab.Channels}} --}}
+      >
+          Channels
+      </a>
+
+      <a id='actions-tab' class='sidebar-tab'
+        {{!-- @onClick={{this.switchTo Tab.Actions}} --}}
+      >
+          Actions
+      </a>
+    </nav>
+
     {{#if this.hasUnreadAbove}}
       <App::Sidebar::UnreadIndicator
         @onClick={{this.scrollUpToNearestUnread}}
@@ -18,8 +40,6 @@
     {{/if}}
 
   </div>
-
-  <App::Sidebar::Actions />
 
   {{#if this.isLoggedIn}}
     <App::Sidebar::Footer />

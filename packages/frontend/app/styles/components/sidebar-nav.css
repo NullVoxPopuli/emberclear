@@ -1,0 +1,12 @@
+.sidebar-nav {
+    margin-bottom: 10px;
+}
+
+.sidebar-tab {
+    display: inline-block;
+    border-radius: 0px;
+}
+
+.sidebar-tab-selected, .sidebar-tab-selected:hover {
+    border-bottom: 2px solid #334;
+}
