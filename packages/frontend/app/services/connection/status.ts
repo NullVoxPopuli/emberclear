@@ -10,7 +10,7 @@ import {
   STATUS_CONNECTED,
   STATUS_DISCONNECTED,
   STATUS_CONNECTING,
-} from 'emberclear/utils/connection-pool';
+} from 'emberclear/utils/connection/connection-pool';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 const STATUS_LEVEL_MAP = {

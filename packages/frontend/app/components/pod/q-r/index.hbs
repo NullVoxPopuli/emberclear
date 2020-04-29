@@ -1,6 +1,12 @@
 {{#if (includes this.state 'error')}}
 
+  {{!-- template-lint-disable --}}
+  {{log 'error occurred'}}
+  {{log this.current}}
+  {{!-- template-lint-enable --}}
+
   <ErrorCard
+    data-test-error
     @message={{this.ctx.error}}
     @retry={{fn this.transition 'RETRY'}}
   />
@@ -39,10 +45,11 @@
 
   {{!-- template-lint-disable --}}
   {{log 'error occurred'}}
-  {{log this.state}}
+  {{log this.current}}
   {{!-- template-lint-enable --}}
 
   <ErrorCard
+    data-test-unknown-state
     @message={{t 'errors.genericRetry'}}
     @retry={{fn this.transition 'RETRY'}}
   />

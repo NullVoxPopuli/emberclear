@@ -1,14 +1,14 @@
-<div class='card'>
+<div data-test-error class='card' ...attributes>
 
   <header>{{t 'errors.genericTitle'}}</header>
 
-  <p>
+  <p data-test-message>
     {{@message}}
   </p>
 
   <footer class='cta'>
     {{#if @retry}}
-      <button type='button' class='button-secondary' {{on 'click' @retry}}>
+      <button data-test-retry type='button' class='button-secondary' {{on 'click' @retry}}>
         {{t 'buttons.retry'}}
       </button>
     {{/if}}

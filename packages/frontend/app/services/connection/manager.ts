@@ -7,8 +7,8 @@ import ToastService from 'emberclear/services/toast';
 import CurrentUserService from 'emberclear/services/current-user';
 
 import ArrayProxy from '@ember/array/proxy';
-import { pool, ConnectionPool, STATUS } from 'emberclear/utils/connection-pool';
-import { Connection } from 'emberclear/services/connection/connection';
+import { pool, ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';
+import { Connection } from 'emberclear/utils/connection/connection';
 import MessageProcessor from 'emberclear/services/messages/processor';
 import ConnectionStatusService from 'emberclear/services/connection/status';
 

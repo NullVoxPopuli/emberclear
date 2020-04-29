@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import NavigatorService from 'emberclear/services/browser/navigator';
 
 interface IArgs {
   onScan: (qrContent: string) => void;
@@ -10,6 +11,7 @@ interface IArgs {
 export default class QRScanner extends Component<IArgs> {
   @service intl!: Intl;
   @service toast!: Toast;
+  @service('browser/navigator') navigator!: NavigatorService;
 
   @tracked cameraStream?: MediaStream;
   @tracked lastDetectedData?: string;
@@ -32,7 +34,7 @@ export default class QRScanner extends Component<IArgs> {
   async start() {
     let options = { video: { facingMode: 'environment' } };
     try {
-      let stream = await navigator.mediaDevices.getUserMedia(options);
+      let stream = await this.navigator.mediaDevices.getUserMedia(options);
 
       this.cameraStream = stream;
     } catch (e) {
@@ -43,7 +45,7 @@ export default class QRScanner extends Component<IArgs> {
   }
 
   private stop() {
-    this.cameraStream?.getTracks().forEach((track) => track.stop());
+    this.cameraStream?.getTracks()?.forEach((track) => track.stop());
     this.cameraStream = undefined;
   }
 

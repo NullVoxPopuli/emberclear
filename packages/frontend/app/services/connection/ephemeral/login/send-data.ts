@@ -6,7 +6,7 @@ import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 import { EphemeralConnection } from '../ephemeral-connection';
-import { UnknownMessageError, DataTransferFailed } from '../../errors';
+import { UnknownMessageError, DataTransferFailed } from 'emberclear/utils/errors';
 import CurrentUserService from 'emberclear/services/current-user';
 import { CurrentUserMustHaveAName } from 'emberclear/utils/errors';
 

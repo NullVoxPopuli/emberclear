@@ -4,12 +4,12 @@ import { setOwner, getOwner } from '@ember/application';
 import { assert } from '@ember/debug';
 import { associateDestroyableChild, registerDestructor } from '@ember/destroyable';
 
-import { pool, STATUS, ConnectionPool } from 'emberclear/utils/connection-pool';
+import { pool, STATUS, ConnectionPool } from 'emberclear/utils/connection/connection-pool';
 import { toHex, fromHex } from 'emberclear/utils/string-encoding';
-import { Connection } from 'emberclear/services/connection/connection';
+import { Connection } from 'emberclear/utils/connection/connection';
 
 import Relay from 'emberclear/models/relay';
-import CryptoConnector from 'emberclear/services/workers/crypto';
+import CryptoConnector from 'emberclear/utils/workers/crypto';
 import StoreService from '@ember-data/store';
 import WorkersService from 'emberclear/services/workers';
 import SettingsService from 'emberclear/services/settings';
