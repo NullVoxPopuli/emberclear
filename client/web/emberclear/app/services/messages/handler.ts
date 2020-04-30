@@ -123,7 +123,7 @@ export default class ReceivedMessageHandler extends Service {
 
   private async handleChannelChat(message: Message, _raw: StandardMessage) {
     // TODO: if message is a channel message, deconstruct the channel info
-    
+
     return message;
   }
 

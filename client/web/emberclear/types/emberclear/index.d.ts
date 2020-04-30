@@ -129,11 +129,12 @@ declare global {
     previousChain?: StandardChannelContextChain;
   }
 
-  interface ChannelContextChain {
+  interface StandardChannelContextChain {
+    id: string;
     admin: ChannelMember;
     members: ChannelMember[];
-    supportingVote: Vote;
-    previousChain: ChannelContextChain;
+    supportingVote: StandardVote;
+    previousChain: StandardChannelContextChain;
   }
 
   // interface ChannelInvitation {
