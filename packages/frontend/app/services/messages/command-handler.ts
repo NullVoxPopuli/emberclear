@@ -1,4 +1,6 @@
-import Service from '@ember/service';
+import Service, { inject as service } from '@ember/service';
+import CurrentUserService from 'emberclear/services/current-user';
+import CurrentChatService from 'emberclear/services/current-chat';
 
 class TextCommand {
   name!: string;
@@ -34,6 +36,9 @@ class TextCommand {
 }
 
 export default class CommandHandler extends Service {
+  @service user!: CurrentUserService; //author = user.record()
+  @service target!: CurrentChatService; //target = target.record()
+
   commands: TextCommand[] = [
     new TextCommand('state', ['s'], [], this.printState),
     new TextCommand('add-member', ['a'], ['user'], this.addMember),
@@ -58,8 +63,8 @@ export default class CommandHandler extends Service {
   ];
 
   //TODO: get the author and channel of the command
-  parseCommand(text: string) {
-    const args = text.slice(1).trim().split(/ +/g);
+  parseCommand(cmd: String) {
+    const args = cmd.slice(1).trim().split(/ +/g);
     const command = args.shift();
 
     if (command === undefined) {
