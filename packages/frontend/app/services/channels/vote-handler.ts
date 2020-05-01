@@ -15,25 +15,19 @@ export default class ReceivedChannelVoteHandler extends Service {
     // check if sender is in channel
     if (existingChannel?.members.contains(message.sender!)) {
       let sentVote = message.metadata as StandardVote;
-      let existingVote = undefined;
-
-      try {
-        existingVote = await this.store.findRecord('vote', sentVote.id);
-      } catch (e) {
-        // TODO create vote record and assign
-      }
+      let existingVote = await this.findOrCreator.findOrCreateVote(sentVote);
 
       if (existingVote !== undefined) {
-        let channelVote = existingChannel.activeVotes.find(
-          (activeVote) => activeVote.id === sentVote.id
-        );
+        //TODO if existingVote isn't a member of active Votes, add it
+
         let voteChain = await this.findOrCreator.findOrCreateVoteChain(sentVote.voteChain);
 
-        if (voteChain !== undefined && !this.voteVerifier.verify(voteChain)) {
-          // TODO
+        if (!this.voteVerifier.verify(voteChain!)) {
+          return;
         }
-        // add vote to channel context
-        channelVote?.previousVoteChain;
+
+        existingVote.voteChain = voteChain!;
+        existingVote.save();
       }
     }
     return message;

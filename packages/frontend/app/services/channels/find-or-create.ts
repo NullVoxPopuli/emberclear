@@ -24,9 +24,7 @@ export default class FindOrCreateChannelModelService extends Service {
         name,
         admin: await this.findOrCreateMember(admin),
         members: members.map(async (member) => await this.findOrCreateMember(member)),
-        activeVotes: activeVotes.map(
-          async (vote) => await this.findOrCreateVoteChain(vote.voteChain)
-        ),
+        activeVotes: activeVotes.map(async (vote) => await this.findOrCreateVote(vote)),
         contextChain: await this.findOrCreateContextChain(contextChain),
       });
 
