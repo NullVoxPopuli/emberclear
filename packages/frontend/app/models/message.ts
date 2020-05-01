@@ -56,7 +56,7 @@ export enum TYPE {
   DELIVERY_CONFIRMATION = 'delivery-confirmation',
   INFO_CHANNEL_SYNC_REQUEST = 'info-channel-sync-request',
   INFO_CHANNEL_SYNC_FULFILL = 'info-channel-sync-fulfill',
-  CHANNEL_VOTE = 'channtel-vote',
+  CHANNEL_VOTE = 'channel-vote',
 }
 
 export enum TARGET {
