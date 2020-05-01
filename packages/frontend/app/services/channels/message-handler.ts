@@ -13,9 +13,8 @@ export default class ReceivedChannelMessageHandler extends Service {
   @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelModelService;
 
   public async handleChannelMessage(message: Message, raw: StandardMessage) {
-    // check if channel exists
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
-    // check if sender is in channel
+    existingChannel.save();
     if (existingChannel?.members.contains(message.sender!)) {
       // save message in channel messages
       await message.save();

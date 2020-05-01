@@ -10,23 +10,26 @@ export default class ReceivedChannelVoteHandler extends Service {
   @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelModelService;
 
   public async handleChannelVote(message: Message, raw: StandardMessage) {
-    // check if channel exists
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
-    // check if sender is in channel
     if (existingChannel?.members.contains(message.sender!)) {
       let sentVote = message.metadata as StandardVote;
       let existingVote = await this.findOrCreator.findOrCreateVote(sentVote);
 
       if (existingVote !== undefined) {
-        //TODO if existingVote isn't a member of active Votes, add it
-
         let voteChain = await this.findOrCreator.findOrCreateVoteChain(sentVote.voteChain);
 
         if (!this.voteVerifier.verify(voteChain!)) {
           return;
         }
 
-        existingVote.voteChain = voteChain!;
+        if (!existingChannel.activeVotes.find((vote) => vote.id === existingVote!.id)) {
+          existingChannel.activeVotes.push(existingVote);
+          existingChannel.save();
+        }
+
+        if (existingVote.voteChain.id !== voteChain!.id) {
+          existingVote.voteChain = voteChain!;
+        }
         existingVote.save();
       }
     }

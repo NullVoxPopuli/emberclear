@@ -2,6 +2,7 @@ import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { not } from '@ember/object/computed';
 
 import Identity from 'emberclear/models/identity';
+import Channel from './channel';
 
 export const MESSAGE_LIMIT = 75;
 
@@ -140,6 +141,8 @@ export default class Message extends Model {
 
   // currently unused
   @attr() contentType!: string;
+
+  @attr() channelInfo?: Channel;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

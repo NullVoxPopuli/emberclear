@@ -137,16 +137,6 @@ declare global {
     previousChain: StandardChannelContextChain;
   }
 
-  // interface ChannelInvitation {
-  //   invitePublicKey: string;
-  //   result: MemberResult[];
-  // }
-
-  // interface ChannelBlock {
-  //   blockedPublicKey: string;
-  //   result: MemberResult[];
-  // }
-
   interface StandardMessage {
     id: string;
     to: string;
