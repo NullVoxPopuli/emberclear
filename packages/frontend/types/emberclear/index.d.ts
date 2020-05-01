@@ -122,23 +122,32 @@ declare global {
     result: MemberResult[];
   }
 
-  interface StandardMessage {
-    id: string;
-    to: string;
-    type: string;
-    target: string;
+  interface ClientInfo {
     client: string;
     client_version: string;
     time_sent: Date;
+  }
+
+  interface P2PMessageInfo {
+    id: string;
+    to: string;
+    // type: string;
+    // target: string;
     sender: {
       name: string;
       uid: string;
       location: string;
     };
+  }
+
+  interface MessageContent {
     message: {
       body: string;
       contentType: string;
     };
+  }
+
+  interface ChannelInfo {
     channelInfo?: {
       name: string;
       members: ChannelMember[];
@@ -146,6 +155,27 @@ declare global {
       blocked: ChannelBlock[];
     };
   }
+
+  type ChatMessage =
+    & { type: 'chat', target: 'whisper' }
+    & P2PMessageInfo
+    & MessageContent;
+
+  type ChannelMessage =
+    & { type: 'chat', target: 'channel' }
+    & P2PMessageInfo
+    & MessageContent
+    & ChannelInfo;
+
+  type DeliveryConfirmation =
+    & { type: 'delivery-confirmation' }
+    & P2PMessageInfo;
+
+  type Ping =
+    & { type: 'ping' }
+    & P2PMessageInfo;
+
+  type StandardMessage = (ChatMessage | ChannelMessage) & ClientInfo;
 
   type LoginSYN = { type: 'SYN'; data: PublicIdentity };
   type LoginACK = { type: 'ACK' };
