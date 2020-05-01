@@ -10,11 +10,7 @@ import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';
 import AutoResponder from 'emberclear/services/messages/auto-responder';
 import { isMessageDMBetween, messagesForDM } from 'emberclear/models/message/utils';
-<<<<<<< HEAD
 import MessageFactory from './factory';
-=======
-import FindOrCreateChannelModelService from '../channels/find-or-create';
->>>>>>> Wrapping up vote and added channel info to messages optionally
 
 export default class ReceivedMessageHandler extends Service {
   @service store!: StoreService;
@@ -25,7 +21,6 @@ export default class ReceivedMessageHandler extends Service {
   @service contactManager!: ContactManager;
   @service('messages/factory') messageFactory!: MessageFactory;
   @service('messages/auto-responder') autoResponder!: AutoResponder;
-  @service('channels/find-or-create') findOrCreateChannelModelService!: FindOrCreateChannelModelService;
 
   async handle(raw: StandardMessage) {
     let message = await this.decomposeMessage(raw);

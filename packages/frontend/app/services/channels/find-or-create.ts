@@ -103,7 +103,7 @@ export default class FindOrCreateChannelModelService extends Service {
         no: standardVoteChain.no.map(async (member) => await this.findOrCreateMember(member)),
         target: await this.findOrCreateMember(standardVoteChain.target),
         action: standardVoteChain.action,
-        key: await this.findOrCreateMember(standardVoteChain.previousVoteKey),
+        key: await this.findOrCreateMember(standardVoteChain.key),
         previousVoteChain: await this.findOrCreateVoteChain(standardVoteChain.previousVoteChain),
       });
       return voteChain;

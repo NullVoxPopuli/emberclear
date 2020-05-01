@@ -18,8 +18,8 @@ export default class ReceivedChannelVoteHandler extends Service {
       if (existingVote !== undefined) {
         let voteChain = await this.findOrCreator.findOrCreateVoteChain(sentVote.voteChain);
 
-        if (!this.voteVerifier.verify(voteChain!)) {
-          return;
+        if (sentVote.voteChain.key.id !== raw.sender.uid || !this.voteVerifier.verify(voteChain!)) {
+          return message;
         }
 
         if (!existingChannel.activeVotes.find((vote) => vote.id === existingVote!.id)) {
