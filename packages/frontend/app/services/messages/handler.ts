@@ -72,7 +72,7 @@ export default class ReceivedMessageHandler extends Service {
     this.statusManager.markOffline(message.from);
   }
 
-  private async handleChat(message: ChatMessage | ChannelMessage, raw: StandardMessage) {
+  private async handleChat(message: Message, raw: StandardMessage) {
     this.autoResponder.messageReceived(message);
 
     switch (message.target) {
@@ -88,7 +88,7 @@ export default class ReceivedMessageHandler extends Service {
     }
   }
 
-  private async handleWhisperChat(message: ChatMessage) {
+  private async handleWhisperChat(message: Message) {
     await this.trimMessages(message);
     await message.save();
 
