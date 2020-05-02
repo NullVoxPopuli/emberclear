@@ -6719,10 +6719,10 @@ ember-inflector@^3.0.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-intl@^4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-4.3.2.tgz#11c8ca2911db9ce22fd20b42288b037936f79417"
-  integrity sha512-nwp1Xkz98Xo+I9ENe7BXfSAFLIAthETfRLpLo1qV33La8bFVAOHRle/ky6DKD6WDMt2wHTuhYqD0t/YwwhE7tg==
+ember-intl@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-4.4.0.tgz#c87260d0418e3318942fa39d925331b6306c0e57"
+  integrity sha512-1pLkXkiXPQCdjKZC30GYwaLz7k0vb58zMl3rcdcsRJX0CBOyXeISpa/o2I4y9VmuyyZutZGayuiBfZkqQN1dqg==
   dependencies:
     "@ember-intl/broccoli-cldr-data" "^3.1.0"
     "@ember-intl/intl-messageformat" "^2.5.0"
