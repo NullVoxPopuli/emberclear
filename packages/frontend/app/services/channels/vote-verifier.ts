@@ -4,7 +4,7 @@ import CryptoConnector from '../../utils/workers/crypto';
 import WorkersService from '../workers';
 import { generateSortedVote } from './-utils/vote-sorter';
 import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
-import { identitiesIncludes } from 'emberclear/utils/identity-comparison';
+import { identitiesIncludes, identityEquals } from 'emberclear/utils/identity-comparison';
 import Identity from 'emberclear/models/identity';
 
 export default class VoteVerifier extends Service {
@@ -14,7 +14,11 @@ export default class VoteVerifier extends Service {
   async isValid(voteToVerify: VoteChain): Promise<boolean> {
     this.connectCrypto();
 
-    if (!this.crypto || !this.isKeyMatchingVoteDiff(voteToVerify)) {
+    if (
+      !this.crypto ||
+      !this.isKeyMatchingVoteDiff(voteToVerify) ||
+      !this.isTargetAndActionUnchanged(voteToVerify)
+    ) {
       return false;
     }
 
@@ -45,8 +49,19 @@ export default class VoteVerifier extends Service {
     });
   }
 
+  private isTargetAndActionUnchanged(vote: VoteChain): boolean {
+    if (!vote.previousVoteChain) {
+      return true;
+    }
+
+    return (
+      identityEquals(vote.previousVoteChain!.target, vote.target) &&
+      vote.action === vote.previousVoteChain!.action
+    );
+  }
+
   private isKeyMatchingVoteDiff(vote: VoteChain): boolean {
-    if (!vote.previousVoteChain) {      
+    if (!vote.previousVoteChain) {
       return (
         !identitiesIncludes(vote.remaining.toArray(), vote.key) &&
         this.isInOneButNotBoth(vote.yes.toArray(), vote.no.toArray(), vote.key)
