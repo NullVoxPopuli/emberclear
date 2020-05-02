@@ -43,7 +43,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         user1.privateSigningKey
       );
 
-      assert.ok(await service.verify(currentVote));
+      assert.ok(await service.isValid(currentVote));
     });
 
     test('when there are many chains', async function (assert) {
@@ -100,7 +100,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         user3.privateSigningKey
       );
 
-      assert.ok(await service.verify(currentVote));
+      assert.ok(await service.isValid(currentVote));
     });
   });
 
@@ -161,7 +161,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         user3.privateSigningKey
       );
 
-      assert.notOk(await service.verify(currentVote));
+      assert.notOk(await service.isValid(currentVote));
     });
   });
 });

@@ -4,15 +4,17 @@ import CryptoConnector from '../../utils/workers/crypto';
 import WorkersService from '../workers';
 import { generateSortedVote } from './-utils/vote-sorter';
 import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
+import { identitiesIncludes } from 'emberclear/utils/identity-comparison';
+import Identity from 'emberclear/models/identity';
 
 export default class VoteVerifier extends Service {
   @service workers!: WorkersService;
   crypto?: CryptoConnector;
 
-  async verify(voteToVerify: VoteChain): Promise<boolean> {
+  async isValid(voteToVerify: VoteChain): Promise<boolean> {
     this.connectCrypto();
 
-    if (!this.crypto) {
+    if (!this.crypto || !this.isKeyMatchingVoteDiff(voteToVerify)) {
       return false;
     }
 
@@ -32,7 +34,7 @@ export default class VoteVerifier extends Service {
       return true;
     }
 
-    return this.verify(voteToVerify.previousVoteChain);
+    return this.isValid(voteToVerify.previousVoteChain);
   }
 
   private connectCrypto() {
@@ -41,6 +43,40 @@ export default class VoteVerifier extends Service {
     this.crypto = new CryptoConnector({
       workerService: this.workers,
     });
+  }
+
+  private isKeyMatchingVoteDiff(vote: VoteChain): boolean {
+    if (!vote.previousVoteChain) {      
+      return (
+        !identitiesIncludes(vote.remaining.toArray(), vote.key) &&
+        this.isInOneButNotBoth(vote.yes.toArray(), vote.no.toArray(), vote.key)
+      );
+    }
+
+    if (identitiesIncludes(vote.previousVoteChain!.yes.toArray(), vote.key)) {
+      return (
+        !identitiesIncludes(vote.yes.toArray(), vote.key) &&
+        this.isInOneButNotBoth(vote.no.toArray(), vote.remaining.toArray(), vote.key)
+      );
+    } else if (identitiesIncludes(vote.previousVoteChain!.no.toArray(), vote.key)) {
+      return (
+        !identitiesIncludes(vote.no.toArray(), vote.key) &&
+        this.isInOneButNotBoth(vote.yes.toArray(), vote.remaining.toArray(), vote.key)
+      );
+    } else if (identitiesIncludes(vote.previousVoteChain!.remaining.toArray(), vote.key)) {
+      return (
+        !identitiesIncludes(vote.remaining.toArray(), vote.key) &&
+        this.isInOneButNotBoth(vote.no.toArray(), vote.yes.toArray(), vote.key)
+      );
+    }
+    return false;
+  }
+
+  private isInOneButNotBoth(arr1: Identity[], arr2: Identity[], key: Identity): boolean {
+    return (
+      (identitiesIncludes(arr1, key) || identitiesIncludes(arr2, key)) &&
+      !(identitiesIncludes(arr1, key) && identitiesIncludes(arr2, key))
+    );
   }
 }
 

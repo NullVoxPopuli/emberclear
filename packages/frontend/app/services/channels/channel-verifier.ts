@@ -15,7 +15,7 @@ export default class ChannelVerifier extends Service {
 
     let somethingWrongWithPastOrSupportingVote =
       !(await this.isValidChain(channel.previousChain)) ||
-      !(await this.voteVerifier.verify(channel.supportingVote)) ||
+      !(await this.voteVerifier.isValid(channel.supportingVote)) ||
       !this.isVoteCompletedPositive(channel.supportingVote, channel.previousChain.admin);
 
     if (somethingWrongWithPastOrSupportingVote) {
