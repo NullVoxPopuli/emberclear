@@ -65,24 +65,48 @@ export default class VoteVerifier extends Service {
   // Makes sure that a vote entails a shift of the signer from one category to another
   private isKeyMatchingVoteDiff(vote: VoteChain): boolean {
     if (!vote.previousVoteChain) {
-      return this.isProperMove(vote.remaining.toArray(), vote.yes.toArray(), vote.no.toArray(), vote.key);
+      return this.isProperMove(
+        vote.remaining.toArray(),
+        vote.yes.toArray(),
+        vote.no.toArray(),
+        vote.key
+      );
     }
 
     if (identitiesIncludes(vote.previousVoteChain!.yes.toArray(), vote.key)) {
-      return this.isProperMove(vote.yes.toArray(), vote.remaining.toArray(), vote.no.toArray(), vote.key);
+      return this.isProperMove(
+        vote.yes.toArray(),
+        vote.remaining.toArray(),
+        vote.no.toArray(),
+        vote.key
+      );
     } else if (identitiesIncludes(vote.previousVoteChain!.no.toArray(), vote.key)) {
-      return this.isProperMove(vote.no.toArray(), vote.yes.toArray(), vote.remaining.toArray(), vote.key);
+      return this.isProperMove(
+        vote.no.toArray(),
+        vote.yes.toArray(),
+        vote.remaining.toArray(),
+        vote.key
+      );
     } else if (identitiesIncludes(vote.previousVoteChain!.remaining.toArray(), vote.key)) {
-      return this.isProperMove(vote.remaining.toArray(), vote.yes.toArray(), vote.no.toArray(), vote.key);
+      return this.isProperMove(
+        vote.remaining.toArray(),
+        vote.yes.toArray(),
+        vote.no.toArray(),
+        vote.key
+      );
     }
     return false;
   }
 
-  private isProperMove(origin: Identity[], possibility1: Identity[], possibility2: Identity[], key: Identity): boolean {
+  private isProperMove(
+    origin: Identity[],
+    possibility1: Identity[],
+    possibility2: Identity[],
+    key: Identity
+  ): boolean {
     //TODO right now this checks that the voter's movement is valid, but doesn't check that they are the only one that moves.
     return (
-      !identitiesIncludes(origin, key) &&
-      this.isInOneButNotBoth(possibility1, possibility2, key)
+      !identitiesIncludes(origin, key) && this.isInOneButNotBoth(possibility1, possibility2, key)
     );
   }
 
