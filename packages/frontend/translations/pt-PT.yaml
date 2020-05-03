@@ -11,7 +11,7 @@ bundle-analysis: JS Bundle Analysis
 qrCode:
   error: Código QR não pôde ser gerado
   malformed: QR Code is malfomed
-  waitingForCamera: Awaaiting Camera Access
+  waitingForCamera: Awaiting Camera Access
 connection:
   connecting: A ligar...
   connected: Ligado!
