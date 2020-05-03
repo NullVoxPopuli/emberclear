@@ -134,13 +134,13 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
 
     module('when there are many chains', function () {
       module('when voter was previously remaining', function (hooks) {
-        const store = getStore();
         let user1: User;
         let user2: User;
         let userToAdd: User;
         let firstVote: VoteChain;
 
         hooks.beforeEach(async function () {
+          const store = getStore();
           user1 = await buildUser('user1');
           user2 = await buildUser('user2');
           userToAdd = await buildUser('userToAdd');
@@ -158,6 +158,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         });
 
         test('when stays remaining', async function (assert) {
+          const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [user1],
             no: [],
@@ -174,6 +175,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         });
 
         test('when is in both yes and no', async function (assert) {
+          const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [user1, user2],
             no: [user2],
@@ -191,13 +193,13 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
       });
 
       module('when voter was previously yes', function (hooks) {
-        const store = getStore();
         let user1: User;
         let user2: User;
         let userToAdd: User;
         let firstVote: VoteChain;
 
         hooks.beforeEach(async function () {
+          const store = getStore();
           user1 = await buildUser('user1');
           user2 = await buildUser('user2');
           userToAdd = await buildUser('userToAdd');
@@ -215,6 +217,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         });
 
         test('when stays yes', async function (assert) {
+          const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [user1],
             no: [],
@@ -231,6 +234,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         });
 
         test('when is in both remaining and no', async function (assert) {
+          const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [],
             no: [user1],
@@ -248,13 +252,13 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
       });
 
       module('when voter was previously no', function (hooks) {
-        const store = getStore();
         let user1: User;
         let user2: User;
         let userToAdd: User;
         let firstVote: VoteChain;
 
         hooks.beforeEach(async function () {
+          const store = getStore();
           user1 = await buildUser('user1');
           user2 = await buildUser('user2');
           userToAdd = await buildUser('userToAdd');
@@ -272,6 +276,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         });
 
         test('when stays no', async function (assert) {
+          const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [],
             no: [user1],
@@ -288,6 +293,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         });
 
         test('when is in both yes and remaining', async function (assert) {
+          const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [user1],
             no: [],
