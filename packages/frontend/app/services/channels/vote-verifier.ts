@@ -65,7 +65,7 @@ export default class VoteVerifier extends Service {
   // Makes sure that a vote entails a shift of the signer from one category to another
   private isKeyMatchingVoteDiff(vote: VoteChain): boolean {
     if (!vote.previousVoteChain) {
-      return this.isProperMove(
+      return this.isProperMoveBase(
         vote.remaining.toArray(),
         vote.yes.toArray(),
         vote.no.toArray(),
@@ -78,33 +78,87 @@ export default class VoteVerifier extends Service {
         vote.yes.toArray(),
         vote.remaining.toArray(),
         vote.no.toArray(),
-        vote.key
+        vote.key,
+        vote.previousVoteChain.yes.toArray(),
+        vote.previousVoteChain.remaining.toArray(),
+        vote.previousVoteChain.no.toArray()
       );
     } else if (identitiesIncludes(vote.previousVoteChain!.no.toArray(), vote.key)) {
       return this.isProperMove(
         vote.no.toArray(),
         vote.yes.toArray(),
         vote.remaining.toArray(),
-        vote.key
+        vote.key,
+        vote.previousVoteChain.no.toArray(),
+        vote.previousVoteChain.remaining.toArray(),
+        vote.previousVoteChain.yes.toArray()
       );
     } else if (identitiesIncludes(vote.previousVoteChain!.remaining.toArray(), vote.key)) {
       return this.isProperMove(
         vote.remaining.toArray(),
         vote.yes.toArray(),
         vote.no.toArray(),
-        vote.key
+        vote.key,
+        vote.previousVoteChain.remaining.toArray(),
+        vote.previousVoteChain.yes.toArray(),
+        vote.previousVoteChain.no.toArray()
       );
     }
     return false;
   }
 
+  //Checks that the only movement of votes from the previous vote to the current vote is the voter
   private isProperMove(
+    origin: Identity[],
+    possibility1: Identity[],
+    possibility2: Identity[],
+    key: Identity,
+    originPast: Identity[],
+    possibility1Past: Identity[],
+    possibility2Past: Identity[]
+  ): boolean {
+    let originDiffs = this.getVoterDiffs(originPast, origin);
+    let possibility1Diffs = this.getVoterDiffs(possibility1Past, possibility1);
+    let possibility2Diffs = this.getVoterDiffs(possibility2Past, possibility2);
+    let isOriginDiffCorrect =
+      originDiffs.currentVoterDiffs.length === 0 &&
+      originDiffs.pastVoterDiffs.length === 1 &&
+      identityEquals(originDiffs.pastVoterDiffs[0], key);
+    let isPossibiltiesDiffsCorrect =
+      ((possibility1Diffs.currentVoterDiffs.length === 1 &&
+        possibility1Diffs.pastVoterDiffs.length === 0 &&
+        identityEquals(possibility1Diffs.currentVoterDiffs[0], key)) ||
+        (possibility2Diffs.currentVoterDiffs.length === 1 &&
+          possibility2Diffs.pastVoterDiffs.length === 0 &&
+          identityEquals(possibility2Diffs.currentVoterDiffs[0], key))) &&
+      !(
+        possibility1Diffs.currentVoterDiffs.length === 1 &&
+        possibility1Diffs.pastVoterDiffs.length === 0 &&
+        identityEquals(possibility1Diffs.currentVoterDiffs[0], key) &&
+        possibility2Diffs.currentVoterDiffs.length === 1 &&
+        possibility2Diffs.pastVoterDiffs.length === 0 &&
+        identityEquals(possibility2Diffs.currentVoterDiffs[0], key)
+      );
+
+    return isOriginDiffCorrect && isPossibiltiesDiffsCorrect;
+  }
+
+  private getVoterDiffs(previousVoters: Identity[], currentVoters: Identity[]): VoterDiffs {
+    let currentVoterDiff = currentVoters.filter(
+      (identity) => !identitiesIncludes(previousVoters, identity)
+    );
+    let pastVoterDiff = previousVoters.filter(
+      (identity) => !identitiesIncludes(currentVoters, identity)
+    );
+    return { currentVoterDiffs: currentVoterDiff, pastVoterDiffs: pastVoterDiff };
+  }
+
+  private isProperMoveBase(
     origin: Identity[],
     possibility1: Identity[],
     possibility2: Identity[],
     key: Identity
   ): boolean {
-    //TODO right now this checks that the voter's movement is valid, but doesn't check that they are the only one that moves.
     return (
       !identitiesIncludes(origin, key) && this.isInOneButNotBoth(possibility1, possibility2, key)
     );
@@ -117,6 +171,11 @@ export default class VoteVerifier extends Service {
     );
   }
 }
+
+export type VoterDiffs = {
+  currentVoterDiffs: Identity[];
+  pastVoterDiffs: Identity[];
+};
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
