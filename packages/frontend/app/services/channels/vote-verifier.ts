@@ -67,9 +67,9 @@ export default class VoteVerifier extends Service {
     if (!vote.previousVoteChain) {
       return this.isProperMoveBase(vote);
     }
-
+    let isValid = false;
     if (identitiesIncludes(vote.previousVoteChain!.yes.toArray(), vote.key)) {
-      return this.isProperMove(
+      isValid = this.isProperMove(
         vote.yes.toArray(),
         vote.remaining.toArray(),
         vote.no.toArray(),
@@ -79,7 +79,7 @@ export default class VoteVerifier extends Service {
         vote.previousVoteChain.no.toArray()
       );
     } else if (identitiesIncludes(vote.previousVoteChain!.no.toArray(), vote.key)) {
-      return this.isProperMove(
+      isValid = this.isProperMove(
         vote.no.toArray(),
         vote.yes.toArray(),
         vote.remaining.toArray(),
@@ -89,7 +89,7 @@ export default class VoteVerifier extends Service {
         vote.previousVoteChain.yes.toArray()
       );
     } else if (identitiesIncludes(vote.previousVoteChain!.remaining.toArray(), vote.key)) {
-      return this.isProperMove(
+      isValid = this.isProperMove(
         vote.remaining.toArray(),
         vote.yes.toArray(),
         vote.no.toArray(),
@@ -99,7 +99,7 @@ export default class VoteVerifier extends Service {
         vote.previousVoteChain.no.toArray()
       );
     }
-    return false;
+    return isValid;
   }
 
   //Checks that the only movement of votes from the previous vote to the current vote is the voter
