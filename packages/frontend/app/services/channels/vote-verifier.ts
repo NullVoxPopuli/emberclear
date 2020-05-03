@@ -65,12 +65,7 @@ export default class VoteVerifier extends Service {
   // Makes sure that a vote entails a shift of the signer from one category to another
   private isKeyMatchingVoteDiff(vote: VoteChain): boolean {
     if (!vote.previousVoteChain) {
-      return this.isProperMoveBase(
-        vote.remaining.toArray(),
-        vote.yes.toArray(),
-        vote.no.toArray(),
-        vote.key
-      );
+      return this.isProperMoveBase(vote);
     }
 
     if (identitiesIncludes(vote.previousVoteChain!.yes.toArray(), vote.key)) {
@@ -153,14 +148,13 @@ export default class VoteVerifier extends Service {
     return { currentVoterDiffs: currentVoterDiff, pastVoterDiffs: pastVoterDiff };
   }
 
-  private isProperMoveBase(
-    origin: Identity[],
-    possibility1: Identity[],
-    possibility2: Identity[],
-    key: Identity
-  ): boolean {
+  // Checks that a base vote moves the voter from remaining to either yes or no
+  private isProperMoveBase(vote: VoteChain): boolean {
     return (
-      !identitiesIncludes(origin, key) && this.isInOneButNotBoth(possibility1, possibility2, key)
+      !identitiesIncludes(vote.remaining.toArray(), vote.key) &&
+      this.isInOneButNotBoth(vote.yes.toArray(), vote.no.toArray(), vote.key) &&
+      (vote.yes.toArray().length === 1 || vote.no.toArray().length === 1) &&
+      !(vote.yes.toArray().length === 1 && vote.no.toArray().length === 1)
     );
   }
 
