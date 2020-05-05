@@ -11,7 +11,9 @@
     "strictPropertyInitialization": true,
     "noUnusedParameters": true,
     "noImplicitReturns": false,
-    "noEmitOnError": true,
+    // unfortunately, noEmitOnError: true doesn't work well with linked TS addons :(
+    // (or at least, linked JS addons with a TS declarations file....)
+    "noEmitOnError": false,
     "noEmit": true,
     "inlineSourceMap": true,
     "inlineSources": true,

@@ -51,8 +51,7 @@
     "tweetnacl": "^1.0.3",
     "tweetnacl-util": "^0.15.1",
     "url-parse": "^1.4.7",
-    "uuid": "^8.0.0",
-    "xstate": "^4.9.1"
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
@@ -159,10 +158,12 @@
     "ember-service-worker-update-notify": "^3.0.0",
     "ember-sinon": "^5.0.0",
     "ember-source": "^3.18.1",
+    "ember-statecharts": "NullVoxpopuli/ember-statecharts#use-machine",
     "ember-template-lint": "2.6.0",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "^4.1.0",
     "ember-test-waiters": "^2.0.1",
+    "ember-usable": "pzuraq/ember-usable#master",
     "ember-web-app": "^4.0.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
