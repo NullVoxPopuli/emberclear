@@ -91,7 +91,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
 
   module('vote is not valid', function () {
     module('when there is a single chain', function () {
-      test('when first voter is in both yes and no', async function (assert) {
+      test('when first voter votes both yes and no', async function (assert) {
         const store = getStore();
         let user1 = await buildUser('user1');
         let userToAdd = await buildUser('userToAdd');
@@ -111,7 +111,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         assert.notOk(await service.isValid(currentVote));
       });
 
-      test('when first voter is still in remaining', async function (assert) {
+      test('when first voter does not vote yes or no', async function (assert) {
         const store = getStore();
         let user1 = await buildUser('user1');
         let userToAdd = await buildUser('userToAdd');
@@ -133,7 +133,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
     });
 
     module('when there are many chains', function () {
-      module('when voter was previously remaining', function (hooks) {
+      module('when voter was previously undecided', function (hooks) {
         let user1: User;
         let user2: User;
         let userToAdd: User;
@@ -157,7 +157,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           firstVote.signature = await signatureOf(firstVote, user1);
         });
 
-        test('when stays remaining', async function (assert) {
+        test('when stays undecided after voting', async function (assert) {
           const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [user1],
@@ -174,7 +174,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           assert.notOk(await service.isValid(currentVote));
         });
 
-        test('when is in both yes and no', async function (assert) {
+        test('when votes both yes and no', async function (assert) {
           const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [user1, user2],
@@ -192,7 +192,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         });
       });
 
-      module('when voter was previously yes', function (hooks) {
+      module('when voter previously voted yes', function (hooks) {
         let user1: User;
         let user2: User;
         let userToAdd: User;
@@ -233,7 +233,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           assert.notOk(await service.isValid(currentVote));
         });
 
-        test('when is in both remaining and no', async function (assert) {
+        test('when votes both undecided and no', async function (assert) {
           const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [],
@@ -251,7 +251,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         });
       });
 
-      module('when voter was previously no', function (hooks) {
+      module('when voter previously voted no', function (hooks) {
         let user1: User;
         let user2: User;
         let userToAdd: User;
@@ -292,7 +292,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           assert.notOk(await service.isValid(currentVote));
         });
 
-        test('when is in both yes and remaining', async function (assert) {
+        test('when votes both yes and undecided', async function (assert) {
           const store = getStore();
           let currentVote = store.createRecord('vote-chain', {
             yes: [user1],
