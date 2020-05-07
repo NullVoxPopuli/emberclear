@@ -6422,27 +6422,6 @@ ember-cli-htmlbars@^4.0.1, ember-cli-htmlbars@^4.0.9, ember-cli-htmlbars@^4.2.2:
     strip-bom "^4.0.0"
     walk-sync "^2.0.2"
 
-ember-cli-htmlbars@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.0.0.tgz#ba5469d3f3412e154b01c4d8b9fbc1d6f7dc7af1"
-  integrity sha512-K1bPl1X3eermPcZMThzRXHmGCfk1+GGceHhLar5b3NPZy55DKlUsuQOjsWKQ0vHG/c5aR3G40i3Drt1DdnIoSA==
-  dependencies:
-    "@ember/edition-utils" "^1.2.0"
-    babel-plugin-htmlbars-inline-precompile "^3.0.1"
-    broccoli-debug "^0.6.5"
-    broccoli-persistent-filter "^2.3.1"
-    broccoli-plugin "^4.0.3"
-    common-tags "^1.8.0"
-    ember-cli-babel-plugin-helpers "^1.1.0"
-    fs-tree-diff "^2.0.1"
-    hash-for-dep "^1.5.1"
-    heimdalljs-logger "^0.1.10"
-    json-stable-stringify "^1.0.1"
-    semver "^7.3.2"
-    silent-error "^1.1.1"
-    strip-bom "^4.0.0"
-    walk-sync "^2.1.0"
-
 ember-cli-inject-live-reload@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/ember-cli-inject-live-reload/-/ember-cli-inject-live-reload-2.0.2.tgz#95edb543b386239d35959e5ea9579f5382976ac7"
@@ -6915,16 +6894,16 @@ ember-intl@^4.3.2:
     silent-error "^1.1.1"
     walk-sync "^2.0.1"
 
-ember-jsqr@^0.9.4:
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.9.4.tgz#ac62f1c0302d5f718ad90f3edd0ef58caecc3457"
-  integrity sha512-F9Jwo0euxabopPpJu+FD5s8L5xNKQwKjkJbyFCdwHRNjv/uA/pWE3YSt2pKsDMlw3ki004nM8XcbWOQVGUhWEg==
+ember-jsqr@^0.9.5:
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.9.5.tgz#a6f847dc72c1fba0423b6e74d64061693c0e9d5e"
+  integrity sha512-yYzjSr4NZr/X9CxQe0HSO9zsQcOKEQH6y2UzgOauuECId9zm26ubtJE4QhQmFqFKTUcEZO3VvqCoyDeBK2O73A==
   dependencies:
     "@glimmer/component" "^1.0.0"
     "@glimmer/tracking" "^1.0.0"
     ember-auto-import "^1.5.3"
     ember-cli-babel "^7.19.0"
-    ember-cli-htmlbars "^5.0.0"
+    ember-cli-htmlbars "^5.1.0"
     ember-cli-typescript "^3.1.3"
     ember-modifier "^1.0.3"
     jsqr "^1.3.1"
