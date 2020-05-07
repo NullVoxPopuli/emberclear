@@ -45,17 +45,18 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.ts'],
+      parser: '@typescript-eslint/parser',
       parserOptions: {
         project: 'tsconfig.json',
       },
       plugins: ['ember', 'prettier', 'qunit', '@typescript-eslint'],
       extends: [
-        'eslint:recommended',
-        'plugin:ember/recommended',
-        'plugin:qunit/recommended',
-        'plugin:@typescript-eslint/eslint-recommended',
+        // 'eslint:recommended',
+        // 'plugin:ember/recommended',
+        // 'plugin:qunit/recommended',
+        // 'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'prettier',
         'prettier/@typescript-eslint',
         'plugin:decorator-position/ember',
@@ -74,6 +75,8 @@ module.exports = {
         // typescript isn't smart enough to know when we _know_ data will exist
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off', // implicit return types are fine
+        // sometimes we just want to denote that something is async...
+        '@typescript-eslint/require-await': 'off',
 
         // better handled by prettier:
         '@typescript-eslint/indent': 'off',
@@ -100,9 +103,14 @@ module.exports = {
       env: {
         embertest: true,
       },
+      extends: [
+        'plugin:qunit/recommended',
+      ],
       rules: {
         'ember/no-test-import-export': 'off', // this rule is incomplete
         '@typescript-eslint/no-empty-function': 'off',
+        // types of tests might be wrong?
+        '@typescript-eslint/no-misused-promises': 'off',
         // doesn't support deep nesting
         'qunit/no-identical-names': 'off',
       },
@@ -132,8 +140,6 @@ module.exports = {
       },
       plugins: ['node'],
       rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
-        '@typescript-eslint/camelcase': 'off',
-        '@typescript-eslint/no-var-requires': 'off',
         'node/no-unpublished-require': 'off', // we live dangerously here
         'node/no-extraneous-require': 'off', // incorrect?
       }),
