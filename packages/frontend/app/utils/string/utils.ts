@@ -20,7 +20,7 @@ export function parseLanguages(text: string): string[] {
 }
 
 // https://www.regextester.com/98192
-const URL_PATTERN = /(((http|https)\:\/\/)|(www)){1}[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\&\.\/\?\:@\-_=#])*/gi;
+const URL_PATTERN = /(((http|https):\/\/)|(www)){1}[a-zA-Z0-9./?:@\-_=#]+\.([a-zA-Z0-9&./?:@\-_=#])*/gi;
 
 export function parseURLs(text: string): string[] {
   const urls = text.match(URL_PATTERN);

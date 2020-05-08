@@ -1,6 +1,5 @@
 import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
-import { once } from '@ember/runloop';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
 import Message from 'emberclear/models/message';
@@ -32,7 +31,7 @@ export default class MaybeNudgeToBottom extends Modifier<Args> {
     if (this.appendedMessage.id !== this.lastMessage.id) return;
 
     if (this.element) {
-      once(null, () => taskFor(this.chatScroller.maybeNudge).perform(this.element as HTMLElement));
+      taskFor(this.chatScroller.maybeNudge).perform(this.element as HTMLElement);
     }
   }
 }

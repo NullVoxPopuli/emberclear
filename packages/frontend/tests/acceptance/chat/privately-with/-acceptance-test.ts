@@ -170,7 +170,7 @@ module('Acceptance | Chat | Privately With', function (hooks) {
             // this error comes from the relay
             throw {
               reason: `user with id ${id} not found!`,
-              to_uid: id,
+              ['to_uid']: id,
             };
           },
         });

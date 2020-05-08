@@ -14,10 +14,6 @@ module.exports = {
   rules: {
     // ember specific
     'ember/no-new-mixins': 'off', // don't know what to do about ember-keyboard
-    'ember/avoid-leaking-state-in-ember-objects': 'warn',
-    'ember/no-incorrect-calls-with-inline-anonymous-functions': 'off', // don't agree with this one.
-    'ember/no-ember-testing-in-module-scope': 'off', // needed for tasks atm
-    'ember/use-brace-expansion': 'off', // won't matter with @tracked
 
     // cleanliness & consistency
     'prefer-const': 'off', // const has misleading safety implications
@@ -25,58 +21,21 @@ module.exports = {
       'error',
       { allow: ['debug', 'warn', 'error', 'info', 'group', 'groupEnd', 'groupCollapsed'] },
     ],
-    'no-cond-assign': 'off',
-    'no-useless-escape': 'off',
-    'require-yield': 'off',
-    '@typescript-eslint/camelcase': 'off', // temp disable, because route params are snake case
-    'getter-return': 'off',
-
-    // over-enforcement of immutability patterns
-    'require-atomic-updates': 'warn',
-
-    // tests / qunit
-    'qunit/no-identical-names': 'warn', // doesn't support deep nesting
+    'getter-return': ['error', { allowImplicit: true }],
 
     // typescript
-    '@typescript-eslint/prefer-optional-chain': 'warn', // for now
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/prefer-optional-chain': 'error',
     '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/no-empty-interface': 'off',
-    '@typescript-eslint/explicit-member-accessibility': 'off',
-    // this one has to be disabled, because not all of my deps use real types
-    // ... or, my custom type defs are incorrect
     '@typescript-eslint/interface-name-prefix': 'off', // ['error', 'always'],
-    // typescript isn't smart enough to know when we _know_ data will exist
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off', // implicit return types are fine
 
     // prettier
     'prettier/prettier': 'error',
-
-    // better handled by prettier:
-    '@typescript-eslint/indent': 'off',
   },
   overrides: [
-    // {
-    //   files: ['**/*.ts'],
-    //   rules: {
-    //     // Better enforced by TS
-    //     'no-undef': 'off',
-    //     'no-unused-vars': 'off',
-    //     'ember/no-attrs-snapshot': 'off'
-    //   }
-    // },
     {
       files: ['app/services/prism-manager.ts'],
       rules: {
         'no-undef': 'off',
-      },
-    },
-    // types
-    {
-      files: ['types/**'],
-      rules: {
-        '@typescript-eslint/no-unused-vars': 'off',
       },
     },
     //tests
@@ -105,7 +64,6 @@ module.exports = {
         'faltest/**/*.js',
         '.faltestrc.js',
       ],
-      excludedFiles: ['src/**'],
       env: {
         browser: false,
         node: true,
@@ -117,12 +75,6 @@ module.exports = {
         'node/no-unpublished-require': 'off', // we live dangerously here
         'node/no-extraneous-require': 'off', // incorrect?
       }),
-    },
-    {
-      files: ['faltest/**/*-test.js'],
-      env: {
-        mocha: true,
-      },
     },
   ],
 };

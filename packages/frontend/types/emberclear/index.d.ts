@@ -13,16 +13,6 @@ declare global {
     highlightAll: () => void;
   }
 
-  interface IDecoratorArgs extends Array<any | string | PropertyDescriptor> {
-    0: any;
-    1: string;
-    2: PropertyDescriptor;
-  }
-
-  interface Router {
-    currentURL: string;
-  }
-
   interface IdentityJson {
     name: string;
     publicKey: string;
@@ -75,11 +65,10 @@ declare global {
     data: OpenGraphData;
   }
 
-  interface Window {
-    devToolsExtension: any;
+  interface Array<T> extends Ember.ArrayPrototypeExtensions<T> {
+    /* this enables ember-data arrays to have .toArray() and such */
+    _____fake: unknown;
   }
-
-  interface Array<T> extends Ember.ArrayPrototypeExtensions<T> {}
   // interface Function extends Ember.FunctionPrototypeExtensions {}
 
   // https://github.com/knownasilya/ember-toastr/blob/master/addon/services/toast.js
@@ -167,12 +156,6 @@ declare global {
 
   type RelayJson = StandardMessage | LoginMessage;
 }
-
-//
-// // https://github.com/typed-ember/ember-cli-typescript/issues/197#issuecomment-384645960
-// declare module '@ember/debug' {
-//   declare function assert<T extends boolean>(desc: string, test?: T): T extends true ? void : never;
-// }
 
 declare module '@ember/service' {
   interface Registry {

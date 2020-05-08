@@ -1,8 +1,6 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import localforage from 'localforage';
-import { PromiseMonitor, monitor } from 'ember-computed-promise-monitor';
 
 import ContactManager from 'emberclear/services/contact-manager';
 import ChannelManager from 'emberclear/services/channel-manager';
@@ -63,19 +61,6 @@ export default class Settings extends Service {
     });
 
     classList.add(themeClass);
-  }
-
-  @computed('currentUser.privateKey', 'currentUser.publicKey')
-  @monitor
-  get downloadUrl() {
-    return this.buildData();
-  }
-
-  @computed('currentUser.privateKey', 'currentUser.publicKey')
-  get settingsObject() {
-    const promise = this.buildSettings();
-
-    return new PromiseMonitor<ISettingsJson | undefined>(promise);
   }
 
   async import(settings: string) {

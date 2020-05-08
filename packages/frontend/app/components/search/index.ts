@@ -1,4 +1,3 @@
-import { once } from '@ember/runloop';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
@@ -30,13 +29,14 @@ export default class SearchModal extends Component<IArgs> {
 
   @reads('contactResults.length') numContacts!: number;
 
-  get hasResults() {
-    return this.contactResults.length > 0 || this.channelResults.length > 0;
+  constructor(owner: unknown, args: IArgs) {
+    super(owner, args);
+
+    this.submitSearch();
   }
 
-  @action
-  focusInput(element: HTMLInputElement) {
-    once(this, () => element.focus());
+  get hasResults() {
+    return this.contactResults.length > 0 || this.channelResults.length > 0;
   }
 
   @action

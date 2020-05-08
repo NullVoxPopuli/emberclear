@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { alias, reads } from '@ember/object/computed';
+import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 import CurrentUserService from 'emberclear/services/current-user';
@@ -13,8 +13,6 @@ export default class ProfileSettings extends Component {
   @service settings!: Settings;
 
   @alias('currentUser.record.name') name!: string;
-
-  @reads('settings.downloadUrl') downloadSettingsUrl!: string;
 
   @action
   async save(e: Event) {
