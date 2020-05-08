@@ -39,7 +39,7 @@ export default class ChatScroller extends Service {
     const element = document.querySelector('.messages');
 
     if (element) {
-      element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'smooth' });
+      yield element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'smooth' });
     }
   }
 

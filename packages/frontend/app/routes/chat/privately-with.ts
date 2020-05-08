@@ -6,7 +6,7 @@ import CurrentUserService, { currentUserId } from 'emberclear/services/current-u
 import ChatScroller from 'emberclear/services/chat-scroller';
 
 interface IModelParams {
-  u_id: string;
+  id: string;
 }
 
 export default class ChatPrivatelyRoute extends Route {
@@ -18,9 +18,9 @@ export default class ChatPrivatelyRoute extends Route {
 
   beforeModel(transition: any) {
     let params = transition.to.params;
-    let { u_id } = params as IModelParams;
+    let { id } = params as IModelParams;
 
-    if (u_id === this.currentUser.uid) {
+    if (id === this.currentUser.uid) {
       this.transitionTo('chat.privately-with', currentUserId);
     }
 
@@ -30,15 +30,15 @@ export default class ChatPrivatelyRoute extends Route {
   }
 
   async model(params: IModelParams) {
-    const { u_id } = params;
+    const { id } = params;
 
     let record;
 
     try {
-      if (u_id === currentUserId) {
+      if (id === currentUserId) {
         record = this.currentUser.record;
       } else {
-        record = await this.store.findRecord('contact', u_id);
+        record = await this.store.findRecord('contact', id);
       }
     } catch (error) {
       this.toast.error(error || this.intl.t('ui.chat.errors.contactNotFound'));

@@ -14,7 +14,7 @@ export default setComponentTemplate(
 
     {{#if @label}}
       <label
-        class={{if @hidden 'hide-xs-up'}}
+        class={{if @hidden 'visually-hidden'}}
         for={{this.id}}
       >
         {{@label}}

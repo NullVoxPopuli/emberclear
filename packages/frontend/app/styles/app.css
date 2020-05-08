@@ -119,6 +119,15 @@
   }
 }
 
+.visually-hidden {
+  position: absolute;
+  left:-1000px;
+  top: -100px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .is-radiusless {
   border-radius: 0;
 }

@@ -6,9 +6,7 @@ import { action } from '@ember/object';
 
 import LocaleService from 'emberclear/services/locale';
 
-interface IArgs {}
-
-export default class LocaleSwitcher extends Component<IArgs> {
+export default class LocaleSwitcher extends Component<{}> {
   @service locale!: LocaleService;
 
   @tracked isActive = false;

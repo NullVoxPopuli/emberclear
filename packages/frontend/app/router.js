@@ -8,7 +8,7 @@ class Router extends EmberRouterScroll {
 
 Router.map(function () {
   this.route('chat', function () {
-    this.route('privately-with', { path: '/privately-with/:u_id' });
+    this.route('privately-with', { path: '/privately-with/:id' });
     this.route('in-channel', { path: '/in-channel/:id' });
   });
 

@@ -47,6 +47,8 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     } catch (e) {
       console.info(e);
     }
+
+    return false;
   }
 
   @dropTask({ withTestWaiter: true })

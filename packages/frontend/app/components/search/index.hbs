@@ -4,17 +4,14 @@
   @close={{@close}}
   role='search'>
 
-  <Field @label={{t 'ui.search.title'}} @hidden={{true}} as |id|>
+  <Field @label={{t 'ui.search.title'}} @hidden={{true}}>
     <input
-      autofocus
       type='text'
-      id={{id}}
       class='input-lg'
       value={{this.searchText}}
       placeholder={{t 'ui.search.title'}}
+      {{autofocus}}
       {{on 'input' this.onInput}}
-      {{did-insert this.submitSearch}}
-      {{did-insert this.focusInput}}
     >
   </Field>
 

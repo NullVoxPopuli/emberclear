@@ -52,6 +52,8 @@ export default class UnreadManagement extends Component<IArgs> {
     if (this.firstUnreadMessage) {
       return this.firstUnreadMessage.receivedAt;
     }
+
+    return;
   }
 
   @action
