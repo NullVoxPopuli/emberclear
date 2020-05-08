@@ -1,14 +1,13 @@
-
 {{#let
-  (component (concat 'pod/setup/' this.current.value))
+  (component (concat 'pod/setup/' this.interpreter.currentState.value))
   as |ComponentForCurrentState|
 }}
 
   <div class='container center-self'>
 
     <ComponentForCurrentState
-      @next={{fn this.transition 'NEXT'}}
-      @prev={{fn this.transition 'PREV'}}
+      @next={{fn this.interpreter.send 'NEXT'}}
+      @prev={{fn this.interpreter.send 'PREV'}}
     />
 
   </div>
