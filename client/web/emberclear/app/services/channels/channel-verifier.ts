@@ -1,9 +1,10 @@
 import Service, { inject as service } from '@ember/service';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
-import VoteChain, { VOTE_ACTION } from 'emberclear/models/vote-chain';
+import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import VoteVerifier from 'emberclear/services/channels/vote-verifier';
 import Identity from 'emberclear/models/identity';
 import { identityEquals, identitiesIncludes } from 'emberclear/utils/identity-comparison';
+import { isVoteCompletedPositive } from './-utils/vote-completion';
 
 export default class ChannelVerifier extends Service {
   @service('channels/vote-verifier') voteVerifier!: VoteVerifier;
@@ -18,7 +19,7 @@ export default class ChannelVerifier extends Service {
     let somethingWrongWithPastOrSupportingVote =
       !(await this.isValidChain(channel.previousChain)) ||
       !(await this.voteVerifier.isValid(channel.supportingVote)) ||
-      !this.isVoteCompletedPositive(channel.supportingVote, channel.previousChain.admin);
+      !isVoteCompletedPositive(channel.supportingVote, channel.previousChain.admin);
 
     if (somethingWrongWithPastOrSupportingVote) {
       return false;
@@ -42,18 +43,6 @@ export default class ChannelVerifier extends Service {
       channel.members.length !== 1 ||
       !identityEquals(channel.members.objectAt(0)!, channel.admin)
     );
-  }
-
-  private isVoteCompletedPositive(vote: VoteChain, admin: Identity): boolean {
-    if (
-      vote.yes.length > vote.no.length + vote.remaining.length ||
-      (vote.yes.length === vote.no.length + vote.remaining.length &&
-        identitiesIncludes(vote.yes.toArray(), admin))
-    ) {
-      return true;
-    }
-
-    return false;
   }
 
   private getDiffs(previousMembers: Identity[], currentMembers: Identity[]) {

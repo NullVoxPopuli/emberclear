@@ -3,9 +3,14 @@ import Message from 'emberclear/models/message';
 import StoreService from '@ember-data/store';
 import VoteVerifier from './vote-verifier';
 import FindOrCreateChannelModelService from './find-or-create';
-import VoteChain from 'emberclear/models/vote-chain';
+import VoteChain, { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { identityEquals } from 'emberclear/utils/identity-comparison';
 import Channel from 'emberclear/models/channel';
+import { isVoteCompleted, isVoteCompletedPositive } from './-utils/vote-completion';
+import ChannelContextChain from 'emberclear/models/channel-context-chain';
+import Vote from 'emberclear/models/vote';
+import Identity from 'emberclear/models/identity';
+import { updateContext } from 'xstate/lib/utils';
 
 export default class ReceivedChannelVoteHandler extends Service {
   @service store!: StoreService;
@@ -41,9 +46,72 @@ export default class ReceivedChannelVoteHandler extends Service {
           existingVote.voteChain = voteChain!;
         }
         existingVote.save();
+
+        // update user context
+        if (isVoteCompleted(existingVote.voteChain, existingChannel.admin)) {
+          if (isVoteCompletedPositive(existingVote.voteChain, existingChannel.admin)) {
+            this.updateContextChain(existingChannel, existingVote);
+          }
+          let newActiveVotes = existingChannel.activeVotes.filter(
+            (activeVote) => activeVote.id === existingVote!.id
+          );
+          existingChannel.activeVotes = newActiveVotes;
+          existingChannel.save();
+        }
       }
     }
     return message;
+  }
+
+  private updateContextChain(channel: Channel, vote: Vote) {
+    let updatedContextChain: ChannelContextChain;
+    switch (vote.voteChain.action) {
+      case VOTE_ACTION.ADD:
+        updatedContextChain = this.updateAddContextChain(channel, vote);
+        break;
+      case VOTE_ACTION.REMOVE:
+        updatedContextChain = this.updateRemoveContextChain(channel, vote);
+        break;
+      case VOTE_ACTION.PROMOTE:
+        updatedContextChain = this.updatePromoteContextChain(channel, vote);
+        break;
+      default:
+        return;
+    }
+    channel.contextChain = updatedContextChain;
+    channel.admin = channel.contextChain.admin;
+    channel.members = channel.contextChain.members;
+    channel.save();
+  }
+
+  private updatePromoteContextChain(channel: Channel, vote: Vote): ChannelContextChain {
+    return this.store.createRecord('channelContextChain', {
+      admin: vote.voteChain.target,
+      members: channel.contextChain.members.toArray(),
+      supportingVote: vote.voteChain,
+      previousChain: channel.contextChain,
+    });
+  }
+
+  private updateRemoveContextChain(channel: Channel, vote: Vote): ChannelContextChain {
+    let newMembersArray = channel.contextChain.members.filter(
+      (identity) => !identityEquals(identity, vote.voteChain.target)
+    );
+    return this.store.createRecord('channelContextChain', {
+      admin: channel.contextChain.admin,
+      members: newMembersArray,
+      supportingVote: vote.voteChain,
+      previousChain: channel.contextChain,
+    });
+  }
+
+  private updateAddContextChain(channel: Channel, vote: Vote): ChannelContextChain {
+    return this.store.createRecord('channelContextChain', {
+      admin: channel.contextChain.admin,
+      members: channel.contextChain.members.toArray().push(vote.voteChain.target),
+      supportingVote: vote.voteChain,
+      previousChain: channel.contextChain,
+    });
   }
 
   private isAnActiveVote(channel: Channel, voteChain: VoteChain): boolean {
