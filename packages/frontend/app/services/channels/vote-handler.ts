@@ -9,8 +9,6 @@ import Channel from 'emberclear/models/channel';
 import { isVoteCompleted, isVoteCompletedPositive } from './-utils/vote-completion';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
 import Vote from 'emberclear/models/vote';
-import Identity from 'emberclear/models/identity';
-import { updateContext } from 'xstate/lib/utils';
 
 export default class ReceivedChannelVoteHandler extends Service {
   @service store!: StoreService;
