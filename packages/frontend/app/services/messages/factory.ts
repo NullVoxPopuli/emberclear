@@ -13,6 +13,26 @@ export default class MessageFactory extends Service {
   @service store!: any;
   @service currentUser!: CurrentUserService;
 
+  buildNewReceivedMessage(json: StandardMessage, sender: Identity) {
+    const { id, type, target, message: msg } = json;
+
+    const message = this.store.createRecord('message', {
+      id,
+      type,
+      target,
+      sender,
+      from: sender.uid,
+      to: this.currentUser.uid,
+      sentAt: new Date(json.time_sent),
+      receivedAt: new Date(),
+      body: msg.body,
+      // thread: msg.thread,
+      contentType: msg.contentType,
+    });
+
+    return message;
+  }
+
   buildChat(text: string, to: Identity | Channel) {
     let attributes = {};
 
