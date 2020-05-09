@@ -2,7 +2,7 @@ import Service, { inject as service } from '@ember/service';
 import Message from 'emberclear/models/message';
 import StoreService from '@ember-data/store';
 import VoteVerifier from './vote-verifier';
-import FindOrCreateChannelModelService from './find-or-create';
+import FindOrCreateChannelService from './find-or-create';
 import VoteChain, { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { identityEquals } from 'emberclear/utils/identity-comparison';
 import Channel from 'emberclear/models/channel';
@@ -13,7 +13,7 @@ import Vote from 'emberclear/models/vote';
 export default class ReceivedChannelVoteHandler extends Service {
   @service store!: StoreService;
   @service('channels/vote-verifier') voteVerifier!: VoteVerifier;
-  @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelModelService;
+  @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelService;
 
   public async handleChannelVote(message: Message, raw: StandardMessage) {
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);

@@ -8,7 +8,7 @@ import ContactManager from '../contact-manager';
 import Identity from 'emberclear/models/identity';
 import CurrentUserService from '../current-user';
 
-export default class FindOrCreateChannelModelService extends Service {
+export default class FindOrCreateChannelService extends Service {
   @service store!: StoreService;
   @service contactManager!: ContactManager;
   @service currentUser!: CurrentUserService;
@@ -123,6 +123,6 @@ export default class FindOrCreateChannelModelService extends Service {
 
 declare module '@ember/service' {
   interface Registry {
-    'channels/find-or-create': FindOrCreateChannelModelService;
+    'channels/find-or-create': FindOrCreateChannelService;
   }
 }

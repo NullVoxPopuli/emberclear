@@ -3,14 +3,14 @@ import Message from 'emberclear/models/message';
 import StoreService from '@ember-data/store';
 import Notifications from 'emberclear/services/notifications';
 import ChannelVerifier from './channel-verifier';
-import FindOrCreateChannelModelService from './find-or-create';
+import FindOrCreateChannelService from './find-or-create';
 
 export default class ReceivedChannelMessageHandler extends Service {
   @service store!: StoreService;
   @service intl!: Intl;
   @service notifications!: Notifications;
   @service('channels/channel-verifier') channelVerifier!: ChannelVerifier;
-  @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelModelService;
+  @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelService;
 
   public async handleChannelMessage(message: Message, raw: StandardMessage) {
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
