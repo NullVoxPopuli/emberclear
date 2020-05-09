@@ -10,6 +10,7 @@ import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';
 import AutoResponder from 'emberclear/services/messages/auto-responder';
 import { isMessageDMBetween, messagesForDM } from 'emberclear/models/message/utils';
+import MessageFactory from './factory';
 
 export default class ReceivedMessageHandler extends Service {
   @service store!: StoreService;
@@ -18,6 +19,7 @@ export default class ReceivedMessageHandler extends Service {
   @service statusManager!: StatusManager;
   @service currentUser!: CurrentUserService;
   @service contactManager!: ContactManager;
+  @service('messages/factory') messageFactory!: MessageFactory;
   @service('messages/auto-responder') autoResponder!: AutoResponder;
 
   async handle(raw: StandardMessage) {
@@ -129,28 +131,8 @@ export default class ReceivedMessageHandler extends Service {
     } catch (e) {
       // we have not yet received this message
       // build a new message record
-      return this.buildNewReceivedMessage(json, sender);
+      return this.messageFactory.buildNewReceivedMessage(json, sender);
     }
-  }
-
-  private buildNewReceivedMessage(json: StandardMessage, sender: Identity) {
-    const { id, type, target, message: msg } = json;
-
-    const message = this.store.createRecord('message', {
-      id,
-      type,
-      target,
-      sender,
-      from: sender.uid,
-      to: this.currentUser.uid,
-      sentAt: new Date(json.time_sent),
-      receivedAt: new Date(),
-      body: msg.body,
-      // thread: msg.thread,
-      contentType: msg.contentType,
-    });
-
-    return message;
   }
 
   /**
