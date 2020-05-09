@@ -30,6 +30,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const me = getService('current-user');
       const sender = await attributesForContact();
       const thirdMember = await attributesForContact();
+      const messageFactory = getService('messages/factory');
       let channelId = uuid();
       let channelInfo = {
         uid: channelId,
@@ -51,11 +52,11 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
             { id: thirdMember.id, name: `user with id: ${thirdMember.id}` },
           ],
           admin: { id: me.record!.uid, name: me.record!.name },
-          supportingVote: undefined /**TODO doesn't get used and would be a pain to set up */,
-          previousChain: undefined /**TODO doesn't get used and would be a pain to set up */,
+          supportingVote: {} /**TODO doesn't get used and would be a pain to set up */,
+          previousChain: {} /**TODO doesn't get used and would be a pain to set up */,
         },
       };
-      let message = {
+      let message: StandardMessage = {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
@@ -88,6 +89,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         },
       });
       const service = getService('channels/vote-handler');
+      service.handleChannelVote(messageFactory.buildNewReceivedMessage(message, sender), message);
     });
   });
 });
