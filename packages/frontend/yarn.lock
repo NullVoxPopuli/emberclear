@@ -3254,11 +3254,6 @@ babel-plugin-htmlbars-inline-precompile@^3.0.1:
   resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-3.1.0.tgz#85085b50385277f2b331ebd54e22fa91aadc24e8"
   integrity sha512-ar6c4YVX6OV7Dzpq7xRyllQrHwVEzJf41qysYULnD6tu6TS+y1FxT2VcEvMC6b9Rq9xoHMzvB79HO3av89JCGg==
 
-babel-plugin-htmlbars-inline-precompile@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-4.0.0.tgz#3589f1046fa05c8323ca818d68faadc506671318"
-  integrity sha512-Pqknck27Hfm4uXyc1KDDs0OHlygqXe91UQcKRkHlYtKUxZROg01th+soTaBT9g2w72XGRVQzel7Aq2yjezLmFw==
-
 babel-plugin-htmlbars-inline-precompile@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-4.1.0.tgz#11796422e65d900a968481fa3fb37e0425c928dd"
@@ -6526,27 +6521,6 @@ ember-cli-htmlbars@^4.0.1, ember-cli-htmlbars@^4.0.9, ember-cli-htmlbars@^4.2.0,
     strip-bom "^4.0.0"
     walk-sync "^2.0.2"
 
-ember-cli-htmlbars@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.1.0.tgz#f7ef64fe22b3f258d3e1d704f6b1b04e0917e371"
-  integrity sha512-t02GVC/EbyC/I3GKfmxQ6sA5HCVubrHUfdJmNDnyqZ9Yh64TiXinw+8Ve5Sj/lvpKxp6VU7IwCthGpNQRWZrtA==
-  dependencies:
-    "@ember/edition-utils" "^1.2.0"
-    babel-plugin-htmlbars-inline-precompile "^4.0.0"
-    broccoli-debug "^0.6.5"
-    broccoli-persistent-filter "^2.3.1"
-    broccoli-plugin "^4.0.3"
-    common-tags "^1.8.0"
-    ember-cli-babel-plugin-helpers "^1.1.0"
-    fs-tree-diff "^2.0.1"
-    hash-for-dep "^1.5.1"
-    heimdalljs-logger "^0.1.10"
-    json-stable-stringify "^1.0.1"
-    semver "^7.3.2"
-    silent-error "^1.1.1"
-    strip-bom "^4.0.0"
-    walk-sync "^2.1.0"
-
 ember-cli-inject-live-reload@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/ember-cli-inject-live-reload/-/ember-cli-inject-live-reload-2.0.2.tgz#95edb543b386239d35959e5ea9579f5382976ac7"
@@ -7009,16 +6983,16 @@ ember-intl@^4.3.2:
     silent-error "^1.1.1"
     walk-sync "^2.0.1"
 
-ember-jsqr@^0.9.5:
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.9.5.tgz#a6f847dc72c1fba0423b6e74d64061693c0e9d5e"
-  integrity sha512-yYzjSr4NZr/X9CxQe0HSO9zsQcOKEQH6y2UzgOauuECId9zm26ubtJE4QhQmFqFKTUcEZO3VvqCoyDeBK2O73A==
+ember-jsqr@^0.9.6:
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.9.6.tgz#fc55f94ef394c4bddb38f662585e46e77594fa36"
+  integrity sha512-32YP0TzpODELe4ATggZjfLZFE8x9SLSFLoHmPPymDVEGAVCxAOZYkmuEa+grFgptycqdn7aOQ+A/m7k4pGKlJw==
   dependencies:
     "@glimmer/component" "^1.0.0"
     "@glimmer/tracking" "^1.0.0"
     ember-auto-import "^1.5.3"
     ember-cli-babel "^7.19.0"
-    ember-cli-htmlbars "^5.1.0"
+    ember-cli-htmlbars "^5.1.2"
     ember-cli-typescript "^3.1.3"
     ember-modifier "^1.0.3"
     jsqr "^1.3.1"
