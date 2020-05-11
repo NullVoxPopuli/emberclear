@@ -36,7 +36,7 @@ export default class ActionsSidebar extends Component<IArgs> {
       .filter((action) => action.response !== ACTION_RESPONSE.DISMISSED);
   }
 
-  get new_actions(): Action[] {
+  get newActions(): Action[] {
     return this.allActions.sort(sortByOldest);
   }
 

@@ -1,31 +1,33 @@
 .sidebar-nav {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .sidebar-tab {
-    display: inline-block;
-    border-radius: 0px;
-    background: none;
-    border: none;
-    color: var(--body-color);
-    padding-bottom: 2px;
+  display: inline-block;
+  border-radius: 0;
+  background: none;
+  border: none;
+  color: var(--body-color);
+  padding-bottom: 2px;
 }
 
 .sidebar-tab:hover {
-    background: none;
-    color: var(--body-color);
+  background: none;
+  color: var(--body-color);
 }
 
 .sidebar-tab:active {
-    box-shadow: none;
-    background: none;
+  box-shadow: none;
+  background: none;
 }
 
 .sidebar-tab:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
-.sidebar-tab-selected, .sidebar-tab-selected:hover, .sidebar-tab-selected:focus {
-    box-shadow: none;
-    border-bottom: 2px solid #334;
+.sidebar-tab-selected,
+.sidebar-tab-selected:hover,
+.sidebar-tab-selected:focus {
+  box-shadow: none;
+  border-bottom: 2px solid #334;
 }

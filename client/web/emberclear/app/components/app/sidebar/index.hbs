@@ -1,11 +1,12 @@
 <aside ...attributes>
   <div>
-    {{did-insert switchToContacts}}
+    {{did-insert this.switchToContacts}}
     {{#if (has-feature-flag 'democracy-ui')}}
       <nav class='sidebar-nav'>
         {{#if this.contactsSelected}}
           <button
             id='contacts-tab'
+            type='button'
             class='sidebar-tab sidebar-tab-selected'
           >
               Contacts
@@ -13,8 +14,9 @@
         {{else}}
           <button
             id='contacts-tab'
+            type='button'
             class='sidebar-tab'
-            onclick={{action 'switchToContacts'}}
+            {{on 'click' this.switchToContacts}}
           >
               Contacts
           </button>
@@ -23,26 +25,30 @@
         {{#if this.channelsSelected}}
           <button 
             id='channels-tab'
+            type='button'
             class='sidebar-tab sidebar-tab-selected'
           >
               Channels
           </button>
         {{else}}
-          <button id='channels-tab' class='sidebar-tab'
-            onclick={{action 'switchToChannels'}}
+          <button 
+            id='channels-tab'
+            type='button'
+            class='sidebar-tab'
+            {{on 'click' this.switchToChannels}}
           >
               Channels
           </button>
         {{/if}}
 
         {{#if this.actionsSelected}}
-          <button id='actions-tab' class='sidebar-tab sidebar-tab-selected'
+          <button id='actions-tab' type='button' class='sidebar-tab sidebar-tab-selected'
           >
               Actions
           </button>
         {{else}}
-          <button id='actions-tab' class='sidebar-tab'
-            onclick={{action 'switchToActions'}}
+          <button id='actions-tab' type='button' class='sidebar-tab'
+            {{on 'click' this.switchToActions}}
           >
               Actions
           </button>
