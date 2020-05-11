@@ -63,7 +63,7 @@ export default class CommandHandler extends Service {
   ];
 
   //TODO: get the author and channel of the command
-  parseCommand(cmd: String) {
+  parseCommand(cmd: string) {
     const args = cmd.slice(1).trim().split(/ +/g);
     const command = args.shift();
 
