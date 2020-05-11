@@ -15,7 +15,6 @@ import { sign, hash } from 'emberclear/workers/crypto/utils/nacl';
 
 import { toHex } from 'emberclear/utils/string-encoding';
 import { generateAsymmetricKeys, generateSigningKeys } from 'emberclear/workers/crypto/utils/nacl';
-import User from 'emberclear/models/user';
 
 interface IArgs {
   actions: Action[];
@@ -43,7 +42,7 @@ export default class ActionsSidebar extends Component<IArgs> {
 
   @action
   async addAction() {
-    //TODO: leave this to another method
+    //TODO: remove dummy code and implement
     const name = 'user1';
     const { publicKey } = await generateAsymmetricKeys();
     const { publicSigningKey, privateSigningKey } = await generateSigningKeys();
