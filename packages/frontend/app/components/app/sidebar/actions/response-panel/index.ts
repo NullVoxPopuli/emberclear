@@ -9,19 +9,18 @@ interface IArgs {
 }
 
 export default class ResponsePanel extends Component<IArgs> {
-
   @action
   yes() {
-    alert("voting yes!");
+    alert('voting yes!');
   }
 
   @action
   no() {
-    alert("voting no!");
+    alert('voting no!');
   }
 
   @action
   dismiss() {
-    alert("goodbye!");
+    alert('goodbye!');
   }
 }

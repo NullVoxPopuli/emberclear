@@ -2,9 +2,13 @@
 
 	<div data-test-sidebar-actions-header class='menu-label'>
       {{t 'ui.sidebar.actions.title'}}
-      <button {{on 'click' this.addAction}}>
+      <button
+        class='button button-xs'
+        {{on 'click' this.addAction}}
+      >
         <span class='icon'>{{fa-icon 'plus'}}</span>
       </button>
+
     </div>
 
 	{{#each this.new_actions as |action_item|}}

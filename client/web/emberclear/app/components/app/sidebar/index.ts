@@ -10,12 +10,6 @@ import Modals from 'emberclear/services/modals';
 
 import { scrollIntoViewOfParent } from 'emberclear/utils/dom/utils';
 
-enum Tab {
-  Contacts = 'contacts-tab',
-  Channels = 'channels-tab',
-  Actions = 'actions-tab',
-}
-
 export default class Sidebar extends Component {
   @service sidebar!: SidebarService;
   @service currentUser!: CurrentUserService;
@@ -26,7 +20,9 @@ export default class Sidebar extends Component {
   @alias('sidebar.hasUnreadBelow') hasUnreadBelow!: boolean;
   @reads('currentUser.name') name?: string;
   @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
-  @alias('sidebar.selectedTab') selectedTab!: Tab;
+  @alias('sidebar.contactsSelected') contactsSelected!: boolean;
+  @alias('sidebar.channelsSelected') channelsSelected!: boolean;
+  @alias('sidebar.actionsSelected') actionsSelected!: boolean;
 
   @action
   scrollDownToNearestUnread() {
@@ -47,10 +43,23 @@ export default class Sidebar extends Component {
   }
 
   @action
-  switchTo(tab: Tab) {
-    const activeTab = document.querySelector('.sidebar-tab-selected')! as HTMLElement;
-    const selectedTab = document.getElementById(tab) as HTMLElement;
-    activeTab.classList.remove('.sidebar-tab-selected');
-    selectedTab.classList.add('.sidebar-tab-selected');
+  switchToContacts() {
+    this.contactsSelected = true;
+    this.channelsSelected = false;
+    this.actionsSelected = false;
+  }
+
+  @action
+  switchToChannels() {
+    this.contactsSelected = false;
+    this.channelsSelected = true;
+    this.actionsSelected = false;
+  }
+
+  @action
+  switchToActions() {
+    this.contactsSelected = false;
+    this.channelsSelected = false;
+    this.actionsSelected = true;
   }
 }

@@ -1,26 +1,55 @@
 <aside ...attributes>
   <div>
-    <nav class='sidebar-nav'>
-      <a
-        id='contacts-tab'
-        class='sidebar-tab sidebar-tab-selected'
-        @onClick={{this.switchTo}}
-      >
-          Contacts
-      </a>
+    {{did-insert switchToContacts}}
+    {{#if (has-feature-flag 'democracy-ui')}}
+      <nav class='sidebar-nav'>
+        {{#if this.contactsSelected}}
+          <a
+            id='contacts-tab'
+            class='sidebar-tab sidebar-tab-selected'
+          >
+              Contacts
+          </a>
+        {{else}}
+          <a
+            id='contacts-tab'
+            class='sidebar-tab'
+            onclick={{action 'switchToContacts'}}
+          >
+              Contacts
+          </a>
+        {{/if}}
 
-      <a id='channels-tab' class='sidebar-tab'
-        {{!-- @onClick={{this.switchTo Tab.Channels}} --}}
-      >
-          Channels
-      </a>
+        {{#if this.channelsSelected}}
+          <a 
+            id='channels-tab'
+            class='sidebar-tab sidebar-tab-selected'
+          >
+              Channels
+          </a>
+        {{else}}
+          <a id='channels-tab' class='sidebar-tab'
+            onclick={{action 'switchToChannels'}}
+          >
+              Channels
+          </a>
+        {{/if}}
 
-      <a id='actions-tab' class='sidebar-tab'
-        {{!-- @onClick={{this.switchTo Tab.Actions}} --}}
-      >
-          Actions
-      </a>
-    </nav>
+        {{#if this.actionsSelected}}
+          <a id='actions-tab' class='sidebar-tab sidebar-tab-selected'
+          >
+              Actions
+          </a>
+        {{else}}
+          <a id='actions-tab' class='sidebar-tab'
+            onclick={{action 'switchToActions'}}
+          >
+              Actions
+          </a>
+        {{/if}}
+
+      </nav>
+    {{/if}}
 
     {{#if this.hasUnreadAbove}}
       <App::Sidebar::UnreadIndicator
@@ -29,7 +58,17 @@
       />
     {{/if}}
 
-    <App::Sidebar::Chats />
+    {{#if (has-feature-flag 'democracy-ui')}}
+      {{#if this.contactsSelected}}
+        <App::Sidebar::Chats />
+      {{else if this.channelsSelected}}
+        {{!-- TODO --}}
+      {{else}}
+        <App::Sidebar::Actions />
+      {{/if}}
+    {{else}}
+        <App::Sidebar::Chats />
+    {{/if}}
 
     {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
     {{#if this.hasUnreadBelow}}
@@ -40,6 +79,8 @@
     {{/if}}
 
   </div>
+
+
 
   {{#if this.isLoggedIn}}
     <App::Sidebar::Footer />

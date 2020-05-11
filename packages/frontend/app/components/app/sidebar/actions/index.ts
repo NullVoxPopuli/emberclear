@@ -79,7 +79,7 @@ export default class ActionsSidebar extends Component<IArgs> {
       vote: currentVote,
       response: ACTION_RESPONSE.NONE,
       timestamp: Date.now(),
-    })
+    });
   }
 }
 

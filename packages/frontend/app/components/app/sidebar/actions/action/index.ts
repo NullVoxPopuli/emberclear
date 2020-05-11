@@ -16,7 +16,6 @@ interface IArgs {
   action: Action;
 }
 
-
 export default class SidebarAction extends Component<IArgs> {
   // TODO
 }
