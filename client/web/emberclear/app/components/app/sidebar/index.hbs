@@ -4,48 +4,48 @@
     {{#if (has-feature-flag 'democracy-ui')}}
       <nav class='sidebar-nav'>
         {{#if this.contactsSelected}}
-          <a
+          <button
             id='contacts-tab'
             class='sidebar-tab sidebar-tab-selected'
           >
               Contacts
-          </a>
+          </button>
         {{else}}
-          <a
+          <button
             id='contacts-tab'
             class='sidebar-tab'
             onclick={{action 'switchToContacts'}}
           >
               Contacts
-          </a>
+          </button>
         {{/if}}
 
         {{#if this.channelsSelected}}
-          <a 
+          <button 
             id='channels-tab'
             class='sidebar-tab sidebar-tab-selected'
           >
               Channels
-          </a>
+          </button>
         {{else}}
-          <a id='channels-tab' class='sidebar-tab'
+          <button id='channels-tab' class='sidebar-tab'
             onclick={{action 'switchToChannels'}}
           >
               Channels
-          </a>
+          </button>
         {{/if}}
 
         {{#if this.actionsSelected}}
-          <a id='actions-tab' class='sidebar-tab sidebar-tab-selected'
+          <button id='actions-tab' class='sidebar-tab sidebar-tab-selected'
           >
               Actions
-          </a>
+          </button>
         {{else}}
-          <a id='actions-tab' class='sidebar-tab'
+          <button id='actions-tab' class='sidebar-tab'
             onclick={{action 'switchToActions'}}
           >
               Actions
-          </a>
+          </button>
         {{/if}}
 
       </nav>
