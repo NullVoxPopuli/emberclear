@@ -43,7 +43,7 @@ export default class FindOrCreateChannelService extends Service {
       contextChain: await this.createContextChain(contextChain),
     });
 
-    return channel;    
+    return channel;
   }
 
   async findOrCreateContextChain(
@@ -72,7 +72,9 @@ export default class FindOrCreateChannelService extends Service {
     }
   }
 
-  async createContextChain(standardContextChain: StandardChannelContextChain): Promise<ChannelContextChain | undefined> {
+  async createContextChain(
+    standardContextChain: StandardChannelContextChain
+  ): Promise<ChannelContextChain | undefined> {
     if (standardContextChain === undefined) {
       return undefined;
     }
@@ -86,7 +88,7 @@ export default class FindOrCreateChannelService extends Service {
       voteChain: await this.createVote(standardContextChain.supportingVote),
       previousVoteChain: await this.createContextChain(standardContextChain.previousChain),
     });
-    return contextChain;    
+    return contextChain;
   }
 
   async findOrCreateVote(standardVote: StandardVote): Promise<Vote | undefined> {
@@ -144,36 +146,35 @@ export default class FindOrCreateChannelService extends Service {
         target: await this.findOrCreateMember(standardVoteChain.target),
         action: standardVoteChain.action,
         key: await this.findOrCreateMember(standardVoteChain.key),
-        signature: 'TODO',//TODO
+        signature: 'TODO', //TODO
         previousVoteChain: await this.findOrCreateVoteChain(standardVoteChain.previousVoteChain),
       });
       return voteChain;
     }
   }
 
-  async createVoteChain(standardVoteChain: StandardVoteChain
-    ): Promise<VoteChain | undefined> {
-      if (standardVoteChain === undefined) {
-        return undefined;
-      }
-  
-      const { id } = standardVoteChain;
-  
-      let voteChain = this.store.createRecord('voteChain', {
-        id,
-        remaining: standardVoteChain.remaining.map(
-          async (member) => await this.findOrCreateMember(member)
-        ),
-        yes: standardVoteChain.yes.map(async (member) => await this.findOrCreateMember(member)),
-        no: standardVoteChain.no.map(async (member) => await this.findOrCreateMember(member)),
-        target: await this.findOrCreateMember(standardVoteChain.target),
-        action: standardVoteChain.action,
-        key: await this.findOrCreateMember(standardVoteChain.key),
-        signature: 'TODO',//TODO
-        previousVoteChain: await this.createVoteChain(standardVoteChain.previousVoteChain),
-      });
-      return voteChain;      
+  async createVoteChain(standardVoteChain: StandardVoteChain): Promise<VoteChain | undefined> {
+    if (standardVoteChain === undefined) {
+      return undefined;
     }
+
+    const { id } = standardVoteChain;
+
+    let voteChain = this.store.createRecord('voteChain', {
+      id,
+      remaining: standardVoteChain.remaining.map(
+        async (member) => await this.findOrCreateMember(member)
+      ),
+      yes: standardVoteChain.yes.map(async (member) => await this.findOrCreateMember(member)),
+      no: standardVoteChain.no.map(async (member) => await this.findOrCreateMember(member)),
+      target: await this.findOrCreateMember(standardVoteChain.target),
+      action: standardVoteChain.action,
+      key: await this.findOrCreateMember(standardVoteChain.key),
+      signature: 'TODO', //TODO
+      previousVoteChain: await this.createVoteChain(standardVoteChain.previousVoteChain),
+    });
+    return voteChain;
+  }
 
   async findOrCreateMember(senderData: ChannelMember): Promise<Identity> {
     const { name, id } = senderData;

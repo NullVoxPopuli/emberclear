@@ -11,14 +11,13 @@ export default class ReceivedChannelInfoSyncHandler extends Service {
 
   public async handleInfoSync(message: Message, raw: StandardMessage) {
     //TODO figure out a better indicator of request to sync vs. send to sync requester
-    if(raw.message.body){
-        let updatedChannel = await this.findOrCreator.createChannel(raw.channelInfo);
-        if(await this.channelVerifier.isValidChain(updatedChannel.contextChain)){
-            // TODO resolve saving the updated channel context
-        }
-    }
-    else{
-        //TODO send info channel sync message back with channel context
+    if (raw.message.body) {
+      let updatedChannel = await this.findOrCreator.createChannel(raw.channelInfo);
+      if (await this.channelVerifier.isValidChain(updatedChannel.contextChain)) {
+        // TODO resolve saving the updated channel context
+      }
+    } else {
+      //TODO send info channel sync message back with channel context
     }
     return message;
   }
