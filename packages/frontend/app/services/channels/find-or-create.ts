@@ -32,6 +32,20 @@ export default class FindOrCreateChannelService extends Service {
     }
   }
 
+  async createChannel(channelInfo: StandardMessage['channelInfo']): Promise<Channel> {
+    const { uid, name, members, admin, activeVotes, contextChain } = channelInfo!;
+    const channel = this.store.createRecord('channel', {
+      uid,
+      name,
+      admin: await this.findOrCreateMember(admin),
+      members: members.map(async (member) => await this.findOrCreateMember(member)),
+      activeVotes: activeVotes.map(async (vote) => await this.createVote(vote)),
+      contextChain: await this.createContextChain(contextChain),
+    });
+
+    return channel;    
+  }
+
   async findOrCreateContextChain(
     standardContextChain: StandardChannelContextChain
   ): Promise<ChannelContextChain | undefined> {
@@ -58,6 +72,23 @@ export default class FindOrCreateChannelService extends Service {
     }
   }
 
+  async createContextChain(standardContextChain: StandardChannelContextChain): Promise<ChannelContextChain | undefined> {
+    if (standardContextChain === undefined) {
+      return undefined;
+    }
+
+    const { id } = standardContextChain;
+
+    let contextChain = await this.store.createRecord('channelContextChain', {
+      id,
+      admin: await this.findOrCreateMember(standardContextChain.admin),
+      members: standardContextChain.members.map((member) => this.findOrCreateMember(member)),
+      voteChain: await this.createVote(standardContextChain.supportingVote),
+      previousVoteChain: await this.createContextChain(standardContextChain.previousChain),
+    });
+    return contextChain;    
+  }
+
   async findOrCreateVote(standardVote: StandardVote): Promise<Vote | undefined> {
     if (standardVote === undefined) {
       return undefined;
@@ -77,6 +108,15 @@ export default class FindOrCreateChannelService extends Service {
       });
       return vote;
     }
+  }
+
+  async createVote(standardVote: StandardVote): Promise<Vote> {
+    const { id } = standardVote;
+    let vote = this.store.createRecord('vote', {
+      id,
+      voteChain: await this.createVoteChain(standardVote.voteChain),
+    });
+    return vote;
   }
 
   async findOrCreateVoteChain(
@@ -104,11 +144,36 @@ export default class FindOrCreateChannelService extends Service {
         target: await this.findOrCreateMember(standardVoteChain.target),
         action: standardVoteChain.action,
         key: await this.findOrCreateMember(standardVoteChain.key),
+        signature: 'TODO',//TODO
         previousVoteChain: await this.findOrCreateVoteChain(standardVoteChain.previousVoteChain),
       });
       return voteChain;
     }
   }
+
+  async createVoteChain(standardVoteChain: StandardVoteChain
+    ): Promise<VoteChain | undefined> {
+      if (standardVoteChain === undefined) {
+        return undefined;
+      }
+  
+      const { id } = standardVoteChain;
+  
+      let voteChain = this.store.createRecord('voteChain', {
+        id,
+        remaining: standardVoteChain.remaining.map(
+          async (member) => await this.findOrCreateMember(member)
+        ),
+        yes: standardVoteChain.yes.map(async (member) => await this.findOrCreateMember(member)),
+        no: standardVoteChain.no.map(async (member) => await this.findOrCreateMember(member)),
+        target: await this.findOrCreateMember(standardVoteChain.target),
+        action: standardVoteChain.action,
+        key: await this.findOrCreateMember(standardVoteChain.key),
+        signature: 'TODO',//TODO
+        previousVoteChain: await this.createVoteChain(standardVoteChain.previousVoteChain),
+      });
+      return voteChain;      
+    }
 
   async findOrCreateMember(senderData: ChannelMember): Promise<Identity> {
     const { name, id } = senderData;
