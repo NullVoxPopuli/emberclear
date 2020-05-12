@@ -3,10 +3,12 @@ import Message from 'emberclear/models/message';
 import StoreService from '@ember-data/store';
 import FindOrCreateChannelService from './find-or-create';
 import ChannelVerifier from './channel-verifier';
+import VoteVerifier from './vote-verifier';
 
 export default class ReceivedChannelInfoSyncHandler extends Service {
   @service store!: StoreService;
   @service('channels/channel-verifier') channelVerifier!: ChannelVerifier;
+  @service('channels/vote-verifier') voteVerifier!: VoteVerifier;
   @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelService;
 
   public async handleInfoSync(message: Message, raw: StandardMessage) {
@@ -14,7 +16,17 @@ export default class ReceivedChannelInfoSyncHandler extends Service {
     if (raw.message.body) {
       let updatedChannel = await this.findOrCreator.createChannel(raw.channelInfo);
       if (await this.channelVerifier.isValidChain(updatedChannel.contextChain)) {
-        // TODO resolve saving the updated channel context
+        let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
+        existingChannel.contextChain = updatedChannel.contextChain;
+        existingChannel.members = existingChannel.contextChain.members;
+        existingChannel.admin = existingChannel.contextChain.admin;
+        existingChannel.activeVotes = [];
+        updatedChannel.activeVotes.forEach((activeVote) => {
+          if (this.voteVerifier.isValid(activeVote.voteChain)) {
+            existingChannel.activeVotes.push(activeVote);
+          }
+        });
+        existingChannel.save();
       }
     } else {
       //TODO send info channel sync message back with channel context
