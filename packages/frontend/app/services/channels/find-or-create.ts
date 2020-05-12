@@ -7,6 +7,7 @@ import Service, { inject as service } from '@ember/service';
 import ContactManager from '../contact-manager';
 import Identity from 'emberclear/models/identity';
 import CurrentUserService from '../current-user';
+import { fromHex } from 'emberclear/utils/string-encoding';
 
 export default class FindOrCreateChannelService extends Service {
   @service store!: StoreService;
@@ -146,7 +147,7 @@ export default class FindOrCreateChannelService extends Service {
         target: await this.findOrCreateMember(standardVoteChain.target),
         action: standardVoteChain.action,
         key: await this.findOrCreateMember(standardVoteChain.key),
-        signature: 'TODO', //TODO
+        signature: fromHex(standardVoteChain.signature),
         previousVoteChain: await this.findOrCreateVoteChain(standardVoteChain.previousVoteChain),
       });
       return voteChain;
@@ -170,7 +171,7 @@ export default class FindOrCreateChannelService extends Service {
       target: await this.findOrCreateMember(standardVoteChain.target),
       action: standardVoteChain.action,
       key: await this.findOrCreateMember(standardVoteChain.key),
-      signature: 'TODO', //TODO
+      signature: fromHex(standardVoteChain.signature),
       previousVoteChain: await this.createVoteChain(standardVoteChain.previousVoteChain),
     });
     return voteChain;
