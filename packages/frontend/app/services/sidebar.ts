@@ -45,7 +45,7 @@ export default class Sidebar extends Service {
 
   @action
   toggle() {
-    this.isShown ? this.hide() : this.show();
+    return this.isShown ? this.hide() : this.show();
   }
 
   async setup(content: HTMLElement) {

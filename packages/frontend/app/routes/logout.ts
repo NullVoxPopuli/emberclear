@@ -11,12 +11,14 @@ export default class LogoutRoute extends Route {
 
   // ensure we are allowed to be here
   async beforeModel() {
-    this.sidebar.hide();
+    let hiding = this.sidebar.hide();
 
     const exists = await this.currentUser.exists();
 
     if (!exists) {
       this.transitionTo('setup');
     }
+
+    return hiding;
   }
 }
