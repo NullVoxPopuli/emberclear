@@ -8,6 +8,7 @@ import { TYPE, TARGET } from 'emberclear/models/message';
 import Identity from 'emberclear/models/identity';
 import Channel from 'emberclear/models/channel';
 import Message from 'emberclear/models/message';
+import { buildChannelInfo } from '../channels/-utils/channel-factory';
 
 export default class MessageFactory extends Service {
   @service store!: any;
@@ -39,10 +40,11 @@ export default class MessageFactory extends Service {
     if (to instanceof Identity) {
       attributes = { target: TARGET.WHISPER, to: to.uid };
     } else if (to instanceof Channel) {
+      // TODO flesh this out for regular channel messages.
       attributes = {
-        traget: TARGET.CHANNEL,
+        target: TARGET.CHANNEL,
         to: to.id,
-        // TODO: serialize channel info
+        channelInfo: buildChannelInfo(to),
       };
     }
 

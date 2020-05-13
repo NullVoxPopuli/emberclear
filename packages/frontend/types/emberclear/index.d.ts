@@ -109,7 +109,7 @@ declare global {
     target: ChannelMember;
     action: string;
     key: ChannelMember;
-    previousVoteChain: StandardVoteChain;
+    previousVoteChain?: StandardVoteChain;
     signature: string;
   }
 
@@ -123,7 +123,7 @@ declare global {
     admin: ChannelMember;
     members: ChannelMember[];
     supportingVote: StandardVote;
-    previousChain: StandardChannelContextChain;
+    previousChain?: StandardChannelContextChain;
   }
 
   interface StandardMessage {
