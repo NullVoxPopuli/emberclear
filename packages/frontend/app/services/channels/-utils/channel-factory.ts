@@ -32,7 +32,7 @@ export function buildChannelContextChain(
 
 export function buildChannelMember(member: Identity): ChannelMember {
   return {
-    id: member.id,
+    id: member.uid,
     name: member.name,
   };
 }

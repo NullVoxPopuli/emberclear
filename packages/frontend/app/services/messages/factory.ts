@@ -84,7 +84,7 @@ export default class MessageFactory extends Service {
   buildChannelInfoSyncFulfill(to: Identity, data: Channel) {
     return this.build({
       type: TYPE.INFO_CHANNEL_SYNC,
-      to: to.id,
+      to: to.uid,
       body: 'TODO make this better',
       channelInfo: buildChannelInfo(data),
     });
