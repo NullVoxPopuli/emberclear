@@ -101,14 +101,29 @@ declare global {
     time: string;
   }
 
-  interface ChannelInvitation {
-    invitePublicKey: string;
-    result: MemberResult[];
+  interface StandardVoteChain {
+    id: string;
+    remaining: ChannelMember[];
+    yes: ChannelMember[];
+    no: ChannelMember[];
+    target: ChannelMember;
+    action: string;
+    key: ChannelMember;
+    previousVoteChain: StandardVoteChain;
+    signature: string;
   }
 
-  interface ChannelBlock {
-    blockedPublicKey: string;
-    result: MemberResult[];
+  interface StandardVote {
+    id: string;
+    voteChain: StandardVoteChain;
+  }
+
+  interface StandardChannelContextChain {
+    id: string;
+    admin: ChannelMember;
+    members: ChannelMember[];
+    supportingVote: StandardVote;
+    previousChain: StandardChannelContextChain;
   }
 
   interface StandardMessage {
@@ -127,12 +142,15 @@ declare global {
     message: {
       body: string;
       contentType: string;
+      metadata?: object;
     };
     channelInfo?: {
+      uid: string;
       name: string;
       members: ChannelMember[];
-      pendingInvitations: ChannelInvitation[];
-      blocked: ChannelBlock[];
+      admin: ChannelMember;
+      activeVotes: StandardVote[];
+      contextChain: StandardChannelContextChain;
     };
   }
 
