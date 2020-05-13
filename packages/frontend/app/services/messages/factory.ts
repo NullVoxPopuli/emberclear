@@ -8,7 +8,8 @@ import { TYPE, TARGET } from 'emberclear/models/message';
 import Identity from 'emberclear/models/identity';
 import Channel from 'emberclear/models/channel';
 import Message from 'emberclear/models/message';
-import { buildChannelInfo } from '../channels/-utils/channel-factory';
+import { buildChannelInfo, buildVote } from '../channels/-utils/channel-factory';
+import Vote from 'emberclear/models/vote';
 
 export default class MessageFactory extends Service {
   @service store!: any;
@@ -58,6 +59,35 @@ export default class MessageFactory extends Service {
     });
 
     return message;
+  }
+
+  buildChannelVote(vote: Vote, to: Channel) {
+    let attributes = {
+      to: to.id,
+      metadata: buildVote(vote),
+      channelInfo: buildChannelInfo(to),
+    };
+    return this.build({
+      type: TYPE.CHANNEL_VOTE,
+      ...attributes,
+    });
+  }
+
+  buildChannelInfoSyncRequest(to: Channel) {
+    return this.build({
+      type: TYPE.INFO_CHANNEL_SYNC,
+      to: to.id,
+      channelInfo: buildChannelInfo(to),
+    });
+  }
+
+  buildChannelInfoSyncFulfill(to: Identity, data: Channel) {
+    return this.build({
+      type: TYPE.INFO_CHANNEL_SYNC,
+      to: to.id,
+      body: 'TODO make this better',
+      channelInfo: buildChannelInfo(data),
+    });
   }
 
   buildPing() {
