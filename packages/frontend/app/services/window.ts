@@ -33,7 +33,7 @@ export default class WindowService extends Service {
         clearInterval(interval);
         this.hasDeferredInstall = true;
 
-        this.deferredInstallPrompt.userChoice.then((choice) => {
+        return this.deferredInstallPrompt.userChoice.then((choice) => {
           this.isInstalled = choice.outcome === 'accepted';
         });
       }

@@ -59,7 +59,7 @@ export default class Notifications extends Service {
     // ask the user if they would like to enable those.
     this.askToEnableNotifications = true;
 
-    this.toast.info(msg, title, options);
+    return this.toast.info(msg, title, options);
   }
 
   get isPermissionGranted() {
@@ -79,7 +79,7 @@ export default class Notifications extends Service {
       if (!this.isBrowserCapableOfNotifications) return reject();
       if (this.isPermissionDenied) return reject();
 
-      this.window.Notification.requestPermission((permission) => {
+      return this.window.Notification.requestPermission((permission) => {
         this.askToEnableNotifications = false;
 
         return resolve(permission);

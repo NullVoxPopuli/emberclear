@@ -7,25 +7,25 @@ import { waitForPromise } from 'ember-test-waiters';
 
 export default class Toast extends Service {
   info(msg: string, title = '', options = {}) {
-    this.createToast('alert-info', msg, title, options);
+    return this.createToast('alert-info', msg, title, options);
   }
 
   success(msg: string, title = '', options = {}) {
-    this.createToast('alert-success', msg, title, options);
+    return this.createToast('alert-success', msg, title, options);
   }
 
   warning(msg: string, title = '', options = {}) {
-    this.createToast('alert-warning', msg, title, options);
+    return this.createToast('alert-warning', msg, title, options);
   }
 
   error(msg: string, title = '', options = {}) {
-    this.createToast('alert-danger', msg, title, options);
+    return this.createToast('alert-danger', msg, title, options);
   }
 
   createToast(status: string, msg: string, title: string, options: any) {
     let message = isPresent(title) ? `${title}: ${msg}` : msg;
 
-    waitForPromise(createToast(status, message, options));
+    return waitForPromise(createToast(status, message, options));
   }
 }
 
