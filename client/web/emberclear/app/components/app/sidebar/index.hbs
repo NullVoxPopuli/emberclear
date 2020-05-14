@@ -1,92 +1,104 @@
 <aside ...attributes>
+  {{#if (has-feature-flag 'democracy-ui')}}
+    <nav class='sidebar-nav'>
+      {{#if this.isTabContacts}}
+        <button
+          id='contacts-tab'
+          type='button'
+          class='sidebar-tab sidebar-tab-selected'
+        >
+          {{t 'ui.sidebar.contacts.title'}}
+        </button>
+      {{else}}
+        <button
+          id='contacts-tab'
+          type='button'
+          class='sidebar-tab'
+          {{on 'click' (fn this.switchToTab this.Tab.Contacts)}}
+        >
+          {{t 'ui.sidebar.contacts.title'}}
+        </button>
+      {{/if}}
+
+      {{#if this.isTabChannels}}
+        <button 
+          id='channels-tab'
+          type='button'
+          class='sidebar-tab sidebar-tab-selected'
+        >
+          {{t 'ui.sidebar.channels.title'}}
+        </button>
+      {{else}}
+        <button 
+          id='channels-tab'
+          type='button'
+          class='sidebar-tab'
+          {{on 'click' (fn this.switchToTab this.Tab.Channels)}}
+        >
+          {{t 'ui.sidebar.channels.title'}}
+        </button>
+      {{/if}}
+
+      {{#if this.isTabActions}}
+        <button id='actions-tab' type='button' class='sidebar-tab sidebar-tab-selected'
+        >
+          {{t 'ui.sidebar.actions.title'}}
+        </button>
+      {{else}}
+        <button id='actions-tab' type='button' class='sidebar-tab'
+          {{on 'click' (fn this.switchToTab this.Tab.Actions)}}
+        >
+          {{t 'ui.sidebar.actions.title'}}
+        </button>
+      {{/if}}
+
+    </nav>
+  {{/if}}
+
   <div>
-    {{did-insert this.switchToContacts}}
     {{#if (has-feature-flag 'democracy-ui')}}
-      <nav class='sidebar-nav'>
-        {{#if this.contactsSelected}}
-          <button
-            id='contacts-tab'
-            type='button'
-            class='sidebar-tab sidebar-tab-selected'
-          >
-              Contacts
-          </button>
-        {{else}}
-          <button
-            id='contacts-tab'
-            type='button'
-            class='sidebar-tab'
-            {{on 'click' this.switchToContacts}}
-          >
-              Contacts
-          </button>
+      {{#if this.isTabContacts}}
+        {{#if this.hasUnreadAbove}}
+          <App::Sidebar::UnreadIndicator
+            @onClick={{this.scrollUpToNearestUnread}}
+            @direction='up'
+          />
         {{/if}}
 
-        {{#if this.channelsSelected}}
-          <button 
-            id='channels-tab'
-            type='button'
-            class='sidebar-tab sidebar-tab-selected'
-          >
-              Channels
-          </button>
-        {{else}}
-          <button 
-            id='channels-tab'
-            type='button'
-            class='sidebar-tab'
-            {{on 'click' this.switchToChannels}}
-          >
-              Channels
-          </button>
-        {{/if}}
-
-        {{#if this.actionsSelected}}
-          <button id='actions-tab' type='button' class='sidebar-tab sidebar-tab-selected'
-          >
-              Actions
-          </button>
-        {{else}}
-          <button id='actions-tab' type='button' class='sidebar-tab'
-            {{on 'click' this.switchToActions}}
-          >
-              Actions
-          </button>
-        {{/if}}
-
-      </nav>
-    {{/if}}
-
-    {{#if this.hasUnreadAbove}}
-      <App::Sidebar::UnreadIndicator
-        @onClick={{this.scrollUpToNearestUnread}}
-        @direction='up'
-      />
-    {{/if}}
-
-    {{#if (has-feature-flag 'democracy-ui')}}
-      {{#if this.contactsSelected}}
         <App::Sidebar::Chats />
-      {{else if this.channelsSelected}}
+
+        {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
+        {{#if this.hasUnreadBelow}}
+          <App::Sidebar::UnreadIndicator
+            @onClick={{this.scrollDownToNearestUnread}}
+            @direction='down'
+          />
+        {{/if}}
+      {{else if this.isTabChannels}}
         {{!-- TODO --}}
       {{else}}
         <App::Sidebar::Actions />
       {{/if}}
     {{else}}
-        <App::Sidebar::Chats />
-    {{/if}}
+      {{#if this.hasUnreadAbove}}
+        <App::Sidebar::UnreadIndicator
+          @onClick={{this.scrollUpToNearestUnread}}
+          @direction='up'
+        />
+      {{/if}}
 
-    {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
-    {{#if this.hasUnreadBelow}}
-      <App::Sidebar::UnreadIndicator
-        @onClick={{this.scrollDownToNearestUnread}}
-        @direction='down'
-      />
+      <App::Sidebar::Chats />
+      
+      {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
+      {{#if this.hasUnreadBelow}}
+        <App::Sidebar::UnreadIndicator
+          @onClick={{this.scrollDownToNearestUnread}}
+          @direction='down'
+        />
+      {{/if}}
     {{/if}}
 
   </div>
-
-
 
   {{#if this.isLoggedIn}}
     <App::Sidebar::Footer />
