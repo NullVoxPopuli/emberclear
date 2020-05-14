@@ -85,7 +85,7 @@ export default class MessageFactory extends Service {
     return this.build({
       type: TYPE.INFO_CHANNEL_SYNC,
       to: to.uid,
-      body: 'TODO make this better',
+      body: 'TODO make this better', //TODO decide if there is a better way to indicate request vs fulfill
       channelInfo: buildChannelInfo(data),
     });
   }

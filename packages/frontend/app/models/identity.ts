@@ -22,6 +22,10 @@ export default class Identity extends Model implements Partial<PublicKey> {
     return toHex(this.publicKey);
   }
 
+  get publicSigningKeyAsHex() {
+    return toHex(this.publicSigningKey);
+  }
+
   // Needed otherwise this regularly invalidates
   // TODO: will the public key ever change? who knows
   // eslint-disable-next-line

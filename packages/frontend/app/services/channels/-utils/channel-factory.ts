@@ -34,6 +34,7 @@ export function buildChannelMember(member: Identity): ChannelMember {
   return {
     id: member.uid,
     name: member.name,
+    signingKey: member.publicSigningKeyAsHex,
   };
 }
 
