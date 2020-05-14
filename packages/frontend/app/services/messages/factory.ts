@@ -62,14 +62,11 @@ export default class MessageFactory extends Service {
   }
 
   buildChannelVote(vote: Vote, to: Channel) {
-    let attributes = {
+    return this.build({
+      type: TYPE.CHANNEL_VOTE,
       to: to.id,
       metadata: buildVote(vote),
       channelInfo: buildChannelInfo(to),
-    };
-    return this.build({
-      type: TYPE.CHANNEL_VOTE,
-      ...attributes,
     });
   }
 
