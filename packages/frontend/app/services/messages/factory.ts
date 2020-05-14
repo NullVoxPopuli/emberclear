@@ -41,7 +41,6 @@ export default class MessageFactory extends Service {
     if (to instanceof Identity) {
       attributes = { target: TARGET.WHISPER, to: to.uid };
     } else if (to instanceof Channel) {
-      // TODO flesh this out for regular channel messages.
       attributes = {
         target: TARGET.CHANNEL,
         to: to.id,
