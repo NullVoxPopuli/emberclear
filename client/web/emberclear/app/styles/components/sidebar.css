@@ -1,5 +1,6 @@
 aside {
   display: grid;
+  grid-template-rows: auto 1fr auto;
   background: var(--sidebar-bg-color);
   padding: var(--grid-gap) 0;
   user-select: none;
@@ -16,14 +17,21 @@ aside {
   }
 
   /*
-  The sidebar is broken up into two sections:
-   - top (most things you'd care about)
+  The sidebar is broken up into three sections:
+   - top (navigation tabs)
+   - middle (most things you'd care about)
    - bottom (logout)
   */
 
-  /* the top */
+  /* top */
+  & nav {
+    
+  }
+
+  /* the middle */
   & > div {
     overflow-y: auto;
+    justify-content: start;
 
     & nav {
       &.contacts,
@@ -82,6 +90,7 @@ aside {
     }
   }
 
+  /* the bottom */
   & footer {
     align-self: end;
     box-shadow: 0 -6px 8px -7px rgba(0, 0, 0, var(--sidebar-footer-shadow-opacity));
