@@ -28,7 +28,7 @@ export default class ReceivedChannelVoteHandler extends Service {
         if (
           sentVote.voteChain.key.id !== raw.sender.uid ||
           !this.voteVerifier.isValid(voteChain!) ||
-          this.isAnActiveVote(existingChannel, voteChain!)
+          this.isAnActiveVote(existingChannel, existingVote!)
         ) {
           return message;
         }
@@ -112,13 +112,14 @@ export default class ReceivedChannelVoteHandler extends Service {
     });
   }
 
-  private isAnActiveVote(channel: Channel, voteChain: VoteChain): boolean {
+  private isAnActiveVote(channel: Channel, vote: Vote): boolean {
     return channel.activeVotes
       .toArray()
       .some(
         (activeVote) =>
-          identityEquals(activeVote.voteChain.target, voteChain.target) &&
-          activeVote.voteChain.action === voteChain.action
+          activeVote.id !== vote.id &&
+          identityEquals(activeVote.voteChain.target, vote.voteChain.target) &&
+          activeVote.voteChain.action === vote.voteChain.action
       );
   }
 }
