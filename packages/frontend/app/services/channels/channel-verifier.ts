@@ -15,14 +15,14 @@ export default class ChannelVerifier extends Service {
 
     let somethingWrongWithPastOrSupportingVote =
       !(await this.isValidChain(channel.previousChain)) ||
-      !(await this.voteVerifier.isValid(channel.supportingVote.voteChain)) ||
-      !this.isVoteCompletedPositive(channel.supportingVote.voteChain, channel.previousChain.admin);
+      !(await this.voteVerifier.isValid(channel.supportingVote)) ||
+      !this.isVoteCompletedPositive(channel.supportingVote, channel.previousChain.admin);
 
     if (somethingWrongWithPastOrSupportingVote) {
       return false;
     }
 
-    switch (channel.supportingVote.voteChain.action) {
+    switch (channel.supportingVote.action) {
       case VOTE_ACTION.ADD:
         return this.isAddValid(channel);
       case VOTE_ACTION.PROMOTE:
@@ -65,7 +65,7 @@ export default class ChannelVerifier extends Service {
 
   private isAddValid(channel: ChannelContextChain): boolean {
     let previousMembers = channel.previousChain.members.toArray();
-    let target = channel.supportingVote.voteChain.target;
+    let target = channel.supportingVote.target;
     let currentMembers = channel.members.toArray();
 
     if (!identityEquals(channel.admin, channel.previousChain.admin)) {
@@ -86,7 +86,7 @@ export default class ChannelVerifier extends Service {
 
   private isPromoteValid(channel: ChannelContextChain): boolean {
     let previousMembers = channel.previousChain.members.toArray();
-    let target = channel.supportingVote.voteChain.target;
+    let target = channel.supportingVote.target;
     let currentMembers = channel.members.toArray();
 
     let { currentMembersDiff, pastMembersDiff } = this.getDiffs(previousMembers, currentMembers);
@@ -103,7 +103,7 @@ export default class ChannelVerifier extends Service {
 
   private isRemoveValid(channel: ChannelContextChain): boolean {
     let previousMembers = channel.previousChain.members.toArray();
-    let target = channel.supportingVote.voteChain.target;
+    let target = channel.supportingVote.target;
     let currentMembers = channel.members.toArray();
 
     if (!identityEquals(channel.admin, channel.previousChain.admin)) {

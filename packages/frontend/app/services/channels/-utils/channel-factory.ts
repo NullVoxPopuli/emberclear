@@ -5,9 +5,10 @@ import Identity from 'emberclear/models/identity';
 import { toHex } from 'emberclear/utils/string-encoding';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
 
-export function buildChannelInfo(channel: Channel) {
+export function buildChannelInfo(channel: Channel): StandardMessage['channelInfo'] {
   return {
     uid: channel.id,
+    admin: buildChannelMember(channel.admin),
     name: channel.name,
     members: channel.members.map((member) => buildChannelMember(member)),
     activeVotes: channel.activeVotes.map((activeVote) => buildVote(activeVote)),
@@ -22,7 +23,7 @@ export function buildChannelContextChain(
     id: contextChain.id,
     admin: buildChannelMember(contextChain.admin),
     members: contextChain.members.map((member) => buildChannelMember(member)),
-    supportingVote: buildVote(contextChain.supportingVote),
+    supportingVote: buildVoteChain(contextChain.supportingVote),
     previousChain:
       contextChain.previousChain === undefined
         ? undefined
