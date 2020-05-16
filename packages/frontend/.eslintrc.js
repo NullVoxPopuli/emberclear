@@ -61,8 +61,7 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'tests/dummy/config/**/*.js',
-        'faltest/**/*.js',
-        '.faltestrc.js',
+        'scripts/**/*.js',
       ],
       env: {
         browser: false,
