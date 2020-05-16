@@ -71,7 +71,8 @@ module('Unit | Service | notifications', function (hooks) {
       test('and permission is granted', async function (assert) {
         assert.expect(1);
 
-        td.when(windowService.Notification.requestPermission()).thenCallback('granted');
+        // TODO: remove testdouble
+        (td.when(windowService.Notification.requestPermission()) as any).thenCallback('granted');
 
         await service.askPermission();
 
@@ -81,7 +82,7 @@ module('Unit | Service | notifications', function (hooks) {
       test('and permission is denied', async function (assert) {
         assert.expect(1);
 
-        td.when(windowService.Notification.requestPermission()).thenCallback('denied');
+        (td.when(windowService.Notification.requestPermission()) as any).thenCallback('denied');
 
         await service.askPermission();
 

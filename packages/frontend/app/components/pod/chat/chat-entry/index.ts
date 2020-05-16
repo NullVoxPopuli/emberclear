@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { waitForPromise } from 'ember-test-waiters';
+import { waitForPromise } from '@ember/test-waiters';
 
 import { action, set } from '@ember/object';
 
