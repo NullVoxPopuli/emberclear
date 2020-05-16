@@ -32,6 +32,7 @@ export default class Compatibility extends Component {
 
   constructor(owner: any, args: any) {
     super(owner, args);
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.detectFeatures).perform();
   }
 

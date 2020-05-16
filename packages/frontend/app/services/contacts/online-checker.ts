@@ -30,7 +30,7 @@ export default class ContactsOnlineChecker extends Service {
         .peekAll('contact')
         .filter((contact: Contact) => contact.onlineStatus !== Status.OFFLINE)
         .forEach((contact) => {
-          taskFor(this.dispatcher.sendToUser).perform(ping, contact);
+          return taskFor(this.dispatcher.sendToUser).perform(ping, contact);
         });
     }
   }

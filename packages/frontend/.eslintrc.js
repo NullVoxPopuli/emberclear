@@ -12,11 +12,14 @@ const tsLint = {
     'getter-return': ['error', { allowImplicit: true }],
     'prefer-const': 'off', // const has misleading safety implications
 
-    // typescript
-    '@typescript-eslint/prefer-optional-chain': 'error',
-    '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/no-floating-promises': 'error',
+    // @typescript-eslint
+    '@typescript-eslint/interface-name-prefix': 'off', // idk
+    '@typescript-eslint/no-use-before-define': 'off', // not applicable due to how the runtime is
+    '@typescript-eslint/no-floating-promises': 'error', // doesn't really work with the intent of tasks
+    '@typescript-eslint/prefer-optional-chain': 'error', // much concise
+
+    // prefer inference
+    '@typescript-eslint/explicit-function-return-type': 'off',
 
     'prettier/prettier': 'error',
   },

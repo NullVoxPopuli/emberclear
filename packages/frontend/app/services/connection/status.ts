@@ -42,6 +42,7 @@ export default class ConnectionStatusService extends Service {
     this.text = text;
     this.level = STATUS_LEVEL_MAP[text];
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.showStatusChange).perform();
   }
 

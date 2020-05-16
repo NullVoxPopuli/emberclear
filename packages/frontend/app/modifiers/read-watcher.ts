@@ -53,6 +53,7 @@ export default class ReadWatcher extends Modifier<Args> {
   @action
   private markRead() {
     if (this.message.unread) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       taskFor(this.markReadTask).perform();
     }
 

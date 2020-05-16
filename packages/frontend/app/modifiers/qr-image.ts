@@ -11,6 +11,7 @@ type Args = {
 
 export default class QRImageModifier extends Modifier<Args> {
   didReceiveArguments() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.dataToQR).perform();
   }
 

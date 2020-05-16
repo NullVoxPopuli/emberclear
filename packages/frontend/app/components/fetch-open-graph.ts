@@ -20,6 +20,7 @@ class FetchOpenGraphComponent extends Component<Args> {
   constructor(owner: any, args: Args) {
     super(owner, args);
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.request).perform();
   }
 

@@ -30,6 +30,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
     this.waitForSYN = RSVP.defer();
     this.waitForData = RSVP.defer();
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this._wait).perform(updateTransferStatus);
   }
 
