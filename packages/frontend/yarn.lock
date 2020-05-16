@@ -13248,10 +13248,10 @@ promise-retry@^1.1.1:
     err-code "^1.0.0"
     retry "^0.10.0"
 
-promise-worker-bi@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/promise-worker-bi/-/promise-worker-bi-4.0.1.tgz#c75e19d171552c083c771324cbe535bff553462a"
-  integrity sha512-WlEfzU6OIku9IaXUB531EKbGqjD178W58y2WSRQZ5uGHvFod5JXRT1++o4Lik1PUMyO3PZibuGa09cIk/9Vf6w==
+promise-worker-bi@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/promise-worker-bi/-/promise-worker-bi-4.0.2.tgz#d013a4ab358dba800fe84add4cc4ed0e715acc07"
+  integrity sha512-iLmze2yAtlDiajv5HUAmzURq4fW8GRfwjXEjJIAQEgoRwxxT6llTJbZtbRt+JyNSwMWcEOFLrfS5v1h3zcma1Q==
 
 promise.hash.helper@^1.0.6:
   version "1.0.7"

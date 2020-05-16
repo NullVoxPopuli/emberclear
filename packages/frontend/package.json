@@ -43,7 +43,7 @@
     "phoenix": "^1.5.1",
     "prismjs": "^1.20.0",
     "prismjs-components-loader": "^3.0.1",
-    "promise-worker-bi": "^4.0.1",
+    "promise-worker-bi": "^4.0.2",
     "qrcode": "^1.4.4",
     "shoelace-css": "^1.0.0-beta24",
     "showdown": "^1.9.1",
