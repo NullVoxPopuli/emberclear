@@ -20,6 +20,7 @@ export default class FormatCode extends Modifier<Args> {
     this.makeCodeBlocksFancy();
 
     // non-blocking
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.addLanguages(text);
   }
 

@@ -12,6 +12,6 @@ export default class OffCanvasContainer extends Component {
 
   @action
   onInsert(sidebarElement: HTMLElement) {
-    this.sidebar.setup(sidebarElement);
+    return this.sidebar.setup(sidebarElement);
   }
 }

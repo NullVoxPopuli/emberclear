@@ -112,6 +112,7 @@ export default class MessageDispatcher extends Service {
         msg.sendError = error;
 
         if (error.match(/not found/)) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           this.statusManager.markOffline(toUid);
           return;
         } else if (error.match(/timed out/)) {

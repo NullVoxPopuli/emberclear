@@ -19,6 +19,7 @@ export default class SidebarChannel extends Component<Args> {
   @action
   onClickChannel(channel: Channel) {
     if (window.innerWidth < TABLET_WIDTH) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.sidebar.hide();
     }
 

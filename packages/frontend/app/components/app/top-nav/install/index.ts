@@ -8,6 +8,6 @@ export default class Install extends Component {
 
   @action
   install() {
-    this.window.promptInstall();
+    return this.window.promptInstall();
   }
 }

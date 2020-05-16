@@ -38,7 +38,7 @@ export default class MessageAutoResponder extends Service {
       message.queueForResend = false;
       await message.save();
 
-      taskFor(this.dispatcher.sendToUser).perform(message, contact);
+      return taskFor(this.dispatcher.sendToUser).perform(message, contact);
     });
   }
 }

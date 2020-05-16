@@ -56,7 +56,7 @@ export default class ApplicationSerializer {
     return normalized;
   }
 
-  serialize(snapshot, _options) {
+  serialize(snapshot /*, options */) {
     let type = snapshot.modelName;
     let id = snapshot.id;
 
