@@ -93,7 +93,7 @@ declare global {
   interface ChannelMember {
     id: string;
     name: string;
-    signingKey: string;
+    signingKey: string; // This is the public signing key
   }
 
   interface MemberResult {
