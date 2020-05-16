@@ -3,12 +3,13 @@ import Message from 'emberclear/models/message';
 import StoreService from '@ember-data/store';
 import VoteVerifier from './vote-verifier';
 import FindOrCreateChannelService from './find-or-create';
-import VoteChain, { VOTE_ACTION } from 'emberclear/models/vote-chain';
+import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { identityEquals } from 'emberclear/utils/identity-comparison';
 import Channel from 'emberclear/models/channel';
 import { isVoteCompleted, isVoteCompletedPositive } from './-utils/vote-completion';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
 import Vote from 'emberclear/models/vote';
+import { saveChannel, saveVote } from './-utils/channel-saver';
 
 export default class ReceivedChannelVoteHandler extends Service {
   @service store!: StoreService;
@@ -36,32 +37,32 @@ export default class ReceivedChannelVoteHandler extends Service {
         // when it is a new vote, add this to the channel votes
         if (!existingChannel.activeVotes.find((vote) => vote.id === existingVote!.id)) {
           existingChannel.activeVotes.push(existingVote);
-          existingChannel.save();
+          await saveChannel(existingChannel);
         }
 
         // when this is not a new vote, overwrite existing vote entry
         if (existingVote.voteChain.id !== voteChain!.id) {
           existingVote.voteChain = voteChain!;
         }
-        existingVote.save();
+        await saveVote(existingVote);
 
         // update user context
         if (isVoteCompleted(existingVote.voteChain, existingChannel.admin)) {
           if (isVoteCompletedPositive(existingVote.voteChain, existingChannel.admin)) {
-            this.updateContextChain(existingChannel, existingVote);
+            await this.updateContextChain(existingChannel, existingVote);
           }
           let newActiveVotes = existingChannel.activeVotes.filter(
             (activeVote) => activeVote.id === existingVote!.id
           );
           existingChannel.activeVotes = newActiveVotes;
-          existingChannel.save();
+          await saveChannel(existingChannel);
         }
       }
     }
     return message;
   }
 
-  private updateContextChain(channel: Channel, vote: Vote) {
+  private async updateContextChain(channel: Channel, vote: Vote) {
     let updatedContextChain: ChannelContextChain;
     switch (vote.voteChain.action) {
       case VOTE_ACTION.ADD:
@@ -79,7 +80,7 @@ export default class ReceivedChannelVoteHandler extends Service {
     channel.contextChain = updatedContextChain;
     channel.admin = channel.contextChain.admin;
     channel.members = channel.contextChain.members;
-    channel.save();
+    await saveChannel(channel);
   }
 
   private updatePromoteContextChain(channel: Channel, vote: Vote): ChannelContextChain {

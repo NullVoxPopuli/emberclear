@@ -4,6 +4,7 @@ import StoreService from '@ember-data/store';
 import FindOrCreateChannelService from './find-or-create';
 import ChannelVerifier from './channel-verifier';
 import VoteVerifier from './vote-verifier';
+import { saveChannel } from './-utils/channel-saver';
 
 export default class ReceivedChannelInfoSyncHandler extends Service {
   @service store!: StoreService;
@@ -26,7 +27,7 @@ export default class ReceivedChannelInfoSyncHandler extends Service {
             existingChannel.activeVotes.push(activeVote);
           }
         });
-        existingChannel.save();
+        await saveChannel(existingChannel);
       }
     } else {
       //TODO send info channel sync message back with channel context

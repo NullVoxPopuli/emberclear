@@ -4,6 +4,7 @@ import StoreService from '@ember-data/store';
 import Notifications from 'emberclear/services/notifications';
 import ChannelVerifier from './channel-verifier';
 import FindOrCreateChannelService from './find-or-create';
+import { saveChannel } from './-utils/channel-saver';
 
 export default class ReceivedChannelMessageHandler extends Service {
   @service store!: StoreService;
@@ -14,7 +15,7 @@ export default class ReceivedChannelMessageHandler extends Service {
 
   public async handleChannelMessage(message: Message, raw: StandardMessage) {
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
-    existingChannel.save();
+    await saveChannel(existingChannel);
     if (existingChannel?.members.contains(message.sender!)) {
       // save message in channel messages
       await message.save();
