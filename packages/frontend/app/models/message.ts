@@ -54,7 +54,8 @@ export enum TYPE {
   PING = 'ping',
   DISCONNECT = 'disconnect',
   DELIVERY_CONFIRMATION = 'delivery-confirmation',
-  INFO_CHANNEL_SYNC = 'info-channel-sync',
+  INFO_CHANNEL_SYNC_REQUEST = 'info-channel-sync-request',
+  INFO_CHANNEL_SYNC_FULFILL = 'info-channel-sync-fulfill',
   CHANNEL_VOTE = 'channtel-vote',
 }
 

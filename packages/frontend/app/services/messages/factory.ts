@@ -71,7 +71,7 @@ export default class MessageFactory extends Service {
 
   buildChannelInfoSyncRequest(to: Channel) {
     return this.build({
-      type: TYPE.INFO_CHANNEL_SYNC,
+      type: TYPE.INFO_CHANNEL_SYNC_REQUEST,
       to: to.id,
       channelInfo: buildChannelInfo(to),
     });
@@ -79,9 +79,8 @@ export default class MessageFactory extends Service {
 
   buildChannelInfoSyncFulfill(to: Identity, data: Channel) {
     return this.build({
-      type: TYPE.INFO_CHANNEL_SYNC,
+      type: TYPE.INFO_CHANNEL_SYNC_FULFILL,
       to: to.uid,
-      body: 'TODO make this better', //TODO decide if there is a better way to indicate request vs fulfill
       channelInfo: buildChannelInfo(data),
     });
   }
