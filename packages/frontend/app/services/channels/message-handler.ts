@@ -24,7 +24,7 @@ export default class ReceivedChannelMessageHandler extends Service {
       // TODO: make new notification for channels messages
       const msg = this.intl.t('ui.notificatoin.from', { senderName });
 
-      this.notifications.info(msg);
+      await this.notifications.info(msg);
 
       // TODO: check to look for tampered or mismatched context and handle accordingly
       if (!this.channelVerifier.isValidChain(existingChannel.contextChain)) {

@@ -18,7 +18,8 @@ import { sign, hash } from 'emberclear/workers/crypto/utils/nacl';
 import User from 'emberclear/models/user';
 import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
-import { identityEquals, identitiesIncludes } from 'emberclear/utils/identity-comparison';
+import { identitiesIncludes } from 'emberclear/utils/identity-comparison';
+import { buildChannelInfo, buildVote } from 'emberclear/services/channels/-utils/channel-factory';
 
 module('Unit | Service | channels/vote-handler', function (hooks) {
   setupTest(hooks);
