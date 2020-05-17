@@ -19,6 +19,19 @@
         <span class='icon'><FaIcon @icon='plus' /></span>
       </a>
     </div>
+  {{else if (eq chat 'add-channel')}}
+    <div data-test-sidebar-channels-header class='menu-label'>
+      {{t 'ui.sidebar.channels.title'}}
+
+      <a
+        data-test-add-channel
+        class='button button-xs'
+        {{!-- TODO: link to creating channels --}} href={{url-for 'add-friend'}}
+        {{!-- TODO: link to creating channels --}} {{on 'click' (handle-sidebar-click (transition-to 'add-friend'))}}
+      >
+        <span class='icon'>{{fa-icon 'plus'}}</span>
+      </a>
+    </div>
   {{else if (or (is-contact chat) (is-current-user chat))}}
     <App::Sidebar::Chats::Contact @contact={{chat}} />
   {{else if (is-channel chat)}}

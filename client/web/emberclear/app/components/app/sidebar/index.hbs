@@ -65,9 +65,8 @@
           />
         {{/if}}
 
-        <App::Sidebar::Chats />
+        <App::Sidebar::Chats @type='chats'/>
 
-        {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
         {{#if this.hasUnreadBelow}}
           <App::Sidebar::UnreadIndicator
             @onClick={{this.scrollDownToNearestUnread}}
@@ -75,7 +74,21 @@
           />
         {{/if}}
       {{else if this.isTabChannels}}
-        {{!-- TODO --}}
+        {{#if this.hasUnreadAbove}}
+          <App::Sidebar::UnreadIndicator
+            @onClick={{this.scrollUpToNearestUnread}}
+            @direction='up'
+          />
+        {{/if}}
+
+        <App::Sidebar::Chats @type='channels'/>
+
+        {{#if this.hasUnreadBelow}}
+          <App::Sidebar::UnreadIndicator
+            @onClick={{this.scrollDownToNearestUnread}}
+            @direction='down'
+          />
+        {{/if}}
       {{else}}
         <App::Sidebar::Actions />
       {{/if}}
