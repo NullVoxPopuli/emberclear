@@ -203,6 +203,10 @@ export default class CurrentUserService extends Service {
     let publicSigningKey;
     if (privateSigningKey) {
       publicSigningKey = await this.crypto!.derivePublicSigningKey(privateSigningKey);
+    } else {
+      let signingKeys = await this.crypto!.generateSigningKeys();
+      publicSigningKey = signingKeys.publicSigningKey;
+      privateSigningKey = signingKeys.privateSigningKey;
     }
 
     await this.setIdentity(name, { privateKey, publicKey, privateSigningKey, publicSigningKey });
