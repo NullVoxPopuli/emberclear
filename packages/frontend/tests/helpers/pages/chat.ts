@@ -51,9 +51,8 @@ export const page = create({
   },
 
   chatOptions: {
-    ...dropdownPage,
-
     scope: '[data-test-chat-options-dropdown]',
+    ...dropdownPage,
 
     toggleEmbedModal: clickable('[data-test-embeds-toggle]'),
   },
