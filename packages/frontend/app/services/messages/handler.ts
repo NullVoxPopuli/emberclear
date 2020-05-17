@@ -39,7 +39,7 @@ export default class ReceivedMessageHandler extends Service {
       case TYPE.DISCONNECT:
         return this.handleDisconnect(message);
 
-      case TYPE.INFO_CHANNEL_SYNC:
+      case TYPE.INFO_CHANNEL_SYNC_REQUEST:
         return this.handleInfoChannelInfo(message, raw);
 
       case TYPE.PING:
