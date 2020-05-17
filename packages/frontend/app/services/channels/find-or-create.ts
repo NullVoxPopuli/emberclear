@@ -48,7 +48,7 @@ export default class FindOrCreateChannelService extends Service {
   }
 
   async findOrCreateContextChain(
-    standardContextChain: StandardChannelContextChain
+    standardContextChain?: StandardChannelContextChain
   ): Promise<ChannelContextChain | undefined> {
     if (standardContextChain === undefined) {
       return undefined;
@@ -66,7 +66,7 @@ export default class FindOrCreateChannelService extends Service {
         id,
         admin: await this.findOrCreateMember(standardContextChain.admin),
         members: standardContextChain.members.map((member) => this.findOrCreateMember(member)),
-        voteChain: await this.findOrCreateVote(standardContextChain.supportingVote),
+        supportingVote: await this.findOrCreateVoteChain(standardContextChain.supportingVote),
         previousVoteChain: await this.findOrCreateContextChain(standardContextChain.previousChain),
       });
       return contextChain;
@@ -74,7 +74,7 @@ export default class FindOrCreateChannelService extends Service {
   }
 
   async createContextChain(
-    standardContextChain: StandardChannelContextChain
+    standardContextChain?: StandardChannelContextChain
   ): Promise<ChannelContextChain | undefined> {
     if (standardContextChain === undefined) {
       return undefined;
@@ -86,7 +86,7 @@ export default class FindOrCreateChannelService extends Service {
       id,
       admin: await this.findOrCreateMember(standardContextChain.admin),
       members: standardContextChain.members.map((member) => this.findOrCreateMember(member)),
-      voteChain: await this.createVote(standardContextChain.supportingVote),
+      voteChain: await this.createVoteChain(standardContextChain.supportingVote),
       previousVoteChain: await this.createContextChain(standardContextChain.previousChain),
     });
     return contextChain;
@@ -123,7 +123,7 @@ export default class FindOrCreateChannelService extends Service {
   }
 
   async findOrCreateVoteChain(
-    standardVoteChain: StandardVoteChain
+    standardVoteChain?: StandardVoteChain
   ): Promise<VoteChain | undefined> {
     if (standardVoteChain === undefined) {
       return undefined;
@@ -154,7 +154,7 @@ export default class FindOrCreateChannelService extends Service {
     }
   }
 
-  async createVoteChain(standardVoteChain: StandardVoteChain): Promise<VoteChain | undefined> {
+  async createVoteChain(standardVoteChain?: StandardVoteChain): Promise<VoteChain | undefined> {
     if (standardVoteChain === undefined) {
       return undefined;
     }
