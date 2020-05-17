@@ -129,14 +129,6 @@ declare global {
     previousChain?: StandardChannelContextChain;
   }
 
-  interface StandardChannelContextChain {
-    id: string;
-    admin: ChannelMember;
-    members: ChannelMember[];
-    supportingVote: StandardVote;
-    previousChain: StandardChannelContextChain;
-  }
-
   interface StandardMessage {
     id: string;
     to: string;
