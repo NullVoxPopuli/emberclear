@@ -30,6 +30,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
     this.waitForSYN = RSVP.defer();
     this.waitForData = RSVP.defer();
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this._wait).perform(updateTransferStatus);
   }
 
@@ -60,7 +61,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
       yield this.settings.importData(data);
 
       this.taskMsg = '';
-      this.toast.success(this.intl.t('ui.login.success'));
+      yield this.toast.success(this.intl.t('ui.login.success'));
       this.router.transitionTo('chat');
 
       updateTransferStatus(false);

@@ -21,6 +21,7 @@ export default class MessageProcessor extends Service {
    *
    */
   receive(socketData: RelayMessage) {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this._receive).perform(socketData);
   }
 

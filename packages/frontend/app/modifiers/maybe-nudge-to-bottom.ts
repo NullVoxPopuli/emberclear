@@ -31,6 +31,7 @@ export default class MaybeNudgeToBottom extends Modifier<Args> {
     if (this.appendedMessage.id !== this.lastMessage.id) return;
 
     if (this.element) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       taskFor(this.chatScroller.maybeNudge).perform(this.element as HTMLElement);
     }
   }

@@ -15,6 +15,8 @@ export default class HandleSidebarClick extends Helper {
       e?.preventDefault?.();
 
       if (window.innerWidth < TABLET_WIDTH) {
+        // non-blocking
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         this.sidebar.hide();
       }
 

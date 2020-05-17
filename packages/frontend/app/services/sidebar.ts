@@ -5,7 +5,7 @@ import { notEmpty } from '@ember/object/computed';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 import { SwipeHandler } from 'emberclear/services/sidebar/swipe-handler';
-import { waitForPromise } from 'ember-test-waiters';
+import { waitForPromise } from '@ember/test-waiters';
 import CurrentUserService from 'emberclear/services/current-user';
 import { valueOfProperty } from 'emberclear/utils/dom/css';
 
@@ -45,7 +45,7 @@ export default class Sidebar extends Service {
 
   @action
   toggle() {
-    this.isShown ? this.hide() : this.show();
+    return this.isShown ? this.hide() : this.show();
   }
 
   async setup(content: HTMLElement) {

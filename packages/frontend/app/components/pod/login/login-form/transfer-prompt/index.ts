@@ -16,6 +16,7 @@ export default class TransferPrompt extends Component<Args> {
     super(owner, args);
 
     if (!Ember.testing) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       taskFor(this.setupEphemeralConnection).perform();
     }
   }
@@ -56,6 +57,7 @@ export default class TransferPrompt extends Component<Args> {
 
     // TODO: send CANCEL message to sender
     task.cancelAll();
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     task.perform();
   }
 

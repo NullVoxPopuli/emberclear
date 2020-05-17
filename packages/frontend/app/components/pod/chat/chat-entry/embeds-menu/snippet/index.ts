@@ -40,6 +40,8 @@ export default class SnippetModal extends Component<Args> {
 
     const message = messageParts.join('\n');
 
+    // non-blocking
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.messageDispatcher.send(message, sendTo);
     close();
   }

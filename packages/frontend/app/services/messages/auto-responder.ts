@@ -24,6 +24,7 @@ export default class MessageAutoResponder extends Service {
     const response = this.factory.buildDeliveryConfirmation(respondToMessage);
 
     if (sender) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       taskFor(this.dispatcher.sendToUser).perform(response, sender);
     }
   }
@@ -38,7 +39,7 @@ export default class MessageAutoResponder extends Service {
       message.queueForResend = false;
       await message.save();
 
-      taskFor(this.dispatcher.sendToUser).perform(message, contact);
+      return taskFor(this.dispatcher.sendToUser).perform(message, contact);
     });
   }
 }

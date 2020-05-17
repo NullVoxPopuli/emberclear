@@ -49,6 +49,6 @@ export default class LocaleSwitcher extends Component<{}> {
 
   @action
   chooseLanguage(locale: string) {
-    this.locale.setLocale(locale);
+    return this.locale.setLocale(locale);
   }
 }

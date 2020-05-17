@@ -41,6 +41,7 @@ export default class SearchModal extends Component<IArgs> {
 
   @action
   submitSearch() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.search).perform(this.searchText);
   }
 

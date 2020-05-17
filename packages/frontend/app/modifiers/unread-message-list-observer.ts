@@ -39,6 +39,7 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
         const record = this.store.peekRecord('message', message.id);
 
         if (record) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           taskFor(this.markRead).perform(record);
         }
       }

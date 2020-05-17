@@ -10,6 +10,7 @@ export default class ChatNewMessages extends Component {
 
   @action
   scrollToBottom() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.chatScroller.scrollToBottom).perform();
   }
 }

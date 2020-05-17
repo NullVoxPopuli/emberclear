@@ -53,6 +53,7 @@ export default class AddModal extends Component {
 
   @action
   onScan(json: string) {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.handleScan).perform(json);
   }
 

@@ -58,6 +58,7 @@ export default class MessageDispatcher extends Service {
   async pingAll() {
     const ping = this.messageFactory.buildPing();
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.sendToAll).perform(ping);
   }
 
@@ -70,7 +71,7 @@ export default class MessageDispatcher extends Service {
     const everyone = yield this.store.findAll('contact');
 
     everyone.forEach((contact: Contact) => {
-      taskFor(this.sendToUser).perform(msg, contact);
+      return taskFor(this.sendToUser).perform(msg, contact);
     });
   }
 
@@ -80,7 +81,7 @@ export default class MessageDispatcher extends Service {
     members.forEach((member) => {
       if (member.id === this.currentUser.id) return; // don't send to self
 
-      taskFor(this.sendToUser).perform(msg, member);
+      return taskFor(this.sendToUser).perform(msg, member);
     });
   }
 
@@ -112,6 +113,7 @@ export default class MessageDispatcher extends Service {
         msg.sendError = error;
 
         if (error.match(/not found/)) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           this.statusManager.markOffline(toUid);
           return;
         } else if (error.match(/timed out/)) {

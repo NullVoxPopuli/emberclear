@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { waitForPromise } from 'ember-test-waiters';
+import { waitForPromise } from '@ember/test-waiters';
 
 import { action, set } from '@ember/object';
 
@@ -78,6 +78,8 @@ export default class ChatEntry extends Component<IArgs> {
 
     // don't submit when shift is being held.
     if (!shiftKey && keyCode === 13) {
+      // non-blocking
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.sendMessage();
 
       // prevent regular 'Enter' from inserting a linebreak

@@ -11,6 +11,7 @@ export default class LogoutRoute extends Route {
 
   // ensure we are allowed to be here
   async beforeModel() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.sidebar.hide();
 
     const exists = await this.currentUser.exists();

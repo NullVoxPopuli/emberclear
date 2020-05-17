@@ -18,6 +18,7 @@ export default class NewRelayForm extends Component {
 
   @action
   submit() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.save).perform();
   }
 

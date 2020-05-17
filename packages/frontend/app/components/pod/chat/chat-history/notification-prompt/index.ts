@@ -13,7 +13,7 @@ export default class NotificationPrompt extends Component {
 
   @action
   enableNotifications() {
-    this.notifications.askPermission();
+    return this.notifications.askPermission();
   }
 
   @action

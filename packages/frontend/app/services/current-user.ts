@@ -134,6 +134,7 @@ export default class CurrentUserService extends Service {
 
       this.record = existing;
 
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       taskFor(this.migrate).perform();
 
       return existing;

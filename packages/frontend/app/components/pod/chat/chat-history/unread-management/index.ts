@@ -58,9 +58,11 @@ export default class UnreadManagement extends Component<IArgs> {
 
   @action
   markAllAsRead() {
-    this.unreadMessages.forEach((message) => {
-      markAsRead(message);
-    });
+    return Promise.all(
+      this.unreadMessages.map((message) => {
+        return markAsRead(message);
+      })
+    );
   }
 
   @action

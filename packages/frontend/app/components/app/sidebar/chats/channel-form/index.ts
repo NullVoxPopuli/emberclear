@@ -33,6 +33,8 @@ export default class ChannelForm extends Component<Args> {
     const { keyCode } = event;
 
     if (keyCode === 13) {
+      // non-blocking
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       taskFor(this.didSubmitChannelName).perform();
 
       return false;

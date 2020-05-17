@@ -105,21 +105,25 @@ export default class DeliveryConfirmation extends Component<IArgs> {
   // TODO: does this have to be redundant? I have to be doing something wrong
   @action
   doDelete() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.deleteMessage).perform();
   }
 
   @action
   doResend() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.resend).perform();
   }
 
   @action
   doQueue() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.resendAutomatically).perform();
   }
 
   @action
   doWait() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.waitForConfirmation).perform();
   }
 }

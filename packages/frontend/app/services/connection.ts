@@ -15,6 +15,7 @@ export default class ConnectionService extends Service {
   @service('contacts/online-checker') onlineChecker!: ContactsOnlineChecker;
 
   connect() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this._connect).perform();
   }
 
@@ -43,7 +44,8 @@ export default class ConnectionService extends Service {
     yield this.manager.setup();
 
     yield this.dispatcher.pingAll();
-    taskFor(this.onlineChecker.checkOnlineStatus).perform();
+
+    return taskFor(this.onlineChecker.checkOnlineStatus).perform();
   }
 
   private canConnect(): Promise<boolean> {

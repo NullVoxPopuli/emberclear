@@ -71,10 +71,14 @@ export default class ReceivedMessageHandler extends Service {
   }
 
   private async handleDisconnect(message: Message) {
+    // non-blocking
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.statusManager.markOffline(message.from);
   }
 
   private async handleChat(message: Message, raw: StandardMessage) {
+    // non-blocking
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.autoResponder.messageReceived(message);
 
     switch (message.target) {
@@ -100,7 +104,7 @@ export default class ReceivedMessageHandler extends Service {
       let name = message.sender.name;
       let msg = this.intl.t('ui.notifications.from', { name });
 
-      this.notifications.info(msg);
+      await this.notifications.info(msg);
     }
 
     return message;
@@ -117,8 +121,8 @@ export default class ReceivedMessageHandler extends Service {
 
     let sender = await this.findOrCreateSender(senderInfo);
 
-    this.statusManager.markOnline(sender);
-    this.autoResponder.cameOnline(sender);
+    await this.statusManager.markOnline(sender);
+    await this.autoResponder.cameOnline(sender);
 
     try {
       // we've already received this message.

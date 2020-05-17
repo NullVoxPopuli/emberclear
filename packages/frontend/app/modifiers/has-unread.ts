@@ -23,6 +23,7 @@ export default class HasUnread extends Modifier<Args> {
   }
 
   didReceiveArguments() {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this.findUnread).perform();
   }
 
