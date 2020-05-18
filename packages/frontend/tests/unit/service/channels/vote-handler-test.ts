@@ -20,6 +20,7 @@ import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sor
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
 import { identitiesIncludes } from 'emberclear/utils/identity-comparison';
 import { buildChannelInfo, buildVote } from 'emberclear/services/channels/-utils/channel-factory';
+import Channel from 'emberclear/models/channel';
 
 module('Unit | Service | channels/vote-handler', function (hooks) {
   setupTest(hooks);
@@ -93,14 +94,15 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const me = getService('current-user');
       const messageFactory = getService('messages/factory');
       let channelId = uuid();
-      let receivedChannel = store.createRecord('channel', {
+      let receivedChannel = Channel.create();
+      receivedChannel.setProperties({
+        ...this.owner.ownerInjection(),
         id: channelId,
-        members: [me.record, thirdMember, sender],
+        members: [me.record!, thirdMember, sender],
         admin: me.record,
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
-      console.error('before creating standard message, recieivedChannel is: ', receivedChannel);
       let message: StandardMessage = {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
@@ -121,7 +123,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         },
         channelInfo: buildChannelInfo(receivedChannel),
       };
-      console.error('after creating a standard message, message is ', message);
       let ourChannel = store.createRecord('channel', {
         id: channelId,
         members: [me.record, sender],
@@ -134,9 +135,11 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
           return ourChannel;
         },
       });
-      console.error('before checks');
       const service = getService('channels/vote-handler');
-      service.handleChannelVote(messageFactory.buildNewReceivedMessage(message, sender), message);
+      service.handleChannelVote(
+        messageFactory.buildNewReceivedMessage(message, thirdMember),
+        message
+      );
       assert.equal(ourChannel.activeVotes.toArray().length, 0);
       assert.equal(ourChannel.contextChain, undefined);
     });

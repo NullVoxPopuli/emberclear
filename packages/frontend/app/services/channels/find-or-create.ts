@@ -24,8 +24,12 @@ export default class FindOrCreateChannelService extends Service {
         uid,
         name,
         admin: await this.findOrCreateMember(admin),
-        members: members.map(async (member) => await this.findOrCreateMember(member)),
-        activeVotes: activeVotes.map(async (vote) => await this.findOrCreateVote(vote)),
+        members: await Promise.all(
+          members.map(async (member) => await this.findOrCreateMember(member))
+        ),
+        activeVotes: await Promise.all(
+          activeVotes.map(async (vote) => await this.findOrCreateVote(vote))
+        ),
         contextChain: await this.findOrCreateContextChain(contextChain),
       });
 
@@ -39,8 +43,8 @@ export default class FindOrCreateChannelService extends Service {
       uid,
       name,
       admin: await this.findOrCreateMember(admin),
-      members: members.map(async (member) => await this.findOrCreateMember(member)),
-      activeVotes: activeVotes.map(async (vote) => await this.createVote(vote)),
+      members: Promise.all(members.map(async (member) => await this.findOrCreateMember(member))),
+      activeVotes: Promise.all(activeVotes.map(async (vote) => await this.createVote(vote))),
       contextChain: await this.createContextChain(contextChain),
     });
 
@@ -65,7 +69,9 @@ export default class FindOrCreateChannelService extends Service {
       contextChain = await this.store.createRecord('channelContextChain', {
         id,
         admin: await this.findOrCreateMember(standardContextChain.admin),
-        members: standardContextChain.members.map((member) => this.findOrCreateMember(member)),
+        members: Promise.all(
+          standardContextChain.members.map((member) => this.findOrCreateMember(member))
+        ),
         supportingVote: await this.findOrCreateVoteChain(standardContextChain.supportingVote),
         previousVoteChain: await this.findOrCreateContextChain(standardContextChain.previousChain),
       });
@@ -85,7 +91,9 @@ export default class FindOrCreateChannelService extends Service {
     let contextChain = await this.store.createRecord('channelContextChain', {
       id,
       admin: await this.findOrCreateMember(standardContextChain.admin),
-      members: standardContextChain.members.map((member) => this.findOrCreateMember(member)),
+      members: Promise.all(
+        standardContextChain.members.map(async (member) => await this.findOrCreateMember(member))
+      ),
       voteChain: await this.createVoteChain(standardContextChain.supportingVote),
       previousVoteChain: await this.createContextChain(standardContextChain.previousChain),
     });
@@ -139,11 +147,15 @@ export default class FindOrCreateChannelService extends Service {
     } catch (e) {
       voteChain = this.store.createRecord('voteChain', {
         id,
-        remaining: standardVoteChain.remaining.map(
-          async (member) => await this.findOrCreateMember(member)
+        remaining: Promise.all(
+          standardVoteChain.remaining.map(async (member) => await this.findOrCreateMember(member))
         ),
-        yes: standardVoteChain.yes.map(async (member) => await this.findOrCreateMember(member)),
-        no: standardVoteChain.no.map(async (member) => await this.findOrCreateMember(member)),
+        yes: Promise.all(
+          standardVoteChain.yes.map(async (member) => await this.findOrCreateMember(member))
+        ),
+        no: Promise.all(
+          standardVoteChain.no.map(async (member) => await this.findOrCreateMember(member))
+        ),
         target: await this.findOrCreateMember(standardVoteChain.target),
         action: standardVoteChain.action,
         key: await this.findOrCreateMember(standardVoteChain.key),
@@ -163,11 +175,15 @@ export default class FindOrCreateChannelService extends Service {
 
     let voteChain = this.store.createRecord('voteChain', {
       id,
-      remaining: standardVoteChain.remaining.map(
-        async (member) => await this.findOrCreateMember(member)
+      remaining: Promise.all(
+        standardVoteChain.remaining.map(async (member) => await this.findOrCreateMember(member))
       ),
-      yes: standardVoteChain.yes.map(async (member) => await this.findOrCreateMember(member)),
-      no: standardVoteChain.no.map(async (member) => await this.findOrCreateMember(member)),
+      yes: Promise.all(
+        standardVoteChain.yes.map(async (member) => await this.findOrCreateMember(member))
+      ),
+      no: Promise.all(
+        standardVoteChain.no.map(async (member) => await this.findOrCreateMember(member))
+      ),
       target: await this.findOrCreateMember(standardVoteChain.target),
       action: standardVoteChain.action,
       key: await this.findOrCreateMember(standardVoteChain.key),
