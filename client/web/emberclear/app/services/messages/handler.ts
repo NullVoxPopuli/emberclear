@@ -11,6 +11,9 @@ import ContactManager from 'emberclear/services/contact-manager';
 import AutoResponder from 'emberclear/services/messages/auto-responder';
 import { isMessageDMBetween, messagesForDM } from 'emberclear/models/message/utils';
 import MessageFactory from './factory';
+import ReceivedChannelMessageHandler from '../channels/message-handler';
+import ReceivedChannelVoteHandler from '../channels/vote-handler';
+import ReceivedChannelInfoSyncHandler from '../channels/info-sync-handler';
 
 export default class ReceivedMessageHandler extends Service {
   @service store!: StoreService;
@@ -21,6 +24,9 @@ export default class ReceivedMessageHandler extends Service {
   @service contactManager!: ContactManager;
   @service('messages/factory') messageFactory!: MessageFactory;
   @service('messages/auto-responder') autoResponder!: AutoResponder;
+  @service('channels/message-handler') channelMessageHandler!: ReceivedChannelMessageHandler;
+  @service('channels/vote-handler') channelVoteHandler!: ReceivedChannelVoteHandler;
+  @service('channels/info-sync-handler') channelInfoSyncHandler!: ReceivedChannelInfoSyncHandler;
 
   async handle(raw: StandardMessage) {
     let message = await this.decomposeMessage(raw);
@@ -40,7 +46,10 @@ export default class ReceivedMessageHandler extends Service {
         return this.handleDisconnect(message);
 
       case TYPE.INFO_CHANNEL_SYNC_REQUEST:
-        return this.handleInfoChannelInfo(message, raw);
+        return this.handleInfoChannelSyncRequest(message, raw);
+
+      case TYPE.INFO_CHANNEL_SYNC_FULFILL:
+        return this.handleInfoChannelSyncFulfill(message, raw);
 
       case TYPE.CHANNEL_VOTE:
         return this.handleChannelVote(message, raw);
@@ -70,14 +79,16 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleInfoChannelInfo(message: Message, _raw: StandardMessage) {
-    // TODO: channel sync code
-    return message;
+  private async handleInfoChannelSyncRequest(message: Message, raw: StandardMessage) {
+    return this.channelInfoSyncHandler.handleInfoSyncRequest(message, raw);
   }
 
-  private async handleChannelVote(message: Message, _raw: StandardMessage) {
-    // TODO: channel vote code
-    return message;
+  private async handleInfoChannelSyncFulfill(message: Message, raw: StandardMessage) {
+    return this.channelInfoSyncHandler.handleInfoSyncFulfill(message, raw);
+  }
+
+  private async handleChannelVote(message: Message, raw: StandardMessage) {
+    return this.channelVoteHandler.handleChannelVote(message, raw);
   }
 
   private async handleDisconnect(message: Message) {
@@ -121,10 +132,8 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleChannelChat(message: Message, _raw: StandardMessage) {
-    // TODO: if message is a channel message, deconstruct the channel info
-
-    return message;
+  private async handleChannelChat(message: Message, raw: StandardMessage) {
+    return this.channelMessageHandler.handleChannelMessage(message, raw);
   }
 
   private async decomposeMessage(json: StandardMessage) {

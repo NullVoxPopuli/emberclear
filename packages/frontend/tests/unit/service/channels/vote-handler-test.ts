@@ -91,8 +91,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
     test('the sender is not in our channel context', async function (assert) {
       const store = getStore();
       const me = getService('current-user');
-      // const sender = await buildUser('sender');
-      // const thirdMember = await buildUser('thirdMember');
       const messageFactory = getService('messages/factory');
       let channelId = uuid();
       let receivedChannel = store.createRecord('channel', {

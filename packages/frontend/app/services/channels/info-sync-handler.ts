@@ -12,25 +12,25 @@ export default class ReceivedChannelInfoSyncHandler extends Service {
   @service('channels/vote-verifier') voteVerifier!: VoteVerifier;
   @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelService;
 
-  public async handleInfoSync(message: Message, raw: StandardMessage) {
-    //TODO figure out a better indicator of request to sync vs. send to sync requester
-    if (raw.message.body) {
-      let updatedChannel = await this.findOrCreator.createChannel(raw.channelInfo);
-      if (await this.channelVerifier.isValidChain(updatedChannel.contextChain)) {
-        let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
-        existingChannel.contextChain = updatedChannel.contextChain;
-        existingChannel.members = existingChannel.contextChain.members;
-        existingChannel.admin = existingChannel.contextChain.admin;
-        existingChannel.activeVotes = [];
-        updatedChannel.activeVotes.forEach((activeVote) => {
-          if (this.voteVerifier.isValid(activeVote.voteChain)) {
-            existingChannel.activeVotes.push(activeVote);
-          }
-        });
-        await saveChannel(existingChannel);
-      }
-    } else {
-      //TODO send info channel sync message back with channel context
+  public async handleInfoSyncRequest(message: Message, raw: StandardMessage) {
+    //TODO send info channel sync message back with channel context
+    return message;
+  }
+
+  public async handleInfoSyncFulfill(message: Message, raw: StandardMessage) {
+    let updatedChannel = await this.findOrCreator.createChannel(raw.channelInfo);
+    if (await this.channelVerifier.isValidChain(updatedChannel.contextChain)) {
+      let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
+      existingChannel.contextChain = updatedChannel.contextChain;
+      existingChannel.members = existingChannel.contextChain.members;
+      existingChannel.admin = existingChannel.contextChain.admin;
+      existingChannel.activeVotes = [];
+      updatedChannel.activeVotes.forEach((activeVote) => {
+        if (this.voteVerifier.isValid(activeVote.voteChain)) {
+          existingChannel.activeVotes.push(activeVote);
+        }
+      });
+      await saveChannel(existingChannel);
     }
     return message;
   }
