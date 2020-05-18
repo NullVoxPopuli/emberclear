@@ -1,4 +1,4 @@
-import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
+import { generateAsymmetricKeys, generateSigningKeys } from 'emberclear/workers/crypto/utils/nacl';
 
 import User from 'emberclear/models/user';
 
@@ -11,12 +11,15 @@ export async function createCurrentUser(): Promise<User> {
   const currentUserService = getService('current-user');
 
   const { publicKey, privateKey } = await generateAsymmetricKeys();
+  const { publicSigningKey, privateSigningKey } = await generateSigningKeys();
 
   const record = store.createRecord('user', {
     id: 'me',
     name: 'Test User',
     publicKey,
     privateKey,
+    publicSigningKey,
+    privateSigningKey,
   });
 
   await record.save();

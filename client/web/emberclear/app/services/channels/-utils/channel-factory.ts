@@ -6,6 +6,7 @@ import { toHex } from 'emberclear/utils/string-encoding';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
 
 export function buildChannelInfo(channel: Channel): StandardMessage['channelInfo'] {
+  // console.error('in build chnnaeliinfo');
   return {
     uid: channel.id,
     name: channel.name,
@@ -17,6 +18,7 @@ export function buildChannelInfo(channel: Channel): StandardMessage['channelInfo
 export function buildChannelContextChain(
   contextChain: ChannelContextChain
 ): StandardChannelContextChain {
+  //console.error('in buildChannelContextChain', contextChain);
   return {
     id: contextChain.id,
     admin: buildChannelMember(contextChain.admin),
@@ -33,6 +35,7 @@ export function buildChannelContextChain(
 }
 
 export function buildChannelMember(member: Identity): ChannelMember {
+  //console.error('in buildhchannelMember: ', member);
   return {
     id: member.uid,
     name: member.name,
@@ -41,6 +44,7 @@ export function buildChannelMember(member: Identity): ChannelMember {
 }
 
 export function buildVote(vote: Vote): StandardVote {
+  // console.error('in buildVote ', vote);
   return {
     id: vote.id,
     voteChain: buildVoteChain(vote.voteChain),
