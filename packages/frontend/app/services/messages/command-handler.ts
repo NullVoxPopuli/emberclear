@@ -36,8 +36,8 @@ class TextCommand {
 }
 
 export default class CommandHandler extends Service {
-  @service user!: CurrentUserService; //author = user.record()
-  @service target!: CurrentChatService; //target = target.record()
+  @service user!: CurrentUserService;
+  @service target!: CurrentChatService;
 
   commands: TextCommand[] = [
     new TextCommand('state', ['s'], [], this.printState),
