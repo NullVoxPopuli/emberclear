@@ -41,7 +41,8 @@ export default class Identity extends Model implements Partial<PublicKey> {
 
   // Needed otherwise this regularly invalidates
   // TODO: will the public key ever change? who knows
-  @computed('publicKeyAsHex')
+  // eslint-disable-next-line
+  @computed()
   get uid() {
     return this.publicKeyAsHex;
   }
