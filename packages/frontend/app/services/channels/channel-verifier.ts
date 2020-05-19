@@ -9,7 +9,9 @@ export default class ChannelVerifier extends Service {
   @service('channels/vote-verifier') voteVerifier!: VoteVerifier;
 
   async isValidChain(channel: ChannelContextChain): Promise<boolean> {
-    if (channel.previousChain === null && channel.supportingVote === null) {
+    let isFirstContextChain: boolean =
+      channel.previousChain === null && channel.supportingVote === null;
+    if (isFirstContextChain) {
       return this.isValidSingleChain(channel);
     }
 
