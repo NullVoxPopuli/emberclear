@@ -4,7 +4,7 @@ import StoreService from '@ember-data/store';
 import VoteVerifier from './vote-verifier';
 import FindOrCreateChannelService from './find-or-create';
 import { VOTE_ACTION } from 'emberclear/models/vote-chain';
-import { identityEquals } from 'emberclear/utils/identity-comparison';
+import { identityEquals, identitiesIncludes } from 'emberclear/utils/identity-comparison';
 import Channel from 'emberclear/models/channel';
 import { isVoteCompleted, isVoteCompletedPositive } from './-utils/vote-completion';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
@@ -18,7 +18,7 @@ export default class ReceivedChannelVoteHandler extends Service {
 
   public async handleChannelVote(message: Message, raw: StandardMessage) {
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
-    if (existingChannel?.members.contains(message.sender!)) {
+    if (identitiesIncludes(existingChannel?.members.toArray(), message.sender!)) {
       let sentVote = message.metadata as StandardVote;
       let existingVote = await this.findOrCreator.findOrCreateVote(sentVote);
 
