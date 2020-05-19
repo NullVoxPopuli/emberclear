@@ -37,7 +37,7 @@ export async function saveChannelContextChain(contextChain: ChannelContextChain)
 
   await contextChain.admin.save();
   contextChain.members.forEach(async (member) => await member.save());
-  await saveVoteChain(contextChain.supportingVote);
+  await saveVoteChain(contextChain.supportingVote!);
   await saveChannelContextChain(contextChain.previousChain!);
   await contextChain.save();
 }

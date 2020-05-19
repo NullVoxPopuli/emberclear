@@ -28,7 +28,7 @@ export default class ReceivedChannelVoteHandler extends Service {
         // when the sender tries to vote for somebody else or vote is invalid
         if (
           sentVote.voteChain.key.id !== raw.sender.uid ||
-          !this.voteVerifier.isValid(voteChain!) ||
+          !(await this.voteVerifier.isValid(voteChain!)) ||
           this.isAnActiveVote(existingChannel, existingVote!)
         ) {
           return message;

@@ -12,7 +12,7 @@ export default class ReceivedChannelInfoSyncHandler extends Service {
   @service('channels/vote-verifier') voteVerifier!: VoteVerifier;
   @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelService;
 
-  public async handleInfoSyncRequest(message: Message, raw: StandardMessage) {
+  public async handleInfoSyncRequest(message: Message, _raw: StandardMessage) {
     //TODO send info channel sync message back with channel context
     return message;
   }
