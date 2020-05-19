@@ -19,7 +19,7 @@ import User from 'emberclear/models/user';
 import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
 import { identitiesIncludes } from 'emberclear/utils/identity-comparison';
-import { buildChannelInfo, buildVote } from 'emberclear/services/channels/-utils/channel-factory';
+import { buildChannelInfo, buildVote, buildChannelMember, buildChannelContextChain } from 'emberclear/services/channels/-utils/channel-factory';
 import Channel from 'emberclear/models/channel';
 
 module('Unit | Service | channels/vote-handler', function (hooks) {
@@ -38,12 +38,16 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
     let thirdChannelContextChain: ChannelContextChain;
     let sender: User;
     let thirdMember: User;
+    let standardSender: ChannelMember;
+    let standardThirdMember: ChannelMember;
 
     hooks.beforeEach(async function () {
       const me = getService('current-user');
       sender = await buildUser('sender');
       thirdMember = await buildUser('thirdMember');
       const store = getStore();
+      standardSender = buildChannelMember(sender);
+      standardThirdMember = buildChannelMember(thirdMember);
       baseChannelContextChain = store.createRecord('channelContextChain', {
         admin: me.record!,
         members: [me.record!],
@@ -92,17 +96,18 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
     test('the sender is not in our channel context', async function (assert) {
       const store = getStore();
       const me = getService('current-user');
+      const standardMe = buildChannelMember(me.record!)
       const messageFactory = getService('messages/factory');
       let channelId = uuid();
-      let receivedChannel = Channel.create();
-      receivedChannel.setProperties({
-        ...this.owner.ownerInjection(),
-        id: channelId,
-        members: [me.record!, thirdMember, sender],
-        admin: me.record,
-        activeVotes: [],
-        contextChain: thirdChannelContextChain,
-      });
+      // let receivedChannel = Channel.create();
+      // receivedChannel.setProperties({
+      //   ...this.owner.ownerInjection(),
+      //   id: channelId,
+      //   members: [me.record!, thirdMember, sender],
+      //   admin: me.record,
+      //   activeVotes: [],
+      //   contextChain: thirdChannelContextChain,
+      // });
       let message: StandardMessage = {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
@@ -121,10 +126,19 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
           contentType: 'is this used?',
           metadata: undefined,
         },
-        channelInfo: buildChannelInfo(receivedChannel),
+        channelInfo: {
+          uid: channelId,
+          name: 'test',
+          members: [standardMe, standardSender, standardThirdMember],
+          admin: standardMe,
+          activeVotes: [],
+          contextChain: buildChannelContextChain(thirdChannelContextChain),
+          // buildChannelInfo(receivedChannel),
+        }
       };
       let ourChannel = store.createRecord('channel', {
         id: channelId,
+        name: 'test',
         members: [me.record, sender],
         admin: me.record,
         activeVotes: [],
