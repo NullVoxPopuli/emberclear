@@ -36,6 +36,10 @@ export default class ReceivedChannelVoteHandler extends Service {
 
         // when it is a new vote, add this to the channel votes
         if (!existingChannel.activeVotes.find((vote) => vote.id === existingVote!.id)) {
+          /*let newActiveVotes = **/
+          // existingChannel.activeVotes.pushObject(existingVote);
+          // newActiveVotes.push(existingVote);
+          // existingChannel.activeVotes = newActiveVotes;
           existingChannel.activeVotes.push(existingVote);
           await saveChannel(existingChannel);
         }
