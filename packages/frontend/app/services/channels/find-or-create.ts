@@ -77,10 +77,10 @@ export default class FindOrCreateChannelService extends Service {
     let contextChain = undefined;
 
     try {
-      contextChain = await this.store.findRecord('channelContextChain', id);
+      contextChain = await this.store.findRecord('channel-context-chain', id);
       return contextChain;
     } catch (e) {
-      contextChain = await this.store.createRecord('channelContextChain', {
+      contextChain = await this.store.createRecord('channel-context-chain', {
         id,
         admin: await this.findOrCreateMember(standardContextChain.admin),
         members: Promise.all(
@@ -103,9 +103,9 @@ export default class FindOrCreateChannelService extends Service {
     const { id } = standardContextChain;
     let contextChain: ChannelContextChain;
     try {
-      contextChain = await this.store.findRecord('contextChain', id);
+      contextChain = await this.store.findRecord('channel-context-chain', id);
     } catch (e) {
-      contextChain = this.store.createRecord('contextChain', id);
+      contextChain = this.store.createRecord('channel-context-chain', id);
     }
     contextChain.admin = await this.findOrCreateMember(standardContextChain.admin);
     contextChain.members = await Promise.all(
@@ -182,10 +182,10 @@ export default class FindOrCreateChannelService extends Service {
     let voteChain = undefined;
 
     try {
-      voteChain = await this.store.findRecord('voteChain', id);
+      voteChain = await this.store.findRecord('vote-chain', id);
       return voteChain;
     } catch (e) {
-      voteChain = this.store.createRecord('voteChain', {
+      voteChain = this.store.createRecord('vote-chain', {
         id,
         remaining: Promise.all(
           standardVoteChain.remaining.map(async (member) => await this.findOrCreateMember(member))
@@ -218,9 +218,9 @@ export default class FindOrCreateChannelService extends Service {
     let voteChain: VoteChain;
 
     try {
-      voteChain = await this.store.findRecord('voteChain', id);
+      voteChain = await this.store.findRecord('vote-chain', id);
     } catch (e) {
-      voteChain = await this.store.createRecord('voteChain', id);
+      voteChain = await this.store.createRecord('vote-chain', id);
     }
     voteChain.remaining = await Promise.all(
       standardVoteChain.remaining.map(async (member) => await this.findOrCreateMember(member))

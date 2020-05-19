@@ -52,14 +52,14 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const store = getStore();
       standardSender = buildChannelMember(sender);
       standardThirdMember = buildChannelMember(thirdMember);
-      baseChannelContextChain = store.createRecord('channelContextChain', {
+      baseChannelContextChain = store.createRecord('channel-context-chain', {
         admin: me.record!,
         members: [me.record!],
         supportingVote: undefined,
         previousChain: undefined,
       });
 
-      let secondChannelVoteChain = store.createRecord('voteChain', {
+      let secondChannelVoteChain = store.createRecord('vote-chain', {
         remaining: [],
         yes: [me.record!],
         no: [],
@@ -71,14 +71,14 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       });
       secondChannelVoteChain.signature = await signatureOf(secondChannelVoteChain, me.record!);
 
-      secondChannelContextChain = store.createRecord('channelContextChain', {
+      secondChannelContextChain = store.createRecord('channel-context-chain', {
         admin: me.record!,
         members: [me.record!, sender],
         supportingVote: secondChannelVoteChain,
         previousChain: baseChannelContextChain,
       });
 
-      let thirdChannelVoteChain = store.createRecord('voteChain', {
+      let thirdChannelVoteChain = store.createRecord('vote-chain', {
         remaining: [sender],
         yes: [me.record!],
         no: [],
@@ -89,7 +89,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         signature: undefined,
       });
       thirdChannelVoteChain.signature = await signatureOf(thirdChannelVoteChain, me.record!);
-      thirdChannelContextChain = store.createRecord('channelContextChain', {
+      thirdChannelContextChain = store.createRecord('channel-context-chain', {
         admin: me.record!,
         members: [me.record!, sender, thirdMember],
         supportingVote: thirdChannelVoteChain,
@@ -238,7 +238,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       let channelId = uuid();
-      let voteChain = store.createRecord('voteChain', {
+      let voteChain = store.createRecord('vote-chain', {
         remaining: [me.record, sender],
         yes: [thirdMember],
         no: [],
@@ -325,7 +325,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       let channelId = uuid();
-      let voteChain = store.createRecord('voteChain', {
+      let voteChain = store.createRecord('vote-chain', {
         remaining: [thirdMember],
         yes: [sender],
         no: [me.record],
@@ -413,7 +413,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       let channelId = uuid();
-      let voteChainFromSender = store.createRecord('voteChain', {
+      let voteChainFromSender = store.createRecord('vote-chain', {
         remaining: [me.record, thirdMember],
         yes: [sender],
         no: [],
@@ -427,7 +427,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       let voteFromSender = store.createRecord('vote', {
         voteChain: voteChainFromSender,
       });
-      let voteChainLocal = store.createRecord('voteChain', {
+      let voteChainLocal = store.createRecord('vote-chain', {
         remaining: [me.record, thirdMember],
         yes: [sender],
         no: [],
@@ -514,7 +514,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       let channelId = uuid();
-      let voteChain = store.createRecord('voteChain', {
+      let voteChain = store.createRecord('vote-chain', {
         remaining: [me.record, thirdMember],
         yes: [sender],
         no: [],
@@ -602,7 +602,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       const voteChainId = uuid();
-      let ourVoteChain = store.createRecord('voteChain', {
+      let ourVoteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [sender, me.record],
         yes: [thirdMember],
@@ -618,7 +618,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         voteChain: ourVoteChain,
       });
 
-      let voteChain = store.createRecord('voteChain', {
+      let voteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [me.record],
         yes: [thirdMember],
@@ -693,7 +693,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       const voteChainId = uuid();
-      let ourVoteChain = store.createRecord('voteChain', {
+      let ourVoteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [sender, me.record],
         yes: [],
@@ -709,7 +709,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         voteChain: ourVoteChain,
       });
 
-      let voteChain = store.createRecord('voteChain', {
+      let voteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [me.record],
         yes: [],
@@ -783,7 +783,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       const voteChainId = uuid();
-      let ourVoteChain = store.createRecord('voteChain', {
+      let ourVoteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [sender, me.record],
         yes: [thirdMember],
@@ -799,7 +799,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         voteChain: ourVoteChain,
       });
 
-      let voteChain = store.createRecord('voteChain', {
+      let voteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [me.record],
         yes: [sender, thirdMember],
@@ -881,7 +881,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       const voteChainId = uuid();
-      let ourVoteChain = store.createRecord('voteChain', {
+      let ourVoteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [sender, me.record],
         yes: [thirdMember],
@@ -897,7 +897,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         voteChain: ourVoteChain,
       });
 
-      let voteChain = store.createRecord('voteChain', {
+      let voteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [me.record],
         yes: [sender, thirdMember],
@@ -978,7 +978,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       const voteChainId = uuid();
-      let ourVoteChain = store.createRecord('voteChain', {
+      let ourVoteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [sender, me.record],
         yes: [thirdMember],
@@ -994,7 +994,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         voteChain: ourVoteChain,
       });
 
-      let voteChain = store.createRecord('voteChain', {
+      let voteChain = store.createRecord('vote-chain', {
         id: voteChainId,
         remaining: [me.record],
         yes: [sender, thirdMember],
