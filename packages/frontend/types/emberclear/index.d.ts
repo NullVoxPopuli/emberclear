@@ -148,8 +148,6 @@ declare global {
     channelInfo?: {
       uid: string;
       name: string;
-      members: ChannelMember[];
-      admin: ChannelMember;
       activeVotes: StandardVote[];
       contextChain: StandardChannelContextChain;
     };

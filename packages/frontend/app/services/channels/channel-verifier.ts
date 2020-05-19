@@ -15,14 +15,14 @@ export default class ChannelVerifier extends Service {
 
     let somethingWrongWithPastOrSupportingVote =
       !(await this.isValidChain(channel.previousChain)) ||
-      !(await this.voteVerifier.isValid(channel.supportingVote)) ||
-      !this.isVoteCompletedPositive(channel.supportingVote, channel.previousChain.admin);
+      !(await this.voteVerifier.isValid(channel.supportingVote!)) ||
+      !this.isVoteCompletedPositive(channel.supportingVote!, channel.previousChain.admin);
 
     if (somethingWrongWithPastOrSupportingVote) {
       return false;
     }
 
-    switch (channel.supportingVote.action) {
+    switch (channel.supportingVote!.action) {
       case VOTE_ACTION.ADD:
         return this.isAddValid(channel);
       case VOTE_ACTION.PROMOTE:
@@ -64,11 +64,11 @@ export default class ChannelVerifier extends Service {
   }
 
   private isAddValid(channel: ChannelContextChain): boolean {
-    let previousMembers = channel.previousChain.members.toArray();
-    let target = channel.supportingVote.target;
+    let previousMembers = channel.previousChain!.members.toArray();
+    let target = channel.supportingVote!.target;
     let currentMembers = channel.members.toArray();
 
-    if (!identityEquals(channel.admin, channel.previousChain.admin)) {
+    if (!identityEquals(channel.admin, channel.previousChain!.admin)) {
       return false;
     }
 
@@ -85,8 +85,8 @@ export default class ChannelVerifier extends Service {
   }
 
   private isPromoteValid(channel: ChannelContextChain): boolean {
-    let previousMembers = channel.previousChain.members.toArray();
-    let target = channel.supportingVote.target;
+    let previousMembers = channel.previousChain!.members.toArray();
+    let target = channel.supportingVote!.target;
     let currentMembers = channel.members.toArray();
 
     let { currentMembersDiff, pastMembersDiff } = this.getDiffs(previousMembers, currentMembers);
@@ -102,11 +102,11 @@ export default class ChannelVerifier extends Service {
   }
 
   private isRemoveValid(channel: ChannelContextChain): boolean {
-    let previousMembers = channel.previousChain.members.toArray();
-    let target = channel.supportingVote.target;
+    let previousMembers = channel.previousChain!.members.toArray();
+    let target = channel.supportingVote!.target;
     let currentMembers = channel.members.toArray();
 
-    if (!identityEquals(channel.admin, channel.previousChain.admin)) {
+    if (!identityEquals(channel.admin, channel.previousChain!.admin)) {
       return false;
     }
 

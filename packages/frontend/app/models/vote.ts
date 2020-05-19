@@ -1,8 +1,10 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { belongsTo } from '@ember-data/model';
 import VoteChain from './vote-chain';
+import { Channel } from 'phoenix';
 
 export default class Vote extends Model {
-  @attr() voteChain!: VoteChain;
+  @belongsTo('vote-chain', { async: false }) voteChain!: VoteChain;
+  @belongsTo('channel', { async: true }) activeVoteIn!: Channel;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

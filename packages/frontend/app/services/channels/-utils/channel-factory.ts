@@ -8,9 +8,7 @@ import ChannelContextChain from 'emberclear/models/channel-context-chain';
 export function buildChannelInfo(channel: Channel): StandardMessage['channelInfo'] {
   return {
     uid: channel.id,
-    admin: buildChannelMember(channel.admin),
     name: channel.name,
-    members: channel.members.map((member) => buildChannelMember(member)),
     activeVotes: channel.activeVotes.map((activeVote) => buildVote(activeVote)),
     contextChain: buildChannelContextChain(channel.contextChain),
   };

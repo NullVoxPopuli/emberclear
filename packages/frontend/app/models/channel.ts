@@ -1,6 +1,5 @@
-import Model, { attr, hasMany } from '@ember-data/model';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
-import Identity from 'emberclear/models/identity';
 import ChannelContextChain from './channel-context-chain';
 import Vote from './vote';
 
@@ -15,10 +14,8 @@ export default class Channel extends Model {
   // @attr() public protected!: boolean;
   // @attr() decryptionKey!: string;
 
-  @hasMany('identity', { async: false }) members!: Identity[];
-  @attr() admin!: Identity;
   @hasMany('vote', { async: false }) activeVotes!: Vote[];
-  @attr() contextChain!: ChannelContextChain;
+  @belongsTo('channel-context-chain', { async: false }) contextChain!: ChannelContextChain;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
