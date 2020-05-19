@@ -3,24 +3,27 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 import Channel from 'emberclear/models/channel';
+import VoteChain from 'emberclear/models/vote-chain';
+import Vote from 'emberclear/models/vote';
 
 interface IArgs {
-  channel: Channel;
+  vote: VoteChain,
 }
 
+//TODO: discuss user changing their mind
 export default class ResponsePanel extends Component<IArgs> {
   @action
   yes() {
-    alert('voting yes!');
+    //TODO: Construct and send a yes vote
   }
 
   @action
   no() {
-    alert('voting no!');
+    //TODO: Construct and send a no vote
   }
 
   @action
   dismiss() {
-    alert('goodbye!');
+    //TODO: Mark the action as dismissed
   }
 }

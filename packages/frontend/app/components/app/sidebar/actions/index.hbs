@@ -1,20 +1,19 @@
 <nav class='actions' style='height: 100%; overflow-y: auto;' data-test-actions-list>
 
 	<div data-test-sidebar-actions-header class='menu-label'>
-      {{t 'ui.sidebar.actions.title'}}
-      <button
-        class='button button-xs'
-        type='button'
-        {{on 'click' this.addAction}}
-      >
-        <span class='icon'>{{fa-icon 'plus'}}</span>
-      </button>
-
-    </div>
+    {{t 'ui.sidebar.actions.title'}}
+    <button
+      class='button button-xs'
+      type='button'
+      {{on 'click' this.addAction}}
+    >
+      <span class='icon'>{{fa-icon 'plus'}}</span>
+    </button>
+  </div>
 
 	{{#each this.new_actions as |action_item|}}
 		<App::Sidebar::Actions::Action @action={{action_item}} />
-		<App::Sidebar::Actions::ResponsePanel />
+		<App::Sidebar::Actions::ResponsePanel @vote={{action_item.vote}}/>
 	{{/each}}
 
 </nav>
