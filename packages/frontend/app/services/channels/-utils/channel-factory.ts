@@ -21,11 +21,14 @@ export function buildChannelContextChain(
     id: contextChain.id,
     admin: buildChannelMember(contextChain.admin),
     members: contextChain.members.map((member) => buildChannelMember(member)),
-    supportingVote: buildVoteChain(contextChain.supportingVote),
-    previousChain:
-      contextChain.previousChain === undefined
+    supportingVote:
+      contextChain.previousChain === undefined && contextChain.supportingVote === undefined
         ? undefined
-        : buildChannelContextChain(contextChain.previousChain),
+        : buildVoteChain(contextChain.supportingVote!),
+    previousChain:
+      contextChain.previousChain === undefined && contextChain.supportingVote === undefined
+        ? undefined
+        : buildChannelContextChain(contextChain.previousChain!),
   };
 }
 

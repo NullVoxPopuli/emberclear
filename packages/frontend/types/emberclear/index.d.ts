@@ -123,7 +123,7 @@ declare global {
     id: string;
     admin: ChannelMember;
     members: ChannelMember[];
-    supportingVote: StandardVoteChain;
+    supportingVote?: StandardVoteChain;
     previousChain?: StandardChannelContextChain;
   }
 

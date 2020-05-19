@@ -76,7 +76,7 @@ export default class MessageDispatcher extends Service {
   }
 
   sendToChannel(msg: Message, channel: Channel) {
-    const members = channel.members;
+    const members = channel.contextChain.members;
 
     members.forEach((member) => {
       if (member.id === this.currentUser.id) return; // don't send to self
