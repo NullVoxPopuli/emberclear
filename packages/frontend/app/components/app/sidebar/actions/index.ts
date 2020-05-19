@@ -42,43 +42,7 @@ export default class ActionsSidebar extends Component<IArgs> {
 
   @action
   async addAction() {
-    //TODO: remove dummy code and implement
-    const name = 'user1';
-    const { publicKey } = await generateAsymmetricKeys();
-    const { publicSigningKey, privateSigningKey } = await generateSigningKeys();
-    const id = toHex(publicKey);
-
-    const defaultAttributes = { id, publicKey, publicSigningKey, privateSigningKey };
-
-    const record = this.store.createRecord('user', {
-      name,
-      ...defaultAttributes,
-    });
-
-    let user1 = record;
-    let userToAdd = record;
-
-    let currentVote = this.store.createRecord('vote-chain', {
-      yes: [],
-      no: [],
-      remaining: [user1],
-      action: VOTE_ACTION.ADD,
-      target: userToAdd,
-      key: user1,
-      previousVoteChain: undefined,
-      signature: undefined,
-    });
-
-    currentVote.signature = await sign(
-      await hash(generateSortedVote(currentVote)),
-      user1.privateSigningKey
-    );
-
-    this.store.createRecord('action', {
-      vote: currentVote,
-      response: ACTION_RESPONSE.NONE,
-      timestamp: Date.now(),
-    });
+    //TODO: Construct a new action, add to the store, and broadcast 
   }
 }
 
