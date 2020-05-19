@@ -18,19 +18,16 @@ export default class ReceivedChannelInfoSyncHandler extends Service {
   }
 
   public async handleInfoSyncFulfill(message: Message, raw: StandardMessage) {
-    let updatedChannel = await this.findOrCreator.createChannel(raw.channelInfo);
-    if (await this.channelVerifier.isValidChain(updatedChannel.contextChain)) {
-      let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
-      existingChannel.contextChain = updatedChannel.contextChain;
-      existingChannel.members = existingChannel.contextChain.members;
-      existingChannel.admin = existingChannel.contextChain.admin;
-      existingChannel.activeVotes = [];
-      updatedChannel.activeVotes.forEach((activeVote) => {
-        if (this.voteVerifier.isValid(activeVote.voteChain)) {
-          existingChannel.activeVotes.push(activeVote);
-        }
-      });
-      await saveChannel(existingChannel);
+    let updatedChannel = await this.findOrCreator.updateOrCreateChannel(raw.channelInfo);
+    if (
+      (await this.channelVerifier.isValidChain(updatedChannel.contextChain)) &&
+      updatedChannel.activeVotes.every((activeVote) =>
+        this.voteVerifier.isValid(activeVote.voteChain)
+      )
+    ) {
+      await saveChannel(updatedChannel);
+    } else {
+      await this.findOrCreator.unloadChannel(updatedChannel);
     }
     return message;
   }
