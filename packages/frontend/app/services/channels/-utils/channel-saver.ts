@@ -4,11 +4,17 @@ import VoteChain from 'emberclear/models/vote-chain';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
 
 export async function saveChannel(channel: Channel) {
+  console.error('before saving channel admin');
   await channel.admin.save();
+  console.error('after saving channel admin');
   channel.members.forEach(async (member) => await member.save());
+  console.error('before activeVotes');
   channel.activeVotes.forEach(async (activeVote) => await saveVote(activeVote));
+  console.error('before contextChain');
   await saveChannelContextChain(channel.contextChain);
+  console.error('before saving channel object');
   await channel.save();
+  console.error('after saving channel object');
 }
 
 export async function saveVote(vote: Vote) {
@@ -18,6 +24,7 @@ export async function saveVote(vote: Vote) {
 
 export async function saveVoteChain(voteChain: VoteChain) {
   if (voteChain === undefined) {
+    console.error('got to base of voteChain');
     return;
   }
 
@@ -27,7 +34,9 @@ export async function saveVoteChain(voteChain: VoteChain) {
   await voteChain.target.save();
   await voteChain.key.save();
   await saveVoteChain(voteChain.previousVoteChain!);
+  console.error('save voteChain');
   await voteChain.save();
+  console.error('finishing votechain save');
 }
 
 export async function saveChannelContextChain(contextChain: ChannelContextChain) {
@@ -37,7 +46,9 @@ export async function saveChannelContextChain(contextChain: ChannelContextChain)
 
   await contextChain.admin.save();
   contextChain.members.forEach(async (member) => await member.save());
+  console.error('before saving supporting vote');
   await saveVoteChain(contextChain.supportingVote!);
+  console.error('before saving previous chain');
   await saveChannelContextChain(contextChain.previousChain!);
   await contextChain.save();
 }

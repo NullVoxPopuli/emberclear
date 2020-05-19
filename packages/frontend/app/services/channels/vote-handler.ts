@@ -31,6 +31,7 @@ export default class ReceivedChannelVoteHandler extends Service {
           !(await this.voteVerifier.isValid(voteChain!)) ||
           this.isAnActiveVote(existingChannel, existingVote!)
         ) {
+          await this.findOrCreator.unloadVoteChain(voteChain!);
           return message;
         }
 

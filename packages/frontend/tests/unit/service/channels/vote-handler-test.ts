@@ -297,6 +297,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         findOrCreateVoteChain() {
           return voteChain;
         },
+        unloadVoteChain() {},
       });
       const service = getService('channels/vote-handler');
       await service.handleChannelVote(
@@ -383,6 +384,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         findOrCreateVoteChain() {
           return voteChain;
         },
+        unloadVoteChain() {},
       });
       const service = getService('channels/vote-handler');
       await service.handleChannelVote(
@@ -484,6 +486,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         findOrCreateVoteChain() {
           return voteChainFromSender;
         },
+        unloadVoteChain() {},
       });
       const service = getService('channels/vote-handler');
       await service.handleChannelVote(
