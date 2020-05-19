@@ -34,7 +34,7 @@ export default class VoteVerifier extends Service {
       return false;
     }
 
-    if (voteToVerify.previousVoteChain === undefined) {
+    if (voteToVerify.previousVoteChain === null) {
       return true;
     }
 
