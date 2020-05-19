@@ -2,7 +2,7 @@ import Model, { hasMany, belongsTo } from '@ember-data/model';
 
 import Identity from 'emberclear/models/identity';
 import VoteChain from './vote-chain';
-import { Channel } from 'phoenix';
+import Channel from './channel';
 
 export default class ChannelContextChain extends Model {
   @belongsTo('identity', { async: false, inverse: 'adminOf' }) admin!: Identity;
