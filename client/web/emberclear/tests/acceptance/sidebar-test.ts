@@ -38,6 +38,51 @@ module('Acceptance | Sidebar', function (hooks) {
     t = intl.t.bind(intl);
   });
 
+  module('Tabs', function (hooks) {
+
+    hooks.beforeEach(async function () {
+      await visit('/chat?_features=democracy-ui');
+    });
+
+    test('default tab is contacts', function (assert) {
+      let content = page.sidebar.contacts.header.text;
+      assert.equal(content, t('ui.sidebar.contacts.title'));
+    });
+
+    module('switch tab to channels', function (hooks) {
+      hooks.beforeEach(async function () {
+        await page.sidebar.selectChannelsTab();
+      });
+
+      test('channels tab is displayed', async function (assert) {
+        let content = page.sidebar.channels.header.text;
+        assert.equal(content, t('ui.sidebar.channels.title'));
+      });
+    });
+
+    module('switch tab to actions', function (hooks) {
+      hooks.beforeEach(async function () {
+        await page.sidebar.selectActionsTab();
+      });
+
+      test('actions tab is displayed', async function (assert) {
+        let content = page.sidebar.actions.header.text;
+        assert.equal(content, t('ui.sidebar.actions.title'));
+      });
+    });
+
+    module('switch tab to contacts', function (hooks) {
+      hooks.beforeEach(async function () {
+        await page.sidebar.selectContactsTab();
+      });
+
+      test('contacts tab is displayed', function (assert) {
+        let content = page.sidebar.contacts.header.text;
+        assert.equal(content, t('ui.sidebar.contacts.title'));
+      });
+    });
+  });
+
   module('Search', function () {
     module('There are contacts', function (hooks) {
       let contacts!: Contact[];

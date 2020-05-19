@@ -23,8 +23,10 @@
         </span>
       {{/if}}
 
-      {{#if (eq @type 'chats')}}
+      {{#if (eq @type 'all')}}
         <App::Sidebar::Chats::List @chats={{data.chats}} />
+      {{else if (eq @type 'chats')}}
+        <App::Sidebar::Chats::List @chats={{data.contacts}} />
       {{else if (eq @type 'channels')}}
         <App::Sidebar::Chats::List @chats={{data.channels}} />
       {{/if}}
