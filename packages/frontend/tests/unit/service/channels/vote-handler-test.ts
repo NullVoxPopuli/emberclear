@@ -411,7 +411,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
       let channelId = uuid();
-      let voteChain = store.createRecord('voteChain', {
+      let voteChainFromSender = store.createRecord('voteChain', {
         remaining: [me.record, thirdMember],
         yes: [sender],
         no: [],
@@ -421,9 +421,23 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
-      voteChain.signature = await signatureOf(voteChain, sender);
-      let vote = store.createRecord('vote', {
-        voteChain: voteChain,
+      voteChainFromSender.signature = await signatureOf(voteChainFromSender, sender);
+      let voteFromSender = store.createRecord('vote', {
+        voteChain: voteChainFromSender,
+      });
+      let voteChainLocal = store.createRecord('voteChain', {
+        remaining: [me.record, thirdMember],
+        yes: [sender],
+        no: [],
+        target: memberToAdd,
+        action: VOTE_ACTION.ADD,
+        key: sender,
+        previousVoteChain: undefined,
+        signature: undefined,
+      });
+      voteChainLocal.signature = await signatureOf(voteChainLocal, sender);
+      let voteLocal = store.createRecord('vote', {
+        voteChain: voteChainLocal,
       });
       let message: StandardMessage = {
         id: uuid(),
@@ -441,14 +455,14 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         message: {
           body: 'malformed, cleartext body',
           contentType: 'is this used?',
-          metadata: buildVote(vote),
+          metadata: buildVote(voteFromSender),
         },
         channelInfo: {
           uid: channelId,
           name: 'test',
           members: [standardMe, standardSender, standardThirdMember],
           admin: standardMe,
-          activeVotes: [buildVote(vote)],
+          activeVotes: [buildVote(voteFromSender)],
           contextChain: buildChannelContextChain(thirdChannelContextChain),
         },
       };
@@ -457,7 +471,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         name: 'test',
         members: [me.record, thirdMember, sender],
         admin: me.record,
-        activeVotes: [vote],
+        activeVotes: [voteLocal],
         contextChain: thirdChannelContextChain,
       });
       stubService('channels/find-or-create', {
@@ -465,10 +479,10 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
           return ourChannel;
         },
         findOrCreateVote() {
-          return vote;
+          return voteFromSender;
         },
         findOrCreateVoteChain() {
-          return voteChain;
+          return voteChainFromSender;
         },
       });
       const service = getService('channels/vote-handler');
