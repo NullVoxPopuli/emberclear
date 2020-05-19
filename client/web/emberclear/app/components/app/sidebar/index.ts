@@ -15,7 +15,7 @@ const Tab = {
   Contacts: 'contacts',
   Channels: 'channels',
   Actions: 'actions',
-} as const
+} as const;
 
 type TabKeys = keyof typeof Tab;
 type TAB = typeof Tab[TabKeys];

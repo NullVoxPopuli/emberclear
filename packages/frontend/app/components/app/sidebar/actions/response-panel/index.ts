@@ -7,7 +7,7 @@ import VoteChain from 'emberclear/models/vote-chain';
 import Vote from 'emberclear/models/vote';
 
 interface IArgs {
-  vote: VoteChain,
+  vote: VoteChain;
 }
 
 //TODO: discuss user changing their mind

@@ -39,7 +39,6 @@ module('Acceptance | Sidebar', function (hooks) {
   });
 
   module('Tabs', function (hooks) {
-
     hooks.beforeEach(async function () {
       await visit('/chat?_features=democracy-ui');
     });

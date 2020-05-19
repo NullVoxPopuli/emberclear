@@ -23,11 +23,6 @@ aside {
    - bottom (logout)
   */
 
-  /* top */
-  & nav {
-    
-  }
-
   /* the middle */
   & > div {
     overflow-y: auto;
