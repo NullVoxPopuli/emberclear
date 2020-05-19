@@ -2,14 +2,22 @@ import Channel from 'emberclear/models/channel';
 import Vote from 'emberclear/models/vote';
 import VoteChain from 'emberclear/models/vote-chain';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
+import Identity from 'emberclear/models/identity';
 
 export async function saveChannel(channel: Channel) {
   console.error('before saving channel admin');
   await channel.admin.save();
   console.error('after saving channel admin');
-  channel.members.forEach(async (member) => await member.save());
+
+  let membersPromises: Promise<Identity>[] = [];
+  channel.members.forEach((member) => membersPromises.push(member.save()));
+  await Promise.all(membersPromises);
+
   console.error('before activeVotes');
-  channel.activeVotes.forEach(async (activeVote) => await saveVote(activeVote));
+  let activeVotesPromises: Promise<void>[] = [];
+  channel.activeVotes.forEach((activeVote) => activeVotesPromises.push(saveVote(activeVote)));
+  await Promise.all(activeVotesPromises);
+
   console.error('before contextChain');
   await saveChannelContextChain(channel.contextChain);
   console.error('before saving channel object');
@@ -28,9 +36,18 @@ export async function saveVoteChain(voteChain: VoteChain) {
     return;
   }
 
-  voteChain.yes.forEach(async (member) => await member.save());
-  voteChain.no.forEach(async (member) => await member.save());
-  voteChain.remaining.forEach(async (member) => await member.save());
+  let yesPromises: Promise<Identity>[] = [];
+  voteChain.yes.forEach((member) => yesPromises.push(member.save()));
+  await Promise.all(yesPromises);
+
+  let noPromises: Promise<Identity>[] = [];
+  voteChain.no.forEach((member) => noPromises.push(member.save()));
+  await Promise.all(noPromises);
+
+  let remainingPromises: Promise<Identity>[] = [];
+  voteChain.remaining.forEach((member) => remainingPromises.push(member.save()));
+  await Promise.all(remainingPromises);
+
   await voteChain.target.save();
   await voteChain.key.save();
   await saveVoteChain(voteChain.previousVoteChain!);
@@ -45,7 +62,11 @@ export async function saveChannelContextChain(contextChain: ChannelContextChain)
   }
 
   await contextChain.admin.save();
-  contextChain.members.forEach(async (member) => await member.save());
+
+  let membersPromises: Promise<Identity>[] = [];
+  contextChain.members.forEach((member) => membersPromises.push(member.save()));
+  await Promise.all(membersPromises);
+
   console.error('before saving supporting vote');
   await saveVoteChain(contextChain.supportingVote!);
   console.error('before saving previous chain');
