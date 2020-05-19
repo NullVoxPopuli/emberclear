@@ -42,7 +42,7 @@ export default class ActionsSidebar extends Component<IArgs> {
 
   @action
   async addAction() {
-    //TODO: Construct a new action, add to the store, and broadcast 
+    //TODO: Construct a new action, add to the store, and broadcast
   }
 }
 
