@@ -51,24 +51,24 @@ export default class VoteVerifier extends Service {
 
   // Checks to make sure that target and action haven't been modified from one vote to another
   private isTargetAndActionUnchanged(vote: VoteChain): boolean {
-    if (!vote.previousVoteChain) {
+    if (vote.previousVoteChain === null) {
       return true;
     }
 
     return (
-      identityEquals(vote.previousVoteChain!.target, vote.target) &&
-      vote.action === vote.previousVoteChain!.action
+      identityEquals(vote.previousVoteChain.target, vote.target) &&
+      vote.action === vote.previousVoteChain.action
     );
   }
 
   // Checks that the key of the signer matches the change in yes/no/remaining
   // Makes sure that a vote entails a shift of the signer from one category to another
   private isKeyMatchingVoteDiff(vote: VoteChain): boolean {
-    if (!vote.previousVoteChain) {
+    if (vote.previousVoteChain === null) {
       return this.isProperMoveBase(vote);
     }
     let isValid = false;
-    if (identitiesIncludes(vote.previousVoteChain!.yes.toArray(), vote.key)) {
+    if (identitiesIncludes(vote.previousVoteChain.yes.toArray(), vote.key)) {
       isValid = this.isProperMove(
         vote.yes.toArray(),
         vote.remaining.toArray(),
@@ -78,7 +78,7 @@ export default class VoteVerifier extends Service {
         vote.previousVoteChain.remaining.toArray(),
         vote.previousVoteChain.no.toArray()
       );
-    } else if (identitiesIncludes(vote.previousVoteChain!.no.toArray(), vote.key)) {
+    } else if (identitiesIncludes(vote.previousVoteChain.no.toArray(), vote.key)) {
       isValid = this.isProperMove(
         vote.no.toArray(),
         vote.yes.toArray(),
@@ -88,7 +88,7 @@ export default class VoteVerifier extends Service {
         vote.previousVoteChain.remaining.toArray(),
         vote.previousVoteChain.yes.toArray()
       );
-    } else if (identitiesIncludes(vote.previousVoteChain!.remaining.toArray(), vote.key)) {
+    } else if (identitiesIncludes(vote.previousVoteChain.remaining.toArray(), vote.key)) {
       isValid = this.isProperMove(
         vote.remaining.toArray(),
         vote.yes.toArray(),

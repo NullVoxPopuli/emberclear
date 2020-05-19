@@ -22,13 +22,13 @@ export function buildChannelContextChain(
     admin: buildChannelMember(contextChain.admin),
     members: contextChain.members.map((member) => buildChannelMember(member)),
     supportingVote:
-      contextChain.previousChain === undefined && contextChain.supportingVote === undefined
+      contextChain.previousChain === null && contextChain.supportingVote === null
         ? undefined
-        : buildVoteChain(contextChain.supportingVote!),
+        : buildVoteChain(contextChain.supportingVote),
     previousChain:
-      contextChain.previousChain === undefined && contextChain.supportingVote === undefined
+      contextChain.previousChain === null && contextChain.supportingVote === null
         ? undefined
-        : buildChannelContextChain(contextChain.previousChain!),
+        : buildChannelContextChain(contextChain.previousChain),
   };
 }
 
@@ -57,7 +57,7 @@ export function buildVoteChain(voteChain: VoteChain): StandardVoteChain {
     action: voteChain.action,
     key: buildChannelMember(voteChain.key),
     previousVoteChain:
-      voteChain.previousVoteChain === undefined
+      voteChain.previousVoteChain === null
         ? undefined
         : buildVoteChain(voteChain.previousVoteChain),
     signature: toHex(voteChain.signature),

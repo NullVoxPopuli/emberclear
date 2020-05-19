@@ -17,11 +17,11 @@ export default class VoteChain extends Model {
   @belongsTo('identity', { async: false, inverse: 'targetOfVote' }) target!: Identity;
   @attr() action!: VOTE_ACTION;
   @belongsTo('identity', { async: false, inverse: 'voterOf' }) key!: Identity;
-  @belongsTo('vote-chain', { async: false, inverse: 'parentChain' }) previousVoteChain?: VoteChain;
-  @belongsTo('vote-chain', { async: true, inverse: 'previousVoteChain' }) parentChain?: VoteChain;
+  @belongsTo('vote-chain', { async: false, inverse: 'parentChain' }) previousVoteChain!: VoteChain;
+  @belongsTo('vote-chain', { async: true, inverse: 'previousVoteChain' }) parentChain!: VoteChain;
   @attr() signature!: Uint8Array;
-  @belongsTo('channel-context-chain', { async: true }) supports?: ChannelContextChain;
-  @belongsTo('vote', { async: true }) wrappedIn?: Vote;
+  @belongsTo('channel-context-chain', { async: true }) supports!: ChannelContextChain;
+  @belongsTo('vote', { async: true }) wrappedIn!: Vote;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
