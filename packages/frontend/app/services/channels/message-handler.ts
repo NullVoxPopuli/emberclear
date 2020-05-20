@@ -5,6 +5,7 @@ import Notifications from 'emberclear/services/notifications';
 import ChannelVerifier from './channel-verifier';
 import FindOrCreateChannelService from './find-or-create';
 import { saveChannel } from './-utils/channel-saver';
+import { identitiesIncludes } from 'emberclear/utils/identity-comparison';
 
 export default class ReceivedChannelMessageHandler extends Service {
   @service store!: StoreService;
@@ -16,13 +17,12 @@ export default class ReceivedChannelMessageHandler extends Service {
   public async handleChannelMessage(message: Message, raw: StandardMessage) {
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
     await saveChannel(existingChannel);
-    if (existingChannel?.members.contains(message.sender!)) {
+    if (identitiesIncludes(existingChannel?.members.toArray(), message.sender!)) {
       // save message in channel messages
       await message.save();
       const senderName = message.sender!.name;
       const channelName = existingChannel.name;
-      // TODO: make new notification for channels messages
-      const msg = this.intl.t('ui.notificatoin.from', { senderName });
+      const msg = this.intl.t('ui.notificatoin.fromChannel', { senderName, channelName });
 
       await this.notifications.info(msg);
 

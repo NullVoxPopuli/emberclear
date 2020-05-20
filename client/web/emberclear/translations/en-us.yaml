@@ -143,6 +143,7 @@ ui:
   notifications:
     title: emberclear message
     from: message from {name}
+    fromChannel: message from {name} in {channel}
     prompt:
       title: emberclear needs your permission to enable chat notifications.
       enable: Enable Notifications

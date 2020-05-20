@@ -125,6 +125,7 @@ ui:
   notifications:
     title: mensagem de emberclear
     from: mensagem de {name}
+    fromChannel: mensagem de {name} em {channel}
     prompt:
       title: emberclear precisa de sua permissão para ativar as notificações.
       enable: Ativar Notificações

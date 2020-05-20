@@ -2,6 +2,7 @@ import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 import ChannelContextChain from './channel-context-chain';
 import Vote from './vote';
+import Message from './message';
 
 export default class Channel extends Model {
   @attr() name!: string;
@@ -16,6 +17,7 @@ export default class Channel extends Model {
 
   @hasMany('vote', { async: false }) activeVotes!: Vote[];
   @belongsTo('channel-context-chain', { async: false }) contextChain!: ChannelContextChain;
+  @hasMany('message', { async: true }) sentIn!: Message;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

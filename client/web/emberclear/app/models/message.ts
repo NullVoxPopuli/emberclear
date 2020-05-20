@@ -142,7 +142,7 @@ export default class Message extends Model {
   // currently unused
   @attr() contentType!: string;
 
-  @attr() channelInfo?: Channel;
+  @belongsTo('channel', { async: false }) channelInfo!: Channel;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
