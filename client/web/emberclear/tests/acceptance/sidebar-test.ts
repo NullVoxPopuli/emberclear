@@ -44,7 +44,7 @@ module('Acceptance | Sidebar', function (hooks) {
     });
 
     test('default tab is contacts', function (assert) {
-      let content = page.sidebar.contacts.header.text;
+      let content = page.sidebar.header.text;
       assert.equal(content, t('ui.sidebar.contacts.title'));
     });
 
@@ -54,7 +54,7 @@ module('Acceptance | Sidebar', function (hooks) {
       });
 
       test('channels tab is displayed', async function (assert) {
-        let content = page.sidebar.channels.header.text;
+        let content = page.sidebar.header.text;
         assert.equal(content, t('ui.sidebar.channels.title'));
       });
     });
@@ -65,7 +65,7 @@ module('Acceptance | Sidebar', function (hooks) {
       });
 
       test('actions tab is displayed', async function (assert) {
-        let content = page.sidebar.actions.header.text;
+        let content = page.sidebar.header.text;
         assert.equal(content, t('ui.sidebar.actions.title'));
       });
     });

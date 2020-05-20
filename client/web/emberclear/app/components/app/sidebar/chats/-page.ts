@@ -35,14 +35,11 @@ export const sidebarChannelsPage = create({
 });
 
 export const sidebarActionsPage = create({
-  header: {
-    scope: '[data-test-sidebar-actions-header]',
-  },
   listText: text('[data-test-actions-list]'),
   list: collection('[data-test-action-row]', {
     name: text('[data-test-action-name]'),
-    yes: text('[data-test-action-name]'),
-    no: text('[data-test-action-name]'),
-    dismiss: text('[data-test-action-name]'),
+    voteYes: clickable('[data-test-action-response-yes]'),
+    voteNo: clickable('[data-test-action-response-no]'),
+    voteDismiss: clickable('[data-test-action-response-dismiss]'),
   }),
 });

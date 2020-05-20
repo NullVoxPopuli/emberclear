@@ -7,7 +7,8 @@
 }}
 --}}
   {{#if (eq chat 'add-contact')}}
-    <div data-test-sidebar-contacts-header class='menu-label'>
+    {{#if (has-feature-flag 'democracy-ui')}}
+      <div {{#if (has-feature-flag 'democracy-ui')}} data-test-sidebar-content-header {{else}} data-test-sidebar-contacts-header {{/if}} class='menu-label'>
       {{t 'ui.sidebar.contacts.title'}}
 
       <a
@@ -20,7 +21,7 @@
       </a>
     </div>
   {{else if (eq chat 'add-channel')}}
-    <div data-test-sidebar-channels-header class='menu-label'>
+    <div {{#if (has-feature-flag 'democracy-ui')}} data-test-sidebar-content-header {{else}} data-test-sidebar-channels-header {{/if}} class='menu-label'>
       {{t 'ui.sidebar.channels.title'}}
 
       <a

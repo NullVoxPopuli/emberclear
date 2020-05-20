@@ -50,9 +50,10 @@ export const page = create({
     selectChannelsTab: clickable('[data-test-tab-channels]'),
     selectActionsTab: clickable('[data-test-tab-actions]'),
 
-    //TODO: turn into single identifier to test which text appears.
-    // this can't be done until the old tests are not needed.
-    // currently, if these break, it crashes instead of failing.
+    header: {
+      scope: '[data-test-sidebar-content-header]',
+    },
+
     contacts: sidebarContactsPage,
     channels: sidebarChannelsPage,
     actions: sidebarActionsPage,
