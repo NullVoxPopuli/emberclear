@@ -4,6 +4,8 @@ import { Channel } from 'phoenix';
 
 export default class Vote extends Model {
   @belongsTo('vote-chain', { async: false }) voteChain!: VoteChain;
+
+  // Unused, but necessary to properly set up relationships, therefore async
   @belongsTo('channel', { async: true }) activeVoteIn!: Channel;
 }
 

@@ -15,6 +15,8 @@ export default class Identity extends Model implements Partial<PublicKey> {
   @attr() name!: string;
   @attr() publicKey!: Uint8Array;
   @attr() publicSigningKey!: Uint8Array;
+
+  // Unused, but necessary to properly set up relationships, therefore async
   // eslint-disable-next-line prettier/prettier
   @hasMany('channel-context-chain', { async: true, inverse: 'admin' }) adminOf?: ChannelContextChain;
   // eslint-disable-next-line prettier/prettier

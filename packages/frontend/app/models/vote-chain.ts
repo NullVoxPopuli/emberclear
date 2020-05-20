@@ -18,8 +18,10 @@ export default class VoteChain extends Model {
   @attr() action!: VOTE_ACTION;
   @belongsTo('identity', { async: false, inverse: 'voterOf' }) key!: Identity;
   @belongsTo('vote-chain', { async: false, inverse: 'parentChain' }) previousVoteChain!: VoteChain;
-  @belongsTo('vote-chain', { async: true, inverse: 'previousVoteChain' }) parentChain!: VoteChain;
   @attr() signature!: Uint8Array;
+
+  // Unused, but necessary to properly set up relationships, therefore async
+  @belongsTo('vote-chain', { async: true, inverse: 'previousVoteChain' }) parentChain!: VoteChain;
   @belongsTo('channel-context-chain', { async: true }) supports!: ChannelContextChain;
   @belongsTo('vote', { async: true }) wrappedIn!: Vote;
 }
