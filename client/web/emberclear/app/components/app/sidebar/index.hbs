@@ -1,69 +1,35 @@
 <aside ...attributes>
   {{#if (has-feature-flag 'democracy-ui')}}
     <nav class='sidebar-nav'>
-      {{#if this.isTabContacts}}
-        <button
-          id='contacts-tab'
-          type='button'
-          class='sidebar-tab sidebar-tab-selected'
-          data-test-tab-contacts
-        >
-          {{t 'ui.sidebar.contacts.title'}}
-        </button>
-      {{else}}
-        <button
-          id='contacts-tab'
-          type='button'
-          class='sidebar-tab'
-          data-test-tab-contacts
-          {{on 'click' (fn this.switchToTab this.Tab.Contacts)}}
-        >
-          {{t 'ui.sidebar.contacts.title'}}
-        </button>
-      {{/if}}
+      <button
+        id='contacts-tab'
+        type='button'
+        class='sidebar-tab {{#if this.isTabContacts 'sidebar-tab-selected'}}'
+        data-test-tab-contacts
+        {{on 'click' (fn this.switchToTab this.Tab.Contacts)}}
+      >
+        {{t 'ui.sidebar.contacts.title'}}
+      </button>
 
-      {{#if this.isTabChannels}}
-        <button 
-          id='channels-tab'
-          type='button'
-          class='sidebar-tab sidebar-tab-selected'
-          data-test-tab-channels
-        >
-          {{t 'ui.sidebar.channels.title'}}
-        </button>
-      {{else}}
-        <button 
-          id='channels-tab'
-          type='button'
-          class='sidebar-tab'
-          data-test-tab-channels
-          {{on 'click' (fn this.switchToTab this.Tab.Channels)}}
-        >
-          {{t 'ui.sidebar.channels.title'}}
-        </button>
-      {{/if}}
+      <button 
+        id='channels-tab'
+        type='button'
+        class='sidebar-tab {{#if this.isTabChannels 'sidebar-tab-selected'}}'
+        data-test-tab-channels
+        {{on 'click' (fn this.switchToTab this.Tab.Channels)}}
+      >
+        {{t 'ui.sidebar.channels.title'}}
+      </button>
 
-      {{#if this.isTabActions}}
-        <button 
-          id='actions-tab'
-          type='button'
-          class='sidebar-tab sidebar-tab-selected'
-          data-test-tab-actions
-        >
-          {{t 'ui.sidebar.actions.title'}}
-        </button>
-      {{else}}
-        <button
-          id='actions-tab'
-          type='button'
-          class='sidebar-tab'
-          data-test-tab-actions
-          {{on 'click' (fn this.switchToTab this.Tab.Actions)}}
-        >
-          {{t 'ui.sidebar.actions.title'}}
-        </button>
-      {{/if}}
-
+      <button
+        id='actions-tab'
+        type='button'
+        class='sidebar-tab {{#if this.isTabActions 'sidebar-tab-selected'}}'
+        data-test-tab-actions
+        {{on 'click' (fn this.switchToTab this.Tab.Actions)}}
+      >
+        {{t 'ui.sidebar.actions.title'}}
+      </button>
     </nav>
   {{/if}}
 
