@@ -34,7 +34,7 @@ export default class VoteVerifier extends Service {
       return false;
     }
 
-    if (voteToVerify.previousVoteChain === null) {
+    if (!voteToVerify.previousVoteChain) {
       return true;
     }
 
@@ -51,7 +51,7 @@ export default class VoteVerifier extends Service {
 
   // Checks to make sure that target and action haven't been modified from one vote to another
   private isTargetAndActionUnchanged(vote: VoteChain): boolean {
-    if (vote.previousVoteChain === null) {
+    if (!vote.previousVoteChain) {
       return true;
     }
 
@@ -64,7 +64,7 @@ export default class VoteVerifier extends Service {
   // Checks that the key of the signer matches the change in yes/no/remaining
   // Makes sure that a vote entails a shift of the signer from one category to another
   private isKeyMatchingVoteDiff(vote: VoteChain): boolean {
-    if (vote.previousVoteChain === null) {
+    if (!vote.previousVoteChain) {
       return this.isProperMoveBase(vote);
     }
     let isValid = false;
