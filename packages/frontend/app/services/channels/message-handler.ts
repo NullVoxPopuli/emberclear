@@ -17,7 +17,7 @@ export default class ReceivedChannelMessageHandler extends Service {
   public async handleChannelMessage(message: Message, raw: StandardMessage) {
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
     await saveChannel(existingChannel);
-    if (identitiesIncludes(existingChannel?.members.toArray(), message.sender!)) {
+    if (identitiesIncludes(existingChannel?.contextChain.members.toArray(), message.sender!)) {
       // save message in channel messages
       await message.save();
       const senderName = message.sender!.name;

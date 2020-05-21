@@ -19,7 +19,7 @@ export default class Channel extends Model {
   @belongsTo('channel-context-chain', { async: false }) contextChain!: ChannelContextChain;
 
   // Unused, but necessary to properly set up relationships, therefore async
-  @hasMany('message', { async: true }) sentIn!: Message;
+  @hasMany('message', { async: true }) sentIn?: Message;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.

@@ -124,8 +124,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         channelInfo: {
           uid: channelId,
           name: 'test',
-          members: [standardMe, standardSender, standardThirdMember],
-          admin: standardMe,
           activeVotes: [],
           contextChain: buildChannelContextChain(thirdChannelContextChain),
         },
@@ -190,8 +188,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         channelInfo: {
           uid: channelId,
           name: 'test',
-          members: [standardMe, standardSender, standardThirdMember],
-          admin: standardMe,
           activeVotes: [],
           contextChain: buildChannelContextChain(thirdChannelContextChain),
         },
@@ -273,8 +269,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         channelInfo: {
           uid: channelId,
           name: 'test',
-          members: [standardMe, standardSender, standardThirdMember],
-          admin: standardMe,
           activeVotes: [buildVote(vote)],
           contextChain: buildChannelContextChain(thirdChannelContextChain),
         },
@@ -360,8 +354,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         channelInfo: {
           uid: channelId,
           name: 'test',
-          members: [standardMe, standardSender, standardThirdMember],
-          admin: standardMe,
           activeVotes: [buildVote(vote)],
           contextChain: buildChannelContextChain(thirdChannelContextChain),
         },
@@ -462,8 +454,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         channelInfo: {
           uid: channelId,
           name: 'test',
-          members: [standardMe, standardSender, standardThirdMember],
-          admin: standardMe,
           activeVotes: [buildVote(voteFromSender)],
           contextChain: buildChannelContextChain(thirdChannelContextChain),
         },
@@ -549,8 +539,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         channelInfo: {
           uid: channelId,
           name: 'test',
-          members: [standardMe, standardSender, standardThirdMember],
-          admin: standardMe,
           activeVotes: [buildVote(vote)],
           contextChain: buildChannelContextChain(thirdChannelContextChain),
         },

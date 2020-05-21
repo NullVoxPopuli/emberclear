@@ -18,7 +18,7 @@ export default class ReceivedChannelVoteHandler extends Service {
 
   public async handleChannelVote(message: Message, raw: StandardMessage) {
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
-    if (identitiesIncludes(existingChannel?.members.toArray(), message.sender!)) {
+    if (identitiesIncludes(existingChannel?.contextChain.members.toArray(), message.sender!)) {
       let sentVote = message.metadata as StandardVote;
       let existingVote = await this.findOrCreator.findOrCreateVote(sentVote);
 
@@ -48,8 +48,8 @@ export default class ReceivedChannelVoteHandler extends Service {
         await saveVote(existingVote);
 
         // update user context
-        if (isVoteCompleted(existingVote.voteChain, existingChannel.admin)) {
-          if (isVoteCompletedPositive(existingVote.voteChain, existingChannel.admin)) {
+        if (isVoteCompleted(existingVote.voteChain, existingChannel.contextChain.admin)) {
+          if (isVoteCompletedPositive(existingVote.voteChain, existingChannel.contextChain.admin)) {
             await this.updateContextChain(existingChannel, existingVote);
           }
           let newActiveVotes = existingChannel.activeVotes.filter(
@@ -79,8 +79,6 @@ export default class ReceivedChannelVoteHandler extends Service {
         return;
     }
     channel.contextChain = updatedContextChain;
-    channel.admin = channel.contextChain.admin;
-    channel.members = channel.contextChain.members;
     await saveChannel(channel);
   }
 
