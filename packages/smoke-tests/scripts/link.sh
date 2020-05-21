@@ -4,7 +4,12 @@ set -ex
 
 mkdir -p tmp
 
-(cd tmp && git clone https://github.com/NullVoxPopuli/faltest.git && cd faltest && git checkout updates )
+(cd tmp \
+  && git clone https://github.com/NullVoxPopuli/faltest.git \
+  && cd faltest \
+  && git checkout updates \
+  && yarn \
+)
 
 atFaltest="tmp/faltest/packages/"
 
