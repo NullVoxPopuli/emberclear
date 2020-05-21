@@ -22,7 +22,10 @@ export default class ReceivedChannelMessageHandler extends Service {
       await message.save();
       const senderName = message.sender!.name;
       const channelName = existingChannel.name;
-      const msg = this.intl.t('ui.notificatoin.fromChannel', { senderName, channelName });
+      const msg = this.intl.t('ui.notifications.fromChannel', {
+        name: senderName,
+        channel: channelName,
+      });
 
       await this.notifications.info(msg);
 
@@ -31,6 +34,8 @@ export default class ReceivedChannelMessageHandler extends Service {
         // TODO: Do something to show/notify that the channel context is incorrect
         // TODO: The receiver notifies the sender with similar things
       }
+    } else {
+      await message.unloadRecord();
     }
     return message;
   }

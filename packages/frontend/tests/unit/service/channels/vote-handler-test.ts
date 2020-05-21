@@ -20,7 +20,6 @@ import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sor
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
 import { identitiesIncludes, identityEquals } from 'emberclear/utils/identity-comparison';
 import {
-  buildChannelInfo,
   buildVote,
   buildChannelMember,
   buildChannelContextChain,
@@ -43,16 +42,12 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
     let thirdChannelContextChain: ChannelContextChain;
     let sender: User;
     let thirdMember: User;
-    let standardSender: ChannelMember;
-    let standardThirdMember: ChannelMember;
 
     hooks.beforeEach(async function () {
       const me = getService('current-user');
       sender = await buildUser('sender');
       thirdMember = await buildUser('thirdMember');
       const store = getStore();
-      standardSender = buildChannelMember(sender);
-      standardThirdMember = buildChannelMember(thirdMember);
       baseChannelContextChain = store.createRecord('channel-context-chain', {
         admin: me.record!,
         members: [me.record!],
@@ -101,20 +96,19 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
     test('the sender is not in our channel context', async function (assert) {
       const store = getStore();
       const me = getService('current-user');
-      const standardMe = buildChannelMember(me.record!);
       const messageFactory = getService('messages/factory');
       let channelId = uuid();
       let message: StandardMessage = {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: thirdMember.id,
-          name: `user with id: ${thirdMember.id}`,
+          uid: thirdMember.uid,
+          name: `user with id: ${thirdMember.uid}`,
           location: '',
         },
         message: {
@@ -170,13 +164,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
@@ -249,13 +243,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
@@ -332,13 +326,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
@@ -430,13 +424,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
@@ -513,13 +507,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
@@ -611,13 +605,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
@@ -718,13 +712,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
@@ -824,13 +818,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
@@ -928,13 +922,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
@@ -1036,13 +1030,13 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
         target: TARGET.CHANNEL,
-        to: me.record!.uid,
+        to: channelId,
         ['time_sent']: new Date(),
         client: 'tests',
         ['client_version']: '0',
         sender: {
-          uid: sender.id,
-          name: `user with id: ${sender.id}`,
+          uid: sender.uid,
+          name: `user with id: ${sender.uid}`,
           location: '',
         },
         message: {
