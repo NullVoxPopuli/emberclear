@@ -92,7 +92,7 @@ module('Unit | Service | channels/message-handler', function (hooks) {
       ['client_version']: '0',
       sender: {
         uid: thirdMember.uid,
-        name: `user with id: ${thirdMember.id}`,
+        name: `user with id: ${thirdMember.uid}`,
         location: '',
       },
       message: {
@@ -142,7 +142,7 @@ module('Unit | Service | channels/message-handler', function (hooks) {
       ['client_version']: '0',
       sender: {
         uid: sender.uid,
-        name: `user with id: ${sender.id}`,
+        name: `user with id: ${sender.uid}`,
         location: '',
       },
       message: {
@@ -175,14 +175,10 @@ module('Unit | Service | channels/message-handler', function (hooks) {
       message
     );
 
-    let messages = await store.findAll('message');
+    let messages = (await store.findAll('message')).toArray();
     assert.equal(messages.length, 1);
-    console.error('printing received body');
-    console.error(messages.toArray().get(0).body);
-    console.error('printing sent body');
-    console.error(message.message.body);
-    assert.equal(messages.toArray().get(0).body, message.message.body);
-    assert.equal(messages.toArray().get(0).sender?.uid, sender.uid);
+    assert.equal(messages.get(0).body, message.message.body);
+    assert.equal(messages.get(0).sender?.uid, sender.uid);
   });
 
   skip("Info Sync message sent when sender's channel context is invalid", async function (assert) {
