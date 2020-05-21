@@ -24,6 +24,7 @@ import {
   buildVote,
   buildChannelMember,
   buildChannelContextChain,
+  buildVoteChain,
 } from 'emberclear/services/channels/-utils/channel-factory';
 
 module('Unit | Service | channels/vote-handler', function (hooks) {
@@ -131,8 +132,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       let ourChannel = store.createRecord('channel', {
         id: channelId,
         name: 'test',
-        members: [me.record, sender],
-        admin: me.record,
         activeVotes: [],
         contextChain: secondChannelContextChain,
       });
@@ -194,9 +193,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       };
       let ourChannel = store.createRecord('channel', {
         id: channelId,
-        members: [me.record, thirdMember, sender],
         name: 'test',
-        admin: me.record,
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
@@ -276,8 +273,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       let ourChannel = store.createRecord('channel', {
         id: channelId,
         name: 'test',
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
@@ -361,8 +356,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       let ourChannel = store.createRecord('channel', {
         id: channelId,
         name: 'test',
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
@@ -461,8 +454,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       let ourChannel = store.createRecord('channel', {
         id: channelId,
         name: 'test',
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
         activeVotes: [voteLocal],
         contextChain: thirdChannelContextChain,
       });
@@ -546,8 +537,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       let ourChannel = store.createRecord('channel', {
         id: channelId,
         name: 'test',
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
@@ -585,13 +574,12 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
     test('the sender sends an existing vote but vote is not complete', async function (assert) {
       const store = getStore();
       const me = getService('current-user');
-      const sender = await buildUser('sender');
-      const thirdMember = await buildUser('thirdMember');
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
-      const voteChainId = uuid();
+      const voteId = uuid();
+      const channelId = uuid();
       let ourVoteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [sender, me.record],
         yes: [thirdMember],
         no: [],
@@ -603,11 +591,12 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       });
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
+        id: voteId,
         voteChain: ourVoteChain,
       });
 
       let voteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [me.record],
         yes: [thirdMember],
         no: [sender],
@@ -618,16 +607,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         signature: undefined,
       });
       voteChain.signature = await signatureOf(voteChain, sender);
-      let vote = store.createRecord('vote', {
-        voteChain: voteChain,
-      });
-      let receivedChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
-        activeVotes: [voteChain],
-        contextChain: undefined /**doesn't get used and would be a pain to set up */,
-      });
       let message: StandardMessage = {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
@@ -644,17 +623,29 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         message: {
           body: 'malformed, cleartext body',
           contentType: 'is this used?',
-          metadata: buildVote(vote),
+          metadata: {
+            id: voteId,
+            voteChain: buildVoteChain(voteChain),
+          },
         },
-        channelInfo: buildChannelInfo(receivedChannel),
+        channelInfo: {
+          uid: channelId,
+          name: 'test',
+          activeVotes: [
+            {
+              id: voteId,
+              voteChain: buildVoteChain(voteChain),
+            },
+          ],
+          contextChain: buildChannelContextChain(thirdChannelContextChain),
+        },
       };
 
       let ourChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
+        id: channelId,
+        name: 'test',
         activeVotes: [ourVote],
-        contextChain: undefined /**doesn't get used and would be a pain to set up */,
+        contextChain: thirdChannelContextChain,
       });
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
@@ -663,26 +654,39 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         findOrCreateVote() {
           return ourVote;
         },
+        findOrCreateVoteChain() {
+          return voteChain;
+        },
       });
       const service = getService('channels/vote-handler');
-      service.handleChannelVote(messageFactory.buildNewReceivedMessage(message, sender), message);
+      await service.handleChannelVote(
+        messageFactory.buildNewReceivedMessage(message, sender),
+        message
+      );
 
       assert.equal(ourChannel.activeVotes.toArray().length, 1);
       assert.equal(ourChannel.activeVotes.toArray().get(0).id, ourVote.id);
-      assert.equal(ourVote.voteChain.id, vote.id);
-      assert.equal(ourChannel.contextChain, undefined);
+      assert.ok(identityEquals(ourChannel.contextChain.admin, thirdChannelContextChain.admin));
+      assert.equal(
+        ourChannel.contextChain.members.toArray().length,
+        thirdChannelContextChain.members.toArray().length
+      );
+      assert.ok(
+        ourChannel.contextChain.members
+          .toArray()
+          .every((member) => identitiesIncludes(thirdChannelContextChain.members.toArray(), member))
+      );
     });
 
     test('the sender sends an existing vote and vote is completed negatively', async function (assert) {
       const store = getStore();
       const me = getService('current-user');
-      const sender = await buildUser('sender');
-      const thirdMember = await buildUser('thirdMember');
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
-      const voteChainId = uuid();
+      const voteId = uuid();
+      const channelId = uuid();
       let ourVoteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [sender, me.record],
         yes: [],
         no: [thirdMember],
@@ -694,14 +698,15 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       });
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
+        id: voteId,
         voteChain: ourVoteChain,
       });
 
       let voteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [me.record],
         yes: [],
-        no: [sender, thirdMember],
+        no: [thirdMember, sender],
         target: memberToAdd,
         action: VOTE_ACTION.ADD,
         key: sender,
@@ -709,16 +714,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         signature: undefined,
       });
       voteChain.signature = await signatureOf(voteChain, sender);
-      let vote = store.createRecord('vote', {
-        voteChain: voteChain,
-      });
-      let receivedChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
-        activeVotes: [voteChain],
-        contextChain: undefined /**doesn't get used and would be a pain to set up */,
-      });
       let message: StandardMessage = {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
@@ -735,17 +730,29 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         message: {
           body: 'malformed, cleartext body',
           contentType: 'is this used?',
-          metadata: buildVote(vote),
+          metadata: {
+            id: voteId,
+            voteChain: buildVoteChain(voteChain),
+          },
         },
-        channelInfo: buildChannelInfo(receivedChannel),
+        channelInfo: {
+          uid: channelId,
+          name: 'test',
+          activeVotes: [
+            {
+              id: voteId,
+              voteChain: buildVoteChain(voteChain),
+            },
+          ],
+          contextChain: buildChannelContextChain(thirdChannelContextChain),
+        },
       };
 
       let ourChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
+        id: channelId,
+        name: 'test',
         activeVotes: [ourVote],
-        contextChain: undefined /**doesn't get used and would be a pain to set up */,
+        contextChain: thirdChannelContextChain,
       });
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
@@ -754,25 +761,38 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         findOrCreateVote() {
           return ourVote;
         },
+        findOrCreateVoteChain() {
+          return voteChain;
+        },
       });
       const service = getService('channels/vote-handler');
-      service.handleChannelVote(messageFactory.buildNewReceivedMessage(message, sender), message);
+      await service.handleChannelVote(
+        messageFactory.buildNewReceivedMessage(message, sender),
+        message
+      );
 
       assert.equal(ourChannel.activeVotes.toArray().length, 0);
-      assert.equal(ourVote.voteChain.id, vote.id);
-      assert.equal(ourChannel.contextChain, undefined);
+      assert.ok(identityEquals(ourChannel.contextChain.admin, thirdChannelContextChain.admin));
+      assert.equal(
+        ourChannel.contextChain.members.toArray().length,
+        thirdChannelContextChain.members.toArray().length
+      );
+      assert.ok(
+        ourChannel.contextChain.members
+          .toArray()
+          .every((member) => identitiesIncludes(thirdChannelContextChain.members.toArray(), member))
+      );
     });
 
     test('the sender sends an existing add vote and vote is completed positively', async function (assert) {
       const store = getStore();
       const me = getService('current-user');
-      const sender = await buildUser('sender');
-      const thirdMember = await buildUser('thirdMember');
       const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
-      const voteChainId = uuid();
+      const voteId = uuid();
+      const channelId = uuid();
       let ourVoteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [sender, me.record],
         yes: [thirdMember],
         no: [],
@@ -784,13 +804,14 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       });
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
+        id: voteId,
         voteChain: ourVoteChain,
       });
 
       let voteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [me.record],
-        yes: [sender, thirdMember],
+        yes: [thirdMember, sender],
         no: [],
         target: memberToAdd,
         action: VOTE_ACTION.ADD,
@@ -799,17 +820,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         signature: undefined,
       });
       voteChain.signature = await signatureOf(voteChain, sender);
-      let vote = store.createRecord('vote', {
-        voteChain: voteChain,
-      });
-
-      let receivedChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
-        activeVotes: [voteChain],
-        contextChain: thirdChannelContextChain,
-      });
       let message: StandardMessage = {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
@@ -826,15 +836,27 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         message: {
           body: 'malformed, cleartext body',
           contentType: 'is this used?',
-          metadata: buildVote(vote),
+          metadata: {
+            id: voteId,
+            voteChain: buildVoteChain(voteChain),
+          },
         },
-        channelInfo: buildChannelInfo(receivedChannel),
+        channelInfo: {
+          uid: channelId,
+          name: 'test',
+          activeVotes: [
+            {
+              id: voteId,
+              voteChain: buildVoteChain(voteChain),
+            },
+          ],
+          contextChain: buildChannelContextChain(thirdChannelContextChain),
+        },
       };
 
       let ourChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
+        id: channelId,
+        name: 'test',
         activeVotes: [ourVote],
         contextChain: thirdChannelContextChain,
       });
@@ -845,32 +867,36 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         findOrCreateVote() {
           return ourVote;
         },
+        findOrCreateVoteChain() {
+          return voteChain;
+        },
       });
       const service = getService('channels/vote-handler');
-      service.handleChannelVote(messageFactory.buildNewReceivedMessage(message, sender), message);
+      await service.handleChannelVote(
+        messageFactory.buildNewReceivedMessage(message, sender),
+        message
+      );
 
       assert.equal(ourChannel.activeVotes.toArray().length, 0);
-      assert.equal(ourVote.voteChain.id, vote.id);
+      assert.equal(ourVote.voteChain.id, voteChain.id);
       assert.equal(ourChannel.contextChain.admin, me.record);
       assert.equal(ourChannel.contextChain.members.toArray().length, 4);
       assert.ok(identitiesIncludes(ourChannel.contextChain.members.toArray(), me.record!));
       assert.ok(identitiesIncludes(ourChannel.contextChain.members.toArray(), sender));
       assert.ok(identitiesIncludes(ourChannel.contextChain.members.toArray(), thirdMember));
       assert.ok(identitiesIncludes(ourChannel.contextChain.members.toArray(), memberToAdd));
-      assert.equal(ourChannel.contextChain.supportingVote, vote.voteChain.id);
+      assert.equal(ourChannel.contextChain.supportingVote!.id, voteChain.id);
       assert.equal(ourChannel.contextChain.previousChain!.id, thirdChannelContextChain.id);
     });
 
     test('the sender sends an existing promote vote and vote is completed positively', async function (assert) {
       const store = getStore();
       const me = getService('current-user');
-      const sender = await buildUser('sender');
-      const thirdMember = await buildUser('thirdMember');
-      const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
-      const voteChainId = uuid();
+      const voteId = uuid();
+      const channelId = uuid();
       let ourVoteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [sender, me.record],
         yes: [thirdMember],
         no: [],
@@ -882,13 +908,14 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       });
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
+        id: voteId,
         voteChain: ourVoteChain,
       });
 
       let voteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [me.record],
-        yes: [sender, thirdMember],
+        yes: [thirdMember, sender],
         no: [],
         target: sender,
         action: VOTE_ACTION.PROMOTE,
@@ -897,17 +924,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         signature: undefined,
       });
       voteChain.signature = await signatureOf(voteChain, sender);
-      let vote = store.createRecord('vote', {
-        voteChain: voteChain,
-      });
-
-      let receivedChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
-        activeVotes: [voteChain],
-        contextChain: thirdChannelContextChain,
-      });
       let message: StandardMessage = {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
@@ -924,15 +940,27 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         message: {
           body: 'malformed, cleartext body',
           contentType: 'is this used?',
-          metadata: buildVote(vote),
+          metadata: {
+            id: voteId,
+            voteChain: buildVoteChain(voteChain),
+          },
         },
-        channelInfo: buildChannelInfo(receivedChannel),
+        channelInfo: {
+          uid: channelId,
+          name: 'test',
+          activeVotes: [
+            {
+              id: voteId,
+              voteChain: buildVoteChain(voteChain),
+            },
+          ],
+          contextChain: buildChannelContextChain(thirdChannelContextChain),
+        },
       };
 
       let ourChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
+        id: channelId,
+        name: 'test',
         activeVotes: [ourVote],
         contextChain: thirdChannelContextChain,
       });
@@ -943,31 +971,40 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         findOrCreateVote() {
           return ourVote;
         },
+        findOrCreateVoteChain() {
+          return voteChain;
+        },
       });
       const service = getService('channels/vote-handler');
-      service.handleChannelVote(messageFactory.buildNewReceivedMessage(message, sender), message);
+      await service.handleChannelVote(
+        messageFactory.buildNewReceivedMessage(message, sender),
+        message
+      );
 
       assert.equal(ourChannel.activeVotes.toArray().length, 0);
-      assert.equal(ourVote.voteChain.id, vote.id);
+      assert.equal(ourVote.voteChain.id, voteChain.id);
       assert.equal(ourChannel.contextChain.admin, sender);
-      assert.equal(ourChannel.contextChain.members.toArray().length, 3);
-      assert.ok(identitiesIncludes(ourChannel.contextChain.members.toArray(), me.record!));
-      assert.ok(identitiesIncludes(ourChannel.contextChain.members.toArray(), sender));
-      assert.ok(identitiesIncludes(ourChannel.contextChain.members.toArray(), thirdMember));
-      assert.equal(ourChannel.contextChain.supportingVote, vote.voteChain.id);
+      assert.equal(
+        ourChannel.contextChain.members.toArray().length,
+        thirdChannelContextChain.members.toArray().length
+      );
+      assert.ok(
+        ourChannel.contextChain.members
+          .toArray()
+          .every((member) => identitiesIncludes(thirdChannelContextChain.members.toArray(), member))
+      );
+      assert.equal(ourChannel.contextChain.supportingVote!.id, voteChain.id);
       assert.equal(ourChannel.contextChain.previousChain!.id, thirdChannelContextChain.id);
     });
 
     test('the sender sends a remove existing vote and vote is completed positively', async function (assert) {
       const store = getStore();
       const me = getService('current-user');
-      const sender = await buildUser('sender');
-      const thirdMember = await buildUser('thirdMember');
-      const memberToAdd = await buildUser('memberToAdd');
       const messageFactory = getService('messages/factory');
-      const voteChainId = uuid();
+      const voteId = uuid();
+      const channelId = uuid();
       let ourVoteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [sender, me.record],
         yes: [thirdMember],
         no: [],
@@ -979,13 +1016,14 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
       });
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
+        id: voteId,
         voteChain: ourVoteChain,
       });
 
       let voteChain = store.createRecord('vote-chain', {
-        id: voteChainId,
+        id: uuid(),
         remaining: [me.record],
-        yes: [sender, thirdMember],
+        yes: [thirdMember, sender],
         no: [],
         target: sender,
         action: VOTE_ACTION.REMOVE,
@@ -994,17 +1032,6 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         signature: undefined,
       });
       voteChain.signature = await signatureOf(voteChain, sender);
-      let vote = store.createRecord('vote', {
-        voteChain: voteChain,
-      });
-
-      let receivedChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
-        activeVotes: [voteChain],
-        contextChain: thirdChannelContextChain,
-      });
       let message: StandardMessage = {
         id: uuid(),
         type: TYPE.CHANNEL_VOTE,
@@ -1021,15 +1048,27 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         message: {
           body: 'malformed, cleartext body',
           contentType: 'is this used?',
-          metadata: buildVote(vote),
+          metadata: {
+            id: voteId,
+            voteChain: buildVoteChain(voteChain),
+          },
         },
-        channelInfo: buildChannelInfo(receivedChannel),
+        channelInfo: {
+          uid: channelId,
+          name: 'test',
+          activeVotes: [
+            {
+              id: voteId,
+              voteChain: buildVoteChain(voteChain),
+            },
+          ],
+          contextChain: buildChannelContextChain(thirdChannelContextChain),
+        },
       };
 
       let ourChannel = store.createRecord('channel', {
-        id: uuid(),
-        members: [me.record, thirdMember, sender],
-        admin: me.record,
+        id: channelId,
+        name: 'test',
         activeVotes: [ourVote],
         contextChain: thirdChannelContextChain,
       });
@@ -1040,17 +1079,23 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         findOrCreateVote() {
           return ourVote;
         },
+        findOrCreateVoteChain() {
+          return voteChain;
+        },
       });
       const service = getService('channels/vote-handler');
-      service.handleChannelVote(messageFactory.buildNewReceivedMessage(message, sender), message);
+      await service.handleChannelVote(
+        messageFactory.buildNewReceivedMessage(message, sender),
+        message
+      );
 
       assert.equal(ourChannel.activeVotes.toArray().length, 0);
-      assert.equal(ourVote.voteChain.id, vote.id);
-      assert.equal(ourChannel.contextChain.admin, me.record);
+      assert.equal(ourVote.voteChain.id, voteChain.id);
+      assert.equal(ourChannel.contextChain.admin, me.record!);
       assert.equal(ourChannel.contextChain.members.toArray().length, 2);
       assert.ok(identitiesIncludes(ourChannel.contextChain.members.toArray(), me.record!));
       assert.ok(identitiesIncludes(ourChannel.contextChain.members.toArray(), thirdMember));
-      assert.equal(ourChannel.contextChain.supportingVote, vote.voteChain.id);
+      assert.equal(ourChannel.contextChain.supportingVote!.id, voteChain.id);
       assert.equal(ourChannel.contextChain.previousChain!.id, thirdChannelContextChain.id);
     });
   });

@@ -52,9 +52,9 @@ export default class ReceivedChannelVoteHandler extends Service {
           if (isVoteCompletedPositive(existingVote.voteChain, existingChannel.contextChain.admin)) {
             await this.updateContextChain(existingChannel, existingVote);
           }
-          let newActiveVotes = existingChannel.activeVotes.filter(
-            (activeVote) => activeVote.id === existingVote!.id
-          );
+          let newActiveVotes = existingChannel.activeVotes
+            .toArray()
+            .filter((activeVote) => activeVote.id !== existingVote!.id);
           existingChannel.activeVotes = newActiveVotes;
           await saveChannel(existingChannel);
         }
@@ -92,9 +92,9 @@ export default class ReceivedChannelVoteHandler extends Service {
   }
 
   private updateRemoveContextChain(channel: Channel, vote: Vote): ChannelContextChain {
-    let newMembersArray = channel.contextChain.members.filter(
-      (identity) => !identityEquals(identity, vote.voteChain.target)
-    );
+    let newMembersArray = channel.contextChain.members
+      .toArray()
+      .filter((identity) => !identityEquals(identity, vote.voteChain.target));
     return this.store.createRecord('channelContextChain', {
       admin: channel.contextChain.admin,
       members: newMembersArray,
@@ -104,9 +104,11 @@ export default class ReceivedChannelVoteHandler extends Service {
   }
 
   private updateAddContextChain(channel: Channel, vote: Vote): ChannelContextChain {
+    let updatedMembers = channel.contextChain.members.toArray();
+    updatedMembers.push(vote.voteChain.target);
     return this.store.createRecord('channelContextChain', {
       admin: channel.contextChain.admin,
-      members: channel.contextChain.members.toArray().push(vote.voteChain.target),
+      members: updatedMembers,
       supportingVote: vote.voteChain,
       previousChain: channel.contextChain,
     });
