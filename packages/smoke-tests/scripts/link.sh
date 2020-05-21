@@ -4,7 +4,7 @@ set -ex
 
 mkdir -p tmp
 
-if [! -d "tmp/faltest"]; then
+if [ ! -d "tmp/faltest" ]; then
   (cd tmp \
     && git clone https://github.com/NullVoxPopuli/faltest.git \
     && cd faltest \
@@ -13,7 +13,7 @@ if [! -d "tmp/faltest"]; then
   )
 fi
 
-atFaltest="tmp/faltest/packages/"
+atFaltest="tmp/faltest/packages"
 
 ( cd "$atFaltest/cli" && yarn link )
 ( cd "$atFaltest/lifecycle" && yarn link )
