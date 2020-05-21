@@ -8,9 +8,7 @@ import ChannelContextChain from 'emberclear/models/channel-context-chain';
 export function buildChannelInfo(channel: Channel): StandardMessage['channelInfo'] {
   return {
     uid: channel.id,
-    admin: buildChannelMember(channel.admin),
     name: channel.name,
-    members: channel.members.map((member) => buildChannelMember(member)),
     activeVotes: channel.activeVotes.map((activeVote) => buildVote(activeVote)),
     contextChain: buildChannelContextChain(channel.contextChain),
   };
@@ -23,9 +21,12 @@ export function buildChannelContextChain(
     id: contextChain.id,
     admin: buildChannelMember(contextChain.admin),
     members: contextChain.members.map((member) => buildChannelMember(member)),
-    supportingVote: buildVoteChain(contextChain.supportingVote),
+    supportingVote:
+      !contextChain.previousChain && !contextChain.supportingVote
+        ? undefined
+        : buildVoteChain(contextChain.supportingVote),
     previousChain:
-      contextChain.previousChain === undefined
+      !contextChain.previousChain && !contextChain.supportingVote
         ? undefined
         : buildChannelContextChain(contextChain.previousChain),
   };
@@ -55,10 +56,9 @@ export function buildVoteChain(voteChain: VoteChain): StandardVoteChain {
     target: buildChannelMember(voteChain.target),
     action: voteChain.action,
     key: buildChannelMember(voteChain.key),
-    previousVoteChain:
-      voteChain.previousVoteChain === undefined
-        ? undefined
-        : buildVoteChain(voteChain.previousVoteChain),
+    previousVoteChain: !voteChain.previousVoteChain
+      ? undefined
+      : buildVoteChain(voteChain.previousVoteChain),
     signature: toHex(voteChain.signature),
   };
 }

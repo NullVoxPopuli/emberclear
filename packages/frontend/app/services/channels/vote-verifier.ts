@@ -34,7 +34,7 @@ export default class VoteVerifier extends Service {
       return false;
     }
 
-    if (voteToVerify.previousVoteChain === undefined) {
+    if (!voteToVerify.previousVoteChain) {
       return true;
     }
 
@@ -56,8 +56,8 @@ export default class VoteVerifier extends Service {
     }
 
     return (
-      identityEquals(vote.previousVoteChain!.target, vote.target) &&
-      vote.action === vote.previousVoteChain!.action
+      identityEquals(vote.previousVoteChain.target, vote.target) &&
+      vote.action === vote.previousVoteChain.action
     );
   }
 
@@ -68,7 +68,7 @@ export default class VoteVerifier extends Service {
       return this.isProperMoveBase(vote);
     }
     let isValid = false;
-    if (identitiesIncludes(vote.previousVoteChain!.yes.toArray(), vote.key)) {
+    if (identitiesIncludes(vote.previousVoteChain.yes.toArray(), vote.key)) {
       isValid = this.isProperMove(
         vote.yes.toArray(),
         vote.remaining.toArray(),
@@ -78,7 +78,7 @@ export default class VoteVerifier extends Service {
         vote.previousVoteChain.remaining.toArray(),
         vote.previousVoteChain.no.toArray()
       );
-    } else if (identitiesIncludes(vote.previousVoteChain!.no.toArray(), vote.key)) {
+    } else if (identitiesIncludes(vote.previousVoteChain.no.toArray(), vote.key)) {
       isValid = this.isProperMove(
         vote.no.toArray(),
         vote.yes.toArray(),
@@ -88,7 +88,7 @@ export default class VoteVerifier extends Service {
         vote.previousVoteChain.remaining.toArray(),
         vote.previousVoteChain.yes.toArray()
       );
-    } else if (identitiesIncludes(vote.previousVoteChain!.remaining.toArray(), vote.key)) {
+    } else if (identitiesIncludes(vote.previousVoteChain.remaining.toArray(), vote.key)) {
       isValid = this.isProperMove(
         vote.remaining.toArray(),
         vote.yes.toArray(),
