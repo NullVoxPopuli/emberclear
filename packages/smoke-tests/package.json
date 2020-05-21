@@ -5,12 +5,13 @@
   "license": "MIT",
   "scripts": {
     "lint:js": "yarn eslint .",
-    "test": "yarn faltest --browsers 2 --timeouts-override 900000"
+    "link:faltest": "./scripts/link.sh",
+    "test": "yarn link:faltest && yarn faltest --browsers 2 --timeouts-override 900000"
   },
   "devDependencies": {
-    "@faltest/cli": "2.1.1",
-    "@faltest/lifecycle": "2.0.15",
-    "@faltest/page-objects": "3.0.10",
+    "@faltest/cli": "*",
+    "@faltest/lifecycle": "*",
+    "@faltest/page-objects": "*",
     "babel-eslint": "10.1.0",
     "eslint": "7.0.0",
     "eslint-config-prettier": "6.11.0",
@@ -21,7 +22,7 @@
     "prettier": "2.0.5"
   },
   "volta": {
-    "node": "12.14.1",
+    "node": "12.16.3",
     "yarn": "1.22.4"
   }
 }

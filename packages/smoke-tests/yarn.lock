@@ -113,7 +113,7 @@
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
 
-"@faltest/cli@2.1.1":
+"@faltest/cli@*":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.1.1.tgz#50896c6e2878c1bc6eaa68d93b2d9357cf54784b"
   integrity sha512-lFEkMs2nO/g+K0LDEXvnmIt2ULVcHQyW5g5FYFy9StbbE9O/tFbQDIIsYUAIpcKyNOeIxhRLqAXqK47Bhp1BUQ==
@@ -125,7 +125,7 @@
     yargs "^15.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@2.0.15":
+"@faltest/lifecycle@*":
   version "2.0.15"
   resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-2.0.15.tgz#1ee91b1a9ba3510e41ea750bedf85fe3ff7c6536"
   integrity sha512-XoXjJF3B6mvXYNys+2nlcEOC7EKvqIMiIS+CPQ3EJtKXtnl4pGecWjB8SNKQpJqgyLqQQ1HuPkh/9jyBSkkAKA==
@@ -144,7 +144,7 @@
     glob "^7.1.4"
     mocha-helpers "^4.2.1"
 
-"@faltest/page-objects@3.0.10":
+"@faltest/page-objects@*":
   version "3.0.10"
   resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.0.10.tgz#1348c0ca5b9aebd857a40ac49c771654ddb69c81"
   integrity sha512-gyAjuvvvbuVup0kCumgPQJ3rGNpzROmLtQ+tq9z4wUlT8Y6behfvSwZDu8YZbOMOJT8UuCssenDzexvZ3MYLTA==
