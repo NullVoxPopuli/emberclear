@@ -17,6 +17,8 @@ export default class Channel extends Model {
 
   @hasMany('vote', { async: false }) activeVotes!: Vote[];
   @belongsTo('channel-context-chain', { async: false }) contextChain!: ChannelContextChain;
+
+  // Unused, but necessary to properly set up relationships, therefore async
   @hasMany('message', { async: true }) sentIn!: Message;
 }
 
