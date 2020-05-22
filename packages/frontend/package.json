@@ -190,7 +190,7 @@
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-visualizer": "^4.0.4",
     "sass-lint": "^1.13.1",
-    "stylelint": "^13.3.3",
+    "stylelint": "^13.5.0",
     "stylelint-config-standard": "^20.0.0",
     "testdouble": "^3.15.0",
     "testem-failure-only-reporter": "^0.0.1",
