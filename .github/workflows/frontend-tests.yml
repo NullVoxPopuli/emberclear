@@ -164,7 +164,7 @@ jobs:
     name: Deploy Preview
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: [tests, bundle_analysis, build_app]
+    needs: [bundle_analysis, build_app]
 
     steps:
     - uses: actions/checkout@v2
