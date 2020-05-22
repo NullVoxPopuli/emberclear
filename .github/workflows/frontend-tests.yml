@@ -154,7 +154,7 @@ jobs:
       run: |
         export DEPLOY_URL=$(cat ./deploy-url.txt)
         cd packages/smoke-tests
-        yarn
+        DETECT_CHROMEDRIVER_VERSION=true yarn
         yarn test --target pull-request --headless
 
 
