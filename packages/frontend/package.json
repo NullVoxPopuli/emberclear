@@ -138,7 +138,7 @@
     "ember-hbs-minifier": "^0.5.0",
     "ember-inflector": "^3.0.1",
     "ember-intl": "^4.3.2",
-    "ember-jsqr": "^0.9.6",
+    "ember-jsqr": "^0.9.7",
     "ember-keyboard": "^5.0.0",
     "ember-load-initializers": "2.1.1",
     "ember-localforage-adapter": "github:NullVoxPopuli/ember-localforage-adapter#9423bebe9c72efce0a6c1bbf478e8af8d140b165",
