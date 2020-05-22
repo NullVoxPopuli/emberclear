@@ -138,7 +138,7 @@ jobs:
     name: E2E Tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    # needs: [deploy_preview]
+    needs: [deploy_preview]
 
     steps:
     - uses: actions/checkout@v2
