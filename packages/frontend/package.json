@@ -162,7 +162,7 @@
     "ember-template-lint": "2.7.0",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "^4.1.0",
-    "ember-test-waiters": "^2.1.0",
+    "ember-test-waiters": "^2.1.1",
     "ember-usable": "pzuraq/ember-usable#master",
     "ember-web-app": "^4.0.0",
     "eslint": "^7.0.0",
