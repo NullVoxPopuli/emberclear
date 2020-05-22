@@ -106,9 +106,9 @@
     to-fast-properties "^2.0.0"
 
 "@faltest/browser@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@faltest/browser/-/browser-2.0.5.tgz#f804dac3fe2573b3e43a650da5d5f019aa81beca"
-  integrity sha512-E+2DDj3DHh1YO/HMYQQP5fCSh+ECTlrqEUnNuz9IguQNyUuINT6olkqlzxDs+M7MsvRibZnTcQwV7GysliUAfg==
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@faltest/browser/-/browser-2.0.7.tgz#1304c873a15a61f6ed9f1bd6cfedfe0fd7dca534"
+  integrity sha512-uhr/J8KSrAHcpRWHu32o28kt2NItIwP9zrX0zEPW+sfLYxC/iHlxI+MsYo0/oDi1NprNK6k8KwZ8a/rLr+ZCwA==
   dependencies:
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
@@ -136,13 +136,13 @@
     "@faltest/browser" "^2.0.5"
 
 "@faltest/mocha@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@faltest/mocha/-/mocha-1.0.7.tgz#b3970a33cf442fbebbbf593e432130acc91ad057"
-  integrity sha512-hdGwe7mDE0/IKV5yw/hNZXk7hLm4Fm+iBSFlfLm2uf295PbyvgrwOTkOms5WU4kBQgwsERYEvS9Tc0aLfBnD0A==
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@faltest/mocha/-/mocha-1.0.10.tgz#d20e9e718aed6576142aa920762b205b96ecb6ac"
+  integrity sha512-haVyft/0TsKtHpWD7xIEbl/z+4wQNe5wWh+vy4CpNFuH10eM02fto/YSg6pboSfu2gks0BA3GNiZMqWkC/LH5g==
   dependencies:
     choma "^1.2.1"
     glob "^7.1.4"
-    mocha-helpers "^4.2.1"
+    mocha-helpers "^4.3.0"
 
 "@faltest/page-objects@3.0.10":
   version "3.0.10"
@@ -153,27 +153,32 @@
     verror-extra "^1.0.0"
 
 "@faltest/remote@^3.0.9":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-3.0.9.tgz#166a30f8b8f40e3c1a85f3a2f9e00ba7d7f634d1"
-  integrity sha512-ndBcDsor0JZ/rCv8ByYF5/HVf+1ANYlngnfa9eRFNTJn6rsl4dUQLoMEtFOPWivaSZ91NTrXwEF0BgvUco70xQ==
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-3.2.0.tgz#37570483a3e1dd088561b4aed775da32c1e62f03"
+  integrity sha512-asClb6lc3CvR5e7mUoWbK+Bh8R/hQkbOl62GU4crpYdZS0gKfRAkSiglZnMwGaAqMbzRtU/mogUCbvLrjfhgow==
   dependencies:
     "@faltest/utils" "^2.0.4"
-    chromedriver "79.0.0"
+    chromedriver "80.0.0"
     execa "^3.0.0"
     fkill "^6.2.0"
     geckodriver "1.19.1"
     get-port "^5.0.0"
     ps-list "^6.3.0"
-    webdriverio "5.18.4"
+    webdriverio "5.18.5"
     yn "^3.1.1"
 
 "@faltest/utils@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@faltest/utils/-/utils-2.0.4.tgz#c95074168984116028f20a2898e6c567a695df80"
-  integrity sha512-vUwq+bGB0K29SVyXpL3/c1DBJj3qjhjjyJ3uog5HruCbLSF3/5WXM77LDKn2EaKslMSkv8XLORoGlQ6kOpVWgQ==
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@faltest/utils/-/utils-2.0.6.tgz#5537dbbbeb027bd119afd33f651298156b8ed49f"
+  integrity sha512-SVikRUuQT712XINu9yKTFw9TN+Evbh4gXl3OehORPN/PZrSv+p/sV6JZpeyBEquNMeGXMoZwz2cr4C2xk4eTag==
   dependencies:
     callsites "^3.1.0"
     debug "^4.1.1"
+
+"@testim/chrome-version@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@testim/chrome-version/-/chrome-version-1.0.7.tgz#0cd915785ec4190f08a3a6acc9b61fc38fb5f1a9"
+  integrity sha512-8UT/J+xqCYfn3fKtOznAibsHpiuDshCb0fwgWxRazTT19Igp9ovoXMPhXyLD6m3CKQGTMHgqoxaFfMWaL40Rnw==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
@@ -618,11 +623,12 @@ chownr@^1.0.1:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.3.tgz#42d837d5239688d55f303003a508230fa6727142"
   integrity sha512-i70fVHhmV3DtTl6nqvZOnIjbY0Pe4kAUjwHj8z0zAdgBtYrJyYwLKCCuRBQ5ppkyL0AkN7HKRnETdmdp1zqNXw==
 
-chromedriver@79.0.0:
-  version "79.0.0"
-  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-79.0.0.tgz#1660ac29924dfcd847911025593d6b6746aeea35"
-  integrity sha512-DO29C7ntJfzu6q1vuoWwCON8E9x5xzopt7Q41A7Dr7hBKcdNpGw1l9DTt9b+l1qviOWiJLGsD+jHw21ptEHubA==
+chromedriver@80.0.0:
+  version "80.0.0"
+  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-80.0.0.tgz#f9e2af4c2117e7e07dc4558cf9496a70ad6c3ddc"
+  integrity sha512-W4tIbaOve7HeGFLnbbZMV4AUlnBaapL+H41fvDFKOXCmUvgPhxVN9y/c3EgmsOcokLQkqxpOC/txEujms1eT0w==
   dependencies:
+    "@testim/chrome-version" "^1.0.7"
     del "^4.1.1"
     extract-zip "^1.6.7"
     mkdirp "^0.5.1"
@@ -2127,10 +2133,10 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mocha-helpers@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/mocha-helpers/-/mocha-helpers-4.2.1.tgz#494ac88a1f16854c1daa6f07e7bfa37a1b0ad84d"
-  integrity sha512-ezXtM7NiHuYwk09pGHpsE2iIq4OOZ2KQNPGzPNahU2h9uPOGVhw4RkvWMAqaKS0BPlP+VMDEHXcnkHIis2kEpw==
+mocha-helpers@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/mocha-helpers/-/mocha-helpers-4.3.0.tgz#9a499686a3681b1b6fdf69866d61e4c29a630081"
+  integrity sha512-9KjxN8lUOoU4c9ealu8To41EWE+7zmFvYncuB7wMKYDK2ol78IeOVpBIy+2kCssksIUWwE0tFk2bLxevtYbY9Q==
   dependencies:
     callsites "^3.0.0"
     commondir "^1.0.1"
@@ -3210,10 +3216,10 @@ webdriver@5.18.4:
     lodash.merge "^4.6.1"
     request "^2.83.0"
 
-webdriverio@5.18.4:
-  version "5.18.4"
-  resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-5.18.4.tgz#1185e7455351c45f110699a372741f8a5cba16e1"
-  integrity sha512-xHK987AOWjB9gbk6B9+SbyxSn9m9ujbfFanNEdJDW+131L4e7X4bCahTH744lRxb+BjEugozxTAL649JeKEEqA==
+webdriverio@5.18.5:
+  version "5.18.5"
+  resolved "https://registry.yarnpkg.com/webdriverio/-/webdriverio-5.18.5.tgz#100c1ae61eef35cffee3c17ae0ecfa2e9b001df4"
+  integrity sha512-1DR9l4eQb9SQNbiG/yywF7dpGoCWcUWpkO4dzUR7bSvhDo4hay/EK/5U5CYoxT13HfYV9QFKkpyOiXb2vMziqw==
   dependencies:
     "@wdio/config" "5.18.4"
     "@wdio/logger" "5.16.10"
