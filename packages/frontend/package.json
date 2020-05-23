@@ -41,7 +41,7 @@
   },
   "lint-staged": {
     "*.{ts,js}": [
-      "yarn lint:js --fix --quiet"
+      "yarn lint:js --fix --quiet --cache"
     ],
     "*.hbs": [
       "yarn lint:hbs"

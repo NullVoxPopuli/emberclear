@@ -36,6 +36,7 @@ let babelConfig = {
   ],
   plugins: [
     require('@babel/plugin-proposal-class-properties'),
+
     require('@babel/plugin-proposal-object-rest-spread'),
   ],
   exclude: /node_modules/,
