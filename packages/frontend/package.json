@@ -192,7 +192,7 @@
     "ember-test-waiters": "^2.1.1",
     "ember-usable": "pzuraq/ember-usable#master",
     "ember-web-app": "^4.0.0",
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-decorator-position": "^2.0.4",
     "eslint-plugin-ember": "8.5.2",
