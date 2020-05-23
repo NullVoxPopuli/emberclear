@@ -115,7 +115,7 @@
     "ember-autostash-modifier": "^0.1.12",
     "ember-cli": "^3.18.0",
     "ember-cli-app-version": "^3.2.0",
-    "ember-cli-babel": "7.19.0",
+    "ember-cli-babel": "7.20.0",
     "ember-cli-clipboard": "github:NullVoxPopuli/ember-cli-clipboard#octaneify",
     "ember-cli-code-coverage": "github:kategengler/ember-cli-code-coverage",
     "ember-cli-dependency-checker": "^3.2.0",
