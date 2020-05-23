@@ -1,4 +1,4 @@
-export async function waitUntilTruthy(func: Function, timeoutMs = 500) {
+export async function waitUntilTruthy(func: () => Promise<boolean>, timeoutMs = 500) {
   let interval: NodeJS.Timeout;
 
   const timeout = new Promise((_resolve, reject) => {

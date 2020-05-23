@@ -8,6 +8,7 @@ module('Unit | Model | user', function (hooks) {
   // Replace this with your real tests.
   test('it exists', function (assert) {
     let model = getStore().createRecord('user', {});
+
     assert.ok(model);
   });
 });

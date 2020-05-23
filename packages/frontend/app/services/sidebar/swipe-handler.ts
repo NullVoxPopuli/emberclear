@@ -110,6 +110,7 @@ export class SwipeHandler {
     });
 
     let boundResize = this.resizeHandler.bind(this);
+
     window.addEventListener('resize', boundResize);
   }
 

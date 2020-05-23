@@ -42,6 +42,7 @@ module('Workers | Crypto | nacl', function () {
     const sender = await nacl.generateAsymmetricKeys();
 
     let bigMsg: number[] = [];
+
     for (let i = 0; i < 128; i++) {
       bigMsg = bigMsg.concat([104, 101, 108, 108, 111]);
     }
@@ -67,6 +68,7 @@ module('Workers | Crypto | nacl', function () {
     const sender = await nacl.generateSigningKeys();
 
     let bigMsg: number[] = [];
+
     for (let i = 0; i < 128; i++) {
       bigMsg = bigMsg.concat([104, 101, 108, 108, 111]);
     }

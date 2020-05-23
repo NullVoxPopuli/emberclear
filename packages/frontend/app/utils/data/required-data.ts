@@ -51,6 +51,7 @@ export async function ensureRelays(applicationInstance: ApplicationInstance) {
         ...defaultRelay,
         priority: i + 1,
       });
+
       return record.save();
     })
   );

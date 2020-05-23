@@ -10,11 +10,13 @@ module('Integration | Component | q-r-scanner', function (hooks) {
   setupRenderingTest(hooks);
 
   let original: any;
+
   hooks.beforeEach(function () {
     // specific to qr-scanner.js~ish
     if (!navigator.mediaDevices) {
       (navigator.mediaDevices as any) = {};
     }
+
     original = navigator.mediaDevices.getUserMedia;
     navigator.mediaDevices.getUserMedia = () => Promise.reject('Camera not found');
   });

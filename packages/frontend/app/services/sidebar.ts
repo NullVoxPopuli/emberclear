@@ -55,6 +55,7 @@ export default class Sidebar extends Service {
     if (!this.currentUser.isLoggedIn) {
       if (this.slider) {
         await waitForPromise(this.slider.close());
+
         if (this.slider) {
           this.slider.destroy();
           this.slider = undefined;

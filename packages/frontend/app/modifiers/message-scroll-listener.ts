@@ -6,7 +6,7 @@ import ChatScroller from 'emberclear/services/chat-scroller';
 
 interface Args {
   positional: [Message[]];
-  named: {};
+  named: EmptyRecord;
 }
 
 export default class MessageScrollListener extends Modifier<Args> {

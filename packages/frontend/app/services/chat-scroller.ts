@@ -45,6 +45,7 @@ export default class ChatScroller extends Service {
 
   private shouldScroll(appendedMessage: HTMLElement) {
     const container = document.querySelector('.messages') as HTMLElement;
+
     if (!container) return false;
 
     if (appendedMessage) {
@@ -68,9 +69,11 @@ export default class ChatScroller extends Service {
 
 function isLastVisible(id: string) {
   const container = document.querySelector('.message-list') as HTMLElement;
+
   if (!container) return false;
 
   const messages = container.querySelectorAll('.message')!;
+
   if (!messages) return false;
 
   const lastMessage = document.getElementById(id) || document.querySelector(`[data-id="${id}"]`);

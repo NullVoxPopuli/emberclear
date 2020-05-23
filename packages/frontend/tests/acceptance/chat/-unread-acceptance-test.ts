@@ -43,6 +43,7 @@ module('Acceptance | Chat', function (hooks) {
           to: 'me',
           readAt: null,
         });
+
         await record.save();
         await waitFor(selectors.headerUnread);
       });

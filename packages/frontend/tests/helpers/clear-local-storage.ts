@@ -3,6 +3,7 @@ import { getContext } from '@ember/test-helpers';
 
 async function cleanEverything() {
   const context = getContext();
+
   if (context) {
     const adapter = context.owner.lookup<any>('adapter:application');
 

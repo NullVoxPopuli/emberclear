@@ -7,7 +7,7 @@ import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 type Args = {
   positional: [Message[], Message];
-  named: {};
+  named: EmptyRecord;
 };
 
 export default class MaybeNudgeToBottom extends Modifier<Args> {

@@ -12,7 +12,7 @@ type StoreService = import('@ember-data/store').default;
 
 interface Args {
   positional: [Contact];
-  named: {};
+  named: EmptyRecord;
 }
 
 export default class HasUnread extends Modifier<Args> {

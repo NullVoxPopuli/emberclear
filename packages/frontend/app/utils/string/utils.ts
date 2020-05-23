@@ -24,12 +24,14 @@ const URL_PATTERN = /(((http|https):\/\/)|(www)){1}[a-zA-Z0-9./?:@\-_=#]+\.([a-z
 
 export function parseURLs(text: string): string[] {
   const urls = text.match(URL_PATTERN);
+
   if (urls === null) return [];
 
   return urls.map((u) => u.replace('gifv', 'mp4'));
 }
 
 const HOST_FROM_URL_REGEX = /\/\/(.+)\//;
+
 export function hostFromURL(url: string) {
   const matches = url.match(HOST_FROM_URL_REGEX);
 

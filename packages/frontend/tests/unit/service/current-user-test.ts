@@ -15,6 +15,7 @@ module('Unit | Service | identity', function (hooks) {
 
   test('importFromKey where privateSigningKey is not present generates signing keys', async function (assert) {
     let keys = await generateAsymmetricKeys();
+
     await service.importFromKey('name', keys.privateKey);
     assert.ok(service.record);
     assert.ok(service.record!.publicSigningKey);

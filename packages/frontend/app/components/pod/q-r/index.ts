@@ -13,9 +13,7 @@ import CurrentUserService from 'emberclear/services/current-user';
 import { ConnectionDoesNotExistError } from 'emberclear/utils/errors';
 import QRManager from 'emberclear/services/qr-manager';
 
-type Args = {};
-
-export default class QRScan extends Component<Args> {
+export default class QRScan extends Component {
   @service intl!: Intl;
   @service currentUser!: CurrentUserService;
   @service qrManager!: QRManager;

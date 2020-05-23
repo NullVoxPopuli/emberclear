@@ -99,6 +99,7 @@ module('Acceptance | Login', function (hooks) {
       module('with valid values', function (hooks) {
         hooks.beforeEach(async function () {
           const mnemonic = await mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
+
           await loginForm.typeName('NullVoxPopuli');
           await loginForm.typeMnemonic(mnemonic);
           await loginForm.submit();

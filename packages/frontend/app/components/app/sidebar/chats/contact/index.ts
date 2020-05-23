@@ -53,6 +53,7 @@ export default class SidebarContact extends Component<IArgs> {
 
   get canBePinned() {
     const { contact } = this.args;
+
     // can't pin your own chat
     return contact.id !== currentUserId;
   }

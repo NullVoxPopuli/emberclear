@@ -37,6 +37,7 @@ export function hasWebWorker() {
 export function hasIndexedDb() {
   return new Promise((resolve /* , reject */) => {
     const hasIDb = 'indexedDB' in window;
+
     if (!hasIDb) resolve(false);
 
     let request = window.indexedDB.open('MyTestDatabase');
@@ -44,6 +45,7 @@ export function hasIndexedDb() {
     request.onerror = function () {
       resolve(false);
     };
+
     request.onsuccess = function () {
       resolve(true);
     };

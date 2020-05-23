@@ -7,6 +7,7 @@ module('Unit | Service | contacts/online-checker', function (hooks) {
   // Replace this with your real tests.
   test('it exists', function (assert) {
     let service = this.owner.lookup('service:contacts/online-checker');
+
     assert.ok(service);
   });
 });

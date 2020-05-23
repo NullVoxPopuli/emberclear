@@ -11,7 +11,7 @@ declare module 'ember-concurrency' {
   };
 
   export function task(
-    generator: Function
+    generator: any
   ): PropertyDecorator & {
     drop(): TaskDecorator;
     keepLatest(): TaskDecorator;

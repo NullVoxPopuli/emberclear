@@ -26,6 +26,7 @@ export default class DangerSettings extends Component {
     this.messagesDeleted = true;
 
     const messages = await this.store.findAll('message');
+
     await messages.invoke('destroyRecord');
 
     this.toast.info('All messages have been cleared.');

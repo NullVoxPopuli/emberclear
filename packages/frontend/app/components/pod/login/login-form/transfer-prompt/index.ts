@@ -8,7 +8,7 @@ import { ReceiveDataConnection } from 'emberclear/services/connection/ephemeral/
 import Ember from 'ember';
 
 type Args = {
-  updateTransferStatus: Function;
+  updateTransferStatus: (status: boolean) => void;
 };
 
 export default class TransferPrompt extends Component<Args> {

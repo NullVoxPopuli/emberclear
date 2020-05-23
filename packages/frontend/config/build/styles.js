@@ -69,11 +69,7 @@ module.exports = {
       },
       filter: {
         enabled: true,
-        plugins: [
-          autoprefixer({
-            browsers: ['last 2 versions'], // this will override the config, but just for this plugin
-          }),
-        ],
+        plugins: [autoprefixer()],
       },
     },
   },

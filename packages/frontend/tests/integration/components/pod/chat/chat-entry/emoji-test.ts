@@ -26,6 +26,7 @@ module('Integration | Component | chat-entry', function (hooks) {
     module('there are no emoji codes to replace', function () {
       test('result does not contain emoji', async function (assert) {
         const expected = 'This is a test string with no emoji codes to replace.';
+
         await page.textarea.fillIn(expected);
 
         assert.equal(page.textarea.value, expected);
@@ -33,6 +34,7 @@ module('Integration | Component | chat-entry', function (hooks) {
 
       test('emoji codes are not replaced when not between colons', async function (assert) {
         const expected = 'scream smile heartheart heart wave';
+
         await page.textarea.fillIn(expected);
 
         assert.equal(page.textarea.value, expected);

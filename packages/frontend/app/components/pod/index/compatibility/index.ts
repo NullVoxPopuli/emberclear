@@ -39,6 +39,7 @@ export default class Compatibility extends Component {
   @dropTask
   *detectFeatures() {
     let check = this.checkSuccess.bind(this);
+
     this.hasIndexedDb = check(yield hasIndexedDb(), { required: true });
 
     if (!Ember.testing) {

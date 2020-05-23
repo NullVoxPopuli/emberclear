@@ -10,6 +10,7 @@ export default class ChannelVerifier extends Service {
 
   async isValidChain(channel: ChannelContextChain): Promise<boolean> {
     let isFirstContextChain: boolean = !channel.previousChain && !channel.supportingVote;
+
     if (isFirstContextChain) {
       return this.isValidSingleChain(channel);
     }
@@ -51,6 +52,7 @@ export default class ChannelVerifier extends Service {
     ) {
       return true;
     }
+
     return false;
   }
 
@@ -61,6 +63,7 @@ export default class ChannelVerifier extends Service {
     let pastMembersDiff = previousMembers.filter(
       (identity) => !identitiesIncludes(currentMembers, identity)
     );
+
     return { currentMembersDiff, pastMembersDiff };
   }
 
@@ -82,6 +85,7 @@ export default class ChannelVerifier extends Service {
     if (currentMembersDiff.length === 1 && currentMembersDiff[0] === target) {
       return true;
     }
+
     return false;
   }
 
@@ -99,6 +103,7 @@ export default class ChannelVerifier extends Service {
     if (identityEquals(channel.admin, target)) {
       return true;
     }
+
     return false;
   }
 
@@ -120,6 +125,7 @@ export default class ChannelVerifier extends Service {
     if (pastMembersDiff.length === 1 && pastMembersDiff[0] === target) {
       return true;
     }
+
     return false;
   }
 }

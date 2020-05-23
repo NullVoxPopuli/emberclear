@@ -16,7 +16,7 @@ import { taskFor } from 'emberclear/utils/ember-concurrency';
 import CryptoConnector from 'emberclear/utils/workers/crypto';
 import WorkersService from 'emberclear/services/workers';
 
-export default class LoginForm extends Component<{}> {
+export default class LoginForm extends Component {
   @service currentUser!: CurrentUserService;
   @service settings!: Settings;
   @service toast!: Toast;

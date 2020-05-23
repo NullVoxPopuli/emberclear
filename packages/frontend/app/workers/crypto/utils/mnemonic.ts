@@ -76,6 +76,7 @@ export function toUint11Array(input: Uint8Array): number[] {
     // prepend bits to buffer
     buffer |= input[i] << numbits;
     numbits += 8;
+
     // if there are enough bits, extract 11bit chunk
     if (numbits >= 11) {
       // 0x7FF is 2047, the max 11 bit number

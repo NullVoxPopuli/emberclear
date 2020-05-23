@@ -25,12 +25,14 @@ type HandleExistenceEvent = { type: 'HANDLE_EXISTENCE' };
 
 type ParsedEvent = { type: 'PARSED' };
 
+type EmptySubState = Record<string, unknown>;
+
 interface ScannerSubMachine {
   Schema: {
     states: {
-      scanning: {};
-      parsing: {};
-      scanned: {};
+      scanning: EmptySubState;
+      parsing: EmptySubState;
+      scanned: EmptySubState;
     };
   };
 
@@ -40,11 +42,11 @@ interface ScannerSubMachine {
 interface LoginSubMachine {
   Schema: {
     states: {
-      checkLogin: {};
-      setupConnection: {};
-      askPermission: {};
-      transferAllowed: {};
-      transferComplete: {};
+      checkLogin: EmptySubState;
+      setupConnection: EmptySubState;
+      askPermission: EmptySubState;
+      transferAllowed: EmptySubState;
+      transferComplete: EmptySubState;
     };
   };
 
@@ -54,9 +56,9 @@ interface LoginSubMachine {
 interface AddContactSubMachine {
   Schema: {
     states: {
-      determineExistence: {};
-      needToAddContact: {};
-      contactExists: {};
+      determineExistence: EmptySubState;
+      needToAddContact: EmptySubState;
+      contactExists: EmptySubState;
     };
   };
 
@@ -65,7 +67,7 @@ interface AddContactSubMachine {
 
 export interface Schema {
   states: {
-    error: {};
+    error: EmptySubState;
     scanner: ScannerSubMachine['Schema'];
     loginToDevice: LoginSubMachine['Schema'];
     addFriend: AddContactSubMachine['Schema'];
@@ -76,7 +78,7 @@ export interface Schema {
   services: {
     transferData: (ephemeralPublicKeyAsHex: string) => Promise<void>;
     addContact: (publicKeyAsHex: string, name: string) => Promise<void>;
-    parseScannedData: Function;
+    parseScannedData: (ctx: Context, event: ScanEvent) => Promise<QRData>;
   };
 }
 

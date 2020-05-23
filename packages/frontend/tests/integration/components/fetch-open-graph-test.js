@@ -43,6 +43,7 @@ module('Integration | Component | fetch-open-graph', function (hooks) {
     stubConnection({
       getOpenGraph(...args) {
         assert.equal(args[0], LINKS.youtube.webUrl);
+
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve(...args);

@@ -30,7 +30,7 @@ interface TestMachineContext {
   };
 }
 
-const testModel = createModel<TestMachineContext, {}>(
+const testModel = createModel<TestMachineContext, EmptyRecord>(
   Machine({
     id: 'login-test',
     initial: 'begin',

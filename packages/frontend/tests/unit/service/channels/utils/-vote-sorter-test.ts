@@ -46,6 +46,7 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
 
       let resultHex = convertUint8ArrayToObject<SortedVoteHex>(generateSortedVote(currentVote));
       let result = sortedVoteHexToSortedVote(resultHex);
+
       assert.ok(
         result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
@@ -99,6 +100,7 @@ module('Unit | Service | channels/utils/vote-sorter', function (hooks) {
 
       let resultHex = convertUint8ArrayToObject<SortedVoteHex>(generateSortedVote(currentVote));
       let result = sortedVoteHexToSortedVote(resultHex);
+
       assert.ok(
         result[VOTE_ORDERING.remaining].every(
           (current: Uint8Array, index: number, array: Uint8Array[]) =>
@@ -144,5 +146,6 @@ function sortedVoteHexToSortedVote(sortedVoteHex: SortedVoteHex): SortedVote {
       ? fromHex(sortedVoteHex[VOTE_ORDERING.previousChainSignature]!)
       : undefined,
   ];
+
   return sortedVote;
 }

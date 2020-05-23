@@ -7,7 +7,7 @@ import ContactManager from 'emberclear/services/contact-manager';
 
 const REQUIRED_CHARACTERS_TO_SEARCH = 2;
 
-export default class ContactsSidebar extends Component<{}> {
+export default class ContactsSidebar extends Component {
   @service contactManager!: ContactManager;
   @service intl!: Intl;
 
@@ -21,6 +21,7 @@ export default class ContactsSidebar extends Component<{}> {
 
     if (this.hasEnoughToSearch) {
       this.searchText = this._searchText;
+
       return;
     }
 

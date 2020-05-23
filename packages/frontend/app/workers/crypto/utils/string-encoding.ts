@@ -52,6 +52,7 @@ export function base64ToHex(base64: string): string | undefined {
 
   for (let i = 0; i < raw.length; i++) {
     const hexChar = raw.charCodeAt(i).toString(16);
+
     hex += hexChar.length === 2 ? hexChar : `0${hexChar}`;
   }
 

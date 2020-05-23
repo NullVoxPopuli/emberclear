@@ -12,6 +12,15 @@ const tsLint = {
     'getter-return': ['error', { allowImplicit: true }],
     'prefer-const': 'off', // const has misleading safety implications
 
+    'padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: '*', next: 'return' },
+      { blankLine: 'always', prev: '*', next: 'block-like' },
+      { blankLine: 'always', prev: 'block-like', next: '*' },
+      { blankLine: 'always', prev: ['const', 'let'], next: '*' },
+      { blankLine: 'any', prev: ['const', 'let'], next: ['const', 'let'] },
+    ],
+
     // @typescript-eslint
     '@typescript-eslint/interface-name-prefix': 'off', // idk
     '@typescript-eslint/no-use-before-define': 'off', // not applicable due to how the runtime is

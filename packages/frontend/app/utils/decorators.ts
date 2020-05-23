@@ -1,7 +1,7 @@
 import { get, notifyPropertyChange } from '@ember/object';
 
 export function inLocalStorage<T = boolean>(
-  target: object,
+  target: any,
   propertyKey: string,
   // descriptor is undefined for properties
   // it's only available on methods and such

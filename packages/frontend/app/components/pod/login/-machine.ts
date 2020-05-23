@@ -4,6 +4,8 @@ type EventObject = import('xstate').EventObject;
 
 // https://xstate.js.org/viz/?gist=15a3eb8b7d7c391bcce21d86a041a497
 
+type Context = Record<string, unknown>;
+
 export type Events =
   | { type: 'SUBMIT' }
   | { type: 'UPLOAD' }
@@ -15,20 +17,24 @@ export type Events =
   | { type: 'RETRY' }
   | EventObject;
 
+type EmptySubState = Record<string, unknown>;
+
 export interface Schema {
   states: {
-    waitForData: {};
-    qrScanned: {};
-    uploadFile: {};
-    importData: {};
-    processLogin: {};
-    success: {};
-    error: {};
+    waitForData: EmptySubState;
+    qrScanned: EmptySubState;
+    uploadFile: EmptySubState;
+    importData: EmptySubState;
+    processLogin: EmptySubState;
+    success: EmptySubState;
+    error: EmptySubState;
   };
-  actions: {};
+  actions: {
+    restartEphemeralConnection: () => Promise<void>;
+  };
 }
 
-export const machineConfig: MachineConfig<{}, Schema, Events> = {
+export const machineConfig: MachineConfig<Context, Schema, Events> = {
   id: 'login',
   initial: 'waitForData',
   context: {},

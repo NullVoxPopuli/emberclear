@@ -35,6 +35,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       currentVote.signature = await signatureOf(currentVote, user1);
 
       assert.ok(await service.isValid(currentVote));
@@ -59,6 +60,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       firstVote.signature = await signatureOf(firstVote, user1);
 
       let secondVote = store.createRecord('vote-chain', {
@@ -71,6 +73,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: firstVote,
         signature: undefined,
       });
+
       secondVote.signature = await signatureOf(secondVote, user2);
 
       let currentVote = store.createRecord('vote-chain', {
@@ -83,6 +86,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
         previousVoteChain: secondVote,
         signature: undefined,
       });
+
       currentVote.signature = await signatureOf(currentVote, user3);
 
       assert.ok(await service.isValid(currentVote));
@@ -106,6 +110,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           previousVoteChain: undefined,
           signature: undefined,
         });
+
         currentVote.signature = await signatureOf(currentVote, user1);
 
         assert.notOk(await service.isValid(currentVote));
@@ -126,6 +131,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           previousVoteChain: undefined,
           signature: undefined,
         });
+
         currentVote.signature = await signatureOf(currentVote, user1);
 
         assert.notOk(await service.isValid(currentVote));
@@ -141,6 +147,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
 
         hooks.beforeEach(async function () {
           const store = getStore();
+
           user1 = await buildUser('user1');
           user2 = await buildUser('user2');
           userToAdd = await buildUser('userToAdd');
@@ -169,6 +176,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
             previousVoteChain: firstVote,
             signature: undefined,
           });
+
           currentVote.signature = await signatureOf(currentVote, user2);
 
           assert.notOk(await service.isValid(currentVote));
@@ -186,6 +194,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
             previousVoteChain: firstVote,
             signature: undefined,
           });
+
           currentVote.signature = await signatureOf(currentVote, user2);
 
           assert.notOk(await service.isValid(currentVote));
@@ -200,6 +209,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
 
         hooks.beforeEach(async function () {
           const store = getStore();
+
           user1 = await buildUser('user1');
           user2 = await buildUser('user2');
           userToAdd = await buildUser('userToAdd');
@@ -228,6 +238,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
             previousVoteChain: firstVote,
             signature: undefined,
           });
+
           currentVote.signature = await signatureOf(currentVote, user1);
 
           assert.notOk(await service.isValid(currentVote));
@@ -245,6 +256,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
             previousVoteChain: firstVote,
             signature: undefined,
           });
+
           currentVote.signature = await signatureOf(currentVote, user1);
 
           assert.notOk(await service.isValid(currentVote));
@@ -259,6 +271,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
 
         hooks.beforeEach(async function () {
           const store = getStore();
+
           user1 = await buildUser('user1');
           user2 = await buildUser('user2');
           userToAdd = await buildUser('userToAdd');
@@ -287,6 +300,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
             previousVoteChain: firstVote,
             signature: undefined,
           });
+
           currentVote.signature = await signatureOf(currentVote, user1);
 
           assert.notOk(await service.isValid(currentVote));
@@ -304,6 +318,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
             previousVoteChain: firstVote,
             signature: undefined,
           });
+
           currentVote.signature = await signatureOf(currentVote, user1);
 
           assert.notOk(await service.isValid(currentVote));
@@ -328,6 +343,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           previousVoteChain: undefined,
           signature: undefined,
         });
+
         firstVote.signature = await sign(
           await hash(generateSortedVote(firstVote)),
           user1.privateSigningKey
@@ -343,6 +359,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           previousVoteChain: firstVote,
           signature: undefined,
         });
+
         currentVote.signature = await signatureOf(currentVote, user2);
 
         assert.notOk(await service.isValid(currentVote));
@@ -365,6 +382,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           previousVoteChain: undefined,
           signature: undefined,
         });
+
         firstVote.signature = await sign(
           await hash(generateSortedVote(firstVote)),
           user1.privateSigningKey
@@ -380,6 +398,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           previousVoteChain: firstVote,
           signature: undefined,
         });
+
         currentVote.signature = await signatureOf(currentVote, user2);
 
         assert.notOk(await service.isValid(currentVote));
@@ -404,6 +423,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           previousVoteChain: undefined,
           signature: undefined,
         });
+
         firstVote.signature = await signatureOf(firstVote, user1);
 
         let secondVote = store.createRecord('vote-chain', {
@@ -416,6 +436,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           previousVoteChain: firstVote,
           signature: undefined,
         });
+
         secondVote.signature = await await signatureOf(secondVote, user2);
         secondVote.no = [user4];
         secondVote.remaining = [user3];
@@ -430,6 +451,7 @@ module('Unit | Service | channels/vote-verifier', function (hooks) {
           previousVoteChain: secondVote,
           signature: undefined,
         });
+
         currentVote.signature = await signatureOf(currentVote, user3);
 
         assert.notOk(await service.isValid(currentVote));

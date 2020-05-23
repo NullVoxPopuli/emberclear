@@ -13,6 +13,8 @@ import RouterService from '@ember/routing/router-service';
 import { EphemeralConnection } from '../ephemeral-connection';
 import { UnknownMessageError } from 'emberclear/utils/errors';
 
+type UpdateStatus = (status: boolean) => void;
+
 export class ReceiveDataConnection extends EphemeralConnection {
   @service router!: RouterService;
   @service settings!: SettingsService;
@@ -26,7 +28,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
   @tracked senderName = '';
 
   @action
-  wait(updateTransferStatus: Function) {
+  wait(updateTransferStatus: UpdateStatus) {
     this.waitForSYN = RSVP.defer();
     this.waitForData = RSVP.defer();
 
@@ -35,7 +37,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
   }
 
   @dropTask
-  *_wait(updateTransferStatus: Function) {
+  *_wait(updateTransferStatus: UpdateStatus) {
     let { id: senderPublicKey, name } = yield this.waitForSYN.promise;
 
     this.senderName = name;
@@ -49,6 +51,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
     this.taskMsg = this.intl.t('ui.login.verify.waitingOnApproval');
 
     let { hash, data } = yield this.waitForData.promise;
+
     this.taskMsg = this.intl.t('ui.login.verify.receivedData');
 
     let dataHash = '111'; // TODO implement this
@@ -65,6 +68,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
       this.router.transitionTo('chat');
 
       updateTransferStatus(false);
+
       return;
     }
 
