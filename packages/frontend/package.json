@@ -186,7 +186,7 @@
     "ember-sinon": "^5.0.0",
     "ember-source": "^3.18.1",
     "ember-statecharts": "LevelbossMike/ember-statecharts#use-machine",
-    "ember-template-lint": "2.7.0",
+    "ember-template-lint": "2.8.0",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "^4.1.0",
     "ember-test-waiters": "^2.1.1",
