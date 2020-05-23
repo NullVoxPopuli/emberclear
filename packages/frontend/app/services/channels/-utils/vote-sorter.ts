@@ -42,6 +42,7 @@ export function generateSortedVote(vote: VoteChain): Uint8Array {
     toHex(vote.key.publicSigningKey),
     vote.previousVoteChain ? toHex(vote.previousVoteChain.signature) : undefined,
   ];
+
   return convertObjectToUint8Array<SortedVoteHex>(toReturn);
 }
 

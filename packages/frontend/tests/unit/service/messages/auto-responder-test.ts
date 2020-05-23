@@ -23,6 +23,7 @@ module('Unit | Service | messages/auto-responder', function (hooks) {
 
   test('it exists', function (assert) {
     let service = getService('messages/auto-responder');
+
     assert.ok(service);
   });
 

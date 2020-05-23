@@ -11,6 +11,7 @@ export default class SettingsRoute extends Route {
 
     if (!exists) {
       this.transitionTo('setup');
+
       return;
     }
   }

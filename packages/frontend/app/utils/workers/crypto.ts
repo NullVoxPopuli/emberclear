@@ -43,6 +43,7 @@ export default class CryptoConnector {
 
   constructor({ workerService, keys }: Args) {
     let { privateKey, publicKey } = keys || ({} as KeyPair);
+
     this.getWorker = workerService.getCryptoWorker;
     this.keys = { privateKey, publicKey };
   }

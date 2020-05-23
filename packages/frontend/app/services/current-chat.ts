@@ -60,6 +60,7 @@ function contactIdFrom(url: string) {
 
   if (encodedId) {
     const id = decodeURI(encodedId);
+
     return id;
   }
 }
@@ -70,6 +71,7 @@ function channelIdFrom(url: string) {
 
   if (encodedId) {
     const id = decodeURI(encodedId);
+
     return id;
   }
 }

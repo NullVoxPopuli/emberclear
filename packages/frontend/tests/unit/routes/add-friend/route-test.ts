@@ -6,6 +6,7 @@ module('Unit | Route | add-friend', function (hooks) {
 
   test('it exists', function (assert) {
     let route = this.owner.lookup('route:add-friend');
+
     assert.ok(route);
   });
 });

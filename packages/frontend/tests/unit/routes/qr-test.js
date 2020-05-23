@@ -6,6 +6,7 @@ module('Unit | Route | qr', function (hooks) {
 
   test('it exists', function (assert) {
     let route = this.owner.lookup('route:qr');
+
     assert.ok(route);
   });
 });

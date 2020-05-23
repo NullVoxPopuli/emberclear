@@ -128,6 +128,7 @@ export class Connection {
     return new Promise((resolve, reject) => {
       if (!this.channel) {
         console.error('no channel present...');
+
         return reject();
       }
 

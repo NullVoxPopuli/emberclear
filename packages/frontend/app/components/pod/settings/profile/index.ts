@@ -30,6 +30,7 @@ export default class ProfileSettings extends Component {
     if (!settings) return;
 
     const link = document.createElement('a');
+
     link.setAttribute('download', 'emberclear.settings');
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener');

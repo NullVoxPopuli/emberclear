@@ -16,6 +16,7 @@ module('Unit | Service | connection/status', function (hooks) {
   // Replace this with your real tests.
   test('it exists', function (assert) {
     let service = getService('connection/status');
+
     assert.ok(service);
   });
 

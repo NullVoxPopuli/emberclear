@@ -39,6 +39,7 @@ export default class InviteRoute extends Route {
     }
 
     this.toast.error('Invalid Invite Link');
+
     return this.transitionTo('chat');
   }
 
@@ -53,10 +54,12 @@ export default class InviteRoute extends Route {
       await this.contactManager.findOrCreate(publicKey!, name!);
     } catch (e) {
       this.toast.error(`There was a problem importing ${name}: ${e.message}`);
+
       return this.transitionTo('chat');
     }
 
     this.toast.success(`${name} has been successfully imported!`);
+
     return this.transitionTo(`/chat/privately-with/${publicKey}`);
   }
 

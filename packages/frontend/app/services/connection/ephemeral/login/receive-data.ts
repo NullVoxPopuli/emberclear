@@ -51,6 +51,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
     this.taskMsg = this.intl.t('ui.login.verify.waitingOnApproval');
 
     let { hash, data } = yield this.waitForData.promise;
+
     this.taskMsg = this.intl.t('ui.login.verify.receivedData');
 
     let dataHash = '111'; // TODO implement this
@@ -67,6 +68,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
       this.router.transitionTo('chat');
 
       updateTransferStatus(false);
+
       return;
     }
 

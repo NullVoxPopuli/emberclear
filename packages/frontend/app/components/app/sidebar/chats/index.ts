@@ -21,6 +21,7 @@ export default class ContactsSidebar extends Component {
 
     if (this.hasEnoughToSearch) {
       this.searchText = this._searchText;
+
       return;
     }
 

@@ -49,8 +49,10 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
   @enqueueTask({ withTestWaiter: true, maxConcurrency: 30 })
   *markRead(message: Message) {
     let attempts = 0;
+
     while (attempts < 100) {
       attempts++;
+
       if (message.readAt) {
         return;
       }

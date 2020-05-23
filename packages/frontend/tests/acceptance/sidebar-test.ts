@@ -173,6 +173,7 @@ module('Acceptance | Sidebar', function (hooks) {
 
           test('pinned contact should appear below current user', async function (assert) {
             const contacts = page.sidebar.contacts.list;
+
             assert.equal(contacts[0].name, 'Test User');
             assert.equal(contacts[1].name, 'first contact');
           });
@@ -237,6 +238,7 @@ module('Acceptance | Sidebar', function (hooks) {
 
           test('pinned contacts should appear above offline contacts', async function (assert) {
             const contacts = page.sidebar.contacts.list;
+
             assert.equal(contacts[0].name, 'Test User');
             assert.equal(contacts[1].name, 'first contact');
             assert.equal(contacts[2].name, 'second contact');

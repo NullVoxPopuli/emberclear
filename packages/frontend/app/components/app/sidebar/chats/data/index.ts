@@ -107,6 +107,7 @@ function sortByPinned(contact1: Contact, contact2: Contact) {
   } else if (contact1.isPinned) {
     return -1;
   }
+
   return 1;
 }
 

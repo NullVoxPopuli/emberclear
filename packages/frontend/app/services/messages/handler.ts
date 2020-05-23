@@ -50,6 +50,7 @@ export default class ReceivedMessageHandler extends Service {
 
       default:
         console.info('Unrecognized message to handle...', raw);
+
         return message;
     }
   }
@@ -90,6 +91,7 @@ export default class ReceivedMessageHandler extends Service {
 
       default:
         console.info('TARGET INVALID', raw);
+
         return message;
     }
   }

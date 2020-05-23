@@ -52,6 +52,7 @@ export function convertBase64StringToObject(base64: string): any {
 
 export function objectToDataURL(obj: any): string {
   const str = JSON.stringify(obj);
+
   return `data:text/json;charset=utf-8,${encodeURIComponent(str)}`;
 }
 
@@ -65,6 +66,7 @@ export function base64ToHex(base64: string): string | undefined {
 
   for (let i = 0; i < raw.length; i++) {
     const hexChar = raw.charCodeAt(i).toString(16);
+
     hex += hexChar.length === 2 ? hexChar : `0${hexChar}`;
   }
 

@@ -22,6 +22,7 @@ export default class ChatRoute extends Route {
     // identity should be loaded from application route
     if (this.currentUser.isLoggedIn) {
       this.redirectManager.evaluate();
+
       return;
     }
 

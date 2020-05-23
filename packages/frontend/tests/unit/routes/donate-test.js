@@ -6,6 +6,7 @@ module('Unit | Route | donate', function (hooks) {
 
   test('it exists', function (assert) {
     let route = this.owner.lookup('route:donate');
+
     assert.ok(route);
   });
 });

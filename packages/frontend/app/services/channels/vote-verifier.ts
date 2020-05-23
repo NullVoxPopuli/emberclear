@@ -67,7 +67,9 @@ export default class VoteVerifier extends Service {
     if (!vote.previousVoteChain) {
       return this.isProperMoveBase(vote);
     }
+
     let isValid = false;
+
     if (identitiesIncludes(vote.previousVoteChain.yes.toArray(), vote.key)) {
       isValid = this.isProperMove(
         vote.yes.toArray(),
@@ -99,6 +101,7 @@ export default class VoteVerifier extends Service {
         vote.previousVoteChain.no.toArray()
       );
     }
+
     return isValid;
   }
 
@@ -145,6 +148,7 @@ export default class VoteVerifier extends Service {
     let pastVoterDiff = previousVoters.filter(
       (identity) => !identitiesIncludes(currentVoters, identity)
     );
+
     return { currentVoterDiffs: currentVoterDiff, pastVoterDiffs: pastVoterDiff };
   }
 

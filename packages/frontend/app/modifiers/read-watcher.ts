@@ -95,6 +95,7 @@ export default class ReadWatcher extends Modifier<Args> {
   @task({ withTestWaiter: true })
   *markReadTask() {
     let attempts = 0;
+
     while (attempts < 100) {
       attempts++;
 
@@ -106,6 +107,7 @@ export default class ReadWatcher extends Modifier<Args> {
         yield timeout(5);
       } else {
         yield markAsRead(this.message);
+
         return;
       }
     }

@@ -9,6 +9,7 @@ module('Unit | Model | contact', function (hooks) {
   // Replace this with your real tests.
   test('it exists', function (assert) {
     let model = getStore().createRecord('contact', {});
+
     assert.ok(model);
   });
 

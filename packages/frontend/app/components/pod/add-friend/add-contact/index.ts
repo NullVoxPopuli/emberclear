@@ -63,6 +63,7 @@ export default class AddModal extends Component {
     if (!name || !publicKey) {
       this.toast.error('Scan did not contain required information. Please try again.');
       console.error(identity);
+
       return;
     }
 
@@ -70,6 +71,7 @@ export default class AddModal extends Component {
 
     if (exists) {
       this.toast.info('Friend already added!');
+
       return;
     }
 

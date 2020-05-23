@@ -25,6 +25,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
         let channelContextChain = store.createRecord('channel-context-chain', {
           members: [],
         });
+
         assert.notOk(await service.isValidChain(channelContextChain));
       });
 
@@ -35,6 +36,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           admin: admin,
           members: [],
         });
+
         assert.notOk(await service.isValidChain(channelContextChain));
       });
 
@@ -46,6 +48,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           admin: admin,
           members: [admin, member1],
         });
+
         assert.notOk(await service.isValidChain(channelContextChain));
       });
 
@@ -57,6 +60,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           admin: admin,
           members: [member1],
         });
+
         assert.notOk(await service.isValidChain(channelContextChain));
       });
     });
@@ -68,6 +72,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
         admin: admin,
         members: [admin],
       });
+
       assert.ok(await service.isValidChain(channelContextChain));
     });
   });
@@ -79,6 +84,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
 
     hooks.beforeEach(async function () {
       const store = getStore();
+
       admin = await buildUser('admin');
       member1 = await buildUser('member1');
       addMember1VoteChain = store.createRecord('vote-chain', {
@@ -107,6 +113,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           previousChain: originalChannelContextChain,
           supportingVote: addMember1VoteChain,
         });
+
         assert.ok(await service.isValidChain(currentChannelContextChain));
       });
 
@@ -122,6 +129,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           previousVoteChain: undefined,
           signature: undefined,
         });
+
         vote2.signature = await signatureOf(vote2, admin);
         let originalChannelContextChain = store.createRecord('channel-context-chain', {
           admin: admin,
@@ -139,6 +147,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           previousChain: previousChannelContextChain,
           supportingVote: vote2,
         });
+
         assert.ok(await service.isValidChain(currentChannelContextChain));
       });
 
@@ -154,6 +163,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           previousVoteChain: undefined,
           signature: undefined,
         });
+
         vote2.signature = await signatureOf(vote2, admin);
         let originalChannelContextChain = store.createRecord('channel-context-chain', {
           admin: admin,
@@ -171,6 +181,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           previousChain: previousChannelContextChain,
           supportingVote: vote2,
         });
+
         assert.ok(await service.isValidChain(currentChannelContextChain));
       });
     });
@@ -188,6 +199,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           members: [member1, admin],
           previousChain: originalChannelContextChain,
         });
+
         assert.notOk(await service.isValidChain(currentChannelContextChain));
       });
 
@@ -205,6 +217,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           previousVoteChain: undefined,
           signature: undefined,
         });
+
         vote.signature = await signatureOf(vote, admin);
         vote.action = VOTE_ACTION.REMOVE;
         let originalChannelContextChain = store.createRecord('channel-context-chain', {
@@ -217,6 +230,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           previousChain: originalChannelContextChain,
           supportingVote: vote,
         });
+
         assert.notOk(await service.isValidChain(currentChannelContextChain));
       });
 
@@ -234,6 +248,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousVoteChain: undefined,
             signature: undefined,
           });
+
           vote2.signature = await signatureOf(vote2, member1);
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
@@ -251,6 +266,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: previousChannelContextChain,
             supportingVote: vote2,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
 
@@ -266,6 +282,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousVoteChain: undefined,
             signature: undefined,
           });
+
           vote.signature = await signatureOf(vote, admin);
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
@@ -277,6 +294,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: originalChannelContextChain,
             supportingVote: vote,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
       });
@@ -293,6 +311,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           previousVoteChain: undefined,
           signature: undefined,
         });
+
         vote.signature = await signatureOf(vote, admin);
         let originalChannelContextChain = store.createRecord('channel-context-chain', {
           admin: admin,
@@ -304,6 +323,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           previousChain: originalChannelContextChain,
           supportingVote: vote,
         });
+
         assert.notOk(await service.isValidChain(currentChannelContextChain));
       });
 
@@ -321,6 +341,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: originalChannelContextChain,
             supportingVote: addMember1VoteChain,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
 
@@ -336,6 +357,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: originalChannelContextChain,
             supportingVote: addMember1VoteChain,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
 
@@ -351,6 +373,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: originalChannelContextChain,
             supportingVote: addMember1VoteChain,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
       });
@@ -368,6 +391,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: originalChannelContextChain,
             supportingVote: addMember1VoteChain,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
 
@@ -383,6 +407,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousVoteChain: undefined,
             signature: undefined,
           });
+
           vote2.signature = await signatureOf(vote2, admin);
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
@@ -400,6 +425,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: previousChannelContextChain,
             supportingVote: vote2,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
 
@@ -415,6 +441,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousVoteChain: undefined,
             signature: undefined,
           });
+
           vote2.signature = await signatureOf(vote2, admin);
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
@@ -432,6 +459,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: previousChannelContextChain,
             supportingVote: vote2,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
       });
@@ -450,6 +478,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousVoteChain: undefined,
             signature: undefined,
           });
+
           vote2.signature = await signatureOf(vote2, admin);
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
@@ -467,6 +496,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: previousChannelContextChain,
             supportingVote: vote2,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
 
@@ -482,6 +512,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousVoteChain: undefined,
             signature: undefined,
           });
+
           vote2.signature = await signatureOf(vote2, admin);
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
@@ -499,6 +530,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: previousChannelContextChain,
             supportingVote: vote2,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
 
@@ -514,6 +546,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousVoteChain: undefined,
             signature: undefined,
           });
+
           vote2.signature = await signatureOf(vote2, admin);
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
@@ -531,6 +564,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             previousChain: previousChannelContextChain,
             supportingVote: vote2,
           });
+
           assert.notOk(await service.isValidChain(currentChannelContextChain));
         });
       });

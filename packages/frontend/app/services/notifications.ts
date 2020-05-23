@@ -52,6 +52,7 @@ export default class Notifications extends Service {
   async display(msg: string, title: string, options = {}) {
     if (this.isPermissionGranted) {
       this.showNotification(msg, title, options);
+
       return;
     }
 

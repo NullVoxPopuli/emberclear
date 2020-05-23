@@ -33,6 +33,7 @@ module('Acceptance | Compatibility', function (hooks) {
 
   module('the browser does not support a required feature', function (hooks) {
     let backupDb: any;
+
     hooks.beforeEach(async function () {
       backupDb = window.indexedDB;
       delete (window as any).indexedDB;

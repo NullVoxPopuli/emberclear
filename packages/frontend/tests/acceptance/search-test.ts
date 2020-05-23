@@ -37,6 +37,7 @@ module('Acceptance | Search Modal', function (hooks) {
       await createContact(`Contact #10`);
 
       let contacts = await getStore().findAll('contact');
+
       assert.equal(contacts.length, 10);
 
       await visit('/');

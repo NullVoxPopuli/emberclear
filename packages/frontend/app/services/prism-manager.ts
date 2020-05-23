@@ -56,6 +56,7 @@ export default class PrismManager extends Service {
     if (this.areEssentialsPresent) return;
 
     let prismLoader = yield addScripts();
+
     addStyles();
 
     this.prismLoader = prismLoader;
