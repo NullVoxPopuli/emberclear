@@ -50,7 +50,7 @@ declare global {
     // Notification: Partial<Notification> & {
     //   permission: 'denied' | 'granted' | undefined;
     // };
-    ServiceWorker: {};
+    ServiceWorker: unknown;
     deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
     ASSET_FINGERPRINT_HASH: string;
   }

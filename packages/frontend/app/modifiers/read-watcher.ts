@@ -10,7 +10,7 @@ import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 interface Args {
   positional: [Message];
-  named: {};
+  named: EmptyRecord;
 }
 
 export default class ReadWatcher extends Modifier<Args> {

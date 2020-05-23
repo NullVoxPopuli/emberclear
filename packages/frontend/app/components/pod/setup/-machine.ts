@@ -5,12 +5,14 @@ export interface Context {
   prev?: string;
 }
 
+type EmptySubState = Record<string, unknown>;
+
 export interface Schema {
   states: {
-    idle: {};
-    creating: {};
-    overwrite: {};
-    completed: {};
+    idle: EmptySubState;
+    creating: EmptySubState;
+    overwrite: EmptySubState;
+    completed: EmptySubState;
   };
   actions: {
     logout: <T>() => T;

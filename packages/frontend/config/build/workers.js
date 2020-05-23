@@ -35,6 +35,7 @@ let babelConfig = {
     require('@babel/preset-typescript'),
   ],
   plugins: [
+    // eslint-disable-next-line node/no-missing-require
     require('@babel/plugin-proposal-class-properties'),
     require('@babel/plugin-proposal-object-rest-spread'),
   ],

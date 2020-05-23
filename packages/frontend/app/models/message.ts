@@ -105,7 +105,7 @@ export default class Message extends Model {
    *    TODO: maybe in the first iteration of channels, just the channel creator
    *          can perform memberlist changes
    * */
-  @attr() metadata!: object;
+  @attr() metadata!: Record<string, unknown>;
 
   @attr() type!: TYPE;
   @attr() target!: TARGET;

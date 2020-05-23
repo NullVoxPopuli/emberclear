@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 declare global {
+  type EmptyRecord = Record<string, unknown>;
+
   type KeyPublic = { publicKey: Uint8Array };
   type KeyPrivate = { privateKey: Uint8Array };
   type KeyPair = KeyPublic & KeyPrivate;
@@ -27,14 +29,14 @@ declare global {
     relay: { [key: string]: string };
     ['connection_count']: number;
     ['connected_relays']: number;
-    ['connected_to_relays']: object;
+    ['connected_to_relays']: Record<string, unknown>;
   }
 
   interface RelayState {
     relay: { [key: string]: string };
     connectionCount?: number;
     connectedRelays?: number;
-    connectedToRelays?: object;
+    connectedToRelays?: Record<string, unknown>;
   }
 
   interface OpenGraphData {
@@ -143,7 +145,7 @@ declare global {
     message: {
       body: string;
       contentType: string;
-      metadata?: object;
+      metadata?: Record<string, unknown>;
     };
     channelInfo?: {
       uid: string;

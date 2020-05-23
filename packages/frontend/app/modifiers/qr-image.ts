@@ -5,8 +5,8 @@ import { convertObjectToQRCodeDataURL } from 'emberclear/utils/string-encoding';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 
 type Args = {
-  positional: [object];
-  named: {};
+  positional: [Record<string, unknown>];
+  named: EmptyRecord;
 };
 
 export default class QRImageModifier extends Modifier<Args> {

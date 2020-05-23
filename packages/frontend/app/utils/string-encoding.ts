@@ -16,7 +16,9 @@ export function fromHex(hex: string): Uint8Array {
   return new Uint8Array(matches.map((byte) => parseInt(byte, 16)));
 }
 
-export async function convertObjectToQRCodeDataURL<T extends object>(object: T): Promise<string> {
+export async function convertObjectToQRCodeDataURL<T extends Record<string, unknown>>(
+  object: T
+): Promise<string> {
   const str = JSON.stringify(object);
 
   return await QRCode.toDataURL(str);
