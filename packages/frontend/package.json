@@ -26,7 +26,7 @@
     "test:server": "cross-env SW_DISABLED=true yarn ember exam --server",
     "merge-coverage": "ember coverage-merge",
     "lint:hbs": "ember-template-lint .",
-    "lint:types": "tsc --skipLibCheck",
+    "lint:types": "tsc --skipLibCheck --noEmit",
     "lint:js": "yarn eslint . --ext .ts --ext .js",
     "lint:styles": "yarn stylelint app/",
     "lint:all": "yarn lint:hbs && yarn lint:js && yarn lint:sass",
