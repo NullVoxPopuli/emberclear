@@ -42,7 +42,6 @@
   "lint-staged": {
     "*.{ts,js}": "yarn lint:js --fix --quiet --cache",
     "*.hbs": "yarn lint:hbs",
-    "*.ts":  "yarn lint:types",
     "*.css": "yarn lint:styles",
     "translations/*.yml": "yarn lint:i18n"
   },
@@ -203,9 +202,8 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.6",
     "loader.js": "^4.7.0",
-    "postcss-cssnext": "^3.1.0",
-    "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-cssnext": "3.0.2",
+    "postcss-import": "^10.0.0",
     "prettier": "^2.0.5",
     "qunit-assertions-extra": "^0.8.1",
     "qunit-console-grouper": "^0.2.0",

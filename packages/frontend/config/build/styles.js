@@ -1,7 +1,3 @@
-const PostCSSImport = require('postcss-import');
-const PostCSSNext = require('postcss-cssnext');
-const autoprefixer = require('autoprefixer');
-
 module.exports = {
   postcssConfig: {
     // NOTE:
@@ -27,50 +23,51 @@ module.exports = {
         extension: 'css',
         plugins: [
           require('stylelint'),
-          PostCSSImport({
+          require('postcss-import')({
             path: ['node_modules/shoelace-css/source/css'],
           }),
-          PostCSSNext({
+          require('postcss-cssnext')({
             features: {
-              colorFunction: {
-                preserveCustomProps: false,
-              },
-              customProperties: {
-                preserve: true,
-              },
+              // colorFunction: {
+              //   enabled: true,
+              //   preserveCustomProps: false,
+              // },
+              // customProperties: {
+              //   preserve: true,
+              // },
               rem: false,
-              overflowWrap: false,
-              colorRgba: false,
-              psuedoClassAnyLink: false,
-              psuedoClassNot: false,
-              psuedoClassMatches: false,
-              psuedoElements: false,
-              initial: false,
-              // filter: false,
-              fontVariant: false,
-              // fontFamilySystemUi: false,
-              colorHexAlpha: false,
-              colorGray: false,
-              colorRgb: false,
-              colorHsl: false,
-              colorHwb: false,
-              colorRebeccapurple: false,
-              // attributeCaseInsensitive: false,
-              // customSelectors: false,
-              // mediaQueriesRange: false,
-              // customMedia: false,
-              // nesting: false,
-              imageSet: false,
-              // calc: false,
-              // applyRule: false,
+              // overflowWrap: false,
+              // colorRgba: false,
+              // psuedoClassAnyLink: false,
+              // psuedoClassNot: false,
+              // psuedoClassMatches: false,
+              // psuedoElements: false,
+              // initial: false,
+              // // filter: false,
+              // fontVariant: false,
+              // // fontFamilySystemUi: false,
+              // colorHexAlpha: false,
+              // colorGray: false,
+              // colorRgb: false,
+              // colorHsl: false,
+              // colorHwb: false,
+              // colorRebeccapurple: false,
+              // // attributeCaseInsensitive: false,
+              // // customSelectors: false,
+              // // mediaQueriesRange: false,
+              // // customMedia: false,
+              // // nesting: false,
+              // imageSet: false,
+              // // calc: false,
+              // // applyRule: false,
             },
           }),
         ],
       },
-      filter: {
-        enabled: true,
-        plugins: [autoprefixer()],
-      },
+      // filter: {
+      //   enabled: true,
+      //   plugins: [require('autoprefixer')()],
+      // },
     },
   },
 };

@@ -11,9 +11,10 @@ class UpdateChecker extends Component {
   @reads('router.currentURL') currentURL!: string;
 }
 
+// add @hasUpdate={{true}} to test manually
 export default setComponentTemplate(
   hbs`
-  <ServiceWorkerUpdateNotify>
+  <ServiceWorkerUpdateNotify @hasUpdate={{true}}>
     <a
       class='service-worker-update-notify alert alert-info has-shadow'
       href={{this.currentURL}}
