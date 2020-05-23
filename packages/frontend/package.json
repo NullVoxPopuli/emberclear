@@ -40,26 +40,15 @@
     }
   },
   "lint-staged": {
-    "*.{ts,js}": [
-      "yarn lint:js --fix --quiet --cache"
-    ],
-    "*.hbs": [
-      "yarn lint:hbs"
-    ],
-    "*.ts": [
-      "yarn lint:types"
-    ],
-    "*.css": [
-      "yarn lint:styles"
-    ],
-    "translations/*.yml": [
-      "yarn lint:i18n"
-    ]
+    "*.{ts,js}": "yarn lint:js --fix --quiet --cache",
+    "*.hbs": "yarn lint:hbs",
+    "*.ts":  "yarn lint:types",
+    "*.css": "yarn lint:styles",
+    "translations/*.yml": "yarn lint:i18n"
   },
-  "browserlist": [
-    "> 2%",
-    "not IE11",
-    "not dead"
+  "browserslist": [
+    "> 3%",
+    "not IE 11"
   ],
   "engines": {
     "node": ">= 12.16.3"
