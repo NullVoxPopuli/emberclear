@@ -204,7 +204,7 @@ ui:
   chat:
     welcome: Welcome!
     message: >
-      To get started, you'll need at least one friend.<br /><br />
+      To get started, you'll need at least one friend.'<br />''<br />'
 
       Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: There are newer messages
@@ -267,8 +267,8 @@ ui:
     about: About
     wantToSupport: Want to support this project?
     license: >
-      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a>
-      uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
+      The '<a href="https://github.com/NullVoxPopuli/emberclear" target="_blank" rel="noopener">'source code'</a>'
+      uses the '<a href="https://opensource.org/licenses/GPL-3.0" target="_blank" rel="noopener">'GPL-3'</a>' license.
 
   login:
     title: "Welcome Back!"
@@ -300,8 +300,8 @@ ui:
       replaced. There is no way to recover, and without having the
       mnemonic saved somewhere, you will be unable to connect with any
       of the previously configured chats as no one will know who you are.
-      <br>
-      <br>
+      '<br>'
+      '<br>'
       Are you sure you want to do this?
     overwriteAbort: No, take me back to safety
     overwriteConfirm: Yes, I understand the risks

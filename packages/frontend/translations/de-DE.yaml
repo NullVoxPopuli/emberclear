@@ -177,7 +177,7 @@ ui:
   chat:
     welcome: Willkommen!
     message: >
-      Du brauchst mindestens einen Freund, um anfangen zu können.<br /><br /> Danach kannst du mit deinen Kontakten chatten und über Kanäle mit Gruppen kommunizieren.
+      Du brauchst mindestens einen Freund, um anfangen zu können.'<br />''<br />' Danach kannst du mit deinen Kontakten chatten und über Kanäle mit Gruppen kommunizieren.
     newMessages: Es existieren neuere Nachrichten
     viewRecent: Letzte Nachrichten ansehen
     unreadMessages: '{number} neue Nachrichten seit {time}'
@@ -196,7 +196,7 @@ ui:
       video: Video Chat starten
       audio: Audio Chat starten
     codeModal:
-      title: Sende Code oder Ausschnitt an <strong>{to}</strong>
+      title: Sende Code oder Ausschnitt an '<strong>'{to}'</strong>'
   faq:
     title: Häufig gestellte Fragen (FAQ)
     whatIsQ: Was ist Emberclear?
@@ -218,7 +218,7 @@ ui:
     about: About
     wantToSupport: Möchtest du das Projekt unterstützen?
     license: >
-      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
+      The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
   login:
     title: "Welcome Back!"
     instructions: Bitte füge oder tippe deine mnemonic Passphrase ein
@@ -243,7 +243,7 @@ ui:
   setup:
     overwriteTitle: Möchtest du wirklich eine neue Identität anlegen?
     overwriteQuestion: >
-      Dies ist eine zerstörerische Handlung, welche die aktuell konfigurierte Identität löscht und ersetzt. Es existiert keine Möglichkeit zur Wiederherstellung und ohne die mnemonic Passphrase wirst du dich auch nicht mehr mit zuvor konfigurerten Chats verbinden können. <br> <br> Möchtest du wirklich fortfahren?
+      Dies ist eine zerstörerische Handlung, welche die aktuell konfigurierte Identität löscht und ersetzt. Es existiert keine Möglichkeit zur Wiederherstellung und ohne die mnemonic Passphrase wirst du dich auch nicht mehr mit zuvor konfigurerten Chats verbinden können. '<br>' '<br>' Möchtest du wirklich fortfahren?
     overwriteAbort: Nein, bring mich zurück in Sicherheit
     overwriteConfirm: Ja, ich bin mir der Risiken bewusst
     introQuestion: Wie möchtest du genannt werden?

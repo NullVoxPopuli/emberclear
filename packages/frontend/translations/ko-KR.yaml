@@ -177,7 +177,7 @@ ui:
   chat:
     welcome: Welcome!
     message: >
-      To get started, you'll need at least one friend.<br /><br /> Then you'll be able to chat with them and create channels for communicating with groups of friends.
+      To get started, you'll need at least one friend.'<br />''<br />' Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: There are newer messages
     viewRecent: view recent messages
     unreadMessages: '{number} new messages since {time}'
@@ -196,7 +196,7 @@ ui:
       video: Start Video Chat
       audio: Start Audio Chat
     codeModal:
-      title: Send Code or Snippet to <strong>{to}</strong>
+      title: Send Code or Snippet to '<strong>'{to}'</strong>'
   faq:
     title: F.A.Q
     whatIsQ: What is emberclear
@@ -218,7 +218,7 @@ ui:
     about: About
     wantToSupport: Want to support this project?
     license: >
-      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
+      The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
   login:
     title: "Welcome Back!"
     instructions: Please paste or type your mnemonic key.
@@ -243,7 +243,7 @@ ui:
   setup:
     overwriteTitle: Are you sure you want to create a new identity?
     overwriteQuestion: >
-      This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. <br> <br> Are you sure you want to do this?
+      This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. '<br>' '<br>' Are you sure you want to do this?
     overwriteAbort: No, take me back to safety
     overwriteConfirm: Yes, I understand the risks
     introQuestion: What would you like to be called?

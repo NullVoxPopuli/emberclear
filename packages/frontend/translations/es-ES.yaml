@@ -177,7 +177,7 @@ ui:
   chat:
     welcome: '¡Bienvenido!'
     message: >
-      Para comenzar, vas a necesitar al menos un amigo.<br /><br /> Después vas a poder conversar con ellos y crear canales para comunicarte con grupos de amigos.
+      Para comenzar, vas a necesitar al menos un amigo.'<br />''<br />' Después vas a poder conversar con ellos y crear canales para comunicarte con grupos de amigos.
     newMessages: Hay nuevos mensajes
     viewRecent: ver mensajes recientes
     unreadMessages: '{number} mensajes nuevos desde {time}'
@@ -196,7 +196,7 @@ ui:
       video: Iniciar Video Chat
       audio: Iniciar Chat de Audio
     codeModal:
-      title: Enviar código o fragmento a <strong>{to}</strong>
+      title: Enviar código o fragmento a '<strong>'{to}'</strong>'
   faq:
     title: Preguntas frecuentes
     whatIsQ: Qué es emberclear
@@ -218,7 +218,7 @@ ui:
     about: About
     wantToSupport: '¿Quieres soportar este proyecto?'
     license: >
-      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
+      The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
   login:
     title: "Welcome Back!"
     instructions: Por favor pega o escribe tu llave mnemonic.
@@ -243,7 +243,7 @@ ui:
   setup:
     overwriteTitle: '¿Estás seguro de crear una nueva identidad?'
     overwriteQuestion: >
-      Esta es una acción destructiva que causará que la identidad actual sea olvidada y reemplazada. No hay manera de recuperarla y sin tener la mnemonic guardada en algún lugar, no podrás conectarte con ninguno de los chats previos ya que ninguno sabrá quién eres. <br><br> ¿Estás seguro de querer hacer esto?
+      Esta es una acción destructiva que causará que la identidad actual sea olvidada y reemplazada. No hay manera de recuperarla y sin tener la mnemonic guardada en algún lugar, no podrás conectarte con ninguno de los chats previos ya que ninguno sabrá quién eres. '<br>''<br>' ¿Estás seguro de querer hacer esto?
     overwriteAbort: No, regresar
     overwriteConfirm: Sí, entiendo los riesgos
     introQuestion: '¿Como quieras ser llamado?'
