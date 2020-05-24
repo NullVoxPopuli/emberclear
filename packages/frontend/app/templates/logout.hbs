@@ -19,7 +19,7 @@
         type='button'
         {{on 'click' this.logout}}
       >
-        {{fa-icon 'sign-out-alt' prefix='fas'}}
+        <FaIcon @icon='sign-out-alt' @prefix='fas' />
         <span>{{t 'ui.logout.confirm'}}</span>
       </button>
     </div>

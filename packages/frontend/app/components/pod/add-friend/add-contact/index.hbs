@@ -12,7 +12,7 @@
 
 <div class='cta-with-fallback pad-t-md'>
   <button type='button' {{on 'click' this.toggleScanning}}>
-    {{fa-icon 'qrcode' prefix='fas'}}
+    <FaIcon @icon='qrcode' @prefix='fas' />
     <span>
       {{#if this.scanning}}
         {{t 'buttons.back'}}

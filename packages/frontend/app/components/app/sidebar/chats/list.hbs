@@ -16,7 +16,7 @@
         href={{url-for 'add-friend'}}
         {{on 'click' (handle-sidebar-click (transition-to 'add-friend'))}}
       >
-        <span class='icon'>{{fa-icon 'plus'}}</span>
+        <span class='icon'><FaIcon @icon='plus' /></span>
       </a>
     </div>
   {{else if (or (is-contact chat) (is-current-user chat))}}

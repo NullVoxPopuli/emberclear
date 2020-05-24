@@ -1,7 +1,7 @@
 {{#if this.isNotCompatible}}
   <ModalStatic @initiallyActive={{true}} @name='compatibility' as |isActive actions|>
     <button type='button' {{on 'click' actions.open}}>
-      {{fa-icon 'exclamation-circle'}}
+      <FaIcon @icon='exclamation-circle' />
       {{this.successCount}} / {{this.totalCount}}
       {{t 'compatibility.compatibility'}}
     </button>
@@ -18,7 +18,7 @@
         '
       >
         <h2 class='is-size-3'>
-          {{fa-icon 'exclamation-circle'}}
+          <FaIcon @icon='exclamation-circle' />
           {{t 'compatibility.title'}}
         </h2>
         <p>

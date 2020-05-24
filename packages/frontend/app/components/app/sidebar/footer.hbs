@@ -4,7 +4,7 @@
     <nav>
       <ModalStatic @name='search' as |isActive actions|>
         <button class='button button-link' type='button' {{on 'click' actions.toggle}}>
-          {{fa-icon 'search' prefix='fas'}}
+          <FaIcon @icon='search' @prefix='fas' />
         </button>
       </ModalStatic>
 
@@ -23,7 +23,7 @@
         title={{t 'routes.contacts'}}
         {{on 'click' (handle-sidebar-click (transition-to 'contacts'))}}
       >
-        {{fa-icon 'address-book' prefix='fas'}}
+        <FaIcon @icon='address-book' @prefix='fas' />
       </a>
 
       <a
@@ -32,7 +32,7 @@
         title={{t 'routes.settings'}}
         {{on 'click' (handle-sidebar-click (transition-to 'settings'))}}
       >
-        {{fa-icon 'sliders-h'}}
+        <FaIcon @icon='sliders-h' />
       </a>
 
       <a
@@ -41,7 +41,7 @@
         title={{t 'routes.logout'}}
         {{on 'click' (handle-sidebar-click (transition-to 'logout'))}}
       >
-        {{fa-icon 'sign-out-alt' prefix='fas'}}
+        <FaIcon @icon='sign-out-alt' @prefix='fas' />
       </a>
     </nav>
   </div>
