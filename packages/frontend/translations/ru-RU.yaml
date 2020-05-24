@@ -177,7 +177,7 @@ ui:
   chat:
     welcome: Добро пожаловать!
     message: >
-      Для начала вам необходим хотя бы один контакт.<br /><br /> После чего вы сможете начать общение, создавать каналы и общаться с друзьями.
+      Для начала вам необходим хотя бы один контакт.'<br />''<br />' После чего вы сможете начать общение, создавать каналы и общаться с друзьями.
     newMessages: Новые сообщения
     viewRecent: посмотреть недавние сообщения
     unreadMessages: '{number} новых сообщений с {time}'
@@ -196,7 +196,7 @@ ui:
       video: Начать видео чат
       audio: Начать аудио чат
     codeModal:
-      title: Отправить код или сниппет для <strong>{to}</strong>
+      title: Отправить код или сниппет для '<strong>'{to}'</strong>'
   faq:
     title: F.A.Q
     whatIsQ: Что такое emberclear
@@ -218,7 +218,7 @@ ui:
     about: About
     wantToSupport: Хотите поддержать проект?
     license: >
-      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
+      The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
   login:
     title: "Welcome Back!"
     instructions: Вставьте или напишите ваш мнемонический ключ.
@@ -243,7 +243,7 @@ ui:
   setup:
     overwriteTitle: Вы уверены что хотите создать новый профиль?
     overwriteQuestion: >
-      Это действие необратимо и приведёт к тому что текущий профиль будет забыт и перезаписан без возможности восстановления. Без сохранённой мнемонической фразы вы не сможете присоединиться к предыдущим чатам и никто не сможет вас идентифицировать. <br> <br> Вы уверены что хотите продолжить? 
+      Это действие необратимо и приведёт к тому что текущий профиль будет забыт и перезаписан без возможности восстановления. Без сохранённой мнемонической фразы вы не сможете присоединиться к предыдущим чатам и никто не сможет вас идентифицировать. '<br>' '<br>' Вы уверены что хотите продолжить?
     overwriteAbort: Нет, вернуться назад
     overwriteConfirm: Да, я понимаю последствия
     introQuestion: Как вас называть?
