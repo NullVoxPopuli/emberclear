@@ -36,11 +36,11 @@ export default class QRScan extends Component {
   connection?: SendDataConnection;
 
   get state() {
-    return this.interpreter?.currentState?.toStrings();
+    return this.interpreter?.state?.toStrings();
   }
 
   get ctx() {
-    return this.interpreter?.currentState?.context;
+    return this.interpreter?.state?.context;
   }
 
   @action
@@ -54,14 +54,14 @@ export default class QRScan extends Component {
   }
 
   async setupConnection() {
-    if (!this.interpreter?.currentState) {
+    if (!this.interpreter?.state) {
       throw new Error('No State' /* but what we make */);
     }
 
     // The State-Machine prevents this method from being called
     // without an existing `pub` (which is always present when)
     // the `intent` is "login"
-    let { pub } = this.interpreter?.currentState?.context.data as LoginQRData[1];
+    let { pub } = this.interpreter?.state?.context.data as LoginQRData[1];
 
     this.connection = await this.qrManager.login.setupConnection(this, pub);
   }
