@@ -1,7 +1,7 @@
 const execa = require('execa');
 const path = require('path');
 
-const distLocation = path.join(process.cwd(), '..', 'frontend', 'dist');
+const distLocation = path.join(process.cwd(), '..', 'emberclear', 'dist');
 
 async function startServer() {
   console.info(`Starting server at ${distLocation}`);

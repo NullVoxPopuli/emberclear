@@ -1,4 +1,4 @@
-# emberclear frontend
+# emberclear PWA
 
 <table>
 <tr>
