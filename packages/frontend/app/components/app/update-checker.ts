@@ -14,7 +14,7 @@ class UpdateChecker extends Component {
 // add @hasUpdate={{true}} to test manually
 export default setComponentTemplate(
   hbs`
-  <ServiceWorkerUpdateNotify @hasUpdate={{true}}>
+  <ServiceWorkerUpdateNotify>
     <a
       class='service-worker-update-notify alert alert-info has-shadow'
       href={{this.currentURL}}
