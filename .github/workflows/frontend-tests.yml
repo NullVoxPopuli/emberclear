@@ -152,6 +152,7 @@ jobs:
 
     - name: Test
       run: |
+        google-chrome --version
         export DEPLOY_URL=$(cat ./deploy-url.txt)
         cd packages/smoke-tests
         DETECT_CHROMEDRIVER_VERSION=true yarn
