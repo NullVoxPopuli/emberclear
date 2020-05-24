@@ -7,7 +7,7 @@
   {{#if this.wasSent}}
     {{#if this.hasDeliveryConfirmations}}
 
-      {{fa-icon 'check' size='sm' aria-label='message delivered successfully'}}
+      <FaIcon @icon='check' @size='sm' aria-label='message delivered successfully' />
 
     {{else if this.timedOut}}
 
