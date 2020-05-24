@@ -10,7 +10,7 @@ exit_code=$?
 
 # fix the paths, since we aren't generating coverage from
 # the root of the mono repo
-sed -i -E "s/^SF:(.+)$/SF:packages\/frontend\/\1/" coverage/lcov.info
+sed -i -E "s/^SF:(.+)$/SF:client\/web\/emberclear\/\1/" coverage/lcov.info
 echo "Successfully fixed the test coverage paths!"
 
 exit $exit_code

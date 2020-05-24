@@ -3,9 +3,9 @@ on:
   pull_request:
     branches: [master]
     # paths:
-    #   - 'packages/frontend/*'
+    #   - 'client/web/emberclear/*'
 env:
-  cwd: packages/frontend
+  cwd: client/web/emberclear
 
 ##############################################################
 
@@ -41,7 +41,7 @@ jobs:
       uses: coverallsapp/github-action@v1.0.1
       with:
         github-token: ${{ secrets.github_token }}
-        path-to-lcov: ./packages/frontend/coverage/lcov.info
+        path-to-lcov: ./client/web/emberclear/coverage/lcov.info
 
 ##############################################################
 
@@ -88,7 +88,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: built_bundle_analysis
-        path: packages/frontend/public/bundle
+        path: client/web/emberclear/public/bundle
 
 
   build_app:
@@ -101,14 +101,14 @@ jobs:
     - uses: rwjblue/setup-volta@v1
     - name: Install and Build
       run: |
-        ( cd packages/frontend && yarn install && yarn build:production )
-        cp ./scripts/_redirects packages/frontend/dist
+        ( cd client/web/emberclear && yarn install && yarn build:production )
+        cp ./scripts/_redirects client/web/emberclear/dist
 
     - name: Upload App Artifacts
       uses: actions/upload-artifact@v1
       with:
         name: built_app
-        path: packages/frontend/dist/
+        path: client/web/emberclear/dist/
 
 ##############################################################
 
@@ -153,7 +153,7 @@ jobs:
     - name: Test
       run: |
         export DEPLOY_URL=$(cat ./deploy-url.txt)
-        cd packages/smoke-tests
+        cd client/web/smoke-tests
         DETECT_CHROMEDRIVER_VERSION=true yarn
         yarn test --target pull-request --headless
 
@@ -224,7 +224,7 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: built_app
-        path: packages/frontend/dist/
+        path: client/web/emberclear/dist/
 
     - name: run Lighthouse
       env:
@@ -232,7 +232,7 @@ jobs:
         LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       run: |
         volta install @lhci/cli@0.3.x
-        cd packages/frontend
+        cd client/web/emberclear
 
         lhci collect \
           --upload.target=temporary-public-storage \
