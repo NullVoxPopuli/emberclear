@@ -3,48 +3,77 @@
   --sidenav-width: 300px;
 
   /* colors */
+
+  /* NOTE: luminosity of border colors is half of background color */
+
+  /* TODO: switch all colors to HSL */
   --color-purple: hsl(253, 84%, 53%);
-  --color-red: hsl(348, 100%, 41%);
-  --color-gray: #334;
-  --color-medium-gray: #555;
-  --color-medium-light-gray: #aaa;
-  --color-light-gray: #efefef;
+  --color-red: hsl(348, 100%, 46%);
+  --color-green: hsl(144, 100%, 33%);
+  --color-blue: hsl(208, 100%, 43%);
+  --color-yellow: hsl(28, 100%, 55%);
+
+  /* grays */
+  --color-gray: hsl(240, 14%, 23%);
+  --color-medium-gray: hsl(0, 0%, 33%);
+  --color-medium-light-gray: hsl(0, 0%, 76%);
+  --color-light-gray: hsl(0, 0%, 94%);
+
+  /* states */
   --state-primary: var(--color-purple);
   --state-info: var(--color-blue);
-  --link-color: var(--state-dark);
-  --placeholder-color: var(--color-medium-light-gray);
-  --body-color-muted: var(--color-medium-light-gray);
-  --grid-gap: 0.75rem;
-  --grid-gap-small: 0.5rem;
-  --grid-gap-tiny: 0.25rem;
+  --state-success: var(--color-green);
+  --state-warning: var(--color-yellow);
+
+  /* shadows */
   --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
   --shadow-lg:
     0 0 4px rgba(0, 0, 0, 0.1),
     0 4px 16px rgba(0, 0, 0, 0.1),
     0 16px 64px rgba(0, 0, 0, 0.1);
+
+  /* grid */
+  --grid-gap: 0.75rem;
+  --grid-gap-small: 0.5rem;
+  --grid-gap-tiny: 0.25rem;
+
+  /* the rest of the things */
+  --link-color: var(--state-dark);
+  --placeholder-color: var(--color-medium-light-gray);
+  --body-color-muted: var(--color-medium-light-gray);
   --hint-color: var(--color-medium-gray);
-  --alert-padding-y: 0.5rem;
-  --alert-padding-x: 0.5rem;
+
+  /* top navigation / titlebar? */
   --top-nav-bg: var(--state-light);
   --top-nav-shadow: var(--shadow);
   --top-nav-height: 50px;
   --top-nav-inverted-color: var(--state-light);
+
+  /* sidebar */
   --sidebar-bg-color: var(--state-light);
   --sidebar-nav-active-color: var(--color-light-gray);
   --sidebar-hint-text: var(--hint-color);
   --sidebar-hr-border-color: var(--hr-border-color);
   --sidebar-footer-shadow-opacity: 0.2;
+
+  /* modal */
   --modal-overlay-color: rgba(0, 0, 0, 0.12);
   --modal-content-bg: var(--state-light);
   --modal-shadow: var(--shadow-lg);
+
+  /* search results / modal? */
   --search-result-text-color: var(--color-gray);
   --search-result-hover-bg: var(--color--gray);
   --search-result-border-color: var(--color-gray);
   --search-divider-color: var(--color-light-gray);
+
+  /* key */
   --key-color: var(--color-light-gray);
   --key-bg-color: #72767d;
   --key-border-color: #202225;
   --key-shadow-color: rgba(35, 39, 42, 0.6);
+
+  /* chat */
   --chat-entry-bg-color: #f3f3f3;
   --chat-entry-line-height: 1.5rem;
   --chat-message-hover-color: #f8f8f8;
@@ -54,18 +83,35 @@
   --chat-message-sent-at: var(--color-medium-gray);
   --chat-new-messages-notice-color: var(--state-light);
   --chat-new-messages-notice-bg-color: var(--state-secondary);
-  --alert-bg-color: color(var(--state-primary) shade(75%));
-  --alert-color: color(var(--state-primary) tint(75%));
-  --alert-bg-color-secondary: color(var(--state-secondary) shade(75%));
-  --alert-color: color(var(--state-primary) tint(75%));
-  --alert-bg-color-success: color(var(--state-success) shade(75%));
-  --alert-color-success: color(var(--state-success) tint(75%));
-  --alert-bg-color-info: color(var(--state-info) shade(5%));
-  --alert-color-info: color(var(--state-info) tint(85%));
-  --alert-bg-color-warning: color(var(--state-warning) shade(75%));
-  --alert-color-warning: color(var(--state-warning) tint(75%));
-  --alert-bg-color-danger: color(var(--state-danger) shade(40%));
-  --alert-color-danger: color(var(--state-danger) tint(100%));
+
+  /* alerts */
+  --alert-padding-y: 0.5rem;
+  --alert-padding-x: 0.5rem;
+  --alert-bg-color: var(--state-primary);
+  --alert-color: #fff;
+  --alert-border-color: hsl(253, 84%, 25%);
+
+  /* success alerts */
+  --alert-bg-color-success: var(--state-success);
+  --alert-color-success: #000;
+  --alert-border-color-success: hsl(144, 14%, 15%);
+
+  /* info alerts */
+  --alert-bg-color-info: var(--state-info);
+  --alert-color-info: #000;
+  --alert-border-color-info: hsl(208, 100%, 21%);
+
+  /* warning alerts */
+  --alert-bg-color-warning: var(--state-warning);
+  --alert-color-warning: #000;
+  --alert-border-color-warning: hsl(28, 100%, 26%);
+
+  /* danger alerts */
+  --alert-bg-color-danger: var(--state-danger);
+  --alert-color-danger: #000;
+  --alert-border-color-danger: hsl(348, 100%, 23%);
+
+  /* the scrollbar that never works / does what anyone wants */
   --scrollbar-track-hover: #fafafa;
   --scrollbar-track-thumb: #bababa;
   --scrollbar-track-thumb-hover: #acacac;

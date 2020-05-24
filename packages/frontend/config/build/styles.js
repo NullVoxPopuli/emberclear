@@ -1,3 +1,6 @@
+const PostCSSImport = require('postcss-import');
+const PostCSSNext = require('postcss-cssnext');
+
 module.exports = {
   postcssConfig: {
     // NOTE:
@@ -23,18 +26,17 @@ module.exports = {
         extension: 'css',
         plugins: [
           require('stylelint'),
-          require('postcss-import')({
+          PostCSSImport({
             path: ['node_modules/shoelace-css/source/css'],
           }),
-          require('postcss-cssnext')({
+          PostCSSNext({
             features: {
-              // colorFunction: {
-              //   enabled: true,
-              //   preserveCustomProps: false,
-              // },
-              // customProperties: {
-              //   preserve: true,
-              // },
+              colorFunction: {
+                preserveCustomProps: false,
+              },
+              customProperties: {
+                preserve: true,
+              },
               rem: false,
               // overflowWrap: false,
               // colorRgba: false,
@@ -66,7 +68,7 @@ module.exports = {
       },
       // filter: {
       //   enabled: true,
-      //   plugins: [require('autoprefixer')()],
+      //   plugins: [autoprefixer()],
       // },
     },
   },
