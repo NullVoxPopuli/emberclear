@@ -177,7 +177,8 @@ ui:
   chat:
     welcome: Bem-vindo!
     message: >
-      Para começar, precisas de pelo menos um amigo.<br /><br /> Depois poderás conversar com ele e criar canais para comunicar com grupos de amigos.
+      To get started, you'll need at least one friend.'<br />''<br />'
+      Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: Existem novas mensagens
     viewRecent: ver mensagens recentes
     unreadMessages: '{number} novas mensagens desde {time}'
@@ -218,7 +219,7 @@ ui:
     about: About
     wantToSupport: Queres apoiar este projeto?
     license: >
-      The <a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>source code</a> uses the <a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>GPL-3</a> license.
+      The '<a href="https://github.com/NullVoxPopuli/emberclear" target="_blank" rel="noopener">'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target="_blank" rel="noopener">'GPL-3'</a>' license.
   login:
     title: "Welcome Back!"
     instructions: Por favor cola ou digita a tua chave-mnemónica.
@@ -243,7 +244,7 @@ ui:
   setup:
     overwriteTitle: Tens a certeza que pretendes criar uma nova identidade?
     overwriteQuestion: >
-      Esta é uma ação destrutiva, que fará com que a identidade atualmente configurada seja esquecida e substituída. Não há como recuperar, e sem ter a mnemónica guardada em algum lugar, não conseguirás ligar-te com nenhuma das conversações configuradas anteriormente, pois ninguém saberá quem és. <br> <br> Tens a certeza que queres fazer isto?
+      This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. '<br>' '<br>' Are you sure you want to do this?
     overwriteAbort: Não, regressar
     overwriteConfirm: Sim, eu compreendo os riscos
     introQuestion: Como gostarias de ser chamado?
