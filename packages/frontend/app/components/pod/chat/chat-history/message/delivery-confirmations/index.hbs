@@ -7,7 +7,7 @@
   {{#if this.wasSent}}
     {{#if this.hasDeliveryConfirmations}}
 
-      {{fa-icon 'check' size='sm' aria-label='message delivered successfully'}}
+      <FaIcon @icon='check' @size='sm' aria-label='message delivered successfully' />
 
     {{else if this.timedOut}}
 
@@ -49,7 +49,7 @@
           {{/if}}
         {{/if}}
 
-        {{fa-icon 'exclamation-circle'}}
+        <FaIcon @icon='exclamation-circle' />
 
         <HoverTip @class='w-left-200'>
           {{t 'status.deliveryFailed'}}

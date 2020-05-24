@@ -35,7 +35,7 @@
         href={{url-for 'settings'}}
         {{on 'click' (queue close (transition-to 'settings'))}}
       >
-        {{fa-icon 'sliders-h' prefix='fas'}}
+        <FaIcon @icon='sliders-h' @prefix='fas' />
         <span>{{t 'routes.settings'}}</span>
       </a>
       <a
@@ -43,7 +43,7 @@
         href={{url-for 'logout'}}
         {{on 'click' (queue close (transition-to 'logout'))}}
       >
-        {{fa-icon 'sign-out-alt' prefix='fas'}}
+        <FaIcon @icon='sign-out-alt' @prefix='fas' />
         <span>{{t 'routes.logout'}}</span>
       </a>
     </div>

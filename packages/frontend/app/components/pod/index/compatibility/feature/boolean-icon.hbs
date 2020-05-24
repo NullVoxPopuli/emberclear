@@ -1,13 +1,13 @@
 {{#if @value}}
   <span class='has-text-success' ...attributes>
-    {{fa-icon 'check-circle'}}
+    <FaIcon @icon='check-circle' />
   </span>
 {{else if @required}}
   <span class='has-text-danger' ...attributes>
-    {{fa-icon 'times-circle'}}
+    <FaIcon @icon='times-circle' />
   </span>
 {{else}}
   <span class='has-text-warning' ...attributes>
-    {{fa-icon 'exclamation-circle'}}
+    <FaIcon @icon='exclamation-circle' />
   </span>
 {{/if}}

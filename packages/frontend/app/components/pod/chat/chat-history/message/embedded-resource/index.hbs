@@ -8,9 +8,9 @@
       {{on 'click' this.toggleShow}}
     >
       {{#if this.isCollapsed}}
-        {{fa-icon 'angle-up'}}
+        <FaIcon @icon='angle-up' />
       {{else}}
-        {{fa-icon 'angle-down'}}
+        <FaIcon @icon='angle-down' />
       {{/if}}
     </button>
 
