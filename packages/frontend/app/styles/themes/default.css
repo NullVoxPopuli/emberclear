@@ -98,7 +98,7 @@
 
   /* info alerts */
   --alert-bg-color-info: var(--state-info);
-  --alert-color-info: #000;
+  --alert-color-info: #fff;
   --alert-border-color-info: hsl(208, 100%, 21%);
 
   /* warning alerts */
