@@ -9,9 +9,9 @@ and then can be visited at `http://localhost:4201`.
 
 ## Project Directory
 
-- [Frontend / Browser Client](https://github.com/NullVoxPopuli/emberclear/tree/master/packages/frontend)
+- [Browser Client](https://github.com/NullVoxPopuli/emberclear/tree/master/client/web/emberclear)
 - [Phoenix Relay](https://github.com/NullVoxPopuli/mesh-relay-phoenix)
-- [Benchmarks](https://github.com/NullVoxPopuli/emberclear/tree/master/packages/benchmarks)
+- [Benchmarks](https://github.com/NullVoxPopuli/emberclear/tree/master/benchmarks)
 
 ## Another Chat App?
 

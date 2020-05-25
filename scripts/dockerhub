@@ -1,5 +1,5 @@
 #!/bin/bash
-cd packages/frontend/
+cd client/web/emberclear/
 
 GIT_TAG=$GITHUB_SHA
 REPO_NAME="nullvoxpopuli/emberclear"

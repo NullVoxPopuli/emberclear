@@ -7,9 +7,9 @@ deps
 .idea/
 .DS_Store
 
-packages/keystore.jks
-packages/upload_certificate.pem
-packages/Google Play Store Info
+client/keystore.jks
+client/upload_certificate.pem
+client/Google Play Store Info
 
 # Local Netlify folder
 .netlify

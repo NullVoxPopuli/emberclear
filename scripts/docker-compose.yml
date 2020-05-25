@@ -17,7 +17,7 @@ services:
 
   emberclear:
     build:
-      context: ./frontend
+      context: ./client/web/emberclear
 
     # Default command to run when the container starts
     command: bash -c "yarn && yarn start:dev -p 4201"
@@ -43,27 +43,27 @@ services:
       - ember-dist:/app/dist
       - ember-node_modules:/app/node_modules
       # Copies the whole app into the container
-      # - ./frontend:/app:delegated
+      # - ./client-web/emberclear:/app:delegated
 
       # Copy invidial files/folders so container contents don't leak out
-      - ./frontend/config:/app/config
-      - ./frontend/fastboot:/app/fastboot
-      - ./frontend/public:/app/public
-      - ./frontend/src:/app/src
-      - ./frontend/tests:/app/tests
-      - ./frontend/translations:/app/translations
-      - ./frontend/types:/app/types
-      - ./frontend/vendor:/app/vendor
+      - ./client/web/emberclear/config:/app/config
+      - ./client/web/emberclear/fastboot:/app/fastboot
+      - ./client/web/emberclear/public:/app/public
+      - ./client/web/emberclear/src:/app/src
+      - ./client/web/emberclear/tests:/app/tests
+      - ./client/web/emberclear/translations:/app/translations
+      - ./client/web/emberclear/types:/app/types
+      - ./client/web/emberclear/vendor:/app/vendor
 
-      - ./frontend/.ember-cli:/app/.ember-cli
-      - ./frontend/.eslintignore:/app/.eslintignore
-      - ./frontend/.eslintrc.js:/app/.eslintrc.js
-      - ./frontend/.watchmanconfig:/app/.watchmanconfig
-      - ./frontend/ember-cli-build.js:/app/ember-cli-build.js
-      - ./frontend/package.json:/app/package.json
-      - ./frontend/testem.js:/app/testem.js
-      - ./frontend/tsconfig.json:/app/tsconfig.json
-      - ./frontend/yarn.lock:/app/yarn.lock
+      - ./client/web/emberclear/.ember-cli:/app/.ember-cli
+      - ./client/web/emberclear/.eslintignore:/app/.eslintignore
+      - ./client/web/emberclear/.eslintrc.js:/app/.eslintrc.js
+      - ./client/web/emberclear/.watchmanconfig:/app/.watchmanconfig
+      - ./client/web/emberclear/ember-cli-build.js:/app/ember-cli-build.js
+      - ./client/web/emberclear/package.json:/app/package.json
+      - ./client/web/emberclear/testem.js:/app/testem.js
+      - ./client/web/emberclear/tsconfig.json:/app/tsconfig.json
+      - ./client/web/emberclear/yarn.lock:/app/yarn.lock
 
       # Override the above mapping for the following
       # noise directories:

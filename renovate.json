@@ -5,19 +5,19 @@
   "automerge": true,
   "masterIssue": true,
   "ignorePaths": [
-      "packages/android-wrapper"
+      "client/android-wrapper"
   ],
   "packageRules": [
     {
-      "paths": ["packages/benchmarks/**"],
+      "paths": ["benchmarks/**"],
       "enabled": false
     },
     {
-      "paths": ["packages/frontend/package.json"],
+      "paths": ["client/web/emberclear/package.json"],
       "rangeStrategy": "bump"
     },
     {
-      "paths": ["packages/frontend/Dockerfile"],
+      "paths": ["client/web/emberclear/Dockerfile"],
       "enabled": false
     },
     {

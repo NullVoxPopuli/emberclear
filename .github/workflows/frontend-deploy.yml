@@ -3,9 +3,9 @@ on:
   push:
     branches: [master]
     # paths:
-    #   - 'packages/frontend/*'
+    #   - 'client/web/emberclear/*'
 env:
-  cwd: packages/frontend
+  cwd: client/web/emberclear
 
 jobs:
   tests:
@@ -30,13 +30,13 @@ jobs:
       uses: coverallsapp/github-action@v1.0.1
       with:
         github-token: ${{ secrets.github_token }}
-        path-to-lcov: ./packages/frontend/coverage/lcov.info
+        path-to-lcov: ./client/web/emberclear/coverage/lcov.info
 
     - name: Upload Coverage Artifacts
       uses: actions/upload-artifact@v1
       with:
         name: coverage
-        path: packages/frontend/coverage/
+        path: client/web/emberclear/coverage/
 
   deploy:
     name: Deploy to Netlify
@@ -53,21 +53,21 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: coverage
-        path: packages/frontend/coverage/
+        path: client/web/emberclear/coverage/
     - name: Install
       working-directory: ${{ env.cwd }}
       run: yarn install
 
     - name: Deploy to Netlify
       env:
-        FRONTEND: packages/frontend
+        FRONTEND: client/web/emberclear
         NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_CLI_VERSION: 0.4.0
       run: |
-        mv packages/frontend/coverage packages/frontend/public/
+        mv client/web/emberclear/coverage client/web/emberclear/public/
 
-        ( cd packages/frontend \
+        ( cd client/web/emberclear \
           && time yarn analyze \
           && time yarn build:production
         )
@@ -78,7 +78,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: frontend-assets
-        path: packages/frontend/dist/
+        path: client/web/emberclear/dist/
 
   deploy_docker:
     name: Deploy Docker Image
@@ -92,7 +92,7 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: frontend-assets
-        path: packages/frontend/dist/
+        path: client/web/emberclear/dist/
 
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
@@ -101,7 +101,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
         snapshot: true
-        workdir: packages/frontend
+        workdir: client/web/emberclear
         dockerfile: Dockerfile.release
 
   tests_e2e:
@@ -124,7 +124,7 @@ jobs:
 
     - name: Test
       run: |
-        cd packages/smoke-tests \
+        cd client/web/smoke-tests \
         && yarn \
         && yarn test --headless
 
