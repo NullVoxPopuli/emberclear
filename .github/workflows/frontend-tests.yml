@@ -2,8 +2,9 @@ name: Frontend Tests
 on:
   pull_request:
     branches: [master]
-    # paths:
-    #   - 'client/web/emberclear/*'
+    paths:
+    - 'client/web/emberclear/**'
+
 env:
   cwd: client/web/emberclear
 

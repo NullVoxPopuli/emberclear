@@ -2,8 +2,9 @@ name: Frontend Deploy
 on:
   push:
     branches: [master]
-    # paths:
-    #   - 'client/web/emberclear/*'
+    paths:
+    - 'client/web/**'
+
 env:
   cwd: client/web/emberclear
 

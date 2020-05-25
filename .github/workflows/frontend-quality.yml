@@ -2,10 +2,12 @@ name: Frontend Quality
 on:
   pull_request:
     branches: [master]
-    # paths:
-    #   - 'client/web/emberclear/*'
+    paths:
+    - 'client/web/emberclear/**'
+
 env:
-  cwd: client/web/emberclear
+  root: client/web
+  app: client/web/emberclear
 
 jobs:
   security:
@@ -15,16 +17,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
+
     - name: Install
       run: volta install snyk
+
     - name: Snyk
-      working-directory: ${{ env.cwd }}
+      working-directory: ${{ env.root }}
       if: github.event == 'pull_request'
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: snyk test --severity-threshold=high
 
-  lint_js:
+  lint:
     name: "Lint JS/TS"
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -34,82 +38,27 @@ jobs:
     - uses: rwjblue/setup-volta@v1
 
     - name: Install
-      working-directory: ${{ env.cwd }}
+      working-directory: ${{ env.root }}
       run: yarn install
 
-    - name: "Lint JS/TS"
-      working-directory: ${{ env.cwd }}
-      run: yarn lint:js --quiet
+    - name: "JS/TS"
+      working-directory: ${{ env.root }}
+      run: yarn eslint ${{ env.addon }} --ext js,ts
 
-  lint_templates:
-    name: "Lint Templates"
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
+    - name: "Templates"
+      working-directory: ${{ env.root }}
+      run: yarn ember-template-lint ${{ env.app }}
 
-    steps:
-    - uses: actions/checkout@v2
-    - uses: rwjblue/setup-volta@v1
+    - name: "Styles"
+      working-directory: ${{ env.root }}
+      run: yarn stylelint ${{ env.app }}
 
-    - name: Install
-      working-directory: ${{ env.cwd }}
-      run: yarn install
-
-    - name: Lint Templates
-      working-directory: ${{ env.cwd }}
-      run: yarn lint:hbs
-
-
-  lint_styles:
-    name: "Lint Styles"
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-    - uses: actions/checkout@v2
-    - uses: rwjblue/setup-volta@v1
-    - name: Install
-      working-directory: ${{ env.cwd }}
-      run: yarn install
-
-    - name: Lint Styles
-      working-directory: ${{ env.cwd }}
-      run: yarn lint:styles
-
-
-  lint_translations:
-    name: "Lint Translations"
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-    - uses: actions/checkout@v2
-    - uses: rwjblue/setup-volta@v1
-
-    - name: Install
-      working-directory: ${{ env.cwd }}
-      run: yarn install
-
-    # This is broken on modern syntax.......
-    - name: Lint Translations
-      working-directory: ${{ env.cwd }}
+    - name: "Translations"
+      working-directory: ${{ env.app }}
       run: yarn lint:i18n
       continue-on-error: true
 
-
-  lint_types:
-    name: "Check Type Correctness"
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-    - uses: actions/checkout@v2
-    - uses: rwjblue/setup-volta@v1
-
-    - name: Install
-      working-directory: ${{ env.cwd }}
-      run: yarn install
-
-    - name: Type Checking
-      working-directory: ${{ env.cwd }}
-      run: yarn tsc --skipLibCheck
+    - name: 'Type Correctness'
+      working-directory: ${{ env.app }}
+      run: yarn tsc --skipLibCheck --noEmit
 

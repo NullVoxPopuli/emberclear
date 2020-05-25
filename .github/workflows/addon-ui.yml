@@ -1,0 +1,62 @@
+name: '@emberclear/ui'
+on:
+  pull_request:
+    branches: [master]
+    paths:
+    - 'client/web/addons/ui/**'
+
+env:
+  root: client/web
+  addon: client/web/addons/ui
+
+jobs:
+  lint:
+    name: 'Lint'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: rwjblue/setup-volta@v1
+
+    - name: Install
+      working-directory: ${{ env.root }}
+      run: yarn install
+
+    - name: "JS/TS"
+      working-directory: ${{ env.root }}
+      run: yarn eslint ${{ env.addon }} --ext js,ts
+
+    - name: "Templates"
+      working-directory: ${{ env.root }}
+      run: yarn ember-template-lint ${{ env.addon }}
+
+    - name: "Styles"
+      working-directory: ${{ env.root }}
+      run: yarn stylelint ${{ env.addon }}
+
+    - name: 'Type Correctness'
+      working-directory: ${{ env.addon }}
+      run: yarn tsc --skipLibCheck --noEmit
+
+  test:
+    name: 'Test'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: rwjblue/setup-volta@v1
+
+    - name: Install
+      working-directory: ${{ env.root }}
+      run: yarn install
+
+    - name: Ember
+      working-directory: ${{ env.addon }}
+      run: yarn test
+
+
+
+
+

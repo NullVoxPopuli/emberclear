@@ -15,5 +15,6 @@ export default class App extends Application {
  * This line is added to support initializers in the `app/` directory
  */
 loadInitializers(App, config.modulePrefix);
+// Ember.run.backburner.DEBUG = true;
 
 defineModifier();

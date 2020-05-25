@@ -1,0 +1,9 @@
+{
+  "name": "@emberclear/config",
+  "version": "0.0.0",
+  "description": "shared config files",
+  "main": "index.js",
+  "author": "NullVoxPopuli",
+  "license": "GPL-3.0",
+  "private": true
+}
