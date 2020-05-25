@@ -10,7 +10,6 @@ const { addonConfig } = require('./config/build/addons');
 const { buildBabelConfig } = require('./config/build/babel');
 const { buildStaticTrees } = require('./config/build/static');
 const { postcssConfig } = require('./config/build/styles');
-const { buildWorkerTrees } = require('./config/build/workers');
 const crypto = require('crypto');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -104,7 +103,7 @@ module.exports = function (defaults) {
   });
 
   // Additional paths to copy to the public directory in the final build.
-  let additionalTrees = [...buildStaticTrees(env), ...buildWorkerTrees(env)];
+  let additionalTrees = [...buildStaticTrees(env)];
 
   if (!isProduction) {
     app.trees.public = new UnwatchedDir('public');

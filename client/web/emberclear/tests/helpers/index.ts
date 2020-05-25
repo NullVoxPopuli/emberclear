@@ -6,13 +6,13 @@ import { getContext } from '@ember/test-helpers';
 export { stubService } from './stub-service';
 export { textFor, text } from './text-for';
 export * from './create-current-user';
+export * from './get-worker';
 export { getService } from './get-service';
 export { clearLocalStorage } from './clear-local-storage';
 export { setupRelayConnectionMocks } from './setup-relay-connection-mocks';
 export { getStore } from './get-store';
 export { trackAsyncDataRequests } from './track-async-data';
 
-export { setupWorkers } from './setup-workers';
 export { setupEmberclearTest } from './setup-test';
 
 export { refresh } from './refresh';

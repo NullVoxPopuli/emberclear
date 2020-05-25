@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { setOwner, getOwner } from '@ember/application';
 import { assert } from '@ember/debug';
 import { associateDestroyableChild, registerDestructor } from '@ember/destroyable';
+import { worker } from '@skyrocketjs/ember';
 
 import { pool, STATUS, ConnectionPool } from 'emberclear/utils/connection/connection-pool';
 import { toHex, fromHex } from 'emberclear/utils/string-encoding';
@@ -11,13 +12,13 @@ import { Connection } from 'emberclear/utils/connection/connection';
 import Relay from 'emberclear/models/relay';
 import CryptoConnector from 'emberclear/utils/workers/crypto';
 import StoreService from '@ember-data/store';
-import WorkersService from 'emberclear/services/workers';
 import SettingsService from 'emberclear/services/settings';
 
 export class EphemeralConnection {
   @service store!: StoreService;
-  @service workers!: WorkersService;
   @service settings!: SettingsService;
+
+  @worker('crypto') cryptoWorker;
 
   // setup in the psuedo constructor (static method: build)
   // (build is an "async constructor")
@@ -105,7 +106,7 @@ export class EphemeralConnection {
   ///////////////////////////////////////
 
   async hydrateCrypto() {
-    let { hex, crypto } = await generateEphemeralKeys(this.workers);
+    let { hex, crypto } = await generateEphemeralKeys(this.cryptoWorker);
 
     this.crypto = crypto;
     this.hexId = hex;
@@ -137,8 +138,8 @@ export class EphemeralConnection {
   }
 }
 
-async function generateEphemeralKeys(workers: WorkersService) {
-  let crypto = new CryptoConnector({ workerService: workers });
+async function generateEphemeralKeys(cryptoWorker: unknown) {
+  let crypto = new CryptoConnector({ workerService: cryptoWorker });
   let keys = await crypto.generateKeys();
 
   crypto.keys = keys;

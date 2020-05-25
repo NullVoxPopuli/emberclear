@@ -6,7 +6,6 @@ import {
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,
-  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
@@ -15,7 +14,6 @@ const page = settings.dangerZone;
 
 module('Acceptance | Settings | Danger Zone', function (hooks) {
   setupApplicationTest(hooks);
-  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
 

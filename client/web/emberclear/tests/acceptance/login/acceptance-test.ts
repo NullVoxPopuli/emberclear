@@ -14,9 +14,8 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   trackAsyncDataRequests,
-  setupWorkers,
+  getWorker,
 } from 'emberclear/tests/helpers';
-import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/workers/crypto/utils/mnemonic';
 
 const behaviors = {
   invalid: {
@@ -48,7 +47,6 @@ const behaviors = {
 
 module('Acceptance | Login', function (hooks) {
   setupApplicationTest(hooks);
-  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   trackAsyncDataRequests(hooks);
@@ -98,7 +96,7 @@ module('Acceptance | Login', function (hooks) {
     module('both name and mnemonic are filled in', function () {
       module('with valid values', function (hooks) {
         hooks.beforeEach(async function () {
-          const mnemonic = await mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
+          const mnemonic = await getWorker('crypto').mnemonicFromPrivateKey(samplePrivateKey);
 
           await loginForm.typeName('NullVoxPopuli');
           await loginForm.typeMnemonic(mnemonic);

@@ -1,17 +1,7 @@
-import * as nacl from 'emberclear/workers/crypto/utils/nacl';
-import { module, test, skip } from 'qunit';
+import * as nacl from 'emberclear/../workers/crypto/utils/nacl';
+import { module, test } from 'qunit';
 
 module('Workers | Crypto | nacl', function () {
-  skip('libsodium uses wasm', async function (assert) {
-    assert.expect(0);
-    // not using libsodium atm. WASM support seems unstable
-    // (or libsodium is unstable between updates)
-    // const sodium = await nacl.libsodium();
-    // const isUsingWasm = (sodium as any).libsodium.usingWasm;
-
-    // assert.ok(isUsingWasm);
-  });
-
   test('generateAsymmetricKeys | works', async function (assert) {
     const boxKeys = await nacl.generateAsymmetricKeys();
 

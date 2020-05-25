@@ -1,11 +1,10 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import { getService, getStore, clearLocalStorage } from 'emberclear/tests/helpers';
+import { getService, getStore, clearLocalStorage, getWorker } from 'emberclear/tests/helpers';
 import ChannelVerifier from 'emberclear/services/channels/channel-verifier';
 import { buildUser } from 'emberclear/tests/helpers/factories/user-factory';
 import VoteChain, { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
-import { sign, hash } from 'emberclear/workers/crypto/utils/nacl';
 import User from 'emberclear/models/user';
 
 module('Unit | Service | channels/channel-verifier', function (hooks) {
@@ -97,7 +96,11 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
-      addMember1VoteChain.signature = await signatureOf(addMember1VoteChain, admin);
+      addMember1VoteChain.signature = await signatureOf(
+        addMember1VoteChain,
+        admin,
+        getWorker('crypto')
+      );
     });
 
     module('valid', function () {
@@ -130,7 +133,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           signature: undefined,
         });
 
-        vote2.signature = await signatureOf(vote2, admin);
+        vote2.signature = await signatureOf(vote2, admin, getWorker('crypto'));
         let originalChannelContextChain = store.createRecord('channel-context-chain', {
           admin: admin,
           members: [admin],
@@ -164,7 +167,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           signature: undefined,
         });
 
-        vote2.signature = await signatureOf(vote2, admin);
+        vote2.signature = await signatureOf(vote2, admin, getWorker('crypto'));
         let originalChannelContextChain = store.createRecord('channel-context-chain', {
           admin: admin,
           members: [admin],
@@ -218,7 +221,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           signature: undefined,
         });
 
-        vote.signature = await signatureOf(vote, admin);
+        vote.signature = await signatureOf(vote, admin, getWorker('crypto'));
         vote.action = VOTE_ACTION.REMOVE;
         let originalChannelContextChain = store.createRecord('channel-context-chain', {
           admin: admin,
@@ -249,7 +252,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             signature: undefined,
           });
 
-          vote2.signature = await signatureOf(vote2, member1);
+          vote2.signature = await signatureOf(vote2, member1, getWorker('crypto'));
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
             members: [admin],
@@ -283,7 +286,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             signature: undefined,
           });
 
-          vote.signature = await signatureOf(vote, admin);
+          vote.signature = await signatureOf(vote, admin, getWorker('crypto'));
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
             members: [admin],
@@ -312,7 +315,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
           signature: undefined,
         });
 
-        vote.signature = await signatureOf(vote, admin);
+        vote.signature = await signatureOf(vote, admin, getWorker('crypto'));
         let originalChannelContextChain = store.createRecord('channel-context-chain', {
           admin: admin,
           members: [admin],
@@ -408,7 +411,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             signature: undefined,
           });
 
-          vote2.signature = await signatureOf(vote2, admin);
+          vote2.signature = await signatureOf(vote2, admin, getWorker('crypto'));
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
             members: [admin],
@@ -442,7 +445,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             signature: undefined,
           });
 
-          vote2.signature = await signatureOf(vote2, admin);
+          vote2.signature = await signatureOf(vote2, admin, getWorker('crypto'));
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
             members: [admin],
@@ -479,7 +482,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             signature: undefined,
           });
 
-          vote2.signature = await signatureOf(vote2, admin);
+          vote2.signature = await signatureOf(vote2, admin, getWorker('crypto'));
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
             members: [admin],
@@ -513,7 +516,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             signature: undefined,
           });
 
-          vote2.signature = await signatureOf(vote2, admin);
+          vote2.signature = await signatureOf(vote2, admin, getWorker('crypto'));
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
             members: [admin],
@@ -547,7 +550,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
             signature: undefined,
           });
 
-          vote2.signature = await signatureOf(vote2, admin);
+          vote2.signature = await signatureOf(vote2, admin, getWorker('crypto'));
           let originalChannelContextChain = store.createRecord('channel-context-chain', {
             admin: admin,
             members: [admin],
@@ -572,6 +575,6 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
   });
 });
 
-async function signatureOf(vote: VoteChain, user: User): Promise<Uint8Array> {
-  return sign(await hash(generateSortedVote(vote)), user.privateSigningKey);
+async function signatureOf(vote: VoteChain, user: User, crypto): Promise<Uint8Array> {
+  return crypto.sign(await crypto.hash(generateSortedVote(vote)), user.privateSigningKey);
 }

@@ -9,7 +9,6 @@ import {
   clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
-  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import { selectors as chatSelectors } from 'emberclear/tests/helpers/pages/chat';
@@ -20,7 +19,6 @@ import { settled } from '@ember/test-helpers';
 module('Acceptance | Invitations', function (hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
-  setupWorkers(hooks);
   setupRelayConnectionMocks(hooks);
 
   module('Is not logged in', function (hooks) {

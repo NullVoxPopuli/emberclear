@@ -3,17 +3,12 @@ import { module, test } from 'qunit';
 import { visit, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-import {
-  clearLocalStorage,
-  setupRelayConnectionMocks,
-  setupWorkers,
-} from 'emberclear/tests/helpers';
+import { clearLocalStorage, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 
 import { app } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Navigation Scrolling', function (hooks) {
   setupApplicationTest(hooks);
-  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
 

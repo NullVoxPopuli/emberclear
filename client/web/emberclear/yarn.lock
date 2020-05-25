@@ -315,7 +315,7 @@
     "@babel/helper-remap-async-to-generator" "^7.8.3"
     "@babel/plugin-syntax-async-generators" "^7.8.0"
 
-"@babel/plugin-proposal-class-properties@^7.1.0", "@babel/plugin-proposal-class-properties@^7.8.3":
+"@babel/plugin-proposal-class-properties@^7.1.0", "@babel/plugin-proposal-class-properties@^7.7.0", "@babel/plugin-proposal-class-properties@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.8.3.tgz#5e06654af5cd04b608915aada9b2a6788004464e"
   integrity sha512-EqFhbo7IosdgPgZggHaNObkmO1kNUe3slaKu54d5OWvy+p9QIKOzK1GAEpAIsZtWVtPXUHSMcT4smvDrCfY4AA==
@@ -323,7 +323,7 @@
     "@babel/helper-create-class-features-plugin" "^7.8.3"
     "@babel/helper-plugin-utils" "^7.8.3"
 
-"@babel/plugin-proposal-decorators@^7.8.3":
+"@babel/plugin-proposal-decorators@^7.7.0", "@babel/plugin-proposal-decorators@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.8.3.tgz#2156860ab65c5abf068c3f67042184041066543e"
   integrity sha512-e3RvdvS4qPJVTe288DlXjwKflpfy1hr0j5dz5WpIYYeP7vQZg2WfAEIp8k5/Lwis/m5REXEteIz6rrcDtXXG7w==
@@ -412,7 +412,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.8.0"
 
-"@babel/plugin-syntax-decorators@^7.8.3":
+"@babel/plugin-syntax-decorators@^7.2.0", "@babel/plugin-syntax-decorators@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-decorators/-/plugin-syntax-decorators-7.8.3.tgz#8d2c15a9f1af624b0025f961682a9d53d3001bda"
   integrity sha512-8Hg4dNNT9/LcA1zQlfwuKR8BUc/if7Q7NkTam9sGTcJphLwpf2g4S42uhspQrIrR+dpzE0dtTqBVFoHl8GtnnQ==
@@ -1704,6 +1704,19 @@
     is-module "^1.0.0"
     resolve "^1.14.2"
 
+"@rollup/plugin-node-resolve@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-8.0.0.tgz#47cc0775e31b6a531c88a40270377fe899a271cb"
+  integrity sha512-5poJCChrkVggXXND/sQ7yNqwjUNT4fP31gpRWCnSNnlXuUXTCMHT33xZrTGxgjm5Rl18MHj7iEzlCT8rYWwQSA==
+  dependencies:
+    "@rollup/pluginutils" "^3.0.8"
+    "@types/resolve" "0.0.8"
+    builtin-modules "^3.1.0"
+    deep-freeze "^0.0.1"
+    deepmerge "^4.2.2"
+    is-module "^1.0.0"
+    resolve "^1.14.2"
+
 "@rollup/plugin-replace@2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-replace/-/plugin-replace-2.3.0.tgz#86d88746383e40dd81cffb5216449cc51a734eb9"
@@ -1774,6 +1787,50 @@
   version "0.7.1"
   resolved "https://registry.npmjs.org/@sinonjs/text-encoding/-/text-encoding-0.7.1.tgz#8da5c6530915653f3a1f38fd5f101d8c3f8079c5"
   integrity sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==
+
+"@skyrocketjs/compiler@0.0.1-alpha.1":
+  version "0.0.1-alpha.1"
+  resolved "https://registry.yarnpkg.com/@skyrocketjs/compiler/-/compiler-0.0.1-alpha.1.tgz#7dbd393fe179bb2d110312a28010c568078ff9f5"
+  integrity sha512-qw6Bp2uRD4C+E1hDgLAQr9L8dx52blmCR8R/PB+ZiGWUonBCk8Zlc/xSAVn4/q1gahGDDPJ3vraokOvzwcoUQg==
+  dependencies:
+    "@babel/plugin-proposal-class-properties" "^7.7.0"
+    "@babel/plugin-proposal-decorators" "^7.7.0"
+    "@babel/plugin-syntax-decorators" "^7.2.0"
+    "@rollup/plugin-node-resolve" "^8.0.0"
+    "@skyrocketjs/schema" "0.0.1-alpha.1"
+    "@skyrocketjs/worker" "0.0.1-alpha.1"
+    broccoli-babel-transpiler "^7.3.0"
+    broccoli-debug "^0.6.5"
+    broccoli-funnel "^3.0.0"
+    broccoli-rollup "^4.1.1"
+    tmp "^0.2.1"
+
+"@skyrocketjs/ember@^0.0.1-alpha.1":
+  version "0.0.1-alpha.1"
+  resolved "https://registry.yarnpkg.com/@skyrocketjs/ember/-/ember-0.0.1-alpha.1.tgz#caa9883ddc6f506e283cc19e7a220d557956abc4"
+  integrity sha512-MOKDoZ5xnDF0R6e8fl0Fu8j5wx1d2Z6LGSXPi7vRw2Yq0W4GDfv7FBZHPwX58ZrdhqT8nX8wyiSCmTe3YlXYQw==
+  dependencies:
+    "@skyrocketjs/compiler" "0.0.1-alpha.1"
+    broccoli-debug "^0.6.5"
+    broccoli-funnel "^3.0.3"
+    broccoli-merge-trees "^4.2.0"
+    ember-cli-babel "^7.11.1"
+    ember-cli-htmlbars "^5.1.2"
+
+"@skyrocketjs/schema@0.0.1-alpha.1":
+  version "0.0.1-alpha.1"
+  resolved "https://registry.yarnpkg.com/@skyrocketjs/schema/-/schema-0.0.1-alpha.1.tgz#3e44187d259461885dbbc3953cef712dedbf80dd"
+  integrity sha512-R/G2YvqjrUI24qi2+FnE0Hj+XGlmexotRzIaitrLT2oa8r97Ho5iOF0394qEEwUqcfgmTAC/dO3udsF1f9RWBg==
+
+"@skyrocketjs/worker@0.0.1-alpha.1":
+  version "0.0.1-alpha.1"
+  resolved "https://registry.yarnpkg.com/@skyrocketjs/worker/-/worker-0.0.1-alpha.1.tgz#ada38184e5155b61ee7e3a3aafa997c63ba6a4e9"
+  integrity sha512-PvfjmJT+oJD5coBTJGIgmVDyX0yd069HBZLIzHd/RlhKeYFJ8oFv1VWHP13v3MVYYJSaQVOToicoMtCXrVlahw==
+
+"@skyrocketjs/worker@^0.0.1-alpha.0":
+  version "0.0.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@skyrocketjs/worker/-/worker-0.0.1-alpha.0.tgz#455d331b64bd9cee2481f7bdd11d710ccc7a0846"
+  integrity sha512-Jge5CTLlLP3xESTMK7lSPq8bGH988RfZsY8YoV2u9AI08egSR1hESVZ51evOAtLbyQp4NlJDF0BBQuZN9/DM0g==
 
 "@stylelint/postcss-css-in-js@^0.37.1":
   version "0.37.1"
@@ -4122,7 +4179,7 @@ broccoli-babel-transpiler@^6.5.0:
     rsvp "^4.8.2"
     workerpool "^2.3.0"
 
-broccoli-babel-transpiler@^7.4.0:
+broccoli-babel-transpiler@^7.3.0, broccoli-babel-transpiler@^7.4.0:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/broccoli-babel-transpiler/-/broccoli-babel-transpiler-7.4.0.tgz#f3069f0f77e8017aa17e1e757dfb4a30de044182"
   integrity sha512-DzPXQr1C+zOgzXG40wqPjtjSSa6wRKb+Ls45Qtq7Pn+GxL3/jIvQOBZi0/irZ5dlYVbRMEZiUnaIBIOha2ygIw==
@@ -4326,6 +4383,22 @@ broccoli-funnel@^3.0.0, broccoli-funnel@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/broccoli-funnel/-/broccoli-funnel-3.0.2.tgz#25e1c9a512b3852d3c9dde19ebdf07880d619c73"
   integrity sha512-yRa7f0H/BtfqXNmL4eCYtAiVAQASI5b83//17MxAYp3I+w8XzGY8Tc3mwhdUrAgh6Zhb6LZwgvUZDZPTLmkK7w==
+  dependencies:
+    array-equal "^1.0.0"
+    blank-object "^1.0.1"
+    broccoli-plugin "^4.0.1"
+    debug "^4.1.1"
+    fast-ordered-set "^1.0.0"
+    fs-tree-diff "^2.0.1"
+    heimdalljs "^0.2.0"
+    minimatch "^3.0.0"
+    path-posix "^1.0.0"
+    walk-sync "^2.0.2"
+
+broccoli-funnel@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/broccoli-funnel/-/broccoli-funnel-3.0.3.tgz#26fd42632471f67a91f4770d1987118087219937"
+  integrity sha512-LPzZ91BwStoHZXdXHQAJeYORl189OrRKM5NdIi86SDU9wZ4s/3lV1PRFOiobDT/jKM10voM7CDzfvicHbCYxAQ==
   dependencies:
     array-equal "^1.0.0"
     blank-object "^1.0.1"
@@ -6084,10 +6157,20 @@ deep-extend@^0.6.0:
   resolved "https://registry.npmjs.org/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
   integrity sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==
 
+deep-freeze@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/deep-freeze/-/deep-freeze-0.0.1.tgz#3a0b0005de18672819dfd38cd31f91179c893e84"
+  integrity sha1-OgsABd4YZygZ39OM0x+RF5yJPoQ=
+
 deep-is@^0.1.3, deep-is@~0.1.3:
   version "0.1.3"
   resolved "https://registry.npmjs.org/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
+
+deepmerge@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
+  integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
 
 default-require-extensions@^2.0.0:
   version "2.0.0"
@@ -7323,6 +7406,13 @@ ember-resolver@^8.0.0:
     ember-cli-version-checker "^5.0.2"
     resolve "^1.15.1"
 
+"ember-resource@https://github.com/pzuraq/ember-usable#0d03a50":
+  version "0.0.0"
+  resolved "https://github.com/pzuraq/ember-usable#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
+  dependencies:
+    ember-cli-babel "^7.13.0"
+    ember-cli-htmlbars "^4.2.0"
+
 ember-rfc176-data@^0.3.12, ember-rfc176-data@^0.3.13:
   version "0.3.13"
   resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.13.tgz#ed1712a26e65fec703655f35410414aa1982cf3b"
@@ -7467,7 +7557,7 @@ ember-statecharts@NullVoxPopuli/ember-statecharts#use-machine:
     ember-auto-import "^1.5.3"
     ember-cli-babel "^7.18.0"
     ember-cli-htmlbars "^4.2.3"
-    ember-usable "https://github.com/pzuraq/ember-usable#0d03a50"
+    ember-resource "https://github.com/pzuraq/ember-usable#0d03a50"
     xstate "^4.8.0"
 
 ember-template-lint@2.8.0:
@@ -7539,13 +7629,6 @@ ember-test-waiters@^2.1.1:
     ember-cli-typescript "^3.1.3"
     ember-cli-version-checker "^5.1.0"
     semver "^7.1.3"
-
-"ember-usable@https://github.com/pzuraq/ember-usable#0d03a50":
-  version "0.0.0"
-  resolved "https://github.com/pzuraq/ember-usable#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
-  dependencies:
-    ember-cli-babel "^7.13.0"
-    ember-cli-htmlbars "^4.2.0"
 
 ember-usable@pzuraq/ember-usable#master:
   version "0.0.0"
@@ -13383,11 +13466,6 @@ promise-retry@^1.1.1:
     err-code "^1.0.0"
     retry "^0.10.0"
 
-promise-worker-bi@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/promise-worker-bi/-/promise-worker-bi-4.0.2.tgz#d013a4ab358dba800fe84add4cc4ed0e715acc07"
-  integrity sha512-iLmze2yAtlDiajv5HUAmzURq4fW8GRfwjXEjJIAQEgoRwxxT6llTJbZtbRt+JyNSwMWcEOFLrfS5v1h3zcma1Q==
-
 promise.hash.helper@^1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/promise.hash.helper/-/promise.hash.helper-1.0.7.tgz#2f39d8495df40dcdfbc1d5be9e9e56efeae7f180"
@@ -15835,6 +15913,13 @@ tmp@^0.1.0:
   integrity sha512-J7Z2K08jbGcdA1kkQpJSqLF6T0tdQqpR2pnSUXsIchbPdTI9v3e85cLW0d6WDhwuAleOV71j2xWs8qMPfK7nKw==
   dependencies:
     rimraf "^2.6.3"
+
+tmp@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.2.1.tgz#8457fc3037dcf4719c251367a1af6500ee1ccf14"
+  integrity sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
+  dependencies:
+    rimraf "^3.0.0"
 
 tmpl@1.0.x:
   version "1.0.4"

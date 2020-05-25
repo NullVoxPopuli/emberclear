@@ -1,14 +1,18 @@
 import Service, { inject as service } from '@ember/service';
+import { worker } from '@skyrocketjs/ember';
+
 import VoteChain from 'emberclear/models/vote-chain';
-import CryptoConnector from '../../utils/workers/crypto';
-import WorkersService from '../workers';
-import { generateSortedVote } from './-utils/vote-sorter';
-import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
-import { identitiesIncludes, identityEquals } from 'emberclear/utils/identity-comparison';
 import Identity from 'emberclear/models/identity';
 
+import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
+import { identitiesIncludes, identityEquals } from 'emberclear/utils/identity-comparison';
+
+import CryptoConnector from '../../utils/workers/crypto';
+import { generateSortedVote } from './-utils/vote-sorter';
+
 export default class VoteVerifier extends Service {
-  @service workers!: WorkersService;
+  @worker('crypto') cryptoWorker;
+
   crypto?: CryptoConnector;
 
   async isValid(voteToVerify: VoteChain): Promise<boolean> {
@@ -45,7 +49,7 @@ export default class VoteVerifier extends Service {
     if (this.crypto) return;
 
     this.crypto = new CryptoConnector({
-      workerService: this.workers,
+      workerService: this.cryptoWorker,
     });
   }
 

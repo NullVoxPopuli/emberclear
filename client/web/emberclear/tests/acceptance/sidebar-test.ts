@@ -9,7 +9,6 @@ import {
   setupCurrentUser,
   getService,
   getStore,
-  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import { page, selectors } from 'emberclear/components/app/off-canvas/-page';
@@ -22,7 +21,6 @@ import { getCurrentUser } from 'emberclear/tests/helpers';
 
 module('Acceptance | Sidebar', function (hooks) {
   setupApplicationTest(hooks);
-  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
   setupCurrentUser(hooks);

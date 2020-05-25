@@ -1,8 +1,7 @@
 import { module, skip } from 'qunit';
 import { setupTest, test } from 'ember-qunit';
 import CurrentUserService from 'emberclear/services/current-user';
-import { getService } from 'emberclear/tests/helpers';
-import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
+import { getService, getWorker } from 'emberclear/tests/helpers';
 
 module('Unit | Service | identity', function (hooks) {
   setupTest(hooks);
@@ -14,7 +13,7 @@ module('Unit | Service | identity', function (hooks) {
   });
 
   test('importFromKey where privateSigningKey is not present generates signing keys', async function (assert) {
-    let keys = await generateAsymmetricKeys();
+    let keys = await getWorker('crypto').generateAsymmetricKeys();
 
     await service.importFromKey('name', keys.privateKey);
     assert.ok(service.record);

@@ -6,7 +6,7 @@ import {
   toUint11Array,
   naclBoxPrivateKeyFromMnemonic,
   toUint8Array,
-} from 'emberclear/workers/crypto/utils/mnemonic';
+} from 'emberclear/../workers/crypto/utils/mnemonic';
 
 module('Workers | Crypto | mnemonic', function () {
   const numbers = {
