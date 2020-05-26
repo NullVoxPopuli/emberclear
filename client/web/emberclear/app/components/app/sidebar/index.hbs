@@ -4,7 +4,7 @@
       <button
         id='contacts-tab'
         type='button'
-        class='sidebar-tab {{#if this.isTabContacts 'sidebar-tab-selected'}}'
+        class='sidebar-tab {{if this.isTabContacts 'sidebar-tab-selected'}}'
         data-test-tab-contacts
         {{on 'click' (fn this.switchToTab this.Tab.Contacts)}}
       >
@@ -14,7 +14,7 @@
       <button 
         id='channels-tab'
         type='button'
-        class='sidebar-tab {{#if this.isTabChannels 'sidebar-tab-selected'}}'
+        class='sidebar-tab {{if this.isTabChannels 'sidebar-tab-selected'}}'
         data-test-tab-channels
         {{on 'click' (fn this.switchToTab this.Tab.Channels)}}
       >
@@ -24,7 +24,7 @@
       <button
         id='actions-tab'
         type='button'
-        class='sidebar-tab {{#if this.isTabActions 'sidebar-tab-selected'}}'
+        class='sidebar-tab {{if this.isTabActions 'sidebar-tab-selected'}}'
         data-test-tab-actions
         {{on 'click' (fn this.switchToTab this.Tab.Actions)}}
       >
