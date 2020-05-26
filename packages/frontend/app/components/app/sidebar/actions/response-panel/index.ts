@@ -10,7 +10,6 @@ interface IArgs {
   vote: VoteChain;
 }
 
-//TODO: discuss user changing their mind
 export default class ResponsePanel extends Component<IArgs> {
   @action
   yes() {
