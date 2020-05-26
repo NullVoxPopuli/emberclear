@@ -183,7 +183,7 @@
     "ember-service-worker-index": "^0.7.0",
     "ember-service-worker-update-notify": "^3.0.0",
     "ember-sinon": "^5.0.0",
-    "ember-source": "^3.18.1",
+    "ember-source": "^3.19.0",
     "ember-statecharts": "NullVoxPopuli/ember-statecharts#use-machine",
     "ember-template-lint": "2.8.0",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
