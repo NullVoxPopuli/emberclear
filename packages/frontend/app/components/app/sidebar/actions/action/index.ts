@@ -8,9 +8,9 @@ interface IArgs {
 export default class ResponsePanel extends Component<IArgs> {
   get header() {
     return (
-      this.args.action.vote.action +
+      this.args.action.vote.voteChain.action +
       ' ' +
-      this.args.action.vote.target.displayName +
+      this.args.action.vote.voteChain.target.displayName +
       ': ' +
       this.args.action.response
     );

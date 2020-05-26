@@ -1,6 +1,6 @@
 import Model, { attr } from '@ember-data/model';
 
-import VoteChain from 'emberclear/models/vote-chain';
+import Vote from 'emberclear/models/vote';
 
 export enum ACTION_RESPONSE {
   NONE = 'none',
@@ -10,7 +10,7 @@ export enum ACTION_RESPONSE {
 }
 
 export default class Action extends Model {
-  @attr() vote!: VoteChain;
+  @attr() vote!: Vote;
   @attr() response!: ACTION_RESPONSE;
   @attr() timestamp!: Date;
 }
