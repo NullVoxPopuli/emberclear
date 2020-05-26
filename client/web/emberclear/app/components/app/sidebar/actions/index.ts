@@ -50,8 +50,10 @@ function sortByOldest(action1: Action, action2: Action) {
   if (action1.timestamp < action2.timestamp) {
     return 1;
   }
+
   if (action1.timestamp > action2.timestamp) {
     return -1;
   }
+
   return 0;
 }
