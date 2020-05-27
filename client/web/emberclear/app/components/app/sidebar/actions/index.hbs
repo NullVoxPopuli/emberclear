@@ -12,7 +12,7 @@
   </div>
 
 	{{#each this.new_actions as |action_item|}}
-		<App::Sidebar::Actions::Action @action={{action_item}} />
+		<App::Sidebar::Actions::ResponseAction @action={{action_item}} />
 		<App::Sidebar::Actions::ResponsePanel @vote={{action_item.vote}}/>
 	{{/each}}
 

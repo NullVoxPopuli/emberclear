@@ -5,7 +5,7 @@ interface IArgs {
   action: Action;
 }
 
-export default class ResponsePanel extends Component<IArgs> {
+export default class ResponseAction extends Component<IArgs> {
   get header() {
     return (
       this.args.action.vote.voteChain.action +
