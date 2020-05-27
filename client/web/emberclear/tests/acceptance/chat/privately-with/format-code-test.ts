@@ -8,7 +8,6 @@ import {
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,
-  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 import { page } from 'emberclear/tests/helpers/pages/chat';
@@ -40,7 +39,6 @@ async function submitCodeTo(code: string, to: Contact, assert: Assert) {
 module('Acceptance | Chat | Privately With | format-code', function (hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
-  setupWorkers(hooks);
 
   module('is logged in with two contacts', function (hooks) {
     setupCurrentUser(hooks);

@@ -1,11 +1,13 @@
 import { getService } from '../get-service';
 import { toHex } from 'emberclear/utils/string-encoding';
-import { generateAsymmetricKeys, generateSigningKeys } from 'emberclear/workers/crypto/utils/nacl';
 import User from 'emberclear/models/user';
+import { getWorker } from '../get-worker';
 
 export async function attributesForUser() {
-  const { publicKey } = await generateAsymmetricKeys();
-  const { publicSigningKey, privateSigningKey } = await generateSigningKeys();
+  let crypto = getWorker('crypto');
+
+  const { publicKey } = await crypto.generateAsymmetricKeys();
+  const { publicSigningKey, privateSigningKey } = await crypto.generateSigningKeys();
   const id = toHex(publicKey);
 
   return { id, publicKey, publicSigningKey, privateSigningKey };

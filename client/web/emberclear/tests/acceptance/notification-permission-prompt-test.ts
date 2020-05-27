@@ -8,7 +8,6 @@ import {
   setupCurrentUser,
   refresh,
   getService,
-  setupWorkers,
 } from 'emberclear/tests/helpers';
 import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
 
@@ -18,7 +17,6 @@ const { notificationPrompt: prompt } = app;
 
 module('Acceptance | Notification Permission Prompt', function (hooks) {
   setupApplicationTest(hooks);
-  setupWorkers(hooks);
   setupRelayConnectionMocks(hooks);
   clearLocalStorage(hooks);
   setupCurrentUser(hooks);

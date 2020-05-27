@@ -8,7 +8,6 @@ import {
   setupCurrentUser,
   setupRelayConnectionMocks,
   clearLocalStorage,
-  setupWorkers,
   trackAsyncDataRequests,
 } from 'emberclear/tests/helpers';
 
@@ -18,7 +17,6 @@ import { page as app } from 'emberclear/tests/helpers/pages/app';
 module('Acceptance | Search Modal', function (hooks) {
   setupApplicationTest(hooks);
   trackAsyncDataRequests(hooks);
-  setupWorkers(hooks);
   setupCurrentUser(hooks);
   setupRelayConnectionMocks(hooks);
   clearLocalStorage(hooks);

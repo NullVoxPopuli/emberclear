@@ -1,16 +1,15 @@
-import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
-
 import User from 'emberclear/models/user';
 
 import { getService } from './get-service';
 import { getStore } from './get-store';
 import { settled } from '@ember/test-helpers';
+import { getWorker } from './get-worker';
 
 export async function createCurrentUser(): Promise<User> {
   const store = getStore();
   const currentUserService = getService('current-user');
 
-  const { publicKey, privateKey } = await generateAsymmetricKeys();
+  const { publicKey, privateKey } = await getWorker('crypto').generateAsymmetricKeys();
 
   const record = store.createRecord('user', {
     id: 'me',

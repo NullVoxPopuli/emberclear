@@ -60,6 +60,8 @@
     "edition": "octane"
   },
   "dependencies": {
+    "@skyrocketjs/ember": "^0.0.1-alpha.1",
+    "@skyrocketjs/worker": "^0.0.1-alpha.0",
     "blakejs": "^1.1.0",
     "dompurify": "2.0.8",
     "emojis": "^1.0.10",
@@ -68,7 +70,6 @@
     "phoenix": "^1.5.3",
     "prismjs": "^1.20.0",
     "prismjs-components-loader": "^3.0.1",
-    "promise-worker-bi": "^4.0.2",
     "qrcode": "^1.4.4",
     "shoelace-css": "^1.0.0-beta24",
     "showdown": "^1.9.1",

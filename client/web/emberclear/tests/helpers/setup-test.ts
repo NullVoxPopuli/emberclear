@@ -2,12 +2,10 @@ import { getContext } from '@ember/test-helpers';
 
 import WindowService from 'emberclear/services/window';
 import { clearLocalStorage } from './clear-local-storage';
-import { setupWorkers } from './setup-workers';
 import { setupRelayConnectionMocks } from './setup-relay-connection-mocks';
 
 export function setupEmberclearTest(hooks: NestedHooks) {
   clearLocalStorage(hooks);
-  setupWorkers(hooks);
   setupRelayConnectionMocks(hooks);
   setupWindow(hooks);
 }

@@ -1,11 +1,11 @@
 import { toHex } from 'emberclear/utils/string-encoding';
+import Contact, { Status } from 'emberclear/models/contact';
 
 import { getService } from '../get-service';
-import Contact, { Status } from 'emberclear/models/contact';
-import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
+import { getWorker } from '../get-worker';
 
 export async function attributesForContact() {
-  const { publicKey } = await generateAsymmetricKeys();
+  const { publicKey } = await getWorker('crypto').generateAsymmetricKeys();
   const id = toHex(publicKey);
 
   return { id, publicKey };

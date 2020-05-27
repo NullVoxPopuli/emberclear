@@ -14,7 +14,6 @@ import RouterService from '@ember/routing/router-service';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 import CryptoConnector from 'emberclear/utils/workers/crypto';
-import WorkersService from 'emberclear/services/workers';
 
 export default class LoginForm extends Component {
   @service currentUser!: CurrentUserService;
@@ -22,7 +21,8 @@ export default class LoginForm extends Component {
   @service toast!: Toast;
   @service router!: RouterService;
   @service store!: StoreService;
-  @service workers!: WorkersService;
+
+  @worker('crypto') cryptoWorker;
 
   @tracked mnemonic = '';
   @tracked name = '';
@@ -40,7 +40,7 @@ export default class LoginForm extends Component {
   *login() {
     try {
       let name = this.name;
-      let crypto = new CryptoConnector({ workerService: this.workers });
+      let crypto = new CryptoConnector({ workerService: this.cryptoWorker });
       let keys = yield crypto.login(this.mnemonic);
 
       yield this.currentUser.setIdentity(name, keys);

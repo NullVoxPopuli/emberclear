@@ -1,4 +1,4 @@
-import * as stringEncoding from 'emberclear/workers/crypto/utils/string-encoding';
+import * as stringEncoding from 'emberclear/../workers/crypto/utils/string-encoding';
 import { module, test } from 'qunit';
 
 module('Workers | Crypto | String Encoding', function () {

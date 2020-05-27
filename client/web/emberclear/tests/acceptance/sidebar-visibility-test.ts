@@ -11,12 +11,10 @@ import {
   clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
-  setupWorkers,
 } from 'emberclear/tests/helpers';
 
 module('Acceptance | Sidebar Visibility', function (hooks) {
   setupApplicationTest(hooks);
-  setupWorkers(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
 
