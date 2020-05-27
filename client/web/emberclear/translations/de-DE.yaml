@@ -172,6 +172,9 @@ ui:
       title: 'Kontakte'
       none: Keine Kontakte vorhanden
       numOffline: '{num} offline'
+    actions:
+      title: 'Aktionen'
+      none: Keine Aktionen.
   addContact:
     title: Lass deine Freunden deinen QR Code einscannen, teile deinen Link, oder scannen den QR Code eines Freundes ein
   chat:

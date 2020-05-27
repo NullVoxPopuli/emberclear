@@ -74,6 +74,14 @@ export default class SidebarChatData extends Component<Args> {
     return ['add-contact', this.currentUser.record, ...this.contacts, ...this.channels];
   }
 
+  get displayedChats() {
+    return ['add-contact', this.currentUser.record, ...this.contacts];
+  }
+
+  get displayedChannels() {
+    return ['add-channel', ...this.channels];
+  }
+
   get idFromURL() {
     let url = this.router.currentURL;
 

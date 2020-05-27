@@ -42,6 +42,7 @@
 @import './components/search';
 @import './components/settings-nav';
 @import './components/sidebar-contact';
+@import './components/sidebar-nav';
 @import './components/sidebar';
 @import './components/snippet';
 @import './components/toastify-overrides';

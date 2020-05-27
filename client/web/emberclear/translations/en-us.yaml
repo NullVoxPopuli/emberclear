@@ -197,6 +197,9 @@ ui:
       title: 'Contacts'
       none: You have no contacts.
       numOffline: '{num} offline'
+    actions:
+      title: 'Actions'
+      none: No actions at this time.
 
   addContact:
     title: Have a friend scan your QR Code, share your link, or scan their QR Code

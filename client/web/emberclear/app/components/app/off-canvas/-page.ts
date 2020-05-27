@@ -4,6 +4,7 @@ import { getter } from 'ember-cli-page-object/macros';
 import {
   sidebarChannelsPage,
   sidebarContactsPage,
+  sidebarActionsPage,
 } from 'emberclear/components/app/sidebar/chats/-page';
 import { valueOfProperty } from 'emberclear/utils/dom/css';
 
@@ -45,8 +46,17 @@ export const page = create({
     search: fillable('[data-test-sidebar-search]'),
     searchInfo: text('[data-test-search-info]'),
 
+    selectContactsTab: clickable('[data-test-tab-contacts]'),
+    selectChannelsTab: clickable('[data-test-tab-channels]'),
+    selectActionsTab: clickable('[data-test-tab-actions]'),
+
+    header: {
+      scope: '[data-test-sidebar-content-header]',
+    },
+
     contacts: sidebarContactsPage,
     channels: sidebarChannelsPage,
+    actions: sidebarActionsPage,
 
     footer: {
       scope: 'footer',

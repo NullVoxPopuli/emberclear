@@ -1,20 +1,92 @@
 <aside ...attributes>
+  {{#if (has-feature-flag 'democracy-ui')}}
+    <nav class='sidebar-nav'>
+      <button
+        id='contacts-tab'
+        type='button'
+        class='sidebar-tab {{if this.isTabContacts 'sidebar-tab-selected'}}'
+        data-test-tab-contacts
+        {{on 'click' (fn this.switchToTab this.Tab.Contacts)}}
+      >
+        {{t 'ui.sidebar.contacts.title'}}
+      </button>
+
+      <button 
+        id='channels-tab'
+        type='button'
+        class='sidebar-tab {{if this.isTabChannels 'sidebar-tab-selected'}}'
+        data-test-tab-channels
+        {{on 'click' (fn this.switchToTab this.Tab.Channels)}}
+      >
+        {{t 'ui.sidebar.channels.title'}}
+      </button>
+
+      <button
+        id='actions-tab'
+        type='button'
+        class='sidebar-tab {{if this.isTabActions 'sidebar-tab-selected'}}'
+        data-test-tab-actions
+        {{on 'click' (fn this.switchToTab this.Tab.Actions)}}
+      >
+        {{t 'ui.sidebar.actions.title'}}
+      </button>
+    </nav>
+  {{/if}}
+
   <div>
-    {{#if this.hasUnreadAbove}}
-      <App::Sidebar::UnreadIndicator
-        @onClick={{this.scrollUpToNearestUnread}}
-        @direction='up'
-      />
-    {{/if}}
+    {{#if (has-feature-flag 'democracy-ui')}}
+      {{#if this.isTabContacts}}
+        {{#if this.hasUnreadAbove}}
+          <App::Sidebar::UnreadIndicator
+            @onClick={{this.scrollUpToNearestUnread}}
+            @direction='up'
+          />
+        {{/if}}
 
-    <App::Sidebar::Chats />
+        <App::Sidebar::Chats @type='chats'/>
 
-    {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
-    {{#if this.hasUnreadBelow}}
-      <App::Sidebar::UnreadIndicator
-        @onClick={{this.scrollDownToNearestUnread}}
-        @direction='down'
-      />
+        {{#if this.hasUnreadBelow}}
+          <App::Sidebar::UnreadIndicator
+            @onClick={{this.scrollDownToNearestUnread}}
+            @direction='down'
+          />
+        {{/if}}
+      {{else if this.isTabChannels}}
+        {{#if this.hasUnreadAbove}}
+          <App::Sidebar::UnreadIndicator
+            @onClick={{this.scrollUpToNearestUnread}}
+            @direction='up'
+          />
+        {{/if}}
+
+        <App::Sidebar::Chats @type='channels'/>
+
+        {{#if this.hasUnreadBelow}}
+          <App::Sidebar::UnreadIndicator
+            @onClick={{this.scrollDownToNearestUnread}}
+            @direction='down'
+          />
+        {{/if}}
+      {{else}}
+        <App::Sidebar::Actions />
+      {{/if}}
+    {{else}}
+      {{#if this.hasUnreadAbove}}
+        <App::Sidebar::UnreadIndicator
+          @onClick={{this.scrollUpToNearestUnread}}
+          @direction='up'
+        />
+      {{/if}}
+
+      <App::Sidebar::Chats @type='all'/>
+      
+      {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
+      {{#if this.hasUnreadBelow}}
+        <App::Sidebar::UnreadIndicator
+          @onClick={{this.scrollDownToNearestUnread}}
+          @direction='down'
+        />
+      {{/if}}
     {{/if}}
 
   </div>

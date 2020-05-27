@@ -19,10 +19,27 @@ export const sidebarContactsPage = create({
 const channelForm = '[data-test-channel-form]';
 
 export const sidebarChannelsPage = create({
+  header: {
+    scope: '[data-test-sidebar-channels-header]',
+  },
+  listText: text('[data-test-channels-list]'),
+  list: collection('[data-test-channel-row]', {
+    name: text('[data-test-channel-name]'),
+  }),
   toggleForm: clickable('[data-test-channel-form-toggle]'),
   form: {
     scope: channelForm,
     fill: fillable('input'),
     submit: () => triggerKeyEvent(`${channelForm} input`, 'keypress', 'Enter'),
   },
+});
+
+export const sidebarActionsPage = create({
+  listText: text('[data-test-actions-list]'),
+  list: collection('[data-test-action-row]', {
+    name: text('[data-test-action-name]'),
+    voteYes: clickable('[data-test-action-response-yes]'),
+    voteNo: clickable('[data-test-action-response-no]'),
+    voteDismiss: clickable('[data-test-action-response-dismiss]'),
+  }),
 });

@@ -1,4 +1,4 @@
-<nav class='contacts' style='height: 100%; overflow-y: hidden;' data-test-contacts-list>
+<nav class='contacts' style='overflow-y: hidden;' data-test-contacts-list>
   {{#if this.contactManager.isImporting}}
     <EllipsisLoader />
   {{else}}
@@ -23,7 +23,13 @@
         </span>
       {{/if}}
 
-      <App::Sidebar::Chats::List @chats={{data.chats}} />
+      {{#if (eq @type 'all')}}
+        <App::Sidebar::Chats::List @chats={{data.chats}} />
+      {{else if (eq @type 'chats')}}
+        <App::Sidebar::Chats::List @chats={{data.contacts}} />
+      {{else if (eq @type 'channels')}}
+        <App::Sidebar::Chats::List @chats={{data.channels}} />
+      {{/if}}
 
       {{#if data.showOfflineCounter}}
         <App::Sidebar::Chats::OfflineCounter @numberOffline={{data.numberOffline}} />
