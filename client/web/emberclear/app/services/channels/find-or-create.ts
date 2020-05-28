@@ -180,17 +180,15 @@ export default class FindOrCreateChannelService extends Service {
       return undefined;
     }
 
-    const { id } = standardVoteChain;
-
     let voteChain = undefined;
 
     try {
-      voteChain = await this.store.findRecord('vote-chain', id);
+      voteChain = await this.store.findRecord('vote-chain', standardVoteChain.id);
 
       return voteChain;
     } catch (e) {
       voteChain = this.store.createRecord('vote-chain', {
-        id,
+        id: standardVoteChain.id,
         remaining: Promise.all(
           standardVoteChain.remaining.map(async (member) => await this.findOrCreateMember(member))
         ),
@@ -218,14 +216,12 @@ export default class FindOrCreateChannelService extends Service {
       return undefined;
     }
 
-    const { id } = standardVoteChain;
-
     let voteChain: VoteChain;
 
     try {
-      voteChain = await this.store.findRecord('vote-chain', id);
+      voteChain = await this.store.findRecord('vote-chain', standardVoteChain.id);
     } catch (e) {
-      voteChain = await this.store.createRecord('vote-chain', id);
+      voteChain = await this.store.createRecord('vote-chain', standardVoteChain.id);
     }
 
     voteChain.remaining = await Promise.all(
