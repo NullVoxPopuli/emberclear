@@ -13,6 +13,7 @@ export default class VoteVerifier extends Service {
 
   async isValid(voteToVerify: VoteChain): Promise<boolean> {
     this.connectCrypto();
+
     if (
       !this.crypto ||
       !this.isKeyMatchingVoteDiff(voteToVerify) ||

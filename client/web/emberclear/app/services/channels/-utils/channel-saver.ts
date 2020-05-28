@@ -3,18 +3,18 @@ import Vote from 'emberclear/models/vote';
 import VoteChain from 'emberclear/models/vote-chain';
 import ChannelContextChain from 'emberclear/models/channel-context-chain';
 
-export async function saveChannel(channel: Channel) {
+export async function saveChannel(channel: Channel): Promise<void> {
   await Promise.all(channel.activeVotes.map(async (activeVote) => await saveVote(activeVote)));
   await saveChannelContextChain(channel.contextChain);
   await channel.save();
 }
 
-export async function saveVote(vote: Vote) {
+export async function saveVote(vote: Vote): Promise<void> {
   await saveVoteChain(vote.voteChain);
   await vote.save();
 }
 
-export async function saveVoteChain(voteChain: VoteChain) {
+export async function saveVoteChain(voteChain: VoteChain): Promise<void> {
   if (!voteChain) {
     return;
   }
@@ -28,7 +28,7 @@ export async function saveVoteChain(voteChain: VoteChain) {
   await voteChain.save();
 }
 
-export async function saveChannelContextChain(contextChain: ChannelContextChain) {
+export async function saveChannelContextChain(contextChain: ChannelContextChain): Promise<void> {
   if (!contextChain) {
     return;
   }

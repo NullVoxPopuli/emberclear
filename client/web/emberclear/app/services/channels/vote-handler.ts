@@ -18,6 +18,7 @@ export default class ReceivedChannelVoteHandler extends Service {
 
   public async handleChannelVote(message: Message, raw: StandardMessage) {
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
+
     if (identitiesIncludes(existingChannel?.contextChain.members.toArray(), message.sender!)) {
       let sentVote = message.metadata as StandardVote;
       let existingVote = await this.findOrCreator.findOrCreateVote(sentVote);
@@ -32,6 +33,7 @@ export default class ReceivedChannelVoteHandler extends Service {
           this.isAnActiveVote(existingChannel, existingVote!)
         ) {
           await this.findOrCreator.unloadVoteChain(voteChain!);
+
           return message;
         }
 
@@ -45,6 +47,7 @@ export default class ReceivedChannelVoteHandler extends Service {
         if (existingVote.voteChain.id !== voteChain!.id) {
           existingVote.voteChain = voteChain!;
         }
+
         await saveVote(existingVote);
 
         // update user context
@@ -52,19 +55,23 @@ export default class ReceivedChannelVoteHandler extends Service {
           if (isVoteCompletedPositive(existingVote.voteChain, existingChannel.contextChain.admin)) {
             await this.updateContextChain(existingChannel, existingVote);
           }
+
           let newActiveVotes = existingChannel.activeVotes
             .toArray()
             .filter((activeVote) => activeVote.id !== existingVote!.id);
+
           existingChannel.activeVotes = newActiveVotes;
           await saveChannel(existingChannel);
         }
       }
     }
+
     return message;
   }
 
   private async updateContextChain(channel: Channel, vote: Vote) {
     let updatedContextChain: ChannelContextChain;
+
     switch (vote.voteChain.action) {
       case VOTE_ACTION.ADD:
         updatedContextChain = this.updateAddContextChain(channel, vote);
@@ -78,6 +85,7 @@ export default class ReceivedChannelVoteHandler extends Service {
       default:
         return;
     }
+
     channel.contextChain = updatedContextChain;
     await saveChannel(channel);
   }
@@ -95,6 +103,7 @@ export default class ReceivedChannelVoteHandler extends Service {
     let newMembersArray = channel.contextChain.members
       .toArray()
       .filter((identity) => !identityEquals(identity, vote.voteChain.target));
+
     return this.store.createRecord('channelContextChain', {
       admin: channel.contextChain.admin,
       members: newMembersArray,
@@ -105,7 +114,9 @@ export default class ReceivedChannelVoteHandler extends Service {
 
   private updateAddContextChain(channel: Channel, vote: Vote): ChannelContextChain {
     let updatedMembers = channel.contextChain.members.toArray();
+
     updatedMembers.push(vote.voteChain.target);
+
     return this.store.createRecord('channelContextChain', {
       admin: channel.contextChain.admin,
       members: updatedMembers,

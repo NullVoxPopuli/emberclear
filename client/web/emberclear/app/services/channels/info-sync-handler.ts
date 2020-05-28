@@ -22,6 +22,7 @@ export default class ReceivedChannelInfoSyncHandler extends Service {
     let everyVoteIsValid = updatedChannel.activeVotes.every((activeVote) =>
       this.voteVerifier.isValid(activeVote.voteChain)
     );
+
     if (
       (await this.channelVerifier.isValidChain(updatedChannel.contextChain)) &&
       everyVoteIsValid
@@ -30,6 +31,7 @@ export default class ReceivedChannelInfoSyncHandler extends Service {
     } else {
       await this.findOrCreator.unloadChannel(updatedChannel);
     }
+
     return message;
   }
 }

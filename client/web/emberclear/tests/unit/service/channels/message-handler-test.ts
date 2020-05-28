@@ -30,9 +30,11 @@ module('Unit | Service | channels/message-handler', function (hooks) {
 
   hooks.beforeEach(async function () {
     const me = getService('current-user');
+
     sender = await buildUser('sender');
     thirdMember = await buildUser('thirdMember');
     const store = getStore();
+
     baseChannelContextChain = store.createRecord('channel-context-chain', {
       admin: me.record!,
       members: [me.record!],
@@ -50,6 +52,7 @@ module('Unit | Service | channels/message-handler', function (hooks) {
       previousVoteChain: undefined,
       signature: undefined,
     });
+
     secondChannelVoteChain.signature = await signatureOf(secondChannelVoteChain, me.record!);
 
     secondChannelContextChain = store.createRecord('channel-context-chain', {
@@ -69,6 +72,7 @@ module('Unit | Service | channels/message-handler', function (hooks) {
       previousVoteChain: undefined,
       signature: undefined,
     });
+
     thirdChannelVoteChain.signature = await signatureOf(thirdChannelVoteChain, me.record!);
     thirdChannelContextChain = store.createRecord('channel-context-chain', {
       admin: me.record!,
@@ -113,6 +117,7 @@ module('Unit | Service | channels/message-handler', function (hooks) {
       activeVotes: [],
       contextChain: secondChannelContextChain,
     });
+
     stubService('channels/find-or-create', {
       findOrCreateChannel() {
         return ourChannel;
@@ -120,6 +125,7 @@ module('Unit | Service | channels/message-handler', function (hooks) {
     });
 
     const service = getService('channels/message-handler');
+
     await service.handleChannelMessage(
       messageFactory.buildNewReceivedMessage(message, thirdMember),
       message
@@ -163,6 +169,7 @@ module('Unit | Service | channels/message-handler', function (hooks) {
       activeVotes: [],
       contextChain: thirdChannelContextChain,
     });
+
     stubService('channels/find-or-create', {
       findOrCreateChannel() {
         return ourChannel;
@@ -170,12 +177,14 @@ module('Unit | Service | channels/message-handler', function (hooks) {
     });
 
     const service = getService('channels/message-handler');
+
     await service.handleChannelMessage(
       messageFactory.buildNewReceivedMessage(message, sender),
       message
     );
 
     let messages = (await store.findAll('message')).toArray();
+
     assert.equal(messages.length, 1);
     assert.equal(messages.get(0).body, message.message.body);
     assert.equal(messages.get(0).sender?.uid, sender.uid);

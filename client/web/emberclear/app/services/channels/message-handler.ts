@@ -16,7 +16,9 @@ export default class ReceivedChannelMessageHandler extends Service {
 
   public async handleChannelMessage(message: Message, raw: StandardMessage) {
     let existingChannel = await this.findOrCreator.findOrCreateChannel(raw.channelInfo);
+
     await saveChannel(existingChannel);
+
     if (identitiesIncludes(existingChannel?.contextChain.members.toArray(), message.sender!)) {
       // save message in channel messages
       await message.save();
@@ -37,6 +39,7 @@ export default class ReceivedChannelMessageHandler extends Service {
     } else {
       await message.unloadRecord();
     }
+
     return message;
   }
 }

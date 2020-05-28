@@ -34,9 +34,11 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
 
     hooks.beforeEach(async function () {
       const me = getService('current-user');
+
       sender = await buildUser('sender');
       thirdMember = await buildUser('thirdMember');
       const store = getStore();
+
       baseChannelContextChain = store.createRecord('channel-context-chain', {
         admin: me.record!,
         members: [me.record!],
@@ -54,6 +56,7 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       secondChannelVoteChain.signature = await signatureOf(secondChannelVoteChain, me.record!);
 
       secondChannelContextChain = store.createRecord('channel-context-chain', {
@@ -73,6 +76,7 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       thirdChannelVoteChain.signature = await signatureOf(thirdChannelVoteChain, me.record!);
       thirdChannelContextChain = store.createRecord('channel-context-chain', {
         admin: me.record!,
@@ -119,6 +123,7 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         updateOrCreateChannel() {
           return ourChannel;
@@ -142,6 +147,7 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
       });
 
       const service = getService('channels/info-sync-handler');
+
       await service.handleInfoSyncFulfill(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -167,6 +173,7 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       voteChain.signature = await signatureOf(voteChain, thirdMember);
       let vote = store.createRecord('vote', {
         id: voteId,
@@ -205,6 +212,7 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
         activeVotes: [vote],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         updateOrCreateChannel() {
           return ourChannel;
@@ -228,6 +236,7 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
       });
 
       const service = getService('channels/info-sync-handler');
+
       await service.handleInfoSyncFulfill(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -273,6 +282,7 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         updateOrCreateChannel() {
           return ourChannel;
@@ -296,6 +306,7 @@ module('Unit | Service | channels/info-sync-handler', function (hooks) {
       });
 
       const service = getService('channels/info-sync-handler');
+
       await service.handleInfoSyncFulfill(
         messageFactory.buildNewReceivedMessage(message, sender),
         message

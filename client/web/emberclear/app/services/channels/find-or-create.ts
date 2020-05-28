@@ -36,20 +36,23 @@ export default class FindOrCreateChannelService extends Service {
   async updateOrCreateChannel(channelInfo: StandardMessage['channelInfo']): Promise<Channel> {
     const { uid, name, activeVotes, contextChain } = channelInfo!;
     let channel: Channel;
+
     try {
       channel = await this.store.findRecord('channel', uid);
     } catch (e) {
       channel = this.store.createRecord('channel', uid);
     }
+
     channel.name = name;
     channel.activeVotes = await Promise.all(
       activeVotes.map(async (vote) => await this.updateOrCreateVote(vote))
     );
     channel.contextChain = (await this.updateOrCreateContextChain(contextChain))!;
+
     return channel;
   }
 
-  async unloadChannel(channel: Channel) {
+  async unloadChannel(channel: Channel): Promise<void> {
     channel.activeVotes.forEach(async (activeVote) => await this.unloadVote(activeVote));
     await this.unloadChannelContextChain(channel.contextChain);
     await this.store.unloadRecord(channel);
@@ -68,6 +71,7 @@ export default class FindOrCreateChannelService extends Service {
 
     try {
       contextChain = await this.store.findRecord('channel-context-chain', id);
+
       return contextChain;
     } catch (e) {
       contextChain = await this.store.createRecord('channel-context-chain', {
@@ -79,6 +83,7 @@ export default class FindOrCreateChannelService extends Service {
         supportingVote: await this.findOrCreateVoteChain(standardContextChain.supportingVote),
         previousVoteChain: await this.findOrCreateContextChain(standardContextChain.previousChain),
       });
+
       return contextChain;
     }
   }
@@ -92,11 +97,13 @@ export default class FindOrCreateChannelService extends Service {
 
     const { id } = standardContextChain;
     let contextChain: ChannelContextChain;
+
     try {
       contextChain = await this.store.findRecord('channel-context-chain', id);
     } catch (e) {
       contextChain = this.store.createRecord('channel-context-chain', id);
     }
+
     contextChain.admin = await this.findOrCreateMember(standardContextChain.admin);
     contextChain.members = await Promise.all(
       standardContextChain.members.map(async (member) => await this.findOrCreateMember(member))
@@ -107,10 +114,11 @@ export default class FindOrCreateChannelService extends Service {
     contextChain.previousChain = await this.updateOrCreateContextChain(
       standardContextChain.previousChain
     );
+
     return contextChain;
   }
 
-  async unloadChannelContextChain(contextChain: ChannelContextChain) {
+  async unloadChannelContextChain(contextChain: ChannelContextChain): Promise<void> {
     if (!contextChain) {
       return;
     }
@@ -133,12 +141,14 @@ export default class FindOrCreateChannelService extends Service {
 
     try {
       vote = await this.store.findRecord('vote', id);
+
       return vote;
     } catch (e) {
       vote = this.store.createRecord('vote', {
         id,
         voteChain: await this.findOrCreateVoteChain(standardVote.voteChain),
       });
+
       return vote;
     }
   }
@@ -146,16 +156,19 @@ export default class FindOrCreateChannelService extends Service {
   async updateOrCreateVote(standardVote: StandardVote): Promise<Vote> {
     const { id } = standardVote;
     let vote: Vote;
+
     try {
       vote = await this.store.findRecord('vote', id);
     } catch (e) {
       vote = this.store.createRecord('vote', id);
     }
+
     vote.voteChain = (await this.updateOrCreateVoteChain(standardVote.voteChain))!;
+
     return vote;
   }
 
-  async unloadVote(vote: Vote) {
+  async unloadVote(vote: Vote): Promise<void> {
     await this.unloadVoteChain(vote.voteChain);
     await this.store.unloadRecord(vote);
   }
@@ -173,6 +186,7 @@ export default class FindOrCreateChannelService extends Service {
 
     try {
       voteChain = await this.store.findRecord('vote-chain', id);
+
       return voteChain;
     } catch (e) {
       voteChain = this.store.createRecord('vote-chain', {
@@ -192,6 +206,7 @@ export default class FindOrCreateChannelService extends Service {
         signature: fromHex(standardVoteChain.signature),
         previousVoteChain: await this.findOrCreateVoteChain(standardVoteChain.previousVoteChain),
       });
+
       return voteChain;
     }
   }
@@ -212,6 +227,7 @@ export default class FindOrCreateChannelService extends Service {
     } catch (e) {
       voteChain = await this.store.createRecord('vote-chain', id);
     }
+
     voteChain.remaining = await Promise.all(
       standardVoteChain.remaining.map(async (member) => await this.findOrCreateMember(member))
     );
@@ -228,10 +244,11 @@ export default class FindOrCreateChannelService extends Service {
     voteChain.previousVoteChain = await this.updateOrCreateVoteChain(
       standardVoteChain.previousVoteChain
     );
+
     return voteChain;
   }
 
-  async unloadVoteChain(voteChain: VoteChain) {
+  async unloadVoteChain(voteChain: VoteChain): Promise<void> {
     if (!voteChain) {
       return;
     }

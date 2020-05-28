@@ -33,6 +33,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
 
   test('it exists', function (assert) {
     let service = getService('channels/vote-handler');
+
     assert.ok(service);
   });
 
@@ -45,9 +46,11 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
 
     hooks.beforeEach(async function () {
       const me = getService('current-user');
+
       sender = await buildUser('sender');
       thirdMember = await buildUser('thirdMember');
       const store = getStore();
+
       baseChannelContextChain = store.createRecord('channel-context-chain', {
         admin: me.record!,
         members: [me.record!],
@@ -65,6 +68,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       secondChannelVoteChain.signature = await signatureOf(secondChannelVoteChain, me.record!);
 
       secondChannelContextChain = store.createRecord('channel-context-chain', {
@@ -84,6 +88,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       thirdChannelVoteChain.signature = await signatureOf(thirdChannelVoteChain, me.record!);
       thirdChannelContextChain = store.createRecord('channel-context-chain', {
         admin: me.record!,
@@ -129,12 +134,14 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [],
         contextChain: secondChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
         },
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, thirdMember),
         message
@@ -191,6 +198,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -200,6 +208,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         },
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -235,6 +244,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       voteChain.signature = await signatureOf(voteChain, sender);
       let vote = store.createRecord('vote', {
         voteChain: voteChain,
@@ -270,6 +280,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -283,6 +294,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         unloadVoteChain() {},
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -318,6 +330,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       voteChain.signature = await signatureOf(voteChain, sender);
       let vote = store.createRecord('vote', {
         voteChain: voteChain,
@@ -353,6 +366,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -366,6 +380,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         unloadVoteChain() {},
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -402,6 +417,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       voteChainFromSender.signature = await signatureOf(voteChainFromSender, sender);
       let voteFromSender = store.createRecord('vote', {
         voteChain: voteChainFromSender,
@@ -416,6 +432,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       voteChainLocal.signature = await signatureOf(voteChainLocal, sender);
       let voteLocal = store.createRecord('vote', {
         voteChain: voteChainLocal,
@@ -451,6 +468,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [voteLocal],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -464,6 +482,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         unloadVoteChain() {},
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -499,6 +518,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       voteChain.signature = await signatureOf(voteChain, sender);
       let vote = store.createRecord('vote', {
         voteChain: voteChain,
@@ -534,6 +554,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -546,6 +567,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         },
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -583,6 +605,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
         id: voteId,
@@ -600,6 +623,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: ourVoteChain,
         signature: undefined,
       });
+
       voteChain.signature = await signatureOf(voteChain, sender);
       let message: StandardMessage = {
         id: uuid(),
@@ -641,6 +665,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [ourVote],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -653,6 +678,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         },
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -690,6 +716,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
         id: voteId,
@@ -707,6 +734,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: ourVoteChain,
         signature: undefined,
       });
+
       voteChain.signature = await signatureOf(voteChain, sender);
       let message: StandardMessage = {
         id: uuid(),
@@ -748,6 +776,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [ourVote],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -760,6 +789,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         },
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -796,6 +826,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
         id: voteId,
@@ -813,6 +844,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: ourVoteChain,
         signature: undefined,
       });
+
       voteChain.signature = await signatureOf(voteChain, sender);
       let message: StandardMessage = {
         id: uuid(),
@@ -854,6 +886,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [ourVote],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -866,6 +899,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         },
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -900,6 +934,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
         id: voteId,
@@ -917,6 +952,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: ourVoteChain,
         signature: undefined,
       });
+
       voteChain.signature = await signatureOf(voteChain, sender);
       let message: StandardMessage = {
         id: uuid(),
@@ -958,6 +994,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [ourVote],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -970,6 +1007,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         },
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
@@ -1008,6 +1046,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: undefined,
         signature: undefined,
       });
+
       ourVoteChain.signature = await signatureOf(ourVoteChain, thirdMember);
       let ourVote = store.createRecord('vote', {
         id: voteId,
@@ -1025,6 +1064,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         previousVoteChain: ourVoteChain,
         signature: undefined,
       });
+
       voteChain.signature = await signatureOf(voteChain, sender);
       let message: StandardMessage = {
         id: uuid(),
@@ -1066,6 +1106,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         activeVotes: [ourVote],
         contextChain: thirdChannelContextChain,
       });
+
       stubService('channels/find-or-create', {
         findOrCreateChannel() {
           return ourChannel;
@@ -1078,6 +1119,7 @@ module('Unit | Service | channels/vote-handler', function (hooks) {
         },
       });
       const service = getService('channels/vote-handler');
+
       await service.handleChannelVote(
         messageFactory.buildNewReceivedMessage(message, sender),
         message
