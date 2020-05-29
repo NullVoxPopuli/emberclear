@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "blakejs": "^1.1.0",
-    "dompurify": "2.0.8",
+    "dompurify": "2.0.11",
     "emojis": "^1.0.10",
     "hammerjs": "^2.0.8",
     "localforage": "^1.7.3",
