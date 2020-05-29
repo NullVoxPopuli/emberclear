@@ -79,10 +79,10 @@
     "uuid": "^8.1.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
-    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
-    "@babel/preset-typescript": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.1",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.1",
+    "@babel/preset-typescript": "^7.10.1",
     "@ember-data/debug": "3.18.0",
     "@ember-data/model": "3.18.0",
     "@ember-data/record-data": "3.18.0",
