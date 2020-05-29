@@ -7,7 +7,7 @@ cd client/web/emberclear
 yarn install
 yarn start:dev
 ```
-and then can be visited at `http://localhost:4201`.
+and then can be visited at `https://localhost:4201/`.
 
 ## Testing
 Run the tests locally with
