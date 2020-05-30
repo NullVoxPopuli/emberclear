@@ -5,5 +5,8 @@
   "main": "index.js",
   "author": "NullVoxPopuli",
   "license": "GPL-3.0",
-  "private": true
+  "private": true,
+  "engines": {
+    "node": ">= 12.0.0"
+  }
 }

@@ -1,58 +1,31 @@
-'use strict';
+const {
+  base,
+  typescript,
+  nodeOverrides,
+  testOverrides,
+  addonOverrides,
+} = require('@emberclear/config/eslint');
 
 module.exports = {
-  root: true,
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true
-    }
-  },
-  plugins: [
-    'ember'
-  ],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended'
-  ],
-  env: {
-    browser: true
-  },
-  rules: {
-    'ember/no-jquery': 'error'
-  },
+  ...base,
   overrides: [
-    // node files
+    // weird ones
     {
-      files: [
-        '.eslintrc.js',
-        '.template-lintrc.js',
-        'ember-cli-build.js',
-        'index.js',
-        'testem.js',
-        'blueprints/*/index.js',
-        'config/**/*.js',
-        'tests/dummy/config/**/*.js'
-      ],
-      excludedFiles: [
-        'addon/**',
-        'addon-test-support/**',
-        'app/**',
-        'tests/dummy/app/**'
-      ],
+      files: ['app/services/prism-manager.ts'],
+      ...typescript,
+      rules: {
+        ...typescript.rules,
+        'no-undef': 'off',
+      },
+    },
+    {
+      ...addonOverrides,
       parserOptions: {
-        sourceType: 'script'
+        ...base.parserOptions,
+        project: require.resolve('./tsconfig.json'),
       },
-      env: {
-        browser: false,
-        node: true
-      },
-      plugins: ['node'],
-      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
-        // add your custom rules and overrides for node files here
-      })
-    }
-  ]
+    },
+    testOverrides,
+    nodeOverrides,
+  ],
 };

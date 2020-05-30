@@ -1,14 +1,12 @@
+import Ember from 'ember';
 import localforage from 'localforage';
 import { getContext } from '@ember/test-helpers';
+import { TestContext } from 'ember-test-helpers';
 
-async function cleanEverything() {
-  const context = getContext();
+async function cleanEverything(owner: Ember.ApplicationInstance) {
+  const adapter = owner.lookup('adapter:application');
 
-  if (context) {
-    const adapter = context.owner.lookup<any>('adapter:application');
-
-    await adapter.cache.clear();
-  }
+  await adapter.cache.clear();
 
   // specifically, offline storage
   await localforage.clear();
@@ -16,11 +14,11 @@ async function cleanEverything() {
 }
 
 export function clearLocalStorage(hooks: NestedHooks) {
-  hooks.beforeEach(async function () {
-    await cleanEverything();
+  hooks.beforeEach(async function (this: TestContext) {
+    await cleanEverything(this.owner);
   });
 
-  hooks.afterEach(async function () {
-    await cleanEverything();
+  hooks.afterEach(async function (this: TestContext) {
+    await cleanEverything(this.owner);
   });
 }

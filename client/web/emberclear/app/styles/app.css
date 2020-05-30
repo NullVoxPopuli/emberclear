@@ -1,27 +1,4 @@
-@import url('normalize');
-@import url('content');
-@import url('alerts');
-@import url('badges');
-@import url('buttons');
-@import url('dropdowns');
-
-/* @import 'shoelace-css/source/css/dropdowns'; */
-@import url('file-buttons');
-@import url('forms');
-@import url('grid');
-
-/* @import url('progress-bars.css'); */
-
-/* @import url('loaders.css'); */
-@import url('switches');
-@import url('tabs');
-@import url('tables');
-@import url('utilities');
-@import url('variables');
-@import './themes/default';
-@import './themes/midnight';
-@import './defaults';
-@import './shoelace-overrides';
+@import '@emberclear/ui';
 @import './components/backdrop';
 @import './components/card';
 @import './components/chat-entry';
@@ -50,140 +27,13 @@
 @import './components/unread-management';
 @import './utility/transitions';
 
-:root {
-  --font-system:
-    -apple-system,
-    system-ui,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Ubuntu,
-    Arial,
-    sans-serif;
-
-  --grid {
-    display: grid;
-    grid-gap: var(--grid-gap);
-  }
-
-  --column-grid {
-    display: grid;
-    grid-auto-flow: column;
-    grid-gap: var(--grid-gap);
-  }
-
-  --grid-space-between {
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  --grid-stretch {
-    justify-content: stretch;
-    align-items: center;
-  }
-
-  --no-select {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  --transition-all {
-    transition: all 0.2s ease-in-out;
-
-    /* transition: all 0.2s cubic-bezier(0.6, 0, 0.735, 0.045); */
-  }
-
-  --transition-touch {
-    transition: all 0.1s linear;
-  }
-
-  --button-as-link {
-    height: unset;
-    line-height: unset;
-    text-align: unset;
-    display: unset;
-    border: none;
-    padding: 0;
-    background: none;
-    color: var(--link-color);
-
-    &:hover {
-      background: none;
-      color: var(--link-color-hover);
-    }
-  }
-}
-
-.visually-hidden {
-  position: absolute;
-  left: -1000px;
-  top: -100px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-.is-radiusless {
-  border-radius: 0;
-}
-
 .wrap-anywhere {
   word-wrap: anywhere;
-}
-
-.has-shadow {
-  box-shadow: var(--shadow);
-}
-
-.button-group {
-  display: grid;
-  grid-gap: var(--grid-gap);
-  grid-auto-flow: column;
-
-  &.right-aligned {
-    justify-content: end;
-  }
-}
-
-.hero {
-  min-height: calc(100vh - var(--top-nav-height));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .icon-button {
   width: 1rem;
   height: 1rem;
-}
-
-.cta {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.cta-with-fallback {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.flex-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.no-select {
-  @apply --no-select;
 }
 
 .service-worker-update-notify {
@@ -209,11 +59,6 @@
 
 .not-allowed {
   cursor: not-allowed !important;
-}
-
-.overflows {
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .shareable-url {

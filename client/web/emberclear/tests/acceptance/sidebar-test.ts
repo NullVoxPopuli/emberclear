@@ -406,7 +406,7 @@ module('Acceptance | Sidebar', function (hooks) {
           const known = store.peekAll('channel');
 
           assert.equal(known.length, 1);
-          assert.equal(known.firstObject.name, 'Vertical Flat Plates');
+          assert.equal(known.firstObject?.name, 'Vertical Flat Plates');
         });
       });
     });

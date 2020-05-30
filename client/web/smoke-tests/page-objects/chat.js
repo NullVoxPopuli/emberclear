@@ -25,7 +25,7 @@ class Chat extends BasePageObject {
     await this.input.setValue(message);
 
     // This is only necessary for CI, but not sure why.
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     await this.sendButton.click();
   }

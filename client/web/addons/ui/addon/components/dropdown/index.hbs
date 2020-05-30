@@ -10,34 +10,21 @@
     {{if (eq @dir 'left') 'dropdown-left'}}
     {{if this.isOpen 'active'}}
   '
+  ...attributes
 >
-  <button
-    type='button'
-    class='dropdown-trigger'
-    {{on 'click' this.toggleMenu}}
-    ...attributes
-  >
-    {{#if this.hasButtonText}}
-      {{@buttonText}}
-    {{/if}}
 
-    {{#if this.hasButtonIcon}}
-      <FaIcon @icon={{@buttonIcon}} />
-    {{/if}}
-  </button>
-
+  {{yield this.toggleMenu to='trigger'}}
 
   {{#if this.isOpen}}
     <div
       class='no-select full-overlay invisible'
       role='button'
-      aria-label={{t 'buttons.ariaLabel.dropdownBackdrop'}}
       {{on 'click' this.toggleMenu}}
     />
   {{/if}}
 
   <div class='dropdown-menu'>
-    {{yield this.closeMenu}}
+    {{yield this.closeMenu to='content'}}
   </div>
 </div>
 

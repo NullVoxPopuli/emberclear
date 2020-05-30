@@ -6,8 +6,9 @@ on:
     - 'client/web/addons/ui/**'
 
 env:
-  root: client/web
-  addon: client/web/addons/ui
+  root: client/web/
+  addon: addons/ui/
+  full: client/web/addons/ui/
 
 jobs:
   lint:
@@ -28,15 +29,15 @@ jobs:
       run: yarn eslint ${{ env.addon }} --ext js,ts
 
     - name: "Templates"
-      working-directory: ${{ env.root }}
-      run: yarn ember-template-lint ${{ env.addon }}
+      working-directory: ${{ env.full }}
+      run: yarn ember-template-lint .
 
     - name: "Styles"
       working-directory: ${{ env.root }}
-      run: yarn stylelint ${{ env.addon }}
+      run: yarn stylelint ${{ env.addon }}/**/*.css
 
     - name: 'Type Correctness'
-      working-directory: ${{ env.addon }}
+      working-directory: ${{ env.full }}
       run: yarn tsc --skipLibCheck --noEmit
 
   test:
@@ -53,7 +54,7 @@ jobs:
       run: yarn install
 
     - name: Ember
-      working-directory: ${{ env.addon }}
+      working-directory: "${{ env.root }}/${{ env.addon }}"
       run: yarn test
 
 

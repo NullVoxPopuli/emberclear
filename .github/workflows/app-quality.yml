@@ -1,0 +1,65 @@
+name: App Quality
+on:
+  pull_request:
+    branches: [master]
+    paths:
+    - 'client/web/emberclear/**'
+
+env:
+  root: client/web/
+  app: emberclear/
+  full: client/web/emberclear/
+
+jobs:
+  security:
+    name: Dependency Security
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - uses: actions/checkout@v2
+    - uses: rwjblue/setup-volta@v1
+
+    - name: Install
+      run: volta install snyk
+
+    - name: Snyk
+      working-directory: ${{ env.root }}
+      if: github.event == 'pull_request'
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: snyk test --severity-threshold=high
+
+  lint:
+    name: "Lint JS/TS"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: rwjblue/setup-volta@v1
+
+    - name: Install
+      working-directory: ${{ env.root }}
+      run: yarn install
+
+    - name: "JS/TS"
+      working-directory: ${{ env.root }}
+      run: yarn eslint ${{ env.app }} --ext js,ts
+
+    - name: "Templates"
+      working-directory: ${{ env.full }}
+      run: yarn ember-template-lint .
+
+    - name: "Styles"
+      working-directory: ${{ env.root }}
+      run: yarn stylelint ${{ env.app }}/**/*.css
+
+    - name: "Translations"
+      working-directory: ${{ env.full }}
+      run: yarn lint:i18n
+      continue-on-error: true
+
+    - name: 'Type Correctness'
+      working-directory: ${{ env.full }}
+      run: yarn tsc --skipLibCheck --noEmit
+

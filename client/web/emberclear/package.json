@@ -37,7 +37,7 @@
     "node": ">= 12.16.3"
   },
   "volta": {
-    "node": "12.16.3",
+    "node": "14.3.0",
     "yarn": "1.22.4"
   },
   "ember": {
@@ -54,7 +54,6 @@
     "prismjs-components-loader": "^3.0.1",
     "promise-worker-bi": "^4.0.2",
     "qrcode": "^1.4.4",
-    "shoelace-css": "^1.0.0-beta24",
     "showdown": "^1.9.1",
     "toastify-js": "^1.7.0",
     "tweetnacl": "^1.0.3",
@@ -63,7 +62,6 @@
     "uuid": "^8.1.0"
   },
   "devDependencies": {
-    "@emberclear/config": "*",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.1",
     "@babel/plugin-proposal-optional-chaining": "^7.10.1",
@@ -76,12 +74,10 @@
     "@ember/optional-features": "^1.3.0",
     "@ember/render-modifiers": "^1.0.2",
     "@ember/test-helpers": "^1.7.1",
+    "@emberclear/config": "*",
     "@embroider/compat": "^0.17.0",
     "@embroider/core": "^0.17.0",
     "@embroider/webpack": "^0.17.0",
-    "@fortawesome/ember-fontawesome": "^0.2.1",
-    "@fortawesome/free-brands-svg-icons": "^5.13.0",
-    "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@glimmer/component": "1.0.0",
     "@glimmer/tracking": "^1.0.0",
     "@html-next/vertical-collection": "^1.0.0",
@@ -131,6 +127,7 @@
     "ember-cli-htmlbars": "^5.1.2",
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-page-object": "^1.17.2",
+    "ember-cli-postcss": "^6.0.1",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-typescript": "^3.1.3",
     "ember-cli-uglify": "^3.0.0",
@@ -150,6 +147,7 @@
     "ember-localforage-adapter": "github:NullVoxPopuli/ember-localforage-adapter#9423bebe9c72efce0a6c1bbf478e8af8d140b165",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-modifier": "^1.0.3",
+    "ember-named-blocks-polyfill": "^0.2.1",
     "ember-percy": "^1.6.0",
     "ember-purify": "^5.0.1",
     "ember-qunit": "^4.6.0",
@@ -164,11 +162,10 @@
     "ember-service-worker-update-notify": "^3.0.0",
     "ember-sinon": "^5.0.0",
     "ember-source": "^3.19.0",
-    "ember-statecharts": "NullVoxPopuli/ember-statecharts#use-machine",
+    "ember-statecharts": "~0.10.0-beta.1",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "^4.1.0",
-    "ember-test-waiters": "^2.1.1",
-    "ember-usable": "pzuraq/ember-usable#master",
+    "ember-test-waiters": "^2.1.2",
     "ember-web-app": "^4.0.0",
     "git-rev-sync": "^2.0.0",
     "loader.js": "^4.7.0",

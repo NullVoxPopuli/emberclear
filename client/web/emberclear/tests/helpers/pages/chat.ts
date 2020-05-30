@@ -12,7 +12,7 @@ import {
 import { typeIn } from '@ember/test-helpers';
 
 import { definition as unreadMessagesFloater } from 'emberclear/components/pod/chat/chat-history/unread-management/-page';
-import { definition as dropdownPage } from 'emberclear/components/dropdown/-page';
+import { dropdown } from '@emberclear/ui/test-support/page-objects';
 import { definition as embedModal } from 'emberclear/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
 import { definition as newMessagesFloater } from 'emberclear/components/chat/chat-history/new-messages/-page';
 
@@ -52,7 +52,7 @@ export const page = create({
 
   chatOptions: {
     scope: '[data-test-chat-options-dropdown]',
-    ...dropdownPage,
+    ...dropdown,
 
     toggleEmbedModal: clickable('[data-test-embeds-toggle]'),
   },

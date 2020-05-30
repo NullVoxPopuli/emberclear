@@ -22,28 +22,13 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "paths": {
-      "dummy/tests/*": [
-        "tests/*"
-      ],
-      "dummy/*": [
-        "tests/dummy/app/*",
-        "app/*"
-      ],
-      "@emberclear/ui": [
-        "addon"
-      ],
-      "@emberclear/ui/*": [
-        "addon/*"
-      ],
-      "@emberclear/ui/test-support": [
-        "addon-test-support"
-      ],
-      "@emberclear/ui/test-support/*": [
-        "addon-test-support/*"
-      ],
-      "*": [
-        "types/*"
-      ]
+      "dummy/tests/*": ["tests/*"],
+      "dummy/*": ["tests/dummy/app/*", "app/*"],
+      "@emberclear/ui": ["addon"],
+      "@emberclear/ui/*": ["addon/*"],
+      "@emberclear/ui/test-support": ["addon-test-support"],
+      "@emberclear/ui/test-support/*": ["addon-test-support/*"],
+      "*": ["types/*", "../../questionably-typed/*"]
     }
   },
   "include": [
@@ -52,6 +37,7 @@
     "tests/**/*",
     "types/**/*",
     "test-support/**/*",
-    "addon-test-support/**/*"
+    "addon-test-support/**/*",
+    "../../questionably-typed/**/*"
   ]
 }

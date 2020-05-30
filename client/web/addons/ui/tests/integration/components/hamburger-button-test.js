@@ -3,24 +3,16 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | hamburger-button', function(hooks) {
+module('Integration | Component | hamburger-button', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it renders', async function (assert) {
+    this.setProperties({
+      onClick: () => {},
+    });
 
-    await render(hbs`<HamburgerButton />`);
+    await render(hbs`<HamburgerButton @onClick={{this.onClick}} />`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <HamburgerButton>
-        template block text
-      </HamburgerButton>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });

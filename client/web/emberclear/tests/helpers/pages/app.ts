@@ -1,7 +1,7 @@
 import { find, click } from '@ember/test-helpers';
 import { create, isVisible, clickable } from 'ember-cli-page-object';
 
-import { keyPressFor } from './-key-events';
+import { keyPressFor } from '@emberclear/ui/test-support/key-events';
 
 export const selectors = {
   headerUnread: '[data-test-unread-count]',

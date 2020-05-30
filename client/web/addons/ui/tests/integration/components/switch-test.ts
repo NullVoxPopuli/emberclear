@@ -2,25 +2,33 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+import { create } from 'ember-cli-page-object';
 
-module('Integration | Component | switch', function(hooks) {
+import { switchWrapper } from '@emberclear/ui/test-support/page-objects';
+
+module('Integration | Component | switch', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  let page = create(switchWrapper);
 
-    await render(hbs`{{switch}}`);
+  test('it renders', async function (assert) {
+    await render(hbs`<Switch @label='test' />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.equal(page.label, 'test');
+  });
 
-    // Template block usage:
+  test('can be toggled', async function (assert) {
     await render(hbs`
-      {{#switch}}
-        template block text
-      {{/switch}}
+      <Switch
+        @value={{true}}
+        @label='test'
+      />
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.equal(page.isChecked, true, 'is checked');
+
+    await page.check();
+
+    assert.equal(page.isChecked, false, 'not checked');
   });
 });

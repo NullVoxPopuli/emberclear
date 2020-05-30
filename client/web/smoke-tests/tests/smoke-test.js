@@ -7,8 +7,8 @@ const AddFriend = require('../page-objects/add-friend');
 const Chat = require('../page-objects/chat');
 const { startServer } = require('../helpers/start-server');
 
-describe('smoke', function() {
-  before(async function() {
+describe('smoke', function () {
+  before(async function () {
     switch (process.env.WEBDRIVER_TARGET) {
       case 'pull-request': {
         console.info('---- DEPLOY PREVIEW ----');
@@ -46,7 +46,7 @@ describe('smoke', function() {
 
   setUpWebDriver.call(this);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.loginPage1 = new Login(this.browsers[0]);
     this.loginPage2 = new Login(this.browsers[1]);
     this.addFriendPage1 = new AddFriend(this.host, this.browsers[0]);
@@ -60,7 +60,7 @@ describe('smoke', function() {
     ]);
   });
 
-  after(async function() {
+  after(async function () {
     if (this.server) {
       this.server.kill();
 
@@ -68,7 +68,7 @@ describe('smoke', function() {
     }
   });
 
-  it('works', async function() {
+  it('works', async function () {
     let users = [
       {
         name: 'jRA0gfR7',

@@ -23,23 +23,12 @@
     "esModuleInterop": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "emberclear/tests/*": [
-        "tests/*"
-      ],
-      "emberclear/config/*": [
-        "config/*"
-      ],
-      "emberclear/*": [
-        "app/*"
-      ],
-      "*": [
-        "types/*"
-      ]
+      "emberclear/tests/*": ["tests/*"],
+      "emberclear/config/*": ["config/*"],
+      "emberclear/*": ["app/*"],
+      "@emberclear/ui/test-support/*": ["../addons/ui/addon-test-support/*"],
+      "*": ["types/*", "../questionably-typed/*"]
     }
   },
-  "include": [
-    "app/**/*",
-    "tests/**/*",
-    "types/**/*"
-  ]
+  "include": ["app/**/*", "tests/**/*", "types/**/*", "../questionably-typed/**/*"]
 }

@@ -1,4 +1,4 @@
-name: Frontend Tests
+name: App Tests
 on:
   pull_request:
     branches: [master]
@@ -35,6 +35,7 @@ jobs:
     - name: Test
       working-directory: ${{ env.cwd }}
       env:
+        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         CI_BROWSER: ${{ matrix.ci_browser }}
       run: ./scripts/test-with-coverage.sh
 
@@ -44,30 +45,15 @@ jobs:
         github-token: ${{ secrets.github_token }}
         path-to-lcov: ./client/web/emberclear/coverage/lcov.info
 
-##############################################################
+    - name: Upload Coverage Artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: coverage
+        path: client/web/emberclear/coverage/
 
-  # embroider_tests:
-  #   name: "E M B R O I D E R"
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 15
-
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - uses: rwjblue/setup-volta@v1
-  #   - name: Install
-  #     working-directory: ${{ env.cwd }}
-  #     run: yarn install
-
-  #   - name: Test
-  #     working-directory: ${{ env.cwd }}
-  #     env:
-  #       CI_BROWSER: 'Chrome'
-  #       EMBROIDER: 'true'
-  #     run: ./scripts/test-with-coverage.sh
-  #     continue-on-error: true
 
 ##############################################################
-
+#
   bundle_analysis:
     name: Bundle Analysis
     runs-on: ubuntu-latest
@@ -110,28 +96,6 @@ jobs:
       with:
         name: built_app
         path: client/web/emberclear/dist/
-
-##############################################################
-
-#   tests_visual:
-#     name: Visual Tests
-#     runs-on: ubuntu-latest
-#     timeout-minutes: 15
-
-#     steps:
-#     - uses: actions/checkout@v2
-#     - uses: rwjblue/setup-volta@v1
-
-#     - name: Install
-#       working-directory: ${{ env.cwd }}
-#       run: yarn install
-
-#     - name: Test
-#       working-directory: ${{ env.cwd }}
-#       if: github.event == 'pull_request'
-#       env:
-#         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-#       run: PERCY_ENABLE=1 time yarn test --filter Acceptance
 
 ##############################################################
 

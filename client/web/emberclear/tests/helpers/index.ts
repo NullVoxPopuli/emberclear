@@ -4,7 +4,6 @@ import { percySnapshot } from 'ember-percy';
 import { getContext } from '@ember/test-helpers';
 
 export { stubService } from './stub-service';
-export { textFor, text } from './text-for';
 export * from './create-current-user';
 export { getService } from './get-service';
 export { clearLocalStorage } from './clear-local-storage';
@@ -35,8 +34,8 @@ export function assertExternal(assert: any) {
 
 export function setupRouter(hooks: NestedHooks) {
   hooks.beforeEach(function () {
-    let { owner } = getContext();
+    let { owner } = getContext() as any;
 
-    owner.lookup<any>('router:main').setupRouter();
+    owner.lookup('router:main').setupRouter();
   });
 }

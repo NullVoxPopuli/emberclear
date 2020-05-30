@@ -14,28 +14,6 @@ declare module '@ember/service' {
   }
 }
 
-declare module '@ember/component' {
-  // TODO:  remove when this is actually a thing that exists?
-  export function setComponentTemplate(template: TemplateFactory, klass: any): any;
-}
-
-declare module '@ember/test-helpers' {
-  interface Owner {
-    lookup: <T>(name: string) => T;
-    register: <T>(name: string, mockService: T) => void;
-  }
-  export interface AppContext {
-    element: HTMLElement;
-    owner: Owner & {
-      application: {
-        inject: (within: string, name: string, injected: string) => void;
-      };
-    };
-  }
-
-  export function getContext(): AppContext;
-}
-
 ////////////////////////////////////////////////
 // Custom things thrown on the global namespace
 ////////////////////////////////////////////////

@@ -1,0 +1,7 @@
+{
+  "name": "@emberclear/crypto",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "BSD-3.0",
+  "private": true
+}

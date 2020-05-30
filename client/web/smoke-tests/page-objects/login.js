@@ -14,8 +14,8 @@ class Login extends BasePageObject {
         await this._browser.execute(() => {
           document.querySelector('[href="/login"]').click();
         });
-      }
-    }
+      },
+    };
     // return this._create('[href="/login"]');
   }
 

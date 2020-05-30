@@ -1,11 +1,11 @@
 import { clickable, text, fillable } from 'ember-cli-page-object';
 import { click } from '@ember/test-helpers';
 
-import { definition as modalPage } from 'emberclear/components/modal/-page';
+import { modal } from '@emberclear/ui/test-support/page-objects';
 
 export const definition = {
   scope: '[data-test-embeds-snippet-modal]',
-  ...modalPage,
+  ...modal,
 
   title: text('h5'),
   fillInTitle: fillable('input'),
