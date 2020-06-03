@@ -11,6 +11,7 @@ import ContactManager from 'emberclear/services/contact-manager';
 import CurrentUserService from 'emberclear/services/current-user';
 import { taskFor } from 'emberclear/utils/ember-concurrency';
 
+// TODO
 export default class AddModal extends Component {
   @service toast!: Toast;
   @service currentUser!: CurrentUserService;
