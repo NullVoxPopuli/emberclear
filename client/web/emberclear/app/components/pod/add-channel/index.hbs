@@ -1,0 +1,29 @@
+<h3>{{t 'ui.addContact.title'}}</h3>
+
+{{#if this.scanning}}
+  <QRScanner @onScan={{this.onScan}} />
+{{else}}
+  <QRCode
+    @data={{this.publicIdentity}}
+    @alt={{t 'images.alt.ownIdentityQR'}}
+    class='qr-code-large inline-block'
+  />
+{{/if}}
+
+<div class='cta-with-fallback pad-t-md'>
+  <button type='button' {{on 'click' this.toggleScanning}}>
+    <FaIcon @icon='qrcode' @prefix='fas' />
+    <span>
+      {{#if this.scanning}}
+        {{t 'buttons.back'}}
+      {{else}}
+        {{t 'buttons.scan'}}
+      {{/if}}
+    </span>
+  </button>
+
+  <CopyTextButton
+    @text={{this.url}}
+    @label={{t 'ui.invite.copyProfile'}}
+  />
+</div>
