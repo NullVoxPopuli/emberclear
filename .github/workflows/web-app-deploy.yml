@@ -54,11 +54,12 @@ jobs:
     - uses: actions/checkout@v2
     - uses: rwjblue/setup-volta@v1
 
-    - name: Download Coverage Artifacts
-      uses: actions/download-artifact@v1
-      with:
-        name: coverage
-        path: client/web/emberclear/coverage/
+    # - name: Download Coverage Artifacts
+    #   uses: actions/download-artifact@v1
+    #   with:
+    #     name: coverage
+    #     path: client/web/emberclear/coverage/
+
     - name: Install
       working-directory: ${{ env.cwd }}
       run: yarn install
