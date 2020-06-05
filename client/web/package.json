@@ -26,6 +26,9 @@
     "*.css": "yarn stylelint --fix --cache",
     "translations/*.yml": "yarn ember-intl-analyzer"
   },
+  "resolutions": {
+    "ember-test-waiters": "2.1.2"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "3.0.1",
     "@typescript-eslint/parser": "3.0.1",

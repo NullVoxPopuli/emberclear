@@ -39,17 +39,21 @@ jobs:
         CI_BROWSER: ${{ matrix.ci_browser }}
       run: ./scripts/test-with-coverage.sh
 
-    - name: Upload Coverage to Coveralls
-      uses: coverallsapp/github-action@v1.0.1
-      with:
-        github-token: ${{ secrets.github_token }}
-        path-to-lcov: ./client/web/emberclear/coverage/lcov.info
+    # Coverage Disabled while these are worked out:
+    # https://github.com/babel/ember-cli-babel/issues/350
+    # https://github.com/kategengler/ember-cli-code-coverage/issues/265
+    #
+    # - name: Upload Coverage to Coveralls
+    #   uses: coverallsapp/github-action@v1.0.1
+    #   with:
+    #     github-token: ${{ secrets.github_token }}
+    #     path-to-lcov: ./client/web/emberclear/coverage/lcov.info
 
-    - name: Upload Coverage Artifacts
-      uses: actions/upload-artifact@v1
-      with:
-        name: coverage
-        path: client/web/emberclear/coverage/
+    # - name: Upload Coverage Artifacts
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     name: coverage
+    #     path: client/web/emberclear/coverage/
 
 
 ##############################################################
