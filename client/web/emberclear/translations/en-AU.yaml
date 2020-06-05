@@ -231,6 +231,7 @@ ui:
     loading: Loaded {num} Contacts...
     success: "Logged In!"
     warning: "Note that without another logged in device or your mnemonic, your account will be unrecoverable as there is no central storage to recovery from."
+    invalidState: 'An unknown error occurred while trying to get things ready for signup or login'
     transfer:
       title: "Log in with QR Code"
       prompt: "Scan this with emberclear to login and have all your data transferred instantly."
