@@ -1,4 +1,4 @@
-name: '@emberclear/ui'
+name: 'Web @emberclear/ui'
 on:
   pull_request:
     branches: [master]

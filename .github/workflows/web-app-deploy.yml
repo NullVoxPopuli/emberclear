@@ -1,4 +1,4 @@
-name: Frontend Deploy
+name: Web App Deploy
 on:
   push:
     branches: [master]

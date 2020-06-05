@@ -1,4 +1,4 @@
-name: App Tests
+name: Web App Tests
 on:
   pull_request:
     branches: [master]
@@ -37,7 +37,8 @@ jobs:
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         CI_BROWSER: ${{ matrix.ci_browser }}
-      run: ./scripts/test-with-coverage.sh
+      # run: ./scripts/test-with-coverage.sh
+      run: yarn ember test
 
     # Coverage Disabled while these are worked out:
     # https://github.com/babel/ember-cli-babel/issues/350
