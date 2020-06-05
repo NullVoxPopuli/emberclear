@@ -55,6 +55,7 @@ function detectWorkers() {
 function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
   return ([name, entryPath]) => {
     let workerDir = path.join(workerRoot, name);
+    let rootNodeModules = path.join(__dirname, '..', '..', '..', 'node_modules', '**');
 
     let rollupTree = new Rollup(workerDir, {
       rollup: {
@@ -82,7 +83,7 @@ function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
             preferBuiltins: false,
           }),
           commonjs({
-            include: ['node_modules/**'],
+            include: [rootNodeModules, 'node_modules/**'],
             namedExports: {
               tweetnacl: ['nacl'],
             },

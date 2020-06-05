@@ -1,0 +1,98 @@
+{
+  "name": "@emberclear/ui",
+  "version": "0.0.0",
+  "description": "The default blueprint for ember-cli addons.",
+  "private": true,
+  "keywords": [
+    "ember-addon",
+    "emberclear"
+  ],
+  "repository": {
+    "url": "https://github.com/NullVoxPopuli/emberclear",
+    "directory": "client/web/addons/ui"
+  },
+  "license": "GPL-3.0",
+  "author": "NullVoxPopuli",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "ember build --environment=production",
+    "lint:hbs": "ember-template-lint .",
+    "lint:js": "eslint . --ext js,ts",
+    "start": "ember serve",
+    "test": "ember test",
+    "prepublishOnly": "ember ts:precompile",
+    "postpublish": "ember ts:clean"
+  },
+  "dependencies": {
+    "@fortawesome/ember-fontawesome": "0.2.1",
+    "@fortawesome/free-brands-svg-icons": "5.13.0",
+    "@fortawesome/free-solid-svg-icons": "5.13.0",
+    "@glimmer/component": "1.0.0",
+    "@glimmer/tracking": "1.0.0",
+    "ember-auto-import": "1.5.3",
+    "ember-cli-babel": "7.20.5",
+    "ember-cli-htmlbars": "5.1.2",
+    "ember-cli-postcss": "6.0.1",
+    "ember-cli-typescript": "3.1.4",
+    "ember-focus-trap": "0.4.0",
+    "ember-keyboard": "5.0.0",
+    "ember-named-blocks-polyfill": "0.2.1",
+    "enhanced-resolve": "4.1.1",
+    "postcss-cssnext": "3.1.0",
+    "postcss-import": "12.0.1",
+    "shoelace-css": "1.0.0-beta24",
+    "typescript": "3.7.3",
+    "uuid": "8.1.0"
+  },
+  "devDependencies": {
+    "@ember/optional-features": "1.3.0",
+    "@emberclear/config": "*",
+    "@types/ember": "3.1.2",
+    "@types/ember-qunit": "3.4.8",
+    "@types/ember__test-helpers": "0.7.12",
+    "@types/qunit": "2.9.1",
+    "@types/rsvp": "4.0.3",
+    "babel-eslint": "10.1.0",
+    "broccoli-asset-rev": "3.0.0",
+    "ember-auto-import": "1.5.3",
+    "ember-cli": "3.18.0",
+    "ember-cli-dependency-checker": "3.2.0",
+    "ember-cli-inject-live-reload": "2.0.2",
+    "ember-cli-page-object": "1.17.2",
+    "ember-cli-sri": "2.1.1",
+    "ember-cli-typescript-blueprints": "3.0.0",
+    "ember-cli-uglify": "3.0.0",
+    "ember-disable-prototype-extensions": "1.1.3",
+    "ember-export-application-global": "2.0.1",
+    "ember-load-initializers": "2.1.1",
+    "ember-maybe-import-regenerator": "0.1.6",
+    "ember-named-blocks-polyfill": "0.2.1",
+    "ember-qunit": "4.6.0",
+    "ember-resolver": "8.0.0",
+    "ember-source": "3.18.0",
+    "loader.js": "4.7.0",
+    "npm-run-all": "4.1.5",
+    "qunit-dom": "1.2.0",
+    "testem-failure-only-reporter": "0.0.1",
+    "typescript": "3.9.3"
+  },
+  "engines": {
+    "node": ">= 12.16.3"
+  },
+  "ember": {
+    "edition": "octane"
+  },
+  "ember-addon": {
+    "before": [
+      "ember-cli-postcss"
+    ],
+    "configPath": "tests/dummy/config"
+  },
+  "volta": {
+    "node": "14.3.0",
+    "yarn": "1.22.4"
+  }
+}

@@ -1,0 +1,9 @@
+<button
+  data-test-hamburger-toggle
+  type='button'
+  class='button-link navbar-burger burger {{@class}} {{if @isActive 'is-active'}}'
+  aria-expanded='false'
+  {{on 'click' @onClick}}
+>
+  <FaIcon @icon='bars' @prefix='fas' />
+</button>

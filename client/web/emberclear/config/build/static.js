@@ -1,11 +1,14 @@
 'use strict';
 
+const path = require('path');
 const Funnel = require('broccoli-funnel');
 const writeFile = require('broccoli-file-creator');
 
+const prismPath = path.join(__dirname, '..', '..', '..', 'node_modules', 'prismjs');
+
 module.exports = {
   buildStaticTrees({ isProduction, hash }) {
-    let prism = new Funnel('node_modules/prismjs', {
+    let prism = new Funnel(prismPath, {
       include: ['prism.js', 'themes/*', 'plugins/**', 'components/**'],
       destDir: '/prismjs/',
     });

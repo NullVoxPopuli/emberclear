@@ -1,46 +1,57 @@
 <Dropdown
   @dir={{'up'}}
-  @buttonIcon='plus'
   class='button-secondary'
   data-test-chat-options-dropdown
-  as |closeMenu|
 >
-
-  <ModalStatic @name='code-or-snippet' as |_isActive actions|>
-    <button
+  <:trigger as |toggle|>
+   <button
       type='button'
-      class='button-link'
-      data-test-embeds-toggle
-      {{on 'click' (queue actions.toggle closeMenu)}}
+      class='dropdown-trigger'
+      {{on 'click' toggle}}
+      ...attributes
     >
-      <FaIcon @icon='code' />
-      <span>{{t 'ui.chat.embedMenu.code'}}</span>
+      <FaIcon @icon='plus' />
     </button>
-  </ModalStatic>
+  </:trigger>
 
-  <button type='button' class='button-link text-muted' disabled>
-    <FaIcon @icon='bed' />
-    <span>{{t 'ui.chat.embedMenu.embed'}}</span>
-  </button>
+  <:content as |closeMenu|>
+    <ModalStatic @name='code-or-snippet' as |_isActive actions|>
+      <button
+        type='button'
+        class='button-link'
+        data-test-embeds-toggle
+        {{on 'click' (queue actions.toggle closeMenu)}}
+      >
+        <FaIcon @icon='code' />
+        <span>{{t 'ui.chat.embedMenu.code'}}</span>
+      </button>
+    </ModalStatic>
 
-  <hr class='dropdown-divider'>
+    <button type='button' class='button-link text-muted' disabled>
+      <FaIcon @icon='bed' />
+      <span>{{t 'ui.chat.embedMenu.embed'}}</span>
+    </button>
 
-  <button type='button' class='button-link text-muted' disabled>
-    <FaIcon @icon='desktop' />
-    <span>{{t 'ui.chat.embedMenu.file'}}</span>
-  </button>
+    <hr class='dropdown-divider'>
 
-  <hr class='dropdown-divider'>
+    <button type='button' class='button-link text-muted' disabled>
+      <FaIcon @icon='desktop' />
+      <span>{{t 'ui.chat.embedMenu.file'}}</span>
+    </button>
 
-  <button type='button' class='button-link text-muted' disabled>
-    <FaIcon @icon='video' />
-    <span>{{t 'ui.chat.embedMenu.video'}}</span>
-  </button>
+    <hr class='dropdown-divider'>
 
-  <button type='button' class='button-link text-muted' disabled>
-    <FaIcon @icon='phone' />
-    <span>{{t 'ui.chat.embedMenu.audio'}}</span>
-  </button>
+    <button type='button' class='button-link text-muted' disabled>
+      <FaIcon @icon='video' />
+      <span>{{t 'ui.chat.embedMenu.video'}}</span>
+    </button>
+
+    <button type='button' class='button-link text-muted' disabled>
+      <FaIcon @icon='phone' />
+      <span>{{t 'ui.chat.embedMenu.audio'}}</span>
+    </button>
+  </:content>
+
 </Dropdown>
 
 <ModalStatic @name='code-or-snippet' as |isActive actions|>

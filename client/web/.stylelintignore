@@ -1,0 +1,12 @@
+# Projects without CSS
+smoke-tests/
+
+# Ignore supporting directories to improve scan time
+**/concat-stats-for/**
+**/dist/**
+**/node_modules/**
+node_modules/**
+**/tmp/**
+**/public/**
+**/vendor/**
+

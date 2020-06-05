@@ -1,0 +1,30 @@
+{{#if this.isOpen}}
+  <KeyboardPress @key='Escape' @onDown={{this.toggleMenu}} />
+{{/if}}
+
+<div
+  data-test-dropdown
+  class='
+    dropdown
+    {{if (eq @dir 'up') 'dropdown-top'}}
+    {{if (eq @dir 'left') 'dropdown-left'}}
+    {{if this.isOpen 'active'}}
+  '
+  ...attributes
+>
+
+  {{yield this.toggleMenu to='trigger'}}
+
+  {{#if this.isOpen}}
+    <div
+      class='no-select full-overlay invisible'
+      role='button'
+      {{on 'click' this.toggleMenu}}
+    />
+  {{/if}}
+
+  <div class='dropdown-menu'>
+    {{yield this.closeMenu to='content'}}
+  </div>
+</div>
+

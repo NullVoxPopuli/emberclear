@@ -1,9 +1,8 @@
-import { getContext } from '@ember/test-helpers';
-
 import WindowService from 'emberclear/services/window';
 import { clearLocalStorage } from './clear-local-storage';
 import { setupWorkers } from './setup-workers';
 import { setupRelayConnectionMocks } from './setup-relay-connection-mocks';
+import { TestContext } from 'ember-test-helpers';
 
 export function setupEmberclearTest(hooks: NestedHooks) {
   clearLocalStorage(hooks);
@@ -15,7 +14,7 @@ export function setupEmberclearTest(hooks: NestedHooks) {
 //////////////////////////////////
 
 function setupWindow(hooks: NestedHooks) {
-  hooks.beforeEach(function () {
+  hooks.beforeEach(function (this: TestContext) {
     class TestWindow extends WindowService {
       get location(): any {
         return {
@@ -24,6 +23,6 @@ function setupWindow(hooks: NestedHooks) {
       }
     }
 
-    getContext().owner.register('service:window', TestWindow);
+    this.owner.register('service:window', TestWindow);
   });
 }

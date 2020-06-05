@@ -9,7 +9,6 @@ const UnwatchedDir = require('broccoli-source').UnwatchedDir;
 const { addonConfig } = require('./config/build/addons');
 const { buildBabelConfig } = require('./config/build/babel');
 const { buildStaticTrees } = require('./config/build/static');
-const { postcssConfig } = require('./config/build/styles');
 const { buildWorkerTrees } = require('./config/build/workers');
 const crypto = require('crypto');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -72,11 +71,6 @@ module.exports = function (defaults) {
     },
 
     autoImport: {
-      // tweetnacl is required for tests...
-      // TODO: maybe figure out a way to use the actual workers
-      // TODO: maybe split the workers out to a separate package
-      //       so they can be tested separately and then this project
-      //       can test the integration with the workers
       exclude: isProduction ? ['tweetnacl'] : [],
       webpack: {
         plugins: CONCAT_STATS
@@ -100,7 +94,6 @@ module.exports = function (defaults) {
     // We don't need to view everything all at once.
     ...addonConfig(env),
     ...buildBabelConfig(env),
-    ...postcssConfig,
   });
 
   // Additional paths to copy to the public directory in the final build.

@@ -1,15 +1,19 @@
-{{#let
-  (component (concat 'pod/setup/' this.interpreter.state.value))
-  as |ComponentForCurrentState|
-}}
+{{#if this.interpreter.state.value}}
+  {{#let
+    (component (concat 'pod/setup/' this.interpreter.state.value))
+    as |ComponentForCurrentState|
+  }}
 
-  <div class='container center-self'>
+    <div class='container center-self'>
 
-    <ComponentForCurrentState
-      @next={{fn this.interpreter.send 'NEXT'}}
-      @prev={{fn this.interpreter.send 'PREV'}}
-    />
+      <ComponentForCurrentState
+        @next={{fn this.interpreter.send 'NEXT'}}
+        @prev={{fn this.interpreter.send 'PREV'}}
+      />
 
-  </div>
+    </div>
 
-{{/let}}
+  {{/let}}
+{{else}}
+  <ErrorCard @message={{t 'ui.login.invalidState'}} />
+{{/if}}

@@ -9,12 +9,12 @@ import Action, { ACTION_RESPONSE } from 'emberclear/models/action';
 import CurrentUserService from 'emberclear/services/current-user';
 import SidebarService from 'emberclear/services/sidebar';
 
-import { VOTE_ACTION } from 'emberclear/models/vote-chain';
-import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
-import { sign, hash } from 'emberclear/workers/crypto/utils/nacl';
+// import { VOTE_ACTION } from 'emberclear/models/vote-chain';
+// import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
+// import { sign, hash } from 'emberclear/workers/crypto/utils/nacl';
 
-import { toHex } from 'emberclear/utils/string-encoding';
-import { generateAsymmetricKeys, generateSigningKeys } from 'emberclear/workers/crypto/utils/nacl';
+// import { toHex } from 'emberclear/utils/string-encoding';
+// import { generateAsymmetricKeys, generateSigningKeys } from 'emberclear/workers/crypto/utils/nacl';
 
 interface IArgs {
   actions: Action[];

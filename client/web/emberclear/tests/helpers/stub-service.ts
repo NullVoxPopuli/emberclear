@@ -6,7 +6,7 @@ interface IInjection {
   as: string;
 }
 
-export const stubService = (name: keyof Registry, hash = {}, injections?: IInjection[]) => {
+export const stubService = (name: keyof Registry, hash = {}) => {
   let stubbedService;
 
   // TODO: need to be able to use an extended service that uses services. :)
@@ -16,16 +16,10 @@ export const stubService = (name: keyof Registry, hash = {}, injections?: IInjec
     stubbedService = Service.extend(hash);
   }
 
-  let { owner } = getContext();
+  let { owner } = getContext() as any;
   let serviceName = `service:${name}`;
 
   owner.register(serviceName, stubbedService);
-
-  if (injections) {
-    injections.forEach((injection) => {
-      owner.application.inject(injection.in, injection.as, serviceName);
-    });
-  }
 };
 
 export default stubService;

@@ -1,17 +1,17 @@
 import { create } from 'ember-cli-page-object';
 
-import { inputDefinition } from 'emberclear/components/switch/-page';
+import { switchInput } from '@emberclear/ui/test-support/page-objects';
 
 export const definition = {
   scope: '[data-test-interface]',
   hideOfflineContacts: {
     scope: '[data-test-hide-offline-contacts]',
-    ...inputDefinition,
+    ...switchInput,
   },
   themes: {
     selectMidnight: {
       scope: '[data-test-theme-midnight]',
-      ...inputDefinition,
+      ...switchInput,
     },
   },
 };

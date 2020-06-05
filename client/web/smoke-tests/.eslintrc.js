@@ -2,13 +2,11 @@ module.exports = {
   root: true,
   parser: 'babel-eslint',
   plugins: ['node', 'prettier'],
-  extends: [
-    'eslint:recommended',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'prettier'],
   env: {
     mocha: true,
     node: true,
+    browser: true,
     es6: true,
   },
   rules: {
@@ -26,6 +24,5 @@ module.exports = {
 
     // prettier
     'prettier/prettier': 'error',
-
   },
 };
