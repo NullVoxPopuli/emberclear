@@ -7861,7 +7861,7 @@ ember-cli-babel@7.20.5:
     rimraf "^3.0.1"
     semver "^5.5.0"
 
-ember-cli-babel@7.22.1, ember-cli-babel@^7.22.1:
+ember-cli-babel@7.22.1, ember-cli-babel@^7.22.1, ember-cli-babel@^7.9.0:
   version "7.22.1"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.22.1.tgz#cad28b89cf0e184c93b863d09bc5ba4ce1d2e453"
   integrity sha512-kCT8WbC1AYFtyOpU23ESm22a+gL6fWv8Nzwe8QFQ5u0piJzM9MEudfbjADEaoyKTrjMQTDsrWwEf3yjggDsOng==
@@ -9089,7 +9089,7 @@ ember-test-waiters@2.1.3, ember-test-waiters@^1.1.1, ember-test-waiters@^2.0.0:
     ember-cli-version-checker "^5.1.1"
     semver "^7.1.3"
 
-"ember-usable@git+https://github.com/pzuraq/ember-usable.git#0d03a50":
+"ember-usable@https://github.com/pzuraq/ember-usable#0d03a50":
   version "0.0.0"
   resolved "git+https://github.com/pzuraq/ember-usable.git#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
   dependencies:
@@ -12850,7 +12850,7 @@ localforage@1.9.0:
 
 localforage@^1.7.3:
   version "1.7.4"
-  resolved "https://registry.npmjs.org/localforage/-/localforage-1.7.4.tgz#88b59cc9b25ae54c76bb2c080b21ec832c22d3f6"
+  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.7.4.tgz#88b59cc9b25ae54c76bb2c080b21ec832c22d3f6"
   integrity sha512-3EmVZatmNVeCo/t6Te7P06h2alGwbq8wXlSkcSXMvDE2/edPmsVqTPlzGnZaqwZZDBs6v+kxWpqjVsqsNJT8jA==
   dependencies:
     lie "3.1.1"
