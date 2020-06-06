@@ -61,6 +61,7 @@
 .top-nav.inverted .burger,
 .top-nav.inverted .chat-name,
 .top-nav.inverted .dropdown-trigger,
+.top-nav.inverted .link-status,
 .top-nav.inverted > .left-nav > a,
 .top-nav.inverted > .right-nav > a {
   color: var(--top-nav-inverted-color);
@@ -89,5 +90,26 @@
 
   & hr {
     margin: 0 var(--grid-gap-tiny);
+  }
+}
+
+.top-nav .link-status {
+  @apply --column-grid;
+
+  align-items: center;
+  justify-content: center;
+
+  & svg {
+    opacity: 0.5;
+  }
+
+  & .hover-reveal {
+    display: none;
+  }
+
+  &:hover {
+    & .hover-reveal {
+      display: block;
+    }
   }
 }

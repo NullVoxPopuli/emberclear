@@ -38,6 +38,10 @@ export default class ConnectionStatusService extends Service {
     }
   }
 
+  get isConnecting() {
+    return this.text === STATUS_CONNECTING;
+  }
+
   updateStatus(text: STATUS) {
     this.text = text;
     this.level = STATUS_LEVEL_MAP[text];
