@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [master]
     paths:
-    - 'client/web/emberclear/**'
+    - 'client/web/**'
 
 env:
   cwd: client/web/emberclear
