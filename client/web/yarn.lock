@@ -1240,12 +1240,12 @@
     yargs "^15.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@2.0.15":
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-2.0.15.tgz#1ee91b1a9ba3510e41ea750bedf85fe3ff7c6536"
-  integrity sha512-XoXjJF3B6mvXYNys+2nlcEOC7EKvqIMiIS+CPQ3EJtKXtnl4pGecWjB8SNKQpJqgyLqQQ1HuPkh/9jyBSkkAKA==
+"@faltest/lifecycle@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-3.1.0.tgz#b6ec7f95a56bae55936eeb9e1bb06370985e88bc"
+  integrity sha512-pyY0oXnb3FJNqQ68p0R1LFyQ9VoDnHrSrzYALjKVRF3UidPS+DgsWuvjHePACkYQbrjXF6H2hh8iz+qAxAT0DA==
   dependencies:
-    "@faltest/remote" "^3.0.9"
+    "@faltest/remote" "^4.0.0"
     "@faltest/utils" "^2.0.4"
   optionalDependencies:
     "@faltest/browser" "^2.0.5"
@@ -1271,6 +1271,21 @@
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-3.2.1.tgz#7c273da0b384b49d2afc671761c1e73a5ba8fc00"
   integrity sha512-bawLj1Kjn+Ut0Of54ozcjBHkXld2YHvgOmuhAMjyMa0CoFyz4bl5BIguel4URJzt0+CWNzoUsUs7BeBCk4+CJg==
+  dependencies:
+    "@faltest/utils" "^2.0.4"
+    chromedriver "80.0.0"
+    execa "^3.0.0"
+    fkill "^6.2.0"
+    geckodriver "1.19.1"
+    get-port "^5.0.0"
+    ps-list "^6.3.0"
+    webdriverio "5.18.5"
+    yn "^3.1.1"
+
+"@faltest/remote@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-4.0.0.tgz#89dfa0093453a92e1c3f2e96632cf15f9e711c60"
+  integrity sha512-hqc0hdP8AJ9RGM2np4FmZrrulaZg/J3gcVU7+2YpcU3cKClapsWh8a5jWadiave0Aexu69uDETXGtGnaPLR9TA==
   dependencies:
     "@faltest/utils" "^2.0.4"
     chromedriver "80.0.0"
@@ -8184,48 +8199,6 @@ eslint-visitor-keys@^1.0.0, eslint-visitor-keys@^1.1.0, eslint-visitor-keys@^1.2
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.2.0.tgz#74415ac884874495f78ec2a97349525344c981fa"
   integrity sha512-WFb4ihckKil6hu3Dp798xdzSfddwKKU3+nGniKF6HfeW6OLd2OUDEPP7TcHtB5+QXOKg2s6B2DaMPE1Nn/kxKQ==
 
-eslint@7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.1.0.tgz#d9a1df25e5b7859b0a3d86bb05f0940ab676a851"
-  integrity sha512-DfS3b8iHMK5z/YLSme8K5cge168I8j8o1uiVmFCgnnjxZQbCGyraF8bMl7Ju4yfBmCuxD7shOF7eqGkcuIHfsA==
-  dependencies:
-    "@babel/code-frame" "^7.0.0"
-    ajv "^6.10.0"
-    chalk "^4.0.0"
-    cross-spawn "^7.0.2"
-    debug "^4.0.1"
-    doctrine "^3.0.0"
-    eslint-scope "^5.0.0"
-    eslint-utils "^2.0.0"
-    eslint-visitor-keys "^1.1.0"
-    espree "^7.0.0"
-    esquery "^1.2.0"
-    esutils "^2.0.2"
-    file-entry-cache "^5.0.1"
-    functional-red-black-tree "^1.0.1"
-    glob-parent "^5.0.0"
-    globals "^12.1.0"
-    ignore "^4.0.6"
-    import-fresh "^3.0.0"
-    imurmurhash "^0.1.4"
-    inquirer "^7.0.0"
-    is-glob "^4.0.0"
-    js-yaml "^3.13.1"
-    json-stable-stringify-without-jsonify "^1.0.1"
-    levn "^0.4.1"
-    lodash "^4.17.14"
-    minimatch "^3.0.4"
-    natural-compare "^1.4.0"
-    optionator "^0.9.1"
-    progress "^2.0.0"
-    regexpp "^3.1.0"
-    semver "^7.2.1"
-    strip-ansi "^6.0.0"
-    strip-json-comments "^3.1.0"
-    table "^5.2.3"
-    text-table "^0.2.0"
-    v8-compile-cache "^2.0.3"
-
 eslint@7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.2.0.tgz#d41b2e47804b30dbabb093a967fb283d560082e6"
@@ -8320,7 +8293,7 @@ espree@^3.1.6:
     acorn "^5.5.0"
     acorn-jsx "^3.0.0"
 
-espree@^7.0.0, espree@^7.1.0:
+espree@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/espree/-/espree-7.1.0.tgz#a9c7f18a752056735bf1ba14cb1b70adc3a5ce1c"
   integrity sha512-dcorZSyfmm4WTuTnE5Y7MEN1DyoPYy1ZR783QW1FJoenn7RailyWFsq/UL6ZAAA7uXurN9FIpYyUs3OfiIW+Qw==
