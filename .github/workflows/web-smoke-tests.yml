@@ -1,0 +1,55 @@
+name: Web Smoke Tests
+on:
+  pull_request:
+    branches: [master]
+    paths:
+    - 'client/web/smoke-tests/**'
+
+env:
+  root: client/web/
+  dir: smoke-tests/
+  full: client/web/addons/ui/
+
+##############################################################
+
+jobs:
+  lint:
+    name: 'Lint'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: volta-cli/action@v1
+
+    - name: Install
+      working-directory: ${{ env.root }}
+      run: yarn install
+
+    - name: "JS/TS"
+      working-directory: ${{ env.root }}
+      run: yarn eslint ${{ env.dir }} --ext js,ts
+
+    # No TypeScript (yet)
+    # - name: 'Type Correctness'
+    #   working-directory: ${{ env.full }}
+    #   run: yarn tsc --skipLibCheck --noEmit
+
+##############################################################
+
+  tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: volta-cli/action@v1
+
+    - name: Test Production
+      run: |
+        cd client/web/smoke-tests
+        DETECT_CHROMEDRIVER_VERSION=true yarn
+        yarn test --headless
+
+
