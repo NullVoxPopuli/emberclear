@@ -1240,12 +1240,12 @@
     yargs "^15.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@2.0.15":
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-2.0.15.tgz#1ee91b1a9ba3510e41ea750bedf85fe3ff7c6536"
-  integrity sha512-XoXjJF3B6mvXYNys+2nlcEOC7EKvqIMiIS+CPQ3EJtKXtnl4pGecWjB8SNKQpJqgyLqQQ1HuPkh/9jyBSkkAKA==
+"@faltest/lifecycle@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-3.1.0.tgz#b6ec7f95a56bae55936eeb9e1bb06370985e88bc"
+  integrity sha512-pyY0oXnb3FJNqQ68p0R1LFyQ9VoDnHrSrzYALjKVRF3UidPS+DgsWuvjHePACkYQbrjXF6H2hh8iz+qAxAT0DA==
   dependencies:
-    "@faltest/remote" "^3.0.9"
+    "@faltest/remote" "^4.0.0"
     "@faltest/utils" "^2.0.4"
   optionalDependencies:
     "@faltest/browser" "^2.0.5"
@@ -1271,6 +1271,21 @@
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-3.2.1.tgz#7c273da0b384b49d2afc671761c1e73a5ba8fc00"
   integrity sha512-bawLj1Kjn+Ut0Of54ozcjBHkXld2YHvgOmuhAMjyMa0CoFyz4bl5BIguel4URJzt0+CWNzoUsUs7BeBCk4+CJg==
+  dependencies:
+    "@faltest/utils" "^2.0.4"
+    chromedriver "80.0.0"
+    execa "^3.0.0"
+    fkill "^6.2.0"
+    geckodriver "1.19.1"
+    get-port "^5.0.0"
+    ps-list "^6.3.0"
+    webdriverio "5.18.5"
+    yn "^3.1.1"
+
+"@faltest/remote@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-4.0.0.tgz#89dfa0093453a92e1c3f2e96632cf15f9e711c60"
+  integrity sha512-hqc0hdP8AJ9RGM2np4FmZrrulaZg/J3gcVU7+2YpcU3cKClapsWh8a5jWadiave0Aexu69uDETXGtGnaPLR9TA==
   dependencies:
     "@faltest/utils" "^2.0.4"
     chromedriver "80.0.0"
@@ -8103,15 +8118,6 @@ eslint-plugin-decorator-position@2.1.0:
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     ember-rfc176-data "^0.3.12"
-    snake-case "^3.0.3"
-
-eslint-plugin-ember@8.5.2:
-  version "8.5.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-8.5.2.tgz#9e0c0e43f74e8fe3d5e35903f33edd043f86dec3"
-  integrity sha512-dLA3W2GpPYRszKL9smw/S0aj0KxUiL1vlvQMDWsiuvcCCwgE/fGZ2FbdmicR/ssMnW5elRfNVPKQdS2B91AMxA==
-  dependencies:
-    "@ember-data/rfc395-data" "^0.0.4"
-    ember-rfc176-data "^0.3.13"
     snake-case "^3.0.3"
 
 eslint-plugin-ember@8.6.0:
