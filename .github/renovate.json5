@@ -1,0 +1,58 @@
+// Docs:
+// https://docs.renovatebot.com/configuration-options/
+{
+  "extends": [
+    "config:base"
+  ],
+  "automerge": true,
+  "masterIssue": true,
+  "ignorePaths": [
+      // Deployed once and forgotten
+      "client/android-wrapper"
+  ],
+  "packageRules": [
+    {
+      // These are one-time experiements and don't need to be kept up to date
+      "paths": ["benchmarks/**"],
+      "enabled": false
+    },
+    {
+      "paths": ["client/web/**/package.json"],
+      // Pin requires more package.json/lockfile churn,
+      // but it allows us to determine if an otherwise floating dep
+      // introduced a regression
+      "rangeStrategy": "pin"
+    },
+    {
+      "paths": ["client/web/emberclear/Dockerfile"],
+      "enabled": false
+    },
+    ////////////////////////////////////////
+    // Grouping namespaced packages together
+    ////////////////////////////////////////
+    {
+      "packagePatterns": ["^@babel*"],
+      "groupName": "Babel Transpilation"
+    },
+    {
+      "packagePatterns": ["^@ember-data*"],
+      "groupName": "Ember Data"
+    },
+    {
+      "packagePatterns": ["^@faltest*"],
+      "groupName": "FalTest Smoke Testing by CrowdStrike"
+    },
+    {
+      "packagePatterns": ["^@types\/*"],
+      "groupName": "Type Definitions"
+    },
+    {
+      "packagePatterns": ["^@embroider*"],
+      "groupName": "embroider"
+    },
+    {
+      "packagePatterns": [".*typescript-eslint.*"],
+      "groupName": "TypeScript ESLint"
+    }
+  ]
+}
