@@ -9,7 +9,7 @@
   {{/if}}
 
   <span class='hover-reveal'>
-    {{t (or this.status.text this.DISCONNECTED)}}
+    {{t (concat 'connection.' (or this.status.text this.DISCONNECTED))}}
   </span>
 
 </small>
