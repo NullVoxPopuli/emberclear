@@ -15,6 +15,9 @@ qrCode:
 connection:
   connecting: Connecting...
   connected: Connected!
+  disconnected: Disconnected.
+  degraded: Degraded
+  unknown: Unknown
   status:
     socket:
       error: An error occurred in the socket connection!
@@ -180,8 +183,8 @@ ui:
   chat:
     welcome: Welcome!
     message: >
-      To get started, you'll need at least one friend.'<br />''<br />'
-      Then you'll be able to chat with them and create channels for communicating with groups of friends.
+      To get started, you'll need at least one friend.'<br />'
+      '<br />' Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: There are newer messages
     viewRecent: view recent messages
     unreadMessages: '{number} new messages since {time}'
