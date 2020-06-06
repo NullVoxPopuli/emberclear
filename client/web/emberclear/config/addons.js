@@ -37,6 +37,7 @@ ENV['fontawesome'] = {
       'search',
       'thumbtack',
       'minus',
+      'wifi',
     ],
   },
 };

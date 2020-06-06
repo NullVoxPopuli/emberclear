@@ -1,0 +1,15 @@
+<small class='link-status has-hover-reveal'>
+
+  {{#if this.status.isConnecting}}
+    <EllipsisLoader />
+  {{else if this.status.isConnected}}
+    <FaIcon @icon='wifi' />
+  {{else}}
+    <FaIcon @icon='exclamation-circle' />
+  {{/if}}
+
+  <span class='hover-reveal'>
+    {{t (concat 'connection.' (or this.status.text this.DISCONNECTED))}}
+  </span>
+
+</small>

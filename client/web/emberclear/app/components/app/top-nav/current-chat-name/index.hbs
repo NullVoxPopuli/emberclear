@@ -1,0 +1,15 @@
+{{#if this.isChatVisible}}
+
+  <div class='current-chat' ...attributes>
+    <hr class='vertical hide-sm-down'>
+
+    <span class='chat-name'>
+      {{this.currentChat.name}}
+    </span>
+
+    {{#if (is-contact this.currentChat.record)}}
+      <StatusIcon @contact={{this.currentChat.record}} />
+    {{/if}}
+  </div>
+
+{{/if}}

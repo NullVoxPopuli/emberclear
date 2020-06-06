@@ -23,21 +23,12 @@
         {{t 'appname'}}
       </LinkTo>
 
-      <CurrentChatName class='current-chat' as |isVisible name record|>
-        {{#if isVisible}}
-          <hr class='vertical hide-sm-down'>
-          <span class='chat-name'>
-            {{name}}
-          </span>
-          {{#if (is-contact record)}}
-            <StatusIcon @contact={{record}} />
-          {{/if}}
-        {{/if}}
-      </CurrentChatName>
+      <App::TopNav::CurrentChatName />
+      <App::TopNav::ConnectionStatus />
 
     {{else}}
 
-      <LinkTo @route='application' class={{concat 'left ' (if this.isChat this.textColor)}}>
+      <LinkTo @route='application' class='left {{if this.isChat this.textColor}}'>
         {{t 'appname'}}
       </LinkTo>
 
