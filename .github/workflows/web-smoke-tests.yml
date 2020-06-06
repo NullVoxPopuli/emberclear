@@ -4,6 +4,7 @@ on:
     branches: [master]
     paths:
     - 'client/web/smoke-tests/**'
+    - 'client/web/package.json'
 
 env:
   root: client/web/
