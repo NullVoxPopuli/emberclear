@@ -71,7 +71,11 @@ jobs:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_CLI_VERSION: 0.4.0
       run: |
-        mv client/web/emberclear/coverage client/web/emberclear/public/
+        COVERAGE_DIR="client/web/emberclear/coverage"
+
+        if [ -d "$COVERAGE_DIR" ]; then
+          mv $COVERAGE_DIR client/web/emberclear/public/
+        fi
 
         ( cd client/web/emberclear \
           && time yarn analyze \
