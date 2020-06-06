@@ -13,6 +13,7 @@
     "questionably-typed/*",
     "config",
     "addons/*",
+    "libraries/*",
     "lint/*"
   ],
   "husky": {

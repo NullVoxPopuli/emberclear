@@ -1228,13 +1228,13 @@
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
 
-"@faltest/cli@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.1.1.tgz#50896c6e2878c1bc6eaa68d93b2d9357cf54784b"
-  integrity sha512-lFEkMs2nO/g+K0LDEXvnmIt2ULVcHQyW5g5FYFy9StbbE9O/tFbQDIIsYUAIpcKyNOeIxhRLqAXqK47Bhp1BUQ==
+"@faltest/cli@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.1.2.tgz#6e3a23de300a5381e4cafc22379992e388f53f9a"
+  integrity sha512-cazhWhvex7y7isDCWCPifWtACppGXj4Jr1zCA1LE+FylSnltR5crqnEQCe9h6wOfViItifFVerdBavjFGR2Eaw==
   dependencies:
     "@faltest/mocha" "^1.0.7"
-    "@faltest/remote" "^3.0.9"
+    "@faltest/remote" "^4.0.0"
     "@faltest/utils" "^2.0.4"
     mocha "^7.0.1"
     yargs "^15.0.0"
@@ -1259,28 +1259,13 @@
     glob "^7.1.4"
     mocha-helpers "^4.3.0"
 
-"@faltest/page-objects@3.0.10":
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.0.10.tgz#1348c0ca5b9aebd857a40ac49c771654ddb69c81"
-  integrity sha512-gyAjuvvvbuVup0kCumgPQJ3rGNpzROmLtQ+tq9z4wUlT8Y6behfvSwZDu8YZbOMOJT8UuCssenDzexvZ3MYLTA==
+"@faltest/page-objects@3.0.11":
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.0.11.tgz#bd2de13b09b9d141bc854cedaf883c452c92d144"
+  integrity sha512-LdYBJcsKxPX0kCkWCWyPAHoS7G3ZE/GyMLqi/YxEXi2bbaywVrF0OoDdYr+gsLo8PMyGn/v9hsNuGY3/1X7rjA==
   dependencies:
     "@faltest/browser" "^2.0.5"
     verror-extra "^1.0.0"
-
-"@faltest/remote@^3.0.9":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@faltest/remote/-/remote-3.2.1.tgz#7c273da0b384b49d2afc671761c1e73a5ba8fc00"
-  integrity sha512-bawLj1Kjn+Ut0Of54ozcjBHkXld2YHvgOmuhAMjyMa0CoFyz4bl5BIguel4URJzt0+CWNzoUsUs7BeBCk4+CJg==
-  dependencies:
-    "@faltest/utils" "^2.0.4"
-    chromedriver "80.0.0"
-    execa "^3.0.0"
-    fkill "^6.2.0"
-    geckodriver "1.19.1"
-    get-port "^5.0.0"
-    ps-list "^6.3.0"
-    webdriverio "5.18.5"
-    yn "^3.1.1"
 
 "@faltest/remote@^4.0.0":
   version "4.0.0"
