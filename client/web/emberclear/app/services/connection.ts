@@ -36,14 +36,14 @@ export default class ConnectionService extends Service {
   }
 
   @dropTask({ withTestWaiter: true })
-  private *_connect() {
-    let canConnect = yield this.canConnect();
+  private async _connect() {
+    let canConnect = await this.canConnect();
 
     if (!canConnect) return;
 
-    yield this.manager.setup();
+    await this.manager.setup();
 
-    yield this.dispatcher.pingAll();
+    await this.dispatcher.pingAll();
 
     return taskFor(this.onlineChecker.checkOnlineStatus).perform();
   }

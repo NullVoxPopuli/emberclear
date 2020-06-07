@@ -37,13 +37,13 @@ export default class LoginForm extends Component {
   }
 
   @dropTask
-  *login() {
+  async login() {
     try {
       let name = this.name;
       let crypto = new CryptoConnector({ workerService: this.workers });
-      let keys = yield crypto.login(this.mnemonic);
+      let keys = await crypto.login(this.mnemonic);
 
-      yield this.currentUser.setIdentity(name, keys);
+      await this.currentUser.setIdentity(name, keys);
 
       this.router.transitionTo('chat');
     } catch (e) {
@@ -53,9 +53,9 @@ export default class LoginForm extends Component {
   }
 
   @dropTask
-  *uploadSettings(data: string) {
+  async uploadSettings(data: string) {
     try {
-      yield this.settings.import(data);
+      await this.settings.import(data);
 
       this.router.transitionTo('settings');
     } catch (e) {

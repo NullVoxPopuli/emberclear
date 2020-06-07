@@ -37,10 +37,10 @@ export default class Compatibility extends Component {
   }
 
   @dropTask
-  *detectFeatures() {
+  async detectFeatures() {
     let check = this.checkSuccess.bind(this);
 
-    this.hasIndexedDb = check(yield hasIndexedDb(), { required: true });
+    this.hasIndexedDb = check(await hasIndexedDb(), { required: true });
 
     if (!Ember.testing) {
       this.hasCamera = check(hasCamera());

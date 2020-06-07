@@ -52,10 +52,10 @@ export default class SearchModal extends Component<IArgs> {
   }
 
   @restartableTask({ withTestWaiter: true })
-  *search(searchTerm: string) {
+  async search(searchTerm: string) {
     const term = new RegExp(searchTerm, 'i');
 
-    let [contactResults, channelResults] = yield Promise.all([
+    let [contactResults, channelResults] = await Promise.all([
       this.store.query('contact', { name: term }),
       this.store.query('channel', { name: term }),
     ]);

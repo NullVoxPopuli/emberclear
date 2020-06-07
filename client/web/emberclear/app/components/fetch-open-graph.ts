@@ -36,10 +36,10 @@ class FetchOpenGraphComponent extends Component<Args> {
   }
 
   @task({ withTestWaiter: true })
-  *request() {
-    yield waitUntil(() => this.status.isConnected);
+  async request() {
+    await waitUntil(() => this.status.isConnected);
 
-    let og = yield this.connection.getOpenGraph(this.args.url);
+    let og = await this.connection.getOpenGraph(this.args.url);
 
     return og;
   }

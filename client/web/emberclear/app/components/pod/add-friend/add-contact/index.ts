@@ -39,11 +39,11 @@ export default class AddModal extends Component {
   }
 
   @task
-  *handleScan(identityJson: string) {
+  async handleScan(identityJson: string) {
     try {
       const identity = JSON.parse(identityJson);
 
-      yield this.tryCreate(identity);
+      await this.tryCreate(identity);
     } catch (e) {
       this.toast.error(e);
     }

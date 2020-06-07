@@ -51,14 +51,14 @@ export default class ConnectionStatusService extends Service {
   }
 
   @restartableTask({ withTestWaiter: true })
-  *showStatusChange() {
+  async showStatusChange() {
     this.hasUpdate = true;
     this.hadUpdate = false;
 
-    yield timeout(2000);
+    await timeout(2000);
     this.hadUpdate = true;
 
-    yield timeout(1000);
+    await timeout(1000);
 
     this.hasUpdate = false;
   }

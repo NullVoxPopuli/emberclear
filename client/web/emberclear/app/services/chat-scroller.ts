@@ -26,8 +26,8 @@ export default class ChatScroller extends Service {
   // if the last message is close enough to being in view,
   // scroll to the bottom
   @dropTask
-  *maybeNudge(appendedMessage: HTMLElement) {
-    yield timeout(SCROLL_DELAY);
+  async maybeNudge(appendedMessage: HTMLElement) {
+    await timeout(SCROLL_DELAY);
 
     if (this.shouldScroll(appendedMessage)) {
       appendedMessage.scrollIntoView({ behavior: 'smooth' });
@@ -35,11 +35,11 @@ export default class ChatScroller extends Service {
   }
 
   @restartableTask
-  *scrollToBottom() {
+  async scrollToBottom() {
     const element = document.querySelector('.messages');
 
     if (element) {
-      yield element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'smooth' });
+      await element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'smooth' });
     }
   }
 

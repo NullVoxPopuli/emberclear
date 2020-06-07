@@ -7240,6 +7240,17 @@ ember-compatibility-helpers@^1.1.1, ember-compatibility-helpers@^1.1.2, ember-co
     ember-cli-version-checker "^2.1.1"
     semver "^5.4.1"
 
+ember-concurrency-async@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-async/-/ember-concurrency-async-0.1.0.tgz#8f5f1532c5366a85f444253ca013bd02ef347de8"
+  integrity sha512-Fk0WoA/n2waGGNR128+Oj6bCnWRuAd8aP6x733UP1BVAnldckxxt5vtyeN2pi7/qZ0u86EtE+DwFTEeMKj0caw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.10.1"
+    "@babel/types" "^7.10.2"
+    ember-cli-babel "^7.19.0"
+    ember-cli-babel-plugin-helpers "^1.1.0"
+    ember-cli-htmlbars "^4.3.1"
+
 ember-concurrency-decorators@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-concurrency-decorators/-/ember-concurrency-decorators-1.0.0.tgz#b327e9e487650f0670870a8233c35bd0b5a7452b"
@@ -7753,7 +7764,7 @@ ember-test-selectors@4.1.0:
     ember-cli-babel "^7.19.0"
     ember-cli-version-checker "^5.0.2"
 
-ember-test-waiters@2.1.2, ember-test-waiters@^1.1.1, ember-test-waiters@^2.0.0:
+ember-test-waiters@2.1.2, ember-test-waiters@^2.0.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ember-test-waiters/-/ember-test-waiters-2.1.2.tgz#235f4b7014f96309d19f5676efe57a6ee6cae8da"
   integrity sha512-9C/Dcz9w2nw5pM+IbAMbC2WRuUICCtqznGw4z82cUODUdHN2fkC3aVogb1mDCXXVpfCmBQeutLroBwtF5BdPBQ==
@@ -7762,6 +7773,14 @@ ember-test-waiters@2.1.2, ember-test-waiters@^1.1.1, ember-test-waiters@^2.0.0:
     ember-cli-typescript "^3.1.3"
     ember-cli-version-checker "^5.1.1"
     semver "^7.1.3"
+
+ember-test-waiters@^1.1.1:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ember-test-waiters/-/ember-test-waiters-1.2.0.tgz#c12ead4313934c24cff41857020cacdbf8e6effe"
+  integrity sha512-aEw7YuutLuJT4NUuPTNiGFwgTYl23ThqmBxSkfFimQAn+keWjAftykk3dlFELuhsJhYW/S8YoVjN0bSAQRLNtw==
+  dependencies:
+    ember-cli-babel "^7.11.0"
+    semver "^6.3.0"
 
 "ember-usable@https://github.com/pzuraq/ember-usable#0d03a50":
   version "0.0.0"

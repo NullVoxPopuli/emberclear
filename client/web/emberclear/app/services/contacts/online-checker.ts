@@ -18,11 +18,12 @@ export default class ContactsOnlineChecker extends Service {
   @service('messages/factory') messageFactory!: MessageFactory;
 
   @task({ withTestWaiter: true })
-  *checkOnlineStatus() {
+  async checkOnlineStatus() {
     if (Ember.testing) return;
 
+    // eslint-disable-next-line no-constant-condition
     while (true) {
-      yield timeout(THIRTY_SECONDS);
+      await timeout(THIRTY_SECONDS);
 
       const ping = this.messageFactory.buildPing();
 

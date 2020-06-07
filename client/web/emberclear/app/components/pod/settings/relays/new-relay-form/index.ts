@@ -23,9 +23,9 @@ export default class NewRelayForm extends Component {
   }
 
   @dropTask
-  *save() {
+  async save() {
     const host = hostFromURL(this.socketURL);
-    const existing = yield this.store.findAll('relay');
+    const existing = await this.store.findAll('relay');
     const priority = existing.length + 1;
     const record = this.store.createRecord('relay', {
       socket: this.socketURL,
@@ -34,7 +34,7 @@ export default class NewRelayForm extends Component {
       priority,
     });
 
-    yield record.save();
+    await record.save();
 
     this.reset();
   }

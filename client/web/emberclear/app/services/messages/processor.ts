@@ -26,10 +26,10 @@ export default class MessageProcessor extends Service {
   }
 
   @enqueueTask({ withTestWaiter: true, maxConcurrency: 1 })
-  *_receive(socketData: RelayMessage) {
-    const decrypted = yield this.currentUser.crypto?.decryptFromSocket(socketData);
+  async _receive(socketData: RelayMessage) {
+    const decrypted = await this.currentUser.crypto?.decryptFromSocket(socketData);
 
-    yield this.handler.handle(decrypted);
+    await this.handler.handle(decrypted);
   }
 }
 
