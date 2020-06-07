@@ -46,6 +46,7 @@
   "dependencies": {
     "@emberclear/ui": "*",
     "blakejs": "1.1.0",
+    "ember-cli-typescript": "4.0.0-alpha.1",
     "emojis": "1.0.10",
     "hammerjs": "2.0.8",
     "localforage": "1.7.4",
