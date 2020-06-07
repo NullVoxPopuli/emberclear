@@ -158,25 +158,25 @@ export default class CurrentUserService extends Service {
   }
 
   @dropTask
-  *migrate() {
+  async migrate() {
     // This is a super HACK :(
     // for some reason, I can't find and update a record in the same
     // async function... why?
-    yield timeout(1000);
+    await timeout(1000);
 
     if (!this.record || !this.crypto) {
       return;
     }
 
     if (!this.privateSigningKey) {
-      let { publicSigningKey, privateSigningKey } = yield this.crypto.generateSigningKeys();
+      let { publicSigningKey, privateSigningKey } = await this.crypto.generateSigningKeys();
 
       this.record.setProperties({
         publicSigningKey,
         privateSigningKey,
       });
 
-      yield this.record?.save();
+      await this.record?.save();
     }
   }
 

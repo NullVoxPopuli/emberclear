@@ -44,12 +44,12 @@ export default class ChannelForm extends Component<Args> {
   }
 
   @dropTask
-  *didSubmitChannelName() {
-    yield this.createChannel();
+  async didSubmitChannelName() {
+    await this.createChannel();
 
     this.newChannelName = '';
 
-    yield this.args.onSubmit();
+    await this.args.onSubmit();
   }
 
   private async createChannel() {

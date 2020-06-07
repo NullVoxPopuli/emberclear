@@ -31,13 +31,13 @@ export default class NameEntry extends Component<Args> {
   }
 
   @dropTask({ withTestWaiter: true })
-  *create() {
+  async create() {
     if (this.nameIsBlank) return;
 
-    const exists = yield this.currentUser.exists();
+    const exists = await this.currentUser.exists();
 
     if (!exists) {
-      yield this.currentUser.create(this.name);
+      await this.currentUser.create(this.name);
     }
 
     this.args.next();

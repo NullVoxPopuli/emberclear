@@ -52,10 +52,10 @@ export default class DeliveryConfirmation extends Component<IArgs> {
   }
 
   @dropTask({ withTestWaiter: true })
-  *waitForConfirmation() {
+  async waitForConfirmation() {
     if (this.timedOut) return;
 
-    yield timeout(TIMEOUT_MS);
+    await timeout(TIMEOUT_MS);
 
     if (!this.hasDeliveryConfirmations) {
       this.timedOut = true;
@@ -63,17 +63,17 @@ export default class DeliveryConfirmation extends Component<IArgs> {
   }
 
   @dropTask({ withTestWaiter: true })
-  *resend() {
+  async resend() {
     const { message } = this.args;
     let to: Contact | Channel;
 
     // TODO: make the to a polymorphic relationship
     switch (message.target) {
       case TARGET.WHISPER:
-        to = yield this.store.findRecord('contact', message.to);
+        to = await this.store.findRecord('contact', message.to);
         break;
       case TARGET.CHANNEL:
-        to = yield this.store.findRecord('channel', message.to);
+        to = await this.store.findRecord('channel', message.to);
         break;
       default:
         return;
@@ -81,25 +81,25 @@ export default class DeliveryConfirmation extends Component<IArgs> {
 
     this.timedOut = false;
 
-    yield this.dispatcher.sendTo(message, to);
+    await this.dispatcher.sendTo(message, to);
 
-    yield taskFor(this.waitForConfirmation).perform();
+    await taskFor(this.waitForConfirmation).perform();
   }
 
   @dropTask({ withTestWaiter: true })
-  *deleteMessage() {
+  async deleteMessage() {
     const { message } = this.args;
 
-    yield message.destroyRecord();
+    await message.destroyRecord();
   }
 
   @dropTask({ withTestWaiter: true })
-  *resendAutomatically() {
+  async resendAutomatically() {
     const { message } = this.args;
 
     message.queueForResend = true;
 
-    yield message.save();
+    await message.save();
   }
 
   // TODO: does this have to be redundant? I have to be doing something wrong

@@ -37,8 +37,8 @@ export class ReceiveDataConnection extends EphemeralConnection {
   }
 
   @dropTask
-  *_wait(updateTransferStatus: UpdateStatus) {
-    let { id: senderPublicKey, name } = yield this.waitForSYN.promise;
+  async _wait(updateTransferStatus: UpdateStatus) {
+    let { id: senderPublicKey, name } = await this.waitForSYN.promise;
 
     this.senderName = name;
     this.taskMsg = this.intl.t('ui.login.verify.received');
@@ -47,24 +47,24 @@ export class ReceiveDataConnection extends EphemeralConnection {
 
     this.setTarget(senderPublicKey);
 
-    yield this.send({ type: 'ACK' });
+    await this.send({ type: 'ACK' });
     this.taskMsg = this.intl.t('ui.login.verify.waitingOnApproval');
 
-    let { hash, data } = yield this.waitForData.promise;
+    let { hash, data } = await this.waitForData.promise;
 
     this.taskMsg = this.intl.t('ui.login.verify.receivedData');
 
     let dataHash = '111'; // TODO implement this
 
-    yield this.send({ type: 'HASH', data: dataHash });
+    await this.send({ type: 'HASH', data: dataHash });
 
     if (hash === dataHash) {
       this.taskMsg = this.intl.t('ui.login.verify.importing');
 
-      yield this.settings.importData(data);
+      await this.settings.importData(data);
 
       this.taskMsg = '';
-      yield this.toast.success(this.intl.t('ui.login.success'));
+      await this.toast.success(this.intl.t('ui.login.success'));
       this.router.transitionTo('chat');
 
       updateTransferStatus(false);

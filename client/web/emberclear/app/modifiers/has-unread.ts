@@ -28,16 +28,16 @@ export default class HasUnread extends Modifier<Args> {
   }
 
   @restartableTask
-  *findUnread() {
-    yield timeout(1000);
+  async findUnread() {
+    await timeout(1000);
     // TODO: are messages always going to be stored in memory?
     //       no, that'd be ridiculous -- we want emberclear to work
     //       on phones, too.
     //
     // potentially long operations are still yielded so that execution can be cancelled
-    let allMessages = yield this.store.peekAll('message');
+    let allMessages = await this.store.peekAll('message');
 
-    let unreadMessages = yield selectUnreadDirectMessages(allMessages, this.contact.id);
+    let unreadMessages = await selectUnreadDirectMessages(allMessages, this.contact.id);
 
     this.contact.numUnread = unreadMessages.length;
   }

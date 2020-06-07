@@ -47,7 +47,7 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
   }
 
   @enqueueTask({ withTestWaiter: true, maxConcurrency: 30 })
-  *markRead(message: Message) {
+  async markRead(message: Message) {
     let attempts = 0;
 
     while (attempts < 100) {
@@ -58,9 +58,9 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
       }
 
       if (message.isSaving || !document.hasFocus()) {
-        yield timeout(10);
+        await timeout(10);
       } else {
-        yield markAsRead(message);
+        await markAsRead(message);
 
         if (message.sender && message.sender.numUnread > 0) {
           message.sender.numUnread--;

@@ -16,10 +16,10 @@ export default class QRImageModifier extends Modifier<Args> {
   }
 
   @restartableTask
-  *dataToQR() {
+  async dataToQR() {
     let data = this.args.positional[0];
 
-    let urlData = yield convertObjectToQRCodeDataURL(data || {});
+    let urlData = await convertObjectToQRCodeDataURL(data || {});
 
     if (isImage(this.element)) {
       this.element.src = urlData;

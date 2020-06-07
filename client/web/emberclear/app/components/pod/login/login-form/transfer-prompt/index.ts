@@ -62,10 +62,10 @@ export default class TransferPrompt extends Component<Args> {
   }
 
   @dropTask
-  *setupEphemeralConnection() {
+  async setupEphemeralConnection() {
     let { updateTransferStatus } = this.args;
 
-    let ephemeralConnection: ReceiveDataConnection = yield ReceiveDataConnection.build(this);
+    let ephemeralConnection: ReceiveDataConnection = await ReceiveDataConnection.build(this);
 
     let { hexId: pub } = ephemeralConnection;
     let verification = randomFourLetters();

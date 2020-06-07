@@ -20,9 +20,9 @@ export default class PrismManager extends Service {
   prismLoader: any = undefined;
 
   @task({ maxConcurrency: 1, enqueue: true })
-  *addLanguage(language: string, element?: HTMLElement) {
-    yield (this.addEssentials as any).perform();
-    yield this.ensureLanguage(language);
+  async addLanguage(language: string, element?: HTMLElement) {
+    await (this.addEssentials as any).perform();
+    await this.ensureLanguage(language);
 
     if (element) {
       Prism.highlightAllUnder(element);
@@ -52,10 +52,10 @@ export default class PrismManager extends Service {
   }
 
   @task({ drop: true })
-  *addEssentials() {
+  async addEssentials() {
     if (this.areEssentialsPresent) return;
 
-    let prismLoader = yield addScripts();
+    let prismLoader = await addScripts();
 
     addStyles();
 

@@ -31,23 +31,23 @@ export class SendDataConnection extends EphemeralConnection {
   }
 
   @dropTask
-  *_establishContact() {
+  async _establishContact() {
     if (!this.currentUser.name) {
       throw new CurrentUserMustHaveAName();
     }
 
-    yield this.send({ type: 'SYN', data: { id: this.hexId, name: this.currentUser.name } });
-    yield this.waitForACK.promise;
+    await this.send({ type: 'SYN', data: { id: this.hexId, name: this.currentUser.name } });
+    await this.waitForACK.promise;
   }
 
   @dropTask
-  *_transferToDevice() {
-    let data = yield this.settings.buildSettings();
+  async _transferToDevice() {
+    let data = await this.settings.buildSettings();
     let hash = '111'; // TODO: implement this
 
-    yield this.send({ type: 'DATA', hash, data } as LoginData);
+    await this.send({ type: 'DATA', hash, data } as LoginData);
 
-    let confirmedHash = yield this.waitForHash.promise;
+    let confirmedHash = await this.waitForHash.promise;
 
     if (hash !== confirmedHash) {
       throw new DataTransferFailed();

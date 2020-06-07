@@ -67,8 +67,8 @@ export default class MessageDispatcher extends Service {
   //
   // TODO: should this be hard-limited to just messages like PINGs?
   @task
-  *sendToAll(msg: Message) {
-    const everyone = yield this.store.findAll('contact');
+  async sendToAll(msg: Message) {
+    const everyone = await this.store.findAll('contact');
 
     everyone.forEach((contact: Contact) => {
       return taskFor(this.sendToUser).perform(msg, contact);
@@ -86,7 +86,7 @@ export default class MessageDispatcher extends Service {
   }
 
   @task
-  *sendToUser(msg: Message, to: Contact) {
+  async sendToUser(msg: Message, to: Contact) {
     if (!this.currentUser.crypto) {
       console.info('Crypto Worker not available');
 
@@ -98,10 +98,10 @@ export default class MessageDispatcher extends Service {
 
     const payload = toPayloadJson(msg, this.currentUser.record!);
 
-    const encryptedMessage = yield this.currentUser.crypto.encryptForSocket(payload, to);
+    const encryptedMessage = await this.currentUser.crypto.encryptForSocket(payload, to);
 
     try {
-      yield this.connection.send({ to: uid, message: encryptedMessage });
+      await this.connection.send({ to: uid, message: encryptedMessage });
 
       msg.receivedAt = new Date();
     } catch (e) {
