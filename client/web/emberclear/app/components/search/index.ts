@@ -61,7 +61,7 @@ export default class SearchModal extends Component<IArgs> {
     ]);
 
     if (term.test(this.currentUser.name || '')) {
-      contactResults = contactResults.toArray();
+      contactResults = contactResults.toArray() as any;
       contactResults.push(this.currentUser.record);
     }
 
