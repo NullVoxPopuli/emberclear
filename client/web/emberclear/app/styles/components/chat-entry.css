@@ -32,8 +32,11 @@
     resize: none;
     line-height: var(--line-height);
     box-sizing: border-box;
-    height: var(--line-height) rem; /* inital */
+    // height is managed by ember-autoresize-modifier
     max-height: 12rem; /* 10x line-height */
+
+    /* overflow-x: hidden is so that ember-autoresize doesn't incorrectly set the height to anything other than a multiple of the line-height. */
+    overflow-x: hidden;
 
     /* required for line breaks to render correctly during authoring */
     white-space: pre-wrap;
