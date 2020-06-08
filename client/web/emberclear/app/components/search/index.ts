@@ -4,13 +4,13 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 
-import StoreService from '@ember-data/store';
-import Contact from 'emberclear/models/contact';
-import Channel from 'emberclear/models/channel';
-import CurrentUserService from 'emberclear/services/current-user';
-
 import { restartableTask } from 'ember-concurrency-decorators';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
+
+import type StoreService from '@ember-data/store';
+import type Contact from 'emberclear/models/contact';
+import type Channel from 'emberclear/models/channel';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 interface IArgs {
   isActive: boolean;

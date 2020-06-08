@@ -7,12 +7,12 @@ import { associateDestroyableChild, registerDestructor } from '@ember/destroyabl
 import { pool, STATUS, ConnectionPool } from 'emberclear/utils/connection/connection-pool';
 import { toHex, fromHex } from 'emberclear/utils/string-encoding';
 import { Connection } from 'emberclear/utils/connection/connection';
-
-import Relay from 'emberclear/models/relay';
 import CryptoConnector from 'emberclear/utils/workers/crypto';
-import StoreService from '@ember-data/store';
-import WorkersService from 'emberclear/services/workers';
-import SettingsService from 'emberclear/services/settings';
+
+import type Relay from 'emberclear/models/relay';
+import type StoreService from '@ember-data/store';
+import type WorkersService from 'emberclear/services/workers';
+import type SettingsService from 'emberclear/services/settings';
 
 export class EphemeralConnection {
   @service store!: StoreService;

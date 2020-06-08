@@ -2,7 +2,7 @@ import Modifier from 'ember-modifier';
 import { restartableTask } from 'ember-concurrency-decorators';
 
 import { convertObjectToQRCodeDataURL } from 'emberclear/utils/string-encoding';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 type Args = {
   positional: [Record<string, unknown>];

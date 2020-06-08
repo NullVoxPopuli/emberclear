@@ -2,7 +2,7 @@ import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 
 import { restartableTask } from 'ember-concurrency-decorators';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 import { timeout } from 'ember-concurrency';
 
 import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';

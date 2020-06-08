@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 export default class ChatNewMessages extends Component {
   @service chatScroller!: ChatScroller;

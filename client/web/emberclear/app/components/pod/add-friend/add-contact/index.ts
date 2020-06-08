@@ -9,7 +9,7 @@ import { task } from 'ember-concurrency-decorators';
 
 import ContactManager from 'emberclear/services/contact-manager';
 import CurrentUserService from 'emberclear/services/current-user';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 export default class AddModal extends Component {
   @service toast!: Toast;

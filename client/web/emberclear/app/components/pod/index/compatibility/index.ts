@@ -11,7 +11,7 @@ import {
 } from './-utils/detection';
 
 import { dropTask } from 'ember-concurrency-decorators';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 export default class Compatibility extends Component {
   @tracked hasCamera!: boolean;

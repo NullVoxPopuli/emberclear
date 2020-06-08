@@ -4,14 +4,14 @@ import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { dropTask } from 'ember-concurrency-decorators';
 
-import { taskFor } from 'emberclear/utils/ember-concurrency';
-
-import Toast from 'emberclear/services/toast';
-import SettingsService from 'emberclear/services/settings';
-import RouterService from '@ember/routing/router-service';
+import { taskFor } from 'ember-concurrency-ts';
 
 import { EphemeralConnection } from '../ephemeral-connection';
 import { UnknownMessageError } from 'emberclear/utils/errors';
+
+import type Toast from 'emberclear/services/toast';
+import type SettingsService from 'emberclear/services/settings';
+import type RouterService from '@ember/routing/router-service';
 
 type UpdateStatus = (status: boolean) => void;
 

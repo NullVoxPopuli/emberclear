@@ -11,7 +11,7 @@ import {
   STATUS_DISCONNECTED,
   STATUS_CONNECTING,
 } from 'emberclear/utils/connection/connection-pool';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 const STATUS_LEVEL_MAP = {
   [STATUS_UNKNOWN]: 'warning',

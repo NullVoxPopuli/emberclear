@@ -1,12 +1,12 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import StoreService from '@ember-data/store';
+import { taskFor } from 'ember-concurrency-ts';
 
-import MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import MessageFactory from 'emberclear/services/messages/factory';
-import Message from 'emberclear/models/message';
-import Contact from 'emberclear/models/contact';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
+import type MessageFactory from 'emberclear/services/messages/factory';
+import type Message from 'emberclear/models/message';
+import type Contact from 'emberclear/models/contact';
 
 /**
  * Nothing here should be blocking, as these responses should not matter

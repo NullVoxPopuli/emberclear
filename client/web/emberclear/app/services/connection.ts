@@ -1,12 +1,13 @@
 import Service, { inject as service } from '@ember/service';
 import { dropTask } from 'ember-concurrency-decorators';
 
-import ConnectionManager from 'emberclear/services/connection/manager';
-import CurrentUserService from 'emberclear/services/current-user';
-import ContactsOnlineChecker from 'emberclear/services/contacts/online-checker';
-import MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import { OutgoingPayload } from 'emberclear/utils/connection/connection';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
+
+import type ConnectionManager from 'emberclear/services/connection/manager';
+import type CurrentUserService from 'emberclear/services/current-user';
+import type ContactsOnlineChecker from 'emberclear/services/contacts/online-checker';
+import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
+import type { OutgoingPayload } from 'emberclear/utils/connection/connection';
 
 export default class ConnectionService extends Service {
   @service currentUser!: CurrentUserService;

@@ -3,21 +3,20 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency-decorators';
 
-// giant block o' types
-import CurrentUserService from 'emberclear/services/current-user';
+import { taskFor } from 'ember-concurrency-ts';
 
-import Notifications from 'emberclear/services/notifications';
-import Message from 'emberclear/models/message';
-import Channel from 'emberclear/models/channel';
-import StatusManager from 'emberclear/services/status-manager';
-import MessageFactory from 'emberclear/services/messages/factory';
-
-import { toHex } from 'emberclear/utils/string-encoding';
-import { build as toPayloadJson } from './-utils/builder';
 import Contact from 'emberclear/models/contact';
 import User from 'emberclear/models/user';
-import ConnectionService from 'emberclear/services/connection';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { toHex } from 'emberclear/utils/string-encoding';
+import { build as toPayloadJson } from './-utils/builder';
+
+import type ConnectionService from 'emberclear/services/connection';
+import type CurrentUserService from 'emberclear/services/current-user';
+import type Notifications from 'emberclear/services/notifications';
+import type Message from 'emberclear/models/message';
+import type Channel from 'emberclear/models/channel';
+import type StatusManager from 'emberclear/services/status-manager';
+import type MessageFactory from 'emberclear/services/messages/factory';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
