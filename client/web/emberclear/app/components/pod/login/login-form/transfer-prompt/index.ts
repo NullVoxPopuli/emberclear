@@ -3,7 +3,7 @@ import { computed, action } from '@ember/object';
 
 import { dropTask } from 'ember-concurrency-decorators';
 
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 import { ReceiveDataConnection } from 'emberclear/services/connection/ephemeral/login/receive-data';
 import Ember from 'ember';
 

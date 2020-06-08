@@ -30,5 +30,9 @@
       "*": ["types/*", "../questionably-typed/*"]
     }
   },
-  "include": ["app/**/*", "tests/**/*", "types/**/*", "../questionably-typed/**/*"]
+  "include": [
+    "app/**/*", "tests/**/*",
+    "types/**/*",
+    "../questionably-typed/**/*"
+  ]
 }

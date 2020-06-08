@@ -7,7 +7,7 @@ import { hbs } from 'ember-cli-htmlbars';
 import ConnectionService from 'emberclear/services/connection';
 import ConnectionStatusService from 'emberclear/services/connection/status';
 import { normalizeMeta } from 'emberclear/utils/normalized-meta';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 type Args = {
   url: string;
@@ -31,7 +31,7 @@ class FetchOpenGraphComponent extends Component<Args> {
 
     return normalizeMeta({
       url,
-      openGraph: taskFor(this.request).lastSuccessful.value,
+      openGraph: taskFor(this.request).lastSuccessful?.value,
     });
   }
 

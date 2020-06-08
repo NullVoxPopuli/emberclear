@@ -1,4 +1,15 @@
 import Ember from 'ember';
+import '@ember/component';
+import '@ember/test-helpers';
+import 'ember-cli-htmlbars';
+import 'qunit';
+
+import 'ember-concurrency-decorators';
+import 'ember-concurrency-async';
+import 'ember-concurrency-ts/async';
+
+import './addon-services.d';
+import './addon-augmentations.d';
 
 declare global {
   type EmptyRecord = Record<string, unknown>;
@@ -72,20 +83,6 @@ declare global {
     _____fake: unknown;
   }
   // interface Function extends Ember.FunctionPrototypeExtensions {}
-
-  // https://github.com/knownasilya/ember-toastr/blob/master/addon/services/toast.js
-  interface Toast {
-    [method: string]: (message: string, title?: string, options?: any) => void;
-    success(message: string, title?: string, options?: any): void;
-    info(message: string, title?: string, options?: any): void;
-    warning(message: string, title?: string, options?: any): void;
-    error(message: string, title?: string, options?: any): void;
-  }
-
-  // https://github.com/jamesarosen/ember-i18n/blob/master/addon/services/i18n.js
-  interface Intl {
-    t(translation: string, options?: any): string;
-  }
 
   interface RelayMessage {
     uid: string;
@@ -174,11 +171,4 @@ declare global {
   type LoginMessage = LoginData | LoginACK | LoginSYN | LoginHash;
 
   type RelayJson = StandardMessage | LoginMessage;
-}
-
-declare module '@ember/service' {
-  interface Registry {
-    toast: Toast;
-    intl: Intl;
-  }
 }

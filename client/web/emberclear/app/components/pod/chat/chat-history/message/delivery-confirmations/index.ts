@@ -14,7 +14,7 @@ import CurrentUserService from 'emberclear/services/current-user';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 
 import { dropTask } from 'ember-concurrency-decorators';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 const TIMEOUT_MS = 1000;
 

@@ -132,6 +132,7 @@
     "ember-concurrency-async": "0.2.1",
     "ember-concurrency-decorators": "2.0.0",
     "ember-concurrency-test-waiter": "0.3.2",
+    "ember-concurrency-ts": "^0.1.0",
     "ember-destroyable-polyfill": "0.4.0",
     "ember-exam": "5.0.1",
     "ember-export-application-global": "2.0.1",
@@ -181,7 +182,7 @@
     "rollup-plugin-visualizer": "4.0.4",
     "testdouble": "3.16.0",
     "testem-failure-only-reporter": "0.0.1",
-    "typescript": "3.7.5",
+    "typescript": "3.9.5",
     "webpack-bundle-analyzer": "3.8.0"
   }
 }

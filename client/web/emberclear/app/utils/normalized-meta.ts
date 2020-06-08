@@ -1,6 +1,6 @@
 type Args = {
   url: string;
-  openGraph?: OpenGraphData;
+  openGraph?: OpenGraphData | null;
 };
 
 // https://stackoverflow.com/a/8260383/356849
@@ -15,7 +15,7 @@ export type NormalizedMeta = {
   siteName?: string;
   description?: string;
   hasExtension: boolean;
-  openGraph?: OpenGraphData;
+  openGraph?: OpenGraphData | null;
 
   embedUrl?: string;
   isVideo: boolean;

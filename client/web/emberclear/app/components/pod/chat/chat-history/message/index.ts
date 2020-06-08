@@ -1,11 +1,11 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-import Message from 'emberclear/models/message';
-import CurrentUserService from 'emberclear/services/current-user';
-
 import { parseURLs } from 'emberclear/utils/string/utils';
 import { convertAndSanitizeMarkdown } from 'emberclear/utils/dom/utils';
+
+import type Message from 'emberclear/models/message';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 interface IArgs {
   message: Message;

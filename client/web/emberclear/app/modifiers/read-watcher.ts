@@ -6,7 +6,7 @@ import { task } from 'ember-concurrency-decorators';
 import { markAsRead } from 'emberclear/models/message/utils';
 
 import Message from 'emberclear/models/message';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 interface Args {
   positional: [Message];
