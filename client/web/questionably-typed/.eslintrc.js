@@ -6,7 +6,7 @@ module.exports = {
   ...base,
   overrides: [
     {
-      files: ['ember-keyboard.d.ts', '@ember/**/*.d.ts'],
+      files: ['@ember/**/*.d.ts'],
       ...typescript,
     },
     nodeOverrides,

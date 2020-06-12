@@ -1,7 +1,3 @@
-{{#if this.isOpen}}
-  <KeyboardPress @key='Escape' @onDown={{this.toggleMenu}} />
-{{/if}}
-
 <div
   data-test-dropdown
   class='
@@ -20,7 +16,9 @@
       class='no-select full-overlay invisible'
       role='button'
       {{on 'click' this.toggleMenu}}
+      {{on-key 'Escape' (prevent-default this.toggleMenu)}}
     />
+
   {{/if}}
 
   <div class='dropdown-menu'>

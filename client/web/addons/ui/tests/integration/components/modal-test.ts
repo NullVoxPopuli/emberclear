@@ -30,6 +30,14 @@ module('Integration | Component | modal', function (hooks) {
       </Modal>`);
   });
 
+  test('it renders and pressing escape closes', async function (assert) {
+    assert.equal(page.modalContent.text, 'Modal Content');
+
+    await page.pressEscape();
+
+    assert.equal(page.modalContent.text, '');
+  });
+
   test('it renders and clicking the backdrop closes', async function (assert) {
     assert.equal(page.modalContent.text, 'Modal Content');
 

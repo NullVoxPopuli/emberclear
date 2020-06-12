@@ -6,6 +6,8 @@ interface Args {
   sidebarWidth: number;
   flickRegion: number;
   pushUntilWidth: number;
+  onClose: () => unknown;
+  onOpen: () => unknown;
 }
 
 interface ContentKeyFrame {
@@ -46,6 +48,9 @@ export class SwipeHandler {
    */
   pushUntilWidth: number;
 
+  onClose: () => unknown;
+  onOpen: () => unknown;
+
   public recognizer: HammerManager;
 
   private openThreshold: number;
@@ -56,11 +61,21 @@ export class SwipeHandler {
   private isOpening = false;
   private isClosing = false;
 
-  constructor({ container, content, sidebarWidth, flickRegion, pushUntilWidth }: Args) {
+  constructor({
+    container,
+    content,
+    sidebarWidth,
+    flickRegion,
+    pushUntilWidth,
+    onClose,
+    onOpen,
+  }: Args) {
     this.container = container || (document.body as HTMLElement);
     this.content = content;
     this.sidebarWidth = sidebarWidth;
     this.flickRegion = flickRegion;
+    this.onClose = onClose;
+    this.onOpen = onOpen;
 
     this.openThreshold = sidebarWidth * flickRegion;
     this.closeThreshold = sidebarWidth * (1 - flickRegion);
@@ -191,6 +206,13 @@ export class SwipeHandler {
     return new Promise((resolve) => {
       let finisher = () => {
         this.setPosition(nextX);
+
+        if (nextX > 0) {
+          this.onOpen();
+        } else {
+          this.onClose();
+        }
+
         resolve();
       };
 
