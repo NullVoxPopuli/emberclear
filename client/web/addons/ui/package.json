@@ -38,7 +38,7 @@
     "ember-cli-postcss": "6.0.1",
     "ember-cli-typescript": "3.1.4",
     "ember-focus-trap": "0.4.0",
-    "ember-keyboard": "5.0.0",
+    "ember-keyboard": "6.0.0",
     "ember-named-blocks-polyfill": "0.2.1",
     "enhanced-resolve": "4.1.1",
     "postcss-cssnext": "3.1.0",

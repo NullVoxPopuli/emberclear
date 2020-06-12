@@ -5,13 +5,14 @@
 <ModalStatic @name='keyboard-shortcuts' as |isActive actions|>
   <KeyboardShortcuts @isActive={{isActive}} @close={{actions.close}} />
 
-  <KeyboardPress @key='ctrl+KeyH' @onDown={{actions.toggle}} />
-  <KeyboardPress @key='ctrl+Slash' @onDown={{actions.toggle}} />
+
+  {{on-key 'ctrl+h' (prevent-default actions.toggle)}}
+  {{on-key 'ctrl+/' (prevent-default actions.toggle)}}
 </ModalStatic>
 
 <ModalStatic @name='search' as |isActive actions|>
   <Search @isActive={{isActive}} @close={{actions.close}} />
 
-  <KeyboardPress @key='ctrl+KeyK' @onDown={{actions.toggle}} />
+  {{on-key 'ctrl+k' (prevent-default actions.toggle)}}
 </ModalStatic>
 

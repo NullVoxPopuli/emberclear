@@ -1,6 +1,6 @@
 <div class='right text-center'>
   {{#if this.isLoading}}
-    <KeyboardPress @key='Escape' @onDown={{this.cancel}} />
+    {{on-key 'Escape' (prevent-default this.cancel)}}
 
     {{#if this.fromUser}}
       <h3 class='text-center'>

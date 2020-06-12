@@ -11,7 +11,7 @@
         {{t 'ui.sidebar.contacts.title'}}
       </button>
 
-      <button 
+      <button
         id='channels-tab'
         type='button'
         class='sidebar-tab {{if this.isTabChannels 'sidebar-tab-selected'}}'
@@ -79,7 +79,7 @@
       {{/if}}
 
       <App::Sidebar::Chats @type='all'/>
-      
+
       {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
       {{#if this.hasUnreadBelow}}
         <App::Sidebar::UnreadIndicator

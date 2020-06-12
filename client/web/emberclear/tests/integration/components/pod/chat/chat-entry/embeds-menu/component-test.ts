@@ -48,7 +48,7 @@ module('Integration | Component | embeds-menu', function (hooks) {
       });
 
       test('can be cancelled', async function (assert) {
-        await page.embedModal.pressEscape();
+        await page.embedModal.backdrop.click();
 
         assert.notOk(page.embedModal.isVisible, 'modal is hidden');
       });

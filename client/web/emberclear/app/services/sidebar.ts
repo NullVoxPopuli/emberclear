@@ -51,7 +51,6 @@ export default class Sidebar extends Service {
   async setup(content: HTMLElement) {
     this.contentElement = content;
 
-    // TODO: would an async observer be good here?
     if (!this.currentUser.isLoggedIn) {
       if (this.slider) {
         await waitForPromise(this.slider.close());
@@ -77,7 +76,13 @@ export default class Sidebar extends Service {
       sidebarWidth,
       flickRegion: 0.35,
       pushUntilWidth: 768,
+      onOpen: () => (this.isShown = true),
+      onClose: () => (this.isShown = false),
     });
+
+    if (this.isShown) {
+      await this.slider.open();
+    }
   }
 
   clearUnreadBelow() {

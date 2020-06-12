@@ -1,9 +1,8 @@
-<KeyboardPress @key='ctrl+Space' @onDown={{this.sidebar.toggle}} />
-
 {{#if this.currentUser.isLoggedIn}}
   <App::Sidebar
     class='sidebar-wrapper'
     id='sidebar'
+    {{on-key 'ctrl+space' this.sidebar.toggle}}
   />
 {{/if}}
 
