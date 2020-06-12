@@ -16,7 +16,7 @@ export const switchInput = {
 };
 
 export const modal = {
-  ...keyEvents('[data-test-modal]'),
+  ...keyEvents('[data-test-modal-content]'),
   modalContent: {
     scope: '[data-test-modal-content]',
   },
