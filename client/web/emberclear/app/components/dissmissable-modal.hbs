@@ -1,0 +1,10 @@
+<Modal
+  ...attributes
+  @isActive={{@isActive}}
+  @disableFocusTrap={{@disableFocusTrap}}
+  @close={{@close}}
+>
+  {{yield}}
+
+  {{on-key 'Escape' (prevent-default @close)}}
+</Modal>

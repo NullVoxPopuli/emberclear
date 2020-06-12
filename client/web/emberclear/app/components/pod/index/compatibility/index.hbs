@@ -6,7 +6,7 @@
       {{t 'compatibility.compatibility'}}
     </button>
 
-    <Modal
+    <DismissableModal
       data-test-compatibility-modal
       @isActive={{isActive}}
       @close={{actions.close}}
@@ -58,6 +58,6 @@
           </button>
         </div>
       </div>
-    </Modal>
+    </DismissableModal>
   </ModalStatic>
 {{/if}}
