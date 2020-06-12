@@ -8,7 +8,7 @@ import { modal } from '@emberclear/ui/test-support/page-objects';
 import { TestContext } from 'ember-test-helpers';
 import { create } from 'ember-cli-page-object';
 
-module('Integration | Component | modal', function (hooks) {
+module('Integration | Component | <DissmissableModal />', function (hooks) {
   setupRenderingTest(hooks);
 
   let page = create(modal);
@@ -22,12 +22,20 @@ module('Integration | Component | modal', function (hooks) {
     });
 
     await render(hbs`
-      <Modal
+      <DissmissableModal
         @isActive={{this.active}}
         @close={{this.close}}
       >
         <a href=''>Modal Content</a>
-      </Modal>`);
+      </DissmissableModal>`);
+  });
+
+  test('it renders and pressing escape closes', async function (assert) {
+    assert.equal(page.modalContent.text, 'Modal Content');
+
+    await page.pressEscape();
+
+    assert.equal(page.modalContent.text, '');
   });
 
   test('it renders and clicking the backdrop closes', async function (assert) {
