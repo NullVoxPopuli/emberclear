@@ -10,7 +10,11 @@ class BasePage extends BasePageObject {
   }
 
   async navigateTo(path = '') {
-    await this._browser.url(`${this.host}/${path}`);
+    let target = `${this.host}/${path}`;
+
+    if (!this._browser.getUrl()) {
+      await this._browser.url(target);
+    }
 
     await this._browser.waitUntil(async () => {
       return this._create('[data-test-locale-toggle]');

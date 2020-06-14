@@ -60,8 +60,6 @@ describe('chat', function () {
         b.setup.onboardSelf('Person B'),
       ]);
 
-      await Promise.all([a.addFriend.visit(), b.addFriend.visit()]);
-
       let [aInviteUrl, bInviteUrl] = await Promise.all([
         a.addFriend.inviteUrl(),
         b.addFriend.inviteUrl(),

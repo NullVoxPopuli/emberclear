@@ -17,6 +17,8 @@ class AddFriend extends BasePageObject {
   }
 
   async inviteUrl() {
+    await this.visit();
+
     let dataAttr = 'data-clipboard-text';
     let pageObject = this._create(`[${dataAttr}]`);
 
@@ -31,6 +33,12 @@ class AddFriend extends BasePageObject {
     await this.navigateTo('add-friend');
   }
 
+  /**
+   * Accepts:
+   *  - abcd1234
+   *  - { publicKey: abcd1235 } (user)
+   *  - https://...
+   */
   async addFriend(key) {
     let publicKey = key.publicKey || key;
     let isUrl = publicKey.includes('/');
