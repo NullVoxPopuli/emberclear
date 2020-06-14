@@ -22,16 +22,16 @@ const it = async (name, callback) => {
   } catch (e) {
     console.error(e);
 
-    console.log(`Current # browsers: `, this.browsers.length);
-    for (let browser of this.browsers) {
-      console.log(`--------------- BROWSER DEBUG -------------------`);
-      console.log(await browser.getTitle());
-      console.log(await browser.getText());
-    }
+    // console.log(`Current # browsers: `, this.browsers.length);
+    // for (let browser of this.browsers) {
+    //   console.log(`--------------- BROWSER DEBUG -------------------`);
+    //   console.log(await browser.getTitle());
+    //   console.log(await browser.getText());
+    // }
 
     throw e;
   }
-}
+};
 
 describe('chat', function () {
   setupTest.call(this);
