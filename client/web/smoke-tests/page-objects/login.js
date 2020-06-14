@@ -1,6 +1,6 @@
 'use strict';
 
-const { BasePageObject } = require('@faltest/page-objects');
+const BasePageObject = require('./-base');
 
 class Login extends BasePageObject {
   get beginButton() {

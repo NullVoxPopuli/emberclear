@@ -6,44 +6,10 @@ const Login = require('../page-objects/login');
 const AddFriend = require('../page-objects/add-friend');
 const Chat = require('../page-objects/chat');
 const { startServer } = require('../helpers/start-server');
+const { setupEndpoint } = require('../helpers/setup-endpoint');
 
 describe('smoke', function () {
-  before(async function () {
-    switch (process.env.WEBDRIVER_TARGET) {
-      case 'pull-request': {
-        console.info('---- DEPLOY PREVIEW ----');
-        console.info(process.env.DEPLOY_URL);
-
-        this.host = process.env.DEPLOY_URL;
-
-        if (!this.host) {
-          throw new Error(`host not set. Did you forget to set $DEPLOY_URL?`);
-        }
-
-        break;
-      }
-      case 'local': {
-        let { server, port } = await startServer();
-
-        this.server = server;
-
-        this.host = `http://localhost:${port}`;
-
-        break;
-      }
-      case 'ember': {
-        this.host = `https://localhost:4201`;
-
-        break;
-      }
-      default: {
-        this.host = 'https://emberclear.io';
-
-        break;
-      }
-    }
-  });
-
+  setupEndpoint.call(this);
   setUpWebDriver.call(this);
 
   beforeEach(async function () {
@@ -58,14 +24,6 @@ describe('smoke', function () {
       this.browsers[0].url(this.host),
       this.browsers[1].url(this.host),
     ]);
-  });
-
-  after(async function () {
-    if (this.server) {
-      this.server.kill();
-
-      await this.server;
-    }
   });
 
   it('works', async function () {
