@@ -4,8 +4,8 @@ const { setupEndpoint } = require('../helpers/setup-endpoint');
 const { setUpWebDriver } = require('@faltest/lifecycle');
 
 function setupTest() {
-  setupEndpoint(this);
-  setUpWebDriver(this);
+  setupEndpoint.call(this);
+  setUpWebDriver.call(this);
 }
 
 module.exports = { setupTest };
