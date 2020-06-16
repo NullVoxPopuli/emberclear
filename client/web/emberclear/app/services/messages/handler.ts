@@ -1,8 +1,7 @@
 import StoreService from '@ember-data/store';
 import Service, { inject as service } from '@ember/service';
 
-import { TYPE, TARGET, MESSAGE_LIMIT } from 'emberclear/models/message';
-import { isMessageDMBetween, messagesForDM } from 'emberclear/models/message/utils';
+import { TYPE, TARGET } from 'emberclear/models/message';
 
 import type Identity from 'emberclear/models/identity';
 import type Message from 'emberclear/models/message';
@@ -98,7 +97,6 @@ export default class ReceivedMessageHandler extends Service {
   }
 
   private async handleWhisperChat(message: Message) {
-    await this.trimMessages(message);
     await message.save();
 
     if (message.sender) {
@@ -139,37 +137,6 @@ export default class ReceivedMessageHandler extends Service {
       // we have not yet received this message
       // build a new message record
       return this.messageFactory.buildNewReceivedMessage(json, sender);
-    }
-  }
-
-  /**
-   * TODO: https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB
-   * TODO: https://developer.mozilla.org/en-US/docs/Web/API/IDBIndex/openCursor
-   *
-   * Trims messages for a message group down to 100.... because list occlusion isn't a thing yet
-   * on the web (or is very very difficult to implement in JS)
-   *
-   * @param lastReceived this message is used to determine which chat DM / Channel the message
-   *                     belongs to, and which set of messages will be trimmed.
-   */
-  private async trimMessages(lastReceived: Message): Promise<void> {
-    let me = this.currentUser.uid;
-
-    // if the most recently receive message belongs to a stack of DMs,
-    // trim the DMs to be at most 100 messages.
-    let isApplicableForTrim = isMessageDMBetween(lastReceived, me, lastReceived.from);
-
-    if (isApplicableForTrim) {
-      let allMessages = this.store.peekAll('message');
-      let forDM = messagesForDM(allMessages, me, lastReceived.from);
-
-      let numTooMany = forDM.length - MESSAGE_LIMIT;
-
-      if (numTooMany > 0) {
-        let oldMessages = forDM.splice(0, numTooMany);
-
-        await Promise.all(oldMessages.map((oldMessage) => oldMessage.destroyRecord()));
-      }
     }
   }
 

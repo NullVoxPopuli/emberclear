@@ -4,7 +4,6 @@ import { inject as service } from '@ember/service';
 import StoreService from '@ember-data/store';
 import CurrentUserService from 'emberclear/services/current-user';
 import { messagesForDM } from 'emberclear/models/message/utils';
-import { MESSAGE_LIMIT } from 'emberclear/models/message';
 
 export default class extends Controller {
   @service currentUser!: CurrentUserService;
@@ -19,8 +18,7 @@ export default class extends Controller {
     let me = this.currentUser.uid;
     let chattingWithId = this.uid;
     let filteredMessages = messagesForDM(allMessages, me, chattingWithId);
-    let mostRecent = filteredMessages.slice(0 - MESSAGE_LIMIT);
 
-    return mostRecent;
+    return filteredMessages;
   }
 }
