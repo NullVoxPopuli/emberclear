@@ -40,7 +40,7 @@
     "ember-focus-trap": "0.4.0",
     "ember-keyboard": "6.0.0",
     "ember-named-blocks-polyfill": "0.2.1",
-    "enhanced-resolve": "4.1.1",
+    "enhanced-resolve": "4.2.0",
     "postcss-cssnext": "3.1.0",
     "postcss-import": "12.0.1",
     "shoelace-css": "1.0.0-beta24",
