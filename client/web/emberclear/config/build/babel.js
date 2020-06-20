@@ -3,6 +3,7 @@ module.exports = {
     return {
       'ember-cli-babel': {
         enableTypeScriptTransform: true,
+        // throwUnlessParallelizable: true,
       },
       babel: {
         // presets: [
@@ -13,8 +14,17 @@ module.exports = {
         //     },
         //   ],
         // ],
-        // was for enabling dynamic import.
-        plugins: [require.resolve('ember-auto-import/babel-plugin')],
+        plugins: [
+          [
+            require.resolve('@babel/plugin-transform-typescript'),
+            {
+              allowDeclareFields: true,
+            },
+          ],
+
+          // for enabling dynamic import.
+          require.resolve('ember-auto-import/babel-plugin'),
+        ],
         ...(CONCAT_STATS ? { sourceMaps: 'inline' } : {}),
       },
     };
