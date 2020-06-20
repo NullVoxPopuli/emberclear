@@ -14,7 +14,7 @@ import { typeIn } from '@ember/test-helpers';
 import { definition as unreadMessagesFloater } from 'emberclear/components/pod/chat/chat-history/unread-management/-page';
 import { dropdown } from '@emberclear/ui/test-support/page-objects';
 import { definition as embedModal } from 'emberclear/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
-import { definition as newMessagesFloater } from 'emberclear/components/chat/chat-history/new-messages/-page';
+import { definition as newMessagesFloater } from 'emberclear/components/pod/chat/chat-history/new-messages/-page';
 
 export const selectors = {
   form: '[data-test-chat-entry-form]',
