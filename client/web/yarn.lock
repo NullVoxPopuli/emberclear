@@ -7499,10 +7499,10 @@ ember-intl-analyzer@2.1.0:
     pkg-dir "^4.2.0"
     yaml "^1.7.2"
 
-ember-intl@5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-5.2.0.tgz#8a4ea1de3fcc63b562704ad2c6e1594e6eeb8ac0"
-  integrity sha512-/PNscc+ZJX0gfN9y7xnwazGdPirWpkwEZXppI4IL2RmAa6h3bDwTMh+Wjm+wRbOmzcTd+P1xHcvUsrWTivAqWA==
+ember-intl@5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-5.2.2.tgz#22c067399d5b608a219cd856b367ead2327569f3"
+  integrity sha512-99KfNbhaq9G9CEeTw/Ak63Kh9dkeRxLH1a0N7EDwE6MDN5Bk3GYlJF/nL/gEY2c07w4rJEIVUlEiJrLpcbMlZA==
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-funnel "^3.0.3"
