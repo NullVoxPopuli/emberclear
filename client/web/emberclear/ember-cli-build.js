@@ -117,15 +117,82 @@ module.exports = function (defaults) {
 
     return compatBuild(app, Webpack, {
       extraPublicTrees: additionalTrees,
-      staticAddonTestSupportTrees: true,
-      staticAddonTrees: true,
-      staticHelpers: true,
-      staticComponents: true,
+      // staticAddonTestSupportTrees: true,
+      // staticAddonTrees: true,
+      // staticHelpers: true,
+      // staticComponents: true,
       // splitAtRoutes: true,
       // skipBabel: [],
+      packageRules: [
+        // {
+        //   package: 'ember-intl',
+        //   semverRange: '^5.2.0',
+        //   addonModules: {
+        //     'services/intl.js': {
+        //       dependsOnModules: ['../adapters/default.js'],
+        //     },
+        //   },
+        // },
+        {
+          package: 'ember-cli-clipboard',
+          addonModules: {
+            'components/copy-button.js': {},
+          },
+          components: {
+            '{{copy-button}}': {
+              layout: {
+                addonPath: 'templates/components/copy-button.hbs',
+              },
+              acceptsComponentArguments: [
+                'clipboardText',
+                'clipboardTarget',
+                'clipboardAction',
+                'success',
+                'error',
+                'buttonType',
+              ],
+            },
+          },
+        },
+        // {
+        //   package: 'ember-destroyable-polyfill',
+        //   semverRange: '^0.4.0',
+        //   addonModules: {
+        //     '-internal/patch-meta':{
+        //       dependsO
+        //     }
+        //   }
+        // }
+      ],
+      compatAdapters: new Map([
+        ['@ember-data/model', EmberDataCompatAdapter],
+        ['@ember-data/model', EmberDataCompatAdapter],
+        ['@ember-data/store', EmberDataCompatAdapter],
+        ['@ember-data/record-data', EmberDataCompatAdapter],
+        ['ember-destroyable-polyfill', EmberDestroyableCompatAdapter],
+      ]),
     });
   }
 
   // Old-style broccoli-build
   return mergeTrees([app.toTree(), ...additionalTrees]);
 };
+
+const { V1Addon } = require('@embroider/compat');
+const { forceIncludeModule } = require('@embroider/compat/src/compat-utils');
+
+class EmberDataCompatAdapter extends V1Addon {
+  get packageMeta() {
+    return forceIncludeModule(super.packageMeta, './-private');
+  }
+}
+
+class EmberDestroyableCompatAdapter extends V1Addon {
+  get packageMeta() {
+    let meta = super.packageMeta;
+    meta = forceIncludeModule(meta, './-internal/patch-core-object');
+    meta = forceIncludeModule(meta, './-internal/patch-meta');
+
+    return meta;
+  }
+}
