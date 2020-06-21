@@ -1,33 +1,33 @@
 ---
 appname: emberclear
-subheader: Encrypted Chat. No History. No Logs.
-authoredBy: by
+subheader: Зашифрованный чат. Без истории. Без логов.
+authoredBy: от
 redditCommunity: Reddit Community
 twitter: Twitter
 emberjs: Ember.JS
-todo: 'TODO: fill this out correctly'
+todo: 'Позднее: заполнить правильно'
 install: Install
 bundle-analysis: JS Bundle Analysis
 qrCode:
-  error: QR Code could not be generated
+  error: Ошибка генерации QR кода
   malformed: QR Code is malfomed
-  waitingForCamera: Awaiting Camera Access
+  waitingForCamera: Awaaiting Camera Access
 connection:
-  connecting: Connecting...
-  connected: Connected!
+  connecting: Подключение...
+  connected: Подключено!
   disconnected: Disconnected.
   degraded: Degraded
   unknown: Unknown
   status:
     socket:
-      error: An error occurred in the socket connection!
-      close: The socket connection has been dropped!
-    timeout: There is a networking issue. waiting...
+      error: Ошибка подключения к сокету.
+      close: Соединение с сокетом было сброшено!
+    timeout: Сетевая ошибка. Ждём..
   errors:
     send:
-      notConnected: Cannot send messages without a connection!
+      notConnected: Не могу отправить сообщение без подключения к сети.
     subscribe:
-      notConnected: Cannot subscribe to a channel without a socket connection!
+      notConnected: Не могу подписаться на канал без подключения к сети.
 errors:
   genericTitle: "An Error occurred!"
   genericRetry: "Oh no! Something went wrong. Retry?"
@@ -41,54 +41,54 @@ buttons:
   allow: Allow
   deny: Deny
   retry: Retry
-  delete: delete
-  resend: resend
-  resendAutomatically: resend automatically
+  delete: удалить
+  resend: переотправить
+  resendAutomatically: переотправлять автоматически
   enable: Enable
-  save: Save
-  next: Next
-  back: Back
-  begin: Begin
-  logout: Logout
-  login: Login
-  cancel: Cancel
-  close: Close
-  import: Import
-  scan: Scan
-  sendSnippet: Send Snippet
-  remove: Remove
+  save: Сохранить
+  next: Далее
+  back: Назад
+  begin: В начало
+  logout: Выход
+  login: Логин
+  cancel: Отмена
+  close: Закрыть
+  import: Импорт
+  scan: Сканировать
+  sendSnippet: Отправить сниппет
+  remove: Удалить
   donate: Donate
-  donateEth: Donate Ethereum
-  donateXmr: Donate Monero
-  loginInstead: Login instead
-  uploadSettings: Upload Settings
-  showMyInfo: Show My Info
-  invite: Invite
-  addFriend: Add Friend
+  donateEth: Поддержать в Ethereum
+  donateXmr: Поддержать в Monero
+  loginInstead: Войти с логином/паролем
+  uploadSettings: Загрузить настройки
+  showMyInfo: Обо мне
+  invite: Пригласить
+  addFriend: Добавить друга
   makeDefault: Make Default
   ariaLabel:
-    sidebar: 'Toggles the sidebar'
-    dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
-    modalBackdrop: Clickable backdrop for clicking off a modal to close it
-    menuBackdrop: Clickable backdrop for clicking off the menu to close it
-    sidebarBackdrop: Clickable backdrop for clicking off the sidebar to hide it
-    closeModal: Close Modal
+    sidebar: 'Переключить панель'
+    dropdownBackdrop: Кликните на фон для закрытия дропдауна
+    modalBackdrop: Кликните на фон для закрытия модального диалога
+    menuBackdrop: Кликните на фон для закрытия меню
+    sidebarBackdrop: Кликните на фон для скрытия панели
+    closeModal: Закрыть окно
 compatibility:
-  title: Something is wrong!
-  description: In order to use emberclear, your browser must support the following technologies and features
-  score: Score
+  title: Что-то пошло не так!
+  description: Для работы emberclear ваш браузер должен поддерживать следующие возможности
+  score: Поддержка
   required: Required
-  compatibility: Compatibility
-  camera: Camera
-  notifications: Notifications
+  compatibility: Совместимость
+  camera: Камера
+  notifications: Оповещения
   indexeddb: Indexed DB
   wasm: WebAssembly
   serviceWorker: Service Worker
   webWorker: Web Worker
 images:
   alt:
-    thumbnail: Thumbnail
-    ownIdentityQR: This is your identity information represented as a QR Code
+    thumbnail: Миниатюра
+    ownIdentityQR: Это ваш профиль, представленный в виде QR кода
 input:
   label:
     mnemonic: Mnemonic
@@ -96,67 +96,67 @@ input:
 status:
   connected: Connected
   enabled: Enabled
-  deliveryFailed: 'Message could not be delivered'
-  importing: Importing ...
-  updateAvailable: A new version is available, click here to update.
+  deliveryFailed: 'Не удалось доставить сообщение'
+  importing: Импорт ...
+  updateAvailable: Доступна новая версия, нажмите сюда для обновления.
 services:
   crypto:
-    keyGenFailed: Key Generation Failed
+    keyGenFailed: Ошибка при генерации ключа
 routes:
-  home: Home
-  chat: Chat
+  home: Домой
+  chat: Чат
   qr: QR
-  logout: Logout
-  login: Login
-  contacts: Contacts
-  settings: Settings
-  profile: Profile
+  logout: Выход
+  login: Вход
+  contacts: Контакты
+  settings: Настройки
+  profile: Профиль
   faq: F.A.Q.
-  createNewUser: Create New User
+  createNewUser: Создать нового пользователя
 models:
   identity:
-    name: Name
-    publicKey: Public Key
+    name: Имя
+    publicKey: Публичный ключ
   message:
-    autosendPending: autosend pending
+    autosendPending: ожидание отправки
     errors:
-      timeout: 'Sending timed out.'
+      timeout: 'Таймаут отправки.'
 ui:
   invite:
-    copyProfile: Copy Link
-    copied: Copied!
+    copyProfile: Копировать Ссылку
+    copied: Скопировано!
   notifications:
-    title: emberclear message
-    from: message from {name}
+    title: emberclear сообщение
+    from: сообщение от {name}
     prompt:
-      title: emberclear needs your permission to enable chat notifications.
-      enable: Enable Notifications
-      askLater: Ask Next Time
-      neverAsk: Never Ask Again
+      title: emberclear необходимо ваше разрешения для включения оповещений.
+      enable: Включить Оповещения
+      askLater: Спросить в другой раз
+      neverAsk: Больше не спрашивать
   search:
-    title: Search for contacts and channels
-    description: Search coming soon
-    noContacts: No contacts found
-    noChannels: No channels found
-    contacts: Contacts
-    channels: Channels
-    nothingFound: No results found
+    title: Поиск контактов и каналов
+    description: Поиск скоро появится
+    noContacts: Контакты не найдены
+    noChannels: Каналы не найдены
+    contacts: Контакты
+    channels: Каналы
+    nothingFound: Результатов не найдено
   shortcuts:
-    title: Keyboard Shortcuts
+    title: Горячие клавиши
     key:
       ctrl: ctrl
       esc: esc
       enter: enter
       i: i
       slash: /
-      space: space
+      space: пробел
       tab: tab
       h: h
       k: k
     actions:
-      search: Search Everything
-      toggleSidebar: Toggle the Sidebar
-      toggleHelp: Toggle Keyboard Help
+      search: Искать везде
+      toggleSidebar: Переключить панель
+      toggleHelp: Переключить подсказки клавиатуры
     label:
       search:
         tab: to navigate
@@ -166,71 +166,68 @@ ui:
     find: Find...
     keepTyping: '{num} characters left to search...'
     results: '{num} results'
-    unread: Unread
+    unread: Новые
     channels:
-      title: Channels
-      none: You are not in any channels
-      placeholder: New Channel Name
+      title: Каналы
+      none: Вы не состоите не в одном канале
+      placeholder: Название нового канала
     contacts:
-      title: 'Contacts'
-      none: You have no contacts.
-      numOffline: '{num} offline'
+      title: 'Контакты'
+      none: У вас пока нет контактов.
+      numOffline: '{num} не в сети'
     actions:
-      title: 'Actions'
-      none: No actions at this time.
+      title: 'действия'
+      none: Никаких действий в это время
   addContact:
-    title: Have a friend scan your QR Code, share your link, or scan their QR Code
+    title: Попросите друга отсканировать ваш QR код, отправив ему ссылку или отсканируйте его код
   chat:
-    welcome: Welcome!
+    welcome: Добро пожаловать!
     message: >
-      To get started, you'll need at least one friend.'<br />'
-      '<br />' Then you'll be able to chat with them and create channels for communicating with groups of friends.
-    newMessages: There are newer messages
-    viewRecent: view recent messages
-    unreadMessages: '{number} new messages since {time}'
-    markAllAsRead: Mark all as read
+      Для начала вам необходим хотя бы один контакт.'<br />''<br />' После чего вы сможете начать общение, создавать каналы и общаться с друзьями.
+    newMessages: Новые сообщения
+    viewRecent: посмотреть недавние сообщения
+    unreadMessages: '{number} новых сообщений с {time}'
+    markAllAsRead: Пометить все как прочитанные
     errors:
-      contactNotFound: Your contact could not be located
+      contactNotFound: Не удаётся найти ваш контакт
       channelNotFound: The channel could not be located.
     sender:
-      removed: removed
+      removed: удалено
     messages:
-      received: 'Received: {at}'
+      received: 'Получено: {at}'
     embedMenu:
-      code: Code or text snippet
-      embed: Embed from URL
-      file: Send File from Computer
-      video: Start Video Chat
-      audio: Start Audio Chat
+      code: Фрагмент кода или текста
+      embed: Вставить по ссылке
+      file: Отправить файл с компьютера
+      video: Начать видео чат
+      audio: Начать аудио чат
     codeModal:
-      title: Send Code or Snippet to
+      title: Отправить код или сниппет для '<strong>'{to}'</strong>'
   faq:
     title: F.A.Q
-    whatIsQ: What is emberclear
+    whatIsQ: Что такое emberclear
     whatIsA: >
-      emberclear is the open source p2p encrypted chat client that operates over open source mesh nodes on free-tier cloud services.
-    howDoesWorkQ: How does it work?
+      emberclear - это зашифрованный p2p-клиент с открытым исходным кодом, работающий открытые сетевые узлы.
+    howDoesWorkQ: Как это работает?
     howDoesWorkA: >
-      All the encryption is done in the browser -- at no time do private keys leave your computer. Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging across the internet, on any network -- even if the network is compromised.
-    whyQ: Why?
+      Всё шифрование происходит в браузере - на вашем компьютере ничего не сохраняется. Emberclear использует криптографию libsodium для обеспечения приватности ваших сообщений, даже в случае компроментации сетевого соединения.
+    whyQ: Зачем?
     whyA: >
-      Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
-      This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
-      Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
-    notOnlineQ: What happens when I send a message and the recipient is no longer online.
+      Частично для развлечения и обучения, как пример использования фреймворка, для людей, желающих создать своё собственное веб приложение. Этот проект создан после утраты доверия к существующим мессенджерам и их инфраструктуре. В конечном счете, этот проект по функциональности приблизится к существующим решениям, с одним ключевым отличием в том, что узлы, обслуживающие приложение ничего не отслеживают.
+    notOnlineQ: Что произойдёт если я отправил сообщение, а получатель не в сети.
     notOnlineA: >
       The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
-    serverStorageQ: Does the server / relay store any of my messages ever?
+    serverStorageQ: Сервер хранит мои сообщения?
     serverStorageA: "No."
   footer:
-    navigation: Navigation
+    navigation: Навигация
     about: About
-    wantToSupport: Want to support this project?
+    wantToSupport: Хотите поддержать проект?
     license: >
-      The '<a href="https://github.com/NullVoxPopuli/emberclear" target="_blank" rel="noopener">'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target="_blank" rel="noopener">'GPL-3'</a>' license.
+      The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
   login:
     title: "Welcome Back!"
-    instructions: Please paste or type your mnemonic key.
+    instructions: Вставьте или напишите ваш мнемонический ключ.
     loading: Loaded {num} Contacts...
     success: "Logged In!"
     warning: "Note that without another logged in device or your mnemonic, your account will be unrecoverable as there is no central storage to recovery from."
@@ -251,30 +248,29 @@ ui:
       importing: Importing data
       failed: "Something went wrong. Please try again."
   setup:
-    overwriteTitle: Are you sure you want to create a new identity?
+    overwriteTitle: Вы уверены что хотите создать новый профиль?
     overwriteQuestion: >
-      This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. '<br>' '<br>' Are you sure you want to do this?
-    overwriteAbort: No, take me back to safety
-    overwriteConfirm: Yes, I understand the risks
-    introQuestion: What would you like to be called?
-    almostReady: You are almost ready to begin chatting!
-    nameLabel: Your desired alias
+      Это действие необратимо и приведёт к тому что текущий профиль будет забыт и перезаписан без возможности восстановления. Без сохранённой мнемонической фразы вы не сможете присоединиться к предыдущим чатам и никто не сможет вас идентифицировать. '<br>' '<br>' Вы уверены что хотите продолжить?
+    overwriteAbort: Нет, вернуться назад
+    overwriteConfirm: Да, я понимаю последствия
+    introQuestion: Как вас называть?
+    almostReady: Ваш профиль практически готов!
+    nameLabel: Никнейм
     mnemonicPrompt: >
-      If you would like to use this account on other computers, please store this mnemonic in a secure place. It will be used to login.
+      Если вы хотите использовать этот аккаунт на других компьютерах, пожалуйста сохраните мнемоническую фразу в безопасном месте. Она потребуется для логина.
     note: >
-      You may download your settings at any time so that you can upload them to another computer. The settings will include more than just your identity.
+      Вы можете загрузить настройки в любое время, после чего перенести их на другой компьютер. Настройки хранят немного больше чем просто ваш аккаунт.
   contacts:
-    title: 'Contacts ({number})'
-    noContacts: No contacts found. Feel free to add one of your friends.
+    title: 'Контакты ({number})'
+    noContacts: У вас пока нет контактов. Не стесняйтесь воспользоваться меню в правом верхнем углу для добавления новых.
   logout:
-    title: Logging out is destructive
+    title: Выход из системы необратим
     warning: >
-      Logging out will delete all local data. Please make sure you either have your mnemonic written down or memorized.
-      Alternatively, you download your settings on
-    theSettingsPage: the Settings page.
-    confirm: Confirm Logout
+      Выход из профиля приведёт к удалению всех сохранённых локально данных. Пожалуйста, убедитесь что вы запомнили или записали мнемонический ключ. Или, вы можете скачать ваши настройки
+    theSettingsPage: на странице Настроек.
+    confirm: Подтвердить выход
   settings:
-    title: Settings
+    title: Настройки
     tabs:
       profile: Profile Info
       interface: Interface
@@ -290,12 +286,12 @@ ui:
     themes:
       title: Themes
       midnight: Midnight
-    copyProfileToDevice: Copy Profile to Device
-    hideKey: Hide private key
-    showKey: Show private key
-    download: Download Settings
-    hideOfflineContacts: Hide offline contacts
-    useLeftRightJustificationForMessages: Use Left/Right Message Justification
+    copyProfileToDevice: Скопировать профиль на устройство
+    hideKey: Скрыть приватный ключ
+    showKey: Показать приватный ключ
+    download: Скачать настройки
+    hideOfflineContacts: Скрыть оффлайн контакты
+    useLeftRightJustificationForMessages: Левое/Правое выравнивание для сообщений
     danger:
-      title: Danger Zone
-      deleteMessages: Delete Messages
+      title: Опасная зона
+      deleteMessages: Удалить сообщения
