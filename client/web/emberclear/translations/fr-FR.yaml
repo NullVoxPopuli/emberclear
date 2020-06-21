@@ -1,33 +1,33 @@
 ---
 appname: emberclear
-subheader: Encrypted Chat. No History. No Logs.
-authoredBy: by
-redditCommunity: Reddit Community
+subheader: Tchat cryptée. Pas d'historique. Pas de log.
+authoredBy: par
+redditCommunity: Communautée Reddit
 twitter: Twitter
 emberjs: Ember.JS
-todo: 'TODO: fill this out correctly'
+todo: 'A faire: Remplir ceci correctement'
 install: Install
 bundle-analysis: JS Bundle Analysis
 qrCode:
-  error: QR Code could not be generated
+  error: QR Code n'a pas pu être généré
   malformed: QR Code is malfomed
-  waitingForCamera: Awaiting Camera Access
+  waitingForCamera: Awaaiting Camera Access
 connection:
-  connecting: Connecting...
-  connected: Connected!
+  connecting: Connexion en cours...
+  connected: Connecté !
   disconnected: Disconnected.
   degraded: Degraded
   unknown: Unknown
   status:
     socket:
-      error: An error occurred in the socket connection!
-      close: The socket connection has been dropped!
-    timeout: There is a networking issue. waiting...
+      error: Une erreur s'est produite dans la connexion socket !
+      close: La connexion de socket a été abandonnée !
+    timeout: Problème réseau. Veuillez patienter ...
   errors:
     send:
-      notConnected: Cannot send messages without a connection!
+      notConnected: Impossible d’envoyer des messages sans connexion !
     subscribe:
-      notConnected: Cannot subscribe to a channel without a socket connection!
+      notConnected: Impossible de s’abonner à une chaine sans une connexion socket !
 errors:
   genericTitle: "An Error occurred!"
   genericRetry: "Oh no! Something went wrong. Retry?"
@@ -41,38 +41,38 @@ buttons:
   allow: Allow
   deny: Deny
   retry: Retry
-  delete: delete
-  resend: resend
-  resendAutomatically: resend automatically
-  enable: Enable
-  save: Save
-  next: Next
-  back: Back
-  begin: Begin
-  logout: Logout
-  login: Login
-  cancel: Cancel
-  close: Close
-  import: Import
-  scan: Scan
-  sendSnippet: Send Snippet
-  remove: Remove
+  delete: supprimer
+  resend: ré-envoyer
+  resendAutomatically: renvoyer automatiquement
+  enable: Activer
+  save: Sauvegarder
+  next: Suivant
+  back: Précédent
+  begin: Démarrer
+  logout: Se déconnecter
+  login: Se connecter
+  cancel: Annuler
+  close: Fermer
+  import: Importer
+  scan: Scanner
+  sendSnippet: Envoyer un Snippet
+  remove: Supprimer
   donate: Donate
-  donateEth: Donate Ethereum
-  donateXmr: Donate Monero
-  loginInstead: Login instead
-  uploadSettings: Upload Settings
-  showMyInfo: Show My Info
-  invite: Invite
-  addFriend: Add Friend
-  makeDefault: Make Default
+  donateEth: Faire un donation en Ethereum
+  donateXmr: Faire un donation en Monero
+  loginInstead: Connexion à la place
+  uploadSettings: Uploader les paramètres
+  showMyInfo: Afficher mes infos
+  invite: Inviter
+  addFriend: Ajouter un ami
+  makeDefault: Définir par défaut
   ariaLabel:
-    sidebar: 'Toggles the sidebar'
+    sidebar: 'Afficher/Masquer la barre latérale'
     dropdownBackdrop: Clickable backdrop for clicking off a dropdown to close it
     modalBackdrop: Clickable backdrop for clicking off a modal to close it
     menuBackdrop: Clickable backdrop for clicking off the menu to close it
     sidebarBackdrop: Clickable backdrop for clicking off the sidebar to hide it
-    closeModal: Close Modal
+    closeModal: Fermer
 compatibility:
   title: Something is wrong!
   description: In order to use emberclear, your browser must support the following technologies and features
@@ -87,7 +87,7 @@ compatibility:
   webWorker: Web Worker
 images:
   alt:
-    thumbnail: Thumbnail
+    thumbnail: Aperçu
     ownIdentityQR: This is your identity information represented as a QR Code
 input:
   label:
@@ -97,40 +97,40 @@ status:
   connected: Connected
   enabled: Enabled
   deliveryFailed: 'Message could not be delivered'
-  importing: Importing ...
-  updateAvailable: A new version is available, click here to update.
+  importing: Importation en cours...
+  updateAvailable: Une nouvelle version est disponible, cliquez ici pour mettre à jour.
 services:
   crypto:
-    keyGenFailed: Key Generation Failed
+    keyGenFailed: La génération de clé a échoué
 routes:
-  home: Home
+  home: Accueil
   chat: Chat
   qr: QR
-  logout: Logout
-  login: Login
+  logout: Se déconnecter
+  login: Se connecter
   contacts: Contacts
-  settings: Settings
-  profile: Profile
+  settings: Réglages
+  profile: Profil
   faq: F.A.Q.
-  createNewUser: Create New User
+  createNewUser: Créer un nouvel utilisateur
 models:
   identity:
-    name: Name
-    publicKey: Public Key
+    name: Nom
+    publicKey: Clé publique
   message:
     autosendPending: autosend pending
     errors:
       timeout: 'Sending timed out.'
 ui:
   invite:
-    copyProfile: Copy Link
-    copied: Copied!
+    copyProfile: Copier le Lien
+    copied: Copié !
   notifications:
     title: emberclear message
-    from: message from {name}
+    from: message de {name}
     prompt:
-      title: emberclear needs your permission to enable chat notifications.
-      enable: Enable Notifications
+      title: emberclear a besoin de votre autorisation pour activer les notifications.
+      enable: Activer les notifications
       askLater: Ask Next Time
       neverAsk: Never Ask Again
   search:
@@ -142,7 +142,7 @@ ui:
     channels: Channels
     nothingFound: No results found
   shortcuts:
-    title: Keyboard Shortcuts
+    title: Raccourcis clavier
     key:
       ctrl: ctrl
       esc: esc
@@ -155,7 +155,7 @@ ui:
       k: k
     actions:
       search: Search Everything
-      toggleSidebar: Toggle the Sidebar
+      toggleSidebar: Afficher/Masquer la barre latérale
       toggleHelp: Toggle Keyboard Help
     label:
       search:
@@ -166,36 +166,35 @@ ui:
     find: Find...
     keepTyping: '{num} characters left to search...'
     results: '{num} results'
-    unread: Unread
+    unread: Non lu
     channels:
-      title: Channels
+      title: Chaînes
       none: You are not in any channels
       placeholder: New Channel Name
     contacts:
       title: 'Contacts'
       none: You have no contacts.
-      numOffline: '{num} offline'
+      numOffline: '{num} hors connexion'
     actions:
       title: 'Actions'
-      none: No actions at this time.
+      none: Aucune action pour le moment
   addContact:
     title: Have a friend scan your QR Code, share your link, or scan their QR Code
   chat:
-    welcome: Welcome!
+    welcome: Bienvenue !
     message: >
-      To get started, you'll need at least one friend.'<br />'
-      '<br />' Then you'll be able to chat with them and create channels for communicating with groups of friends.
+      To get started, you'll need at least one friend.'<br />''<br />' Then you'll be able to chat with them and create channels for communicating with groups of friends.
     newMessages: There are newer messages
-    viewRecent: view recent messages
+    viewRecent: voir les messages récents
     unreadMessages: '{number} new messages since {time}'
-    markAllAsRead: Mark all as read
+    markAllAsRead: Marquer tout comme lu
     errors:
       contactNotFound: Your contact could not be located
       channelNotFound: The channel could not be located.
     sender:
-      removed: removed
+      removed: supprimée
     messages:
-      received: 'Received: {at}'
+      received: 'Reçu le: {at}'
     embedMenu:
       code: Code or text snippet
       embed: Embed from URL
@@ -203,20 +202,18 @@ ui:
       video: Start Video Chat
       audio: Start Audio Chat
     codeModal:
-      title: Send Code or Snippet to
+      title: Send Code or Snippet to '<strong>'{to}'</strong>'
   faq:
     title: F.A.Q
     whatIsQ: What is emberclear
     whatIsA: >
       emberclear is the open source p2p encrypted chat client that operates over open source mesh nodes on free-tier cloud services.
-    howDoesWorkQ: How does it work?
+    howDoesWorkQ: Comment ça marche ?
     howDoesWorkA: >
       All the encryption is done in the browser -- at no time do private keys leave your computer. Emberclear uses libsodium's public key-cryptography to ensure cryptographically safe messaging across the internet, on any network -- even if the network is compromised.
-    whyQ: Why?
+    whyQ: Pourquoi ?
     whyA: >
-      Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations.
-      This project is also inspired by a lack of trust in existing chat apps and their infrastructure.
-      Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
+      Partially for fun and learning -- wanting to provide a framework for people wanting to get in to web applications so that they pre-existing tools that can interface with their creations. This project is also inspired by a lack of trust in existing chat apps and their infrastructure. Ultimately, this project, by functionality, will be a clone of whatever is popular - with the one key difference that nothing is ever tracked by the relays / federated nodes.
     notOnlineQ: What happens when I send a message and the recipient is no longer online.
     notOnlineA: >
       The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
@@ -227,7 +224,7 @@ ui:
     about: About
     wantToSupport: Want to support this project?
     license: >
-      The '<a href="https://github.com/NullVoxPopuli/emberclear" target="_blank" rel="noopener">'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target="_blank" rel="noopener">'GPL-3'</a>' license.
+      The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
   login:
     title: "Welcome Back!"
     instructions: Please paste or type your mnemonic key.
@@ -255,7 +252,7 @@ ui:
     overwriteQuestion: >
       This is a destructive action, that will cause the currently configured identity to be forgotten and replaced. There is no way to recover, and without having the mnemonic saved somewhere, you will be unable to connect with any of the previously configured chats as no one will know who you are. '<br>' '<br>' Are you sure you want to do this?
     overwriteAbort: No, take me back to safety
-    overwriteConfirm: Yes, I understand the risks
+    overwriteConfirm: Oui, je comprends les risques
     introQuestion: What would you like to be called?
     almostReady: You are almost ready to begin chatting!
     nameLabel: Your desired alias
@@ -265,16 +262,15 @@ ui:
       You may download your settings at any time so that you can upload them to another computer. The settings will include more than just your identity.
   contacts:
     title: 'Contacts ({number})'
-    noContacts: No contacts found. Feel free to add one of your friends.
+    noContacts: You do not have any contacts. Feel free to import some from your user menu in the top-right corner.
   logout:
     title: Logging out is destructive
     warning: >
-      Logging out will delete all local data. Please make sure you either have your mnemonic written down or memorized.
-      Alternatively, you download your settings on
+      Logging out will delete all local data. Please make sure you either have your mnemonic written down or memorized. Alternatively, you download your settings on
     theSettingsPage: the Settings page.
-    confirm: Confirm Logout
+    confirm: Confirmer la déconnexion
   settings:
-    title: Settings
+    title: Réglages
     tabs:
       profile: Profile Info
       interface: Interface
@@ -291,11 +287,11 @@ ui:
       title: Themes
       midnight: Midnight
     copyProfileToDevice: Copy Profile to Device
-    hideKey: Hide private key
-    showKey: Show private key
-    download: Download Settings
-    hideOfflineContacts: Hide offline contacts
+    hideKey: Masquer la clé privée
+    showKey: Afficher la clé privée
+    download: Télécharger les paramètres
+    hideOfflineContacts: Masquer les contacts hors-ligne
     useLeftRightJustificationForMessages: Use Left/Right Message Justification
     danger:
       title: Danger Zone
-      deleteMessages: Delete Messages
+      deleteMessages: Supprimer les messages
