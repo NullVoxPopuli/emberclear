@@ -33,7 +33,7 @@ errors:
   genericRetry: "О нет! Что-то пошло не так. Повторить?"
   notFound:
     title: Не найдено
-    help: The URL could not be navigated to. If the problem persists,
+    help: Страницу невозможно открыть. Если ошибка не исчезнет,
     link: пожалуйста, сообщите о проблеме.
   permissions:
     enableCamera: You may need to allow this site access to your camera.
@@ -239,7 +239,7 @@ ui:
       inProgress: Передача данных...
       success: "Вы собираетесь войти на другое устройство!"
     verify:
-      title: Verify
+      title: Подтвердить
       prompt1: "Do you want to login to a new device?"
       prompt2: "Be sure that the code matches the code below the QR Image on the device."
       received: Received login request
