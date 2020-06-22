@@ -285,7 +285,7 @@ ui:
       connectedUsers: подключенные пользователи
     themes:
       title: Темы
-      midnight: Midnight
+      midnight: Темная тема
     copyProfileToDevice: Скопировать профиль на устройство
     hideKey: Скрыть приватный ключ
     showKey: Показать приватный ключ
