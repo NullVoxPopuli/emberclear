@@ -1335,15 +1335,16 @@
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
 
-"@faltest/cli@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.2.0.tgz#4d52cd6e2090c77ce8fe72190492ae93c5066b7a"
-  integrity sha512-WgID0NUC9lGRPUe4daJ0RQ5OoRhcbDga4t40D9AXXWhfSQve8+4BKEtt0keSymsjdGIc2ATfRC29swG1su9qug==
+"@faltest/cli@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.4.0.tgz#f563f830c716f2ce29cd0a297c36d9667e2e0a30"
+  integrity sha512-brkh0sPKz/8HkKNjuEgbUA9v9u8CgnrHUvJb6qFIHHk2gCCo1uMjnWAefqaYq6FKB5ReoK2wSUjf1T9K+PLKwg==
   dependencies:
     "@faltest/mocha" "^1.0.7"
     "@faltest/remote" "^4.0.0"
     "@faltest/utils" "^2.0.4"
     mocha "^7.0.1"
+    threads "^1.6.1"
     yargs "^15.0.0"
     yn "^3.1.1"
 
@@ -1376,10 +1377,10 @@
     glob "^7.1.4"
     mocha-helpers "^4.3.0"
 
-"@faltest/page-objects@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.1.1.tgz#4d2a9ea7d5f303dd2b584e7582eb10938c16cdd4"
-  integrity sha512-duYPwhX4BoY3J5lxhAMe2I1KdHmhCMNUAoLNOPSTf6ENLfnhnegh3VSPddPdtn4tR7di83qleE7R9+s/uBhRgA==
+"@faltest/page-objects@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-3.1.2.tgz#976b138fade0d221cb811a42eae7f377821f89e1"
+  integrity sha512-CYHdCqhRN0vohSDg+3wOiv1Xz+yJAprOA0PjvZrqVEIdOyXkHkLelx4shJAYQkaRgW30MgJf0fKPL899mv8Acg==
   dependencies:
     "@faltest/browser" "^2.0.5"
     verror-extra "^1.0.0"
@@ -8425,10 +8426,10 @@ eslint-plugin-decorator-position@2.1.0:
     ember-rfc176-data "^0.3.12"
     snake-case "^3.0.3"
 
-eslint-plugin-ember@8.7.0:
-  version "8.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-8.7.0.tgz#71b8c7a79e64fbf1c6e29a1a0c3e3546ed207b77"
-  integrity sha512-DUQISEtMi1ysIhnL1pdXcrYYnv7qf7AgKC1PMC2e8FzX7h39gQlC6x3+6sAij2wYGAsl1tShVk6hgLFWC61vEw==
+eslint-plugin-ember@8.8.0:
+  version "8.8.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-8.8.0.tgz#d3572944b1744c801d7099379cdfeaab6905a33b"
+  integrity sha512-E1qYkA+mPGVagRaCoGWonXWl6qox4VL8oHN+dCUrMyANFLNANfD0Zbt/D3aOAY2wtbwKSZtoiiNIxfoMGQzPRw==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     ember-rfc176-data "^0.3.13"
@@ -10996,6 +10997,13 @@ is-object@^1.0.1:
   resolved "https://registry.yarnpkg.com/is-object/-/is-object-1.0.1.tgz#8952688c5ec2ffd6b03ecc85e769e02903083470"
   integrity sha1-iVJojF7C/9awPsyF52ngKQMINHA=
 
+is-observable@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-observable/-/is-observable-1.1.0.tgz#b3e986c8f44de950867cab5403f5a3465005975e"
+  integrity sha512-NqCa4Sa2d+u7BWc6CukaObG3Fh+CU9bvixbpcXYhy2VvYS7vVGIdAgnIS5Ks3A/cqk4rebLJ9s8zBstT2aKnIA==
+  dependencies:
+    symbol-observable "^1.1.0"
+
 is-path-cwd@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/is-path-cwd/-/is-path-cwd-2.2.0.tgz#67d43b82664a7b5191fd9119127eb300048a9fdb"
@@ -13196,6 +13204,11 @@ object.pick@^1.3.0:
   integrity sha1-h6EKxMFpS9Lhy/U1kaZhQftd10c=
   dependencies:
     isobject "^3.0.1"
+
+observable-fns@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/observable-fns/-/observable-fns-0.5.1.tgz#9b56478690dd0fa8603e3a7e7d2975d88bca0904"
+  integrity sha512-wf7g4Jpo1Wt2KIqZKLGeiuLOEMqpaOZ5gJn7DmSdqXgTdxRwSdBhWegQQpPteQ2gZvzCKqNNpwb853wcpA0j7A==
 
 on-finished@~2.3.0:
   version "2.3.0"
@@ -16527,6 +16540,11 @@ svg-tags@^1.0.0:
   resolved "https://registry.yarnpkg.com/svg-tags/-/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
   integrity sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q=
 
+symbol-observable@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
+  integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
+
 symbol-tree@^3.2.2, symbol-tree@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
@@ -16840,6 +16858,18 @@ thread-loader@^1.2.0:
     loader-runner "^2.3.0"
     loader-utils "^1.1.0"
 
+threads@^1.6.1:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/threads/-/threads-1.6.2.tgz#ef91053910a084aa99a1f460cb9978f577596d6f"
+  integrity sha512-SB3yJ3WcwGWYYsUg1Wg9IhQ88BUq1JwZlQsaBgmolSqet5wiBaFhg8cyfHFbHGRElZ/sl4bahrrSEz3Odmr1Vg==
+  dependencies:
+    callsites "^3.1.0"
+    debug "^4.1.1"
+    is-observable "^1.1.0"
+    observable-fns "^0.5.1"
+  optionalDependencies:
+    tiny-worker ">= 2"
+
 through2@^2.0.0, through2@^2.0.2, through2@^2.0.3:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.5.tgz#01c1e39eb31d07cb7d03a96a70823260b23132cd"
@@ -16893,6 +16923,13 @@ tiny-lr@^1.1.1:
     livereload-js "^2.3.0"
     object-assign "^4.1.0"
     qs "^6.4.0"
+
+"tiny-worker@>= 2":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/tiny-worker/-/tiny-worker-2.3.0.tgz#715ae34304c757a9af573ae9a8e3967177e6011e"
+  integrity sha512-pJ70wq5EAqTAEl9IkGzA+fN0836rycEuz2Cn6yeZ6FRzlVS5IDOkFHpIoEsksPRQV34GDqXm65+OlnZqUSyK2g==
+  dependencies:
+    esm "^3.2.25"
 
 titleize@^2.1.0:
   version "2.1.0"
