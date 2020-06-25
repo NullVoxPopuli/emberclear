@@ -12,7 +12,7 @@
     "@faltest/lifecycle": "3.2.2",
     "@faltest/page-objects": "3.1.1",
     "babel-eslint": "10.1.0",
-    "eslint": "7.3.0",
+    "eslint": "7.3.1",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.1.4",
