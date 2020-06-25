@@ -100,7 +100,7 @@
     "@types/url-parse": "1.4.3",
     "@types/uuid": "8.0.0",
     "@xstate/test": "0.4.0",
-    "autoprefixer": "9.8.0",
+    "autoprefixer": "9.8.4",
     "broccoli-asset-rev": "3.0.0",
     "broccoli-concat-analyser": "4.3.5",
     "broccoli-file-creator": "2.1.1",
