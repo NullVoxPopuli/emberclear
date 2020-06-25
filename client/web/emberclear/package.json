@@ -109,7 +109,7 @@
     "colors": "1.4.0",
     "common-tags": "1.8.0",
     "core-js": "3.6.5",
-    "ember-auto-import": "1.5.3",
+    "ember-auto-import": "1.6.0",
     "ember-autofocus-modifier": "1.0.1",
     "ember-autoresize-modifier": "0.2.1",
     "ember-autostash-modifier": "0.1.20",
