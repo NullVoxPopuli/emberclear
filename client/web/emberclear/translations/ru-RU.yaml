@@ -125,6 +125,7 @@ ui:
   notifications:
     title: emberclear сообщение
     from: сообщение от {name}
+    fromChannel: сообщение от {name} в {channel}
     prompt:
       title: emberclear необходимо ваше разрешения для включения оповещений.
       enable: Включить Оповещения

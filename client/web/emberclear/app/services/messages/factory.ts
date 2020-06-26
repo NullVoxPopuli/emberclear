@@ -10,13 +10,21 @@ import Channel from 'emberclear/models/channel';
 import Message from 'emberclear/models/message';
 import { buildChannelInfo, buildVote } from '../channels/-utils/channel-factory';
 import Vote from 'emberclear/models/vote';
+import FindOrCreateChannelService from '../channels/find-or-create';
 
 export default class MessageFactory extends Service {
   @service store!: any;
   @service currentUser!: CurrentUserService;
+  @service('channels/find-or-create') findOrCreator!: FindOrCreateChannelService;
 
   buildNewReceivedMessage(json: StandardMessage, sender: Identity) {
-    const { id, type, target, message: msg } = json;
+    const { id, type, target, message: msg, channelInfo } = json;
+
+    let channel = undefined;
+
+    if (channelInfo) {
+      channel = this.findOrCreator.findOrCreateChannel(channelInfo);
+    }
 
     const message = this.store.createRecord('message', {
       id,
@@ -28,8 +36,10 @@ export default class MessageFactory extends Service {
       sentAt: new Date(json.time_sent),
       receivedAt: new Date(),
       body: msg.body,
+      metadata: msg.metadata,
       // thread: msg.thread,
       contentType: msg.contentType,
+      channelInfo: channel,
     });
 
     return message;

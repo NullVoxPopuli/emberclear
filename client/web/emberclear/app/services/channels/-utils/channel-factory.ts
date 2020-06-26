@@ -24,11 +24,11 @@ export function buildChannelContextChain(
     supportingVote:
       !contextChain.previousChain && !contextChain.supportingVote
         ? undefined
-        : buildVoteChain(contextChain.supportingVote),
+        : buildVoteChain(contextChain.supportingVote!),
     previousChain:
       !contextChain.previousChain && !contextChain.supportingVote
         ? undefined
-        : buildChannelContextChain(contextChain.previousChain),
+        : buildChannelContextChain(contextChain.previousChain!),
   };
 }
 
