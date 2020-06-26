@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
-import { TYPE, TARGET } from 'emberclear/models/message';
+import { TYPE, TARGET, METADATA_VALUE } from 'emberclear/models/message';
 import Identity from 'emberclear/models/identity';
 import Channel from 'emberclear/models/channel';
 import Message from 'emberclear/models/message';
@@ -64,7 +64,7 @@ export default class MessageFactory extends Service {
     return this.build({
       type: TYPE.CHANNEL_VOTE,
       to: to.id,
-      metadata: buildVote(vote),
+      metadata: { [METADATA_VALUE.VOTE]: buildVote(vote) },
       channelInfo: buildChannelInfo(to),
     });
   }

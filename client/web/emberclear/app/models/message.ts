@@ -66,6 +66,10 @@ export enum TARGET {
   MESSAGE = 'message',
 }
 
+export enum METADATA_VALUE {
+  VOTE = 'vote',
+}
+
 /**
  * NOTE:
  * GUID - used for message receipts / delivery confirmation
