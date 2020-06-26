@@ -7203,7 +7203,7 @@ ember-cli-htmlbars-inline-precompile@^2.1.0:
     heimdalljs-logger "^0.1.9"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@5.1.2, ember-cli-htmlbars@^5.1.2:
+ember-cli-htmlbars@5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.1.2.tgz#b07cdb6b870bb223605dbed915c9c8d5185c53bb"
   integrity sha512-//TZ3g0YYsSXylK4RhaFDDr694YOnjrO884+vzNteirYDLB9Yk0SnERlFC2qH6UKZ8koSZtdiXeEtltEqv5wew==
@@ -7224,7 +7224,7 @@ ember-cli-htmlbars@5.1.2, ember-cli-htmlbars@^5.1.2:
     strip-bom "^4.0.0"
     walk-sync "^2.1.0"
 
-ember-cli-htmlbars@5.2.0:
+ember-cli-htmlbars@5.2.0, ember-cli-htmlbars@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.2.0.tgz#5ceccd0d18163dd810dea29f6fd777d0baa01e23"
   integrity sha512-EdjuUc7sq9ve6sgsG59qIzOj4svWjgYhO/QEhuV1UbOQ3ATeqNPiD++bFeAGjUhravw9HPhQPPoHnMlAikqLIw==
@@ -7784,16 +7784,16 @@ ember-intl@5.2.2:
     mkdirp "^1.0.4"
     silent-error "^1.1.1"
 
-ember-jsqr@0.9.20:
-  version "0.9.20"
-  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.9.20.tgz#fe23ec84e61c81790cfb67ded9df3633e9bed6e3"
-  integrity sha512-l3w5IIcISB9oG30CszUzqrVeMARSzVvNingxbpevsuAI87xNrhLLipbMaif/Ou4Xqpy36sX0buNjQafEty4PDA==
+ember-jsqr@0.9.21:
+  version "0.9.21"
+  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.9.21.tgz#5d93f03ace358c57bc3766ba62b7e75b41c13c43"
+  integrity sha512-VC/JiJv/06m1KHzVi6kJdmQn9EgUprvtnroxmrniAxSeTq4kFPTcRa6xs8CiziV297TOyNScNZ7EeMWxrjHWBw==
   dependencies:
     "@glimmer/component" "^1.0.0"
     "@glimmer/tracking" "^1.0.0"
     ember-auto-import "^1.6.0"
     ember-cli-babel "^7.21.0"
-    ember-cli-htmlbars "^5.1.2"
+    ember-cli-htmlbars "^5.2.0"
     ember-cli-typescript "^3.1.4"
     ember-modifier "^1.0.3"
     jsqr "^1.3.1"
