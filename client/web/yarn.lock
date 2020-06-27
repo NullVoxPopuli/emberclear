@@ -1844,7 +1844,7 @@
   dependencies:
     "@types/ember-data" "*"
 
-"@types/ember-qunit@3.4.9", "@types/ember-qunit@^3.4.9":
+"@types/ember-qunit@3.4.9":
   version "3.4.9"
   resolved "https://registry.npmjs.org/@types/ember-qunit/-/ember-qunit-3.4.9.tgz#df08d29609f906a081dc8f1c0e00b390fec3b4d7"
   integrity sha512-XFe9EK9CVo431TJjS2a/bEcdRBCWFZeDYvYwZEDAlAVvVj9oApAX3bU4OEu9R9xHe6UhyvsgSa7dEr1tComRFQ==
@@ -1870,7 +1870,7 @@
     "@types/jquery" "*"
     "@types/rsvp" "*"
 
-"@types/ember@*", "@types/ember@3.16.0", "@types/ember@^3.1.0", "@types/ember@^3.16.0":
+"@types/ember@*", "@types/ember@3.16.0", "@types/ember@^3.1.0":
   version "3.16.0"
   resolved "https://registry.npmjs.org/@types/ember/-/ember-3.16.0.tgz#1627b42087556ee366258e37b31ae81571e6e0ca"
   integrity sha512-9TBWidO/9ydThgh0Fy7y2DNX7Pb8REoV7tYK+HBFZ2iyc1TwXTNt15gVz0cCyorvsve2OS+vt5wzYvlqgSGlwg==
@@ -2001,7 +2001,7 @@
   resolved "https://registry.npmjs.org/@types/ember__template/-/ember__template-3.16.0.tgz#fe88a8f8319e0b6bccf9ef5eb7f6ee5ff998333e"
   integrity sha512-OVr29pQtbyLVJW6h7+wdkeXLHx00p4CY28znsEgO0X2EeF5xyBhmyhTZOWrGbiTU17+Zs9d4KStt5f1Bq4Wgow==
 
-"@types/ember__test-helpers@1.7.0", "@types/ember__test-helpers@^1.7.0":
+"@types/ember__test-helpers@1.7.0":
   version "1.7.0"
   resolved "https://registry.npmjs.org/@types/ember__test-helpers/-/ember__test-helpers-1.7.0.tgz#d1f18c283744ca17b04dc185602f67a5fee77f7d"
   integrity sha512-8pd+KNnus948oAQh0pdpP4SioaBTJDqn+H4FkBjphZf+VzFZMVbJoDtDqCcBH/d2Cr2gXPd4RDjZRprg/bRVLQ==
@@ -2163,7 +2163,7 @@
   resolved "https://registry.npmjs.org/@types/qs/-/qs-6.9.3.tgz#b755a0934564a200d3efdf88546ec93c369abd03"
   integrity sha512-7s9EQWupR1fTc2pSMtXRQ9w9gLOcrJn+h7HOXw4evxyvVqMi4f+q7d2tnFe3ng3SNHjtK+0EzGMGFUQX4/AQRA==
 
-"@types/qunit@2.9.1", "@types/qunit@^2.9.1":
+"@types/qunit@2.9.1":
   version "2.9.1"
   resolved "https://registry.npmjs.org/@types/qunit/-/qunit-2.9.1.tgz#6083a42907ae6c9eecece794844bc3f8659e6c03"
   integrity sha512-v51Fz/orMOkBGzrRvskky3UN0I81ka6rokAxkcuVyLHAh0qNKp+Roqympg/gTia8vGOIEbeSykevI0VKiIF13Q==
@@ -2188,7 +2188,7 @@
     "@types/glob" "*"
     "@types/node" "*"
 
-"@types/rsvp@*", "@types/rsvp@4.0.3", "@types/rsvp@^4.0.2", "@types/rsvp@^4.0.3":
+"@types/rsvp@*", "@types/rsvp@4.0.3", "@types/rsvp@^4.0.2":
   version "4.0.3"
   resolved "https://registry.npmjs.org/@types/rsvp/-/rsvp-4.0.3.tgz#4a1223158453257bce09d42b9eef7cfa6d257482"
   integrity sha512-OpRwxbgx16nL/0/7ol0WoLLyLaMXBvtPOHjqLljnzAB/E7Qk1wtjytxgBhOTBMZvuLXnJUqfnjb4W/QclNFvSA==
@@ -7440,9 +7440,9 @@ ember-concurrency-test-waiter@0.3.2:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-concurrency-ts@^0.1.1:
+ember-concurrency-ts@0.1.1:
   version "0.1.1"
-  resolved "https://registry.npmjs.org/ember-concurrency-ts/-/ember-concurrency-ts-0.1.1.tgz#93dfc00a03a149d023d1dae278921485d557a8fe"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-ts/-/ember-concurrency-ts-0.1.1.tgz#93dfc00a03a149d023d1dae278921485d557a8fe"
   integrity sha512-dUOY5gg7zFKeSEvjqY7AWNVJDXltzHIC143yEx7kddX/S/DBN8wsPsclmw1SaS0fO/O4BpzS1QQiPSUywo0LnQ==
   dependencies:
     ember-cli-babel "^7.19.0"
