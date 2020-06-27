@@ -7474,10 +7474,10 @@ ember-concurrency-test-waiter@0.3.2:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-concurrency-ts@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/ember-concurrency-ts/-/ember-concurrency-ts-0.1.0.tgz#6a82b11ec9a94b109f4c16b47e0835c355d49c2b"
-  integrity sha512-h3cKnGUBJZ7GfK8jxNSHnnW7f/9rxfEkVNPmuUVxsBvfAIzBVWiXFQXJT1CYlpbEAZUfFPLu0Jupiq6UlZQJpw==
+ember-concurrency-ts@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/ember-concurrency-ts/-/ember-concurrency-ts-0.1.1.tgz#93dfc00a03a149d023d1dae278921485d557a8fe"
+  integrity sha512-dUOY5gg7zFKeSEvjqY7AWNVJDXltzHIC143yEx7kddX/S/DBN8wsPsclmw1SaS0fO/O4BpzS1QQiPSUywo0LnQ==
   dependencies:
     ember-cli-babel "^7.19.0"
     ember-cli-htmlbars "^4.3.1"
@@ -7611,10 +7611,10 @@ ember-intl-analyzer@2.1.0:
     pkg-dir "^4.2.0"
     yaml "^1.7.2"
 
-ember-intl@5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-5.2.2.tgz#22c067399d5b608a219cd856b367ead2327569f3"
-  integrity sha512-99KfNbhaq9G9CEeTw/Ak63Kh9dkeRxLH1a0N7EDwE6MDN5Bk3GYlJF/nL/gEY2c07w4rJEIVUlEiJrLpcbMlZA==
+ember-intl@5.3.0:
+  version "5.3.0"
+  resolved "https://registry.npmjs.org/ember-intl/-/ember-intl-5.3.0.tgz#7f8cc86e4fe865844638401bdfa8a39ae7b26386"
+  integrity sha512-hoiX7gYky6RudjkGhS/fH1UcmbEKF1Dgjnx54ABZLNykXKcmuQAR4qartG3fbUO46mg2a5amDWORXHNN/P+sgQ==
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-funnel "^3.0.3"
@@ -7642,7 +7642,11 @@ ember-intl@5.2.2:
 
 ember-jsqr@0.9.21:
   version "0.9.21"
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.9.21.tgz#5d93f03ace358c57bc3766ba62b7e75b41c13c43"
+=======
+  resolved "https://registry.npmjs.org/ember-jsqr/-/ember-jsqr-0.9.21.tgz#5d93f03ace358c57bc3766ba62b7e75b41c13c43"
+>>>>>>> try upgrading deps that may be bringing ember-auto-import down
   integrity sha512-VC/JiJv/06m1KHzVi6kJdmQn9EgUprvtnroxmrniAxSeTq4kFPTcRa6xs8CiziV297TOyNScNZ7EeMWxrjHWBw==
   dependencies:
     "@glimmer/component" "^1.0.0"
