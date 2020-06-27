@@ -24,6 +24,9 @@
 @import './shoelace-overrides';
 @import './layout';
 @import './mixins';
+@import './buttons';
+@import './sizes';
+@import './animation';
 
 .visually-hidden {
   position: absolute;

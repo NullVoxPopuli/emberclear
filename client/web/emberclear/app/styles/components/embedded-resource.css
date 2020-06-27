@@ -3,15 +3,6 @@
 
   margin: 5px;
 
-  & > header {
-    @apply --column-grid;
-
-    justify-content: start;
-    align-items: center;
-    font-weight: bold;
-    font-size: 0.9rem;
-  }
-
   & img,
   & iframe {
     max-width: 480px;

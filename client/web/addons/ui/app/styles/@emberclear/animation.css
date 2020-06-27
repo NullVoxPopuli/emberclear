@@ -1,0 +1,7 @@
+.animated {
+  transition-duration: 0.2s;
+}
+
+.rotate\:180 {
+  transform: rotateZ(180deg);
+}

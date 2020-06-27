@@ -41,14 +41,6 @@ body > main > section {
   }
 }
 
-.grid {
-  @apply --grid;
-}
-
-.grid-column {
-  @apply --column-grid;
-}
-
 button {
   /* check scan button if changing this */
 
@@ -93,10 +85,3 @@ svg.svg-inline--fa {
   height: 1rem;
   line-height: 1.5rem;
 }
-
-/* TODO: this doesn't go here */
-.grid-autoflow {
-  grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
-}
-
-/* TODO: local-ize */
