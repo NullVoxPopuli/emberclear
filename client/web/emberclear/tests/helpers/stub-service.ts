@@ -1,11 +1,6 @@
 import Service, { Registry } from '@ember/service';
 import { getContext } from '@ember/test-helpers';
 
-interface IInjection {
-  in: string;
-  as: string;
-}
-
 export const stubService = (name: keyof Registry, hash = {}) => {
   let stubbedService;
 

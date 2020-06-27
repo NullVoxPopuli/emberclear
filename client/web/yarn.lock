@@ -7608,11 +7608,7 @@ ember-intl@5.3.0:
 
 ember-jsqr@0.9.21:
   version "0.9.21"
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-0.9.21.tgz#5d93f03ace358c57bc3766ba62b7e75b41c13c43"
-=======
   resolved "https://registry.npmjs.org/ember-jsqr/-/ember-jsqr-0.9.21.tgz#5d93f03ace358c57bc3766ba62b7e75b41c13c43"
->>>>>>> try upgrading deps that may be bringing ember-auto-import down
   integrity sha512-VC/JiJv/06m1KHzVi6kJdmQn9EgUprvtnroxmrniAxSeTq4kFPTcRa6xs8CiziV297TOyNScNZ7EeMWxrjHWBw==
   dependencies:
     "@glimmer/component" "^1.0.0"
