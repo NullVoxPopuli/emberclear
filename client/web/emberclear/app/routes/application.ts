@@ -6,7 +6,7 @@ import StoreService from '@ember-data/store';
 import LocaleService from 'emberclear/services/locale';
 import CurrentUserService from 'emberclear/services/current-user';
 
-import { ensureRelays, ensureAtLeastOneContact } from 'emberclear/utils/data/required-data';
+import { ensureRelays } from 'emberclear/utils/data/required-data';
 import Settings from 'emberclear/services/settings';
 import ConnectionService from 'emberclear/services/connection';
 
@@ -27,10 +27,6 @@ export default class ApplicationRoute extends Route {
     await this.locale.setLocale(this.locale.currentLocale);
     await ensureRelays(getOwner(this));
     await this.currentUser.load();
-
-    if (this.currentUser.isLoggedIn) {
-      await ensureAtLeastOneContact(getOwner(this));
-    }
   }
 
   async model() {

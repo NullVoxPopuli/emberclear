@@ -1,0 +1,13 @@
+.button\:as-link {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--link-color);
+
+  &:hover {
+    text-decoration: var(--link-text-decoration);
+    color: var(--link-color-hover);
+  }
+}

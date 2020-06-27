@@ -1,3 +1,27 @@
+.grid {
+  @apply --grid;
+}
+
+/* remove this */
+.grid-column {
+  @apply --column-grid;
+}
+
+.grid\:column {
+  @apply --column-grid;
+}
+
+.grid-autoflow {
+  grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
+}
+
+.justify\:start {
+  justify-content: start;
+}
+
+.align-self\:center {
+  align-self: center;
+}
 
 .flex-center {
   display: flex;

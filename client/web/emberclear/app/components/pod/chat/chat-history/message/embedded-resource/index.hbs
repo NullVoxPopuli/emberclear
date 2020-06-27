@@ -1,29 +1,14 @@
-{{!-- TODO: rename this component to MediaInfo or MediaInfoCard --}}
-<div class='embedded-resource'>
+<MediaInfoCard>
 
-  <header class='card-header'>
-    <button
-      type='button'
-      class='button-link card-header-icon'
-      {{on 'click' this.toggleShow}}
-    >
-      {{#if this.isCollapsed}}
-        <FaIcon @icon='angle-up' />
-      {{else}}
-        <FaIcon @icon='angle-down' />
-      {{/if}}
-    </button>
-
+  <:header>
     {{#if (is-present @meta.siteName)}}
       <p class='card-header-title'>
         {{@meta.siteName}}
       </p>
     {{/if}}
+  </:header>
 
-  </header>
-
-  {{#if this.isOpen}}
-
+  <:content>
     {{#if @meta.hasExtension}}
       <EmbeddedMedia @url={{@url}} @meta={{@meta}} />
     {{else}}
@@ -34,6 +19,7 @@
       />
 
     {{/if}}
+  </:content>
 
-  {{/if}}
-</div>
+
+</MediaInfoCard>
