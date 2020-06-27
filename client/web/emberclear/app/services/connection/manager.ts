@@ -2,15 +2,15 @@ import StoreService from '@ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import Relay from 'emberclear/models/relay';
-import ToastService from 'emberclear/services/toast';
-import CurrentUserService from 'emberclear/services/current-user';
-
-import ArrayProxy from '@ember/array/proxy';
 import { pool, ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';
 import { Connection } from 'emberclear/utils/connection/connection';
-import MessageProcessor from 'emberclear/services/messages/processor';
-import ConnectionStatusService from 'emberclear/services/connection/status';
+
+import type Relay from 'emberclear/models/relay';
+import type ArrayProxy from '@ember/array/proxy';
+import type MessageProcessor from 'emberclear/services/messages/processor';
+import type ConnectionStatusService from 'emberclear/services/connection/status';
+import type ToastService from 'emberclear/services/toast';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class ConnectionManager extends Service {
   @service toast!: ToastService;
@@ -19,7 +19,7 @@ export default class ConnectionManager extends Service {
   @service('connection/status') status!: ConnectionStatusService;
   @service currentUser!: CurrentUserService;
 
-  connectionPool?: ConnectionPool<Connection, Relay>;
+  declare connectionPool?: ConnectionPool<Connection, Relay>;
 
   async getOpenGraph(url: string): Promise<OpenGraphData> {
     if (!this.connectionPool) {

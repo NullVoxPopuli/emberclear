@@ -1,9 +1,30 @@
 module.exports = {
   buildBabelConfig({ CONCAT_STATS }) {
     return {
-      // was for enabling dynamic import.
+      // 'ember-cli-babel': {
+      //   enableTypeScriptTransform: true,
+      //   // throwUnlessParallelizable: true,
+      // },
       babel: {
-        plugins: [require.resolve('ember-auto-import/babel-plugin')],
+        // presets: [
+        //   [
+        //     '@babel/preset-typescript',
+        //     {
+        //       allowDeclareFields: true,
+        //     },
+        //   ],
+        // ],
+        plugins: [
+          // [
+          //   require.resolve('@babel/plugin-transform-typescript'),
+          //   {
+          //     allowDeclareFields: true,
+          //   },
+          // ],
+
+          // for enabling dynamic import.
+          require.resolve('ember-auto-import/babel-plugin'),
+        ],
         ...(CONCAT_STATS ? { sourceMaps: 'inline' } : {}),
       },
     };

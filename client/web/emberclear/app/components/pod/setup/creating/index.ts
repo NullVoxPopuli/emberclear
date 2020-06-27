@@ -7,7 +7,7 @@ import { dropTask } from 'ember-concurrency-decorators';
 
 import CurrentUserService from 'emberclear/services/current-user';
 
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 type Args = {
   next: () => void;

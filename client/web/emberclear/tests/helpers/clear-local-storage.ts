@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import localforage from 'localforage';
-import { getContext } from '@ember/test-helpers';
 import { TestContext } from 'ember-test-helpers';
 
 async function cleanEverything(owner: Ember.ApplicationInstance) {

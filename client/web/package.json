@@ -16,6 +16,10 @@
     "libraries/*",
     "lint/*"
   ],
+  "nohoist": [
+    "emberclear",
+    "addons/*"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

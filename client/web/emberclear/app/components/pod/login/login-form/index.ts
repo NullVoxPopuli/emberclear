@@ -12,7 +12,7 @@ import Settings from 'emberclear/services/settings';
 
 import RouterService from '@ember/routing/router-service';
 import { dropTask } from 'ember-concurrency-decorators';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 import CryptoConnector from 'emberclear/utils/workers/crypto';
 import WorkersService from 'emberclear/services/workers';
 

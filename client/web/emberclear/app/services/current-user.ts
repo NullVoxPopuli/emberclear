@@ -11,7 +11,7 @@ import User from 'emberclear/models/user';
 import WorkersService from './workers';
 import CryptoConnector from '../utils/workers/crypto';
 import { dropTask } from 'ember-concurrency-decorators';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 import { timeout } from 'ember-concurrency';
 
 export const currentUserId = 'me';

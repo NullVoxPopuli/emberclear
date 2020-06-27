@@ -1,12 +1,6 @@
-import Task from 'ember-concurrency/task';
 import { didCancel } from 'ember-concurrency';
 import { Event } from 'xstate';
-
-type ECTask<Args extends Array<any>, Return> = (...args: Args) => Promise<Return>;
-
-export function taskFor<Args extends any[], Return = void>(generatorFn: ECTask<Args, Return>) {
-  return (generatorFn as any) as Task<Args, Return>;
-}
+import { taskFor } from 'ember-concurrency-ts';
 
 /**
  * Wraps an ember-concurrency task into an XState service.
@@ -37,15 +31,15 @@ export function taskFor<Args extends any[], Return = void>(generatorFn: ECTask<A
  * @param {TaskProp} taskProp the task property (not instance) to call perform() on
  * @return {CallbackService} an XState compatable callback based service
  */
-export function taskService<TEvent extends Event<any>, Args extends any[], Return = void>(
-  taskProp: ECTask<Args, Return>
+export function taskService<TEvent extends Event<any>, Args extends unknown[], Return = void>(
+  taskProp: (...args: Args) => Promise<Return>
 ): (...args: Args) => (callback: TEvent) => void {
-  return (...args: Args) => (callback) => {
+  return (...args: Args) => (callback: Event<any>) => {
     let taskInstance = taskFor(taskProp).perform(...args);
 
     taskInstance.then(
-      (data: TEvent['data']) => callback({ type: 'DONE', data }),
-      (error: Error) =>
+      (data) => callback({ type: 'DONE', data }),
+      (error) =>
         didCancel(error) ? callback({ type: 'CANCEL' }) : callback({ type: 'ERROR', error })
     );
 

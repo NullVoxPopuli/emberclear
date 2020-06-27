@@ -3,12 +3,13 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { dropTask } from 'ember-concurrency-decorators';
 
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 import { EphemeralConnection } from '../ephemeral-connection';
 import { UnknownMessageError, DataTransferFailed } from 'emberclear/utils/errors';
-import CurrentUserService from 'emberclear/services/current-user';
 import { CurrentUserMustHaveAName } from 'emberclear/utils/errors';
+
+import type CurrentUserService from 'emberclear/services/current-user';
 
 export class SendDataConnection extends EphemeralConnection {
   @service currentUser!: CurrentUserService;

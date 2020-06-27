@@ -5,7 +5,7 @@ const path = require('path');
 const PostCSSImport = require('postcss-import');
 const PostCSSNext = require('postcss-cssnext');
 
-const nodeModules = path.join(__dirname, '..', '..', '..', 'node_modules');
+const nodeModules = path.join(__dirname, '..', '..', 'node_modules');
 const addonStyles = path.join(__dirname, 'addon', 'styles');
 
 const importConfig = PostCSSImport({

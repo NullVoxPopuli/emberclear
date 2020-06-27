@@ -14,7 +14,7 @@ import { typeIn } from '@ember/test-helpers';
 import { definition as unreadMessagesFloater } from 'emberclear/components/pod/chat/chat-history/unread-management/-page';
 import { dropdown } from '@emberclear/ui/test-support/page-objects';
 import { definition as embedModal } from 'emberclear/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
-import { definition as newMessagesFloater } from 'emberclear/components/chat/chat-history/new-messages/-page';
+import { newMessages } from 'emberclear/tests/helpers/pages/components/chat';
 
 export const selectors = {
   form: '[data-test-chat-entry-form]',
@@ -51,9 +51,7 @@ export const page = create({
   },
 
   chatOptions: {
-    scope: '[data-test-chat-options-dropdown]',
     ...dropdown,
-
     toggleEmbedModal: clickable('[data-test-embeds-toggle]'),
   },
 
@@ -64,7 +62,7 @@ export const page = create({
     scope: '[data-test-chat-submit]',
     isDisabled: attribute('disabled'),
   },
-  newMessagesFloater,
+  newMessagesFloater: newMessages,
   numberOfMessages: count('[data-test-chat-message]'),
   messages: collection('[data-test-chat-message]', {
     hasLoader: isVisible('.ellipsis-loader'),

@@ -1,9 +1,9 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import StoreService from '@ember-data/store';
-import Channel from 'emberclear/models/channel';
-import ArrayProxy from '@ember/array/proxy';
+import type Channel from 'emberclear/models/channel';
+import type ArrayProxy from '@ember/array/proxy';
+import type StoreService from '@ember-data/store';
 
 export default class ChannelManager extends Service {
   @service store!: StoreService;

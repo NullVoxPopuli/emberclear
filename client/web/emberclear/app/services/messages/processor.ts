@@ -2,9 +2,10 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { enqueueTask } from 'ember-concurrency-decorators';
 
-import CurrentUserService from 'emberclear/services/current-user';
-import ReceivedMessageHandler from 'emberclear/services/messages/handler';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
+
+import type CurrentUserService from 'emberclear/services/current-user';
+import type ReceivedMessageHandler from 'emberclear/services/messages/handler';
 
 export default class MessageProcessor extends Service {
   @service currentUser!: CurrentUserService;

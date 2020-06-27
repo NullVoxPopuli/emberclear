@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
 import Message from 'emberclear/models/message';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { taskFor } from 'ember-concurrency-ts';
 
 type Args = {
   positional: [Message[], Message];

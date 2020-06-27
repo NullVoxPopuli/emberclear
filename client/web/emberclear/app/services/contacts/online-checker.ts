@@ -1,14 +1,16 @@
 import Ember from 'ember';
-import StoreService from '@ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { timeout } from 'ember-concurrency';
 import { task } from 'ember-concurrency-decorators';
 
-import Contact, { Status } from 'emberclear/models/contact';
-import MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import MessageFactory from 'emberclear/services/messages/factory';
-import { taskFor } from 'emberclear/utils/ember-concurrency';
+import { Status } from 'emberclear/models/contact';
+import { taskFor } from 'ember-concurrency-ts';
+
+import type Contact from 'emberclear/models/contact';
+import type StoreService from '@ember-data/store';
+import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
+import type MessageFactory from 'emberclear/services/messages/factory';
 
 const THIRTY_SECONDS = 30000;
 

@@ -2,14 +2,14 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { v4 as uuid } from 'uuid';
 
-import CurrentUserService from 'emberclear/services/current-user';
-
 import { TYPE, TARGET } from 'emberclear/models/message';
 import Identity from 'emberclear/models/identity';
 import Channel from 'emberclear/models/channel';
-import Message from 'emberclear/models/message';
 import { buildChannelInfo, buildVote } from '../channels/-utils/channel-factory';
-import Vote from 'emberclear/models/vote';
+
+import type Vote from 'emberclear/models/vote';
+import type Message from 'emberclear/models/message';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class MessageFactory extends Service {
   @service store!: any;

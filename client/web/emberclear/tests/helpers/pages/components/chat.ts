@@ -1,6 +1,6 @@
 import { hasClass } from 'ember-cli-page-object';
 
-export const definition = {
+export const newMessages = {
   scope: '[data-test-new-messages-available]',
   isHidden: hasClass('hidden'),
 };

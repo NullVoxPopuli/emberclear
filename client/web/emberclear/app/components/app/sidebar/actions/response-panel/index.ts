@@ -2,9 +2,7 @@ import Component from '@glimmer/component';
 
 import { action } from '@ember/object';
 
-import Channel from 'emberclear/models/channel';
 import VoteChain from 'emberclear/models/vote-chain';
-import Vote from 'emberclear/models/vote';
 
 interface IArgs {
   vote: VoteChain;
