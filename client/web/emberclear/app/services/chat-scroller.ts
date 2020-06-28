@@ -27,20 +27,20 @@ export default class ChatScroller extends Service {
   // scroll to the bottom
   @dropTask
   async maybeNudge(appendedMessage: HTMLElement) {
-    await timeout(SCROLL_DELAY);
+    // await timeout(SCROLL_DELAY);
 
-    if (this.shouldScroll(appendedMessage)) {
-      appendedMessage.scrollIntoView({ behavior: 'smooth' });
-    }
+    // if (this.shouldScroll(appendedMessage)) {
+    //   appendedMessage.scrollIntoView({ behavior: 'smooth' });
+    // }
   }
 
   @restartableTask
   async scrollToBottom() {
-    const element = document.querySelector('.messages');
+    // const element = document.querySelector('.messages');
 
-    if (element) {
-      await element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'smooth' });
-    }
+    // if (element) {
+    //   await element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'smooth' });
+    // }
   }
 
   private shouldScroll(appendedMessage: HTMLElement) {

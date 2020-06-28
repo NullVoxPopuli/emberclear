@@ -11,14 +11,12 @@
   {{#vertical-collection @messages
     tagName='div'
     class='messages'
+    staticHeight=false
     renderFromLast=true
     estimateHeight=250
     as |message|
   }}
-    <Pod::Chat::ChatHistory::Message
-      @message={{message}}
-      {{maybe-nudge-to-bottom @messages message}}
-    />
+    <Pod::Chat::ChatHistory::Message @message={{message}} />
   {{/vertical-collection}}
 
   <Pod::Chat::ChatHistory::NewMessages />
