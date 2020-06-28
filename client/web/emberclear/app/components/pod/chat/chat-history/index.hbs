@@ -1,5 +1,9 @@
 <div
-  class='message-list'
+  class='
+    grid grid:gap-1/2
+    align-self:end h:max:100
+    flex:grow
+    overflow:y'
   {{unread-message-list-observer}}
   {{message-scroll-listener @messages}}
 >
@@ -9,11 +13,10 @@
   <Pod::Chat::ChatHistory::UnreadManagement @messages={{@messages}} @to={{@to}} />
 
   {{#vertical-collection @messages
-    tagName='div'
-    class='messages'
     staticHeight=false
     renderFromLast=true
     estimateHeight=250
+    bufferSize=5
     as |message|
   }}
     <Pod::Chat::ChatHistory::Message @message={{message}} />

@@ -27,6 +27,7 @@
 @import './buttons';
 @import './sizes';
 @import './animation';
+@import './scroll';
 
 .visually-hidden {
   position: absolute;

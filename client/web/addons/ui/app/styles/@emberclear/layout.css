@@ -11,6 +11,10 @@
   @apply --column-grid;
 }
 
+.grid\:gap-1\/2 {
+  grid-gap: calc(var(--grid-gap)/ 2);
+}
+
 .grid-autoflow {
   grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
 }
@@ -21,6 +25,14 @@
 
 .align-self\:center {
   align-self: center;
+}
+
+.align-self\:end {
+  align-self: flex-end;
+}
+
+.flex\:grow {
+  flex-grow: 1;
 }
 
 .flex-center {
