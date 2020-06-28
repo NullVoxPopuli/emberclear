@@ -26,6 +26,7 @@
   --state-warning: var(--color-yellow);
 
   /* shadows */
+  --focus-shadow: 0 0 0 2px hsla(253, 84%, 23%, 0.4);
   --shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
   --shadow-lg:
     0 0 4px rgba(0, 0, 0, 0.1),

@@ -82,6 +82,7 @@ export class SwipeHandler {
 
     this.pushUntilWidth = pushUntilWidth;
 
+    delete Hammer.defaults.cssProps.userSelect;
     this.recognizer = new Hammer(this.container);
     this.start();
   }
@@ -113,6 +114,10 @@ export class SwipeHandler {
     });
 
     this.recognizer.on('panstart panleft panright panend', (e) => {
+      if ((e.srcEvent as PointerEvent).pointerType === 'mouse') {
+        return;
+      }
+
       switch (e.type) {
         case 'panstart':
         case 'panleft':
@@ -237,3 +242,4 @@ export class SwipeHandler {
     }
   }
 }
+
