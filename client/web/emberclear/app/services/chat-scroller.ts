@@ -36,7 +36,7 @@ export default class ChatScroller extends Service {
 
   @restartableTask
   async scrollToBottom() {
-    // const element = document.querySelector('.messages');
+    // const element = document.querySelector('[data-test-message-container]');
 
     // if (element) {
     //   await element.scrollTo({ left: 0, top: element.scrollHeight, behavior: 'smooth' });
@@ -44,7 +44,7 @@ export default class ChatScroller extends Service {
   }
 
   private shouldScroll(appendedMessage: HTMLElement) {
-    const container = document.querySelector('.messages') as HTMLElement;
+    const container = document.querySelector('[data-test-message-container]') as HTMLElement;
 
     if (!container) return false;
 

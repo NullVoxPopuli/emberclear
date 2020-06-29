@@ -10,10 +10,6 @@
   & .chat-entry-container {
     align-self: end;
   }
-
-  & .message-list {
-    overflow-y: auto;
-  }
 }
 
 button.new-messages {

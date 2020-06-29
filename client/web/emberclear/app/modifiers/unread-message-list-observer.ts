@@ -28,7 +28,7 @@ export default class UnreadMessagesIntersectionObserver extends Modifier {
   }
 
   private respondToWindowFocus() {
-    const container = document.querySelector('.messages')!;
+    const container = document.querySelector('[data-test-message-container]')!;
     // TODO: add unread status to the DOM, and then only query unread messages
     const messages = container.querySelectorAll('.message');
 

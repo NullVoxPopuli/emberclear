@@ -8,12 +8,14 @@
       text-center
       transition-all
       has-shadow
+      grid:column grid:columns:left fixed
+      align:center
     '
   >
     <button
       data-test-dismiss
       type='button'
-      class='delete'
+      class='flex button:as-link p:1 color:current delete'
       {{on 'click' this.askNextTime}}
     >
       <FaIcon @icon='times' />
@@ -23,16 +25,30 @@
 
       <strong>{{t 'ui.notifications.prompt.title'}}</strong>
 
-      <div data-test-enable>
-        <button type='button' {{on 'click' this.enableNotifications}}>
+      <div data-test-enable class='flex flex:wrap justify:around'>
+        <button
+          type='button'
+          class='button:as-link color:current'
+          {{on 'click' this.enableNotifications}}
+        >
           {{t 'ui.notifications.prompt.enable'}}
         </button>
 
-        <button data-test-ask-later type='button' {{on 'click' this.askNextTime}}>
+        <button
+          data-test-ask-later
+          type='button'
+          class='button:as-link color:current'
+          {{on 'click' this.askNextTime}}
+        >
           {{t 'ui.notifications.prompt.askLater'}}
         </button>
 
-        <button data-test-ask-never type='button' {{on 'click' this.neverAskAgain}}>
+        <button
+          data-test-ask-never
+          type='button'
+          class='button:as-link color:current'
+          {{on 'click' this.neverAskAgain}}
+        >
           {{t 'ui.notifications.prompt.neverAsk'}}
         </button>
       </div>

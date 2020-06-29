@@ -20,7 +20,7 @@ export default class UnreadManagement extends Component<IArgs> {
   findMessagesContainer() {
     // TODO: remove this,
     //       scrolling should be handled by the chat-scroller service
-    this.messagesElement = document.querySelector('.messages') as HTMLElement;
+    this.messagesElement = document.querySelector('[data-test-message-container]') as HTMLElement;
   }
 
   get unreadMessages() {

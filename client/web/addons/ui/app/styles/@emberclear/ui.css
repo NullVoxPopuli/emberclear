@@ -28,6 +28,7 @@
 @import './sizes';
 @import './animation';
 @import './scroll';
+@import './colors';
 
 .visually-hidden {
   position: absolute;

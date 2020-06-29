@@ -26,13 +26,13 @@ export const selectors = {
 
 export const page = create({
   isScrollable() {
-    let messagesElement = document.querySelector('.messages')!;
+    let messagesElement = document.querySelector('[data-test-message-container]')!;
 
     return isScrollable(messagesElement);
   },
 
   scroll(amountInPx: number) {
-    let messagesElement = document.querySelector('.messages')!;
+    let messagesElement = document.querySelector('[data-test-message-container]')!;
 
     let current = messagesElement.scrollTop;
     let next = current + amountInPx;
