@@ -1,0 +1,7 @@
+.hover\:blur:hover {
+  text-shadow: 0px 0px 1px currentColor;
+}
+
+.hover\:color\:current:hover {
+  color: currentColor;
+}
