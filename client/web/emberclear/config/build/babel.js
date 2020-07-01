@@ -1,10 +1,11 @@
 module.exports = {
   buildBabelConfig({ CONCAT_STATS }) {
     return {
-      // 'ember-cli-babel': {
-      //   enableTypeScriptTransform: true,
-      //   // throwUnlessParallelizable: true,
-      // },
+      'ember-cli-babel': {
+        compileModules: true,
+        //   enableTypeScriptTransform: true,
+        //   // throwUnlessParallelizable: true,
+      },
       babel: {
         // presets: [
         //   [
