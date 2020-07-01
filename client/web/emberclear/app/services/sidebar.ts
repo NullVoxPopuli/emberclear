@@ -29,6 +29,8 @@ export default class Sidebar extends Service {
   show() {
     this.isShown = true;
 
+    document.querySelector('#sidebar').inert = false;
+
     if (this.slider) {
       return waitForPromise(this.slider.open());
     }
@@ -37,6 +39,8 @@ export default class Sidebar extends Service {
   @action
   hide() {
     this.isShown = false;
+
+    document.querySelector('#sidebar').inert = true;
 
     if (this.slider) {
       return waitForPromise(this.slider.close());
@@ -76,6 +80,7 @@ export default class Sidebar extends Service {
       sidebarWidth,
       flickRegion: 0.35,
       pushUntilWidth: 768,
+      // does inert need to be set on touch devices?
       onOpen: () => (this.isShown = true),
       onClose: () => (this.isShown = false),
     });
@@ -83,6 +88,8 @@ export default class Sidebar extends Service {
     if (this.isShown) {
       await this.slider.open();
     }
+
+    document.querySelector('#sidebar').inert = !this.isShown;
   }
 
   clearUnreadBelow() {
