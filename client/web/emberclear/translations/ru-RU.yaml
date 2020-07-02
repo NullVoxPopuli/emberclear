@@ -6,12 +6,12 @@ redditCommunity: Reddit Community
 twitter: Twitter
 emberjs: Ember.JS
 todo: 'Позднее: заполнить правильно'
-install: Install
-bundle-analysis: JS Bundle Analysis
+install: Установить
+bundle-analysis: Анализ бандла
 qrCode:
   error: Ошибка генерации QR кода
-  malformed: QR Code is malfomed
-  waitingForCamera: Awaaiting Camera Access
+  malformed: QR код содержит ошибку
+  waitingForCamera: Ожидание доступа к камере
 connection:
   connecting: Подключение...
   connected: Подключено!
@@ -26,22 +26,22 @@ connection:
     subscribe:
       notConnected: Не могу подписаться на канал без подключения к сети.
 errors:
-  genericTitle: "An Error occurred!"
-  genericRetry: "Oh no! Something went wrong. Retry?"
+  genericTitle: "Прозошла ошибка!"
+  genericRetry: "О нет! Что-то пошло не так. Повторить?"
   notFound:
-    title: Not Found
+    title: Не найдено
     help: The URL could not be navigated to. If the problem persists,
     link: please file an issue.
   permissions:
     enableCamera: You may need to allow this site access to your camera.
 buttons:
-  allow: Allow
-  deny: Deny
-  retry: Retry
+  allow: Разрешить
+  deny: Запретить
+  retry: Повторить
   delete: удалить
   resend: переотправить
   resendAutomatically: переотправлять автоматически
-  enable: Enable
+  enable: Включить
   save: Сохранить
   next: Далее
   back: Назад
@@ -54,7 +54,7 @@ buttons:
   scan: Сканировать
   sendSnippet: Отправить сниппет
   remove: Удалить
-  donate: Donate
+  donate: Поддержать
   donateEth: Поддержать в Ethereum
   donateXmr: Поддержать в Monero
   loginInstead: Войти с логином/паролем
@@ -88,11 +88,11 @@ images:
     ownIdentityQR: Это ваш профиль, представленный в виде QR кода
 input:
   label:
-    mnemonic: Mnemonic
+    mnemonic: Мнемоник
     name: Name
 status:
-  connected: Connected
-  enabled: Enabled
+  connected: Подключено
+  enabled: Включено
   deliveryFailed: 'Не удалось доставить сообщение'
   importing: Импорт ...
   updateAvailable: Доступна новая версия, нажмите сюда для обновления.
@@ -160,9 +160,9 @@ ui:
         enter: to select
         esc: to dismiss
   sidebar:
-    find: Find...
-    keepTyping: '{num} characters left to search...'
-    results: '{num} results'
+    find: Поиск...
+    keepTyping: 'осталось {num} символов до начала поиска...'
+    results: '{num} результатов'
     unread: Новые
     channels:
       title: Каналы
@@ -187,7 +187,7 @@ ui:
     markAllAsRead: Пометить все как прочитанные
     errors:
       contactNotFound: Не удаётся найти ваш контакт
-      channelNotFound: The channel could not be located.
+      channelNotFound: Не удаётся найти канал.
     sender:
       removed: удалено
     messages:
@@ -223,15 +223,15 @@ ui:
     license: >
       The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
   login:
-    title: "Welcome Back!"
+    title: "Добро пожаловать!"
     instructions: Вставьте или напишите ваш мнемонический ключ.
-    loading: Loaded {num} Contacts...
-    success: "Logged In!"
+    loading: Загружено {num} контактов...
+    success: "Вход выполнен!"
     warning: "Note that without another logged in device or your mnemonic, your account will be unrecoverable as there is no central storage to recovery from."
     transfer:
-      title: "Log in with QR Code"
+      title: "Зайти с помощью QR кода"
       prompt: "Scan this with emberclear to login and have all your data transferred instantly."
-      establishConnection: "Establishing Connection..."
+      establishConnection: "Установка соединения..."
       inProgress: Transferring Data...
       success: "You are about to be logged in on the other device!"
     verify:
@@ -268,11 +268,11 @@ ui:
   settings:
     title: Настройки
     tabs:
-      profile: Profile Info
-      interface: Interface
-      permissions: Permissions
+      profile: Профиль
+      interface: Интерфейс
+      permissions: Права
       relays: Relays
-      dangerZone: Danger Zone
+      dangerZone: Опасная зона
     relays:
       add: Add Relay
       URLs: URLs
@@ -280,8 +280,8 @@ ui:
       openGraph: open graph
       connectedUsers: connected users
     themes:
-      title: Themes
-      midnight: Midnight
+      title: Темы
+      midnight: Полночь
     copyProfileToDevice: Скопировать профиль на устройство
     hideKey: Скрыть приватный ключ
     showKey: Показать приватный ключ
