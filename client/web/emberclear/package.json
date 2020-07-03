@@ -186,7 +186,7 @@
     "testdouble": "3.16.0",
     "testem-failure-only-reporter": "0.0.1",
     "ts-node": "8.10.2",
-    "typescript": "3.9.5",
+    "typescript": "3.9.6",
     "webpack-bundle-analyzer": "3.8.0"
   }
 }
