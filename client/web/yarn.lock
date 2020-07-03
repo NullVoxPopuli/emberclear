@@ -8310,13 +8310,15 @@ eslint-config-prettier@6.11.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-plugin-decorator-position@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-2.1.0.tgz#d264bd4ac0debdce7c75dbb4cc6a8f836f492876"
-  integrity sha512-ztpI2POy5QPPCJnvPGad9KZg7CLHU8rYRm+Iuxyr9AMD6rwxWyUFPapdLjSERF1IZLQLt6fmMmrAv/bSEvtTuw==
+eslint-plugin-decorator-position@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-2.2.1.tgz#5826ad3788c82aae21f1a6f5457b4e0d84d7d960"
+  integrity sha512-dGyiME+jBit9KXGTpw/uL4p+wa8k1AZjF/6rexolxjgTWVKmxdLslkQEccHP8usIcWKekgVJ8AYIRdcv/GwrNg==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     ember-rfc176-data "^0.3.12"
+    eslint "7.3.1"
+    prettier "2.0.5"
     snake-case "^3.0.3"
 
 eslint-plugin-ember@8.8.0:
