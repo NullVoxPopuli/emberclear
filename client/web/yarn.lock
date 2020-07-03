@@ -7919,6 +7919,21 @@ ember-template-lint@2.8.0:
     resolve "^1.17.0"
     yargs "^15.3.1"
 
+ember-template-lint@2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.9.0.tgz#0580468e052c53451c1e983578beb7ee59885141"
+  integrity sha512-O+SeYRcG1Ka1VvHIOzRShYq4ZP9hjnOifpat/5ZOElEN40avv+YhOq5iCLZIUtRN3ryceP1W0Pmsnxuaqsq0Pg==
+  dependencies:
+    chalk "^4.0.0"
+    ember-template-recast "^4.1.4"
+    find-up "^4.1.0"
+    get-stdin "^8.0.0"
+    globby "^11.0.1"
+    is-valid-glob "^1.0.0"
+    micromatch "^4.0.2"
+    resolve "^1.17.0"
+    yargs "^15.3.1"
+
 ember-template-recast@^4.1.4:
   version "4.1.4"
   resolved "https://registry.npmjs.org/ember-template-recast/-/ember-template-recast-4.1.4.tgz#0552f4f27d33b17ac05a48107f369032eb45fb97"
