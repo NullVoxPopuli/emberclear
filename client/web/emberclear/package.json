@@ -126,7 +126,7 @@
     "ember-cli-deprecation-workflow": "1.0.1",
     "ember-cli-htmlbars": "5.2.0",
     "ember-cli-inject-live-reload": "2.0.2",
-    "ember-cli-page-object": "1.17.2",
+    "ember-cli-page-object": "1.17.3",
     "ember-cli-postcss": "6.0.1",
     "ember-cli-sri": "2.1.1",
     "ember-cli-typescript": "github:typed-ember/ember-cli-typescript#v4",
