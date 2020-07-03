@@ -15588,10 +15588,10 @@ shellwords@^0.1.1:
   resolved "https://registry.npmjs.org/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
-shoelace-css@1.0.0-beta24:
-  version "1.0.0-beta24"
-  resolved "https://registry.npmjs.org/shoelace-css/-/shoelace-css-1.0.0-beta24.tgz#a33a91894d88b04e002d56ce21ac1ecc5335d593"
-  integrity sha512-jr+ZFeR+7X8lAEHWlsi2JFVxiVRhOb4v6QP3xjaqz8LUQykEuUt9TIgEiLlA4rFS+8xJFqVlTbQRUgbgKFhtfg==
+shoelace-css@1.0.0-beta9:
+  version "1.0.0-beta9"
+  resolved "https://registry.yarnpkg.com/shoelace-css/-/shoelace-css-1.0.0-beta9.tgz#22b330d47a5bff9317f3e272ff1e4a2883043dcf"
+  integrity sha512-PXkxbgkCyRBKIzCCUlRdS9ILr1JTis/oTalgTlmuaMpZQmL+c+UAJ6SBHJUpyhQveEQnz1v9DTUBel2lsfbtpA==
 
 showdown@1.9.1:
   version "1.9.1"
