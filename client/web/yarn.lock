@@ -8063,16 +8063,16 @@ ember-source@3.19.0:
     semver "^6.1.1"
     silent-error "^1.1.1"
 
-ember-statecharts@0.10.0:
-  version "0.10.0"
-  resolved "https://registry.npmjs.org/ember-statecharts/-/ember-statecharts-0.10.0.tgz#a73aebf52fcc34e48f3aa0917f1f6c9aa2736a3c"
-  integrity sha512-bIv9J6uFI0m4rrlvzBxv+K4MAyRwDK2ElNFHDIFFl+uDhhhjn4CdmWaU1IheiGTgLU6grdzf9luzE+1g0ZNWvw==
+ember-statecharts@0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/ember-statecharts/-/ember-statecharts-0.11.0.tgz#0fb4a8b2fc15f9e69a1bdaf2ded5f6171865bd92"
+  integrity sha512-CUn5J7hn0HpF/pH6S4XXKq5G/uG7xWd85FMH41l7eHJL8Qkda0oKctA00Lp/FP10yMmfykgVDvsRJW1M1e3y9w==
   dependencies:
     "@glimmer/tracking" "^1.0.0"
     ember-auto-import "^1.5.3"
     ember-cli-babel "^7.18.0"
     ember-cli-htmlbars "^4.2.3"
-    ember-usable "https://github.com/pzuraq/ember-usable#0d03a50"
+    ember-usable "git+https://github.com/pzuraq/ember-usable.git#0d03a50"
     xstate "^4.8.0"
 
 ember-template-lint@2.8.0:
@@ -8143,9 +8143,10 @@ ember-test-waiters@2.1.2, ember-test-waiters@^1.1.1, ember-test-waiters@^2.0.0:
     ember-cli-version-checker "^5.1.1"
     semver "^7.1.3"
 
-"ember-usable@https://github.com/pzuraq/ember-usable#0d03a50":
+"ember-usable@git+https://github.com/pzuraq/ember-usable.git#0d03a50":
   version "0.0.0"
-  resolved "https://github.com/pzuraq/ember-usable#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
+  uid "0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
+  resolved "git+https://github.com/pzuraq/ember-usable.git#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
   dependencies:
     ember-cli-babel "^7.13.0"
     ember-cli-htmlbars "^4.2.0"
