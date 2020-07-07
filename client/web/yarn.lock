@@ -7611,10 +7611,10 @@ ember-concurrency-test-waiter@0.3.2:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-concurrency-ts@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ember-concurrency-ts/-/ember-concurrency-ts-0.1.1.tgz#93dfc00a03a149d023d1dae278921485d557a8fe"
-  integrity sha512-dUOY5gg7zFKeSEvjqY7AWNVJDXltzHIC143yEx7kddX/S/DBN8wsPsclmw1SaS0fO/O4BpzS1QQiPSUywo0LnQ==
+ember-concurrency-ts@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-ts/-/ember-concurrency-ts-0.2.0.tgz#0daa8d4334ec6dd78345d940615be9e45826b35a"
+  integrity sha512-cvdzoSzWWdtdGHOy4qisU0FI9F6Kz0/ZKXXszjW2fIE/dxeVuSKvnIppMnZO6K48L22v/Nq99Hj0OY4yCnz34A==
   dependencies:
     ember-cli-babel "^7.19.0"
     ember-cli-htmlbars "^4.3.1"
