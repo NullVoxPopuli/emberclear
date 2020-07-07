@@ -135,7 +135,7 @@
     "ember-concurrency-async": "0.2.1",
     "ember-concurrency-decorators": "2.0.0",
     "ember-concurrency-test-waiter": "0.3.2",
-    "ember-concurrency-ts": "0.1.1",
+    "ember-concurrency-ts": "0.2.0",
     "ember-destroyable-polyfill": "0.4.0",
     "ember-exam": "5.0.1",
     "ember-export-application-global": "2.0.1",
