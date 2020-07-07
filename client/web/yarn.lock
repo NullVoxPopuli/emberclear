@@ -1397,10 +1397,10 @@
     yargs "^15.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@3.2.2":
-  version "3.2.2"
-  resolved "https://registry.npmjs.org/@faltest/lifecycle/-/lifecycle-3.2.2.tgz#22dabbd2985c26c9377130383de961fddbb3fb97"
-  integrity sha512-JBQV1neQLWKl4CN6pyNimz/ccYPtWJHvEygaaaa0696iqn/AI9lpBm7NrOyNAMAD5EVl5CgGKH8Tp0JWc4rETQ==
+"@faltest/lifecycle@3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-3.2.3.tgz#99750dc2508a5622201e19fd65f31e5332a5e628"
+  integrity sha512-qn77dZyU5/zeWXvrYyn3gbo4uIhcbcAIna9gmroKoOtqSRW0gwzJ8YSyC5RTsLom1WlKjWDh7XE8DVWikSLdEg==
   dependencies:
     "@faltest/mocha" "^1.0.11"
     "@faltest/remote" "^4.0.0"
@@ -15466,10 +15466,10 @@ rollup-pluginutils@^2.6.0, rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@2.19.0:
-  version "2.19.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.19.0.tgz#6484868882281552b0dc33aa5bc5b36a9c920452"
-  integrity sha512-nny5Vs4jwY3vbQAXgOyU4ZDZqLvMKm/umnsVry/demVL6ve8ke1XhdpYE0eiWencASmx/qFPw6pP8P7MLJl9XA==
+rollup@2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.20.0.tgz#7456fed8424a5247954958751642e9fdd0ad7485"
+  integrity sha512-hkbp//ne1om8+PQRpd81zk0KDvbJxkLZdZJh1ZNxjd1EkI0H1TmYuHqqXx88yciS+5YnMom3geubQjTeeUnNNw==
   optionalDependencies:
     fsevents "~2.1.2"
 
