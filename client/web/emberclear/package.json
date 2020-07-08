@@ -183,7 +183,7 @@
     "rollup-plugin-multi-input": "1.1.1",
     "rollup-plugin-terser": "6.1.0",
     "rollup-plugin-visualizer": "4.0.4",
-    "testdouble": "3.16.0",
+    "testdouble": "3.16.1",
     "testem-failure-only-reporter": "0.0.1",
     "ts-node": "8.10.2",
     "typescript": "3.9.6",
