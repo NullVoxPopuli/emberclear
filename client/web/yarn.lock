@@ -11894,7 +11894,14 @@ locale-emoji@^0.3.0:
   resolved "https://registry.npmjs.org/locale-emoji/-/locale-emoji-0.3.0.tgz#7f38262f7c877bd27659725570335b263f88742a"
   integrity sha512-JGm8+naU49CBDnH1jksS3LecPdfWQLxFgkLN6ZhYONKa850pJ0Xt8DPGJnYK0ZuJI8jTuiDDPCDtSL3nyacXwg==
 
-localforage@1.7.4, localforage@^1.7.3:
+localforage@1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.8.1.tgz#f6c0a24b41ab33b10e4dc84342dd696f6f3e3433"
+  integrity sha512-azSSJJfc7h4bVpi0PGi+SmLQKJl2/8NErI+LhJsrORNikMZnhaQ7rv9fHj+ofwgSHrKRlsDCL/639a6nECIKuQ==
+  dependencies:
+    lie "3.1.1"
+
+localforage@^1.7.3:
   version "1.7.4"
   resolved "https://registry.npmjs.org/localforage/-/localforage-1.7.4.tgz#88b59cc9b25ae54c76bb2c080b21ec832c22d3f6"
   integrity sha512-3EmVZatmNVeCo/t6Te7P06h2alGwbq8wXlSkcSXMvDE2/edPmsVqTPlzGnZaqwZZDBs6v+kxWpqjVsqsNJT8jA==
