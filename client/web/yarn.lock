@@ -1384,10 +1384,10 @@
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
 
-"@faltest/cli@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.4.0.tgz#f563f830c716f2ce29cd0a297c36d9667e2e0a30"
-  integrity sha512-brkh0sPKz/8HkKNjuEgbUA9v9u8CgnrHUvJb6qFIHHk2gCCo1uMjnWAefqaYq6FKB5ReoK2wSUjf1T9K+PLKwg==
+"@faltest/cli@2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.4.1.tgz#8fd2716b27bca09db73ec3973a2d1e31b6467329"
+  integrity sha512-r7d0YKJJ4FnEoNBTLbS9aQ6wQW3NCDU/SK/6CHGqxirkQnQWuk1Ydd84TZZAG7HMKWRzuDMW696FL9ht2HBYVA==
   dependencies:
     "@faltest/mocha" "^1.0.7"
     "@faltest/remote" "^4.0.0"
@@ -5850,10 +5850,10 @@ code-point-at@^1.0.0:
   resolved "https://registry.npmjs.org/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codecov@3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/codecov/-/codecov-3.7.1.tgz#434cb8d55f18ef01672e5739d3d266696bebc202"
-  integrity sha512-JHWxyPTkMLLJn9SmKJnwAnvY09kg2Os2+Ux+GG7LwZ9g8gzDDISpIN5wAsH1UBaafA/yGcd3KofMaorE8qd6Lw==
+codecov@3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/codecov/-/codecov-3.7.2.tgz#998e68c8c1ef4b55cfcf11cd456866d35e13d693"
+  integrity sha512-fmCjAkTese29DUX3GMIi4EaKGflHa4K51EoMc29g8fBHawdk/+KEq5CWOeXLdd9+AT7o1wO4DIpp/Z1KCqCz1g==
   dependencies:
     argv "0.0.2"
     ignore-walk "3.0.3"
