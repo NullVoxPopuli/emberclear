@@ -45,7 +45,7 @@
     "postcss-import": "12.0.1",
     "shoelace-css": "1.0.0-beta24",
     "typescript": "3.9.7",
-    "uuid": "8.2.0"
+    "uuid": "8.3.0"
   },
   "devDependencies": {
     "@ember/optional-features": "1.3.0",
