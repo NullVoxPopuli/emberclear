@@ -52,7 +52,7 @@
     "@emberclear/config": "*",
     "@types/ember": "3.16.0",
     "@types/ember-qunit": "3.4.9",
-    "@types/ember__test-helpers": "1.7.0",
+    "@types/ember__test-helpers": "1.7.1",
     "@types/qunit": "2.9.1",
     "@types/rsvp": "4.0.3",
     "babel-eslint": "10.1.0",
