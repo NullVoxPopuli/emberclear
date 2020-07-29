@@ -169,7 +169,7 @@
     "ember-test-selectors": "4.1.0",
     "ember-test-waiters": "2.1.3",
     "ember-web-app": "4.0.0",
-    "eslint-plugin-ember": "8.9.1",
+    "eslint-plugin-ember": "8.9.2",
     "git-rev-sync": "2.0.0",
     "loader.js": "4.7.0",
     "qunit-assertions-extra": "0.8.1",
