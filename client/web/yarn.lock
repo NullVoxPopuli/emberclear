@@ -7720,7 +7720,7 @@ ember-decorators-polyfill@^1.0.6:
     ember-cli-version-checker "^3.1.3"
     ember-compatibility-helpers "^1.2.0"
 
-ember-destroyable-polyfill@1.0.0:
+ember-destroyable-polyfill@1.0.0, ember-destroyable-polyfill@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-destroyable-polyfill/-/ember-destroyable-polyfill-1.0.0.tgz#6369a4d45e05e5441e807115edf2bbfd3c430097"
   integrity sha512-5LK/J9YXhJF9j1Yi4oN4dF0uuSz47qmfmEWa4J5EjmWIVhrWlpICIyNi0Djp9KkWqQq2pwgrLWNVepvlFLjAjw==
@@ -7916,6 +7916,18 @@ ember-modifier@1.0.3, ember-modifier@^1.0.2, ember-modifier@^1.0.3:
     ember-cli-is-package-missing "^1.0.0"
     ember-cli-normalize-entity-name "^1.0.0"
     ember-cli-string-utils "^1.1.0"
+    ember-modifier-manager-polyfill "^1.2.0"
+
+ember-modifier@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ember-modifier/-/ember-modifier-2.0.0.tgz#097c9a76f96adecf7639ac5426957c3d05a269df"
+  integrity sha512-k5MYZ3XQBMDjUDC8Rhw/B/kQBLY3TUnmqVPwiXZC3Xe6ptSuMvzAAAuv82YEF5jtalHJsEudtS9ZD5Sx/prZKA==
+  dependencies:
+    ember-cli-babel "^7.21.0"
+    ember-cli-normalize-entity-name "^1.0.0"
+    ember-cli-string-utils "^1.1.0"
+    ember-cli-typescript "^3.1.3"
+    ember-destroyable-polyfill "^1.0.0"
     ember-modifier-manager-polyfill "^1.2.0"
 
 ember-named-blocks-polyfill@0.2.3:
