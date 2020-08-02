@@ -1,7 +1,10 @@
-<MobileMenuWrapper @openDetectonWidth={{30}} as |mmw|>
+<MobileMenuWrapper as |mmw|>
 
   {{#if this.currentUser.isLoggedIn}}
-    <mmw.MobileMenu as |mm|>
+    <mmw.MobileMenu
+      @mode='squeeze-reveal'
+      @isOpen={{this.sidebar.isShown}}
+    >
 
       <App::Sidebar
         class='sidebar-wrapper'

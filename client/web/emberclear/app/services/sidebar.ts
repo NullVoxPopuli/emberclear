@@ -4,10 +4,7 @@ import { action } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
-import { SwipeHandler } from 'emberclear/services/sidebar/swipe-handler';
-import { waitForPromise } from '@ember/test-waiters';
 import CurrentUserService from 'emberclear/services/current-user';
-import { valueOfProperty } from 'emberclear/utils/dom/css';
 
 export default class Sidebar extends Service {
   @service currentUser!: CurrentUserService;
@@ -17,9 +14,6 @@ export default class Sidebar extends Service {
 
   unreadObserver?: IntersectionObserver;
 
-  slider?: SwipeHandler;
-  contentElement?: HTMLElement;
-
   @notEmpty('unreadAbove') hasUnreadAbove!: boolean;
   @notEmpty('unreadBelow') hasUnreadBelow!: boolean;
 
@@ -28,61 +22,16 @@ export default class Sidebar extends Service {
   @action
   show() {
     this.isShown = true;
-
-    if (this.slider) {
-      return waitForPromise(this.slider.open());
-    }
   }
 
   @action
   hide() {
     this.isShown = false;
-
-    if (this.slider) {
-      return waitForPromise(this.slider.close());
-    }
   }
 
   @action
   toggle() {
     return this.isShown ? this.hide() : this.show();
-  }
-
-  async setup(content: HTMLElement) {
-    this.contentElement = content;
-
-    if (!this.currentUser.isLoggedIn) {
-      if (this.slider) {
-        await waitForPromise(this.slider.close());
-
-        if (this.slider) {
-          this.slider.destroy();
-          this.slider = undefined;
-        }
-      }
-
-      return;
-    }
-
-    let container = document.querySelector(
-      '.ember-application'
-    ) as HTMLElement; /* body or testing container */
-
-    let sidebarWidth = parseInt(valueOfProperty('sidenav-width'));
-
-    this.slider = new SwipeHandler({
-      container,
-      content,
-      sidebarWidth,
-      flickRegion: 0.35,
-      pushUntilWidth: 768,
-      onOpen: () => (this.isShown = true),
-      onClose: () => (this.isShown = false),
-    });
-
-    if (this.isShown) {
-      await this.slider.open();
-    }
   }
 
   clearUnreadBelow() {
@@ -130,13 +79,5 @@ export default class Sidebar extends Service {
         this.unreadAbove.addObject(id);
       }
     });
-  }
-
-  public destroy() {
-    if (this.slider) {
-      this.slider.destroy();
-    }
-
-    return super.destroy();
   }
 }

@@ -3,13 +3,9 @@ aside {
   grid-template-rows: auto 1fr auto;
   background: var(--sidebar-bg-color);
   padding: var(--grid-gap) 0;
-  user-select: none;
   position: fixed;
-  top: var(--top-nav-height);
+  top: 0;
   bottom: 0;
-  width: var(--sidenav-width);
-  overflow: hidden;
-  z-index: 0;
 
   & > * {
     padding-left: var(--grid-gap);
@@ -111,22 +107,8 @@ aside {
   }
 }
 
-main {
-  will-change: transform;
-  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
+.mobile-menu-wrapper {
   margin-top: var(--top-nav-height);
   max-height: calc(100% - var(--top-nav-height));
-  z-index: 1;
-  overflow-y: auto;
-  position: relative;
-  left: 0;
-  width: 100vw;
   background-color: var(--body-bg-color);
-
-  & > section {
-    min-height:
-      calc(
-        100vh - var(--top-nav-height)
-      );
-  }
 }

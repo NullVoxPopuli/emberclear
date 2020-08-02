@@ -26,6 +26,7 @@
 @import './components/top-nav';
 @import './components/unread-management';
 @import './utility/transitions';
+@import './utility/height';
 
 .wrap-anywhere {
   word-wrap: anywhere;
