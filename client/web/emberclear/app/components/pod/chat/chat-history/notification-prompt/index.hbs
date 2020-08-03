@@ -8,33 +8,42 @@
       text-center
       transition-all
       has-shadow
+      grid:column grid:columns:left fixed
+      align:center
     '
   >
-    <button
+    <Pod::Chat::ChatHistory::NotificationPrompt::Option
       data-test-dismiss
-      type='button'
-      class='delete'
+      class='flex p:1 delete'
       {{on 'click' this.askNextTime}}
     >
       <FaIcon @icon='times' />
-    </button>
+    </Pod::Chat::ChatHistory::NotificationPrompt::Option>
 
     <section>
 
       <strong>{{t 'ui.notifications.prompt.title'}}</strong>
 
-      <div data-test-enable>
-        <button type='button' {{on 'click' this.enableNotifications}}>
+      <div data-test-enable class='flex flex:wrap justify:around'>
+        <Pod::Chat::ChatHistory::NotificationPrompt::Option
+          {{on 'click' this.enableNotifications}}
+        >
           {{t 'ui.notifications.prompt.enable'}}
-        </button>
+        </Pod::Chat::ChatHistory::NotificationPrompt::Option>
 
-        <button data-test-ask-later type='button' {{on 'click' this.askNextTime}}>
+        <Pod::Chat::ChatHistory::NotificationPrompt::Option
+          data-test-ask-later
+          {{on 'click' this.askNextTime}}
+        >
           {{t 'ui.notifications.prompt.askLater'}}
-        </button>
+        </Pod::Chat::ChatHistory::NotificationPrompt::Option>
 
-        <button data-test-ask-never type='button' {{on 'click' this.neverAskAgain}}>
+        <Pod::Chat::ChatHistory::NotificationPrompt::Option
+          data-test-ask-never
+          {{on 'click' this.neverAskAgain}}
+        >
           {{t 'ui.notifications.prompt.neverAsk'}}
-        </button>
+        </Pod::Chat::ChatHistory::NotificationPrompt::Option>
       </div>
 
     </section>

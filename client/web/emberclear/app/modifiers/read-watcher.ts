@@ -81,7 +81,7 @@ export default class ReadWatcher extends Modifier<Args> {
         }
       },
       {
-        root: document.querySelector('.messages'),
+        root: document.querySelector('[data-test-message-container]'),
       }
     );
 

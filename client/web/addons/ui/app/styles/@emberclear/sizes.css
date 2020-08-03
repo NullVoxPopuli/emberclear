@@ -1,3 +1,7 @@
+.line-height\:1x {
+  line-height: 1rem;
+}
+
 .line-height\:2x {
   line-height: 2rem;
 }
@@ -8,4 +12,12 @@
 
 .h\:2x {
   height: 2rem;
+}
+
+.h\:max\:100 {
+  max-height: 100%;
+}
+
+.p\:1 {
+  padding: 1rem;
 }

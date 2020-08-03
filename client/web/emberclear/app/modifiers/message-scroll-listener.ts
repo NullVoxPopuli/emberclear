@@ -13,7 +13,6 @@ export default class MessageScrollListener extends Modifier<Args> {
   @service chatScroller!: ChatScroller;
 
   scrollHandler!: () => void;
-  messagesElement!: Element;
 
   get messages() {
     return this.args.positional[0];
@@ -36,21 +35,19 @@ export default class MessageScrollListener extends Modifier<Args> {
   }
 
   didReceiveArguments() {
-    this.messagesElement = this.element!.querySelector('.messages')!;
+    // if (this.element) {
+    //   if (!this.chatScroller.isViewingOlderMessages) {
+    //     this.element.scrollTop = this.messagesElement.scrollHeight;
+    //   }
 
-    if (this.messagesElement) {
-      if (!this.chatScroller.isViewingOlderMessages) {
-        this.messagesElement.scrollTop = this.messagesElement.scrollHeight;
-      }
-
-      this.messagesElement.removeEventListener('scroll', this.scrollHandler);
-      this.messagesElement.addEventListener('scroll', this.scrollHandler);
-    }
+    //   this.element.removeEventListener('scroll', this.scrollHandler);
+    //   this.element.addEventListener('scroll', this.scrollHandler);
+    // }
   }
 
   willRemove() {
-    if (this.messagesElement) {
-      this.messagesElement.removeEventListener('scroll', this.scrollHandler);
+    if (this.element) {
+      this.element.removeEventListener('scroll', this.scrollHandler);
     }
   }
 

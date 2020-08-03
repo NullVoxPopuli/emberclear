@@ -61,3 +61,13 @@ export function isMessageDMBetween(message: Message, me: string, chattingWithId:
 
   return isRelevant;
 }
+
+export function sortByNewestFirst(messages: Message[]) {
+  return messages.sort((a, b) => {
+    if (a.sentAt < b.sentAt) {
+      return 1;
+    }
+
+    return -1;
+  });
+}

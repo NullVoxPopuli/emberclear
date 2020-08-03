@@ -11,6 +11,14 @@
   @apply --column-grid;
 }
 
+.grid\:columns\:left {
+  grid-template-columns: auto 1fr;
+}
+
+.grid\:gap-1\/2 {
+  grid-gap: calc(var(--grid-gap)/ 2);
+}
+
 .grid-autoflow {
   grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
 }
@@ -19,12 +27,40 @@
   justify-content: start;
 }
 
+.justify\:around {
+  justify-content: space-around;
+}
+
+.align\:center {
+  align-items: center;
+}
+
 .align-self\:center {
   align-self: center;
+}
+
+.align-self\:end {
+  align-self: flex-end;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex\:grow {
+  flex-grow: 1;
+}
+
+.flex\:wrap {
+  flex-wrap: wrap;
 }
 
 .flex-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.fixed {
+  position: fixed;
 }

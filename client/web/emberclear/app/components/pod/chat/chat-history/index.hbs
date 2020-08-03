@@ -1,21 +1,31 @@
+<Pod::Chat::ChatHistory::NotificationPrompt />
+<Pod::Chat::ChatHistory::ConnectionStatus />
+<Pod::Chat::ChatHistory::UnreadManagement @messages={{@messages}} @to={{@to}} />
+
 <div
-  class='message-list'
+  data-test-message-container
+  class='
+    grid grid:gap-1/2
+    align-self:end h:max:100
+    flex:grow
+    overflow:y
+    rotate:x:180 rtl'
   {{unread-message-list-observer}}
   {{message-scroll-listener @messages}}
 >
 
-  <Pod::Chat::ChatHistory::NotificationPrompt />
-  <Pod::Chat::ChatHistory::ConnectionStatus />
-  <Pod::Chat::ChatHistory::UnreadManagement @messages={{@messages}} @to={{@to}} />
-
-  <div class='messages'>
-    {{#each @messages as |message|}}
-      <Pod::Chat::ChatHistory::Message
-        @message={{message}}
-        {{maybe-nudge-to-bottom @messages message}}
-      />
-    {{/each}}
-  </div>
+  {{#vertical-collection @messages
+    key='id'
+    staticHeight=false
+    estimateHeight=250
+    bufferSize=0
+    as |message|
+  }}
+    <Pod::Chat::ChatHistory::Message
+      class='rotate:x:180 ltr'
+      @message={{message}}
+    />
+  {{/vertical-collection}}
 
   <Pod::Chat::ChatHistory::NewMessages />
 </div>
