@@ -29,15 +29,13 @@ export const page = create({
   isPresent: isPresent('aside'),
 
   isOpen: getter(function () {
-    let element = find('main') as HTMLElement;
-    let style = element.getAttribute('style') || '';
-    let sidebarWidth = valueOfProperty('sidenav-width');
+    let element = find('.mobile-menu') as HTMLElement;
 
-    return style.includes(sidebarWidth);
+    return element.classList.contains('mobile-menu--open');
   }),
 
   content: {
-    scope: 'main',
+    scope: '#scrollContainer',
   },
 
   sidebar: {

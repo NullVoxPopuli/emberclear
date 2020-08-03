@@ -34,6 +34,7 @@ module('Acceptance | Navigation Scrolling', function (hooks) {
       hooks.beforeEach(async function () {
         await app.footer.faq().scrollIntoView(false);
         await triggerEvent(window as any, 'scroll');
+        await this.pauseTest();
       });
 
       test('the top of the page is not visible', function (assert) {
