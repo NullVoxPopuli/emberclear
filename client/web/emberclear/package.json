@@ -172,7 +172,7 @@
     "eslint-plugin-ember": "8.9.2",
     "git-rev-sync": "2.0.0",
     "loader.js": "4.7.0",
-    "qunit-assertions-extra": "0.8.1",
+    "qunit-assertions-extra": "0.8.5",
     "qunit-console-grouper": "0.2.0",
     "qunit-dom": "1.4.0",
     "qunit-xstate-test": "0.1.0",
