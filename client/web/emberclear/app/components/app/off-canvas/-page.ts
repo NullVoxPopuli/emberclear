@@ -6,7 +6,6 @@ import {
   sidebarContactsPage,
   sidebarActionsPage,
 } from 'emberclear/components/app/sidebar/chats/-page';
-import { valueOfProperty } from 'emberclear/utils/dom/css';
 
 const wrapper = '[data-test-offcanvas-wrapper]';
 const toggleButton = '[data-test-hamburger-toggle]';
