@@ -21,6 +21,17 @@
       window.global = window;
     </script>
 
+    <style>
+      /*
+         real -> test
+         html => #ember-testing-container
+         body => #ember-testing
+       */
+      #ember-testing-container {
+        overflow: hidden;
+      }
+    </style>
+
   </head>
   <body>
     {{content-for "body"}}

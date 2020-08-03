@@ -2,18 +2,14 @@
   box-sizing: border-box;
 }
 
-body,
 html {
-  width: 100%;
-  height: 100%;
-  height: 100vh;
-}
+  overflow-x: hidden;
 
-html.no-scrolling {
-  overflow: hidden;
-
-  & body {
-    overflow: hidden;
+  & body,
+  & .ember-application {
+    overflow-x: hidden;
+    margin-top: var(--top-nav-height);
+    min-height: calc(100vh - var(--top-nav-height));
   }
 }
 

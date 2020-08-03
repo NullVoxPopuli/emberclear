@@ -34,11 +34,10 @@ module('Acceptance | Navigation Scrolling', function (hooks) {
       hooks.beforeEach(async function () {
         await app.footer.faq().scrollIntoView(false);
         await triggerEvent(window as any, 'scroll');
-        await this.pauseTest();
       });
 
       test('the top of the page is not visible', function (assert) {
-        const position = app.scrollContainer().scrollTop;
+        const position = find('.ember-application').scrollTop;
 
         assert.notEqual(position, 0, 'the scroll container is not at the top');
       });
@@ -49,7 +48,7 @@ module('Acceptance | Navigation Scrolling', function (hooks) {
         });
 
         test('the top of the page is visible', function (assert) {
-          const position = app.scrollContainer().scrollTop;
+          const position = find('.ember-application').scrollTop;
 
           assert.equal(position, 0, 'the scroll container is at the top');
         });

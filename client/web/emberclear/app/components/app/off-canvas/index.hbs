@@ -1,4 +1,4 @@
-<MobileMenuWrapper as |mmw|>
+<MobileMenuWrapper @preventScroll={{false}} as |mmw|>
 
   {{#if this.currentUser.isLoggedIn}}
     <mmw.MobileMenu

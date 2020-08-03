@@ -108,7 +108,11 @@ aside {
 }
 
 .mobile-menu-wrapper {
-  margin-top: var(--top-nav-height);
   max-height: calc(100% - var(--top-nav-height));
   background-color: var(--body-bg-color);
+}
+
+.mobile-menu .mobile-menu__tray {
+  top: var(--top-nav-height);
+  height: calc(100vh - var(--top-nav-height));
 }
