@@ -15588,10 +15588,10 @@ quick-temp@^0.1.0, quick-temp@^0.1.2, quick-temp@^0.1.3, quick-temp@^0.1.5, quic
     rimraf "^2.5.4"
     underscore.string "~3.3.4"
 
-qunit-assertions-extra@0.8.1:
-  version "0.8.1"
-  resolved "https://registry.npmjs.org/qunit-assertions-extra/-/qunit-assertions-extra-0.8.1.tgz#c0607cea7d76b2f4c3950e03ab27ae55e3cf243f"
-  integrity sha512-nRRGW46s8JcRxt66MNJwaizjLRNWWkco2ZeDdWTUd2zcYz2ZH7K+1U2Fp5sVYH7jzdIleYS6IUympdU4iKvF9w==
+qunit-assertions-extra@0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/qunit-assertions-extra/-/qunit-assertions-extra-0.8.5.tgz#5440cf8176bd554af6fe108b75fb9e7604c88052"
+  integrity sha512-R0EVlDpVaKLvosmaJk5W6w8epfzne0dv464Y3MI8qh2OZpuAmjbVp4wRZKjEsoJNvuVkL9+rr/zqf9vmpsFUBw==
 
 qunit-console-grouper@0.2.0:
   version "0.2.0"
