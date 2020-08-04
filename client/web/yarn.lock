@@ -7771,14 +7771,14 @@ ember-autofocus-modifier@1.0.1:
     ember-cli-babel "^7.11.1"
     ember-modifier "^1.0.2"
 
-ember-autoresize-modifier@0.2.1:
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/ember-autoresize-modifier/-/ember-autoresize-modifier-0.2.1.tgz#c2d7f4e35b0f6293cc050e4beb24021faa109aa3"
-  integrity sha512-mMPjb6xJdkLWBld+uz7HglCa0sQgkYHo4BSmYabfgRgADFk5LLO44DWqM7JxhUu2wWRzkZnpOBMuTN1cT311jw==
+ember-autoresize-modifier@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ember-autoresize-modifier/-/ember-autoresize-modifier-0.3.0.tgz#489705a8ce792f09735275d284e327c13d46828b"
+  integrity sha512-hp2aLkf1GyM7k3+CLL8W94J2WXUoPPuJ89K5SAz30AdGMtBIDLocO2/w2hBrCTdfKJd/VzgoSMN4/wmqVC8y0g==
   dependencies:
-    ember-cli-babel "^7.17.2"
-    ember-cli-htmlbars "^4.2.2"
-    ember-modifier "^1.0.3"
+    ember-cli-babel "^7.21.0"
+    ember-cli-htmlbars "^5.2.0"
+    ember-modifier "^2.0.0"
 
 ember-autostash-modifier@0.1.20:
   version "0.1.20"
@@ -8736,7 +8736,7 @@ ember-modifier@1.0.3, ember-modifier@^1.0.2, ember-modifier@^1.0.3:
     ember-cli-string-utils "^1.1.0"
     ember-modifier-manager-polyfill "^1.2.0"
 
-ember-modifier@2.1.0:
+ember-modifier@2.1.0, ember-modifier@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ember-modifier/-/ember-modifier-2.1.0.tgz#99d85995caad8789220dc3208fb5ded45647dccf"
   integrity sha512-tVmRcEloYg8AZHheEMhBhzX64r7n6AFLXG69L/jiHePvQzet9mjV18YiIPStQf+fdjTAO25S6yzNPDP3zQjWtQ==
