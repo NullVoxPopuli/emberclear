@@ -12,7 +12,7 @@ class Router extends EmberRouter {
     this.on('routeDidChange', () => {
       // window would normally be used for scrolling, but that doesn't work
       // for testing...
-      if (Ember.Testing) {
+      if (Ember.testing) {
         document.querySelector('.ember-application').scrollTo(0, 0);
       } else {
         window.scrollTo(0, 0);
