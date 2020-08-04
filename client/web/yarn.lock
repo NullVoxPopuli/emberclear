@@ -2289,7 +2289,7 @@
     "@glimmer/wire-format" "^0.27.0"
     simple-html-tokenizer "^0.3.0"
 
-"@glimmer/component@1.0.1", "@glimmer/component@^1.0.1":
+"@glimmer/component@1.0.1", "@glimmer/component@^1.0.0", "@glimmer/component@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@glimmer/component/-/component-1.0.1.tgz#f304b2f9cf4f2762396abed2b8962486767e0b2e"
   integrity sha512-Bo+R6e2fnydZz0JQrV6E5cAIYvCEUQVh6mmXexVSgFmPr/7Q1DB/afAgTQrpK5vXUGRAU7sBB8gzoO0t7vl+Ng==
@@ -8694,14 +8694,14 @@ ember-maybe-import-regenerator@0.1.6, ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-mobile-menu@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ember-mobile-menu/-/ember-mobile-menu-2.0.2.tgz#bad8e08aa1df17c4073b9991e875ac9789873d83"
-  integrity sha512-tfWwP4zLxJrpvNFR298zzi1F4zMh5h+CiernKc2j0nQwc7kxl3g/lghJU+RiEFfYkzX6Aq/D21MVHp4Q6Qhjug==
+ember-mobile-menu@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/ember-mobile-menu/-/ember-mobile-menu-2.0.3.tgz#b0d8399426403a2b364d51f45c8f7c487ffb8d83"
+  integrity sha512-8qM7FwmJJzypNn35Jja6rWJT4gUPWrF3KtB+pb1Cv5JANEIpnYOx2kLsCGnyfx0AnH1q34t6kt+sUg7235rO5A==
   dependencies:
     "@ember/render-modifiers" "^1.0.2"
-    "@glimmer/component" "^1.0.1"
-    "@glimmer/tracking" "^1.0.1"
+    "@glimmer/component" "^1.0.0"
+    "@glimmer/tracking" "^1.0.0"
     body-scroll-lock "^3.0.1"
     ember-auto-import "^1.6.0"
     ember-cli-babel "^7.21.0"
