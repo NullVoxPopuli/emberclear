@@ -23,11 +23,11 @@ module('Acceptance | Navigation Scrolling', function (hooks) {
 
   module('When in a short viewport', function (hooks) {
     hooks.beforeEach(function () {
-      (app.scrollContainer()!.style as any) = 'height: 300px';
+      (document.querySelector('.ember-application') as any).style = 'height: 300px';
     });
 
     hooks.afterEach(function () {
-      (app.scrollContainer()!.style as any) = '';
+      (document.querySelector('.ember-application') as any).style = '';
     });
 
     module('When scrolled to the bottom', function (hooks) {
@@ -37,7 +37,7 @@ module('Acceptance | Navigation Scrolling', function (hooks) {
       });
 
       test('the top of the page is not visible', function (assert) {
-        const position = app.scrollContainer().scrollTop;
+        const position = document.querySelector('.ember-application')!.scrollTop;
 
         assert.notEqual(position, 0, 'the scroll container is not at the top');
       });
@@ -48,7 +48,7 @@ module('Acceptance | Navigation Scrolling', function (hooks) {
         });
 
         test('the top of the page is visible', function (assert) {
-          const position = app.scrollContainer().scrollTop;
+          const position = document.querySelector('.ember-application')!.scrollTop;
 
           assert.equal(position, 0, 'the scroll container is at the top');
         });

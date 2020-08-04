@@ -46,7 +46,7 @@
   /* top navigation / titlebar? */
   --top-nav-bg: var(--state-light);
   --top-nav-shadow: var(--shadow);
-  --top-nav-height: 50px;
+  --top-nav-height: 3.125rem; /* 50px */
   --top-nav-inverted-color: var(--state-light);
 
   /* sidebar */

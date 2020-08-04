@@ -1,17 +1,21 @@
-{{#if this.currentUser.isLoggedIn}}
-  <App::Sidebar
-    class='sidebar-wrapper'
-    id='sidebar'
-    {{on-key 'ctrl+space' this.sidebar.toggle}}
-  />
-{{/if}}
+<MobileMenuWrapper @preventScroll={{false}} as |mmw|>
 
+  {{#if this.currentUser.isLoggedIn}}
+    <mmw.MobileMenu
+      @mode='squeeze-reveal'
+      @isOpen={{this.sidebar.isShown}}
+    >
 
-<main
-  id='scrollContainer'
-  data-scroll-container
-  {{did-insert this.onInsert}}
-  {{did-update this.onInsert this.currentUser.isLoggedIn}}
->
-  {{yield}}
-</main>
+      <App::Sidebar
+        class='sidebar-wrapper'
+        id='sidebar'
+        {{on-key 'ctrl+space' this.sidebar.toggle}}
+      />
+
+    </mmw.MobileMenu>
+  {{/if}}
+
+  <mmw.Content id='scrollContainer'>
+    {{yield}}
+  </mmw.Content>
+</MobileMenuWrapper>

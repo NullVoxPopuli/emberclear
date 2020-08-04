@@ -1,9 +1,5 @@
 const ENV = {};
 
-ENV['routerScroll'] = {
-  scrollElement: '#scrollContainer',
-};
-
 ENV['fontawesome'] = {
   defaultPrefix: 'fas', // free-and-solid
   icons: {

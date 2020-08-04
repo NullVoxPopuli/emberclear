@@ -44,7 +44,8 @@
     "edition": "octane"
   },
   "resolutions": {
-    "ember-test-waiters": "2.1.3"
+    "ember-test-waiters": "2.1.3",
+    "@glimmer/tracking": "1.0.1"
   },
   "dependencies": {
     "@emberclear/ui": "*",
@@ -79,7 +80,7 @@
     "@embroider/core": "0.19.0",
     "@embroider/webpack": "0.19.0",
     "@glimmer/component": "1.0.1",
-    "@glimmer/tracking": "1.0.0",
+    "@glimmer/tracking": "1.0.1",
     "@html-next/vertical-collection": "1.0.0",
     "@rollup/plugin-node-resolve": "7.1.3",
     "@types/bip39": "3.0.0",
@@ -143,12 +144,13 @@
     "ember-hbs-minifier": "0.5.0",
     "ember-inflector": "3.0.1",
     "ember-intl": "5.3.1",
-    "ember-jsqr": "0.9.22",
+    "ember-jsqr": "0.9.26",
     "ember-keyboard": "6.0.0",
     "ember-load-initializers": "2.1.1",
     "ember-localforage-adapter": "github:NullVoxPopuli/ember-localforage-adapter#9423bebe9c72efce0a6c1bbf478e8af8d140b165",
     "ember-maybe-import-regenerator": "0.1.6",
     "ember-modifier": "2.1.0",
+    "ember-mobile-menu": "^2.0.1",
     "ember-named-blocks-polyfill": "0.2.3",
     "ember-percy": "1.6.0",
     "ember-purify": "5.0.1",
@@ -156,7 +158,6 @@
     "ember-render-helpers": "0.1.1",
     "ember-resolver": "8.0.0",
     "ember-router-helpers": "github:rwjblue/ember-router-helpers",
-    "ember-router-scroll": "3.3.3",
     "ember-service-worker": "0.8.4",
     "ember-service-worker-asset-cache": "0.6.4",
     "ember-service-worker-cache-fallback": "0.6.2",
