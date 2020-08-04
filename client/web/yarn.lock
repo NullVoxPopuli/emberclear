@@ -8694,10 +8694,10 @@ ember-maybe-import-regenerator@0.1.6, ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-mobile-menu@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/ember-mobile-menu/-/ember-mobile-menu-2.0.1.tgz#5ef566b731798f23f5111ba7c231c9ad1da61baf"
-  integrity sha512-U8vCEA8xsqcwgXWuug8q14cD6mwz0VlqvJMCrtQfV14ilq4NVSZ8u9SSX0fLGxkkSJGWjU395biHfS5LD0vcbQ==
+ember-mobile-menu@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/ember-mobile-menu/-/ember-mobile-menu-2.0.2.tgz#bad8e08aa1df17c4073b9991e875ac9789873d83"
+  integrity sha512-tfWwP4zLxJrpvNFR298zzi1F4zMh5h+CiernKc2j0nQwc7kxl3g/lghJU+RiEFfYkzX6Aq/D21MVHp4Q6Qhjug==
   dependencies:
     "@ember/render-modifiers" "^1.0.2"
     "@glimmer/component" "^1.0.1"
