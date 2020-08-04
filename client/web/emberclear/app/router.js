@@ -1,9 +1,24 @@
-import EmberRouterScroll from 'ember-router-scroll';
+import Ember from 'ember';
+import EmberRouter from '@ember/routing/router';
 import config from 'emberclear/config/environment';
 
-class Router extends EmberRouterScroll {
+class Router extends EmberRouter {
   location = config.locationType;
-  rootURL = config.rootURl;
+  rootURL = config.rootURL;
+
+  constructor() {
+    super(...arguments);
+
+    this.on('routeDidChange', () => {
+      // window would normally be used for scrolling, but that doesn't work
+      // for testing...
+      if (Ember.Testing) {
+        document.querySelector('.ember-application').scrollTo(0, 0);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    });
+  }
 }
 
 Router.map(function () {

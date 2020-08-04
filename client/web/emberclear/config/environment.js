@@ -9,6 +9,7 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'auto', // default
+    historySupportMiddleware: true,
 
     EmberENV: {
       FEATURES: {},

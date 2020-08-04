@@ -2797,7 +2797,7 @@
     "@types/jquery" "*"
     "@types/rsvp" "*"
 
-"@types/ember@*", "@types/ember@3.16.0", "@types/ember@^3.1.0":
+"@types/ember@*", "@types/ember@3.16.0":
   version "3.16.0"
   resolved "https://registry.npmjs.org/@types/ember/-/ember-3.16.0.tgz#1627b42087556ee366258e37b31ae81571e6e0ca"
   integrity sha512-9TBWidO/9ydThgh0Fy7y2DNX7Pb8REoV7tYK+HBFZ2iyc1TwXTNt15gVz0cCyorvsve2OS+vt5wzYvlqgSGlwg==
@@ -3115,7 +3115,7 @@
     "@types/glob" "*"
     "@types/node" "*"
 
-"@types/rsvp@*", "@types/rsvp@4.0.3", "@types/rsvp@^4.0.2":
+"@types/rsvp@*", "@types/rsvp@4.0.3":
   version "4.0.3"
   resolved "https://registry.npmjs.org/@types/rsvp/-/rsvp-4.0.3.tgz#4a1223158453257bce09d42b9eef7cfa6d257482"
   integrity sha512-OpRwxbgx16nL/0/7ol0WoLLyLaMXBvtPOHjqLljnzAB/E7Qk1wtjytxgBhOTBMZvuLXnJUqfnjb4W/QclNFvSA==
@@ -7713,18 +7713,6 @@ elliptic@^6.0.0, elliptic@^6.5.2:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-ember-app-scheduler@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/ember-app-scheduler/-/ember-app-scheduler-5.0.1.tgz#8f73a6c04538b4d156d6e179ce29a29c4a0058dc"
-  integrity sha512-WnsdC5MF3/2ArANFJ/m5jH/TIUCQKaxOp+AU9oZhrzd1ucm30sx/MSOOtnpktuJMSjfWXWTOLhAfPKlT08bGjw==
-  dependencies:
-    "@types/ember" "^3.1.0"
-    "@types/rsvp" "^4.0.2"
-    ember-cli-babel "^7.19.0"
-    ember-cli-typescript "^3.1.4"
-    ember-compatibility-helpers "^1.1.2"
-    ember-test-waiters "^2.0.0"
-
 ember-assign-polyfill@^2.6.0:
   version "2.6.0"
   resolved "https://registry.npmjs.org/ember-assign-polyfill/-/ember-assign-polyfill-2.6.0.tgz#07847e3357ee35b33f886a0b5fbec6873f6860eb"
@@ -8904,15 +8892,6 @@ ember-router-generator@^2.0.0:
   dependencies:
     ember-cli-babel "^7.20.0"
 
-ember-router-scroll@3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/ember-router-scroll/-/ember-router-scroll-3.3.3.tgz#65321318b74bfe5b06a243953d1b7d5e9faf1e82"
-  integrity sha512-n+TpZ9Dt/UQaRiNpNVTOUur+TsA6hAkorgi4hj7kjbchPd7/n54ZXUTSH0GVyMEkqsZHJeAmuNADjv3zHTfQDQ==
-  dependencies:
-    ember-app-scheduler "^5.0.1"
-    ember-cli-babel "^7.11.1"
-    ember-compatibility-helpers "^1.1.2"
-
 ember-service-worker-asset-cache@0.6.4:
   version "0.6.4"
   resolved "https://registry.npmjs.org/ember-service-worker-asset-cache/-/ember-service-worker-asset-cache-0.6.4.tgz#1b3f098a83442c6fc9dbff20f6e231154dde39f2"
@@ -9088,7 +9067,7 @@ ember-test-selectors@4.1.0:
     ember-cli-babel "^7.19.0"
     ember-cli-version-checker "^5.0.2"
 
-ember-test-waiters@2.1.3, ember-test-waiters@^1.1.1, ember-test-waiters@^2.0.0:
+ember-test-waiters@2.1.3, ember-test-waiters@^1.1.1:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/ember-test-waiters/-/ember-test-waiters-2.1.3.tgz#40fe7b674d5ef1005f665e0e040753f88c5a2175"
   integrity sha512-xDjvq8/1C3b9z3NGpez7aslbq5gsLrxsdjD3apyziHkImh/PTeXZr2bxo/YAUgOwGOtpZ1So0fIsppiSN0u1Ng==
