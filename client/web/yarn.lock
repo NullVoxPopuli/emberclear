@@ -2366,6 +2366,13 @@
   dependencies:
     "@simple-dom/interface" "^1.4.0"
 
+"@glimmer/interfaces@^0.54.2":
+  version "0.54.2"
+  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.54.2.tgz#d7735869050ca7e1731424aa64ae37b1cb853091"
+  integrity sha512-Gqvr6Eh4Xy7lF14GZi6RbnVeA7gDj2pXMJtdh68TFL2u/VqfhTXy4+IFRvUh4bpJj+1YayNFupuJSn0oVrEDGQ==
+  dependencies:
+    "@simple-dom/interface" "^1.4.0"
+
 "@glimmer/low-level@^0.42.2":
   version "0.42.2"
   resolved "https://registry.npmjs.org/@glimmer/low-level/-/low-level-0.42.2.tgz#52c745414d1d04c4245c369bd132c0e786c816ef"
@@ -2440,6 +2447,16 @@
     handlebars "^4.7.4"
     simple-html-tokenizer "^0.5.9"
 
+"@glimmer/syntax@^0.54.1":
+  version "0.54.2"
+  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.54.2.tgz#60d08458002c106791d4c5b648227ec0f29a1b2a"
+  integrity sha512-EpQGbbzfvBmeztc15SsriyAgD0aKgsxMOARVtW5buvCPw3dGYYNdSeyUJ3vInbrFGxkZLV390ht8VCbsDbqtlA==
+  dependencies:
+    "@glimmer/interfaces" "^0.54.2"
+    "@glimmer/util" "^0.54.2"
+    handlebars "^4.7.4"
+    simple-html-tokenizer "^0.5.9"
+
 "@glimmer/tracking@1.0.1", "@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@glimmer/tracking/-/tracking-1.0.1.tgz#77d8b16e9e0be2cc8e4a00b77259fdc208802840"
@@ -2475,6 +2492,15 @@
   dependencies:
     "@glimmer/env" "0.1.7"
     "@glimmer/interfaces" "^0.51.1"
+    "@simple-dom/interface" "^1.4.0"
+
+"@glimmer/util@^0.54.2":
+  version "0.54.2"
+  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.54.2.tgz#211b027982006b6bcd393312cf474c7ee17922a0"
+  integrity sha512-ggJY3qayAxjiMuoToxxtwai+AI2KXrJSbOEvbvBV9K+IMykmdjhWGRWWEONnd9xJzQDlus5D9ROMypOEvsbS9w==
+  dependencies:
+    "@glimmer/env" "0.1.7"
+    "@glimmer/interfaces" "^0.54.2"
     "@simple-dom/interface" "^1.4.0"
 
 "@glimmer/validator@^0.44.0":
@@ -9024,6 +9050,22 @@ ember-statecharts@0.11.0:
     ember-usable "https://github.com/pzuraq/ember-usable#0d03a50"
     xstate "^4.8.0"
 
+ember-template-lint@2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.10.0.tgz#15283b1a1d2f9d7454735e3387a1d0e6c3f1be44"
+  integrity sha512-pSqXckhhAmdrA40Wo41sgsuhQKSnr5F+ovMQ+kbX7CxTvrg/7ox8xNcI/nxvwyhgClofFPxxn9rocqJ6sIS+JA==
+  dependencies:
+    chalk "^4.0.0"
+    ember-template-recast "^4.1.5"
+    find-up "^4.1.0"
+    get-stdin "^8.0.0"
+    globby "^11.0.1"
+    is-valid-glob "^1.0.0"
+    micromatch "^4.0.2"
+    resolve "^1.17.0"
+    v8-compile-cache "^2.1.1"
+    yargs "^15.4.1"
+
 ember-template-lint@2.8.0:
   version "2.8.0"
   resolved "https://registry.npmjs.org/ember-template-lint/-/ember-template-lint-2.8.0.tgz#01ddc6daf9c8497fe5cfcc55cde25f203a7d8bd3"
@@ -9039,21 +9081,6 @@ ember-template-lint@2.8.0:
     resolve "^1.17.0"
     yargs "^15.3.1"
 
-ember-template-lint@2.9.1:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.9.1.tgz#c48f724ef7ddd0a105c94af4f33fb2a53cf8df67"
-  integrity sha512-WYaizP9DFMEr8hK+o6cga8I6DZIl2aTAdwk1H+j+qLPGLFMsk5CkJsoI7q9EVV9GH1qcUGGpM9Pz+NxxSAVhQQ==
-  dependencies:
-    chalk "^4.0.0"
-    ember-template-recast "^4.1.4"
-    find-up "^4.1.0"
-    get-stdin "^8.0.0"
-    globby "^11.0.1"
-    is-valid-glob "^1.0.0"
-    micromatch "^4.0.2"
-    resolve "^1.17.0"
-    yargs "^15.4.1"
-
 ember-template-recast@^4.1.4:
   version "4.1.4"
   resolved "https://registry.npmjs.org/ember-template-recast/-/ember-template-recast-4.1.4.tgz#0552f4f27d33b17ac05a48107f369032eb45fb97"
@@ -9068,6 +9095,21 @@ ember-template-recast@^4.1.4:
     slash "^3.0.0"
     tmp "^0.1.0"
     workerpool "^5.0.4"
+
+ember-template-recast@^4.1.5:
+  version "4.1.5"
+  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-4.1.5.tgz#cc6581c9c7dff8b8345991326ee5b7c132757db3"
+  integrity sha512-+k4v1vmeSlqT8y5T/B25JE8iD1tkrs7TwDofMsqHgPw0Zr8hwdnx/FfB1ZqOscyiiaZiFvNh7eYv+vXaUtKJDg==
+  dependencies:
+    "@glimmer/syntax" "^0.54.1"
+    async-promise-queue "^1.0.5"
+    colors "^1.4.0"
+    commander "^5.1.0"
+    globby "^11.0.1"
+    ora "^4.0.4"
+    slash "^3.0.0"
+    tmp "^0.2.1"
+    workerpool "^6.0.0"
 
 "ember-test-helpers-extra@github:NullVoxPopuli/ember-test-helpers-extra":
   version "0.1.0"
@@ -18052,6 +18094,13 @@ tmp@^0.1.0:
   dependencies:
     rimraf "^2.6.3"
 
+tmp@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.2.1.tgz#8457fc3037dcf4719c251367a1af6500ee1ccf14"
+  integrity sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
+  dependencies:
+    rimraf "^3.0.0"
+
 tmpl@1.0.x:
   version "1.0.4"
   resolved "https://registry.npmjs.org/tmpl/-/tmpl-1.0.4.tgz#23640dd7b42d00433911140820e5cf440e521dd1"
@@ -19152,6 +19201,11 @@ workerpool@^5.0.1, workerpool@^5.0.4:
   version "5.0.4"
   resolved "https://registry.npmjs.org/workerpool/-/workerpool-5.0.4.tgz#4f67cb70ff7550a27ab94de25b0b843cd92059a2"
   integrity sha512-Sywova24Ow2NQ24JPB68bI89EdqMDjUXo4OpofK/QMD7C2ZVMloYBgQ5J3PChcBJHj2vspsmGx1/3nBKXtUkXQ==
+
+workerpool@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/workerpool/-/workerpool-6.0.0.tgz#85aad67fa1a2c8ef9386a1b43539900f61d03d58"
+  integrity sha512-fU2OcNA/GVAJLLyKUoHkAgIhKb0JoCpSjLC/G2vYKxUjVmQwGbRVeoPJ1a8U4pnVofz4AQV5Y/NEw8oKqxEBtA==
 
 wrap-ansi@^5.1.0:
   version "5.1.0"
