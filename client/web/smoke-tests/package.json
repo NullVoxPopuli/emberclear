@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@faltest/cli": "2.4.2",
-    "@faltest/lifecycle": "3.2.4",
+    "@faltest/lifecycle": "3.2.5",
     "@faltest/page-objects": "3.1.2",
     "babel-eslint": "10.1.0",
     "eslint": "7.6.0",
