@@ -2163,10 +2163,10 @@
     yargs "^15.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@3.2.5":
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-3.2.5.tgz#ef56c6d37e3d6317579676e5697b07467b45aca8"
-  integrity sha512-h7UvyCS9ScQ6v9UqrwWatmevaEM1Q1fF1UeQ3md9LE+yduoqICmjqUEJ7N1OQ/itQbcnNLduc+G9Yf4JGNe8WA==
+"@faltest/lifecycle@3.2.6":
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-3.2.6.tgz#6b55d1650abc25d102de9aafdc4ea6d52eb9f82b"
+  integrity sha512-MTGyWxghGj1t/wBqjUak4K46IN01Ra+3gfpn/4+rPfs+kUZbJt8bvfhF7LAA84+Gz0saIdE+bmQhliRHdoaqXQ==
   dependencies:
     "@faltest/mocha" "^2.0.0"
     "@faltest/remote" "^4.0.0"
@@ -7810,13 +7810,13 @@ ember-auto-import@1.6.0, ember-auto-import@^1.5.2, ember-auto-import@^1.5.3, emb
     walk-sync "^0.3.3"
     webpack "~4.28"
 
-ember-autofocus-modifier@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/ember-autofocus-modifier/-/ember-autofocus-modifier-1.0.1.tgz#c61c3c8f50b53f12c02d9db098a2557161c6251c"
-  integrity sha512-AZ24R2CkSL97glLM+6MG8emwWgHIj06p4LLUXt+ybCPJA4bvnZosoruq7hboXF319efoQZ2YqaHv0Oyjo0SEOA==
+ember-autofocus-modifier@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ember-autofocus-modifier/-/ember-autofocus-modifier-1.1.0.tgz#2180e560699290b8e2abba40f265844368cb4b26"
+  integrity sha512-o5q6vkRg95pJoF8zNo7zHT8/RRNJv3AcHiBXg0UGKfEi6XjrbiTa48kjUPOz3+zz2CrJLZCDcVLUGEk2tZG0Jg==
   dependencies:
-    ember-cli-babel "^7.11.1"
-    ember-modifier "^1.0.2"
+    ember-cli-babel "^7.22.1"
+    ember-modifier "^2.1.0"
 
 ember-autoresize-modifier@0.3.0:
   version "0.3.0"
@@ -8783,7 +8783,7 @@ ember-modifier-manager-polyfill@^1.1.0, ember-modifier-manager-polyfill@^1.2.0:
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.2.0"
 
-ember-modifier@1.0.3, ember-modifier@^1.0.2, ember-modifier@^1.0.3:
+ember-modifier@1.0.3, ember-modifier@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/ember-modifier/-/ember-modifier-1.0.3.tgz#ab18250666aad17c0d9170feb178e954148eb4ed"
   integrity sha512-vWuFyvdkULUyasvEXxe5lcfuPZV/Uqe+b0IQ1yU+TY1RSJnFdVUu/CVHT8Bu4HUJInqzAihwPMTwty7fypzi5Q==
