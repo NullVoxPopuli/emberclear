@@ -3616,10 +3616,10 @@
   resolved "https://registry.npmjs.org/@xstate/graph/-/graph-1.1.0.tgz#827d21db610713fd9ac68fd53b8393b98481a8bf"
   integrity sha512-o9lxrZ45J6h8cSfbXsihtmLkuC3ACXpwWM2NUj8Gp1tOQ/ivQBnSBwWBeoG5UNoGM20tt7F++caU81rXgeSTFw==
 
-"@xstate/test@0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@xstate/test/-/test-0.4.0.tgz#27cb677d5bb5539c89ae4c0616487b5b52e842e5"
-  integrity sha512-0Ts8zZ08bgugpOF9/gbqj3U9+Uy5ggUVivollqZcLzHHCMnihYH82QnjoAY/tp9SQZAZefPntbHIX1W/1hOLBQ==
+"@xstate/test@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@xstate/test/-/test-0.4.1.tgz#115aed246dc352a52da3e5594d273ad9ccf483df"
+  integrity sha512-N8xEWcnWPVVpRkVgGGhpHGTJKLnm2UyGqkvk7eNaMqWdcg8fT6SyRSLtzJuqtJe8wZviScTr7P71Yp1cLawDWg==
   dependencies:
     "@xstate/graph" "^1.1.0"
     chalk "^2.4.2"
