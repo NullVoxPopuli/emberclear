@@ -2162,12 +2162,12 @@
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
 
-"@faltest/cli@2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.4.2.tgz#58ea38768aa51deaa24a0ab80b8f9d39b9f36037"
-  integrity sha512-Wg9rAeU0lTj4W9sUEqtyhahqNlr7fgwyGhYHyg9bxdSsHh4Z61ry6QESUlpB+nesWRIkqlixWA7W5Qo3cqMZAg==
+"@faltest/cli@2.4.3":
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.4.3.tgz#ac3095cb013bfadce934ae017357ac7cebe4e1ac"
+  integrity sha512-u6ERjANHneoz/bc1Bqc+F5aKGbbqVE5rm+ZdeMSzjCbWAjnoO+25PX4u5w05l0tGAhg+PT6a6wWoB1imK0E6RA==
   dependencies:
-    "@faltest/mocha" "^2.0.0"
+    "@faltest/mocha" "^3.0.0"
     "@faltest/remote" "^4.0.0"
     "@faltest/utils" "^2.0.4"
     mocha "^7.0.1"
@@ -2175,25 +2175,26 @@
     yargs "^15.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@3.2.6":
-  version "3.2.6"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-3.2.6.tgz#6b55d1650abc25d102de9aafdc4ea6d52eb9f82b"
-  integrity sha512-MTGyWxghGj1t/wBqjUak4K46IN01Ra+3gfpn/4+rPfs+kUZbJt8bvfhF7LAA84+Gz0saIdE+bmQhliRHdoaqXQ==
+"@faltest/lifecycle@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-4.0.1.tgz#18956d59f05f2e972208dfe652da7ec5c1391c8e"
+  integrity sha512-M5HoOLIet90fsSzAN/sDeYppdAe/C00TGtKWiPiKD7tFoE42wHJ0FUY/CZvzUFShMq+x41AfE5z0ZEOi2ZSfRg==
   dependencies:
-    "@faltest/mocha" "^2.0.0"
     "@faltest/remote" "^4.0.0"
     "@faltest/utils" "^2.0.4"
   optionalDependencies:
     "@faltest/browser" "^2.0.5"
 
-"@faltest/mocha@^2.0.0":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@faltest/mocha/-/mocha-2.0.1.tgz#3fd418417ac5b66a4cef69a5dc880e5e467adade"
-  integrity sha512-VmNcbfL5PKwjRLbNq5ouVffY6bLtKUnbaN/v5p9YPdlEHK9jY1dtdP7fSPoDhw2tIvm0PuHqHa1LiGkEjxjvCA==
+"@faltest/mocha@^3.0.0":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@faltest/mocha/-/mocha-3.1.2.tgz#99d2b6555c572f6dd2b5cd6eb9e3c05ffbfcacc7"
+  integrity sha512-Z8xcGcQY9S1ByHQ3E71V5SD5awWQS8/K7Iin83EqZoOyaLkjgjjIBOlhR6QPVFY5+t2aMIKFv3707wh3qEv+2w==
   dependencies:
+    "@faltest/utils" "^2.0.4"
     choma "^1.2.1"
     filenamify "^4.1.0"
     glob "^7.1.4"
+    mkdirp "0.5.5"
     mocha-helpers "^4.3.0"
 
 "@faltest/page-objects@3.1.2":
@@ -18458,10 +18459,10 @@ typescript-memoize@^1.0.0-alpha.3:
   dependencies:
     core-js "2.4.1"
 
-typescript@3.9.7:
-  version "3.9.7"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
-  integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
+typescript@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.2.tgz#7ea7c88777c723c681e33bf7988be5d008d05ac2"
+  integrity sha512-e4ERvRV2wb+rRZ/IQeb3jm2VxBsirQLpQhdxplZ2MEzGvDkkMmPglecnNDfSUBivMjP93vRbngYYDQqQ/78bcQ==
 
 uc.micro@^1.0.1, uc.micro@^1.0.5:
   version "1.0.6"
