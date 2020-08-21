@@ -2175,10 +2175,10 @@
     yargs "^15.0.0"
     yn "^3.1.1"
 
-"@faltest/lifecycle@4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-4.0.1.tgz#18956d59f05f2e972208dfe652da7ec5c1391c8e"
-  integrity sha512-M5HoOLIet90fsSzAN/sDeYppdAe/C00TGtKWiPiKD7tFoE42wHJ0FUY/CZvzUFShMq+x41AfE5z0ZEOi2ZSfRg==
+"@faltest/lifecycle@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-4.0.2.tgz#aea2604c068c7d813929e6802d1fca590e4a8d78"
+  integrity sha512-ZOfk+xIoRmfCt5JNPc0Dlb/iiipf/P2gipymoePury7VNVupMiyEm1BU+/FnM16tmrq3XCgaMSmR1gNDJUWS0w==
   dependencies:
     "@faltest/remote" "^4.0.0"
     "@faltest/utils" "^2.0.4"
@@ -18333,10 +18333,10 @@ tryer@^1.0.1:
   resolved "https://registry.npmjs.org/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
   integrity sha512-c3zayb8/kWWpycWYg87P71E1S1ZL6b6IJxfb5fvsUgsf0S2MVGaDhDXXjDMpdCpfWXqptc+4mXwmiy1ypXqRAA==
 
-ts-node@8.10.2:
-  version "8.10.2"
-  resolved "https://registry.npmjs.org/ts-node/-/ts-node-8.10.2.tgz#eee03764633b1234ddd37f8db9ec10b75ec7fb8d"
-  integrity sha512-ISJJGgkIpDdBhWVu3jufsWpK3Rzo7bdiIXJjQc0ynKxVOVcg2oIrf2H2cejminGrptVc6q6/uynAHNCuWGbpVA==
+ts-node@9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.0.0.tgz#e7699d2a110cc8c0d3b831715e417688683460b3"
+  integrity sha512-/TqB4SnererCDR/vb4S/QvSZvzQMJN8daAslg7MeaiHvD8rDZsSfXmNeNumyZZzMned72Xoq/isQljYSt8Ynfg==
   dependencies:
     arg "^4.1.0"
     diff "^4.0.1"
