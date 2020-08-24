@@ -8632,14 +8632,14 @@ ember-focus-trap@0.4.0:
     ember-modifier-manager-polyfill "^1.2.0"
     focus-trap "^5.1.0"
 
-ember-gesture-modifiers@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ember-gesture-modifiers/-/ember-gesture-modifiers-0.1.1.tgz#2e052ef1cd502ea0d96d5f5e948bd476edb96619"
-  integrity sha512-U+qZEYuNZAesg/3NeigtRvZJWB7ESoP93DFHGBiL1FRZQ64ubDOE4s+XzDvB97H8LQ0ZTmvKI4j1wgZ40bg94Q==
+ember-gesture-modifiers@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-gesture-modifiers/-/ember-gesture-modifiers-0.2.0.tgz#81ad846a1dba870c60b831a0ab6c6ac5913bbd5c"
+  integrity sha512-8K54Xs4Mpege//0zXS2NDiAvtdXPFZVibFyUdgzQYZ/3ELDur5Sf93TFVd3pYHUcU2iYTFzmMK/xkQb4ZMU/QA==
   dependencies:
-    ember-cli-babel "^7.17.2"
-    ember-cli-htmlbars "^4.2.2"
-    ember-modifier "^1.0.3"
+    ember-cli-babel "^7.21.0"
+    ember-cli-htmlbars "^5.2.0"
+    ember-modifier "^2.1.0"
 
 ember-get-config@^0.2.4:
   version "0.2.4"
@@ -8765,10 +8765,10 @@ ember-maybe-import-regenerator@0.1.6, ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-mobile-menu@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/ember-mobile-menu/-/ember-mobile-menu-2.0.3.tgz#b0d8399426403a2b364d51f45c8f7c487ffb8d83"
-  integrity sha512-8qM7FwmJJzypNn35Jja6rWJT4gUPWrF3KtB+pb1Cv5JANEIpnYOx2kLsCGnyfx0AnH1q34t6kt+sUg7235rO5A==
+ember-mobile-menu@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/ember-mobile-menu/-/ember-mobile-menu-2.0.4.tgz#e5dda41cc566152f0341b756660a43473ebf2acc"
+  integrity sha512-j+3BDV2MXPsUig544l8Kt/8r/FbBnaaHEWv7pOIuOVl9rH/lht/IVVmF8cUqfTy0AcR1MezzyEVTOZEX/zRF+Q==
   dependencies:
     "@ember/render-modifiers" "^1.0.2"
     "@glimmer/component" "^1.0.0"
@@ -8779,7 +8779,7 @@ ember-mobile-menu@2.0.3:
     ember-cli-htmlbars "^5.2.0"
     ember-concurrency "^1.1.6"
     ember-concurrency-test-waiter "^0.3.1"
-    ember-gesture-modifiers "^0.1.1"
+    ember-gesture-modifiers "^0.2.0"
     ember-maybe-import-regenerator "^0.1.6"
     ember-on-resize-modifier "^0.2.1"
     ember-set-body-class "^0.4.0"
