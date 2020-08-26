@@ -8,7 +8,7 @@
     "test": "yarn faltest --browsers 2 --timeouts-override 900000"
   },
   "devDependencies": {
-    "@faltest/cli": "2.4.3",
+    "@faltest/cli": "2.4.4",
     "@faltest/lifecycle": "4.0.2",
     "@faltest/page-objects": "3.1.2",
     "babel-eslint": "10.1.0",
