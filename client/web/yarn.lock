@@ -2162,12 +2162,12 @@
     "@faltest/utils" "^2.0.4"
     verror-extra "^1.0.0"
 
-"@faltest/cli@2.4.3":
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.4.3.tgz#ac3095cb013bfadce934ae017357ac7cebe4e1ac"
-  integrity sha512-u6ERjANHneoz/bc1Bqc+F5aKGbbqVE5rm+ZdeMSzjCbWAjnoO+25PX4u5w05l0tGAhg+PT6a6wWoB1imK0E6RA==
+"@faltest/cli@2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-2.4.4.tgz#b5ec3dcfd51e22fd9f67b3812ec878b8718c13ae"
+  integrity sha512-FGn9H/GB/2nTFpU+XACj8MJ7eIvV+0x2llHc7AsittSphcmL1DgYFiVUP50KV/SoyH9DaxPeeO0J7Orx4PeObg==
   dependencies:
-    "@faltest/mocha" "^3.0.0"
+    "@faltest/mocha" "^4.0.0"
     "@faltest/remote" "^4.0.0"
     "@faltest/utils" "^2.0.4"
     mocha "^7.0.1"
@@ -2185,10 +2185,10 @@
   optionalDependencies:
     "@faltest/browser" "^2.0.5"
 
-"@faltest/mocha@^3.0.0":
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/@faltest/mocha/-/mocha-3.1.2.tgz#99d2b6555c572f6dd2b5cd6eb9e3c05ffbfcacc7"
-  integrity sha512-Z8xcGcQY9S1ByHQ3E71V5SD5awWQS8/K7Iin83EqZoOyaLkjgjjIBOlhR6QPVFY5+t2aMIKFv3707wh3qEv+2w==
+"@faltest/mocha@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@faltest/mocha/-/mocha-4.0.0.tgz#ef16791265dfe5982c64d4a919e78a942877aba3"
+  integrity sha512-BVjAI655MDLk9NR8OeuFYRiWmaTa0I2Sgoh03n3ItnEuu2ItQbucfABhVU78zPrN0Ak4QbXsni2m+VL23r0Jzw==
   dependencies:
     "@faltest/utils" "^2.0.4"
     choma "^1.2.1"
@@ -9077,17 +9077,17 @@ ember-source@3.20.3:
     semver "^6.1.1"
     silent-error "^1.1.1"
 
-ember-statecharts@0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/ember-statecharts/-/ember-statecharts-0.11.0.tgz#0fb4a8b2fc15f9e69a1bdaf2ded5f6171865bd92"
-  integrity sha512-CUn5J7hn0HpF/pH6S4XXKq5G/uG7xWd85FMH41l7eHJL8Qkda0oKctA00Lp/FP10yMmfykgVDvsRJW1M1e3y9w==
+ember-statecharts@0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/ember-statecharts/-/ember-statecharts-0.12.0.tgz#806e98b523a64a4327753a9d78f3788a292cce67"
+  integrity sha512-U3hhv/MNOax7i7MbPuMP+5wn87Sqfn0PCQrct7IN6Gi/0pwwEQ2uiUcBaxJrhTy66+8UZlsMCbOnDISIDPSJtA==
   dependencies:
     "@glimmer/tracking" "^1.0.0"
     ember-auto-import "^1.5.3"
     ember-cli-babel "^7.18.0"
     ember-cli-htmlbars "^4.2.3"
-    ember-usable "https://github.com/pzuraq/ember-usable#0d03a50"
-    xstate "^4.8.0"
+    ember-usable "git+https://github.com/pzuraq/ember-usable.git#0d03a50"
+    xstate "^4.12.0"
 
 ember-template-lint@2.10.0:
   version "2.10.0"
@@ -9173,7 +9173,7 @@ ember-test-waiters@2.1.3, ember-test-waiters@^1.1.1:
     ember-cli-version-checker "^5.1.1"
     semver "^7.1.3"
 
-"ember-usable@git+https://github.com/pzuraq/ember-usable.git#0d03a50", "ember-usable@https://github.com/pzuraq/ember-usable#0d03a50":
+"ember-usable@git+https://github.com/pzuraq/ember-usable.git#0d03a50":
   version "0.0.0"
   uid "0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
   resolved "git+https://github.com/pzuraq/ember-usable.git#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
@@ -19416,10 +19416,10 @@ xmlhttprequest-ssl@~1.5.4:
   resolved "https://registry.npmjs.org/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.5.tgz#c2876b06168aadc40e57d97e81191ac8f4398b3e"
   integrity sha1-wodrBhaKrcQOV9l+gRkayPQ5iz4=
 
-xstate@^4.8.0:
-  version "4.10.0"
-  resolved "https://registry.npmjs.org/xstate/-/xstate-4.10.0.tgz#f87e4ef593fe40300b8eec50a5d9f0763aa4f622"
-  integrity sha512-nncQ9gW+xgk5iUEvpBOXhbzSCS0uwzzT4bOAXxo6oUoALgbxzqEyMmaMYwuvOHrabDTdMJYnF+xe2XD8RRgWmA==
+xstate@^4.12.0:
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/xstate/-/xstate-4.12.0.tgz#d2b7f2e2775a55531fdd0d3973c26d1a55f1a959"
+  integrity sha512-rA66sw2vl9LERQsPE4xTqJP77+gHt/UYi9IqIek9dHlouDwBKTYf5yqp780JAv5n36P1UY9IRNp24rhCCxN6/A==
 
 xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.2"
