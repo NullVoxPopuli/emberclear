@@ -8786,10 +8786,10 @@ ember-maybe-import-regenerator@0.1.6, ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-mobile-menu@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/ember-mobile-menu/-/ember-mobile-menu-2.0.4.tgz#e5dda41cc566152f0341b756660a43473ebf2acc"
-  integrity sha512-j+3BDV2MXPsUig544l8Kt/8r/FbBnaaHEWv7pOIuOVl9rH/lht/IVVmF8cUqfTy0AcR1MezzyEVTOZEX/zRF+Q==
+ember-mobile-menu@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/ember-mobile-menu/-/ember-mobile-menu-2.0.5.tgz#187bf33cc8ed86b723c4339671f98948c1d20dd6"
+  integrity sha512-Ok4/TcvGW5hRutBX7YU583UC0ZmDaNaGV1oPGzjtqnpVbVo4W36niu6Krh1i0jsTwn+iHChxYmxnFZfZS2E7cA==
   dependencies:
     "@ember/render-modifiers" "^1.0.2"
     "@glimmer/component" "^1.0.0"
@@ -8802,7 +8802,7 @@ ember-mobile-menu@2.0.4:
     ember-concurrency-test-waiter "^0.3.1"
     ember-gesture-modifiers "^0.2.0"
     ember-maybe-import-regenerator "^0.1.6"
-    ember-on-resize-modifier "^0.2.1"
+    ember-on-resize-modifier "^0.3.0"
     ember-set-body-class "^0.4.0"
     ember-usable "git+https://github.com/pzuraq/ember-usable.git#0d03a50"
     tracked-maps-and-sets "^2.0.0"
@@ -8867,15 +8867,15 @@ ember-on-modifier@^1.0.0:
     ember-cli-version-checker "^4.1.0"
     ember-modifier-manager-polyfill "^1.2.0"
 
-ember-on-resize-modifier@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/ember-on-resize-modifier/-/ember-on-resize-modifier-0.2.1.tgz#4ae5934c1d41f32e0b7ada3697dbeeb1c34518f7"
-  integrity sha512-DEofisuxhYtkn8I0QLchu8egGv3bEV8QTmV31UF96pSq1/JhHIHxzGhXtKLny2M0StJVF537oZTaEH7luxgIlg==
+ember-on-resize-modifier@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ember-on-resize-modifier/-/ember-on-resize-modifier-0.3.0.tgz#6c8b0fda3cd77c9f51c5e8394ed7af13b2c20fcb"
+  integrity sha512-LUZcO3dYJXTcUFI2/8X+wyZXEp0p/xDZS3UHxwI/j99MprL4ZNxdYELQ5Rhq0sR/eGMBaJMEMzgM7I62+irOrg==
   dependencies:
     ember-cli-babel "^7.20.5"
     ember-cli-htmlbars "^5.1.2"
-    ember-modifier "^1.0.3"
-    ember-resize-observer-service "^0.2.1"
+    ember-modifier "^2.1.0"
+    ember-resize-observer-service "^0.3.0"
 
 ember-percy@1.6.0:
   version "1.6.0"
@@ -8927,10 +8927,10 @@ ember-render-helpers@0.1.1:
     ember-cli-babel "^7.12.0"
     ember-cli-typescript "^3.1.1"
 
-ember-resize-observer-service@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/ember-resize-observer-service/-/ember-resize-observer-service-0.2.1.tgz#68bfaa4d1127630deb7a61210cfd5185ed831b38"
-  integrity sha512-8MQ+KS8ihtBgsrqzuYIkQXux2tAByYqW2cyAPp/uw2sEvtb0iuWNR5oUU57f3wazu69s+0sDHtnKYEZWuxIBzw==
+ember-resize-observer-service@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ember-resize-observer-service/-/ember-resize-observer-service-0.3.0.tgz#69b6e29bd6d742001ebe0ec70249f20f46fedc4a"
+  integrity sha512-FrKPowJ9CwLBok+WZOhudoRXPg9xHArpotMdZ2FyztcBHIb8D1mVB6ELLw62KGa62Wf7RoRhfmkloZax/5WHwg==
   dependencies:
     ember-cli-babel "^7.20.5"
     ember-cli-htmlbars "^5.1.2"
