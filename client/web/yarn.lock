@@ -8524,10 +8524,10 @@ ember-compatibility-helpers@^1.1.1, ember-compatibility-helpers@^1.1.2, ember-co
     ember-cli-version-checker "^2.1.1"
     semver "^5.4.1"
 
-ember-concurrency-async@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ember-concurrency-async/-/ember-concurrency-async-0.3.0.tgz#2034367534bfe36043b15f3a6d2434224827b27c"
-  integrity sha512-hKDqQUB9oTWkvbK9U2lyUOKExP8OhWYt/nbhU5KX57Gw/TxUZPdfZKpqfovf5LQoblEPuMCxmJG3Hm1QXHHrBg==
+ember-concurrency-async@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-async/-/ember-concurrency-async-0.3.1.tgz#69e7c17f49f00521e01274fa1c5a57d56671ad11"
+  integrity sha512-8JtedudLj9pmPX64clNW+b1hwDRewbmTvQroOEnv7dpc77jExnO+YD77PH0H7uWG8FtU5o0FdIFKxT1CrEFu+g==
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.1"
     "@babel/types" "^7.10.2"

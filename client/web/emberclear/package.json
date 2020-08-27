@@ -133,7 +133,7 @@
     "ember-cli-typescript": "github:typed-ember/ember-cli-typescript#v4",
     "ember-cli-uglify": "3.0.0",
     "ember-concurrency": "1.2.1",
-    "ember-concurrency-async": "0.3.0",
+    "ember-concurrency-async": "0.3.1",
     "ember-concurrency-decorators": "2.0.1",
     "ember-concurrency-test-waiter": "0.3.2",
     "ember-concurrency-ts": "0.2.0",
