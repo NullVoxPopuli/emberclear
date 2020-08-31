@@ -42,7 +42,7 @@
     "deepmerge": "4.2.2",
     "ember-intl-analyzer": "2.1.0",
     "ember-template-lint": "2.11.0",
-    "eslint": "7.7.0",
+    "eslint": "7.8.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-decorator-position": "2.2.1",
     "eslint-plugin-ember": "8.13.0",
