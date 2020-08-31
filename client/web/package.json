@@ -35,8 +35,8 @@
     "ember-test-waiters": "2.1.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "3.10.1",
-    "@typescript-eslint/parser": "3.10.1",
+    "@typescript-eslint/eslint-plugin": "4.0.0",
+    "@typescript-eslint/parser": "4.0.0",
     "babel-eslint": "10.1.0",
     "cross-env": "7.0.2",
     "deepmerge": "4.2.2",
