@@ -7,9 +7,9 @@ import CurrentUserService, { currentUserId } from 'emberclear/services/current-u
 import { PRIVATE_CHAT_REGEX, CHANNEL_REGEX } from 'emberclear/utils/route-matchers';
 
 export default class CurrentChatService extends Service {
-  @service store!: StoreService;
-  @service router!: RouterService;
-  @service currentUser!: CurrentUserService;
+  @service declare store: StoreService;
+  @service declare router: RouterService;
+  @service declare currentUser: CurrentUserService;
 
   get name() {
     if (this.recordId === currentUserId) {

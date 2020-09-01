@@ -26,12 +26,12 @@ export const currentUserId = 'me';
 // the only time the localstorage copy of the identity is written to
 // is upon update and initial creation of the identity data.
 export default class CurrentUserService extends Service {
-  @service workers!: WorkersService;
-  @service store!: StoreService;
+  @service declare workers: WorkersService;
+  @service declare store: StoreService;
 
-  crypto?: CryptoConnector;
+  declare crypto?: CryptoConnector;
 
-  @tracked record?: User;
+  @tracked declare record?: User;
 
   get id() {
     if (!this.record) return;

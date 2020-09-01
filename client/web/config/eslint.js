@@ -100,9 +100,6 @@ module.exports.appOverrides = {
   ...typescript,
   rules: {
     ...typescript.rules,
-
-    // ember specific
-    'ember/no-new-mixins': 'off', // don't know what to do about ember-keyboard
   },
 };
 
@@ -111,9 +108,6 @@ module.exports.addonOverrides = {
   ...typescript,
   rules: {
     ...typescript.rules,
-
-    // ember specific
-    'ember/no-new-mixins': 'off', // don't know what to do about ember-keyboard
   },
 };
 

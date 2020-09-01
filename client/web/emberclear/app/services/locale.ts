@@ -7,7 +7,7 @@ import { inLocalStorage } from 'emberclear/utils/decorators';
 const DEFAULT_LOCALE = 'en-us';
 
 export default class LocaleService extends Service {
-  @service intl!: IntlService;
+  @service declare intl: IntlService;
 
   @inLocalStorage currentLocale = DEFAULT_LOCALE;
 

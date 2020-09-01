@@ -11,11 +11,11 @@ import RouterService from '@ember/routing/router-service';
 import WindowService from 'emberclear/services/window';
 
 export default class Notifications extends Service {
-  @service toast!: Toast;
-  @service intl!: Intl;
-  @service currentUser!: CurrentUserService;
-  @service router!: RouterService;
-  @service window!: WindowService;
+  @service declare toast: Toast;
+  @service declare intl: Intl;
+  @service declare currentUser: CurrentUserService;
+  @service declare router: RouterService;
+  @service declare window: WindowService;
 
   @tracked askToEnableNotifications = true;
   @tracked isHiddenUntilBrowserRefresh = false;

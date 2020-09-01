@@ -12,11 +12,11 @@ import WindowService from './window';
 const FLAG_KEY = '_features';
 
 export default class SessionService extends Service {
-  @service currentUser!: CurrentUserService;
-  @service connection!: ConnectionService;
-  @service router!: RouterService;
-  @service store!: StoreService;
-  @service window!: WindowService;
+  @service declare currentUser: CurrentUserService;
+  @service declare connection: ConnectionService;
+  @service declare router: RouterService;
+  @service declare store: StoreService;
+  @service declare window: WindowService;
 
   @action
   async logout() {

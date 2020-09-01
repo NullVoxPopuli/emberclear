@@ -8,8 +8,8 @@ import Contact, { Status } from 'emberclear/models/contact';
 // TODO: does this need to be its own service?
 //       should these functions move to the ContactManager?
 export default class StatusManager extends Service {
-  @service store!: StoreService;
-  @service contactManager!: ContactManager;
+  @service declare store: StoreService;
+  @service declare contactManager: ContactManager;
 
   async markOffline(uid: string) {
     const contact = await this.contactManager.find(uid);

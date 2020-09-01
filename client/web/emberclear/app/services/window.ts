@@ -2,7 +2,7 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 export default class WindowService extends Service {
-  @tracked deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
+  @tracked declare deferredInstallPrompt?: FakeBeforeInstallPromptEvent;
   @tracked isInstalled = false;
   @tracked hasDeferredInstall = false;
 

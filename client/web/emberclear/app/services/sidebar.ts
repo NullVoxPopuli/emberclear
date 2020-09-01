@@ -7,12 +7,12 @@ import { inLocalStorage } from 'emberclear/utils/decorators';
 import CurrentUserService from 'emberclear/services/current-user';
 
 export default class Sidebar extends Service {
-  @service currentUser!: CurrentUserService;
+  @service declare currentUser: CurrentUserService;
 
   unreadAbove = A();
   unreadBelow = A();
 
-  unreadObserver?: IntersectionObserver;
+  declare unreadObserver?: IntersectionObserver;
 
   @notEmpty('unreadAbove') hasUnreadAbove!: boolean;
   @notEmpty('unreadBelow') hasUnreadBelow!: boolean;

@@ -6,7 +6,7 @@ import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
 
 export default class ChannelManager extends Service {
-  @service store!: StoreService;
+  @service declare store: StoreService;
 
   async findOrCreate(id: string, name: string): Promise<Channel> {
     try {

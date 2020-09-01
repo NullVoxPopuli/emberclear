@@ -1,10 +1,11 @@
 const Rollup = require('broccoli-rollup');
 
-const commonjs = require('rollup-plugin-commonjs');
-const babel = require('rollup-plugin-babel');
+const commonjs = require('@rollup/plugin-commonjs');
+const { babel } = require('@rollup/plugin-babel');
 const resolve = require('@rollup/plugin-node-resolve');
 const { terser } = require('rollup-plugin-terser');
 const filesize = require('rollup-plugin-filesize');
+// const alias = require('@rollup/plugin-alias');
 
 const AssetRev = require('broccoli-asset-rev');
 
@@ -16,29 +17,6 @@ const fs = require('fs');
 let cwd = process.cwd();
 let workerRoot = path.join(cwd, 'app', 'workers');
 let extensions = ['.js', '.ts'];
-
-let babelConfig = {
-  extensions,
-  babelrc: false,
-  presets: [
-    [
-      require('@babel/preset-env'),
-      {
-        useBuiltIns: 'usage',
-        targets: '> 2%, not IE 11, not dead',
-        corejs: {
-          version: 3,
-        },
-      },
-    ],
-    require('@babel/preset-typescript'),
-  ],
-  plugins: [
-    require('@babel/plugin-proposal-class-properties'),
-    require('@babel/plugin-proposal-object-rest-spread'),
-  ],
-  exclude: /node_modules/,
-};
 
 function detectWorkers() {
   let workers = {};
@@ -88,7 +66,28 @@ function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
               tweetnacl: ['nacl'],
             },
           }),
-          babel(babelConfig),
+          babel({
+            extensions,
+            babelrc: false,
+            presets: [
+              [
+                require('@babel/preset-env'),
+                {
+                  useBuiltIns: 'usage',
+                  targets: '> 2%, not IE 11, not dead',
+                  corejs: {
+                    version: 3,
+                  },
+                },
+              ],
+              require('@babel/preset-typescript'),
+            ],
+            plugins: [
+              require('@babel/plugin-proposal-class-properties'),
+              require('@babel/plugin-proposal-object-rest-spread'),
+            ],
+            exclude: /node_modules/,
+          }),
           ...(isProduction ? [terser()] : []),
           filesize({ render: printSizes }),
         ],

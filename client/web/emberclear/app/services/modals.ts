@@ -7,8 +7,8 @@ interface IModalArgs {
 }
 
 class ModalState {
-  @tracked name!: string;
-  @tracked isActive!: boolean;
+  @tracked declare name: string;
+  @tracked declare isActive: boolean;
 
   constructor(args: IModalArgs) {
     this.name = args.name;

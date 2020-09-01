@@ -40,9 +40,9 @@ const availableThemes = {
 };
 
 export default class Settings extends Service {
-  @service currentUser!: CurrentUserService;
-  @service contactManager!: ContactManager;
-  @service channelManager!: ChannelManager;
+  @service declare currentUser: CurrentUserService;
+  @service declare contactManager: ContactManager;
+  @service declare channelManager: ChannelManager;
 
   @inLocalStorage hideOfflineContacts = false;
   @inLocalStorage theme = THEMES.default;

@@ -5,7 +5,7 @@ import { inLocalStorage } from 'emberclear/utils/decorators';
 import RouterService from '@ember/routing/router-service';
 
 export default class RedirectManager extends Service {
-  @service router!: RouterService;
+  @service declare router: RouterService;
 
   @inLocalStorage attemptedRoute?: string;
 
