@@ -115,11 +115,13 @@ aside {
   /* #scrollContainer */
   & .mobile-menu-wrapper__content {
     height: calc(100vh - var(--top-nav-height));
+    background: var(--body-bg-color);
     min-height: auto;
   }
 }
 
 .mobile-menu .mobile-menu__tray {
+  background: var(--body-bg-color);
   top: var(--top-nav-height);
   height: calc(100vh - var(--top-nav-height));
 }
