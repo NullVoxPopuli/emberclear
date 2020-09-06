@@ -109,7 +109,14 @@ aside {
 
 .mobile-menu-wrapper {
   max-height: calc(100% - var(--top-nav-height));
+  min-height: calc(100% - var(--top-nav-height));
   background-color: var(--body-bg-color);
+
+  /* #scrollContainer */
+  & .mobile-menu-wrapper__content {
+    height: calc(100vh - var(--top-nav-height));
+    min-height: auto;
+  }
 }
 
 .mobile-menu .mobile-menu__tray {
