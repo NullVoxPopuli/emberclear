@@ -85,6 +85,9 @@ compatibility:
   wasm: WebAssembly
   serviceWorker: Service Worker
   webWorker: Web Worker
+  status:
+    exists: Browser has this capability
+    missing: Browser missing this capability
 images:
   alt:
     thumbnail: Миниатюра
