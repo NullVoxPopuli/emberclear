@@ -2,6 +2,7 @@ import { module, test } from 'qunit';
 
 import { visit, triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { timeout } from 'ember-concurrency';
 
 import {
   clearLocalStorage,
@@ -10,6 +11,8 @@ import {
 } from 'emberclear/tests/helpers';
 
 import { app } from 'emberclear/tests/helpers/pages/app';
+
+const scrollContainer = '.mobile-menu-wrapper';
 
 module('Acceptance | Navigation Scrolling', function (hooks) {
   setupApplicationTest(hooks);
@@ -32,12 +35,15 @@ module('Acceptance | Navigation Scrolling', function (hooks) {
 
     module('When scrolled to the bottom', function (hooks) {
       hooks.beforeEach(async function () {
-        await app.footer.faq().scrollIntoView(false);
+        app.footer.faq().scrollIntoView(false);
+
         await triggerEvent(window as any, 'scroll');
+        // wait for scroll animation
+        await timeout(250);
       });
 
       test('the top of the page is not visible', function (assert) {
-        const position = document.querySelector('.ember-application')!.scrollTop;
+        const position = document.querySelector(scrollContainer)!.scrollTop;
 
         assert.notEqual(position, 0, 'the scroll container is not at the top');
       });
@@ -48,7 +54,7 @@ module('Acceptance | Navigation Scrolling', function (hooks) {
         });
 
         test('the top of the page is visible', function (assert) {
-          const position = document.querySelector('.ember-application')!.scrollTop;
+          const position = document.querySelector(scrollContainer)!.scrollTop;
 
           assert.equal(position, 0, 'the scroll container is at the top');
         });
