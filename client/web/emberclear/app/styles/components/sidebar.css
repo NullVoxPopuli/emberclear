@@ -111,6 +111,7 @@ aside {
   max-height: calc(100% - var(--top-nav-height));
   min-height: calc(100% - var(--top-nav-height));
   background-color: var(--body-bg-color);
+  overflow: auto;
 
   /* #scrollContainer */
   & .mobile-menu-wrapper__content {

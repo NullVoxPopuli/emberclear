@@ -2,6 +2,8 @@ import Ember from 'ember';
 import EmberRouter from '@ember/routing/router';
 import config from 'emberclear/config/environment';
 
+const scrollContainer = '.mobile-menu-wrapper';
+
 class Router extends EmberRouter {
   location = config.locationType;
   rootURL = config.rootURL;
@@ -13,7 +15,7 @@ class Router extends EmberRouter {
       // window would normally be used for scrolling, but that doesn't work
       // for testing...
       if (Ember.testing) {
-        document.querySelector('.ember-application').scrollTo(0, 0);
+        document.querySelector(scrollContainer)?.scrollTo(0, 0);
       } else {
         window.scrollTo(0, 0);
       }

@@ -8,9 +8,13 @@ html {
   & body,
   & .ember-application {
     overflow-x: hidden;
-    margin-top: var(--top-nav-height);
-    min-height: calc(100vh - var(--top-nav-height));
   }
+}
+
+/* either on body or some div during testing */
+.ember-application {
+  margin-top: var(--top-nav-height);
+  min-height: calc(100vh - var(--top-nav-height));
 }
 
 hr {
