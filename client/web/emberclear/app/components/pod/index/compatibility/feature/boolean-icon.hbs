@@ -1,13 +1,15 @@
 {{#if @value}}
-  <span class='has-text-success' ...attributes>
+  <span class='text-success' ...attributes>
     <FaIcon @icon='check-circle' />
+    <span class='visually-hidden'>{{t 'compatibility.status.exists'}}</span>
   </span>
 {{else if @required}}
-  <span class='has-text-danger' ...attributes>
+  <span class='text-danger' ...attributes>
     <FaIcon @icon='times-circle' />
+    <span class='visually-hidden'>{{t 'compatibility.status.missing'}}</span>
   </span>
 {{else}}
-  <span class='has-text-warning' ...attributes>
+  <span class='text-warning' ...attributes>
     <FaIcon @icon='exclamation-circle' />
   </span>
 {{/if}}

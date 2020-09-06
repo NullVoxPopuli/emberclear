@@ -11,6 +11,14 @@
   @apply --column-grid;
 }
 
+.grid\:col\:2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.justify\:around {
+  justify-content: space-around;
+}
+
 .grid-autoflow {
   grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
 }

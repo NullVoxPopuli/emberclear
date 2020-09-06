@@ -2,6 +2,10 @@
   line-height: 2rem;
 }
 
+.w\:50 {
+  width: 50%;
+}
+
 .w\:2x {
   width: 2rem;
 }

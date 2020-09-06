@@ -12,11 +12,7 @@
       @close={{actions.close}}
       @boxClasses='has-background-none'
     >
-      <div class='
-        has-text-white
-        p-md
-        '
-      >
+      <div class='text-dark p-md'>
         <h2 class='is-size-3'>
           <FaIcon @icon='exclamation-circle' />
           {{t 'compatibility.title'}}
@@ -27,23 +23,19 @@
 
         <div class='flex-row justify-content-space-between align-items-end'>
           <div class='flex-column align-items-start'>
-            <table>
-              <tbody>
-                <Pod::Index::Compatibility::Feature @value={{this.hasCamera}} @label={{t 'compatibility.camera'}} />
-                <Pod::Index::Compatibility::Feature @value={{this.hasNotifications}} @label={{t 'compatibility.notifications'}} />
-                <Pod::Index::Compatibility::Feature @required={{true}} @value={{this.hasIndexedDb}} @label={{t 'compatibility.indexeddb'}} />
-                {{!-- <Pod::Index::Compatibility::Feature @value={{this.hasWASM}} @label={{t 'compatibility.wasm'}} /> --}}
-                <Pod::Index::Compatibility::Feature @value={{this.hasServiceWorker}} @label={{t 'compatibility.serviceWorker'}} />
-                <Pod::Index::Compatibility::Feature @value={{this.hasWebWorker}} @label={{t 'compatibility.webWorker'}} />
+            <ul class='list:styleless'>
+              <Pod::Index::Compatibility::Feature @value={{this.hasCamera}} @label={{t 'compatibility.camera'}} />
+              <Pod::Index::Compatibility::Feature @value={{this.hasNotifications}} @label={{t 'compatibility.notifications'}} />
+              <Pod::Index::Compatibility::Feature @required={{true}} @value={{this.hasIndexedDb}} @label={{t 'compatibility.indexeddb'}} />
+              {{!-- <Pod::Index::Compatibility::Feature @value={{this.hasWASM}} @label={{t 'compatibility.wasm'}} /> --}}
+              <Pod::Index::Compatibility::Feature @value={{this.hasServiceWorker}} @label={{t 'compatibility.serviceWorker'}} />
+              <Pod::Index::Compatibility::Feature @value={{this.hasWebWorker}} @label={{t 'compatibility.webWorker'}} />
+            </ul>
 
-
-              </tbody>
-            </table>
-
-            <h3 class='is-size-4'>
+            <h3 class='is-size-4 mt-4'>
               {{t 'compatibility.score'}}: {{this.successCount}} / {{this.totalCount}}
             </h3>
-            <h4>
+            <h4 class='mb-4'>
               {{t 'compatibility.required'}}: {{this.requiredSuccessCount}} / {{this.totalRequiredCount}}
             </h4>
 
