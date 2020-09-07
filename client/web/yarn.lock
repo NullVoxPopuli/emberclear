@@ -8808,15 +8808,15 @@ ember-jsqr@0.9.29:
     ember-modifier "^2.1.0"
     jsqr "^1.3.1"
 
-ember-keyboard@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/ember-keyboard/-/ember-keyboard-6.0.0.tgz#0bf929bfa1a5935109e59c1b816e65ad2db0383b"
-  integrity sha512-QJAhs8173hqy8e/Wj/98+5tJ43I5UKq35lsx3w8icHL5iisfXo8s89gOtn1C2015Y4JoMNsVOkNSCnBfhx1UQg==
+ember-keyboard@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/ember-keyboard/-/ember-keyboard-6.0.1.tgz#2e806c92f36ec9a8a85064ca246e23eb11245dae"
+  integrity sha512-PXWwulXbRHxKOvNCuDmFqX7UEiVrCFKKIcxz+Wxv05GYs2pbvbrW97bKzesRjwrSuNYxSYV9+KnDFpeWahYYKg==
   dependencies:
     ember-cli-babel "^7.19.0"
-    ember-cli-htmlbars "^4.3.1"
+    ember-cli-htmlbars "^5.3.1"
     ember-compatibility-helpers "^1.2.1"
-    ember-modifier "^1.0.3"
+    ember-modifier "^2.1.0"
 
 ember-load-initializers@2.1.1:
   version "2.1.1"
@@ -8875,7 +8875,7 @@ ember-modifier-manager-polyfill@^1.1.0, ember-modifier-manager-polyfill@^1.2.0:
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.2.0"
 
-ember-modifier@1.0.3, ember-modifier@^1.0.3:
+ember-modifier@1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/ember-modifier/-/ember-modifier-1.0.3.tgz#ab18250666aad17c0d9170feb178e954148eb4ed"
   integrity sha512-vWuFyvdkULUyasvEXxe5lcfuPZV/Uqe+b0IQ1yU+TY1RSJnFdVUu/CVHT8Bu4HUJInqzAihwPMTwty7fypzi5Q==
