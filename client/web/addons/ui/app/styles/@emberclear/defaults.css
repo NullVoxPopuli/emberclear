@@ -7,7 +7,9 @@ html {
 
   & body,
   & .ember-application {
-    overflow-x: hidden;
+    overflow: hidden;
+
+    /* overflow-x: hidden; */
   }
 }
 
