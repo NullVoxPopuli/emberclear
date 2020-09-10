@@ -1,0 +1,30 @@
+{
+  "name": "smoke-tests",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint:js": "yarn eslint .",
+    "test": "yarn faltest --browsers 2 --timeouts-override 900000"
+  },
+  "devDependencies": {
+    "@faltest/cli": "2.5.0",
+    "@faltest/lifecycle": "4.1.0",
+    "@faltest/page-objects": "3.1.2",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.8.1",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "http-server": "0.12.3",
+    "poll-pr-status": "1.2.1",
+    "prettier": "2.1.1"
+  },
+  "engines": {
+    "node": "14.9.0"
+  },
+  "volta": {
+    "node": "14.9.0",
+    "yarn": "1.22.5"
+  }
+}
