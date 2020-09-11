@@ -27,7 +27,7 @@
     "postpublish": "ember ts:clean"
   },
   "dependencies": {
-    "@fortawesome/ember-fontawesome": "0.2.1",
+    "@fortawesome/ember-fontawesome": "0.2.2",
     "@fortawesome/free-brands-svg-icons": "5.14.0",
     "@fortawesome/free-solid-svg-icons": "5.14.0",
     "@glimmer/component": "1.0.1",
