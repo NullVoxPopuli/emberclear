@@ -5667,7 +5667,7 @@ broccoli-merge-trees@^3.0.0, broccoli-merge-trees@^3.0.1, broccoli-merge-trees@^
     broccoli-plugin "^1.3.0"
     merge-trees "^2.0.0"
 
-broccoli-merge-trees@^4.0.0, broccoli-merge-trees@^4.1.0, broccoli-merge-trees@^4.2.0:
+broccoli-merge-trees@^4.0.0, broccoli-merge-trees@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/broccoli-merge-trees/-/broccoli-merge-trees-4.2.0.tgz#692d3c163ecea08c5714a9434d664e628919f47c"
   integrity sha512-nTrQe5AQtCrW4enLRvbD/vTLHqyW2tz+vsLXQe4IEaUhepuMGVKJJr+I8n34Vu6fPjmPLwTjzNC8izMIDMtHPw==
@@ -9246,18 +9246,18 @@ ember-uuid@^1.0.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-web-app@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/ember-web-app/-/ember-web-app-4.0.0.tgz#35e6e7ffc8a85b2e3e2d67a0f77e72ca62c3bc91"
-  integrity sha512-CuHbbIAPlpAvlCHWfzGz2tB9sDWYxy3Klsu/KYnve7hyeAvaBrd6YxPr9oAWcgnhzrMj2Vm8ndW4tTsCxCJDNQ==
+ember-web-app@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ember-web-app/-/ember-web-app-5.0.0.tgz#fa0bcd78a0c5fdd7380407fa800bef5dc86741ed"
+  integrity sha512-cOYrwI7lFWC/Bj7lwhXXaFk8nH9lyaDXGeJzEyyLzTs7iRtM2j7PPw0dsHZowOFp5tf/W7x/Mjycv0cWq1zTLQ==
   dependencies:
     broccoli-asset-rev "^3.0.0"
     broccoli-caching-writer "^3.0.3"
-    broccoli-merge-trees "^4.1.0"
-    ember-cli-babel "^7.17.2"
-    jsdom "^16.1.0"
+    broccoli-merge-trees "^4.2.0"
+    ember-cli-babel "^7.22.1"
+    jsdom "^16.4.0"
     web-app-manifest-validator "^1.0.0"
-    xmlbuilder "^13.0.2"
+    xmlbuilder "^15.1.1"
 
 emblem@^0.12.1:
   version "0.12.1"
@@ -12636,10 +12636,10 @@ jsdom@^12.0.0:
     ws "^6.1.0"
     xml-name-validator "^3.0.0"
 
-jsdom@^16.1.0:
-  version "16.2.2"
-  resolved "https://registry.npmjs.org/jsdom/-/jsdom-16.2.2.tgz#76f2f7541646beb46a938f5dc476b88705bedf2b"
-  integrity sha512-pDFQbcYtKBHxRaP55zGXCJWgFHkDAYbKcsXEK/3Icu9nKYZkutUXfLBwbD+09XDutkYSHcgfQLZ0qvpAAm9mvg==
+jsdom@^16.4.0:
+  version "16.4.0"
+  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-16.4.0.tgz#36005bde2d136f73eee1a830c6d45e55408edddb"
+  integrity sha512-lYMm3wYdgPhrl7pDcRmvzPhhrGVBeVhPIqeHjzeiHN3DFmD1RBpbExbi8vU7BJdH8VAZYovR8DMt0PNNDM7k8w==
   dependencies:
     abab "^2.0.3"
     acorn "^7.1.1"
@@ -12661,7 +12661,7 @@ jsdom@^16.1.0:
     tough-cookie "^3.0.1"
     w3c-hr-time "^1.0.2"
     w3c-xmlserializer "^2.0.0"
-    webidl-conversions "^6.0.0"
+    webidl-conversions "^6.1.0"
     whatwg-encoding "^1.0.5"
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
@@ -19131,9 +19131,9 @@ webidl-conversions@^5.0.0:
   resolved "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-5.0.0.tgz#ae59c8a00b121543a2acc65c0434f57b0fc11aff"
   integrity sha512-VlZwKPCkYKxQgeSbH5EyngOmRp7Ww7I9rQLERETtf5ofd9pGeswWiOtogpEO850jziPRarreGxn5QIiTqpb2wA==
 
-webidl-conversions@^6.0.0:
+webidl-conversions@^6.1.0:
   version "6.1.0"
-  resolved "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-6.1.0.tgz#9111b4d7ea80acd40f5270d666621afa78b69514"
+  resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-6.1.0.tgz#9111b4d7ea80acd40f5270d666621afa78b69514"
   integrity sha512-qBIvFLGiBpLjfwmYAaHPXsn+ho5xZnGvyGvsarywGNc8VyQJUMHJ8OBKGGrPER0okBeMDaan4mNBlgBROxuI8w==
 
 webpack-bundle-analyzer@3.8.0:
@@ -19443,10 +19443,10 @@ xml-name-validator@^3.0.0:
   resolved "https://registry.npmjs.org/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
   integrity sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==
 
-xmlbuilder@^13.0.2:
-  version "13.0.2"
-  resolved "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-13.0.2.tgz#02ae33614b6a047d1c32b5389c1fdacb2bce47a7"
-  integrity sha512-Eux0i2QdDYKbdbA6AM6xE4m6ZTZr4G4xF9kahI2ukSEMCzwce2eX9WlTI5J3s+NU7hpasFsr8hWIONae7LluAQ==
+xmlbuilder@^15.1.1:
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-15.1.1.tgz#9dcdce49eea66d8d10b42cae94a79c3c8d0c2ec5"
+  integrity sha512-yMqGBqtXyeN1e3TGYvgNgDVZ3j84W4cwkOXQswghol6APgZWaff9lnbvN7MHYJOiXsvGPXtjTYJEiC9J2wv9Eg==
 
 xmlchars@^2.1.1, xmlchars@^2.2.0:
   version "2.2.0"
