@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import { useMachine } from 'ember-statecharts';
+import { useMachine, interpreterFor } from 'ember-statecharts';
 import { use } from 'ember-usable';
 
 import { machineConfig } from './-machine';
@@ -18,20 +18,22 @@ export default class QRScan extends Component {
   @service currentUser!: CurrentUserService;
   @service qrManager!: QRManager;
 
-  @use interpreter = useMachine(machineConfig).withConfig({
-    services: {
-      setupConnection: this.setupConnection.bind(this),
-      transferData: this.transferData.bind(this),
-      addContact: this.addContact.bind(this),
-    },
-    guards: {
-      isQRLogin: ({ intent }) => intent === 'login',
-      isQRAddFriend: ({ intent }) => intent === 'add-friend',
-      hasError: ({ error }) => error === 'error',
-      isContactKnown: () => false,
-      isLoggedIn: () => this.currentUser.isLoggedIn,
-    },
-  });
+  @use interpreter = interpreterFor(
+    useMachine(machineConfig).withConfig({
+      services: {
+        setupConnection: this.setupConnection.bind(this),
+        transferData: this.transferData.bind(this),
+        addContact: this.addContact.bind(this),
+      },
+      guards: {
+        isQRLogin: ({ intent }) => intent === 'login',
+        isQRAddFriend: ({ intent }) => intent === 'add-friend',
+        hasError: ({ error }) => error === 'error',
+        isContactKnown: () => false,
+        isLoggedIn: () => this.currentUser.isLoggedIn,
+      },
+    })
+  );
 
   connection?: SendDataConnection;
 
