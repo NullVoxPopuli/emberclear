@@ -86,7 +86,7 @@ export default class CurrentUserService extends Service {
   }
 
   get shareUrl(): string {
-    const uri = `${ENV.host}/invite?name=${this.name}&publicKey=${this.uid}`;
+    const uri = `${window.location.origin}/invite?name=${this.name}&publicKey=${this.uid}`;
 
     return encodeURI(uri);
   }
