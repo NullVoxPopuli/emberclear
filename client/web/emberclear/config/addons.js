@@ -12,6 +12,7 @@ ENV['fontawesome'] = {
       'sign-out-alt',
       'dot-circle',
       'plus',
+      'chevron-left',
       'code',
       'desktop',
       'bed',
