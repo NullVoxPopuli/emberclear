@@ -29,9 +29,9 @@ jobs:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
     - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
     - name: Install
       working-directory: ${{ env.cwd }}
@@ -73,9 +73,9 @@ jobs:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
     - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
     - name: Install
       working-directory: ${{ env.cwd }}
@@ -101,9 +101,9 @@ jobs:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
     - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Install and Build
       run: |
         ( cd client/web/emberclear && yarn install && yarn build:production )
