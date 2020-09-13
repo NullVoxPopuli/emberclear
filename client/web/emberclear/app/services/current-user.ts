@@ -7,7 +7,6 @@ import { timeout } from 'ember-concurrency';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
-import ENV from 'emberclear/config/environment';
 import { toHex } from 'emberclear/utils/string-encoding';
 
 import CryptoConnector from '../utils/workers/crypto';
