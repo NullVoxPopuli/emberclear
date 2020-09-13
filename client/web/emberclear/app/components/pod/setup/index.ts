@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 
 import { inject as service } from '@ember/service';
 
-import { useMachine } from 'ember-statecharts';
+import { useMachine, interpreterFor } from 'ember-statecharts';
 import { use } from 'ember-usable';
 
 import { machineConfig } from './-machine';
@@ -16,13 +16,15 @@ export default class SetupWizard extends Component {
   @service session!: SessionService;
   @service router!: RouterService;
 
-  @use interpreter = useMachine(machineConfig).withConfig({
-    actions: {
-      logout: () => this.session.logout(),
-      redirectHome: () => this.router.transitionTo('application'),
-    },
-    guards: {
-      isLoggedIn: () => this.currentUser.isLoggedIn,
-    },
-  });
+  @use interpreter = interpreterFor(
+    useMachine(machineConfig).withConfig({
+      actions: {
+        logout: () => this.session.logout(),
+        redirectHome: () => this.router.transitionTo('application'),
+      },
+      guards: {
+        isLoggedIn: () => this.currentUser.isLoggedIn,
+      },
+    })
+  );
 }

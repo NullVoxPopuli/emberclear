@@ -27,7 +27,7 @@
     "postpublish": "ember ts:clean"
   },
   "dependencies": {
-    "@fortawesome/ember-fontawesome": "0.2.1",
+    "@fortawesome/ember-fontawesome": "0.2.2",
     "@fortawesome/free-brands-svg-icons": "5.14.0",
     "@fortawesome/free-solid-svg-icons": "5.14.0",
     "@glimmer/component": "1.0.1",
@@ -58,7 +58,7 @@
     "babel-eslint": "10.1.0",
     "broccoli-asset-rev": "3.0.0",
     "ember-auto-import": "1.6.0",
-    "ember-cli": "3.21.0",
+    "ember-cli": "3.21.2",
     "ember-cli-dependency-checker": "3.2.0",
     "ember-cli-inject-live-reload": "2.0.2",
     "ember-cli-page-object": "1.17.3",
