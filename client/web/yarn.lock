@@ -2292,33 +2292,10 @@
     callsites "^3.1.0"
     debug "^4.1.1"
 
-"@formatjs/intl-numberformat@^4.2.6":
-  version "4.2.6"
-  resolved "https://registry.npmjs.org/@formatjs/intl-numberformat/-/intl-numberformat-4.2.6.tgz#a1ae188919ce54fc2eda8ff3e2b83c1bbaa0704d"
-  integrity sha512-LcV9pJ5XiiNwt3kbhsWIbeLd3zQZejs3iE3q98HiuV3yx9fAJR0I7n3XF67KCvIW64+hpo5V831EAbGvwhUUmQ==
-  dependencies:
-    "@formatjs/intl-utils" "^3.3.1"
-
-"@formatjs/intl-numberformat@^5.3.3":
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-numberformat/-/intl-numberformat-5.3.3.tgz#ade268890d33a4a5535bdfbc8a9415df62113d2c"
-  integrity sha512-keU4arK7WoQMMfUuXzVP5nPzKFXrNpcNne/58OxxDxoJfqiv4vHiBjHHfPzy5xf+1rgnoplaV1mabNt1HTPtwA==
-  dependencies:
-    "@formatjs/intl-utils" "^3.8.2"
-
-"@formatjs/intl-utils@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.npmjs.org/@formatjs/intl-utils/-/intl-utils-3.3.1.tgz#7ceadbb7e251318729d9bf693731e1a5dcdfa15a"
-  integrity sha512-7AAicg2wqCJQ+gFEw5Nxp+ttavajBrPAD1HDmzA4jzvUCrF5a2NCJm/c5qON3VBubWWF2cu8HglEouj2h/l7KQ==
-  dependencies:
-    emojis-list "^3.0.0"
-
-"@formatjs/intl-utils@^3.8.2":
-  version "3.8.2"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-3.8.2.tgz#168b528d482483e333a08646258eb17e26c9760d"
-  integrity sha512-34J1HmuNSRYQgJ6Gi/dYJQzdDsyAPJOrzXx977UajrhlXlI+0dvoqleP4W+Qtyc65EqzTGtUSgqLYhoPty8v3w==
-  dependencies:
-    emojis-list "^3.0.0"
+"@formatjs/ecma402-abstract@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.2.1.tgz#ad966998d7f0e96fca4bdc5de0ca28d02f371279"
+  integrity sha512-LvbwgHxprafjceDfOC7yMl4sP5al71rAWahXk3qug5bV020aCq64WjqAo+zNnkIJk8hqK2pFKnNdDsT58HZJQw==
 
 "@fortawesome/ember-fontawesome@0.2.2":
   version "0.2.2"
@@ -8378,7 +8355,7 @@ ember-cli-typescript@3.1.4, ember-cli-typescript@^3.1.1, ember-cli-typescript@^3
     stagehand "^1.0.0"
     walk-sync "^2.0.0"
 
-ember-cli-typescript@4.0.0:
+ember-cli-typescript@4.0.0, ember-cli-typescript@^4.0.0-rc.1:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-typescript/-/ember-cli-typescript-4.0.0.tgz#690f0cd3d15f4a69ae6d89f25b70b5997ae59161"
   integrity sha512-ZwnBbBJ0yAIKq4FVgNFkxfMwqJhw6PyT45Enp2RvWIgzgaYCId8brrSgg3tvVWWjA7N5hiT4Ilyz5jrQwrnU1Q==
@@ -8765,10 +8742,10 @@ ember-intl-analyzer@2.1.0:
     pkg-dir "^4.2.0"
     yaml "^1.7.2"
 
-ember-intl@5.4.2:
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-5.4.2.tgz#df1856b2dd47bd4606a7e06d1fe4748df5684df2"
-  integrity sha512-sWwj/0/kKrWpYPl5bLA+QJkQrowVEMV2SvPRSAb/vTq/BzVg3/B0RmE74hWj7LUeWFvW69KqN5hS6TVojJs9bg==
+ember-intl@5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-5.5.0.tgz#2d00930f1aac352f1ab354215df8c8cd47fdc001"
+  integrity sha512-/HpTAuNMKOvamcauR3PLvUePM8BeHyjbDJn5hzYVXZQoUSgd2tj0XAblsPyUKKCI9VQE2lBUR8iIZlW/XHSqiA==
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-funnel "^3.0.3"
@@ -8780,11 +8757,12 @@ ember-intl@5.4.2:
     cldr-core "^36.0.0"
     ember-auto-import "^1.5.3"
     ember-cli-babel "^7.18.0"
+    ember-cli-typescript "^4.0.0-rc.1"
     extend "^3.0.2"
     fast-memoize "^2.5.2"
     has-unicode "^2.0.1"
-    intl-messageformat "^9.2.0"
-    intl-messageformat-parser "^5.0.2"
+    intl-messageformat "^9.3.6"
+    intl-messageformat-parser "^6.0.5"
     js-yaml "^3.13.1"
     json-stable-stringify "^1.0.1"
     locale-emoji "^0.3.0"
@@ -11973,27 +11951,20 @@ interpret@^1.0.0:
   resolved "https://registry.npmjs.org/interpret/-/interpret-1.4.0.tgz#665ab8bc4da27a774a40584e812e3e0fa45b1a1e"
   integrity sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
 
-intl-messageformat-parser@^5.0.2:
-  version "5.1.3"
-  resolved "https://registry.npmjs.org/intl-messageformat-parser/-/intl-messageformat-parser-5.1.3.tgz#bd57fffebdf832a425edd330107bbf832cdbbbb8"
-  integrity sha512-bWuXkK4wzOKNHdqDHCw4+8+nKENtDs3E60hpUnh/6MXvZ0dfOtHA2LSIBLTkkE2h5Ir3V4XByW/8Bj1MBI5Ucw==
+intl-messageformat-parser@^6.0.5, intl-messageformat-parser@^6.0.6:
+  version "6.0.6"
+  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-6.0.6.tgz#c06c79c534612808e1f3c39288a3c009fb1ff7cd"
+  integrity sha512-XPAgYvCTSwgr92zzy5sfaglUu4uKjIWXHNTenEQRTo5t3o2TGxuPYPruxZqnvSLgnlAegiT/hBemmPcnFPNjAg==
   dependencies:
-    "@formatjs/intl-numberformat" "^4.2.6"
+    "@formatjs/ecma402-abstract" "^1.2.1"
 
-intl-messageformat-parser@^5.3.7:
-  version "5.3.7"
-  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-5.3.7.tgz#96d93cc1856048ee8e09193951f1e1ba69073204"
-  integrity sha512-83C+eODXu/zfR35bKjSz/HKEGkNSHbsF1WOuZDgFs/TudaEuVIZ8pstQYFyY0CIuCGXomcSevrFW1d4y7nW5xw==
-  dependencies:
-    "@formatjs/intl-numberformat" "^5.3.3"
-
-intl-messageformat@^9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-9.2.0.tgz#13576d7ce7c25dede3bc8915b9a50749791c779f"
-  integrity sha512-mdASJPZpKfhbM//NLNIETArWgVL06j5M9ZdhgiKBO4XayS4GQHnXW+zVUE5iAwHcGZIKzvdWCj4D4kmNzUmEzA==
+intl-messageformat@^9.3.6:
+  version "9.3.7"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-9.3.7.tgz#d40e61dc20ded8952fef00d97237880ff380550a"
+  integrity sha512-DUc+BJ6QN/IyT05gyKTuSJuauuYheV/5IhP+KEwmLhaJzONu0U/nnL5P6L5Ck9DXAx8iy7HM0CwFUctD7CmqZw==
   dependencies:
     fast-memoize "^2.5.2"
-    intl-messageformat-parser "^5.3.7"
+    intl-messageformat-parser "^6.0.6"
 
 into-stream@^2.0.0:
   version "2.0.1"
