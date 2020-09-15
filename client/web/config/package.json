@@ -7,6 +7,6 @@
   "license": "GPL-3.0",
   "private": true,
   "engines": {
-    "node": "14.10.1"
+    "node": "14.11.0"
   }
 }

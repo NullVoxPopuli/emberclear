@@ -57,10 +57,10 @@
     "stylelint-config-standard": "20.0.0"
   },
   "engines": {
-    "node": "14.10.1"
+    "node": "14.11.0"
   },
   "volta": {
-    "node": "14.10.1",
+    "node": "14.11.0",
     "yarn": "1.22.5"
   }
 }
