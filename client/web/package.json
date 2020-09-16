@@ -51,7 +51,7 @@
     "eslint-plugin-qunit": "5.0.0",
     "husky": "4.3.0",
     "lint-staged": "10.3.0",
-    "prettier": "2.1.1",
+    "prettier": "2.1.2",
     "sass-lint": "1.13.1",
     "stylelint": "13.7.1",
     "stylelint-config-standard": "20.0.0"
