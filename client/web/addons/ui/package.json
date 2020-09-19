@@ -44,7 +44,7 @@
     "postcss-cssnext": "3.1.0",
     "postcss-import": "12.0.1",
     "shoelace-css": "1.0.0-beta24",
-    "typescript": "4.0.2",
+    "typescript": "4.0.3",
     "uuid": "8.3.0"
   },
   "devDependencies": {
