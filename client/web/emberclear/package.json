@@ -79,7 +79,7 @@
     "@embroider/compat": "0.24.1",
     "@embroider/core": "0.24.1",
     "@embroider/webpack": "0.24.1",
-    "@glimmer/component": "1.0.1",
+    "@glimmer/component": "1.0.2",
     "@glimmer/tracking": "1.0.2",
     "@html-next/vertical-collection": "1.0.0",
     "@rollup/plugin-node-resolve": "7.1.3",
