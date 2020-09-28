@@ -45,7 +45,7 @@
     "eslint": "7.10.0",
     "eslint-config-prettier": "6.12.0",
     "eslint-plugin-decorator-position": "2.2.1",
-    "eslint-plugin-ember": "9.0.0",
+    "eslint-plugin-ember": "9.1.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-qunit": "5.0.0",
