@@ -53,7 +53,7 @@
     "lint-staged": "10.4.0",
     "prettier": "2.1.2",
     "sass-lint": "1.13.1",
-    "stylelint": "13.7.1",
+    "stylelint": "13.7.2",
     "stylelint-config-standard": "20.0.0"
   },
   "engines": {
