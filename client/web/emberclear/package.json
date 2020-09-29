@@ -166,7 +166,7 @@
     "ember-sinon": "5.0.0",
     "ember-source": "3.21.1",
     "ember-statecharts": "0.13.2",
-    "ember-template-lint": "2.12.1",
+    "ember-template-lint": "2.13.0",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
     "ember-test-selectors": "5.0.0",
     "ember-test-waiters": "2.1.3",
