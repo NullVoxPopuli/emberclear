@@ -8,6 +8,11 @@ export default class LogoutController extends Controller {
   @service session!: SessionService;
 
   @action
+  goBack() {
+    history.back();
+  }
+
+  @action
   async logout() {
     await this.session.logout();
 

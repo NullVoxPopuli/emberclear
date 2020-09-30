@@ -16,10 +16,11 @@
 
     <div class='cta-with-fallback'>
 
-      <button {{on 'click' this.goBack}}>
+      <button {{on 'click' this.goBack}} class='primary'>
          <FaIcon @icon='chevron-left' @prefix='fas' />
         <span>{{t 'ui.logout.takeMeBack'}}</span>
       </button>
+
       <button
         data-test-confirm-logout
         type='button'

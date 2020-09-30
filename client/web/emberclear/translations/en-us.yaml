@@ -343,6 +343,7 @@ ui:
       Alternatively, you download your settings on
     theSettingsPage: the Settings page.
     confirm: Confirm Logout
+    takeMeBack: Take Me Back
 
   settings:
     title: Settings
