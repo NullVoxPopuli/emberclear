@@ -164,7 +164,7 @@
     "ember-service-worker-index": "0.7.0",
     "ember-service-worker-update-notify": "3.0.0",
     "ember-sinon": "5.0.0",
-    "ember-source": "3.21.1",
+    "ember-source": "3.21.2",
     "ember-statecharts": "0.13.2",
     "ember-template-lint": "2.13.0",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
