@@ -18383,10 +18383,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-toastify-js@1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/toastify-js/-/toastify-js-1.9.2.tgz#7cb2628972aaba28c2a67243c63bfdad457017f6"
-  integrity sha512-CwYTmslNmUytxkLq0pDjeC7lqyGonztn4e3TAzu4eOnXkESJQSx9cDmxApIUNIfgAY0hIydTCx9eoLWDaNmQZw==
+toastify-js@1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/toastify-js/-/toastify-js-1.9.3.tgz#cab81e077b8a3fa8ee602a7f054568c42a49a516"
+  integrity sha512-v0aXGUy6IbEBWxmoKx7ZCou00dQqEAsjJF86f8b8dNCH4O4L6iEkX3d3WRMVDirBJ+8CxQcHDZuAFD47J/imEw==
 
 toidentifier@1.0.0:
   version "1.0.0"
