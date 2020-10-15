@@ -158,7 +158,7 @@
     "ember-render-helpers": "0.1.1",
     "ember-resolver": "8.0.2",
     "ember-router-helpers": "github:rwjblue/ember-router-helpers",
-    "ember-service-worker": "0.8.4",
+    "ember-service-worker": "9.0.1",
     "ember-service-worker-asset-cache": "0.6.4",
     "ember-service-worker-cache-fallback": "0.6.2",
     "ember-service-worker-index": "0.7.0",
