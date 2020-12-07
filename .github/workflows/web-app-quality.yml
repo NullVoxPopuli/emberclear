@@ -19,11 +19,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
-      with:
-        node-version: 12
 
     - name: Install
-      run: volta install snyk
+      run: volta install node && volta install snyk
 
     - name: Snyk
       working-directory: ${{ env.root }}

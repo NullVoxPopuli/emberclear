@@ -202,8 +202,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
-      with:
-        node-version: 12
 
     - name: Download Built App Artifacts
       uses: actions/download-artifact@master
@@ -216,6 +214,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
       run: |
+        volta install node
         volta install @lhci/cli@0.3.x
         cd client/web/emberclear
 
