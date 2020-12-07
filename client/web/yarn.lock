@@ -1053,7 +1053,21 @@
     ember-cli-babel "^7.10.0"
     ember-modifier-manager-polyfill "^1.1.0"
 
-"@ember/test-helpers@1.7.2", "@ember/test-helpers@^1.7.1":
+"@ember/test-helpers@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.1.1.tgz#6632d27982e01c8aa8f36ecff9fc1655dc785741"
+  integrity sha512-GzjNEwCwiCmawvu6NuB5lTcWTWWoDKaecWyiaW3GqX+i4ABjJxCNOAh8vTzCeUfVs3IQdxywWMTEuB15VtkRjQ==
+  dependencies:
+    "@ember/test-waiters" "^2.3.2"
+    broccoli-debug "^0.6.5"
+    broccoli-funnel "^3.0.3"
+    ember-auto-import "^1.7.0"
+    ember-cli-babel "^7.22.1"
+    ember-cli-htmlbars "^5.2.0"
+    ember-destroyable-polyfill "^2.0.2"
+    es6-promise "^4.2.8"
+
+"@ember/test-helpers@^1.7.1":
   version "1.7.2"
   resolved "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-1.7.2.tgz#5b128dc5f6524c3850abf52668e6bd4fda401194"
   integrity sha512-FEJBpbFNIaWAsCSnataiNwYFvmcpoymL/B7fXLruuJ/46BnJjzLaRPtpUIZ91w4GNTK6knxbHWXW76aVb3Aezg==
@@ -1064,6 +1078,17 @@
     ember-cli-babel "^7.7.3"
     ember-cli-htmlbars-inline-precompile "^2.1.0"
     ember-test-waiters "^1.1.1"
+
+"@ember/test-waiters@^2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-2.3.2.tgz#5d416d25209b25b16116df0a01a856437362b7eb"
+  integrity sha512-4zDQd14br6VzvBf0PD/dm6Vg9nG33WUW14UGI26k+iOGG9iY++pHL5+PnrvCxxrZ9867EPTULy8K2oneenAtSw==
+  dependencies:
+    calculate-cache-key-for-tree "^2.0.0"
+    ember-cli-babel "^7.21.0"
+    ember-cli-typescript "^3.1.4"
+    ember-cli-version-checker "^5.1.1"
+    semver "^7.3.2"
 
 "@embroider/babel-loader-7@0.28.0":
   version "0.28.0"
@@ -6853,7 +6878,7 @@ ember-auto-import@1.6.0:
     walk-sync "^0.3.3"
     webpack "~4.28"
 
-ember-auto-import@^1.5.2, ember-auto-import@^1.5.3, ember-auto-import@^1.6.0:
+ember-auto-import@^1.5.2, ember-auto-import@^1.5.3, ember-auto-import@^1.6.0, ember-auto-import@^1.7.0:
   version "1.8.0"
   resolved "https://registry.npmjs.org/ember-auto-import/-/ember-auto-import-1.8.0.tgz#de7624b36ceb53a5a5878ebfe86ae70f0fea7921"
   integrity sha512-pX8rqT6oWiotz4n4rHDlYrVnQl0KVGanv/a+E2xUnkjsyL2K5JfrwJdyRaDsMQPNHkrz12HFnR/WKhjRoVDoIA==
@@ -8436,7 +8461,7 @@ es6-promise-pool@^2.4.1, es6-promise-pool@^2.5.0:
   resolved "https://registry.npmjs.org/es6-promise-pool/-/es6-promise-pool-2.5.0.tgz#147c612b36b47f105027f9d2bf54a598a99d9ccb"
   integrity sha1-FHxhKza0fxBQJ/nSv1SlmKmdnMs=
 
-es6-promise@^4.0.3:
+es6-promise@^4.0.3, es6-promise@^4.2.8:
   version "4.2.8"
   resolved "https://registry.npmjs.org/es6-promise/-/es6-promise-4.2.8.tgz#4eb21594c972bc40553d276e510539143db53e0a"
   integrity sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w==
