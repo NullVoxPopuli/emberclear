@@ -202,6 +202,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
+      with:
+        node-version: 12
 
     - name: Download Built App Artifacts
       uses: actions/download-artifact@master
