@@ -16,8 +16,9 @@ rm -rf public/bundle
 # broccoli-concat-analyzer, so that file needs
 # to be stitched into the index.html file
 echo -e "${Y}Building App with Stats${N}"
-echo -e "${Y}Outputs:${N}"
-echo -e "${Y}- dist/bundle/crypto.html${N}"
+# echo -e "${Y}Outputs:${N}"
+# echo -e "${Y}- dist/bundle/crypto.html${N}"
+# ^ There is currently now esbuild bundle analyzer
 CONCAT_STATS=true yarn build:production
 
 # begin analysis
@@ -34,4 +35,4 @@ echo -e "${Y}Copying HTML Analysis files to public/bundle for later deployment/$
 mkdir -p ./public/bundle
 cp ./concat-stats-for/index.html ./public/bundle/broccoli.html
 cp ./concat-stats-for/ember-auto-import.html ./public/bundle/
-cp ./dist/bundle/* ./public/bundle/
+# cp ./dist/bundle/* ./public/bundle/
