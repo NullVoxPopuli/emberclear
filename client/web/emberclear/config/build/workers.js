@@ -20,7 +20,7 @@ function detectWorkers() {
   return workers;
 }
 
-function configureWorkerTree({ isProduction, hash }) {
+function configureWorkerTree({ isProduction }) {
   return ([name, entryPath]) => {
     // let workerDir = path.join(workerRoot, name);
     let appDir = path.join(__dirname, '..', '..');
@@ -30,7 +30,7 @@ function configureWorkerTree({ isProduction, hash }) {
       loader: { '.ts': 'ts' },
       entryPoints: [entryPath],
       bundle: true,
-      outfile: path.join(appDir, 'public', 'workers', `${name}-${hash}.js`),
+      outfile: path.join(appDir, 'public', 'workers', `${name}.js`),
       format: 'esm',
       minify: isProduction,
       sourcemap: !isProduction,
