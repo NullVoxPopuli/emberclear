@@ -1,9 +1,10 @@
 import { module, test, skip } from 'qunit';
 
-import { visit, currentURL, settled, waitFor, waitUntil } from '@ember/test-helpers';
+import { currentURL, settled, waitFor, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
+  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,

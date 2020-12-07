@@ -14,7 +14,7 @@ type Args = {
 };
 
 export default class NameEntry extends Component<Args> {
-  @service currentUser!: CurrentUserService;
+  @service declare currentUser: CurrentUserService;
 
   @tracked name!: string;
 

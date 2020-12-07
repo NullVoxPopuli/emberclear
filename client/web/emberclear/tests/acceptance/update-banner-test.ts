@@ -1,6 +1,5 @@
 import { module, test } from 'qunit';
 
-import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -8,7 +7,7 @@ import {
   serviceWorkerUpdate,
 } from 'ember-service-worker-update-notify/test-support/updater';
 
-import { setupRelayConnectionMocks, setupWorkers } from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks, setupWorkers, visit } from 'emberclear/tests/helpers';
 
 const selector = '.service-worker-update-notify';
 

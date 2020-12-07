@@ -16,8 +16,14 @@ export default class InviteRoute extends Route {
   @service declare redirectManager: RedirectManager;
 
   async beforeModel(transition: any) {
+    transition.abort();
+
     // identity should be loaded from application route
-    if (this.currentUser.isLoggedIn) return await this.acceptInvite(transition);
+    if (this.currentUser.isLoggedIn) {
+      await this.acceptInvite(transition);
+
+      return;
+    }
 
     this.toast.info('Please login or create your account before the invite can be accepted');
 
@@ -60,7 +66,7 @@ export default class InviteRoute extends Route {
 
     this.toast.success(`${name} has been successfully imported!`);
 
-    return this.transitionTo(`/chat/privately-with/${publicKey}`);
+    await this.transitionTo(`/chat/privately-with/${publicKey}`);
   }
 
   private hasParams({ name, publicKey }: IQueryParams) {

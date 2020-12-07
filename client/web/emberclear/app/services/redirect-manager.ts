@@ -19,8 +19,13 @@ export default class RedirectManager extends Service {
 
   async evaluate() {
     if (this.hasPendingRedirect) {
-      await this.router.transitionTo(this.attemptedRoute!);
+      let next = this.attemptedRoute;
+
       this.attemptedRoute = undefined;
+
+      if (next) {
+        await this.router.transitionTo(next);
+      }
 
       return true;
     }

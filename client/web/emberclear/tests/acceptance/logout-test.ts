@@ -1,9 +1,10 @@
 import { module, test } from 'qunit';
 
-import { visit, currentURL } from '@ember/test-helpers';
+import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
+  visit,
   stubService,
   setupCurrentUser,
   setupRelayConnectionMocks,

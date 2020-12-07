@@ -45,7 +45,7 @@ export default class LoginForm extends Component {
 
       await this.currentUser.setIdentity(name, keys);
 
-      this.router.transitionTo('chat');
+      await this.router.transitionTo('chat');
     } catch (e) {
       console.error(e);
       this.toast.error('There was a problem logging in...');
@@ -57,7 +57,7 @@ export default class LoginForm extends Component {
     try {
       await this.settings.import(data);
 
-      this.router.transitionTo('settings');
+      await this.router.transitionTo('settings');
     } catch (e) {
       console.error(e);
       this.toast.error('There was a problem processing your file...');

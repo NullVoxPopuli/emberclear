@@ -1,11 +1,12 @@
 import { module, test } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
+import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
 import { nameForm, overwritePage } from 'emberclear/tests/helpers/pages/setup';
 
 import {
+  visit,
   setupCurrentUser,
   trackAsyncDataRequests,
   getStore,

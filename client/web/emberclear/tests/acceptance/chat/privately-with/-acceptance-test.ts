@@ -1,5 +1,5 @@
 import { module, test, skip } from 'qunit';
-import { visit, currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
+import { currentURL, settled, waitFor, triggerEvent } from '@ember/test-helpers';
 import { timeout } from 'ember-concurrency';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
@@ -9,7 +9,7 @@ import {
   setupRelayConnectionMocks,
   setupCurrentUser,
   getService,
-  visit as visitIgnoringFailure,
+  visit,
   setupWorkers,
 } from 'emberclear/tests/helpers';
 
@@ -117,7 +117,7 @@ module('Acceptance | Chat | Privately With', function (hooks) {
       setupRelayConnectionMocks(hooks);
 
       hooks.beforeEach(async function () {
-        await visitIgnoringFailure('/chat/privately-with/nobody');
+        await visit('/chat/privately-with/nobody');
       });
 
       test('redirects', async function (assert) {

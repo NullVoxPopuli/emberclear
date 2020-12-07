@@ -1,10 +1,10 @@
 import { module, test } from 'qunit';
-import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { stripIndent } from 'common-tags';
 
 import {
+  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,

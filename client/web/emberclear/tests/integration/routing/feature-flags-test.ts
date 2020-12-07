@@ -1,9 +1,13 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-import { setupRouter, setupCurrentUser, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
+import {
+  visit,
+  setupRouter,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
+} from 'emberclear/tests/helpers';
 import type { TestContext } from 'ember-test-helpers';
 
 module('Routing | Feature Flags', function (hooks) {

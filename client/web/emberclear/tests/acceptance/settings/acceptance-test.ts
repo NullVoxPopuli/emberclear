@@ -1,5 +1,5 @@
 import { module, test, skip } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
+import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -9,6 +9,7 @@ import {
   getStore,
   getService,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
 
 import { settings } from 'emberclear/tests/helpers/pages/settings';
