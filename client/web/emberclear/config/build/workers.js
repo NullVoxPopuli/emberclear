@@ -1,22 +1,12 @@
-const Rollup = require('broccoli-rollup');
-
-const commonjs = require('@rollup/plugin-commonjs');
-const { babel } = require('@rollup/plugin-babel');
-const resolve = require('@rollup/plugin-node-resolve');
-const { terser } = require('rollup-plugin-terser');
-const filesize = require('rollup-plugin-filesize');
-// const alias = require('@rollup/plugin-alias');
-
-const AssetRev = require('broccoli-asset-rev');
-
-const colors = require('colors');
+'use strict';
 
 const path = require('path');
 const fs = require('fs');
 
+const esbuild = require('esbuild');
+
 let cwd = process.cwd();
 let workerRoot = path.join(cwd, 'app', 'workers');
-let extensions = ['.js', '.ts'];
 
 function detectWorkers() {
   let workers = {};
@@ -30,76 +20,22 @@ function detectWorkers() {
   return workers;
 }
 
-function configureWorkerTree({ isProduction, hash, CONCAT_STATS }) {
+function configureWorkerTree({ isProduction, hash }) {
   return ([name, entryPath]) => {
-    let workerDir = path.join(workerRoot, name);
-    let rootNodeModules = path.join(__dirname, '..', '..', '..', 'node_modules', '**');
+    // let workerDir = path.join(workerRoot, name);
+    let appDir = path.join(__dirname, '..', '..');
+    // let rootNodeModules = path.join(appDir, '..', 'node_modules', '**');
 
-    let rollupTree = new Rollup(workerDir, {
-      rollup: {
-        input: entryPath,
-        output: [
-          {
-            file: `workers/${name}.js`,
-            format: 'esm',
-          },
-        ],
-        plugins: [
-          ...(CONCAT_STATS
-            ? [
-                require('rollup-plugin-visualizer')({
-                  gzipSize: true,
-                  brotliSize: true,
-                  // json: true,
-                  filename: `bundle/${name}.html`,
-                }),
-              ]
-            : []),
-          resolve({
-            extensions,
-            browser: true,
-            preferBuiltins: false,
-          }),
-          commonjs({
-            include: [rootNodeModules, 'node_modules/**'],
-            namedExports: {
-              tweetnacl: ['nacl'],
-            },
-          }),
-          babel({
-            extensions,
-            babelrc: false,
-            presets: [
-              [
-                require('@babel/preset-env'),
-                {
-                  useBuiltIns: 'usage',
-                  targets: '> 2%, not IE 11, not dead',
-                  corejs: {
-                    version: 3,
-                  },
-                },
-              ],
-              require('@babel/preset-typescript'),
-            ],
-            plugins: [
-              require('@babel/plugin-proposal-class-properties'),
-              require('@babel/plugin-proposal-object-rest-spread'),
-            ],
-            exclude: /node_modules/,
-          }),
-          ...(isProduction ? [terser()] : []),
-          filesize({ render: printSizes }),
-        ],
-      },
-    });
-
-    if (!isProduction) {
-      return rollupTree;
-    }
-
-    return new AssetRev(rollupTree, {
-      customHash: hash,
+    esbuild.buildSync({
+      loader: { '.ts': 'ts' },
+      entryPoints: [entryPath],
+      bundle: true,
+      outfile: path.join(appDir, 'public', 'workers', `${name}-${hash}.js`),
+      format: 'esm',
+      minify: isProduction,
+      sourcemap: !isProduction,
+      // incremental: true,
+      tsconfig: path.join(appDir, 'tsconfig.json'),
     });
   };
 }
@@ -108,29 +44,10 @@ module.exports = {
   buildWorkerTrees(env) {
     let inputs = detectWorkers();
     let workerBuilder = configureWorkerTree(env);
-    let workerTrees = Object.entries(inputs).map(workerBuilder);
 
-    return workerTrees;
+    // separate build from ember, will be detached, won't watch
+    Object.entries(inputs).map(workerBuilder);
+
+    return [];
   },
 };
-
-function printSizes(opt, outputOptions, info) {
-  let primaryColor = opt.theme === 'dark' ? 'green' : 'black';
-  let secondaryColor = opt.theme === 'dark' ? 'yellow' : 'blue';
-
-  let title = colors[primaryColor].bold;
-  let value = colors[secondaryColor];
-
-  let file = outputOptions.file.replace(cwd, '');
-
-  let values = [
-    '\n',
-    'Built Web Worker:',
-    `${title('Destination: ')}${value(file)}`,
-    `${title('Bundle Size: ')} ${value(info.bundleSize)}`,
-    `${title('Minified Size: ')} ${value(info.minSize)}`,
-    `${title('Gzipped Size: ')} ${value(info.gzipSize)}`,
-  ];
-
-  return values.join('\n');
-}
