@@ -12,8 +12,8 @@ import { enqueueTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
 export default class UnreadMessagesIntersectionObserver extends Modifier {
-  @service sidebar!: SidebarService;
-  @service store!: StoreService;
+  @service declare sidebar: SidebarService;
+  @service declare store: StoreService;
 
   focusHandler!: () => void;
 

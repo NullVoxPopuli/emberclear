@@ -6,8 +6,8 @@ import CurrentUserService from 'emberclear/services/current-user';
 import Sidebar from 'emberclear/services/sidebar';
 
 export default class LogoutRoute extends Route {
-  @service currentUser!: CurrentUserService;
-  @service sidebar!: Sidebar;
+  @service declare currentUser: CurrentUserService;
+  @service declare sidebar: Sidebar;
 
   // ensure we are allowed to be here
   async beforeModel() {
@@ -17,7 +17,7 @@ export default class LogoutRoute extends Route {
     const exists = await this.currentUser.exists();
 
     if (!exists) {
-      this.transitionTo('setup');
+      await this.transitionTo('setup');
     }
   }
 }

@@ -10,7 +10,7 @@ interface Args {
 }
 
 export default class MessageScrollListener extends Modifier<Args> {
-  @service chatScroller!: ChatScroller;
+  @service declare chatScroller: ChatScroller;
 
   scrollHandler!: () => void;
   messagesElement!: Element;

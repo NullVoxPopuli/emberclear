@@ -4,6 +4,7 @@
     "keypair",
     "nacl",
     "outfile",
+    "prismjs",
     "sourcemap"
   ]
 }

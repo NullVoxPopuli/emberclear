@@ -13,16 +13,16 @@ type Args = {
 };
 
 export default class SidebarChannel extends Component<Args> {
-  @service sidebar!: SidebarService;
-  @service router!: RouterService;
+  @service declare sidebar: SidebarService;
+  @service declare router: RouterService;
 
   @action
-  onClickChannel(channel: Channel) {
+  async onClickChannel(channel: Channel) {
     if (window.innerWidth < TABLET_WIDTH) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.sidebar.hide();
     }
 
-    this.router.transitionTo('chat.in-channel', channel.id);
+    await this.router.transitionTo('chat.in-channel', channel.id);
   }
 }

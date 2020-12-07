@@ -5,15 +5,15 @@ import WorkersService from 'emberclear/services/workers';
 import CurrentUserService from 'emberclear/services/current-user';
 
 export default class SettingsRoute extends Route {
-  @service currentUser!: CurrentUserService;
-  @service workers!: WorkersService;
+  @service declare currentUser: CurrentUserService;
+  @service declare workers: WorkersService;
 
   async beforeModel() {
     // don't need to login, if we are already logged in
     const exists = await this.currentUser.exists();
 
     if (exists) {
-      this.transitionTo('/');
+      await this.transitionTo('/');
     }
   }
 }

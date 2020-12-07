@@ -19,12 +19,12 @@ import type StatusManager from 'emberclear/services/status-manager';
 import type MessageFactory from 'emberclear/services/messages/factory';
 
 export default class MessageDispatcher extends Service {
-  @service notifications!: Notifications;
-  @service store!: StoreService;
-  @service connection!: ConnectionService;
-  @service currentUser!: CurrentUserService;
-  @service statusManager!: StatusManager;
-  @service('messages/factory') messageFactory!: MessageFactory;
+  @service declare notifications: Notifications;
+  @service declare store: StoreService;
+  @service declare connection: ConnectionService;
+  @service declare currentUser: CurrentUserService;
+  @service declare statusManager: StatusManager;
+  @service('messages/factory') declare messageFactory: MessageFactory;
 
   async send(text: string, to: Contact | Channel) {
     const message = this.messageFactory.buildChat(text, to);

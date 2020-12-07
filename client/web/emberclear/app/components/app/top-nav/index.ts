@@ -9,10 +9,10 @@ import { selectUnreadMessages } from 'emberclear/models/message/utils';
 import RouterService from '@ember/routing/router-service';
 
 export default class TopNav extends Component {
-  @service currentUser!: CurrentUserService;
-  @service router!: RouterService;
-  @service sidebar!: Sidebar;
-  @service store!: StoreService;
+  @service declare currentUser: CurrentUserService;
+  @service declare router: RouterService;
+  @service declare sidebar: Sidebar;
+  @service declare store: StoreService;
 
   get isInverted(): boolean {
     return this.router.currentRouteName !== 'index';

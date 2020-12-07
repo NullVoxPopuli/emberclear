@@ -11,7 +11,7 @@ interface Args {
 }
 
 export default class FormatCode extends Modifier<Args> {
-  @service prismManager!: PrismManager;
+  @service declare prismManager: PrismManager;
 
   didInstall() {
     let text = this.args.positional[0];

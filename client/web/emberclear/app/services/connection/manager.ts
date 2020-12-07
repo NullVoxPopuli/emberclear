@@ -13,11 +13,11 @@ import type ToastService from 'emberclear/services/toast';
 import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class ConnectionManager extends Service {
-  @service toast!: ToastService;
-  @service store!: StoreService;
-  @service('messages/processor') processor!: MessageProcessor;
-  @service('connection/status') status!: ConnectionStatusService;
-  @service currentUser!: CurrentUserService;
+  @service declare toast: ToastService;
+  @service declare store: StoreService;
+  @service('messages/processor') declare processor: MessageProcessor;
+  @service('connection/status') declare status: ConnectionStatusService;
+  @service declare currentUser: CurrentUserService;
 
   declare connectionPool?: ConnectionPool<Connection, Relay>;
 

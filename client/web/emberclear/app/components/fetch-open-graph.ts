@@ -14,8 +14,8 @@ type Args = {
 };
 
 class FetchOpenGraphComponent extends Component<Args> {
-  @service('connection/status') status!: ConnectionStatusService;
-  @service('connection') connection!: ConnectionService;
+  @service('connection/status') declare status: ConnectionStatusService;
+  @service('connection') declare connection: ConnectionService;
 
   constructor(owner: any, args: Args) {
     super(owner, args);

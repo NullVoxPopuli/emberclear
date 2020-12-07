@@ -11,11 +11,11 @@ import Settings from 'emberclear/services/settings';
 import ConnectionService from 'emberclear/services/connection';
 
 export default class ApplicationRoute extends Route {
-  @service store!: StoreService;
-  @service currentUser!: CurrentUserService;
-  @service locale!: LocaleService;
-  @service settings!: Settings;
-  @service connection!: ConnectionService;
+  @service declare store: StoreService;
+  @service declare currentUser: CurrentUserService;
+  @service declare locale: LocaleService;
+  @service declare settings: Settings;
+  @service declare connection: ConnectionService;
 
   async beforeModel() {
     (this.store as any).shouldTrackAsyncRequests = true;

@@ -6,18 +6,18 @@ import CurrentUserService from 'emberclear/services/current-user';
 import RedirectManager from 'emberclear/services/redirect-manager';
 
 export default class AddFriendRoute extends Route {
-  @service currentUser!: CurrentUserService;
-  @service redirectManager!: RedirectManager;
+  @service declare currentUser: CurrentUserService;
+  @service declare redirectManager: RedirectManager;
 
-  beforeModel() {
+  async beforeModel() {
     // identity should be loaded from application route
     if (this.currentUser.isLoggedIn) {
-      this.redirectManager.evaluate();
+      await this.redirectManager.evaluate();
 
       return;
     }
 
     // no identity, need to create one
-    this.transitionTo('setup');
+    await this.transitionTo('setup');
   }
 }

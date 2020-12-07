@@ -13,8 +13,8 @@ type Args = {
 };
 
 class Mnemonic extends Component<Args> {
-  @service('intl') intl!: Intl;
-  @service workers!: WorkersService;
+  @service('intl') declare intl: Intl;
+  @service declare workers: WorkersService;
 
   @tracked privateKey?: Uint8Array;
   @tracked mnemonic?: string;

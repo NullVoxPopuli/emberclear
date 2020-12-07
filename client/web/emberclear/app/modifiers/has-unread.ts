@@ -16,7 +16,7 @@ interface Args {
 }
 
 export default class HasUnread extends Modifier<Args> {
-  @service store!: StoreService;
+  @service declare store: StoreService;
 
   get contact() {
     return this.args.positional[0];

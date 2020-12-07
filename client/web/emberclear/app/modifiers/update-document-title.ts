@@ -4,8 +4,8 @@ import { inject as service } from '@ember/service';
 import CurrentChatService from '../services/current-chat';
 
 export default class UpdateDocumentTitle extends Modifier {
-  @service currentChat!: CurrentChatService;
-  @service intl!: Intl;
+  @service declare currentChat: CurrentChatService;
+  @service declare intl: Intl;
 
   originalDocumentTitle: string;
   appName: string;

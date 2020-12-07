@@ -10,18 +10,18 @@ interface IModelParams {
 }
 
 export default class ChatPrivatelyRoute extends Route {
-  @service currentUser!: CurrentUserService;
-  @service chatScroller!: ChatScroller;
-  @service toast!: Toast;
-  @service intl!: Intl;
-  @service store!: StoreService;
+  @service declare currentUser: CurrentUserService;
+  @service declare chatScroller: ChatScroller;
+  @service declare toast: Toast;
+  @service declare intl: Intl;
+  @service declare store: StoreService;
 
-  beforeModel(transition: any) {
+  async beforeModel(transition: any) {
     let params = transition.to.params;
     let { id } = params as IModelParams;
 
     if (id === this.currentUser.uid) {
-      this.transitionTo('chat.privately-with', currentUserId);
+      await this.transitionTo('chat.privately-with', currentUserId);
     }
 
     // Tells the view to scroll to the bottom.
@@ -43,7 +43,7 @@ export default class ChatPrivatelyRoute extends Route {
     } catch (error) {
       this.toast.error(error || this.intl.t('ui.chat.errors.contactNotFound'));
 
-      this.transitionTo('chat.index');
+      await this.transitionTo('chat.index');
     }
 
     return {

@@ -32,14 +32,14 @@ export default class SidebarContact extends Component<IArgs> {
   }
 
   @action
-  onClick() {
+  async onClick() {
     if (window.innerWidth < TABLET_WIDTH) {
       // non-blocking
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.sidebar.hide();
     }
 
-    this.router.transitionTo('chat.privately-with', this.args.contact.id);
+    await this.router.transitionTo('chat.privately-with', this.args.contact.id);
   }
 
   @action

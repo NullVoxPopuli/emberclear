@@ -11,7 +11,7 @@ type Args = {
 };
 
 export default class MaybeNudgeToBottom extends Modifier<Args> {
-  @service chatScroller!: ChatScroller;
+  @service declare chatScroller: ChatScroller;
 
   get messages() {
     return this.args.positional[0];

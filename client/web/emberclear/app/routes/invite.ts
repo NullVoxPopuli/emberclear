@@ -9,11 +9,11 @@ import RedirectManager from 'emberclear/services/redirect-manager';
 import CurrentUserService from 'emberclear/services/current-user';
 
 export default class InviteRoute extends Route {
-  @service toast!: Toast;
-  @service currentUser!: CurrentUserService;
-  @service contactManager!: ContactManager;
-  @service channelManager!: ChannelManager;
-  @service redirectManager!: RedirectManager;
+  @service declare toast: Toast;
+  @service declare currentUser: CurrentUserService;
+  @service declare contactManager: ContactManager;
+  @service declare channelManager: ChannelManager;
+  @service declare redirectManager: RedirectManager;
 
   async beforeModel(transition: any) {
     // identity should be loaded from application route
@@ -24,7 +24,7 @@ export default class InviteRoute extends Route {
     this.redirectManager.persistURL(transition.intent.url);
 
     // no identity, need to create one
-    this.transitionTo('setup');
+    await this.transitionTo('setup');
   }
 
   async acceptInvite(transition: any) {

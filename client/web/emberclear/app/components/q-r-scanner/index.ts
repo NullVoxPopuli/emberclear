@@ -9,9 +9,9 @@ interface IArgs {
 }
 
 export default class QRScanner extends Component<IArgs> {
-  @service intl!: Intl;
-  @service toast!: Toast;
-  @service('browser/navigator') navigator!: NavigatorService;
+  @service declare intl: Intl;
+  @service declare toast: Toast;
+  @service('browser/navigator') declare navigator: NavigatorService;
 
   @tracked cameraStream?: MediaStream;
   @tracked lastDetectedData?: string;

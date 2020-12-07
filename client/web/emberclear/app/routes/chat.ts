@@ -13,21 +13,21 @@ export interface IModel {
 }
 
 export default class ChatRoute extends Route {
-  @service currentUser!: CurrentUserService;
-  @service redirectManager!: RedirectManager;
-  @service connection!: ConnectionService;
-  @service store!: StoreService;
+  @service declare currentUser: CurrentUserService;
+  @service declare redirectManager: RedirectManager;
+  @service declare connection: ConnectionService;
+  @service declare store: StoreService;
 
-  beforeModel() {
+  async beforeModel() {
     // identity should be loaded from application route
     if (this.currentUser.isLoggedIn) {
-      this.redirectManager.evaluate();
+      await this.redirectManager.evaluate();
 
       return;
     }
 
     // no identity, need to create one
-    this.transitionTo('setup');
+    await this.transitionTo('setup');
   }
 
   async model() {

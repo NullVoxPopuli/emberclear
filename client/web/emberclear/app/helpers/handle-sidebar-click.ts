@@ -8,7 +8,7 @@ type SidebarService = import('emberclear/services/sidebar').default;
 type Args = [() => void];
 
 export default class HandleSidebarClick extends Helper {
-  @service sidebar!: SidebarService;
+  @service declare sidebar: SidebarService;
 
   compute([handler]: Args) {
     return (e?: Event) => {
