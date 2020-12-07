@@ -18,10 +18,10 @@ jobs:
     timeout-minutes: 5
     steps:
     - uses: actions/checkout@v2
-    - uses: rwjblue/setup-volta@v1
+    - uses: volta-cli/action@v1
 
     - name: Install
-      run: volta install snyk
+      run: volta install node && volta install snyk
 
     - name: Snyk
       working-directory: ${{ env.root }}

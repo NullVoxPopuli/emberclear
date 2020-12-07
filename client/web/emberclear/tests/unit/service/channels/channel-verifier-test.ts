@@ -1,12 +1,13 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import { getService, getStore, clearLocalStorage } from 'emberclear/tests/helpers';
-import ChannelVerifier from 'emberclear/services/channels/channel-verifier';
+import type ChannelVerifier from 'emberclear/services/channels/channel-verifier';
 import { buildUser } from 'emberclear/tests/helpers/factories/user-factory';
-import VoteChain, { VOTE_ACTION } from 'emberclear/models/vote-chain';
+import type VoteChain from 'emberclear/models/vote-chain';
+import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
 import { sign, hash } from 'emberclear/workers/crypto/utils/nacl';
-import User from 'emberclear/models/user';
+import type User from 'emberclear/models/user';
 
 module('Unit | Service | channels/channel-verifier', function (hooks) {
   setupTest(hooks);

@@ -1,8 +1,8 @@
 import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 
-import Message from 'emberclear/models/message';
-import ChatScroller from 'emberclear/services/chat-scroller';
+import type Message from 'emberclear/models/message';
+import type ChatScroller from 'emberclear/services/chat-scroller';
 
 interface Args {
   positional: [Message[]];
@@ -10,7 +10,7 @@ interface Args {
 }
 
 export default class MessageScrollListener extends Modifier<Args> {
-  @service chatScroller!: ChatScroller;
+  @service declare chatScroller: ChatScroller;
 
   scrollHandler!: () => void;
   messagesElement!: Element;

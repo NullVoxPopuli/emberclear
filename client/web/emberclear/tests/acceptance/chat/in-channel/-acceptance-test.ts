@@ -1,8 +1,9 @@
 import { module, test } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
+import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest, skip } from 'ember-qunit';
 
 import {
+  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,
@@ -13,7 +14,7 @@ import { page } from 'emberclear/tests/helpers/pages/chat';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 import { createChannel } from 'emberclear/tests/helpers/factories/channel-factory';
 
-import Channel from 'emberclear/models/channel';
+import type Channel from 'emberclear/models/channel';
 
 module('Acceptance | Chat | Privately With', function (hooks) {
   setupApplicationTest(hooks);

@@ -1,8 +1,9 @@
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import { pool, ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';
+import type { ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';
+import { pool } from 'emberclear/utils/connection/connection-pool';
 import { Connection } from 'emberclear/utils/connection/connection';
 
 import type Relay from 'emberclear/models/relay';
@@ -13,11 +14,11 @@ import type ToastService from 'emberclear/services/toast';
 import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class ConnectionManager extends Service {
-  @service toast!: ToastService;
-  @service store!: StoreService;
-  @service('messages/processor') processor!: MessageProcessor;
-  @service('connection/status') status!: ConnectionStatusService;
-  @service currentUser!: CurrentUserService;
+  @service declare toast: ToastService;
+  @service declare store: StoreService;
+  @service('messages/processor') declare processor: MessageProcessor;
+  @service('connection/status') declare status: ConnectionStatusService;
+  @service declare currentUser: CurrentUserService;
 
   declare connectionPool?: ConnectionPool<Connection, Relay>;
 

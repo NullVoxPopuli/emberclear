@@ -12,8 +12,8 @@ import type Message from 'emberclear/models/message';
 import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class MessageFactory extends Service {
-  @service store!: any;
-  @service currentUser!: CurrentUserService;
+  @service declare store: any;
+  @service declare currentUser: CurrentUserService;
 
   buildNewReceivedMessage(json: StandardMessage, sender: Identity) {
     const { id, type, target, message: msg } = json;

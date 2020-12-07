@@ -1,9 +1,10 @@
 import { module, test, skip } from 'qunit';
-import { visit, waitFor } from '@ember/test-helpers';
+import { waitFor } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
 import {
+  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,

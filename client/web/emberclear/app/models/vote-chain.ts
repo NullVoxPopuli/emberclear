@@ -1,8 +1,8 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
-import Identity from 'emberclear/models/identity';
-import ChannelContextChain from './channel-context-chain';
-import Vote from './vote';
+import type Identity from 'emberclear/models/identity';
+import type ChannelContextChain from './channel-context-chain';
+import type Vote from './vote';
 
 export enum VOTE_ACTION {
   ADD = 'add',

@@ -3,12 +3,8 @@ import { setupTest } from 'ember-qunit';
 
 import { clearLocalStorage, getStore } from 'emberclear/tests/helpers';
 import { VOTE_ACTION } from 'emberclear/models/vote-chain';
-import {
-  generateSortedVote,
-  VOTE_ORDERING,
-  SortedVote,
-  SortedVoteHex,
-} from 'emberclear/services/channels/-utils/vote-sorter';
+import type { SortedVote, SortedVoteHex } from 'emberclear/services/channels/-utils/vote-sorter';
+import { generateSortedVote, VOTE_ORDERING } from 'emberclear/services/channels/-utils/vote-sorter';
 import {
   convertObjectToUint8Array,
   convertUint8ArrayToObject,

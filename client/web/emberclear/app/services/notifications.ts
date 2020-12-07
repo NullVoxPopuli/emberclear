@@ -2,20 +2,20 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
-import CurrentUserService from 'emberclear/services/current-user';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 
-import Toast from 'emberclear/services/toast';
-import RouterService from '@ember/routing/router-service';
-import WindowService from 'emberclear/services/window';
+import type Toast from 'emberclear/services/toast';
+import type RouterService from '@ember/routing/router-service';
+import type WindowService from 'emberclear/services/window';
 
 export default class Notifications extends Service {
-  @service toast!: Toast;
-  @service intl!: Intl;
-  @service currentUser!: CurrentUserService;
-  @service router!: RouterService;
-  @service window!: WindowService;
+  @service declare toast: Toast;
+  @service declare intl: Intl;
+  @service declare currentUser: CurrentUserService;
+  @service declare router: RouterService;
+  @service declare window: WindowService;
 
   @tracked askToEnableNotifications = true;
   @tracked isHiddenUntilBrowserRefresh = false;

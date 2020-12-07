@@ -1,4 +1,4 @@
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import Service, { inject as service } from '@ember/service';
 
 import { TYPE, TARGET, MESSAGE_LIMIT } from 'emberclear/models/message';
@@ -14,14 +14,14 @@ import type Notifications from 'emberclear/services/notifications';
 import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class ReceivedMessageHandler extends Service {
-  @service store!: StoreService;
-  @service intl!: Intl;
-  @service notifications!: Notifications;
-  @service statusManager!: StatusManager;
-  @service currentUser!: CurrentUserService;
-  @service contactManager!: ContactManager;
-  @service('messages/factory') messageFactory!: MessageFactory;
-  @service('messages/auto-responder') autoResponder!: AutoResponder;
+  @service declare store: StoreService;
+  @service declare intl: Intl;
+  @service declare notifications: Notifications;
+  @service declare statusManager: StatusManager;
+  @service declare currentUser: CurrentUserService;
+  @service declare contactManager: ContactManager;
+  @service('messages/factory') declare messageFactory: MessageFactory;
+  @service('messages/auto-responder') declare autoResponder: AutoResponder;
 
   async handle(raw: StandardMessage) {
     let message = await this.decomposeMessage(raw);

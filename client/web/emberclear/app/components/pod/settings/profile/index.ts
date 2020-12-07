@@ -3,9 +3,9 @@ import { action } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user';
+import type CurrentUserService from 'emberclear/services/current-user';
 
-import Settings from 'emberclear/services/settings';
+import type Settings from 'emberclear/services/settings';
 
 export default class ProfileSettings extends Component {
   @service currentUser!: CurrentUserService;

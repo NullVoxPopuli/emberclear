@@ -3,10 +3,10 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { reads, alias } from '@ember/object/computed';
 
-import SidebarService from 'emberclear/services/sidebar';
-import CurrentUserService from 'emberclear/services/current-user';
+import type SidebarService from 'emberclear/services/sidebar';
+import type CurrentUserService from 'emberclear/services/current-user';
 
-import Modals from 'emberclear/services/modals';
+import type Modals from 'emberclear/services/modals';
 
 import { scrollIntoViewOfParent } from 'emberclear/utils/dom/utils';
 import { tracked } from '@glimmer/tracking';

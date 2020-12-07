@@ -5,16 +5,16 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 import { hbs } from 'ember-cli-htmlbars';
-import WorkersService from 'emberclear/services/workers';
-import CryptoConnector from 'emberclear/utils/workers/crypto';
+import type WorkersService from 'emberclear/services/workers';
+import type CryptoConnector from 'emberclear/utils/workers/crypto';
 
 type Args = {
   crypto?: CryptoConnector;
 };
 
 class Mnemonic extends Component<Args> {
-  @service('intl') intl!: Intl;
-  @service workers!: WorkersService;
+  @service('intl') declare intl: Intl;
+  @service declare workers: WorkersService;
 
   @tracked privateKey?: Uint8Array;
   @tracked mnemonic?: string;

@@ -65,7 +65,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
 
       this.taskMsg = '';
       await this.toast.success(this.intl.t('ui.login.success'));
-      this.router.transitionTo('chat');
+      await this.router.transitionTo('chat');
 
       updateTransferStatus(false);
 

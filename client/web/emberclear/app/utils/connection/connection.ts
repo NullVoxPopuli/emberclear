@@ -1,6 +1,7 @@
-import { Channel, Socket } from 'phoenix';
+import type { Channel } from 'phoenix';
+import { Socket } from 'phoenix';
 
-import Relay from 'emberclear/models/relay';
+import type Relay from 'emberclear/models/relay';
 
 interface Args {
   relay: Relay;

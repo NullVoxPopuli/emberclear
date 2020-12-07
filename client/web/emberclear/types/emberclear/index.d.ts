@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import type Ember from 'ember';
 import '@ember/component';
 import '@ember/test-helpers';
 import 'ember-cli-htmlbars';

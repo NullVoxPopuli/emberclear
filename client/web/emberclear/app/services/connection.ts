@@ -10,10 +10,10 @@ import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import type { OutgoingPayload } from 'emberclear/utils/connection/connection';
 
 export default class ConnectionService extends Service {
-  @service currentUser!: CurrentUserService;
-  @service('connection/manager') manager!: ConnectionManager;
-  @service('messages/dispatcher') dispatcher!: MessageDispatcher;
-  @service('contacts/online-checker') onlineChecker!: ContactsOnlineChecker;
+  @service declare currentUser: CurrentUserService;
+  @service('connection/manager') declare manager: ConnectionManager;
+  @service('messages/dispatcher') declare dispatcher: MessageDispatcher;
+  @service('contacts/online-checker') declare onlineChecker: ContactsOnlineChecker;
 
   connect() {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises

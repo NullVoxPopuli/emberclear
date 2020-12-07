@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { dropTask } from 'ember-concurrency-decorators';
 
-import CurrentUserService from 'emberclear/services/current-user';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 import { taskFor } from 'ember-concurrency-ts';
 
@@ -14,7 +14,7 @@ type Args = {
 };
 
 export default class NameEntry extends Component<Args> {
-  @service currentUser!: CurrentUserService;
+  @service declare currentUser: CurrentUserService;
 
   @tracked name!: string;
 

@@ -1,8 +1,9 @@
 import { module, test } from 'qunit';
-import { visit, find } from '@ember/test-helpers';
+import { find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
+  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupWorkers,

@@ -2,10 +2,10 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
-import RouterService from '@ember/routing/router-service';
+import type RouterService from '@ember/routing/router-service';
 
 export default class RedirectManager extends Service {
-  @service router!: RouterService;
+  @service declare router: RouterService;
 
   @inLocalStorage attemptedRoute?: string;
 
@@ -17,10 +17,15 @@ export default class RedirectManager extends Service {
     this.attemptedRoute = path;
   }
 
-  evaluate() {
+  async evaluate() {
     if (this.hasPendingRedirect) {
-      this.router.transitionTo(this.attemptedRoute!);
+      let next = this.attemptedRoute;
+
       this.attemptedRoute = undefined;
+
+      if (next) {
+        await this.router.transitionTo(next);
+      }
 
       return true;
     }

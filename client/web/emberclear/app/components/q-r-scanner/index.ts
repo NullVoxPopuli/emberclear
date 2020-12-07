@@ -2,16 +2,16 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import NavigatorService from 'emberclear/services/browser/navigator';
+import type NavigatorService from 'emberclear/services/browser/navigator';
 
 interface IArgs {
   onScan: (qrContent: string) => void;
 }
 
 export default class QRScanner extends Component<IArgs> {
-  @service intl!: Intl;
-  @service toast!: Toast;
-  @service('browser/navigator') navigator!: NavigatorService;
+  @service declare intl: Intl;
+  @service declare toast: Toast;
+  @service('browser/navigator') declare navigator: NavigatorService;
 
   @tracked cameraStream?: MediaStream;
   @tracked lastDetectedData?: string;

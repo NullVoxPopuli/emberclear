@@ -15,9 +15,9 @@ import type MessageFactory from 'emberclear/services/messages/factory';
 const THIRTY_SECONDS = 30000;
 
 export default class ContactsOnlineChecker extends Service {
-  @service store!: StoreService;
-  @service('messages/dispatcher') dispatcher!: MessageDispatcher;
-  @service('messages/factory') messageFactory!: MessageFactory;
+  @service declare store: StoreService;
+  @service('messages/dispatcher') declare dispatcher: MessageDispatcher;
+  @service('messages/factory') declare messageFactory: MessageFactory;
 
   @task({ withTestWaiter: true })
   async checkOnlineStatus() {

@@ -1,6 +1,6 @@
 import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
 
-import User from 'emberclear/models/user';
+import type User from 'emberclear/models/user';
 
 import { getService } from './get-service';
 import { getStore } from './get-store';

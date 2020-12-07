@@ -4,8 +4,8 @@ import { setComponentTemplate } from '@ember/component';
 import { task } from 'ember-concurrency-decorators';
 import { hbs } from 'ember-cli-htmlbars';
 
-import ConnectionService from 'emberclear/services/connection';
-import ConnectionStatusService from 'emberclear/services/connection/status';
+import type ConnectionService from 'emberclear/services/connection';
+import type ConnectionStatusService from 'emberclear/services/connection/status';
 import { normalizeMeta } from 'emberclear/utils/normalized-meta';
 import { taskFor } from 'ember-concurrency-ts';
 
@@ -14,8 +14,8 @@ type Args = {
 };
 
 class FetchOpenGraphComponent extends Component<Args> {
-  @service('connection/status') status!: ConnectionStatusService;
-  @service('connection') connection!: ConnectionService;
+  @service('connection/status') declare status: ConnectionStatusService;
+  @service('connection') declare connection: ConnectionService;
 
   constructor(owner: any, args: Args) {
     super(owner, args);

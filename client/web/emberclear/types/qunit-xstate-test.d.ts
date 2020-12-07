@@ -1,5 +1,5 @@
-import { TestModel } from '@xstate/test';
-import { TestContext } from 'ember-test-helpers';
+import type { TestModel } from '@xstate/test';
+import type { TestContext } from 'ember-test-helpers';
 
 export function setupXStateTest(hooks: NestedHooks, testModel: TestModel<unknown, any>): void;
 export function testShortestPaths(

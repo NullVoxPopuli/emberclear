@@ -3,7 +3,7 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import { hbs } from 'ember-cli-htmlbars';
 import { getStore } from 'emberclear/tests/helpers';
-import { TestContext } from 'ember-test-helpers';
+import type { TestContext } from 'ember-test-helpers';
 
 import { stripIndent } from 'common-tags';
 

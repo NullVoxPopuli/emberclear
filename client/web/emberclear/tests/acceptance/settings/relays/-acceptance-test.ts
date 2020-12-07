@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, waitUntil } from '@ember/test-helpers';
+import { currentURL, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -8,6 +8,7 @@ import {
   setupCurrentUser,
   getService,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';

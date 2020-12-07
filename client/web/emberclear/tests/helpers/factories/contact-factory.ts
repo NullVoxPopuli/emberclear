@@ -1,7 +1,8 @@
 import { toHex } from 'emberclear/utils/string-encoding';
 
 import { getService } from '../get-service';
-import Contact, { Status } from 'emberclear/models/contact';
+import type Contact from 'emberclear/models/contact';
+import { Status } from 'emberclear/models/contact';
 import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
 
 export async function attributesForContact() {

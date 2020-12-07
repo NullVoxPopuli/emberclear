@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import Contact from 'emberclear/models/contact';
+import type Contact from 'emberclear/models/contact';
 
 interface IArgs {
   contact: Contact;

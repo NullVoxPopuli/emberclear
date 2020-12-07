@@ -1,4 +1,4 @@
-import Identity from 'emberclear/models/identity';
+import type Identity from 'emberclear/models/identity';
 import { equalsUint8Array } from './uint8array-equality';
 
 export function identitiesIncludes(identities: Identity[], identity: Identity): boolean {

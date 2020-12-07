@@ -1,6 +1,6 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import { taskFor } from 'ember-concurrency-ts';
 
 import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
@@ -15,9 +15,9 @@ import type Contact from 'emberclear/models/contact';
  * It is up to the invoker to not await these methods.
  * */
 export default class MessageAutoResponder extends Service {
-  @service('messages/dispatcher') dispatcher!: MessageDispatcher;
-  @service('messages/factory') factory!: MessageFactory;
-  @service store!: StoreService;
+  @service('messages/dispatcher') declare dispatcher: MessageDispatcher;
+  @service('messages/factory') declare factory: MessageFactory;
+  @service declare store: StoreService;
 
   async messageReceived(respondToMessage: Message) {
     const sender = respondToMessage.sender;

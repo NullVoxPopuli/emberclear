@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import LocaleService from 'emberclear/services/locale';
+import type LocaleService from 'emberclear/services/locale';
 
 export default class LocaleSwitcher extends Component {
   @service locale!: LocaleService;

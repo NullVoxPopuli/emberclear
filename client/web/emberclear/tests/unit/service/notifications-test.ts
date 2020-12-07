@@ -4,8 +4,8 @@ import td from 'testdouble';
 
 import { clearLocalStorage, getService, stubService } from 'emberclear/tests/helpers';
 
-import Notifications from 'emberclear/services/notifications';
-import WindowService from 'emberclear/services/window';
+import type Notifications from 'emberclear/services/notifications';
+import type WindowService from 'emberclear/services/window';
 
 module('Unit | Service | notifications', function (hooks) {
   setupTest(hooks);

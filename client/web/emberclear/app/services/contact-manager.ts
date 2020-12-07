@@ -9,7 +9,7 @@ import type Contact from 'emberclear/models/contact';
 import type ArrayProxy from '@ember/array/proxy';
 
 export default class ContactManager extends Service {
-  @service store!: StoreService;
+  @service declare store: StoreService;
 
   @tracked isImporting = false;
 

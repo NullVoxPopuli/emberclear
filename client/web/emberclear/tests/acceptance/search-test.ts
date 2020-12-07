@@ -1,9 +1,9 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit } from '@ember/test-helpers';
 
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import {
+  visit,
   getStore,
   setupCurrentUser,
   setupRelayConnectionMocks,

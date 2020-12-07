@@ -1,10 +1,11 @@
 import { module, test } from 'qunit';
 
-import { visit, triggerEvent } from '@ember/test-helpers';
+import { triggerEvent } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { timeout } from 'ember-concurrency';
 
 import {
+  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupWorkers,

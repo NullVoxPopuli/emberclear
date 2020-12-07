@@ -1,4 +1,4 @@
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
@@ -6,12 +6,13 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { timeout } from 'ember-concurrency';
 
-import Message, { TARGET } from 'emberclear/models/message';
-import Channel from 'emberclear/models/channel';
-import Contact from 'emberclear/models/contact';
-import CurrentUserService from 'emberclear/services/current-user';
+import type Message from 'emberclear/models/message';
+import { TARGET } from 'emberclear/models/message';
+import type Channel from 'emberclear/models/channel';
+import type Contact from 'emberclear/models/contact';
+import type CurrentUserService from 'emberclear/services/current-user';
 
-import MessageDispatcher from 'emberclear/services/messages/dispatcher';
+import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
 
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';

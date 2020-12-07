@@ -2,29 +2,35 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
 
-import { IQueryParams } from 'emberclear/controllers/invite';
-import ContactManager from 'emberclear/services/contact-manager';
-import ChannelManager from 'emberclear/services/channel-manager';
-import RedirectManager from 'emberclear/services/redirect-manager';
-import CurrentUserService from 'emberclear/services/current-user';
+import type { IQueryParams } from 'emberclear/controllers/invite';
+import type ContactManager from 'emberclear/services/contact-manager';
+import type ChannelManager from 'emberclear/services/channel-manager';
+import type RedirectManager from 'emberclear/services/redirect-manager';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class InviteRoute extends Route {
-  @service toast!: Toast;
-  @service currentUser!: CurrentUserService;
-  @service contactManager!: ContactManager;
-  @service channelManager!: ChannelManager;
-  @service redirectManager!: RedirectManager;
+  @service declare toast: Toast;
+  @service declare currentUser: CurrentUserService;
+  @service declare contactManager: ContactManager;
+  @service declare channelManager: ChannelManager;
+  @service declare redirectManager: RedirectManager;
 
   async beforeModel(transition: any) {
+    transition.abort();
+
     // identity should be loaded from application route
-    if (this.currentUser.isLoggedIn) return await this.acceptInvite(transition);
+    if (this.currentUser.isLoggedIn) {
+      await this.acceptInvite(transition);
+
+      return;
+    }
 
     this.toast.info('Please login or create your account before the invite can be accepted');
 
     this.redirectManager.persistURL(transition.intent.url);
 
     // no identity, need to create one
-    this.transitionTo('setup');
+    await this.transitionTo('setup');
   }
 
   async acceptInvite(transition: any) {
@@ -60,7 +66,7 @@ export default class InviteRoute extends Route {
 
     this.toast.success(`${name} has been successfully imported!`);
 
-    return this.transitionTo(`/chat/privately-with/${publicKey}`);
+    await this.transitionTo(`/chat/privately-with/${publicKey}`);
   }
 
   private hasParams({ name, publicKey }: IQueryParams) {

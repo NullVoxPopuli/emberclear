@@ -1,15 +1,16 @@
 import Service, { inject as service } from '@ember/service';
 
-import StoreService from '@ember-data/store';
-import RouterService from '@ember/routing/router-service';
-import CurrentUserService, { currentUserId } from 'emberclear/services/current-user';
+import type StoreService from '@ember-data/store';
+import type RouterService from '@ember/routing/router-service';
+import type CurrentUserService from 'emberclear/services/current-user';
+import { currentUserId } from 'emberclear/services/current-user';
 
 import { PRIVATE_CHAT_REGEX, CHANNEL_REGEX } from 'emberclear/utils/route-matchers';
 
 export default class CurrentChatService extends Service {
-  @service store!: StoreService;
-  @service router!: RouterService;
-  @service currentUser!: CurrentUserService;
+  @service declare store: StoreService;
+  @service declare router: RouterService;
+  @service declare currentUser: CurrentUserService;
 
   get name() {
     if (this.recordId === currentUserId) {

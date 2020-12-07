@@ -42,6 +42,7 @@ module.exports.simpleTypescript = {
     ],
 
     // @typescript-eslint
+    '@typescript-eslint/consistent-type-imports': 'error', // type imports are removed in builds
     '@typescript-eslint/interface-name-prefix': 'off', // idk
     '@typescript-eslint/no-use-before-define': 'off', // not applicable due to how the runtime is
     '@typescript-eslint/prefer-optional-chain': 'error', // much concise
@@ -100,9 +101,6 @@ module.exports.appOverrides = {
   ...typescript,
   rules: {
     ...typescript.rules,
-
-    // ember specific
-    'ember/no-new-mixins': 'off', // don't know what to do about ember-keyboard
   },
 };
 
@@ -111,9 +109,6 @@ module.exports.addonOverrides = {
   ...typescript,
   rules: {
     ...typescript.rules,
-
-    // ember specific
-    'ember/no-new-mixins': 'off', // don't know what to do about ember-keyboard
   },
 };
 

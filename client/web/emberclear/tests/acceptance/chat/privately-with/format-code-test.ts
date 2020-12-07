@@ -1,10 +1,10 @@
 import { module, test } from 'qunit';
-import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { stripIndent } from 'common-tags';
 
 import {
+  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,
@@ -13,7 +13,7 @@ import {
 
 import { page } from 'emberclear/tests/helpers/pages/chat';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import Contact from 'emberclear/models/contact';
+import type Contact from 'emberclear/models/contact';
 
 let codeA = stripIndent`
   \`\`\`ts

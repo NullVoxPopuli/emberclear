@@ -3,11 +3,11 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import MessageDispatcher from 'emberclear/services/messages/dispatcher';
+import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
 
 import { languages as allLanguages } from 'emberclear/services/prism-manager';
-import Contact from 'emberclear/models/contact';
-import Channel from 'emberclear/models/channel';
+import type Contact from 'emberclear/models/contact';
+import type Channel from 'emberclear/models/channel';
 
 const codeDelimiter = '```';
 

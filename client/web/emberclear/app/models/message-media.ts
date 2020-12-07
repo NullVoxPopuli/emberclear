@@ -1,6 +1,6 @@
 import Model, { attr, belongsTo } from '@ember-data/model';
 
-import Message from 'emberclear/models/message';
+import type Message from 'emberclear/models/message';
 
 export default class MessageMedia extends Model {
   @attr('string') url?: string;

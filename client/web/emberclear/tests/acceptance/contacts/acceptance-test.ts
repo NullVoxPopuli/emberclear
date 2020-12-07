@@ -1,9 +1,10 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, settled, waitUntil } from '@ember/test-helpers';
+import { currentURL, settled, waitUntil } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
 import {
+  visit,
   clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
@@ -12,7 +13,7 @@ import {
 
 import { contacts } from 'emberclear/tests/helpers/pages/contacts';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import User from 'emberclear/models/user';
+import type User from 'emberclear/models/user';
 
 module('Acceptance | Contacts', function (hooks) {
   setupApplicationTest(hooks);

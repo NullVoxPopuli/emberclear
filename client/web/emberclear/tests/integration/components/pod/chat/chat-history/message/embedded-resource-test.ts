@@ -4,7 +4,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { hbs } from 'ember-cli-htmlbars';
 
 import { stubService } from 'emberclear/tests/helpers';
-import { TestContext } from 'ember-test-helpers';
+import type { TestContext } from 'ember-test-helpers';
 
 module('Integration | Component | embedded-resource', function (hooks) {
   setupRenderingTest(hooks);

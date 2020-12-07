@@ -2,9 +2,9 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import localforage from 'localforage';
 
-import ContactManager from 'emberclear/services/contact-manager';
-import ChannelManager from 'emberclear/services/channel-manager';
-import CurrentUserService from './current-user';
+import type ContactManager from 'emberclear/services/contact-manager';
+import type ChannelManager from 'emberclear/services/channel-manager';
+import type CurrentUserService from './current-user';
 
 import { objectToDataURL, toHex, fromHex } from 'emberclear/utils/string-encoding';
 
@@ -40,9 +40,9 @@ const availableThemes = {
 };
 
 export default class Settings extends Service {
-  @service currentUser!: CurrentUserService;
-  @service contactManager!: ContactManager;
-  @service channelManager!: ChannelManager;
+  @service declare currentUser: CurrentUserService;
+  @service declare contactManager: ContactManager;
+  @service declare channelManager: ChannelManager;
 
   @inLocalStorage hideOfflineContacts = false;
   @inLocalStorage theme = THEMES.default;

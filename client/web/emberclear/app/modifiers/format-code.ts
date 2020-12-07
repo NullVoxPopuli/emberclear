@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { parseLanguages } from 'emberclear/utils/string/utils';
 import { later } from '@ember/runloop';
 
-import PrismManager from 'emberclear/services/prism-manager';
+import type PrismManager from 'emberclear/services/prism-manager';
 
 interface Args {
   positional: [string];
@@ -11,7 +11,7 @@ interface Args {
 }
 
 export default class FormatCode extends Modifier<Args> {
-  @service prismManager!: PrismManager;
+  @service declare prismManager: PrismManager;
 
   didInstall() {
     let text = this.args.positional[0];

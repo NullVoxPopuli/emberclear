@@ -6,9 +6,8 @@ import { taskFor } from 'ember-concurrency-ts';
 import { timeout } from 'ember-concurrency';
 
 import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
-
-type Contact = import('emberclear/models/contact').default;
-type StoreService = import('@ember-data/store').default;
+import type Contact from 'emberclear/models/contact';
+import type StoreService from '@ember-data/store';
 
 interface Args {
   positional: [Contact];
@@ -16,7 +15,7 @@ interface Args {
 }
 
 export default class HasUnread extends Modifier<Args> {
-  @service store!: StoreService;
+  @service declare store: StoreService;
 
   get contact() {
     return this.args.positional[0];

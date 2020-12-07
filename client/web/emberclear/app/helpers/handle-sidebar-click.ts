@@ -3,12 +3,12 @@ import { inject as service } from '@ember/service';
 
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 
-type SidebarService = import('emberclear/services/sidebar').default;
+import type SidebarService from 'emberclear/services/sidebar';
 
 type Args = [() => void];
 
 export default class HandleSidebarClick extends Helper {
-  @service sidebar!: SidebarService;
+  @service declare sidebar: SidebarService;
 
   compute([handler]: Args) {
     return (e?: Event) => {

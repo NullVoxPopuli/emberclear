@@ -1,13 +1,13 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import IntlService from 'ember-intl/services/intl';
+import type IntlService from 'ember-intl/services/intl';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 
 const DEFAULT_LOCALE = 'en-us';
 
 export default class LocaleService extends Service {
-  @service intl!: IntlService;
+  @service declare intl: IntlService;
 
   @inLocalStorage currentLocale = DEFAULT_LOCALE;
 

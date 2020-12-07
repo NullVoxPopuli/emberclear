@@ -1,33 +1,33 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import StoreService from '@ember-data/store';
-import CurrentUserService from 'emberclear/services/current-user';
+import type StoreService from '@ember-data/store';
+import type CurrentUserService from 'emberclear/services/current-user';
 
-import RedirectManager from 'emberclear/services/redirect-manager';
-import Message from 'emberclear/models/message';
-import ConnectionService from 'emberclear/services/connection';
+import type RedirectManager from 'emberclear/services/redirect-manager';
+import type Message from 'emberclear/models/message';
+import type ConnectionService from 'emberclear/services/connection';
 
 export interface IModel {
   messages: Message[];
 }
 
 export default class ChatRoute extends Route {
-  @service currentUser!: CurrentUserService;
-  @service redirectManager!: RedirectManager;
-  @service connection!: ConnectionService;
-  @service store!: StoreService;
+  @service declare currentUser: CurrentUserService;
+  @service declare redirectManager: RedirectManager;
+  @service declare connection: ConnectionService;
+  @service declare store: StoreService;
 
-  beforeModel() {
+  async beforeModel() {
     // identity should be loaded from application route
     if (this.currentUser.isLoggedIn) {
-      this.redirectManager.evaluate();
+      await this.redirectManager.evaluate();
 
       return;
     }
 
     // no identity, need to create one
-    this.transitionTo('setup');
+    await this.transitionTo('setup');
   }
 
   async model() {

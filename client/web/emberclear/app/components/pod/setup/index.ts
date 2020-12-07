@@ -7,9 +7,9 @@ import { use } from 'ember-usable';
 
 import { machineConfig } from './-machine';
 
-import CurrentUserService from 'emberclear/services/current-user';
-import RouterService from '@ember/routing/router-service';
-import SessionService from 'emberclear/services/session';
+import type CurrentUserService from 'emberclear/services/current-user';
+import type RouterService from '@ember/routing/router-service';
+import type SessionService from 'emberclear/services/session';
 
 export default class SetupWizard extends Component {
   @service currentUser!: CurrentUserService;

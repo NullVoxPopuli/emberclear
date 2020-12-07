@@ -1,4 +1,5 @@
-import { send, MachineConfig, EventObject } from 'xstate';
+import type { MachineConfig, EventObject } from 'xstate';
+import { send } from 'xstate';
 
 export interface Context {
   next?: string;

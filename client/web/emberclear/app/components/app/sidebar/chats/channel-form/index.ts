@@ -1,10 +1,10 @@
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import ChannelManager from 'emberclear/services/channel-manager';
+import type ChannelManager from 'emberclear/services/channel-manager';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 

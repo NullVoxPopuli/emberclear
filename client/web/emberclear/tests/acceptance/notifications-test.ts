@@ -1,8 +1,8 @@
 import { module, test } from 'qunit';
-import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
+  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   getService,
@@ -10,7 +10,7 @@ import {
   setupWorkers,
 } from 'emberclear/tests/helpers';
 
-import Notifications from 'emberclear/services/notifications';
+import type Notifications from 'emberclear/services/notifications';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Notifications Service', function (hooks) {

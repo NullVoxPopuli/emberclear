@@ -1,6 +1,6 @@
 import Model, { belongsTo } from '@ember-data/model';
-import VoteChain from './vote-chain';
-import { Channel } from 'phoenix';
+import type VoteChain from './vote-chain';
+import type { Channel } from 'phoenix';
 
 export default class Vote extends Model {
   @belongsTo('vote-chain', { async: false }) voteChain!: VoteChain;

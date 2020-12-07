@@ -1,11 +1,11 @@
 import Service, { inject as service } from '@ember/service';
-import VoteChain from 'emberclear/models/vote-chain';
+import type VoteChain from 'emberclear/models/vote-chain';
 import CryptoConnector from '../../utils/workers/crypto';
-import WorkersService from '../workers';
+import type WorkersService from '../workers';
 import { generateSortedVote } from './-utils/vote-sorter';
 import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
 import { identitiesIncludes, identityEquals } from 'emberclear/utils/identity-comparison';
-import Identity from 'emberclear/models/identity';
+import type Identity from 'emberclear/models/identity';
 
 export default class VoteVerifier extends Service {
   @service workers!: WorkersService;

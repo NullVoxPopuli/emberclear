@@ -8,8 +8,8 @@ import type CurrentUserService from 'emberclear/services/current-user';
 import type ReceivedMessageHandler from 'emberclear/services/messages/handler';
 
 export default class MessageProcessor extends Service {
-  @service currentUser!: CurrentUserService;
-  @service('messages/handler') handler!: ReceivedMessageHandler;
+  @service declare currentUser: CurrentUserService;
+  @service('messages/handler') declare handler: ReceivedMessageHandler;
 
   /**
    * Because we could potentially be receiving multiple

@@ -2,20 +2,20 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { getOwner } from '@ember/application';
 
-import StoreService from '@ember-data/store';
-import LocaleService from 'emberclear/services/locale';
-import CurrentUserService from 'emberclear/services/current-user';
+import type StoreService from '@ember-data/store';
+import type LocaleService from 'emberclear/services/locale';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 import { ensureRelays } from 'emberclear/utils/data/required-data';
-import Settings from 'emberclear/services/settings';
-import ConnectionService from 'emberclear/services/connection';
+import type Settings from 'emberclear/services/settings';
+import type ConnectionService from 'emberclear/services/connection';
 
 export default class ApplicationRoute extends Route {
-  @service store!: StoreService;
-  @service currentUser!: CurrentUserService;
-  @service locale!: LocaleService;
-  @service settings!: Settings;
-  @service connection!: ConnectionService;
+  @service declare store: StoreService;
+  @service declare currentUser: CurrentUserService;
+  @service declare locale: LocaleService;
+  @service declare settings: Settings;
+  @service declare connection: ConnectionService;
 
   async beforeModel() {
     (this.store as any).shouldTrackAsyncRequests = true;
