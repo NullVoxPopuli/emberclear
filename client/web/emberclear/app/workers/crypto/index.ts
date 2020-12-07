@@ -1,7 +1,7 @@
 import { PWBWorker } from 'promise-worker-bi';
 import { handleMessage } from './messages';
 
-type Message = import('./messages').CryptoMessage;
+import type { CryptoMessage as Message } from './messages';
 
 let promiseWorker = new PWBWorker();
 

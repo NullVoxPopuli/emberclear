@@ -3,8 +3,8 @@ import { tracked } from '@glimmer/tracking';
 import { computed } from '@ember/object';
 
 import { toHex } from 'emberclear/utils/string-encoding';
-import ChannelContextChain from './channel-context-chain';
-import VoteChain from './vote-chain';
+import type ChannelContextChain from './channel-context-chain';
+import type VoteChain from './vote-chain';
 
 export interface PublicKey {
   publicKey: Uint8Array;

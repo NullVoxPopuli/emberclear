@@ -3,7 +3,7 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import Modals from 'emberclear/services/modals';
+import type Modals from 'emberclear/services/modals';
 
 interface IArgs {
   name: string;

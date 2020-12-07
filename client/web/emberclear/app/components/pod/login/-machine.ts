@@ -1,6 +1,4 @@
-import { MachineConfig } from 'xstate';
-
-type EventObject = import('xstate').EventObject;
+import type { MachineConfig, EventObject } from 'xstate';
 
 // https://xstate.js.org/viz/?gist=15a3eb8b7d7c391bcce21d86a041a497
 

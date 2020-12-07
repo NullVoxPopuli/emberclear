@@ -1,4 +1,4 @@
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import Service, { inject as service } from '@ember/service';
 
 import { TYPE, TARGET, MESSAGE_LIMIT } from 'emberclear/models/message';

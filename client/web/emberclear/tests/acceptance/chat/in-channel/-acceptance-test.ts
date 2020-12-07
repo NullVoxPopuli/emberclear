@@ -13,7 +13,7 @@ import { page } from 'emberclear/tests/helpers/pages/chat';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 import { createChannel } from 'emberclear/tests/helpers/factories/channel-factory';
 
-import Channel from 'emberclear/models/channel';
+import type Channel from 'emberclear/models/channel';
 
 module('Acceptance | Chat | Privately With', function (hooks) {
   setupApplicationTest(hooks);

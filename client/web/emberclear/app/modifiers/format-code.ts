@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { parseLanguages } from 'emberclear/utils/string/utils';
 import { later } from '@ember/runloop';
 
-import PrismManager from 'emberclear/services/prism-manager';
+import type PrismManager from 'emberclear/services/prism-manager';
 
 interface Args {
   positional: [string];

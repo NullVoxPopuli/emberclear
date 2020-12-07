@@ -12,7 +12,7 @@ import {
 
 import { contacts } from 'emberclear/tests/helpers/pages/contacts';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import User from 'emberclear/models/user';
+import type User from 'emberclear/models/user';
 
 module('Acceptance | Contacts', function (hooks) {
   setupApplicationTest(hooks);

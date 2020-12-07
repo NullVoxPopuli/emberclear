@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
 import { hbs } from 'ember-cli-htmlbars';
 
-import CurrentUserService from 'emberclear/services/current-user';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 class BeginButton extends Component {
   @service currentUser!: CurrentUserService;

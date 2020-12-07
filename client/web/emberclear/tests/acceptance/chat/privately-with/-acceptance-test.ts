@@ -15,11 +15,11 @@ import {
 
 import { page, selectors } from 'emberclear/tests/helpers/pages/chat';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import Contact from 'emberclear/models/contact';
+import type Contact from 'emberclear/models/contact';
 import { waitUntil } from '@ember/test-helpers';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
-import Message from 'emberclear/models/message';
+import type Message from 'emberclear/models/message';
 
 module('Acceptance | Chat | Privately With', function (hooks) {
   setupApplicationTest(hooks);

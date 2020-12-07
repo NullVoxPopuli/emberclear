@@ -10,11 +10,12 @@ import {
   waitUntilTruthy,
 } from 'emberclear/tests/helpers';
 
-import Identity from 'emberclear/models/identity';
-import Message, { TYPE, TARGET } from 'emberclear/models/message';
+import type Identity from 'emberclear/models/identity';
+import type Message from 'emberclear/models/message';
+import { TYPE, TARGET } from 'emberclear/models/message';
 
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import AutoResponder from 'emberclear/services/messages/auto-responder';
+import type AutoResponder from 'emberclear/services/messages/auto-responder';
 
 module('Unit | Service | messages/auto-responder', function (hooks) {
   setupTest(hooks);

@@ -1,10 +1,10 @@
 import Modifier from 'ember-modifier';
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import { inject as service } from '@ember/service';
 import { timeout } from 'ember-concurrency';
 
-import SidebarService from 'emberclear/services/sidebar';
-import Message from 'emberclear/models/message';
+import type SidebarService from 'emberclear/services/sidebar';
+import type Message from 'emberclear/models/message';
 
 import { isInElementWithinViewport } from 'emberclear/utils/dom/utils';
 import { markAsRead } from 'emberclear/models/message/utils';

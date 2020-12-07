@@ -1,4 +1,4 @@
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency-decorators';

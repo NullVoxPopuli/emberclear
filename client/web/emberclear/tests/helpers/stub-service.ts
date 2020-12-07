@@ -1,4 +1,5 @@
-import Service, { Registry } from '@ember/service';
+import type { Registry } from '@ember/service';
+import Service from '@ember/service';
 import { getContext } from '@ember/test-helpers';
 
 export const stubService = (name: keyof Registry, hash = {}) => {

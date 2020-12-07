@@ -1,6 +1,6 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import { taskFor } from 'ember-concurrency-ts';
 
 import type MessageDispatcher from 'emberclear/services/messages/dispatcher';

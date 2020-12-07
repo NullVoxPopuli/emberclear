@@ -1,6 +1,7 @@
-import { MachineConfig, assign, send } from 'xstate';
+import type { MachineConfig } from 'xstate';
+import { assign, send } from 'xstate';
 
-import { Context, ScanEvent, Schema, QRData, Events } from './-types';
+import type { Context, ScanEvent, Schema, QRData, Events } from './-types';
 import { MalformedQRCodeError, UnrecognizedQRCodeError } from 'emberclear/utils/errors';
 
 function parseScannedData(_: Context, event: ScanEvent) {

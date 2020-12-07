@@ -1,5 +1,5 @@
 import { didCancel } from 'ember-concurrency';
-import { Event } from 'xstate';
+import type { Event } from 'xstate';
 import { taskFor } from 'ember-concurrency-ts';
 
 /**

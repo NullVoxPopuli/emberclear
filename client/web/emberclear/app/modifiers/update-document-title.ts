@@ -1,7 +1,7 @@
 import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 
-import CurrentChatService from '../services/current-chat';
+import type CurrentChatService from '../services/current-chat';
 
 export default class UpdateDocumentTitle extends Modifier {
   @service declare currentChat: CurrentChatService;

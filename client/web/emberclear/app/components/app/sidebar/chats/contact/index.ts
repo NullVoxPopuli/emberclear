@@ -1,14 +1,14 @@
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import Component from '@glimmer/component';
 
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import SettingsService from 'emberclear/services/settings';
-import SidebarService from 'emberclear/services/sidebar';
+import type SettingsService from 'emberclear/services/settings';
+import type SidebarService from 'emberclear/services/sidebar';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
-import RouterService from '@ember/routing/router-service';
-import Contact from 'emberclear/models/contact';
+import type RouterService from '@ember/routing/router-service';
+import type Contact from 'emberclear/models/contact';
 import { currentUserId } from 'emberclear/services/current-user';
 
 interface IArgs {

@@ -1,8 +1,9 @@
 import Service, { inject as service } from '@ember/service';
 
-import StoreService from '@ember-data/store';
-import RouterService from '@ember/routing/router-service';
-import CurrentUserService, { currentUserId } from 'emberclear/services/current-user';
+import type StoreService from '@ember-data/store';
+import type RouterService from '@ember/routing/router-service';
+import type CurrentUserService from 'emberclear/services/current-user';
+import { currentUserId } from 'emberclear/services/current-user';
 
 import { PRIVATE_CHAT_REGEX, CHANNEL_REGEX } from 'emberclear/utils/route-matchers';
 

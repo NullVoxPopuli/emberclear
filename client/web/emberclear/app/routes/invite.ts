@@ -2,11 +2,11 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
 
-import { IQueryParams } from 'emberclear/controllers/invite';
-import ContactManager from 'emberclear/services/contact-manager';
-import ChannelManager from 'emberclear/services/channel-manager';
-import RedirectManager from 'emberclear/services/redirect-manager';
-import CurrentUserService from 'emberclear/services/current-user';
+import type { IQueryParams } from 'emberclear/controllers/invite';
+import type ContactManager from 'emberclear/services/contact-manager';
+import type ChannelManager from 'emberclear/services/channel-manager';
+import type RedirectManager from 'emberclear/services/redirect-manager';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class InviteRoute extends Route {
   @service declare toast: Toast;

@@ -1,15 +1,17 @@
-import WorkersService from '../../services/workers';
-import { PWBHost } from 'promise-worker-bi';
-import { Sign, OpenSigned, Hash } from 'emberclear/workers/crypto/messages';
+import type WorkersService from '../../services/workers';
+import type { PWBHost } from 'promise-worker-bi';
+import type { Sign, OpenSigned, Hash } from 'emberclear/workers/crypto/messages';
 
-type Login = import('emberclear/workers/crypto/messages').Login;
-type MnemonicFromPrivateKey = import('emberclear/workers/crypto/messages').MnemonicFromPrivateKey;
-type GenerateKeys = import('emberclear/workers/crypto/messages').GenerateKeys;
-type GenerateSigningKeys = import('emberclear/workers/crypto/messages').GenerateSigningKeys;
-type EncryptForSocket = import('emberclear/workers/crypto/messages').EncryptForSocket;
-type DecryptFromSocket = import('emberclear/workers/crypto/messages').DecryptFromSocket;
-type DerivePublicKey = import('emberclear/workers/crypto/messages').DerivePublicKey;
-type DerivePublicSigningKey = import('emberclear/workers/crypto/messages').DerivePublicSigningKey;
+import type {
+  Login,
+  MnemonicFromPrivateKey,
+  GenerateKeys,
+  GenerateSigningKeys,
+  EncryptForSocket,
+  DecryptFromSocket,
+  DerivePublicKey,
+  DerivePublicSigningKey,
+} from 'emberclear/workers/crypto/messages';
 
 type Args = {
   workerService: WorkersService;

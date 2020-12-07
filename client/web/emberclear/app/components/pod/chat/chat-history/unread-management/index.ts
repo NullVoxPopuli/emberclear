@@ -1,9 +1,9 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-import Message from 'emberclear/models/message';
-import Channel from 'emberclear/models/channel';
-import Contact from 'emberclear/models/contact';
+import type Message from 'emberclear/models/message';
+import type Channel from 'emberclear/models/channel';
+import type Contact from 'emberclear/models/contact';
 
 import { selectUnreadDirectMessages, markAsRead } from 'emberclear/models/message/utils';
 import { scrollIntoViewOfParent, isInElementWithinViewport } from 'emberclear/utils/dom/utils';

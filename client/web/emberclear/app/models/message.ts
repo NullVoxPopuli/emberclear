@@ -1,7 +1,7 @@
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { not } from '@ember/object/computed';
 
-import Identity from 'emberclear/models/identity';
+import type Identity from 'emberclear/models/identity';
 
 export const MESSAGE_LIMIT = 75;
 

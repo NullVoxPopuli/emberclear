@@ -1,8 +1,8 @@
 import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 
-import ChatScroller from 'emberclear/services/chat-scroller';
-import Message from 'emberclear/models/message';
+import type ChatScroller from 'emberclear/services/chat-scroller';
+import type Message from 'emberclear/models/message';
 import { taskFor } from 'ember-concurrency-ts';
 
 type Args = {

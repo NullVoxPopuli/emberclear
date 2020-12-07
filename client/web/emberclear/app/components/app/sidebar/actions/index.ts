@@ -2,12 +2,13 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import StoreService from '@ember-data/store';
-import SettingsService from 'emberclear/services/settings';
-import RouterService from '@ember/routing/router-service';
-import Action, { ACTION_RESPONSE } from 'emberclear/models/action';
-import CurrentUserService from 'emberclear/services/current-user';
-import SidebarService from 'emberclear/services/sidebar';
+import type StoreService from '@ember-data/store';
+import type SettingsService from 'emberclear/services/settings';
+import type RouterService from '@ember/routing/router-service';
+import type Action from 'emberclear/models/action';
+import { ACTION_RESPONSE } from 'emberclear/models/action';
+import type CurrentUserService from 'emberclear/services/current-user';
+import type SidebarService from 'emberclear/services/sidebar';
 
 // import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 // import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';

@@ -1,7 +1,7 @@
 import { getService } from '../get-service';
 import { toHex } from 'emberclear/utils/string-encoding';
 import { generateAsymmetricKeys, generateSigningKeys } from 'emberclear/workers/crypto/utils/nacl';
-import User from 'emberclear/models/user';
+import type User from 'emberclear/models/user';
 
 export async function attributesForUser() {
   const { publicKey } = await generateAsymmetricKeys();

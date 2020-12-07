@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import type Ember from 'ember';
 import localforage from 'localforage';
-import { TestContext } from 'ember-test-helpers';
+import type { TestContext } from 'ember-test-helpers';
 
 async function cleanEverything(owner: Ember.ApplicationInstance) {
   const adapter = owner.lookup('adapter:application');

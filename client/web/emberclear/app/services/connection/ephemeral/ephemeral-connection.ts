@@ -4,7 +4,8 @@ import { setOwner, getOwner } from '@ember/application';
 import { assert } from '@ember/debug';
 import { associateDestroyableChild, registerDestructor } from '@ember/destroyable';
 
-import { pool, STATUS, ConnectionPool } from 'emberclear/utils/connection/connection-pool';
+import type { STATUS, ConnectionPool } from 'emberclear/utils/connection/connection-pool';
+import { pool } from 'emberclear/utils/connection/connection-pool';
 import { toHex, fromHex } from 'emberclear/utils/string-encoding';
 import { Connection } from 'emberclear/utils/connection/connection';
 import CryptoConnector from 'emberclear/utils/workers/crypto';

@@ -1,8 +1,8 @@
-import { TestContext } from 'ember-test-helpers';
+import type { TestContext } from 'ember-test-helpers';
 import WorkersService, { CRYPTO_PATH } from 'emberclear/services/workers';
 import { handleMessage } from 'emberclear/workers/crypto/messages';
 
-type CryptoMessage = import('emberclear/workers/crypto/messages').CryptoMessage;
+import type { CryptoMessage } from 'emberclear/workers/crypto/messages';
 
 /**
  *

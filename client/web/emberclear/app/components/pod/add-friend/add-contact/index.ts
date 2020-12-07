@@ -1,4 +1,4 @@
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
@@ -7,8 +7,8 @@ import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency-decorators';
 
-import ContactManager from 'emberclear/services/contact-manager';
-import CurrentUserService from 'emberclear/services/current-user';
+import type ContactManager from 'emberclear/services/contact-manager';
+import type CurrentUserService from 'emberclear/services/current-user';
 import { taskFor } from 'ember-concurrency-ts';
 
 export default class AddModal extends Component {

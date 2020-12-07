@@ -6,9 +6,9 @@ import { inject as service } from '@ember/service';
 
 import ENV from 'emberclear/config/environment';
 import { toHex } from 'emberclear/utils/string-encoding';
-import StoreService from '@ember-data/store';
-import User from 'emberclear/models/user';
-import WorkersService from './workers';
+import type StoreService from '@ember-data/store';
+import type User from 'emberclear/models/user';
+import type WorkersService from './workers';
 import CryptoConnector from '../utils/workers/crypto';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';

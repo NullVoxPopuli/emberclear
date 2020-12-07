@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 import { notEmpty } from '@ember/object/computed';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
-import CurrentUserService from 'emberclear/services/current-user';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class Sidebar extends Service {
   @service declare currentUser: CurrentUserService;

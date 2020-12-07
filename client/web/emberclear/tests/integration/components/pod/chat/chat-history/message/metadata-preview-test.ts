@@ -3,7 +3,7 @@ import { render, find } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import { hbs } from 'ember-cli-htmlbars';
 
-import { TestContext } from 'ember-test-helpers';
+import type { TestContext } from 'ember-test-helpers';
 
 module('Integration | Component | metadata-preview', function (hooks) {
   setupRenderingTest(hooks);

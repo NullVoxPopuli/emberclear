@@ -1,7 +1,7 @@
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
-import ChannelContextChain from './channel-context-chain';
-import Vote from './vote';
+import type ChannelContextChain from './channel-context-chain';
+import type Vote from './vote';
 
 export default class Channel extends Model {
   @attr() name!: string;

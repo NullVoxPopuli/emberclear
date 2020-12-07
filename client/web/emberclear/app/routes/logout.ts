@@ -1,9 +1,9 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user';
+import type CurrentUserService from 'emberclear/services/current-user';
 
-import Sidebar from 'emberclear/services/sidebar';
+import type Sidebar from 'emberclear/services/sidebar';
 
 export default class LogoutRoute extends Route {
   @service declare currentUser: CurrentUserService;

@@ -3,11 +3,11 @@ import localforage from 'localforage';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import StoreService from '@ember-data/store';
-import CurrentUserService from 'emberclear/services/current-user';
-import ConnectionService from 'emberclear/services/connection';
-import RouterService from '@ember/routing/router-service';
-import WindowService from './window';
+import type StoreService from '@ember-data/store';
+import type CurrentUserService from 'emberclear/services/current-user';
+import type ConnectionService from 'emberclear/services/connection';
+import type RouterService from '@ember/routing/router-service';
+import type WindowService from './window';
 
 const FLAG_KEY = '_features';
 

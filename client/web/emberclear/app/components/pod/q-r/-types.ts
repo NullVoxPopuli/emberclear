@@ -1,4 +1,4 @@
-type EventObject = import('xstate').EventObject;
+import type { EventObject } from 'xstate';
 
 export interface Context {
   intent?: string;

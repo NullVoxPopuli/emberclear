@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import Notifications from 'emberclear/services/notifications';
+import type Notifications from 'emberclear/services/notifications';
 
 export default class NotificationPrompt extends Component {
   @service notifications!: Notifications;

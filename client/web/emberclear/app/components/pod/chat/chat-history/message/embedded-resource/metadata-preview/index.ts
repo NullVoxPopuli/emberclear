@@ -2,7 +2,7 @@ import DOMPurify from 'dompurify';
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-import ChatScroller from 'emberclear/services/chat-scroller';
+import type ChatScroller from 'emberclear/services/chat-scroller';
 
 type Args = {
   ogData: OpenGraphData;

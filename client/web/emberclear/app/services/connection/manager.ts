@@ -1,8 +1,9 @@
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import { pool, ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';
+import type { ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';
+import { pool } from 'emberclear/utils/connection/connection-pool';
 import { Connection } from 'emberclear/utils/connection/connection';
 
 import type Relay from 'emberclear/models/relay';

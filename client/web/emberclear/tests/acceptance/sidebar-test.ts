@@ -16,7 +16,7 @@ import { page, selectors } from 'emberclear/components/app/off-canvas/-page';
 
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import Contact from 'emberclear/models/contact';
+import type Contact from 'emberclear/models/contact';
 import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
 import { getCurrentUser } from 'emberclear/tests/helpers';
 

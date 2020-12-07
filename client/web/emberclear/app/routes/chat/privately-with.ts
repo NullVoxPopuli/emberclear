@@ -1,9 +1,10 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import StoreService from '@ember-data/store';
-import CurrentUserService, { currentUserId } from 'emberclear/services/current-user';
-import ChatScroller from 'emberclear/services/chat-scroller';
+import type StoreService from '@ember-data/store';
+import type CurrentUserService from 'emberclear/services/current-user';
+import { currentUserId } from 'emberclear/services/current-user';
+import type ChatScroller from 'emberclear/services/chat-scroller';
 
 interface IModelParams {
   id: string;

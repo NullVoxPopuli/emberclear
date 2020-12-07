@@ -1,11 +1,11 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import { inject as service } from '@ember/service';
 
-import Relay from 'emberclear/models/relay';
-import ArrayProxy from '@ember/array/proxy';
-import ConnectionManager from 'emberclear/services/connection/manager';
+import type Relay from 'emberclear/models/relay';
+import type ArrayProxy from '@ember/array/proxy';
+import type ConnectionManager from 'emberclear/services/connection/manager';
 
 interface Args {
   relay: Relay;

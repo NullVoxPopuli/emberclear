@@ -3,14 +3,15 @@ import { inject as service } from '@ember/service';
 
 import { PRIVATE_CHAT_REGEX, idFrom } from 'emberclear/utils/route-matchers';
 
-import StoreService from '@ember-data/store';
-import SettingsService from 'emberclear/services/settings';
-import RouterService from '@ember/routing/router-service';
-import Contact, { Status } from 'emberclear/models/contact';
-import Channel from 'emberclear/models/channel';
-import CurrentUserService from 'emberclear/services/current-user';
-import ContactManager from 'emberclear/services/contact-manager';
-import SidebarService from 'emberclear/services/sidebar';
+import type StoreService from '@ember-data/store';
+import type SettingsService from 'emberclear/services/settings';
+import type RouterService from '@ember/routing/router-service';
+import type Contact from 'emberclear/models/contact';
+import { Status } from 'emberclear/models/contact';
+import type Channel from 'emberclear/models/channel';
+import type CurrentUserService from 'emberclear/services/current-user';
+import type ContactManager from 'emberclear/services/contact-manager';
+import type SidebarService from 'emberclear/services/sidebar';
 
 type Args = {
   searchText?: string;

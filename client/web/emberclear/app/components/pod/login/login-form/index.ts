@@ -4,17 +4,17 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
-import CurrentUserService from 'emberclear/services/current-user';
+import type CurrentUserService from 'emberclear/services/current-user';
 
-import StoreService from '@ember-data/store';
-import Toast from 'emberclear/services/toast';
-import Settings from 'emberclear/services/settings';
+import type StoreService from '@ember-data/store';
+import type Toast from 'emberclear/services/toast';
+import type Settings from 'emberclear/services/settings';
 
-import RouterService from '@ember/routing/router-service';
+import type RouterService from '@ember/routing/router-service';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import CryptoConnector from 'emberclear/utils/workers/crypto';
-import WorkersService from 'emberclear/services/workers';
+import type WorkersService from 'emberclear/services/workers';
 
 export default class LoginForm extends Component {
   @service currentUser!: CurrentUserService;

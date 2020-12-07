@@ -1,12 +1,12 @@
 import Component from '@glimmer/component';
-import StoreService from '@ember-data/store';
+import type StoreService from '@ember-data/store';
 import { inject as service } from '@ember/service';
 
-import CurrentUserService from 'emberclear/services/current-user';
+import type CurrentUserService from 'emberclear/services/current-user';
 
-import Sidebar from 'emberclear/services/sidebar';
+import type Sidebar from 'emberclear/services/sidebar';
 import { selectUnreadMessages } from 'emberclear/models/message/utils';
-import RouterService from '@ember/routing/router-service';
+import type RouterService from '@ember/routing/router-service';
 
 export default class TopNav extends Component {
   @service declare currentUser: CurrentUserService;

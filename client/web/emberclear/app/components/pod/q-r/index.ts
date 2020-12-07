@@ -6,12 +6,12 @@ import { useMachine, interpreterFor } from 'ember-statecharts';
 import { use } from 'ember-usable';
 
 import { machineConfig } from './-machine';
-import { LoginQRData } from './-types';
+import type { LoginQRData } from './-types';
 
-import { SendDataConnection } from 'emberclear/services/connection/ephemeral/login/send-data';
-import CurrentUserService from 'emberclear/services/current-user';
+import type { SendDataConnection } from 'emberclear/services/connection/ephemeral/login/send-data';
+import type CurrentUserService from 'emberclear/services/current-user';
 import { ConnectionDoesNotExistError } from 'emberclear/utils/errors';
-import QRManager from 'emberclear/services/qr-manager';
+import type QRManager from 'emberclear/services/qr-manager';
 
 export default class QRScan extends Component {
   @service intl!: Intl;

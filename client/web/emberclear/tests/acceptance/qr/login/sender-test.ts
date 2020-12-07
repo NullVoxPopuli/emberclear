@@ -15,9 +15,9 @@ import { setupCurrentUser, setupEmberclearTest, visit, getService } from 'emberc
 
 import { page } from 'emberclear/tests/helpers/pages/qr';
 
-import ApplicationInstance from '@ember/application/instance';
+import type ApplicationInstance from '@ember/application/instance';
 import NavigatorService from 'emberclear/services/browser/navigator';
-import { TestContext } from 'ember-test-helpers';
+import type { TestContext } from 'ember-test-helpers';
 
 interface TestMachineContext {
   assert: Assert;
