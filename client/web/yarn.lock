@@ -7566,7 +7566,14 @@ ember-concurrency-decorators@2.0.1:
     ember-cli-htmlbars "^4.3.1"
     ember-cli-typescript "^3.1.4"
 
-ember-concurrency-test-waiter@0.3.2, ember-concurrency-test-waiter@^0.3.1:
+ember-concurrency-test-waiter@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-test-waiter/-/ember-concurrency-test-waiter-0.4.0.tgz#3b0ce1f9255e41eb6f31e267d0aa5026304e60fd"
+  integrity sha512-Yx3rDu9C1oDzWOFk9C4G9VQvnALZXsNvTGgRhM4J4Uzk1/tlRfZ0eLEJHWJqO3P3nyHdGlNAWYLq6Ozi0iFhQA==
+  dependencies:
+    ember-cli-babel "^7.22.1"
+
+ember-concurrency-test-waiter@^0.3.1:
   version "0.3.2"
   resolved "https://registry.npmjs.org/ember-concurrency-test-waiter/-/ember-concurrency-test-waiter-0.3.2.tgz#3d1ea28d78bb1ed26c374233cb84673db43e9f57"
   integrity sha512-7AkltohwutNhwknycqd7sF0bh6MhkJKB3WdyHpV4RnPMZzILaIGfFHsosy33eMQ3sC46iwA7QE9TSOMEQZOCGQ==
