@@ -247,7 +247,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.12.3", "@babel/parser@^7.12.7", "@babel/parser@^7.4.5", "@babel/parser@^7.7.0", "@babel/parser@^7.7.4":
+"@babel/parser@^7.11.4", "@babel/parser@^7.12.3", "@babel/parser@^7.12.7", "@babel/parser@^7.4.5", "@babel/parser@^7.7.0":
   version "7.12.7"
   resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.12.7.tgz#fee7b39fe809d0e73e5b25eecaf5780ef3d73056"
   integrity sha512-oWR02Ubp4xTLCAqPRiNIuMVgNO5Aif/xpXtabhzW2HWUD47XJsAB4Zd/Rg30+XeQA3juXigV7hlquOTmwqLiwg==
@@ -883,7 +883,7 @@
     "@babel/parser" "^7.12.7"
     "@babel/types" "^7.12.7"
 
-"@babel/traverse@^7.1.6", "@babel/traverse@^7.10.4", "@babel/traverse@^7.12.1", "@babel/traverse@^7.12.5", "@babel/traverse@^7.12.9", "@babel/traverse@^7.4.5", "@babel/traverse@^7.7.0", "@babel/traverse@^7.7.4":
+"@babel/traverse@^7.1.6", "@babel/traverse@^7.10.4", "@babel/traverse@^7.11.5", "@babel/traverse@^7.12.1", "@babel/traverse@^7.12.5", "@babel/traverse@^7.12.9", "@babel/traverse@^7.4.5", "@babel/traverse@^7.7.0":
   version "7.12.9"
   resolved "https://registry.npmjs.org/@babel/traverse/-/traverse-7.12.9.tgz#fad26c972eabbc11350e0b695978de6cc8e8596f"
   integrity sha512-iX9ajqnLdoU1s1nHt36JDI9KG4k+vmI8WgjK5d+aDTwQbL2fUnzedNedssA645Ede3PM2ma1n8Q4h2ohwXgMXw==
@@ -1536,11 +1536,6 @@
   resolved "https://registry.npmjs.org/@glimmer/interfaces/-/interfaces-0.42.2.tgz#9cf8d6f8f5eee6bfcfa36919ca68ae716e1f78db"
   integrity sha512-7LOuQd02cxxNNHChzdHMAU8/qOeQvTro141CU5tXITP7z6aOv2D2gkFdau97lLQiVxezGrh8J7h8GCuF7TEqtg==
 
-"@glimmer/interfaces@^0.43.0":
-  version "0.43.0"
-  resolved "https://registry.npmjs.org/@glimmer/interfaces/-/interfaces-0.43.0.tgz#a7a38c2476f87d68d6dc894840df17bc8b92de33"
-  integrity sha512-rWu6WHVo6tuFFOKOSJWAWsFfXZgkdnKDnvhl3tAb20njW/0uBZ2nx7GZ3lImvBeG0HoxyzYA7pD299ps03TemA==
-
 "@glimmer/low-level@^0.42.2":
   version "0.42.2"
   resolved "https://registry.npmjs.org/@glimmer/low-level/-/low-level-0.42.2.tgz#52c745414d1d04c4245c369bd132c0e786c816ef"
@@ -1606,19 +1601,9 @@
     handlebars "^4.0.13"
     simple-html-tokenizer "^0.5.8"
 
-"@glimmer/syntax@^0.43.0":
-  version "0.43.0"
-  resolved "https://registry.npmjs.org/@glimmer/syntax/-/syntax-0.43.0.tgz#d6e30c857c575eeac25b3f7ffab2cfee43685726"
-  integrity sha512-qJqzcbF9lgdLE5A1rCwTs0CLnblNK95Y6MMLNsvJEJA7j1Gx50ySoUZ5HTk86Z5auhDgvInhuufyGtdojSIMSg==
-  dependencies:
-    "@glimmer/interfaces" "^0.43.0"
-    "@glimmer/util" "^0.43.0"
-    handlebars "^4.0.13"
-    simple-html-tokenizer "^0.5.8"
-
-"@glimmer/syntax@^0.62.4":
+"@glimmer/syntax@^0.62.1", "@glimmer/syntax@^0.62.4":
   version "0.62.5"
-  resolved "https://registry.npmjs.org/@glimmer/syntax/-/syntax-0.62.5.tgz#03dff491d1bba40a88a34085688fdce961518be2"
+  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.62.5.tgz#03dff491d1bba40a88a34085688fdce961518be2"
   integrity sha512-4e1KP3bAkTQIHcwjSjRsRvuzw6t1AMOU6zT1zo4g4QtwivKFG1pYmMTXmuLo/F25hRK4McdwST251AC/gc6w7Q==
   dependencies:
     "@glimmer/interfaces" "0.62.5"
@@ -1652,11 +1637,6 @@
   version "0.42.2"
   resolved "https://registry.npmjs.org/@glimmer/util/-/util-0.42.2.tgz#9ca1631e42766ea6059f4b49d0bdfb6095aad2c4"
   integrity sha512-Heck0baFSaWDanCYtmOcLeaz7v+rSqI8ovS7twrp2/FWEteb3Ze5sWQ2BEuSAG23L/k/lzVwYM/MY7ZugxBpaA==
-
-"@glimmer/util@^0.43.0":
-  version "0.43.0"
-  resolved "https://registry.npmjs.org/@glimmer/util/-/util-0.43.0.tgz#dd28cd1a233c25427032437b9050c6fa6d098e2c"
-  integrity sha512-RtjHU8/rhysOugu+Q0j6dQ3G67J4h45tQgKPEwVPxu8P+hqijqnz/lBLxTdVg/1zKmlqUkyngTr8H4Jpg2yF/g==
 
 "@glimmer/util@^0.44.0":
   version "0.44.0"
@@ -7376,20 +7356,20 @@ ember-inflector@3.0.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-intl-analyzer@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/ember-intl-analyzer/-/ember-intl-analyzer-2.1.0.tgz#374550d11c2cd90e9b9f7edce94e8c0622665da6"
-  integrity sha512-1Dh+++xPu16/80/eQyzlcj4yV+ItG2Sm7TFiTnsKHXgl1hQPqV7Ae4ptXZ1nXZarAcNMEcwVuZD8sBA8moujnQ==
+ember-intl-analyzer@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-intl-analyzer/-/ember-intl-analyzer-3.0.0.tgz#d7cf89a2088475ec1bdb355d556f526a1acba69c"
+  integrity sha512-1vo7byhS6cPnblQ6C8wH9Urpz+XFIrkx9IxM7uLCHD2oE6K5jo2bZDnvEN0R/KwcQXUPvoDg1Gp1ik4VB5fySw==
   dependencies:
-    "@babel/parser" "^7.7.4"
-    "@babel/traverse" "^7.7.4"
-    "@glimmer/syntax" "^0.43.0"
-    chalk "^2.4.2"
+    "@babel/parser" "^7.11.4"
+    "@babel/traverse" "^7.11.5"
+    "@glimmer/syntax" "^0.62.1"
+    chalk "^4.1.0"
     emblem "^0.12.1"
     esm "^3.2.25"
-    globby "^10.0.1"
+    globby "^11.0.1"
     pkg-dir "^4.2.0"
-    yaml "^1.7.2"
+    yaml "^1.10.0"
 
 ember-intl@5.5.1:
   version "5.5.1"
@@ -9737,20 +9717,6 @@ globby@10.0.0:
   version "10.0.0"
   resolved "https://registry.npmjs.org/globby/-/globby-10.0.0.tgz#abfcd0630037ae174a88590132c2f6804e291072"
   integrity sha512-3LifW9M4joGZasyYPz2A1U74zbC/45fvpXUvO/9KbSa+VV0aGZarWkfdgKyR9sExNP0t0x0ss/UMJpNpcaTspw==
-  dependencies:
-    "@types/glob" "^7.1.1"
-    array-union "^2.1.0"
-    dir-glob "^3.0.1"
-    fast-glob "^3.0.3"
-    glob "^7.1.3"
-    ignore "^5.1.1"
-    merge2 "^1.2.3"
-    slash "^3.0.0"
-
-globby@^10.0.1:
-  version "10.0.2"
-  resolved "https://registry.npmjs.org/globby/-/globby-10.0.2.tgz#277593e745acaa4646c3ab411289ec47a0392543"
-  integrity sha512-7dUi7RvCoT/xast/o/dLN53oqND4yk0nsHkhRgn9w65C4PofCLOoJ39iSOg+qVDdWQPIEj+eszMHQ+aLVwwQSg==
   dependencies:
     "@types/glob" "^7.1.1"
     array-union "^2.1.0"
@@ -17413,7 +17379,7 @@ yam@^1.0.0:
     fs-extra "^4.0.2"
     lodash.merge "^4.6.0"
 
-yaml@^1.10.0, yaml@^1.7.2:
+yaml@^1.10.0:
   version "1.10.0"
   resolved "https://registry.npmjs.org/yaml/-/yaml-1.10.0.tgz#3b593add944876077d4d683fee01081bd9fff31e"
   integrity sha512-yr2icI4glYaNG+KWONODapy2/jDdMSDnrONSjblABjD9B4Z5LgiircSt8m8sRZFNi08kG9Sm0uSHtEmP3zaEGg==
