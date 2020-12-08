@@ -86,7 +86,7 @@ jobs:
       run: yarn analyze
 
     - name: Upload Bundle Analysis Artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: built_bundle_analysis
         path: client/web/emberclear/public/bundle
@@ -110,7 +110,7 @@ jobs:
         cp ./scripts/_redirects client/web/emberclear/dist
 
     - name: Upload App Artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: built_app
         path: client/web/emberclear/dist/
@@ -186,7 +186,7 @@ jobs:
     - run: echo "${{ steps.deploy.outputs.deploy-url }}" > deploy-url.txt
 
     - name: Upload URL as Artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: deploy-url
         path: deploy-url.txt
