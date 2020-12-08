@@ -87,6 +87,10 @@ module.exports = function (defaults) {
     // We don't need to view everything all at once.
     ...addonConfig(env),
     ...buildBabelConfig(env),
+
+    'ember-cli-babel': {
+      includeExternalHelpers: true,
+    },
   };
 
   if (!yn(SOURCEMAPS)) {
