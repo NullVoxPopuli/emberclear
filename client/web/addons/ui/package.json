@@ -53,7 +53,7 @@
     "@types/ember": "3.16.2",
     "@types/ember-qunit": "3.4.13",
     "@types/ember__test-helpers": "1.7.3",
-    "@types/qunit": "2.11.0",
+    "@types/qunit": "2.11.1",
     "@types/rsvp": "4.0.3",
     "babel-eslint": "10.1.0",
     "broccoli-asset-rev": "3.0.0",

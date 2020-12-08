@@ -2180,10 +2180,15 @@
   resolved "https://registry.npmjs.org/@types/qs/-/qs-6.9.5.tgz#434711bdd49eb5ee69d90c1d67c354a9a8ecb18b"
   integrity sha512-/JHkVHtx/REVG0VVToGRGH2+23hsYLHdyG+GrvoUGlGAd0ErauXDyvHtRI/7H7mzLm+tBCKA7pfcpkQ1lf58iQ==
 
-"@types/qunit@*", "@types/qunit@2.11.0":
+"@types/qunit@*":
   version "2.11.0"
   resolved "https://registry.npmjs.org/@types/qunit/-/qunit-2.11.0.tgz#e0fb93240fa0ad3fb2842848496061eaac5738f3"
   integrity sha512-ljSVL9D+/EHcduZe3KTNm+Fmoy/DcB+BtBFe0FGt2KrWWIyTQZIV8NTLdYdMjheY9L/+mWKM6Rph2m8pSdhHBA==
+
+"@types/qunit@2.11.1":
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/@types/qunit/-/qunit-2.11.1.tgz#3496d430d2bb0fa4761f00a27511f46020c6b410"
+  integrity sha512-vcM5+9O8LZuu5DYseaV4J7ehkYrhkv+aMIuxnF/OqMYlVEdv+odpCH1/5OVztiqxbCqTpQKWuELkMvG7OPycUQ==
 
 "@types/range-parser@*":
   version "1.2.3"
