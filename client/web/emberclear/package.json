@@ -185,6 +185,6 @@
     "ts-node": "9.1.1",
     "typescript": "4.0.3",
     "webpack-bundle-analyzer": "4.2.0",
-    "yn": "^4.0.0"
+    "yn": "4.0.0"
   }
 }
