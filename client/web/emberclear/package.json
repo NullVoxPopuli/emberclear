@@ -129,7 +129,7 @@
     "ember-cli-page-object": "1.17.4",
     "ember-cli-postcss": "7.0.0",
     "ember-cli-sri": "2.1.1",
-    "ember-cli-terser": "4.0.0",
+    "ember-cli-terser": "4.0.1",
     "ember-cli-typescript": "github:typed-ember/ember-cli-typescript#v4",
     "ember-concurrency": "1.3.0",
     "ember-concurrency-async": "0.3.2",
