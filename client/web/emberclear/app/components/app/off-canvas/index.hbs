@@ -1,8 +1,8 @@
-<MobileMenuWrapper @preventScroll={{false}} as |mmw|>
+<MobileMenuWrapper @preventScroll={{true}} as |mmw|>
 
   {{#if this.currentUser.isLoggedIn}}
     <mmw.MobileMenu
-      @mode='squeeze-reveal'
+      @mode={{this.mode}}
       @isOpen={{this.sidebar.isShown}}
     >
 

@@ -3404,7 +3404,7 @@ babel-plugin-htmlbars-inline-precompile@^1.0.0:
   resolved "https://registry.npmjs.org/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-1.0.0.tgz#a9d2f6eaad8a3f3d361602de593a8cbef8179c22"
   integrity sha512-4jvKEHR1bAX03hBDZ94IXsYCj3bwk9vYsn6ux6JZNL2U5pvzCWjqyrGahfsGNrhERyxw8IqcirOi9Q6WCo3dkQ==
 
-babel-plugin-htmlbars-inline-precompile@^3.2.0:
+babel-plugin-htmlbars-inline-precompile@^3.0.1:
   version "3.2.0"
   resolved "https://registry.npmjs.org/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-3.2.0.tgz#c4882ea875d0f5683f0d91c1f72e29a4f14b5606"
   integrity sha512-IUeZmgs9tMUGXYu1vfke5I18yYJFldFGdNFQOWslXTnDWXzpwPih7QFduUqvT+awDpDuNtXpdt5JAf43Q1Hhzg==
@@ -4711,6 +4711,22 @@ broccoli-stew@^3.0.0:
     rsvp "^4.8.5"
     symlink-or-copy "^1.2.0"
     walk-sync "^1.1.3"
+
+broccoli-terser-sourcemap@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/broccoli-terser-sourcemap/-/broccoli-terser-sourcemap-4.1.0.tgz#5f37441b64a3b6bfb0c67e9af232259c9576f115"
+  integrity sha512-zkNnjsAbP+M5rG2aMM1EE4BmXPUSxFKmtLUkUs2D1DLTOJQoF1xlOjGWjjKYCFy5tw8t4+tgGJ+HVa2ucJZ8sw==
+  dependencies:
+    async-promise-queue "^1.0.5"
+    broccoli-plugin "^4.0.3"
+    debug "^4.1.0"
+    lodash.defaultsdeep "^4.6.1"
+    matcher-collection "^2.0.1"
+    source-map-url "^0.4.0"
+    symlink-or-copy "^1.3.1"
+    terser "^5.3.0"
+    walk-sync "^2.2.0"
+    workerpool "^6.0.0"
 
 broccoli-uglify-sourcemap@^3.1.0, broccoli-uglify-sourcemap@^3.2.0:
   version "3.2.0"
@@ -6810,12 +6826,12 @@ ember-cli-htmlbars@5.3.1, ember-cli-htmlbars@^5.1.2, ember-cli-htmlbars@^5.2.0, 
     walk-sync "^2.2.0"
 
 ember-cli-htmlbars@^4.0.1, ember-cli-htmlbars@^4.0.9, ember-cli-htmlbars@^4.2.0, ember-cli-htmlbars@^4.2.2, ember-cli-htmlbars@^4.3.1:
-  version "4.4.0"
-  resolved "https://registry.npmjs.org/ember-cli-htmlbars/-/ember-cli-htmlbars-4.4.0.tgz#7ca17d5ca8f7550984346d9e6e93da0c3323f8d9"
-  integrity sha512-ohgctqk7dXIZR4TgN0xRoUYltWhghFJgqmtuswQTpZ7p74RxI9PKx+E8WV/95mGcPzraesvMNBg5utQNvcqgNg==
+  version "4.3.1"
+  resolved "https://registry.npmjs.org/ember-cli-htmlbars/-/ember-cli-htmlbars-4.3.1.tgz#4af8adc21ab3c4953f768956b7f7d207782cb175"
+  integrity sha512-CW6AY/yzjeVqoRtItOKj3hcYzc5dWPRETmeCzr2Iqjt5vxiVtpl0z5VTqHqIlT5fsFx6sGWBQXNHIe+ivYsxXQ==
   dependencies:
     "@ember/edition-utils" "^1.2.0"
-    babel-plugin-htmlbars-inline-precompile "^3.2.0"
+    babel-plugin-htmlbars-inline-precompile "^3.0.1"
     broccoli-debug "^0.6.5"
     broccoli-persistent-filter "^2.3.1"
     broccoli-plugin "^3.1.0"
@@ -6918,6 +6934,13 @@ ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
   integrity sha1-ObZ3/CgF9VFzc1N2/O8njqpEUqE=
+
+ember-cli-terser@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/ember-cli-terser/-/ember-cli-terser-4.0.0.tgz#01d2f1a3090833d1c895fea34ec0b4106a293f3a"
+  integrity sha512-N9PBVreF7041l7ggxdhrivK1suh1EgURuz3PmLIi1jdDhf/WVVkCAWfriFP3HeFUwAjX4qxHrgFR2Pb5va9Vxw==
+  dependencies:
+    broccoli-terser-sourcemap "^4.1.0"
 
 ember-cli-test-info@^1.0.0:
   version "1.0.0"
@@ -7452,7 +7475,7 @@ ember-mobile-menu@2.1.1:
     ember-maybe-import-regenerator "^0.1.6"
     ember-on-resize-modifier "^0.3.0"
     ember-set-body-class "^1.0.1"
-    ember-usable "git+https://github.com/pzuraq/ember-usable.git#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
+    ember-usable "https://github.com/pzuraq/ember-usable#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
     tracked-maps-and-sets "^2.0.0"
     wobble "^1.5.1"
 
@@ -7668,7 +7691,7 @@ ember-service-worker@9.0.1:
 
 ember-set-body-class@^1.0.1:
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/ember-set-body-class/-/ember-set-body-class-1.0.2.tgz#a970933f00e57ece6b6a88b96daf22f2374c3c34"
+  resolved "https://registry.npmjs.org/ember-set-body-class/-/ember-set-body-class-1.0.2.tgz#a970933f00e57ece6b6a88b96daf22f2374c3c34"
   integrity sha512-SEsTwFp9SHTg4LgebhkUuLgYWg1VZD7I1QcrV2sTY583wu216OThoSs5szvS/KgSc1xD1Z22TFvOb848t2hGfw==
   dependencies:
     ember-cli-babel "^7.22.1"
@@ -7804,15 +7827,7 @@ ember-test-waiters@2.1.3, ember-test-waiters@^1.1.1:
     ember-cli-version-checker "^5.1.1"
     semver "^7.1.3"
 
-"ember-usable@git+https://github.com/pzuraq/ember-usable.git#0d03a500a2f49041a4ddff0bb05b077c3907ed7d":
-  version "0.0.0"
-  uid "0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
-  resolved "git+https://github.com/pzuraq/ember-usable.git#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
-  dependencies:
-    ember-cli-babel "^7.13.0"
-    ember-cli-htmlbars "^4.2.0"
-
-"ember-usable@https://github.com/pzuraq/ember-usable#0d03a50":
+"ember-usable@https://github.com/pzuraq/ember-usable#0d03a50", "ember-usable@https://github.com/pzuraq/ember-usable#0d03a500a2f49041a4ddff0bb05b077c3907ed7d":
   version "0.0.0"
   resolved "https://github.com/pzuraq/ember-usable#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
   dependencies:
@@ -16013,7 +16028,7 @@ terser@^4.1.2, terser@^4.3.9:
     source-map "~0.6.1"
     source-map-support "~0.5.12"
 
-terser@^5.3.7:
+terser@^5.3.0, terser@^5.3.7:
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/terser/-/terser-5.5.1.tgz#540caa25139d6f496fdea056e414284886fb2289"
   integrity sha512-6VGWZNVP2KTUcltUQJ25TtNjx/XgdDsBDKGt8nN0MpydU36LmbPPcMBd2kmtZNNGVVDLg44k7GKeHHj+4zPIBQ==
@@ -17223,7 +17238,7 @@ workerpool@^5.0.1:
   resolved "https://registry.npmjs.org/workerpool/-/workerpool-5.0.4.tgz#4f67cb70ff7550a27ab94de25b0b843cd92059a2"
   integrity sha512-Sywova24Ow2NQ24JPB68bI89EdqMDjUXo4OpofK/QMD7C2ZVMloYBgQ5J3PChcBJHj2vspsmGx1/3nBKXtUkXQ==
 
-workerpool@^6.0.1, workerpool@^6.0.2, workerpool@^6.0.3:
+workerpool@^6.0.0, workerpool@^6.0.1, workerpool@^6.0.2, workerpool@^6.0.3:
   version "6.0.3"
   resolved "https://registry.npmjs.org/workerpool/-/workerpool-6.0.3.tgz#3f80ba4d914fe7bb8d933628c26e5d7ff820c703"
   integrity sha512-meU8ZzO+ipcx/njxtKUcbu2K95085q5WYDo8fR6PMW3hCY4driteIsNsEowYV7dzOtvq0HotUKsReJkK8gKXgg==
@@ -17502,6 +17517,11 @@ yn@3.1.1, yn@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
   integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
+
+yn@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/yn/-/yn-4.0.0.tgz#611480051ea43b510da1dfdbe177ed159f00a979"
+  integrity sha512-huWiiCS4TxKc4SfgmTwW1K7JmXPPAmuXWYy4j9qjQo4+27Kni8mGhAAi1cloRWmBe2EqcLgt3IGqQoRL/MtPgg==
 
 yocto-queue@^0.1.0:
   version "0.1.0"

@@ -13,7 +13,9 @@ const { buildWorkerTrees } = require('./config/build/workers');
 const crypto = require('crypto');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const { EMBROIDER, CONCAT_STATS } = process.env;
+const yn = require('yn');
+
+const { EMBROIDER, CONCAT_STATS, SOURCEMAPS, MINIFY } = process.env;
 
 module.exports = function (defaults) {
   let environment = EmberApp.env();
@@ -36,18 +38,9 @@ module.exports = function (defaults) {
     CONCAT_STATS,
   };
 
-  let app = new EmberApp(defaults, {
+  let appOptions = {
     hinting: false,
-    minifyJS: { enabled: isProduction },
-    minifyCSS: { enabled: isProduction },
 
-    autoprefixer: {
-      sourcemaps: false,
-    },
-    sourcemaps: {
-      enabled: true, // !isProduction,
-      extensions: 'js',
-    },
     fingerprint: {
       // why customHash?
       // so we can reference the hash from an global variable
@@ -94,7 +87,18 @@ module.exports = function (defaults) {
     // We don't need to view everything all at once.
     ...addonConfig(env),
     ...buildBabelConfig(env),
-  });
+  };
+
+  if (!yn(SOURCEMAPS)) {
+    appOptions['sourcemaps'] = { enabled: false };
+  }
+
+  if (!yn(MINIFY)) {
+    appOptions['ember-cli-terser'] = { enabled: false };
+    appOptions.minifyCSS = { enabled: false };
+  }
+
+  let app = new EmberApp(defaults, appOptions);
 
   // Additional paths to copy to the public directory in the final build.
   let additionalTrees = [...buildStaticTrees(env), ...buildWorkerTrees(env)];
