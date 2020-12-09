@@ -6,7 +6,7 @@ interface IModalArgs {
   isActive: boolean;
 }
 
-class ModalState {
+export class ModalState {
   @tracked declare name: string;
   @tracked declare isActive: boolean;
 

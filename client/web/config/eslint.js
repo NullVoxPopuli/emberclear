@@ -59,7 +59,9 @@ module.exports.typescript = {
   rules: {
     ...module.exports.simpleTypescript.rules,
 
-    '@typescript-eslint/no-floating-promises': 'error', // doesn't really work with the intent of tasks
+    // Type-aware lints don't work with composite projects
+    // (we could specify an override per nested tsconfig.... but that's cumbersome)
+    // '@typescript-eslint/no-floating-promises': 'error', // doesn't really work with the intent of tasks
   },
 };
 

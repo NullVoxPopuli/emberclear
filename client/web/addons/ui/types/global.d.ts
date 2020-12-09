@@ -5,8 +5,3 @@ declare module '@emberclear/ui/templates/*' {
   export default tmpl;
 }
 
-import '@ember/component';
-
-declare module '@ember/component' {
-  export const setComponentTemplate: any;
-}

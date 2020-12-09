@@ -3,9 +3,11 @@
     "emberclear",
     "esbuild",
     "keypair",
+    "klass",
     "nacl",
     "outfile",
     "prismjs",
-    "sourcemap"
+    "sourcemap",
+    "tmpl"
   ]
 }

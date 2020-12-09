@@ -20,10 +20,6 @@ module.exports = {
     },
     {
       ...addonOverrides,
-      parserOptions: {
-        ...base.parserOptions,
-        project: require.resolve('./tsconfig.json'),
-      },
     },
     testOverrides,
     nodeOverrides,

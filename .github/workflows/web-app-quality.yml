@@ -31,7 +31,7 @@ jobs:
       run: snyk test --severity-threshold=high
 
   lint:
-    name: "Lint JS/TS"
+    name: "Lint JS/TS & Type Checking"
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
@@ -62,5 +62,5 @@ jobs:
 
     - name: 'Type Correctness'
       working-directory: ${{ env.full }}
-      run: yarn tsc --skipLibCheck --noEmit
+      run: yarn tsc --build
 

@@ -4,7 +4,6 @@
     "composite": true
   },
   "references": [
-    { "path": "app" },
-    { "path": "tests" }
+    { "path": "types" }
   ]
 }

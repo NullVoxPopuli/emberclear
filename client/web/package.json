@@ -10,7 +10,6 @@
   "workspaces": [
     "emberclear",
     "smoke-tests",
-    "questionably-typed/*",
     "config",
     "addons/*",
     "libraries/*",
@@ -20,6 +19,12 @@
     "emberclear",
     "addons/*"
   ],
+  "scripts": {
+    "types:build": "tsc --build",
+    "types:clean": "tsc --build --clean",
+    "types:rebuild": "tsc --build --clean && tsc --build",
+    "types:watch": "tsc --build --clean && tsc --build --watch"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -54,7 +59,8 @@
     "prettier": "2.2.1",
     "sass-lint": "1.13.1",
     "stylelint": "13.8.0",
-    "stylelint-config-standard": "20.0.0"
+    "stylelint-config-standard": "20.0.0",
+    "typescript": "^4.1.2"
   },
   "engines": {
     "node": "14.15.1"

@@ -1,6 +1,6 @@
-import Application from '../app';
+import Application from 'emberclear/app';
 import registerWaiter from 'ember-raf-scheduler/test-support/register-waiter';
-import config from '../config/environment';
+import config from 'emberclear/config/environment';
 import { setApplication } from '@ember/test-helpers';
 // import start from 'ember-exam/test-support/start';
 import { start } from 'ember-qunit';
@@ -33,7 +33,7 @@ QUnit.begin(async () => {
     --- The test environment must support all of these features ---
 
     IndexedDb: ${await hasIndexedDb()}
-    Camera: ${await hasCamera()}
+    Camera: ${hasCamera()}
     Notifications: ${hasNotifications()}
     ServiceWorker: not tested
     WebWorker: ${hasWebWorker()}

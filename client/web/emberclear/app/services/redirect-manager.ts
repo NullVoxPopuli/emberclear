@@ -10,7 +10,7 @@ export default class RedirectManager extends Service {
   @inLocalStorage attemptedRoute?: string;
 
   get hasPendingRedirect() {
-    return !!this.attemptedRoute;
+    return Boolean(this.attemptedRoute);
   }
 
   persistURL(path: string) {

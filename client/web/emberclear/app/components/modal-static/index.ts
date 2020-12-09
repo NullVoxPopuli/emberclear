@@ -11,7 +11,7 @@ interface IArgs {
 }
 
 export default class ModalStatic extends Component<IArgs> {
-  @service modals!: Modals;
+  @service declare modals: Modals;
 
   constructor(owner: any, args: any) {
     super(owner, args);

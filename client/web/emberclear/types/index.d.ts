@@ -21,3 +21,4 @@ interface FakeBeforeInstallPromptEvent {
   prompt: () => Promise<void>;
   userChoice: Promise<UserChoice>;
 }
+

@@ -88,7 +88,7 @@ export class Connection {
       channel
         .join()
         .receive('ok', () => {
-          resolve();
+          resolve(undefined);
         })
         .receive('error', reject);
     });

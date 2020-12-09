@@ -6,8 +6,3 @@ declare module 'ember-concurrency' {
   }
 }
 
-import '@ember/component';
-
-declare module '@ember/component' {
-  export const setComponentTemplate: any;
-}
