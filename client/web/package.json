@@ -41,7 +41,7 @@
     "cross-env": "7.0.3",
     "deepmerge": "4.2.2",
     "ember-intl-analyzer": "3.0.0",
-    "ember-template-lint": "2.14.0",
+    "ember-template-lint": "2.15.0",
     "eslint": "7.15.0",
     "eslint-config-prettier": "7.0.0",
     "eslint-plugin-decorator-position": "2.2.2",
