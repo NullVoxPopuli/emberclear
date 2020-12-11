@@ -11,11 +11,11 @@
   "license": "GPL-3.0",
   "private": true,
   "volta": {
-    "node": "14.13.1",
+    "node": "14.15.1",
     "yarn": "1.22.10"
   },
   "engines": {
-    "node": "14.13.1"
+    "node": "14.15.1"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "4.9.1",
