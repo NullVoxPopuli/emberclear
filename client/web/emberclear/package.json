@@ -86,7 +86,7 @@
     "@types/common-tags": "1.8.0",
     "@types/dompurify": "2.0.4",
     "@types/ember": "3.16.2",
-    "@types/ember-data__model": "3.16.1",
+    "@types/ember-data__model": "3.16.2",
     "@types/ember-data__store": "3.16.1",
     "@types/ember-qunit": "3.4.13",
     "@types/ember-test-helpers": "1.0.9",
