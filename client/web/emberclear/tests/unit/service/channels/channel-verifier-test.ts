@@ -13,7 +13,7 @@ module('Unit | Service | channels/channel-verifier', function (hooks) {
   setupTest(hooks);
   clearLocalStorage(hooks);
 
-  let service!: ChannelVerifier;
+  let service: ChannelVerifier;
 
   hooks.beforeEach(function () {
     service = getService('channels/channel-verifier');

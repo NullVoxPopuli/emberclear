@@ -1,14 +1,16 @@
 'use strict';
 
-const { base, simpleTypescript, nodeOverrides } = require('@emberclear/config/eslint');
+const { tsBase } = require('@emberclear/eslint/configs/base');
+const { baseConfig: nodeBase } = require('@emberclear/eslint/configs/node');
+const { createConfig } = require('@emberclear/eslint/utils');
 
-module.exports = {
-  ...base,
-  overrides: [
-    {
-      files: ['*.ts'],
-      ...simpleTypescript,
-    },
-    nodeOverrides,
-  ],
-};
+module.exports = createConfig(
+  {
+    ...tsBase,
+    files: ['types/**'],
+  },
+  {
+    ...nodeBase,
+    files: ['.eslintrc.js'],
+  }
+);

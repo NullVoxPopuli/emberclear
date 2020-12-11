@@ -7,6 +7,10 @@
 /tmp/
 
 # dependencies
+# TypeScript output
+declarations/
+tsconfig.tsbuildinfo
+
 /bower_components/
 /node_modules/
 

@@ -1,0 +1,34 @@
+{
+  "name": "@emberclear/eslint",
+  "version": "0.0.0",
+  "description": "eslint configs for the emberclear monorepo",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/NullVoxPopuli/emberclear",
+    "directory": "client/libraries/eslint"
+  },
+  "author": "NullVoxPopuli",
+  "license": "GPL-3.0",
+  "private": true,
+  "volta": {
+    "node": "14.13.1",
+    "yarn": "1.22.10"
+  },
+  "engines": {
+    "node": "14.13.1"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "4.9.1",
+    "@typescript-eslint/parser": "4.9.1",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.15.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-config-prettier": "7.0.0",
+    "eslint-plugin-decorator-position": "2.2.2",
+    "eslint-plugin-ember": "9.3.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "3.2.0",
+    "eslint-plugin-qunit": "5.1.0",
+    "prettier": "2.2.1"
+  }
+}

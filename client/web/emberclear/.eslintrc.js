@@ -1,41 +1,18 @@
-const {
-  base,
-  typescript,
-  nodeOverrides,
-  testOverrides,
-  appOverrides,
-} = require('@emberclear/config/eslint');
+'use strict';
+
+const { configs } = require('@emberclear/eslint');
+
+const config = configs.ember();
 
 module.exports = {
-  ...base,
+  ...config,
   overrides: [
-    // weird ones
+    ...config.overrides,
     {
       files: ['app/services/prism-manager.ts'],
-      ...typescript,
-      // parserOptions: {
-      //   ...base.parserOptions,
-      //   tsconfigRootDir: __dirname,
-      //   project: ['./tsconfig.json'],
-      // },
-      // extends: [
-      //   ...typescript.extends,
-      //   'plugin:@typescript-eslint/recommended-requiring-type-checking',
-      // ],
       rules: {
-        ...typescript.rules,
         'no-undef': 'off',
       },
     },
-    {
-      ...appOverrides,
-      // parserOptions: {
-      //   ...base.parserOptions,
-      //   tsconfigRootDir: __dirname,
-      //   project: ['./tsconfig.json'],
-      // },
-    },
-    testOverrides,
-    nodeOverrides,
   ],
 };

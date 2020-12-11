@@ -10,7 +10,7 @@
       "*": ["../types/*"]
     }
   },
-  "include": ["../types"],
+  "include": [".", "../types"],
   "references": [
     { "path": "../../../libraries/questionably-typed" }
   ]

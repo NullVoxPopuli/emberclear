@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
+    "@emberclear/eslint": "*",
     "@emberclear/config": "*",
     "@emberclear/questionably-typed": "*",
     "@types/ember": "3.16.2",
@@ -55,7 +56,6 @@
     "@types/ember__test-helpers": "1.7.3",
     "@types/qunit": "2.11.1",
     "@types/rsvp": "4.0.3",
-    "babel-eslint": "10.1.0",
     "broccoli-asset-rev": "3.0.0",
     "ember-auto-import": "1.9.0",
     "ember-cli": "3.22.0",

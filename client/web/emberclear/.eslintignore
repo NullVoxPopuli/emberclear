@@ -7,6 +7,7 @@
 /config/optional-features.json
 /concat-stats-for
 /node_modules
+node_modules/
 /dist
 *.lock
 *.log
@@ -24,6 +25,10 @@
 /tmp/
 
 # dependencies
+# TypeScript output
+declarations/
+tsconfig.tsbuildinfo
+
 /bower_components/
 /node_modules/
 

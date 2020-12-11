@@ -1,27 +1,4 @@
-const {
-  base,
-  typescript,
-  nodeOverrides,
-  testOverrides,
-  addonOverrides,
-} = require('@emberclear/config/eslint');
 
-module.exports = {
-  ...base,
-  overrides: [
-    // weird ones
-    {
-      files: ['app/services/prism-manager.ts'],
-      ...typescript,
-      rules: {
-        ...typescript.rules,
-        'no-undef': 'off',
-      },
-    },
-    {
-      ...addonOverrides,
-    },
-    testOverrides,
-    nodeOverrides,
-  ],
-};
+const { configs } = require('@emberclear/eslint');
+
+module.exports = configs.ember();
