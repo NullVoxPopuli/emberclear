@@ -39,7 +39,7 @@ jobs:
 
     - name: 'Type Correctness'
       working-directory: ${{ env.full }}
-      run: yarn tsc --skipLibCheck --noEmit
+      run: yarn tsc --build
 
   test:
     name: 'Test'
