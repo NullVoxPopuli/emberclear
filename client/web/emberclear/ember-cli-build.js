@@ -1,38 +1,32 @@
 'use strict';
 
 const path = require('path');
-const mergeTrees = require('broccoli-merge-trees');
-const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const gitRev = require('git-rev-sync');
-const UnwatchedDir = require('broccoli-source').UnwatchedDir;
-
-const { addonConfig } = require('./config/build/addons');
-const { buildBabelConfig } = require('./config/build/babel');
-const { buildStaticTrees } = require('./config/build/static');
-const { buildWorkerTrees } = require('./config/build/workers');
 const crypto = require('crypto');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
+const gitRev = require('git-rev-sync');
 const yn = require('yn');
 
-const { EMBROIDER, CONCAT_STATS, SOURCEMAPS, MINIFY } = process.env;
+const mergeTrees = require('broccoli-merge-trees');
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const { UnwatchedDir } = require('broccoli-source');
+
+const { addonConfig } = require('./config/build/addons');
+const { buildStaticTrees } = require('./config/build/static');
+const { buildWorkerTrees } = require('./config/build/workers');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+const { EMBROIDER, CONCAT_STATS, SOURCEMAPS_DISABLED, MINIFY_DISABLED } = process.env;
+
+const version = gitRev.short();
+const hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex');
 
 module.exports = function (defaults) {
   let environment = EmberApp.env();
   let isProduction = environment === 'production';
 
-  let version = gitRev.short();
-  let hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex');
-
-  console.info('\n---------------');
-  console.info('environment: ', environment);
-  console.info('git version: ', version);
-  console.info('asset hash: ', hash);
-  console.info('---------------\n');
-
   let env = {
     isProduction,
     isTest: environment === 'test',
+    environment,
     version,
     hash,
     CONCAT_STATS,
@@ -63,44 +57,51 @@ module.exports = function (defaults) {
       compatWith: '3.16.0',
     },
 
-    autoImport: {
-      exclude: isProduction ? ['tweetnacl'] : [],
-      webpack: {
-        plugins: CONCAT_STATS
-          ? [
-              new BundleAnalyzerPlugin({
-                analyzerMode: 'static',
-                openAnalyzer: false,
-                reportFilename: path.join(
-                  process.cwd(),
-                  'concat-stats-for',
-                  'ember-auto-import.html'
-                ),
-              }),
-            ]
-          : [],
-      },
-    },
-
     // Why are configs split up this way?
     // To reduce mental load when parsing the build configuration.
     // We don't need to view everything all at once.
     ...addonConfig(env),
-    ...buildBabelConfig(env),
 
-    'ember-cli-build': {
+    babel: {
+      plugins: [
+        // for enabling dynamic import.
+        require.resolve('ember-auto-import/babel-plugin'),
+      ],
+    },
+    'ember-cli-babel': {
       enableTypeScriptTransform: true,
+      throwUnlessParallelizable: true,
     },
   };
 
-  if (!yn(SOURCEMAPS)) {
+  if (yn(SOURCEMAPS_DISABLED)) {
     appOptions['sourcemaps'] = { enabled: false };
+    appOptions.babel.sourceMaps = false;
   }
 
-  if (!yn(MINIFY)) {
+  if (yn(MINIFY_DISABLED)) {
     appOptions['ember-cli-terser'] = { enabled: false };
     appOptions.minifyCSS = { enabled: false };
   }
+
+  if (yn(CONCAT_STATS)) {
+    appOptions.autoImport = appOptions.autoImport || {};
+    appOptions.autoImport.webpack = appOptions.autoImport.webpack || {};
+    appOptions.autoImport.webpack.plugins = [
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: false,
+        reportFilename: path.join(process.cwd(), 'concat-stats-for', 'ember-auto-import.html'),
+      }),
+    ];
+  }
+
+  if (isProduction) {
+    appOptions.autoImport = appOptions.autoImport || {};
+    appOptions.autoImport.exclude = ['tweetnacl'];
+  }
+
+  logWithAttention(env, appOptions);
 
   let app = new EmberApp(defaults, appOptions);
 
@@ -112,9 +113,7 @@ module.exports = function (defaults) {
   }
 
   if (EMBROIDER) {
-    console.info('\n--------------------------');
-    console.info('\nE M B R O I D E R\n');
-    console.info('--------------------------\n');
+    logWithAttention('E M B R O I D E R');
 
     const { compatBuild } = require('@embroider/compat');
     const { Webpack } = require('@embroider/webpack');
@@ -133,3 +132,17 @@ module.exports = function (defaults) {
   // Old-style broccoli-build
   return mergeTrees([app.toTree(), ...additionalTrees]);
 };
+
+function logWithAttention(...thingsToLog) {
+  let longestLength = Math.max(thingsToLog.map((str) => str.length || 0)) || 80;
+
+  let divider = '-'.repeat(longestLength);
+
+  console.log(divider);
+
+  for (let data of thingsToLog) {
+    console[typeof data === 'string' ? 'log' : 'dir'](data);
+  }
+
+  console.log(divider);
+}
