@@ -1,21 +1,21 @@
-import { module, test } from 'qunit';
 import { currentURL, waitFor } from '@ember/test-helpers';
+import { settled } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+
 import { percySnapshot } from 'ember-percy';
 
 import {
-  visit,
-  getService,
   clearLocalStorage,
+  getService,
   setupCurrentUser,
   setupRelayConnectionMocks,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
-
 import { selectors as chatSelectors } from 'emberclear/tests/helpers/pages/chat';
-import { nameForm, completedPage } from 'emberclear/tests/helpers/pages/setup';
+import { completedPage, nameForm } from 'emberclear/tests/helpers/pages/setup';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
-import { settled } from '@ember/test-helpers';
 
 module('Acceptance | Invitations', function (hooks) {
   setupApplicationTest(hooks);

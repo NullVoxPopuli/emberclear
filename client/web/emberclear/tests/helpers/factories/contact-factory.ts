@@ -1,9 +1,10 @@
+import { Status } from 'emberclear/models/contact';
 import { toHex } from 'emberclear/utils/string-encoding';
+import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
 
 import { getService } from '../get-service';
+
 import type Contact from 'emberclear/models/contact';
-import { Status } from 'emberclear/models/contact';
-import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
 
 export async function attributesForContact() {
   const { publicKey } = await generateAsymmetricKeys();

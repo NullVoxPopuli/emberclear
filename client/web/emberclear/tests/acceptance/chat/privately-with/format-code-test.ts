@@ -4,15 +4,15 @@ import { setupApplicationTest } from 'ember-qunit';
 import { stripIndent } from 'common-tags';
 
 import {
-  visit,
   clearLocalStorage,
-  setupRelayConnectionMocks,
   setupCurrentUser,
+  setupRelayConnectionMocks,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
-
-import { page } from 'emberclear/tests/helpers/pages/chat';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { page } from 'emberclear/tests/helpers/pages/chat';
+
 import type Contact from 'emberclear/models/contact';
 
 let codeA = stripIndent`

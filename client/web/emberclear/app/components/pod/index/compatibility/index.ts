@@ -2,6 +2,9 @@ import Ember from 'ember';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
+import { dropTask } from 'ember-concurrency-decorators';
+import { taskFor } from 'ember-concurrency-ts';
+
 import {
   hasCamera,
   hasIndexedDb,
@@ -9,9 +12,6 @@ import {
   hasServiceWorker,
   hasWebWorker,
 } from './-utils/detection';
-
-import { dropTask } from 'ember-concurrency-decorators';
-import { taskFor } from 'ember-concurrency-ts';
 
 export default class Compatibility extends Component {
   @tracked hasCamera!: boolean;

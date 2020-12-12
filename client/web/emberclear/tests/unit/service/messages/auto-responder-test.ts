@@ -1,20 +1,20 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
+
 import { v4 as uuid } from 'uuid';
 
+import { TARGET, TYPE } from 'emberclear/models/message';
 import {
-  getService,
-  stubService,
-  setupCurrentUser,
   clearLocalStorage,
+  getService,
+  setupCurrentUser,
+  stubService,
   waitUntilTruthy,
 } from 'emberclear/tests/helpers';
+import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 
 import type Identity from 'emberclear/models/identity';
 import type Message from 'emberclear/models/message';
-import { TYPE, TARGET } from 'emberclear/models/message';
-
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import type AutoResponder from 'emberclear/services/messages/auto-responder';
 
 module('Unit | Service | messages/auto-responder', function (hooks) {

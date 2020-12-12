@@ -1,5 +1,6 @@
-import type Message from '../message';
 import { TARGET, TYPE } from '../message';
+
+import type Message from '../message';
 
 type RecordArray<T> = Array<T>;
 

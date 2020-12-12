@@ -1,21 +1,21 @@
-import { module, test } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+
 import { percySnapshot } from 'ember-percy';
 
+import {
+  clearLocalStorage,
+  getService,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
+  setupWorkers,
+  trackAsyncDataRequests,
+  visit,
+} from 'emberclear/tests/helpers';
 import { samplePrivateKey } from 'emberclear/tests/helpers/fixtures';
 import { loginForm } from 'emberclear/tests/helpers/pages/login';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
-
-import {
-  visit,
-  getService,
-  clearLocalStorage,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  trackAsyncDataRequests,
-  setupWorkers,
-} from 'emberclear/tests/helpers';
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/workers/crypto/utils/mnemonic';
 
 const behaviors = {

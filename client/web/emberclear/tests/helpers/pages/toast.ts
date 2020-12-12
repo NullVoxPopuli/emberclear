@@ -1,4 +1,4 @@
-import { waitUntil, click } from '@ember/test-helpers';
+import { click, waitUntil } from '@ember/test-helpers';
 
 /*
  * This is a special page object, because it

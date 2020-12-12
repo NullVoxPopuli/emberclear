@@ -1,12 +1,13 @@
+import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+
+import { create } from 'ember-cli-page-object';
 import hbs from 'htmlbars-inline-precompile';
 
 import { modal } from '@emberclear/ui/test-support/page-objects';
 
 import type { TestContext } from 'ember-test-helpers';
-import { create } from 'ember-cli-page-object';
 
 module('Integration | Component | modal', function (hooks) {
   setupRenderingTest(hooks);

@@ -134,4 +134,3 @@ module.exports = function (defaults) {
   // Old-style broccoli-build
   return mergeTrees([app.toTree(), ...additionalTrees]);
 };
-

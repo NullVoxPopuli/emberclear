@@ -1,17 +1,19 @@
-import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import Service from '@ember/service';
+
 import { timeout } from 'ember-concurrency';
 import { restartableTask } from 'ember-concurrency-decorators';
+import { taskFor } from 'ember-concurrency-ts';
+
+import {
+  STATUS_CONNECTED,
+  STATUS_CONNECTING,
+  STATUS_DEGRADED,
+  STATUS_DISCONNECTED,
+  STATUS_UNKNOWN,
+} from 'emberclear/utils/connection/connection-pool';
 
 import type { STATUS } from 'emberclear/utils/connection/connection-pool';
-import {
-  STATUS_UNKNOWN,
-  STATUS_DEGRADED,
-  STATUS_CONNECTED,
-  STATUS_DISCONNECTED,
-  STATUS_CONNECTING,
-} from 'emberclear/utils/connection/connection-pool';
-import { taskFor } from 'ember-concurrency-ts';
 
 const STATUS_LEVEL_MAP = {
   [STATUS_UNKNOWN]: 'warning',

@@ -1,5 +1,5 @@
-import showdown from 'showdown';
 import DOMPurify from 'dompurify';
+import showdown from 'showdown';
 
 export function isElementWithin(element: HTMLElement, container: HTMLElement): boolean {
   const rect = element.getBoundingClientRect();

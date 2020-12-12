@@ -1,9 +1,10 @@
-import { module, test, skip } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { setupRenderingTest } from 'ember-qunit';
 import { hbs } from 'ember-cli-htmlbars';
+import { module, skip, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
 import { stubService } from 'emberclear/tests/helpers';
+
 import type { TestContext } from 'ember-test-helpers';
 
 module('Integration | Component | embedded-resource', function (hooks) {

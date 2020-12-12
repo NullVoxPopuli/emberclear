@@ -1,6 +1,7 @@
-import DOMPurify from 'dompurify';
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
+
+import DOMPurify from 'dompurify';
 
 import type ChatScroller from 'emberclear/services/chat-scroller';
 

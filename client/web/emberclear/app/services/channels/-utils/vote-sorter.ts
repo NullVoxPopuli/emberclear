@@ -1,7 +1,8 @@
+import { convertObjectToUint8Array, toHex } from 'emberclear/utils/string-encoding';
+
+import type Identity from 'emberclear/models/identity';
 import type { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import type VoteChain from 'emberclear/models/vote-chain';
-import type Identity from 'emberclear/models/identity';
-import { convertObjectToUint8Array, toHex } from 'emberclear/utils/string-encoding';
 
 export const VOTE_ORDERING = {
   remaining: 0,

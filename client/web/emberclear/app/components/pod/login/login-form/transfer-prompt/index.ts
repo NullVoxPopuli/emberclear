@@ -1,11 +1,11 @@
+import Ember from 'ember';
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 import { dropTask } from 'ember-concurrency-decorators';
-
 import { taskFor } from 'ember-concurrency-ts';
+
 import { ReceiveDataConnection } from 'emberclear/services/connection/ephemeral/login/receive-data';
-import Ember from 'ember';
 
 type Args = {
   updateTransferStatus: (status: boolean) => void;

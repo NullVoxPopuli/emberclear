@@ -1,4 +1,4 @@
-import { create, clickable, collection, text, hasClass } from 'ember-cli-page-object';
+import { clickable, collection, create, hasClass, text } from 'ember-cli-page-object';
 
 export const definition = {
   scope: '[data-test-locale-select]',

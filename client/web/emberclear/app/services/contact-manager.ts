@@ -1,12 +1,12 @@
-import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
 import { fromHex } from 'emberclear/utils/string-encoding';
 
+import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
 import type Contact from 'emberclear/models/contact';
-import type ArrayProxy from '@ember/array/proxy';
 
 export default class ContactManager extends Service {
   @service declare store: StoreService;

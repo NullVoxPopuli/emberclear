@@ -1,9 +1,9 @@
+import { render, settled } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, settled } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
 
 import { triggerCopySuccess } from 'ember-cli-clipboard/test-support';
+import hbs from 'htmlbars-inline-precompile';
 
 import { getService } from 'emberclear/tests/helpers';
 

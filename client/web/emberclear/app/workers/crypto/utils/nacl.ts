@@ -1,6 +1,7 @@
-import nacl from 'tweetnacl';
-import { concat } from './array';
 import { blake2b } from 'blakejs';
+import nacl from 'tweetnacl';
+
+import { concat } from './array';
 
 export async function genericHash(arr: Uint8Array): Promise<Uint8Array> {
   return blake2b(arr, undefined, 32);

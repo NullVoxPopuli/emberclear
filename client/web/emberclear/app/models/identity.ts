@@ -1,10 +1,11 @@
-import Model, { attr, hasMany } from '@ember-data/model';
 import { tracked } from '@glimmer/tracking';
 // see note below -- needs investigating
 // eslint-disable-next-line
 import { computed } from '@ember/object';
+import Model, { attr, hasMany } from '@ember-data/model';
 
 import { toHex } from 'emberclear/utils/string-encoding';
+
 import type ChannelContextChain from './channel-context-chain';
 import type VoteChain from './vote-chain';
 

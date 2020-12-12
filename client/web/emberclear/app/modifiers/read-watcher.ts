@@ -1,12 +1,13 @@
-import Modifier from 'ember-modifier';
 import { action } from '@ember/object';
+
 import { timeout } from 'ember-concurrency';
 import { task } from 'ember-concurrency-decorators';
+import { taskFor } from 'ember-concurrency-ts';
+import Modifier from 'ember-modifier';
 
 import { markAsRead } from 'emberclear/models/message/utils';
 
 import type Message from 'emberclear/models/message';
-import { taskFor } from 'ember-concurrency-ts';
 
 interface Args {
   positional: [Message];

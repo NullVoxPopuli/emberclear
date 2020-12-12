@@ -1,13 +1,14 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-
-import type StoreService from '@ember-data/store';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import { hostFromURL } from 'emberclear/utils/string/utils';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
+
+import { hostFromURL } from 'emberclear/utils/string/utils';
+
+import type StoreService from '@ember-data/store';
 import type Relay from 'emberclear/models/relay';
 
 export default class NewRelayForm extends Component {

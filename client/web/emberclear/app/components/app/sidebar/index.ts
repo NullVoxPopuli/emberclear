@@ -1,14 +1,13 @@
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-
-import type SidebarService from 'emberclear/services/sidebar';
-import type CurrentUserService from 'emberclear/services/current-user';
-
-import type Modals from 'emberclear/services/modals';
+import { inject as service } from '@ember/service';
 
 import { scrollIntoViewOfParent } from 'emberclear/utils/dom/utils';
-import { tracked } from '@glimmer/tracking';
+
+import type CurrentUserService from 'emberclear/services/current-user';
+import type Modals from 'emberclear/services/modals';
+import type SidebarService from 'emberclear/services/sidebar';
 
 const Tab = {
   Contacts: 'contacts',

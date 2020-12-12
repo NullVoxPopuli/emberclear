@@ -2,16 +2,16 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
-  visit,
   clearLocalStorage,
-  setupRelayConnectionMocks,
   getService,
   setupCurrentUser,
+  setupRelayConnectionMocks,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
+import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 import type Notifications from 'emberclear/services/notifications';
-import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Notifications Service', function (hooks) {
   setupApplicationTest(hooks);

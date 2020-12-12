@@ -2,8 +2,9 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import type ChatScroller from 'emberclear/services/chat-scroller';
 import { taskFor } from 'ember-concurrency-ts';
+
+import type ChatScroller from 'emberclear/services/chat-scroller';
 
 export default class ChatNewMessages extends Component {
   @service chatScroller!: ChatScroller;

@@ -22,6 +22,7 @@ describe('smoke', function () {
 
         break;
       }
+
       case 'local': {
         let { server, port } = await startServer();
 
@@ -31,11 +32,13 @@ describe('smoke', function () {
 
         break;
       }
+
       case 'ember': {
         this.host = `https://localhost:4201`;
 
         break;
       }
+
       default: {
         this.host = 'https://emberclear.io';
 

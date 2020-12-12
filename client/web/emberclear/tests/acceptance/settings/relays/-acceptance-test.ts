@@ -1,19 +1,18 @@
-import { module, test } from 'qunit';
 import { currentURL, waitUntil } from '@ember/test-helpers';
+import { settled } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
   clearLocalStorage,
-  setupRelayConnectionMocks,
-  setupCurrentUser,
   getService,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
   setupWorkers,
   visit,
 } from 'emberclear/tests/helpers';
-
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 import { defaultRelays } from 'emberclear/utils/data/required-data';
-import { settled } from '@ember/test-helpers';
 
 const page = settings.relays;
 

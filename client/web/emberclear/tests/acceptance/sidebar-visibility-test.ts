@@ -1,17 +1,16 @@
 import { module, test } from 'qunit';
-
 import { setupApplicationTest } from 'ember-qunit';
+
 import { percySnapshot } from 'ember-percy';
 
 import { page } from 'emberclear/components/app/off-canvas/-page';
-
 import {
-  visit,
-  stubService,
   clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
   setupWorkers,
+  stubService,
+  visit,
 } from 'emberclear/tests/helpers';
 
 module('Acceptance | Sidebar Visibility', function (hooks) {

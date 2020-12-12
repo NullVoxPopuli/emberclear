@@ -1,20 +1,21 @@
-import {
-  create,
-  attribute,
-  collection,
-  count,
-  isVisible,
-  text,
-  fillable,
-  clickable,
-} from 'ember-cli-page-object';
-
 import { typeIn } from '@ember/test-helpers';
 
-import { definition as unreadMessagesFloater } from 'emberclear/components/pod/chat/chat-history/unread-management/-page';
-import { dropdown } from '@emberclear/ui/test-support/page-objects';
+import {
+  attribute,
+  clickable,
+  collection,
+  count,
+  create,
+  fillable,
+  isVisible,
+  text,
+} from 'ember-cli-page-object';
+
 import { definition as embedModal } from 'emberclear/components/pod/chat/chat-entry/embeds-menu/snippet/-page';
+import { definition as unreadMessagesFloater } from 'emberclear/components/pod/chat/chat-history/unread-management/-page';
 import { newMessages } from 'emberclear/tests/helpers/pages/components/chat';
+
+import { dropdown } from '@emberclear/ui/test-support/page-objects';
 
 export const selectors = {
   form: '[data-test-chat-entry-form]',

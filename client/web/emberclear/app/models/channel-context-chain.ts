@@ -1,8 +1,8 @@
-import Model, { hasMany, belongsTo } from '@ember-data/model';
+import Model, { belongsTo, hasMany } from '@ember-data/model';
 
-import type Identity from 'emberclear/models/identity';
-import type VoteChain from './vote-chain';
 import type Channel from './channel';
+import type VoteChain from './vote-chain';
+import type Identity from 'emberclear/models/identity';
 
 export default class ChannelContextChain extends Model {
   @belongsTo('identity', { async: false, inverse: 'adminOf' }) admin!: Identity;

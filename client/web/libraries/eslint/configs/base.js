@@ -27,6 +27,54 @@ const base = {
   },
 };
 
+// Node doesn't yet support modules import/export
+const scriptBase = {
+  ...base,
+};
+
+const moduleBase = {
+  plugins: [...base.plugins, 'simple-import-sort'],
+  rules: {
+    ...base.rules,
+
+    'simple-import-sort/imports': [
+      'error',
+      {
+        // This notation is bonkers
+        groups: [
+          // Side effect imports.
+          ['^\\u0000'],
+
+          // framework imports
+          ['^ember$', '^@glimmer', '^@ember', '^ember-cli-htmlbars', '^qunit', '^ember-qunit'],
+
+          // Packages.
+          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+          ['^@?\\w'],
+
+          // Absolute imports and other imports such as Vue-style `@/foo`.
+          // Anything not matched in another group.
+          ['^'],
+
+          // monorepo apps
+          ['^emberclear', '^pinochle'],
+
+          // monorepo packages
+          ['^@emberclear'],
+
+          // Relative imports.
+          // Anything that starts with a dot.
+          ['^\\.'],
+
+          // Type imports
+          ['^.+\\u0000$'],
+        ],
+      },
+    ],
+    'simple-import-sort/exports': 'error',
+  },
+};
+
 const baseRulesAppliedLast = {
   // prettier
   'prettier/prettier': 'error',
@@ -47,13 +95,13 @@ const jsBase = {
 };
 
 const tsBase = {
-  ...base,
+  ...moduleBase,
   parser: '@typescript-eslint/parser',
   env: {
     browser: true,
   },
   rules: {
-    ...base.rules,
+    ...moduleBase.rules,
 
     // type imports are removed in builds
     '@typescript-eslint/consistent-type-imports': 'error',
@@ -65,4 +113,4 @@ const tsBase = {
   },
 };
 
-module.exports = { base, baseRulesAppliedLast, jsBase, tsBase };
+module.exports = { moduleBase, scriptBase, baseRulesAppliedLast, jsBase, tsBase };

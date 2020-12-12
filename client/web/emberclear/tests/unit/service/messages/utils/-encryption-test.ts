@@ -1,10 +1,11 @@
 import { module, test } from 'qunit';
 
-import { toHex } from 'emberclear/utils/string-encoding';
 import { build as toPayloadJson } from 'emberclear/services/messages/-utils/builder';
-import type { KeyPair } from 'emberclear/models/user';
+import { toHex } from 'emberclear/utils/string-encoding';
 import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
-import { encryptForSocket, decryptFromSocket } from 'emberclear/workers/crypto/utils/socket';
+import { decryptFromSocket, encryptForSocket } from 'emberclear/workers/crypto/utils/socket';
+
+import type { KeyPair } from 'emberclear/models/user';
 
 module('Integration | Send/Receive Encryption', function (hooks) {
   let bob!: KeyPair;

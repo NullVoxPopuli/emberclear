@@ -1,4 +1,4 @@
-import { create, text, clickable } from 'ember-cli-page-object';
+import { clickable, create, text } from 'ember-cli-page-object';
 
 export const page = create({
   scope: '[data-test-qr-container]',

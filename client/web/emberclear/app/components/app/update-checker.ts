@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
 import { setComponentTemplate } from '@ember/component';
+import { inject as service } from '@ember/service';
 import { hbs } from 'ember-cli-htmlbars';
 
 import type RouterService from '@ember/routing/router-service';

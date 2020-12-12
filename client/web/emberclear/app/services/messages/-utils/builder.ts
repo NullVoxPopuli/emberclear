@@ -1,5 +1,5 @@
-import type Message from 'emberclear/models/message';
 import type Identity from 'emberclear/models/identity';
+import type Message from 'emberclear/models/message';
 
 export function buildSender(sender: Identity): StandardMessage['sender'] {
   return {

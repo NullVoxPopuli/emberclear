@@ -1,5 +1,5 @@
-import { toUint8Array, toBase64, fromHex, fromBase64, toString } from './string-encoding';
-import { encryptFor, decryptFrom } from './nacl';
+import { decryptFrom, encryptFor } from './nacl';
+import { fromBase64, fromHex, toBase64, toString, toUint8Array } from './string-encoding';
 
 export async function encryptForSocket(payload: RelayJson, to: KeyPublic, from: KeyPrivate) {
   const payloadString = JSON.stringify(payload);

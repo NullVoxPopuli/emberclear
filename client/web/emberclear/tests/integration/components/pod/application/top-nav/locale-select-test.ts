@@ -1,7 +1,7 @@
-import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { setupRenderingTest } from 'ember-qunit';
 import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
 import { page } from 'emberclear/components/app/top-nav/locale-select/-page';
 import { clearLocalStorage } from 'emberclear/tests/helpers';

@@ -1,14 +1,14 @@
-import type StoreService from '@ember-data/store';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency-decorators';
 
+import { task } from 'ember-concurrency-decorators';
+import { taskFor } from 'ember-concurrency-ts';
+
+import type StoreService from '@ember-data/store';
 import type ContactManager from 'emberclear/services/contact-manager';
 import type CurrentUserService from 'emberclear/services/current-user';
-import { taskFor } from 'ember-concurrency-ts';
 
 export default class AddModal extends Component {
   @service toast!: Toast;

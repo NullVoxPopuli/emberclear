@@ -1,18 +1,19 @@
-import { module, test } from 'qunit';
 import { currentURL, settled, waitUntil } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+
 import { percySnapshot } from 'ember-percy';
 
 import {
-  visit,
   clearLocalStorage,
+  getService,
   setupCurrentUser,
   setupRelayConnectionMocks,
-  getService,
+  visit,
 } from 'emberclear/tests/helpers';
-
-import { contacts } from 'emberclear/tests/helpers/pages/contacts';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { contacts } from 'emberclear/tests/helpers/pages/contacts';
+
 import type User from 'emberclear/models/user';
 
 module('Acceptance | Contacts', function (hooks) {

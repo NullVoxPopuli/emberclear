@@ -1,9 +1,10 @@
 import Application from '@ember/application';
-import Resolver from 'ember-resolver';
-import loadInitializers from 'ember-load-initializers';
-import config from 'emberclear/config/environment';
 
 import defineModifier from 'ember-concurrency-test-waiter/define-modifier';
+import loadInitializers from 'ember-load-initializers';
+import Resolver from 'ember-resolver';
+
+import config from 'emberclear/config/environment';
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;

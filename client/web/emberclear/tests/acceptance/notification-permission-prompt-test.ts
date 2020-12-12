@@ -2,17 +2,16 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
-  visit,
   clearLocalStorage,
-  setupRelayConnectionMocks,
-  setupCurrentUser,
-  refresh,
   getService,
+  refresh,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
-import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
-
 import { page as app } from 'emberclear/tests/helpers/pages/app';
+import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
 
 const { notificationPrompt: prompt } = app;
 

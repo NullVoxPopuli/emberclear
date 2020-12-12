@@ -1,10 +1,11 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
+import { MESSAGE_LIMIT } from 'emberclear/models/message';
+import { messagesForDM } from 'emberclear/models/message/utils';
+
 import type StoreService from '@ember-data/store';
 import type CurrentUserService from 'emberclear/services/current-user';
-import { messagesForDM } from 'emberclear/models/message/utils';
-import { MESSAGE_LIMIT } from 'emberclear/models/message';
 
 export default class extends Controller {
   @service currentUser!: CurrentUserService;

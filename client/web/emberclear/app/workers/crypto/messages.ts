@@ -1,15 +1,15 @@
+import { login } from './actions';
+import { mnemonicFromNaClBoxPrivateKey } from './utils/mnemonic';
 import {
   derivePublicKey,
   derivePublicSigningKey,
   generateAsymmetricKeys,
   generateSigningKeys,
-  sign,
-  openSigned,
   hash,
+  openSigned,
+  sign,
 } from './utils/nacl';
 import { decryptFromSocket, encryptForSocket } from './utils/socket';
-import { login } from './actions';
-import { mnemonicFromNaClBoxPrivateKey } from './utils/mnemonic';
 
 enum WorkerCryptoAction {
   // Generation

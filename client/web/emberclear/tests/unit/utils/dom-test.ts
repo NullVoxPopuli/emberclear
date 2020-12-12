@@ -1,4 +1,5 @@
 import { module, test } from 'qunit';
+
 import sinon from 'sinon';
 
 import { isElementWithin, keepInViewPort } from 'emberclear/utils/dom/utils';

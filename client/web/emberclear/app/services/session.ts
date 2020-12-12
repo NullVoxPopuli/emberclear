@@ -1,13 +1,14 @@
-import Service from '@ember/service';
-import localforage from 'localforage';
 import { action } from '@ember/object';
+import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import type StoreService from '@ember-data/store';
-import type CurrentUserService from 'emberclear/services/current-user';
-import type ConnectionService from 'emberclear/services/connection';
-import type RouterService from '@ember/routing/router-service';
+import localforage from 'localforage';
+
 import type WindowService from './window';
+import type RouterService from '@ember/routing/router-service';
+import type StoreService from '@ember-data/store';
+import type ConnectionService from 'emberclear/services/connection';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 const FLAG_KEY = '_features';
 

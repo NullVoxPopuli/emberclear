@@ -1,20 +1,19 @@
 import { visit as dangerousVisit } from '@ember/test-helpers';
-// import a11yAuditIf from 'ember-a11y-testing/test-support/audit-if';
-import { percySnapshot } from 'ember-percy';
 import { getContext } from '@ember/test-helpers';
 
-export { stubService } from './stub-service';
+// import a11yAuditIf from 'ember-a11y-testing/test-support/audit-if';
+import { percySnapshot } from 'ember-percy';
+
+export { clearLocalStorage } from './clear-local-storage';
 export * from './create-current-user';
 export { getService } from './get-service';
-export { clearLocalStorage } from './clear-local-storage';
-export { setupRelayConnectionMocks } from './setup-relay-connection-mocks';
 export { getStore } from './get-store';
-export { trackAsyncDataRequests } from './track-async-data';
-
-export { setupWorkers } from './setup-workers';
-export { setupEmberclearTest } from './setup-test';
-
 export { refresh } from './refresh';
+export { setupRelayConnectionMocks } from './setup-relay-connection-mocks';
+export { setupEmberclearTest } from './setup-test';
+export { setupWorkers } from './setup-workers';
+export { stubService } from './stub-service';
+export { trackAsyncDataRequests } from './track-async-data';
 export { waitUntilTruthy } from './waitUntilTruthy';
 
 export async function visit(url: string) {

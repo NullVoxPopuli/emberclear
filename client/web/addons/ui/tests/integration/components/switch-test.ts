@@ -1,8 +1,9 @@
+import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+
 import { create } from 'ember-cli-page-object';
+import hbs from 'htmlbars-inline-precompile';
 
 import { switchWrapper } from '@emberclear/ui/test-support/page-objects';
 

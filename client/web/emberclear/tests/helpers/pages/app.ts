@@ -1,5 +1,6 @@
-import { find, click } from '@ember/test-helpers';
-import { create, isVisible, clickable } from 'ember-cli-page-object';
+import { click, find } from '@ember/test-helpers';
+
+import { clickable, create, isVisible } from 'ember-cli-page-object';
 
 import { keyPressFor } from '@emberclear/ui/test-support/key-events';
 

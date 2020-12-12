@@ -1,5 +1,6 @@
 import { click, fillIn } from '@ember/test-helpers';
-import { create, collection, clickable, isVisible, fillable } from 'ember-cli-page-object';
+
+import { clickable, collection, create, fillable, isVisible } from 'ember-cli-page-object';
 
 const wrapper = '[data-test-settings-wrapper]';
 

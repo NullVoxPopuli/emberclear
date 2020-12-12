@@ -1,13 +1,14 @@
-import { module, test } from 'qunit';
 import { render } from '@ember/test-helpers';
-import { setupRenderingTest } from 'ember-qunit';
 import { hbs } from 'ember-cli-htmlbars';
-import { getStore } from 'emberclear/tests/helpers';
-import type { TestContext } from 'ember-test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
 import { stripIndent } from 'common-tags';
 
+import { getStore } from 'emberclear/tests/helpers';
 import { page } from 'emberclear/tests/helpers/pages/chat';
+
+import type { TestContext } from 'ember-test-helpers';
 
 module('Integration | Component | chat-entry', function (hooks) {
   setupRenderingTest(hooks);

@@ -1,4 +1,4 @@
-import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
 import type Identity from 'emberclear/models/identity';
 import type InvitationResult from 'emberclear/models/invitation-result';

@@ -1,4 +1,5 @@
 import { module, test } from 'qunit';
+
 import * as string from 'emberclear/utils/string/utils';
 
 module('Unit | Utility | string', function () {

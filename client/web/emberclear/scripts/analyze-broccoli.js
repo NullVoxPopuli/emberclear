@@ -21,6 +21,7 @@ async function analyzeBroccoli() {
   ];
 
   let outputPath = path.join(process.cwd(), 'concat-stats-for');
+
   process.env.CONCAT_STATS_PATH = outputPath;
 
   await summarizeAll(outputPath, ignoredFiles);

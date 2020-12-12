@@ -1,8 +1,10 @@
 import { module, skip } from 'qunit';
 import { setupTest, test } from 'ember-qunit';
-import type CurrentUserService from 'emberclear/services/current-user';
+
 import { getService } from 'emberclear/tests/helpers';
 import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
+
+import type CurrentUserService from 'emberclear/services/current-user';
 
 module('Unit | Service | identity', function (hooks) {
   setupTest(hooks);

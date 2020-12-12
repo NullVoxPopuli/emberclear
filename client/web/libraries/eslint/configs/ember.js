@@ -1,6 +1,6 @@
 'use strict';
 
-const { tsBase, jsBase, base, baseRulesAppliedLast } = require('./base');
+const { tsBase, jsBase, moduleBase, baseRulesAppliedLast } = require('./base');
 
 const emberLintRules = {
   // this is a silly convention from back in the rails days
@@ -8,7 +8,7 @@ const emberLintRules = {
   'ember/routes-segments-snake-case': 'off',
   // co-located test files are filtered out of production bundle
   'ember/no-test-support-import': 'off',
-}
+};
 
 const appTS = {
   ...tsBase,
@@ -38,7 +38,7 @@ const appTS = {
 const appJS = {
   ...jsBase,
   files: ['app/**/*.js'],
-  plugins: [...base.plugins, 'ember', 'decorator-position'],
+  plugins: [...moduleBase.plugins, 'ember', 'decorator-position'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
@@ -49,7 +49,7 @@ const appJS = {
     ...jsBase.rules,
     ...emberLintRules,
     ...baseRulesAppliedLast,
-  }
+  },
 };
 const addonTS = {
   ...appTS,

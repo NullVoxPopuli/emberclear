@@ -1,5 +1,6 @@
-import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import Service from '@ember/service';
+
 import { timeout } from 'ember-concurrency';
 import { dropTask, restartableTask } from 'ember-concurrency-decorators';
 

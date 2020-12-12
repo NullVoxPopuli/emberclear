@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 import type ContactManager from 'emberclear/services/contact-manager';
 

@@ -2,16 +2,16 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action, set } from '@ember/object';
 import { inject as service } from '@ember/service';
-
 import { waitForPromise } from '@ember/test-waiters';
+
 import { unicode } from 'emojis';
 
 import Channel from 'emberclear/models/channel';
 
 import type StoreService from '@ember-data/store';
+import type Contact from 'emberclear/models/contact';
 import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import type MessageFactory from 'emberclear/services/messages/factory';
-import type Contact from 'emberclear/models/contact';
 
 const EMOJI_REGEX = /:[^:]+:/g;
 

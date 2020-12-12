@@ -1,5 +1,6 @@
 import { triggerKeyEvent } from '@ember/test-helpers';
-import { create, text, clickable, collection, fillable } from 'ember-cli-page-object';
+
+import { clickable, collection, create, fillable, text } from 'ember-cli-page-object';
 
 export const sidebarContactsPage = create({
   header: {

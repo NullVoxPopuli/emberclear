@@ -1,5 +1,6 @@
-import * as stringEncoding from 'emberclear/utils/string-encoding';
 import { module, test } from 'qunit';
+
+import * as stringEncoding from 'emberclear/utils/string-encoding';
 
 module('Unit | Utility | String Encoding', function () {
   module('toHex / fromHex', function () {

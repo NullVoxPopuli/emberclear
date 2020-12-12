@@ -1,17 +1,18 @@
-import RSVP from 'rsvp';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
+
 import { dropTask } from 'ember-concurrency-decorators';
-
 import { taskFor } from 'ember-concurrency-ts';
+import RSVP from 'rsvp';
 
-import { EphemeralConnection } from '../ephemeral-connection';
 import { UnknownMessageError } from 'emberclear/utils/errors';
 
-import type Toast from 'emberclear/services/toast';
-import type SettingsService from 'emberclear/services/settings';
+import { EphemeralConnection } from '../ephemeral-connection';
+
 import type RouterService from '@ember/routing/router-service';
+import type SettingsService from 'emberclear/services/settings';
+import type Toast from 'emberclear/services/toast';
 
 type UpdateStatus = (status: boolean) => void;
 

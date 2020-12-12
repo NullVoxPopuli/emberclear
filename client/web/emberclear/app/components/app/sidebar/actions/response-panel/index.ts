@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-
 import { action } from '@ember/object';
 
 import type VoteChain from 'emberclear/models/vote-chain';

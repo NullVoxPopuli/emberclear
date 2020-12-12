@@ -1,13 +1,14 @@
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
-import type StoreService from '@ember-data/store';
-import type SettingsService from 'emberclear/services/settings';
-import type RouterService from '@ember/routing/router-service';
-import type Action from 'emberclear/models/action';
 import { ACTION_RESPONSE } from 'emberclear/models/action';
+
+import type RouterService from '@ember/routing/router-service';
+import type StoreService from '@ember-data/store';
+import type Action from 'emberclear/models/action';
 import type CurrentUserService from 'emberclear/services/current-user';
+import type SettingsService from 'emberclear/services/settings';
 import type SidebarService from 'emberclear/services/sidebar';
 
 // import { VOTE_ACTION } from 'emberclear/models/vote-chain';

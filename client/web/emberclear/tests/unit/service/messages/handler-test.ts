@@ -1,17 +1,16 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
+
 import { v4 as uuid } from 'uuid';
 
+import { TARGET, TYPE } from 'emberclear/models/message';
 import {
-  getService,
-  stubService,
-  setupCurrentUser,
   clearLocalStorage,
+  getService,
   getStore,
+  setupCurrentUser,
+  stubService,
 } from 'emberclear/tests/helpers';
-
-import { TYPE, TARGET } from 'emberclear/models/message';
-
 import { attributesForContact } from 'emberclear/tests/helpers/factories/contact-factory';
 
 module('Unit | Service | messages/handler', function (hooks) {

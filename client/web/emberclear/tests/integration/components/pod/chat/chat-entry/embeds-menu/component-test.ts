@@ -1,14 +1,14 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
 
-import type Contact from 'emberclear/models/contact';
-import type { TestContext } from 'ember-test-helpers';
-
-import { page } from 'emberclear/tests/helpers/pages/chat';
-import { setupRelayConnectionMocks, setupCurrentUser } from 'emberclear/tests/helpers';
+import { setupCurrentUser, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { page } from 'emberclear/tests/helpers/pages/chat';
+
+import type { TestContext } from 'ember-test-helpers';
+import type Contact from 'emberclear/models/contact';
 
 module('Integration | Component | embeds-menu', function (hooks) {
   setupRenderingTest(hooks);

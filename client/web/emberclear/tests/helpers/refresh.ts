@@ -1,4 +1,5 @@
-import { setupContext, teardownContext, getContext, currentURL } from '@ember/test-helpers';
+import { currentURL, getContext, setupContext, teardownContext } from '@ember/test-helpers';
+
 import { visit } from './index';
 
 export async function refresh(mocking: () => void = () => undefined) {

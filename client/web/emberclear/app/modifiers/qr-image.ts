@@ -1,8 +1,8 @@
-import Modifier from 'ember-modifier';
 import { restartableTask } from 'ember-concurrency-decorators';
+import { taskFor } from 'ember-concurrency-ts';
+import Modifier from 'ember-modifier';
 
 import { convertObjectToQRCodeDataURL } from 'emberclear/utils/string-encoding';
-import { taskFor } from 'ember-concurrency-ts';
 
 type Args = {
   positional: [Record<string, unknown>];

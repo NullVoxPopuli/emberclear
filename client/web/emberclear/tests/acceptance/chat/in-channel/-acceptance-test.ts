@@ -1,18 +1,17 @@
-import { module, test } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest, skip } from 'ember-qunit';
 
 import {
-  visit,
   clearLocalStorage,
-  setupRelayConnectionMocks,
   setupCurrentUser,
+  setupRelayConnectionMocks,
+  visit,
   visit as visitIgnoringFailure,
 } from 'emberclear/tests/helpers';
-
+import { createChannel } from 'emberclear/tests/helpers/factories/channel-factory';
 import { page } from 'emberclear/tests/helpers/pages/chat';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
-import { createChannel } from 'emberclear/tests/helpers/factories/channel-factory';
 
 import type Channel from 'emberclear/models/channel';
 
