@@ -14,7 +14,7 @@ module.exports = function (defaults) {
     },
     autoImport: {
       alias: {
-        '@shoelace-style/shoelace': `@shoelace-style/shoelace/dist/custom-elements/index.mjs`,
+        '@shoelace-style/shoelace': `@shoelace-style/shoelace/dist/custom-elements/index.js`,
       },
     },
   });

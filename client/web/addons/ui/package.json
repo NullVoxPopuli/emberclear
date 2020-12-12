@@ -31,7 +31,7 @@
     "@fortawesome/free-solid-svg-icons": "5.15.1",
     "@glimmer/component": "1.0.3",
     "@glimmer/tracking": "1.0.3",
-    "@shoelace-style/shoelace": "2.0.0-beta.7",
+    "@shoelace-style/shoelace": "2.0.0-beta.24",
     "ember-auto-import": "1.9.0",
     "ember-cli-babel": "7.23.0",
     "ember-cli-htmlbars": "5.3.1",

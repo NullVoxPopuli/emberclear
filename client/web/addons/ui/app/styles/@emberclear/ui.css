@@ -1,23 +1,23 @@
-@import 'shoelace-css/source/css/normalize';
+/* @import 'shoelace-css/source/css/normalize';
 @import 'shoelace-css/source/css/content';
 @import 'shoelace-css/source/css/alerts';
 @import 'shoelace-css/source/css/badges';
 @import 'shoelace-css/source/css/buttons';
-@import 'shoelace-css/source/css/dropdowns';
+@import 'shoelace-css/source/css/dropdowns'; */
 
 /* @import 'shoelace-css/source/css/dropdowns'; */
-@import 'shoelace-css/source/css/file-buttons';
+/* @import 'shoelace-css/source/css/file-buttons';
 @import 'shoelace-css/source/css/forms';
-@import 'shoelace-css/source/css/grid';
+@import 'shoelace-css/source/css/grid'; */
 
 /* @import url('progress-bars.css'); */
 
 /* @import url('loaders.css'); */
-@import 'shoelace-css/source/css/switches';
+/* @import 'shoelace-css/source/css/switches';
 @import 'shoelace-css/source/css/tabs';
 @import 'shoelace-css/source/css/tables';
 @import 'shoelace-css/source/css/utilities';
-@import 'shoelace-css/source/css/variables';
+@import 'shoelace-css/source/css/variables'; */
 @import './themes/default';
 @import './themes/midnight';
 @import './defaults';
