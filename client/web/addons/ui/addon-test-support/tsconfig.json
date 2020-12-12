@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.compiler-options.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declarationDir": "../declarations/test-support",
+    "paths": {
+      "@emberclear/ui": ["../declarations"],
+      "@emberclear/ui/*": ["../declarations/*"],
+      "@emberclear/ui/test-support": ["."],
+      "@emberclear/ui/test-support/*": ["./*"],
+    }
+  },
+  "references": [
+    { "path": "../addon" }
+  ]
+}

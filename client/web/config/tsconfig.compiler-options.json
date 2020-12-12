@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "composite": true,
+
+    "target": "ESNext",
+    "moduleResolution": "node",
+
+    // The JS ecosystem has 4+ module formats and many packages do not use ES modules...
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    // Correctness checks
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Footgun prevention
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": false,
+
+    // We're not using typescript to transpile, so noEmitOnError would not
+    // prevent invalid code from compiling
+    "noEmitOnError": false,
+    "noEmit": false,
+
+    "allowJs": false,
+
+    // Babel handles source maps
+    "inlineSourceMap": false,
+    "inlineSources": false,
+
+    "module": "ESNext",
+
+    // Stage 3 one day
+    "experimentalDecorators": true,
+
+    // tsc will only be used for declarations
+    "emitDeclarationOnly": true
+  }
+}

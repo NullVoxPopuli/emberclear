@@ -10,6 +10,10 @@
 /dist/
 /tmp/
 
+# TypeScript output
+declarations/
+tsconfig.tsbuildinfo
+
 # generated as a part of deployment
 /public/bundle/
 /public/workers/

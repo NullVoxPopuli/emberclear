@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "extends": "./config/tsconfig.compiler-options.json",
+  "files": [],
+  "references": [
+    // Libraries
+    { "path": "./libraries/questionably-typed" },
+
+    // Addons
+    { "path": "./addons/ui" },
+    /* { "path": "./addons/crypto" }, */
+    /* { "path": "./addons/messaging" }, */
+    /* { "path": "./addons/networking" }, */
+
+    // Apps
+    { "path": "./emberclear" },
+    /* { "path": "./pinochle" }, */
+  ]
+}

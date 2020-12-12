@@ -29,7 +29,7 @@ export async function waitUntilTruthy(func: () => Promise<boolean>, timeoutMs = 
 
         if (result) {
           clearInterval(interval);
-          resolve();
+          resolve(undefined);
         }
       }, 10);
     }),

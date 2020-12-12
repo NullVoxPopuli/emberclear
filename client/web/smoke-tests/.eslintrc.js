@@ -1,28 +1,22 @@
+'use strict';
+
+const { configs } = require('@emberclear/eslint');
+
+const config = configs.node();
+
+// TODO: add mocha config
 module.exports = {
-  root: true,
-  parser: 'babel-eslint',
-  plugins: ['node', 'prettier'],
-  extends: ['eslint:recommended', 'prettier'],
+  ...config,
   env: {
+    ...config.env,
     mocha: true,
-    node: true,
     browser: true,
     es6: true,
   },
   rules: {
-    ...require('eslint-plugin-node').configs.recommended.rules,
-    'node/no-unpublished-require': 'off', // we live dangerously here
-    'node/no-extraneous-require': 'off', // incorrect?
-
-    // cleanliness & consistency
-    'prefer-const': 'off', // const has misleading safety implications
-    'no-console': ['error', { allow: ['debug', 'warn', 'error', 'info'] }],
+    ...config.rules,
     'no-cond-assign': 'off',
     'no-useless-escape': 'off',
     'require-yield': 'off',
-    'getter-return': 'off',
-
-    // prettier
-    'prettier/prettier': 'error',
   },
 };

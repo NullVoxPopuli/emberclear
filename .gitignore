@@ -1,4 +1,5 @@
 node_modules
+declarations/
 tmp
 dist
 _build

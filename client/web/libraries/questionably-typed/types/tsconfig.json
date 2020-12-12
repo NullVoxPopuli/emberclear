@@ -1,0 +1,12 @@
+{
+  "extends": "../../../config/tsconfig.compiler-options.json",
+
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declarationDir": "../declarations",
+    "paths": {
+      "@emberclear/questionably-typed": ["*"],
+      "@emberclear/questionably-typed/*": ["./*"]
+    }
+  }
+}

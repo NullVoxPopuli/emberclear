@@ -1,43 +1,11 @@
 {
+  "files": [],
   "compilerOptions": {
-    "target": "ESNext",
-    "allowJs": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noEmitOnError": false,
-    "noEmit": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "baseUrl": ".",
-    "module": "esnext",
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "paths": {
-      "dummy/tests/*": ["tests/*"],
-      "dummy/*": ["tests/dummy/app/*", "app/*"],
-      "@emberclear/ui": ["addon"],
-      "@emberclear/ui/*": ["addon/*"],
-      "@emberclear/ui/test-support": ["addon-test-support"],
-      "@emberclear/ui/test-support/*": ["addon-test-support/*"],
-      "*": ["types/*", "../../questionably-typed/*"]
-    }
+    "composite": true
   },
-  "include": [
-    "app/**/*",
-    "addon/**/*",
-    "tests/**/*",
-    "types/**/*",
-    "test-support/**/*",
-    "addon-test-support/**/*",
-    "../../questionably-typed/**/*"
+  "references": [
+    { "path": "addon" },
+    { "path": "addon-test-support" },
+    { "path": "tests" }
   ]
 }

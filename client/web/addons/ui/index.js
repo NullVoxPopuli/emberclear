@@ -33,6 +33,10 @@ module.exports = {
   },
 
   options: {
+    'ember-cli-babel': {
+      enableTypeScriptTransform: true,
+    },
+
     /**
      * The addon needs to support PostCSS, but not actually compile any of it.
      *
