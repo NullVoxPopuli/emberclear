@@ -43,10 +43,12 @@ const scriptBase = {
 };
 
 const moduleBase = {
-  plugins: [...base.plugins, 'simple-import-sort'],
-  rules: {
-    ...base.rules,
+  ...base,
+};
 
+const moduleImports = {
+  plugins: ['simple-import-sort'],
+  rules: {
     'simple-import-sort/imports': [
       'error',
       {
@@ -105,13 +107,13 @@ const jsBase = {
 };
 
 const tsBase = {
-  ...moduleBase,
+  ...base,
   parser: '@typescript-eslint/parser',
   env: {
     browser: true,
   },
   rules: {
-    ...moduleBase.rules,
+    ...base.rules,
 
     // type imports are removed in builds
     '@typescript-eslint/consistent-type-imports': 'error',
@@ -120,7 +122,12 @@ const tsBase = {
     // prefer inference
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+
+    // Use real types
+    '@typescript-eslint/no-explicit-any': 'error',
+    // Maximum strictness
+    '@typescript-eslint/no-non-null-assertion': 'error',
   },
 };
 
-module.exports = { moduleBase, scriptBase, baseRulesAppliedLast, jsBase, tsBase };
+module.exports = { moduleImports, moduleBase, scriptBase, baseRulesAppliedLast, jsBase, tsBase };

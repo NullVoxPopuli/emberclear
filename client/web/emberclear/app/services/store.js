@@ -1,5 +1,5 @@
-import { default as Store } from '@ember-data/store';
 import { RecordData } from '@ember-data/record-data/-private';
+import { default as Store } from '@ember-data/store';
 import { identifierCacheFor } from '@ember-data/store/-private';
 
 export default class StoreService extends Store {

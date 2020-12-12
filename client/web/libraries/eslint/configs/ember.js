@@ -1,6 +1,6 @@
 'use strict';
 
-const { tsBase, jsBase, moduleBase, baseRulesAppliedLast } = require('./base');
+const { tsBase, jsBase, moduleBase, moduleImports, baseRulesAppliedLast } = require('./base');
 
 const emberLintRules = {
   // this is a silly convention from back in the rails days
@@ -13,7 +13,7 @@ const emberLintRules = {
 const appTS = {
   ...tsBase,
   files: ['app/**/*.ts'],
-  plugins: [...tsBase.plugins, 'ember', '@typescript-eslint'],
+  plugins: [tsBase.plugins, moduleImports.plugins, 'ember', '@typescript-eslint'].flat(),
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
@@ -25,6 +25,7 @@ const appTS = {
   rules: {
     ...tsBase.rules,
     ...emberLintRules,
+    ...moduleImports.rules,
 
     // not applicable due to how the runtime is
     '@typescript-eslint/no-use-before-define': 'off',
@@ -38,7 +39,7 @@ const appTS = {
 const appJS = {
   ...jsBase,
   files: ['app/**/*.js'],
-  plugins: [...moduleBase.plugins, 'ember', 'decorator-position'],
+  plugins: [moduleBase.plugins, moduleImports.plugins, 'ember', 'decorator-position'].flat(),
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
@@ -48,6 +49,7 @@ const appJS = {
   rules: {
     ...jsBase.rules,
     ...emberLintRules,
+    ...moduleImports.rules,
     ...baseRulesAppliedLast,
   },
 };

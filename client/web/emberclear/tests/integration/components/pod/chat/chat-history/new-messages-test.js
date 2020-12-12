@@ -1,12 +1,13 @@
+import { render } from '@ember/test-helpers';
+import { settled } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
 
-import { newMessages as definition } from 'emberclear/tests/helpers/page-objects';
 import { create } from 'ember-cli-page-object';
+
 import { getService } from 'emberclear/tests/helpers';
-import { settled } from '@ember/test-helpers';
+import { newMessages as definition } from 'emberclear/tests/helpers/page-objects';
 
 module('Integration | Component | chat/chat-history/new-messages', function (hooks) {
   setupRenderingTest(hooks);
