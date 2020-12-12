@@ -1,3 +1,11 @@
 'use strict';
 
-module.exports = require('@emberclear/config/.template-lintrc');
+const config = require('@emberclear/config/.template-lintrc');
+
+module.exports = {
+  ...config,
+  rules: {
+    ...config.rules,
+    'no-inline-styles': false, // TODO enable :(
+  },
+};

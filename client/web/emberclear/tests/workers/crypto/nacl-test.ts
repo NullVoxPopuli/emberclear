@@ -1,5 +1,6 @@
+import { module, skip, test } from 'qunit';
+
 import * as nacl from 'emberclear/workers/crypto/utils/nacl';
-import { module, test, skip } from 'qunit';
 
 module('Workers | Crypto | nacl', function () {
   skip('libsodium uses wasm', async function (assert) {

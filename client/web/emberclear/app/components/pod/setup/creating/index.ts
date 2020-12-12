@@ -1,13 +1,13 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { isBlank } from '@ember/utils';
-import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { isBlank } from '@ember/utils';
+
 import { dropTask } from 'ember-concurrency-decorators';
+import { taskFor } from 'ember-concurrency-ts';
 
 import type CurrentUserService from 'emberclear/services/current-user';
-
-import { taskFor } from 'ember-concurrency-ts';
 
 type Args = {
   next: () => void;

@@ -1,15 +1,14 @@
-import { module, test } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
-  visit,
   clearLocalStorage,
-  setupRelayConnectionMocks,
   setupCurrentUser,
+  setupRelayConnectionMocks,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
-
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 
 const page = settings.interface;

@@ -8,5 +8,8 @@
   "private": true,
   "engines": {
     "node": "14.15.1"
+  },
+  "devDependencies": {
+    "@emberclear/eslint": "*"
   }
 }

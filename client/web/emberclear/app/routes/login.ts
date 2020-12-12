@@ -1,8 +1,8 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import type WorkersService from 'emberclear/services/workers';
 import type CurrentUserService from 'emberclear/services/current-user';
+import type WorkersService from 'emberclear/services/workers';
 
 export default class SettingsRoute extends Route {
   @service declare currentUser: CurrentUserService;

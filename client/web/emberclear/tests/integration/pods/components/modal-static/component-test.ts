@@ -1,9 +1,9 @@
+import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
 
-import { create, text, clickable } from 'ember-cli-page-object';
+import { clickable, create, text } from 'ember-cli-page-object';
+import hbs from 'htmlbars-inline-precompile';
 
 let page = create({
   isActive: text('[data-test-active]'),

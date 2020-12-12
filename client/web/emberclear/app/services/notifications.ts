@@ -1,13 +1,12 @@
+import { tracked } from '@glimmer/tracking';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
-
-import type CurrentUserService from 'emberclear/services/current-user';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 
-import type Toast from 'emberclear/services/toast';
 import type RouterService from '@ember/routing/router-service';
+import type CurrentUserService from 'emberclear/services/current-user';
+import type Toast from 'emberclear/services/toast';
 import type WindowService from 'emberclear/services/window';
 
 export default class Notifications extends Service {

@@ -1,5 +1,6 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
+
 import { getStore } from 'emberclear/tests/helpers';
 
 module('Unit | Model | user', function (hooks) {

@@ -1,18 +1,16 @@
-import { module, test } from 'qunit';
-
 import { currentURL } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import {
-  visit,
-  stubService,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  assertExternal,
-  setupEmberclearTest,
-} from 'emberclear/tests/helpers';
-
 import { page } from 'emberclear/components/app/top-nav/user-drop-menu/-page';
+import {
+  assertExternal,
+  setupCurrentUser,
+  setupEmberclearTest,
+  setupRelayConnectionMocks,
+  stubService,
+  visit,
+} from 'emberclear/tests/helpers';
 import { page as logoutPage } from 'emberclear/tests/helpers/pages/logout';
 
 module('Acceptance | Logout', function (hooks) {

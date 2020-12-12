@@ -1,8 +1,11 @@
-import Model, { attr, hasMany } from '@ember-data/model';
 import { tracked } from '@glimmer/tracking';
+// see note below -- needs investigating
+// eslint-disable-next-line
 import { computed } from '@ember/object';
+import Model, { attr, hasMany } from '@ember-data/model';
 
 import { toHex } from 'emberclear/utils/string-encoding';
+
 import type ChannelContextChain from './channel-context-chain';
 import type VoteChain from './vote-chain';
 
@@ -20,7 +23,8 @@ export default class Identity extends Model implements Partial<PublicKey> {
   // eslint-disable-next-line prettier/prettier
   @hasMany('channel-context-chain', { async: true, inverse: 'admin' }) adminOf?: ChannelContextChain;
   // eslint-disable-next-line prettier/prettier
-  @hasMany('channel-context-chain', { async: true, inverse: 'members' }) memberOf?: ChannelContextChain;
+  @hasMany('channel-context-chain', { async: true, inverse: 'members' })
+  memberOf?: ChannelContextChain;
   @hasMany('vote-chain', { async: true, inverse: 'target' }) targetOfVote?: VoteChain;
   @hasMany('vote-chain', { async: true, inverse: 'key' }) voterOf?: VoteChain;
   @hasMany('vote-chain', { async: true, inverse: 'yes' }) votedYesIn?: VoteChain;

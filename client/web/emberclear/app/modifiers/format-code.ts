@@ -1,7 +1,9 @@
-import Modifier from 'ember-modifier';
-import { inject as service } from '@ember/service';
-import { parseLanguages } from 'emberclear/utils/string/utils';
 import { later } from '@ember/runloop';
+import { inject as service } from '@ember/service';
+
+import Modifier from 'ember-modifier';
+
+import { parseLanguages } from 'emberclear/utils/string/utils';
 
 import type PrismManager from 'emberclear/services/prism-manager';
 

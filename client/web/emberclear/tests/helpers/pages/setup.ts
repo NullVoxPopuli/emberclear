@@ -1,4 +1,4 @@
-import { create, clickable, fillable } from 'ember-cli-page-object';
+import { clickable, create, fillable } from 'ember-cli-page-object';
 
 export const nameForm = create({
   scope: '[data-test-name-form]',

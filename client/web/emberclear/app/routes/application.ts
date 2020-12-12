@@ -1,14 +1,14 @@
+import { getOwner } from '@ember/application';
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { getOwner } from '@ember/application';
-
-import type StoreService from '@ember-data/store';
-import type LocaleService from 'emberclear/services/locale';
-import type CurrentUserService from 'emberclear/services/current-user';
 
 import { ensureRelays } from 'emberclear/utils/data/required-data';
-import type Settings from 'emberclear/services/settings';
+
+import type StoreService from '@ember-data/store';
 import type ConnectionService from 'emberclear/services/connection';
+import type CurrentUserService from 'emberclear/services/current-user';
+import type LocaleService from 'emberclear/services/locale';
+import type Settings from 'emberclear/services/settings';
 
 export default class ApplicationRoute extends Route {
   @service declare store: StoreService;

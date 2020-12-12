@@ -1,17 +1,17 @@
-import type StoreService from '@ember-data/store';
 import Service, { inject as service } from '@ember/service';
 
-import { TYPE, TARGET, MESSAGE_LIMIT } from 'emberclear/models/message';
+import { MESSAGE_LIMIT, TARGET, TYPE } from 'emberclear/models/message';
 import { isMessageDMBetween, messagesForDM } from 'emberclear/models/message/utils';
 
+import type MessageFactory from './factory';
+import type StoreService from '@ember-data/store';
 import type Identity from 'emberclear/models/identity';
 import type Message from 'emberclear/models/message';
-import type StatusManager from 'emberclear/services/status-manager';
 import type ContactManager from 'emberclear/services/contact-manager';
-import type AutoResponder from 'emberclear/services/messages/auto-responder';
-import type MessageFactory from './factory';
-import type Notifications from 'emberclear/services/notifications';
 import type CurrentUserService from 'emberclear/services/current-user';
+import type AutoResponder from 'emberclear/services/messages/auto-responder';
+import type Notifications from 'emberclear/services/notifications';
+import type StatusManager from 'emberclear/services/status-manager';
 
 export default class ReceivedMessageHandler extends Service {
   @service declare store: StoreService;

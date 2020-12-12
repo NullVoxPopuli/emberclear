@@ -1,12 +1,12 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-import type Message from 'emberclear/models/message';
+import { markAsRead, selectUnreadDirectMessages } from 'emberclear/models/message/utils';
+import { isInElementWithinViewport, scrollIntoViewOfParent } from 'emberclear/utils/dom/utils';
+
 import type Channel from 'emberclear/models/channel';
 import type Contact from 'emberclear/models/contact';
-
-import { selectUnreadDirectMessages, markAsRead } from 'emberclear/models/message/utils';
-import { scrollIntoViewOfParent, isInElementWithinViewport } from 'emberclear/utils/dom/utils';
+import type Message from 'emberclear/models/message';
 
 interface IArgs {
   to: Contact | Channel;

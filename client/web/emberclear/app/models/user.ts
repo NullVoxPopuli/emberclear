@@ -1,4 +1,5 @@
 import { attr } from '@ember-data/model';
+
 import Identity from './identity';
 
 export interface KeyPair {

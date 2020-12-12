@@ -9,10 +9,12 @@ const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { UnwatchedDir } = require('broccoli-source');
 
+const { logWithAttention } = require('@emberclear/config/utils/log');
+
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { addonConfig } = require('./config/build/addons');
 const { buildStaticTrees } = require('./config/build/static');
 const { buildWorkerTrees } = require('./config/build/workers');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { EMBROIDER, CONCAT_STATS, SOURCEMAPS_DISABLED, MINIFY_DISABLED } = process.env;
 
@@ -132,17 +134,3 @@ module.exports = function (defaults) {
   // Old-style broccoli-build
   return mergeTrees([app.toTree(), ...additionalTrees]);
 };
-
-function logWithAttention(...thingsToLog) {
-  let longestLength = Math.max(thingsToLog.map((str) => str.length || 0)) || 80;
-
-  let divider = '-'.repeat(longestLength);
-
-  console.log(divider);
-
-  for (let data of thingsToLog) {
-    console[typeof data === 'string' ? 'log' : 'dir'](data);
-  }
-
-  console.log(divider);
-}

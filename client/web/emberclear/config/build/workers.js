@@ -14,6 +14,7 @@ function detectWorkers() {
 
   for (let i = 0; i < dir.length; i++) {
     let name = dir[i];
+
     workers[name] = path.join(workerRoot, name, 'index.ts');
   }
 

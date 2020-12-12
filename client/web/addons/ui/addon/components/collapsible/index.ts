@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
 import { setComponentTemplate } from '@ember/component';
+import { action } from '@ember/object';
 import { hbs } from 'ember-cli-htmlbars';
 
 class Collapsible extends Component {

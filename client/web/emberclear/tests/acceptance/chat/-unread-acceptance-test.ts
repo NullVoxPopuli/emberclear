@@ -1,17 +1,17 @@
-import { module, test, skip } from 'qunit';
 import { waitFor } from '@ember/test-helpers';
+import { module, skip, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+
 import { percySnapshot } from 'ember-percy';
 
 import {
-  visit,
   clearLocalStorage,
-  setupRelayConnectionMocks,
-  setupCurrentUser,
   getService,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
-
 import { page, selectors } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Chat', function (hooks) {

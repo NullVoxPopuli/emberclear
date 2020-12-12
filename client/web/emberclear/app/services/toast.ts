@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import Service from '@ember/service';
+import { waitForPromise } from '@ember/test-waiters';
 import { isPresent } from '@ember/utils';
 
 import Toastify from 'toastify-js';
-import { waitForPromise } from '@ember/test-waiters';
 
 export default class Toast extends Service {
   info(msg: string, title = '', options = {}) {

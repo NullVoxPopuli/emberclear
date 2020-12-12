@@ -1,6 +1,6 @@
-import { getService } from '../get-service';
+import { TARGET, TYPE } from 'emberclear/models/message';
 
-import { TYPE, TARGET } from 'emberclear/models/message';
+import { getService } from '../get-service';
 
 import type Identity from 'emberclear/models/identity';
 

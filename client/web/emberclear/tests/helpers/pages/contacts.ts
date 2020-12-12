@@ -1,4 +1,4 @@
-import { find, click, findAll } from '@ember/test-helpers';
+import { click, find, findAll } from '@ember/test-helpers';
 
 export const contacts = {
   rows: {

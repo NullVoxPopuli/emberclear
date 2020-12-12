@@ -1,12 +1,12 @@
-import { module, test } from 'qunit';
 import { find } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
-  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
 
 module('Acceptance | Compatibility', function (hooks) {

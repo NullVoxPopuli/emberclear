@@ -2,11 +2,10 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 import type StoreService from '@ember-data/store';
-import type CurrentUserService from 'emberclear/services/current-user';
-
-import type RedirectManager from 'emberclear/services/redirect-manager';
 import type Message from 'emberclear/models/message';
 import type ConnectionService from 'emberclear/services/connection';
+import type CurrentUserService from 'emberclear/services/current-user';
+import type RedirectManager from 'emberclear/services/redirect-manager';
 
 export interface IModel {
   messages: Message[];

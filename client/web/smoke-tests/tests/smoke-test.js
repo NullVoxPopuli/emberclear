@@ -1,7 +1,7 @@
 'use strict';
 
-const { setUpWebDriver } = require('@faltest/lifecycle');
 const assert = require('assert');
+const { setUpWebDriver } = require('@faltest/lifecycle');
 const Login = require('../page-objects/login');
 const AddFriend = require('../page-objects/add-friend');
 const Chat = require('../page-objects/chat');
@@ -22,6 +22,7 @@ describe('smoke', function () {
 
         break;
       }
+
       case 'local': {
         let { server, port } = await startServer();
 
@@ -31,11 +32,13 @@ describe('smoke', function () {
 
         break;
       }
+
       case 'ember': {
         this.host = `https://localhost:4201`;
 
         break;
       }
+
       default: {
         this.host = 'https://emberclear.io';
 

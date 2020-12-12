@@ -14,5 +14,13 @@ module.exports = {
         'no-undef': 'off',
       },
     },
+    {
+      files: ['app/**/*.ts', 'tests/**/*.ts'],
+      rules: {
+        // This project didn't start in TypeScript
+        '@typescript-eslint/no-explicit-any': 'warn',
+        '@typescript-eslint/no-non-null-assertion': 'warn',
+      },
+    },
   ],
 };

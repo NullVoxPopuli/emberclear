@@ -1,19 +1,17 @@
-import { module, test, skip } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
+import { module, skip, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
   clearLocalStorage,
+  getService,
+  getStore,
   setupCurrentUser,
   setupRelayConnectionMocks,
-  getStore,
-  getService,
   setupWorkers,
   visit,
 } from 'emberclear/tests/helpers';
-
 import { settings } from 'emberclear/tests/helpers/pages/settings';
-
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Acceptance | Settings', function (hooks) {

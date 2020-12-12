@@ -27,6 +27,66 @@ const base = {
   },
 };
 
+// Node doesn't yet support modules import/export
+const scriptBase = {
+  plugins: [...base.plugins, 'import'],
+  rules: {
+    ...base.rules,
+    ...require('eslint-plugin-import/config/errors').rules,
+    ...require('eslint-plugin-import/config/warnings').rules,
+    'import/order': ['error'],
+    'import/no-unassigned-import': ['error'],
+    'import/exports-last': ['error'],
+    'import/no-duplicates': ['error'],
+    'import/newline-after-import': ['error'],
+  },
+};
+
+const moduleBase = {
+  ...base,
+};
+
+const moduleImports = {
+  plugins: ['simple-import-sort'],
+  rules: {
+    'simple-import-sort/imports': [
+      'error',
+      {
+        // This notation is bonkers
+        groups: [
+          // Side effect imports.
+          ['^\\u0000'],
+
+          // framework imports
+          ['^ember$', '^@glimmer', '^@ember', '^ember-cli-htmlbars', '^qunit', '^ember-qunit'],
+
+          // Packages.
+          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+          ['^@?\\w'],
+
+          // Absolute imports and other imports such as Vue-style `@/foo`.
+          // Anything not matched in another group.
+          ['^'],
+
+          // monorepo apps
+          ['^emberclear', '^pinochle'],
+
+          // monorepo packages
+          ['^@emberclear'],
+
+          // Relative imports.
+          // Anything that starts with a dot.
+          ['^\\.'],
+
+          // Type imports
+          ['^.+\\u0000$'],
+        ],
+      },
+    ],
+    'simple-import-sort/exports': 'error',
+  },
+};
+
 const baseRulesAppliedLast = {
   // prettier
   'prettier/prettier': 'error',
@@ -62,7 +122,12 @@ const tsBase = {
     // prefer inference
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+
+    // Use real types
+    '@typescript-eslint/no-explicit-any': 'error',
+    // Maximum strictness
+    '@typescript-eslint/no-non-null-assertion': 'error',
   },
 };
 
-module.exports = { base, baseRulesAppliedLast, jsBase, tsBase };
+module.exports = { moduleImports, moduleBase, scriptBase, baseRulesAppliedLast, jsBase, tsBase };

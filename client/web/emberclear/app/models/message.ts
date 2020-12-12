@@ -1,5 +1,4 @@
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
-import { not } from '@ember/object/computed';
 
 import type Identity from 'emberclear/models/identity';
 
@@ -136,7 +135,9 @@ export default class Message extends Model {
   // @hasMany('message', { async: false, inverse: 'confirmationFor' }) deliveryConfirmations?: Message[];
   @hasMany('message', { async: false }) deliveryConfirmations?: Message[];
 
-  @not('readAt') unread!: boolean;
+  get unread() {
+    return !this.readAt;
+  }
 
   // currently unused
   @attr() contentType!: string;

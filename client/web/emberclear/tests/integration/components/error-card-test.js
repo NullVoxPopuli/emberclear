@@ -1,7 +1,8 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+
 import { getService } from 'emberclear/tests/helpers';
 
 module('Integration | Component | error-card', function (hooks) {

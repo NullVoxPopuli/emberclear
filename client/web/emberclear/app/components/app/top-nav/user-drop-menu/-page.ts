@@ -1,4 +1,4 @@
-import { create, text, clickable, hasClass } from 'ember-cli-page-object';
+import { clickable, create, hasClass, text } from 'ember-cli-page-object';
 
 export const page = create({
   scope: '[data-test-top-nav] .right-nav [data-test-dropdown]',

@@ -1,4 +1,5 @@
-import { create, collection, fillable } from 'ember-cli-page-object';
+import { collection, create, fillable } from 'ember-cli-page-object';
+
 import { keyEvents } from '@emberclear/ui/test-support/key-events';
 
 const selector = '[data-test-search-modal]';

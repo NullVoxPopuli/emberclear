@@ -1,15 +1,13 @@
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { reads, alias } from '@ember/object/computed';
-
-import type SidebarService from 'emberclear/services/sidebar';
-import type CurrentUserService from 'emberclear/services/current-user';
-
-import type Modals from 'emberclear/services/modals';
+import { inject as service } from '@ember/service';
 
 import { scrollIntoViewOfParent } from 'emberclear/utils/dom/utils';
-import { tracked } from '@glimmer/tracking';
+
+import type CurrentUserService from 'emberclear/services/current-user';
+import type Modals from 'emberclear/services/modals';
+import type SidebarService from 'emberclear/services/sidebar';
 
 const Tab = {
   Contacts: 'contacts',
@@ -21,17 +19,32 @@ type TabKeys = keyof typeof Tab;
 type TAB = typeof Tab[TabKeys];
 
 export default class Sidebar extends Component {
+  Tab = Tab;
+
   @service sidebar!: SidebarService;
   @service currentUser!: CurrentUserService;
   @service modals!: Modals;
-  Tab = Tab;
-
-  @reads('sidebar.isShown') isShown!: boolean;
-  @alias('sidebar.hasUnreadAbove') hasUnreadAbove!: boolean;
-  @alias('sidebar.hasUnreadBelow') hasUnreadBelow!: boolean;
-  @reads('currentUser.name') name?: string;
-  @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
   @tracked selectedTab: TAB = this.Tab.Contacts;
+
+  get isShown() {
+    return this.sidebar.isShown;
+  }
+
+  get hasUnreadAbove() {
+    return this.sidebar.hasUnreadAbove;
+  }
+
+  get hasUnreadBelow() {
+    return this.sidebar.hasUnreadBelow;
+  }
+
+  get name() {
+    return this.currentUser.name;
+  }
+
+  get isLoggedIn() {
+    return this.currentUser.isLoggedIn;
+  }
 
   @action
   scrollDownToNearestUnread() {

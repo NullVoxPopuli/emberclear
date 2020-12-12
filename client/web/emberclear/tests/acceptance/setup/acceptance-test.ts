@@ -1,17 +1,17 @@
-import { module, test } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+
 import { percySnapshot } from 'ember-percy';
 
-import { nameForm, overwritePage } from 'emberclear/tests/helpers/pages/setup';
-
 import {
-  visit,
-  setupCurrentUser,
-  trackAsyncDataRequests,
   getStore,
+  setupCurrentUser,
   setupEmberclearTest,
+  trackAsyncDataRequests,
+  visit,
 } from 'emberclear/tests/helpers';
+import { nameForm, overwritePage } from 'emberclear/tests/helpers/pages/setup';
 
 module('Acceptance | Setup', function (hooks) {
   setupApplicationTest(hooks);

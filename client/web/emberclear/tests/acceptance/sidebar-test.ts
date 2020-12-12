@@ -1,25 +1,23 @@
-import { module, test, skip } from 'qunit';
-
 import { currentURL, settled, waitFor, waitUntil } from '@ember/test-helpers';
+import { module, skip, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
+import { page, selectors } from 'emberclear/components/app/off-canvas/-page';
 import {
-  visit,
   clearLocalStorage,
-  setupRelayConnectionMocks,
-  setupCurrentUser,
   getService,
   getStore,
+  setupCurrentUser,
+  setupRelayConnectionMocks,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
-
-import { page, selectors } from 'emberclear/components/app/off-canvas/-page';
-
-import { page as settings } from 'emberclear/tests/helpers/pages/settings';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
-import type Contact from 'emberclear/models/contact';
-import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
 import { getCurrentUser } from 'emberclear/tests/helpers';
+import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
+import { page as settings } from 'emberclear/tests/helpers/pages/settings';
+
+import type Contact from 'emberclear/models/contact';
 
 module('Acceptance | Sidebar', function (hooks) {
   setupApplicationTest(hooks);

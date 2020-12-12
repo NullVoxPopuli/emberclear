@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { enqueueTask } from 'ember-concurrency-decorators';
 
+import { enqueueTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
 import type CurrentUserService from 'emberclear/services/current-user';

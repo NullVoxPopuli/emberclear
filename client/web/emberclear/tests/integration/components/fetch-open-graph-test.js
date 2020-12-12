@@ -1,10 +1,11 @@
+import { render } from '@ember/test-helpers';
+import { settled } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
-import { settled } from '@ember/test-helpers';
-import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
+
 import { stubService } from 'emberclear/tests/helpers';
+import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
 
 const LINKS = {
   youtube: {

@@ -1,5 +1,7 @@
 'use strict';
 
+const { scriptBase, baseRulesAppliedLast } = require('./base');
+
 const baseConfig = {
   env: {
     browser: false,
@@ -10,11 +12,15 @@ const baseConfig = {
     sourceType: 'script',
     ecmaVersion: 2018,
   },
-  plugins: ['node'],
+  plugins: ['node', ...scriptBase.plugins],
   rules: {
     ...require('eslint-plugin-node').configs.recommended.rules,
+    ...scriptBase.rules,
+
     'node/no-unpublished-require': 'off', // we live dangerously here
     'node/no-extraneous-require': 'off', // incorrect?
+
+    ...baseRulesAppliedLast,
   },
 };
 

@@ -1,5 +1,6 @@
-import { clickable, text, fillable } from 'ember-cli-page-object';
 import { click } from '@ember/test-helpers';
+
+import { clickable, fillable, text } from 'ember-cli-page-object';
 
 import { modal } from '@emberclear/ui/test-support/page-objects';
 

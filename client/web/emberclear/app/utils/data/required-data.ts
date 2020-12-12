@@ -1,6 +1,7 @@
 import Ember from 'ember';
-import type Relay from 'emberclear/models/relay';
+
 import type ApplicationInstance from '@ember/application/instance';
+import type Relay from 'emberclear/models/relay';
 
 export const defaultRelays = [
   {

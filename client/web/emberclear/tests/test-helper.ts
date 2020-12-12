@@ -1,15 +1,15 @@
-import Application from 'emberclear/app';
-import registerWaiter from 'ember-raf-scheduler/test-support/register-waiter';
-import config from 'emberclear/config/environment';
-import { setApplication } from '@ember/test-helpers';
-// import start from 'ember-exam/test-support/start';
-import { start } from 'ember-qunit';
-import QUnit from 'qunit';
-
 // Install Types and assertion extensions
 import 'qunit-dom';
 import 'qunit-assertions-extra';
 
+import { setApplication } from '@ember/test-helpers';
+import QUnit from 'qunit';
+// import start from 'ember-exam/test-support/start';
+import { start } from 'ember-qunit';
+
+import registerWaiter from 'ember-raf-scheduler/test-support/register-waiter';
+
+import Application from 'emberclear/app';
 import {
   // hasWASM,
   hasCamera,
@@ -17,6 +17,7 @@ import {
   hasNotifications,
   hasWebWorker,
 } from 'emberclear/components/pod/index/compatibility/-utils/detection';
+import config from 'emberclear/config/environment';
 
 const seed = Math.random().toString(36).substr(2, 5);
 

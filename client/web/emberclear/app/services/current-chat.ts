@@ -1,11 +1,11 @@
 import Service, { inject as service } from '@ember/service';
 
-import type StoreService from '@ember-data/store';
-import type RouterService from '@ember/routing/router-service';
-import type CurrentUserService from 'emberclear/services/current-user';
 import { currentUserId } from 'emberclear/services/current-user';
+import { CHANNEL_REGEX, PRIVATE_CHAT_REGEX } from 'emberclear/utils/route-matchers';
 
-import { PRIVATE_CHAT_REGEX, CHANNEL_REGEX } from 'emberclear/utils/route-matchers';
+import type RouterService from '@ember/routing/router-service';
+import type StoreService from '@ember-data/store';
+import type CurrentUserService from 'emberclear/services/current-user';
 
 export default class CurrentChatService extends Service {
   @service declare store: StoreService;

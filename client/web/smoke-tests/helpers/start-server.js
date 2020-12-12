@@ -1,5 +1,5 @@
-const execa = require('execa');
 const path = require('path');
+const execa = require('execa');
 
 const distLocation = path.join(process.cwd(), '..', 'emberclear', 'dist');
 

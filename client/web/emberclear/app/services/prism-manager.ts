@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import Service from '@ember/service';
+
 // NOTE: using task from ember-concurrency-decorators doesn't
 //       allow for types to be recognized.
 //       Continue using task from ember-concurrency instead.

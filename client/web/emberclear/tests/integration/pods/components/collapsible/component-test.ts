@@ -1,6 +1,7 @@
+import { click, find, render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find, click } from '@ember/test-helpers';
+
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | collapsible', function (hooks) {

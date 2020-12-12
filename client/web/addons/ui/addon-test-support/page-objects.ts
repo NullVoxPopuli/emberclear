@@ -1,4 +1,5 @@
-import { text, clickable, property, hasClass } from 'ember-cli-page-object';
+import { clickable, hasClass, property, text } from 'ember-cli-page-object';
+
 import { keyEvents } from './key-events';
 
 export const switchWrapper = {

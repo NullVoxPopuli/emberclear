@@ -1,13 +1,14 @@
-import Modifier from 'ember-modifier';
 import { inject as service } from '@ember/service';
 
+import { timeout } from 'ember-concurrency';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
-import { timeout } from 'ember-concurrency';
+import Modifier from 'ember-modifier';
 
 import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
-import type Contact from 'emberclear/models/contact';
+
 import type StoreService from '@ember-data/store';
+import type Contact from 'emberclear/models/contact';
 
 interface Args {
   positional: [Contact];

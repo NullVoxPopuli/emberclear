@@ -1,16 +1,15 @@
-import { module, test } from 'qunit';
-
 import { triggerEvent } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
+
 import { timeout } from 'ember-concurrency';
 
 import {
-  visit,
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupWorkers,
+  visit,
 } from 'emberclear/tests/helpers';
-
 import { app } from 'emberclear/tests/helpers/pages/app';
 
 const scrollContainer = '.mobile-menu-wrapper';

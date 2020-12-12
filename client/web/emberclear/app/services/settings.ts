@@ -1,14 +1,14 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
+
 import localforage from 'localforage';
 
-import type ContactManager from 'emberclear/services/contact-manager';
-import type ChannelManager from 'emberclear/services/channel-manager';
-import type CurrentUserService from './current-user';
-
-import { objectToDataURL, toHex, fromHex } from 'emberclear/utils/string-encoding';
-
 import { inLocalStorage } from 'emberclear/utils/decorators';
+import { fromHex, objectToDataURL, toHex } from 'emberclear/utils/string-encoding';
+
+import type CurrentUserService from './current-user';
+import type ChannelManager from 'emberclear/services/channel-manager';
+import type ContactManager from 'emberclear/services/contact-manager';
 
 interface IContactJson {
   name?: string;

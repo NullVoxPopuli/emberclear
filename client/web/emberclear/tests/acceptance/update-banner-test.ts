@@ -1,10 +1,9 @@
 import { module, test } from 'qunit';
-
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
-  setupServiceWorkerUpdater,
   serviceWorkerUpdate,
+  setupServiceWorkerUpdater,
 } from 'ember-service-worker-update-notify/test-support/updater';
 
 import { setupRelayConnectionMocks, setupWorkers, visit } from 'emberclear/tests/helpers';

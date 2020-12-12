@@ -1,1 +1,1 @@
-export { default, and } from '@emberclear/ui/helpers/and';
+export { and, default } from '@emberclear/ui/helpers/and';

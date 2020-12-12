@@ -20,6 +20,7 @@
     "test:ember": "ember test"
   },
   "devDependencies": {
+    "@emberclear/config": "*",
     "@emberclear/eslint": "*",
     "@ember/optional-features": "^2.0.0",
     "@glimmer/component": "^1.0.1",

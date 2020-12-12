@@ -1,9 +1,10 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
-import { timeout } from 'ember-concurrency';
 import { setComponentTemplate } from '@ember/component';
+import { action } from '@ember/object';
 import { hbs } from 'ember-cli-htmlbars';
+
+import { timeout } from 'ember-concurrency';
 
 // TODO: use {{#if (is-clipboard-supported)}}
 //       to not show the clipboard, maybe the URL instead?

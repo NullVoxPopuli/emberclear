@@ -1,5 +1,6 @@
-import Service from '@ember/service';
 import { action } from '@ember/object';
+import Service from '@ember/service';
+
 import { PWBHost } from 'promise-worker-bi';
 
 export const CRYPTO_PATH = '/workers/crypto';

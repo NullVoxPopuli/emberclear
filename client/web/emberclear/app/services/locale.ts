@@ -1,8 +1,9 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import type IntlService from 'ember-intl/services/intl';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
+
+import type IntlService from 'ember-intl/services/intl';
 
 const DEFAULT_LOCALE = 'en-us';
 

@@ -13,6 +13,6 @@
   "include": [".", "../types"],
   "references": [
     { "path": "../../libraries/questionably-typed" },
-    { "path": "../../addons/ui" },
+    { "path": "../../addons/ui" }
   ]
 }

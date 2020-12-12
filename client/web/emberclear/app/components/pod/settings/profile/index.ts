@@ -1,18 +1,18 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 import type CurrentUserService from 'emberclear/services/current-user';
-
 import type Settings from 'emberclear/services/settings';
 
 export default class ProfileSettings extends Component {
-  @service currentUser!: CurrentUserService;
-  @service('toast') toast!: Toast;
-  @service settings!: Settings;
+  @service declare currentUser: CurrentUserService;
+  @service declare toast: Toast;
+  @service declare settings: Settings;
 
-  @alias('currentUser.record.name') name!: string;
+  get name() {
+    return this.currentUser.record?.name;
+  }
 
   @action
   async save(e: Event) {

@@ -1,6 +1,7 @@
 import { didCancel } from 'ember-concurrency';
-import type { Event } from 'xstate';
 import { taskFor } from 'ember-concurrency-ts';
+
+import type { Event } from 'xstate';
 
 /**
  * Wraps an ember-concurrency task into an XState service.

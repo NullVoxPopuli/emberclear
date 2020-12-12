@@ -1,4 +1,5 @@
 import Model, { belongsTo } from '@ember-data/model';
+
 import type VoteChain from './vote-chain';
 import type { Channel } from 'phoenix';
 

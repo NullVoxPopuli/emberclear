@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+
 import type Action from 'emberclear/models/action';
 
 interface IArgs {

@@ -1,11 +1,11 @@
+import Ember from 'ember';
 import Component from '@glimmer/component';
-import { computed, action } from '@ember/object';
+import { action } from '@ember/object';
 
 import { dropTask } from 'ember-concurrency-decorators';
-
 import { taskFor } from 'ember-concurrency-ts';
+
 import { ReceiveDataConnection } from 'emberclear/services/connection/ephemeral/login/receive-data';
-import Ember from 'ember';
 
 type Args = {
   updateTransferStatus: (status: boolean) => void;
@@ -44,7 +44,6 @@ export default class TransferPrompt extends Component<Args> {
     return Boolean(this.taskMessage) || !this.result;
   }
 
-  @computed('setupEphemeralConnection.lastSuccessful.value')
   get result() {
     return taskFor(this.setupEphemeralConnection).lastSuccessful?.value;
   }

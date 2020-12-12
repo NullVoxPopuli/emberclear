@@ -2,15 +2,16 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import { useMachine, interpreterFor } from 'ember-statecharts';
+import { interpreterFor, useMachine } from 'ember-statecharts';
 import { use } from 'ember-usable';
 
-import { machineConfig } from './-machine';
-import type { LoginQRData } from './-types';
+import { ConnectionDoesNotExistError } from 'emberclear/utils/errors';
 
+import { machineConfig } from './-machine';
+
+import type { LoginQRData } from './-types';
 import type { SendDataConnection } from 'emberclear/services/connection/ephemeral/login/send-data';
 import type CurrentUserService from 'emberclear/services/current-user';
-import { ConnectionDoesNotExistError } from 'emberclear/utils/errors';
 import type QRManager from 'emberclear/services/qr-manager';
 
 export default class QRScan extends Component {
@@ -18,7 +19,8 @@ export default class QRScan extends Component {
   @service currentUser!: CurrentUserService;
   @service qrManager!: QRManager;
 
-  @use interpreter = interpreterFor(
+  @use
+  interpreter = interpreterFor(
     useMachine(machineConfig).withConfig({
       services: {
         setupConnection: this.setupConnection.bind(this),

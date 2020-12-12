@@ -1,18 +1,17 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { page } from 'emberclear/components/search/-page';
 import {
-  visit,
+  clearLocalStorage,
   getStore,
   setupCurrentUser,
   setupRelayConnectionMocks,
-  clearLocalStorage,
   setupWorkers,
   trackAsyncDataRequests,
+  visit,
 } from 'emberclear/tests/helpers';
-
-import { page } from 'emberclear/components/search/-page';
+import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import { page as app } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Search Modal', function (hooks) {

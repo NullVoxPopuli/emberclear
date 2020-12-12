@@ -1,11 +1,19 @@
 'use strict';
 
-const { tsBase, jsBase, base, baseRulesAppliedLast } = require('./base');
+const { tsBase, jsBase, moduleBase, moduleImports, baseRulesAppliedLast } = require('./base');
+
+const emberLintRules = {
+  // this is a silly convention from back in the rails days
+  // it has no place in JS where things are camelCase
+  'ember/routes-segments-snake-case': 'off',
+  // co-located test files are filtered out of production bundle
+  'ember/no-test-support-import': 'off',
+};
 
 const appTS = {
   ...tsBase,
   files: ['app/**/*.ts'],
-  plugins: [...tsBase.plugins, 'ember', '@typescript-eslint'],
+  plugins: [tsBase.plugins, moduleImports.plugins, 'ember', '@typescript-eslint'].flat(),
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
@@ -16,6 +24,8 @@ const appTS = {
   ],
   rules: {
     ...tsBase.rules,
+    ...emberLintRules,
+    ...moduleImports.rules,
 
     // not applicable due to how the runtime is
     '@typescript-eslint/no-use-before-define': 'off',
@@ -29,13 +39,19 @@ const appTS = {
 const appJS = {
   ...jsBase,
   files: ['app/**/*.js'],
-  plugins: [...base.plugins, 'ember', 'decorator-position'],
+  plugins: [moduleBase.plugins, moduleImports.plugins, 'ember', 'decorator-position'].flat(),
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
     'plugin:decorator-position/ember',
     'prettier',
   ],
+  rules: {
+    ...jsBase.rules,
+    ...emberLintRules,
+    ...moduleImports.rules,
+    ...baseRulesAppliedLast,
+  },
 };
 const addonTS = {
   ...appTS,
@@ -89,6 +105,11 @@ const testsJS = {
 const typeDeclarations = {
   ...tsBase,
   files: ['types/**'],
+  rules: {
+    ...tsBase.rules,
+    // custom type declarations get wonky
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
 };
 const nodeJS = {
   ...require('./node').baseConfig,

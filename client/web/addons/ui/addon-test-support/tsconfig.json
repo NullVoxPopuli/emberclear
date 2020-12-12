@@ -7,7 +7,7 @@
       "@emberclear/ui": ["../declarations"],
       "@emberclear/ui/*": ["../declarations/*"],
       "@emberclear/ui/test-support": ["."],
-      "@emberclear/ui/test-support/*": ["./*"],
+      "@emberclear/ui/test-support/*": ["./*"]
     }
   },
   "references": [

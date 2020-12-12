@@ -1,22 +1,20 @@
-import { module } from 'qunit';
-import { setupApplicationTest } from 'ember-qunit';
-import RSVP from 'rsvp';
-import { settled } from '@ember/test-helpers';
 import Service from '@ember/service';
-
-import { Machine } from 'xstate';
-import { createModel } from '@xstate/test';
+import { settled } from '@ember/test-helpers';
+import { module } from 'qunit';
 import { setupXStateTest } from 'qunit-xstate-test';
-import { testShortestPaths } from 'emberclear/tests/-temp/qunit-xstate-test';
+import { setupApplicationTest } from 'ember-qunit';
 
+import { createModel } from '@xstate/test';
 import { scanQR } from 'ember-jsqr/test-support';
+import RSVP from 'rsvp';
+import { Machine } from 'xstate';
 
-import { setupCurrentUser, setupEmberclearTest, visit, getService } from 'emberclear/tests/helpers';
-
+import NavigatorService from 'emberclear/services/browser/navigator';
+import { testShortestPaths } from 'emberclear/tests/-temp/qunit-xstate-test';
+import { getService, setupCurrentUser, setupEmberclearTest, visit } from 'emberclear/tests/helpers';
 import { page } from 'emberclear/tests/helpers/pages/qr';
 
 import type ApplicationInstance from '@ember/application/instance';
-import NavigatorService from 'emberclear/services/browser/navigator';
 import type { TestContext } from 'ember-test-helpers';
 
 interface TestMachineContext {

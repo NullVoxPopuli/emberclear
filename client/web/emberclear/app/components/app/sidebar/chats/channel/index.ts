@@ -1,12 +1,12 @@
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 
 import type RouterService from '@ember/routing/router-service';
-import type SidebarService from 'emberclear/services/sidebar';
 import type Channel from 'emberclear/models/channel';
+import type SidebarService from 'emberclear/services/sidebar';
 
 type Args = {
   channel: Channel;
