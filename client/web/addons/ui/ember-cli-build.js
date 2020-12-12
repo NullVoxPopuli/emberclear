@@ -9,15 +9,13 @@ const shoelace = path.dirname(require.resolve('@shoelace-style/shoelace'));
 
 module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
-<<<<<<< HEAD
     'ember-cli-babel': {
       enableTypeScriptTransform: true,
-=======
+    },
     autoImport: {
       alias: {
         '@shoelace-style/shoelace': `@shoelace-style/shoelace/dist/custom-elements/index.mjs`,
       },
->>>>>>> beta7 doesn't work either? might need to see if there are hacks to get stencil stuf working with regular bundlers
     },
   });
 
