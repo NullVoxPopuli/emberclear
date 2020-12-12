@@ -6,5 +6,8 @@ export default class Router extends EmberRouter {
   rootURL = config.rootURL;
 }
 
-Router.map(function() {
+Router.map(function () {
+  this.route('three-player');
+  this.route('four-player');
+  this.route('game', { path: 'game/:idOfHost/' });
 });

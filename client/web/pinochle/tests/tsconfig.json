@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.compiler-options.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declarationDir": "../declarations/tests",
+    "paths": {
+      "pinochle/tests/*": ["*"],
+      "*": ["../types/*"]
+    }
+  },
+  "include": [".", "../types"],
+  "references": [
+    { "path": "../app" }
+  ]
+}

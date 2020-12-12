@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.compiler-options.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": true,
+    "declarationDir": "../declarations",
+    "paths": {
+      "pinochle/*": ["*"],
+
+      "*": ["../types/*"]
+    }
+  },
+  "include": [".", "../types"],
+  "references": [
+    { "path": "../../libraries/questionably-typed" },
+    { "path": "../../addons/ui" },
+  ]
+}

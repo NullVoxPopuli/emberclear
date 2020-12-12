@@ -2,6 +2,10 @@
 
 const { tsBase, jsBase, base, baseRulesAppliedLast } = require('./base');
 
+const emberLintRules = {
+  // 'ember/route-segments-snake-case': 'off',
+}
+
 const appTS = {
   ...tsBase,
   files: ['app/**/*.ts'],
