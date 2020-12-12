@@ -29,7 +29,17 @@ const base = {
 
 // Node doesn't yet support modules import/export
 const scriptBase = {
-  ...base,
+  plugins: [...base.plugins, 'import'],
+  rules: {
+    ...base.rules,
+    ...require('eslint-plugin-import/config/errors').rules,
+    ...require('eslint-plugin-import/config/warnings').rules,
+    'import/order': ['error'],
+    'import/no-unassigned-import': ['error'],
+    'import/exports-last': ['error'],
+    'import/no-duplicates': ['error'],
+    'import/newline-after-import': ['error'],
+  },
 };
 
 const moduleBase = {

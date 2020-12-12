@@ -11,10 +11,10 @@ const { UnwatchedDir } = require('broccoli-source');
 
 const { logWithAttention } = require('@emberclear/config/utils/log');
 
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { addonConfig } = require('./config/build/addons');
 const { buildStaticTrees } = require('./config/build/static');
 const { buildWorkerTrees } = require('./config/build/workers');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { EMBROIDER, CONCAT_STATS, SOURCEMAPS_DISABLED, MINIFY_DISABLED } = process.env;
 

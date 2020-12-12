@@ -1,7 +1,7 @@
 'use strict';
 
-const { setUpWebDriver } = require('@faltest/lifecycle');
 const assert = require('assert');
+const { setUpWebDriver } = require('@faltest/lifecycle');
 const Login = require('../page-objects/login');
 const AddFriend = require('../page-objects/add-friend');
 const Chat = require('../page-objects/chat');
