@@ -8453,15 +8453,15 @@ eslint-config-prettier@7.0.0:
   resolved "https://registry.npmjs.org/eslint-config-prettier/-/eslint-config-prettier-7.0.0.tgz#c1ae4106f74e6c0357f44adb076771d032ac0e97"
   integrity sha512-8Y8lGLVPPZdaNA7JXqnvETVC7IiVRgAP6afQu9gOQRn90YY3otMNh+x7Vr2vMePQntF+5erdSUBqSzCmU/AxaQ==
 
-eslint-plugin-decorator-position@2.2.2:
-  version "2.2.2"
-  resolved "https://registry.npmjs.org/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-2.2.2.tgz#1eb8b64c91ecc106f1b2551298cc610b6fdd7c92"
-  integrity sha512-Xf0+3PYDfTo/cZ20DMBQQrCbn2kb4MMna399pSVKaWF/p7Wgty41uKUtSZZ9NWCvG538gJhEm2Ue9PX8GZ/2AQ==
+eslint-plugin-decorator-position@2.2.14:
+  version "2.2.14"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-2.2.14.tgz#419335c4fe2721a9362e85c56060ad96e908e59e"
+  integrity sha512-vRkahZuJAT9sn4VpcunQIAv8LPwRAV0pe4fmjoDI58BbR7L9oWLTuuXDAzcZkzEY3lO1RbjBu9iumqlef56GNA==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     ember-rfc176-data "^0.3.12"
-    eslint "^7.10.0"
-    prettier "2.1.2"
+    eslint "^7.15.0"
+    prettier "2.2.1"
     snake-case "^3.0.3"
 
 eslint-plugin-ember@9.3.0:
@@ -8556,7 +8556,7 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
-eslint@7.15.0, eslint@^7.10.0, eslint@^7.8.0:
+eslint@7.15.0, eslint@^7.15.0, eslint@^7.8.0:
   version "7.15.0"
   resolved "https://registry.npmjs.org/eslint/-/eslint-7.15.0.tgz#eb155fb8ed0865fcf5d903f76be2e5b6cd7e0bc7"
   integrity sha512-Vr64xFDT8w30wFll643e7cGrIkPEU50yIiI36OdSIDoSGguIeaLzBo0vpGvzo9RECUqq7htURfwEtKqwytkqzA==
@@ -14194,11 +14194,6 @@ prettier-linter-helpers@^1.0.0:
   integrity sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==
   dependencies:
     fast-diff "^1.1.2"
-
-prettier@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.npmjs.org/prettier/-/prettier-2.1.2.tgz#3050700dae2e4c8b67c4c3f666cdb8af405e1ce5"
-  integrity sha512-16c7K+x4qVlJg9rEbXl7HEGmQyZlG4R9AgP+oHKRMsMsuk8s+ATStlf1NpDqyBI1HpVyfjLOeMhH2LvuNvV5Vg==
 
 prettier@2.2.1:
   version "2.2.1"
