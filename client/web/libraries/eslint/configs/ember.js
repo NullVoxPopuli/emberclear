@@ -105,6 +105,11 @@ const testsJS = {
 const typeDeclarations = {
   ...tsBase,
   files: ['types/**'],
+  rules: {
+    ...tsBase.rules,
+    // custom type declarations get wonky
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
 };
 const nodeJS = {
   ...require('./node').baseConfig,
