@@ -6134,7 +6134,7 @@ css-loader@^3.0.0:
     schema-utils "^2.7.0"
     semver "^6.3.0"
 
-css-tree@^1.1.2:
+css-tree@^1.0.0-alpha.39, css-tree@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/css-tree/-/css-tree-1.1.2.tgz#9ae393b5dafd7dae8a622475caec78d3d8fbd7b5"
   integrity sha512-wCoWush5Aeo48GLhfHPbmvZs59Z+M7k5+B1xDnXbdWNcEF423DoFdqSWE0PM5aNk5nI5cp1q7ms36zGApY/sKQ==
@@ -8064,7 +8064,7 @@ ember-test-selectors@5.0.0:
     ember-cli-babel "^7.22.1"
     ember-cli-version-checker "^5.1.1"
 
-ember-test-waiters@2.1.3:
+ember-test-waiters@2.1.3, ember-test-waiters@^1.1.1:
   version "2.1.3"
   resolved "https://registry.npmjs.org/ember-test-waiters/-/ember-test-waiters-2.1.3.tgz#40fe7b674d5ef1005f665e0e040753f88c5a2175"
   integrity sha512-xDjvq8/1C3b9z3NGpez7aslbq5gsLrxsdjD3apyziHkImh/PTeXZr2bxo/YAUgOwGOtpZ1So0fIsppiSN0u1Ng==
@@ -8073,14 +8073,6 @@ ember-test-waiters@2.1.3:
     ember-cli-typescript "^3.1.3"
     ember-cli-version-checker "^5.1.1"
     semver "^7.1.3"
-
-ember-test-waiters@^1.1.1:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/ember-test-waiters/-/ember-test-waiters-1.2.0.tgz#c12ead4313934c24cff41857020cacdbf8e6effe"
-  integrity sha512-aEw7YuutLuJT4NUuPTNiGFwgTYl23ThqmBxSkfFimQAn+keWjAftykk3dlFELuhsJhYW/S8YoVjN0bSAQRLNtw==
-  dependencies:
-    ember-cli-babel "^7.11.0"
-    semver "^6.3.0"
 
 ember-try-config@^3.0.0:
   version "3.0.0"
@@ -8463,7 +8455,7 @@ eslint-config-prettier@7.0.0:
 
 eslint-plugin-decorator-position@2.2.14:
   version "2.2.14"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-2.2.14.tgz#419335c4fe2721a9362e85c56060ad96e908e59e"
+  resolved "https://registry.npmjs.org/eslint-plugin-decorator-position/-/eslint-plugin-decorator-position-2.2.14.tgz#419335c4fe2721a9362e85c56060ad96e908e59e"
   integrity sha512-vRkahZuJAT9sn4VpcunQIAv8LPwRAV0pe4fmjoDI58BbR7L9oWLTuuXDAzcZkzEY3lO1RbjBu9iumqlef56GNA==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
@@ -8472,22 +8464,13 @@ eslint-plugin-decorator-position@2.2.14:
     prettier "2.2.1"
     snake-case "^3.0.3"
 
-eslint-plugin-ember@9.3.0:
-  version "9.3.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-ember/-/eslint-plugin-ember-9.3.0.tgz#77ec28a0c586ea55bbd30d140c784afcdf59e97b"
-  integrity sha512-qrzptSwC58HD8211vF8rGu+TRT8XzIsZVm6j4PleuSZqJ6k3VG8FKofQkb4ZBVU9jOJ0lnZCbYqBfjs4Iy/HHw==
+eslint-plugin-ember@10.0.2, eslint-plugin-ember@^10.0.2:
+  version "10.0.2"
+  resolved "https://registry.npmjs.org/eslint-plugin-ember/-/eslint-plugin-ember-10.0.2.tgz#5e81c6baf75ca62fce424c0a422e494cee2d4421"
+  integrity sha512-GKZhLsnvODkAhORlsnT24D451Kl47ykMoqYKktZJR2Q3+3kklcU0Bj8xkqKJj/HVhsBH80FD74yTiYZKavSqFg==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
-    ember-rfc176-data "^0.3.15"
-    lodash.kebabcase "^4.1.1"
-    snake-case "^3.0.3"
-
-eslint-plugin-ember@^8.13.0:
-  version "8.14.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-ember/-/eslint-plugin-ember-8.14.0.tgz#fc4c5119b5a1c87604a7bf920ca397783b96b7be"
-  integrity sha512-PQhR58omMAZzcJOB8GLWzL6l/vjRZ2Uo1eohxOmgPUyeBkHfZAMlvK+OSeneMLIr4azLQ4GISkklwv6lxb8qnw==
-  dependencies:
-    "@ember-data/rfc395-data" "^0.0.4"
+    css-tree "^1.0.0-alpha.39"
     ember-rfc176-data "^0.3.15"
     lodash.kebabcase "^4.1.1"
     snake-case "^3.0.3"

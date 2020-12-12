@@ -9,11 +9,13 @@ export default class ChannelContextChain extends Model {
   @hasMany('identity', { async: false, inverse: 'memberOf' }) members!: Identity[];
   @belongsTo('vote-chain', { async: false }) supportingVote!: VoteChain;
   // eslint-disable-next-line prettier/prettier
-  @belongsTo('channel-context-chain', { async: false, inverse: 'parentChain' }) previousChain!: ChannelContextChain;
+  @belongsTo('channel-context-chain', { async: false, inverse: 'parentChain' })
+  previousChain!: ChannelContextChain;
 
   // Unused, but necessary to properly set up relationships, therefore async
   // eslint-disable-next-line prettier/prettier
-  @belongsTo('channel-context-chain', { async: true, inverse: 'previousChain' }) parentChain!: ChannelContextChain;
+  @belongsTo('channel-context-chain', { async: true, inverse: 'previousChain' })
+  parentChain!: ChannelContextChain;
   @belongsTo('channel', { async: true }) composesChannel!: Channel;
 }
 

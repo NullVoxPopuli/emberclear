@@ -18,7 +18,8 @@ export default class QRScan extends Component {
   @service currentUser!: CurrentUserService;
   @service qrManager!: QRManager;
 
-  @use interpreter = interpreterFor(
+  @use
+  interpreter = interpreterFor(
     useMachine(machineConfig).withConfig({
       services: {
         setupConnection: this.setupConnection.bind(this),

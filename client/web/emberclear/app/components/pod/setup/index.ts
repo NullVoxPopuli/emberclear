@@ -16,7 +16,8 @@ export default class SetupWizard extends Component {
   @service session!: SessionService;
   @service router!: RouterService;
 
-  @use interpreter = interpreterFor(
+  @use
+  interpreter = interpreterFor(
     useMachine(machineConfig).withConfig({
       actions: {
         logout: () => this.session.logout(),

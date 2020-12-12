@@ -3,7 +3,6 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { action } from '@ember/object';
-import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency-decorators';
 
@@ -19,7 +18,9 @@ export default class AddModal extends Component {
 
   @tracked scanning = false;
 
-  @reads('currentUser.isLoggedIn') isLoggedIn!: boolean;
+  get isLoggedIn() {
+    return this.currentUser.isLoggedIn;
+  }
 
   get publicIdentity() {
     if (!this.isLoggedIn) return {};

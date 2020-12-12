@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { computed, action } from '@ember/object';
+import { action } from '@ember/object';
 
 import { dropTask } from 'ember-concurrency-decorators';
 
@@ -44,7 +44,6 @@ export default class TransferPrompt extends Component<Args> {
     return Boolean(this.taskMessage) || !this.result;
   }
 
-  @computed('setupEphemeralConnection.lastSuccessful.value')
   get result() {
     return taskFor(this.setupEphemeralConnection).lastSuccessful?.value;
   }

@@ -89,7 +89,7 @@ export default class ConnectionManager extends Service {
     }
   }
 
-  destroy() {
+  willDestroy() {
     this.disconnect();
 
     return super.destroy();

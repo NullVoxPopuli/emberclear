@@ -1,7 +1,6 @@
 import Service, { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { action } from '@ember/object';
-import { notEmpty } from '@ember/object/computed';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 import type CurrentUserService from 'emberclear/services/current-user';
@@ -14,8 +13,13 @@ export default class Sidebar extends Service {
 
   declare unreadObserver?: IntersectionObserver;
 
-  @notEmpty('unreadAbove') hasUnreadAbove!: boolean;
-  @notEmpty('unreadBelow') hasUnreadBelow!: boolean;
+  get hasUnreadAbove() {
+    return this.unreadAbove.length > 0;
+  }
+
+  get hasUnreadBelow() {
+    return this.unreadBelow.length > 0;
+  }
 
   @inLocalStorage isShown = false;
 

@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { reads } from '@ember/object/computed';
 
 import { restartableTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
@@ -27,12 +26,14 @@ export default class SearchModal extends Component<IArgs> {
   @tracked contactResults: Contact[] = [];
   @tracked channelResults: Channel[] = [];
 
-  @reads('contactResults.length') numContacts!: number;
-
   constructor(owner: unknown, args: IArgs) {
     super(owner, args);
 
     this.submitSearch();
+  }
+
+  get numContacts() {
+    return this.contactResults.length;
   }
 
   get hasResults() {

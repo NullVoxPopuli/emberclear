@@ -1,3 +1,4 @@
+/* eslint-disable */
 // import LFAdapter from 'ember-localforage-adapter/adapters/localforage';
 import EmberObject from '@ember/object';
 import { reject, resolve, Promise as EmberPromise } from 'rsvp';

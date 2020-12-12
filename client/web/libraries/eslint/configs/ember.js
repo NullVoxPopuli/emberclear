@@ -3,7 +3,11 @@
 const { tsBase, jsBase, base, baseRulesAppliedLast } = require('./base');
 
 const emberLintRules = {
-  // 'ember/route-segments-snake-case': 'off',
+  // this is a silly convention from back in the rails days
+  // it has no place in JS where things are camelCase
+  'ember/routes-segments-snake-case': 'off',
+  // co-located test files are filtered out of production bundle
+  'ember/no-test-support-import': 'off',
 }
 
 const appTS = {
@@ -20,6 +24,7 @@ const appTS = {
   ],
   rules: {
     ...tsBase.rules,
+    ...emberLintRules,
 
     // not applicable due to how the runtime is
     '@typescript-eslint/no-use-before-define': 'off',
@@ -40,6 +45,11 @@ const appJS = {
     'plugin:decorator-position/ember',
     'prettier',
   ],
+  rules: {
+    ...jsBase.rules,
+    ...emberLintRules,
+    ...baseRulesAppliedLast,
+  }
 };
 const addonTS = {
   ...appTS,
