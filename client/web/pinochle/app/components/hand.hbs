@@ -2,11 +2,13 @@
   class='player-hand {{if this.isActive 'spread'}}'
   {{!-- template-lint-disable no-invalid-interactive --}}
   {{on 'click' this.toggle}}
+  {{stack}}
 >
   {{#each this.cards as |card|}}
     <PlayingCard
       @suit={{card.suit}}
       @value={{card.value}}
+      {{on 'auxclick' (fn this.remove card)}}
     />
   {{/each}}
 </div>

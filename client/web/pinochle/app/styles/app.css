@@ -22,8 +22,8 @@ div.perspective {
   left: 50%;
   position: absolute;
   top: 50%;
-  /* transform: rotateX(15deg) translate3d(-50%, -50%, 0); */
-  transform: translateX(-50%);
+  transform: rotateX(15deg) translate3d(-50%, 0%, 0);
+  /* transform: translateX(-50%); */
   height: 45vw;
   width: 32vw;
   max-height: 450px;
@@ -66,14 +66,7 @@ div.perspective {
   position: absolute;
   transition: all ease-in 0.3s;
   width: 32vw;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  transform: rotate(var(--deck-rotation))
-    translate3d(calc(var(--deck-height-offset-x) - 0), calc(var(--deck-height-offset-y) - 0), 0);
 }
 
 .playing-card:first-child {
@@ -90,66 +83,22 @@ div.perspective {
   color: var(--deck-black);
 }
 
-/* .playing-card + .playing-card { */
-/*   transform: rotate(var(--deck-rotation)) */
-/*     translate3d(calc(var(--deck-height-offset-x) - 0.5), calc(var(--deck-height-offset-y) - 0.5), 0); */
-/* } */
-
-/* .playing-card + .playing-card + .playing-card { */
-/*   transform: rotate(var(--deck-rotation)) */
-/*     translate3d(calc(var(--deck-height-offset-x) - 1), calc(var(--deck-height-offset-y) - 1), 0); */
-/* } */
-
-/* .playing-card + .playing-card + .playing-card + .playing-card { */
-/*   transform: rotate(var(--deck-rotation)) */
-/*     translate3d(calc(var(--deck-height-offset-x) - 1.5), calc(var(--deck-height-offset-y) - 1.5), 0); */
-/* } */
-
 .player-hand.spread .playing-card {
   box-shadow: var(--spread-shadow);
 }
 
-.player-hand.spread .playing-card:first-child {
-  box-shadow: var(--deck-shadow);
-}
-
-/*
-.player-hand.spread .playing-card {
-  transform: rotate(-31deg) translate3d(-50%, -10%, 0);
-  box-shadow: var(--deck-shadow);
-}
-
-.player-hand.spread .playing-card + .playing-card {
-  transform: rotate(-4.5deg) translateX(-22%);
-  box-shadow: var(--spread-shadow);
-}
-
-.player-hand.spread .playing-card + .playing-card + .playing-card {
-  transform: rotate(5.8deg) translateX(10%);
-  box-shadow: var(--spread-shadow);
-}
-
-.player-hand.spread .playing-card + .playing-card + .playing-card + .playing-card {
-  transform: rotate(22.5deg) translate3d(40%, -5%, 0);
-  box-shadow: var(--spread-shadow);
-}
-*/
-
-.card-pip .value {
-  transform: translateX(-2px);
-  display: block;
-  text-align: center;
-  width: 22px;
-}
-
+.card-pip .value,
 .card-pip .suit {
   display: block;
-  margin-top: 0.5rem;
 }
 
 .card-pip {
+  width: 22px;
   padding: 1.8rem 1.6rem;
   position: absolute;
+  display: grid;
+  grid-gap: 0.5rem;
+  text-align: center;
 }
 
 .card-pip.bottom-right {
