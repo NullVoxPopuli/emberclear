@@ -1,4 +1,8 @@
-<div class='card-pip' ...attributes>
+<div
+  {{fit-text}}
+  class='card-pip {{@suit}} value-{{@value}}'
+  ...attributes
+>
   <div class='value'>{{@value}}</div>
   <div class='suit'>
     {{suit-to-symbol @suit}}

@@ -1,4 +1,123 @@
+import { assert } from '@ember/debug';
+
 import { circleFromThreePoints } from 'pinochle/utils/trig';
+import { radiansToDegrees } from 'pinochle/utils/trig';
+
+type ToggleOptions = {
+  parentElement: HTMLElement;
+  isOpen: boolean;
+  animations: WeakMap<HTMLElement, CardAnimation>;
+};
+
+export function toggleHand({ parentElement, isOpen, animations }: ToggleOptions) {
+  let cards = parentElement.querySelectorAll('.playing-card');
+  let points = getPoints(cards.length);
+
+  let stackedFrames = stackedKeyframes(points);
+  let fannedFrames = fannedKeyframes(points);
+
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    const stackFrame = stackedFrames[i];
+    const fanFrame = fannedFrames[i];
+
+    assert(`expected to be an html element`, card instanceof HTMLElement);
+
+    let existing = animations.get(card);
+
+    if (!existing) {
+      animations.set(card, new CardAnimation(card, stackFrame));
+
+      existing = animations.get(card);
+    }
+
+    assert(`something went wrong creating the animation for card ${i}`, existing);
+
+    if (existing.isAnimating) {
+      existing.reverse();
+      continue;
+    }
+
+    let animationOptions: KeyframeAnimationOptions = {
+      duration: 500,
+      iterations: 1,
+      fill: 'both',
+      delay: i * 7,
+      // composite: 'accumulate',
+    };
+
+    if (isOpen) {
+      existing.push(fanFrame);
+    } else {
+      existing.push(stackFrame);
+    }
+
+    existing.animate(animationOptions);
+  }
+}
+
+function stackedKeyframes({ path, positions }: ReturnType<typeof getPoints>) {
+  return positions.map((position, i) => {
+    return {
+      transform: `translate3d(${0 - 0.5 * i}%, ${0 - 0.5 * i}%, 0)`,
+      transformOrigin: `50% ${path.y}px`,
+    };
+  });
+}
+
+function fannedKeyframes({ path, positions }: ReturnType<typeof getPoints>) {
+  return positions.map((position, i) => {
+    return {
+      transform: `
+            rotate(${radiansToDegrees(position.rad)}deg)
+            translate3d(${0 - 0.5 * i}%, ${0 - 0.5 * i}%, 0)
+          `,
+      transformOrigin: `50% ${path.y / 2}px`,
+    };
+  });
+}
+
+class CardAnimation {
+  declare current: Keyframe;
+  declare next: Keyframe;
+  declare animation?: Animation;
+  declare element: HTMLElement;
+
+  constructor(element: HTMLElement, current: Keyframe) {
+    this.element = element;
+    this.next = current;
+  }
+
+  push(next: Keyframe) {
+    this.current = this.next;
+    this.next = next;
+  }
+
+  reverse() {
+    if (!this.animation) return;
+
+    this.animation.pause();
+    this.animation.reverse();
+    this.animation.play();
+
+    let current = this.next;
+
+    this.next = this.current;
+    this.current = current;
+  }
+
+  animate(options: KeyframeAnimationOptions) {
+    this.animation = this.element.animate([this.current, this.next], options);
+
+    this.animation.onfinish = () => (this.animation = undefined);
+
+    return this.animation;
+  }
+
+  get isAnimating() {
+    return Boolean(this.animation);
+  }
+}
 
 /**
  *
@@ -28,7 +147,7 @@ export function getPoints(num: number) {
 
   let { x: circleX, y: circleY, r: circleRadius } = circleFromThreePoints(
     { x: left, y: bottom * 0.8 },
-    { x: viewportWidth / 2, y: bottom * 0.7 },
+    { x: viewportWidth * 0.6, y: bottom * 0.7 },
     { x: right, y: bottom + 0.8 }
   );
 

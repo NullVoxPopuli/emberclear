@@ -19,15 +19,16 @@ div.perspective {
 
 .player-hand {
   cursor: pointer;
-  left: 50%;
+  right: 10%;
   position: absolute;
-  top: 50%;
+  bottom: 10%;
   transform: rotateX(15deg) translate3d(-50%, 0%, 0);
   /* transform: translateX(-50%); */
   height: 45vw;
   width: 32vw;
   max-height: 450px;
   max-width: 320px;
+  list-style: none;
 }
 
 :root {
@@ -91,10 +92,14 @@ div.perspective {
 .card-pip .suit {
   display: block;
 }
+.card-pip .suit {
+  font-size: 0.9em;
+}
 
 .card-pip {
-  width: 22px;
-  padding: 1.8rem 1.6rem;
+  /* padding: 1.8rem 1.6rem; */
+  padding: 6% 5%;
+  width: 10%;
   position: absolute;
   display: grid;
   grid-gap: 0.5rem;
