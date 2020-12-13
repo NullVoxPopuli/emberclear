@@ -3,5 +3,10 @@
   {{!-- template-lint-disable no-invalid-interactive --}}
   {{on 'click' this.toggle}}
 >
-  {{yield}}
+  {{#each this.cards as |card|}}
+    <PlayingCard
+      @suit={{card.suit}}
+      @value={{card.value}}
+    />
+  {{/each}}
 </div>

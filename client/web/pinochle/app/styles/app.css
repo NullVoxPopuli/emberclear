@@ -22,7 +22,8 @@ div.perspective {
   left: 50%;
   position: absolute;
   top: 50%;
-  transform: rotateX(15deg) translate3d(-50%, -50%, 0);
+  /* transform: rotateX(15deg) translate3d(-50%, -50%, 0); */
+  transform: translateX(-50%);
   height: 45vw;
   width: 32vw;
   max-height: 450px;
@@ -30,9 +31,17 @@ div.perspective {
 }
 
 :root {
+  --deck-red: #c65355;
+  --deck-black: #534f4c;
+
   --deck-rotation: -30deg;
   --deck-height-offset-x: -50%;
   --deck-height-offset-y: -10%;
+
+  --deck-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 12px 0 rgba(151, 150, 146, 0.4);
+
+  /* hand open / spread */
+  --spread-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 4px 0 rgba(151, 150, 146, 0.4);
 }
 
 @keyframes card1 {
@@ -63,62 +72,68 @@ div.perspective {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  transform:
-    rotate(var(--deck-rotation))
+  transform: rotate(var(--deck-rotation))
     translate3d(calc(var(--deck-height-offset-x) - 0), calc(var(--deck-height-offset-y) - 0), 0);
 }
 
 .playing-card:first-child {
-  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 12px 0 rgba(151, 150, 146, 0.4);
+  box-shadow: var(--deck-shadow);
 }
 
 .playing-card.hearts,
 .playing-card.diamonds {
-  color: #a68385;
+  color: var(--deck-red);
 }
 
 .playing-card.spades,
 .playing-card.clubs {
-  color: #635f5c;
+  color: var(--deck-black);
 }
 
-.playing-card + .playing-card {
-  transform:
-    rotate(var(--deck-rotation))
-    translate3d(calc(var(--deck-height-offset-x) - 0.5), calc(var(--deck-height-offset-y) - 0.5), 0);
-}
+/* .playing-card + .playing-card { */
+/*   transform: rotate(var(--deck-rotation)) */
+/*     translate3d(calc(var(--deck-height-offset-x) - 0.5), calc(var(--deck-height-offset-y) - 0.5), 0); */
+/* } */
 
-.playing-card + .playing-card + .playing-card {
-  transform:
-    rotate(var(--deck-rotation))
-    translate3d(calc(var(--deck-height-offset-x) - 1), calc(var(--deck-height-offset-y) - 1), 0);
-}
+/* .playing-card + .playing-card + .playing-card { */
+/*   transform: rotate(var(--deck-rotation)) */
+/*     translate3d(calc(var(--deck-height-offset-x) - 1), calc(var(--deck-height-offset-y) - 1), 0); */
+/* } */
 
-.playing-card + .playing-card + .playing-card + .playing-card {
-  transform:
-    rotate(var(--deck-rotation))
-    translate3d(calc(var(--deck-height-offset-x) - 1.5), calc(var(--deck-height-offset-y) - 1.5), 0);
-}
+/* .playing-card + .playing-card + .playing-card + .playing-card { */
+/*   transform: rotate(var(--deck-rotation)) */
+/*     translate3d(calc(var(--deck-height-offset-x) - 1.5), calc(var(--deck-height-offset-y) - 1.5), 0); */
+/* } */
 
 .player-hand.spread .playing-card {
+  box-shadow: var(--spread-shadow);
+}
+
+.player-hand.spread .playing-card:first-child {
+  box-shadow: var(--deck-shadow);
+}
+
+/*
+.player-hand.spread .playing-card {
   transform: rotate(-31deg) translate3d(-50%, -10%, 0);
-  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 12px 0 rgba(151, 150, 146, 0.4);
+  box-shadow: var(--deck-shadow);
 }
 
 .player-hand.spread .playing-card + .playing-card {
   transform: rotate(-4.5deg) translateX(-22%);
-  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 2px 6px 0 rgba(151, 150, 146, 0.4);
+  box-shadow: var(--spread-shadow);
 }
 
 .player-hand.spread .playing-card + .playing-card + .playing-card {
   transform: rotate(5.8deg) translateX(10%);
-  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 2px 4px 0 rgba(151, 150, 146, 0.4);
+  box-shadow: var(--spread-shadow);
 }
 
 .player-hand.spread .playing-card + .playing-card + .playing-card + .playing-card {
   transform: rotate(22.5deg) translate3d(40%, -5%, 0);
-  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 2px 4px 0 rgba(151, 150, 146, 0.4);
+  box-shadow: var(--spread-shadow);
 }
+*/
 
 .card-pip .value {
   transform: translateX(-2px);

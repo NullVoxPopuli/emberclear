@@ -6969,6 +6969,24 @@ ember-autostash-modifier@0.1.20:
     ember-template-lint "2.8.0"
     eslint "7.2.0"
 
+ember-cache-primitive-polyfill@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/ember-cache-primitive-polyfill/-/ember-cache-primitive-polyfill-1.0.1.tgz#a27075443bd87e5af286c1cd8a7df24e3b9f6715"
+  integrity sha512-hSPcvIKarA8wad2/b6jDd/eU+OtKmi6uP+iYQbzi5TQpjsqV6b4QdRqrLk7ClSRRKBAtdTuutx+m+X+WlEd2lw==
+  dependencies:
+    ember-cli-babel "^7.22.1"
+    ember-cli-version-checker "^5.1.1"
+    ember-compatibility-helpers "^1.2.1"
+    silent-error "^1.1.1"
+
+ember-cached-decorator-polyfill@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/ember-cached-decorator-polyfill/-/ember-cached-decorator-polyfill-0.1.0.tgz#ddda28af97c0ace234dc3c31acb97915c04917a2"
+  integrity sha512-RqomuRF00BZd+3uwb0lyLj4ThD9wOx4YT0ALumQJOd927wPQ4mmJ8ZqvMjUdh0TUc3zbXXTwAhfaJk7PjDKkzA==
+  dependencies:
+    ember-cache-primitive-polyfill "^1.0.0"
+    ember-cli-babel "^7.21.0"
+
 ember-cli-app-version@4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/ember-cli-app-version/-/ember-cli-app-version-4.0.0.tgz#033057ec5fe4d3ecdf5ac5380d442e2dc9f7526a"
@@ -10507,6 +10525,11 @@ growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.npmjs.org/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
   integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
+
+gsap@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.npmjs.org/gsap/-/gsap-3.5.1.tgz#36cf76787d1758e749469d5e9cbe365c186544c4"
+  integrity sha512-EMV0RSUKZNeTUzLKAizGlwxVOUyif3/g8I3S1aA/hf3gbqwBvmQ02x1RdTBQNQMOpHCVBv9y/vaHwfctoAg8zw==
 
 gzip-size@^6.0.0:
   version "6.0.0"
