@@ -15,11 +15,13 @@ export function toggleHand({ parentElement, isOpen, animations }: ToggleOptions)
 
   let stackedFrames = stackedKeyframes(points);
   let fannedFrames = fannedKeyframes(points);
+  let flatFrames = flatKeyframes(points);
 
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
     const stackFrame = stackedFrames[i];
     const fanFrame = fannedFrames[i];
+    const flatFrame = flatFrames[i];
 
     assert(`expected to be an html element`, card instanceof HTMLElement);
 
@@ -69,15 +71,23 @@ function fannedKeyframes({ path, positions }: ReturnType<typeof getPoints>) {
   return positions.map((position, i) => {
     return {
       transform: `
-            rotate(${radiansToDegrees(position.rad)}deg)
-            translate3d(${0 - 0.5 * i}%, ${0 - 0.5 * i}%, 0)
-          `,
+        rotate(${radiansToDegrees(position.rad)}deg)
+        translate3d(${0 - 0.5 * i}%, ${0 - 0.5 * i}%, 0)
+      `,
       transformOrigin: `50% ${path.y / 2}px`,
     };
   });
 }
 
-class CardAnimation {
+function flatKeyframes() {
+  return [];
+}
+
+/**
+ * This is a two-element queue
+ *
+ */
+export class CardAnimation {
   declare current: Keyframe;
   declare next: Keyframe;
   declare animation?: Animation;
@@ -110,6 +120,15 @@ class CardAnimation {
     this.animation = this.element.animate([this.current, this.next], options);
 
     this.animation.onfinish = () => (this.animation = undefined);
+
+    return this.animation;
+  }
+
+  adjust(adjustment: Keyframe, options: KeyframeAnimationOptions) {
+    this.animation = this.element.animate([this.current, adjustment], options);
+
+    this.animation.onfinish = () => (this.animation = undefined);
+    this.current = adjustment;
 
     return this.animation;
   }

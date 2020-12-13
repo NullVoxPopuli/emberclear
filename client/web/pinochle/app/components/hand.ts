@@ -4,8 +4,10 @@ import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import { TrackedArray } from 'tracked-built-ins';
+
 import { toggleHand } from 'pinochle/utils/animation/hand';
 
+import type { CardAnimation } from 'pinochle/utils/animation/hand';
 import type { Card, Hand } from 'pinochle/utils/deck';
 
 type Args = {
