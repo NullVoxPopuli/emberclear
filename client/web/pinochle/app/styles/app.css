@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,900');
+
+body {
+  background: #e7e7e7;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 200;
+  font-size: 1.4rem;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+div.perspective {
+  height: 100vh;
+  perspective: 2000px;
+  position: absolute;
+  width: 100vw;
+}
+
+.player-hand {
+  cursor: pointer;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: rotateX(15deg) translate3d(-50%, -50%, 0);
+  height: 45vw;
+  width: 32vw;
+  max-height: 450px;
+  max-width: 320px;
+}
+
+:root {
+  --deck-rotation: -30deg;
+  --deck-height-offset-x: -50%;
+  --deck-height-offset-y: -10%;
+}
+
+@keyframes card1 {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.playing-card {
+  background: #eeeae7;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4);
+  height: 45vw;
+  max-height: 450px;
+  max-width: 320px;
+  min-height: 225px;
+  min-width: 160px;
+  position: absolute;
+  transition: all ease-in 0.3s;
+  width: 32vw;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transform:
+    rotate(var(--deck-rotation))
+    translate3d(calc(var(--deck-height-offset-x) - 0), calc(var(--deck-height-offset-y) - 0), 0);
+}
+
+.playing-card:first-child {
+  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 12px 0 rgba(151, 150, 146, 0.4);
+}
+
+.playing-card.hearts,
+.playing-card.diamonds {
+  color: #a68385;
+}
+
+.playing-card.spades,
+.playing-card.clubs {
+  color: #635f5c;
+}
+
+.playing-card + .playing-card {
+  transform:
+    rotate(var(--deck-rotation))
+    translate3d(calc(var(--deck-height-offset-x) - 0.5), calc(var(--deck-height-offset-y) - 0.5), 0);
+}
+
+.playing-card + .playing-card + .playing-card {
+  transform:
+    rotate(var(--deck-rotation))
+    translate3d(calc(var(--deck-height-offset-x) - 1), calc(var(--deck-height-offset-y) - 1), 0);
+}
+
+.playing-card + .playing-card + .playing-card + .playing-card {
+  transform:
+    rotate(var(--deck-rotation))
+    translate3d(calc(var(--deck-height-offset-x) - 1.5), calc(var(--deck-height-offset-y) - 1.5), 0);
+}
+
+.player-hand.spread .playing-card {
+  transform: rotate(-31deg) translate3d(-50%, -10%, 0);
+  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 12px 0 rgba(151, 150, 146, 0.4);
+}
+
+.player-hand.spread .playing-card + .playing-card {
+  transform: rotate(-4.5deg) translateX(-22%);
+  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 2px 6px 0 rgba(151, 150, 146, 0.4);
+}
+
+.player-hand.spread .playing-card + .playing-card + .playing-card {
+  transform: rotate(5.8deg) translateX(10%);
+  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 2px 4px 0 rgba(151, 150, 146, 0.4);
+}
+
+.player-hand.spread .playing-card + .playing-card + .playing-card + .playing-card {
+  transform: rotate(22.5deg) translate3d(40%, -5%, 0);
+  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 2px 4px 0 rgba(151, 150, 146, 0.4);
+}
+
+.card-pip .value {
+  transform: translateX(-2px);
+  display: block;
+  text-align: center;
+  width: 22px;
+}
+
+.card-pip .suit {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.card-pip {
+  padding: 1.8rem 1.6rem;
+  position: absolute;
+}
+
+.card-pip.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}

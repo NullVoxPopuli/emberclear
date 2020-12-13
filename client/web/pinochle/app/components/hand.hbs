@@ -1,0 +1,7 @@
+<div
+  class='player-hand {{if this.isActive 'spread'}}'
+  {{!-- template-lint-disable no-invalid-interactive --}}
+  {{on 'click' this.toggle}}
+>
+  {{yield}}
+</div>

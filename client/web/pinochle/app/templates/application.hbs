@@ -1,5 +1,20 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
 
 {{outlet}}
+
+<div class='perspective'>
+  <Hand>
+    <PlayingCard @suit='hearts' @value={{10}} />
+    <PlayingCard @suit='spades' @value={{9}} />
+    <PlayingCard @suit='diamonds' @value={{8}} />
+    <PlayingCard @suit='diamonds' @value={{4}} />
+    <PlayingCard @suit='diamonds' @value={{2}} />
+    <PlayingCard @suit='clubs' @value={{10}} />
+    <PlayingCard @suit='clubs' @value={{9}} />
+    <PlayingCard @suit='clubs' @value={{8}} />
+    <PlayingCard @suit='clubs' @value={{6}} />
+    <PlayingCard @suit='clubs' @value={{5}} />
+    <PlayingCard @suit='clubs' @value={{4}} />
+    <PlayingCard @suit='clubs' @value={{3}} />
+    <PlayingCard @suit='clubs' @value={{2}} />
+  </Hand>
+</div>

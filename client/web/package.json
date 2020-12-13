@@ -8,6 +8,7 @@
   "license": "GPL-3.0",
   "private": true,
   "workspaces": [
+    "pinochle",
     "emberclear",
     "smoke-tests",
     "config",
