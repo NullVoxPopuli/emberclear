@@ -5,6 +5,8 @@ const path = require('path');
 const PostCSSImport = require('postcss-import');
 const PostCSSNext = require('postcss-cssnext');
 
+// const shoelace = path.dirname(require.resolve('@shoelace-style/shoelace'));
+
 const nodeModules = path.join(__dirname, '..', '..', 'node_modules');
 const addonStyles = path.join(__dirname, 'addon', 'styles');
 
