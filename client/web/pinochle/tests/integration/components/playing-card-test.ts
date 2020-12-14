@@ -3,15 +3,12 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-module('Integration | Helper | suit-to-symbol', function (hooks) {
+module('Integration | Component | playing-card', function (hooks) {
   setupRenderingTest(hooks);
 
-  // TODO: Replace this with your real tests.
   test('it renders', async function (assert) {
-    this.set('inputValue', '1234');
+    await render(hbs`<PlayingCard @suit='hearts' @value={{10}} />`);
 
-    await render(hbs`{{suit-to-symbol inputValue}}`);
-
-    assert.equal(this.element.textContent.trim(), '1234');
+    assert.dom().containsText('10 of hearts');
   });
 });

@@ -1,7 +1,7 @@
 // Install Types and assertion extensions
 import 'qunit-dom';
-import 'qunit-assertions-extra';
 
+// import 'qunit-assertions-extra';
 import { setApplication } from '@ember/test-helpers';
 import QUnit from 'qunit';
 import { start } from 'ember-qunit';
