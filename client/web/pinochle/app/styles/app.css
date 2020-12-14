@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,900');
 
+@import './playing-card.css';
+@import './utils.css';
+
 * {
   box-sizing: border-box;
 }
@@ -14,35 +17,11 @@ body {
   width: 100vw;
 }
 
-.sr-only:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
 div.perspective {
   height: 100vh;
   perspective: 2000px;
   position: absolute;
   width: 100vw;
-}
-
-.player-hand {
-  cursor: pointer;
-  right: 5%;
-  position: absolute;
-  bottom: 10%;
-  transform: rotateX(15deg) translate3d(-50%, 0%, 0);
-  /* transform: translateX(-50%); */
-  height: 45vw;
-  width: 32vw;
-  max-height: 450px;
-  max-width: 320px;
-  list-style: none;
 }
 
 :root {
@@ -58,122 +37,4 @@ div.perspective {
 
   /* hand open / spread */
   --spread-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 4px 0 rgba(151, 150, 146, 0.4);
-}
-
-@keyframes card1 {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.playing-card {
-  background: #eeeae7;
-  border-radius: 16px;
-  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4);
-  height: 45vw;
-  max-height: 450px;
-  max-width: 320px;
-  min-height: 225px;
-  min-width: 160px;
-  position: absolute;
-  transition: all ease-in 0.3s;
-  width: 32vw;
-  user-select: none;
-}
-
-.playing-card:first-child {
-  box-shadow: var(--deck-shadow);
-}
-
-.playing-card.hearts,
-.playing-card.diamonds {
-  color: var(--deck-red);
-}
-
-.playing-card.spades,
-.playing-card.clubs {
-  color: var(--deck-black);
-}
-
-.player-hand.spread .playing-card {
-  box-shadow: var(--spread-shadow);
-}
-
-.card-pip .value,
-.card-pip .suit {
-  display: block;
-  text-transform: uppercase;
-}
-.card-pip .suit {
-  font-size: 0.9em;
-}
-
-.card-pip {
-  /* padding: 1.8rem 1.6rem; */
-  padding: 2% 1%;
-  width: var(--card-gutter);
-  position: absolute;
-  display: grid;
-  grid-gap: 0.5rem;
-  text-align: center;
-}
-
-.card-pip.bottom-right {
-  bottom: 0;
-  right: 0;
-  transform: rotate(180deg);
-}
-
-.face-value-top-left {
-}
-.face-value-top-right {
-}
-.face-value-top-right {
-}
-
-.grid {
-  display: grid;
-}
-.fill {
-  width: 100%;
-  height: 100%;
-}
-.space-between {
-  justify-content: space-between;
-}
-.center {
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.three-column {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-.opposite-ends {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-.center-squished {
-  align-content: center;
-}
-
-.card-face {
-  position: absolute;
-  left: var(--card-gutter);
-  right: var(--card-gutter);
-  top: 10%;
-  bottom: 10%;
-  /* top: var(--card-gutter); */
-  /* bottom: var(--card-gutter); */
-}
-
-.double-font-size {
-  font-size: 2em;
 }
