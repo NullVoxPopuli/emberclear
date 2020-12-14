@@ -9,6 +9,8 @@ type ToggleOptions = {
   animations: WeakMap<HTMLElement, CardAnimation>;
 };
 
+const SMALL_SCREEN = 1000;
+
 export function toggleHand({ parentElement, isOpen, animations }: ToggleOptions) {
   let cards = parentElement.querySelectorAll('.playing-card');
   let points = getPoints(cards.length);
@@ -16,6 +18,8 @@ export function toggleHand({ parentElement, isOpen, animations }: ToggleOptions)
   let stackedFrames = stackedKeyframes(points);
   let fannedFrames = fannedKeyframes(points);
   let flatFrames = flatKeyframes(points);
+
+  let isSmallScreen = points.path.viewportWidth < SMALL_SCREEN;
 
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
@@ -40,26 +44,61 @@ export function toggleHand({ parentElement, isOpen, animations }: ToggleOptions)
       continue;
     }
 
-    let animationOptions: KeyframeAnimationOptions = {
-      duration: 500,
-      iterations: 1,
-      fill: 'both',
-      delay: i * 7,
-      // composite: 'accumulate',
-    };
-
     if (isOpen) {
-      existing.push(fanFrame);
+      if (isSmallScreen) {
+        existing.push(flatFrame);
+      } else {
+        existing.push(fanFrame);
+      }
     } else {
       existing.push(stackFrame);
     }
 
-    existing.animate(animationOptions);
+    existing.animate({
+      duration: 500,
+      iterations: 1,
+      fill: 'both',
+      delay: i * 7,
+    });
+  }
+}
+
+export function adjustHand({ parentElement, isOpen, animations }: ToggleOptions) {
+  let cards = parentElement.querySelectorAll('.playing-card');
+  let points = getPoints(cards.length);
+
+  let frames;
+
+  if (!isOpen) {
+    frames = stackedKeyframes(points);
+  } else if (points.path.viewportWidth < SMALL_SCREEN) {
+    frames = flatKeyframes(points);
+  } else {
+    frames = fannedKeyframes(points);
+  }
+
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    const frame = frames[i];
+
+    assert(`expected to be an html element`, card instanceof HTMLElement);
+
+    const existing = animations.get(card);
+
+    if (!existing) {
+      continue;
+    }
+
+    existing.adjust(frame, {
+      duration: 500,
+      iterations: 1,
+      fill: 'both',
+    });
   }
 }
 
 function stackedKeyframes({ path, positions }: ReturnType<typeof getPoints>) {
-  return positions.map((position, i) => {
+  return positions.map((_position, i) => {
     return {
       transform: `translate3d(${0 - 0.5 * i}%, ${0 - 0.5 * i}%, 0)`,
       transformOrigin: `50% ${path.y}px`,
@@ -68,19 +107,37 @@ function stackedKeyframes({ path, positions }: ReturnType<typeof getPoints>) {
 }
 
 function fannedKeyframes({ path, positions }: ReturnType<typeof getPoints>) {
+  let { viewportWidth } = path;
+  let numCards = positions.length;
+  let widthOfCard = viewportWidth / numCards;
+
   return positions.map((position, i) => {
     return {
       transform: `
         rotate(${radiansToDegrees(position.rad)}deg)
-        translate3d(${0 - 0.5 * i}%, ${0 - 0.5 * i}%, 0)
+        translate3d(calc(${0 - 0.5 * i}% - ${widthOfCard}px), ${0 - 0.5 * i}%, 0)
       `,
       transformOrigin: `50% ${path.y / 2}px`,
     };
   });
 }
 
-function flatKeyframes() {
-  return [];
+function flatKeyframes({ path, positions }: ReturnType<typeof getPoints>) {
+  let { viewportWidth } = path;
+  let numCards = positions.length;
+  let widthOfCard = viewportWidth / numCards;
+
+  return positions.map((_position, i) => {
+    return {
+      transform: `
+        rotate(0deg)
+        translate3d(${
+          ((viewportWidth * 0.8) / numCards) * (i - numCards / 2) + widthOfCard
+        }px, 0, 0)
+      `,
+      transformOrigin: `50% ${path.y / 2}px`,
+    };
+  });
 }
 
 /**
@@ -110,6 +167,7 @@ export class CardAnimation {
     this.animation.reverse();
     this.animation.play();
 
+    // the current and next frames need to be swapped
     let current = this.next;
 
     this.next = this.current;
@@ -125,12 +183,9 @@ export class CardAnimation {
   }
 
   adjust(adjustment: Keyframe, options: KeyframeAnimationOptions) {
-    this.animation = this.element.animate([this.current, adjustment], options);
+    this.push(adjustment);
 
-    this.animation.onfinish = () => (this.animation = undefined);
-    this.current = adjustment;
-
-    return this.animation;
+    return this.animate(options);
   }
 
   get isAnimating() {
@@ -196,6 +251,7 @@ export function getPoints(num: number) {
       x: circleY,
       y: circleY,
       radius: circleRadius,
+      viewportWidth,
     },
     positions,
   };

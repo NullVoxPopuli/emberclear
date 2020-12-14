@@ -19,7 +19,7 @@ div.perspective {
 
 .player-hand {
   cursor: pointer;
-  right: 10%;
+  right: 5%;
   position: absolute;
   bottom: 10%;
   transform: rotateX(15deg) translate3d(-50%, 0%, 0);

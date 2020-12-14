@@ -5,7 +5,7 @@ import { action } from '@ember/object';
 
 import { TrackedArray } from 'tracked-built-ins';
 
-import { toggleHand } from 'pinochle/utils/animation/hand';
+import { adjustHand, toggleHand } from 'pinochle/utils/animation/hand';
 
 import type { CardAnimation } from 'pinochle/utils/animation/hand';
 import type { Card, Hand } from 'pinochle/utils/deck';
@@ -20,14 +20,31 @@ export default class HandComponent extends Component<Args> {
   @tracked isActive = false;
 
   @action
-  toggle(event: MouseEvent) {
+  toggle() {
     this.isActive = !this.isActive;
-    // let hand = event.currentTarget;
+
     let hand = document.querySelector('.player-hand');
 
     assert(`expected to be an HTML Element`, hand instanceof HTMLElement);
 
     toggleHand({
+      parentElement: hand,
+      isOpen: this.isActive,
+      animations,
+    });
+  }
+
+  @action
+  adjust() {
+    if (!this.isActive) {
+      return;
+    }
+
+    let hand = document.querySelector('.player-hand');
+
+    assert(`expected to be an HTML Element`, hand instanceof HTMLElement);
+
+    adjustHand({
       parentElement: hand,
       isOpen: this.isActive,
       animations,
