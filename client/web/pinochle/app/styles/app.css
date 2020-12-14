@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,900');
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #e7e7e7;
   font-family: 'Source Sans Pro', sans-serif;
@@ -8,6 +12,16 @@ body {
   height: 100vh;
   overflow: hidden;
   width: 100vw;
+}
+
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 div.perspective {
@@ -34,6 +48,7 @@ div.perspective {
 :root {
   --deck-red: #c65355;
   --deck-black: #534f4c;
+  --card-gutter: 15%;
 
   --deck-rotation: -30deg;
   --deck-height-offset-x: -50%;
@@ -91,6 +106,7 @@ div.perspective {
 .card-pip .value,
 .card-pip .suit {
   display: block;
+  text-transform: uppercase;
 }
 .card-pip .suit {
   font-size: 0.9em;
@@ -98,8 +114,8 @@ div.perspective {
 
 .card-pip {
   /* padding: 1.8rem 1.6rem; */
-  padding: 6% 5%;
-  width: 10%;
+  padding: 2% 1%;
+  width: var(--card-gutter);
   position: absolute;
   display: grid;
   grid-gap: 0.5rem;
@@ -110,4 +126,54 @@ div.perspective {
   bottom: 0;
   right: 0;
   transform: rotate(180deg);
+}
+
+.face-value-top-left {
+}
+.face-value-top-right {
+}
+.face-value-top-right {
+}
+
+.grid {
+  display: grid;
+}
+.fill {
+  width: 100%;
+  height: 100%;
+}
+.space-between {
+  justify-content: space-between;
+}
+.center {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.three-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.opposite-ends {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.center-squished {
+  align-content: center;
+}
+
+.card-face {
+  position: absolute;
+  left: var(--card-gutter);
+  right: var(--card-gutter);
+  top: 10%;
+  bottom: 10%;
+  /* top: var(--card-gutter); */
+  /* bottom: var(--card-gutter); */
+}
+
+.double-font-size {
+  font-size: 2em;
 }

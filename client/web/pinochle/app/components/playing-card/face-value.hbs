@@ -1,0 +1,138 @@
+<div aria-hidden='true' class='card-face' {{fit-text scale=0.4}}>
+  {{#let (suit-to-symbol @suit) as |symbol|}}
+    {{#if (is-number @value)}}
+      <div class='three-column fill'>
+      {{!--
+        For numbered face cards, there are 10-fixed locations for
+        where the value icons can exist
+      --}}
+      {{#if (eq 2 @value)}}
+        <div></div>
+        <div class='opposite-ends'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div></div>
+      {{else if (eq 3 @value)}}
+        <div></div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div></div>
+      {{else if (eq 4 @value)}}
+        <div class='opposite-ends'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div></div>
+        <div class='opposite-ends'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+      {{else if (eq 5 @value)}}
+        <div class='opposite-ends'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+        </div>
+        <div class='opposite-ends'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+
+      {{else if (eq 6 @value)}}
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div></div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+      {{else if (eq 7 @value)}}
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span></span>
+        </div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+      {{else if (eq 8 @value)}}
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+      {{else if (eq 9 @value)}}
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+        </div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+      {{else if (eq 10 @value)}}
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+        <div class='grid center'>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+          <span>{{symbol}}</span>
+        </div>
+      {{/if}}
+      </div>
+    {{else if (eq @value 'ace')}}
+      <div class='fill grid center double-font-size'>
+        <span>{{symbol}}</span>
+      </div>
+    {{else}}
+      <div class='fill grid center center-squished'>
+        <span>{{@value}}</span>
+        <span class='double-font-size'>{{symbol}}</span>
+      </div>
+
+
+    {{/if}}
+
+  {{/let}}
+</div>

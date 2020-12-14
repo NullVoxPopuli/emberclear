@@ -66,18 +66,18 @@ export default class HandComponent extends Component<Args> {
 
   // @cached
   cards = new TrackedArray<Card>([
-    { suit: 'hearts', value: 10 },
-    { suit: 'spades', value: 9 },
-    { suit: 'diamonds', value: 8 },
-    { suit: 'diamonds', value: 7 },
-    { suit: 'diamonds', value: 6 },
-    { suit: 'diamonds', value: 5 },
     { suit: 'clubs', value: 10 },
     { suit: 'clubs', value: 9 },
     { suit: 'clubs', value: 8 },
     { suit: 'clubs', value: 7 },
     { suit: 'clubs', value: 6 },
     { suit: 'clubs', value: 5 },
-    { suit: 'clubs', value: 5 },
+    { suit: 'clubs', value: 4 },
+    { suit: 'diamonds', value: 3 },
+    { suit: 'diamonds', value: 2 },
+    { suit: 'diamonds', value: 'ace' },
+    { suit: 'diamonds', value: 'jack' },
+    { suit: 'hearts', value: 'king' },
+    { suit: 'spades', value: 'queen' },
   ]);
 }

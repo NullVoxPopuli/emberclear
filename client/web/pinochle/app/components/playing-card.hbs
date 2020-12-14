@@ -1,5 +1,7 @@
 <li class='playing-card {{@suit}}' ...attributes>
-  <PlayingCard::Value @suit={{@suit}} @value={{@value}} class='top-left' />
-  {{!-- how to do graphics? --}}
-  <PlayingCard::Value @suit={{@suit}} @value={{@value}} class='bottom-right' />
+  <span class='sr-only'>{{@value}} of {{@suit}}</span>
+
+  <PlayingCard::CornerValue @suit={{@suit}} @value={{@value}} class='top-left' />
+  <PlayingCard::FaceValue @suit={{@suit}} @value={{@value}} />
+  <PlayingCard::CornerValue @suit={{@suit}} @value={{@value}} class='bottom-right' />
 </li>

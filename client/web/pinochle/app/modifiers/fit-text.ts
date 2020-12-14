@@ -4,7 +4,12 @@ import { debounce } from '@ember/runloop';
 
 import Modifier from 'ember-modifier';
 
-export default class FitTextModifier extends Modifier {
+type Args = {
+  positional: [];
+  named: { scale: number };
+};
+
+export default class FitTextModifier extends Modifier<Args> {
   didInstall() {
     window.addEventListener('resize', this.resizeText);
     this.resizeText();
@@ -33,9 +38,9 @@ export default class FitTextModifier extends Modifier {
         assert('expected element to be an HTML Element', this.element instanceof HTMLElement);
 
         let elementWidth = this.element.clientWidth;
-        let compressor = 0.15;
+        let compressor = 0.12;
 
-        let fontSize = elementWidth / (compressor * 10);
+        let fontSize = (elementWidth / (compressor * 10)) * (this.args.named.scale || 1);
 
         this.element.style.fontSize = `${fontSize}px`;
       });
