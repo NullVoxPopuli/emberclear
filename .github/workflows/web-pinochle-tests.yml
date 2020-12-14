@@ -1,4 +1,4 @@
-name: Web App Tests
+name: Web Pinochle Tests
 on:
   pull_request:
     branches: [master]
