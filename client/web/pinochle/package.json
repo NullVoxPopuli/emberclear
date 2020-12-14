@@ -63,6 +63,7 @@
   "dependencies": {
     "ember-cached-decorator-polyfill": "^0.1.0",
     "ember-modifier": "^2.1.1",
+    "focus-visible": "^5.2.0",
     "tracked-built-ins": "^1.0.2"
   }
 }
