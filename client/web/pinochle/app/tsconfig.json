@@ -13,7 +13,7 @@
         "../node_modules/@glimmer/tracking/dist/types"
       ],
 
-      "*": [".", "../types/*"]
+      "*": ["../types/*"]
     }
   },
   "include": [".", "../types"],

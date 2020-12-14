@@ -26,6 +26,17 @@
     "@emberclear/eslint": "*",
     "@glimmer/component": "1.0.3",
     "@glimmer/tracking": "1.0.3",
+    "@types/ember": "3.16.2",
+    "@types/ember-data": "3.16.7",
+    "@types/ember-data__model": "3.16.2",
+    "@types/ember-data__store": "3.16.1",
+    "@types/ember-qunit": "3.4.13",
+    "@types/ember-resolver": "^5.0.10",
+    "@types/ember-test-helpers": "1.0.9",
+    "@types/ember-testing-helpers": "0.0.4",
+    "@types/ember__test-helpers": "1.7.3",
+    "@types/qunit": "2.11.1",
+    "@types/rsvp": "4.0.3",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^1.6.0",
     "ember-cli": "~3.21.2",
@@ -65,5 +76,15 @@
     "ember-modifier": "^2.1.1",
     "focus-visible": "^5.2.0",
     "tracked-built-ins": "^1.0.2"
+  },
+  "typesVersions": {
+    "*": {
+      "config/environment": [
+        "app/config/environment"
+      ],
+      "*": [
+        "declarations/*"
+      ]
+    }
   }
 }
