@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,900');
-
 @import './playing-card.css';
 @import './utils.css';
 
@@ -28,11 +27,9 @@ div.perspective {
   --deck-red: #c65355;
   --deck-black: #534f4c;
   --card-gutter: 15%;
-
   --deck-rotation: -30deg;
   --deck-height-offset-x: -50%;
   --deck-height-offset-y: -10%;
-
   --deck-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 12px 0 rgba(151, 150, 146, 0.4);
 
   /* hand open / spread */

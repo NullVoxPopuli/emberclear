@@ -4,6 +4,7 @@
   position: absolute;
   bottom: 10%;
   transform: rotateX(15deg) translate3d(-50%, 0%, 0);
+
   /* transform: translateX(-50%); */
   height: 45vw;
   width: 32vw;
