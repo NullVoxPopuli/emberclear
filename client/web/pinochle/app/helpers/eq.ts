@@ -2,6 +2,8 @@ import { helper } from '@ember/component/helper';
 
 type PositionalParams = unknown[];
 
-export default helper(function eq([a, b]: PositionalParams /*, hash*/) {
+export function eq([a, b]: PositionalParams /*, hash*/) {
   return a === b;
-});
+}
+
+export default helper(eq);
