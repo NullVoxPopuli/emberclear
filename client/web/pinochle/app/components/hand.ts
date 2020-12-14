@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { cached, tracked } from '@glimmer/tracking';
+import { tracked } from '@glimmer/tracking';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
@@ -79,5 +79,5 @@ export default class HandComponent extends Component<Args> {
     { suit: 'diamonds', value: 'jack' },
     { suit: 'hearts', value: 'king' },
     { suit: 'spades', value: 'queen' },
-  ]);
+  ]) as Card[];
 }
