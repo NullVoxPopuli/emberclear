@@ -108,7 +108,7 @@ jobs:
     - name: Install and Build
       run: |
         ( cd client/web/emberclear && yarn install && yarn build:production )
-        cp ./scripts/_redirects client/web/emberclear/dist
+        cp ${{ env.cwd }}/config/netlify/_redirects ${{ env.cwd }}/dist
 
     - name: Upload App Artifacts
       uses: actions/upload-artifact@v2
