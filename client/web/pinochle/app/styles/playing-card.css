@@ -76,6 +76,11 @@
   transition: all ease-in 0.1s;
 }
 
+.card-pip.top-left {
+  top: 0;
+  left: 0;
+}
+
 .card-pip.bottom-right {
   bottom: 0;
   right: 0;
@@ -88,5 +93,11 @@
   right: var(--card-gutter);
   top: 10%;
   bottom: 10%;
+
+  /* max-width: 70%; */
+
+  /* left: 0; right: 0; top: 0; bottom: 0; */
+
+  /* padding: 10% var(--card-gutter); */
   transition: all ease-in 0.1s;
 }

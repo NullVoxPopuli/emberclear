@@ -1,7 +1,7 @@
-<div aria-hidden='true' class='card-face' {{fit-text scale=0.4}}>
+<div aria-hidden='true' class='card-face'>
   {{#let (suit-to-symbol @suit) as |symbol|}}
     {{#if (is-number @value)}}
-      <div class='three-column fill'>
+      <div class='three-column fill' {{fit-text scale=0.3}}>
       {{!--
         For numbered face cards, there are 10-fixed locations for
         where the value icons can exist
@@ -122,16 +122,14 @@
       {{/if}}
       </div>
     {{else if (eq @value 'ace')}}
-      <div class='fill grid center double-font-size'>
+      <div class='fill grid center double-font-size' {{fit-text scale=0.8}}>
         <span>{{symbol}}</span>
       </div>
     {{else}}
-      <div class='fill grid center center-squished'>
+      <div class='fill grid center center-squished' {{fit-text scale=0.4}}>
         <span>{{@value}}</span>
         <span class='double-font-size'>{{symbol}}</span>
       </div>
-
-
     {{/if}}
 
   {{/let}}
