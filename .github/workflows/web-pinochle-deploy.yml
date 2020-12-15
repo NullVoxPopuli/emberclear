@@ -4,6 +4,7 @@ on:
     branches: [master]
     paths:
     - 'client/web/pinochle/**'
+    - '.github/workflows/web-pinochle-*'
 
 env:
   cwd: client/web/pinochle
