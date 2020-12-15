@@ -47,6 +47,7 @@
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.0",
+    "ember-could-get-used-to-this": "^1.0.1",
     "ember-data": "~3.21.0",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.0.2",
@@ -75,7 +76,8 @@
     "ember-cached-decorator-polyfill": "^0.1.0",
     "ember-modifier": "^2.1.1",
     "focus-visible": "^5.2.0",
-    "tracked-built-ins": "^1.0.2"
+    "tracked-built-ins": "^1.0.2",
+    "xstate": "^4.15.1"
   },
   "typesVersions": {
     "*": {

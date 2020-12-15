@@ -1,78 +1,44 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import { assert } from '@ember/debug';
+import { cached } from '@glimmer/tracking';
+import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
 
-import { TrackedArray } from 'tracked-built-ins';
+import { PlayerHand } from './-player-hand';
 
-import { adjustHand, selectCard, toggleHand } from './-animation';
-
-import type { CardAnimation } from './-animation';
 import type { Card, Hand } from 'pinochle/utils/deck';
 
 type Args = {
   hand: Hand;
 };
 
-const animations = new WeakMap<HTMLElement, CardAnimation>();
-
 export default class HandComponent extends Component<Args> {
-  @tracked isActive = false;
+  @cached
+  get handAnimations() {
+    return new PlayerHand(getOwner(this), this.cards);
+  }
 
   @action
   toggle() {
-    this.isActive = !this.isActive;
-
-    let hand = document.querySelector('.player-hand');
-
-    assert(`expected to be an HTML Element`, hand instanceof HTMLElement);
-
-    toggleHand({
-      parentElement: hand,
-      isOpen: this.isActive,
-      animations,
-    });
+    this.handAnimations.toggle();
   }
 
   @action
   selectCard(card: Card, event: MouseEvent) {
-    assert(`expected to be an HTML Element`, event.currentTarget instanceof HTMLElement);
-
-    selectCard({ cardElement: event.currentTarget, animations });
+    this.handAnimations.selectCard(card, event);
   }
 
   @action
   adjust() {
-    if (!this.isActive) {
-      return;
-    }
-
-    let hand = document.querySelector('.player-hand');
-
-    assert(`expected to be an HTML Element`, hand instanceof HTMLElement);
-
-    adjustHand({
-      parentElement: hand,
-      isOpen: this.isActive,
-      animations,
-    });
+    this.handAnimations.adjust();
   }
 
   @action
   remove(card: Card, event: MouseEvent) {
-    assert(`expected to be an HTML Element`, event.currentTarget instanceof HTMLElement);
-
-    for (let i = 0; i < this.cards.length; i++) {
-      if (this.cards[i] === card) {
-        this.cards.splice(i, 1);
-        animations.delete(event.currentTarget);
-        break;
-      }
-    }
+    this.handAnimations.remove(card, event);
   }
 
   // @cached
-  cards = new TrackedArray<Card>([
+  cards = [
     { suit: 'clubs', value: 6 },
     { suit: 'clubs', value: 5 },
     { suit: 'clubs', value: 4 },
@@ -86,5 +52,5 @@ export default class HandComponent extends Component<Args> {
     { suit: 'clubs', value: 9 },
     { suit: 'clubs', value: 8 },
     { suit: 'clubs', value: 7 },
-  ]) as Card[];
+  ] as Card[];
 }
