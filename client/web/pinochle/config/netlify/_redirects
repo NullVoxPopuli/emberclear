@@ -1,0 +1,8 @@
+https://pinochle.emberclear.netlify.com/* https://pinochle.emberclear.io/:splat 301!
+
+/bundle.html /bundle.html 200
+/bundle/* /bundle/:splat 200
+
+/.well-known/assetlinks.json /.well-known/assetlinks.json 200
+
+/*    /index.html   200
