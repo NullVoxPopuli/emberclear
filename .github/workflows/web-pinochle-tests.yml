@@ -172,7 +172,7 @@ jobs:
       run: |
         mkdir -p ./deploy/dist/bundle/
         mv ./deploy/app/* ./deploy/dist/
-        cp ${{ env.cwd }}config/netlify/_redirects ./deploy/dist/
+        cp ${{ env.cwd }}/config/netlify/_redirects ./deploy/dist/
     #     cp ./deploy/bundle-analysis/* ./deploy/dist/bundle/
 
     - name: Deploy to Netlify
