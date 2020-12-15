@@ -20,7 +20,7 @@ jobs:
         ci_browser:
         - Chrome
         - Firefox
-        - Safari
+        # - Safari
 
     runs-on: ubuntu-latest
     timeout-minutes: 15
