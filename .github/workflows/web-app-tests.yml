@@ -7,6 +7,7 @@ on:
 
 env:
   cwd: client/web/emberclear
+  name: emberclear
 
 ##############################################################
 
@@ -170,7 +171,7 @@ jobs:
         mkdir -p ./deploy/dist/bundle/
         mv ./deploy/app/* ./deploy/dist/
         cp ./deploy/bundle-analysis/* ./deploy/dist/bundle/
-        cp ./scripts/_redirects ./deploy/dist/
+        cp ${{ env.cwd }}/config/netlify/_redirects ./deploy/dist/
 
     - name: Deploy to Netlify
       id: deploy

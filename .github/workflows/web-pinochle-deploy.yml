@@ -3,10 +3,10 @@ on:
   push:
     branches: [master]
     paths:
-    - 'client/web/**'
+    - 'client/web/pinochle/**'
 
 env:
-  cwd: client/web/emberclear
+  cwd: client/web/pinochle
 
 jobs:
   tests:
@@ -24,7 +24,6 @@ jobs:
     - name: Test
       working-directory: ${{ env.cwd }}
       env:
-        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       # run: ./scripts/test-with-coverage.sh
       run: yarn ember test
 
@@ -66,19 +65,18 @@ jobs:
 
     - name: Deploy to Netlify
       env:
-        FRONTEND: client/web/emberclear
+        FRONTEND: ${{ env.cwd }}
         NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_PINOCHLE }}
         NETLIFY_CLI_VERSION: 0.4.0
       run: |
-        COVERAGE_DIR="client/web/emberclear/coverage"
+        COVERAGE_DIR="${{ env.cwd }}/coverage"
 
         if [ -d "$COVERAGE_DIR" ]; then
-          mv $COVERAGE_DIR client/web/emberclear/public/
+          mv $COVERAGE_DIR ${{ env.cwd }}/public/
         fi
 
-        ( cd client/web/emberclear \
-          && time yarn analyze \
+        ( cd ${{ env.cwd }} \
           && time yarn build:production
         )
 
@@ -88,55 +86,31 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: frontend-assets
-        path: client/web/emberclear/dist/
+        path: ${{ env.cwd }}/dist/
 
-  deploy_docker:
-    name: Deploy Docker Image
-    runs-on: ubuntu-latest
-    needs: [tests, deploy]
-    timeout-minutes: 5
+  # tests_e2e:
+  #   name: E2E Tests
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 15
+  #   needs:
+  #   - deploy
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Download Built Asset Artifacts
-      uses: actions/download-artifact@master
-      with:
-        name: frontend-assets
-        path: client/web/emberclear/dist/
+  #   steps:
+  #   - name: 'Wait for status checks'
+  #     id: waitforstatuschecks
+  #     uses: "wyrihaximus/github-action-wait-for-status@v2"
+  #     with:
+  #       ignoreActions: tests_e2e,"E2E Tests"
+  #       checkInterval: 30
 
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: nullvoxpopuli/emberclear
-        username: ${{ secrets.DOCKERHUB_USER }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
-        snapshot: true
-        workdir: client/web/emberclear
-        dockerfile: Dockerfile.release
+  #   - uses: actions/checkout@v2
+  #   - uses: volta-cli/action@v1
 
-  tests_e2e:
-    name: E2E Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    needs:
-    - deploy
-
-    steps:
-    - name: 'Wait for status checks'
-      id: waitforstatuschecks
-      uses: "wyrihaximus/github-action-wait-for-status@v2"
-      with:
-        ignoreActions: tests_e2e,"E2E Tests"
-        checkInterval: 30
-
-    - uses: actions/checkout@v2
-    - uses: volta-cli/action@v1
-
-    - name: Test
-      run: |
-        cd client/web/smoke-tests \
-        && yarn \
-        && yarn test --headless
+  #   - name: Test
+  #     run: |
+  #       cd client/web/smoke-tests \
+  #       && yarn \
+  #       && yarn test --headless
 
 
 # Deploy via Script (requires docker environment on VM)
