@@ -3,8 +3,11 @@ import { action } from '@ember/object';
 
 import Modifier from 'ember-modifier';
 
-import { getPoints } from 'pinochle/utils/animation/hand';
+import { getPoints } from 'pinochle/components/hand/-animation';
 
+/**
+ * as soon as able, make this modifier local to the hand
+ */
 export default class StackModifier extends Modifier {
   didInstall() {
     requestAnimationFrame(this.stack);

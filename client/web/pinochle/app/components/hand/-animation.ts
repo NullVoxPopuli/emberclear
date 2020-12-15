@@ -10,6 +10,52 @@ type ToggleOptions = {
 };
 
 const SMALL_SCREEN = 1000;
+const ANIMATION_DURATION = 250;
+const DEFAULT_ANIMATION_OPTIONS: KeyframeAnimationOptions = {
+  duration: ANIMATION_DURATION,
+  iterations: 1,
+  fill: 'both',
+};
+
+let selected: CardAnimation;
+
+export function selectCard({
+  cardElement,
+  animations,
+}: {
+  cardElement: HTMLElement;
+  animations: WeakMap<HTMLElement, CardAnimation>;
+}) {
+  let existing = animations.get(cardElement);
+
+  if (selected) {
+    selected.select();
+  }
+
+  if (existing) {
+    if (existing === selected) {
+      return;
+    }
+  }
+
+  if (!existing) {
+    let cards = cardElement.closest('.player-hand').querySelectorAll('.playing-card');
+    let points = getPoints(cards.length);
+    let stackedFrames = stackedKeyframes(points);
+
+    let index = [...cards].indexOf(cardElement);
+    let stackFrame = stackedFrames[index];
+
+    animations.set(cardElement, new CardAnimation(cardElement, stackFrame));
+
+    existing = animations.get(cardElement);
+  }
+
+  if (existing) {
+    existing.select();
+    selected = existing;
+  }
+}
 
 export function toggleHand({ parentElement, isOpen, animations }: ToggleOptions) {
   let cards = parentElement.querySelectorAll('.playing-card');
@@ -55,9 +101,7 @@ export function toggleHand({ parentElement, isOpen, animations }: ToggleOptions)
     }
 
     existing.animate({
-      duration: 500,
-      iterations: 1,
-      fill: 'both',
+      ...DEFAULT_ANIMATION_OPTIONS,
       delay: i * 7,
     });
   }
@@ -89,11 +133,7 @@ export function adjustHand({ parentElement, isOpen, animations }: ToggleOptions)
       continue;
     }
 
-    existing.adjust(frame, {
-      duration: 500,
-      iterations: 1,
-      fill: 'both',
-    });
+    existing.adjust(frame, DEFAULT_ANIMATION_OPTIONS);
   }
 }
 
@@ -143,6 +183,8 @@ function flatKeyframes({ path, positions }: ReturnType<typeof getPoints>) {
 /**
  * This is a two-element queue
  *
+ * should this be a statechart?
+ *
  */
 export class CardAnimation {
   declare current: Keyframe;
@@ -186,6 +228,29 @@ export class CardAnimation {
     this.push(adjustment);
 
     return this.animate(options);
+  }
+
+  select() {
+    this.isSelected = !this.isSelected;
+
+    if (this.isSelected) {
+      this.push({
+        transform: `
+        rotate(0deg)
+        translate3d(-50%, -70%, 0)
+      `,
+      });
+
+      return this.animate(DEFAULT_ANIMATION_OPTIONS);
+    } else {
+      // the current and next frames need to be swapped
+      let current = this.next;
+
+      this.next = this.current;
+      this.current = current;
+
+      return this.animate(DEFAULT_ANIMATION_OPTIONS);
+    }
   }
 
   get isAnimating() {

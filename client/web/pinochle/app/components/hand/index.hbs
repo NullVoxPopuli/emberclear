@@ -1,7 +1,6 @@
 <ul
   class='player-hand {{if this.isActive 'spread'}}'
   {{!-- template-lint-disable no-invalid-interactive --}}
-  {{on 'click' this.toggle}}
   {{stack}}
   {{resize this.adjust}}
 >
@@ -9,7 +8,11 @@
     <PlayingCard
       @suit={{card.suit}}
       @value={{card.value}}
-      {{on 'auxclick' (fn this.remove card)}}
+      {{on 'click' (fn this.selectCard card)}}
     />
   {{/each}}
 </ul>
+
+<button type='button' {{on 'click' this.toggle}}>
+  Fan
+</button>

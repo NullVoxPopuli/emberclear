@@ -5,9 +5,9 @@ import { action } from '@ember/object';
 
 import { TrackedArray } from 'tracked-built-ins';
 
-import { adjustHand, toggleHand } from 'pinochle/utils/animation/hand';
+import { adjustHand, selectCard, toggleHand } from './-animation';
 
-import type { CardAnimation } from 'pinochle/utils/animation/hand';
+import type { CardAnimation } from './-animation';
 import type { Card, Hand } from 'pinochle/utils/deck';
 
 type Args = {
@@ -32,6 +32,13 @@ export default class HandComponent extends Component<Args> {
       isOpen: this.isActive,
       animations,
     });
+  }
+
+  @action
+  selectCard(card: Card, event: MouseEvent) {
+    assert(`expected to be an HTML Element`, event.currentTarget instanceof HTMLElement);
+
+    selectCard({ cardElement: event.currentTarget, animations });
   }
 
   @action

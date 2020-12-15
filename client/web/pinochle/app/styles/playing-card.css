@@ -42,7 +42,9 @@
 }
 
 .playing-card.hearts,
-.playing-card.diamonds {
+.playing-card.hearts button,
+.playing-card.diamonds,
+.playing-card.diamonds button {
   color: var(--deck-red);
 }
 
