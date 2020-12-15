@@ -1,0 +1,86 @@
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.grid {
+  display: grid;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.three-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.opposite-ends {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.center-squished {
+  align-content: center;
+}
+
+.double-font-size {
+  font-size: 2em;
+}
+
+/* TODO: move to own sheet */
+
+/*
+  Provide basic, default focus styles.
+*/
+button:focus {
+  outline: none;
+}
+
+/*
+  Remove default focus styles for mouse users ONLY if
+  :focus-visible is supported on this platform.
+*/
+button:focus:not(:focus-visible),
+button:focus:not(.focus-visible) {
+  outline: none;
+}
+
+/*
+  Optionally: If :focus-visible is supported on this
+  platform, provide enhanced focus styles for keyboard
+  focus.
+*/
+button:focus-visible,
+button.focus-visible:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+/*
+ * button:focus-ring,
+ button:-moz-focusring {
+   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+ }
+ */

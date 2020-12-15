@@ -1,13 +1,13 @@
-name: Web App Tests
+name: Web Pinochle Tests
 on:
   pull_request:
     branches: [master]
     paths:
-    - 'client/web/**'
+    - 'client/web/pinochle/**'
 
 env:
-  cwd: client/web/emberclear
-  name: emberclear
+  cwd: client/web/pinochle
+  name: pinochle
 
 ##############################################################
 
@@ -20,8 +20,8 @@ jobs:
         # browsers: [chrome, firefox, safari, edge]
         ci_browser:
         - Chrome
-        # Firefox is flaky in Github........
-        # - Firefox
+        - Firefox
+        # - Safari
 
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -41,7 +41,6 @@ jobs:
     - name: Test
       working-directory: ${{ env.cwd }}
       env:
-        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         CI_BROWSER: ${{ matrix.ci_browser }}
       # run: ./scripts/test-with-coverage.sh
       run: yarn ember test
@@ -65,32 +64,32 @@ jobs:
 
 ##############################################################
 #
-  bundle_analysis:
-    name: Bundle Analysis
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+  # bundle_analysis:
+  #   name: Bundle Analysis
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 15
 
-    steps:
-    - uses: actions/checkout@v2
-    - uses: volta-cli/action@v1
-    - uses: actions/cache@v2
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: volta-cli/action@v1
+  #   - uses: actions/cache@v2
+  #     with:
+  #       path: '**/node_modules'
+  #       key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Install
-      working-directory: ${{ env.cwd }}
-      run: yarn install
+  #   - name: Install
+  #     working-directory: ${{ env.cwd }}
+  #     run: yarn install
 
-    - name: Analyze Bundle
-      working-directory: ${{ env.cwd }}
-      run: yarn analyze
+  #   - name: Analyze Bundle
+  #     working-directory: ${{ env.cwd }}
+  #     run: yarn analyze
 
-    - name: Upload Bundle Analysis Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: built_bundle_analysis
-        path: client/web/emberclear/public/bundle
+  #   - name: Upload Bundle Analysis Artifacts
+  #     uses: actions/upload-artifact@v2
+  #     with:
+  #       name: built_bundle_analysis
+  #       path: client/web/emberclear/public/bundle
 
 
   build_app:
@@ -107,39 +106,40 @@ jobs:
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
     - name: Install and Build
       run: |
-        ( cd client/web/emberclear && yarn install && yarn build:production )
+        ( cd ${{ env.cwd }} && yarn install && yarn build:production )
         cp ${{ env.cwd }}/config/netlify/_redirects ${{ env.cwd }}/dist
 
     - name: Upload App Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: built_app
-        path: client/web/emberclear/dist/
+        name: built_${{ env.name }}
+        path: ${{ env.cwd }}/dist/
 
 ##############################################################
+# TODO: scope e2e tests to app
 
-  tests_e2e:
-    name: E2E Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    needs: [deploy_preview]
+  # tests_e2e:
+  #   name: E2E Tests
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 15
+  #   needs: [deploy_preview]
 
-    steps:
-    - uses: actions/checkout@v2
-    - uses: volta-cli/action@v1
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: volta-cli/action@v1
 
-    - name: Get Deploy URL
-      uses: actions/download-artifact@master
-      with:
-        name: deploy-url
-        path: ./
+  #   - name: Get Deploy URL
+  #     uses: actions/download-artifact@master
+  #     with:
+  #       name: deploy-url
+  #       path: ./
 
-    - name: Test
-      run: |
-        export DEPLOY_URL=$(cat ./deploy-url.txt)
-        cd client/web/smoke-tests
-        DETECT_CHROMEDRIVER_VERSION=true yarn
-        yarn test --target pull-request --headless
+  #   - name: Test
+  #     run: |
+  #       export DEPLOY_URL=$(cat ./deploy-url.txt)
+  #       cd client/web/smoke-tests
+  #       DETECT_CHROMEDRIVER_VERSION=true yarn
+  #       yarn test --target pull-request --headless
 
 
 ##############################################################
@@ -148,30 +148,32 @@ jobs:
     name: Deploy Preview
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: [bundle_analysis, build_app]
+    needs:
+    # - bundle_analysis
+    - build_app
 
     steps:
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
 
-    - name: Download Built Bundle Analysis Artifacts
-      uses: actions/download-artifact@master
-      with:
-        name: built_bundle_analysis
-        path: ./deploy/bundle-analysis/
+    # - name: Download Built Bundle Analysis Artifacts
+    #   uses: actions/download-artifact@master
+    #   with:
+    #     name: built_bundle_analysis
+    #     path: ./deploy/bundle-analysis/
 
     - name: Download Built App Artifacts
       uses: actions/download-artifact@master
       with:
-        name: built_app
+        name: built_${{ env.name }}
         path: ./deploy/app/
 
     - name: Combine Bundle Analysis with App
       run: |
         mkdir -p ./deploy/dist/bundle/
         mv ./deploy/app/* ./deploy/dist/
-        cp ./deploy/bundle-analysis/* ./deploy/dist/bundle/
         cp ${{ env.cwd }}/config/netlify/_redirects ./deploy/dist/
+    #     cp ./deploy/bundle-analysis/* ./deploy/dist/bundle/
 
     - name: Deploy to Netlify
       id: deploy
@@ -182,7 +184,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_PINOCHLE }}
 
     - run: echo "${{ steps.deploy.outputs.deploy-url }}" > deploy-url.txt
 
@@ -195,32 +197,32 @@ jobs:
 
 ##############################################################
 
-  lhci:
-    name: Lighthouse CI
-    runs-on: ubuntu-latest
-    needs: [build_app]
+  # lhci:
+  #   name: Lighthouse CI
+  #   runs-on: ubuntu-latest
+  #   needs: [build_app]
 
-    steps:
-    - uses: actions/checkout@v2
-    - uses: volta-cli/action@v1
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: volta-cli/action@v1
 
-    - name: Download Built App Artifacts
-      uses: actions/download-artifact@master
-      with:
-        name: built_app
-        path: client/web/emberclear/dist/
+  #   - name: Download Built App Artifacts
+  #     uses: actions/download-artifact@master
+  #     with:
+  #       name: built_app
+  #       path: ${{ env.cwd }}/dist/
 
-    - name: run Lighthouse
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-      run: |
-        volta install node
-        volta install @lhci/cli@0.3.x
-        cd client/web/emberclear
+  #   - name: run Lighthouse
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+  #     run: |
+  #       volta install node
+  #       volta install @lhci/cli@0.3.x
+  #       cd ${{ env.cwd }}
 
-        lhci collect \
-          --upload.target=temporary-public-storage \
-          --staticDistDir=./dist \
-          --githubToken $GITHUB_TOKEN \
-          --githubAppToken $LHCI_GITHUB_APP_TOKEN
+  #       lhci collect \
+  #         --upload.target=temporary-public-storage \
+  #         --staticDistDir=./dist \
+  #         --githubToken $GITHUB_TOKEN \
+  #         --githubAppToken $LHCI_GITHUB_APP_TOKEN

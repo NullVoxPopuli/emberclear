@@ -7,12 +7,15 @@
     "paths": {
       "pinochle/*": ["*"],
 
+      // https://github.com/ember-polyfills/ember-cached-decorator-polyfill#typescript-usage
+      "@glimmer/tracking": [
+        "../node_modules/ember-cached-decorator-polyfill",
+        "../node_modules/@glimmer/tracking/dist/types"
+      ],
+
       "*": ["../types/*"]
     }
   },
   "include": [".", "../types"],
-  "references": [
-    { "path": "../../libraries/questionably-typed" },
-    { "path": "../../addons/ui" }
-  ]
+  "references": [{ "path": "../../libraries/questionably-typed" }]
 }

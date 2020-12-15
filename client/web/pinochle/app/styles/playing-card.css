@@ -1,0 +1,103 @@
+.player-hand {
+  cursor: pointer;
+  right: 5%;
+  position: absolute;
+  bottom: 10%;
+  transform: rotateX(15deg) translate3d(-50%, 0%, 0);
+
+  /* transform: translateX(-50%); */
+  height: 45vw;
+  width: 32vw;
+  max-height: 450px;
+  max-width: 320px;
+  list-style: none;
+}
+
+.playing-card {
+  background: #eeeae7;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4);
+  height: 45vw;
+  max-height: 450px;
+  max-width: 320px;
+  min-height: 225px;
+  min-width: 160px;
+  position: absolute;
+  transition: all ease-in 0.3s;
+  width: 32vw;
+  user-select: none;
+}
+
+.playing-card button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  border-radius: 1rem;
+  display: flex;
+}
+
+.playing-card:first-child {
+  box-shadow: var(--deck-shadow);
+}
+
+.playing-card.hearts,
+.playing-card.diamonds {
+  color: var(--deck-red);
+}
+
+.playing-card.spades,
+.playing-card.clubs {
+  color: var(--deck-black);
+}
+
+.player-hand.spread .playing-card {
+  box-shadow: var(--spread-shadow);
+}
+
+.card-pip .value,
+.card-pip .suit {
+  display: block;
+  text-transform: uppercase;
+}
+
+.card-pip .suit {
+  font-size: 0.9em;
+}
+
+.card-pip {
+  /* padding: 1.8rem 1.6rem; */
+  padding: 2% 1%;
+  width: var(--card-gutter);
+  position: absolute;
+  display: grid;
+  grid-gap: 0.5rem;
+  text-align: center;
+  transition: all ease-in 0.1s;
+}
+
+.card-pip.top-left {
+  top: 0;
+  left: 0;
+}
+
+.card-pip.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.card-face {
+  position: absolute;
+  left: var(--card-gutter);
+  right: var(--card-gutter);
+  top: 10%;
+  bottom: 10%;
+
+  /* max-width: 70%; */
+
+  /* left: 0; right: 0; top: 0; bottom: 0; */
+
+  /* padding: 10% var(--card-gutter); */
+  transition: all ease-in 0.1s;
+}

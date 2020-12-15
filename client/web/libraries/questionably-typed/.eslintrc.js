@@ -7,6 +7,7 @@ const { createConfig } = require('@emberclear/eslint/utils');
 module.exports = createConfig(
   {
     ...tsBase,
+    plugins: [tsBase.plugins, '@typescript-eslint'].flat(),
     files: ['types/**'],
   },
   {

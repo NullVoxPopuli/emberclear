@@ -1,22 +1,23 @@
 'use strict';
 
-const path = require('path');
 const crypto = require('crypto');
 const gitRev = require('git-rev-sync');
-const yn = require('yn');
 
 const mergeTrees = require('broccoli-merge-trees');
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const { UnwatchedDir } = require('broccoli-source');
 
 const { logWithAttention } = require('@emberclear/config/utils/log');
+const {
+  applyEnvironmentVariables,
+  configureBabel,
+} = require('@emberclear/config/utils/ember-build');
 
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { addonConfig } = require('./config/build/addons');
 const { buildStaticTrees } = require('./config/build/static');
 const { buildWorkerTrees } = require('./config/build/workers');
 
-const { EMBROIDER, CONCAT_STATS, SOURCEMAPS_DISABLED, MINIFY_DISABLED } = process.env;
+const { EMBROIDER, CONCAT_STATS } = process.env;
 
 const version = gitRev.short();
 const hash = crypto.createHash('md5').update(new Date().getTime().toString()).digest('hex');
@@ -63,40 +64,10 @@ module.exports = function (defaults) {
     // To reduce mental load when parsing the build configuration.
     // We don't need to view everything all at once.
     ...addonConfig(env),
-
-    babel: {
-      plugins: [
-        // for enabling dynamic import.
-        require.resolve('ember-auto-import/babel-plugin'),
-      ],
-    },
-    'ember-cli-babel': {
-      enableTypeScriptTransform: true,
-      throwUnlessParallelizable: true,
-    },
   };
 
-  if (yn(SOURCEMAPS_DISABLED)) {
-    appOptions['sourcemaps'] = { enabled: false };
-    appOptions.babel.sourceMaps = false;
-  }
-
-  if (yn(MINIFY_DISABLED)) {
-    appOptions['ember-cli-terser'] = { enabled: false };
-    appOptions.minifyCSS = { enabled: false };
-  }
-
-  if (yn(CONCAT_STATS)) {
-    appOptions.autoImport = appOptions.autoImport || {};
-    appOptions.autoImport.webpack = appOptions.autoImport.webpack || {};
-    appOptions.autoImport.webpack.plugins = [
-      new BundleAnalyzerPlugin({
-        analyzerMode: 'static',
-        openAnalyzer: false,
-        reportFilename: path.join(process.cwd(), 'concat-stats-for', 'ember-auto-import.html'),
-      }),
-    ];
-  }
+  configureBabel(appOptions);
+  applyEnvironmentVariables(appOptions);
 
   if (isProduction) {
     appOptions.autoImport = appOptions.autoImport || {};

@@ -1,0 +1,17 @@
+<div
+  {{fit-text}}
+  aria-hidden='true'
+  class='card-pip {{@suit}} value-{{@value}}'
+  ...attributes
+>
+  <div class='value'>
+    {{#if (is-number @value)}}
+      {{@value}}
+    {{else}}
+      {{get @value 0}}
+    {{/if}}
+  </div>
+  <div class='suit'>
+    {{suit-to-symbol @suit}}
+  </div>
+</div>

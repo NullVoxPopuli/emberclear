@@ -1,15 +1,15 @@
-name: Web App Quality
+name: Web Pinochle Quality
 on:
   pull_request:
     branches: [master]
     paths:
-    - 'client/web/emberclear/**'
+    - 'client/web/pinochle/**'
     - 'client/web/package.json'
 
 env:
   root: client/web/
-  app: emberclear/
-  full: client/web/emberclear/
+  app: pinochle/
+  full: client/web/pinochle/
 
 jobs:
   security:
@@ -54,11 +54,6 @@ jobs:
     - name: "Styles"
       working-directory: ${{ env.root }}
       run: yarn stylelint ${{ env.app }}/**/*.css
-
-    - name: "Translations"
-      working-directory: ${{ env.full }}
-      run: yarn lint:i18n
-      continue-on-error: true
 
     - name: 'Type Correctness'
       working-directory: ${{ env.full }}
