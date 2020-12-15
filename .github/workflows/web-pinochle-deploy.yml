@@ -1,4 +1,4 @@
-name: Web App Deploy
+name: Web Pinochle Deploy
 on:
   push:
     branches: [master]
@@ -23,7 +23,6 @@ jobs:
 
     - name: Test
       working-directory: ${{ env.cwd }}
-      env:
       # run: ./scripts/test-with-coverage.sh
       run: yarn ember test
 
