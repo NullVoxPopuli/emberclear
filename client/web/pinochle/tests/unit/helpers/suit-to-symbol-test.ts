@@ -4,7 +4,7 @@ import { NAME_MAP, suitToSymbol } from 'pinochle/helpers/suit-to-symbol';
 
 import type { Suit } from 'pinochle/utils/deck';
 
-module('Unit | Helper | suit-to-symbol', function (hooks) {
+module('Unit | Helper | suit-to-symbol', function () {
   test('it works', function (assert) {
     assert.expect(5);
 
