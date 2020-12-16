@@ -7,3 +7,10 @@ declare module 'tracked-maps-and-sets' {
 }
 
 declare module 'focus-visible' {}
+
+declare module 'ember-could-get-used-to-this' {
+  export function use(): PropertyDecorator;
+  export class Resource<Args> {
+    constructor(owner: unknown, args: Args);
+  }
+}
