@@ -74,7 +74,7 @@
     "@ember/edition-utils": "1.2.0",
     "@ember/optional-features": "2.0.0",
     "@ember/render-modifiers": "1.0.2",
-    "@ember/test-helpers": "2.1.2",
+    "@ember/test-helpers": "2.1.3",
     "@emberclear/config": "*",
     "@emberclear/eslint": "*",
     "@embroider/compat": "0.34.0",
