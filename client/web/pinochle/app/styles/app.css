@@ -6,7 +6,8 @@
   box-sizing: border-box;
 }
 
-body {
+/* "body", but doesn't also style the whole test UI */
+.ember-application {
   background: #e7e7e7;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 200;
