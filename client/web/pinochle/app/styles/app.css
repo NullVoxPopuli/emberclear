@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,900');
 @import './playing-card.css';
 @import './utils.css';
+@import './page/ask-game-type.css';
 
 * {
   box-sizing: border-box;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
 }
 
 /* "body", but doesn't also style the whole test UI */
@@ -25,6 +32,7 @@ div.perspective {
 }
 
 :root {
+  --screen-small: 400px;
   --deck-red: #c65355;
   --deck-black: #534f4c;
   --card-gutter: 15%;
@@ -36,3 +44,4 @@ div.perspective {
   /* hand open / spread */
   --spread-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 4px 0 rgba(151, 150, 146, 0.4);
 }
+

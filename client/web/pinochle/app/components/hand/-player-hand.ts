@@ -5,7 +5,6 @@ import { assert } from '@ember/debug';
 import { TrackedArray } from 'tracked-built-ins';
 
 import { adjustHand, selectCard, toggleHand } from './-animation';
-import { Meld } from './-meld';
 
 import type { CardAnimation } from './-animation';
 import type { Card } from 'pinochle/utils/deck';
@@ -30,14 +29,6 @@ export class PlayerHand {
     setOwner(this, owner);
 
     this.cards = new TrackedArray(cards);
-  }
-
-  /**
-   * Given the current cards, what are all the meld combinations and score?
-   */
-  @cached
-  get meld() {
-    return new Meld([...(this.cards as Card[])]);
   }
 
   toggle() {
@@ -74,17 +65,5 @@ export class PlayerHand {
       isOpen: this.isActive,
       animations,
     });
-  }
-
-  remove(card: Card, event: MouseEvent) {
-    assert(`expected to be an HTML Element`, event.currentTarget instanceof HTMLElement);
-
-    for (let i = 0; i < this.cards.length; i++) {
-      if (this.cards[i] === card) {
-        this.cards.splice(i, 1);
-        animations.delete(event.currentTarget);
-        break;
-      }
-    }
   }
 }

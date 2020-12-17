@@ -3,7 +3,10 @@ import { cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
 
-import { PlayerHand } from './-player-hand';
+import { newDeck, sortHand, splitDeck } from 'pinochle/utils/deck';
+import { Meld } from 'pinochle/utils/game/meld';
+
+import { HandAnimation } from './-animation/hand';
 
 import type { Card, Hand } from 'pinochle/utils/deck';
 
@@ -13,44 +16,40 @@ type Args = {
 
 export default class HandComponent extends Component<Args> {
   @cached
-  get handAnimations() {
-    return new PlayerHand(getOwner(this), this.cards);
+  get hand() {
+    return new HandAnimation(getOwner(this), this.cards);
+  }
+
+  /**
+   * Given the current cards, what are all the meld combinations and score?
+   */
+  @cached
+  get meld() {
+    return new Meld([...(this.cards as Card[])]);
   }
 
   @action
   toggle() {
-    this.handAnimations.toggle();
+    this.hand.toggle();
   }
 
   @action
-  selectCard(card: Card, event: MouseEvent) {
-    this.handAnimations.selectCard(card, event);
+  selectCard(card: Card) {
+    this.hand.send('SELECT', { card });
   }
 
   @action
   adjust() {
-    this.handAnimations.adjust();
+    this.hand.send('ADJUST');
   }
 
-  @action
-  remove(card: Card, event: MouseEvent) {
-    this.handAnimations.remove(card, event);
-  }
+  @cached
+  get cards() {
+    let deck = newDeck();
+    let dealt = splitDeck(deck, 4);
+    let hand = dealt.hands[0];
+    let sorted = sortHand(hand);
 
-  // @cached
-  cards = [
-    { suit: 'clubs', value: 6 },
-    { suit: 'clubs', value: 5 },
-    { suit: 'clubs', value: 4 },
-    { suit: 'diamonds', value: 3 },
-    { suit: 'diamonds', value: 2 },
-    { suit: 'diamonds', value: 'ace' },
-    { suit: 'diamonds', value: 'jack' },
-    { suit: 'hearts', value: 'king' },
-    { suit: 'spades', value: 'queen' },
-    { suit: 'clubs', value: 10 },
-    { suit: 'clubs', value: 9 },
-    { suit: 'clubs', value: 8 },
-    { suit: 'clubs', value: 7 },
-  ] as Card[];
+    return sorted;
+  }
 }

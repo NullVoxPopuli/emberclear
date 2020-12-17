@@ -37,6 +37,7 @@
     "@types/ember__test-helpers": "1.7.3",
     "@types/qunit": "2.11.1",
     "@types/rsvp": "4.0.3",
+    "@types/uuid": "^8.3.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "1.10.0",
     "ember-cli": "3.23.0",
@@ -77,6 +78,7 @@
     "ember-modifier": "^2.1.1",
     "focus-visible": "^5.2.0",
     "tracked-built-ins": "^1.0.2",
+    "uuid": "^8.3.2",
     "xstate": "^4.15.1"
   },
   "typesVersions": {
