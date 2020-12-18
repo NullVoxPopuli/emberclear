@@ -20,7 +20,7 @@
     "ember-cli-htmlbars": "^5.0.0"
   },
   "engines": {
-    "node": "14.15.1"
+    "node": "14.15.3"
   },
   "typesVersions": {
     "*": {
@@ -31,7 +31,7 @@
     }
   },
   "volta": {
-    "node": "14.15.1",
+    "node": "14.15.3",
     "yarn": "1.22.10"
   }
 }
