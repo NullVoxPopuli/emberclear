@@ -37,6 +37,7 @@
     "@types/ember__test-helpers": "1.7.3",
     "@types/qunit": "2.11.1",
     "@types/rsvp": "4.0.3",
+    "@types/uuid": "^8.3.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "1.10.0",
     "ember-cli": "3.23.0",
@@ -47,6 +48,7 @@
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.0",
+    "ember-could-get-used-to-this": "^1.0.1",
     "ember-data": "~3.21.0",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.0.2",
@@ -54,7 +56,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-qunit": "^4.6.0",
     "ember-resolver": "^8.0.2",
-    "ember-source": "~3.21.1",
+    "ember-source": "~3.23.1",
     "ember-template-lint": "^2.11.0",
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
@@ -75,7 +77,9 @@
     "ember-cached-decorator-polyfill": "^0.1.0",
     "ember-modifier": "^2.1.1",
     "focus-visible": "^5.2.0",
-    "tracked-built-ins": "^1.0.2"
+    "tracked-built-ins": "^1.0.2",
+    "uuid": "^8.3.2",
+    "xstate": "^4.15.1"
   },
   "typesVersions": {
     "*": {

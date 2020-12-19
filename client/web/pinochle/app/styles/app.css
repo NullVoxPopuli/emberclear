@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,900');
 @import './playing-card.css';
 @import './utils.css';
+@import './page/ask-game-type.css';
 
 * {
   box-sizing: border-box;
 }
 
-body {
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+
+/* "body", but doesn't also style the whole test UI */
+.ember-application {
   background: #e7e7e7;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 200;
@@ -24,6 +32,7 @@ div.perspective {
 }
 
 :root {
+  --screen-small: 400px;
   --deck-red: #c65355;
   --deck-black: #534f4c;
   --card-gutter: 15%;

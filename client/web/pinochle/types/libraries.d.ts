@@ -7,3 +7,18 @@ declare module 'tracked-maps-and-sets' {
 }
 
 declare module 'focus-visible' {}
+
+type LazyTrackedArgs = {
+  positional?: Array<unknown>;
+  named?: Record<string, unknown>;
+}
+
+declare module 'ember-could-get-used-to-this' {
+  export const use: PropertyDecorator;
+  export class Resource<Args extends LazyTrackedArgs> {
+    protected args: Args;
+
+    // This is a lie, but makes the call site nice
+    constructor(fn: () => Args['positional'] | Args);
+  }
+}

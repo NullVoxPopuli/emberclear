@@ -3,9 +3,18 @@ import { action } from '@ember/object';
 
 import Modifier from 'ember-modifier';
 
-import { getPoints } from 'pinochle/utils/animation/hand';
+import { getPoints } from 'pinochle/components/hand/-animation/key-frames';
 
-export default class StackModifier extends Modifier {
+type Args = {
+  positional: [() => void];
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  named: {};
+};
+
+/**
+ * as soon as able, make this modifier local to the hand
+ */
+export default class StackModifier extends Modifier<Args> {
   didInstall() {
     requestAnimationFrame(this.stack);
   }
@@ -35,5 +44,17 @@ export default class StackModifier extends Modifier {
         }
       );
     }
+
+    setTimeout(() => {
+      if (this.isDestroyed || this.isDestroying) {
+        return;
+      }
+
+      let callback = this.args.positional[0];
+
+      if (callback) {
+        callback();
+      }
+    }, 300);
   }
 }
