@@ -1,4 +1,3 @@
-import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import { use } from 'ember-could-get-used-to-this';
@@ -7,14 +6,7 @@ import { Statechart } from 'pinochle/utils/use-machine';
 
 import { isSmallScreen, statechart } from './card-chart';
 
-import type { Context, Event, Keyframes } from './card-chart';
-
-const ANIMATION_DURATION = 250;
-const DEFAULT_OPTIONS: KeyframeAnimationOptions = {
-  duration: ANIMATION_DURATION,
-  iterations: 1,
-  fill: 'both',
-};
+import type { Keyframes } from './card-chart';
 
 export const SELECTED_TRANSFORM = {
   transform: `
@@ -41,9 +33,7 @@ export class CardAnimation {
           isSmallScreen: isSmallScreen(),
         },
         config: {
-          actions: {
-            animate: this._animate,
-          },
+          actions: {},
         },
       },
     };
@@ -67,12 +57,5 @@ export class CardAnimation {
   @action
   adjust(frames: Keyframes) {
     this.interpreter.send('ADJUST', { frames });
-  }
-
-  @action
-  _animate({ element, current, next }: Context, { options }: Event) {
-    assert(`expected keyframes to exist`, current && next);
-
-    element.animate([current, next], { ...DEFAULT_OPTIONS, ...options });
   }
 }

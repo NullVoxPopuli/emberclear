@@ -1,14 +1,12 @@
 import { module, test } from 'qunit';
 
+import { Card } from 'pinochle/utils/deck';
 import { Meld } from 'pinochle/utils/game/meld';
 
 module('Unit | Game | Meld', function () {
   module('marriage', function () {
     test('plain', function (assert) {
-      let meld = new Meld([
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'clubs', value: 'king' },
-      ]);
+      let meld = new Meld([new Card('clubs', 'queen'), new Card('clubs', 'king')]);
 
       assert.equal(meld.score, 20);
       assert.ok(meld.matches.marriage);
@@ -21,13 +19,7 @@ module('Unit | Game | Meld', function () {
     });
 
     test('marriage (of trump)', function (assert) {
-      let meld = new Meld(
-        [
-          { suit: 'clubs', value: 'queen' },
-          { suit: 'clubs', value: 'king' },
-        ],
-        'clubs'
-      );
+      let meld = new Meld([new Card('clubs', 'queen'), new Card('clubs', 'king')], 'clubs');
 
       assert.equal(meld.score, 40);
       assert.ok(meld.matches.marriage);
@@ -41,10 +33,10 @@ module('Unit | Game | Meld', function () {
 
     test('double marriage', function (assert) {
       let meld = new Meld([
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'clubs', value: 'king' },
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'clubs', value: 'king' },
+        new Card('clubs', 'queen'),
+        new Card('clubs', 'king'),
+        new Card('clubs', 'queen'),
+        new Card('clubs', 'king'),
       ]);
 
       assert.equal(meld.score, 40);
@@ -60,10 +52,10 @@ module('Unit | Game | Meld', function () {
     test('double marriage (of trump)', function (assert) {
       let meld = new Meld(
         [
-          { suit: 'clubs', value: 'queen' },
-          { suit: 'clubs', value: 'king' },
-          { suit: 'clubs', value: 'queen' },
-          { suit: 'clubs', value: 'king' },
+          new Card('clubs', 'queen'),
+          new Card('clubs', 'king'),
+          new Card('clubs', 'queen'),
+          new Card('clubs', 'king'),
         ],
         'clubs'
       );
@@ -80,12 +72,12 @@ module('Unit | Game | Meld', function () {
 
     test('multiple marriages', function (assert) {
       let meld = new Meld([
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'clubs', value: 'king' },
-        { suit: 'hearts', value: 'queen' },
-        { suit: 'hearts', value: 'king' },
-        { suit: 'spades', value: 'queen' },
-        { suit: 'spades', value: 'king' },
+        new Card('clubs', 'queen'),
+        new Card('clubs', 'king'),
+        new Card('hearts', 'queen'),
+        new Card('hearts', 'king'),
+        new Card('spades', 'queen'),
+        new Card('spades', 'king'),
       ]);
 
       assert.equal(meld.score, 60);
@@ -103,12 +95,12 @@ module('Unit | Game | Meld', function () {
     test('multiple marriages (with one of trump)', function (assert) {
       let meld = new Meld(
         [
-          { suit: 'clubs', value: 'queen' },
-          { suit: 'clubs', value: 'king' },
-          { suit: 'hearts', value: 'queen' },
-          { suit: 'hearts', value: 'king' },
-          { suit: 'spades', value: 'queen' },
-          { suit: 'spades', value: 'king' },
+          new Card('clubs', 'queen'),
+          new Card('clubs', 'king'),
+          new Card('hearts', 'queen'),
+          new Card('hearts', 'king'),
+          new Card('spades', 'queen'),
+          new Card('spades', 'king'),
         ],
         'hearts'
       );
@@ -128,14 +120,14 @@ module('Unit | Game | Meld', function () {
     test('multiple marriages (with double of trump)', function (assert) {
       let meld = new Meld(
         [
-          { suit: 'clubs', value: 'queen' },
-          { suit: 'clubs', value: 'king' },
-          { suit: 'hearts', value: 'queen' },
-          { suit: 'hearts', value: 'king' },
-          { suit: 'spades', value: 'queen' },
-          { suit: 'spades', value: 'king' },
-          { suit: 'spades', value: 'queen' },
-          { suit: 'spades', value: 'king' },
+          new Card('clubs', 'queen'),
+          new Card('clubs', 'king'),
+          new Card('hearts', 'queen'),
+          new Card('hearts', 'king'),
+          new Card('spades', 'queen'),
+          new Card('spades', 'king'),
+          new Card('spades', 'queen'),
+          new Card('spades', 'king'),
         ],
         'spades'
       );
@@ -155,10 +147,7 @@ module('Unit | Game | Meld', function () {
 
   module('pinochle', function () {
     test('single', function (assert) {
-      let meld = new Meld([
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'spades', value: 'queen' },
-      ]);
+      let meld = new Meld([new Card('diamonds', 'jack'), new Card('spades', 'queen')]);
 
       assert.equal(meld.score, 30);
       assert.ok(meld.matches.pinochle);
@@ -170,10 +159,10 @@ module('Unit | Game | Meld', function () {
 
     test('double', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'spades', value: 'queen' },
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'spades', value: 'queen' },
+        new Card('diamonds', 'jack'),
+        new Card('spades', 'queen'),
+        new Card('diamonds', 'jack'),
+        new Card('spades', 'queen'),
       ]);
 
       assert.equal(meld.score, 300);
@@ -186,9 +175,9 @@ module('Unit | Game | Meld', function () {
 
     test('not quite double', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'spades', value: 'queen' },
-        { suit: 'spades', value: 'queen' },
+        new Card('diamonds', 'jack'),
+        new Card('spades', 'queen'),
+        new Card('spades', 'queen'),
       ]);
 
       assert.equal(meld.score, 30);
@@ -202,7 +191,7 @@ module('Unit | Game | Meld', function () {
 
   module('nines', function () {
     test('pre trump declaration', function (assert) {
-      let meld = new Meld([{ suit: 'diamonds', value: 9 }]);
+      let meld = new Meld([new Card('diamonds', 9)]);
 
       assert.equal(meld.score, 0);
       assert.ok(meld.matches.nineOfTrump);
@@ -213,7 +202,7 @@ module('Unit | Game | Meld', function () {
     });
 
     test('has nine of trump', function (assert) {
-      let meld = new Meld([{ suit: 'diamonds', value: 9 }], 'diamonds');
+      let meld = new Meld([new Card('diamonds', 9)], 'diamonds');
 
       assert.equal(meld.score, 10);
       assert.ok(meld.matches.nineOfTrump);
@@ -224,13 +213,7 @@ module('Unit | Game | Meld', function () {
     });
 
     test('has both nines of trump', function (assert) {
-      let meld = new Meld(
-        [
-          { suit: 'diamonds', value: 9 },
-          { suit: 'diamonds', value: 9 },
-        ],
-        'diamonds'
-      );
+      let meld = new Meld([new Card('diamonds', 9), new Card('diamonds', 9)], 'diamonds');
 
       assert.equal(meld.score, 20);
       assert.ok(meld.matches.nineOfTrump);
@@ -243,14 +226,14 @@ module('Unit | Game | Meld', function () {
     test('has *all* the nines', function (assert) {
       let meld = new Meld(
         [
-          { suit: 'diamonds', value: 9 },
-          { suit: 'diamonds', value: 9 },
-          { suit: 'spades', value: 9 },
-          { suit: 'spades', value: 9 },
-          { suit: 'clubs', value: 9 },
-          { suit: 'clubs', value: 9 },
-          { suit: 'hearts', value: 9 },
-          { suit: 'hearts', value: 9 },
+          new Card('diamonds', 9),
+          new Card('diamonds', 9),
+          new Card('spades', 9),
+          new Card('spades', 9),
+          new Card('clubs', 9),
+          new Card('clubs', 9),
+          new Card('hearts', 9),
+          new Card('hearts', 9),
         ],
         'diamonds'
       );
@@ -267,10 +250,10 @@ module('Unit | Game | Meld', function () {
   module('aces', function () {
     test('not enough', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'ace' },
-        { suit: 'clubs', value: 'ace' },
-        { suit: 'spades', value: 'ace' },
-        { suit: 'hearts', value: 4 },
+        new Card('diamonds', 'ace'),
+        new Card('clubs', 'ace'),
+        new Card('spades', 'ace'),
+        new Card('hearts', 9),
       ]);
 
       assert.equal(meld.score, 0);
@@ -283,10 +266,10 @@ module('Unit | Game | Meld', function () {
 
     test('100 aces', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'ace' },
-        { suit: 'clubs', value: 'ace' },
-        { suit: 'spades', value: 'ace' },
-        { suit: 'hearts', value: 'ace' },
+        new Card('diamonds', 'ace'),
+        new Card('clubs', 'ace'),
+        new Card('spades', 'ace'),
+        new Card('hearts', 'ace'),
       ]);
 
       assert.equal(meld.score, 100);
@@ -299,13 +282,13 @@ module('Unit | Game | Meld', function () {
 
     test('not 1000 aces', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'ace' },
-        { suit: 'clubs', value: 'ace' },
-        { suit: 'spades', value: 'ace' },
-        { suit: 'hearts', value: 'ace' },
-        { suit: 'diamonds', value: 'ace' },
-        { suit: 'clubs', value: 'ace' },
-        { suit: 'spades', value: 'ace' },
+        new Card('diamonds', 'ace'),
+        new Card('clubs', 'ace'),
+        new Card('spades', 'ace'),
+        new Card('hearts', 'ace'),
+        new Card('diamonds', 'ace'),
+        new Card('clubs', 'ace'),
+        new Card('spades', 'ace'),
       ]);
 
       assert.equal(meld.score, 100);
@@ -318,14 +301,14 @@ module('Unit | Game | Meld', function () {
 
     test('1000 aces', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'ace' },
-        { suit: 'clubs', value: 'ace' },
-        { suit: 'spades', value: 'ace' },
-        { suit: 'hearts', value: 'ace' },
-        { suit: 'diamonds', value: 'ace' },
-        { suit: 'clubs', value: 'ace' },
-        { suit: 'spades', value: 'ace' },
-        { suit: 'hearts', value: 'ace' },
+        new Card('diamonds', 'ace'),
+        new Card('clubs', 'ace'),
+        new Card('spades', 'ace'),
+        new Card('hearts', 'ace'),
+        new Card('diamonds', 'ace'),
+        new Card('clubs', 'ace'),
+        new Card('spades', 'ace'),
+        new Card('hearts', 'ace'),
       ]);
 
       assert.equal(meld.score, 1000);
@@ -340,10 +323,10 @@ module('Unit | Game | Meld', function () {
   module('kings', function () {
     test('not enough', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'king' },
-        { suit: 'clubs', value: 'king' },
-        { suit: 'spades', value: 'king' },
-        { suit: 'hearts', value: 4 },
+        new Card('diamonds', 'king'),
+        new Card('clubs', 'king'),
+        new Card('spades', 'king'),
+        new Card('hearts', 9),
       ]);
 
       assert.equal(meld.score, 0);
@@ -356,10 +339,10 @@ module('Unit | Game | Meld', function () {
 
     test('80 kings', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'king' },
-        { suit: 'clubs', value: 'king' },
-        { suit: 'spades', value: 'king' },
-        { suit: 'hearts', value: 'king' },
+        new Card('diamonds', 'king'),
+        new Card('clubs', 'king'),
+        new Card('spades', 'king'),
+        new Card('hearts', 'king'),
       ]);
 
       assert.equal(meld.score, 80);
@@ -372,13 +355,13 @@ module('Unit | Game | Meld', function () {
 
     test('not quite double', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'king' },
-        { suit: 'clubs', value: 'king' },
-        { suit: 'spades', value: 'king' },
-        { suit: 'hearts', value: 'king' },
-        { suit: 'diamonds', value: 'king' },
-        { suit: 'clubs', value: 'king' },
-        { suit: 'spades', value: 'king' },
+        new Card('diamonds', 'king'),
+        new Card('clubs', 'king'),
+        new Card('spades', 'king'),
+        new Card('hearts', 'king'),
+        new Card('diamonds', 'king'),
+        new Card('clubs', 'king'),
+        new Card('spades', 'king'),
       ]);
 
       assert.equal(meld.score, 80);
@@ -391,14 +374,14 @@ module('Unit | Game | Meld', function () {
 
     test('double 80 kings', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'king' },
-        { suit: 'clubs', value: 'king' },
-        { suit: 'spades', value: 'king' },
-        { suit: 'hearts', value: 'king' },
-        { suit: 'diamonds', value: 'king' },
-        { suit: 'clubs', value: 'king' },
-        { suit: 'spades', value: 'king' },
-        { suit: 'hearts', value: 'king' },
+        new Card('diamonds', 'king'),
+        new Card('clubs', 'king'),
+        new Card('spades', 'king'),
+        new Card('hearts', 'king'),
+        new Card('diamonds', 'king'),
+        new Card('clubs', 'king'),
+        new Card('spades', 'king'),
+        new Card('hearts', 'king'),
       ]);
 
       assert.equal(meld.score, 800);
@@ -413,10 +396,10 @@ module('Unit | Game | Meld', function () {
   module('queens', function () {
     test('not enough', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'queen' },
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'spades', value: 'queen' },
-        { suit: 'hearts', value: 4 },
+        new Card('diamonds', 'queen'),
+        new Card('clubs', 'queen'),
+        new Card('spades', 'queen'),
+        new Card('hearts', 9),
       ]);
 
       assert.equal(meld.score, 0);
@@ -429,10 +412,10 @@ module('Unit | Game | Meld', function () {
 
     test('60 queens', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'queen' },
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'spades', value: 'queen' },
-        { suit: 'hearts', value: 'queen' },
+        new Card('diamonds', 'queen'),
+        new Card('clubs', 'queen'),
+        new Card('spades', 'queen'),
+        new Card('hearts', 'queen'),
       ]);
 
       assert.equal(meld.score, 60);
@@ -445,13 +428,13 @@ module('Unit | Game | Meld', function () {
 
     test('not quite double', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'queen' },
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'spades', value: 'queen' },
-        { suit: 'hearts', value: 'queen' },
-        { suit: 'diamonds', value: 'queen' },
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'spades', value: 'queen' },
+        new Card('diamonds', 'queen'),
+        new Card('clubs', 'queen'),
+        new Card('spades', 'queen'),
+        new Card('hearts', 'queen'),
+        new Card('diamonds', 'queen'),
+        new Card('clubs', 'queen'),
+        new Card('spades', 'queen'),
       ]);
 
       assert.equal(meld.score, 60);
@@ -464,14 +447,14 @@ module('Unit | Game | Meld', function () {
 
     test('double 60 queens', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'queen' },
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'spades', value: 'queen' },
-        { suit: 'hearts', value: 'queen' },
-        { suit: 'diamonds', value: 'queen' },
-        { suit: 'clubs', value: 'queen' },
-        { suit: 'spades', value: 'queen' },
-        { suit: 'hearts', value: 'queen' },
+        new Card('diamonds', 'queen'),
+        new Card('clubs', 'queen'),
+        new Card('spades', 'queen'),
+        new Card('hearts', 'queen'),
+        new Card('diamonds', 'queen'),
+        new Card('clubs', 'queen'),
+        new Card('spades', 'queen'),
+        new Card('hearts', 'queen'),
       ]);
 
       assert.equal(meld.score, 600);
@@ -486,10 +469,10 @@ module('Unit | Game | Meld', function () {
   module('jacks', function () {
     test('not enough', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'clubs', value: 'jack' },
-        { suit: 'spades', value: 'jack' },
-        { suit: 'hearts', value: 4 },
+        new Card('diamonds', 'jack'),
+        new Card('clubs', 'jack'),
+        new Card('spades', 'jack'),
+        new Card('hearts', 9),
       ]);
 
       assert.equal(meld.score, 0);
@@ -502,10 +485,10 @@ module('Unit | Game | Meld', function () {
 
     test('40 jacks', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'clubs', value: 'jack' },
-        { suit: 'spades', value: 'jack' },
-        { suit: 'hearts', value: 'jack' },
+        new Card('diamonds', 'jack'),
+        new Card('clubs', 'jack'),
+        new Card('spades', 'jack'),
+        new Card('hearts', 'jack'),
       ]);
 
       assert.equal(meld.score, 40);
@@ -518,13 +501,13 @@ module('Unit | Game | Meld', function () {
 
     test('not quite double', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'clubs', value: 'jack' },
-        { suit: 'spades', value: 'jack' },
-        { suit: 'hearts', value: 'jack' },
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'clubs', value: 'jack' },
-        { suit: 'spades', value: 'jack' },
+        new Card('diamonds', 'jack'),
+        new Card('clubs', 'jack'),
+        new Card('spades', 'jack'),
+        new Card('hearts', 'jack'),
+        new Card('diamonds', 'jack'),
+        new Card('clubs', 'jack'),
+        new Card('spades', 'jack'),
       ]);
 
       assert.equal(meld.score, 40);
@@ -537,14 +520,14 @@ module('Unit | Game | Meld', function () {
 
     test('double 40 jacks', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'clubs', value: 'jack' },
-        { suit: 'spades', value: 'jack' },
-        { suit: 'hearts', value: 'jack' },
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'clubs', value: 'jack' },
-        { suit: 'spades', value: 'jack' },
-        { suit: 'hearts', value: 'jack' },
+        new Card('diamonds', 'jack'),
+        new Card('clubs', 'jack'),
+        new Card('spades', 'jack'),
+        new Card('hearts', 'jack'),
+        new Card('diamonds', 'jack'),
+        new Card('clubs', 'jack'),
+        new Card('spades', 'jack'),
+        new Card('hearts', 'jack'),
       ]);
 
       assert.equal(meld.score, 400);
@@ -560,11 +543,11 @@ module('Unit | Game | Meld', function () {
     test('run is not in trump', function (assert) {
       let meld = new Meld(
         [
-          { suit: 'diamonds', value: 'jack' },
-          { suit: 'diamonds', value: 'queen' },
-          { suit: 'diamonds', value: 'king' },
-          { suit: 'diamonds', value: 10 },
-          { suit: 'diamonds', value: 'ace' },
+          new Card('diamonds', 'jack'),
+          new Card('diamonds', 'queen'),
+          new Card('diamonds', 'king'),
+          new Card('diamonds', 10),
+          new Card('diamonds', 'ace'),
         ],
         'hearts'
       );
@@ -588,11 +571,11 @@ module('Unit | Game | Meld', function () {
 
     test('trump not declared', function (assert) {
       let meld = new Meld([
-        { suit: 'diamonds', value: 'jack' },
-        { suit: 'diamonds', value: 'queen' },
-        { suit: 'diamonds', value: 'king' },
-        { suit: 'diamonds', value: 10 },
-        { suit: 'diamonds', value: 'ace' },
+        new Card('diamonds', 'jack'),
+        new Card('diamonds', 'queen'),
+        new Card('diamonds', 'king'),
+        new Card('diamonds', 10),
+        new Card('diamonds', 'ace'),
       ]);
 
       assert.equal(meld.score, 20);
@@ -615,11 +598,11 @@ module('Unit | Game | Meld', function () {
     test('not enough', function (assert) {
       let meld = new Meld(
         [
-          { suit: 'diamonds', value: 'jack' },
-          { suit: 'diamonds', value: 'queen' },
-          { suit: 'diamonds', value: 'king' },
-          { suit: 'diamonds', value: 9 },
-          { suit: 'diamonds', value: 'ace' },
+          new Card('diamonds', 'jack'),
+          new Card('diamonds', 'queen'),
+          new Card('diamonds', 'king'),
+          new Card('diamonds', 9),
+          new Card('diamonds', 'ace'),
         ],
         'diamonds'
       );
@@ -652,11 +635,11 @@ module('Unit | Game | Meld', function () {
     test('single run', function (assert) {
       let meld = new Meld(
         [
-          { suit: 'diamonds', value: 'jack' },
-          { suit: 'diamonds', value: 'queen' },
-          { suit: 'diamonds', value: 'king' },
-          { suit: 'diamonds', value: 10 },
-          { suit: 'diamonds', value: 'ace' },
+          new Card('diamonds', 'jack'),
+          new Card('diamonds', 'queen'),
+          new Card('diamonds', 'king'),
+          new Card('diamonds', 10),
+          new Card('diamonds', 'ace'),
         ],
         'diamonds'
       );
@@ -672,15 +655,15 @@ module('Unit | Game | Meld', function () {
     test('not quite double', function (assert) {
       let meld = new Meld(
         [
-          { suit: 'diamonds', value: 'jack' },
-          { suit: 'diamonds', value: 'queen' },
-          { suit: 'diamonds', value: 'king' },
-          { suit: 'diamonds', value: 10 },
-          { suit: 'diamonds', value: 'ace' },
-          { suit: 'diamonds', value: 'queen' },
-          { suit: 'diamonds', value: 'king' },
-          { suit: 'diamonds', value: 10 },
-          { suit: 'diamonds', value: 'ace' },
+          new Card('diamonds', 'jack'),
+          new Card('diamonds', 'queen'),
+          new Card('diamonds', 'king'),
+          new Card('diamonds', 10),
+          new Card('diamonds', 'ace'),
+          new Card('diamonds', 'jack'),
+          new Card('diamonds', 'queen'),
+          new Card('diamonds', 'king'),
+          new Card('diamonds', 10),
         ],
         'diamonds'
       );
@@ -706,16 +689,16 @@ module('Unit | Game | Meld', function () {
     test('double run', function (assert) {
       let meld = new Meld(
         [
-          { suit: 'diamonds', value: 'jack' },
-          { suit: 'diamonds', value: 'queen' },
-          { suit: 'diamonds', value: 'king' },
-          { suit: 'diamonds', value: 10 },
-          { suit: 'diamonds', value: 'ace' },
-          { suit: 'diamonds', value: 'jack' },
-          { suit: 'diamonds', value: 'queen' },
-          { suit: 'diamonds', value: 'king' },
-          { suit: 'diamonds', value: 10 },
-          { suit: 'diamonds', value: 'ace' },
+          new Card('diamonds', 'jack'),
+          new Card('diamonds', 'queen'),
+          new Card('diamonds', 'king'),
+          new Card('diamonds', 10),
+          new Card('diamonds', 'ace'),
+          new Card('diamonds', 'jack'),
+          new Card('diamonds', 'queen'),
+          new Card('diamonds', 'king'),
+          new Card('diamonds', 10),
+          new Card('diamonds', 'ace'),
         ],
         'diamonds'
       );

@@ -76,12 +76,12 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
       {
         target: 'fanned-out',
         cond: isClosed,
-        actions: ['fanOpen', assign({ isOpen: () => true, selected: () => undefined })],
+        actions: ['fanOpen', assign<Context>({ isOpen: () => true, selected: () => undefined })],
       },
       {
         target: 'closed',
         cond: isOpen,
-        actions: ['closeHand', assign({ isOpen: () => false, selected: () => undefined })],
+        actions: ['closeHand', assign<Context>({ isOpen: () => false, selected: () => undefined })],
       },
     ],
   },
