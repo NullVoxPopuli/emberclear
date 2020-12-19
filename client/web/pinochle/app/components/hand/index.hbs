@@ -4,7 +4,7 @@
   {{stack this.toggle}}
   {{resize this.adjust}}
 >
-  {{#each this.cards as |card|}}
+  {{#each @cards as |card|}}
     <PlayingCard
       id={{card.id}}
       @suit={{card.suit}}

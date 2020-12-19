@@ -3,21 +3,20 @@ import { cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
 
-import { newDeck, sortHand, splitDeck } from 'pinochle/utils/deck';
 import { Meld } from 'pinochle/utils/game/meld';
 
 import { HandAnimation } from './-animation/hand';
 
-import type { Card, Hand } from 'pinochle/utils/deck';
+import type { Card } from 'pinochle/utils/deck';
 
 type Args = {
-  hand: Hand;
+  cards: Card[];
 };
 
 export default class HandComponent extends Component<Args> {
   @cached
   get hand() {
-    return new HandAnimation(getOwner(this), this.cards);
+    return new HandAnimation(getOwner(this), this.args.cards);
   }
 
   /**
@@ -25,7 +24,7 @@ export default class HandComponent extends Component<Args> {
    */
   @cached
   get meld() {
-    return new Meld([...(this.cards as Card[])]);
+    return new Meld([...(this.args.cards as Card[])]);
   }
 
   @action
@@ -41,15 +40,5 @@ export default class HandComponent extends Component<Args> {
   @action
   adjust() {
     this.hand.send('ADJUST');
-  }
-
-  @cached
-  get cards() {
-    let deck = newDeck();
-    let dealt = splitDeck(deck, 4);
-    let hand = dealt.hands[0];
-    let sorted = sortHand(hand);
-
-    return sorted;
   }
 }
