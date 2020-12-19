@@ -1,4 +1,4 @@
-import { assign, send } from 'xstate';
+import { assign } from 'xstate';
 
 import { getPoints } from './key-frames';
 
@@ -44,10 +44,6 @@ export interface Schema extends StateSchema<Context> {
 // Just need to not include the const declaration and only copy the
 // object contents to the visualizer
 
-function isSelectedCard(context: Context, event: SelectEvent) {
-  return event.card === context.selected && event.card !== undefined;
-}
-
 function canPlayCard() {
   return false;
 }
@@ -69,7 +65,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
     ADJUST: {
       actions: [
         assign({
-          points: (context, _event) => {
+          points: (context) => {
             return getPoints(context.cards.length);
           },
         }),

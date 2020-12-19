@@ -7,7 +7,7 @@ import { Statechart } from 'pinochle/utils/use-machine';
 
 import { isSmallScreen, statechart } from './card-chart';
 
-import type { Context, Event, Keyframes, Schema } from './card-chart';
+import type { Context, Event, Keyframes } from './card-chart';
 
 const ANIMATION_DURATION = 250;
 const DEFAULT_OPTIONS: KeyframeAnimationOptions = {

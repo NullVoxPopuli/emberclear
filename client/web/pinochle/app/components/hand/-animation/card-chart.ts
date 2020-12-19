@@ -1,9 +1,6 @@
-import { assert } from '@ember/debug';
-
 import { assign, send } from 'xstate';
 import { choose } from 'xstate/lib/actions';
 
-import type { Card } from 'pinochle/utils/deck';
 import type { MachineConfig, StateSchema } from 'xstate';
 
 export type Keyframes = {
