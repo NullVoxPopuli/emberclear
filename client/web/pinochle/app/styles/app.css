@@ -3,6 +3,7 @@
 @import './z-indexes.css';
 @import './utils.css';
 @import './page/ask-game-type.css';
+@import './synthwave.css';
 
 * {
   box-sizing: border-box;
