@@ -1,8 +1,6 @@
 import { assert } from '@ember/debug';
 import { get, notifyPropertyChange } from '@ember/object';
 
-type Constructor<T = unknown> = new () => T;
-
 interface WhyCantTSGetDecoratorsRight<InitializedValue> {
   initializer?: () => InitializedValue;
 }
@@ -13,10 +11,11 @@ interface WhyCantTSGetDecoratorsRight<InitializedValue> {
  * Will need to update when decorators hit stage 3
  *
  */
+// TODO: figure out a better default type for Klass
 // eslint-disable-next-line @typescript-eslint/ban-types
-export function inLocalStorage<T = boolean, Klass = Object>(
-  target: Constructor<Klass>,
-  propertyKey: keyof Constructor,
+export function inLocalStorage<T = boolean, Klass extends Object = Object>(
+  target: Klass,
+  propertyKey: keyof Klass,
   // descriptor is undefined for properties
   // it's only available on methods and such
   descriptor?: WhyCantTSGetDecoratorsRight<T>
