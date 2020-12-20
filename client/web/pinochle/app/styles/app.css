@@ -34,12 +34,16 @@ div.perspective {
 }
 
 :root {
+  /* Sizes */
   --size-1: 0.25rem;
   --size-2: 0.5rem;
   --size-3: 0.75rem;
   --size-4: 1rem;
 
+  /* Responsiveness */
   --screen-small: 400px;
+
+  /* Playing Cards */
   --deck-red: #c65355;
   --deck-black: #534f4c;
   --card-gutter: 15%;

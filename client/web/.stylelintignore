@@ -3,6 +3,7 @@ smoke-tests/
 
 # Ignore supporting directories to improve scan time
 **/concat-stats-for/**
+**/dummy/**
 **/dist/**
 **/node_modules/**
 node_modules/**
