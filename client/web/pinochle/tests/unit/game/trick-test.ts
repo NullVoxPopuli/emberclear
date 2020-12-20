@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 
+import { Card } from 'pinochle/game/card';
 import { Trick } from 'pinochle/game/trick';
-import { Card } from 'pinochle/utils/deck';
 
 module('Unit | Game | Trick', function () {
   module('three players', function () {

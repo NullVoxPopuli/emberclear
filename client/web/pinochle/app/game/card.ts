@@ -18,3 +18,16 @@ export class Card {
     return `${this.suit} : ${this.value} :: ${this.id}`;
   }
 }
+
+const VALUE_TO_NUMBER = {
+  9: 9,
+  jack: 10,
+  queen: 11,
+  king: 12,
+  10: 13,
+  ace: 14,
+};
+
+export function isEqualOrHigherValue(a: Card, b: Card) {
+  return a.suit === b.suit && VALUE_TO_NUMBER[a.value] >= VALUE_TO_NUMBER[b.value];
+}

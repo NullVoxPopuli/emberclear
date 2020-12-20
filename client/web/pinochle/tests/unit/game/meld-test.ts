@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 
-import { Card } from 'pinochle/utils/deck';
-import { Meld } from 'pinochle/utils/game/meld';
+import { Card } from 'pinochle/game/card';
+import { Meld } from 'pinochle/game/meld';
 
 module('Unit | Game | Meld', function () {
   module('marriage', function () {

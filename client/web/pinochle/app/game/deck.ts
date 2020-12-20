@@ -1,5 +1,7 @@
 import { Card, SUITS, VALUES } from './card';
 
+import type { Suit } from './card';
+
 /**
  * Returns an array of new cards -- this is the "shuffling"
  * a "deck" is not actually an object or instance of anything
@@ -71,6 +73,12 @@ export function sortHand(hand: Card[]) {
 
     return 1;
   });
+}
+
+export function hasSuit(hand: Card[], suit: Suit) {
+  let card = hand.find((card) => card.suit === suit);
+
+  return Boolean(card);
 }
 
 // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Fisher_and_Yates'_original_method
