@@ -4,6 +4,7 @@
 @import './utils.css';
 @import './page/ask-game-type.css';
 @import './synthwave.css';
+@import './loading.css';
 
 * {
   box-sizing: border-box;

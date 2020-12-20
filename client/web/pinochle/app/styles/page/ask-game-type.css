@@ -2,8 +2,6 @@
   padding: 1rem;
   text-align: center;
   font-size: 2rem;
-  width: 100vw;
-  height: 100vh;
   display: grid;
   align-items: center;
 }
