@@ -1,10 +1,12 @@
 import Component from '@glimmer/component';
-import Helper, { invokeHelper } from '@ember/component/helper';
+import { DEBUG } from '@glimmer/env';
 import { action } from '@ember/object';
 
 import { inLocalStorage } from 'ember-tracked-local-storage';
 
 export default class Options extends Component {
+  DEBUG = DEBUG;
+
   @inLocalStorage isSynthwave = false;
 
   @action
@@ -12,22 +14,19 @@ export default class Options extends Component {
     this.isSynthwave = !this.isSynthwave;
   }
 
-  applyBodyClass = invokeHelper(this, ApplyBodyClass, () => [this.isSynthwave]);
-}
+  get poorMansEffect() {
+    if (this.isSynthwave) {
+      document.body.classList.add('synthwave');
 
-type PositionalArgs = [string];
+      return;
+    }
 
-class ApplyBodyClass extends Helper {
-  declare className: string;
-  compute([className]: PositionalArgs) {
-    this.className = className;
+    document.body.classList.remove('synthwave');
 
-    document.body.classList.add(className);
+    return;
   }
 
   willDestroy() {
-    if (this.className) {
-      document.body.classList.remove(this.className);
-    }
+    document.body.classList.remove('synthwave');
   }
 }

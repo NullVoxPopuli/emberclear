@@ -3,7 +3,7 @@ import { cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
 
-import { Meld } from 'pinochle/utils/game/meld';
+import { Meld } from 'pinochle/game/meld';
 
 import { HandAnimation } from './-animation/hand';
 

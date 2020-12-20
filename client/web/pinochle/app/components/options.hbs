@@ -1,8 +1,8 @@
-{{#if this.isSynthwave}}
-  {{this.applyBodyClass.value}}
-{{/if}}
+{{#if this.DEBUG}}
+  {{this.poorMansEffect}}
 
-<label class='fixed:top-right grid:cols gap-2 align-items:center'>
-  <input type='checkbox' {{on 'click' this.toggle}} checked={{this.isSynthwave}}>
-  <span>Synthwave</span>
-</label>
+  <label class='fixed:top-right grid:cols gap-2 align-items:center'>
+    <input type='checkbox' {{on 'click' this.toggle}} checked={{this.isSynthwave}}>
+    <span>Synthwave</span>
+  </label>
+{{/if}}
