@@ -1,25 +1,44 @@
+import { assert } from '@ember/debug';
 import { get, notifyPropertyChange } from '@ember/object';
 
-export function inLocalStorage<T = boolean>(
-  target: any,
-  propertyKey: string,
+type Constructor<T = unknown> = new () => T;
+
+interface WhyCantTSGetDecoratorsRight<InitializedValue> {
+  initializer?: () => InitializedValue;
+}
+
+/**
+ * Kinda Pre-stage 2 decorator.
+ *
+ * Will need to update when decorators hit stage 3
+ *
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function inLocalStorage<T = boolean, Klass = Object>(
+  target: Constructor<Klass>,
+  propertyKey: keyof Constructor,
   // descriptor is undefined for properties
   // it's only available on methods and such
-  descriptor?: any
+  descriptor?: WhyCantTSGetDecoratorsRight<T>
 ): void /* TS says the return value is ignored... idk if I believe it */ {
   let targetName = target.constructor.name;
+
+  assert(`@inLocalStorage is only usable on class properties`, descriptor);
+
   let { initializer } = descriptor;
 
-  const newDescriptor = {
+  const newDescriptor: PropertyDescriptor = {
     configurable: true,
     enumerable: true,
-    get: function (): T {
+    get: function (this: Klass): T {
       let key = `${targetName}-${propertyKey}`;
       const lsValue = localStorage.getItem(key);
       const value = (lsValue && JSON.parse(lsValue))?.value || initializer?.();
 
       // Entagle with tracking system
-      get(this as any, key);
+      // This is a bit of a hack and the returned value doesn't matter
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      get(this, key as any);
 
       return value;
     },
@@ -34,5 +53,7 @@ export function inLocalStorage<T = boolean>(
     },
   };
 
+  // I think TypeScript is wrong when it comes to decorators...
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return newDescriptor as any;
 }
