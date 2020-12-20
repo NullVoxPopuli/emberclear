@@ -22,6 +22,7 @@
     "lint:js": "eslint . --ext js,ts",
     "start": "ember serve",
     "test": "npm-run-all lint:* test:*",
+    "test:try-one": "ember try:one",
     "test:ember": "ember test",
     "test:ember-compatibility": "ember try:each"
   },
