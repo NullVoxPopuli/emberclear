@@ -1,6 +1,6 @@
 import { cached } from '@glimmer/tracking';
 
-import type { Card, Suit, Value } from 'pinochle/utils/deck';
+import type { Card, Suit, Value } from 'pinochle/game/card';
 
 interface MeldResultMatch {
   trump?: boolean;

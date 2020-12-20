@@ -7,7 +7,7 @@ import { Meld } from 'pinochle/game/meld';
 
 import { HandAnimation } from './-animation/hand';
 
-import type { Card } from 'pinochle/utils/deck';
+import type { Card } from 'pinochle/game/card';
 
 type Args = {
   cards: Card[];
