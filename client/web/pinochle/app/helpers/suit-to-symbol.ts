@@ -1,6 +1,4 @@
-import { helper } from '@ember/component/helper';
-
-import type { Suit } from 'pinochle/utils/deck';
+import type { Suit } from 'pinochle/game/card';
 
 export const NAME_MAP = {
   hearts: '♥',
@@ -9,10 +7,9 @@ export const NAME_MAP = {
   clubs: '♣',
 };
 
-type PositionalParams = [Suit];
-
-export function suitToSymbol([name]: PositionalParams /*, hash*/) {
+export function suitToSymbol(name: Suit) {
   return NAME_MAP[name];
 }
 
-export default helper(suitToSymbol);
+// Ember requires default exports for helpers/**
+export default suitToSymbol;
