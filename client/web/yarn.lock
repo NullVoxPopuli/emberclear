@@ -6877,7 +6877,7 @@ ember-ast-helpers@0.3.5:
     "@glimmer/compiler" "^0.27.0"
     "@glimmer/syntax" "^0.27.0"
 
-ember-auto-import@1.10.0, ember-auto-import@^1.10.0:
+ember-auto-import@1.10.0, ember-auto-import@^1.10.0, ember-auto-import@^1.8.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.10.0.tgz#eb6fba6b66974cb86adc42bd835e3cacbf32ebd7"
   integrity sha512-E2dI/8x2rJ3GIgTXy+HMKjLiLrV/yDlHPp9Wgzz4W1UWAV2l0KsdbIxAu+rWGUqFIAEhpzFUe8fj0E+Tin+Z3w==
@@ -7336,7 +7336,7 @@ ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   resolved "https://registry.npmjs.org/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
   integrity sha1-ObZ3/CgF9VFzc1N2/O8njqpEUqE=
 
-ember-cli-terser@4.0.1, ember-cli-terser@^4.0.0:
+ember-cli-terser@4.0.1, ember-cli-terser@^4.0.0, ember-cli-terser@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/ember-cli-terser/-/ember-cli-terser-4.0.1.tgz#0da0b8f2b09989e8c992b207553ddec1bbb65915"
   integrity sha512-vvp0uVl8reYeW9EZjSXRPR3Bq7y4u9CYlUdI7j/WzMPDj3/gUHU4Z7CHYOCrftrClQvFfqO2eXmHwDA6F7SLug==
@@ -7462,7 +7462,7 @@ ember-cli-version-checker@^5.1.1:
     semver "^7.3.2"
     silent-error "^1.1.1"
 
-ember-cli@3.23.0:
+ember-cli@3.23.0, ember-cli@~3.23.0:
   version "3.23.0"
   resolved "https://registry.npmjs.org/ember-cli/-/ember-cli-3.23.0.tgz#094e2e76774cdd8269682971dec6b7121ee993d1"
   integrity sha512-Z9WhuID3Y0u5/URolinp6AAuo3eDNVJ0P3KbyTtbTtI/+QT6sNdjWUggfwQKSGl0IrfdLzoSBnbTcBXod1eO3g==
@@ -7851,7 +7851,7 @@ ember-keyboard@6.0.2:
     ember-compatibility-helpers "^1.2.1"
     ember-modifier "^2.1.0"
 
-ember-load-initializers@2.1.2, ember-load-initializers@^2.1.1:
+ember-load-initializers@2.1.2, ember-load-initializers@^2.1.1, ember-load-initializers@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/ember-load-initializers/-/ember-load-initializers-2.1.2.tgz#8a47a656c1f64f9b10cecdb4e22a9d52ad9c7efa"
   integrity sha512-CYR+U/wRxLbrfYN3dh+0Tb6mFaxJKfdyz+wNql6cqTrA0BBi9k6J3AaKXj273TqvEpyyXegQFFkZEiuZdYtgJw==
@@ -8213,7 +8213,7 @@ ember-statecharts@0.13.2:
     ember-usable "https://github.com/pzuraq/ember-usable#0d03a50"
     xstate "^4.12.0"
 
-ember-template-lint@2.15.0, ember-template-lint@^2.11.0:
+ember-template-lint@2.15.0, ember-template-lint@^2.11.0, ember-template-lint@^2.14.0:
   version "2.15.0"
   resolved "https://registry.npmjs.org/ember-template-lint/-/ember-template-lint-2.15.0.tgz#7a3b8dd97498bc777b4633f1a2a5ad63f63a6e77"
   integrity sha512-hARl20XxqDbAPC68He1GBi0nDenJuy13Czo4NKaD72Vro+M3AxXOkKoSibeup1hxMAfuY/mWQYfqRij+bKWOhA==
@@ -8812,7 +8812,7 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
-eslint@7.16.0, eslint@^7.16.0:
+eslint@7.16.0, eslint@^7.15.0, eslint@^7.16.0:
   version "7.16.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.16.0.tgz#a761605bf9a7b32d24bb7cde59aeb0fd76f06092"
   integrity sha512-iVWPS785RuDA4dWuhhgXTNrGxHHK3a8HLSMBgbbU59ruJDubUraXN8N5rn7kb8tG6sjg74eE0RA3YWT51eusEw==
@@ -14788,7 +14788,7 @@ qunit-console-grouper@0.2.0:
   dependencies:
     broccoli-funnel "^2.0.2"
 
-qunit-dom@1.6.0, qunit-dom@^1.4.0:
+qunit-dom@1.6.0, qunit-dom@^1.4.0, qunit-dom@^1.6.0:
   version "1.6.0"
   resolved "https://registry.npmjs.org/qunit-dom/-/qunit-dom-1.6.0.tgz#a4bea6a46329d221e4a317d712cb40709107b977"
   integrity sha512-YwSqcLjQcRI0fUFpaSWwU10KIJPFW5Qh+d3cT5DOgx81dypRuUSiPkKFmBY/CDs/R1KdHRadthkcXg2rqAon8Q==

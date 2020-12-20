@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,900');
 @import './playing-card.css';
+@import './z-indexes.css';
 @import './utils.css';
 @import './page/ask-game-type.css';
 
@@ -32,6 +33,11 @@ div.perspective {
 }
 
 :root {
+  --size-1: 0.25rem;
+  --size-2: 0.5rem;
+  --size-3: 0.75rem;
+  --size-4: 1rem;
+
   --screen-small: 400px;
   --deck-red: #c65355;
   --deck-black: #534f4c;

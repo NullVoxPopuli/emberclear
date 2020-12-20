@@ -12,6 +12,22 @@
   display: grid;
 }
 
+.grid\:cols {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.gap-2 {
+  gap: var(--size-2);
+}
+
+.fixed\:top-right {
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: var(--z-options);
+}
+
 .fill {
   width: 100%;
   height: 100%;
@@ -27,6 +43,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.align-items\:center {
+  align-items: center;
 }
 
 .three-column {
