@@ -13,7 +13,6 @@ export type Keyframes = {
 export type Context = {
   // card: Card;
   element: HTMLElement;
-  animation?: Animation;
   keyframes: Keyframes;
   isSmallScreen: boolean;
 
@@ -22,8 +21,6 @@ export type Context = {
   delay?: number;
   currentName: keyof Keyframes;
   previousName: keyof Keyframes;
-  current?: Keyframe;
-  next?: Keyframe;
 };
 
 type AdjustEvent = {
@@ -40,8 +37,10 @@ export type Event =
   | { type: 'SELECT' }
   | { type: 'DESELECT' }
   | { type: 'FAN' }
+  | { type: 'REFAN' }
   | { type: 'STACK' }
   | { type: 'FLAT' }
+  | { type: 'REFLAT' }
   | { type: 'ANIMATE_ADJUSTMENT' }
   | ToggleEvent
   | AdjustEvent;
@@ -71,23 +70,45 @@ export function isSmallScreen() {
   return !isBigScreen();
 }
 
-function animate(
-  context: Context,
-  current: Keyframe | null,
-  next: Keyframe,
-  options: KeyframeAnimationOptions = {}
-) {
-  if (context.animation) {
-    context.animation.cancel();
-  }
+function animate(context: Context, next: Keyframe, options: KeyframeAnimationOptions = {}) {
+  /**
+   * NOTE: pausing causes jitters
+   * NOTE: cancelling removes the possibility of resuming mid-way through a transition
+   *
+   * Not doing anything lets the built-in tweening happen and provides smooth
+   * transitions between states.
+   */
+  // if (context.animation) {
+  // context.animation.pause();
+  // context.animation.cancel();
+  // }
 
-  // filter does not narrow type
-  let frames = [current, next].filter(Boolean) as Keyframe[];
-
-  return context.element.animate(frames, {
+  return context.element.animate([next], {
     ...DEFAULT_ANIMATION_OPTIONS,
     delay: context.delay,
     ...options,
+  });
+}
+
+function toSelection(ctx: Context) {
+  return animate(ctx, ctx.keyframes.selected, {
+    delay: 0,
+  });
+}
+
+function toFlat(ctx: Context) {
+  return animate(ctx, ctx.keyframes.flat, {
+    delay: ctx.previousName === 'selected' ? 0 : ctx.delay,
+  });
+}
+
+function toStack(ctx: Context) {
+  return animate(ctx, ctx.keyframes.stack);
+}
+
+function toFan(ctx: Context) {
+  return animate(ctx, ctx.keyframes.fan, {
+    delay: ctx.previousName === 'selected' ? 0 : ctx.delay,
   });
 }
 
@@ -111,12 +132,8 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
       entry: [
         assign<Context>({
           currentName: 'fan',
-          animation: (ctx: Context) => {
-            return animate(ctx, ctx.previousFrames[ctx.previousName], ctx.keyframes.fan, {
-              delay: ctx.previousName === 'selected' ? 0 : ctx.delay,
-            });
-          },
         }),
+        toFan,
       ],
       exit: [
         assign<Context>({
@@ -128,11 +145,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
           actions: choose([
             {
               cond: isBigScreen,
-              actions: [
-                assign<Context>({
-                  animation: (ctx) => animate(ctx, ctx.previousFrames.fan, ctx.keyframes.fan),
-                }),
-              ],
+              actions: [send('REFAN')],
             },
             {
               actions: [send('FLAT')],
@@ -142,6 +155,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
         FLAT: 'flat',
         SELECT: 'selected',
         TOGGLE_FAN: 'stacked',
+        REFAN: 'fanned',
       },
     },
     stacked: {
@@ -149,9 +163,8 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
         assign<Context>({
           currentName: 'stack',
           previousFrames: (ctx) => ctx.keyframes,
-          animation: (ctx) =>
-            animate(ctx, ctx.previousFrames[ctx.previousName], ctx.keyframes.stack),
         }),
+        toStack,
       ],
       exit: [
         assign<Context>({
@@ -176,11 +189,8 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
         assign<Context>({
           currentName: 'flat',
           previousFrames: (ctx) => ctx.keyframes,
-          animation: (ctx) =>
-            animate(ctx, ctx.previousFrames[ctx.previousName], ctx.keyframes.flat, {
-              delay: ctx.previousName === 'selected' ? 0 : ctx.delay,
-            }),
         }),
+        toFlat,
       ],
       exit: [
         assign<Context>({
@@ -192,11 +202,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
           actions: choose([
             {
               cond: isSmallScreen,
-              actions: [
-                assign<Context>({
-                  animation: (ctx) => animate(ctx, ctx.previousFrames.flat, ctx.keyframes.flat),
-                }),
-              ],
+              actions: [send('REFLAT')],
             },
             {
               actions: [send('FAN')],
@@ -204,6 +210,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
           ]),
         },
         FAN: 'fanned',
+        REFLAT: 'flat',
         SELECT: 'selected',
         TOGGLE_FAN: 'stacked',
       },
@@ -213,12 +220,8 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
         assign<Context>({
           currentName: 'selected',
           previousFrames: (ctx) => ctx.keyframes,
-          animation: (ctx) => {
-            return animate(ctx, ctx.previousFrames[ctx.previousName], ctx.keyframes.selected, {
-              delay: 0,
-            });
-          },
         }),
+        toSelection,
       ],
       exit: [
         assign<Context>({
