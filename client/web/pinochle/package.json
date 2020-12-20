@@ -64,7 +64,7 @@
     "stylelint": "^13.8.0"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": "14.15.3"
   },
   "ember": {
     "edition": "octane"
