@@ -176,7 +176,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
           {
             target: 'fanned',
             cond: isBigScreen,
-            actions: [assign<Context>({ delay: (_ctx, event: ToggleEvent) => event.delay })],
+            actions: [assign({ delay: (_ctx, event: ToggleEvent) => event.delay })],
           },
           {
             target: 'flat',

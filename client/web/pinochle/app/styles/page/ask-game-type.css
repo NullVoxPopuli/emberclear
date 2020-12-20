@@ -17,6 +17,10 @@
   transform: translateY(-20%);
 }
 
+.ask-game-type h1 {
+  font-weight: 200;
+}
+
 .ask-game-type h2 {
   font-weight: 200;
 }

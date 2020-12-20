@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 
-import { newDeck, sortHand, splitDeck } from 'pinochle/utils/deck';
+import { newDeck, sortHand, splitDeck } from 'pinochle/game/deck';
 
 const NUM_PLAYERS = 3;
 

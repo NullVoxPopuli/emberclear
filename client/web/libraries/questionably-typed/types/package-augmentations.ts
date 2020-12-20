@@ -1,6 +1,7 @@
 import 'ember';
 import '@ember/component';
-
+// import '@ember/component/helper';
+// import '@ember/helper';
 
 import type { TemplateFactory } from 'ember-cli-htmlbars';
 
@@ -11,6 +12,19 @@ declare module '@ember/component' {
   export function setComponentTemplate(template: TF, klass: any): any;
 }
 
+// import type Helper from '@ember/component/helper';
+
+// type EmberHelper = Helper;
+
+// declare module '@ember/helper' {
+//   // TODO:  remove when this is actually a thing that exists?
+//   export function invokeHelper<Klass extends EmberHelper>(
+//     ctx: unknown,
+//     klass: { new(): Klass },
+//     argFactory: () => unknown[]
+//   ): ReturnType<Klass['compute']>;
+// }
+
 // no longer needed
 // import '@ember/test-waiters';
 // declare module '@ember/test-waiters' {
@@ -18,4 +32,3 @@ declare module '@ember/component' {
 
 //   export const waitForPromise: WaitForPromise;
 // }
-

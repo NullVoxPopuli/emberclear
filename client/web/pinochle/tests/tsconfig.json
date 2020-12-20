@@ -5,6 +5,8 @@
     "declarationDir": "../declarations/tests",
     "paths": {
       "pinochle/tests/*": ["*"],
+      "pinochle/*": ["../declarations/*"],
+
       "*": ["../types/*"]
     }
   },

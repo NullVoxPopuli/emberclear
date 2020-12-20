@@ -1,23 +1,6 @@
-import { v4 as uuid } from 'uuid';
+import { Card, SUITS, VALUES } from './card';
 
-export type Suit = 'hearts' | 'spades' | 'diamonds' | 'clubs';
-export type Value = 9 | 'jack' | 'queen' | 'king' | 10 | 'ace';
-
-export type Hand = {
-  [suit in Suit]: Value;
-};
-
-export class Card {
-  id = uuid();
-  constructor(public suit: Suit, public value: Value) {}
-
-  toString() {
-    return `${this.suit} : ${this.value} :: ${this.id}`;
-  }
-}
-
-export const VALUES: Value[] = [9, 'jack', 'queen', 'king', 10, 'ace'];
-export const SUITS: Suit[] = ['hearts', 'spades', 'diamonds', 'clubs'];
+import type { Suit } from './card';
 
 /**
  * Returns an array of new cards -- this is the "shuffling"
@@ -90,6 +73,12 @@ export function sortHand(hand: Card[]) {
 
     return 1;
   });
+}
+
+export function hasSuit(hand: Card[], suit: Suit) {
+  let card = hand.find((card) => card.suit === suit);
+
+  return Boolean(card);
 }
 
 // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Fisher_and_Yates'_original_method

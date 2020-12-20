@@ -1,5 +1,4 @@
 type Dict<T = string> = { [key: string]: T };
-type TODO<T = any> = T;
 
 //////////////////////////////////////////////
 // Things that TypeScript should already have

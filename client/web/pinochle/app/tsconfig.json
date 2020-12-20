@@ -17,5 +17,8 @@
     }
   },
   "include": [".", "../types"],
-  "references": [{ "path": "../../libraries/questionably-typed" }]
+  "references": [
+    { "path": "../../libraries/questionably-typed" },
+    { "path": "../../addons/tracked-local-storage" }
+  ]
 }

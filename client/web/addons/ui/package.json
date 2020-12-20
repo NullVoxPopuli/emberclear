@@ -1,7 +1,7 @@
 {
   "name": "@emberclear/ui",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Base ui components for emberclear.io",
   "private": true,
   "keywords": [
     "ember-addon",
@@ -23,7 +23,7 @@
     "lint:js": "eslint . --ext js,ts",
     "start": "ember serve",
     "test": "ember test",
-    "postpublish": "tsc --build"
+    "prepublish": "tsc --build"
   },
   "dependencies": {
     "@fortawesome/ember-fontawesome": "0.2.2",
@@ -38,6 +38,7 @@
     "ember-focus-trap": "0.5.0",
     "ember-keyboard": "6.0.2",
     "ember-named-blocks-polyfill": "0.2.3",
+    "ember-tracked-local-storage": "*",
     "enhanced-resolve": "5.4.0",
     "postcss-cssnext": "3.1.0",
     "postcss-import": "14.0.0",

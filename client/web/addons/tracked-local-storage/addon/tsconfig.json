@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.compiler-options.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declarationDir": "../declarations",
+    "paths": {
+      "ember-tracked-local-storage": ["."],
+      "ember-tracked-local-storage/*": ["./*"],
+
+      "*": ["../types/*"]
+    }
+  },
+  "include": [".", "../types"],
+  "references": [
+  ]
+}

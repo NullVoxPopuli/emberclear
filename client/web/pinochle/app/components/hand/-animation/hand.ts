@@ -10,7 +10,7 @@ import { statechart } from './hand-chart';
 import { fannedKeyframes, flatKeyframes, getPoints, stackedKeyframes } from './key-frames';
 
 import type { Context, Event, Schema, SelectEvent } from './hand-chart';
-import type { Card } from 'pinochle/utils/deck';
+import type { Card } from 'pinochle/game/card';
 
 function getAnimations(points: ReturnType<typeof getPoints>, cards: Card[]) {
   let result = new WeakMap<Card, CardAnimation>();

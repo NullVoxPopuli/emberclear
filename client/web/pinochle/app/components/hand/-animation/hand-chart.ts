@@ -3,7 +3,7 @@ import { assign } from 'xstate';
 import { getPoints } from './key-frames';
 
 import type { CardAnimation } from './card';
-import type { Card } from 'pinochle/utils/deck';
+import type { Card } from 'pinochle/game/card';
 import type { MachineConfig, StateSchema } from 'xstate';
 
 export type Context = {
