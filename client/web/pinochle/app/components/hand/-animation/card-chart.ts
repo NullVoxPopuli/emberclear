@@ -78,17 +78,27 @@ function animate(
   options: KeyframeAnimationOptions = {}
 ) {
   if (context.animation) {
-    context.animation.cancel();
+    /**
+     * NOTE: pausing causes jitters
+     * NOTE: cancelling removes the possibility of resuming mid-way through a transition
+     *
+     * Not doing anything lets the built-in tweening happen and provides smooth
+     * transitions between states.
+     */
+    // context.animation.pause();
+    // context.animation.cancel();
   }
 
   // filter does not narrow type
-  let frames = [current, next].filter(Boolean) as Keyframe[];
+  let frames = [next].filter(Boolean) as Keyframe[];
 
-  return context.element.animate(frames, {
+  let animation = context.element.animate(frames, {
     ...DEFAULT_ANIMATION_OPTIONS,
     delay: context.delay,
     ...options,
   });
+
+  return animation;
 }
 
 export const statechart: MachineConfig<Context, Schema, Event> = {
