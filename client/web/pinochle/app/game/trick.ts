@@ -1,4 +1,4 @@
-import type { Card } from '../deck';
+import type { Card } from './card';
 
 const POINTS = ['king', 'ace', 10];
 

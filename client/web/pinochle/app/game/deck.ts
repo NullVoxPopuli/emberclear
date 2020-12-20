@@ -1,23 +1,4 @@
-import { v4 as uuid } from 'uuid';
-
-export type Suit = 'hearts' | 'spades' | 'diamonds' | 'clubs';
-export type Value = 9 | 'jack' | 'queen' | 'king' | 10 | 'ace';
-
-export type Hand = {
-  [suit in Suit]: Value;
-};
-
-export class Card {
-  id = uuid();
-  constructor(public suit: Suit, public value: Value) {}
-
-  toString() {
-    return `${this.suit} : ${this.value} :: ${this.id}`;
-  }
-}
-
-export const VALUES: Value[] = [9, 'jack', 'queen', 'king', 10, 'ace'];
-export const SUITS: Suit[] = ['hearts', 'spades', 'diamonds', 'clubs'];
+import { Card, SUITS, VALUES } from './card';
 
 /**
  * Returns an array of new cards -- this is the "shuffling"
