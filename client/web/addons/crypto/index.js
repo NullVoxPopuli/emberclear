@@ -11,6 +11,12 @@ const { buildWorkers } = require('./lib/worker-build');
 module.exports = {
   name: require('./package').name,
 
+  options: {
+    'ember-cli-babel': {
+      enableTypeScriptTransform: true,
+    },
+  },
+
   // override
   isDevelopingAddon() {
     return true;

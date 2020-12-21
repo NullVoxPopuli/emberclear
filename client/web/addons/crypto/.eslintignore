@@ -6,6 +6,11 @@
 /dist/
 /tmp/
 
+# TypeScript output
+declarations/
+tsconfig.tsbuildinfo
+
+
 # dependencies
 /bower_components/
 /node_modules/
