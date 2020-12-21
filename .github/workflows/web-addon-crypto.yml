@@ -1,0 +1,69 @@
+name: '@emberclear/crypto'
+
+# Inspiration:
+# https://github.com/alexdiliberto/ember-transformicons/blob/master/.github/workflows/ci.yml
+on:
+  pull_request:
+  push:
+    # filtering branches here prevents duplicate builds from pull_request and push
+    branches:
+      - master
+
+env:
+  CI: true
+  root: client/web/
+  addon: addons/tracked-local-storage/
+  full: client/web/addons/tracked-local-storage/
+
+jobs:
+  lint:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+    name: 'Lint'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: volta-cli/action@v1
+    - name: Install
+      working-directory: ${{ env.root }}
+      run: yarn install
+
+    - name: "JS/TS"
+      working-directory: ${{ env.full }}
+      run: yarn eslint . --ext js,ts
+
+    - name: "Templates"
+      working-directory: ${{ env.full }}
+      run: yarn ember-template-lint .
+
+    - name: 'Type Correctness'
+      working-directory: ${{ env.full }}
+      run: yarn tsc --build
+
+    # - uses: wagoid/commitlint-github-action@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+
+  tests_ember_compat:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+    name: Ember Compatability
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        scenario:
+        # - "ember-lts-3.16"
+        - "ember-lts-3.20"
+        - "ember-release"
+        # - "ember-beta"
+        # - "ember-canary"
+    steps:
+    - uses: actions/checkout@v1
+    - uses: volta-cli/action@v1
+
+    - name: Install
+      run: yarn install
+      working-directory: ${{ env.root }}
+
+    - name: "Test: ${{ matrix.scenario }}"
+      working-directory: ${{ env.full }}
+      run: yarn test:try-one ${{ matrix.scenario }}
+

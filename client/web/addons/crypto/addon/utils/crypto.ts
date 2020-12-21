@@ -1,5 +1,5 @@
 import type WorkersService from '../../services/workers';
-import type { Hash, OpenSigned, Sign } from 'emberclear/workers/crypto/messages';
+import type { KeyPair } from '../types';
 import type {
   DecryptFromSocket,
   DerivePublicKey,
@@ -7,9 +7,12 @@ import type {
   EncryptForSocket,
   GenerateKeys,
   GenerateSigningKeys,
+  Hash,
   Login,
   MnemonicFromPrivateKey,
-} from 'emberclear/workers/crypto/messages';
+  OpenSigned,
+  Sign,
+} from '@emberclear/crypto/workers/crypto/messages';
 import type { PWBHost } from 'promise-worker-bi';
 
 type Args = {

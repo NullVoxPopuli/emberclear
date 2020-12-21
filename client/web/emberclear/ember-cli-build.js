@@ -15,7 +15,6 @@ const {
 
 const { addonConfig } = require('./config/build/addons');
 const { buildStaticTrees } = require('./config/build/static');
-const { buildWorkerTrees } = require('./config/build/workers');
 
 const { EMBROIDER, CONCAT_STATS } = process.env;
 
@@ -79,7 +78,7 @@ module.exports = function (defaults) {
   let app = new EmberApp(defaults, appOptions);
 
   // Additional paths to copy to the public directory in the final build.
-  let additionalTrees = [...buildStaticTrees(env), ...buildWorkerTrees(env)];
+  let additionalTrees = [...buildStaticTrees(env)];
 
   if (!isProduction) {
     app.trees.public = new UnwatchedDir('public');

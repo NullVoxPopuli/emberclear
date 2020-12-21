@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@emberclear/ui": "*",
-    "blakejs": "1.1.0",
+    "@emberclear/crypto": "*",
     "ember-tracked-local-storage": "*",
     "emojis": "1.0.10",
     "hammerjs": "2.0.8",
@@ -57,12 +57,9 @@
     "phoenix": "1.5.7",
     "prismjs": "1.22.0",
     "prismjs-components-loader": "3.0.1",
-    "promise-worker-bi": "4.0.2",
     "qrcode": "1.4.4",
     "showdown": "1.9.1",
     "toastify-js": "1.9.3",
-    "tweetnacl": "1.0.3",
-    "tweetnacl-util": "0.15.1",
     "url-parse": "1.4.7",
     "uuid": "8.3.2"
   },
@@ -81,6 +78,7 @@
     "@embroider/compat": "0.35.0",
     "@embroider/core": "0.35.0",
     "@embroider/webpack": "0.35.0",
+    "@emberclear/questionably-typed": "*",
     "@glimmer/component": "1.0.3",
     "@glimmer/tracking": "1.0.3",
     "@html-next/vertical-collection": "1.0.0",
@@ -173,7 +171,10 @@
     "ember-test-selectors": "5.0.0",
     "ember-test-waiters": "2.1.3",
     "ember-web-app": "5.0.1",
+<<<<<<< HEAD
     "esbuild": "0.8.26",
+=======
+>>>>>>> Start extracting crypto code to addon
     "git-rev-sync": "3.0.1",
     "loader.js": "4.7.0",
     "qunit-assertions-extra": "0.8.5",

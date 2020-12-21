@@ -12,4 +12,6 @@ export interface Schema extends StateSchema<Context> {
   };
 }
 
-export const statechart: MachineConfig<Context, Schema, Event> = {};
+export const statechart: MachineConfig<Context, Schema, Event> = {
+
+};

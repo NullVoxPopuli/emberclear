@@ -2,19 +2,15 @@
   "extends": "../tsconfig.compiler-options.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "composite": true,
     "declarationDir": "../declarations",
     "paths": {
-      "emberclear/*": ["*"],
+      "@emberclear/crypto": ["."],
+      "@emberclear/crypto/*": ["./*"],
 
       "*": ["../types/*"]
     }
   },
   "include": [".", "../types"],
   "references": [
-    { "path": "../../libraries/questionably-typed" },
-    { "path": "../../addons/ui" },
-    { "path": "../../addons/crypto" },
-    { "path": "../../addons/tracked-local-storage" }
   ]
 }

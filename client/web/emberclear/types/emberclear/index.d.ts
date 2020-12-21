@@ -14,14 +14,6 @@ import './addon-augmentations.d';
 declare global {
   type EmptyRecord = Record<string, unknown>;
 
-  type KeyPublic = { publicKey: Uint8Array };
-  type KeyPrivate = { privateKey: Uint8Array };
-  type KeyPair = KeyPublic & KeyPrivate;
-
-  type SigningKeyPublic = { publicSigningKey: Uint8Array };
-  type SigningKeyPrivate = { privateSigningKey: Uint8Array };
-  type SigningKeyPair = SigningKeyPublic & SigningKeyPrivate;
-
   interface Prism {
     highlightAll: () => void;
   }
