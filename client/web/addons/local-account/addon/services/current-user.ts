@@ -7,9 +7,8 @@ import { timeout } from 'ember-concurrency';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
-import { toHex } from 'emberclear/utils/string-encoding';
-
 import { CryptoConnector } from '@emberclear/crypto';
+import { toHex } from '@emberclear/encoding/string';
 
 import type StoreService from '@ember-data/store';
 import type { KeyPair, SigningKeyPair, WorkersService } from '@emberclear/crypto';

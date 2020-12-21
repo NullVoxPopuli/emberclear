@@ -4,16 +4,14 @@
     "baseUrl": ".",
     "declarationDir": "../declarations",
     "paths": {
-      "@emberclear/local-account": ["."],
-      "@emberclear/local-account/*": ["./*"],
+      "@emberclear/encoding": ["."],
+      "@emberclear/encoding/*": ["./*"],
 
       "*": ["../types/*"]
     }
   },
   "include": [".", "../types"],
   "references": [
-    { "path": "../../../libraries/questionably-typed" },
-    { "path": "../../crypto" },
-    { "path": "../../encoding" }
+    { "path": "../../../libraries/questionably-typed" }
   ]
 }

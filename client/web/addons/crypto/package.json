@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "blakejs": "1.1.0",
+    "ember-auto-import": "1.10.0",
     "ember-cli-babel": "^7.22.1",
     "ember-cli-htmlbars": "^5.3.1",
     "esbuild": "0.8.24",
@@ -48,9 +49,7 @@
     "@types/ember__test-helpers": "1.7.3",
     "@types/qunit": "2.11.1",
     "@types/rsvp": "4.0.3",
-    "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-auto-import": "1.10.0",
     "ember-cli": "3.23.0",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-inject-live-reload": "^2.0.2",

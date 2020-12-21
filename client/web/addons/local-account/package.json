@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@emberclear/crypto": "*",
+    "@emberclear/encoding": "*",
     "ember-cli-babel": "^7.23.0",
     "ember-cli-htmlbars": "^5.3.1"
   },
