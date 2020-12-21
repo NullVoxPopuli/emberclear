@@ -1,11 +1,11 @@
 import { settled } from '@ember/test-helpers';
 
-import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
+import { generateAsymmetricKeys } from '@emberclear/crypto/workers/crypto/utils/nacl';
 
-import { getService } from './get-service';
+import { getService } from '../get-service';
 import { getStore } from './get-store';
 
-import type User from 'emberclear/models/user';
+import type { User } from '@emberclear/local-account';
 
 export async function createCurrentUser(): Promise<User> {
   const store = getStore();
