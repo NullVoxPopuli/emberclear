@@ -2,15 +2,7 @@ import { attr } from '@ember-data/model';
 
 import Identity from './identity';
 
-export interface KeyPair {
-  publicKey: Uint8Array;
-  privateKey: Uint8Array;
-}
-
-export interface SigningKeyPair {
-  publicSigningKey: Uint8Array;
-  privateSigningKey: Uint8Array;
-}
+import type { KeyPair, SigningKeyPair } from '@emberclear/crypto';
 
 export default class User extends Identity implements Partial<KeyPair>, Partial<SigningKeyPair> {
   @attr() privateKey!: Uint8Array;

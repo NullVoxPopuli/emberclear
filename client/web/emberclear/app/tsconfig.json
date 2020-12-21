@@ -15,6 +15,7 @@
     { "path": "../../libraries/questionably-typed" },
     { "path": "../../addons/ui" },
     { "path": "../../addons/crypto" },
+    { "path": "../../addons/local-account" },
     { "path": "../../addons/tracked-local-storage" }
   ]
 }

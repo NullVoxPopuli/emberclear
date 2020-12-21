@@ -13,7 +13,7 @@ import { CryptoConnector } from '@emberclear/crypto';
 
 import type StoreService from '@ember-data/store';
 import type { KeyPair, SigningKeyPair, WorkersService } from '@emberclear/crypto';
-import type User from 'emberclear/models/user';
+import type User from '@emberclear/local-account/models/user';
 
 export const currentUserId = 'me';
 
