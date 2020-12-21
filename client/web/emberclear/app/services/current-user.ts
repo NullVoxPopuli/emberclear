@@ -9,10 +9,10 @@ import { taskFor } from 'ember-concurrency-ts';
 
 import { toHex } from 'emberclear/utils/string-encoding';
 
-import { CryptoConnector, KeyPair, SigningKeyPair } from '@emberclear/crypto';
+import { CryptoConnector } from '@emberclear/crypto';
 
 import type StoreService from '@ember-data/store';
-import type { WorkersService } from '@emberclear/crypto';
+import type { KeyPair, SigningKeyPair, WorkersService } from '@emberclear/crypto';
 import type User from 'emberclear/models/user';
 
 export const currentUserId = 'me';

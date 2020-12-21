@@ -7,9 +7,26 @@ function try_unmount {
   fi
 }
 
+function delete_excluding {
+  to_delete=$1
+  exclude=$2
+
+  find . \
+    \( -type d -name ${exclude} -prune \) \
+    -o \( -type d -name ${to_delete} -prune \
+          -exec rm -rf {} + \)
+}
+
 try_unmount "emberclear/dist"
 try_unmount "emberclear/node_modules"
 try_unmount "node_modules"
 
-find . -type d -name "node_modules" -exec rm -rf {} +
-find . -type d -name "declarations" -exec rm -rf {} +
+# The simple way to recursively delete is
+#
+#  find . -type d -name "declarations" -exec rm -rf {} +
+#
+# But this also searches within node_modules
+
+delete_excluding 'node_modules' 'declarations'
+delete_excluding 'declarations' 'node_modules'
+delete_excluding 'dist' 'node_modules'
