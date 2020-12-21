@@ -1,8 +1,8 @@
-import WorkersService, { CRYPTO_PATH } from 'emberclear/services/workers';
-import { handleMessage } from 'emberclear/workers/crypto/messages';
+import WorkersService, { CRYPTO_PATH } from '@emberclear/crypto/services/workers';
+import { handleMessage } from '@emberclear/crypto/workers/crypto/messages';
 
+import type { CryptoMessage } from '@emberclear/crypto/workers/crypto/messages';
 import type { TestContext } from 'ember-test-helpers';
-import type { CryptoMessage } from 'emberclear/workers/crypto/messages';
 
 /**
  *
@@ -18,7 +18,7 @@ export function setupWorkers(hooks: NestedHooks) {
       getWorker(path: string) {
         switch (path) {
           case CRYPTO_PATH:
-            return fakeCrypto as any;
+            return fakeCrypto as TODO;
           default:
             throw new Error(`No worker proxy exists for worker: ${path}`);
         }
