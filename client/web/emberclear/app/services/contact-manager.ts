@@ -2,7 +2,7 @@ import { tracked } from '@glimmer/tracking';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import { fromHex } from 'emberclear/utils/string-encoding';
+import { fromHex } from '@emberclear/encoding/string';
 
 import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';

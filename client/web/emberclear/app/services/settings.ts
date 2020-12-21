@@ -1,12 +1,12 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
+import { inLocalStorage } from 'ember-tracked-local-storage';
 import localforage from 'localforage';
 
-import { inLocalStorage } from 'emberclear/utils/decorators';
-import { fromHex, objectToDataURL, toHex } from 'emberclear/utils/string-encoding';
+import { fromHex, objectToDataURL, toHex } from '@emberclear/encoding/string';
 
-import type CurrentUserService from './current-user';
+import type CurrentUserService from '@emberclear/local-account/services/current-user';
 import type ChannelManager from 'emberclear/services/channel-manager';
 import type ContactManager from 'emberclear/services/contact-manager';
 

@@ -1,4 +1,4 @@
-import { toHex } from 'emberclear/utils/string-encoding';
+import { toHex } from '@emberclear/encoding/string';
 
 import type Channel from 'emberclear/models/channel';
 import type ChannelContextChain from 'emberclear/models/channel-context-chain';

@@ -6,15 +6,16 @@ import { taskFor } from 'ember-concurrency-ts';
 
 import Contact from 'emberclear/models/contact';
 import User from 'emberclear/models/user';
-import { toHex } from 'emberclear/utils/string-encoding';
+
+import { toHex } from '@emberclear/encoding/string';
 
 import { build as toPayloadJson } from './-utils/builder';
 
 import type StoreService from '@ember-data/store';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type Channel from 'emberclear/models/channel';
 import type Message from 'emberclear/models/message';
 import type ConnectionService from 'emberclear/services/connection';
-import type CurrentUserService from 'emberclear/services/current-user';
 import type MessageFactory from 'emberclear/services/messages/factory';
 import type Notifications from 'emberclear/services/notifications';
 import type StatusManager from 'emberclear/services/status-manager';
