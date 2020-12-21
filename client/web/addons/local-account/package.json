@@ -40,6 +40,7 @@
     "@ember-data/store": "3.23.0",
     "@emberclear/config": "*",
     "@emberclear/eslint": "*",
+    "@emberclear/test-helpers": "*",
     "@emberclear/questionably-typed": "*",
     "@glimmer/component": "^1.0.2",
     "@glimmer/tracking": "^1.0.2",

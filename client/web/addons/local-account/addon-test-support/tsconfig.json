@@ -11,6 +11,7 @@
     }
   },
   "references": [
-    { "path": "../addon" }
+    { "path": "../addon" },
+    { "path": "../../test-helpers" }
   ]
 }
