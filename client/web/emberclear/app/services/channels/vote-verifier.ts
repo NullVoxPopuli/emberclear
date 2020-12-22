@@ -3,10 +3,11 @@ import Service, { inject as service } from '@ember/service';
 import { identitiesIncludes, identityEquals } from 'emberclear/utils/identity-comparison';
 import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
 
-import CryptoConnector from '../../utils/workers/crypto';
+import { CryptoConnector } from '@emberclear/crypto';
+
 import { generateSortedVote } from './-utils/vote-sorter';
 
-import type WorkersService from '../workers';
+import type { WorkersService } from '@emberclear/crypto';
 import type Identity from 'emberclear/models/identity';
 import type VoteChain from 'emberclear/models/vote-chain';
 

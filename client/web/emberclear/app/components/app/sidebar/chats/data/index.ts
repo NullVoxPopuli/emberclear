@@ -9,7 +9,7 @@ import type StoreService from '@ember-data/store';
 import type Channel from 'emberclear/models/channel';
 import type Contact from 'emberclear/models/contact';
 import type ContactManager from 'emberclear/services/contact-manager';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type SettingsService from 'emberclear/services/settings';
 import type SidebarService from 'emberclear/services/sidebar';
 

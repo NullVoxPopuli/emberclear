@@ -11,7 +11,7 @@ import { buildChannelInfo, buildVote } from '../channels/-utils/channel-factory'
 
 import type Message from 'emberclear/models/message';
 import type Vote from 'emberclear/models/vote';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 export default class MessageFactory extends Service {
   @service declare store: any;

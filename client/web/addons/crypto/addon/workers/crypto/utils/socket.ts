@@ -1,16 +1,22 @@
 import { decryptFrom, encryptFor } from './nacl';
 import { fromBase64, fromHex, toBase64, toString, toUint8Array } from './string-encoding';
 
-export async function encryptForSocket(payload: RelayJson, to: KeyPublic, from: KeyPrivate) {
+import type { EncryptedMessage, KeyPrivate, KeyPublic } from '@emberclear/crypto/types';
+
+export async function encryptForSocket(
+  payload: Record<string, unknown>,
+  to: KeyPublic,
+  from: KeyPrivate
+) {
   const payloadString = JSON.stringify(payload);
   const payloadBytes = toUint8Array(payloadString);
 
-  const encryptedMessage = await encryptFor(payloadBytes, to.publicKey!, from.privateKey!);
+  const encryptedMessage = await encryptFor(payloadBytes, to.publicKey, from.privateKey);
 
   return await toBase64(encryptedMessage);
 }
 
-export async function decryptFromSocket(socketData: RelayMessage, privateKey: Uint8Array) {
+export async function decryptFromSocket(socketData: EncryptedMessage, privateKey: Uint8Array) {
   const { uid, message } = socketData;
   const senderPublicKey = fromHex(uid);
   const recipientPrivateKey = privateKey;

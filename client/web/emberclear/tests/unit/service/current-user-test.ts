@@ -4,7 +4,7 @@ import { setupTest, test } from 'ember-qunit';
 import { getService } from 'emberclear/tests/helpers';
 import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
 
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 module('Unit | Service | identity', function (hooks) {
   setupTest(hooks);

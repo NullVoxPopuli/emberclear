@@ -14,7 +14,7 @@ import {
   setupWorkers,
   visit,
 } from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { createContact } from '@emberclear/local-account/test-support';
 import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
 import { page, selectors } from 'emberclear/tests/helpers/pages/chat';
 import { toast } from 'emberclear/tests/helpers/pages/toast';

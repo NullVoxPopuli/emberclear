@@ -5,7 +5,7 @@ import { taskFor } from 'ember-concurrency-ts';
 
 import type ConnectionManager from 'emberclear/services/connection/manager';
 import type ContactsOnlineChecker from 'emberclear/services/contacts/online-checker';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import type { OutgoingPayload } from 'emberclear/utils/connection/connection';
 

@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 
 import { build as toPayloadJson } from 'emberclear/services/messages/-utils/builder';
-import { toHex } from 'emberclear/utils/string-encoding';
+import { toHex } from '@emberclear/encoding/string';
 import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
 import { decryptFromSocket, encryptForSocket } from 'emberclear/workers/crypto/utils/socket';
 

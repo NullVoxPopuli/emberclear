@@ -5,7 +5,7 @@ import { MESSAGE_LIMIT } from 'emberclear/models/message';
 import { messagesForDM } from 'emberclear/models/message/utils';
 
 import type StoreService from '@ember-data/store';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 export default class extends Controller {
   @service currentUser!: CurrentUserService;

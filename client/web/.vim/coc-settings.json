@@ -4,6 +4,7 @@
     "REFAN",
     "REFLAT",
     "Synthwave",
+    "ciphertext",
     "cond",
     "emberclear",
     "esbuild",
@@ -12,6 +13,7 @@
     "nacl",
     "outfile",
     "prismjs",
+    "secretbox",
     "sourcemap",
     "tmpl"
   ]

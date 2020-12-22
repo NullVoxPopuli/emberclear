@@ -13,7 +13,7 @@ import {
   visit,
 } from 'emberclear/tests/helpers';
 import { getCurrentUser } from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { createContact } from '@emberclear/local-account/test-support';
 import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 

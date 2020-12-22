@@ -2,7 +2,7 @@ import { tracked } from '@glimmer/tracking';
 // see note below -- needs investigating
 // eslint-disable-next-line
 import { computed } from '@ember/object';
-import Model, { attr, hasMany } from '@ember-data/model';
+import Model, { attr } from '@ember-data/model';
 
 import { toHex } from '@emberclear/encoding/string';
 

@@ -1,12 +1,13 @@
 import { module, test } from 'qunit';
 
 import { samplePrivateKey } from 'emberclear/tests/helpers/fixtures';
+
 import {
   mnemonicFromNaClBoxPrivateKey,
   naclBoxPrivateKeyFromMnemonic,
   toUint8Array,
   toUint11Array,
-} from 'emberclear/workers/crypto/utils/mnemonic';
+} from '@emberclear/crypto/workers/crypto/utils/mnemonic';
 
 module('Workers | Crypto | mnemonic', function () {
   const numbers = {

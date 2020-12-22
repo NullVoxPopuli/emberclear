@@ -7,16 +7,17 @@ import { percySnapshot } from 'ember-percy';
 import {
   clearLocalStorage,
   getService,
-  setupCurrentUser,
   setupRelayConnectionMocks,
-  setupWorkers,
   trackAsyncDataRequests,
-  visit,
 } from 'emberclear/tests/helpers';
 import { samplePrivateKey } from 'emberclear/tests/helpers/fixtures';
 import { loginForm } from 'emberclear/tests/helpers/pages/login';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
-import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/workers/crypto/utils/mnemonic';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { mnemonicFromNaClBoxPrivateKey } from '@emberclear/crypto/workers/crypto/utils/mnemonic';
+import { setupCurrentUser } from '@emberclear/local-account/test-support';
+import { visit } from '@emberclear/test-helpers/test-support';
 
 const behaviors = {
   invalid: {

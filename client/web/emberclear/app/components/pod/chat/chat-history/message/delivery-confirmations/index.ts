@@ -13,7 +13,7 @@ import type StoreService from '@ember-data/store';
 import type Channel from 'emberclear/models/channel';
 import type Contact from 'emberclear/models/contact';
 import type Message from 'emberclear/models/message';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
 
 const TIMEOUT_MS = 1000;

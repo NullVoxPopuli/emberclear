@@ -74,9 +74,6 @@
   },
   "typesVersions": {
     "*": {
-      "config/environment": [
-        "app/config/environment"
-      ],
       "*": [
         "declarations/*"
       ]

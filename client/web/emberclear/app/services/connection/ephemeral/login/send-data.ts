@@ -10,7 +10,7 @@ import { CurrentUserMustHaveAName } from 'emberclear/utils/errors';
 
 import { EphemeralConnection } from '../ephemeral-connection';
 
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 export class SendDataConnection extends EphemeralConnection {
   @service currentUser!: CurrentUserService;

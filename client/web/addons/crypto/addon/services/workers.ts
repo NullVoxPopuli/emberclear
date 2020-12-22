@@ -3,10 +3,10 @@ import Service from '@ember/service';
 
 import { PWBHost } from 'promise-worker-bi';
 
+import type { WorkerLike, WorkerRegistry } from '@emberclear/crypto/-private/types';
+
 export const CRYPTO_PATH = '/workers/crypto';
 export const NETWORKING_PATH = '/workers/networking';
-
-type WorkerRegistry = { [path: string]: PWBHost };
 
 export default class WorkersService extends Service {
   registry: WorkerRegistry = {};
@@ -21,10 +21,10 @@ export default class WorkersService extends Service {
     return this.getWorker(NETWORKING_PATH);
   }
 
-  protected getWorker(path: string): PWBHost {
+  protected getWorker(path: string): WorkerLike {
     if (this.registry[path]) return this.registry[path];
 
-    let worker = new Worker(`${path}${window.ASSET_FINGERPRINT_HASH || ''}.js`);
+    let worker = new Worker(`${path}${'' || ''}.js`);
     let promiseWorker = new PWBHost(worker);
     // promiseWorker._hostIDQueue = undefined;
 
@@ -36,18 +36,18 @@ export default class WorkersService extends Service {
       console.info(`Received message in ${path}: `, message);
     });
 
-    promiseWorker.registerError(function (err: any) {
+    promiseWorker.registerError(function (err: Error) {
       console.error(`Error in ${path}: `, err);
     });
 
-    this.registry[path] = promiseWorker;
+    this.registry[path] = promiseWorker as WorkerLike;
 
     return this.registry[path];
   }
 
   willDestroy() {
     Object.values(this.registry).forEach((promiseWorker) => {
-      promiseWorker._worker.terminate();
+      promiseWorker._worker?.terminate();
     });
   }
 }

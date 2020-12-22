@@ -1,3 +1,4 @@
+import { assert } from '@ember/debug';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
@@ -97,7 +98,9 @@ export default class MessageDispatcher extends Service {
     const theirPublicKey = to.publicKey as Uint8Array;
     const uid = toHex(theirPublicKey);
 
-    const payload = toPayloadJson(msg, this.currentUser.record!);
+    assert(`expected currentUser to exist`, this.currentUser.record);
+
+    const payload = toPayloadJson(msg, this.currentUser.record);
 
     const encryptedMessage = await this.currentUser.crypto.encryptForSocket(payload, to);
 

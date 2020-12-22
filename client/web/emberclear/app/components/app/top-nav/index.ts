@@ -5,7 +5,7 @@ import { selectUnreadMessages } from 'emberclear/models/message/utils';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type Sidebar from 'emberclear/services/sidebar';
 
 export default class TopNav extends Component {

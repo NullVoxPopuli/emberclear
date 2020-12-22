@@ -1,8 +1,7 @@
 import { generateAsymmetricKeys } from '@emberclear/crypto/workers/crypto/utils/nacl';
 import { toHex } from '@emberclear/encoding/string';
 import { Status } from '@emberclear/local-account';
-
-import { getService } from '../get-service';
+import { getService } from '@emberclear/test-helpers/test-support';
 
 import type { Contact } from '@emberclear/local-account';
 

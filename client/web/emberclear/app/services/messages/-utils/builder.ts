@@ -1,9 +1,13 @@
-import type Identity from 'emberclear/models/identity';
 import type Message from 'emberclear/models/message';
 
-export function buildSender(sender: Identity): StandardMessage['sender'] {
+interface Sender {
+  name: string;
+  uid: string;
+}
+
+export function buildSender(sender: Sender): StandardMessage['sender'] {
   return {
-    name: sender.name!,
+    name: sender.name,
     uid: sender.uid,
     location: '',
   };
@@ -18,7 +22,7 @@ export function buildMessage(msg: Message): StandardMessage['message'] {
   };
 }
 
-export function build(msg: Message, sender: Identity): RelayJson {
+export function build(msg: Message, sender: Sender): RelayJson {
   return {
     id: msg.id,
     to: msg.to,

@@ -9,7 +9,7 @@ import {
   convertObjectToUint8Array,
   convertUint8ArrayToObject,
   fromHex,
-} from 'emberclear/utils/string-encoding';
+} from '@emberclear/encoding/string';
 import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
 
 import type { SortedVote, SortedVoteHex } from 'emberclear/services/channels/-utils/vote-sorter';

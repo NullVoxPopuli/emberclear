@@ -3,8 +3,7 @@ import {
   generateSigningKeys,
 } from '@emberclear/crypto/workers/crypto/utils/nacl';
 import { toHex } from '@emberclear/encoding/string';
-
-import { getService } from '../get-service';
+import { getService } from '@emberclear/test-helpers/test-support';
 
 import type { User } from '@emberclear/local-account';
 

@@ -4,7 +4,7 @@ import Service, { inject as service } from '@ember/service';
 
 import { inLocalStorage } from 'emberclear/utils/decorators';
 
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 export default class Sidebar extends Service {
   @service declare currentUser: CurrentUserService;

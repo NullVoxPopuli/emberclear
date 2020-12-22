@@ -11,7 +11,7 @@ import {
   stubService,
   waitUntilTruthy,
 } from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { createContact } from '@emberclear/local-account/test-support';
 
 import type Identity from 'emberclear/models/identity';
 import type Message from 'emberclear/models/message';

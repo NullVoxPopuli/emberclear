@@ -1,9 +1,7 @@
 import { settled } from '@ember/test-helpers';
 
 import { generateAsymmetricKeys } from '@emberclear/crypto/workers/crypto/utils/nacl';
-
-import { getService } from '../get-service';
-import { getStore } from './get-store';
+import { getService, getStore } from '@emberclear/test-helpers/test-support';
 
 import type { User } from '@emberclear/local-account';
 

@@ -8,7 +8,7 @@ import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
 import type Relay from 'emberclear/models/relay';
 import type ConnectionStatusService from 'emberclear/services/connection/status';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type MessageProcessor from 'emberclear/services/messages/processor';
 import type ToastService from 'emberclear/services/toast';
 import type { ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';

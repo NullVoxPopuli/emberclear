@@ -1,19 +1,6 @@
-import type WorkersService from '../../services/workers';
-import type { KeyPair } from '../types';
-import type {
-  DecryptFromSocket,
-  DerivePublicKey,
-  DerivePublicSigningKey,
-  EncryptForSocket,
-  GenerateKeys,
-  GenerateSigningKeys,
-  Hash,
-  Login,
-  MnemonicFromPrivateKey,
-  OpenSigned,
-  Sign,
-} from '@emberclear/crypto/workers/crypto/messages';
-import type { PWBHost } from 'promise-worker-bi';
+import type { WorkersService } from '@emberclear/crypto';
+import type { WorkerLike } from '@emberclear/crypto/-private/types';
+import type { EncryptedMessage, KeyPair, KeyPublic } from '@emberclear/crypto/types';
 
 type Args = {
   workerService: WorkersService;
@@ -42,7 +29,7 @@ enum WorkerCryptoAction {
 const Action = WorkerCryptoAction;
 
 export default class CryptoConnector {
-  getWorker: () => PWBHost;
+  getWorker: () => WorkerLike;
   keys: KeyPair;
 
   constructor({ workerService, keys }: Args) {
@@ -55,7 +42,7 @@ export default class CryptoConnector {
   async login(mnemonic: string) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<KeyPair & SigningKeyPair, Login>({
+    return await worker.postMessage({
       action: Action.LOGIN,
       args: [mnemonic],
     });
@@ -64,7 +51,7 @@ export default class CryptoConnector {
   async mnemonicFromNaClBoxPrivateKey(key?: Uint8Array) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<string, MnemonicFromPrivateKey>({
+    return await worker.postMessage({
       action: Action.MNEMONIC_FROM_PRIVATE_KEY,
       args: [key || this.keys.publicKey],
     });
@@ -73,7 +60,7 @@ export default class CryptoConnector {
   async generateKeys() {
     let worker = this.getWorker();
 
-    return await worker.postMessage<KeyPair, GenerateKeys>({
+    return await worker.postMessage({
       action: Action.GENERATE_KEYS,
       args: [],
     });
@@ -82,7 +69,7 @@ export default class CryptoConnector {
   async generateSigningKeys() {
     let worker = this.getWorker();
 
-    return await worker.postMessage<SigningKeyPair, GenerateSigningKeys>({
+    return await worker.postMessage({
       action: Action.GENERATE_SIGNING_KEYS,
       args: [],
     });
@@ -91,7 +78,7 @@ export default class CryptoConnector {
   async derivePublicKey(privateKey: Uint8Array) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<Uint8Array, DerivePublicKey>({
+    return await worker.postMessage({
       action: Action.DERIVE_PUBLIC_KEY,
       args: [privateKey],
     });
@@ -100,34 +87,35 @@ export default class CryptoConnector {
   async derivePublicSigningKey(privateSigningKey: Uint8Array) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<Uint8Array, DerivePublicSigningKey>({
+    return await worker.postMessage({
       action: Action.DERIVE_PUBLIC_SIGNING_KEY,
       args: [privateSigningKey],
     });
   }
 
-  async encryptForSocket(payload: RelayJson, { publicKey }: KeyPublic) {
+
+  async encryptForSocket(payload: Json, { publicKey }: KeyPublic) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<string, EncryptForSocket>({
+    return await worker.postMessage({
       action: Action.ENCRYPT_FOR_SOCKET,
       args: [payload, { publicKey }, { privateKey: this.keys.privateKey }],
     });
   }
 
-  async decryptFromSocket<ExpectedReturn = any>(socketData: RelayMessage) {
+  async decryptFromSocket<ExpectedReturn = unknown>(socketData: EncryptedMessage) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<ExpectedReturn, DecryptFromSocket>({
+    return (await worker.postMessage({
       action: Action.DECRYPT_FROM_SOCKET,
       args: [socketData, this.keys.privateKey],
-    });
+    })) as Promise<ExpectedReturn>;
   }
 
   async sign(message: Uint8Array, senderPrivateKey: Uint8Array) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<Uint8Array, Sign>({
+    return await worker.postMessage({
       action: Action.SIGN,
       args: [message, senderPrivateKey],
     });
@@ -136,7 +124,7 @@ export default class CryptoConnector {
   async openSigned(signedMessage: Uint8Array, senderPublicKey: Uint8Array) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<Uint8Array, OpenSigned>({
+    return await worker.postMessage({
       action: Action.OPEN_SIGNED,
       args: [signedMessage, senderPublicKey],
     });
@@ -145,7 +133,7 @@ export default class CryptoConnector {
   async hash(message: Uint8Array) {
     let worker = this.getWorker();
 
-    return await worker.postMessage<Uint8Array, Hash>({
+    return await worker.postMessage({
       action: Action.HASH,
       args: [message],
     });

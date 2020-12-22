@@ -4,7 +4,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
 import { setupCurrentUser, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { createContact } from '@emberclear/local-account/test-support';
 import { page } from 'emberclear/tests/helpers/pages/chat';
 
 import type { TestContext } from 'ember-test-helpers';

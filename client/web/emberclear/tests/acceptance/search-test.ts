@@ -4,15 +4,14 @@ import { setupApplicationTest } from 'ember-qunit';
 import { page } from 'emberclear/components/search/-page';
 import {
   clearLocalStorage,
-  getStore,
-  setupCurrentUser,
   setupRelayConnectionMocks,
-  setupWorkers,
   trackAsyncDataRequests,
-  visit,
 } from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
 import { page as app } from 'emberclear/tests/helpers/pages/app';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { createContact, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { getStore, visit } from '@emberclear/test-helpers/test-support';
 
 module('Acceptance | Search Modal', function (hooks) {
   setupApplicationTest(hooks);

@@ -8,7 +8,7 @@ import type StoreService from '@ember-data/store';
 import type Identity from 'emberclear/models/identity';
 import type Message from 'emberclear/models/message';
 import type ContactManager from 'emberclear/services/contact-manager';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type AutoResponder from 'emberclear/services/messages/auto-responder';
 import type Notifications from 'emberclear/services/notifications';
 import type StatusManager from 'emberclear/services/status-manager';

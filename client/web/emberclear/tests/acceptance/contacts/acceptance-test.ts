@@ -11,7 +11,7 @@ import {
   setupRelayConnectionMocks,
   visit,
 } from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { createContact } from '@emberclear/local-account/test-support';
 import { contacts } from 'emberclear/tests/helpers/pages/contacts';
 
 import type User from 'emberclear/models/user';

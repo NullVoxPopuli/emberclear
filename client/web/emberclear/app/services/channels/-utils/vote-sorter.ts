@@ -1,4 +1,4 @@
-import { convertObjectToUint8Array, toHex } from 'emberclear/utils/string-encoding';
+import { convertObjectToUint8Array, toHex } from '@emberclear/encoding/string';
 
 import type Identity from 'emberclear/models/identity';
 import type { VOTE_ACTION } from 'emberclear/models/vote-chain';

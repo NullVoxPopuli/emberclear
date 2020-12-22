@@ -3,7 +3,7 @@ import { setComponentTemplate } from '@ember/component';
 import { inject as service } from '@ember/service';
 import { hbs } from 'ember-cli-htmlbars';
 
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 class BeginButton extends Component {
   @service declare currentUser: CurrentUserService;

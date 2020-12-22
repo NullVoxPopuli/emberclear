@@ -30,8 +30,8 @@ export async function sign(message: Uint8Array, senderPrivateKey: Uint8Array): P
 export async function openSigned(
   signedMessage: Uint8Array,
   senderPublicKey: Uint8Array
-): Promise<Uint8Array> {
-  return nacl.sign.open(signedMessage, senderPublicKey)!;
+): Promise<Uint8Array | null> {
+  return nacl.sign.open(signedMessage, senderPublicKey);
 }
 
 export async function hash(message: Uint8Array): Promise<Uint8Array> {

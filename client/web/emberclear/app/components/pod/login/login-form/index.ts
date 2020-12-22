@@ -7,14 +7,14 @@ import { inject as service } from '@ember/service';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
-import CryptoConnector from 'emberclear/utils/workers/crypto';
+import CryptoConnector from '@emberclear/crypto';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type Settings from 'emberclear/services/settings';
 import type Toast from 'emberclear/services/toast';
-import type WorkersService from 'emberclear/services/workers';
+import type { WorkersService } from '@emberclear/crypto';
 
 export default class LoginForm extends Component {
   @service currentUser!: CurrentUserService;

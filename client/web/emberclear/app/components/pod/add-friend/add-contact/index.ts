@@ -8,7 +8,7 @@ import { taskFor } from 'ember-concurrency-ts';
 
 import type StoreService from '@ember-data/store';
 import type ContactManager from 'emberclear/services/contact-manager';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 export default class AddModal extends Component {
   @service toast!: Toast;

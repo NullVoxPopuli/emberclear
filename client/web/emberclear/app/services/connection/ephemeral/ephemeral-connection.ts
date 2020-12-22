@@ -6,13 +6,13 @@ import { inject as service } from '@ember/service';
 
 import { Connection } from 'emberclear/utils/connection/connection';
 import { pool } from 'emberclear/utils/connection/connection-pool';
-import { fromHex, toHex } from 'emberclear/utils/string-encoding';
-import CryptoConnector from 'emberclear/utils/workers/crypto';
+import { fromHex, toHex } from '@emberclear/encoding/string';
+import CryptoConnector from '@emberclear/crypto';
 
 import type StoreService from '@ember-data/store';
 import type Relay from 'emberclear/models/relay';
 import type SettingsService from 'emberclear/services/settings';
-import type WorkersService from 'emberclear/services/workers';
+import type { WorkersService } from '@emberclear/crypto';
 import type { ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';
 
 export class EphemeralConnection {

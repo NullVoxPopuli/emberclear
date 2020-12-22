@@ -9,7 +9,7 @@ import { taskFor } from 'ember-concurrency-ts';
 import type StoreService from '@ember-data/store';
 import type Channel from 'emberclear/models/channel';
 import type Contact from 'emberclear/models/contact';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 interface IArgs {
   isActive: boolean;

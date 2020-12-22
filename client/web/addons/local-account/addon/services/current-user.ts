@@ -1,4 +1,5 @@
 import { tracked } from '@glimmer/tracking';
+import { assert } from '@ember/debug';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
@@ -91,8 +92,11 @@ export default class CurrentUserService extends Service {
 
   async create(name: string): Promise<void> {
     await this.hydrateCrypto();
-    const { publicKey, privateKey } = await this.crypto!.generateKeys();
-    const { publicSigningKey, privateSigningKey } = await this.crypto!.generateSigningKeys();
+
+    assert(`Expected crypto to be setup`, this.crypto);
+
+    const { publicKey, privateKey } = await this.crypto.generateKeys();
+    const { publicSigningKey, privateSigningKey } = await this.crypto.generateSigningKeys();
 
     // remove existing record
     await this.store.unloadAll('user');
@@ -198,14 +202,16 @@ export default class CurrentUserService extends Service {
   async importFromKey(name: string, privateKey: Uint8Array, privateSigningKey?: Uint8Array) {
     this.hydrateCrypto();
 
-    const publicKey = await this.crypto!.derivePublicKey(privateKey);
+    assert(`Expected crypto to be setup`, this.crypto);
+
+    const publicKey = await this.crypto.derivePublicKey(privateKey);
 
     let publicSigningKey;
 
     if (privateSigningKey) {
-      publicSigningKey = await this.crypto!.derivePublicSigningKey(privateSigningKey);
+      publicSigningKey = await this.crypto.derivePublicSigningKey(privateSigningKey);
     } else {
-      let signingKeys = await this.crypto!.generateSigningKeys();
+      let signingKeys = await this.crypto.generateSigningKeys();
 
       publicSigningKey = signingKeys.publicSigningKey;
       privateSigningKey = signingKeys.privateSigningKey;
