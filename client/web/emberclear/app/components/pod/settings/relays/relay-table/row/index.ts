@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 
 import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
-import type Relay from 'emberclear/models/relay';
+import type { Relay } from '@emberclear/networking';
 import type ConnectionManager from 'emberclear/services/connection/manager';
 
 interface Args {

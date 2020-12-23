@@ -1,13 +1,14 @@
 import { decryptFrom, encryptFor } from './nacl';
 import { fromBase64, fromHex, toBase64, toString, toUint8Array } from './string-encoding';
 
-import type { EncryptedMessage, KeyPrivate, KeyPublic } from '@emberclear/crypto/types';
+import type {
+  EncryptedMessage,
+  KeyPrivate,
+  KeyPublic,
+  Serializable,
+} from '@emberclear/crypto/types';
 
-export async function encryptForSocket(
-  payload: Record<string, unknown>,
-  to: KeyPublic,
-  from: KeyPrivate
-) {
+export async function encryptForSocket(payload: Serializable, to: KeyPublic, from: KeyPrivate) {
   const payloadString = JSON.stringify(payload);
   const payloadBytes = toUint8Array(payloadString);
 

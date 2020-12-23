@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 
-import type Message from 'emberclear/models/message';
+import type { Message } from '@emberclear/networking';
 
 interface IArgs {
   message: Message;

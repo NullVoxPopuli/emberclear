@@ -7,7 +7,7 @@ import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
-import type Contact from 'emberclear/models/contact';
+import type { Contact } from '@emberclear/local-account';
 import type SettingsService from 'emberclear/services/settings';
 import type SidebarService from 'emberclear/services/sidebar';
 

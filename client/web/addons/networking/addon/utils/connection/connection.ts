@@ -1,12 +1,14 @@
 import { Socket } from 'phoenix';
 
-import type Relay from 'emberclear/models/relay';
+import type { EncryptedMessage } from '@emberclear/crypto/types';
+import type { Relay } from '@emberclear/networking';
+import type { RelayState, RelayStateJson } from '@emberclear/networking/types';
 import type { Channel } from 'phoenix';
 
 interface Args {
   relay: Relay;
   publicKey: string;
-  onData: (data: RelayMessage) => void;
+  onData: (data: EncryptedMessage) => void;
   onInfo: (data: RelayState) => void;
 }
 
@@ -20,7 +22,7 @@ export class Connection {
   url: string;
   publicKey: string;
   channelName: string;
-  onData: (data: RelayMessage) => void;
+  onData: (data: EncryptedMessage) => void;
   onInfo: (data: RelayState) => void;
 
   isConnected = false;
@@ -98,7 +100,7 @@ export class Connection {
     return new Promise((resolve, reject) => {
       if (!this.socket) return reject();
 
-      this.channel = this.socket.channel(this.channelName!, {});
+      this.channel = this.socket.channel(this.channelName, {});
 
       this.channel.on('chat', this.onData);
 
@@ -119,7 +121,7 @@ export class Connection {
           resolve(this.channel);
         })
         .receive('error', reject)
-        .receive('timeout', (...args: any[]) => {
+        .receive('timeout', (...args: unknown[]) => {
           console.info('channel timed out', ...args);
         });
     });

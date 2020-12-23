@@ -1,8 +1,8 @@
 import { module, skip } from 'qunit';
 import { setupTest, test } from 'ember-qunit';
 
-import { getService } from 'emberclear/tests/helpers';
-import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
+import { generateAsymmetricKeys } from '@emberclear/crypto/workers/crypto/utils/nacl';
+import { getService } from '@emberclear/test-helpers/test-support';
 
 import type { CurrentUserService } from '@emberclear/local-account';
 
@@ -19,9 +19,10 @@ module('Unit | Service | identity', function (hooks) {
     let keys = await generateAsymmetricKeys();
 
     await service.importFromKey('name', keys.privateKey);
+
     assert.ok(service.record);
-    assert.ok(service.record!.publicSigningKey);
-    assert.ok(service.record!.privateSigningKey);
+    assert.ok(service.record.publicSigningKey);
+    assert.ok(service.record.privateSigningKey);
   });
 
   skip('can dump and reload', async function (assert) {

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "composite": true
   },
+  "exclude": ["declarations"],
   "references": [
     { "path": "addon" },
     { "path": "addon-test-support" },

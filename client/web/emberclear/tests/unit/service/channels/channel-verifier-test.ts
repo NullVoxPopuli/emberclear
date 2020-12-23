@@ -10,7 +10,7 @@ import { buildUser } from '@emberclear/local-account/test-support';
 import { getService, getStore } from '@emberclear/test-helpers/test-support';
 
 import type User from 'emberclear/models/user';
-import type VoteChain from 'emberclear/models/vote-chain';
+import type VoteChain from '@emberclear/local-account/models/vote-chain';
 import type ChannelVerifier from 'emberclear/services/channels/channel-verifier';
 
 module('Unit | Service | channels/channel-verifier', function (hooks) {

@@ -1,3 +1,4 @@
+export { default as CryptoConnector } from './connector';
 export { default as WorkersService } from './services/workers';
 export type {
   KeyPair,
@@ -7,4 +8,3 @@ export type {
   SigningKeyPrivate,
   SigningKeyPublic,
 } from './types';
-export { default as CryptoConnector } from './utils/crypto';

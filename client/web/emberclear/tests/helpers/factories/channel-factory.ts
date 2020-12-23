@@ -1,4 +1,4 @@
-import { getService } from '../get-service';
+import { getService } from '@emberclear/test-helpers/test-support';
 
 export async function createChannel(name: string, attributes = {}) {
   let store = getService('store');

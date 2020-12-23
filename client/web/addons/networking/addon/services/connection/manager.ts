@@ -1,23 +1,24 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import { Connection } from 'emberclear/utils/connection/connection';
-import { pool } from 'emberclear/utils/connection/connection-pool';
+import { Connection } from '@emberclear/networking';
+import { pool } from '@emberclear/networking/utils/connection/connection-pool';
 
 import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
 import type { CurrentUserService } from '@emberclear/local-account';
-import type Relay from 'emberclear/models/relay';
-import type ConnectionStatusService from 'emberclear/services/connection/status';
-import type MessageProcessor from 'emberclear/services/messages/processor';
-import type ToastService from 'emberclear/services/toast';
-import type { ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';
+import type { ConnectionStatus, Relay } from '@emberclear/networking';
+import type MessageProcessor from '@emberclear/networking/services/messages/processor';
+import type { OpenGraphData } from '@emberclear/networking/types';
+import type {
+  ConnectionPool,
+  STATUS,
+} from '@emberclear/networking/utils/connection/connection-pool';
 
 export default class ConnectionManager extends Service {
-  @service declare toast: ToastService;
   @service declare store: StoreService;
   @service('messages/processor') declare processor: MessageProcessor;
-  @service('connection/status') declare status: ConnectionStatusService;
+  @service('connection/status') declare status: ConnectionStatus;
   @service declare currentUser: CurrentUserService;
 
   declare connectionPool?: ConnectionPool<Connection, Relay>;

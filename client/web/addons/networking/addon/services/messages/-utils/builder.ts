@@ -1,11 +1,11 @@
-import type Message from 'emberclear/models/message';
+import type { Message } from '@emberclear/networking';
 
 interface Sender {
   name: string;
   uid: string;
 }
 
-export function buildSender(sender: Sender): StandardMessage['sender'] {
+export function buildSender(sender: Sender) {
   return {
     name: sender.name,
     uid: sender.uid,
@@ -13,7 +13,7 @@ export function buildSender(sender: Sender): StandardMessage['sender'] {
   };
 }
 
-export function buildMessage(msg: Message): StandardMessage['message'] {
+export function buildMessage(msg: Message) {
   const { body, contentType } = msg;
 
   return {
@@ -22,7 +22,7 @@ export function buildMessage(msg: Message): StandardMessage['message'] {
   };
 }
 
-export function build(msg: Message, sender: Sender): RelayJson {
+export function build(msg: Message, sender: Sender) {
   return {
     id: msg.id,
     to: msg.to,

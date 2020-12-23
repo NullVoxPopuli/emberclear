@@ -3,21 +3,22 @@ import { inject as service } from '@ember/service';
 
 import { v4 as uuid } from 'uuid';
 
-import Channel from 'emberclear/models/channel';
-import Identity from 'emberclear/models/identity';
-import { TARGET, TYPE } from 'emberclear/models/message';
+import { Identity } from '@emberclear/local-account';
+import Channel from '@emberclear/local-account/models/channel';
+import { TARGET, TYPE } from '@emberclear/networking/models/message';
 
-import { buildChannelInfo, buildVote } from '../channels/-utils/channel-factory';
+// import { buildChannelInfo, buildVote } from '../channels/-utils/channel-factory';
 
 import type { CurrentUserService } from '@emberclear/local-account';
-import type Message from 'emberclear/models/message';
-import type Vote from 'emberclear/models/vote';
+import type Vote from '@emberclear/local-account/models/vote';
+import type { Message } from '@emberclear/networking';
+import type { P2PMessage } from '@emberclear/networking/types';
 
 export default class MessageFactory extends Service {
   @service declare store: any;
   @service declare currentUser: CurrentUserService;
 
-  buildNewReceivedMessage(json: StandardMessage, sender: Identity) {
+  buildNewReceivedMessage(json: P2PMessage, sender: Identity) {
     const { id, type, target, message: msg } = json;
 
     const message = this.store.createRecord('message', {
@@ -46,7 +47,7 @@ export default class MessageFactory extends Service {
       attributes = {
         target: TARGET.CHANNEL,
         to: to.id,
-        channelInfo: buildChannelInfo(to),
+        // channelInfo: buildChannelInfo(to),
       };
     }
 
@@ -62,30 +63,30 @@ export default class MessageFactory extends Service {
     return message;
   }
 
-  buildChannelVote(vote: Vote, to: Channel) {
-    return this.build({
-      type: TYPE.CHANNEL_VOTE,
-      to: to.id,
-      metadata: buildVote(vote),
-      channelInfo: buildChannelInfo(to),
-    });
-  }
+  // buildChannelVote(vote: Vote, to: Channel) {
+  //   return this.build({
+  //     type: TYPE.CHANNEL_VOTE,
+  //     to: to.id,
+  //     metadata: buildVote(vote),
+  //     channelInfo: buildChannelInfo(to),
+  //   });
+  // }
 
-  buildChannelInfoSyncRequest(to: Channel) {
-    return this.build({
-      type: TYPE.INFO_CHANNEL_SYNC_REQUEST,
-      to: to.id,
-      channelInfo: buildChannelInfo(to),
-    });
-  }
+  // buildChannelInfoSyncRequest(to: Channel) {
+  //   return this.build({
+  //     type: TYPE.INFO_CHANNEL_SYNC_REQUEST,
+  //     to: to.id,
+  //     channelInfo: buildChannelInfo(to),
+  //   });
+  // }
 
-  buildChannelInfoSyncFulfill(to: Identity, data: Channel) {
-    return this.build({
-      type: TYPE.INFO_CHANNEL_SYNC_FULFILL,
-      to: to.uid,
-      channelInfo: buildChannelInfo(data),
-    });
-  }
+  // buildChannelInfoSyncFulfill(to: Identity, data: Channel) {
+  //   return this.build({
+  //     type: TYPE.INFO_CHANNEL_SYNC_FULFILL,
+  //     to: to.uid,
+  //     channelInfo: buildChannelInfo(data),
+  //   });
+  // }
 
   buildPing() {
     return this.build({ type: TYPE.PING });

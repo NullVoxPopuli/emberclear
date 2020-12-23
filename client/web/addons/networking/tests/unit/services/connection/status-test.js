@@ -3,7 +3,7 @@ import { setupTest } from 'ember-qunit';
 
 import { timeout } from 'ember-concurrency';
 
-import { getService } from 'emberclear/tests/helpers';
+import { getService } from '@emberclear/test-helpers/test-support';
 import {
   STATUS_CONNECTED,
   STATUS_CONNECTING,

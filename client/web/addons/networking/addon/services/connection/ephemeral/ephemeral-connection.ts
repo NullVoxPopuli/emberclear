@@ -4,22 +4,23 @@ import { assert } from '@ember/debug';
 import { associateDestroyableChild, registerDestructor } from '@ember/destroyable';
 import { inject as service } from '@ember/service';
 
-import { Connection } from 'emberclear/utils/connection/connection';
-import { pool } from 'emberclear/utils/connection/connection-pool';
-
 import { CryptoConnector } from '@emberclear/crypto';
 import { fromHex, toHex } from '@emberclear/encoding/string';
+import { Connection } from '@emberclear/networking';
+import { pool } from '@emberclear/networking/utils/connection/connection-pool';
 
 import type StoreService from '@ember-data/store';
 import type { WorkersService } from '@emberclear/crypto';
-import type Relay from 'emberclear/models/relay';
-import type SettingsService from 'emberclear/services/settings';
-import type { ConnectionPool, STATUS } from 'emberclear/utils/connection/connection-pool';
+import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
+import type { Relay } from '@emberclear/networking';
+import type {
+  ConnectionPool,
+  STATUS,
+} from '@emberclear/networking/utils/connection/connection-pool';
 
 export class EphemeralConnection {
-  @service store!: StoreService;
-  @service workers!: WorkersService;
-  @service settings!: SettingsService;
+  @service declare store: StoreService;
+  @service declare workers: WorkersService;
 
   // setup in the psuedo constructor (static method: build)
   // (build is an "async constructor")
@@ -58,7 +59,8 @@ export class EphemeralConnection {
     /* hack to get inheritence in static methods */
     this: { new (hex?: string): SubClass },
     /* the actual params to this method */
-    parent: unknown,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    parent: object,
     publicKeyAsHex?: string
   ): Promise<SubClass> {
     let instance = new this(publicKeyAsHex);
@@ -100,7 +102,7 @@ export class EphemeralConnection {
     this.disconnect();
   }
 
-  onData(_data: RelayMessage) {
+  onData(_data: EncryptedMessage) {
     throw new Error('onData must be overridden in a subclass');
   }
 
@@ -113,7 +115,7 @@ export class EphemeralConnection {
     this.hexId = hex;
   }
 
-  async send(message: RelayJson) {
+  async send(message: EncryptableObject) {
     if (!this.target) {
       throw new Error('Cannot send a message with no target');
     }
@@ -152,7 +154,7 @@ async function generateEphemeralKeys(workers: WorkersService) {
 
 async function createConnection(
   publicKey: string,
-  onData: (data: RelayMessage) => void,
+  onData: (data: EncryptableObject) => void,
   relay: Relay
 ) {
   let instance = new Connection({

@@ -4,7 +4,7 @@ import { setupRenderingTest } from 'ember-qunit';
 
 import hbs from 'htmlbars-inline-precompile';
 
-import { getService } from 'emberclear/tests/helpers';
+import { getService } from '@emberclear/test-helpers/test-support';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 module('Integration | Component | q-r-scanner', function (hooks) {

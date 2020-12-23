@@ -13,8 +13,8 @@ import {
 } from 'emberclear/tests/helpers';
 import { createContact } from '@emberclear/local-account/test-support';
 
-import type Identity from 'emberclear/models/identity';
-import type Message from 'emberclear/models/message';
+import type { Identity } from '@emberclear/local-account';
+import type { Message } from '@emberclear/networking';
 import type AutoResponder from 'emberclear/services/messages/auto-responder';
 
 module('Unit | Service | messages/auto-responder', function (hooks) {

@@ -17,7 +17,7 @@ import { createContact } from '@emberclear/local-account/test-support';
 import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 
-import type Contact from 'emberclear/models/contact';
+import type { Contact } from '@emberclear/local-account';
 
 module('Acceptance | Sidebar', function (hooks) {
   setupApplicationTest(hooks);

@@ -4,8 +4,10 @@ import { inject as service } from '@ember/service';
 import { enqueueTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
+import type { EncryptedMessage } from '@emberclear/crypto/types';
 import type { CurrentUserService } from '@emberclear/local-account';
 import type ReceivedMessageHandler from '@emberclear/networking/services/messages/handler';
+import type { P2PMessage } from '@emberclear/networking/types';
 
 export default class MessageProcessor extends Service {
   @service declare currentUser: CurrentUserService;
@@ -21,14 +23,14 @@ export default class MessageProcessor extends Service {
    * behavior.
    *
    */
-  receive(socketData: RelayMessage) {
+  receive(socketData: EncryptedMessage) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     taskFor(this._receive).perform(socketData);
   }
 
   @enqueueTask({ withTestWaiter: true, maxConcurrency: 1 })
-  async _receive(socketData: RelayMessage) {
-    const decrypted = await this.currentUser.crypto.decryptFromSocket<StandardMessage>(socketData);
+  async _receive(socketData: EncryptedMessage) {
+    const decrypted = await this.currentUser.crypto.decryptFromSocket<P2PMessage>(socketData);
 
     await this.handler.handle(decrypted);
   }

@@ -5,8 +5,8 @@ import { inject as service } from '@ember/service';
 
 import { languages as allLanguages } from 'emberclear/services/prism-manager';
 
-import type Channel from 'emberclear/models/channel';
-import type Contact from 'emberclear/models/contact';
+import type { Channel } from '@emberclear/local-account';
+import type { Contact } from '@emberclear/local-account';
 import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
 
 const codeDelimiter = '```';

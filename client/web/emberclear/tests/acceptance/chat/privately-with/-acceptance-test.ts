@@ -19,8 +19,8 @@ import { createMessage } from 'emberclear/tests/helpers/factories/message-factor
 import { page, selectors } from 'emberclear/tests/helpers/pages/chat';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 
-import type Contact from 'emberclear/models/contact';
-import type Message from 'emberclear/models/message';
+import type { Contact } from '@emberclear/local-account';
+import type { Message } from '@emberclear/networking';
 
 module('Acceptance | Chat | Privately With', function (hooks) {
   setupApplicationTest(hooks);

@@ -2,16 +2,15 @@ import { tracked } from '@glimmer/tracking';
 // see note below -- needs investigating
 // eslint-disable-next-line
 import { computed } from '@ember/object';
-import Model, { attr } from '@ember-data/model';
+import Model, { attr, hasMany } from '@ember-data/model';
 
 import { toHex } from '@emberclear/encoding/string';
 
-export interface PublicKey {
-  publicKey: Uint8Array;
-  publicSigningKey: Uint8Array;
-}
+import type ChannelContextChain from './channel-context-chain';
+import type VoteChain from './vote-chain';
+import type { KeyPublic, SigningKeyPublic } from '@emberclear/crypto';
 
-export default class Identity extends Model implements Partial<PublicKey> {
+export default class Identity extends Model implements Partial<KeyPublic & SigningKeyPublic> {
   @attr() name!: string;
   @attr() publicKey!: Uint8Array;
   @attr() publicSigningKey!: Uint8Array;
@@ -43,5 +42,25 @@ export default class Identity extends Model implements Partial<PublicKey> {
     return `${name} (${shortKey})`;
   }
 
-  // @hasMany('message', { async: false }) messages!: unknown[];
+  // TODO: CLEAN THIS UP
+  //       SEE README
+  // Unused, but necessary to properly set up relationships, therefore async
+  // eslint-disable-next-line prettier/prettier
+  @hasMany('channel-context-chain', { async: true, inverse: 'admin' })
+  adminOf?: ChannelContextChain;
+  // eslint-disable-next-line prettier/prettier
+  @hasMany('channel-context-chain', { async: true, inverse: 'members' })
+  memberOf?: ChannelContextChain;
+  @hasMany('vote-chain', { async: true, inverse: 'target' }) targetOfVote?: VoteChain;
+  @hasMany('vote-chain', { async: true, inverse: 'key' }) voterOf?: VoteChain;
+  @hasMany('vote-chain', { async: true, inverse: 'yes' }) votedYesIn?: VoteChain;
+  @hasMany('vote-chain', { async: true, inverse: 'no' }) votedNoIn?: VoteChain;
+  @hasMany('vote-chain', { async: true, inverse: 'remaining' }) stillRemainingIn?: VoteChain;
+}
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your models.
+declare module 'ember-data/types/registries/model' {
+  export default interface ModelRegistry {
+    identity: Identity;
+  }
 }

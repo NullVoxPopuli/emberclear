@@ -1,32 +1,30 @@
 import type { WorkersService } from '@emberclear/crypto';
 import type { WorkerLike } from '@emberclear/crypto/-private/types';
-import type { EncryptedMessage, KeyPair, KeyPublic } from '@emberclear/crypto/types';
+import type { EncryptedMessage, KeyPair, KeyPublic, Serializable } from '@emberclear/crypto/types';
 
 type Args = {
   workerService: WorkersService;
   keys?: KeyPair;
 };
 
-enum WorkerCryptoAction {
+const Action = {
   // Generation
-  LOGIN = 0,
-  GENERATE_KEYS = 1,
-  DECRYPT_FROM_SOCKET = 2,
-  ENCRYPT_FOR_SOCKET = 3,
-  GENERATE_SIGNING_KEYS = 4,
-  SIGN = 5,
-  OPEN_SIGNED = 6,
-  HASH = 7,
+  LOGIN: 0,
+  GENERATE_KEYS: 1,
+  DECRYPT_FROM_SOCKET: 2,
+  ENCRYPT_FOR_SOCKET: 3,
+  GENERATE_SIGNING_KEYS: 4,
+  SIGN: 5,
+  OPEN_SIGNED: 6,
+  HASH: 7,
 
   // Conversions
-  MNEMONIC_FROM_PRIVATE_KEY = 50,
+  MNEMONIC_FROM_PRIVATE_KEY: 50,
 
   // TODO: should find a way to not need these
-  DERIVE_PUBLIC_KEY = 100,
-  DERIVE_PUBLIC_SIGNING_KEY = 101,
-}
-
-const Action = WorkerCryptoAction;
+  DERIVE_PUBLIC_KEY: 100,
+  DERIVE_PUBLIC_SIGNING_KEY: 101,
+} as const;
 
 export default class CryptoConnector {
   getWorker: () => WorkerLike;
@@ -93,7 +91,7 @@ export default class CryptoConnector {
     });
   }
 
-  async encryptForSocket(payload: Json, { publicKey }: KeyPublic) {
+  async encryptForSocket(payload: Serializable, { publicKey }: KeyPublic) {
     let worker = this.getWorker();
 
     return await worker.postMessage({

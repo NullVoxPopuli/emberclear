@@ -3,6 +3,8 @@ import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import type ChannelContextChain from './channel-context-chain';
 import type Vote from './vote';
 
+// TODO: CLEAN THIS UP
+//       SEE README
 export default class Channel extends Model {
   @attr() name!: string;
 

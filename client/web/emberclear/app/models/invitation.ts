@@ -1,6 +1,6 @@
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-import type Identity from 'emberclear/models/identity';
+import type { Identity } from '@emberclear/local-account';
 import type InvitationResult from 'emberclear/models/invitation-result';
 
 export default class Invitation extends Model {

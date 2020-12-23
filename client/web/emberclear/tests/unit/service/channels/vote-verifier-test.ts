@@ -11,7 +11,7 @@ import { buildUser } from '@emberclear/local-account/test-support';
 import { getService, getStore } from '@emberclear/test-helpers/test-support';
 
 import type User from 'emberclear/models/user';
-import type VoteChain from 'emberclear/models/vote-chain';
+import type VoteChain from '@emberclear/local-account/models/vote-chain';
 import type VoteVerifier from 'emberclear/services/channels/vote-verifier';
 
 module('Unit | Service | channels/vote-verifier', function (hooks) {

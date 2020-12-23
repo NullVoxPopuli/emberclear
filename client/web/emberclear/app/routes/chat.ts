@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 import type StoreService from '@ember-data/store';
 import type { CurrentUserService } from '@emberclear/local-account';
-import type Message from 'emberclear/models/message';
+import type { Message } from '@emberclear/networking';
 import type { ConnectionService } from 'emberclear/networking';
 import type RedirectManager from 'emberclear/services/redirect-manager';
 

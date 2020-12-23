@@ -2,10 +2,10 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
 
-import type { IQueryParams } from 'emberclear/controllers/invite';
-import type ChannelManager from 'emberclear/services/channel-manager';
-import type ContactManager from 'emberclear/services/contact-manager';
 import type { CurrentUserService } from '@emberclear/local-account';
+import type ChannelManager from '@emberclear/local-account/services/channel-manager';
+import type ContactManager from '@emberclear/local-account/services/contact-manager';
+import type { IQueryParams } from 'emberclear/controllers/invite';
 import type RedirectManager from 'emberclear/services/redirect-manager';
 
 export default class InviteRoute extends Route {

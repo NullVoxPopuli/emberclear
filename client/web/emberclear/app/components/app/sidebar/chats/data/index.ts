@@ -6,8 +6,8 @@ import { idFrom, PRIVATE_CHAT_REGEX } from 'emberclear/utils/route-matchers';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
-import type Channel from 'emberclear/models/channel';
-import type Contact from 'emberclear/models/contact';
+import type { Channel } from '@emberclear/local-account';
+import type { Contact } from '@emberclear/local-account';
 import type ContactManager from 'emberclear/services/contact-manager';
 import type { CurrentUserService } from '@emberclear/local-account';
 import type SettingsService from 'emberclear/services/settings';

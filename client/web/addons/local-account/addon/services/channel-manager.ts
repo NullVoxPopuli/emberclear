@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
-import type Channel from 'emberclear/models/channel';
+import type { Channel } from '@emberclear/local-account';
 
 export default class ChannelManager extends Service {
   @service declare store: StoreService;

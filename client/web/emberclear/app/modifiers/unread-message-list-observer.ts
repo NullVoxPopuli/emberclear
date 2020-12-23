@@ -9,7 +9,7 @@ import { markAsRead } from 'emberclear/models/message/utils';
 import { isInElementWithinViewport } from 'emberclear/utils/dom/utils';
 
 import type StoreService from '@ember-data/store';
-import type Message from 'emberclear/models/message';
+import type { Message } from '@emberclear/networking';
 import type SidebarService from 'emberclear/services/sidebar';
 
 export default class UnreadMessagesIntersectionObserver extends Modifier {

@@ -16,3 +16,10 @@ export default class Contact extends Identity {
   @attr() onlineStatus?: STATUS;
   @attr() isPinned?: boolean;
 }
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your models.
+declare module 'ember-data/types/registries/model' {
+  export default interface ModelRegistry {
+    contact: Contact;
+  }
+}

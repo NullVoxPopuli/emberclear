@@ -1,5 +1,9 @@
 // install types
 import '@emberclear/networking/type-support';
+// have to import files that aren't imported elsewhere
+// these should be periodically checked to see if they can be removed
+import 'emberclear/services/redirect-manager';
+import 'emberclear/services/chat-scroller';
 
 import Application from '@ember/application';
 

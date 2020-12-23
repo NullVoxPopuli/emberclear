@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { getStore } from 'emberclear/tests/helpers';
+import { getStore } from '@emberclear/test-helpers/test-support';
 import { buildContact } from 'emberclear/tests/helpers/factories/contact-factory';
 
 module('Unit | Model | contact', function (hooks) {

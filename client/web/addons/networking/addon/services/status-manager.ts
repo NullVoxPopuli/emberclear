@@ -1,11 +1,11 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import { Status } from 'emberclear/models/contact';
+import { Status } from '@emberclear/local-account/models/contact';
 
 import type StoreService from '@ember-data/store';
-import type Contact from 'emberclear/models/contact';
-import type ContactManager from 'emberclear/services/contact-manager';
+import type { Contact } from '@emberclear/local-account';
+import type ContactManager from '@emberclear/local-account/services/contact-manager';
 
 // TODO: does this need to be its own service?
 //       should these functions move to the ContactManager?

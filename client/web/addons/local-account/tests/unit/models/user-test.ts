@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { getStore } from 'emberclear/tests/helpers';
+import { getStore } from '@emberclear/test-helpers/test-support';
 
 module('Unit | Model | user', function (hooks) {
   setupTest(hooks);

@@ -13,3 +13,12 @@ export interface EncryptedMessage {
   message: string;
 }
 
+export type Serializable =
+  | string
+  | number
+  | boolean
+  | Date
+  | Serializable[]
+  | { [key: string]: Serializable };
+
+export type EncryptableObject = Record<string, Serializable>;

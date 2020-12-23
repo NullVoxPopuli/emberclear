@@ -11,7 +11,7 @@ import {
 } from './utils/nacl';
 import { decryptFromSocket, encryptForSocket } from './utils/socket';
 
-const WorkerCryptoAction = {
+const Action = {
   // Generation
   LOGIN: 0,
   GENERATE_KEYS: 1,
@@ -31,17 +31,17 @@ const WorkerCryptoAction = {
 } as const;
 
 export type API = {
-  [WorkerCryptoAction.LOGIN]: typeof login;
-  [WorkerCryptoAction.GENERATE_KEYS]: typeof generateAsymmetricKeys;
-  [WorkerCryptoAction.GENERATE_SIGNING_KEYS]: typeof generateSigningKeys;
-  [WorkerCryptoAction.DECRYPT_FROM_SOCKET]: typeof decryptFromSocket;
-  [WorkerCryptoAction.ENCRYPT_FOR_SOCKET]: typeof encryptForSocket;
-  [WorkerCryptoAction.SIGN]: typeof sign;
-  [WorkerCryptoAction.OPEN_SIGNED]: typeof openSigned;
-  [WorkerCryptoAction.HASH]: typeof hash;
-  [WorkerCryptoAction.DERIVE_PUBLIC_KEY]: typeof derivePublicKey;
-  [WorkerCryptoAction.DERIVE_PUBLIC_SIGNING_KEY]: typeof derivePublicSigningKey;
-  [WorkerCryptoAction.MNEMONIC_FROM_PRIVATE_KEY]: typeof mnemonicFromNaClBoxPrivateKey;
+  [Action.LOGIN]: typeof login;
+  [Action.GENERATE_KEYS]: typeof generateAsymmetricKeys;
+  [Action.GENERATE_SIGNING_KEYS]: typeof generateSigningKeys;
+  [Action.DECRYPT_FROM_SOCKET]: typeof decryptFromSocket;
+  [Action.ENCRYPT_FOR_SOCKET]: typeof encryptForSocket;
+  [Action.SIGN]: typeof sign;
+  [Action.OPEN_SIGNED]: typeof openSigned;
+  [Action.HASH]: typeof hash;
+  [Action.DERIVE_PUBLIC_KEY]: typeof derivePublicKey;
+  [Action.DERIVE_PUBLIC_SIGNING_KEY]: typeof derivePublicSigningKey;
+  [Action.MNEMONIC_FROM_PRIVATE_KEY]: typeof mnemonicFromNaClBoxPrivateKey;
 };
 
 export type CryptoMessage = {
@@ -57,27 +57,27 @@ export function handleMessage<Action extends keyof API>(
   const { action, args } = message as TODO;
 
   switch (action) {
-    case WorkerCryptoAction.LOGIN:
+    case Action.LOGIN:
       return (login as TODO)(action, ...args);
-    case WorkerCryptoAction.GENERATE_KEYS:
+    case Action.GENERATE_KEYS:
       return (generateAsymmetricKeys as TODO)();
-    case WorkerCryptoAction.GENERATE_SIGNING_KEYS:
+    case Action.GENERATE_SIGNING_KEYS:
       return (generateSigningKeys as TODO)();
-    case WorkerCryptoAction.DECRYPT_FROM_SOCKET:
+    case Action.DECRYPT_FROM_SOCKET:
       return (decryptFromSocket as TODO)(...args);
-    case WorkerCryptoAction.ENCRYPT_FOR_SOCKET:
+    case Action.ENCRYPT_FOR_SOCKET:
       return (encryptForSocket as TODO)(...args);
-    case WorkerCryptoAction.SIGN:
+    case Action.SIGN:
       return (sign as TODO)(...args);
-    case WorkerCryptoAction.OPEN_SIGNED:
+    case Action.OPEN_SIGNED:
       return (openSigned as TODO)(...args);
-    case WorkerCryptoAction.HASH:
+    case Action.HASH:
       return (hash as TODO)(...args);
-    case WorkerCryptoAction.DERIVE_PUBLIC_KEY:
+    case Action.DERIVE_PUBLIC_KEY:
       return (derivePublicKey as TODO)(...args);
-    case WorkerCryptoAction.DERIVE_PUBLIC_SIGNING_KEY:
+    case Action.DERIVE_PUBLIC_SIGNING_KEY:
       return (derivePublicSigningKey as TODO)(...args);
-    case WorkerCryptoAction.MNEMONIC_FROM_PRIVATE_KEY:
+    case Action.MNEMONIC_FROM_PRIVATE_KEY:
       return (mnemonicFromNaClBoxPrivateKey as TODO)(...args);
     default:
       throw new Error(`unknown message for crypto worker: ${action}`);

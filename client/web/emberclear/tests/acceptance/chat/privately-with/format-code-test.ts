@@ -13,7 +13,7 @@ import {
 import { createContact } from '@emberclear/local-account/test-support';
 import { page } from 'emberclear/tests/helpers/pages/chat';
 
-import type Contact from 'emberclear/models/contact';
+import type { Contact } from '@emberclear/local-account';
 
 let codeA = stripIndent`
   \`\`\`ts

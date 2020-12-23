@@ -6,11 +6,11 @@ import { timeout } from 'ember-concurrency';
 import { task } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
-import { Status } from 'emberclear/models/contact';
+import { Status } from '@emberclear/local-account';
 
 import type StoreService from '@ember-data/store';
+import type { Contact } from '@emberclear/local-account';
 import type { MessageDispatcher, MessageFactory } from '@emberclear/networking';
-import type Contact from 'emberclear/models/contact';
 
 const THIRTY_SECONDS = 30000;
 

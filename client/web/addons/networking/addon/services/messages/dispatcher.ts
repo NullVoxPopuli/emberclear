@@ -5,24 +5,17 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
-import Contact from 'emberclear/models/contact';
-import User from 'emberclear/models/user';
-
 import { toHex } from '@emberclear/encoding/string';
+import { Contact, User } from '@emberclear/local-account';
 
 import { build as toPayloadJson } from './-utils/builder';
 
 import type StoreService from '@ember-data/store';
-import type { CurrentUserService } from '@emberclear/local-account';
-import type Channel from 'emberclear/models/channel';
-import type Message from 'emberclear/models/message';
-import type ConnectionService from 'emberclear/services/connection';
-import type MessageFactory from 'emberclear/services/messages/factory';
-import type Notifications from 'emberclear/services/notifications';
-import type StatusManager from 'emberclear/services/status-manager';
+import type { Channel, CurrentUserService } from '@emberclear/local-account';
+import type { ConnectionService, Message, MessageFactory } from '@emberclear/networking';
+import type StatusManager from '@emberclear/networking/services/status-manager';
 
 export default class MessageDispatcher extends Service {
-  @service declare notifications: Notifications;
   @service declare store: StoreService;
   @service declare connection: ConnectionService;
   @service declare currentUser: CurrentUserService;

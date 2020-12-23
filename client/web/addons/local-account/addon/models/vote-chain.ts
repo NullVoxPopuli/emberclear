@@ -1,8 +1,8 @@
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
 import type ChannelContextChain from './channel-context-chain';
+import type Identity from './identity';
 import type Vote from './vote';
-import type Identity from 'emberclear/models/identity';
 
 export enum VOTE_ACTION {
   ADD = 'add',
@@ -10,6 +10,8 @@ export enum VOTE_ACTION {
   PROMOTE = 'promote',
 }
 
+// TODO: CLEAN THIS UP
+//       SEE README
 export default class VoteChain extends Model {
   @hasMany('identity', { async: false, inverse: 'stillRemainingIn' }) remaining!: Identity[];
   @hasMany('identity', { async: false, inverse: 'votedYesIn' }) yes!: Identity[];

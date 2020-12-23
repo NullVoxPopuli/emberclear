@@ -2,7 +2,7 @@ import { TARGET, TYPE } from 'emberclear/models/message';
 
 import { getService } from '../get-service';
 
-import type Identity from 'emberclear/models/identity';
+import type { Identity } from '@emberclear/local-account';
 
 export async function createMessage(to: Identity, from: Identity, body: string, attributes = {}) {
   let store = getService('store');

@@ -8,7 +8,7 @@ import Modifier from 'ember-modifier';
 import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
 
 import type StoreService from '@ember-data/store';
-import type Contact from 'emberclear/models/contact';
+import type { Contact } from '@emberclear/local-account';
 
 interface Args {
   positional: [Contact];

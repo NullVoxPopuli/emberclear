@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import 'ember';
 import '@ember/component';
 // import '@ember/component/helper';
@@ -12,6 +13,12 @@ declare module '@ember/component' {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   export function setComponentTemplate(template: TF, klass: any): any;
 }
+
+// Types are not published. Must use the polyfill for its types
+// declare module '@ember/destroyable' {
+//   export function associateDestroyableChild(parent: any, child: any): any;
+//   export function registerDestructor(child: any, childMethod: () => any): any;
+// }
 
 // import type Helper from '@ember/component/helper';
 

@@ -8,11 +8,12 @@ import { isContact } from '@emberclear/local-account/utils';
 import type MessageFactory from './factory';
 import type StoreService from '@ember-data/store';
 import type { CurrentUserService } from '@emberclear/local-account';
-import type Message from 'emberclear/models/message';
+import type { Message } from '@emberclear/networking';
 import type ContactManager from 'emberclear/services/contact-manager';
 import type AutoResponder from 'emberclear/services/messages/auto-responder';
 import type Notifications from 'emberclear/services/notifications';
 import type StatusManager from 'emberclear/services/status-manager';
+import {P2PMessage} from '@emberclear/networking/types';
 
 export default class ReceivedMessageHandler extends Service {
   @service declare store: StoreService;
@@ -57,11 +58,13 @@ export default class ReceivedMessageHandler extends Service {
     }
   }
 
-  private async handleDeliveryConfirmation(message: Message, raw: StandardMessage) {
+  private async handleDeliveryConfirmation(message: Message, raw: P2PMessage) {
     const targetMessage = await this.store.findRecord('message', raw.to);
 
     // targetMessage.set('confirmationFor', message);
-    message.deliveryConfirmations!.pushObject(targetMessage);
+    // TODO: see if ember data relationships can use normal push
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (message.deliveryConfirmations as any).pushObject(targetMessage);
 
     // blocking?
     await message.save();
@@ -69,7 +72,7 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleInfoChannelInfo(message: Message, _raw: StandardMessage) {
+  private async handleInfoChannelInfo(message: Message, _raw: P2PMessage) {
     return message;
   }
 
@@ -79,7 +82,7 @@ export default class ReceivedMessageHandler extends Service {
     this.statusManager.markOffline(message.from);
   }
 
-  private async handleChat(message: Message, raw: StandardMessage) {
+  private async handleChat(message: Message, raw: P2PMessage) {
     // non-blocking
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.autoResponder.messageReceived(message);
@@ -114,13 +117,13 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleChannelChat(message: Message, _raw: StandardMessage) {
+  private async handleChannelChat(message: Message, _raw: P2PMessage) {
     // TODO: if message is a channel message, deconstruct the channel info
 
     return message;
   }
 
-  private async decomposeMessage(json: StandardMessage) {
+  private async decomposeMessage(json: P2PMessage) {
     let { id, sender: senderInfo } = json;
 
     let sender = await this.findOrCreateSender(senderInfo);
@@ -173,7 +176,7 @@ export default class ReceivedMessageHandler extends Service {
       if (numTooMany > 0) {
         let oldMessages = forDM.splice(0, numTooMany);
 
-        await Promise.all(oldMessages.map((oldMessage) => oldMessage.destroyRecord()));
+        await Promise.all(oldMessages.map((oldMessage: Message) => oldMessage.destroyRecord()));
       }
     }
   }

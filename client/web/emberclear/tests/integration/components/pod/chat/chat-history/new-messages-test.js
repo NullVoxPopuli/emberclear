@@ -6,7 +6,7 @@ import { setupRenderingTest } from 'ember-qunit';
 
 import { create } from 'ember-cli-page-object';
 
-import { getService } from 'emberclear/tests/helpers';
+import { getService } from '@emberclear/test-helpers/test-support';
 import { newMessages as definition } from 'emberclear/tests/helpers/page-objects';
 
 module('Integration | Component | chat/chat-history/new-messages', function (hooks) {

@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-import type VoteChain from 'emberclear/models/vote-chain';
+import type VoteChain from '@emberclear/local-account/models/vote-chain';
 
 interface IArgs {
   vote: VoteChain;

@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 
 import type RouterService from '@ember/routing/router-service';
-import type Channel from 'emberclear/models/channel';
+import type { Channel } from '@emberclear/local-account';
 import type SidebarService from 'emberclear/services/sidebar';
 
 type Args = {

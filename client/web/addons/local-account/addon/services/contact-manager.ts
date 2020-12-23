@@ -6,7 +6,8 @@ import { fromHex } from '@emberclear/encoding/string';
 
 import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
-import type Contact from 'emberclear/models/contact';
+import type { Contact } from '@emberclear/local-account';
+import type { ImportableIdentity } from '@emberclear/local-account/types';
 
 export default class ContactManager extends Service {
   @service declare store: StoreService;
@@ -17,7 +18,7 @@ export default class ContactManager extends Service {
     return this.store.findRecord('contact', uid);
   }
 
-  async import(contacts: Partial<IdentityJson>[]) {
+  async import(contacts: Partial<ImportableIdentity>[]) {
     this.isImporting = true;
 
     try {

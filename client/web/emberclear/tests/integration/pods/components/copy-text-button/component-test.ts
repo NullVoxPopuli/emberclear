@@ -5,7 +5,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { triggerCopySuccess } from 'ember-cli-clipboard/test-support';
 import hbs from 'htmlbars-inline-precompile';
 
-import { getService } from 'emberclear/tests/helpers';
+import { getService } from '@emberclear/test-helpers/test-support';
 
 module('Integration | Component | copy-text-button', function (hooks) {
   setupRenderingTest(hooks);
