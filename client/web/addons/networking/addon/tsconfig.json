@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.compiler-options.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declarationDir": "../declarations",
+    "paths": {
+      "@emberclear/networking": ["."],
+      "@emberclear/networking/*": ["./*"],
+
+      "*": ["../types/*"]
+    }
+  },
+  "include": [".", "../types"],
+  "references": [
+    { "path": "../../../libraries/questionably-typed" }
+  ]
+}
