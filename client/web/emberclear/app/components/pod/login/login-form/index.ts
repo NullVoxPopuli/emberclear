@@ -7,22 +7,22 @@ import { inject as service } from '@ember/service';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
-import CryptoConnector from '@emberclear/crypto';
+import { CryptoConnector } from '@emberclear/crypto';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
+import type { WorkersService } from '@emberclear/crypto';
 import type { CurrentUserService } from '@emberclear/local-account';
 import type Settings from 'emberclear/services/settings';
 import type Toast from 'emberclear/services/toast';
-import type { WorkersService } from '@emberclear/crypto';
 
 export default class LoginForm extends Component {
-  @service currentUser!: CurrentUserService;
-  @service settings!: Settings;
-  @service toast!: Toast;
-  @service router!: RouterService;
-  @service store!: StoreService;
-  @service workers!: WorkersService;
+  @service declare currentUser: CurrentUserService;
+  @service declare settings: Settings;
+  @service declare toast: Toast;
+  @service declare router: RouterService;
+  @service declare store: StoreService;
+  @service declare workers: WorkersService;
 
   @tracked mnemonic = '';
   @tracked name = '';

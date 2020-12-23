@@ -24,3 +24,10 @@ export default class EmberclearIdentity extends LocalIdentity {
   @hasMany('vote-chain', { async: true, inverse: 'no' }) votedNoIn?: VoteChain;
   @hasMany('vote-chain', { async: true, inverse: 'remaining' }) stillRemainingIn?: VoteChain;
 }
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your models.
+declare module 'ember-data/types/registries/model' {
+  export default interface ModelRegistry {
+    identity: EmberclearIdentity;
+  }
+}

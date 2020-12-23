@@ -30,48 +30,63 @@ export default class CurrentUserService extends Service {
   @service declare workers: WorkersService;
   @service declare store: StoreService;
 
-  declare crypto?: CryptoConnector;
+  declare __crypto__?: CryptoConnector;
 
-  @tracked declare record?: User;
+  @tracked declare __record__?: User;
+
+  get record() {
+    assert(`current-user.record cannot be accessed until the record is loaded`, this.__record__);
+
+    return this.__record__;
+  }
+
+  get crypto() {
+    assert(
+      `current-user.crypto cannot be accessed without loading the crypto web worker`,
+      this.__crypto__
+    );
+
+    return this.__crypto__;
+  }
 
   get id() {
-    if (!this.record) return;
+    if (!this.__record__) return;
 
-    return this.record.id;
+    return this.__record__.id;
   }
 
   get name() {
-    if (!this.record) return;
+    if (!this.__record__) return;
 
-    return this.record.name;
+    return this.__record__.name;
   }
 
   get publicKey() {
-    if (!this.record) return;
+    if (!this.__record__) return;
 
     return this.record.publicKey;
   }
 
   get privateKey() {
-    if (!this.record) return;
+    if (!this.__record__) return;
 
-    return this.record.privateKey;
+    return this.__record__.privateKey;
   }
 
   get publicSigningKey() {
-    if (!this.record) return;
+    if (!this.__record__) return;
 
-    return this.record.publicSigningKey;
+    return this.__record__.publicSigningKey;
   }
 
   get privateSigningKey() {
-    if (!this.record) return;
+    if (!this.__record__) return;
 
-    return this.record.privateSigningKey;
+    return this.__record__.privateSigningKey;
   }
 
   get isLoggedIn(): boolean {
-    if (!this.record) {
+    if (!this.__record__) {
       return false;
     }
 
@@ -93,10 +108,10 @@ export default class CurrentUserService extends Service {
   async create(name: string): Promise<void> {
     await this.hydrateCrypto();
 
-    assert(`Expected crypto to be setup`, this.crypto);
+    assert(`Expected crypto to be setup`, this.__crypto__);
 
-    const { publicKey, privateKey } = await this.crypto.generateKeys();
-    const { publicSigningKey, privateSigningKey } = await this.crypto.generateSigningKeys();
+    const { publicKey, privateKey } = await this.__crypto__.generateKeys();
+    const { publicSigningKey, privateSigningKey } = await this.__crypto__.generateSigningKeys();
 
     // remove existing record
     await this.store.unloadAll('user');
@@ -117,7 +132,7 @@ export default class CurrentUserService extends Service {
 
     this.hydrateCrypto(record);
 
-    this.record = record;
+    this.__record__ = record;
   }
 
   async exists(): Promise<boolean> {
@@ -136,7 +151,7 @@ export default class CurrentUserService extends Service {
 
       await this.hydrateCrypto(existing);
 
-      this.record = existing;
+      this.__record__ = existing;
 
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       taskFor(this.migrate).perform();
@@ -156,9 +171,9 @@ export default class CurrentUserService extends Service {
   }
 
   async currentUser(): Promise<User | null> {
-    if (!this.record) return await this.load();
+    if (!this.__record__) return await this.load();
 
-    return this.record;
+    return this.__record__;
   }
 
   @dropTask
@@ -168,32 +183,32 @@ export default class CurrentUserService extends Service {
     // async function... why?
     await timeout(1000);
 
-    if (!this.record || !this.crypto) {
+    if (!this.__record__ || !this.__crypto__) {
       return;
     }
 
     if (!this.privateSigningKey) {
-      let { publicSigningKey, privateSigningKey } = await this.crypto.generateSigningKeys();
+      let { publicSigningKey, privateSigningKey } = await this.__crypto__.generateSigningKeys();
 
-      this.record.setProperties({
+      this.__record__.setProperties({
         publicSigningKey,
         privateSigningKey,
       });
 
-      await this.record?.save();
+      await this.__record__?.save();
     }
   }
 
   hydrateCrypto(user?: User) {
-    if (this.crypto) {
+    if (this.__crypto__) {
       if (user) {
-        this.crypto.keys = user;
+        this.__crypto__.keys = user;
       }
 
       return;
     }
 
-    this.crypto = new CryptoConnector({
+    this.__crypto__ = new CryptoConnector({
       workerService: this.workers,
       keys: user,
     });
@@ -202,16 +217,16 @@ export default class CurrentUserService extends Service {
   async importFromKey(name: string, privateKey: Uint8Array, privateSigningKey?: Uint8Array) {
     this.hydrateCrypto();
 
-    assert(`Expected crypto to be setup`, this.crypto);
+    assert(`Expected crypto to be setup`, this.__crypto__);
 
-    const publicKey = await this.crypto.derivePublicKey(privateKey);
+    const publicKey = await this.__crypto__.derivePublicKey(privateKey);
 
     let publicSigningKey;
 
     if (privateSigningKey) {
-      publicSigningKey = await this.crypto.derivePublicSigningKey(privateSigningKey);
+      publicSigningKey = await this.__crypto__.derivePublicSigningKey(privateSigningKey);
     } else {
-      let signingKeys = await this.crypto.generateSigningKeys();
+      let signingKeys = await this.__crypto__.generateSigningKeys();
 
       publicSigningKey = signingKeys.publicSigningKey;
       privateSigningKey = signingKeys.privateSigningKey;

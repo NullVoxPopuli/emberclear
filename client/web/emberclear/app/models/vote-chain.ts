@@ -14,10 +14,13 @@ export default class VoteChain extends Model {
   @hasMany('identity', { async: false, inverse: 'stillRemainingIn' }) remaining!: Identity[];
   @hasMany('identity', { async: false, inverse: 'votedYesIn' }) yes!: Identity[];
   @hasMany('identity', { async: false, inverse: 'votedNoIn' }) no!: Identity[];
+
   @belongsTo('identity', { async: false, inverse: 'targetOfVote' }) target!: Identity;
+
   @attr() action!: VOTE_ACTION;
   @belongsTo('identity', { async: false, inverse: 'voterOf' }) key!: Identity;
   @belongsTo('vote-chain', { async: false, inverse: 'parentChain' }) previousVoteChain!: VoteChain;
+
   @attr() signature!: Uint8Array;
 
   // Unused, but necessary to properly set up relationships, therefore async

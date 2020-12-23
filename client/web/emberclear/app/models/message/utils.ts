@@ -4,6 +4,13 @@ import type Message from '../message';
 
 type RecordArray<T> = Array<T>;
 
+// NOTE: Data may also be a non-login type, it's more about the structure
+const LOGIN_MESSAGE_TYPES = ['SYN', 'ACK', 'HASH', 'DATA'];
+
+export function isStandardMessage(msg: RelayJson): msg is StandardMessage {
+  return !LOGIN_MESSAGE_TYPES.includes(msg.type);
+}
+
 export function selectUnreadDirectMessages(
   messages: Message[] | RecordArray<Message> | TODO<any>,
   fromId: string

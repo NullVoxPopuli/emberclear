@@ -3,12 +3,13 @@ import Service, { inject as service } from '@ember/service';
 import { MESSAGE_LIMIT, TARGET, TYPE } from 'emberclear/models/message';
 import { isMessageDMBetween, messagesForDM } from 'emberclear/models/message/utils';
 
+import { isContact } from '@emberclear/local-account/utils';
+
 import type MessageFactory from './factory';
 import type StoreService from '@ember-data/store';
-import type Identity from 'emberclear/models/identity';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type Message from 'emberclear/models/message';
 import type ContactManager from 'emberclear/services/contact-manager';
-import type { CurrentUserService } from '@emberclear/local-account';
 import type AutoResponder from 'emberclear/services/messages/auto-responder';
 import type Notifications from 'emberclear/services/notifications';
 import type StatusManager from 'emberclear/services/status-manager';
@@ -124,6 +125,10 @@ export default class ReceivedMessageHandler extends Service {
 
     let sender = await this.findOrCreateSender(senderInfo);
 
+    if (!isContact(sender)) {
+      return;
+    }
+
     await this.statusManager.markOnline(sender);
     await this.autoResponder.cameOnline(sender);
 
@@ -173,11 +178,11 @@ export default class ReceivedMessageHandler extends Service {
     }
   }
 
-  private async findOrCreateSender(senderData: StandardMessage['sender']): Promise<Identity> {
+  private async findOrCreateSender(senderData: { uid: string; name: string }) {
     const { name, uid } = senderData;
 
     if (uid === this.currentUser.uid) {
-      return this.currentUser.record!;
+      return this.currentUser.record;
     }
 
     return await this.contactManager.findOrCreate(uid, name);

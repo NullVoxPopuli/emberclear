@@ -93,7 +93,6 @@ export default class CryptoConnector {
     });
   }
 
-
   async encryptForSocket(payload: Json, { publicKey }: KeyPublic) {
     let worker = this.getWorker();
 

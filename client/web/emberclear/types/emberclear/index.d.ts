@@ -76,6 +76,15 @@ declare global {
   }
   // interface Function extends Ember.FunctionPrototypeExtensions {}
 
+  interface UserIdentifier {
+    uid: string;
+  }
+
+  interface NamedUser {
+    uid: string;
+    name: string;
+  }
+
   interface RelayMessage {
     uid: string;
     message: string;

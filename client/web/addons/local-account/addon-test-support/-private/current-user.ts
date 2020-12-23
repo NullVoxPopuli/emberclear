@@ -20,7 +20,7 @@ export async function createCurrentUser(): Promise<User> {
 
   await record.save();
 
-  currentUserService.record = record;
+  currentUserService.__record__ = record;
 
   await settled();
 

@@ -5,6 +5,8 @@ import {
 import { toHex } from '@emberclear/encoding/string';
 import { getService } from '@emberclear/test-helpers/test-support';
 
+import { createRecord } from './utils';
+
 import type { User } from '@emberclear/local-account';
 
 export async function attributesForUser() {
@@ -20,7 +22,7 @@ export async function buildUser(name: string, attributes = {}): Promise<User> {
 
   const defaultAttributes = await attributesForUser();
 
-  const record = store.createRecord('user', {
+  const record = createRecord(store, 'user', {
     name,
     ...defaultAttributes,
     ...attributes,

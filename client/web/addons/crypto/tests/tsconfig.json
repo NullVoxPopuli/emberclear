@@ -21,6 +21,6 @@
   ],
   "references": [
     { "path": "../addon" },
-    /* { "path": "../addon-test-support" } */
+    { "path": "../addon-test-support" }
   ]
 }

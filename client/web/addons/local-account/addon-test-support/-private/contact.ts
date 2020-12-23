@@ -3,6 +3,8 @@ import { toHex } from '@emberclear/encoding/string';
 import { Status } from '@emberclear/local-account';
 import { getService } from '@emberclear/test-helpers/test-support';
 
+import { createRecord } from './utils';
+
 import type { Contact } from '@emberclear/local-account';
 
 export async function attributesForContact() {
@@ -17,7 +19,7 @@ export async function buildContact(name: string, attributes = {}): Promise<Conta
 
   const defaultAttributes = await attributesForContact();
 
-  const record = store.createRecord('contact', {
+  const record = createRecord(store, 'contact', {
     name,
     onlineStatus: Status.OFFLINE,
     ...defaultAttributes,

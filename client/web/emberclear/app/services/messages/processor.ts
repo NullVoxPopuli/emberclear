@@ -28,7 +28,7 @@ export default class MessageProcessor extends Service {
 
   @enqueueTask({ withTestWaiter: true, maxConcurrency: 1 })
   async _receive(socketData: RelayMessage) {
-    const decrypted = await this.currentUser.crypto?.decryptFromSocket(socketData);
+    const decrypted = await this.currentUser.crypto.decryptFromSocket<StandardMessage>(socketData);
 
     await this.handler.handle(decrypted);
   }

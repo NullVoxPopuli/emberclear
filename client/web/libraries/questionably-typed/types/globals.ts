@@ -3,4 +3,4 @@ type LIES<T> = T;
 type TODO<T = any> = T;
 
 // This ends up just being any....
-type Json =  ReturnType<JSON['parse']>;
+type Json = ReturnType<JSON['parse']>;

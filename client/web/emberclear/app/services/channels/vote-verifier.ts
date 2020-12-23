@@ -1,3 +1,4 @@
+import { assert } from '@ember/debug';
 import Service, { inject as service } from '@ember/service';
 
 import { identitiesIncludes, identityEquals } from 'emberclear/utils/identity-comparison';
@@ -29,9 +30,14 @@ export default class VoteVerifier extends Service {
     let voteToVerifyActual: Uint8Array = generateSortedVote(voteToVerify);
     let voteToVerifyActualHash: Uint8Array = await this.crypto.hash(voteToVerifyActual);
 
-    let voteToVerifyExpectedHash: Uint8Array = await this.crypto.openSigned(
+    let voteToVerifyExpectedHash = await this.crypto.openSigned(
       voteToVerify.signature,
       voteToVerify.key.publicSigningKey
+    );
+
+    assert(
+      `Something went wrong with opening the sign message, figure this out`,
+      voteToVerifyExpectedHash
     );
 
     if (!equalsUint8Array(voteToVerifyActualHash, voteToVerifyExpectedHash)) {
