@@ -11,9 +11,9 @@ import {
   STATUS_DEGRADED,
   STATUS_DISCONNECTED,
   STATUS_UNKNOWN,
-} from 'emberclear/utils/connection/connection-pool';
+} from '@emberclear/networking/utils/connection/connection-pool';
 
-import type { STATUS } from 'emberclear/utils/connection/connection-pool';
+import type { STATUS } from '@emberclear/networking/utils/connection/connection-pool';
 
 const STATUS_LEVEL_MAP = {
   [STATUS_UNKNOWN]: 'warning',

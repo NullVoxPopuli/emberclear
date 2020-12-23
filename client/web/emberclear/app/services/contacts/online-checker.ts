@@ -9,9 +9,8 @@ import { taskFor } from 'ember-concurrency-ts';
 import { Status } from 'emberclear/models/contact';
 
 import type StoreService from '@ember-data/store';
+import type { MessageDispatcher, MessageFactory } from '@emberclear/networking';
 import type Contact from 'emberclear/models/contact';
-import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import type MessageFactory from 'emberclear/services/messages/factory';
 
 const THIRTY_SECONDS = 30000;
 

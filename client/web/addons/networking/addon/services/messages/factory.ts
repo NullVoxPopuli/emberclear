@@ -9,9 +9,9 @@ import { TARGET, TYPE } from 'emberclear/models/message';
 
 import { buildChannelInfo, buildVote } from '../channels/-utils/channel-factory';
 
+import type { CurrentUserService } from '@emberclear/local-account';
 import type Message from 'emberclear/models/message';
 import type Vote from 'emberclear/models/vote';
-import type { CurrentUserService } from '@emberclear/local-account';
 
 export default class MessageFactory extends Service {
   @service declare store: any;
@@ -107,12 +107,5 @@ export default class MessageFactory extends Service {
       sender: this.currentUser.record,
       ...attributes,
     });
-  }
-}
-
-// DO NOT DELETE: this is how TypeScript knows how to look up your services.
-declare module '@ember/service' {
-  interface Registry {
-    'messages/factory': MessageFactory;
   }
 }

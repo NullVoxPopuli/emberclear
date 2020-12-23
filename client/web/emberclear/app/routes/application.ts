@@ -5,8 +5,8 @@ import { inject as service } from '@ember/service';
 import { ensureRelays } from 'emberclear/utils/data/required-data';
 
 import type StoreService from '@ember-data/store';
-import type ConnectionService from 'emberclear/services/connection';
 import type { CurrentUserService } from '@emberclear/local-account';
+import type { ConnectionService } from 'emberclear/networking';
 import type LocaleService from 'emberclear/services/locale';
 import type Settings from 'emberclear/services/settings';
 

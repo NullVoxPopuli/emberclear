@@ -4,14 +4,11 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import { percySnapshot } from 'ember-percy';
 
-import {
-  getStore,
-  setupCurrentUser,
-  setupEmberclearTest,
-  trackAsyncDataRequests,
-  visit,
-} from 'emberclear/tests/helpers';
+import { setupEmberclearTest, trackAsyncDataRequests } from 'emberclear/tests/helpers';
 import { nameForm, overwritePage } from 'emberclear/tests/helpers/pages/setup';
+
+import { setupCurrentUser } from '@emberclear/local-account/test-support';
+import { getStore, visit } from '@emberclear/test-helpers/test-support';
 
 module('Acceptance | Setup', function (hooks) {
   setupApplicationTest(hooks);

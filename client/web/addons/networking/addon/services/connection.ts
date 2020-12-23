@@ -3,11 +3,11 @@ import Service, { inject as service } from '@ember/service';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
-import type ConnectionManager from 'emberclear/services/connection/manager';
-import type ContactsOnlineChecker from 'emberclear/services/contacts/online-checker';
 import type { CurrentUserService } from '@emberclear/local-account';
-import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import type { OutgoingPayload } from 'emberclear/utils/connection/connection';
+import type ConnectionManager from '@emberclear/networking/services/connection/manager';
+import type ContactsOnlineChecker from '@emberclear/networking/services/contacts/online-checker';
+import type MessageDispatcher from '@emberclear/networking/services/messages/dispatcher';
+import type { OutgoingPayload } from '@emberclear/networking/utils/connection/connection';
 
 export default class ConnectionService extends Service {
   @service declare currentUser: CurrentUserService;
@@ -51,11 +51,5 @@ export default class ConnectionService extends Service {
 
   private canConnect(): Promise<boolean> {
     return this.currentUser.exists();
-  }
-}
-
-declare module '@ember/service' {
-  interface Registry {
-    connection: ConnectionService;
   }
 }

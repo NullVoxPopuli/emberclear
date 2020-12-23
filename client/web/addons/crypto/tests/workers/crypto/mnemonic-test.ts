@@ -1,7 +1,6 @@
 import { module, test } from 'qunit';
 
-import { samplePrivateKey } from 'emberclear/tests/helpers/fixtures';
-
+import { samplePrivateKey } from '@emberclear/crypto/test-support';
 import {
   mnemonicFromNaClBoxPrivateKey,
   naclBoxPrivateKeyFromMnemonic,

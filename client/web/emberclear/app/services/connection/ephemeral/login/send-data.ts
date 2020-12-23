@@ -5,8 +5,11 @@ import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import RSVP from 'rsvp';
 
-import { DataTransferFailed, UnknownMessageError } from 'emberclear/utils/errors';
-import { CurrentUserMustHaveAName } from 'emberclear/utils/errors';
+import {
+  CurrentUserMustHaveAName,
+  DataTransferFailed,
+  UnknownMessageError,
+} from '@emberclear/networking/errors';
 
 import { EphemeralConnection } from '../ephemeral-connection';
 

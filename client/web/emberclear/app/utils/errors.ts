@@ -1,5 +1,4 @@
 export class ConnectionDoesNotExistError extends Error {}
-export class CurrentUserMustHaveAName extends Error {}
 export class MalformedQRCodeError extends Error {}
 export class UnrecognizedQRCodeError extends Error {}
 
@@ -19,6 +18,3 @@ export class RelayNotSetError extends Error {
 export class CurrentUserNotFound extends Error {
   name = 'CurrentUserNotFound';
 }
-
-export class UnknownMessageError extends Error {}
-export class DataTransferFailed extends Error {}

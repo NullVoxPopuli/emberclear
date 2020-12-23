@@ -188,9 +188,3 @@ export default class ReceivedMessageHandler extends Service {
     return await this.contactManager.findOrCreate(uid, name);
   }
 }
-
-declare module '@ember/service' {
-  interface Registry {
-    'messages/handler': ReceivedMessageHandler;
-  }
-}

@@ -1,3 +1,6 @@
+// install types
+import '@emberclear/networking/type-support';
+
 import Application from '@ember/application';
 
 import defineModifier from 'ember-concurrency-test-waiter/define-modifier';

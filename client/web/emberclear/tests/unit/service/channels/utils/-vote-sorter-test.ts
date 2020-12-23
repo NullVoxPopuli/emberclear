@@ -3,14 +3,16 @@ import { setupTest } from 'ember-qunit';
 
 import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { generateSortedVote, VOTE_ORDERING } from 'emberclear/services/channels/-utils/vote-sorter';
-import { clearLocalStorage, getStore } from 'emberclear/tests/helpers';
-import { buildUser } from 'emberclear/tests/helpers/factories/user-factory';
+import { clearLocalStorage } from 'emberclear/tests/helpers';
+import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
+
 import {
   convertObjectToUint8Array,
   convertUint8ArrayToObject,
   fromHex,
 } from '@emberclear/encoding/string';
-import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
+import { buildUser } from '@emberclear/local-account/test-support';
+import { getStore } from '@emberclear/test-helpers/test-support';
 
 import type { SortedVote, SortedVoteHex } from 'emberclear/services/channels/-utils/vote-sorter';
 

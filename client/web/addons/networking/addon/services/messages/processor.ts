@@ -5,7 +5,7 @@ import { enqueueTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
 import type { CurrentUserService } from '@emberclear/local-account';
-import type ReceivedMessageHandler from 'emberclear/services/messages/handler';
+import type ReceivedMessageHandler from '@emberclear/networking/services/messages/handler';
 
 export default class MessageProcessor extends Service {
   @service declare currentUser: CurrentUserService;
@@ -31,12 +31,5 @@ export default class MessageProcessor extends Service {
     const decrypted = await this.currentUser.crypto.decryptFromSocket<StandardMessage>(socketData);
 
     await this.handler.handle(decrypted);
-  }
-}
-
-// DO NOT DELETE: this is how TypeScript knows how to look up your services.
-declare module '@ember/service' {
-  interface Registry {
-    'messages/processor': MessageProcessor;
   }
 }
