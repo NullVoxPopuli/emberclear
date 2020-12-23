@@ -86,7 +86,7 @@
     "@html-next/vertical-collection": "1.0.0",
     "@types/bip39": "3.0.0",
     "@types/common-tags": "1.8.0",
-    "@types/dompurify": "2.0.4",
+    "@types/dompurify": "2.1.0",
     "@types/ember": "3.16.2",
     "@types/ember-data": "3.16.7",
     "@types/ember-data__model": "3.16.2",
