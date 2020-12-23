@@ -1,4 +1,4 @@
-name: '@emberclear/crypto'
+name: '@emberclear/networking'
 
 # Inspiration:
 # https://github.com/alexdiliberto/ember-transformicons/blob/master/.github/workflows/ci.yml
@@ -12,8 +12,8 @@ on:
 env:
   CI: true
   root: client/web/
-  addon: addons/crypto/
-  full: client/web/addons/crypto/
+  addon: addons/networking/
+  full: client/web/addons/networking/
 
 jobs:
   lint:
