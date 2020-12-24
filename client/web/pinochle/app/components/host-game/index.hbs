@@ -7,11 +7,7 @@
 
         <Loader::Indeterminate />
 
-        <hr>
-
-        <div>
-          {{this.joinUrl}}
-        </div>
+        <ShareLink @url={{this.joinUrl}} />
       </div>
     {{else}}
       STATE: TODO
