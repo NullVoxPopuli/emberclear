@@ -42,3 +42,9 @@ export default class MessageAutoResponder extends Service {
     });
   }
 }
+
+declare module '@ember/service' {
+  interface Registry {
+    'messages/auto-responder': MessageAutoResponder;
+  }
+}

@@ -3,15 +3,14 @@ import { setupTest } from 'ember-qunit';
 
 import { v4 as uuid } from 'uuid';
 
-import { TARGET, TYPE } from 'emberclear/models/message';
+import { TARGET, TYPE } from '@emberclear/networking/models/message';
+import { getService, getStore, stubService } from '@emberclear/test-helpers/test-support';
+
 import {
+  attributesForContact,
   clearLocalStorage,
-  getService,
-  getStore,
   setupCurrentUser,
-  stubService,
-} from 'emberclear/tests/helpers';
-import { attributesForContact } from 'emberclear/tests/helpers/factories/contact-factory';
+} from '../../../../../local-account/addon-test-support';
 
 module('Unit | Service | messages/handler', function (hooks) {
   setupTest(hooks);
@@ -46,7 +45,7 @@ module('Unit | Service | messages/handler', function (hooks) {
           id: uuid(),
           type: TYPE.CHAT,
           target: TARGET.WHISPER,
-          to: me.record!.uid,
+          to: me.record.uid,
           ['time_sent']: new Date(),
           client: 'tests',
           ['client_version']: '0',

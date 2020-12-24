@@ -1,35 +1,36 @@
 import Service, { inject as service } from '@ember/service';
 
-import { MESSAGE_LIMIT, TARGET, TYPE } from 'emberclear/models/message';
-import { isMessageDMBetween, messagesForDM } from 'emberclear/models/message/utils';
-
 import { isContact } from '@emberclear/local-account/utils';
+import { MESSAGE_LIMIT, TARGET, TYPE } from '@emberclear/networking/models/message';
+import { isMessageDMBetween, messagesForDM } from '@emberclear/networking/models/message/utils';
 
 import type MessageFactory from './factory';
 import type StoreService from '@ember-data/store';
 import type { CurrentUserService } from '@emberclear/local-account';
+import type ContactManager from '@emberclear/local-account/services/contact-manager';
 import type { Message } from '@emberclear/networking';
-import type ContactManager from 'emberclear/services/contact-manager';
-import type AutoResponder from 'emberclear/services/messages/auto-responder';
-import type Notifications from 'emberclear/services/notifications';
-import type StatusManager from 'emberclear/services/status-manager';
-import {P2PMessage} from '@emberclear/networking/types';
+import type AutoResponder from '@emberclear/networking/services/messages/auto-responder';
+import type StatusManager from '@emberclear/networking/services/status-manager';
+import type { P2PMessage } from '@emberclear/networking/types';
 
 export default class ReceivedMessageHandler extends Service {
   @service declare store: StoreService;
-  @service declare intl: Intl;
-  @service declare notifications: Notifications;
-  @service declare statusManager: StatusManager;
   @service declare currentUser: CurrentUserService;
   @service declare contactManager: ContactManager;
+  @service declare statusManager: StatusManager;
   @service('messages/factory') declare messageFactory: MessageFactory;
   @service('messages/auto-responder') declare autoResponder: AutoResponder;
 
-  async handle(raw: StandardMessage) {
+  async handle(raw: P2PMessage) {
     let message = await this.decomposeMessage(raw);
-    let type = message.type;
 
-    switch (type) {
+    if (!message) {
+      console.info('Message could not be decomposed', raw);
+
+      return;
+    }
+
+    switch (message.type) {
       case TYPE.CHAT:
         return this.handleChat(message, raw);
 
@@ -107,11 +108,6 @@ export default class ReceivedMessageHandler extends Service {
 
     if (message.sender) {
       message.sender.numUnread++;
-
-      let name = message.sender.name;
-      let msg = this.intl.t('ui.notifications.from', { name });
-
-      await this.notifications.info(msg);
     }
 
     return message;
@@ -189,5 +185,11 @@ export default class ReceivedMessageHandler extends Service {
     }
 
     return await this.contactManager.findOrCreate(uid, name);
+  }
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    'messages/handler': ReceivedMessageHandler;
   }
 }

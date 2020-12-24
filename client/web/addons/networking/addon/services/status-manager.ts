@@ -35,3 +35,9 @@ export default class StatusManager extends Service {
     contact.onlineStatus = Status.ONLINE;
   }
 }
+
+declare module '@ember/service' {
+  interface Registry {
+    'status-manager': StatusManager;
+  }
+}

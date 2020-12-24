@@ -6,21 +6,20 @@ import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import RSVP from 'rsvp';
 
-import { UnknownMessageError } from 'emberclear/utils/errors';
-
-import { EphemeralConnection } from '../ephemeral-connection';
+import { EphemeralConnection, UnknownMessageError } from '@emberclear/networking';
 
 import type RouterService from '@ember/routing/router-service';
+import type { EncryptedMessage } from '@emberclear/crypto/types';
 import type SettingsService from 'emberclear/services/settings';
 import type Toast from 'emberclear/services/toast';
 
 type UpdateStatus = (status: boolean) => void;
 
 export class ReceiveDataConnection extends EphemeralConnection {
-  @service router!: RouterService;
-  @service settings!: SettingsService;
-  @service toast!: Toast;
-  @service intl!: Intl;
+  @service declare router: RouterService;
+  @service declare settings: SettingsService;
+  @service declare toast: Toast;
+  @service declare intl: Intl;
 
   waitForSYN = RSVP.defer<PublicIdentity>();
   waitForData = RSVP.defer<LoginData>();
@@ -78,7 +77,7 @@ export class ReceiveDataConnection extends EphemeralConnection {
   }
 
   @action
-  async onData(data: RelayMessage) {
+  async onData(data: EncryptedMessage) {
     let decrypted: LoginMessage = await this.crypto.decryptFromSocket(data);
 
     switch (decrypted.type) {

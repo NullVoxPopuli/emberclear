@@ -2,6 +2,7 @@ import Service from '@ember/service';
 import { getContext } from '@ember/test-helpers';
 
 import type { Registry } from '@ember/service';
+import type { TestContext } from 'ember-test-helpers';
 
 export const stubService = (name: keyof Registry, hash = {}) => {
   let stubbedService;
@@ -13,7 +14,7 @@ export const stubService = (name: keyof Registry, hash = {}) => {
     stubbedService = Service.extend(hash);
   }
 
-  let { owner } = getContext() as any;
+  let { owner } = getContext() as TestContext;
   let serviceName = `service:${name}`;
 
   owner.register(serviceName, stubbedService);

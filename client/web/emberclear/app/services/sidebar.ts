@@ -2,7 +2,7 @@ import { A } from '@ember/array';
 import { action } from '@ember/object';
 import Service, { inject as service } from '@ember/service';
 
-import { inLocalStorage } from 'emberclear/utils/decorators';
+import { inLocalStorage } from 'ember-tracked-local-storage';
 
 import type { CurrentUserService } from '@emberclear/local-account';
 

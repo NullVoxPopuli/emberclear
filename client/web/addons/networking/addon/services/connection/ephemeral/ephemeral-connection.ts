@@ -154,7 +154,7 @@ async function generateEphemeralKeys(workers: WorkersService) {
 
 async function createConnection(
   publicKey: string,
-  onData: (data: EncryptableObject) => void,
+  onData: (data: EncryptedMessage) => void,
   relay: Relay
 ) {
   let instance = new Connection({

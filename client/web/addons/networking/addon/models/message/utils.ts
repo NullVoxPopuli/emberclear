@@ -4,15 +4,8 @@ import type Message from '../message';
 
 type RecordArray<T> = Array<T>;
 
-// NOTE: Data may also be a non-login type, it's more about the structure
-const LOGIN_MESSAGE_TYPES = ['SYN', 'ACK', 'HASH', 'DATA'];
-
-export function isStandardMessage(msg: RelayJson): msg is StandardMessage {
-  return !LOGIN_MESSAGE_TYPES.includes(msg.type);
-}
-
 export function selectUnreadDirectMessages(
-  messages: Message[] | RecordArray<Message> | TODO<any>,
+  messages: Message[] | RecordArray<Message> | TODO,
   fromId: string
 ): Message[] {
   const filtered = selectUnreadMessages(messages).filter((m) => {
@@ -22,9 +15,7 @@ export function selectUnreadDirectMessages(
   return filtered;
 }
 
-export function selectUnreadMessages(
-  messages: Message[] | RecordArray<Message> | TODO<any>
-): Message[] {
+export function selectUnreadMessages(messages: Message[] | RecordArray<Message> | TODO): Message[] {
   const filtered = messages.filter((m: Message) => {
     return (
       // ember-data in-flight messages
@@ -48,7 +39,7 @@ export async function markAsRead(message: Message) {
 }
 
 export function messagesForDM(
-  messages: RecordArray<Message> | TODO<any>,
+  messages: RecordArray<Message> | TODO,
   me: string,
   chattingWithId: string
 ): Message[] {

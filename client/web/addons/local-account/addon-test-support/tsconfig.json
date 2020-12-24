@@ -10,8 +10,6 @@
       "@emberclear/local-account/test-support/*": ["./*"]
     }
   },
-  "references": [
-    { "path": "../addon" },
-    { "path": "../../test-helpers" }
-  ]
+  "include": ["."],
+  "references": [{ "path": "../addon" }, { "path": "../../test-helpers" }]
 }

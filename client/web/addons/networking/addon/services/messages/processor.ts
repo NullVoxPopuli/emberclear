@@ -6,12 +6,14 @@ import { taskFor } from 'ember-concurrency-ts';
 
 import type { EncryptedMessage } from '@emberclear/crypto/types';
 import type { CurrentUserService } from '@emberclear/local-account';
+import type { ConnectionService } from '@emberclear/networking';
 import type ReceivedMessageHandler from '@emberclear/networking/services/messages/handler';
 import type { P2PMessage } from '@emberclear/networking/types';
 
 export default class MessageProcessor extends Service {
   @service declare currentUser: CurrentUserService;
   @service('messages/handler') declare handler: ReceivedMessageHandler;
+  @service declare connection: ConnectionService;
 
   /**
    * Because we could potentially be receiving multiple
@@ -32,6 +34,16 @@ export default class MessageProcessor extends Service {
   async _receive(socketData: EncryptedMessage) {
     const decrypted = await this.currentUser.crypto.decryptFromSocket<P2PMessage>(socketData);
 
-    await this.handler.handle(decrypted);
+    let message = await this.handler.handle(decrypted);
+
+    if (message) {
+      await this.connection.hooks?.onReceive(message);
+    }
+  }
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    'messages/processor': MessageProcessor;
   }
 }

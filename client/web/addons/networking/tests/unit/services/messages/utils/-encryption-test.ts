@@ -1,11 +1,14 @@
 import { module, test } from 'qunit';
 
-import { build as toPayloadJson } from 'emberclear/services/messages/-utils/builder';
+import { generateAsymmetricKeys } from '@emberclear/crypto/workers/crypto/utils/nacl';
+import {
+  decryptFromSocket,
+  encryptForSocket,
+} from '@emberclear/crypto/workers/crypto/utils/socket';
 import { toHex } from '@emberclear/encoding/string';
-import { generateAsymmetricKeys } from 'emberclear/workers/crypto/utils/nacl';
-import { decryptFromSocket, encryptForSocket } from 'emberclear/workers/crypto/utils/socket';
+import { build as toPayloadJson } from '@emberclear/networking/services/messages/-utils/builder';
 
-import type { KeyPair } from 'emberclear/models/user';
+import type { KeyPair } from '@emberclear/crypto';
 
 module('Integration | Send/Receive Encryption', function (hooks) {
   let bob!: KeyPair;
@@ -27,14 +30,14 @@ module('Integration | Send/Receive Encryption', function (hooks) {
   });
 
   test('round-trip encrypt-decrypt should return the same message', async function (assert) {
-    const message: any = {
+    const message: TODO = {
       body: 'hi',
     };
 
-    const payload = toPayloadJson(message, alice as any);
+    const payload = toPayloadJson(message, alice as TODO);
     const encrypted = await encryptForSocket(payload, bob, alice);
-    const fakeSocketMessage = { message: encrypted, uid: toHex(alice.publicKey!) };
-    const decrypted = await decryptFromSocket(fakeSocketMessage, bob.privateKey!);
+    const fakeSocketMessage = { message: encrypted, uid: toHex(alice.publicKey) };
+    const decrypted = await decryptFromSocket(fakeSocketMessage, bob.privateKey);
 
     assert.equal(decrypted.message.body, 'hi');
   });

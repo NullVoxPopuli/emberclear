@@ -6,14 +6,17 @@ import { ensureRelays } from 'emberclear/utils/data/required-data';
 
 import type StoreService from '@ember-data/store';
 import type { CurrentUserService } from '@emberclear/local-account';
-import type { ConnectionService } from 'emberclear/networking';
+import type { ConnectionService, Message } from '@emberclear/networking';
 import type LocaleService from 'emberclear/services/locale';
+import type Notifications from 'emberclear/services/notifications';
 import type Settings from 'emberclear/services/settings';
 
 export default class ApplicationRoute extends Route {
   @service declare store: StoreService;
   @service declare currentUser: CurrentUserService;
   @service declare locale: LocaleService;
+  @service declare notifications: Notifications;
+  @service declare intl: Intl;
   @service declare settings: Settings;
   @service declare connection: ConnectionService;
 
@@ -44,6 +47,14 @@ export default class ApplicationRoute extends Route {
   afterModel() {
     if (this.currentUser.isLoggedIn) {
       this.connection.connect();
+      this.connection.hooks = {
+        async onReceive(message: Message) {
+          let name = message.sender.name;
+          let msg = this.intl.t('ui.notifications.from', { name });
+
+          await this.notifications.info(msg);
+        },
+      };
     }
   }
 }

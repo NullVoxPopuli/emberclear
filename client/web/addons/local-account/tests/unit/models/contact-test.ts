@@ -1,8 +1,8 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
+import { buildContact } from '@emberclear/local-account/test-support';
 import { getStore } from '@emberclear/test-helpers/test-support';
-import { buildContact } from 'emberclear/tests/helpers/factories/contact-factory';
 
 module('Unit | Model | contact', function (hooks) {
   setupTest(hooks);

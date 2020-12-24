@@ -4,16 +4,23 @@ import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
 import type { CurrentUserService } from '@emberclear/local-account';
+import type { Message } from '@emberclear/networking';
 import type ConnectionManager from '@emberclear/networking/services/connection/manager';
 import type ContactsOnlineChecker from '@emberclear/networking/services/contacts/online-checker';
 import type MessageDispatcher from '@emberclear/networking/services/messages/dispatcher';
 import type { OutgoingPayload } from '@emberclear/networking/utils/connection/connection';
+
+type ConnectionHooks = {
+  onReceive(message: Message): Promise<unknown>;
+};
 
 export default class ConnectionService extends Service {
   @service declare currentUser: CurrentUserService;
   @service('connection/manager') declare manager: ConnectionManager;
   @service('messages/dispatcher') declare dispatcher: MessageDispatcher;
   @service('contacts/online-checker') declare onlineChecker: ContactsOnlineChecker;
+
+  hooks?: ConnectionHooks;
 
   connect() {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -51,5 +58,11 @@ export default class ConnectionService extends Service {
 
   private canConnect(): Promise<boolean> {
     return this.currentUser.exists();
+  }
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    connection: ConnectionService;
   }
 }

@@ -14,6 +14,8 @@
   },
   "include": [".", "../types"],
   "references": [
-    { "path": "../../../libraries/questionably-typed" }
+    { "path": "../../../libraries/questionably-typed" },
+    { "path": "../../../addons/crypto" },
+    { "path": "../../../addons/local-account" }
   ]
 }

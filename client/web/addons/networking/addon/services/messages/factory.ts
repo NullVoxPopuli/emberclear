@@ -7,15 +7,15 @@ import { Identity } from '@emberclear/local-account';
 import Channel from '@emberclear/local-account/models/channel';
 import { TARGET, TYPE } from '@emberclear/networking/models/message';
 
+import type StoreService from '@ember-data/store';
 // import { buildChannelInfo, buildVote } from '../channels/-utils/channel-factory';
-
 import type { CurrentUserService } from '@emberclear/local-account';
-import type Vote from '@emberclear/local-account/models/vote';
+// import type Vote from '@emberclear/local-account/models/vote';
 import type { Message } from '@emberclear/networking';
 import type { P2PMessage } from '@emberclear/networking/types';
 
 export default class MessageFactory extends Service {
-  @service declare store: any;
+  @service declare store: StoreService;
   @service declare currentUser: CurrentUserService;
 
   buildNewReceivedMessage(json: P2PMessage, sender: Identity) {
@@ -108,5 +108,11 @@ export default class MessageFactory extends Service {
       sender: this.currentUser.record,
       ...attributes,
     });
+  }
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    'messages/factory': MessageFactory;
   }
 }

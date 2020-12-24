@@ -1,9 +1,11 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import { clearLocalStorage } from 'emberclear/tests/helpers';
-
-import { createCurrentUser } from '@emberclear/local-account/test-support';
+import {
+  clearLocalStorage,
+  createCurrentUser,
+  setupCurrentUser,
+} from '@emberclear/local-account/test-support';
 import { getService, getStore } from '@emberclear/test-helpers/test-support';
 
 module('TestHelper | create-current-user', function (hooks) {

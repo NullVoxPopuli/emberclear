@@ -15,11 +15,9 @@
       "*": ["../types/*"]
     }
   },
-  "include": [
-    ".",
-    "../types"
-  ],
+  "include": [".", "../types"],
   "references": [
+    { "path": "../../test-helpers" },
     { "path": "../addon" },
     { "path": "../addon-test-support" }
   ]

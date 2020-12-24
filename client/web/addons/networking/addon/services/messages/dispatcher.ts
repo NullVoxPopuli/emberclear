@@ -123,3 +123,9 @@ export default class MessageDispatcher extends Service {
     }
   }
 }
+
+declare module '@ember/service' {
+  interface Registry {
+    'messages/dispatcher': MessageDispatcher;
+  }
+}

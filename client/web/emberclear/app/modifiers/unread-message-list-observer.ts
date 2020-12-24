@@ -5,8 +5,9 @@ import { enqueueTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import Modifier from 'ember-modifier';
 
-import { markAsRead } from 'emberclear/models/message/utils';
 import { isInElementWithinViewport } from 'emberclear/utils/dom/utils';
+
+import { markAsRead } from '@emberclear/networking/models/message/utils';
 
 import type StoreService from '@ember-data/store';
 import type { Message } from '@emberclear/networking';

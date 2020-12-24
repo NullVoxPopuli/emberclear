@@ -1,4 +1,7 @@
-export async function waitUntilTruthy(func: () => Promise<boolean>, timeoutMs = 500) {
+/**
+ * @ember/test-helpers' waitUntil does not take a Promise for the callback
+ */
+export async function waitUntil(func: () => Promise<boolean>, timeoutMs = 500) {
   let interval: NodeJS.Timeout;
 
   const timeout = new Promise((_resolve, reject) => {

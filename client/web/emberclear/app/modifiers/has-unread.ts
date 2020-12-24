@@ -5,7 +5,7 @@ import { restartableTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import Modifier from 'ember-modifier';
 
-import { selectUnreadDirectMessages } from 'emberclear/models/message/utils';
+import { selectUnreadDirectMessages } from '@emberclear/networking/models/message/utils';
 
 import type StoreService from '@ember-data/store';
 import type { Contact } from '@emberclear/local-account';
