@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import type ContactManager from 'emberclear/services/contact-manager';
+import type ContactManager from '@emberclear/local-account/services/contact-manager';
 
 const REQUIRED_CHARACTERS_TO_SEARCH = 2;
 

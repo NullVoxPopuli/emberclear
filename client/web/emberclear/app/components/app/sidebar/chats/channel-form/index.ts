@@ -7,7 +7,7 @@ import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
 import type StoreService from '@ember-data/store';
-import type ChannelManager from 'emberclear/services/channel-manager';
+import type ChannelManager from '@emberclear/local-account/services/channel-manager';
 
 type Args = {
   onSubmit: () => void;

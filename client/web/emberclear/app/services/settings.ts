@@ -6,9 +6,10 @@ import localforage from 'localforage';
 
 import { fromHex, objectToDataURL, toHex } from '@emberclear/encoding/string';
 
+import type { Channel, Contact } from '@emberclear/local-account';
+import type ChannelManager from '@emberclear/local-account/services/channel-manager';
+import type ContactManager from '@emberclear/local-account/services/contact-manager';
 import type CurrentUserService from '@emberclear/local-account/services/current-user';
-import type ChannelManager from 'emberclear/services/channel-manager';
-import type ContactManager from 'emberclear/services/contact-manager';
 
 interface IContactJson {
   name?: string;
@@ -122,11 +123,11 @@ export default class Settings extends Service {
       name: name || '',
       privateKey: toHex(privateKey),
       privateSigningKey: toHex(privateSigningKey),
-      contacts: contacts.toArray().map((c) => ({
+      contacts: contacts.toArray().map((c: Contact) => ({
         name: c.name,
         publicKey: c.publicKey && toHex(c.publicKey),
       })),
-      channels: channels.toArray().map((c) => ({
+      channels: channels.toArray().map((c: Channel) => ({
         // TODO: add members list
         id: c.id,
         name: c.name,

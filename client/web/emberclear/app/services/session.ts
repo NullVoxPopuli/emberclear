@@ -7,8 +7,8 @@ import localforage from 'localforage';
 import type WindowService from './window';
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
-import type ConnectionService from 'emberclear/services/connection';
 import type { CurrentUserService } from '@emberclear/local-account';
+import type { ConnectionService } from '@emberclear/networking';
 
 const FLAG_KEY = '_features';
 

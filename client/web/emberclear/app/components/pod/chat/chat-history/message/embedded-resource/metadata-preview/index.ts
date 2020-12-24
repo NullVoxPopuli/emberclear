@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 
 import DOMPurify from 'dompurify';
 
+import type { OpenGraphData } from '@emberclear/networking/types';
 import type ChatScroller from 'emberclear/services/chat-scroller';
 
 type Args = {
@@ -10,7 +11,7 @@ type Args = {
 };
 
 export default class MetadataPreview extends Component<Args> {
-  @service chatScroller!: ChatScroller;
+  @service declare chatScroller: ChatScroller;
 
   get hasOgData() {
     return this.hasImage || this.title || this.description;

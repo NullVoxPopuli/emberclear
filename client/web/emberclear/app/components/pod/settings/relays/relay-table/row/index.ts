@@ -5,15 +5,15 @@ import { inject as service } from '@ember/service';
 import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
 import type { Relay } from '@emberclear/networking';
-import type ConnectionManager from 'emberclear/services/connection/manager';
+import type ConnectionManager from '@emberclear/networking/services/connection/manager';
 
 interface Args {
   relay: Relay;
 }
 
 export default class RelayTableRow extends Component<Args> {
-  @service store!: StoreService;
-  @service('connection/manager') connectionManager!: ConnectionManager;
+  @service declare store: StoreService;
+  @service('connection/manager') declare connectionManager: ConnectionManager;
 
   get isActive() {
     let pool = this.connectionManager.connectionPool;

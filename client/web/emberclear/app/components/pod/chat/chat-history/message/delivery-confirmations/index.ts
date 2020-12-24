@@ -7,14 +7,11 @@ import { timeout } from 'ember-concurrency';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
-import { TARGET } from 'emberclear/models/message';
+import { TARGET } from '@emberclear/networking/models/message';
 
 import type StoreService from '@ember-data/store';
-import type { Channel } from '@emberclear/local-account';
-import type { Contact } from '@emberclear/local-account';
-import type { Message } from '@emberclear/networking';
-import type { CurrentUserService } from '@emberclear/local-account';
-import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
+import type { Channel, Contact, CurrentUserService } from '@emberclear/local-account';
+import type { Message, MessageDispatcher } from '@emberclear/networking';
 
 const TIMEOUT_MS = 1000;
 

@@ -1,15 +1,14 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-import { Status } from 'emberclear/models/contact';
 import { idFrom, PRIVATE_CHAT_REGEX } from 'emberclear/utils/route-matchers';
+
+import { Status } from '@emberclear/local-account';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
-import type { Channel } from '@emberclear/local-account';
-import type { Contact } from '@emberclear/local-account';
-import type ContactManager from 'emberclear/services/contact-manager';
-import type { CurrentUserService } from '@emberclear/local-account';
+import type { Channel, Contact, CurrentUserService } from '@emberclear/local-account';
+import type ContactManager from '@emberclear/local-account/services/contact-manager';
 import type SettingsService from 'emberclear/services/settings';
 import type SidebarService from 'emberclear/services/sidebar';
 

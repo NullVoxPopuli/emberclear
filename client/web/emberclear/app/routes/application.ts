@@ -48,11 +48,13 @@ export default class ApplicationRoute extends Route {
     if (this.currentUser.isLoggedIn) {
       this.connection.connect();
       this.connection.hooks = {
-        async onReceive(message: Message) {
-          let name = message.sender.name;
-          let msg = this.intl.t('ui.notifications.from', { name });
+        onReceive: async (message: Message) => {
+          if (message.sender) {
+            let name = message.sender.name;
+            let msg = this.intl.t('ui.notifications.from', { name });
 
-          await this.notifications.info(msg);
+            await this.notifications.info(msg);
+          }
         },
       };
     }

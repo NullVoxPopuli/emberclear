@@ -6,12 +6,11 @@ import { waitForPromise } from '@ember/test-waiters';
 
 import { unicode } from 'emojis';
 
-import Channel from 'emberclear/models/channel';
+import { Channel } from '@emberclear/local-account';
 
 import type StoreService from '@ember-data/store';
 import type { Contact } from '@emberclear/local-account';
-import type MessageDispatcher from 'emberclear/services/messages/dispatcher';
-import type MessageFactory from 'emberclear/services/messages/factory';
+import type { MessageDispatcher, MessageFactory } from '@emberclear/networking';
 
 const EMOJI_REGEX = /:[^:]+:/g;
 

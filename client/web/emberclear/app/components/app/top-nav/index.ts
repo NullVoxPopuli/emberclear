@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-import { selectUnreadMessages } from 'emberclear/models/message/utils';
+import { selectUnreadMessages } from '@emberclear/networking/models/message/utils';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';

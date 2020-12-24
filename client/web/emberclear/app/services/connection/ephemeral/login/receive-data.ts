@@ -6,7 +6,8 @@ import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import RSVP from 'rsvp';
 
-import { EphemeralConnection, UnknownMessageError } from '@emberclear/networking';
+import { EphemeralConnection } from '@emberclear/networking';
+import { UnknownMessageError } from '@emberclear/networking/errors';
 
 import type RouterService from '@ember/routing/router-service';
 import type { EncryptedMessage } from '@emberclear/crypto/types';

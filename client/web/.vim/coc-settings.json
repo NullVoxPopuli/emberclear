@@ -6,7 +6,6 @@
     "REFLAT",
     "Serializable",
     "Synthwave",
-    "ciphertext",
     "cond",
     "emberclear",
     "esbuild",
@@ -15,7 +14,6 @@
     "nacl",
     "outfile",
     "prismjs",
-    "secretbox",
     "sourcemap",
     "tmpl"
   ]
