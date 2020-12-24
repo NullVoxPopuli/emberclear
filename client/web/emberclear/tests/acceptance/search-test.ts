@@ -2,15 +2,15 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { page } from 'emberclear/components/search/-page';
-import {
-  clearLocalStorage,
-  setupRelayConnectionMocks,
-  trackAsyncDataRequests,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks, trackAsyncDataRequests } from 'emberclear/tests/helpers';
 import { page as app } from 'emberclear/tests/helpers/pages/app';
 
 import { setupWorkers } from '@emberclear/crypto/test-support';
-import { createContact, setupCurrentUser } from '@emberclear/local-account/test-support';
+import {
+  clearLocalStorage,
+  createContact,
+  setupCurrentUser,
+} from '@emberclear/local-account/test-support';
 import { getStore, visit } from '@emberclear/test-helpers/test-support';
 
 module('Acceptance | Search Modal', function (hooks) {

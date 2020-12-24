@@ -1,9 +1,7 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { generateSortedVote, VOTE_ORDERING } from 'emberclear/services/channels/-utils/vote-sorter';
-import { clearLocalStorage } from 'emberclear/tests/helpers';
 import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
 
 import {
@@ -11,7 +9,8 @@ import {
   convertUint8ArrayToObject,
   fromHex,
 } from '@emberclear/encoding/string';
-import { buildUser } from '@emberclear/local-account/test-support';
+import { VOTE_ACTION } from '@emberclear/local-account/models/vote-chain';
+import { buildUser, clearLocalStorage } from '@emberclear/local-account/test-support';
 import { getStore } from '@emberclear/test-helpers/test-support';
 
 import type { SortedVote, SortedVoteHex } from 'emberclear/services/channels/-utils/vote-sorter';

@@ -75,7 +75,8 @@
   "typesVersions": {
     "*": {
       "*": [
-        "declarations/*"
+        "declarations/*",
+        "declarations/*/index"
       ]
     }
   },

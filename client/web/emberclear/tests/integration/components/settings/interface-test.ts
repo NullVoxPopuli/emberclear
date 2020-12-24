@@ -5,7 +5,9 @@ import { setupRenderingTest } from 'ember-qunit';
 
 import { page } from 'emberclear/components/pod/settings/interface/-page';
 import { THEMES } from 'emberclear/services/settings';
-import { clearLocalStorage, getService } from 'emberclear/tests/helpers';
+
+import { clearLocalStorage } from '@emberclear/local-account/test-support';
+import { getService } from '@emberclear/test-helpers/test-support';
 
 module('Integration | Component | settings/interface', function (hooks) {
   setupRenderingTest(hooks);

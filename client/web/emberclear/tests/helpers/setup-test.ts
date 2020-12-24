@@ -1,8 +1,8 @@
 import WindowService from 'emberclear/services/window';
 
 import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage } from '@emberclear/local-account/test-support';
 
-import { clearLocalStorage } from './clear-local-storage';
 import { setupRelayConnectionMocks } from './setup-relay-connection-mocks';
 
 import type { TestContext } from 'ember-test-helpers';

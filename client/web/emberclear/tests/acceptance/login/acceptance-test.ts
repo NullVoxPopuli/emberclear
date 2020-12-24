@@ -4,19 +4,14 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import { percySnapshot } from 'ember-percy';
 
-import {
-  clearLocalStorage,
-  getService,
-  setupRelayConnectionMocks,
-  trackAsyncDataRequests,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks, trackAsyncDataRequests } from 'emberclear/tests/helpers';
 import { loginForm } from 'emberclear/tests/helpers/pages/login';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 
 import { samplePrivateKey, setupWorkers } from '@emberclear/crypto/test-support';
 import { mnemonicFromNaClBoxPrivateKey } from '@emberclear/crypto/workers/crypto/utils/mnemonic';
-import { setupCurrentUser } from '@emberclear/local-account/test-support';
-import { visit } from '@emberclear/test-helpers/test-support';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { getService, visit } from '@emberclear/test-helpers/test-support';
 
 const behaviors = {
   invalid: {

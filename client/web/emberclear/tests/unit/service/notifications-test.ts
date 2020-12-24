@@ -3,7 +3,8 @@ import { setupTest } from 'ember-qunit';
 
 import td from 'testdouble';
 
-import { clearLocalStorage, getService, stubService } from 'emberclear/tests/helpers';
+import { clearLocalStorage } from '@emberclear/local-account/test-support';
+import { getService, stubService } from '@emberclear/test-helpers/test-support';
 
 import type Notifications from 'emberclear/services/notifications';
 import type WindowService from 'emberclear/services/window';

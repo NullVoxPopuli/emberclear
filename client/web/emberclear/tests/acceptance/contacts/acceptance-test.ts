@@ -4,17 +4,14 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import { percySnapshot } from 'ember-percy';
 
-import {
-  clearLocalStorage,
-  getService,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  visit,
-} from 'emberclear/tests/helpers';
-import { createContact } from '@emberclear/local-account/test-support';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { contacts } from 'emberclear/tests/helpers/pages/contacts';
 
-import type User from 'emberclear/models/user';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { createContact } from '@emberclear/local-account/test-support';
+import { getService, visit } from '@emberclear/test-helpers/test-support';
+
+import type { User } from '@emberclear/local-account';
 
 module('Acceptance | Contacts', function (hooks) {
   setupApplicationTest(hooks);

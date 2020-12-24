@@ -4,15 +4,12 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import { percySnapshot } from 'ember-percy';
 
-import {
-  clearLocalStorage,
-  getService,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  visit,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { page, selectors } from 'emberclear/tests/helpers/pages/app';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { getService, visit } from '@emberclear/test-helpers/test-support';
 
 module('Acceptance | Chat', function (hooks) {
   setupApplicationTest(hooks);

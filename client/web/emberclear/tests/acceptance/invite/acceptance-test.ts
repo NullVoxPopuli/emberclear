@@ -5,17 +5,14 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import { percySnapshot } from 'ember-percy';
 
-import {
-  clearLocalStorage,
-  getService,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  visit,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { selectors as chatSelectors } from 'emberclear/tests/helpers/pages/chat';
 import { completedPage, nameForm } from 'emberclear/tests/helpers/pages/setup';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { getService, visit } from '@emberclear/test-helpers/test-support';
 
 module('Acceptance | Invitations', function (hooks) {
   setupApplicationTest(hooks);

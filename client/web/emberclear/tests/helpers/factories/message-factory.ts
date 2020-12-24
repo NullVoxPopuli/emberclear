@@ -1,6 +1,5 @@
-import { TARGET, TYPE } from 'emberclear/models/message';
-
-import { getService } from '../get-service';
+import { TARGET, TYPE } from '@emberclear/networking/models/message';
+import { getService } from '@emberclear/test-helpers/test-support';
 
 import type { Identity } from '@emberclear/local-account';
 

@@ -4,14 +4,11 @@ import { setupApplicationTest } from 'ember-qunit';
 import { percySnapshot } from 'ember-percy';
 
 import { page } from 'emberclear/components/app/off-canvas/-page';
-import {
-  clearLocalStorage,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  stubService,
-  visit,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { stubService, visit } from '@emberclear/test-helpers/test-support';
 
 module('Acceptance | Sidebar Visibility', function (hooks) {
   setupApplicationTest(hooks);

@@ -3,7 +3,7 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, skip, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { stubService } from 'emberclear/tests/helpers';
+import { stubService } from '@emberclear/test-helpers/test-support';
 
 import type { TestContext } from 'ember-test-helpers';
 

@@ -2,16 +2,13 @@ import { currentURL } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest, skip } from 'ember-qunit';
 
-import {
-  clearLocalStorage,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  visit,
-  visit as visitIgnoringFailure,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { createChannel } from 'emberclear/tests/helpers/factories/channel-factory';
 import { page } from 'emberclear/tests/helpers/pages/chat';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
+
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { visit } from '@emberclear/test-helpers/test-support';
 
 import type { Channel } from '@emberclear/local-account';
 
@@ -38,7 +35,7 @@ module('Acceptance | Chat | Privately With', function (hooks) {
       setupRelayConnectionMocks(hooks);
 
       hooks.beforeEach(async function () {
-        await visitIgnoringFailure('/chat/in-channel/nowhere');
+        await visit('/chat/in-channel/nowhere');
       });
 
       test('redirects', async function (assert) {

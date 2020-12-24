@@ -6,7 +6,10 @@ import {
   setupServiceWorkerUpdater,
 } from 'ember-service-worker-update-notify/test-support/updater';
 
-import { setupRelayConnectionMocks, setupWorkers, visit } from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { visit } from '@emberclear/test-helpers/test-support';
 
 const selector = '.service-worker-update-notify';
 

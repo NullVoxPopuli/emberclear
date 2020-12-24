@@ -4,13 +4,12 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import { timeout } from 'ember-concurrency';
 
-import {
-  clearLocalStorage,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  visit,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { app } from 'emberclear/tests/helpers/pages/app';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage } from '@emberclear/local-account/test-support';
+import { visit } from '@emberclear/test-helpers/test-support';
 
 const scrollContainer = '.mobile-menu-wrapper';
 
