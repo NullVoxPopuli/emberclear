@@ -123,6 +123,9 @@ const tsBase = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
 
+    // Eliminate worthless warnings
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+
     // Use real types
     '@typescript-eslint/no-explicit-any': 'error',
     // Maximum strictness

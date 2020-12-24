@@ -104,7 +104,7 @@ const testsJS = {
 };
 const typeDeclarations = {
   ...tsBase,
-  files: ['types/**'],
+  files: ['types/**', '*.d.ts'],
   rules: {
     ...tsBase.rules,
     // custom type declarations get wonky
