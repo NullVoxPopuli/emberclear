@@ -14,6 +14,8 @@ import { setupWorkers } from '@emberclear/crypto/test-support';
 import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
 import { getService, visit } from '@emberclear/test-helpers/test-support';
 
+import type RedirectManager from 'emberclear/services/redirect-manager';
+
 module('Acceptance | Invitations', function (hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
@@ -31,7 +33,7 @@ module('Acceptance | Invitations', function (hooks) {
     });
 
     test('there is now a pending redirect', function (assert) {
-      const redirect = getService('redirect-manager');
+      const redirect = getService('redirect-manager') as RedirectManager;
 
       assert.ok(redirect.hasPendingRedirect);
     });

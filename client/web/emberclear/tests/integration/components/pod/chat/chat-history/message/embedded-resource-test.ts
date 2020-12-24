@@ -6,12 +6,13 @@ import { setupRenderingTest } from 'ember-qunit';
 import { stubService } from '@emberclear/test-helpers/test-support';
 
 import type { TestContext } from 'ember-test-helpers';
+import type ChatScroller from 'emberclear/services/chat-scroller';
 
 module('Integration | Component | embedded-resource', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-    stubService('chat-scroller', {});
+    stubService('chat-scroller', {} as LIES<ChatScroller>);
   });
 
   module('shouldRender', function () {
