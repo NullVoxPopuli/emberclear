@@ -8,8 +8,8 @@ import { page } from 'emberclear/tests/helpers/pages/chat';
 
 import { createContact, setupCurrentUser } from '@emberclear/local-account/test-support';
 
-import type { TestContext } from 'ember-test-helpers';
 import type { Contact } from '@emberclear/local-account';
+import type { TestContext } from 'ember-test-helpers';
 
 module('Integration | Component | embeds-menu', function (hooks) {
   setupRenderingTest(hooks);

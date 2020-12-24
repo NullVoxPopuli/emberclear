@@ -2,8 +2,9 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-import { currentUserId } from '@emberclear/local-account';
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
+
+import { currentUserId } from '@emberclear/local-account';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';

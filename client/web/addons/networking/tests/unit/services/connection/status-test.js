@@ -3,13 +3,14 @@ import { setupTest } from 'ember-qunit';
 
 import { timeout } from 'ember-concurrency';
 
-import { getService } from '@emberclear/test-helpers/test-support';
 import {
   STATUS_CONNECTED,
   STATUS_CONNECTING,
   STATUS_DEGRADED,
   STATUS_UNKNOWN,
 } from 'emberclear/utils/connection/connection-pool';
+
+import { getService } from '@emberclear/test-helpers/test-support';
 
 module('Unit | Service | connection/status', function (hooks) {
   setupTest(hooks);

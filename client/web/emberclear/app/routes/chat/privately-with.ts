@@ -4,8 +4,8 @@ import { inject as service } from '@ember/service';
 import { currentUserId } from '@emberclear/local-account';
 
 import type StoreService from '@ember-data/store';
-import type ChatScroller from 'emberclear/services/chat-scroller';
 import type { CurrentUserService } from '@emberclear/local-account';
+import type ChatScroller from 'emberclear/services/chat-scroller';
 
 interface IModelParams {
   id: string;

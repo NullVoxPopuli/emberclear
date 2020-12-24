@@ -6,8 +6,8 @@ import { ACTION_RESPONSE } from 'emberclear/models/action';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
-import type Action from 'emberclear/models/action';
 import type { CurrentUserService } from '@emberclear/local-account';
+import type Action from 'emberclear/models/action';
 import type SettingsService from 'emberclear/services/settings';
 import type SidebarService from 'emberclear/services/sidebar';
 
