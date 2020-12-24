@@ -9,13 +9,19 @@ import { Statechart } from 'pinochle/utils/use-machine';
 import { statechart } from './-statechart';
 
 import type RouterService from '@ember/routing/router-service';
+import type { GameHost } from 'pinochle/game/networking/host';
+import type GameManager from 'pinochle/services/game-manager';
 
 type Args = {
   numPlayers: number;
 };
 
+// TODO: rename to host game
 export default class JoinGame extends Component<Args> {
   @service declare router: RouterService;
+  @service declare gameManager: GameManager;
+
+  gameHost?: GameHost;
 
   @use
   interpreter = new Statechart(() => {
@@ -28,9 +34,13 @@ export default class JoinGame extends Component<Args> {
 
   @action
   _startGame() {
-    let id = 1;
+    if (this.gameHost) {
+      this.router.transitionTo(`/game/${this.gameHost.hexId}`);
 
-    this.router.transitionTo(`/game/${id}`);
+      return;
+    }
+
+    // this.interpreter.send('START_GAME_FAILED');
   }
 
   /**
@@ -38,7 +48,7 @@ export default class JoinGame extends Component<Args> {
    * also connect to the relay
    */
   @action
-  _establishConnection() {
-    // TODO
+  async _establishConnection() {
+    this.gameHost = await this.gameManager.createHost();
   }
 }

@@ -7,7 +7,7 @@
   ],
   "repository": {
     "url": "https://github.com/NullVoxPopuli/emberclear",
-    "directory": "client/web/addons/crypto"
+    "directory": "client/web/addons/local-account"
   },
   "license": "GPL-3.0",
   "author": "NullVoxPopuli",
@@ -29,6 +29,11 @@
   "dependencies": {
     "@emberclear/crypto": "*",
     "@emberclear/encoding": "*",
+    "@ember-data/debug": "3.23.0",
+    "@ember-data/model": "3.23.0",
+    "@ember-data/record-data": "3.23.0",
+    "@ember-data/store": "3.23.0",
+    "ember-auto-import": "1.10.0",
     "ember-cli-babel": "^7.23.0",
     "ember-cli-htmlbars": "^5.3.1",
     "ember-concurrency": "1.3.0",
@@ -40,10 +45,6 @@
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
-    "@ember-data/debug": "3.23.0",
-    "@ember-data/model": "3.23.0",
-    "@ember-data/record-data": "3.23.0",
-    "@ember-data/store": "3.23.0",
     "@emberclear/config": "*",
     "@emberclear/eslint": "*",
     "@emberclear/test-helpers": "*",
@@ -60,7 +61,6 @@
     "@types/qunit": "2.11.1",
     "@types/rsvp": "4.0.3",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-auto-import": "^1.8.0",
     "ember-cli": "~3.23.0",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-inject-live-reload": "^2.0.2",

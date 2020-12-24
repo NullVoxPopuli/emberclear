@@ -1,4 +1,3 @@
-// import Component from '@glimmer/component';
 import { getOwner, setOwner } from '@ember/application';
 import { assert } from '@ember/debug';
 import { associateDestroyableChild, registerDestructor } from '@ember/destroyable';
@@ -18,21 +17,26 @@ import type {
   STATUS,
 } from '@emberclear/networking/utils/connection/connection-pool';
 
+type Target = {
+  pub: Uint8Array;
+  hex: string;
+};
+
 export class EphemeralConnection {
   @service declare store: StoreService;
   @service declare workers: WorkersService;
 
   // setup in the psuedo constructor (static method: build)
   // (build is an "async constructor")
-  connectionPool!: ConnectionPool<Connection, Relay>;
-  crypto!: CryptoConnector;
-  hexId!: string;
+  declare connectionPool: ConnectionPool<Connection, Relay>;
+  declare crypto: CryptoConnector;
+  declare hexId: string;
 
-  // Static information about who we're connecting to
-  target?: {
-    pub: Uint8Array;
-    hex: string;
-  };
+  /**
+   * Static information about who we're connecting to
+   * - useful if the connection is only meant for one person
+   */
+  target?: Target;
 
   /**
    * For creating new instances of ephemeral connections
@@ -115,12 +119,12 @@ export class EphemeralConnection {
     this.hexId = hex;
   }
 
-  async send(message: EncryptableObject) {
-    if (!this.target) {
+  async send(message: EncryptableObject, target?: Target) {
+    if (!this.target || target) {
       throw new Error('Cannot send a message with no target');
     }
 
-    let to = this.target.pub;
+    let to = (this.target || target).pub;
     let connection = await this.connectionPool.acquire();
     let encryptedMessage = await this.crypto.encryptForSocket({ ...message }, { publicKey: to });
 

@@ -23,8 +23,7 @@ export default class ConnectionService extends Service {
   hooks?: ConnectionHooks;
 
   connect() {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    taskFor(this._connect).perform();
+    return taskFor(this._connect).perform();
   }
 
   disconnect() {

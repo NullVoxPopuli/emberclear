@@ -2,7 +2,7 @@ import { getOwner } from '@ember/application';
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-import { ensureRelays } from 'emberclear/utils/data/required-data';
+import { ensureRelays } from '@emberclear/networking';
 
 import type StoreService from '@ember-data/store';
 import type { CurrentUserService } from '@emberclear/local-account';
