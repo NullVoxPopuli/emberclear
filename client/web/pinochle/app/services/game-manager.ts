@@ -17,5 +17,7 @@ export default class GameManager extends Service {
     return host;
   }
 
-  async connectToHost(hex: string) {}
+  async connectToHost(hex: string) {
+    console.debug('TODO: implement this', hex);
+  }
 }
