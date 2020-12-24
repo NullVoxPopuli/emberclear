@@ -1,4 +1,5 @@
 import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
@@ -20,16 +21,39 @@ export default class HostGame extends Component<Args> {
   @service declare router: RouterService;
   @service declare gameManager: GameManager;
 
-  gameHost?: GameHost;
+  @tracked gameHost?: GameHost;
 
   @use
   interpreter = new Statechart(() => {
     return {
       named: {
         chart: statechart,
+        context: { numPlayers: this.args.numPlayers },
+        config: {
+          actions: {
+            startGame: this._startGame,
+            establishConnection: this._establishConnection,
+          },
+        },
       },
     };
   });
+
+  get state() {
+    return this.interpreter.state?.toStrings();
+  }
+
+  get connectedPlayers() {
+    return this.gameHost?.numConnected || 0;
+  }
+
+  get joinUrl() {
+    return this.gameHost?.joinUrl;
+  }
+
+  /*********************************
+   * Machine Actions
+   ********************************/
 
   @action
   _startGame() {
@@ -39,7 +63,7 @@ export default class HostGame extends Component<Args> {
       return;
     }
 
-    // this.interpreter.send('START_GAME_FAILED');
+    this.interpreter.send('START_GAME_FAILED');
   }
 
   /**

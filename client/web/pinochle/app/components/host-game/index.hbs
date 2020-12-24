@@ -1,10 +1,20 @@
 <main class='grid center fullscreen'>
   <section>
 
-    <div class='grid gap-4'>
-      <h2>Waiting for players</h2>
+    {{#if (contains this.state 'waiting-for-players')}}
+      <div class='grid gap-4'>
+        <h2>Waiting for players</h2>
 
-      <Loader::Indeterminate />
-    </div>
+        <Loader::Indeterminate />
+
+        <hr>
+
+        <div>
+          {{this.joinUrl}}
+        </div>
+      </div>
+    {{else}}
+      STATE: TODO
+    {{/if}}
   </section>
 </main>

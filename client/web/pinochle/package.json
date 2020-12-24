@@ -76,6 +76,7 @@
   "dependencies": {
     "@emberclear/crypto": "*",
     "@emberclear/local-account": "*",
+    "@emberclear/encoding": "*",
     "@emberclear/networking": "*",
     "ember-cached-decorator-polyfill": "^0.1.0",
     "ember-could-get-used-to-this": "^1.0.1",
