@@ -7588,7 +7588,7 @@ ember-concurrency-async@0.3.2:
 
 ember-concurrency-decorators@2.0.3:
   version "2.0.3"
-  resolved "https://registry.yarnpkg.com/ember-concurrency-decorators/-/ember-concurrency-decorators-2.0.3.tgz#2816c9a0283b90ba5340fc5b4e0b92ea91f7d6e3"
+  resolved "https://registry.npmjs.org/ember-concurrency-decorators/-/ember-concurrency-decorators-2.0.3.tgz#2816c9a0283b90ba5340fc5b4e0b92ea91f7d6e3"
   integrity sha512-r6O34YKI/slyYapVsuOPnmaKC4AsmBSwvgcadbdy+jHNj+mnryXPkm+3hhhRnFdlsKUKdEuXvl43lhjhYRLhhA==
   dependencies:
     "@ember-decorators/utils" "^6.1.0"

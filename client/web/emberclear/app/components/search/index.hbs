@@ -15,7 +15,7 @@
     >
   </Field>
 
-  <div class='results'>
+  <div class='results' {{did-insert this.submitSearch}}>
     {{#unless this.hasResults}}
       {{t 'ui.search.nothingFound'}}
     {{/unless}}

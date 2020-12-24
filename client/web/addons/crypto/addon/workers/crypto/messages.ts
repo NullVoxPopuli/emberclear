@@ -58,7 +58,7 @@ export function handleMessage<Action extends keyof API>(
 
   switch (action) {
     case Action.LOGIN:
-      return (login as TODO)(action, ...args);
+      return (login as TODO)(...args);
     case Action.GENERATE_KEYS:
       return (generateAsymmetricKeys as TODO)();
     case Action.GENERATE_SIGNING_KEYS:

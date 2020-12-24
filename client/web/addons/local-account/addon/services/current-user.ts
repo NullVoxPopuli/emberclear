@@ -199,7 +199,7 @@ export default class CurrentUserService extends Service {
     }
   }
 
-  hydrateCrypto(user?: User) {
+  hydrateCrypto(user?: KeyPair) {
     if (this.__crypto__) {
       if (user) {
         this.__crypto__.keys = user;

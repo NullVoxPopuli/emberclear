@@ -4,8 +4,9 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { stubService } from 'emberclear/tests/helpers';
 import { stubConnection } from 'emberclear/tests/helpers/setup-relay-connection-mocks';
+
+import { stubService } from '@emberclear/test-helpers/test-support';
 
 const LINKS = {
   youtube: {

@@ -5,7 +5,7 @@ import { setupApplicationTest } from 'ember-qunit';
 import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 
 import { setupCurrentUser } from '@emberclear/local-account/test-support';
-import { setupRouter } from '@emberclear/test-helpers/test-support';
+import { setupRouter, visit } from '@emberclear/test-helpers/test-support';
 
 import type { TestContext } from 'ember-test-helpers';
 

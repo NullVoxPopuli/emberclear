@@ -21,6 +21,7 @@ export async function createCurrentUser(): Promise<User> {
   await record.save();
 
   currentUserService.__record__ = record;
+  currentUserService.hydrateCrypto({ publicKey, privateKey });
 
   await settled();
 

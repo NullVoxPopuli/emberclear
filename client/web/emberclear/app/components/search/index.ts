@@ -26,12 +26,6 @@ export default class SearchModal extends Component<IArgs> {
   @tracked contactResults: Contact[] = [];
   @tracked channelResults: Channel[] = [];
 
-  constructor(owner: unknown, args: IArgs) {
-    super(owner, args);
-
-    this.submitSearch();
-  }
-
   get numContacts() {
     return this.contactResults.length;
   }

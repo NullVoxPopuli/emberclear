@@ -27,7 +27,7 @@ export default class MessageDispatcher extends Service {
 
     await message.save();
 
-    await this.sendTo(message, to);
+    this.sendTo(message, to);
   }
 
   // there needs to be a polymorphic relationship in order for this to work
@@ -35,7 +35,7 @@ export default class MessageDispatcher extends Service {
   //   return sendTo(message, message.to);
   // }
 
-  async sendTo(message: Message, to: Contact | Channel) {
+  sendTo(message: Message, to: Contact | Channel) {
     message.queueForResend = false;
 
     if (to instanceof User) {
@@ -43,11 +43,13 @@ export default class MessageDispatcher extends Service {
     }
 
     if (to instanceof Contact) {
-      return await taskFor(this.sendToUser).perform(message, to);
+      taskFor(this.sendToUser).perform(message, to);
+
+      return;
     }
 
     // Otherwise, Channel Message
-    return this.sendToChannel(message, to);
+    this.sendToChannel(message, to);
   }
 
   async pingAll() {
