@@ -31,6 +31,7 @@ module.exports = {
       buildDir,
     };
 
+    // outputs {buildDir}/crypto.js
     buildWorkers(options);
 
     return new Funnel(buildDir, {

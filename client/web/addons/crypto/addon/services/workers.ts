@@ -24,7 +24,8 @@ export default class WorkersService extends Service {
   protected getWorker(path: string): WorkerLike {
     if (this.registry[path]) return this.registry[path];
 
-    let worker = new Worker(`${path}${'' || ''}.js`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let worker = new Worker(`${path}${(window as any).ASSET_FINGERPRINT_HASH || ''}.js`);
     let promiseWorker = new PWBHost(worker);
     // promiseWorker._hostIDQueue = undefined;
 
