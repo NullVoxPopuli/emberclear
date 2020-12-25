@@ -10,15 +10,27 @@ interface Params {
   idOfHost: string;
 }
 
+/**
+ * /game/:id can only be visited by players
+ *
+ * :id is the public key as hex of the host game
+ *
+ * NOTE: the person who is hosting the game also has a player
+ * identity.
+ *
+ */
 export default class GameRoute extends Route {
   @service declare gameManager: GameManager;
   @service declare router: RouterService;
 
   async beforeModel(transition: Transition) {
     let hostId = transition.to.params.idOfHost;
-    let gameInfo = this.gameManager.find(hostId || '');
+    let gameGuest = this.gameManager.isGuestOf.get(hostId || '');
 
-    if (!gameInfo) {
+    /**
+     * TODO: add some global error / toast / flash messages
+     */
+    if (!gameGuest) {
       this.router.transitionTo('/');
     }
   }
@@ -26,17 +38,13 @@ export default class GameRoute extends Route {
   async model(params: Params) {
     let hostId = params.idOfHost;
 
-    let gameInfo = this.gameManager.find(hostId);
+    let gameGuest = this.gameManager.isGuestOf.get(hostId || '');
 
-    assert(`This component should not be used without a gameInfo`, gameInfo);
-
-    let isHosting = 'host' in gameInfo;
-    let game = isHosting ? gameInfo.host : gameInfo.guest;
+    assert(`This component should not be used without a gameInfo`, gameGuest);
 
     return {
       hostId,
-      game,
-      isHosting,
+      game: gameGuest,
     };
   }
 }

@@ -7,6 +7,9 @@ import { GameHost } from 'pinochle/game/networking/host';
 
 export default class GameManager extends Service {
   isHosting = new Map<string, GameHost>();
+  /**
+   * Note, the player that hosts will also be a guest
+   */
   isGuestOf = new Map<string, GameGuest>();
 
   async createHost() {

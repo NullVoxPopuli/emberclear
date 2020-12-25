@@ -1,5 +1,1 @@
-{{#if @model.isHosting}}
-  <Play::AsHost @id={{@model.hostId}} @hostGame={{@model.game}} />
-{{else}}
-  <Play::AsGuest @id={{@model.hostId}} @hostGame={{@model.game}} />
-{{/if}}
+<Play::AsGuest @id={{@model.hostId}} @hostGame={{@model.game}} />
