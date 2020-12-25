@@ -16,6 +16,16 @@ export function fromHex(hex: string): Uint8Array {
   return new Uint8Array(matches.map((byte) => parseInt(byte, 16)));
 }
 
+type Serializable =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | Date
+  | Serializable[]
+  | { [key: string]: Serializable };
+
 export async function convertObjectToQRCodeDataURL<T extends Record<string, unknown>>(
   object: T
 ): Promise<string> {
@@ -36,21 +46,21 @@ export function convertUint8ArrayToObject<T>(array: Uint8Array): T {
   return JSON.parse(str);
 }
 
-export function convertObjectToBase64String(object: any): string {
+export function convertObjectToBase64String(object: Serializable): string {
   const json = JSON.stringify(object);
   const base64 = btoa(json);
 
   return base64;
 }
 
-export function convertBase64StringToObject(base64: string): any {
+export function convertBase64StringToObject(base64: string): Serializable {
   const json = atob(base64);
   const obj = JSON.parse(json);
 
   return obj;
 }
 
-export function objectToDataURL(obj: any): string {
+export function objectToDataURL(obj: Serializable): string {
   const str = JSON.stringify(obj);
 
   return `data:text/json;charset=utf-8,${encodeURIComponent(str)}`;

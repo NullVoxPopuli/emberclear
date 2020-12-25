@@ -6,6 +6,7 @@ import localforage from 'localforage';
 
 import { fromHex, objectToDataURL, toHex } from '@emberclear/encoding/string';
 
+import type { Serializable } from '@emberclear/crypto/types';
 import type { Channel, Contact } from '@emberclear/local-account';
 import type ChannelManager from '@emberclear/local-account/services/channel-manager';
 import type ContactManager from '@emberclear/local-account/services/contact-manager';
@@ -104,7 +105,7 @@ export default class Settings extends Service {
     return objectToDataURL(toDownload);
   }
 
-  async buildSettings(): Promise<ISettingsJson> {
+  async buildSettings(): Promise<Serializable> {
     const { name, privateKey, privateSigningKey } = this.currentUser;
 
     if (!privateKey) {
@@ -118,7 +119,7 @@ export default class Settings extends Service {
     const contacts = await this.contactManager.allContacts();
     const channels = await this.channelManager.allChannels();
 
-    const toDownload: ISettingsJson = {
+    const toDownload = {
       version: 1,
       name: name || '',
       privateKey: toHex(privateKey),
