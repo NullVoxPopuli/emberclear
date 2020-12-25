@@ -12,6 +12,8 @@ import { GameRound } from './game-round';
 import type { GameMessage, GuestPlayer } from './types';
 import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
 
+const MAX_PLAYERS = 4;
+
 /**
  * TODO:
  *  - track number of people connected
@@ -77,6 +79,12 @@ export class GameHost extends EphemeralConnection {
 
   @action
   _addPlayer({ name }: { name: string }, publicKeyAsHex: string) {
+    if (this.players.length === MAX_PLAYERS) {
+      this.sendToHex({ type: 'GAME_FULL' }, publicKeyAsHex);
+
+      return;
+    }
+
     this.players.push({
       publicKeyAsHex,
       name,

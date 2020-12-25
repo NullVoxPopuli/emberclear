@@ -8,7 +8,15 @@ import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
 import type { Card } from '../card';
-import type { GameMessage, GuestPlayer, Start, WelcomeMessage } from './types';
+import type { GamePhase } from './constants';
+import type {
+  GameMessage,
+  GameResult,
+  GuestPlayer,
+  Start,
+  UpdateForGuest,
+  WelcomeMessage,
+} from './types';
 import type { EncryptedMessage } from '@emberclear/crypto/types';
 
 /**
@@ -27,6 +35,9 @@ export class GameGuest extends EphemeralConnection {
   @tracked gameId?: string;
   @tracked players: GuestPlayer[] = [];
   @tracked hand: Card[] = [];
+  @tracked currentPlayer?: string;
+  @tracked scoreHistory: GameResult[] = [];
+  @tracked gamePhase: GamePhase;
 
   @action
   async checkHost() {
@@ -67,6 +78,10 @@ export class GameGuest extends EphemeralConnection {
         this.startGame(decrypted);
 
         return;
+      case 'GUEST_UPDATE':
+        this.updateGameState(decrypted);
+
+        return;
       default:
         console.debug(data, decrypted);
         throw new UnknownMessageError();
@@ -89,5 +104,13 @@ export class GameGuest extends EphemeralConnection {
     this.hand = hand;
 
     this.isStarted.resolve();
+  }
+
+  @action
+  updateGameState(decrypted: UpdateForGuest) {
+    this.currentPlayer = decrypted.currentPlayer;
+    this.hand = decrypted.hand;
+    this.scoreHistory = decrypted.scoreHistory;
+    this.gamePhase = decrypted.gamePhase;
   }
 }
