@@ -34,6 +34,7 @@ export default class JoinGame extends Component<Args> {
           actions: {
             establishConnection: this._establishConnection,
             joinGame: this._joinGame,
+            startGame: this._startGame,
           },
         },
       },
@@ -89,7 +90,7 @@ export default class JoinGame extends Component<Args> {
   }
 
   @action
-  startGame() {
+  _startGame() {
     if (this.gameHost?.gameId) {
       this.router.transitionTo(`/game/${this.gameHost?.gameId}`);
 

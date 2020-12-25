@@ -51,6 +51,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
     waiting: {
       on: {
         START: 'starting',
+        ERROR: 'game-does-not-exist',
       },
     },
     starting: {
