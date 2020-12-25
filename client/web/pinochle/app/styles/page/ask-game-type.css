@@ -15,14 +15,6 @@
   transform: translateY(-20%);
 }
 
-.ask-game-type h1 {
-  font-weight: 200;
-}
-
-.ask-game-type h2 {
-  font-weight: 200;
-}
-
 .ask-game-type .game-type-options {
   display: flex;
   flex-wrap: wrap;
@@ -42,6 +34,7 @@
   /* border: 1px solid black; */
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
   transition: all 0.2s;
+  color: black;
 }
 
 .ask-game-type .game-type-options a:hover {

@@ -119,12 +119,20 @@ export class EphemeralConnection {
     this.hexId = hex;
   }
 
+  sendToHex(message: EncryptableObject, hexPub: string) {
+    let pub = fromHex(hexPub);
+
+    return this.send(message, { hex: hexPub, pub });
+  }
+
   async send(message: EncryptableObject, target?: Target) {
-    if (!this.target || target) {
+    let _target = this.target || target;
+
+    if (!_target) {
       throw new Error('Cannot send a message with no target');
     }
 
-    let to = (this.target || target).pub;
+    let to = _target.pub;
     let connection = await this.connectionPool.acquire();
     let encryptedMessage = await this.crypto.encryptForSocket({ ...message }, { publicKey: to });
 

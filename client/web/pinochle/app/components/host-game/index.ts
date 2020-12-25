@@ -9,6 +9,7 @@ import { Statechart } from 'pinochle/utils/use-machine';
 
 import { statechart } from './-statechart';
 
+import type { Context } from './-statechart';
 import type RouterService from '@ember/routing/router-service';
 import type { GameHost } from 'pinochle/game/networking/host';
 import type GameManager from 'pinochle/services/game-manager';
@@ -43,12 +44,34 @@ export default class HostGame extends Component<Args> {
     return this.interpreter.state?.toStrings();
   }
 
+  get context() {
+    return this.interpreter.state?.context;
+  }
+
   get connectedPlayers() {
     return this.gameHost?.numConnected || 0;
   }
 
   get joinUrl() {
     return this.gameHost?.joinUrl;
+  }
+
+  get canStartGame() {
+    return this.connectedPlayers >= 3;
+  }
+
+  get numRemaining() {
+    return 3 - this.connectedPlayers;
+  }
+
+  @action
+  handleSubmit(name: string) {
+    this.interpreter.send({ type: 'SUBMIT_NAME', name });
+  }
+
+  @action
+  start() {
+    this.interpreter.send({ type: 'START_GAME' });
   }
 
   /*********************************
@@ -58,6 +81,7 @@ export default class HostGame extends Component<Args> {
   @action
   _startGame() {
     if (this.gameHost) {
+      this.gameHost.startGame();
       this.router.transitionTo(`/game/${this.gameHost.hexId}`);
 
       return;
@@ -71,7 +95,9 @@ export default class HostGame extends Component<Args> {
    * also connect to the relay
    */
   @action
-  async _establishConnection() {
+  async _establishConnection({ name }: Context) {
     this.gameHost = await this.gameManager.createHost();
+
+    this.gameHost.addSelf(name);
   }
 }

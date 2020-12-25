@@ -54,6 +54,11 @@
   text-align: center;
 }
 
+.list\:flat,
+.list\:flat li {
+  padding: 0;
+}
+
 .align-items\:center {
   align-items: center;
 }
@@ -72,6 +77,10 @@
 
 .center-squished {
   align-content: center;
+}
+
+.font-5 {
+  font-size: 1.25rem;
 }
 
 .double-font-size {

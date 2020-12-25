@@ -1,0 +1,21 @@
+<form {{on 'submit' this.submitName}}>
+  <label for='name-input'>
+    <h2>Please enter your name</h2>
+  </label>
+  <div class='input-box grid:cols gap-2 left-column'>
+    <input
+      id='name-input'
+      type='text'
+      value={{this.name}}
+      {{on 'input' this.updateName}}
+    >
+
+    <button
+      type='submit'
+      disabled={{this.isNameMissing}}
+      {{on 'click' this.submitName}}
+    >
+      Submit
+    </button>
+  </div>
+</form>
