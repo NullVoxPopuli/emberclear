@@ -7,7 +7,8 @@ import { fromHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
-import type { GameMessage, GuestPlayer, WelcomeMessage } from './types';
+import type { Card } from '../card';
+import type { GameMessage, GuestPlayer, Start, WelcomeMessage } from './types';
 import type { EncryptedMessage } from '@emberclear/crypto/types';
 
 /**
@@ -25,6 +26,7 @@ export class GameGuest extends EphemeralConnection {
 
   @tracked gameId?: string;
   @tracked players: GuestPlayer[] = [];
+  @tracked hand: Card[] = [];
 
   @action
   async checkHost() {
@@ -62,7 +64,7 @@ export class GameGuest extends EphemeralConnection {
         return;
 
       case 'START':
-        this.startGame();
+        this.startGame(decrypted);
 
         return;
       default:
@@ -83,7 +85,9 @@ export class GameGuest extends EphemeralConnection {
   }
 
   @action
-  startGame() {
+  startGame({ hand }: Start) {
+    this.hand = hand;
+
     this.isStarted.resolve();
   }
 }

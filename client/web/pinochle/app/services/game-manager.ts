@@ -5,8 +5,14 @@ import { ensureRequirementsAreMet } from 'pinochle/game/networking/-requirements
 import { GameGuest } from 'pinochle/game/networking/guest';
 import { GameHost } from 'pinochle/game/networking/host';
 
+/**
+ * TODO: figure out how to serialize games so that
+ *       we can handle accidental refreshes and/or navigations
+ *
+ */
 export default class GameManager extends Service {
   isHosting = new Map<string, GameHost>();
+
   /**
    * Note, the player that hosts will also be a guest
    */
@@ -30,20 +36,5 @@ export default class GameManager extends Service {
     this.isGuestOf.set(hex, guest);
 
     return guest;
-  }
-
-  find(id: string) {
-    let host = this.isHosting.get(id);
-    let guest = this.isGuestOf.get(id);
-
-    if (guest) {
-      return { guest, id };
-    }
-
-    if (host) {
-      return { host, id };
-    }
-
-    return;
   }
 }

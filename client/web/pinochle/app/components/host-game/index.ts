@@ -11,6 +11,7 @@ import { statechart } from './-statechart';
 
 import type { Context } from './-statechart';
 import type RouterService from '@ember/routing/router-service';
+import type { GameGuest } from 'pinochle/game/networking/guest';
 import type { GameHost } from 'pinochle/game/networking/host';
 import type GameManager from 'pinochle/services/game-manager';
 
@@ -23,6 +24,7 @@ export default class HostGame extends Component<Args> {
   @service declare gameManager: GameManager;
 
   @tracked gameHost?: GameHost;
+  @tracked gameGuest?: GameGuest;
 
   @use
   interpreter = new Statechart(() => {
@@ -81,8 +83,8 @@ export default class HostGame extends Component<Args> {
   @action
   _startGame() {
     if (this.gameHost) {
-      this.gameHost.startGame();
       this.router.transitionTo(`/game/${this.gameHost.hexId}`);
+      this.gameHost.startGame();
 
       return;
     }
@@ -98,6 +100,9 @@ export default class HostGame extends Component<Args> {
   async _establishConnection({ name }: Context) {
     this.gameHost = await this.gameManager.createHost();
 
-    this.gameHost.addSelf(name);
+    // TODO: error handling?
+    this.gameGuest = await this.gameManager.connectToHost(this.gameHost.hexId);
+    await this.gameGuest.checkHost();
+    await this.gameGuest.joinHost(name);
   }
 }

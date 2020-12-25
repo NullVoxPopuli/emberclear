@@ -7,8 +7,10 @@ import { fromHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
+import { GameRound } from './game-round';
+
 import type { GameMessage, GuestPlayer } from './types';
-import type { EncryptedMessage } from '@emberclear/crypto/types';
+import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
 
 /**
  * TODO:
@@ -20,6 +22,8 @@ import type { EncryptedMessage } from '@emberclear/crypto/types';
  */
 export class GameHost extends EphemeralConnection {
   @tracked players = new TrackedArray() as GuestPlayer[];
+
+  declare currentGame: GameRound;
 
   get otherPlayers() {
     return this.players.filter((player) => player.publicKeyAsHex !== this.hexId);
@@ -55,18 +59,19 @@ export class GameHost extends EphemeralConnection {
   }
 
   @action
-  addSelf(name: string) {
-    this.players.push({
-      publicKeyAsHex: this.hexId,
-      name,
-      publicKey: fromHex(this.hexId),
-    });
-  }
-
-  @action
   startGame() {
-    for (let player of this.otherPlayers) {
-      this.sendToHex({ type: 'START' }, player.publicKeyAsHex);
+    this.currentGame = new GameRound(this.players);
+
+    for (let player of this.players) {
+      let hand = (this.currentGame.hands[player.publicKeyAsHex] as unknown) as EncryptableObject;
+
+      this.sendToHex(
+        {
+          type: 'START',
+          hand,
+        },
+        player.publicKeyAsHex
+      );
     }
   }
 

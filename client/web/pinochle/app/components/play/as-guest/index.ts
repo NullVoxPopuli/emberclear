@@ -1,9 +1,13 @@
 import Component from '@glimmer/component';
-import { cached } from '@glimmer/tracking';
-import { assert } from '@ember/debug';
-import { inject as service } from '@ember/service';
+import { cached, tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-import { newDeck, sortHand, splitDeck } from 'pinochle/game/deck';
+import { use } from 'ember-could-get-used-to-this';
+
+import { sortHand } from 'pinochle/game/deck';
+import { Statechart } from 'pinochle/utils/use-machine';
+
+import { statechart } from './-statechart';
 
 import type { GameGuest } from 'pinochle/game/networking/guest';
 type Args = {
@@ -12,11 +16,29 @@ type Args = {
 };
 
 export default class PlayAsGuest extends Component<Args> {
+  @cached
   get hand() {
-    let deck = newDeck();
-    let { hands } = splitDeck(deck, 4);
-    let sorted = sortHand(hands[0]);
+    return sortHand(this.args.hostGame.hand);
+  }
 
-    return sorted;
+  @use
+  interpreter = new Statechart(() => {
+    return {
+      named: {
+        chart: statechart,
+        context: {},
+        config: {
+          actions: {},
+        },
+      },
+    };
+  });
+
+  /****************************
+   * Machine Actions
+   ***************************/
+  @action
+  getHand() {
+    // return sortHand(this.hostGame);
   }
 }

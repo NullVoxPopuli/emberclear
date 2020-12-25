@@ -1,3 +1,5 @@
+import type { Card } from '../card';
+
 export type GuestPlayer = {
   name: string;
   publicKeyAsHex: string;
@@ -11,7 +13,7 @@ type SerializablePlayer = {
 
 export type JoinMessage = { type: 'JOIN'; name: string };
 export type Syn = { type: 'SYN' };
-export type Start = { type: 'START' };
+export type Start = { type: 'START'; hand: Card[] };
 export type Ack = { type: 'ACK' };
 export type WelcomeMessage = { type: 'WELCOME'; players: SerializablePlayer[] };
 export type GameFull = { type: 'GAME_FULL' };
