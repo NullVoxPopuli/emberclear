@@ -4,7 +4,7 @@ import { setupRenderingTest } from 'ember-qunit';
 
 import hbs from 'htmlbars-inline-precompile';
 
-import { Status } from 'emberclear/models/contact';
+import { Status } from '@emberclear/local-account';
 
 module('Integration | Component | status-icon', function (hooks) {
   setupRenderingTest(hooks);

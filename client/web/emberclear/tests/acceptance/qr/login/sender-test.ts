@@ -11,8 +11,11 @@ import { Machine } from 'xstate';
 
 import NavigatorService from 'emberclear/services/browser/navigator';
 import { testShortestPaths } from 'emberclear/tests/-temp/qunit-xstate-test';
-import { getService, setupCurrentUser, setupEmberclearTest, visit } from 'emberclear/tests/helpers';
+import { setupEmberclearTest } from 'emberclear/tests/helpers';
 import { page } from 'emberclear/tests/helpers/pages/qr';
+
+import { setupCurrentUser } from '@emberclear/local-account/test-support';
+import { getService, visit } from '@emberclear/test-helpers/test-support';
 
 import type ApplicationInstance from '@ember/application/instance';
 import type { TestContext } from 'ember-test-helpers';

@@ -6,21 +6,18 @@ import { setupApplicationTest } from 'ember-qunit';
 import { timeout } from 'ember-concurrency';
 import { percySnapshot } from 'ember-percy';
 
-import {
-  clearLocalStorage,
-  getService,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  visit,
-} from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
 import { page, selectors } from 'emberclear/tests/helpers/pages/chat';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
 
-import type Contact from 'emberclear/models/contact';
-import type Message from 'emberclear/models/message';
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { createContact } from '@emberclear/local-account/test-support';
+import { getService, visit } from '@emberclear/test-helpers/test-support';
+
+import type { Contact } from '@emberclear/local-account';
+import type { Message } from '@emberclear/networking';
 
 module('Acceptance | Chat | Privately With', function (hooks) {
   setupApplicationTest(hooks);

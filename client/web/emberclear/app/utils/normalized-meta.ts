@@ -1,3 +1,5 @@
+import type { OpenGraphData } from '@emberclear/networking/types';
+
 type Args = {
   url: string;
   openGraph?: OpenGraphData | null;

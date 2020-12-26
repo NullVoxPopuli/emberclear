@@ -5,8 +5,9 @@ import { setupRenderingTest } from 'ember-qunit';
 
 import { stripIndent } from 'common-tags';
 
-import { getStore } from 'emberclear/tests/helpers';
 import { page } from 'emberclear/tests/helpers/pages/chat';
+
+import { getStore } from '@emberclear/test-helpers/test-support';
 
 import type { TestContext } from 'ember-test-helpers';
 

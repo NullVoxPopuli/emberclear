@@ -2,17 +2,13 @@ import { currentURL } from '@ember/test-helpers';
 import { module, skip, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import {
-  clearLocalStorage,
-  getService,
-  getStore,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  visit,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { getService, getStore, visit } from '@emberclear/test-helpers/test-support';
 
 module('Acceptance | Settings', function (hooks) {
   setupApplicationTest(hooks);

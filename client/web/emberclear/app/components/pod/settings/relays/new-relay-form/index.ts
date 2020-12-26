@@ -9,7 +9,7 @@ import { taskFor } from 'ember-concurrency-ts';
 import { hostFromURL } from 'emberclear/utils/string/utils';
 
 import type StoreService from '@ember-data/store';
-import type Relay from 'emberclear/models/relay';
+import type { Relay } from '@emberclear/networking';
 
 export default class NewRelayForm extends Component {
   @service store!: StoreService;

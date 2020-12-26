@@ -6,7 +6,7 @@ import { inject as service } from '@ember/service';
 
 import { TABLET_WIDTH } from 'emberclear/utils/breakpoints';
 
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type Sidebar from 'emberclear/services/sidebar';
 
 type Args = Record<string, unknown>;

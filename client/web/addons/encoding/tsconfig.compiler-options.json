@@ -1,0 +1,4 @@
+{
+  // Alias to reduce the number of ../ in paths
+  "extends": "../../config/tsconfig.compiler-options.json"
+}

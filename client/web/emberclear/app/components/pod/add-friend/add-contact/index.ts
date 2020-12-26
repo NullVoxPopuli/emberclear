@@ -7,8 +7,9 @@ import { task } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
 import type StoreService from '@ember-data/store';
-import type ContactManager from 'emberclear/services/contact-manager';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
+import type ContactManager from '@emberclear/local-account/services/contact-manager';
+import type { ImportableIdentity } from '@emberclear/local-account/types';
 
 export default class AddModal extends Component {
   @service toast!: Toast;
@@ -58,7 +59,7 @@ export default class AddModal extends Component {
     taskFor(this.handleScan).perform(json);
   }
 
-  async tryCreate(identity: IdentityJson) {
+  async tryCreate(identity: ImportableIdentity) {
     const { name, publicKey } = identity;
 
     if (!name || !publicKey) {

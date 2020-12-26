@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.compiler-options.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declarationDir": "../declarations",
+    "paths": {
+      "@emberclear/local-account": ["."],
+      "@emberclear/local-account/*": ["./*"],
+
+      "*": ["../types/*"]
+    }
+  },
+  "include": [".", "../types"],
+  "references": [
+    { "path": "../../../libraries/questionably-typed" },
+    { "path": "../../crypto" },
+    { "path": "../../encoding" }
+  ]
+}

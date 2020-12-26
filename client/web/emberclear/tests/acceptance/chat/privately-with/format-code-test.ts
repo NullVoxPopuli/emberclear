@@ -3,17 +3,15 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import { stripIndent } from 'common-tags';
 
-import {
-  clearLocalStorage,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  visit,
-} from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { page } from 'emberclear/tests/helpers/pages/chat';
 
-import type Contact from 'emberclear/models/contact';
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { createContact } from '@emberclear/local-account/test-support';
+import { visit } from '@emberclear/test-helpers/test-support';
+
+import type { Contact } from '@emberclear/local-account';
 
 let codeA = stripIndent`
   \`\`\`ts

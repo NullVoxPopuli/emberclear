@@ -8,8 +8,8 @@ import { taskFor } from 'ember-concurrency-ts';
 
 import { normalizeMeta } from 'emberclear/utils/normalized-meta';
 
-import type ConnectionService from 'emberclear/services/connection';
-import type ConnectionStatusService from 'emberclear/services/connection/status';
+import type ConnectionService from '@emberclear/networking/services/connection';
+import type ConnectionStatusService from '@emberclear/networking/services/connection/status';
 
 type Args = {
   url: string;

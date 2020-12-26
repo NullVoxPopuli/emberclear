@@ -5,8 +5,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { hbs } from 'ember-cli-htmlbars';
 
-import type WorkersService from 'emberclear/services/workers';
-import type CryptoConnector from 'emberclear/utils/workers/crypto';
+import type { CryptoConnector, WorkersService } from '@emberclear/crypto';
 
 type Args = {
   crypto?: CryptoConnector;

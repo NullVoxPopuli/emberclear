@@ -19,6 +19,9 @@
   "include": [".", "../types"],
   "references": [
     { "path": "../../libraries/questionably-typed" },
-    { "path": "../../addons/tracked-local-storage" }
+    { "path": "../../addons/tracked-local-storage" },
+    { "path": "../../addons/crypto" },
+    { "path": "../../addons/local-account" },
+    { "path": "../../addons/networking" }
   ]
 }

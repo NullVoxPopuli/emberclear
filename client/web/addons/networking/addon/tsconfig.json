@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.compiler-options.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declarationDir": "../declarations",
+    "paths": {
+      "@emberclear/networking": ["."],
+      "@emberclear/networking/*": ["./*"],
+
+      "@ember/destroyable": ["../../../node_modules/ember-destroyable-polyfill"],
+
+      "*": ["../types/*"]
+    }
+  },
+  "include": [".", "../types"],
+  "references": [
+    { "path": "../../../libraries/questionably-typed" },
+    { "path": "../../../addons/crypto" },
+    { "path": "../../../addons/local-account" }
+  ]
+}

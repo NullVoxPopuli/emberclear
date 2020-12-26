@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 import type StoreService from '@ember-data/store';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 interface IModelParams {
   id: string;

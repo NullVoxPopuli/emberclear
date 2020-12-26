@@ -1,8 +1,8 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 
-import type ConnectionStatusService from 'emberclear/services/connection/status';
+import type ConnectionStatusService from '@emberclear/networking/services/connection/status';
 
 export default class ConnectionStatus extends Component {
-  @service('connection/status') status!: ConnectionStatusService;
+  @service('connection/status') declare status: ConnectionStatusService;
 }

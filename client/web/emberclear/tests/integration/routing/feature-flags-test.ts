@@ -2,12 +2,10 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import {
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupRouter,
-  visit,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
+
+import { setupCurrentUser } from '@emberclear/local-account/test-support';
+import { setupRouter, visit } from '@emberclear/test-helpers/test-support';
 
 import type { TestContext } from 'ember-test-helpers';
 

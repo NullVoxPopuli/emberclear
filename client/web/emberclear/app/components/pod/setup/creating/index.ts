@@ -7,7 +7,7 @@ import { isBlank } from '@ember/utils';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 
 type Args = {
   next: () => void;

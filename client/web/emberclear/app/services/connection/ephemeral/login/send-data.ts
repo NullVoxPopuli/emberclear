@@ -5,15 +5,20 @@ import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import RSVP from 'rsvp';
 
-import { DataTransferFailed, UnknownMessageError } from 'emberclear/utils/errors';
-import { CurrentUserMustHaveAName } from 'emberclear/utils/errors';
+import { EphemeralConnection } from '@emberclear/networking';
+import {
+  CurrentUserMustHaveAName,
+  DataTransferFailed,
+  UnknownMessageError,
+} from '@emberclear/networking/errors';
 
-import { EphemeralConnection } from '../ephemeral-connection';
-
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { EncryptedMessage } from '@emberclear/crypto/types';
+import type { CurrentUserService } from '@emberclear/local-account';
+import type SettingsService from 'emberclear/services/settings';
 
 export class SendDataConnection extends EphemeralConnection {
-  @service currentUser!: CurrentUserService;
+  @service declare settings: SettingsService;
+  @service declare currentUser: CurrentUserService;
 
   waitForACK = RSVP.defer<void>();
   waitForHash = RSVP.defer<string>();
@@ -57,7 +62,7 @@ export class SendDataConnection extends EphemeralConnection {
   }
 
   @action
-  async onData(data: RelayMessage) {
+  async onData(data: EncryptedMessage) {
     let decrypted: LoginMessage = await this.crypto.decryptFromSocket(data);
 
     switch (decrypted.type) {

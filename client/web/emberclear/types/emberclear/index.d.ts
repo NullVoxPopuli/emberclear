@@ -14,68 +14,13 @@ import './addon-augmentations.d';
 declare global {
   type EmptyRecord = Record<string, unknown>;
 
-  type KeyPublic = { publicKey: Uint8Array };
-  type KeyPrivate = { privateKey: Uint8Array };
-  type KeyPair = KeyPublic & KeyPrivate;
-
-  type SigningKeyPublic = { publicSigningKey: Uint8Array };
-  type SigningKeyPrivate = { privateSigningKey: Uint8Array };
-  type SigningKeyPair = SigningKeyPublic & SigningKeyPrivate;
-
   interface Prism {
     highlightAll: () => void;
-  }
-
-  interface IdentityJson {
-    name: string;
-    publicKey: string;
   }
 
   interface PublicIdentity {
     id: string;
     name: string;
-  }
-
-  interface RelayStateJson {
-    relay: { [key: string]: string };
-    ['connection_count']: number;
-    ['connected_relays']: number;
-    ['connected_to_relays']: Record<string, unknown>;
-  }
-
-  interface RelayState {
-    relay: { [key: string]: string };
-    connectionCount?: number;
-    connectedRelays?: number;
-    connectedToRelays?: Record<string, unknown>;
-  }
-
-  interface OpenGraphData {
-    audio?: string;
-    ['audio:secure_url']?: string;
-    ['audio:type']?: string;
-    description?: string;
-    determiner?: string;
-    image?: string;
-    ['image:alt']?: string;
-    ['image:height']?: string;
-    ['image:secure_url']?: string;
-    ['image:width']?: string;
-    locale?: string;
-    site_name?: string;
-    title?: string;
-    type?: string;
-    url?: string;
-    video?: string;
-    ['video:alt']?: string;
-    ['video:height']?: string;
-    ['video:secure_url']?: string;
-    ['video:type']?: string;
-    ['video:width']?: string;
-  }
-
-  interface RelayOpenGraphResponse {
-    data: OpenGraphData;
   }
 
   interface Array<T> extends Ember.ArrayPrototypeExtensions<T> {
@@ -84,9 +29,13 @@ declare global {
   }
   // interface Function extends Ember.FunctionPrototypeExtensions {}
 
-  interface RelayMessage {
+  interface UserIdentifier {
     uid: string;
-    message: string;
+  }
+
+  interface NamedUser {
+    uid: string;
+    name: string;
   }
 
   interface ChannelMember {

@@ -1,6 +1,6 @@
 import Model, { attr, belongsTo } from '@ember-data/model';
 
-import type Identity from 'emberclear/models/identity';
+import type { Identity } from '@emberclear/local-account';
 
 export default class InvitationResult extends Model {
   @attr() createdAt!: Date;

@@ -20,7 +20,7 @@
     "../types"
   ],
   "references": [
-    { "path": "../addon" },
+    { "path": "../addon" }
     /* { "path": "../addon-test-support" } */
   ]
 }

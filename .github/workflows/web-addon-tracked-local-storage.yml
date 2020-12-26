@@ -8,6 +8,8 @@ on:
     # filtering branches here prevents duplicate builds from pull_request and push
     branches:
       - master
+    paths:
+      - 'client/web/addons/tracked-local-storage/'
 
 env:
   CI: true
@@ -47,6 +49,7 @@ jobs:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
     name: Ember Compatability
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     strategy:
       matrix:
         scenario:

@@ -3,16 +3,13 @@ import { settled } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import {
-  clearLocalStorage,
-  getService,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  visit,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
-import { defaultRelays } from 'emberclear/utils/data/required-data';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { defaultRelays } from '@emberclear/networking/required-data';
+import { getService, visit } from '@emberclear/test-helpers/test-support';
 
 const page = settings.relays;
 

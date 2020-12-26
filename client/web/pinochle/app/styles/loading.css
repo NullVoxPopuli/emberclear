@@ -1,0 +1,51 @@
+.indeterminate-loader {
+  height: 5px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.indeterminate-loader .line {
+  position: absolute;
+  opacity: 0.4;
+  background: #4a8df8;
+  width: 150%;
+  height: 5px;
+}
+
+.indeterminate-loader .subline {
+  position: absolute;
+  background: #4a8df8;
+  height: 5px;
+}
+
+.indeterminate-loader .inc {
+  animation: increase 2s infinite;
+}
+
+.indeterminate-loader .dec {
+  animation: decrease 2s 0.5s infinite;
+}
+
+@keyframes increase {
+  from {
+    left: -5%;
+    width: 5%;
+  }
+
+  to {
+    left: 130%;
+    width: 100%;
+  }
+}
+
+@keyframes decrease {
+  from {
+    left: -80%;
+    width: 80%;
+  }
+
+  to {
+    left: 110%;
+    width: 10%;
+  }
+}

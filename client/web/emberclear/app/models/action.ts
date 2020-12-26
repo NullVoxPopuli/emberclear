@@ -1,6 +1,6 @@
 import Model, { attr } from '@ember-data/model';
 
-import type Vote from 'emberclear/models/vote';
+import type Vote from '@emberclear/local-account/models/vote';
 
 export enum ACTION_RESPONSE {
   NONE = 'none',

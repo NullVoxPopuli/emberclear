@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 
 import { scrollIntoViewOfParent } from 'emberclear/utils/dom/utils';
 
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type Modals from 'emberclear/services/modals';
 import type SidebarService from 'emberclear/services/sidebar';
 

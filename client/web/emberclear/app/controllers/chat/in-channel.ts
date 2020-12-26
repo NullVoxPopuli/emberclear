@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
-import { TARGET } from 'emberclear/models/message';
+import { TARGET } from '@emberclear/networking/models/message';
 
 import type StoreService from '@ember-data/store';
 

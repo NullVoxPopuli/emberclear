@@ -1,14 +1,16 @@
+import { assert } from '@ember/debug';
 import Service, { inject as service } from '@ember/service';
 
 import { identitiesIncludes, identityEquals } from 'emberclear/utils/identity-comparison';
 import { equalsUint8Array } from 'emberclear/utils/uint8array-equality';
 
-import CryptoConnector from '../../utils/workers/crypto';
+import { CryptoConnector } from '@emberclear/crypto';
+
 import { generateSortedVote } from './-utils/vote-sorter';
 
-import type WorkersService from '../workers';
-import type Identity from 'emberclear/models/identity';
-import type VoteChain from 'emberclear/models/vote-chain';
+import type { WorkersService } from '@emberclear/crypto';
+import type Identity from '@emberclear/local-account/models/identity';
+import type VoteChain from '@emberclear/local-account/models/vote-chain';
 
 export default class VoteVerifier extends Service {
   @service workers!: WorkersService;
@@ -28,9 +30,14 @@ export default class VoteVerifier extends Service {
     let voteToVerifyActual: Uint8Array = generateSortedVote(voteToVerify);
     let voteToVerifyActualHash: Uint8Array = await this.crypto.hash(voteToVerifyActual);
 
-    let voteToVerifyExpectedHash: Uint8Array = await this.crypto.openSigned(
+    let voteToVerifyExpectedHash = await this.crypto.openSigned(
       voteToVerify.signature,
       voteToVerify.key.publicSigningKey
+    );
+
+    assert(
+      `Something went wrong with opening the sign message, figure this out`,
+      voteToVerifyExpectedHash
     );
 
     if (!equalsUint8Array(voteToVerifyActualHash, voteToVerifyExpectedHash)) {

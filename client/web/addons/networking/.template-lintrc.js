@@ -1,5 +1,3 @@
 'use strict';
 
-module.exports = {
-  extends: 'octane'
-};
+module.exports = require('@emberclear/config/.template-lintrc');

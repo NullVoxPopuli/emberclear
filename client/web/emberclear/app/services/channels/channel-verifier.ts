@@ -1,11 +1,12 @@
 import Service, { inject as service } from '@ember/service';
 
-import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { identitiesIncludes, identityEquals } from 'emberclear/utils/identity-comparison';
 
-import type ChannelContextChain from 'emberclear/models/channel-context-chain';
-import type Identity from 'emberclear/models/identity';
-import type VoteChain from 'emberclear/models/vote-chain';
+import { VOTE_ACTION } from '@emberclear/local-account/models/vote-chain';
+
+import type { Identity } from '@emberclear/local-account';
+import type ChannelContextChain from '@emberclear/local-account/models/channel-context-chain';
+import type VoteChain from '@emberclear/local-account/models/vote-chain';
 import type VoteVerifier from 'emberclear/services/channels/vote-verifier';
 
 export default class ChannelVerifier extends Service {

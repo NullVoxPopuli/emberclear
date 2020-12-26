@@ -3,12 +3,13 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { setupCurrentUser, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { page } from 'emberclear/tests/helpers/pages/chat';
 
+import { createContact, setupCurrentUser } from '@emberclear/local-account/test-support';
+
+import type { Contact } from '@emberclear/local-account';
 import type { TestContext } from 'ember-test-helpers';
-import type Contact from 'emberclear/models/contact';
 
 module('Integration | Component | embeds-menu', function (hooks) {
   setupRenderingTest(hooks);

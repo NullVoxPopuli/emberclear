@@ -1,4 +1,4 @@
-import { getStore } from './get-store';
+import { getStore } from '@emberclear/test-helpers/test-support';
 
 export function trackAsyncDataRequests(hooks: NestedHooks) {
   hooks.beforeEach(function () {

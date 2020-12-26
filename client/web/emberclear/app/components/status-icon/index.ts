@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 
-import type Contact from 'emberclear/models/contact';
+import type { Contact } from '@emberclear/local-account';
 
 interface IArgs {
   contact: Contact;

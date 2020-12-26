@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.compiler-options.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declarationDir": "../declarations/test-support",
+    "paths": {
+      "@emberclear/crypto": ["../declarations"],
+      "@emberclear/crypto/*": ["../declarations/*"],
+      "@emberclear/crypto/test-support": ["."],
+      "@emberclear/crypto/test-support/*": ["./*"]
+    }
+  },
+  "references": [
+    { "path": "../addon" }
+  ]
+}

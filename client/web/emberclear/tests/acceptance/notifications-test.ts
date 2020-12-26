@@ -1,15 +1,12 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-import {
-  clearLocalStorage,
-  getService,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  visit,
-} from 'emberclear/tests/helpers';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { toast } from 'emberclear/tests/helpers/pages/toast';
+
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { clearLocalStorage, setupCurrentUser } from '@emberclear/local-account/test-support';
+import { getService, visit } from '@emberclear/test-helpers/test-support';
 
 import type Notifications from 'emberclear/services/notifications';
 

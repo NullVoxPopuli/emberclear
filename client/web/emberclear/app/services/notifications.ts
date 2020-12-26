@@ -2,10 +2,10 @@ import { tracked } from '@glimmer/tracking';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
-import { inLocalStorage } from 'emberclear/utils/decorators';
+import { inLocalStorage } from 'ember-tracked-local-storage';
 
 import type RouterService from '@ember/routing/router-service';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type Toast from 'emberclear/services/toast';
 import type WindowService from 'emberclear/services/window';
 

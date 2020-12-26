@@ -3,21 +3,20 @@ import { module, skip, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { page, selectors } from 'emberclear/components/app/off-canvas/-page';
-import {
-  clearLocalStorage,
-  getService,
-  getStore,
-  setupCurrentUser,
-  setupRelayConnectionMocks,
-  setupWorkers,
-  visit,
-} from 'emberclear/tests/helpers';
-import { getCurrentUser } from 'emberclear/tests/helpers';
-import { createContact } from 'emberclear/tests/helpers/factories/contact-factory';
+import { setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { createMessage } from 'emberclear/tests/helpers/factories/message-factory';
 import { page as settings } from 'emberclear/tests/helpers/pages/settings';
 
-import type Contact from 'emberclear/models/contact';
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import {
+  clearLocalStorage,
+  getCurrentUser,
+  setupCurrentUser,
+} from '@emberclear/local-account/test-support';
+import { createContact } from '@emberclear/local-account/test-support';
+import { getService, getStore, visit } from '@emberclear/test-helpers/test-support';
+
+import type { Contact } from '@emberclear/local-account';
 
 module('Acceptance | Sidebar', function (hooks) {
   setupApplicationTest(hooks);

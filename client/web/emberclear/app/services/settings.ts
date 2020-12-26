@@ -1,14 +1,16 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
+import { inLocalStorage } from 'ember-tracked-local-storage';
 import localforage from 'localforage';
 
-import { inLocalStorage } from 'emberclear/utils/decorators';
-import { fromHex, objectToDataURL, toHex } from 'emberclear/utils/string-encoding';
+import { fromHex, objectToDataURL, toHex } from '@emberclear/encoding/string';
 
-import type CurrentUserService from './current-user';
-import type ChannelManager from 'emberclear/services/channel-manager';
-import type ContactManager from 'emberclear/services/contact-manager';
+import type { Serializable } from '@emberclear/crypto/types';
+import type { Channel, Contact } from '@emberclear/local-account';
+import type ChannelManager from '@emberclear/local-account/services/channel-manager';
+import type ContactManager from '@emberclear/local-account/services/contact-manager';
+import type CurrentUserService from '@emberclear/local-account/services/current-user';
 
 interface IContactJson {
   name?: string;
@@ -103,7 +105,7 @@ export default class Settings extends Service {
     return objectToDataURL(toDownload);
   }
 
-  async buildSettings(): Promise<ISettingsJson> {
+  async buildSettings(): Promise<Serializable> {
     const { name, privateKey, privateSigningKey } = this.currentUser;
 
     if (!privateKey) {
@@ -117,16 +119,16 @@ export default class Settings extends Service {
     const contacts = await this.contactManager.allContacts();
     const channels = await this.channelManager.allChannels();
 
-    const toDownload: ISettingsJson = {
+    const toDownload = {
       version: 1,
       name: name || '',
       privateKey: toHex(privateKey),
       privateSigningKey: toHex(privateSigningKey),
-      contacts: contacts.toArray().map((c) => ({
+      contacts: contacts.toArray().map((c: Contact) => ({
         name: c.name,
         publicKey: c.publicKey && toHex(c.publicKey),
       })),
-      channels: channels.toArray().map((c) => ({
+      channels: channels.toArray().map((c: Channel) => ({
         // TODO: add members list
         id: c.id,
         name: c.name,

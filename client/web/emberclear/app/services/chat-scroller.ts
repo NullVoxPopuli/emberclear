@@ -4,7 +4,7 @@ import Service from '@ember/service';
 import { timeout } from 'ember-concurrency';
 import { dropTask, restartableTask } from 'ember-concurrency-decorators';
 
-import type Message from 'emberclear/models/message';
+import type { Message } from '@emberclear/networking';
 
 // This is used to give the task time to restart as the view settles
 // and tries to scroll multiple times

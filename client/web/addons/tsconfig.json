@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "files": [],
+  "references": [
+    { "path": "./crypto" },
+    { "path": "./encoding" },
+    { "path": "./local-account" },
+    { "path": "./networking" },
+    { "path": "./test-helpers" },
+    { "path": "./tracked-local-storage" },
+    { "path": "./ui" }
+  ]
+}

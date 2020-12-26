@@ -8,6 +8,11 @@
   width: 1px;
 }
 
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
 .grid {
   display: grid;
 }
@@ -17,9 +22,9 @@
   grid-auto-flow: column;
 }
 
-.gap-2 {
-  gap: var(--size-2);
-}
+.gap-2 { gap: var(--size-2); }
+.gap-3 { gap: var(--size-3); }
+.gap-4 { gap: var(--size-4); }
 
 .fixed\:top-right {
   position: fixed;

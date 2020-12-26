@@ -6,8 +6,8 @@ import { ACTION_RESPONSE } from 'emberclear/models/action';
 
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
+import type { CurrentUserService } from '@emberclear/local-account';
 import type Action from 'emberclear/models/action';
-import type CurrentUserService from 'emberclear/services/current-user';
 import type SettingsService from 'emberclear/services/settings';
 import type SidebarService from 'emberclear/services/sidebar';
 
@@ -15,7 +15,7 @@ import type SidebarService from 'emberclear/services/sidebar';
 // import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
 // import { sign, hash } from 'emberclear/workers/crypto/utils/nacl';
 
-// import { toHex } from 'emberclear/utils/string-encoding';
+// import { toHex } from '@emberclear/encoding/string';
 // import { generateAsymmetricKeys, generateSigningKeys } from 'emberclear/workers/crypto/utils/nacl';
 
 interface IArgs {

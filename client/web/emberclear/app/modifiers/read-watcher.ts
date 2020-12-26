@@ -5,9 +5,9 @@ import { task } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import Modifier from 'ember-modifier';
 
-import { markAsRead } from 'emberclear/models/message/utils';
+import { markAsRead } from '@emberclear/networking/models/message/utils';
 
-import type Message from 'emberclear/models/message';
+import type { Message } from '@emberclear/networking';
 
 interface Args {
   positional: [Message];

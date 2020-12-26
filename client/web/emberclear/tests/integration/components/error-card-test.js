@@ -3,7 +3,7 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { getService } from 'emberclear/tests/helpers';
+import { getService } from '@emberclear/test-helpers/test-support';
 
 module('Integration | Component | error-card', function (hooks) {
   setupRenderingTest(hooks);

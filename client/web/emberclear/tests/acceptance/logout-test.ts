@@ -5,13 +5,13 @@ import { setupApplicationTest } from 'ember-qunit';
 import { page } from 'emberclear/components/app/top-nav/user-drop-menu/-page';
 import {
   assertExternal,
-  setupCurrentUser,
   setupEmberclearTest,
   setupRelayConnectionMocks,
-  stubService,
-  visit,
 } from 'emberclear/tests/helpers';
 import { page as logoutPage } from 'emberclear/tests/helpers/pages/logout';
+
+import { setupCurrentUser } from '@emberclear/local-account/test-support';
+import { stubService, visit } from '@emberclear/test-helpers/test-support';
 
 module('Acceptance | Logout', function (hooks) {
   setupApplicationTest(hooks);

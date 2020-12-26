@@ -4,7 +4,8 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
 import { page } from 'emberclear/components/app/top-nav/locale-select/-page';
-import { clearLocalStorage } from 'emberclear/tests/helpers';
+
+import { clearLocalStorage } from '@emberclear/local-account/test-support';
 
 module('Integration | Component | application/top-nav/locale-select', function (hooks) {
   setupRenderingTest(hooks);

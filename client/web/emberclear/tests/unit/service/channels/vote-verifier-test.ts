@@ -1,14 +1,16 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
-import { VOTE_ACTION } from 'emberclear/models/vote-chain';
 import { generateSortedVote } from 'emberclear/services/channels/-utils/vote-sorter';
-import { clearLocalStorage, getService, getStore } from 'emberclear/tests/helpers';
-import { buildUser } from 'emberclear/tests/helpers/factories/user-factory';
-import { hash, sign } from 'emberclear/workers/crypto/utils/nacl';
 
-import type User from 'emberclear/models/user';
-import type VoteChain from 'emberclear/models/vote-chain';
+// TODO: use the crypto worker instead of importing these provite apis
+import { hash, sign } from '@emberclear/crypto/workers/crypto/utils/nacl';
+import { VOTE_ACTION } from '@emberclear/local-account/models/vote-chain';
+import { buildUser, clearLocalStorage } from '@emberclear/local-account/test-support';
+import { getService, getStore } from '@emberclear/test-helpers/test-support';
+
+import type User from '@emberclear/local-account/models/user';
+import type VoteChain from '@emberclear/local-account/models/vote-chain';
 import type VoteVerifier from 'emberclear/services/channels/vote-verifier';
 
 module('Unit | Service | channels/vote-verifier', function (hooks) {

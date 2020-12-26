@@ -1,4 +1,4 @@
-import { stubService } from './stub-service';
+import { stubService } from '@emberclear/test-helpers/test-support';
 
 export function stubConnection(overrides = {}) {
   stubService('connection', {

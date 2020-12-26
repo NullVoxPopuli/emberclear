@@ -1,10 +1,10 @@
-import { toHex } from 'emberclear/utils/string-encoding';
+import { toHex } from '@emberclear/encoding/string';
 
-import type Channel from 'emberclear/models/channel';
-import type ChannelContextChain from 'emberclear/models/channel-context-chain';
-import type Identity from 'emberclear/models/identity';
-import type Vote from 'emberclear/models/vote';
-import type VoteChain from 'emberclear/models/vote-chain';
+import type { Channel } from '@emberclear/local-account';
+import type ChannelContextChain from '@emberclear/local-account/models/channel-context-chain';
+import type Identity from '@emberclear/local-account/models/identity';
+import type Vote from '@emberclear/local-account/models/vote';
+import type VoteChain from '@emberclear/local-account/models/vote-chain';
 
 export function buildChannelInfo(channel: Channel): StandardMessage['channelInfo'] {
   return {

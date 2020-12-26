@@ -4,8 +4,8 @@ import { inject as service } from '@ember/service';
 import { convertAndSanitizeMarkdown } from 'emberclear/utils/dom/utils';
 import { parseURLs } from 'emberclear/utils/string/utils';
 
-import type Message from 'emberclear/models/message';
-import type CurrentUserService from 'emberclear/services/current-user';
+import type { CurrentUserService } from '@emberclear/local-account';
+import type { Message } from '@emberclear/networking';
 
 interface IArgs {
   message: Message;

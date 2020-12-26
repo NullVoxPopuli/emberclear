@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 
 import Modifier from 'ember-modifier';
 
-import type Message from 'emberclear/models/message';
+import type { Message } from '@emberclear/networking';
 import type ChatScroller from 'emberclear/services/chat-scroller';
 
 interface Args {
