@@ -1,23 +1,31 @@
-import { tracked } from '@glimmer/tracking';
+import { cached, tracked } from '@glimmer/tracking';
+import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 
 import RSVP from 'rsvp';
+import { TrackedObject } from 'tracked-built-ins';
 
-import { fromHex } from '@emberclear/encoding/string';
+import { fromHex, toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
 import type { Card } from '../card';
 import type { GamePhase } from './constants';
 import type {
+  GameInfo,
   GameMessage,
   GameResult,
+  GameState,
   GuestPlayer,
-  Start,
-  UpdateForGuest,
   WelcomeMessage,
 } from './types';
 import type { EncryptedMessage } from '@emberclear/crypto/types';
+
+export type SerializedGuest = {
+  gameId: string;
+  publicKey: string;
+  privateKey: string;
+};
 
 /**
  * TODO:
@@ -33,11 +41,28 @@ export class GameGuest extends EphemeralConnection {
   isStarted = RSVP.defer();
 
   @tracked gameId?: string;
-  @tracked players: GuestPlayer[] = [];
   @tracked hand: Card[] = [];
   @tracked currentPlayer?: string;
   @tracked scoreHistory: GameResult[] = [];
-  @tracked gamePhase: GamePhase;
+  @tracked gamePhase: GamePhase = 'meld';
+  @tracked gameInfo?: GameInfo;
+  @tracked playersById: Record<string, GuestPlayer> = new TrackedObject();
+
+  @cached
+  get players() {
+    return Object.values(this.playersById);
+  }
+
+  @cached
+  get playerOrder() {
+    if (!this.gameInfo) {
+      return [];
+    }
+
+    return this.gameInfo.playerOrder.map((id) => {
+      return this.playersById[id];
+    });
+  }
 
   @action
   async checkHost() {
@@ -61,6 +86,8 @@ export class GameGuest extends EphemeralConnection {
   @action
   async onData(data: EncryptedMessage) {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
+
+    console.log({ decrypted });
 
     switch (decrypted.type) {
       case 'ACK':
@@ -90,27 +117,45 @@ export class GameGuest extends EphemeralConnection {
 
   @action
   updatePlayers(msg: WelcomeMessage) {
-    this.players = msg.players.map(({ name, id }) => {
-      return {
+    for (let { name, id } of msg.players) {
+      this.playersById[id] = {
         name,
         publicKeyAsHex: id,
         publicKey: fromHex(id),
       };
-    });
+    }
   }
 
   @action
-  startGame({ hand }: Start) {
-    this.hand = hand;
-
+  startGame(decrypted: GameState) {
+    this.updateGameState(decrypted);
     this.isStarted.resolve();
   }
 
   @action
-  updateGameState(decrypted: UpdateForGuest) {
+  updateGameState(decrypted: GameState) {
     this.currentPlayer = decrypted.currentPlayer;
     this.hand = decrypted.hand;
     this.scoreHistory = decrypted.scoreHistory;
     this.gamePhase = decrypted.gamePhase;
+    this.gameInfo = decrypted.info;
+  }
+
+  /**
+   * Guests don't need to store much, because the host stores all the data
+   *
+   * Guests just need to be aware that they existed.
+   */
+  @action
+  serialize() {
+    if (!this.gameId) return;
+
+    let keys = this.crypto.keys;
+
+    return {
+      gameId: this.gameId,
+      publicKey: toHex(keys.publicKey),
+      privateKey: toHex(keys.privateKey),
+    };
   }
 }

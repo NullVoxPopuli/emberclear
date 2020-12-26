@@ -24,6 +24,8 @@ export default class GameRoute extends Route {
   @service declare router: RouterService;
 
   async beforeModel(transition: Transition) {
+    await this.gameManager.loadAll();
+
     let hostId = transition.to.params.idOfHost;
     let gameGuest = this.gameManager.isGuestOf.get(hostId || '');
 
@@ -46,5 +48,9 @@ export default class GameRoute extends Route {
       hostId,
       game: gameGuest,
     };
+  }
+
+  async afterModel() {
+    this.gameManager.storeAll();
   }
 }

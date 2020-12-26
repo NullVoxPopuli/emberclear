@@ -3,14 +3,22 @@ import { action } from '@ember/object';
 
 import { TrackedArray } from 'tracked-built-ins';
 
-import { fromHex } from '@emberclear/encoding/string';
+import { fromHex, toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
 import { GameRound } from './game-round';
 
-import type { GameMessage, GuestPlayer } from './types';
+import type { SerializedRound } from './game-round';
+import type { GameMessage, GuestPlayer, SerializablePlayer } from './types';
 import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
+
+export type SerializedHost = {
+  id: string;
+  privateKey: string;
+  players: SerializablePlayer[];
+  gameRound: SerializedRound;
+};
 
 const MAX_PLAYERS = 4;
 
@@ -54,6 +62,14 @@ export class GameHost extends EphemeralConnection {
         this.sendToHex({ type: 'ACK' }, data.uid);
 
         return;
+      case 'REQUEST_STATE':
+        if (this.isKnown(data.uid)) {
+          this.sendStateTo(data.uid);
+        } else {
+          this.sendToHex({ type: 'NOT_RECOGNIZED' }, data.uid);
+        }
+
+        return;
       default:
         console.debug(data, decrypted);
         throw new UnknownMessageError();
@@ -61,16 +77,45 @@ export class GameHost extends EphemeralConnection {
   }
 
   @action
+  isKnown(id: string) {
+    let player = this.players.find((player) => player.publicKeyAsHex === id);
+
+    return Boolean(player);
+  }
+
+  @action
+  sendStateTo(id: string) {
+    return this.sendToHex(
+      {
+        type: 'GUEST_UPDATE',
+        ...this.buildStateFor(id),
+      },
+      id
+    );
+  }
+
+  @action
+  buildStateFor(id: string) {
+    let hand = (this.currentGame.hands[id] as unknown) as EncryptableObject;
+
+    return {
+      hand,
+      info: this.currentGame.info,
+      currentPlayer: this.currentGame.currentPlayer,
+      gamePhase: this.currentGame.phase,
+      // scoreHistory: this.scoreHistory,
+    };
+  }
+
+  @action
   startGame() {
     this.currentGame = new GameRound(this.players);
 
     for (let player of this.players) {
-      let hand = (this.currentGame.hands[player.publicKeyAsHex] as unknown) as EncryptableObject;
-
       this.sendToHex(
         {
           type: 'START',
-          hand,
+          ...this.buildStateFor(player.publicKeyAsHex),
         },
         player.publicKeyAsHex
       );
@@ -104,5 +149,18 @@ export class GameHost extends EphemeralConnection {
     for (let player of this.otherPlayers) {
       this.sendToHex({ type: 'WELCOME', players: serializablePlayers }, player.publicKeyAsHex);
     }
+  }
+
+  @action
+  serialize() {
+    return {
+      id: this.hexId,
+      privateKey: toHex(this.crypto.keys.privateKey),
+      players: this.players.map((player) => ({
+        name: player.name,
+        id: player.publicKeyAsHex,
+      })),
+      gameRound: this.currentGame.toJSON(),
+    };
   }
 }

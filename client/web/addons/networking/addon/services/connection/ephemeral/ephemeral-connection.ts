@@ -10,7 +10,7 @@ import { pool } from '@emberclear/networking/utils/connection/connection-pool';
 
 import type StoreService from '@ember-data/store';
 import type { WorkersService } from '@emberclear/crypto';
-import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
+import type { EncryptableObject, EncryptedMessage, KeyPair } from '@emberclear/crypto/types';
 import type { Relay } from '@emberclear/networking';
 import type {
   ConnectionPool,
@@ -94,6 +94,11 @@ export class EphemeralConnection {
         hex: publicKeyAsHex,
       };
     }
+  }
+
+  setCrypto(keys: KeyPair) {
+    this.crypto.keys = keys;
+    this.hexId = toHex(keys.publicKey);
   }
 
   disconnect() {

@@ -1,14 +1,17 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 import { inject as service } from '@ember/service';
-import GameManager from 'pinochle/services/game-manager';
+
+import type GameManager from 'pinochle/services/game-manager';
+import type PlayerInfo from 'pinochle/services/player-info';
 
 type Args = {
   id: string;
-}
+};
 
 export default class PlayerOrder extends Component<Args> {
   @service declare gameManager: GameManager;
+  @service declare playerInfo: PlayerInfo;
 
   get gameInfo() {
     let info = this.gameManager.isGuestOf.get(this.args.id);
@@ -18,7 +21,11 @@ export default class PlayerOrder extends Component<Args> {
     return info;
   }
 
+  get currentName() {
+    return this.playerInfo.name;
+  }
+
   get players() {
-    return this.gameInfo.playersInOrder;
+    return this.gameInfo.playerOrder;
   }
 }

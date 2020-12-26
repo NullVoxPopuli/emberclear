@@ -1,18 +1,19 @@
 import Component from '@glimmer/component';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
-import { inLocalStorage } from 'ember-tracked-local-storage';
+import type PlayerInfo from 'pinochle/services/player-info';
 
 type Args = {
   onSubmit: (name: string) => void;
 };
 
 export default class NameEntry extends Component<Args> {
-  @inLocalStorage name = '';
+  @service declare playerInfo: PlayerInfo;
 
   get hasName() {
-    return this.name.length > 0;
+    return this.playerInfo.name.length > 0;
   }
 
   get isNameMissing() {
@@ -23,7 +24,7 @@ export default class NameEntry extends Component<Args> {
   updateName(e: KeyboardEvent) {
     assert(`Expected event to be from an input field`, e.currentTarget instanceof HTMLInputElement);
 
-    this.name = e.currentTarget.value;
+    this.playerInfo.name = e.currentTarget.value;
   }
 
   @action
@@ -32,6 +33,6 @@ export default class NameEntry extends Component<Args> {
 
     if (!this.hasName) return;
 
-    this.args.onSubmit(this.name);
+    this.args.onSubmit(this.playerInfo.name);
   }
 }

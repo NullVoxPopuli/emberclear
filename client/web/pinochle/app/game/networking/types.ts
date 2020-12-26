@@ -7,7 +7,7 @@ export type GuestPlayer = {
   publicKey: Uint8Array;
 };
 
-type SerializablePlayer = {
+export type SerializablePlayer = {
   name: string;
   id: string;
 };
@@ -34,13 +34,7 @@ export type GameResult = {
   };
 };
 
-export type JoinMessage = { type: 'JOIN'; name: string };
-export type Syn = { type: 'SYN' };
-export type Start = { type: 'START'; hand: Card[] };
-export type Ack = { type: 'ACK' };
-export type WelcomeMessage = { type: 'WELCOME'; players: SerializablePlayer[] };
-export type UpdateForGuest = {
-  type: 'GUEST_UPDATE';
+export type GameState = {
   info: GameInfo;
   gamePhase: GamePhase;
   currentPlayer: string;
@@ -49,6 +43,18 @@ export type UpdateForGuest = {
   scoreHistory: GameResult[];
   // ... etc
 };
+
+export type JoinMessage = { type: 'JOIN'; name: string };
+export type Syn = { type: 'SYN' };
+export type NotRecognized = { type: 'NOT_RECOGNIZED' };
+export type RequestState = { type: 'REQUEST_STATE' };
+export type Start = { type: 'START' } & GameState;
+export type Ack = { type: 'ACK' };
+export type WelcomeMessage = { type: 'WELCOME'; players: SerializablePlayer[] };
+export type UpdateForGuest = { type: 'GUEST_UPDATE' } & GameState;
 export type GameFull = { type: 'GAME_FULL' };
 
-export type GameMessage = JoinMessage | WelcomeMessage | Start | Ack | Syn | UpdateForGuest;
+type FromHostMessage = Ack | WelcomeMessage | UpdateForGuest | Start | GameFull | NotRecognized;
+type FromGuestMessage = JoinMessage | Syn | RequestState;
+
+export type GameMessage = FromHostMessage | FromGuestMessage;
