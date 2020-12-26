@@ -1,12 +1,16 @@
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
+import { use } from 'ember-could-get-used-to-this';
 import { TrackedArray } from 'tracked-built-ins';
+
+import { Statechart } from 'pinochle/utils/use-machine';
 
 import { fromHex, toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
+import { statechart } from './-statechart';
 import { GameRound } from './game-round';
 
 import type { SerializedRound } from './game-round';
@@ -35,6 +39,11 @@ export class GameHost extends EphemeralConnection {
 
   declare currentGame: GameRound;
 
+  @use
+  interpreter = new Statechart(() => {
+    return { named: { chart: statechart, config: { actions: {} } } };
+  });
+
   get otherPlayers() {
     return this.players.filter((player) => player.publicKeyAsHex !== this.hexId);
   }
@@ -55,7 +64,15 @@ export class GameHost extends EphemeralConnection {
 
     switch (decrypted.type) {
       case 'JOIN':
-        this._addPlayer(decrypted, data.uid);
+        if (this.isKnown(data.uid)) {
+          if (this.currentGame) {
+            this.sendStateTo(data.uid);
+          } else {
+            this.__updatePlayersWithParticipants();
+          }
+        } else {
+          this._addPlayer(decrypted, data.uid);
+        }
 
         return;
       case 'SYN':

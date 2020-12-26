@@ -33,7 +33,6 @@ export default class GameRoute extends Route {
      * TODO: add some global error / toast / flash messages
      */
     if (!gameGuest) {
-      this.playerInfo.lastGameTried = hostId;
       this.router.transitionTo(`/join/${hostId}`);
     }
   }

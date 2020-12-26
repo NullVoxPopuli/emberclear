@@ -1,6 +1,6 @@
 import { cached, tracked } from '@glimmer/tracking';
-import { assert } from '@ember/debug';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 import RSVP from 'rsvp';
 import { TrackedObject } from 'tracked-built-ins';
@@ -17,8 +17,10 @@ import type {
   GameResult,
   GameState,
   GuestPlayer,
+  SerializablePlayer,
   WelcomeMessage,
 } from './types';
+import type RouterService from '@ember/routing/router-service';
 import type { EncryptedMessage } from '@emberclear/crypto/types';
 
 export type SerializedGuest = {
@@ -36,6 +38,8 @@ export type SerializedGuest = {
  *
  */
 export class GameGuest extends EphemeralConnection {
+  @service declare router: RouterService;
+
   hostExists = RSVP.defer();
   isWelcomed = RSVP.defer();
   isStarted = RSVP.defer();
@@ -86,7 +90,6 @@ export class GameGuest extends EphemeralConnection {
   @action
   async onData(data: EncryptedMessage) {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
-
     console.log({ decrypted });
 
     switch (decrypted.type) {
@@ -105,6 +108,10 @@ export class GameGuest extends EphemeralConnection {
         this.startGame(decrypted);
 
         return;
+      case 'GAME_FULL':
+        this.router.transitionTo('/game-full');
+
+        return;
       case 'GUEST_UPDATE':
         this.updateGameState(decrypted);
 
@@ -116,7 +123,7 @@ export class GameGuest extends EphemeralConnection {
   }
 
   @action
-  updatePlayers(msg: WelcomeMessage) {
+  updatePlayers(msg: { players: SerializablePlayer[] }) {
     for (let { name, id } of msg.players) {
       this.playersById[id] = {
         name,
@@ -134,11 +141,17 @@ export class GameGuest extends EphemeralConnection {
 
   @action
   updateGameState(decrypted: GameState) {
+    if (this.router.currentRouteName !== 'game') {
+      this.router.transitionTo(`/game/${this.gameId}`);
+    }
+
     this.currentPlayer = decrypted.currentPlayer;
     this.hand = decrypted.hand;
     this.scoreHistory = decrypted.scoreHistory;
     this.gamePhase = decrypted.gamePhase;
     this.gameInfo = decrypted.info;
+
+    this.updatePlayers(this.gameInfo);
   }
 
   /**

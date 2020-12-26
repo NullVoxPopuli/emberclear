@@ -65,7 +65,8 @@ export class EphemeralConnection {
     /* the actual params to this method */
     // eslint-disable-next-line @typescript-eslint/ban-types
     parent: object,
-    publicKeyAsHex?: string
+    publicKeyAsHex?: string,
+    keys?: KeyPair
   ): Promise<SubClass> {
     let instance = new this(publicKeyAsHex);
 
@@ -73,7 +74,7 @@ export class EphemeralConnection {
     associateDestroyableChild(parent, instance);
     registerDestructor(instance, instance.teardown.bind(instance));
 
-    await instance.hydrateCrypto();
+    await instance.hydrateCrypto(keys);
     assert('Crypto failed to initialize', instance.crypto);
     assert('Failed to generate an ephemeral identifier', instance.hexId);
 
@@ -117,8 +118,8 @@ export class EphemeralConnection {
 
   ///////////////////////////////////////
 
-  async hydrateCrypto() {
-    let { hex, crypto } = await generateEphemeralKeys(this.workers);
+  async hydrateCrypto(keys?: KeyPair) {
+    let { hex, crypto } = await generateEphemeralKeys(this.workers, keys);
 
     this.crypto = crypto;
     this.hexId = hex;
@@ -158,9 +159,12 @@ export class EphemeralConnection {
   }
 }
 
-async function generateEphemeralKeys(workers: WorkersService) {
+async function generateEphemeralKeys(workers: WorkersService, keys?: KeyPair) {
   let crypto = new CryptoConnector({ workerService: workers });
-  let keys = await crypto.generateKeys();
+
+  if (!keys) {
+    keys = await crypto.generateKeys();
+  }
 
   crypto.keys = keys;
 
