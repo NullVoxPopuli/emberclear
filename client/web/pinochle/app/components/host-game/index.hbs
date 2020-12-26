@@ -25,6 +25,8 @@
           <ShareLink @url={{this.joinUrl}} />
         {{/if}}
       </div>
+    {{else if (contains this.state 'starting-game')}}
+      Starting game...
     {{else}}
       Unknown State
     {{/if}}

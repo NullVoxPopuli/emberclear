@@ -36,8 +36,7 @@ export class GameRound {
   bid?: number;
   trump?: Suit;
   playerWhoTookTheBid?: string;
-
-  declare hands: { [key: string]: Card[] };
+  hands: { [key: string]: Card[] } = {};
   declare playerOrder: string[];
   declare currentPlayer: string;
 
@@ -57,7 +56,10 @@ export class GameRound {
       bid,
       playerWhoTookTheBid,
       playerOrder: this.playerOrder,
-      players: this.players,
+      players: this.players.map((player) => ({
+        name: player.name,
+        id: player.publicKeyAsHex,
+      })),
     };
   }
 

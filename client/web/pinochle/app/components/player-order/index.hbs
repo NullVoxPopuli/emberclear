@@ -1,11 +1,15 @@
-<ul class='list:flat'>
-  {{#each this.players as |player|}}
-    <li>
-      {{player.name}}
+<div class='player-order'>
+  Turn order
 
-      {{#if (eq this.currentName player.name)}}
-        &nbsp;(you)
-      {{/if}}
-    </li>
-  {{/each}}
-</ul>
+  <ol>
+    {{#each this.players as |player|}}
+      <li>
+        {{player.name}}
+
+        {{#if (eq this.currentName player.name)}}
+          &nbsp;(you)
+        {{/if}}
+      </li>
+    {{/each}}
+  </ol>
+</div>

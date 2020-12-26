@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 import type RouterService from '@ember/routing/router-service';
 import type GameManager from 'pinochle/services/game-manager';
+import type PlayerInfo from 'pinochle/services/player-info';
 type Transition = ReturnType<RouterService['transitionTo']>;
 
 interface Params {
@@ -21,11 +22,10 @@ interface Params {
  */
 export default class GameRoute extends Route {
   @service declare gameManager: GameManager;
+  @service declare playerInfo: PlayerInfo;
   @service declare router: RouterService;
 
   async beforeModel(transition: Transition) {
-    await this.gameManager.loadAll();
-
     let hostId = transition.to.params.idOfHost;
     let gameGuest = this.gameManager.isGuestOf.get(hostId || '');
 
@@ -33,7 +33,8 @@ export default class GameRoute extends Route {
      * TODO: add some global error / toast / flash messages
      */
     if (!gameGuest) {
-      this.router.transitionTo('/');
+      this.playerInfo.lastGameTried = hostId;
+      this.router.transitionTo(`/join/${hostId}`);
     }
   }
 

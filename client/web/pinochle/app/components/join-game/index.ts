@@ -13,6 +13,7 @@ import type { Context } from './-statechart';
 import type RouterService from '@ember/routing/router-service';
 import type { GameGuest } from 'pinochle/game/networking/guest';
 import type GameManager from 'pinochle/services/game-manager';
+import type PlayerInfo from 'pinochle/services/player-info';
 
 type Args = {
   hostId: string;
@@ -21,15 +22,18 @@ type Args = {
 export default class JoinGame extends Component<Args> {
   @service declare gameManager: GameManager;
   @service declare router: RouterService;
+  @service declare playerInfo: PlayerInfo;
 
   @tracked gameHost?: GameGuest;
 
   @use
   interpreter = new Statechart(() => {
+    let name = this.playerInfo.lastGameTried === this.args.hostId ? this.playerInfo.name : '';
+
     return {
       named: {
         chart: statechart,
-        context: { name: '' },
+        context: { name },
         config: {
           actions: {
             establishConnection: this._establishConnection,
@@ -67,14 +71,16 @@ export default class JoinGame extends Component<Args> {
    ********************************/
   @action
   async _establishConnection() {
-    this.gameHost = await this.gameManager.connectToHost(this.args.hostId);
+    if (!this.gameHost) {
+      this.gameHost = await this.gameManager.connectToHost(this.args.hostId);
+    }
 
     try {
       await this.gameHost.checkHost();
 
       this.interpreter.send('CONNECTED');
-    } catch {
-      this.interpreter.send('ERROR');
+    } catch (e) {
+      this.interpreter.send('ERROR', { error: e });
     }
   }
 

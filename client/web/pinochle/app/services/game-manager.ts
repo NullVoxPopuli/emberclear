@@ -1,6 +1,8 @@
 import { getOwner } from '@ember/application';
 import Service from '@ember/service';
 
+import { timeout } from 'ember-concurrency';
+
 import { ensureRequirementsAreMet } from 'pinochle/game/networking/-requirements';
 import { GameRound } from 'pinochle/game/networking/game-round';
 import { GameGuest } from 'pinochle/game/networking/guest';
@@ -66,25 +68,37 @@ export default class GameManager extends Service {
     }
   }
 
-  async loadAll() {
+  async loadHosts() {
     try {
-      await this._loadAll();
+      await this._loadHosts();
     } catch (e) {
-      localStorage.setItem('GameManager#loadAll:error', JSON.stringify(e));
+      localStorage.setItem('GameManager#loadAll:error (hosts)', JSON.stringify(e));
     }
+
+    let hostIds = loadWithDefault('hosting', []) as string[];
+
+    hostIds.map((id) => localStorage.removeItem(`host-${id}`));
+    localStorage.removeItem('hosting');
   }
 
-  async _loadAll() {
+  async loadGuests() {
+    try {
+      await this._loadGuests();
+    } catch (e) {
+      localStorage.setItem('GameManager#loadAll:error (guests)', JSON.stringify(e));
+    }
+
+    let hostIds = loadWithDefault('guests', []) as string[];
+
+    hostIds.map((id) => localStorage.removeItem(`guest-${id}`));
+    localStorage.removeItem('guests');
+  }
+
+  async _loadHosts() {
     let hostIds = loadWithDefault('hosting', []);
-    let guestIds = loadWithDefault('guests', []);
 
     for (let id of hostIds) {
       let hostData = loadWithDefault(`host-${id}`) as SerializedHost;
-
-      if (!hostData) {
-        localStorage.removeItem(`host-${id}`);
-        continue;
-      }
 
       if (hostData) {
         let publicKey = fromHex(hostData.id);
@@ -105,6 +119,12 @@ export default class GameManager extends Service {
         host.currentGame = GameRound.loadFrom(host.players, hostData.gameRound);
       }
     }
+  }
+
+  async _loadGuests() {
+    let guestIds = loadWithDefault('guests', []);
+
+    await timeout(2000);
 
     for (let gameId of guestIds) {
       let guestData = loadWithDefault(`guest-${gameId}`) as SerializedGuest;

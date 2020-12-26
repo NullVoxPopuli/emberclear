@@ -1,9 +1,10 @@
-import { assign } from 'xstate';
+import { assign, send } from 'xstate';
 
 import type { MachineConfig, StateSchema } from 'xstate';
 
 export type Context = {
   name: string;
+  retryCount?: number;
 };
 
 type SubmitNameEvent = { type: 'SUBMIT_NAME'; name: string };
@@ -11,7 +12,8 @@ type SubmitNameEvent = { type: 'SUBMIT_NAME'; name: string };
 export type Event =
   | { type: 'START_GAME_FAILED' }
   | { type: 'CONNECTED' }
-  | { type: 'ERROR' }
+  | { type: 'RETRY' }
+  | { type: 'ERROR'; error?: Error }
   | { type: 'JOINED' }
   | { type: 'START' }
   | SubmitNameEvent;
@@ -32,8 +34,26 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
     begin: {
       entry: 'establishConnection',
       on: {
-        CONNECTED: 'needs-name',
-        ERROR: 'game-does-not-exist',
+        CONNECTED: [
+          {
+            target: 'joining',
+            cond: (ctx) => ctx.name.length > 0,
+          },
+          {
+            target: 'needs-name',
+          },
+        ],
+        RETRY: 'begin',
+        ERROR: [
+          {
+            actions: [
+              send('RETRY', { delay: 1000 }),
+              assign({ retryCount: (ctx) => (ctx.retryCount || 0) + 1 }),
+            ],
+            cond: (ctx) => (ctx.retryCount || 0) < 5,
+          },
+          { target: 'game-does-not-exist' },
+        ],
       },
     },
     'game-does-not-exist': {},
