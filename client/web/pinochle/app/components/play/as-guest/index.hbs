@@ -1,1 +1,27 @@
-<Hand @cards={{this.hand}} />
+<div class='game-layout'>
+  <PlayerOrder @id={{@game.gameId}} class='area:info' />
+
+  {{#if @game.display.left}}
+    <div class='area:left'><BackOfCards @name={{@game.display.left.name}} /></div>
+  {{/if}}
+
+  {{#if @game.display.top}}
+    <div class='area:top'><BackOfCards @name={{@game.display.top.name}} /></div>
+  {{/if}}
+
+  {{#if @game.display.right}}
+    <div class='area:right'><BackOfCards @name={{@game.display.right.name}} /></div>
+  {{/if}}
+
+  {{#if @game.trick}}
+  <div class='area:trick'>
+    Tricks here
+  </div>
+  {{/if}}
+
+  <Hand
+    @cards={{this.hand}}
+    @onSelect={{this.chooseCard}}
+    class='area:bottom'
+  />
+</div>

@@ -1,4 +1,5 @@
 /* @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,700,900'); */
+@import './-variables.css';
 @import './resets.css';
 @import './playing-card.css';
 @import './z-indexes.css';
@@ -18,40 +19,6 @@
   width: 100vw;
 }
 
-div.perspective {
-  height: 100vh;
-  perspective: 2000px;
-  position: absolute;
-  width: 100vw;
-}
-
-:root {
-  /* Sizes */
-  --size-0-5: 0.125rem;
-  --size-1: 0.25rem;
-  --size-2: 0.5rem;
-  --size-3: 0.75rem;
-  --size-4: 1rem;
-
-  /* Responsiveness */
-  --screen-small: 400px;
-
-  /* A11y Helpers */
-  --outline: 0 0 0 3px rgba(0, 123, 255, 0.5);
-
-  /* Playing Cards */
-  --deck-red: #c65355;
-  --deck-black: #534f4c;
-  --card-gutter: 15%;
-  --deck-rotation: -30deg;
-  --deck-height-offset-x: -50%;
-  --deck-height-offset-y: -10%;
-  --deck-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 12px 0 rgba(151, 150, 146, 0.4);
-
-  /* hand open / spread */
-  --spread-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 4px 0 rgba(151, 150, 146, 0.4);
-}
-
 .share-url {
   max-width: calc(100vw - var(--size-4));
   min-width: 25vw;
@@ -62,3 +29,4 @@ div.perspective {
   box-shadow: inset 0 1px 2px rgb(0, 0, 0, 0.9);
   padding: var(--size-3) var(--size-4);
 }
+

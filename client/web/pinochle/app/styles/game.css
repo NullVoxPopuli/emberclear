@@ -4,3 +4,52 @@
   left: 1rem;
   margin: 0;
 }
+
+.game-layout {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas:
+    'info          player-top    the-blind'
+    'player-left   tricks        player-right'
+    'player-bottom player-bottom player-bottom';
+  grid-template-rows: 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* .game-layout > div[class*='area:'] {} */
+
+.game-layout .area\:info {
+  grid-area: info;
+}
+
+.game-layout .area\:blind {
+  grid-area: the-blind;
+  justify-self: center;
+}
+
+.game-layout .area\:trick {
+  grid-area: tricks;
+  justify-self: center;
+}
+
+.game-layout .area\:top {
+  grid-area: player-top;
+  justify-self: center;
+}
+
+.game-layout .area\:left {
+  grid-area: player-left;
+  justify-self: center;
+}
+
+.game-layout .area\:right {
+  grid-area: player-right;
+  justify-self: center;
+}
+
+.game-layout .area\:bottom {
+  grid-area: player-bottom;
+  justify-self: center;
+  align-items: center;
+}

@@ -9,6 +9,8 @@ import { fromHex, toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
+import { DisplayInfo } from './-display-info';
+
 import type { Card } from '../card';
 import type { GamePhase } from './constants';
 import type {
@@ -18,7 +20,6 @@ import type {
   GameState,
   GuestPlayer,
   SerializablePlayer,
-  WelcomeMessage,
 } from './types';
 import type RouterService from '@ember/routing/router-service';
 import type { EncryptedMessage } from '@emberclear/crypto/types';
@@ -43,6 +44,8 @@ export class GameGuest extends EphemeralConnection {
   hostExists = RSVP.defer();
   isWelcomed = RSVP.defer();
   isStarted = RSVP.defer();
+
+  declare display: DisplayInfo;
 
   @tracked gameId?: string;
   @tracked hand: Card[] = [];
@@ -90,7 +93,6 @@ export class GameGuest extends EphemeralConnection {
   @action
   async onData(data: EncryptedMessage) {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
-    console.log({ decrypted });
 
     switch (decrypted.type) {
       case 'ACK':
@@ -141,6 +143,8 @@ export class GameGuest extends EphemeralConnection {
 
   @action
   updateGameState(decrypted: GameState) {
+    this.display = new DisplayInfo(this.hexId);
+
     if (this.router.currentRouteName !== 'game') {
       this.router.transitionTo(`/game/${this.gameId}`);
     }
@@ -150,6 +154,7 @@ export class GameGuest extends EphemeralConnection {
     this.scoreHistory = decrypted.scoreHistory;
     this.gamePhase = decrypted.gamePhase;
     this.gameInfo = decrypted.info;
+    this.display.update(decrypted.info);
 
     this.updatePlayers(this.gameInfo);
   }

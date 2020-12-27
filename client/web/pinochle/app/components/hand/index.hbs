@@ -1,4 +1,4 @@
-<div class='perspective'>
+<div class='perspective grid bottom-favored' ...attributes>
   <ul
     class='player-hand {{if this.isActive 'spread'}}'
     {{!-- template-lint-disable no-invalid-interactive --}}
@@ -15,9 +15,11 @@
     {{/each}}
   </ul>
 
-  <button type='button' {{on 'click' this.toggle}}>
-    Fan
-  </button>
+  <span>
+    <button type='button' {{on 'click' this.toggle}}>
+      Fan
+    </button>
 
-  Meld: {{this.meld.score}}
+    Meld: {{this.meld.score}}
+  </span>
 </div>

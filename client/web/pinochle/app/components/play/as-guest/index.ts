@@ -12,13 +12,13 @@ import { statechart } from './-statechart';
 import type { GameGuest } from 'pinochle/game/networking/guest';
 type Args = {
   id: string;
-  hostGame: GameGuest;
+  game: GameGuest;
 };
 
 export default class PlayAsGuest extends Component<Args> {
   @cached
   get hand() {
-    return sortHand(this.args.hostGame.hand);
+    return sortHand(this.args.game.hand);
   }
 
   @use
@@ -33,6 +33,11 @@ export default class PlayAsGuest extends Component<Args> {
       },
     };
   });
+
+  @action
+  chooseCard() {
+
+  }
 
   /****************************
    * Machine Actions
