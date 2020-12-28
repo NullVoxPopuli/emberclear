@@ -56,6 +56,16 @@
   align-items: center;
 }
 
+.current-player-info {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+@media only screen and (min-width: 1000px) {
+  .current-player-info .width-container {
+    max-width: 500px;
+  }
+}
+
 .game-layout .area\:left,
 .game-layout .area\:right,
 .game-layout .area\:top {
@@ -81,6 +91,7 @@
 
 .game-layout .player-offline-indicator {
   position: absolute;
+  z-index: 1;
   left: 0;
   right: 0;
   top: 0;

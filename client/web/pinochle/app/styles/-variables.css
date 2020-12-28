@@ -5,6 +5,9 @@
   --size-2: 0.5rem;
   --size-3: 0.75rem;
   --size-4: 1rem;
+  --size-5: 1.25rem;
+  --size-6: 1.5rem;
+  --size-8: 2rem;
 
   /* Responsiveness */
   --screen-small: 400px;

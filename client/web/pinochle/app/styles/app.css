@@ -8,6 +8,7 @@
 @import './synthwave.css';
 @import './loading.css';
 @import './game.css';
+@import './transitions.css';
 
 /* "body", but doesn't also style the whole test UI */
 .ember-application {

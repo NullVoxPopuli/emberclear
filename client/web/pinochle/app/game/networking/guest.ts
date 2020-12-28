@@ -50,6 +50,12 @@ export class GameGuest extends EphemeralConnection {
     return this.gameState.playerOrder;
   }
 
+  get joinUrl() {
+    let { origin } = window.location;
+
+    return `${origin}/join/${this.gameId}`;
+  }
+
   @cached
   get me() {
     let id = toHex(this.crypto.keys.publicKey);
@@ -80,6 +86,8 @@ export class GameGuest extends EphemeralConnection {
   async onData(data: EncryptedMessage) {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
+    // console.log('guest', decrypted, data.uid);
+
     switch (decrypted.type) {
       case 'ACK':
         this.hostExists.resolve();
@@ -100,6 +108,10 @@ export class GameGuest extends EphemeralConnection {
         this.router.transitionTo('/game-full');
 
         return;
+      case 'NOT_RECOGNIZED':
+        this.router.transitionTo('/not-recognized');
+
+        return;
       case 'GUEST_UPDATE':
         this.updateGameState(decrypted);
         this.redirectToGame();
@@ -110,7 +122,7 @@ export class GameGuest extends EphemeralConnection {
 
         return;
       default:
-        console.debug(data, decrypted);
+        console.debug('guest received:', data, decrypted);
         throw new UnknownMessageError();
     }
   }

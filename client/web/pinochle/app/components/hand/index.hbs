@@ -15,6 +15,13 @@
     {{/each}}
   </ul>
 
+
+  {{!--
+    For additional game info to overlay the hand, but controlled from above
+    The hand component only knows how to handle hand stuff
+  --}}
+  {{yield}}
+
   <span class='player-hand-info'>
     <button type='button' {{on 'click' this.toggle}}>
       Fan

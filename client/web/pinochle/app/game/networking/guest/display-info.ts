@@ -18,6 +18,18 @@ export class DisplayInfo {
     }
   }
 
+  get offlinePlayers() {
+    return Object.values(this.state.playersById).filter((player) => !player.isOnline);
+  }
+
+  get offlinePlayerNames() {
+    return this.offlinePlayers.map((player) => player.name);
+  }
+
+  get hasOfflinePlayers() {
+    return this.offlinePlayers.length > 0;
+  }
+
   get left() {
     let leftPlayer = next(this.info.playerOrder, this.currentPlayerId);
 

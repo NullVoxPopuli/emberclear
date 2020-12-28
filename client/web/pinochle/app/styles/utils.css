@@ -22,15 +22,33 @@
   grid-auto-flow: column;
 }
 
-.gap-2 { gap: var(--size-2); }
-.gap-3 { gap: var(--size-3); }
-.gap-4 { gap: var(--size-4); }
+.gap-2 {
+  gap: var(--size-2);
+}
+
+.gap-3 {
+  gap: var(--size-3);
+}
+
+.gap-4 {
+  gap: var(--size-4);
+}
 
 .fixed\:top-right {
   position: fixed;
   top: 0.5rem;
   right: 0.5rem;
   z-index: var(--z-options);
+}
+
+.fixed\:cover {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  padding: var(--size-4);
 }
 
 .left-column {
@@ -92,7 +110,11 @@
 }
 
 .font-5 {
-  font-size: 1.25rem;
+  font-size: var(--size-5);
+}
+
+.line-height-8 {
+  line-height: var(--size-8);
 }
 
 .double-font-size {

@@ -81,6 +81,8 @@ export class GameHost extends EphemeralConnection {
   async onData(data: EncryptedMessage) {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
+    // console.log('host', decrypted, data.uid);
+
     switch (decrypted.type) {
       case 'JOIN':
         // return this.interpreter.send({ ...decrypted, fromUid: data.uid });
@@ -97,18 +99,26 @@ export class GameHost extends EphemeralConnection {
 
         return;
       case 'SYN':
+        if (this.currentGame) {
+          this.ifKnown(data.uid, () => this.sendToHex({ type: 'ACK' }, data.uid));
+
+          return;
+        }
+
         this.sendToHex({ type: 'ACK' }, data.uid);
 
         return;
       case 'REQUEST_STATE':
-        if (this.isKnown(data.uid)) {
-          this.sendStateTo(data.uid);
-        } else {
-          this.sendToHex({ type: 'NOT_RECOGNIZED' }, data.uid);
-        }
+        this.ifKnown(data.uid, () => this.sendStateTo(data.uid));
 
         return;
       case 'PRESENT':
+        if (this.currentGame) {
+          this.ifKnown(data.uid, () => this.markOnline(data.uid));
+
+          return;
+        }
+
         this.markOnline(data.uid);
 
         return;
@@ -120,7 +130,7 @@ export class GameHost extends EphemeralConnection {
         // - send update to everyone
         return;
       default:
-        console.debug(data, decrypted);
+        console.debug('host received:', data, decrypted);
         throw new UnknownMessageError();
     }
   }
@@ -130,6 +140,15 @@ export class GameHost extends EphemeralConnection {
     let player = this.players.find((player) => player.publicKeyAsHex === id);
 
     return Boolean(player);
+  }
+
+  @action
+  ifKnown(id: string, callback: () => void) {
+    if (this.isKnown(id)) {
+      callback();
+    } else {
+      this.sendToHex({ type: 'NOT_RECOGNIZED' }, id);
+    }
   }
 
   @action
@@ -237,7 +256,7 @@ export class GameHost extends EphemeralConnection {
           this.sendToHex({ type: 'CONNECTIVITY_CHECK' }, player.publicKeyAsHex);
         }
 
-        return RSVP.race([player.onlineCheck, timeout(5000)]).then((value) => {
+        return RSVP.race([player.onlineCheck.promise, timeout(5000)]).then((value) => {
           if (!value) {
             player.isOnline = false;
           }
