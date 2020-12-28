@@ -1,4 +1,4 @@
-<div class='perspective grid bottom-favored' ...attributes>
+<div class='perspective grid bottom-favored center' ...attributes>
   <ul
     class='player-hand {{if this.isActive 'spread'}}'
     {{!-- template-lint-disable no-invalid-interactive --}}
@@ -15,7 +15,7 @@
     {{/each}}
   </ul>
 
-  <span>
+  <span class='player-hand-info'>
     <button type='button' {{on 'click' this.toggle}}>
       Fan
     </button>

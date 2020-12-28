@@ -2,11 +2,11 @@
   cursor: pointer;
   position: relative;
   transform: translateX(2rem);
-  height: 45vw;
-  width: 32vw;
-  max-height: 450px;
-  max-width: 320px;
   list-style: none;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  height: 66%;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -15,10 +15,15 @@
   }
 }
 
+.player-hand-info {
+  position: fixed;
+  left: 0.5rem;
+  bottom: 0.5rem;
+}
+
 .back-of-hand {
   margin: 0;
   padding: 0;
-  /* transform: rotateX(60deg) translate3d(0, 0, 0); */
   position: relative;
   list-style: none;
   width: 100%;
@@ -31,7 +36,6 @@
   position: absolute;
   transition: all ease-in 0.3s;
   user-select: none;
-  /* padding-top: calc(5 / 3 * 100%); */
 }
 
 .back-of-hand.playing-hand .non-player-card button {

@@ -3,6 +3,8 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
+import { task } from 'ember-concurrency-decorators';
+import { taskFor } from 'ember-concurrency-ts';
 import { use } from 'ember-could-get-used-to-this';
 
 import { loadWithDefault } from 'pinochle/services/game-manager';
@@ -100,14 +102,8 @@ export default class JoinGame extends Component<Args> {
   }
 
   @action
-  async _joinGame({ name }: Context) {
-    await this.gameHost?.joinHost(name);
-
-    this.interpreter.send('JOINED');
-
-    await this.gameHost?.waitForStart();
-
-    this.interpreter.send('START');
+  _joinGame({ name }: Context) {
+    this._joinGameTask.perform(name);
   }
 
   @action
@@ -120,4 +116,15 @@ export default class JoinGame extends Component<Args> {
 
     this.interpreter.send('ERROR');
   }
+
+  @task
+  _joinGameTask = taskFor(async (name: string) => {
+    await this.gameHost?.joinHost(name);
+
+    this.interpreter.send('JOINED');
+
+    await this.gameHost?.waitForStart();
+
+    this.interpreter.send('START');
+  });
 }
