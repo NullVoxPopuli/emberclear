@@ -21,8 +21,8 @@ export default class PlayerOrder extends Component<Args> {
     return info;
   }
 
-  get currentName() {
-    return this.playerInfo.name;
+  get currentPlayer() {
+    return this.gameInfo.gameState.currentPlayer;
   }
 
   get players() {

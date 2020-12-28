@@ -4,9 +4,9 @@ import Service from '@ember/service';
 import { timeout } from 'ember-concurrency';
 
 import { ensureRequirementsAreMet } from 'pinochle/game/networking/-requirements';
-import { GameRound } from 'pinochle/game/networking/game-round';
 import { GameGuest } from 'pinochle/game/networking/guest';
 import { GameHost } from 'pinochle/game/networking/host';
+import { GameRound } from 'pinochle/game/networking/host/game-round';
 
 import { fromHex } from '@emberclear/encoding/string';
 
@@ -97,11 +97,13 @@ export default class GameManager extends Service {
         privateKey,
       });
 
-      host.players = hostData.players.map((player) => {
-        return {
+      hostData.players.forEach((player) => {
+        host.playersById[player.id] = {
+          id: player.id,
           name: player.name,
           publicKeyAsHex: player.id,
           publicKey: fromHex(player.id),
+          isOnline: false,
         };
       });
 

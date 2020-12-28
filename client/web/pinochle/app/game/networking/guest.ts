@@ -3,24 +3,16 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 import RSVP from 'rsvp';
-import { TrackedObject } from 'tracked-built-ins';
 
-import { fromHex, toHex } from '@emberclear/encoding/string';
+import { toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
 import { DisplayInfo } from './-display-info';
+import { GuestGameRound } from './guest/game-round';
 
 import type { Card } from '../card';
-import type { GamePhase } from './constants';
-import type {
-  GameInfo,
-  GameMessage,
-  GameResult,
-  GameState,
-  GuestPlayer,
-  SerializablePlayer,
-} from './types';
+import type { GameMessage, GameState } from './types';
 import type RouterService from '@ember/routing/router-service';
 import type { EncryptedMessage } from '@emberclear/crypto/types';
 
@@ -45,30 +37,24 @@ export class GameGuest extends EphemeralConnection {
   isWelcomed = RSVP.defer();
   isStarted = RSVP.defer();
 
+  waitingForCardPlayConfirmation = RSVP.defer();
+  waitingForBidConfirmation = RSVP.defer();
+  waitingForTrumpDeclaration = RSVP.defer();
+
   declare display: DisplayInfo;
+  gameState = new GuestGameRound();
 
   @tracked gameId?: string;
-  @tracked hand: Card[] = [];
-  @tracked currentPlayer?: string;
-  @tracked scoreHistory: GameResult[] = [];
-  @tracked gamePhase: GamePhase = 'meld';
-  @tracked gameInfo?: GameInfo;
-  @tracked playersById: Record<string, GuestPlayer> = new TrackedObject();
 
-  @cached
-  get players() {
-    return Object.values(this.playersById);
+  get playerOrder() {
+    return this.gameState.playerOrder;
   }
 
   @cached
-  get playerOrder() {
-    if (!this.gameInfo) {
-      return [];
-    }
+  get me() {
+    let id = toHex(this.crypto.keys.publicKey);
 
-    return this.gameInfo.playerOrder.map((id) => {
-      return this.playersById[id];
-    });
+    return this.gameState.playersById[id];
   }
 
   @action
@@ -101,7 +87,7 @@ export class GameGuest extends EphemeralConnection {
 
         return;
       case 'WELCOME':
-        this.updatePlayers(decrypted);
+        this.gameState._updatePlayers(decrypted);
         this.isWelcomed.resolve();
 
         return;
@@ -118,21 +104,25 @@ export class GameGuest extends EphemeralConnection {
         this.updateGameState(decrypted);
 
         return;
+      case 'CONNECTIVITY_CHECK':
+        this.sendToHex({ type: 'PRESENT' }, data.uid);
+
+        return;
       default:
         console.debug(data, decrypted);
         throw new UnknownMessageError();
     }
   }
 
+  /**
+   * All dispatched commands are merely suggestions to the host
+   * the host must verify and "OK" all actions
+   *
+   *
+   */
   @action
-  updatePlayers(msg: { players: SerializablePlayer[] }) {
-    for (let { name, id } of msg.players) {
-      this.playersById[id] = {
-        name,
-        publicKeyAsHex: id,
-        publicKey: fromHex(id),
-      };
-    }
+  async playCard(card: Card) {
+    await this.send({ type: 'PLAY_CARD', id: card.id });
   }
 
   @action
@@ -143,20 +133,16 @@ export class GameGuest extends EphemeralConnection {
 
   @action
   updateGameState(decrypted: GameState) {
-    this.display = new DisplayInfo(this.hexId);
+    if (!this.display) {
+      this.display = new DisplayInfo(this.hexId);
+    }
 
     if (this.router.currentRouteName !== 'game') {
       this.router.transitionTo(`/game/${this.gameId}`);
     }
 
-    this.currentPlayer = decrypted.currentPlayer;
-    this.hand = decrypted.hand;
-    this.scoreHistory = decrypted.scoreHistory;
-    this.gamePhase = decrypted.gamePhase;
-    this.gameInfo = decrypted.info;
+    this.gameState.update(decrypted);
     this.display.update(decrypted.info);
-
-    this.updatePlayers(this.gameInfo);
   }
 
   /**

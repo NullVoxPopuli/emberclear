@@ -2,15 +2,15 @@
   <PlayerOrder @id={{@game.gameId}} class='area:info' />
 
   {{#if @game.display.left}}
-    <div class='area:left'><BackOfCards @name={{@game.display.left.name}} /></div>
+    <BackOfCards class='area:left' @info={{@game.display.left}} />
   {{/if}}
 
   {{#if @game.display.top}}
-    <div class='area:top'><BackOfCards @name={{@game.display.top.name}} /></div>
+    <BackOfCards class='area-top' @info={{@game.display.top}} />
   {{/if}}
 
   {{#if @game.display.right}}
-    <div class='area:right'><BackOfCards @name={{@game.display.right.name}} /></div>
+    <BackOfCards class='area:right' @info={{@game.display.right}} />
   {{/if}}
 
   {{#if @game.trick}}

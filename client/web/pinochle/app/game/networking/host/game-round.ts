@@ -1,8 +1,9 @@
-import { newDeck, splitDeck } from '../deck';
+import { newDeck, splitDeck } from 'pinochle/game/deck';
 
-import type { Card, Suit } from '../card';
-import type { GamePhase } from './constants';
-import type { GuestPlayer } from './types';
+import type { GamePhase } from '../constants';
+import type { GuestPlayer } from '../types';
+import type { PlayerInfo } from './types';
+import type { Card, Suit } from 'pinochle/game/card';
 
 export type SerializedRound = {
   hands: Record<string, Card[]>;
@@ -16,7 +17,7 @@ export type SerializedRound = {
 };
 
 export class GameRound {
-  static loadFrom(players: GuestPlayer[], data: SerializedRound) {
+  static loadFrom(players: PlayerInfo[], data: SerializedRound) {
     let round = new GameRound(players);
 
     round.hands = data.hands;
@@ -44,7 +45,7 @@ export class GameRound {
    * players must be passed in in-order
    *
    */
-  constructor(protected players: GuestPlayer[]) {
+  constructor(protected players: PlayerInfo[]) {
     this.deal();
   }
 

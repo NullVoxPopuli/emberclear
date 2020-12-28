@@ -1,5 +1,5 @@
 import Component from '@glimmer/component';
-import { cached, tracked } from '@glimmer/tracking';
+import { cached } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 import { use } from 'ember-could-get-used-to-this';
@@ -9,6 +9,7 @@ import { Statechart } from 'pinochle/utils/use-machine';
 
 import { statechart } from './-statechart';
 
+import type { Card } from 'pinochle/game/card';
 import type { GameGuest } from 'pinochle/game/networking/guest';
 type Args = {
   id: string;
@@ -18,7 +19,7 @@ type Args = {
 export default class PlayAsGuest extends Component<Args> {
   @cached
   get hand() {
-    return sortHand(this.args.game.hand);
+    return sortHand(this.args.game.gameState.hand);
   }
 
   @use
@@ -35,8 +36,8 @@ export default class PlayAsGuest extends Component<Args> {
   });
 
   @action
-  chooseCard() {
-
+  chooseCard(card: Card) {
+    this.args.game.playCard(card);
   }
 
   /****************************

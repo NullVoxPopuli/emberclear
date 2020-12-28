@@ -1,8 +1,6 @@
-.player-order {
-  position: fixed;
-  top: 2rem;
-  left: 1rem;
-  margin: 0;
+.player-order .turn-marker {
+  position: absolute;
+  margin-left: -3rem;
 }
 
 .game-layout {
@@ -15,6 +13,10 @@
     'player-bottom player-bottom player-bottom';
   grid-template-rows: 1fr 1fr 2fr;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+.hand-name {
+  /* margin-top: 2rem; */
 }
 
 /* .game-layout > div[class*='area:'] {} */
@@ -52,4 +54,41 @@
   grid-area: player-bottom;
   justify-self: center;
   align-items: center;
+}
+
+.game-layout .area\:left,
+.game-layout .area\:right,
+.game-layout .area\:top {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  justify-items: center;
+  position: relative;
+}
+
+.game-layout .other-player .display {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  justify-items: center;
+}
+
+.game-layout .player-offline {
+  opacity: 0.5;
+}
+
+.game-layout .player-offline-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transform: translateY(40%);
+  display: flex;
+  gap: var(--size-2);
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
