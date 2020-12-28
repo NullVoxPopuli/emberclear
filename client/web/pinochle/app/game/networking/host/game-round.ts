@@ -1,7 +1,6 @@
 import { newDeck, splitDeck } from 'pinochle/game/deck';
 
 import type { GamePhase } from '../constants';
-import type { GuestPlayer } from '../types';
 import type { PlayerInfo } from './types';
 import type { Card, Suit } from 'pinochle/game/card';
 
@@ -60,6 +59,7 @@ export class GameRound {
       players: this.players.map((player) => ({
         name: player.name,
         id: player.publicKeyAsHex,
+        isOnline: player.isOnline,
       })),
     };
   }

@@ -8,11 +8,11 @@ import { toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
-import { DisplayInfo } from './-display-info';
+import { DisplayInfo } from './guest/display-info';
 import { GuestGameRound } from './guest/game-round';
 
 import type { Card } from '../card';
-import type { GameMessage, GameState } from './types';
+import type { GameMessage, GameState, WelcomeMessage } from './types';
 import type RouterService from '@ember/routing/router-service';
 import type { EncryptedMessage } from '@emberclear/crypto/types';
 
@@ -84,11 +84,11 @@ export class GameGuest extends EphemeralConnection {
       case 'ACK':
         this.hostExists.resolve();
         this.gameId = data.uid;
+        this.sendToHex({ type: 'PRESENT' }, data.uid);
 
         return;
       case 'WELCOME':
-        this.gameState._updatePlayers(decrypted);
-        this.isWelcomed.resolve();
+        this.handleWelcome(decrypted);
 
         return;
 
@@ -102,6 +102,7 @@ export class GameGuest extends EphemeralConnection {
         return;
       case 'GUEST_UPDATE':
         this.updateGameState(decrypted);
+        this.redirectToGame();
 
         return;
       case 'CONNECTIVITY_CHECK':
@@ -134,15 +135,24 @@ export class GameGuest extends EphemeralConnection {
   @action
   updateGameState(decrypted: GameState) {
     if (!this.display) {
-      this.display = new DisplayInfo(this.hexId);
-    }
-
-    if (this.router.currentRouteName !== 'game') {
-      this.router.transitionTo(`/game/${this.gameId}`);
+      this.display = new DisplayInfo(this.hexId, this.gameState);
     }
 
     this.gameState.update(decrypted);
     this.display.update(decrypted.info);
+  }
+
+  @action
+  handleWelcome(decrypted: WelcomeMessage) {
+    this.gameState._updatePlayers(decrypted);
+    this.isWelcomed.resolve();
+  }
+
+  @action
+  redirectToGame() {
+    if (this.router.currentRouteName !== 'game') {
+      this.router.transitionTo(`/game/${this.gameId}`);
+    }
   }
 
   /**

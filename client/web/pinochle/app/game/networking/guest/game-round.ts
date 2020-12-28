@@ -48,10 +48,11 @@ export class GuestGameRound {
 
   @action
   _updatePlayers(msg: { players: SerializablePlayer[] }) {
-    for (let { name, id } of msg.players) {
+    for (let { name, id, isOnline } of msg.players) {
       this.playersById[id] = {
         id,
         name,
+        isOnline,
         publicKeyAsHex: id,
         publicKey: fromHex(id),
       };

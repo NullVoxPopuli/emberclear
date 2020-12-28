@@ -2,34 +2,32 @@ import { tracked } from '@glimmer/tracking';
 
 import { next, prev } from 'pinochle/utils/array';
 
-import type { GameInfo, SerializablePlayer } from './types';
+import type { GameInfo } from '../types';
+import type { GuestGameRound } from './game-round';
 
 export class DisplayInfo {
   @tracked declare info: GameInfo;
 
-  declare playersById: Record<string, SerializablePlayer>;
+  constructor(public currentPlayerId: string, public state: GuestGameRound) {}
 
-  constructor(public currentPlayerId: string) {}
-
-  update(info: GameInfo) {
+  update(info: GameInfo, state?: GuestGameRound) {
     this.info = info;
-    this.playersById = this.info.players.reduce((acc, curr) => {
-      acc[curr.id] = curr;
 
-      return acc;
-    }, {} as Record<string, SerializablePlayer>);
+    if (state) {
+      this.state = state;
+    }
   }
 
   get left() {
     let leftPlayer = next(this.info.playerOrder, this.currentPlayerId);
 
-    return this.playersById[leftPlayer];
+    return this.state.playersById[leftPlayer];
   }
 
   get right() {
     let rightPlayer = prev(this.info.playerOrder, this.currentPlayerId);
 
-    return this.playersById[rightPlayer];
+    return this.state.playersById[rightPlayer];
   }
 
   get top() {
@@ -49,6 +47,6 @@ export class DisplayInfo {
 
     let across = next(playerIds, next(playerIds, this.currentPlayerId));
 
-    return this.playersById[across];
+    return this.state.playersById[across];
   }
 }

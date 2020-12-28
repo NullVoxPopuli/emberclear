@@ -228,7 +228,7 @@ export class GameHost extends EphemeralConnection {
   onlineChecker = taskFor(async () => {
     // eslint-disable-next-line no-constant-condition
     while (true) {
-      await timeout(5000);
+      await timeout(2000);
 
       let promises = this.players.map(async (player) => {
         if (!player.onlineCheck) {
