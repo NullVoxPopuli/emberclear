@@ -30,7 +30,7 @@
     "ember-auto-import": "1.10.0",
     "ember-cli-babel": "^7.22.1",
     "ember-cli-htmlbars": "^5.3.1",
-    "esbuild": "0.8.24",
+    "esbuild": "0.8.27",
     "promise-worker-bi": "4.0.2",
     "tweetnacl": "1.0.3",
     "tweetnacl-util": "0.15.1"
