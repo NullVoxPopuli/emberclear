@@ -1,4 +1,4 @@
-import { assign, send, actions } from 'xstate';
+import { actions, assign, send } from 'xstate';
 
 import type { JoinMessage } from '../types';
 import type { Suit } from 'pinochle/game/card';
@@ -11,7 +11,6 @@ type Bid = {
 type Pass = { type: 'PASS' };
 type DeclareTrump = { type: 'DECLARE_TRUMP'; trump: string };
 
-type NetworkMessage = { fromUid: string };
 
 type Event =
   | Bid
@@ -166,26 +165,6 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
     isForfeiting: false,
     bids: {},
     melds: {},
-  },
-  on: {
-    JOIN: [
-      // actions.choose([
-      //   {
-      //     cond: (ctx) => isKnown && hasGameStarted,
-      //     actions: ['sendState'],
-      //   },
-      //   {
-      //     cond: (ctx) => isKnown,
-      //     actions: ['sendWelcome'],
-      //   },
-      //   {
-      //     actions: ['addPlayer'],
-      //   },
-      // ]),
-    ],
-    // SYN: [],
-    // REQUEST_STATE: [],
-    // PLAY_CARD: [],
   },
   states: {
     bidding: {

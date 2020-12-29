@@ -15,10 +15,12 @@ import { EphemeralConnection } from '@emberclear/networking';
 import { UnknownMessageError } from '@emberclear/networking/errors';
 
 import { GameRound } from './host/game-round';
-import { statechart } from './host/statechart';
+import { statechart as networking } from './host/networking-statechart';
+import { statechart as state } from './host/state-statechart';
 
+import type { NetworkMessage } from './host/networking-statechart';
 import type { PlayerInfo } from './host/types';
-import type { GameMessage } from './types';
+import type { GameMessage, JoinMessage as Join } from './types';
 import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
 
 const MAX_PLAYERS = 4;
@@ -43,14 +45,44 @@ export class GameHost extends EphemeralConnection {
   }
 
   @use
+  messageHandler = new Statechart(() => {
+    return {
+      named: {
+        chart: networking,
+        config: {
+          actions: {
+            loadData: () => {},
+
+            // State Management
+            addPlayer: (_: unknown, { fromUid, name }: NetworkMessage & Join) =>
+              this._addPlayer({ name }, fromUid),
+            markOnline: (_: unknown, { fromUid }: NetworkMessage) => this._markOnline(fromUid),
+
+            // Broadcasts to everyone
+            broadcastJoin: this._broadcastJoin,
+
+            // Replies
+            replyAck: (_: unknown, { fromUid }: NetworkMessage) => this._ack(fromUid),
+            replyState: (_: unknown, { fromUid }: NetworkMessage) => this._sendState(fromUid),
+          },
+          guards: {
+            isPlayerKnown: (_: unknown, { fromUid }: NetworkMessage) =>
+              this._isPlayerKnown(fromUid),
+          },
+        },
+      },
+    };
+  });
+
+  @use
   interpreter = new Statechart(() => {
     return {
       named: {
-        chart: statechart,
+        chart: state,
         config: {
           actions: {
-            sendState: this.sendStateTo,
-            sendWelcome: this.__updatePlayersWithParticipants,
+            sendState: this._sendState,
+            sendWelcome: this._broadcastJoin,
             addPlayer: this._addPlayer,
           },
         },
@@ -83,15 +115,15 @@ export class GameHost extends EphemeralConnection {
 
     // console.log('host', decrypted, data.uid);
 
+    return this.interpreter.send({ ...decrypted, fromUid: data.uid });
+
     switch (decrypted.type) {
       case 'JOIN':
-        // return this.interpreter.send({ ...decrypted, fromUid: data.uid });
-
-        if (this.isKnown(data.uid)) {
+        if (this._isPlayerKnown(data.uid)) {
           if (this.currentGame) {
-            this.sendStateTo(data.uid);
+            this._sendState(data.uid);
           } else {
-            this.__updatePlayersWithParticipants();
+            this._broadcastJoin();
           }
         } else {
           this._addPlayer(decrypted, data.uid);
@@ -109,18 +141,23 @@ export class GameHost extends EphemeralConnection {
 
         return;
       case 'REQUEST_STATE':
-        this.ifKnown(data.uid, () => this.sendStateTo(data.uid));
+        this.ifKnown(data.uid, () => this._sendState(data.uid));
 
         return;
       case 'PRESENT':
         if (this.currentGame) {
-          this.ifKnown(data.uid, () => this.markOnline(data.uid));
+          this.ifKnown(data.uid, () => this._markOnline(data.uid));
 
           return;
         }
 
-        this.markOnline(data.uid);
+        if (this._isPlayerKnown(data.uid)) {
+          this._markOnline(data.uid);
 
+          return;
+        }
+
+        // ignore person
         return;
       case 'PLAY_CARD':
         // TODO:
@@ -136,15 +173,8 @@ export class GameHost extends EphemeralConnection {
   }
 
   @action
-  isKnown(id: string) {
-    let player = this.players.find((player) => player.publicKeyAsHex === id);
-
-    return Boolean(player);
-  }
-
-  @action
   ifKnown(id: string, callback: () => void) {
-    if (this.isKnown(id)) {
+    if (this._isPlayerKnown(id)) {
       callback();
     } else {
       this.sendToHex({ type: 'NOT_RECOGNIZED' }, id);
@@ -152,7 +182,7 @@ export class GameHost extends EphemeralConnection {
   }
 
   @action
-  sendStateTo(id: string) {
+  _sendState(id: string) {
     return this.sendToHex(
       {
         type: 'GUEST_UPDATE',
@@ -190,6 +220,21 @@ export class GameHost extends EphemeralConnection {
     }
   }
 
+  /*************************************
+   * State Machine Helpers
+   ************************************/
+  @action
+  _ack(id: string) {
+    this.sendToHex({ type: 'ACK' }, id);
+  }
+
+  @action
+  _isPlayerKnown(id: string) {
+    let player = this.players.find((player) => player.publicKeyAsHex === id);
+
+    return Boolean(player);
+  }
+
   @action
   _addPlayer({ name }: { name: string }, publicKeyAsHex: string) {
     if (this.players.length === MAX_PLAYERS) {
@@ -205,11 +250,11 @@ export class GameHost extends EphemeralConnection {
       publicKey: fromHex(publicKeyAsHex),
     };
 
-    this.__updatePlayersWithParticipants();
+    this._broadcastJoin();
   }
 
   @action
-  __updatePlayersWithParticipants() {
+  _broadcastJoin() {
     let serializablePlayers = this.players.map((player) => ({
       id: player.publicKeyAsHex,
       name: player.name,
@@ -222,12 +267,16 @@ export class GameHost extends EphemeralConnection {
   }
 
   @action
-  markOnline(uid: string) {
+  _markOnline(uid: string) {
     let player = this.playersById[uid];
 
     player.isOnline = true;
     player.onlineCheck?.resolve(true);
   }
+
+  /**************************************
+   * Utilities
+   *************************************/
 
   @action
   serialize() {
@@ -265,7 +314,7 @@ export class GameHost extends EphemeralConnection {
 
       await Promise.all(promises);
 
-      this.__updatePlayersWithParticipants();
+      this._broadcastJoin();
 
       this.players.map((player) => (player.onlineCheck = undefined));
     }
