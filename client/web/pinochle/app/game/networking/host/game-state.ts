@@ -1,7 +1,10 @@
 import { actions, assign, send } from 'xstate';
 
+import { newDeck, splitDeck } from 'pinochle/game/deck';
+
 import type { JoinMessage } from '../types';
-import type { Suit } from 'pinochle/game/card';
+import type { PlayerInfo } from './types';
+import type { Card, Suit } from 'pinochle/game/card';
 import type { MachineConfig, StateSchema } from 'xstate';
 
 type Bid = {
@@ -12,10 +15,10 @@ type Pass = { type: 'PASS' };
 type DeclareTrump = { type: 'DECLARE_TRUMP'; trump: string };
 
 type StartEvent = { type: 'START' } & Context;
-type Event =
+export type Event =
   | Bid
   | Pass
-  | ({ type: 'JOIN' } & JoinMessage & NetworkMessage)
+  | ({ type: 'JOIN' } & JoinMessage)
   | { type: 'WON_BID' }
   | DeclareTrump
   | StartEvent
@@ -27,11 +30,11 @@ type Event =
   | { type: 'SUBMIT_MELD'; player: string; meld: number }
   | { type: 'FORFEIT' };
 
-interface Context {
+export interface Context {
   hasBlind: boolean;
   currentPlayer: string;
-  // in order
-  players: string[];
+  playersById: Record<string, PlayerInfo & { hand: Card[] }>;
+  playerOrder: string[];
   trump?: Suit;
   bid?: number;
   playerWhoTookTheBid?: string;
@@ -40,7 +43,7 @@ interface Context {
   isForfeiting: boolean;
 }
 
-interface Schema extends StateSchema<Context> {
+export interface Schema extends StateSchema<Context> {
   idle: StateSchema<Context>;
   bidding: StateSchema<Context>;
   'won-bid': {
@@ -154,13 +157,40 @@ function hasBlind(ctx: Context) {
   return ctx.hasBlind;
 }
 
+function deal(context: Context) {
+  let { playersById, playerOrder } = context;
+  let deck = newDeck();
+  let { hands, remaining } = splitDeck(deck, playerOrder.length);
+
+  for (let i = 0; i < playerOrder.length; i++) {
+    let id = playerOrder[i];
+    let player = playersById[id];
+
+    player.hand = hands[i];
+  }
+
+  return assign({
+    blind: () => remaining,
+    currentPlayer: () => playerOrder[0],
+  });
+}
+
+// TODO: Rotate from previousOrder
+function setPlayerOrder(context: Context, { previousOrder }: TODO) {
+  if (!previousOrder) {
+    return Object.keys(context.playersById);
+  }
+
+  throw new Error('Not implemented');
+}
+
 export const statechart: MachineConfig<Context, Schema, Event> = {
   id: 'game',
   initial: 'idle',
   context: {
-    hasBlind: false,
-    currentPlayer: '1',
-    players: [],
+    // hasBlind: false,
+    // currentPlayer: '1',
+    // players: [],
     // trump: '',
     // bid: null,
     // playerWhoTookTheBid: null,
@@ -171,21 +201,28 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
   states: {
     idle: {
       on: {
-        START: {
+        START_ROUND: {
           actions: [
             assign({
-              players: (_, event: StartEvent) => event.players,
+              playerOrder: setPlayerOrder,
             }),
           ],
-          target: 'bidding',
+          target: 'dealing',
         },
+      },
+    },
+    dealing: {
+      entry: deal,
+      always: [send('DONE')],
+      on: {
+        DONE: 'bidding',
       },
     },
     bidding: {
       on: {
         BID: [
           {
-            target: '#game.bidding',
+            target: 'bidding',
             actions: [bid, nextBiddingPlayer],
           },
         ],
@@ -193,10 +230,10 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
         PASS: [
           {
             cond: isBiddingOver,
-            target: '#game.won-bid',
+            target: 'won-bid',
           },
           {
-            target: '#game.bidding',
+            target: 'bidding',
             actions: [passBid, nextBiddingPlayer],
           },
         ],
@@ -210,7 +247,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
         'pending-acceptance': {
           on: {
             ACCEPT: {
-              target: '#wonBid.accepted',
+              target: 'accepted',
             },
             FORFEIT: {
               target: '#game.declare-meld',

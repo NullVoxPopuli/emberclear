@@ -86,7 +86,7 @@ export class GameGuest extends EphemeralConnection {
   async onData(data: EncryptedMessage) {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
-    // console.log('guest', decrypted, data.uid);
+    console.log('guest', decrypted, data.uid);
 
     switch (decrypted.type) {
       case 'ACK':

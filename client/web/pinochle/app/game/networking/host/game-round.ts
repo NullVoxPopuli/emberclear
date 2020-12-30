@@ -1,7 +1,16 @@
-import { newDeck, splitDeck } from 'pinochle/game/deck';
+import { action } from '@ember/object';
+
+import { use } from 'ember-could-get-used-to-this';
+
+import { Statechart } from 'pinochle/utils/use-machine';
+
+import { statechart } from './game-state';
+import { handById } from './utils';
 
 import type { GamePhase } from '../constants';
+import type { Context, Event, Schema } from './game-state';
 import type { PlayerInfo } from './types';
+import type { EncryptableObject } from '@emberclear/crypto/types';
 import type { Card, Suit } from 'pinochle/game/card';
 
 export type SerializedRound = {
@@ -13,85 +22,119 @@ export type SerializedRound = {
   phase: GamePhase;
   bid: number;
   trump: Suit;
+  state: unknown;
 };
 
 export class GameRound {
-  static loadFrom(players: PlayerInfo[], data: SerializedRound) {
-    let round = new GameRound(players);
-
-    round.hands = data.hands;
-    round.blind = data.blind;
-    round.playerOrder = data.playerOrder;
-    round.playerWhoTookTheBid = data.playerWhoTookTheBid;
-    round.currentPlayer = data.currentPlayer;
-    round.phase = data.phase;
-    round.bid = data.bid;
-    round.trump = data.trump;
+  static loadFrom(players: Record<string, PlayerInfo>, data: SerializedRound) {
+    let round = new GameRound(players, data?.state);
 
     return round;
   }
 
-  blind: Card[] = [];
-  phase: GamePhase = 'meld';
-  bid?: number;
-  trump?: Suit;
-  playerWhoTookTheBid?: string;
-  hands: { [key: string]: Card[] } = {};
-  declare playerOrder: string[];
-  declare currentPlayer: string;
+  declare _initialState: unknown;
 
   /**
    * players must be passed in in-order
    *
    */
-  constructor(protected players: PlayerInfo[]) {
-    this.deal();
+  constructor(protected playersById: Record<string, PlayerInfo>, state?: unknown) {
+    if (!state) {
+      // placing this here causes an infinite loop?
+      this.interpreter.send('START_ROUND');
+    }
+
+    this._initialState = state;
+  }
+
+  @use
+  interpreter = new Statechart<Context, Schema, Event>(() => {
+    return {
+      named: {
+        chart: statechart,
+        // initialState: this._initialState,
+        context: {
+          playersById: this.playersById,
+        },
+        config: {
+          actions: {
+            // sendState: this._sendState,
+            // sendWelcome: this._broadcastJoin,
+            // addPlayer: this._addPlayer,
+            // Networky things
+            // Game Actions
+            // deal: this._deal,
+          },
+        },
+      },
+    };
+  });
+
+  get context() {
+    return this.interpreter.state.context;
+  }
+
+  get currentPlayer() {
+    return this.context.currentPlayer;
   }
 
   get info() {
-    let { trump, bid, playerWhoTookTheBid } = this;
+    let { trump, bid, playerWhoTookTheBid, playerOrder } = this.context;
 
     return {
       trump,
       bid,
       playerWhoTookTheBid,
-      playerOrder: this.playerOrder,
-      players: this.players.map((player) => ({
-        name: player.name,
-        id: player.publicKeyAsHex,
-        isOnline: player.isOnline,
-      })),
+      playerOrder,
     };
   }
 
-  deal() {
-    let deck = newDeck();
-    let { hands, remaining } = splitDeck(deck, this.players.length);
+  @action
+  stateForPlayer(id: string) {
+    let { playersById, currentPlayer, playerOrder } = this.context;
+    let player = playersById[id];
 
-    this.blind = remaining;
-
-    for (let i = 0; i < this.players.length; i++) {
-      let player = this.players[i];
-
-      this.hands[player.publicKeyAsHex] = hands[i];
-    }
-
-    this.playerOrder = this.players.map((player) => player.publicKeyAsHex);
-    this.currentPlayer = this.playerOrder[0];
+    return ({
+      hand: player.hand,
+      currentPlayer,
+      info: {
+        playerOrder,
+      },
+    } as unknown) as EncryptableObject;
   }
 
-  toJSON() {
-    let { hands, blind, playerOrder, playerWhoTookTheBid, currentPlayer, phase, bid, trump } = this;
+  @action
+  bid(bid: number) {
+    this.interpreter.send('BID', { bid });
+  }
 
-    return {
-      hands,
-      blind,
+  /*************************************
+   * State Machine Helpers
+   ************************************/
+
+  /**************************************
+   * Utilities
+   *************************************/
+  toJSON() {
+    let {
+      playersById,
       playerOrder,
       playerWhoTookTheBid,
       currentPlayer,
-      phase,
       bid,
       trump,
+    } = this.interpreter.state!.context;
+
+    let hands = handById(playersById);
+
+    return {
+      hands,
+      playerOrder,
+      playerWhoTookTheBid,
+      currentPlayer,
+      bid,
+      trump,
+      state: this.interpreter.state?.toJSON(),
     };
   }
 }

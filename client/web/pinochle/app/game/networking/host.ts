@@ -4,22 +4,19 @@ import { action } from '@ember/object';
 import { timeout } from 'ember-concurrency';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
-import { use } from 'ember-could-get-used-to-this';
 import RSVP from 'rsvp';
 import { TrackedObject } from 'tracked-built-ins';
-
-import { Statechart } from 'pinochle/utils/use-machine';
 
 import { fromHex, toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
 
 // import { UnknownMessageError } from '@emberclear/networking/errors';
 import { GameRound } from './host/game-round';
-import { statechart as state } from './host/state-statechart';
 
 import type { PlayerInfo } from './host/types';
-import type { GameMessage, JoinMessage as Join } from './types';
+import type { GameMessage } from './types';
 import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
+import {unwrapObject} from './host/utils';
 
 const MAX_PLAYERS = 4;
 // const MIN_PLAYERS = 3;
@@ -42,22 +39,6 @@ export class GameHost extends EphemeralConnection {
 
     this.onlineChecker.perform();
   }
-
-  @use
-  interpreter = new Statechart(() => {
-    return {
-      named: {
-        chart: state,
-        config: {
-          actions: {
-            sendState: this._sendState,
-            sendWelcome: this._broadcastJoin,
-            addPlayer: this._addPlayer,
-          },
-        },
-      },
-    };
-  });
 
   @cached
   get players() {
@@ -116,6 +97,10 @@ export class GameHost extends EphemeralConnection {
           return this._sendState(data.uid);
         case 'PRESENT':
           return this._markOnline(data.uid);
+        case 'BID':
+          this.currentGame.bid(decrypted);
+
+          return;
         case 'PLAY_CARD':
           // TODO:
           // - is valid play
@@ -159,13 +144,9 @@ export class GameHost extends EphemeralConnection {
    */
   @action
   startGame() {
-    this.currentGame = new GameRound(this.players);
+    this.currentGame = new GameRound(unwrapObject(this.playersById));
 
     this._broadcastStart();
-
-    this.interpreter.send('START', {
-      players: this.players,
-    });
   }
 
   /*************************************
@@ -177,10 +158,17 @@ export class GameHost extends EphemeralConnection {
       this.sendToHex(
         {
           type: 'START',
-          ...this._buildStateFor(player.publicKeyAsHex),
+          ...this.currentGame.stateForPlayer(player.publicKeyAsHex),
         },
         player.publicKeyAsHex
       );
+    }
+  }
+
+  @action
+  _broadcastState() {
+    for (let player of this.players) {
+      this._sendState(player.id);
     }
   }
 
@@ -189,11 +177,17 @@ export class GameHost extends EphemeralConnection {
     return this.sendToHex(
       {
         type: 'GUEST_UPDATE',
-        ...this._buildStateFor(id),
+        ...this.currentGame.stateForPlayer(id),
       },
       id
     );
   }
+
+  // @action
+  // _requestBid(id: string) {}
+
+  // @action
+  // _requestTurn(id: string) {}
 
   @action
   _notRecognized(id: string) {
@@ -259,18 +253,6 @@ export class GameHost extends EphemeralConnection {
   /**************************************
    * Utilities
    *************************************/
-  @action
-  _buildStateFor(id: string) {
-    let hand = (this.currentGame.hands[id] as unknown) as EncryptableObject;
-
-    return {
-      hand,
-      info: this.currentGame.info,
-      currentPlayer: this.currentGame.currentPlayer,
-      gamePhase: this.currentGame.phase,
-      // scoreHistory: this.scoreHistory,
-    };
-  }
 
   @action
   serialize() {
@@ -282,12 +264,13 @@ export class GameHost extends EphemeralConnection {
         id: player.publicKeyAsHex,
         isOnline: player.isOnline,
       })),
-      gameRound: this.currentGame.toJSON(),
+      gameRound: this.currentGame?.toJSON(),
     };
   }
 
   @dropTask
   onlineChecker = taskFor(async () => {
+    // this loop takes 7s per iteration
     // eslint-disable-next-line no-constant-condition
     while (true) {
       await timeout(2000);
