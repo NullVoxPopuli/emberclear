@@ -13,7 +13,7 @@ type Bid = {
   bid: number | 'passed';
 };
 type Pass = { type: 'PASS' };
-type DeclareTrump = { type: 'DECLARE_TRUMP'; trump: string };
+type DeclareTrump = { type: 'DECLARE_TRUMP'; trump: Suit };
 
 type StartEvent = { type: 'START' } & Context;
 export type Event =
@@ -63,6 +63,8 @@ export interface Schema extends StateSchema<Context> {
   'end-game': StateSchema<Context>;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 function didPass(ctx: Context) {
   return ctx.bids[ctx.currentPlayer] === 'passed';
 }
@@ -88,13 +90,15 @@ function passBid() {
 }
 
 function _nextPlayer(ctx: Context) {
-  let players = ctx.players;
+  let players = ctx.playerOrder;
   let current = players.indexOf(ctx.currentPlayer);
   let nextIndex = current + (1 % players.length);
 
-  return ctx.players[nextIndex];
+  return ctx.playerOrder[nextIndex];
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 function nextPlayer() {
   return assign({
     currentPlayer: _nextPlayer,
@@ -104,9 +108,9 @@ function nextPlayer() {
 function nextBiddingPlayer() {
   return assign({
     currentPlayer: (ctx: Context) => {
-      let nextPlayer: string;
+      let nextPlayer: undefined | string = undefined;
 
-      for (let i = 0; i < ctx.players.length; i++) {
+      for (let i = 0; i < ctx.playerOrder.length; i++) {
         nextPlayer = _nextPlayer(ctx);
 
         if (ctx.bids[nextPlayer] !== 'passed') {
@@ -114,16 +118,22 @@ function nextBiddingPlayer() {
         }
       }
 
+      if (!nextPlayer) {
+        throw new Error('all players are not allowed to pass');
+      }
+
       return nextPlayer;
     },
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 function setTrump() {
-  return assign({ trump: (ctx, event: DeclareTrump) => event.trump });
+  return assign<Context>({ trump: (_ctx: Context, event: DeclareTrump) => event.trump });
 }
 
-function playersWithBids(ctx) {
+function playersWithBids(ctx: Context) {
   let ids = [];
 
   for (let [playerId, bidValue] of Object.entries(ctx.bids)) {
@@ -135,26 +145,37 @@ function playersWithBids(ctx) {
   return ids;
 }
 
-function isBiddingOver(ctx) {
+function isBiddingOver(ctx: Context) {
   return playersWithBids(ctx).length === 1;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 function setBidWinnerInfo() {
-  assign({
+  return assign<Context>({
     currentPlayer: (ctx: Context) => playersWithBids(ctx)[0],
     playerWhoTookTheBid: (ctx: Context) => playersWithBids(ctx)[0],
     bid: (ctx: Context) => {
       let player = playersWithBids(ctx)[0];
+      let bid = ctx.bids[player];
 
-      return ctx.bids[player];
+      if (!bid || bid === 'passed') {
+        throw new Error('Invalid bid');
+      }
+
+      return bid;
     },
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 function hasEveryoneSubmittedMeld() {
   return false;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 function hasBlind(ctx: Context) {
   return ctx.hasBlind;
 }
