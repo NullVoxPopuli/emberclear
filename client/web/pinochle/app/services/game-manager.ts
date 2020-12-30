@@ -12,7 +12,7 @@ import { fromHex } from '@emberclear/encoding/string';
 
 import type { KeyPair } from '@emberclear/crypto';
 import type { SerializedGuest } from 'pinochle/game/networking/guest';
-import type { SerializedHost } from 'pinochle/game/networking/host';
+import type { SerializedHost } from 'pinochle/game/networking/host/types';
 
 export default class GameManager extends Service {
   /**

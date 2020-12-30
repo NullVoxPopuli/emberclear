@@ -8,6 +8,7 @@ import { statechart } from './game-state';
 import { handById, serializePlayer } from './utils';
 
 import type { GamePhase } from '../constants';
+import type { Bid } from '../types';
 import type { Context, Event, Schema } from './game-state';
 import type { PlayerInfo } from './types';
 import type { EncryptableObject } from '@emberclear/crypto/types';
@@ -49,7 +50,13 @@ export class GameRound {
         chart: statechart,
         initialState: this._initialState,
         context: {
-          playersById: this.playersById,
+          playersById: this.playersById as TODO,
+          hasBlind: false,
+          currentPlayer: '',
+          bids: {},
+          playerOrder: [],
+          melds: {},
+          isForfeiting: false,
         },
         config: {
           // actions: {
@@ -103,7 +110,7 @@ export class GameRound {
   }
 
   @action
-  bid(bid: number) {
+  bid({ bid }: Bid) {
     this.interpreter.send('BID', { bid });
   }
 

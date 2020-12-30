@@ -210,17 +210,17 @@ function setPlayerOrder(context: Context, { previousOrder }: TODO) {
 export const statechart: MachineConfig<Context, Schema, Event> = {
   id: 'host-game-state',
   initial: 'idle',
-  context: {
-    // hasBlind: false,
-    // currentPlayer: '1',
-    // players: [],
-    // trump: '',
-    // bid: null,
-    // playerWhoTookTheBid: null,
-    isForfeiting: false,
-    bids: {},
-    melds: {},
-  },
+  // context: {
+  //   // hasBlind: false,
+  //   // currentPlayer: '1',
+  //   // players: [],
+  //   // trump: '',
+  //   // bid: null,
+  //   // playerWhoTookTheBid: null,
+  //   isForfeiting: false,
+  //   bids: {},
+  //   melds: {},
+  // },
   states: {
     idle: {
       entry: [
