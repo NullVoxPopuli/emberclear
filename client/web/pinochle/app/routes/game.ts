@@ -29,8 +29,6 @@ export default class GameRoute extends Route {
     let hostId = transition.to.params.idOfHost;
     let gameGuest = this.gameManager.isGuestOf.get(hostId || '');
 
-    console.log('game params', transition.to.params);
-
     /**
      * TODO: add some global error / toast / flash messages
      */

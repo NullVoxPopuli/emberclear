@@ -64,7 +64,7 @@ export class Statechart<
   declare [MACHINE]: StateMachine<Context, Schema, Event>;
   declare [INTERPRETER]: Interpreter<Context, Schema, Event>;
 
-  @tracked state?: State<Context, Event>;
+  @tracked declare state: State<Context, Event>;
 
   /**
    * This is the return value of `new Statechart(() => ...)`

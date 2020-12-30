@@ -12,11 +12,11 @@ import { EphemeralConnection } from '@emberclear/networking';
 
 // import { UnknownMessageError } from '@emberclear/networking/errors';
 import { GameRound } from './host/game-round';
+import { unwrapObject } from './host/utils';
 
 import type { PlayerInfo } from './host/types';
 import type { GameMessage } from './types';
-import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
-import {unwrapObject} from './host/utils';
+import type { EncryptedMessage } from '@emberclear/crypto/types';
 
 const MAX_PLAYERS = 4;
 // const MIN_PLAYERS = 3;

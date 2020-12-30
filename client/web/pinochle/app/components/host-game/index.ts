@@ -83,8 +83,8 @@ export default class HostGame extends Component<Args> {
   @action
   _startGame() {
     if (this.gameHost) {
-      this.router.transitionTo(`/game/${this.gameHost.hexId}`);
       this.gameHost.startGame();
+      this.router.transitionTo(`/game/${this.gameHost.hexId}`);
 
       return;
     }

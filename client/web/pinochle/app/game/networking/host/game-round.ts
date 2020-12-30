@@ -5,7 +5,7 @@ import { use } from 'ember-could-get-used-to-this';
 import { Statechart } from 'pinochle/utils/use-machine';
 
 import { statechart } from './game-state';
-import { handById } from './utils';
+import { handById, serializePlayer } from './utils';
 
 import type { GamePhase } from '../constants';
 import type { Context, Event, Schema } from './game-state';
@@ -39,11 +39,6 @@ export class GameRound {
    *
    */
   constructor(protected playersById: Record<string, PlayerInfo>, state?: unknown) {
-    if (!state) {
-      // placing this here causes an infinite loop?
-      this.interpreter.send('START_ROUND');
-    }
-
     this._initialState = state;
   }
 
@@ -52,26 +47,26 @@ export class GameRound {
     return {
       named: {
         chart: statechart,
-        // initialState: this._initialState,
+        initialState: this._initialState,
         context: {
           playersById: this.playersById,
         },
         config: {
-          actions: {
-            // sendState: this._sendState,
-            // sendWelcome: this._broadcastJoin,
-            // addPlayer: this._addPlayer,
-            // Networky things
-            // Game Actions
-            // deal: this._deal,
-          },
+          // actions: {
+          // sendState: this._sendState,
+          // sendWelcome: this._broadcastJoin,
+          // addPlayer: this._addPlayer,
+          // Networky things
+          // Game Actions
+          // deal: this._deal,
+          // },
         },
       },
     };
   });
 
   get context() {
-    return this.interpreter.state.context;
+    return this.interpreter.state?.context || ({} as Context);
   }
 
   get currentPlayer() {
@@ -91,7 +86,7 @@ export class GameRound {
 
   @action
   stateForPlayer(id: string) {
-    let { playersById, currentPlayer, playerOrder } = this.context;
+    let { playersById, currentPlayer, playerOrder, playerWhoTookTheBid, bid, trump } = this.context;
     let player = playersById[id];
 
     return ({
@@ -99,6 +94,10 @@ export class GameRound {
       currentPlayer,
       info: {
         playerOrder,
+        players: Object.values(playersById).map(serializePlayer),
+        playerWhoTookTheBid,
+        bid,
+        trump,
       },
     } as unknown) as EncryptableObject;
   }
@@ -123,7 +122,7 @@ export class GameRound {
       currentPlayer,
       bid,
       trump,
-    } = this.interpreter.state!.context;
+    } = this.interpreter.state.context;
 
     let hands = handById(playersById);
 

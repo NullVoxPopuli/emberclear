@@ -22,6 +22,10 @@ export default class PlayAsGuest extends Component<Args> {
     return sortHand(this.args.game.gameState.hand);
   }
 
+  get hasHand() {
+    return (this.hand?.length || 0) > 0;
+  }
+
   @use
   interpreter = new Statechart(() => {
     return {

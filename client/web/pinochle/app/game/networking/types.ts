@@ -65,7 +65,7 @@ export type Bid = { type: 'BID'; bid: number };
 export type DeclareTrump = { type: 'DECLARE_TRUMP'; trump: Suit };
 export type DeclareMeld = { type: 'DECLARE_MELD'; meld: unknown };
 
-type FromHostMessage =
+export type FromHostMessage =
   | Ack
   | WelcomeMessage
   | UpdateForGuest

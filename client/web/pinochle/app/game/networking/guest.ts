@@ -1,4 +1,5 @@
 import { cached, tracked } from '@glimmer/tracking';
+import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
@@ -10,6 +11,7 @@ import { UnknownMessageError } from '@emberclear/networking/errors';
 
 import { DisplayInfo } from './guest/display-info';
 import { GuestGameRound } from './guest/game-round';
+import { verifyMessage } from './guest/utils';
 
 import type { Card } from '../card';
 import type { GameMessage, GameState, WelcomeMessage } from './types';
@@ -41,7 +43,11 @@ export class GameGuest extends EphemeralConnection {
   waitingForBidConfirmation = RSVP.defer();
   waitingForTrumpDeclaration = RSVP.defer();
 
-  declare display: DisplayInfo;
+  /**
+   * Initialized upon receiving host game state
+   */
+  @tracked declare display: DisplayInfo;
+
   gameState = new GuestGameRound();
 
   @tracked gameId?: string;
@@ -86,7 +92,7 @@ export class GameGuest extends EphemeralConnection {
   async onData(data: EncryptedMessage) {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
-    console.log('guest', decrypted, data.uid);
+    // console.log('guest', decrypted, data.uid);
 
     switch (decrypted.type) {
       case 'ACK':
@@ -113,6 +119,10 @@ export class GameGuest extends EphemeralConnection {
 
         return;
       case 'GUEST_UPDATE':
+        assert(
+          `${decrypted.type} has invalid payload: ${JSON.stringify(decrypted)}`,
+          verifyMessage(decrypted)
+        );
         this.updateGameState(decrypted);
         this.redirectToGame();
 

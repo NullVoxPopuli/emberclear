@@ -19,11 +19,13 @@
   </div>
   {{/if}}
 
-  <Hand
-    @cards={{this.hand}}
-    @onSelect={{this.chooseCard}}
-    class='area:bottom'
-  />
+  {{#if this.hasHand}}
+    <Hand
+      @cards={{this.hand}}
+      @onSelect={{this.chooseCard}}
+      class='area:bottom'
+    />
+  {{/if}}
 </div>
 
 {{#if @game.display.hasOfflinePlayers}}

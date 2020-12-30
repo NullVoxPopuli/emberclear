@@ -1,4 +1,5 @@
-import { actions, assign, send } from 'xstate';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { assign, send } from 'xstate';
 
 import { newDeck, splitDeck } from 'pinochle/game/deck';
 
@@ -24,6 +25,7 @@ export type Event =
   | StartEvent
   | { type: 'FINISHED' }
   | { type: 'ACCEPT' }
+  | { type: '__START_ROUND' }
   | { type: 'PLAY_CARD' }
   | { type: 'TRICK_CONTINUES' }
   | { type: 'TRICK_ENDS' }
@@ -185,7 +187,7 @@ function setPlayerOrder(context: Context, { previousOrder }: TODO) {
 }
 
 export const statechart: MachineConfig<Context, Schema, Event> = {
-  id: 'game',
+  id: 'host-game-state',
   initial: 'idle',
   context: {
     // hasBlind: false,
@@ -200,20 +202,18 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
   },
   states: {
     idle: {
+      entry: [
+        assign({
+          playerOrder: setPlayerOrder,
+        }),
+        send('__START_ROUND__'),
+      ],
       on: {
-        START_ROUND: {
-          actions: [
-            assign({
-              playerOrder: setPlayerOrder,
-            }),
-          ],
-          target: 'dealing',
-        },
+        __START_ROUND__: 'dealing',
       },
     },
     dealing: {
-      entry: deal,
-      always: [send('DONE')],
+      entry: [deal, send('DONE')],
       on: {
         DONE: 'bidding',
       },
@@ -226,11 +226,10 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
             actions: [bid, nextBiddingPlayer],
           },
         ],
-
         PASS: [
           {
             cond: isBiddingOver,
-            target: 'won-bid',
+            // target: 'won-bid',
           },
           {
             target: 'bidding',
@@ -239,78 +238,78 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
         ],
       },
     },
-    'won-bid': {
-      id: 'winBid',
-      initial: 'pending-acceptance',
-      entry: ['setBidWinnerInfo', 'giveBlind'],
-      states: {
-        'pending-acceptance': {
-          on: {
-            ACCEPT: {
-              target: 'accepted',
-            },
-            FORFEIT: {
-              target: '#game.declare-meld',
-              actions: [assign<Context>({ isForfeiting: () => true })],
-            },
-          },
-        },
-        accepted: {
-          on: {
-            DECLARE_TRUMP: [
-              {
-                cond: hasBlind,
-                actions: setTrump,
-                target: '#winBid.discard',
-              },
-              {
-                target: '#game.declare-meld',
-                actions: setTrump,
-              },
-            ],
-          },
-        },
-        discard: {
-          on: {
-            FINISHED: '#game.declare-meld',
-          },
-        },
-      },
-    },
+    // 'won-bid': {
+    //   id: 'winBid',
+    //   initial: 'pending-acceptance',
+    //   entry: ['setBidWinnerInfo', 'giveBlind'],
+    //   states: {
+    //     'pending-acceptance': {
+    //       on: {
+    //         ACCEPT: {
+    //           target: 'accepted',
+    //         },
+    //         FORFEIT: {
+    //           target: '#game.declare-meld',
+    //           actions: [assign<Context>({ isForfeiting: () => true })],
+    //         },
+    //       },
+    //     },
+    //     accepted: {
+    //       on: {
+    //         DECLARE_TRUMP: [
+    //           {
+    //             cond: hasBlind,
+    //             actions: setTrump,
+    //             target: '#winBid.discard',
+    //           },
+    //           {
+    //             target: '#game.declare-meld',
+    //             actions: setTrump,
+    //           },
+    //         ],
+    //       },
+    //     },
+    //     discard: {
+    //       on: {
+    //         FINISHED: '#game.declare-meld',
+    //       },
+    //     },
+    //   },
+    // },
 
-    'declare-meld': {
-      on: {
-        SUBMIT_MELD: [
-          {
-            cond: hasEveryoneSubmittedMeld,
-            target: '#game.phase-trick-taking',
-          },
-          { target: '#game.declare-meld' },
-        ],
-      },
-    },
-    'phase-trick-taking': {
-      entry: ['storePreviousTrick', 'newTrick', 'determineFirstPlayer'],
-      states: {
-        'pending-play': {
-          on: {
-            PLAY_CARD: 'evaluate-play',
-          },
-        },
-        'evaluate-play': {
-          on: {
-            TRICK_CONTINUES: { actions: 'nextPlayer', target: 'pending-play' },
-            TRICK_ENDS: [
-              {
-                cond: 'isGameOver',
-                target: '#game.end-game',
-              },
-              { target: '#game.phase-trick-taking' },
-            ],
-          },
-        },
-      },
-    },
-    'end-game': {},
+    // 'declare-meld': {
+    //   on: {
+    //     SUBMIT_MELD: [
+    //       {
+    //         cond: hasEveryoneSubmittedMeld,
+    //         target: '#game.phase-trick-taking',
+    //       },
+    //       { target: '#game.declare-meld' },
+    //     ],
+    //   },
+    // },
+    // 'phase-trick-taking': {
+    //   entry: ['storePreviousTrick', 'newTrick', 'determineFirstPlayer'],
+    //   states: {
+    //     'pending-play': {
+    //       on: {
+    //         PLAY_CARD: 'evaluate-play',
+    //       },
+    //     },
+    //     'evaluate-play': {
+    //       on: {
+    //         TRICK_CONTINUES: { actions: 'nextPlayer', target: 'pending-play' },
+    //         TRICK_ENDS: [
+    //           {
+    //             cond: 'isGameOver',
+    //             target: '#game.end-game',
+    //           },
+    //           { target: '#game.phase-trick-taking' },
+    //         ],
+    //       },
+    //     },
+    //   },
+    // },
+    // 'end-game': {},
   },
 };
