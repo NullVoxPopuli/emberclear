@@ -1,4 +1,4 @@
-import { cached, tracked } from '@glimmer/tracking';
+import { cached } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 import { timeout } from 'ember-concurrency';
@@ -6,24 +6,23 @@ import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import { use } from 'ember-could-get-used-to-this';
 import RSVP from 'rsvp';
-import { TrackedArray, TrackedObject } from 'tracked-built-ins';
+import { TrackedObject } from 'tracked-built-ins';
 
 import { Statechart } from 'pinochle/utils/use-machine';
 
 import { fromHex, toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
-import { UnknownMessageError } from '@emberclear/networking/errors';
 
+// import { UnknownMessageError } from '@emberclear/networking/errors';
 import { GameRound } from './host/game-round';
-import { statechart as networking } from './host/networking-statechart';
 import { statechart as state } from './host/state-statechart';
 
-import type { NetworkMessage } from './host/networking-statechart';
 import type { PlayerInfo } from './host/types';
 import type { GameMessage, JoinMessage as Join } from './types';
 import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
 
 const MAX_PLAYERS = 4;
+// const MIN_PLAYERS = 3;
 
 /**
  * TODO:
@@ -43,36 +42,6 @@ export class GameHost extends EphemeralConnection {
 
     this.onlineChecker.perform();
   }
-
-  @use
-  messageHandler = new Statechart(() => {
-    return {
-      named: {
-        chart: networking,
-        config: {
-          actions: {
-            loadData: () => {},
-
-            // State Management
-            addPlayer: (_: unknown, { fromUid, name }: NetworkMessage & Join) =>
-              this._addPlayer({ name }, fromUid),
-            markOnline: (_: unknown, { fromUid }: NetworkMessage) => this._markOnline(fromUid),
-
-            // Broadcasts to everyone
-            broadcastJoin: this._broadcastJoin,
-
-            // Replies
-            replyAck: (_: unknown, { fromUid }: NetworkMessage) => this._ack(fromUid),
-            replyState: (_: unknown, { fromUid }: NetworkMessage) => this._sendState(fromUid),
-          },
-          guards: {
-            isPlayerKnown: (_: unknown, { fromUid }: NetworkMessage) =>
-              this._isPlayerKnown(fromUid),
-          },
-        },
-      },
-    };
-  });
 
   @use
   interpreter = new Statechart(() => {
@@ -109,75 +78,109 @@ export class GameHost extends EphemeralConnection {
     return `${origin}/join/${this.hexId}`;
   }
 
+  /**
+   * 4 Types of messages:
+   * - 1. Always
+   * - 2. Only during a game
+   * - 3. Always outside of a game
+   * - 4. When the player is known
+   *
+   * All other messages a dropped
+   *
+   */
   @action
   async onData(data: EncryptedMessage) {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
-    // console.log('host', decrypted, data.uid);
+    // console.debug('host received:', {
+    //   data,
+    //   ...decrypted,
+    //   isKnown: this._isPlayerKnown(data.uid),
+    //   hasGame: Boolean(this.currentGame),
+    // });
 
-    return this.interpreter.send({ ...decrypted, fromUid: data.uid });
+    switch (decrypted.type) {
+      case 'SYN':
+        return this._ack(data.uid);
+    }
+
+    if (this.currentGame) {
+      if (!this._isPlayerKnown(data.uid)) {
+        return this._notRecognized(data.uid);
+      }
+
+      switch (decrypted.type) {
+        case 'JOIN':
+          return this._sendState(data.uid);
+        case 'REQUEST_STATE':
+          return this._sendState(data.uid);
+        case 'PRESENT':
+          return this._markOnline(data.uid);
+        case 'PLAY_CARD':
+          // TODO:
+          // - is valid play
+          // - make the play
+          // - remove card from hand
+          // - send update to everyone
+          return;
+      }
+
+      return;
+    }
 
     switch (decrypted.type) {
       case 'JOIN':
-        if (this._isPlayerKnown(data.uid)) {
-          if (this.currentGame) {
-            this._sendState(data.uid);
-          } else {
-            this._broadcastJoin();
-          }
-        } else {
-          this._addPlayer(decrypted, data.uid);
+        if (this.players.length <= MAX_PLAYERS) {
+          return this._addPlayer(decrypted, data.uid);
         }
 
         return;
-      case 'SYN':
-        if (this.currentGame) {
-          this.ifKnown(data.uid, () => this.sendToHex({ type: 'ACK' }, data.uid));
-
-          return;
-        }
-
-        this.sendToHex({ type: 'ACK' }, data.uid);
-
-        return;
-      case 'REQUEST_STATE':
-        this.ifKnown(data.uid, () => this._sendState(data.uid));
-
-        return;
-      case 'PRESENT':
-        if (this.currentGame) {
-          this.ifKnown(data.uid, () => this._markOnline(data.uid));
-
-          return;
-        }
-
-        if (this._isPlayerKnown(data.uid)) {
-          this._markOnline(data.uid);
-
-          return;
-        }
-
-        // ignore person
-        return;
-      case 'PLAY_CARD':
-        // TODO:
-        // - is valid play
-        // - make the play
-        // - remove card from hand
-        // - send update to everyone
-        return;
-      default:
-        console.debug('host received:', data, decrypted);
-        throw new UnknownMessageError();
     }
+
+    if (this._isPlayerKnown(data.uid)) {
+      switch (decrypted.type) {
+        case 'REQUEST_STATE':
+          return this._sendState(data.uid);
+        case 'PRESENT':
+          return this._markOnline(data.uid);
+      }
+    }
+
+    console.debug('host unexpectedly received:', {
+      data,
+      ...decrypted,
+      isKnown: this._isPlayerKnown(data.uid),
+      hasGame: Boolean(this.currentGame),
+    });
   }
 
+  /**
+   * Called from button in the UI from the Host
+   */
   @action
-  ifKnown(id: string, callback: () => void) {
-    if (this._isPlayerKnown(id)) {
-      callback();
-    } else {
-      this.sendToHex({ type: 'NOT_RECOGNIZED' }, id);
+  startGame() {
+    this.currentGame = new GameRound(this.players);
+
+    this._broadcastStart();
+
+    this.interpreter.send('START', {
+      players: this.players,
+    });
+  }
+
+  /*************************************
+   * State Machine Helpers
+   ************************************/
+  @action
+  _broadcastStart() {
+    for (let player of this.players) {
+      this.sendToHex(
+        {
+          type: 'START',
+          ...this._buildStateFor(player.publicKeyAsHex),
+        },
+        player.publicKeyAsHex
+      );
     }
   }
 
@@ -186,46 +189,25 @@ export class GameHost extends EphemeralConnection {
     return this.sendToHex(
       {
         type: 'GUEST_UPDATE',
-        ...this.buildStateFor(id),
+        ...this._buildStateFor(id),
       },
       id
     );
   }
 
   @action
-  buildStateFor(id: string) {
-    let hand = (this.currentGame.hands[id] as unknown) as EncryptableObject;
-
-    return {
-      hand,
-      info: this.currentGame.info,
-      currentPlayer: this.currentGame.currentPlayer,
-      gamePhase: this.currentGame.phase,
-      // scoreHistory: this.scoreHistory,
-    };
+  _notRecognized(id: string) {
+    this.sendToHex({ type: 'NOT_RECOGNIZED' }, id);
   }
 
-  @action
-  startGame() {
-    this.currentGame = new GameRound(this.players);
-
-    for (let player of this.players) {
-      this.sendToHex(
-        {
-          type: 'START',
-          ...this.buildStateFor(player.publicKeyAsHex),
-        },
-        player.publicKeyAsHex
-      );
-    }
-  }
-
-  /*************************************
-   * State Machine Helpers
-   ************************************/
   @action
   _ack(id: string) {
     this.sendToHex({ type: 'ACK' }, id);
+  }
+
+  @action
+  _gameFull(id: string) {
+    this.sendToHex({ type: 'GAME_FULL' }, id);
   }
 
   @action
@@ -277,6 +259,18 @@ export class GameHost extends EphemeralConnection {
   /**************************************
    * Utilities
    *************************************/
+  @action
+  _buildStateFor(id: string) {
+    let hand = (this.currentGame.hands[id] as unknown) as EncryptableObject;
+
+    return {
+      hand,
+      info: this.currentGame.info,
+      currentPlayer: this.currentGame.currentPlayer,
+      gamePhase: this.currentGame.phase,
+      // scoreHistory: this.scoreHistory,
+    };
+  }
 
   @action
   serialize() {

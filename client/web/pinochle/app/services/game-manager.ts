@@ -97,7 +97,7 @@ export default class GameManager extends Service {
         privateKey,
       });
 
-      hostData.players.forEach((player) => {
+      for (let player of hostData.players) {
         host.playersById[player.id] = {
           id: player.id,
           name: player.name,
@@ -105,7 +105,7 @@ export default class GameManager extends Service {
           publicKey: fromHex(player.id),
           isOnline: false,
         };
-      });
+      }
 
       host.currentGame = GameRound.loadFrom(host.players, hostData.gameRound);
     }

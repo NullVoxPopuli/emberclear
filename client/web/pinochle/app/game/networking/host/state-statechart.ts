@@ -11,13 +11,14 @@ type Bid = {
 type Pass = { type: 'PASS' };
 type DeclareTrump = { type: 'DECLARE_TRUMP'; trump: string };
 
-
+type StartEvent = { type: 'START' } & Context;
 type Event =
   | Bid
   | Pass
   | ({ type: 'JOIN' } & JoinMessage & NetworkMessage)
   | { type: 'WON_BID' }
   | DeclareTrump
+  | StartEvent
   | { type: 'FINISHED' }
   | { type: 'ACCEPT' }
   | { type: 'PLAY_CARD' }
@@ -40,6 +41,7 @@ interface Context {
 }
 
 interface Schema extends StateSchema<Context> {
+  idle: StateSchema<Context>;
   bidding: StateSchema<Context>;
   'won-bid': {
     states: {
@@ -154,12 +156,12 @@ function hasBlind(ctx: Context) {
 
 export const statechart: MachineConfig<Context, Schema, Event> = {
   id: 'game',
-  initial: 'bidding',
+  initial: 'idle',
   context: {
     hasBlind: false,
     currentPlayer: '1',
     players: [],
-    trump: '',
+    // trump: '',
     // bid: null,
     // playerWhoTookTheBid: null,
     isForfeiting: false,
@@ -167,6 +169,18 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
     melds: {},
   },
   states: {
+    idle: {
+      on: {
+        START: {
+          actions: [
+            assign({
+              players: (_, event: StartEvent) => event.players,
+            }),
+          ],
+          target: 'bidding',
+        },
+      },
+    },
     bidding: {
       on: {
         BID: [
@@ -196,7 +210,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
         'pending-acceptance': {
           on: {
             ACCEPT: {
-              target: '#game.wonBid.accepted',
+              target: '#wonBid.accepted',
             },
             FORFEIT: {
               target: '#game.declare-meld',
