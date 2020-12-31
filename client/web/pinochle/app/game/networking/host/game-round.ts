@@ -13,6 +13,7 @@ import type { Context, Event, Schema } from './game-state';
 import type { PlayerInfo } from './types';
 import type { EncryptableObject } from '@emberclear/crypto/types';
 import type { Card, Suit } from 'pinochle/game/card';
+import type { State } from 'xstate';
 
 export type SerializedRound = {
   hands: Record<string, Card[]>;
@@ -23,7 +24,7 @@ export type SerializedRound = {
   phase: GamePhase;
   bid: number;
   trump: Suit;
-  state: unknown;
+  state: State<Context, Event>;
 };
 
 export class GameRound {
@@ -33,13 +34,13 @@ export class GameRound {
     return round;
   }
 
-  declare _initialState: unknown;
+  declare _initialState?: State<Context, Event>;
 
   /**
    * players must be passed in in-order
    *
    */
-  constructor(protected playersById: Record<string, PlayerInfo>, state?: unknown) {
+  constructor(protected playersById: Record<string, PlayerInfo>, state?: State<Context, Event>) {
     this._initialState = state;
   }
 
@@ -48,7 +49,7 @@ export class GameRound {
     return {
       named: {
         chart: statechart,
-        initialState: this._initialState,
+        ...(this._initialState ? { initialState: this._initialState } : {}),
         context: {
           playersById: this.playersById as TODO,
           hasBlind: false,

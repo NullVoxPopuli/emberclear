@@ -209,7 +209,7 @@ function setPlayerOrder(context: Context, { previousOrder }: TODO) {
 
 export const statechart: MachineConfig<Context, Schema, Event> = {
   id: 'host-game-state',
-  initial: 'idle',
+  initial: 'idle' as TODO /* initial has incorrect type? or MachineConfig takes extra type args? */,
   // context: {
   //   // hasBlind: false,
   //   // currentPlayer: '1',
