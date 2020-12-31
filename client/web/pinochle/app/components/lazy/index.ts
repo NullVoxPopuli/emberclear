@@ -8,7 +8,7 @@ type Args = {
 };
 
 export default class LazyComponent extends Component<Args> {
-  @tracked isShowing = false;
+  @tracked _isShowing = false;
 
   constructor(owner: unknown, args: Args) {
     super(owner, args);
@@ -18,13 +18,19 @@ export default class LazyComponent extends Component<Args> {
     });
   }
 
+  get isShowing() {
+    return this._isShowing && this.cond;
+  }
+
+  get cond() {
+    return this.args.when || !('when' in this.args);
+  }
+
   toggleContent() {
     if (this.isDestroying || this.isDestroyed) {
       return;
     }
 
-    if (this.args.when) {
-      this.isShowing = !this.isShowing;
-    }
+    this._isShowing = !this._isShowing;
   }
 }

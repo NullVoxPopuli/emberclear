@@ -52,7 +52,7 @@
 
 /* ehh, super WIP, need to figure out text effect */
 .skeleton {
-  background-image: linear-gradient(90deg, red 0px, green 40px, red 80px);
+  /* background-image: linear-gradient(90deg, red 0px, green 40px, red 80px); */
 
   background-clip: text;
   background-size: 600px;
@@ -105,9 +105,11 @@
   0% {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }

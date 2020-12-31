@@ -1,3 +1,3 @@
-export function and<T = unknown>([a, b]: T[]) {
+export function and<T = unknown>(a: T, b: T) {
   return a && b;
 }

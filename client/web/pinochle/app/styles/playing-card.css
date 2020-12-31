@@ -48,7 +48,6 @@
 
 .back-of-hand .card1 {
   transform: rotateZ(15deg) translate3d(-50%, -10%, 0);
-  /* transform: translate3d(-50%, -10%, 0); */
 }
 
 .back-of-hand .card2 {

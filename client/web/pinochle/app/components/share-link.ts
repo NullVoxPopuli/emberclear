@@ -16,7 +16,10 @@ export default class ShareLink extends Component<Args> {
 
   @action
   highlight(event: MouseEvent) {
-    assert(`event expected to come from an iput element`, event.target instanceof HTMLInputElement);
+    assert(
+      `event expected to come from an input element`,
+      event.target instanceof HTMLInputElement
+    );
 
     event.target.select();
   }
