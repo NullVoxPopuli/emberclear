@@ -1,0 +1,16 @@
+{{#if @players}}
+
+  <ul class='list:flat'>
+    {{#each @players as |player|}}
+      <li>
+        {{player.name}}
+
+        {{#if (eq @currentName player.name)}}
+          &nbsp;(you)
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+
+{{/if}}
+

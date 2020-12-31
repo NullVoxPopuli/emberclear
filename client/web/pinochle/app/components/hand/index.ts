@@ -11,6 +11,7 @@ import type { Card } from 'pinochle/game/card';
 
 type Args = {
   cards: Card[];
+  onSelect: (card: Card) => void;
 };
 
 export default class HandComponent extends Component<Args> {

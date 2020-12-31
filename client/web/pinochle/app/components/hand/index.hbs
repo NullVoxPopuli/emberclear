@@ -1,4 +1,4 @@
-<div class='perspective'>
+<div class='perspective grid bottom-favored center' ...attributes>
   <ul
     class='player-hand {{if this.isActive 'spread'}}'
     {{!-- template-lint-disable no-invalid-interactive --}}
@@ -15,9 +15,18 @@
     {{/each}}
   </ul>
 
-  <button type='button' {{on 'click' this.toggle}}>
-    Fan
-  </button>
 
-  Meld: {{this.meld.score}}
+  {{!--
+    For additional game info to overlay the hand, but controlled from above
+    The hand component only knows how to handle hand stuff
+  --}}
+  {{yield}}
+
+  <span class='player-hand-info'>
+    <button type='button' {{on 'click' this.toggle}}>
+      Fan
+    </button>
+
+    Meld: {{this.meld.score}}
+  </span>
 </div>

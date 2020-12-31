@@ -2,6 +2,7 @@ import 'focus-visible';
 
 import Application from '@ember/application';
 
+import defineModifier from 'ember-concurrency-test-waiter/define-modifier';
 import loadInitializers from 'ember-load-initializers';
 import Resolver from 'ember-resolver';
 
@@ -14,3 +15,5 @@ export default class App extends Application {
 }
 
 loadInitializers(App, config.modulePrefix);
+
+defineModifier();

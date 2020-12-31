@@ -8,7 +8,9 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('three-player');
-  this.route('four-player');
+  this.route('host');
+  this.route('join', { path: 'join/:idOfHost/' });
   this.route('game', { path: 'game/:idOfHost/' });
+  this.route('game-full');
+  this.route('not-recognized');
 });

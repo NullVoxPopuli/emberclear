@@ -10,7 +10,7 @@ import { pool } from '@emberclear/networking/utils/connection/connection-pool';
 
 import type StoreService from '@ember-data/store';
 import type { WorkersService } from '@emberclear/crypto';
-import type { EncryptableObject, EncryptedMessage } from '@emberclear/crypto/types';
+import type { EncryptableObject, EncryptedMessage, KeyPair } from '@emberclear/crypto/types';
 import type { Relay } from '@emberclear/networking';
 import type {
   ConnectionPool,
@@ -65,7 +65,8 @@ export class EphemeralConnection {
     /* the actual params to this method */
     // eslint-disable-next-line @typescript-eslint/ban-types
     parent: object,
-    publicKeyAsHex?: string
+    publicKeyAsHex?: string,
+    keys?: KeyPair
   ): Promise<SubClass> {
     let instance = new this(publicKeyAsHex);
 
@@ -73,7 +74,7 @@ export class EphemeralConnection {
     associateDestroyableChild(parent, instance);
     registerDestructor(instance, instance.teardown.bind(instance));
 
-    await instance.hydrateCrypto();
+    await instance.hydrateCrypto(keys);
     assert('Crypto failed to initialize', instance.crypto);
     assert('Failed to generate an ephemeral identifier', instance.hexId);
 
@@ -96,6 +97,11 @@ export class EphemeralConnection {
     }
   }
 
+  setCrypto(keys: KeyPair) {
+    this.crypto.keys = keys;
+    this.hexId = toHex(keys.publicKey);
+  }
+
   disconnect() {
     if (this.connectionPool) {
       this.connectionPool.drain();
@@ -112,19 +118,27 @@ export class EphemeralConnection {
 
   ///////////////////////////////////////
 
-  async hydrateCrypto() {
-    let { hex, crypto } = await generateEphemeralKeys(this.workers);
+  async hydrateCrypto(keys?: KeyPair) {
+    let { hex, crypto } = await generateEphemeralKeys(this.workers, keys);
 
     this.crypto = crypto;
     this.hexId = hex;
   }
 
+  sendToHex(message: EncryptableObject, hexPub: string) {
+    let pub = fromHex(hexPub);
+
+    return this.send(message, { hex: hexPub, pub });
+  }
+
   async send(message: EncryptableObject, target?: Target) {
-    if (!this.target || target) {
+    let _target = this.target || target;
+
+    if (!_target) {
       throw new Error('Cannot send a message with no target');
     }
 
-    let to = (this.target || target).pub;
+    let to = _target.pub;
     let connection = await this.connectionPool.acquire();
     let encryptedMessage = await this.crypto.encryptForSocket({ ...message }, { publicKey: to });
 
@@ -145,9 +159,12 @@ export class EphemeralConnection {
   }
 }
 
-async function generateEphemeralKeys(workers: WorkersService) {
+async function generateEphemeralKeys(workers: WorkersService, keys?: KeyPair) {
   let crypto = new CryptoConnector({ workerService: workers });
-  let keys = await crypto.generateKeys();
+
+  if (!keys) {
+    keys = await crypto.generateKeys();
+  }
 
   crypto.keys = keys;
 

@@ -1,16 +1,65 @@
 .player-hand {
   cursor: pointer;
-  right: 5%;
-  position: absolute;
-  bottom: 10%;
-  transform: rotateX(15deg) translate3d(-50%, 0%, 0);
-
-  /* transform: translateX(-50%); */
-  height: 45vw;
-  width: 32vw;
-  max-height: 450px;
-  max-width: 320px;
+  position: relative;
+  transform: translateX(2rem);
   list-style: none;
+  width: 100%;
+  padding: 0;
+  height: 66%;
+}
+
+@media only screen and (min-width: 1000px) {
+  .player-hand {
+    transform: rotateX(15deg) translate3d(50%, 0%, 0);
+  }
+}
+
+.player-hand-info {
+  position: fixed;
+  left: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.back-of-hand {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-of-hand.playing-hand .non-player-card {
+  position: absolute;
+  transition: all ease-in 0.3s;
+  user-select: none;
+}
+
+.back-of-hand.playing-hand .non-player-card button {
+  background: #333;
+  border: 1px solid;
+  border-radius: 1rem;
+  border-radius: min(1rem, 2vw);
+  width: 100px;
+  height: 150px;
+}
+
+.back-of-hand .card1 {
+  transform: rotateZ(15deg) translate3d(-50%, -10%, 0);
+}
+
+.back-of-hand .card2 {
+  transform: rotateZ(10deg) translateX(-22%);
+}
+
+.back-of-hand .card3 {
+  transform: translateX(10%);
+}
+
+.back-of-hand .card4 {
+  transform: rotate(22.5deg) translate3d(40%, -5%, 0);
 }
 
 .playing-card {
@@ -34,12 +83,12 @@
   height: 100%;
   border: none;
   background: none;
-  border-radius: 1rem;
+  border-radius: min(1rem, 2vw);
   display: flex;
 }
 
 .playing-card:first-child {
-  box-shadow: var(--deck-shadow);
+  /* box-shadow: var(--deck-shadow); */
 }
 
 .playing-card.hearts,

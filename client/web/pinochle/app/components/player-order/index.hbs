@@ -1,0 +1,21 @@
+<div class='player-order m-4' ...attributes>
+  Turn order
+
+  <ol>
+    {{#each this.players as |player|}}
+      <li>
+        {{#if (eq player.id this.currentPlayer)}}
+          <span class='turn-marker'>
+            →
+          </span>
+        {{/if}}
+
+        {{player.name}}
+
+        {{#if (eq this.gameInfo.me.id player.id)}}
+          &nbsp;(you)
+        {{/if}}
+      </li>
+    {{/each}}
+  </ol>
+</div>

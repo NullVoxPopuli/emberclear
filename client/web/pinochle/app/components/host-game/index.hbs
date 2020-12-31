@@ -1,10 +1,34 @@
 <main class='grid center fullscreen'>
   <section>
 
-    <div class='grid gap-4'>
-      <h2>Waiting for players</h2>
+    {{#if (contains this.state 'needs-name')}}
+      <NameEntry @onSubmit={{this.handleSubmit}} />
+    {{else if (contains this.state 'waiting-for-players')}}
+      <div class='grid gap-4'>
+        <h2>Waiting for players</h2>
 
-      <Loader::Indeterminate />
-    </div>
+        <PlayerList
+          @players={{this.gameHost.players}}
+          @currentName={{this.context.name}} />
+
+        {{#unless this.canStartGame}}
+          Need {{this.numRemaining}} more player(s)
+        {{/unless}}
+
+        {{#if this.canStartGame}}
+          <button type='button' {{on 'click' this.start}}>
+            Start Game
+          </button>
+        {{else}}
+          <Loader::Indeterminate />
+
+          <ShareLink @url={{this.joinUrl}} />
+        {{/if}}
+      </div>
+    {{else if (contains this.state 'starting-game')}}
+      Starting game...
+    {{else}}
+      Unknown State
+    {{/if}}
   </section>
 </main>

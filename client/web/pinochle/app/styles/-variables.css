@@ -1,0 +1,29 @@
+:root {
+  /* Sizes */
+  --size-0-5: 0.125rem;
+  --size-1: 0.25rem;
+  --size-2: 0.5rem;
+  --size-3: 0.75rem;
+  --size-4: 1rem;
+  --size-5: 1.25rem;
+  --size-6: 1.5rem;
+  --size-8: 2rem;
+
+  /* Responsiveness */
+  --screen-small: 400px;
+
+  /* A11y Helpers */
+  --outline: 0 0 0 3px rgba(0, 123, 255, 0.5);
+
+  /* Playing Cards */
+  --deck-red: #c65355;
+  --deck-black: #534f4c;
+  --card-gutter: 15%;
+  --deck-rotation: -30deg;
+  --deck-height-offset-x: -50%;
+  --deck-height-offset-y: -10%;
+  --deck-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 12px 0 rgba(151, 150, 146, 0.4);
+
+  /* hand open / spread */
+  --spread-shadow: 0 1px 2px 0 rgba(151, 150, 146, 0.4), 0 4px 4px 0 rgba(151, 150, 146, 0.4);
+}

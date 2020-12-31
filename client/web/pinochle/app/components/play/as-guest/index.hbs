@@ -1,0 +1,38 @@
+<div class='game-layout'>
+  <PlayerOrder @id={{@game.gameId}} class='area:info' />
+
+  {{#if @game.display.left}}
+    <BackOfCards class='area:left' @game={{@game}} @info={{@game.display.left}} />
+  {{/if}}
+
+  {{#if @game.display.top}}
+    <BackOfCards class='area-top' @game={{@game}} @info={{@game.display.top}} />
+  {{/if}}
+
+  {{#if @game.display.right}}
+    <BackOfCards class='area:right' @game={{@game}} @info={{@game.display.right}} />
+  {{/if}}
+
+  {{#if @game.trick}}
+  <div class='area:trick'>
+    Tricks here
+  </div>
+  {{/if}}
+
+  {{#if this.hasHand}}
+    <Hand
+      @cards={{this.hand}}
+      @onSelect={{this.chooseCard}}
+      class='area:bottom'
+    />
+  {{/if}}
+</div>
+
+{{#if @game.display.hasOfflinePlayers}}
+  <Lazy @wait={{2000}} @when={{@game.display.hasOfflinePlayers}}>
+    <Play::AsGuest::OverlayInfo class='fade-in'>
+      <Play::AsGuest::PlayersOffline @game={{@game}} />
+    </Play::AsGuest::OverlayInfo>
+  </Lazy>
+{{/if}}
+

@@ -28,5 +28,6 @@ export default class Options extends Component {
 
   willDestroy() {
     document.body.classList.remove('synthwave');
+    super.willDestroy();
   }
 }

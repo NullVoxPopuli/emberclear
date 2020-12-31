@@ -64,13 +64,13 @@ export class Statechart<
   declare [MACHINE]: StateMachine<Context, Schema, Event>;
   declare [INTERPRETER]: Interpreter<Context, Schema, Event>;
 
-  @tracked state?: State<Context, Event>;
+  @tracked declare state: State<Context, Event>;
 
   /**
    * This is the return value of `new Statechart(() => ...)`
    */
   get value(): {
-    state?: State<Context, Event>;
+    state: State<Context, Event>;
     send: Statechart<Context, Schema, Event>['send'];
     // withContext: Statechart<Context, Schema, Event>['withContext'];
     // withConfig: Statechart<Context, Schema, Event>['withConfig'];
@@ -79,6 +79,8 @@ export class Statechart<
     if (!this[INTERPRETER]) {
       this._setupMachine();
     }
+
+    assert(`Expected state to exist`, this.state);
 
     return {
       // For TypeScript, this is tricky because this is what is accessible at the call site

@@ -1,0 +1,30 @@
+<main class='grid center fullscreen'>
+  <section>
+    {{#if (contains this.state 'begin')}}
+        <h2>Connecting...</h2>
+
+    {{else if (contains this.state 'needs-name')}}
+      <NameEntry @onSubmit={{this.handleSubmit}} />
+    {{else if this.isPending}}
+
+      {{#if this.isJoining}}
+        <h2>Joining game...</h2>
+      {{else if this.isWaiting}}
+        <h2>Waiting for game to start</h2>
+      {{/if}}
+
+      <PlayerList
+        @players={{this.gameHost.players}}
+        @currentName={{this.context.name}} />
+
+      <Loader::Indeterminate />
+
+    {{else if (contains this.state 'game-does-not-exist')}}
+      Game does not exist. Is the URL correct?
+    {{else if (contains this.state 'starting')}}
+      Starting game...
+    {{else}}
+      Unknown State
+    {{/if}}
+  </section>
+</main>

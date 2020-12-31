@@ -53,5 +53,6 @@ export default class OffCanvasContainer extends Component<Args> {
 
   willDestroy() {
     window.removeEventListener('resize', this.handler);
+    super.willDestroy();
   }
 }

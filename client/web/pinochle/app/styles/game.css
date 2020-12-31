@@ -1,0 +1,105 @@
+.player-order .turn-marker {
+  position: absolute;
+  margin-left: -3rem;
+}
+
+.game-layout {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas:
+    'info          player-top    the-blind'
+    'player-left   tricks        player-right'
+    'player-bottom player-bottom player-bottom';
+  grid-template-rows: 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.hand-name {
+  /* margin-top: 2rem; */
+}
+
+/* .game-layout > div[class*='area:'] {} */
+
+.game-layout .area\:info {
+  grid-area: info;
+}
+
+.game-layout .area\:blind {
+  grid-area: the-blind;
+  justify-self: center;
+}
+
+.game-layout .area\:trick {
+  grid-area: tricks;
+  justify-self: center;
+}
+
+.game-layout .area\:top {
+  grid-area: player-top;
+  justify-self: center;
+}
+
+.game-layout .area\:left {
+  grid-area: player-left;
+  justify-self: center;
+}
+
+.game-layout .area\:right {
+  grid-area: player-right;
+  justify-self: center;
+}
+
+.game-layout .area\:bottom {
+  grid-area: player-bottom;
+  justify-self: center;
+  align-items: center;
+}
+
+.current-player-info {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+@media only screen and (min-width: 1000px) {
+  .current-player-info .width-container {
+    max-width: 500px;
+  }
+}
+
+.game-layout .area\:left,
+.game-layout .area\:right,
+.game-layout .area\:top {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  justify-items: center;
+  position: relative;
+}
+
+.game-layout .other-player .display {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  justify-items: center;
+}
+
+.game-layout .player-offline {
+  opacity: 0.5;
+}
+
+.game-layout .player-offline-indicator {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transform: translateY(40%);
+  display: flex;
+  gap: var(--size-2);
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

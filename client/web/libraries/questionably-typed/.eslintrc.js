@@ -9,6 +9,10 @@ module.exports = createConfig(
     ...tsBase,
     plugins: [tsBase.plugins, '@typescript-eslint'].flat(),
     files: ['types/**'],
+    rules: {
+      ...tsBase.rules,
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
   },
   {
     ...nodeBase,
