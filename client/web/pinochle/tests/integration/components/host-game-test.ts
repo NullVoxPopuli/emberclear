@@ -9,6 +9,6 @@ module('Integration | Component | host-game', function (hooks) {
   test('it renders', async function (assert) {
     await render(hbs`<HostGame />`);
 
-    assert.dom().containsText('Waiting for players');
+    assert.dom().containsText('Please enter your name');
   });
 });
