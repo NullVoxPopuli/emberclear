@@ -5,6 +5,14 @@ import type { Relay } from '@emberclear/networking';
 import type { RelayState, RelayStateJson } from '@emberclear/networking/types';
 import type { Channel } from 'phoenix';
 
+export const NAME = Symbol('__PHOENIX_SOCKET__');
+
+// Side-effect bad.
+// Need a better way to mock this rather than just
+// changing what this is assigned to.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as any)[NAME] = (window as any)[NAME] || Socket;
+
 interface Args {
   relay: Relay;
   publicKey: string;
@@ -15,6 +23,11 @@ interface Args {
 export interface OutgoingPayload {
   to: string;
   message: string;
+}
+
+function phoenixSocket(): typeof Socket {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (window as any)[NAME];
 }
 
 export class Connection {
@@ -53,9 +66,11 @@ export class Connection {
 
   private async setupSocket() {
     return new Promise((resolve, reject) => {
+      let Klass = phoenixSocket();
+
       this.isConnecting = true;
 
-      this.socket = new Socket(this.url, {
+      this.socket = new Klass(this.url, {
         params: { uid: this.publicKey },
       });
 
