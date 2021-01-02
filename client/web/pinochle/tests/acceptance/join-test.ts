@@ -89,7 +89,7 @@ module('Acceptance | join', function (hooks) {
             await addPlayerToHost(host, 'Player 3'),
           ];
 
-          await host.startGame();
+          host.startGame();
         });
 
         hooks.afterEach(function () {
