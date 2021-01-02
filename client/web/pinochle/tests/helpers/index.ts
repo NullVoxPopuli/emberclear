@@ -1,6 +1,8 @@
+import { setupWorkers } from '@emberclear/crypto/test-support';
+import { setupSocketServer } from '@emberclear/networking/test-support';
 import { getService } from '@emberclear/test-helpers/test-support';
 
-import type { GameGuest } from 'pinochle/app/game/networking/guest';
+import type { GameGuest } from 'pinochle/game/networking/guest';
 import type { GameHost } from 'pinochle/game/networking/host';
 
 export function setupGameHost(hooks: NestedHooks, onDone: (host: GameHost) => void) {
@@ -24,7 +26,7 @@ export function setupPlayer(hooks: NestedHooks, host: GameHost, name: string) {
   let player: GameGuest;
 
   hooks.beforeEach(async function () {
-    player = addPlayerToHost(host, name);
+    player = await addPlayerToHost(host, name);
   });
 
   hooks.afterEach(function () {
@@ -41,4 +43,21 @@ export async function addPlayerToHost(host: GameHost, name?: string) {
   await playerGame.joinHost(name || 'Test Player');
 
   return playerGame;
+}
+
+export async function setupPlayerTest(hooks: NestedHooks) {
+  setupSocketServer(hooks);
+  setupWorkers(hooks);
+
+  hooks.afterEach(function () {
+    let gameManager = getService('game-manager');
+
+    for (let [, game] of gameManager.isGuestOf.entries()) {
+      game.disconnect();
+    }
+
+    for (let [, game] of gameManager.isHosting.entries()) {
+      game.disconnect();
+    }
+  });
 }

@@ -1,20 +1,17 @@
-import { currentURL, visit, waitUntil } from '@ember/test-helpers';
+import { currentURL, settled, visit, waitUntil } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { JoinPage } from 'pinochle/tests/-pages/join';
-import { addPlayerToHost, setupGameHost } from 'pinochle/tests/helpers';
+import { addPlayerToHost, setupGameHost, setupPlayerTest } from 'pinochle/tests/helpers';
 
-import { newCrypto, setupWorkers } from '@emberclear/crypto/test-support';
-import { setupSocketServer } from '@emberclear/networking/test-support';
+import { newCrypto } from '@emberclear/crypto/test-support';
 
-import type { GameGuest } from 'pinochle/game/networking/guest';
 import type { GameHost } from 'pinochle/game/networking/host';
 
 module('Acceptance | join', function (hooks) {
   setupApplicationTest(hooks);
-  setupSocketServer(hooks);
-  setupWorkers(hooks);
+  setupPlayerTest(hooks);
 
   let page = new JoinPage();
 
@@ -55,20 +52,32 @@ module('Acceptance | join', function (hooks) {
         assert.dom(page.waiting.element).exists();
       });
 
-      module('The game becomes full while entering info', function (hooks) {
-        let players: GameGuest[];
+      module('the game starts with the current player', function (hooks) {
+        hooks.beforeEach(async function (assert) {
+          await addPlayerToHost(host, 'Player 1');
+          await addPlayerToHost(host, 'Player 2');
 
-        hooks.beforeEach(async function () {
-          players = [
-            await addPlayerToHost(host, 'Player 1'),
-            await addPlayerToHost(host, 'Player 2'),
-            await addPlayerToHost(host, 'Player 3'),
-            await addPlayerToHost(host, 'Player 4'),
-          ];
+          await page.typeName('Test Player');
+          await page.submitName();
+
+          assert.dom(page.waiting.element).exists();
+
+          host.startGame();
+
+          await settled();
         });
 
-        hooks.afterEach(function () {
-          players.map((player) => player.disconnect());
+        test('a game can be played', async function (assert) {
+          assert.equal(currentURL(), `/game/${host.hexId}`);
+        });
+      });
+
+      module('The game becomes full while entering info', function (hooks) {
+        hooks.beforeEach(async function () {
+          await addPlayerToHost(host, 'Player 1');
+          await addPlayerToHost(host, 'Player 2');
+          await addPlayerToHost(host, 'Player 3');
+          await addPlayerToHost(host, 'Player 4');
         });
 
         test('is not allowed in the game', async function (assert) {
@@ -80,20 +89,12 @@ module('Acceptance | join', function (hooks) {
       });
 
       module('The game has already started', function (hooks) {
-        let players: GameGuest[];
-
         hooks.beforeEach(async function () {
-          players = [
-            await addPlayerToHost(host, 'Player 1'),
-            await addPlayerToHost(host, 'Player 2'),
-            await addPlayerToHost(host, 'Player 3'),
-          ];
+          await addPlayerToHost(host, 'Player 1');
+          await addPlayerToHost(host, 'Player 2');
+          await addPlayerToHost(host, 'Player 3');
 
           host.startGame();
-        });
-
-        hooks.afterEach(function () {
-          players.map((player) => player.disconnect());
         });
 
         test('is not allowed in the game', async function (assert) {
