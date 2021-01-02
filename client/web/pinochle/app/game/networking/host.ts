@@ -2,7 +2,7 @@ import { cached } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 import { timeout } from 'ember-concurrency';
-import { dropTask } from 'ember-concurrency-decorators';
+import { dropTask, task } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import RSVP from 'rsvp';
 import { TrackedObject } from 'tracked-built-ins';
@@ -73,6 +73,11 @@ export class GameHost extends EphemeralConnection {
    */
   @action
   async onData(data: EncryptedMessage) {
+    this._handleData.perform(data);
+  }
+
+  @task
+  _handleData = taskFor(async (data: EncryptedMessage) => {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
     // console.debug('host received:', {
@@ -139,7 +144,7 @@ export class GameHost extends EphemeralConnection {
       isKnown: this._isPlayerKnown(data.uid),
       hasGame: Boolean(this.currentGame),
     });
-  }
+  });
 
   /**
    * Called from button in the UI from the Host

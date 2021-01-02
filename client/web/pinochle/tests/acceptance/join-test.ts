@@ -115,6 +115,7 @@ module('Acceptance | join', function (hooks) {
 
     setupGameHost(hooks, (gameHost) => (host = gameHost));
 
+    // NOTE: host connection pool is undefined sometimes... why?
     hooks.beforeEach(async function (assert) {
       hostId = host.hexId;
 
