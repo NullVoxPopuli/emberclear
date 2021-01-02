@@ -3,11 +3,12 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { JoinPage } from 'pinochle/tests/-pages/join';
+import { addPlayerToHost, setupGameHost } from 'pinochle/tests/helpers';
 
 import { newCrypto, setupWorkers } from '@emberclear/crypto/test-support';
 import { setupSocketServer } from '@emberclear/networking/test-support';
-import { getService } from '@emberclear/test-helpers/test-support';
 
+import type { GameGuest } from 'pinochle/game/networking/guest';
 import type { GameHost } from 'pinochle/game/networking/host';
 
 module('Acceptance | join', function (hooks) {
@@ -20,15 +21,13 @@ module('Acceptance | join', function (hooks) {
   module('Has not previously joined a game', function () {
     module('there is no game', function () {
       test('visiting /join', async function (assert) {
-        assert.expect(4);
+        assert.expect(2);
 
         let host = await newCrypto();
 
         await visit(`/join/${host.hex.publicKey}`);
 
         assert.equal(currentURL(), `/join/${host.hex.publicKey}`);
-        assert.dom(page.gameNotFound.element).doesNotExist();
-        assert.dom(page.connecting.element).exists();
 
         await waitUntil(() => page.gameNotFound.element);
 
@@ -39,18 +38,12 @@ module('Acceptance | join', function (hooks) {
     module('the game exists', function (hooks) {
       let host: GameHost;
 
+      setupGameHost(hooks, (gameHost) => (host = gameHost));
+
       hooks.beforeEach(async function (assert) {
-        let gameManager = getService('game-manager');
-
-        host = await gameManager.createHost();
-        host.shouldCheckConnectivity = false;
-
         await visit(`/join/${host.hexId}`);
 
         assert.dom(page.nameEntry.element).exists();
-      });
-      hooks.afterEach(function () {
-        host.disconnect();
       });
 
       test('can join the game', async function (assert) {
@@ -60,6 +53,36 @@ module('Acceptance | join', function (hooks) {
         await page.submitName();
 
         assert.dom(page.waiting.element).exists();
+      });
+
+      module('The game becomes full while entering info', function (hooks) {
+        let players: GameGuest[];
+
+        hooks.beforeEach(async function () {
+          players = [
+            await addPlayerToHost(host, 'Player 1'),
+            await addPlayerToHost(host, 'Player 2'),
+            await addPlayerToHost(host, 'Player 3'),
+            await addPlayerToHost(host, 'Player 4'),
+          ];
+        });
+
+        hooks.afterEach(function () {
+          players.map((player) => player.disconnect());
+        });
+
+        test('is not allowed in the game', async function (assert) {
+          await page.typeName('Player 5');
+          await page.submitName();
+
+          assert.equal(currentURL(), '/game-full');
+        });
+      });
+
+      module('The game has already started', function () {
+        hooks.beforeEach(function () {});
+
+        test('is not allowed in the game', async function (assert) {});
       });
     });
   });
