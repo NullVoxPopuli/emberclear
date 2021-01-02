@@ -32,7 +32,7 @@ export function setupSocketServer(hooks: NestedHooks) {
       /* eh */
     },
     channel(channelName: string) {
-      let id: string;
+      let id = '';
 
       if (channelName.startsWith('user')) {
         let [, _id] = channelName.split(':');
@@ -61,22 +61,23 @@ export function setupSocketServer(hooks: NestedHooks) {
             case 'chat': {
               let { to, message } = payload;
 
-              later(
-                null,
-                (_users, _pushHandler, fromId) => {
-                  if (!_users[to]) {
-                    return _pushHandler._receive?.error('user not found');
-                  }
+              requestAnimationFrame(() => {
+                // later(
+                //   null,
+                //   () => {
+                // setTimeout(() => {
+                if (!users[to]) {
+                  return pushHandler._receive?.error('user not found');
+                }
 
-                  _users[to]._handle['chat']({ uid: fromId, message });
+                users[to]._handle['chat']({ uid: id, message });
 
-                  _pushHandler._receive?.ok();
-                },
-                users,
-                pushHandler,
-                id,
-                10
-              );
+                pushHandler._receive?.ok?.();
+                // }, 0);
+                // },
+                // 10
+                // );
+              });
               break;
             }
 
@@ -94,7 +95,8 @@ export function setupSocketServer(hooks: NestedHooks) {
           switch (kind) {
             // on channel join
             case 'ok':
-              later(null, callback, 10);
+              requestAnimationFrame(callback);
+              // later(null, callback, 10);
 
               return channel;
             case 'error':

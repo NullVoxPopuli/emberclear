@@ -2,7 +2,7 @@
 import 'qunit-dom';
 
 // import 'qunit-assertions-extra';
-import { setApplication } from '@ember/test-helpers';
+import { getSettledState, currentURL, setApplication } from '@ember/test-helpers';
 import QUnit from 'qunit';
 import { start } from 'ember-qunit';
 
@@ -21,9 +21,13 @@ QUnit.begin(async () => {
 QUnit.testStart(() => {
   localStorage.clear();
 });
+
 QUnit.testDone(() => {
   localStorage.clear();
 });
+
+// easy access debugging tools during a paused test
+Object.assign(window, { getSettledState, currentURL });
 
 setApplication(Application.create(config.APP));
 

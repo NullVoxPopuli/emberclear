@@ -18,6 +18,11 @@ export default class JoinRoute extends Route {
   async beforeModel(transition: Transition) {
     let hostId = transition.to.params.idOfHost;
 
+    if (hostId === 'undefined') {
+      console.debug(transition.to);
+      throw new Error(`Undefined hostId`);
+    }
+
     if (hostId) {
       try {
         await this.gameManager.loadHost(hostId);

@@ -1,3 +1,5 @@
+import { assert } from '@ember/debug';
+
 import { setupWorkers } from '@emberclear/crypto/test-support';
 import { setupSocketServer } from '@emberclear/networking/test-support';
 import { getService } from '@emberclear/test-helpers/test-support';
@@ -15,11 +17,26 @@ export function setupGameHost(hooks: NestedHooks, onDone: (host: GameHost) => vo
     host.shouldCheckConnectivity = false;
 
     onDone(host);
+
+    assert(`Only one host is allowed at a time`, gameManager.isHosting.size <= 1);
   });
 
   hooks.afterEach(function () {
     host.disconnect();
   });
+}
+
+export async function createHost() {
+  let gameManager = getService('game-manager');
+
+  let host = await gameManager.createHost();
+
+  host.shouldCheckConnectivity = false;
+  host.onlineChecker.cancelAll();
+
+  assert(`Only one host is allowed at a time`, gameManager.isHosting.size <= 1);
+
+  return host;
 }
 
 export function setupPlayer(hooks: NestedHooks, host: GameHost, name: string) {

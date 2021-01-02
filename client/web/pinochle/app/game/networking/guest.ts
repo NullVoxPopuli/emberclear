@@ -47,10 +47,15 @@ export class GameGuest extends EphemeralConnection {
    * Initialized upon receiving host game state
    */
   @tracked declare display: DisplayInfo;
+  @tracked declare gameId?: string;
 
   gameState = new GuestGameRound();
 
-  @tracked gameId?: string;
+  constructor(publicKeyAsHex: string) {
+    super(publicKeyAsHex);
+
+    this.gameId = this.target?.hex;
+  }
 
   get playerOrder() {
     return this.gameState.playerOrder;
@@ -173,7 +178,9 @@ export class GameGuest extends EphemeralConnection {
   @action
   redirectToGame() {
     if (this.router.currentRouteName !== 'game') {
-      this.router.transitionTo(`/game/${this.gameId}`);
+      if (this.gameId) {
+        this.router.transitionTo(`/game/${this.gameId}`);
+      }
     }
   }
 

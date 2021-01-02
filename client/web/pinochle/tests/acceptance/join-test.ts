@@ -6,7 +6,9 @@ import { JoinPage } from 'pinochle/tests/-pages/join';
 import { addPlayerToHost, setupGameHost, setupPlayerTest } from 'pinochle/tests/helpers';
 
 import { newCrypto } from '@emberclear/crypto/test-support';
+import { getService } from '@emberclear/test-helpers/test-support';
 
+import type { GameGuest } from 'pinochle/game/networking/guest';
 import type { GameHost } from 'pinochle/game/networking/host';
 
 module('Acceptance | join', function (hooks) {
@@ -107,5 +109,73 @@ module('Acceptance | join', function (hooks) {
     });
   });
 
-  module('Has a pre-existing game', function () {});
+  module('Has a pre-existing game', function (hooks) {
+    let host: GameHost;
+    let hostId: string;
+
+    setupGameHost(hooks, (gameHost) => (host = gameHost));
+
+    hooks.beforeEach(async function (assert) {
+      hostId = host.hexId;
+
+      await addPlayerToHost(host, 'Player 1');
+      await addPlayerToHost(host, 'Player 2');
+
+      await visit(`/join/${hostId}`);
+      await page.typeName('Test Player');
+      await page.submitName();
+
+      assert.dom(page.waiting.element).exists();
+
+      host.startGame();
+
+      await settled();
+      await visit('/');
+
+      let gameManager = getService('game-manager');
+
+      for (let [id, game] of gameManager.isGuestOf.entries()) {
+        game.disconnect();
+
+        gameManager.isGuestOf.delete(id);
+      }
+
+      // console.log([...gameManager.isHosting.entries()].length);
+      await settled();
+    });
+
+    module('the host is online', function () {
+      test('the player re-joins and the game is loaded', async function (assert) {
+        await visit(`/join/${hostId}`);
+
+        // host.shouldCheckConnectivity = true;
+        // host.onlineChecker.perform();
+        host.shouldCheckConnectivity = false;
+        host.onlineChecker.cancelAll();
+
+        await settled();
+        // await this.pauseTest();
+
+        assert.equal(currentURL(), `/game/${hostId}`);
+      });
+    });
+
+    module('the host is offline', function (hooks) {
+      hooks.beforeEach(function () {
+        let gameManager = getService('game-manager');
+
+        for (let [id, game] of gameManager.isHosting.entries()) {
+          game.disconnect();
+
+          gameManager.isHosting.delete(id);
+        }
+      });
+
+      test('the game is not loaded', async function (assert) {
+        await visit(`/join/${hostId}`);
+
+        assert.equal(currentURL(), '/not-recognized');
+      });
+    });
+  });
 });
