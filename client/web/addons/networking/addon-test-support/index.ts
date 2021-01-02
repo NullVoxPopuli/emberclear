@@ -32,6 +32,14 @@ export function setupSocketServer(hooks: NestedHooks) {
       /* eh */
     },
     channel(channelName: string) {
+      let id: string;
+
+      if (channelName.startsWith('user')) {
+        let [, _id] = channelName.split(':');
+
+        id = _id;
+      }
+
       const channel = {
         _handle: {} as Record<string, Callback>,
 
@@ -55,17 +63,18 @@ export function setupSocketServer(hooks: NestedHooks) {
 
               later(
                 null,
-                (_users, _pushHandler) => {
+                (_users, _pushHandler, fromId) => {
                   if (!_users[to]) {
                     return _pushHandler._receive?.error('user not found');
                   }
 
-                  _users[to]._handle['chat'](message);
+                  _users[to]._handle['chat']({ uid: fromId, message });
 
                   _pushHandler._receive?.ok();
                 },
                 users,
                 pushHandler,
+                id,
                 10
               );
               break;
@@ -123,9 +132,7 @@ export function setupSocketServer(hooks: NestedHooks) {
         },
       };
 
-      if (channelName.startsWith('user')) {
-        let [, id] = channelName.split(':');
-
+      if (id) {
         users[id] = channel;
       }
 
@@ -134,6 +141,7 @@ export function setupSocketServer(hooks: NestedHooks) {
   };
 
   hooks.beforeEach(function () {
+    users = {};
     oldSocket = (window as any)[NAME];
 
     (window as any)[NAME] = FakeSocket;

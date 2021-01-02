@@ -1,17 +1,20 @@
-<form {{on 'submit' this.submitName}}>
+<form {{on 'submit' this.submitName}} ...attributes data-test-name-entry>
   <label for='name-input'>
     <h2>Please enter your name</h2>
   </label>
+
   <div class='input-box grid:cols gap-2 left-column'>
     <input
       id='name-input'
       type='text'
+      data-test-input
       value={{this.playerInfo.name}}
       {{on 'input' this.updateName}}
     >
 
     <button
       type='submit'
+      data-test-submit
       disabled={{this.isNameMissing}}
       {{on 'click' this.submitName}}
     >

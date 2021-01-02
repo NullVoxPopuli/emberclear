@@ -1,4 +1,4 @@
-import { currentURL, find, visit, waitUntil } from '@ember/test-helpers';
+import { currentURL, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -13,21 +13,15 @@ module('Acceptance | game', function (hooks) {
   module('Has not previously joined a game', function () {
     module('there is no game', function () {
       test('visiting /game', async function (assert) {
-        assert.expect(2);
-
         let host = await newCrypto();
 
         await visit(`/game/${host.hex.publicKey}`);
 
         assert.equal(currentURL(), `/join/${host.hex.publicKey}`);
-
-        assert.dom().containsText('Connecting...');
-
-        await waitUntil(() => find('*')?.textContent?.includes('Game does not exist'), {
-          timeout: 10000,
-        });
       });
     });
+
+    module('the game exists', function () {});
   });
 
   module('Has a pre-existing game', function () {});

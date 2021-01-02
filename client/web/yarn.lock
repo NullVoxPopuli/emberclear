@@ -10266,6 +10266,11 @@ forwarded@~0.1.2:
   resolved "https://registry.npmjs.org/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
+fractal-page-object@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/fractal-page-object/-/fractal-page-object-0.1.0.tgz#37219033dd6b8b9ba2606727d9c8b21ae73f2c52"
+  integrity sha512-dLvBc0yW0eOxZJVb3Uxr9gbtR2BKZl5UKUuPn1hk556MKdsbQmvKazOuHKQt9/loc5uFYwpt9MI1nHkygj6XVQ==
+
 fraction.js@^4.0.13:
   version "4.0.13"
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.0.13.tgz#3c1c315fa16b35c85fffa95725a36fa729c69dfe"

@@ -18,6 +18,13 @@ QUnit.begin(async () => {
   console.info(`Using seed for Qunit: ${seed}`);
 });
 
+QUnit.testStart(() => {
+  localStorage.clear();
+});
+QUnit.testDone(() => {
+  localStorage.clear();
+});
+
 setApplication(Application.create(config.APP));
 
 start({

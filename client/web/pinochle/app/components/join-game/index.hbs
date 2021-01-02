@@ -1,16 +1,16 @@
-<main class='grid center fullscreen'>
+<main class='grid center fullscreen' data-test-join-game>
   <section>
     {{#if (contains this.state 'begin')}}
-        <h2>Connecting...</h2>
+        <h2 data-test-connecting>Connecting...</h2>
 
     {{else if (contains this.state 'needs-name')}}
       <NameEntry @onSubmit={{this.handleSubmit}} />
     {{else if this.isPending}}
 
       {{#if this.isJoining}}
-        <h2>Joining game...</h2>
+        <h2 data-test-joining>Joining game...</h2>
       {{else if this.isWaiting}}
-        <h2>Waiting for game to start</h2>
+        <h2 data-test-waiting>Waiting for game to start</h2>
       {{/if}}
 
       <PlayerList
@@ -20,11 +20,11 @@
       <Loader::Indeterminate />
 
     {{else if (contains this.state 'game-does-not-exist')}}
-      Game does not exist. Is the URL correct?
+      <span data-test-404>Game does not exist. Is the URL correct?</span>
     {{else if (contains this.state 'starting')}}
-      Starting game...
+      <span data-test-starting>Starting game...</span>
     {{else}}
-      Unknown State
+      <span data-test-unknown>Unknown State</span>
     {{/if}}
   </section>
 </main>

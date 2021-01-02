@@ -147,6 +147,13 @@ export default class GameManager extends Service {
   }
 }
 
+// DO NOT DELETE: this is how TypeScript knows how to look up your services.
+declare module '@ember/service' {
+  interface Registry {
+    'game-manager': GameManager;
+  }
+}
+
 export function loadWithDefault<T>(key: string, defaultValue?: T) {
   let lsValue = localStorage.getItem(key);
 

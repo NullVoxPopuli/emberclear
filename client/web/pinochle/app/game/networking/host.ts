@@ -32,6 +32,8 @@ const MAX_PLAYERS = 4;
 export class GameHost extends EphemeralConnection {
   playersById = new TrackedObject<Record<string, PlayerInfo>>();
 
+  shouldCheckConnectivity = true;
+
   declare currentGame: GameRound;
 
   constructor(publicKey?: string) {
@@ -272,7 +274,7 @@ export class GameHost extends EphemeralConnection {
   onlineChecker = taskFor(async () => {
     // this loop takes 7s per iteration
     // eslint-disable-next-line no-constant-condition
-    while (true) {
+    while (this.shouldCheckConnectivity) {
       await timeout(2000);
 
       let promises = this.players.map(async (player) => {
