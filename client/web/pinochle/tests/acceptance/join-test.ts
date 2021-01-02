@@ -79,10 +79,29 @@ module('Acceptance | join', function (hooks) {
         });
       });
 
-      module('The game has already started', function () {
-        hooks.beforeEach(function () {});
+      module('The game has already started', function (hooks) {
+        let players: GameGuest[];
 
-        test('is not allowed in the game', async function (assert) {});
+        hooks.beforeEach(async function () {
+          players = [
+            await addPlayerToHost(host, 'Player 1'),
+            await addPlayerToHost(host, 'Player 2'),
+            await addPlayerToHost(host, 'Player 3'),
+          ];
+
+          await host.startGame();
+        });
+
+        hooks.afterEach(function () {
+          players.map((player) => player.disconnect());
+        });
+
+        test('is not allowed in the game', async function (assert) {
+          await page.typeName('Player 5');
+          await page.submitName();
+
+          assert.equal(currentURL(), '/not-recognized');
+        });
       });
     });
   });
