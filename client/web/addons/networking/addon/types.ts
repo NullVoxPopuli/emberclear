@@ -1,3 +1,7 @@
+export interface EndpointInfo {
+  socket: string;
+}
+
 export interface P2PMessage {
   id: string;
   to: string;

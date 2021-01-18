@@ -11,12 +11,14 @@ import { inject as service } from '@ember/service';
 import { CryptoConnector } from '@emberclear/crypto';
 import { fromHex, toHex } from '@emberclear/encoding/string';
 import { Connection } from '@emberclear/networking';
+import { defaultRelays } from '@emberclear/networking/required-data';
 import { pool } from '@emberclear/networking/utils/connection/connection-pool';
 
 import type StoreService from '@ember-data/store';
 import type { WorkersService } from '@emberclear/crypto';
 import type { EncryptableObject, EncryptedMessage, KeyPair } from '@emberclear/crypto/types';
 import type { Relay } from '@emberclear/networking';
+import type { EndpointInfo } from '@emberclear/networking/types';
 import type {
   ConnectionPool,
   STATUS,
@@ -26,6 +28,16 @@ type Target = {
   pub: Uint8Array;
   hex: string;
 };
+
+const DEFAULT_GETTER = () => defaultRelays;
+
+export type GetEndpoints = () => EndpointInfo[] | Promise<EndpointInfo[]>;
+
+export interface Options {
+  getEndpoints?: GetEndpoints;
+  publicKeyAsHex?: string;
+  keys?: KeyPair;
+}
 
 export class EphemeralConnection {
   @service declare store: StoreService;
@@ -41,7 +53,9 @@ export class EphemeralConnection {
    * Static information about who we're connecting to
    * - useful if the connection is only meant for one person
    */
-  target?: Target;
+  declare target?: Target;
+
+  getEndpoints: GetEndpoints = () => [];
 
   /**
    * For creating new instances of ephemeral connections
@@ -70,9 +84,9 @@ export class EphemeralConnection {
     /* the actual params to this method */
     // eslint-disable-next-line @typescript-eslint/ban-types
     parent: object,
-    publicKeyAsHex?: string,
-    keys?: KeyPair
+    options: Options
   ): Promise<SubClass> {
+    let { getEndpoints, publicKeyAsHex, keys } = options;
     let instance = new this(publicKeyAsHex);
 
     setOwner(instance, getOwner(parent));
@@ -82,6 +96,8 @@ export class EphemeralConnection {
     await instance.hydrateCrypto(keys);
     assert('Crypto failed to initialize', instance.crypto);
     assert('Failed to generate an ephemeral identifier', instance.hexId);
+
+    instance.getEndpoints = getEndpoints || DEFAULT_GETTER;
 
     await instance.establishConnection();
     assert('Connection Pool failed to be set up', instance.connectionPool);
@@ -171,12 +187,8 @@ export class EphemeralConnection {
 
     if (isDestroying(this) || isDestroyed(this)) return;
 
-    let relays = await this.store.findAll('relay');
-
-    if (isDestroying(this) || isDestroyed(this)) return;
-
     this.connectionPool = await pool<Connection, Relay>({
-      endpoints: relays.toArray(),
+      endpoints: this.getEndpoints(),
       create: createConnection.bind(null, this.hexId, this.onData),
       destroy: (instance) => instance.destroy(),
       isOk: (instance) => instance.isConnected,

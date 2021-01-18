@@ -2,7 +2,7 @@ import { Socket } from 'phoenix';
 
 import type { EncryptedMessage } from '@emberclear/crypto/types';
 import type { Relay } from '@emberclear/networking';
-import type { RelayState, RelayStateJson } from '@emberclear/networking/types';
+import type { EndpointInfo, RelayState, RelayStateJson } from '@emberclear/networking/types';
 import type { Channel } from 'phoenix';
 
 export const NAME = Symbol('__PHOENIX_SOCKET__');
@@ -14,7 +14,7 @@ export const NAME = Symbol('__PHOENIX_SOCKET__');
 (window as any)[NAME] = (window as any)[NAME] || Socket;
 
 interface Args {
-  relay: Relay;
+  relay: EndpointInfo;
   publicKey: string;
   onData: (data: EncryptedMessage) => void;
   onInfo: (data: RelayState) => void;
@@ -31,18 +31,18 @@ function phoenixSocket(): typeof Socket {
 }
 
 export class Connection {
-  relay: Relay;
-  url: string;
-  publicKey: string;
-  channelName: string;
-  onData: (data: EncryptedMessage) => void;
-  onInfo: (data: RelayState) => void;
+  declare relay: EndpointInfo;
+  declare url: string;
+  declare publicKey: string;
+  declare channelName: string;
+  declare onData: (data: EncryptedMessage) => void;
+  declare onInfo: (data: RelayState) => void;
 
   isConnected = false;
   isConnecting = false;
 
-  private socket?: Socket;
-  private channel?: Channel;
+  private declare socket?: Socket;
+  private declare channel?: Channel;
 
   /**
    * @param [Relay] relay

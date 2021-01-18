@@ -24,19 +24,19 @@ export default class GameManager extends Service {
   async createHost(keys?: KeyPair) {
     await ensureRequirementsAreMet(getOwner(this));
 
-    let host = await GameHost.build(this, undefined, keys);
+    let host = await GameHost.build(this, { keys });
 
     this.isHosting.set(host.hexId, host);
 
     return host;
   }
 
-  async connectToHost(hex: string, keys?: KeyPair) {
+  async connectToHost(publicKeyAsHex: string, keys?: KeyPair) {
     await ensureRequirementsAreMet(getOwner(this));
 
-    let guest = await GameGuest.build(this, hex, keys);
+    let guest = await GameGuest.build(this, { publicKeyAsHex, keys });
 
-    this.isGuestOf.set(hex, guest);
+    this.isGuestOf.set(publicKeyAsHex, guest);
 
     return guest;
   }

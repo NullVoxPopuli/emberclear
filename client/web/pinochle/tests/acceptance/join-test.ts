@@ -2,20 +2,20 @@ import { currentURL, settled, visit, waitUntil } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
+import { timeout } from 'ember-concurrency';
+
 import { JoinPage } from 'pinochle/tests/-pages/join';
 import {
   addPlayerToHost,
   clearGuests,
-  createHost,
+  clearHosts,
   setupGameHost,
   setupPlayerTest,
   stopConnectivityChecking,
 } from 'pinochle/tests/helpers';
 
 import { newCrypto } from '@emberclear/crypto/test-support';
-import { getService } from '@emberclear/test-helpers/test-support';
 
-import type { GameGuest } from 'pinochle/game/networking/guest';
 import type { GameHost } from 'pinochle/game/networking/host';
 
 module('Acceptance | join', function (hooks) {
@@ -47,7 +47,7 @@ module('Acceptance | join', function (hooks) {
       setupGameHost(hooks, (gameHost) => (host = gameHost));
 
       hooks.beforeEach(async function (assert) {
-        await visit(`/join/${host.hexId}`);
+        await page.joinGame(host.hexId);
 
         assert.dom(page.nameEntry.element).exists();
       });
@@ -55,24 +55,21 @@ module('Acceptance | join', function (hooks) {
       test('can join the game', async function (assert) {
         assert.expect(2);
 
-        await page.typeName('Test Player');
-        await page.submitName();
-
-        assert.dom(page.waiting.element).exists();
+        await page.submit('Test Player');
+        await waitUntil(() => page.waiting.element);
       });
 
       module('the game starts with the current player', function (hooks) {
-        hooks.beforeEach(async function (assert) {
+        hooks.beforeEach(async function () {
           await addPlayerToHost(host, 'Player 1');
           await addPlayerToHost(host, 'Player 2');
 
-          await page.typeName('Test Player');
-          await page.submitName();
-
-          assert.dom(page.waiting.element).exists();
+          await page.submit('Test Player');
+          await waitUntil(() => page.waiting.element);
 
           host.startGame();
 
+          await page.waitFor(`/game/${host.hexId}`);
           await settled();
         });
 
@@ -89,11 +86,9 @@ module('Acceptance | join', function (hooks) {
           await addPlayerToHost(host, 'Player 4');
         });
 
-        test('is not allowed in the game', async function (assert) {
-          await page.typeName('Player 5');
-          await page.submitName();
-
-          assert.equal(currentURL(), '/game-full');
+        test('is not allowed in the game', async function () {
+          await page.submit('Player 5');
+          await page.waitFor('/game-full');
         });
       });
 
@@ -104,13 +99,12 @@ module('Acceptance | join', function (hooks) {
           await addPlayerToHost(host, 'Player 3');
 
           host.startGame();
+          await settled();
         });
 
-        test('is not allowed in the game', async function (assert) {
-          await page.typeName('Player 5');
-          await page.submitName();
-
-          assert.equal(currentURL(), '/not-recognized');
+        test('is not allowed in the game', async function () {
+          await page.submit('Player 5');
+          await page.waitFor('/not-recognized');
         });
       });
     });
@@ -130,14 +124,13 @@ module('Acceptance | join', function (hooks) {
       assert.equal(host.players.length, 2, 'host has two players');
 
       await page.joinGame(hostId, 'Test Player');
+      await waitUntil(() => page.waiting.element);
 
       host.startGame();
 
+      await page.waitFor(`/game/${hostId}`);
       assert.equal(host.players.length, 3, 'host has three players');
 
-      await settled();
-
-      assert.equal(currentURL(), `/game/${hostId}`, 'is on the game playing page');
       stopConnectivityChecking(hostId);
 
       await settled();
@@ -161,20 +154,15 @@ module('Acceptance | join', function (hooks) {
     });
 
     module('the host is offline', function (hooks) {
-      hooks.beforeEach(function () {
-        let gameManager = getService('game-manager');
-
-        for (let [id, game] of gameManager.isHosting.entries()) {
-          game.disconnect();
-
-          gameManager.isHosting.delete(id);
-        }
+      hooks.beforeEach(async function () {
+        clearHosts();
       });
 
-      test('the game is not loaded', async function (assert) {
-        await visit(`/join/${hostId}`);
-
-        assert.equal(currentURL(), '/not-recognized');
+      test('the game is not loaded', async function () {
+        await page.rejoin(hostId);
+        await timeout(3000);
+        await waitUntil(() => page.waitingForPlayers.element);
+        // await page.waitFor('/not-recognized');
       });
     });
   });

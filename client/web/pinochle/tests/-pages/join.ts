@@ -32,8 +32,15 @@ export class JoinPage extends PageObject {
   gameNotFound = selector('[data-test-404]');
   starting = selector('[data-test-starting]');
   unknown = selector('[data-test-unknown]');
+  waitingForPlayers = selector('[data-test-waiting-for-players]');
 
-  async joinGame(gameId: string, name: string) {
+  async waitFor(url: string) {
+    await waitUntil(() => currentURL() === url);
+
+    QUnit.assert.equal(currentURL(), url, `Visited ${url}`);
+  }
+
+  async joinGame(gameId: string, name?: string) {
     await visit(`/join/${gameId}`);
 
     QUnit.assert.equal(currentURL(), `/join/${gameId}`, `arrives at /join/${gameId}`);
@@ -42,6 +49,12 @@ export class JoinPage extends PageObject {
       return this.nameEntry._input.element;
     });
 
+    if (name) {
+      this.submit(name);
+    }
+  }
+
+  async submit(name: string) {
     await this.typeName(name);
     await this.submitName();
   }
@@ -54,6 +67,12 @@ export class JoinPage extends PageObject {
     await waitUntil(() => {
       return currentURL() === `/game/${gameId}`;
     });
+
+    QUnit.assert.equal(
+      currentURL(),
+      `/game/${gameId}`,
+      `Is redirected to the game at /game/${gameId}`
+    );
   }
 
   typeName(name: string) {

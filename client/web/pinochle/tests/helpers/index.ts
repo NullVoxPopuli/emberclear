@@ -73,6 +73,16 @@ export function clearGuests() {
   }
 }
 
+export function clearHosts() {
+  let gameManager = getService('game-manager');
+
+  for (let [id, game] of gameManager.isHosting.entries()) {
+    game.disconnect();
+
+    gameManager.isHosting.delete(id);
+  }
+}
+
 export function stopConnectivityChecking(hexId: string) {
   let gameManager = getService('game-manager');
 
@@ -87,15 +97,6 @@ export function stopConnectivityChecking(hexId: string) {
 export async function setupPlayerTest(hooks: NestedHooks) {
   setupSocketServer(hooks);
   setupWorkers(hooks);
-
-  hooks.beforeEach(async function () {
-    // TODO: detach the connection stuff from ember-data
-    //       the relationship benefits we get from ember-data
-    //       are not relevant for a list of relays
-    await this.owner.lookup('service:store').createRecord('relay', {
-      socket: 'ws://0.0.0.0:1234',
-    });
-  });
 
   hooks.afterEach(function () {
     let gameManager = getService('game-manager');

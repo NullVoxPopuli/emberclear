@@ -106,9 +106,9 @@ export class ConnectionPool<Connectable, EndpointInfo> {
   async acquire(): Promise<Connectable> {
     await this.hydrate();
 
-    let psuedoBestIndex = Math.floor(Math.random() * this.activeConnections.length);
+    let pseudoBestIndex = Math.floor(Math.random() * this.activeConnections.length);
 
-    return this.activeConnections[psuedoBestIndex];
+    return this.activeConnections[pseudoBestIndex];
   }
 
   // TODO: we need a way to monitor status changes within
@@ -120,6 +120,12 @@ export class ConnectionPool<Connectable, EndpointInfo> {
 
     for (let i = 0; i < this.minConnections; i++) {
       let endpoint = this.nextEndpoint();
+
+      if (!endpoint) {
+        throw new Error(
+          `No available endpoint. Are too many minimum connections specified? Current: ${this.minConnections}`
+        );
+      }
 
       let connection = await this.config.create(endpoint);
 
@@ -141,6 +147,10 @@ export class ConnectionPool<Connectable, EndpointInfo> {
   }
 
   private nextEndpoint(): EndpointInfo {
+    if (this.config.endpoints.length === 0) {
+      throw new Error(`There are no endpoints in the connection pool`);
+    }
+
     return this.config.endpoints[0];
   }
 }
