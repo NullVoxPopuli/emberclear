@@ -1,7 +1,6 @@
 import { Socket } from 'phoenix';
 
 import type { EncryptedMessage } from '@emberclear/crypto/types';
-import type { Relay } from '@emberclear/networking';
 import type { EndpointInfo, RelayState, RelayStateJson } from '@emberclear/networking/types';
 import type { Channel } from 'phoenix';
 

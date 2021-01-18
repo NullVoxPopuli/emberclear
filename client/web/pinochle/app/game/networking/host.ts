@@ -285,7 +285,6 @@ export class GameHost extends EphemeralConnection {
     // this loop takes 7s per iteration
     // eslint-disable-next-line no-constant-condition
     while (this.shouldCheckConnectivity) {
-      console.log('online checker....');
       await timeout(2000);
 
       let promises = this.players.map(async (player) => {
