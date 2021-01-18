@@ -1,11 +1,14 @@
 import { cached } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { waitFor } from '@ember/test-waiters';
 
 import { timeout } from 'ember-concurrency';
-import { dropTask, task } from 'ember-concurrency-decorators';
+import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import RSVP from 'rsvp';
 import { TrackedObject } from 'tracked-built-ins';
+
+import { isDestroyed } from 'pinochle/utils/container';
 
 import { fromHex, toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
@@ -36,10 +39,11 @@ export class GameHost extends EphemeralConnection {
 
   declare currentGame: GameRound;
 
-  constructor(publicKey?: string) {
-    super(publicKey);
+  teardown() {
+    this.onlineChecker.cancelAll();
+    // this.currentGame?.interpreter
 
-    this.onlineChecker.perform();
+    super.teardown();
   }
 
   @cached
@@ -72,13 +76,13 @@ export class GameHost extends EphemeralConnection {
    *
    */
   @action
+  @waitFor
   async onData(data: EncryptedMessage) {
-    this._handleData.perform(data);
-  }
+    if (isDestroyed(this)) return;
 
-  @task
-  _handleData = taskFor(async (data: EncryptedMessage) => {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
+
+    if (isDestroyed(this)) return;
 
     // console.debug('host received:', {
     //   data,
@@ -144,13 +148,14 @@ export class GameHost extends EphemeralConnection {
       isKnown: this._isPlayerKnown(data.uid),
       hasGame: Boolean(this.currentGame),
     });
-  });
+  }
 
   /**
    * Called from button in the UI from the Host
    */
   @action
   startGame() {
+    this.onlineChecker.perform();
     this.currentGame = new GameRound(unwrapObject(this.playersById));
 
     this._broadcastStart();
@@ -280,6 +285,7 @@ export class GameHost extends EphemeralConnection {
     // this loop takes 7s per iteration
     // eslint-disable-next-line no-constant-condition
     while (this.shouldCheckConnectivity) {
+      console.log('online checker....');
       await timeout(2000);
 
       let promises = this.players.map(async (player) => {

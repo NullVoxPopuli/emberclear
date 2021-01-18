@@ -1,4 +1,5 @@
 import { assert } from '@ember/debug';
+import { destroy } from '@ember/destroyable';
 
 import { setupWorkers } from '@emberclear/crypto/test-support';
 import { setupSocketServer } from '@emberclear/networking/test-support';
@@ -62,9 +63,39 @@ export async function addPlayerToHost(host: GameHost, name?: string) {
   return playerGame;
 }
 
+export function clearGuests() {
+  let gameManager = getService('game-manager');
+
+  for (let [id, game] of gameManager.isGuestOf.entries()) {
+    destroy(game);
+
+    gameManager.isGuestOf.delete(id);
+  }
+}
+
+export function stopConnectivityChecking(hexId: string) {
+  let gameManager = getService('game-manager');
+
+  let host = gameManager.isHosting.get(hexId);
+
+  assert(`Host does not exist`, host);
+
+  host.shouldCheckConnectivity = false;
+  host.onlineChecker.cancelAll();
+}
+
 export async function setupPlayerTest(hooks: NestedHooks) {
   setupSocketServer(hooks);
   setupWorkers(hooks);
+
+  hooks.beforeEach(async function () {
+    // TODO: detach the connection stuff from ember-data
+    //       the relationship benefits we get from ember-data
+    //       are not relevant for a list of relays
+    await this.owner.lookup('service:store').createRecord('relay', {
+      socket: 'ws://0.0.0.0:1234',
+    });
+  });
 
   hooks.afterEach(function () {
     let gameManager = getService('game-manager');

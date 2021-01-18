@@ -3,7 +3,14 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { JoinPage } from 'pinochle/tests/-pages/join';
-import { addPlayerToHost, setupGameHost, setupPlayerTest } from 'pinochle/tests/helpers';
+import {
+  addPlayerToHost,
+  clearGuests,
+  createHost,
+  setupGameHost,
+  setupPlayerTest,
+  stopConnectivityChecking,
+} from 'pinochle/tests/helpers';
 
 import { newCrypto } from '@emberclear/crypto/test-support';
 import { getService } from '@emberclear/test-helpers/test-support';
@@ -115,49 +122,41 @@ module('Acceptance | join', function (hooks) {
 
     setupGameHost(hooks, (gameHost) => (host = gameHost));
 
-    // NOTE: host connection pool is undefined sometimes... why?
     hooks.beforeEach(async function (assert) {
       hostId = host.hexId;
 
       await addPlayerToHost(host, 'Player 1');
       await addPlayerToHost(host, 'Player 2');
+      assert.equal(host.players.length, 2, 'host has two players');
 
-      await visit(`/join/${hostId}`);
-      await page.typeName('Test Player');
-      await page.submitName();
-
-      assert.dom(page.waiting.element).exists();
+      await page.joinGame(hostId, 'Test Player');
 
       host.startGame();
+
+      assert.equal(host.players.length, 3, 'host has three players');
+
+      await settled();
+
+      assert.equal(currentURL(), `/game/${hostId}`, 'is on the game playing page');
+      stopConnectivityChecking(hostId);
 
       await settled();
       await visit('/');
 
-      let gameManager = getService('game-manager');
+      clearGuests();
 
-      for (let [id, game] of gameManager.isGuestOf.entries()) {
-        game.disconnect();
-
-        gameManager.isGuestOf.delete(id);
-      }
-
-      // console.log([...gameManager.isHosting.entries()].length);
       await settled();
     });
 
     module('the host is online', function () {
       test('the player re-joins and the game is loaded', async function (assert) {
-        await visit(`/join/${hostId}`);
+        await page.rejoin(hostId);
+        assert.equal(currentURL(), `/game/${hostId}`, 'has rejoined');
 
-        // host.shouldCheckConnectivity = true;
-        // host.onlineChecker.perform();
-        host.shouldCheckConnectivity = false;
-        host.onlineChecker.cancelAll();
+        stopConnectivityChecking(hostId);
 
         await settled();
-        // await this.pauseTest();
-
-        assert.equal(currentURL(), `/game/${hostId}`);
+        assert.equal(host.players.length, 3, 'host has three players');
       });
     });
 

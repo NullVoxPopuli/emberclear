@@ -18,17 +18,17 @@
     "node": "14.15.5"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "4.11.1",
-    "@typescript-eslint/parser": "4.11.1",
+    "@typescript-eslint/eslint-plugin": "4.13.0",
+    "@typescript-eslint/parser": "4.13.0",
     "babel-eslint": "10.1.0",
-    "eslint": "7.16.0",
+    "eslint": "7.18.0",
     "eslint-config-prettier": "7.1.0",
     "eslint-plugin-decorator-position": "2.2.19",
-    "eslint-plugin-ember": "10.1.1",
+    "eslint-plugin-ember": "10.1.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-json": "^2.1.2",
     "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "3.3.0",
+    "eslint-plugin-prettier": "3.3.1",
     "eslint-plugin-qunit": "5.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "prettier": "2.2.1"

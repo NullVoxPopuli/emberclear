@@ -2,8 +2,11 @@ import { cached, tracked } from '@glimmer/tracking';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { waitFor } from '@ember/test-waiters';
 
 import RSVP from 'rsvp';
+
+import { isDestroyed } from 'pinochle/utils/container';
 
 import { toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
@@ -94,16 +97,20 @@ export class GameGuest extends EphemeralConnection {
   }
 
   @action
+  @waitFor
   async onData(data: EncryptedMessage) {
+    if (isDestroyed(this)) return;
+
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
+    if (isDestroyed(this)) return;
     // console.log('guest', decrypted, data.uid);
 
     switch (decrypted.type) {
       case 'ACK':
         this.hostExists.resolve();
         this.gameId = data.uid;
-        this.sendToHex({ type: 'PRESENT' }, data.uid);
+        await this.sendToHex({ type: 'PRESENT' }, data.uid);
 
         return;
       case 'WELCOME':
@@ -133,7 +140,7 @@ export class GameGuest extends EphemeralConnection {
 
         return;
       case 'CONNECTIVITY_CHECK':
-        this.sendToHex({ type: 'PRESENT' }, data.uid);
+        await this.sendToHex({ type: 'PRESENT' }, data.uid);
 
         return;
       default:

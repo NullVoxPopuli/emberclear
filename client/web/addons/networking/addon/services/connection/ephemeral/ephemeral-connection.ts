@@ -1,6 +1,11 @@
 import { getOwner, setOwner } from '@ember/application';
 import { assert } from '@ember/debug';
-import { associateDestroyableChild, registerDestructor } from '@ember/destroyable';
+import {
+  associateDestroyableChild,
+  isDestroyed,
+  isDestroying,
+  registerDestructor,
+} from '@ember/destroyable';
 import { inject as service } from '@ember/service';
 
 import { CryptoConnector } from '@emberclear/crypto';
@@ -121,6 +126,8 @@ export class EphemeralConnection {
   async hydrateCrypto(keys?: KeyPair) {
     let { hex, crypto } = await generateEphemeralKeys(this.workers, keys);
 
+    if (isDestroying(this) || isDestroyed(this)) return;
+
     this.crypto = crypto;
     this.hexId = hex;
   }
@@ -132,21 +139,41 @@ export class EphemeralConnection {
   }
 
   async send(message: EncryptableObject, target?: Target) {
+    if (isDestroying(this) || isDestroyed(this)) return;
+
     let _target = this.target || target;
 
     if (!_target) {
       throw new Error('Cannot send a message with no target');
     }
 
+    if (!this.connectionPool) {
+      await this.establishConnection();
+
+      if (isDestroying(this) || isDestroyed(this)) return;
+      // throw new Error('Cannot send a message with no connection to the target');
+    }
+
     let to = _target.pub;
     let connection = await this.connectionPool.acquire();
+
+    if (isDestroying(this) || isDestroyed(this)) return;
+
     let encryptedMessage = await this.crypto.encryptForSocket({ ...message }, { publicKey: to });
+
+    if (isDestroying(this) || isDestroyed(this)) return;
 
     await connection.send({ to: toHex(to), message: encryptedMessage });
   }
 
   async establishConnection() {
+    if (this.connectionPool) return;
+
+    if (isDestroying(this) || isDestroyed(this)) return;
+
     let relays = await this.store.findAll('relay');
+
+    if (isDestroying(this) || isDestroyed(this)) return;
 
     this.connectionPool = await pool<Connection, Relay>({
       endpoints: relays.toArray(),

@@ -1,5 +1,6 @@
 import { assert } from '@ember/debug';
-import { click, fillIn } from '@ember/test-helpers';
+import { click, fillIn, visit, waitUntil } from '@ember/test-helpers';
+import QUnit from 'qunit';
 
 import { PageObject, selector } from 'fractal-page-object';
 
@@ -31,6 +32,29 @@ export class JoinPage extends PageObject {
   gameNotFound = selector('[data-test-404]');
   starting = selector('[data-test-starting]');
   unknown = selector('[data-test-unknown]');
+
+  async joinGame(gameId: string, name: string) {
+    await visit(`/join/${gameId}`);
+
+    QUnit.assert.equal(currentURL(), `/join/${gameId}`, `arrives at /join/${gameId}`);
+
+    await waitUntil(() => {
+      return this.nameEntry._input.element;
+    });
+
+    await this.typeName(name);
+    await this.submitName();
+  }
+
+  async rejoin(gameId: string) {
+    await visit(`/join/${gameId}`);
+
+    QUnit.assert.equal(currentURL(), `/join/${gameId}`, `arrives at /join/${gameId}`);
+
+    await waitUntil(() => {
+      return currentURL() === `/game/${gameId}`;
+    });
+  }
 
   typeName(name: string) {
     return this.nameEntry.typeName(name);
