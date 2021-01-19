@@ -1,5 +1,6 @@
 export interface EndpointInfo {
   socket: string;
+  og: string;
 }
 
 export interface P2PMessage {

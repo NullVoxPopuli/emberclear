@@ -1,3 +1,5 @@
+import type { EndpointInfo } from '@emberclear/networking/types';
+
 // min-connections are met
 export const STATUS_CONNECTED = 'connected';
 // initial attempt at achieving min-connections
@@ -17,7 +19,7 @@ export type STATUS =
   | typeof STATUS_DISCONNECTED
   | typeof STATUS_UNKNOWN;
 
-export interface PoolConfig<Connectable, EndpointInfo> {
+export interface PoolConfig<Connectable> {
   // send: <Args extends Array<any>>(instance, ...args: Args) => Promise<void>;
 
   // Available URLs / whatever that will be randomly selected when creating
@@ -57,22 +59,22 @@ export interface PoolConfig<Connectable, EndpointInfo> {
  * @param [PoolConfig] config;
  *
  */
-export async function pool<Connectable, EndpointInfo>(
-  config: PoolConfig<Connectable, EndpointInfo>
-): Promise<ConnectionPool<Connectable, EndpointInfo>> {
-  let connectionPool = new ConnectionPool<Connectable, EndpointInfo>(config);
+export async function pool<Connectable>(
+  config: PoolConfig<Connectable>
+): Promise<ConnectionPool<Connectable>> {
+  let connectionPool = new ConnectionPool<Connectable>(config);
 
   await connectionPool.hydrate();
 
   return connectionPool;
 }
 
-export class ConnectionPool<Connectable, EndpointInfo> {
-  private config: PoolConfig<Connectable, EndpointInfo>;
+export class ConnectionPool<Connectable> {
+  private config: PoolConfig<Connectable>;
 
   private connections: Connectable[] = [];
 
-  constructor(config: PoolConfig<Connectable, EndpointInfo>) {
+  constructor(config: PoolConfig<Connectable>) {
     this.config = config;
   }
 

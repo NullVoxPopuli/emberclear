@@ -6,6 +6,7 @@
     "paths": {
       "pinochle/tests/*": ["*"],
       "pinochle/*": ["../declarations/*"],
+      "@ember/destroyable": ["../../node_modules/ember-destroyable-polyfill"],
 
       "*": ["../types/*"]
     }
