@@ -47,7 +47,7 @@ export default class GameRoute extends Route {
 
     let gameGuest = this.gameManager.isGuestOf.get(hostId || '');
 
-    assert(`This component should not be used without a gameInfo`, gameGuest);
+    assert(`Cannot play a game that has not been joined`, gameGuest);
 
     return {
       hostId,

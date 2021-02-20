@@ -84,17 +84,12 @@ export class GameHost extends EphemeralConnection {
 
     if (isDestroyed(this)) return;
 
-    // console.debug('host received:', {
-    //   data,
-    //   ...decrypted,
-    //   isKnown: this._isPlayerKnown(data.uid),
-    //   hasGame: Boolean(this.currentGame),
-    // });
-
-    switch (decrypted.type) {
-      case 'SYN':
-        return this._ack(data.uid);
-    }
+    console.debug('host received:', {
+      data,
+      ...decrypted,
+      isKnown: this._isPlayerKnown(data.uid),
+      hasGame: Boolean(this.currentGame),
+    });
 
     if (this.currentGame) {
       if (!this._isPlayerKnown(data.uid)) {
@@ -102,6 +97,10 @@ export class GameHost extends EphemeralConnection {
       }
 
       switch (decrypted.type) {
+        case 'SYN':
+          this._ack(data.uid);
+
+          return this._broadcastPlayerList();
         case 'JOIN':
           return this._sendState(data.uid);
         case 'REQUEST_STATE':
@@ -125,6 +124,8 @@ export class GameHost extends EphemeralConnection {
     }
 
     switch (decrypted.type) {
+      case 'SYN':
+        return this._ack(data.uid);
       case 'JOIN':
         if (this.players.length <= MAX_PLAYERS) {
           return this._addPlayer(decrypted, data.uid);
@@ -238,11 +239,11 @@ export class GameHost extends EphemeralConnection {
       publicKey: fromHex(publicKeyAsHex),
     };
 
-    this._broadcastJoin();
+    this._broadcastPlayerList();
   }
 
   @action
-  _broadcastJoin() {
+  _broadcastPlayerList() {
     let serializablePlayers = this.players.map((player) => ({
       id: player.publicKeyAsHex,
       name: player.name,
@@ -303,7 +304,7 @@ export class GameHost extends EphemeralConnection {
 
       await Promise.all(promises);
 
-      this._broadcastJoin();
+      this._broadcastPlayerList();
 
       this.players.map((player) => (player.onlineCheck = undefined));
     }

@@ -4,6 +4,9 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { waitFor } from '@ember/test-waiters';
 
+import { timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
+import { taskFor } from 'ember-concurrency-ts';
 import RSVP from 'rsvp';
 
 import { isDestroyed } from 'pinochle/utils/container';
@@ -79,10 +82,22 @@ export class GameGuest extends EphemeralConnection {
 
   @action
   async checkHost() {
-    await this.send({ type: 'SYN' });
+    this._checkHost.perform();
 
     return this.hostExists.promise;
   }
+
+  @task
+  _checkHost = taskFor(async () => {
+    let backoff = 1;
+
+    while (true) {
+      await timeout(1000 * backoff);
+      await this.send({ type: 'SYN' });
+
+      backoff = backoff * 1.5;
+    }
+  });
 
   @action
   async joinHost(name: string) {
@@ -104,7 +119,6 @@ export class GameGuest extends EphemeralConnection {
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
     if (isDestroyed(this)) return;
-    // console.log('guest', decrypted, data.uid);
 
     switch (decrypted.type) {
       case 'ACK':
