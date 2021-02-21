@@ -32,27 +32,87 @@
     ////////////////////////////////////////
     {
       "packagePatterns": ["^@babel*"],
+      "schedule": ["after 9pm on sunday"],
       "groupName": "Babel Transpilation"
     },
     {
       "packagePatterns": ["^@ember-data*"],
+      "schedule": ["after 9pm on sunday"],
       "groupName": "Ember Data"
     },
     {
       "packagePatterns": ["^@faltest*"],
+      "schedule": ["after 9pm on sunday"],
       "groupName": "FalTest Smoke Testing by CrowdStrike"
     },
     {
       "packagePatterns": ["^@types\/*"],
+      "schedule": ["after 9pm on sunday"],
       "groupName": "Type Definitions"
     },
     {
       "packagePatterns": ["^@embroider*"],
+      "schedule": ["after 9pm on sunday"],
       "groupName": "embroider"
     },
     {
-      "packagePatterns": [".*typescript-eslint.*"],
-      "groupName": "TypeScript ESLint"
+      "groupName": "Lint Dependencies",
+      "schedule": ["after 9pm on sunday"],
+      "packagesNames": [
+        "eslint",
+        "babel-eslint",
+        "ember-template-lint",
+        "prettier"      
+      ],
+      "packagePatterns": [
+        "eslint-plugin-.*",
+        "eslint-config-.*",
+        ".*typescript-eslint.*",
+        "^@commitlint\/*",
+        "^remark-*"
+      ],
+    },
+     // These are dependencies that come default when
+    // generating a new ember addon
+    {
+      "groupName": "Framework Dependencies",
+      "packageNames": [
+        "@ember/optional-features",
+        "@glimmer/component",
+        "@glimmer/tracking",
+        "ember-disable-prototype-extensions",
+        "ember-export-application-global",
+        "ember-load-initializers",
+        "ember-maybe-import-regenerator",
+        "ember-resolver",
+        "ember-source",
+        "ember-cli-page-title"
+      ]
+    },
+    {
+      "groupName": "CLI Dependencies",
+      "schedule": ["after 9pm on sunday"],
+      "packageNames": [
+        "broccoli-asset-rev",
+        "ember-cli",
+        "ember-auto-import",
+        "ember-cli-dependency-checker",
+        "ember-cli-inject-live-reload",
+        "ember-cli-sri",
+        "ember-cli-terser"
+      ]
+    },
+    {
+      "groupName": "Testing Dependencies",
+      "schedule": ["after 9pm on sunday"],
+      "packageNames": [
+        "qunit-dom",
+        "ember-try",
+        "ember-source-channel-url",
+        "ember-qunit",
+        "qunit",
+        "npm-run-all"
+      ]
     }
   ]
 }
