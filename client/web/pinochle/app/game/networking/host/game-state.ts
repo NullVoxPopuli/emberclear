@@ -1,6 +1,5 @@
-
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { assign, send } from 'xstate';
+import { actions, assign, send } from 'xstate';
 
 import { newDeck, splitDeck } from 'pinochle/game/deck';
 
@@ -71,30 +70,10 @@ function didPass(ctx: Context) {
   return ctx.bids[ctx.currentPlayer] === 'passed';
 }
 
-function bid() {
-  return assign({
-    bids: (ctx: Context, event: Bid) => {
-      ctx.bids[ctx.currentPlayer] = event.bid;
-
-      return ctx.bids;
-    },
-  });
-}
-
-function passBid() {
-  return assign({
-    bids: (ctx: Context) => {
-      ctx.bids[ctx.currentPlayer] = 'passed';
-
-      return ctx.bids;
-    },
-  });
-}
-
-function _nextPlayer(ctx: Context) {
+function _nextPlayer(ctx: Pick<Context, 'currentPlayer' | 'playerOrder'>) {
   let players = ctx.playerOrder;
   let current = players.indexOf(ctx.currentPlayer);
-  let nextIndex = current + (1 % players.length);
+  let nextIndex = (current + 1) % players.length;
 
   return ctx.playerOrder[nextIndex];
 }
@@ -107,26 +86,27 @@ function nextPlayer() {
   });
 }
 
-function nextBiddingPlayer() {
-  return assign({
-    currentPlayer: (ctx: Context) => {
-      let nextPlayer: undefined | string = undefined;
+function nextBiddingPlayer({ currentPlayer, playerOrder, bids }: Context) {
+  let nextPlayer: undefined | string = undefined;
 
-      for (let i = 0; i < ctx.playerOrder.length; i++) {
-        nextPlayer = _nextPlayer(ctx);
+  for (let i = 0; i < playerOrder.length; i++) {
+    nextPlayer = _nextPlayer({
+      currentPlayer: nextPlayer || currentPlayer,
+      playerOrder,
+    });
 
-        if (ctx.bids[nextPlayer] !== 'passed') {
-          break;
-        }
-      }
+    let bid = bids[nextPlayer];
 
-      if (!nextPlayer) {
-        throw new Error('all players are not allowed to pass');
-      }
+    if (bid !== 'passed') {
+      break;
+    }
+  }
 
-      return nextPlayer;
-    },
-  });
+  if (!nextPlayer) {
+    throw new Error('all players are not allowed to pass');
+  }
+
+  return nextPlayer;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -148,7 +128,9 @@ function playersWithBids(ctx: Context) {
 }
 
 function isBiddingOver(ctx: Context) {
-  return playersWithBids(ctx).length === 1;
+  return (
+    playersWithBids(ctx).length === 1 && ctx.playerOrder.length === Object.keys(ctx.bids).length
+  );
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -239,68 +221,92 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
           blind: blind,
         };
       }),
-      on: {
-        '': 'bidding',
-      },
+      always: 'bidding',
     },
     bidding: {
+      entry: actions.choose([
+        {
+          cond: isBiddingOver,
+          actions: send('__BIDDING_OVER__'),
+        },
+      ]),
       on: {
         BID: [
           {
             target: 'bidding',
-            actions: [bid, nextBiddingPlayer],
+            actions: assign<Context>((ctx, event: Bid) => {
+              let bids = {
+                ...ctx.bids,
+                [ctx.currentPlayer]: event.bid,
+              };
+              let currentPlayer = nextBiddingPlayer(ctx);
+
+              return {
+                bids,
+                currentPlayer,
+              };
+            }),
           },
         ],
         PASS: [
           {
-            cond: isBiddingOver,
-            // target: 'won-bid',
-          },
-          {
             target: 'bidding',
-            actions: [passBid, nextBiddingPlayer],
+            actions: assign<Context>((ctx) => {
+              let bids = {
+                ...ctx.bids,
+                [ctx.currentPlayer]: 'passed',
+              };
+
+              let currentPlayer = nextBiddingPlayer(ctx);
+
+              return {
+                bids,
+                currentPlayer,
+              };
+            }),
           },
         ],
+        __BIDDING_OVER__: 'won-bid',
       },
     },
-    // 'won-bid': {
-    //   id: 'winBid',
-    //   initial: 'pending-acceptance',
-    //   entry: ['setBidWinnerInfo', 'giveBlind'],
-    //   states: {
-    //     'pending-acceptance': {
-    //       on: {
-    //         ACCEPT: {
-    //           target: 'accepted',
-    //         },
-    //         FORFEIT: {
-    //           target: '#game.declare-meld',
-    //           actions: [assign<Context>({ isForfeiting: () => true })],
-    //         },
-    //       },
-    //     },
-    //     accepted: {
-    //       on: {
-    //         DECLARE_TRUMP: [
-    //           {
-    //             cond: hasBlind,
-    //             actions: setTrump,
-    //             target: '#winBid.discard',
-    //           },
-    //           {
-    //             target: '#game.declare-meld',
-    //             actions: setTrump,
-    //           },
-    //         ],
-    //       },
-    //     },
-    //     discard: {
-    //       on: {
-    //         FINISHED: '#game.declare-meld',
-    //       },
-    //     },
-    //   },
-    // },
+    'won-bid': {
+      //   id: 'winBid',
+      //   initial: 'pending-acceptance',
+      //   entry: ['setBidWinnerInfo', 'giveBlind'],
+      //   states: {
+      //     'pending-acceptance': {
+      //       on: {
+      //         ACCEPT: {
+      //           target: 'accepted',
+      //         },
+      //         FORFEIT: {
+      //           target: '#game.declare-meld',
+      //           actions: [assign<Context>({ isForfeiting: () => true })],
+      //         },
+      //       },
+      //     },
+      //     accepted: {
+      //       on: {
+      //         DECLARE_TRUMP: [
+      //           {
+      //             cond: hasBlind,
+      //             actions: setTrump,
+      //             target: '#winBid.discard',
+      //           },
+      //           {
+      //             target: '#game.declare-meld',
+      //             actions: setTrump,
+      //           },
+      //         ],
+      //       },
+      //     },
+      //     discard: {
+      //       on: {
+      //         FINISHED: '#game.declare-meld',
+      //       },
+      //     },
+      //   },
+    },
 
     // 'declare-meld': {
     //   on: {

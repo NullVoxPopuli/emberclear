@@ -111,7 +111,7 @@ export class GameRound {
   }
 
   @action
-  bid({ bid }: Bid) {
+  bid({ bid }: Pick<Bid, 'bid'>) {
     this.interpreter.send('BID', { bid });
   }
 
