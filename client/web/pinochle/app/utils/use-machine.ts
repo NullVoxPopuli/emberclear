@@ -120,7 +120,12 @@ export class Statechart<
     assert(ERROR_CANT_RECONFIGURE, !this[INTERPRETER]);
 
     if (config) {
-      this[MACHINE] = this[MACHINE].withConfig(config);
+      this[MACHINE] = this[MACHINE].withConfig({
+        ...config,
+        actions: {
+          ...config.actions,
+        },
+      });
     }
 
     return this;
@@ -157,6 +162,12 @@ export class Statechart<
     this.withContext(this[CONFIG]?.context);
     this.withConfig(this[CONFIG]?.config);
 
+    let state = this[CONFIG]?.initialState;
+
+    if (state) {
+      // this[MACHINE].resolveState(State.from(state));
+    }
+
     this[INTERPRETER] = interpret(this[MACHINE], {
       devTools: DEBUG,
       clock: {
@@ -175,7 +186,7 @@ export class Statechart<
 
     this.onTransition(this[CONFIG]?.onTransition);
 
-    this[INTERPRETER].start(this[CONFIG]?.initialState);
+    this[INTERPRETER].start();
   }
 
   /**

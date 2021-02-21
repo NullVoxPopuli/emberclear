@@ -84,12 +84,12 @@ export class GameHost extends EphemeralConnection {
 
     if (isDestroyed(this)) return;
 
-    console.debug('host received:', {
-      data,
-      ...decrypted,
-      isKnown: this._isPlayerKnown(data.uid),
-      hasGame: Boolean(this.currentGame),
-    });
+    // console.debug('host received:', {
+    //   from: data.uid,
+    //   ...decrypted,
+    //   isKnown: this._isPlayerKnown(data.uid),
+    //   hasGame: Boolean(this.currentGame),
+    // });
 
     if (this.currentGame) {
       if (!this._isPlayerKnown(data.uid)) {

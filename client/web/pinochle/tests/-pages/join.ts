@@ -62,7 +62,7 @@ export class JoinPage extends PageObject {
   async rejoin(gameId: string) {
     await visit(`/join/${gameId}`);
 
-    QUnit.assert.equal(currentURL(), `/join/${gameId}`, `arrives at /join/${gameId}`);
+    // QUnit.assert.equal(currentURL(), `/join/${gameId}`, `arrives at /join/${gameId}`);
 
     await waitUntil(() => {
       return currentURL() === `/game/${gameId}`;

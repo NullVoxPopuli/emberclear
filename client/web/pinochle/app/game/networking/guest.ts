@@ -82,7 +82,11 @@ export class GameGuest extends EphemeralConnection {
 
   @action
   async checkHost() {
-    this._checkHost.perform();
+    try {
+      this._checkHost.perform();
+    } catch {
+      /* host doesn't exist here. report error? */
+    }
 
     return this.hostExists.promise;
   }
@@ -90,8 +94,13 @@ export class GameGuest extends EphemeralConnection {
   @task
   _checkHost = taskFor(async () => {
     let backoff = 1;
+    let waitingForHost = true;
 
-    while (true) {
+    this.hostExists.promise.then(() => {
+      waitingForHost = false;
+    });
+
+    while (waitingForHost) {
       await timeout(1000 * backoff);
       await this.send({ type: 'SYN' });
 
@@ -117,6 +126,11 @@ export class GameGuest extends EphemeralConnection {
     if (isDestroyed(this)) return;
 
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
+
+    // console.log('guest received:', {
+    //   gameId: data.uid,
+    //   ...decrypted,
+    // });
 
     if (isDestroyed(this)) return;
 

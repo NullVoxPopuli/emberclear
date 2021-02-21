@@ -1,5 +1,5 @@
 import { currentURL, settled, visit, waitUntil } from '@ember/test-helpers';
-import { module, test } from 'qunit';
+import { module, skip, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
 import { timeout } from 'ember-concurrency';
@@ -26,7 +26,7 @@ module('Acceptance | join', function (hooks) {
 
   module('Has not previously joined a game', function () {
     module('there is no game', function () {
-      test('visiting /join', async function (assert) {
+      skip('visiting /join', async function (assert) {
         assert.expect(2);
 
         let host = await newCrypto();
