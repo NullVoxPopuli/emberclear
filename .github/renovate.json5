@@ -99,7 +99,8 @@
         "ember-cli-dependency-checker",
         "ember-cli-inject-live-reload",
         "ember-cli-sri",
-        "ember-cli-terser"
+        "ember-cli-terser",
+        "ember-cli-htmlbars"
       ]
     },
     {
@@ -111,7 +112,10 @@
         "ember-source-channel-url",
         "ember-qunit",
         "qunit",
-        "npm-run-all"
+        "npm-run-all",
+        "@xstate/test",
+        "ember-cli-page-object",
+        "fractal-page-object"
       ]
     }
   ]
