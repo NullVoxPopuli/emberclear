@@ -152,7 +152,7 @@
     "ember-percy": "1.6.0",
     "ember-purify": "5.0.1",
     "ember-qunit": "4.6.0",
-    "ember-render-helpers": "0.1.1",
+    "ember-render-helpers": "0.2.0",
     "ember-resolver": "8.0.2",
     "ember-router-helpers": "github:rwjblue/ember-router-helpers",
     "ember-service-worker": "9.0.1",
