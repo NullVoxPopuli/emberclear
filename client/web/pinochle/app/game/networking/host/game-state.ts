@@ -1,3 +1,4 @@
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { assign, send } from 'xstate';
 
@@ -34,6 +35,7 @@ export type Event =
 
 export interface Context {
   hasBlind: boolean;
+  blind: Card[];
   currentPlayer: string;
   playersById: Record<string, PlayerInfo & { hand: Card[] }>;
   playerOrder: string[];
@@ -192,19 +194,14 @@ function deal(context: Context) {
     player.hand = hands[i];
   }
 
-  return assign({
-    blind: () => remaining,
-    currentPlayer: () => playerOrder[0],
-  });
+  return { blind: remaining };
 }
 
 // TODO: Rotate from previousOrder
-function setPlayerOrder(context: Context, { previousOrder }: TODO) {
-  if (!previousOrder) {
-    return Object.keys(context.playersById);
-  }
+function nextPlayerOrder(context: Context) {
+  let order = Object.keys(context.playersById);
 
-  throw new Error('Not implemented');
+  return order;
 }
 
 export const statechart: MachineConfig<Context, Schema, Event> = {
@@ -223,20 +220,27 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
   // },
   states: {
     idle: {
-      entry: [
-        assign({
-          playerOrder: setPlayerOrder,
-        }),
-        send('__START_ROUND__'),
-      ],
-      on: {
-        __START_ROUND__: 'dealing',
-      },
+      entry: assign<Context>((context, event) => {
+        let order = nextPlayerOrder(context);
+
+        return {
+          playerOrder: order,
+          currentPlayer: order[0],
+        };
+      }),
+      always: 'dealing',
     },
     dealing: {
-      entry: [deal, send('DONE')],
+      entry: assign<Context>((context) => {
+        let { blind } = deal(context);
+
+        return {
+          hasBlind: blind.length > 0,
+          blind: blind,
+        };
+      }),
       on: {
-        DONE: 'bidding',
+        '': 'bidding',
       },
     },
     bidding: {
