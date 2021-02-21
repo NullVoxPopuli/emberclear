@@ -64,13 +64,13 @@
     "stylelint": "^13.8.0"
   },
   "engines": {
-    "node": "14.15.3"
+    "node": "14.15.5"
   },
   "ember": {
     "edition": "octane"
   },
   "volta": {
-    "node": "14.15.3",
+    "node": "14.15.5",
     "yarn": "1.22.10"
   },
   "dependencies": {
