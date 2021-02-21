@@ -58,7 +58,7 @@
     {
       "groupName": "Lint Dependencies",
       "schedule": ["after 9pm on sunday"],
-      "packagesNames": [
+      "packageNames": [
         "eslint",
         "babel-eslint",
         "ember-template-lint",
