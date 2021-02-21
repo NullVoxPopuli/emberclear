@@ -1708,10 +1708,10 @@
   dependencies:
     tslib "^2.0.1"
 
-"@fortawesome/ember-fontawesome@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.npmjs.org/@fortawesome/ember-fontawesome/-/ember-fontawesome-0.2.2.tgz#7d1d1817f999e82ef3dfe64475a3e02cfbe266e7"
-  integrity sha512-2Bb85kDZ4iTAWQoEqAC3jLZtGuaD4hkwmgrPNJUf+g2/BFaM7stWLByGzkiLs9XQ3G0T3C4veVX2YjQnE0wBiw==
+"@fortawesome/ember-fontawesome@0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@fortawesome/ember-fontawesome/-/ember-fontawesome-0.2.3.tgz#62d943d0771b8fe291aaed7a8a223c8d7d8b6f02"
+  integrity sha512-wRiP0k1D7J3ecQhrsGpg+j7PbrFOQtDsMuAUYpvbrh+hSmfO0TCbL/BkPRMtgUIvtJiIigomvQKsiGvPJsfSeQ==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.0"
     broccoli-file-creator "^2.1.1"
@@ -1723,7 +1723,7 @@
     ember-ast-helpers "0.3.5"
     ember-cli-babel "^7.21.0"
     ember-cli-htmlbars "^5.2.0"
-    ember-get-config "^0.2.4"
+    ember-get-config "^0.3.0"
     find-yarn-workspace-root "^2.0.0"
     glob "^7.1.2"
     rollup-plugin-node-resolve "^5.2.0"
@@ -1733,6 +1733,11 @@
   resolved "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.32.tgz#3436795d5684f22742989bfa08f46f50f516f259"
   integrity sha512-ux2EDjKMpcdHBVLi/eWZynnPxs0BtFVXJkgHIxXRl+9ZFaHPvYamAfCzeeQFqHRjuJtX90wVnMRaMQAAlctz3w==
 
+"@fortawesome/fontawesome-common-types@^0.2.34":
+  version "0.2.34"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.34.tgz#0a8c348bb23b7b760030f5b1d912e582be4ec915"
+  integrity sha512-XcIn3iYbTEzGIxD0/dY5+4f019jIcEIWBiHc3KrmK/ROahwxmZ/s+tdj97p/5K0klz4zZUiMfUlYP0ajhSJjmA==
+
 "@fortawesome/fontawesome-svg-core@^1.2.0":
   version "1.2.32"
   resolved "https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.32.tgz#da092bfc7266aa274be8604de610d7115f9ba6cf"
@@ -1740,19 +1745,19 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.32"
 
-"@fortawesome/free-brands-svg-icons@5.15.1":
-  version "5.15.1"
-  resolved "https://registry.npmjs.org/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.15.1.tgz#1dc0563f4036639e53d24b8e532ea78a53ca2250"
-  integrity sha512-pkTZIWn7iuliCCgV+huDfZmZb2UjslalXGDA2PcqOVUYJmYL11y6ooFiMJkJvUZu+xgAc1gZgQe+Px12mZF0CA==
+"@fortawesome/free-brands-svg-icons@5.15.2":
+  version "5.15.2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.15.2.tgz#d74e2540b5552b915d6bef719f17e361b70a8d65"
+  integrity sha512-YPlVjE1cEO+OJ9I9ay3TQ3I88+XkxMTYwnnddqAboxLhPNGncsHV0DjWOVLCyuAY66yPfyndWwVn4v7vuqsO1g==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.32"
+    "@fortawesome/fontawesome-common-types" "^0.2.34"
 
-"@fortawesome/free-solid-svg-icons@5.15.1":
-  version "5.15.1"
-  resolved "https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.1.tgz#e1432676ddd43108b41197fee9f86d910ad458ef"
-  integrity sha512-EFMuKtzRMNbvjab/SvJBaOOpaqJfdSap/Nl6hst7CgrJxwfORR1drdTV6q1Ib/JVzq4xObdTDcT6sqTaXMqfdg==
+"@fortawesome/free-solid-svg-icons@5.15.2":
+  version "5.15.2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.2.tgz#25bb035de57cf85aee8072965732368ccc8e8943"
+  integrity sha512-ZfCU+QjaFsdNZmOGmfqEWhzI3JOe37x5dF4kz9GeXvKn/sTxhqMtZ7mh3lBf76SvcYY5/GKFuyG7p1r4iWMQqw==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.32"
+    "@fortawesome/fontawesome-common-types" "^0.2.34"
 
 "@glimmer/compiler@^0.27.0":
   version "0.27.0"
@@ -7280,7 +7285,7 @@ ember-cli-babel@7.23.1:
     rimraf "^3.0.1"
     semver "^5.5.0"
 
-ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.16.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1:
+ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.16.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1:
   version "6.18.0"
   resolved "https://registry.npmjs.org/ember-cli-babel/-/ember-cli-babel-6.18.0.tgz#3f6435fd275172edeff2b634ee7b29ce74318957"
   integrity sha512-7ceC8joNYxY2wES16iIBlbPSxwKDBhYwC8drU3ZEvuPDMwVv1KzxCNu1fvxyFEBWhwaRNTUxSCsEVoTd9nosGA==
@@ -7979,13 +7984,13 @@ ember-gesture-modifiers@^0.2.0:
     ember-cli-htmlbars "^5.2.0"
     ember-modifier "^2.1.0"
 
-ember-get-config@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.npmjs.org/ember-get-config/-/ember-get-config-0.2.4.tgz#118492a2a03d73e46004ed777928942021fe1ecd"
-  integrity sha1-EYSSoqA9c+RgBO13eSiUICH+Hs0=
+ember-get-config@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.3.0.tgz#a73a1a87b48d9dde4c66a0e52ed5260b8a48cfbd"
+  integrity sha512-0e2pKzwW5lBZ4oJnvu9qHOht4sP1MWz/m3hyz8kpSoMdrlZVf62LDKZ6qfKgy8drcv5YhCMYE6QV7MhnqlrzEQ==
   dependencies:
     broccoli-file-creator "^1.1.1"
-    ember-cli-babel "^6.3.0"
+    ember-cli-babel "^7.0.0"
 
 ember-getowner-polyfill@2.2.0:
   version "2.2.0"
