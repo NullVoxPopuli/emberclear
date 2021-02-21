@@ -21,7 +21,7 @@
     "@typescript-eslint/eslint-plugin": "4.11.1",
     "@typescript-eslint/parser": "4.11.1",
     "babel-eslint": "10.1.0",
-    "eslint": "7.16.0",
+    "eslint": "7.20.0",
     "eslint-config-prettier": "7.1.0",
     "eslint-plugin-decorator-position": "2.2.15",
     "eslint-plugin-ember": "10.1.1",
