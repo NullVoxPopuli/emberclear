@@ -14975,12 +14975,12 @@ qunit-assertions-extra@0.8.5:
   resolved "https://registry.npmjs.org/qunit-assertions-extra/-/qunit-assertions-extra-0.8.5.tgz#5440cf8176bd554af6fe108b75fb9e7604c88052"
   integrity sha512-R0EVlDpVaKLvosmaJk5W6w8epfzne0dv464Y3MI8qh2OZpuAmjbVp4wRZKjEsoJNvuVkL9+rr/zqf9vmpsFUBw==
 
-qunit-console-grouper@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/qunit-console-grouper/-/qunit-console-grouper-0.2.0.tgz#41ff6991b28dd53e1c76d83d75700afa5534d550"
-  integrity sha512-HPoUlD3AKFSuucAt1GsZCcrG+u0c3fw/1/L5QhZZfmwBshXnK8ejlfwMGKFOiNV8pTpNajccKYxmKvHz8JJIIg==
+qunit-console-grouper@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/qunit-console-grouper/-/qunit-console-grouper-0.3.0.tgz#6b13de524fdb080af9519ca30d428d1c1d815f4a"
+  integrity sha512-uHg5kcjyEGX85Rh9mimWoXsqeGmJZxfNLqmVxA5O2xJW+JAlQ0r0JFA07lHqlOQcegs5CAhvioKUXpjicDra6g==
   dependencies:
-    broccoli-funnel "^2.0.2"
+    broccoli-funnel "^3.0.3"
 
 qunit-dom@1.6.0, qunit-dom@^1.4.0, qunit-dom@^1.6.0:
   version "1.6.0"
