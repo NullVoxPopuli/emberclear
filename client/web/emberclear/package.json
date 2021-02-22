@@ -148,7 +148,7 @@
     "ember-maybe-import-regenerator": "0.1.6",
     "ember-mobile-menu": "2.1.1",
     "ember-modifier": "2.1.1",
-    "ember-named-blocks-polyfill": "0.2.3",
+    "ember-named-blocks-polyfill": "0.2.4",
     "ember-percy": "1.6.0",
     "ember-purify": "5.0.1",
     "ember-qunit": "4.6.0",
