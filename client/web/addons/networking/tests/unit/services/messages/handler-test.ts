@@ -10,7 +10,7 @@ import {
   attributesForContact,
   clearLocalStorage,
   setupCurrentUser,
-} from '../../../../../local-account/addon-test-support';
+} from '@emberclear/local-account/test-support';
 
 module('Unit | Service | messages/handler', function (hooks) {
   setupTest(hooks);

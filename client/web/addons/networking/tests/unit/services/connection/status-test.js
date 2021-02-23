@@ -8,7 +8,7 @@ import {
   STATUS_CONNECTING,
   STATUS_DEGRADED,
   STATUS_UNKNOWN,
-} from 'emberclear/utils/connection/connection-pool';
+} from '@emberclear/networking/utils/connection/connection-pool';
 
 import { getService } from '@emberclear/test-helpers/test-support';
 

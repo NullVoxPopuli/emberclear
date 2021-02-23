@@ -7,9 +7,12 @@
       "@emberclear/networking": ["../declarations"],
       "@emberclear/networking/*": ["../declarations/*"],
       "@emberclear/networking/test-support": ["."],
-      "@emberclear/networking/test-support/*": ["./*"]
+      "@emberclear/networking/test-support/*": ["./*"],
+
+      "*": ["../types/*"]
     }
   },
+  "include": [".", "../types"],
   "references": [
     { "path": "../addon" }
   ]

@@ -10,7 +10,7 @@ import {
   clearLocalStorage,
   createContact,
   setupCurrentUser,
-} from '../../../../../local-account/addon-test-support';
+} from '@emberclear/local-account/test-support';
 
 import type { Identity } from '@emberclear/local-account';
 import type { Message } from '@emberclear/networking';
