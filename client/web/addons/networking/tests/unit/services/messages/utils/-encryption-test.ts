@@ -1,3 +1,5 @@
+// TODO:
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { module, test } from 'qunit';
 
 import { generateAsymmetricKeys } from '@emberclear/crypto/workers/crypto/utils/nacl';
