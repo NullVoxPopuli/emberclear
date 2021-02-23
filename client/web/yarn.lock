@@ -1774,7 +1774,7 @@
     "@glimmer/wire-format" "^0.27.0"
     simple-html-tokenizer "^0.3.0"
 
-"@glimmer/component@1.0.3", "@glimmer/component@^1.0.1", "@glimmer/component@^1.0.2":
+"@glimmer/component@1.0.3", "@glimmer/component@^1.0.2", "@glimmer/component@^1.0.3":
   version "1.0.3"
   resolved "https://registry.npmjs.org/@glimmer/component/-/component-1.0.3.tgz#38c26fc4855fd7ad0e0816d18d80d32c578e5140"
   integrity sha512-GD3gcN+Pr2flmxkt2lm5K86jwX+KRD9QQpNH+wiEQGjBXOzd46+XD5npH1sRByqLYml9rW4klflcrEfNb7dnQw==
@@ -1948,7 +1948,7 @@
     "@handlebars/parser" "^1.1.0"
     simple-html-tokenizer "^0.5.10"
 
-"@glimmer/tracking@1.0.3", "@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.1", "@glimmer/tracking@^1.0.2":
+"@glimmer/tracking@1.0.3", "@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.1", "@glimmer/tracking@^1.0.2", "@glimmer/tracking@^1.0.3":
   version "1.0.3"
   resolved "https://registry.npmjs.org/@glimmer/tracking/-/tracking-1.0.3.tgz#8b9b42aff6c206edeaaea178a95acc1eff62e61e"
   integrity sha512-21WR13vPdzt1IQ6JmPPAu4szjV9yKdmLHV3nD0MLDj6/EoYv1c2PqpFBBlp++6xW8OnyDa++cQ8OFoQDP+MRpA==
@@ -3889,6 +3889,11 @@ babel-plugin-htmlbars-inline-precompile@^4.1.0, babel-plugin-htmlbars-inline-pre
   version "4.2.1"
   resolved "https://registry.npmjs.org/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-4.2.1.tgz#9a367f8d7ecb9fb2c2e886edfe285caf7cb9766d"
   integrity sha512-MCJXk+1R0YjlF/F52eDbhJTpsnqRVYsPYVP9d0jEu7E46AcRPEWDL5tfSweiQWHLKG017BIedATb91KcIoT3zA==
+
+babel-plugin-htmlbars-inline-precompile@^4.2.1:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-4.3.0.tgz#34b6f271def577cbf34193249925061e9ccf5fe4"
+  integrity sha512-IBQn7pR+7PU9HdTpkOWL1PmiET8afK2G4ztBGyr8kLMjYPwcydh9X5YmzVpwWVfS9RZVU10m0mgbom+lwhxy4w==
 
 babel-plugin-istanbul@^6.0.0:
   version "6.0.0"
@@ -7267,7 +7272,7 @@ ember-cli-babel@7.20.5:
     rimraf "^3.0.1"
     semver "^5.5.0"
 
-ember-cli-babel@7.23.1:
+ember-cli-babel@7.23.1, ember-cli-babel@^7.23.1:
   version "7.23.1"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.23.1.tgz#d1517228ede08a5d4b045c78a7429728e956b30b"
   integrity sha512-qYggmt3hRs6QJ6cRkww3ahMpyP8IEV2KFrIRO/Z6hu9MkE/8Y28Xd5NjQl6fPV3oLoG0vwuHzhNe3Jr7Wec8zw==
@@ -7499,6 +7504,27 @@ ember-cli-htmlbars@^4.0.1, ember-cli-htmlbars@^4.0.9, ember-cli-htmlbars@^4.2.0,
     strip-bom "^4.0.0"
     walk-sync "^2.0.2"
 
+ember-cli-htmlbars@^5.3.2:
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.3.2.tgz#d0e1a4ccd2e7c6f91be51ea0cc1ef7650a9b67e7"
+  integrity sha512-S/spDVzBxkdMhnjiT6gG9xqpM9sT0Z7HskWSvSIAAW1sQsKPOCfRYp/1CqJ3+V5aX8ct0j5aHsdRanQYyHya2w==
+  dependencies:
+    "@ember/edition-utils" "^1.2.0"
+    babel-plugin-htmlbars-inline-precompile "^4.2.1"
+    broccoli-debug "^0.6.5"
+    broccoli-persistent-filter "^3.1.2"
+    broccoli-plugin "^4.0.3"
+    common-tags "^1.8.0"
+    ember-cli-babel-plugin-helpers "^1.1.1"
+    fs-tree-diff "^2.0.1"
+    hash-for-dep "^1.5.1"
+    heimdalljs-logger "^0.1.10"
+    json-stable-stringify "^1.0.1"
+    semver "^7.3.4"
+    silent-error "^1.1.1"
+    strip-bom "^4.0.0"
+    walk-sync "^2.2.0"
+
 ember-cli-inject-live-reload@2.0.2, ember-cli-inject-live-reload@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/ember-cli-inject-live-reload/-/ember-cli-inject-live-reload-2.0.2.tgz#95edb543b386239d35959e5ea9579f5382976ac7"
@@ -7669,6 +7695,22 @@ ember-cli-typescript@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/ember-cli-typescript/-/ember-cli-typescript-4.0.0.tgz#690f0cd3d15f4a69ae6d89f25b70b5997ae59161"
   integrity sha512-ZwnBbBJ0yAIKq4FVgNFkxfMwqJhw6PyT45Enp2RvWIgzgaYCId8brrSgg3tvVWWjA7N5hiT4Ilyz5jrQwrnU1Q==
+  dependencies:
+    ansi-to-html "^0.6.6"
+    broccoli-stew "^3.0.0"
+    debug "^4.0.0"
+    execa "^4.0.0"
+    fs-extra "^9.0.1"
+    resolve "^1.5.0"
+    rsvp "^4.8.1"
+    semver "^7.3.2"
+    stagehand "^1.0.0"
+    walk-sync "^2.2.0"
+
+ember-cli-typescript@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-typescript/-/ember-cli-typescript-4.1.0.tgz#2ff17be2e6d26b58c88b1764cb73887e7176618b"
+  integrity sha512-zSuKG8IQuYE3vS+c7V0mHJqwrN/4Wo9Wr50+0NUjnZH3P99ChynczQHu/P7WSifkO6pF6jaxwzf09XzWvG8sVw==
   dependencies:
     ansi-to-html "^0.6.6"
     broccoli-stew "^3.0.0"
@@ -8111,18 +8153,18 @@ ember-intl@5.6.2:
     mkdirp "^1.0.4"
     silent-error "^1.1.1"
 
-ember-jsqr@0.9.29:
-  version "0.9.29"
-  resolved "https://registry.npmjs.org/ember-jsqr/-/ember-jsqr-0.9.29.tgz#98fe8c871b234ef63793f9b43eda574a502ead30"
-  integrity sha512-a89VC0NMU/JqIcsKyyrlVnPc/NWbjJLwsCx4mEB21KKevpbu+k6zFyHhqzUhJwv3w+l7w66WHndTiOr+XpFsdA==
+ember-jsqr@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-1.0.6.tgz#7abed01103b070a6cbf760c7be4c13ae815dbe69"
+  integrity sha512-/FR62Qht68a3Z/Ln1Arjjxcl/rQ2vDAcZMaayLaoqF82y6EmGNYnx28A4FLTm+O05GBUVTV7chF+8+1nupBsNQ==
   dependencies:
-    "@glimmer/component" "^1.0.1"
-    "@glimmer/tracking" "^1.0.1"
-    ember-auto-import "^1.6.0"
-    ember-cli-babel "^7.22.1"
-    ember-cli-htmlbars "^5.3.1"
-    ember-cli-typescript "^3.1.4"
-    ember-modifier "^2.1.0"
+    "@glimmer/component" "^1.0.3"
+    "@glimmer/tracking" "^1.0.3"
+    ember-auto-import "^1.10.1"
+    ember-cli-babel "^7.23.1"
+    ember-cli-htmlbars "^5.3.2"
+    ember-cli-typescript "^4.1.0"
+    ember-modifier "^2.1.1"
     jsqr "^1.3.1"
 
 ember-keyboard@6.0.2:
