@@ -53,10 +53,10 @@
     "@emberclear/networking": "*",
     "@emberclear/ui": "*",
     "ember-concurrency": "1.3.0",
-    "ember-concurrency-async": "0.3.2",
+    "ember-concurrency-async": "1.0.0",
     "ember-concurrency-decorators": "2.0.3",
     "ember-concurrency-test-waiter": "0.4.0",
-    "ember-concurrency-ts": "0.2.0",
+    "ember-concurrency-ts": "0.2.2",
     "ember-tracked-local-storage": "*",
     "emojis": "1.0.10",
     "hammerjs": "2.0.8",
@@ -64,7 +64,7 @@
     "prismjs-components-loader": "3.0.1",
     "showdown": "1.9.1",
     "toastify-js": "1.9.3",
-    "url-parse": "1.5.0"
+    "url-parse": "1.5.1"
   },
   "devDependencies": {
     "@babel/preset-typescript": "7.12.17",
