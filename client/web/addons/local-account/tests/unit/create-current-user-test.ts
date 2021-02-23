@@ -39,13 +39,13 @@ module('TestHelper | create-current-user', function (hooks) {
   });
 
   test('the user is set on the identity service', async function (assert) {
-    const before = getService('current-user').record;
+    const before = getService('current-user').__record__;
 
     assert.notOk(before);
 
     const user = await createCurrentUser();
 
-    const after = getService('current-user').record;
+    const after = getService('current-user').__record__;
 
     assert.deepEqual(after, user);
   });

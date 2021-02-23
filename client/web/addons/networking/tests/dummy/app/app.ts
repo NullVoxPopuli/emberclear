@@ -1,3 +1,5 @@
+import './with-test-waiter';
+
 import Application from '@ember/application';
 
 import config from 'dummy/config/environment';

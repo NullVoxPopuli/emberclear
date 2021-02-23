@@ -3,14 +3,13 @@ import { setupTest } from 'ember-qunit';
 
 import { v4 as uuid } from 'uuid';
 
-import { TARGET, TYPE } from '@emberclear/networking/models/message';
-import { getService, getStore, stubService } from '@emberclear/test-helpers/test-support';
-
 import {
   attributesForContact,
   clearLocalStorage,
   setupCurrentUser,
-} from '../../../../../local-account/addon-test-support';
+} from '@emberclear/local-account/test-support';
+import { TARGET, TYPE } from '@emberclear/networking/models/message';
+import { getService, getStore, stubService } from '@emberclear/test-helpers/test-support';
 
 module('Unit | Service | messages/handler', function (hooks) {
   setupTest(hooks);
