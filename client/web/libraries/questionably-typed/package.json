@@ -19,7 +19,7 @@
     "@types/ember": "3.16.2",
     "ember-cli-htmlbars": "^5.0.0",
     "ember-concurrency": "2.0.2",
-    "ember-concurrency-ts": "0.2.0",
+    "ember-concurrency-ts": "0.2.2",
     "ember-concurrency-test-waiter": "0.4.0",
     "@html-next/vertical-collection": "2.0.0"
   },
