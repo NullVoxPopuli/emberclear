@@ -75,7 +75,7 @@
     "@ember/edition-utils": "1.2.0",
     "@ember/optional-features": "2.0.0",
     "@ember/render-modifiers": "1.0.2",
-    "@ember/test-helpers": "2.2.1",
+    "@ember/test-helpers": "2.2.3",
     "@emberclear/config": "*",
     "@emberclear/eslint": "*",
     "@emberclear/questionably-typed": "*",
