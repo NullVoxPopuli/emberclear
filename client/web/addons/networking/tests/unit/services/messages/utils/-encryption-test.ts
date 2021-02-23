@@ -30,11 +30,11 @@ module('Integration | Send/Receive Encryption', function (hooks) {
   });
 
   test('round-trip encrypt-decrypt should return the same message', async function (assert) {
-    const message: TODO = {
+    const message = {
       body: 'hi',
-    };
+    } as any;
 
-    const payload = toPayloadJson(message, alice as TODO);
+    const payload = toPayloadJson(message, alice as any);
     const encrypted = await encryptForSocket(payload, bob, alice);
     const fakeSocketMessage = { message: encrypted, uid: toHex(alice.publicKey) };
     const decrypted = await decryptFromSocket(fakeSocketMessage, bob.privateKey);
