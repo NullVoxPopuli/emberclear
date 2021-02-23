@@ -3,14 +3,13 @@ import { setupTest } from 'ember-qunit';
 
 import { v4 as uuid } from 'uuid';
 
-import { TARGET, TYPE } from '@emberclear/networking/models/message';
-import { getService, stubService, waitUntil } from '@emberclear/test-helpers/test-support';
-
 import {
   clearLocalStorage,
   createContact,
   setupCurrentUser,
 } from '@emberclear/local-account/test-support';
+import { TARGET, TYPE } from '@emberclear/networking/models/message';
+import { getService, stubService, waitUntil } from '@emberclear/test-helpers/test-support';
 
 import type { Identity } from '@emberclear/local-account';
 import type { Message } from '@emberclear/networking';
