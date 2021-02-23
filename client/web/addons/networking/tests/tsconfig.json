@@ -10,12 +10,9 @@
       "dummy/tests/*": ["./*"],
       "dummy/*": ["./dummy/app/*"],
       "@emberclear/networking": ["../declarations"],
-      "@emberclear/networking/*": ["../declarations/*"],
-
-      "*": ["../types/*"]
+      "@emberclear/networking/*": ["../declarations/*"]
     }
   },
-  "include": [".", "../types"],
   "references": [
     { "path": "../../test-helpers" },
     { "path": "../addon" },

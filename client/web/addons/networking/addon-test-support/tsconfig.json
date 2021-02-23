@@ -13,7 +13,5 @@
     }
   },
   "include": [".", "../types"],
-  "references": [
-    { "path": "../addon" }
-  ]
+  "references": [{ "path": "../addon" }]
 }
