@@ -8060,10 +8060,10 @@ ember-concurrency-test-waiter@0.4.0, ember-concurrency-test-waiter@^0.4.0:
   dependencies:
     ember-cli-babel "^7.22.1"
 
-ember-concurrency-ts@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/ember-concurrency-ts/-/ember-concurrency-ts-0.2.0.tgz#0daa8d4334ec6dd78345d940615be9e45826b35a"
-  integrity sha512-cvdzoSzWWdtdGHOy4qisU0FI9F6Kz0/ZKXXszjW2fIE/dxeVuSKvnIppMnZO6K48L22v/Nq99Hj0OY4yCnz34A==
+ember-concurrency-ts@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-ts/-/ember-concurrency-ts-0.2.2.tgz#794013a9b7b3b59e256d98c69851ffc740ef18f1"
+  integrity sha512-03/NEhXczd93tpg0ycusj3bgXZS15wymU0K8eMvWftyzWS4B+UE03RzimOFrtOxJmE2mNj64hLJUZR9P8LelFw==
   dependencies:
     ember-cli-babel "^7.19.0"
     ember-cli-htmlbars "^4.3.1"
