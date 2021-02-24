@@ -3,8 +3,8 @@ import { module, skip, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 
 import { GameRound } from 'pinochle/game/networking/host/game-round';
+import { Trick } from 'pinochle/game/trick';
 import { availableMoves } from 'pinochle/game/utils/move-validation';
-import { Trick } from 'pinochle/tests/../app/game/trick';
 
 import { newCrypto } from '@emberclear/crypto/test-support';
 
