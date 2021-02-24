@@ -23,4 +23,6 @@ export type Serializable =
   | Serializable[]
   | { [key: string]: Serializable };
 
-export type EncryptableObject = Record<string, Serializable>;
+export interface EncryptableObject {
+  [key: string]: Serializable;
+}

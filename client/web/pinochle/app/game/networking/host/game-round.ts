@@ -55,6 +55,7 @@ export class GameRound {
           hasBlind: false,
           currentPlayer: '',
           bids: {},
+          blind: [],
           playerOrder: [],
           melds: {},
           isForfeiting: false,

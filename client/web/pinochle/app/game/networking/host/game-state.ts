@@ -23,13 +23,15 @@ export type Event =
   | { type: 'WON_BID' }
   | DeclareTrump
   | StartEvent
+  | { type: 'DISCARD'; cards: Card[] }
+  | { type: 'READY'; player: string }
   | { type: 'FINISHED' }
   | { type: 'ACCEPT' }
   | { type: '__START_ROUND' }
   | { type: 'PLAY_CARD'; card: Card }
   | { type: 'TRICK_CONTINUES' }
   | { type: 'TRICK_ENDS' }
-  | { type: 'SUBMIT_MELD'; player: string; meld: number }
+  | { type: 'SUBMIT_MELD'; player: string }
   | { type: 'FORFEIT' };
 
 export interface Context {
@@ -192,7 +194,7 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
   initial: 'idle' as TODO /* initial has incorrect type? or MachineConfig takes extra type args? */,
   states: {
     idle: {
-      entry: assign<Context>((context, event) => {
+      entry: assign<Context>((context) => {
         let order = nextPlayerOrder(context);
 
         return {

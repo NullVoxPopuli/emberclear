@@ -5,6 +5,16 @@ const POINTS = ['king', 'ace', 10];
 export class Trick {
   private stack: Card[] = [];
 
+  static from(stack: Card[]) {
+    let trick = new Trick(stack.length);
+
+    for (let card of stack) {
+      trick.add(card);
+    }
+
+    return trick;
+  }
+
   constructor(public maxSize: number) {}
 
   get points() {

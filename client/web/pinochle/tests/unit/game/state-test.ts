@@ -4,13 +4,16 @@ import { setupTest } from 'ember-qunit';
 
 import { GameRound } from 'pinochle/game/networking/host/game-round';
 import { availableMoves } from 'pinochle/game/utils/move-validation';
+import { Trick } from 'pinochle/tests/../app/game/trick';
 
 import { newCrypto } from '@emberclear/crypto/test-support';
 
 import type { PlayerInfo } from 'pinochle/game/networking/host/types';
 
-// eslint-disable-next-line ember/new-module-imports
-const debugAssert = Ember.assert as typeof Ember.assert;
+function debugAssert(str: string, cond: unknown): asserts cond {
+  // eslint-disable-next-line ember/new-module-imports
+  return Ember.assert(str, cond);
+}
 
 module('Unit | Game | Host | GameRound', function (hooks) {
   setupTest(hooks);
@@ -124,23 +127,27 @@ module('Unit | Game | Host | GameRound', function (hooks) {
         assert.deepEqual(game.interpreter.state.value, 'declare-meld');
 
         // async, not dependent on turn order
-        game.interpreter.send({ type: 'SUBMIT_MELD', id: players[0].id });
-        game.interpreter.send({ type: 'SUBMIT_MELD', id: players[1].id });
-        game.interpreter.send({ type: 'SUBMIT_MELD', id: players[2].id });
+        game.interpreter.send({ type: 'SUBMIT_MELD', player: players[0].id });
+        game.interpreter.send({ type: 'SUBMIT_MELD', player: players[1].id });
+        game.interpreter.send({ type: 'SUBMIT_MELD', player: players[2].id });
 
         // async, not dependent on turn order
-        game.interpreter.send({ type: 'READY', id: players[0].id });
-        game.interpreter.send({ type: 'READY', id: players[1].id });
-        game.interpreter.send({ type: 'READY', id: players[2].id });
+        game.interpreter.send({ type: 'READY', player: players[0].id });
+        game.interpreter.send({ type: 'READY', player: players[1].id });
+        game.interpreter.send({ type: 'READY', player: players[2].id });
 
         // there are 15 rounds of trick taking in a 3 player game
         let trump = game.context.trump;
 
+        debugAssert('expected trump to exist', trump);
+
         for (let trick = 0; trick < 15; trick++) {
           for (let player = 0; player < players.length; player++) {
-            let trick = game.context.trick;
+            let trickCards = game.context.trick;
 
-            debugAssert('expected trick to exist', trick);
+            debugAssert('expected trick to exist', trickCards);
+
+            let trick = Trick.from(trickCards);
 
             let hand = game.context.playersById[game.context.currentPlayer].hand;
             let validMoves = availableMoves(trick, hand, trump);

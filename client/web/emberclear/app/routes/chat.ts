@@ -1,13 +1,14 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
+import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
 import type { CurrentUserService } from '@emberclear/local-account';
 import type { ConnectionService, Message } from '@emberclear/networking';
 import type RedirectManager from 'emberclear/services/redirect-manager';
 
-export interface IModel {
-  messages: Message[];
+export interface Model {
+  messages: ArrayProxy<Message>;
 }
 
 export default class ChatRoute extends Route {
@@ -28,7 +29,7 @@ export default class ChatRoute extends Route {
     await this.transitionTo('setup');
   }
 
-  async model() {
+  async model(): Promise<Model> {
     const messages = await this.store.findAll('message', {
       backgroundReload: true,
       include: 'sender',
