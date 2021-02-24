@@ -9,7 +9,6 @@ import { scanQR } from 'ember-jsqr/test-support';
 import RSVP from 'rsvp';
 import { Machine } from 'xstate';
 
-import NavigatorService from 'emberclear/services/browser/navigator';
 import { testShortestPaths } from 'emberclear/tests/-temp/qunit-xstate-test';
 import { setupEmberclearTest } from 'emberclear/tests/helpers';
 import { page } from 'emberclear/tests/helpers/pages/qr';
@@ -230,7 +229,7 @@ module('Acceptance | QR | Login | Sender', function (hooks) {
       },
     };
 
-    class TestNavigator extends NavigatorService {
+    class TestNavigator extends Service {
       get mediaDevices(): any {
         return {
           getUserMedia() {
