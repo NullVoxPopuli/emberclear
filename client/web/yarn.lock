@@ -2521,10 +2521,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/dompurify@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/@types/dompurify/-/dompurify-2.1.0.tgz#b4fd9709871a543f1f0ce07766d7eb3e1469cc97"
-  integrity sha512-6j8Q+uDWeUzmDlvNLaU8svwx1FKgrHEElMo+aIqvxQ+rhR/TGHWuu0nSexa2OoQ6r52pYVX8QzHEBOuhE6GtYA==
+"@types/dompurify@2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@types/dompurify/-/dompurify-2.2.1.tgz#eebf3af8afe2f577a53acab9d98a3a4cb04bbbe7"
+  integrity sha512-3JwbEeRVQ3n6+JgBW/hCdkydRk9/vWT+UEglcXEJqLJEcUganDH37zlfLznxPKTZZfDqA9K229l1qN458ubcOQ==
   dependencies:
     "@types/trusted-types" "*"
 
@@ -2585,35 +2585,10 @@
     "@types/jquery" "*"
     "@types/rsvp" "*"
 
-"@types/ember@*":
+"@types/ember@*", "@types/ember@3.16.4":
   version "3.16.4"
   resolved "https://registry.npmjs.org/@types/ember/-/ember-3.16.4.tgz#bfccd8ed198ca7bee09878a3423ca6e1a9caac17"
   integrity sha512-kCZNxuCofZN2sYUltfUmPegqAr1wvZ4b6aH0i8AsG+AsUiaWCDzVfCayMfr4CRUOhUiQ2VA9AOgnZT+JgBvjXQ==
-  dependencies:
-    "@types/ember__application" "*"
-    "@types/ember__array" "*"
-    "@types/ember__component" "*"
-    "@types/ember__controller" "*"
-    "@types/ember__debug" "*"
-    "@types/ember__engine" "*"
-    "@types/ember__error" "*"
-    "@types/ember__object" "*"
-    "@types/ember__polyfills" "*"
-    "@types/ember__routing" "*"
-    "@types/ember__runloop" "*"
-    "@types/ember__service" "*"
-    "@types/ember__string" "*"
-    "@types/ember__template" "*"
-    "@types/ember__test" "*"
-    "@types/ember__utils" "*"
-    "@types/htmlbars-inline-precompile" "*"
-    "@types/jquery" "*"
-    "@types/rsvp" "*"
-
-"@types/ember@3.16.3":
-  version "3.16.3"
-  resolved "https://registry.npmjs.org/@types/ember/-/ember-3.16.3.tgz#e2e9c24e56d8161ffcdbfa16d6a1e7e032bb557b"
-  integrity sha512-KkRs2F2dv6CuNfj9GFpJULL+8g+foJNEkOwSIqf5+RxaHjsg9NSVg9phTK4RItbndMyECCtOGOwWQAJ4cQgiiA==
   dependencies:
     "@types/ember__application" "*"
     "@types/ember__array" "*"
@@ -2809,10 +2784,10 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/hammerjs@2.0.36":
-  version "2.0.36"
-  resolved "https://registry.npmjs.org/@types/hammerjs/-/hammerjs-2.0.36.tgz#17ce0a235e9ffbcdcdf5095646b374c2bf615a4c"
-  integrity sha512-7TUK/k2/QGpEAv/BCwSHlYu3NXZhQ9ZwBYpzr9tjlPIL2C5BeGhH3DmVavRx3ZNyELX5TLC91JTz/cen6AAtIQ==
+"@types/hammerjs@2.0.39":
+  version "2.0.39"
+  resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.39.tgz#4be64bbacf3813c79c0dab895c6b0fdc7d5e513f"
+  integrity sha512-lYR2Y/tV2ujpk/WyUc7S0VLI0a9hrtVIN9EwnrNo5oSEJI2cK2/XrgwOQmXLL3eTulOESvh9qP6si9+DWM9cOA==
 
 "@types/htmlbars-inline-precompile@*":
   version "1.0.1"
@@ -2905,15 +2880,15 @@
   resolved "https://registry.npmjs.org/@types/phoenix/-/phoenix-1.5.1.tgz#1cee8eda69ca5b2eff48f0fe1833d9716a17fec2"
   integrity sha512-VPVQAOffPXztCAoLKTjSM+NqhD1gWow3XHF01gdLPeIWEQakoFjg5uGokq8BnX7KM00PWN1XnX5d4FMSxlVv3w==
 
-"@types/prismjs@1.16.2":
-  version "1.16.2"
-  resolved "https://registry.npmjs.org/@types/prismjs/-/prismjs-1.16.2.tgz#c130c977191c988cb35e97585da5d580948cc2d2"
-  integrity sha512-1M/j21xgTde7RPtpJVQebW5rzrquj7S+wnqt4x9uWrIPpr0Ya/uXypcqC2aUQL5gtLXFCKSH7GnjfAijMdfbuA==
+"@types/prismjs@1.16.3":
+  version "1.16.3"
+  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.3.tgz#73ae78b3e339777a1a1b7a8df89dcd6b8fe750c5"
+  integrity sha512-7lbX0Odbg9rnzXRdYdgPQZFkjd38QHpD6tvWxbLi6VXGQbXr054doixIS+TwftHP6afffA1zxCZrIcJRS/MkYQ==
 
-"@types/qrcode@1.3.5":
-  version "1.3.5"
-  resolved "https://registry.npmjs.org/@types/qrcode/-/qrcode-1.3.5.tgz#9c97cc2875f03e2b16a0d89856fc48414e380c38"
-  integrity sha512-92QMnMb9m0ErBU20za5Eqtf4lzUcSkk5w/Cz30q5qod0lWHm2loztmFs2EnCY06yT51GY1+m/oFq2D8qVK2Bjg==
+"@types/qrcode@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@types/qrcode/-/qrcode-1.4.0.tgz#103a93c6dfcbd022f9a9ca445e49a3477f799303"
+  integrity sha512-BwDnCjdZKVOyy6+SPJ4ph+0DAftZGn5JFCY/MhetdEQ8yF6+YndhJWlfdBP8vtMe0w5/FH29Xi6bnEwVWkU1LQ==
   dependencies:
     "@types/node" "*"
 
