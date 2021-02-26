@@ -21,7 +21,7 @@ export default class ConnectionManager extends Service {
   @service('connection/status') declare status: ConnectionStatus;
   @service declare currentUser: CurrentUserService;
 
-  declare connectionPool?: ConnectionPool<Connection, Relay>;
+  declare connectionPool?: ConnectionPool<Connection>;
 
   async getOpenGraph(url: string): Promise<OpenGraphData> {
     if (!this.connectionPool) {
@@ -72,7 +72,7 @@ export default class ConnectionManager extends Service {
     //   - should we prevent the ability to connect to the same relay
     //     multiple times
     //   - what happens if we can't mean our min-connections?
-    this.connectionPool = await pool<Connection, Relay>({
+    this.connectionPool = await pool<Connection>({
       endpoints: relays.toArray(),
 
       create: this.createConnection.bind(this),

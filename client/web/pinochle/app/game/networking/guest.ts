@@ -1,9 +1,16 @@
+import Ember from 'ember';
 import { cached, tracked } from '@glimmer/tracking';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { waitFor } from '@ember/test-waiters';
 
+import { timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
+import { taskFor } from 'ember-concurrency-ts';
 import RSVP from 'rsvp';
+
+import { isDestroyed } from 'pinochle/utils/container';
 
 import { toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
@@ -47,10 +54,15 @@ export class GameGuest extends EphemeralConnection {
    * Initialized upon receiving host game state
    */
   @tracked declare display: DisplayInfo;
+  @tracked declare gameId?: string;
 
   gameState = new GuestGameRound();
 
-  @tracked gameId?: string;
+  constructor(publicKeyAsHex: string) {
+    super(publicKeyAsHex);
+
+    this.gameId = this.target?.hex;
+  }
 
   get playerOrder() {
     return this.gameState.playerOrder;
@@ -71,10 +83,41 @@ export class GameGuest extends EphemeralConnection {
 
   @action
   async checkHost() {
-    await this.send({ type: 'SYN' });
+    try {
+      this._checkHost.perform();
+    } catch {
+      /* host doesn't exist here. report error? */
+    }
 
     return this.hostExists.promise;
   }
+
+  @task
+  _checkHost = taskFor(async () => {
+    let backoff = 1;
+    let waitingForHost = true;
+
+    this.hostExists.promise.then(() => {
+      waitingForHost = false;
+    });
+
+    while (waitingForHost) {
+      await timeout(1000 * backoff);
+
+      try {
+        await this.send({ type: 'SYN' });
+      } catch (e) {
+        // this is a healthcheck, we don't care about failures
+        console.debug(e);
+      }
+
+      backoff = backoff * 1.5;
+
+      if (Ember.testing && backoff > 5) {
+        break;
+      }
+    }
+  });
 
   @action
   async joinHost(name: string) {
@@ -89,16 +132,24 @@ export class GameGuest extends EphemeralConnection {
   }
 
   @action
+  @waitFor
   async onData(data: EncryptedMessage) {
+    if (isDestroyed(this)) return;
+
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
-    // console.log('guest', decrypted, data.uid);
+    // console.log('guest received:', {
+    //   gameId: data.uid,
+    //   ...decrypted,
+    // });
+
+    if (isDestroyed(this)) return;
 
     switch (decrypted.type) {
       case 'ACK':
         this.hostExists.resolve();
         this.gameId = data.uid;
-        this.sendToHex({ type: 'PRESENT' }, data.uid);
+        await this.sendToHex({ type: 'PRESENT' }, data.uid);
 
         return;
       case 'WELCOME':
@@ -128,7 +179,7 @@ export class GameGuest extends EphemeralConnection {
 
         return;
       case 'CONNECTIVITY_CHECK':
-        this.sendToHex({ type: 'PRESENT' }, data.uid);
+        await this.sendToHex({ type: 'PRESENT' }, data.uid);
 
         return;
       default:
@@ -173,7 +224,9 @@ export class GameGuest extends EphemeralConnection {
   @action
   redirectToGame() {
     if (this.router.currentRouteName !== 'game') {
-      this.router.transitionTo(`/game/${this.gameId}`);
+      if (this.gameId) {
+        this.router.transitionTo(`/game/${this.gameId}`);
+      }
     }
   }
 

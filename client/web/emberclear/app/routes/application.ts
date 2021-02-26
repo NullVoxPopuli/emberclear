@@ -4,12 +4,20 @@ import { inject as service } from '@ember/service';
 
 import { ensureRelays } from '@emberclear/networking';
 
+import type ArrayProxy from '@ember/array/proxy';
 import type StoreService from '@ember-data/store';
 import type { CurrentUserService } from '@emberclear/local-account';
+import type Channel from '@emberclear/local-account/models/channel';
+import type Contact from '@emberclear/local-account/models/contact';
 import type { ConnectionService, Message } from '@emberclear/networking';
 import type LocaleService from 'emberclear/services/locale';
 import type Notifications from 'emberclear/services/notifications';
 import type Settings from 'emberclear/services/settings';
+
+interface Model {
+  contacts: ArrayProxy<Contact>;
+  channels: ArrayProxy<Channel>;
+}
 
 export default class ApplicationRoute extends Route {
   @service declare store: StoreService;
@@ -32,7 +40,7 @@ export default class ApplicationRoute extends Route {
     await this.currentUser.load();
   }
 
-  async model() {
+  async model(): Promise<Model> {
     // While these models aren't used directly, we'll be reading
     // from cache deep in the component tree
     const [contacts, channels /*messages*/] = await Promise.all([

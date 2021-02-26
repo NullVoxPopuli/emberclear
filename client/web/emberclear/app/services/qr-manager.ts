@@ -9,8 +9,8 @@ import { SendDataConnection } from 'emberclear/services/connection/ephemeral/log
 export default class QRManager extends Service {
   login = {
     // eslint-disable-next-line @typescript-eslint/ban-types
-    async setupConnection(context: object, publicKey: string) {
-      let connection = await SendDataConnection.build(context, publicKey);
+    async setupConnection(context: object, publicKeyAsHex: string) {
+      let connection = await SendDataConnection.build(context, { publicKeyAsHex });
 
       await connection.establishContact();
 

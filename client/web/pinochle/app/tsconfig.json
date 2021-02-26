@@ -13,6 +13,8 @@
         "../../node_modules/@glimmer/tracking/dist/types"
       ],
 
+      "@ember/destroyable": ["../../node_modules/ember-destroyable-polyfill"],
+
       "*": ["../types/*"]
     }
   },

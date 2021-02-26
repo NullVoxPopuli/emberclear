@@ -1,3 +1,5 @@
+import type { EndpointInfo } from '@emberclear/networking/types';
+
 // min-connections are met
 export const STATUS_CONNECTED = 'connected';
 // initial attempt at achieving min-connections
@@ -17,7 +19,7 @@ export type STATUS =
   | typeof STATUS_DISCONNECTED
   | typeof STATUS_UNKNOWN;
 
-export interface PoolConfig<Connectable, EndpointInfo> {
+export interface PoolConfig<Connectable> {
   // send: <Args extends Array<any>>(instance, ...args: Args) => Promise<void>;
 
   // Available URLs / whatever that will be randomly selected when creating
@@ -57,22 +59,22 @@ export interface PoolConfig<Connectable, EndpointInfo> {
  * @param [PoolConfig] config;
  *
  */
-export async function pool<Connectable, EndpointInfo>(
-  config: PoolConfig<Connectable, EndpointInfo>
-): Promise<ConnectionPool<Connectable, EndpointInfo>> {
-  let connectionPool = new ConnectionPool<Connectable, EndpointInfo>(config);
+export async function pool<Connectable>(
+  config: PoolConfig<Connectable>
+): Promise<ConnectionPool<Connectable>> {
+  let connectionPool = new ConnectionPool<Connectable>(config);
 
   await connectionPool.hydrate();
 
   return connectionPool;
 }
 
-export class ConnectionPool<Connectable, EndpointInfo> {
-  private config: PoolConfig<Connectable, EndpointInfo>;
+export class ConnectionPool<Connectable> {
+  private config: PoolConfig<Connectable>;
 
   private connections: Connectable[] = [];
 
-  constructor(config: PoolConfig<Connectable, EndpointInfo>) {
+  constructor(config: PoolConfig<Connectable>) {
     this.config = config;
   }
 
@@ -106,9 +108,9 @@ export class ConnectionPool<Connectable, EndpointInfo> {
   async acquire(): Promise<Connectable> {
     await this.hydrate();
 
-    let psuedoBestIndex = Math.floor(Math.random() * this.activeConnections.length);
+    let pseudoBestIndex = Math.floor(Math.random() * this.activeConnections.length);
 
-    return this.activeConnections[psuedoBestIndex];
+    return this.activeConnections[pseudoBestIndex];
   }
 
   // TODO: we need a way to monitor status changes within
@@ -120,6 +122,12 @@ export class ConnectionPool<Connectable, EndpointInfo> {
 
     for (let i = 0; i < this.minConnections; i++) {
       let endpoint = this.nextEndpoint();
+
+      if (!endpoint) {
+        throw new Error(
+          `No available endpoint. Are too many minimum connections specified? Current: ${this.minConnections}`
+        );
+      }
 
       let connection = await this.config.create(endpoint);
 
@@ -141,6 +149,10 @@ export class ConnectionPool<Connectable, EndpointInfo> {
   }
 
   private nextEndpoint(): EndpointInfo {
+    if (this.config.endpoints.length === 0) {
+      throw new Error(`There are no endpoints in the connection pool`);
+    }
+
     return this.config.endpoints[0];
   }
 }

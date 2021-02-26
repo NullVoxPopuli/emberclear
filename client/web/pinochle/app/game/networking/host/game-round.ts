@@ -55,26 +55,27 @@ export class GameRound {
           hasBlind: false,
           currentPlayer: '',
           bids: {},
+          blind: [],
           playerOrder: [],
           melds: {},
           isForfeiting: false,
         },
         config: {
-          // actions: {
-          // sendState: this._sendState,
-          // sendWelcome: this._broadcastJoin,
-          // addPlayer: this._addPlayer,
-          // Networky things
-          // Game Actions
-          // deal: this._deal,
-          // },
+          actions: {
+            // sendState: this._sendState,
+            // sendWelcome: this._broadcastJoin,
+            // addPlayer: this._addPlayer,
+            // Networky things
+            // Game Actions
+            // deal: this._deal,
+          },
         },
       },
     };
   });
 
   get context() {
-    return this.interpreter.state?.context || ({} as Context);
+    return this.interpreter?.state?.context || ({} as Context);
   }
 
   get currentPlayer() {
@@ -111,7 +112,7 @@ export class GameRound {
   }
 
   @action
-  bid({ bid }: Bid) {
+  bid({ bid }: Pick<Bid, 'bid'>) {
     this.interpreter.send('BID', { bid });
   }
 
@@ -130,7 +131,7 @@ export class GameRound {
       currentPlayer,
       bid,
       trump,
-    } = this.interpreter.state.context;
+    } = this.interpreter.state?.context;
 
     let hands = handById(playersById);
 

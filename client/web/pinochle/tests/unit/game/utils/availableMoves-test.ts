@@ -80,4 +80,12 @@ module('Unit | Game | Utils | availableMoves', function () {
 
     assert.deepEqual(availableMoves(trick, hand, 'diamonds'), hand);
   });
+
+  test('can play card of equal value', function (assert) {
+    let trick = new Trick(3);
+
+    trick.add(new Card('spades', 'jack'));
+
+    assert.deepEqual(availableMoves(trick, hand, 'diamonds'), [spades.jack, spades.queen]);
+  });
 });

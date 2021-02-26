@@ -7,6 +7,10 @@
     "paths": {
       "emberclear/*": ["*"],
 
+      "ember-browser-services/*": [
+        "../../node_modules/ember-browser-services"
+      ],
+
       "*": ["../types/*"]
     }
   },

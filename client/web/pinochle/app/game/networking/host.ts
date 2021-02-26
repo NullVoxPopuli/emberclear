@@ -1,11 +1,14 @@
 import { cached } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { waitFor } from '@ember/test-waiters';
 
 import { timeout } from 'ember-concurrency';
 import { dropTask } from 'ember-concurrency-decorators';
 import { taskFor } from 'ember-concurrency-ts';
 import RSVP from 'rsvp';
 import { TrackedObject } from 'tracked-built-ins';
+
+import { isDestroyed } from 'pinochle/utils/container';
 
 import { fromHex, toHex } from '@emberclear/encoding/string';
 import { EphemeralConnection } from '@emberclear/networking';
@@ -32,12 +35,15 @@ const MAX_PLAYERS = 4;
 export class GameHost extends EphemeralConnection {
   playersById = new TrackedObject<Record<string, PlayerInfo>>();
 
+  shouldCheckConnectivity = true;
+
   declare currentGame: GameRound;
 
-  constructor(publicKey?: string) {
-    super(publicKey);
+  teardown() {
+    this.onlineChecker.cancelAll();
+    // this.currentGame?.interpreter
 
-    this.onlineChecker.perform();
+    super.teardown();
   }
 
   @cached
@@ -70,20 +76,20 @@ export class GameHost extends EphemeralConnection {
    *
    */
   @action
+  @waitFor
   async onData(data: EncryptedMessage) {
+    if (isDestroyed(this)) return;
+
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
+    if (isDestroyed(this)) return;
+
     // console.debug('host received:', {
-    //   data,
+    //   from: data.uid,
     //   ...decrypted,
     //   isKnown: this._isPlayerKnown(data.uid),
     //   hasGame: Boolean(this.currentGame),
     // });
-
-    switch (decrypted.type) {
-      case 'SYN':
-        return this._ack(data.uid);
-    }
 
     if (this.currentGame) {
       if (!this._isPlayerKnown(data.uid)) {
@@ -91,6 +97,10 @@ export class GameHost extends EphemeralConnection {
       }
 
       switch (decrypted.type) {
+        case 'SYN':
+          this._ack(data.uid);
+
+          return this._broadcastPlayerList();
         case 'JOIN':
           return this._sendState(data.uid);
         case 'REQUEST_STATE':
@@ -114,6 +124,8 @@ export class GameHost extends EphemeralConnection {
     }
 
     switch (decrypted.type) {
+      case 'SYN':
+        return this._ack(data.uid);
       case 'JOIN':
         if (this.players.length <= MAX_PLAYERS) {
           return this._addPlayer(decrypted, data.uid);
@@ -144,6 +156,7 @@ export class GameHost extends EphemeralConnection {
    */
   @action
   startGame() {
+    this.onlineChecker.perform();
     this.currentGame = new GameRound(unwrapObject(this.playersById));
 
     this._broadcastStart();
@@ -226,11 +239,11 @@ export class GameHost extends EphemeralConnection {
       publicKey: fromHex(publicKeyAsHex),
     };
 
-    this._broadcastJoin();
+    this._broadcastPlayerList();
   }
 
   @action
-  _broadcastJoin() {
+  _broadcastPlayerList() {
     let serializablePlayers = this.players.map((player) => ({
       id: player.publicKeyAsHex,
       name: player.name,
@@ -272,7 +285,7 @@ export class GameHost extends EphemeralConnection {
   onlineChecker = taskFor(async () => {
     // this loop takes 7s per iteration
     // eslint-disable-next-line no-constant-condition
-    while (true) {
+    while (this.shouldCheckConnectivity) {
       await timeout(2000);
 
       let promises = this.players.map(async (player) => {
@@ -291,7 +304,7 @@ export class GameHost extends EphemeralConnection {
 
       await Promise.all(promises);
 
-      this._broadcastJoin();
+      this._broadcastPlayerList();
 
       this.players.map((player) => (player.onlineCheck = undefined));
     }

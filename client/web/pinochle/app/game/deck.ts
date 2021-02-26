@@ -1,3 +1,5 @@
+import { assert } from '@ember/debug';
+
 import { Card, SUITS, VALUES } from './card';
 
 import type { Suit } from './card';
@@ -23,26 +25,37 @@ export function newDeck() {
   return deck;
 }
 
+/**
+ * Deck should be pre-shuffled when passed in
+ */
 export function splitDeck(deck: Card[], splits: number) {
+  assert(`Deck must have 48 cards`, deck.length === 48);
+
   let hands: Card[][] = new Array(splits).fill(splits).map(() => []);
   let remaining = [];
 
-  let handSize = Math.floor(deck.length / splits);
-  // let blindSize = deck.length % splits;
+  let handSize;
+
+  if (splits === 3) {
+    handSize = 15;
+  } else if (splits === 4) {
+    handSize = 12;
+  } else {
+    handSize = Math.floor(deck.length / splits);
+  }
+
   let hand = 0;
 
-  let i = 0;
+  for (let i = 0; i < deck.length; i++) {
+    let card = deck[i];
 
-  for (let card of deck) {
-    if (handSize * splits < i) {
+    if (handSize * splits <= i) {
       remaining.push(card);
     } else {
       hands[hand].push(card);
 
       hand = (hand + 1) % splits;
     }
-
-    i++;
   }
 
   return {

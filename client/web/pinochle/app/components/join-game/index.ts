@@ -92,7 +92,11 @@ export default class JoinGame extends Component<Args> {
     }
 
     try {
+      if (this.isDestroyed || this.isDestroying) return;
+
       await this.gameHost.checkHost();
+
+      if (this.isDestroyed || this.isDestroying) return;
 
       this.interpreter.send('CONNECTED');
     } catch (e) {

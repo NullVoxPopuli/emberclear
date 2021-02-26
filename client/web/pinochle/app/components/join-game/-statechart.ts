@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 import { assign, send } from 'xstate';
 
 import type { MachineConfig, StateSchema } from 'xstate';
@@ -47,7 +49,8 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
         ERROR: [
           {
             actions: [
-              send('RETRY', { delay: 1000 }),
+              // eslint-disable-next-line ember/no-ember-testing-in-module-scope
+              send('RETRY', { delay: Ember.testing ? 100 : 1000 }),
               assign({ retryCount: (ctx) => (ctx.retryCount || 0) + 1 }),
             ],
             cond: (ctx) => (ctx.retryCount || 0) < 5,

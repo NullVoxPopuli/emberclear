@@ -1,17 +1,23 @@
 import { getOwner, setOwner } from '@ember/application';
 import { assert } from '@ember/debug';
-import { associateDestroyableChild, registerDestructor } from '@ember/destroyable';
+import {
+  associateDestroyableChild,
+  isDestroyed,
+  isDestroying,
+  registerDestructor,
+} from '@ember/destroyable';
 import { inject as service } from '@ember/service';
 
 import { CryptoConnector } from '@emberclear/crypto';
 import { fromHex, toHex } from '@emberclear/encoding/string';
 import { Connection } from '@emberclear/networking';
+import { defaultRelays } from '@emberclear/networking/required-data';
 import { pool } from '@emberclear/networking/utils/connection/connection-pool';
 
 import type StoreService from '@ember-data/store';
 import type { WorkersService } from '@emberclear/crypto';
 import type { EncryptableObject, EncryptedMessage, KeyPair } from '@emberclear/crypto/types';
-import type { Relay } from '@emberclear/networking';
+import type { EndpointInfo } from '@emberclear/networking/types';
 import type {
   ConnectionPool,
   STATUS,
@@ -22,13 +28,23 @@ type Target = {
   hex: string;
 };
 
+const DEFAULT_GETTER = () => defaultRelays;
+
+export type GetEndpoints = () => EndpointInfo[] | Promise<EndpointInfo[]>;
+
+export interface Options {
+  getEndpoints?: GetEndpoints | undefined;
+  publicKeyAsHex?: string | undefined;
+  keys?: KeyPair | undefined;
+}
+
 export class EphemeralConnection {
   @service declare store: StoreService;
   @service declare workers: WorkersService;
 
   // setup in the psuedo constructor (static method: build)
   // (build is an "async constructor")
-  declare connectionPool: ConnectionPool<Connection, Relay>;
+  declare connectionPool: ConnectionPool<Connection>;
   declare crypto: CryptoConnector;
   declare hexId: string;
 
@@ -36,7 +52,9 @@ export class EphemeralConnection {
    * Static information about who we're connecting to
    * - useful if the connection is only meant for one person
    */
-  target?: Target;
+  declare target?: Target;
+
+  getEndpoints: GetEndpoints = () => [];
 
   /**
    * For creating new instances of ephemeral connections
@@ -65,9 +83,9 @@ export class EphemeralConnection {
     /* the actual params to this method */
     // eslint-disable-next-line @typescript-eslint/ban-types
     parent: object,
-    publicKeyAsHex?: string,
-    keys?: KeyPair
+    options?: Options
   ): Promise<SubClass> {
+    let { getEndpoints, publicKeyAsHex, keys } = options || {};
     let instance = new this(publicKeyAsHex);
 
     setOwner(instance, getOwner(parent));
@@ -77,6 +95,8 @@ export class EphemeralConnection {
     await instance.hydrateCrypto(keys);
     assert('Crypto failed to initialize', instance.crypto);
     assert('Failed to generate an ephemeral identifier', instance.hexId);
+
+    instance.getEndpoints = getEndpoints || DEFAULT_GETTER;
 
     await instance.establishConnection();
     assert('Connection Pool failed to be set up', instance.connectionPool);
@@ -121,6 +141,8 @@ export class EphemeralConnection {
   async hydrateCrypto(keys?: KeyPair) {
     let { hex, crypto } = await generateEphemeralKeys(this.workers, keys);
 
+    if (isDestroying(this) || isDestroyed(this)) return;
+
     this.crypto = crypto;
     this.hexId = hex;
   }
@@ -132,24 +154,40 @@ export class EphemeralConnection {
   }
 
   async send(message: EncryptableObject, target?: Target) {
+    if (isDestroying(this) || isDestroyed(this)) return;
+
     let _target = this.target || target;
 
     if (!_target) {
       throw new Error('Cannot send a message with no target');
     }
 
+    if (!this.connectionPool) {
+      await this.establishConnection();
+
+      if (isDestroying(this) || isDestroyed(this)) return;
+      // throw new Error('Cannot send a message with no connection to the target');
+    }
+
     let to = _target.pub;
     let connection = await this.connectionPool.acquire();
+
+    if (isDestroying(this) || isDestroyed(this)) return;
+
     let encryptedMessage = await this.crypto.encryptForSocket({ ...message }, { publicKey: to });
+
+    if (isDestroying(this) || isDestroyed(this)) return;
 
     await connection.send({ to: toHex(to), message: encryptedMessage });
   }
 
   async establishConnection() {
-    let relays = await this.store.findAll('relay');
+    if (this.connectionPool) return;
 
-    this.connectionPool = await pool<Connection, Relay>({
-      endpoints: relays.toArray(),
+    if (isDestroying(this) || isDestroyed(this)) return;
+
+    this.connectionPool = await pool<Connection>({
+      endpoints: await this.getEndpoints(),
       create: createConnection.bind(null, this.hexId, this.onData),
       destroy: (instance) => instance.destroy(),
       isOk: (instance) => instance.isConnected,
@@ -176,7 +214,7 @@ async function generateEphemeralKeys(workers: WorkersService, keys?: KeyPair) {
 async function createConnection(
   publicKey: string,
   onData: (data: EncryptedMessage) => void,
-  relay: Relay
+  relay: EndpointInfo
 ) {
   let instance = new Connection({
     relay,

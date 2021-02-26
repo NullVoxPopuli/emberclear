@@ -1,12 +1,19 @@
 import { Socket } from 'phoenix';
 
 import type { EncryptedMessage } from '@emberclear/crypto/types';
-import type { Relay } from '@emberclear/networking';
-import type { RelayState, RelayStateJson } from '@emberclear/networking/types';
+import type { EndpointInfo, RelayState, RelayStateJson } from '@emberclear/networking/types';
 import type { Channel } from 'phoenix';
 
+export const NAME = Symbol('__PHOENIX_SOCKET__');
+
+// Side-effect bad.
+// Need a better way to mock this rather than just
+// changing what this is assigned to.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as any)[NAME] = (window as any)[NAME] || Socket;
+
 interface Args {
-  relay: Relay;
+  relay: EndpointInfo;
   publicKey: string;
   onData: (data: EncryptedMessage) => void;
   onInfo: (data: RelayState) => void;
@@ -17,19 +24,24 @@ export interface OutgoingPayload {
   message: string;
 }
 
+function phoenixSocket(): typeof Socket {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (window as any)[NAME];
+}
+
 export class Connection {
-  relay: Relay;
-  url: string;
-  publicKey: string;
-  channelName: string;
-  onData: (data: EncryptedMessage) => void;
-  onInfo: (data: RelayState) => void;
+  declare relay: EndpointInfo;
+  declare url: string;
+  declare publicKey: string;
+  declare channelName: string;
+  declare onData: (data: EncryptedMessage) => void;
+  declare onInfo: (data: RelayState) => void;
 
   isConnected = false;
   isConnecting = false;
 
-  private socket?: Socket;
-  private channel?: Channel;
+  private declare socket?: Socket;
+  private declare channel?: Channel;
 
   /**
    * @param [Relay] relay
@@ -53,9 +65,11 @@ export class Connection {
 
   private async setupSocket() {
     return new Promise((resolve, reject) => {
+      let Klass = phoenixSocket();
+
       this.isConnecting = true;
 
-      this.socket = new Socket(this.url, {
+      this.socket = new Klass(this.url, {
         params: { uid: this.publicKey },
       });
 
@@ -120,7 +134,9 @@ export class Connection {
 
           resolve(this.channel);
         })
-        .receive('error', reject)
+        .receive('error', (...args: unknown[]) => {
+          return reject(...args);
+        })
         .receive('timeout', (...args: unknown[]) => {
           console.info('channel timed out', ...args);
         });

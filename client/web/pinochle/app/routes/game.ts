@@ -29,6 +29,11 @@ export default class GameRoute extends Route {
     let hostId = transition.to.params.idOfHost;
     let gameGuest = this.gameManager.isGuestOf.get(hostId || '');
 
+    if (hostId === 'undefined') {
+      console.debug(transition.to);
+      throw new Error(`Undefined hostId`);
+    }
+
     /**
      * TODO: add some global error / toast / flash messages
      */
@@ -42,7 +47,7 @@ export default class GameRoute extends Route {
 
     let gameGuest = this.gameManager.isGuestOf.get(hostId || '');
 
-    assert(`This component should not be used without a gameInfo`, gameGuest);
+    assert(`Cannot play a game that has not been joined`, gameGuest);
 
     return {
       hostId,

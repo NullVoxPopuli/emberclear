@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { assign, send } from 'xstate';
+import { actions, assign, send } from 'xstate';
 
 import { newDeck, splitDeck } from 'pinochle/game/deck';
 
@@ -23,17 +23,21 @@ export type Event =
   | { type: 'WON_BID' }
   | DeclareTrump
   | StartEvent
+  | { type: 'DISCARD'; cards: Card[] }
+  | { type: 'READY'; player: string }
   | { type: 'FINISHED' }
   | { type: 'ACCEPT' }
   | { type: '__START_ROUND' }
-  | { type: 'PLAY_CARD' }
+  | { type: 'PLAY_CARD'; card: Card }
   | { type: 'TRICK_CONTINUES' }
   | { type: 'TRICK_ENDS' }
-  | { type: 'SUBMIT_MELD'; player: string; meld: number }
+  | { type: 'SUBMIT_MELD'; player: string }
   | { type: 'FORFEIT' };
 
 export interface Context {
   hasBlind: boolean;
+  blind: Card[];
+  trick?: Card[];
   currentPlayer: string;
   playersById: Record<string, PlayerInfo & { hand: Card[] }>;
   playerOrder: string[];
@@ -69,30 +73,10 @@ function didPass(ctx: Context) {
   return ctx.bids[ctx.currentPlayer] === 'passed';
 }
 
-function bid() {
-  return assign({
-    bids: (ctx: Context, event: Bid) => {
-      ctx.bids[ctx.currentPlayer] = event.bid;
-
-      return ctx.bids;
-    },
-  });
-}
-
-function passBid() {
-  return assign({
-    bids: (ctx: Context) => {
-      ctx.bids[ctx.currentPlayer] = 'passed';
-
-      return ctx.bids;
-    },
-  });
-}
-
-function _nextPlayer(ctx: Context) {
+function _nextPlayer(ctx: Pick<Context, 'currentPlayer' | 'playerOrder'>) {
   let players = ctx.playerOrder;
   let current = players.indexOf(ctx.currentPlayer);
-  let nextIndex = current + (1 % players.length);
+  let nextIndex = (current + 1) % players.length;
 
   return ctx.playerOrder[nextIndex];
 }
@@ -105,26 +89,27 @@ function nextPlayer() {
   });
 }
 
-function nextBiddingPlayer() {
-  return assign({
-    currentPlayer: (ctx: Context) => {
-      let nextPlayer: undefined | string = undefined;
+function nextBiddingPlayer({ currentPlayer, playerOrder, bids }: Context) {
+  let nextPlayer: undefined | string = undefined;
 
-      for (let i = 0; i < ctx.playerOrder.length; i++) {
-        nextPlayer = _nextPlayer(ctx);
+  for (let i = 0; i < playerOrder.length; i++) {
+    nextPlayer = _nextPlayer({
+      currentPlayer: nextPlayer || currentPlayer,
+      playerOrder,
+    });
 
-        if (ctx.bids[nextPlayer] !== 'passed') {
-          break;
-        }
-      }
+    let bid = bids[nextPlayer];
 
-      if (!nextPlayer) {
-        throw new Error('all players are not allowed to pass');
-      }
+    if (bid !== 'passed') {
+      break;
+    }
+  }
 
-      return nextPlayer;
-    },
-  });
+  if (!nextPlayer) {
+    throw new Error('all players are not allowed to pass');
+  }
+
+  return nextPlayer;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -146,7 +131,9 @@ function playersWithBids(ctx: Context) {
 }
 
 function isBiddingOver(ctx: Context) {
-  return playersWithBids(ctx).length === 1;
+  return (
+    playersWithBids(ctx).length === 1 && ctx.playerOrder.length === Object.keys(ctx.bids).length
+  );
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -192,145 +179,168 @@ function deal(context: Context) {
     player.hand = hands[i];
   }
 
-  return assign({
-    blind: () => remaining,
-    currentPlayer: () => playerOrder[0],
-  });
+  return { blind: remaining };
 }
 
-// TODO: Rotate from previousOrder
-function setPlayerOrder(context: Context, { previousOrder }: TODO) {
-  if (!previousOrder) {
-    return Object.keys(context.playersById);
-  }
+// TODO: extract sub machines to test individually?
+function nextPlayerOrder(context: Context) {
+  let order = Object.keys(context.playersById);
 
-  throw new Error('Not implemented');
+  return order;
 }
 
 export const statechart: MachineConfig<Context, Schema, Event> = {
-  id: 'host-game-state',
+  id: 'game',
   initial: 'idle' as TODO /* initial has incorrect type? or MachineConfig takes extra type args? */,
-  // context: {
-  //   // hasBlind: false,
-  //   // currentPlayer: '1',
-  //   // players: [],
-  //   // trump: '',
-  //   // bid: null,
-  //   // playerWhoTookTheBid: null,
-  //   isForfeiting: false,
-  //   bids: {},
-  //   melds: {},
-  // },
   states: {
     idle: {
-      entry: [
-        assign({
-          playerOrder: setPlayerOrder,
-        }),
-        send('__START_ROUND__'),
-      ],
-      on: {
-        __START_ROUND__: 'dealing',
-      },
+      entry: assign<Context>((context) => {
+        let order = nextPlayerOrder(context);
+
+        return {
+          playerOrder: order,
+          currentPlayer: order[0],
+        };
+      }),
+      always: 'dealing',
     },
     dealing: {
-      entry: [deal, send('DONE')],
-      on: {
-        DONE: 'bidding',
-      },
+      entry: assign<Context>((context) => {
+        let { blind } = deal(context);
+
+        return {
+          hasBlind: blind.length > 0,
+          blind: blind,
+        };
+      }),
+      always: 'bidding',
     },
     bidding: {
+      entry: [
+        actions.choose([
+          {
+            cond: isBiddingOver,
+            actions: [send('__BIDDING_OVER__')],
+          },
+        ]),
+      ],
       on: {
         BID: [
           {
             target: 'bidding',
-            actions: [bid, nextBiddingPlayer],
+            actions: assign<Context>((ctx, event: Bid) => {
+              let bids = {
+                ...ctx.bids,
+                [ctx.currentPlayer]: event.bid,
+              };
+              let currentPlayer = nextBiddingPlayer(ctx);
+
+              return {
+                bids,
+                currentPlayer,
+              };
+            }),
           },
         ],
         PASS: [
           {
-            cond: isBiddingOver,
-            // target: 'won-bid',
-          },
-          {
             target: 'bidding',
-            actions: [passBid, nextBiddingPlayer],
+            actions: assign<Context>((ctx) => {
+              let bids = {
+                ...ctx.bids,
+                [ctx.currentPlayer]: 'passed',
+              } as Context['bids'];
+
+              let currentPlayer = nextBiddingPlayer(ctx);
+
+              return {
+                bids,
+                currentPlayer,
+              };
+            }),
           },
+        ],
+        __BIDDING_OVER__: 'won-bid',
+      },
+    },
+    'won-bid': {
+      id: 'won-bid',
+      initial: 'pending-acceptance',
+      entry: ['setBidWinnerInfo', 'giveBlind'],
+      states: {
+        'pending-acceptance': {
+          on: {
+            ACCEPT: {
+              target: 'accepted',
+            },
+            FORFEIT: {
+              target: '#game.declare-meld',
+              actions: [assign<Context>({ isForfeiting: () => true })],
+            },
+          },
+        },
+        accepted: {
+          on: {
+            DECLARE_TRUMP: [
+              {
+                cond: hasBlind,
+                actions: setTrump,
+                target: '#won-bid.discard',
+              },
+              {
+                target: '#game.declare-meld',
+                actions: setTrump,
+              },
+            ],
+          },
+        },
+        discard: {
+          on: {
+            DISCARD: {
+              // TODO: loop until 3 cards are discarded
+              //       prevent setting the discarded cards
+              //       if more than 3 cards are discarded
+              target: '#game.declare-meld',
+            },
+          },
+        },
+      },
+    },
+
+    'declare-meld': {
+      on: {
+        SUBMIT_MELD: [
+          {
+            cond: hasEveryoneSubmittedMeld,
+            target: '#game.phase-trick-taking',
+          },
+          { target: '#game.declare-meld' },
         ],
       },
     },
-    // 'won-bid': {
-    //   id: 'winBid',
-    //   initial: 'pending-acceptance',
-    //   entry: ['setBidWinnerInfo', 'giveBlind'],
-    //   states: {
-    //     'pending-acceptance': {
-    //       on: {
-    //         ACCEPT: {
-    //           target: 'accepted',
-    //         },
-    //         FORFEIT: {
-    //           target: '#game.declare-meld',
-    //           actions: [assign<Context>({ isForfeiting: () => true })],
-    //         },
-    //       },
-    //     },
-    //     accepted: {
-    //       on: {
-    //         DECLARE_TRUMP: [
-    //           {
-    //             cond: hasBlind,
-    //             actions: setTrump,
-    //             target: '#winBid.discard',
-    //           },
-    //           {
-    //             target: '#game.declare-meld',
-    //             actions: setTrump,
-    //           },
-    //         ],
-    //       },
-    //     },
-    //     discard: {
-    //       on: {
-    //         FINISHED: '#game.declare-meld',
-    //       },
-    //     },
-    //   },
-    // },
-
-    // 'declare-meld': {
-    //   on: {
-    //     SUBMIT_MELD: [
-    //       {
-    //         cond: hasEveryoneSubmittedMeld,
-    //         target: '#game.phase-trick-taking',
-    //       },
-    //       { target: '#game.declare-meld' },
-    //     ],
-    //   },
-    // },
-    // 'phase-trick-taking': {
-    //   entry: ['storePreviousTrick', 'newTrick', 'determineFirstPlayer'],
-    //   states: {
-    //     'pending-play': {
-    //       on: {
-    //         PLAY_CARD: 'evaluate-play',
-    //       },
-    //     },
-    //     'evaluate-play': {
-    //       on: {
-    //         TRICK_CONTINUES: { actions: 'nextPlayer', target: 'pending-play' },
-    //         TRICK_ENDS: [
-    //           {
-    //             cond: 'isGameOver',
-    //             target: '#game.end-game',
-    //           },
-    //           { target: '#game.phase-trick-taking' },
-    //         ],
-    //       },
-    //     },
-    //   },
-    // },
-    // 'end-game': {},
+    'phase-trick-taking': {
+      entry: ['storePreviousTrick', 'newTrick', 'determineFirstPlayer'],
+      initial: 'pending-play',
+      states: {
+        'pending-play': {
+          on: {
+            PLAY_CARD: 'evaluate-play',
+          },
+        },
+        'evaluate-play': {
+          on: {
+            TRICK_CONTINUES: { actions: 'nextPlayer', target: 'pending-play' },
+            TRICK_ENDS: [
+              {
+                cond: 'isGameOver',
+                target: '#game.end-game',
+              },
+              { target: '#game.phase-trick-taking' },
+            ],
+          },
+        },
+      },
+    },
+    'end-game': {},
   },
 };

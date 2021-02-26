@@ -6,12 +6,14 @@
     "paths": {
       "pinochle/tests/*": ["*"],
       "pinochle/*": ["../declarations/*"],
+      "@ember/destroyable": ["../../node_modules/ember-destroyable-polyfill"],
 
       "*": ["../types/*"]
     }
   },
   "include": [".", "../types"],
   "references": [
-    { "path": "../app" }
+    { "path": "../app" },
+    { "path": "../../addons/test-helpers" }
   ]
 }
