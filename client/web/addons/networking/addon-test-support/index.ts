@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { isDestroyed, isDestroying } from '@ember/destroyable';
 import { later, schedule } from '@ember/runloop';
 
 import { NAME } from '@emberclear/networking/utils/connection/connection';
@@ -68,7 +67,7 @@ export function setupSocketServer(hooks: NestedHooks) {
 
               // use runloop to hold up tests until this finishes
               schedule('afterRender', () => {
-                if (!owner || isDestroyed(owner) || isDestroying(owner)) return;
+                if (!owner) return;
 
                 if (!users[to]) {
                   console.info({ users, payload, callback: pushHandler._receive?.error });
