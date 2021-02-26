@@ -26,10 +26,10 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@ember-data/debug": "3.23.0",
-    "@ember-data/model": "3.23.0",
-    "@ember-data/record-data": "3.23.0",
-    "@ember-data/store": "3.23.0",
+    "@ember-data/debug": "3.25.0",
+    "@ember-data/model": "3.25.0",
+    "@ember-data/record-data": "3.25.0",
+    "@ember-data/store": "3.25.0",
     "@emberclear/crypto": "*",
     "@emberclear/encoding": "*",
     "ember-auto-import": "1.10.1",
