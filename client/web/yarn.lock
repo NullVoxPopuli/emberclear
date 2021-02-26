@@ -8073,10 +8073,10 @@ ember-cli-htmlbars@^5.3.2:
     release-it "^14.2.1"
     release-it-lerna-changelog "^3.1.0"
 
-ember-cli-htmlbars@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.4.0.tgz#1eabd0a2a6b9e8877c2e79d3ab3a0627fde90ddc"
-  integrity sha512-AOThrNG+G6SejHvvfYja72PgpQ5lKJHVEhXyFpuwUPGGeXxqTDzpfh/UYnok/esVBIuM/eJW6qpTHMuZQcPNQg==
+ember-cli-htmlbars@^5.6.0:
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.6.0.tgz#4e61272ec79296bbc8359b90db4fa6c8978eb17f"
+  integrity sha512-eSNetEGHyxt4bZ2mfgrJqjdBv7+JOWe6uJxyCo49kEHG3aeQLr+9jFgkyRnSPgmOjph8ouiGzDPTeXbGEdUG0A==
   dependencies:
     "@ember/edition-utils" "^1.2.0"
     babel-plugin-htmlbars-inline-precompile "^4.4.1"
@@ -8093,6 +8093,9 @@ ember-cli-htmlbars@^5.4.0:
     silent-error "^1.1.1"
     strip-bom "^4.0.0"
     walk-sync "^2.2.0"
+  optionalDependencies:
+    release-it "^14.2.1"
+    release-it-lerna-changelog "^3.1.0"
 
 ember-cli-inject-live-reload@2.0.2, ember-cli-inject-live-reload@^2.0.2:
   version "2.0.2"
@@ -8722,16 +8725,16 @@ ember-intl@5.6.2:
     mkdirp "^1.0.4"
     silent-error "^1.1.1"
 
-ember-jsqr@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-1.2.1.tgz#cb092fb724aec0c9e788b51c78e6ed8768a06547"
-  integrity sha512-U/yBP/YPc4vYf1kc5xoRtpEL3viLn8ozFnLYbKJHfeu8lbTy8pwg/OcmATgdqrBorDYLLw1ZKdKd1OreZUO6dw==
+ember-jsqr@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-1.2.3.tgz#d7547d70bb91031fa4847b378e67111908ac53d6"
+  integrity sha512-rQFY+kauFoA4a/8ViE49859LdIHEanejvAOkSG4eg1tXC5PP/k6Or7YSxjxV/kM31hN2XY1esiJmri7vGNZJmg==
   dependencies:
     "@glimmer/component" "^1.0.3"
     "@glimmer/tracking" "^1.0.3"
     ember-auto-import "^1.10.1"
     ember-cli-babel "^7.23.1"
-    ember-cli-htmlbars "^5.4.0"
+    ember-cli-htmlbars "^5.6.0"
     ember-cli-typescript "^4.1.0"
     ember-modifier "^2.1.1"
     jsqr "^1.3.1"
