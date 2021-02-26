@@ -134,7 +134,9 @@ export class Connection {
 
           resolve(this.channel);
         })
-        .receive('error', reject)
+        .receive('error', (...args: unknown[]) => {
+          return reject(...args);
+        })
         .receive('timeout', (...args: unknown[]) => {
           console.info('channel timed out', ...args);
         });

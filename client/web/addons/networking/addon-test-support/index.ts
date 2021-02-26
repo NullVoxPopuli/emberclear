@@ -1,17 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { later } from '@ember/runloop';
+import { isDestroyed, isDestroying } from '@ember/destroyable';
+import { later, schedule } from '@ember/runloop';
 
 import { NAME } from '@emberclear/networking/utils/connection/connection';
 
+import type ApplicationInstance from '@ember/application/instance';
 import type { Socket } from 'phoenix';
 
 type Callback = (...args: unknown[]) => void;
 
 /**
  * Somewhat re-implements the relay behavior
+ *
+ * See: @emberclear/networking/utils/connection/connection.ts
  */
 export function setupSocketServer(hooks: NestedHooks) {
   let oldSocket: Socket;
+  let owner: ApplicationInstance | undefined;
   let users: Record<string, ReturnType<typeof fakeServer['channel']>> = {};
 
   function FakeSocket(_url: string, _opts: Options) {
@@ -61,22 +66,19 @@ export function setupSocketServer(hooks: NestedHooks) {
             case 'chat': {
               let { to, message } = payload;
 
-              requestAnimationFrame(() => {
-                // later(
-                //   null,
-                //   () => {
-                // setTimeout(() => {
+              // use runloop to hold up tests until this finishes
+              schedule('afterRender', () => {
+                if (!owner || isDestroyed(owner) || isDestroying(owner)) return;
+
                 if (!users[to]) {
+                  console.info({ users, payload, callback: pushHandler._receive?.error });
+
                   return pushHandler._receive?.error('user not found');
                 }
 
                 users[to]._handle['chat']({ uid: id, message });
 
                 pushHandler._receive?.ok?.();
-                // }, 0);
-                // },
-                // 10
-                // );
               });
               break;
             }
@@ -96,7 +98,6 @@ export function setupSocketServer(hooks: NestedHooks) {
             // on channel join
             case 'ok':
               requestAnimationFrame(callback);
-              // later(null, callback, 10);
 
               return channel;
             case 'error':
@@ -145,6 +146,7 @@ export function setupSocketServer(hooks: NestedHooks) {
   hooks.beforeEach(function () {
     users = {};
     oldSocket = (window as any)[NAME];
+    owner = this.owner;
 
     (window as any)[NAME] = FakeSocket;
   });

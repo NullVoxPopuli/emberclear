@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { cached, tracked } from '@glimmer/tracking';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
@@ -102,9 +103,19 @@ export class GameGuest extends EphemeralConnection {
 
     while (waitingForHost) {
       await timeout(1000 * backoff);
-      await this.send({ type: 'SYN' });
+
+      try {
+        await this.send({ type: 'SYN' });
+      } catch (e) {
+        // this is a healthcheck, we don't care about failures
+        console.debug(e);
+      }
 
       backoff = backoff * 1.5;
+
+      if (Ember.testing && backoff > 5) {
+        break;
+      }
     }
   });
 

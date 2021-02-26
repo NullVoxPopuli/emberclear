@@ -13,7 +13,7 @@ import config from 'pinochle/config/environment';
 
 const seed = Math.random().toString(36).substr(2, 5);
 
-// Slow runtie is worth the backburner unwinding
+// Slow runtime is worth the backburner unwinding
 (Ember.run as TODO).backburner.DEBUG = true;
 
 QUnit.config.seed = seed;
