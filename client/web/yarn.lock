@@ -1904,10 +1904,30 @@
     "@glimmer/wire-format" "^0.27.0"
     simple-html-tokenizer "^0.3.0"
 
-"@glimmer/component@1.0.3", "@glimmer/component@^1.0.2", "@glimmer/component@^1.0.3":
+"@glimmer/component@1.0.3", "@glimmer/component@^1.0.2":
   version "1.0.3"
   resolved "https://registry.npmjs.org/@glimmer/component/-/component-1.0.3.tgz#38c26fc4855fd7ad0e0816d18d80d32c578e5140"
   integrity sha512-GD3gcN+Pr2flmxkt2lm5K86jwX+KRD9QQpNH+wiEQGjBXOzd46+XD5npH1sRByqLYml9rW4klflcrEfNb7dnQw==
+  dependencies:
+    "@glimmer/di" "^0.1.9"
+    "@glimmer/env" "^0.1.7"
+    "@glimmer/util" "^0.44.0"
+    broccoli-file-creator "^2.1.1"
+    broccoli-merge-trees "^3.0.2"
+    ember-cli-babel "^7.7.3"
+    ember-cli-get-component-path-option "^1.0.0"
+    ember-cli-is-package-missing "^1.0.0"
+    ember-cli-normalize-entity-name "^1.0.0"
+    ember-cli-path-utils "^1.0.0"
+    ember-cli-string-utils "^1.1.0"
+    ember-cli-typescript "3.0.0"
+    ember-cli-version-checker "^3.1.3"
+    ember-compatibility-helpers "^1.1.2"
+
+"@glimmer/component@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/component/-/component-1.0.4.tgz#1c85a5181615a6647f6acfaaed68e28ad7e9626e"
+  integrity sha512-sS4N8wtcKfYdUJ6O3m8nbTut6NjErdz94Ap8VB1ekcg4WSD+7sI7Nmv6kt2rdPoe363nUdjUbRBzHNWhLzraBw==
   dependencies:
     "@glimmer/di" "^0.1.9"
     "@glimmer/env" "^0.1.7"
@@ -2078,10 +2098,18 @@
     "@handlebars/parser" "^1.1.0"
     simple-html-tokenizer "^0.5.10"
 
-"@glimmer/tracking@1.0.3", "@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.1", "@glimmer/tracking@^1.0.2", "@glimmer/tracking@^1.0.3":
+"@glimmer/tracking@1.0.3", "@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.1", "@glimmer/tracking@^1.0.2":
   version "1.0.3"
   resolved "https://registry.npmjs.org/@glimmer/tracking/-/tracking-1.0.3.tgz#8b9b42aff6c206edeaaea178a95acc1eff62e61e"
   integrity sha512-21WR13vPdzt1IQ6JmPPAu4szjV9yKdmLHV3nD0MLDj6/EoYv1c2PqpFBBlp++6xW8OnyDa++cQ8OFoQDP+MRpA==
+  dependencies:
+    "@glimmer/env" "^0.1.7"
+    "@glimmer/validator" "^0.44.0"
+
+"@glimmer/tracking@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/tracking/-/tracking-1.0.4.tgz#f1bc1412fe5e2236d0f8d502994a8f88af1bbb21"
+  integrity sha512-F+oT8I55ba2puSGIzInmVrv/8QA2PcK1VD+GWgFMhF6WC97D+uZX7BFg+a3s/2N4FVBq5KHE+QxZzgazM151Yw==
   dependencies:
     "@glimmer/env" "^0.1.7"
     "@glimmer/validator" "^0.44.0"
@@ -8701,13 +8729,13 @@ ember-intl@5.6.2:
     mkdirp "^1.0.4"
     silent-error "^1.1.1"
 
-ember-jsqr@1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-1.2.3.tgz#d7547d70bb91031fa4847b378e67111908ac53d6"
-  integrity sha512-rQFY+kauFoA4a/8ViE49859LdIHEanejvAOkSG4eg1tXC5PP/k6Or7YSxjxV/kM31hN2XY1esiJmri7vGNZJmg==
+ember-jsqr@1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-1.2.4.tgz#507f4338458a593962e95e2a5704351f7e763f72"
+  integrity sha512-gUKUgKy2OCMxJmBcsmMXLuujOloz630cIvk7eLgEgnS1yqlYjk+0nWuoGbLyBMYHVurKsv1My7QUhouAn3H2iw==
   dependencies:
-    "@glimmer/component" "^1.0.3"
-    "@glimmer/tracking" "^1.0.3"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
     ember-auto-import "^1.10.1"
     ember-cli-babel "^7.23.1"
     ember-cli-htmlbars "^5.6.0"
