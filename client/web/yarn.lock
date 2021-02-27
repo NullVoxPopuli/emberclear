@@ -7719,13 +7719,13 @@ ember-autostash-modifier@0.1.20:
     ember-template-lint "2.8.0"
     eslint "7.2.0"
 
-ember-browser-services@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ember-browser-services/-/ember-browser-services-1.1.1.tgz#4e70348378f846dd4ea1529d71b82c776c93f549"
-  integrity sha512-g1VTJDn8BTbLvcezTxe0kzQGgeexnHNxG5mi8Glk2W3m/DHsstB1tdoKkIScYL6k7McHdr21i496711qRmzHeg==
+ember-browser-services@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/ember-browser-services/-/ember-browser-services-1.1.2.tgz#1d879ad4ae42c1f3159595ce7b336d0c7f2ee64c"
+  integrity sha512-/qJWZ7lYuKCAmkYnQ/TYTVMcVa+8yrVk188HPW4yIfbpUzoHhU5Z+c6Jzg8LtUfeG7E4n2yywifLSNfMKBr1XA==
   dependencies:
     ember-cli-babel "^7.24.0"
-    ember-cli-htmlbars "^5.6.0"
+    ember-cli-htmlbars "^5.6.2"
     ember-cli-typescript "^4.1.0"
 
 ember-cache-primitive-polyfill@^1.0.0:
@@ -8076,30 +8076,6 @@ ember-cli-htmlbars@^5.1.2, ember-cli-htmlbars@^5.2.0, ember-cli-htmlbars@^5.3.1:
     silent-error "^1.1.1"
     strip-bom "^4.0.0"
     walk-sync "^2.2.0"
-
-ember-cli-htmlbars@^5.6.0:
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.6.0.tgz#4e61272ec79296bbc8359b90db4fa6c8978eb17f"
-  integrity sha512-eSNetEGHyxt4bZ2mfgrJqjdBv7+JOWe6uJxyCo49kEHG3aeQLr+9jFgkyRnSPgmOjph8ouiGzDPTeXbGEdUG0A==
-  dependencies:
-    "@ember/edition-utils" "^1.2.0"
-    babel-plugin-htmlbars-inline-precompile "^4.4.1"
-    broccoli-debug "^0.6.5"
-    broccoli-persistent-filter "^3.1.2"
-    broccoli-plugin "^4.0.3"
-    common-tags "^1.8.0"
-    ember-cli-babel-plugin-helpers "^1.1.1"
-    fs-tree-diff "^2.0.1"
-    hash-for-dep "^1.5.1"
-    heimdalljs-logger "^0.1.10"
-    json-stable-stringify "^1.0.1"
-    semver "^7.3.4"
-    silent-error "^1.1.1"
-    strip-bom "^4.0.0"
-    walk-sync "^2.2.0"
-  optionalDependencies:
-    release-it "^14.2.1"
-    release-it-lerna-changelog "^3.1.0"
 
 ember-cli-htmlbars@^5.6.2:
   version "5.6.2"
