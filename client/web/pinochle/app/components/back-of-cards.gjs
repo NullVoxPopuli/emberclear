@@ -1,13 +1,7 @@
 import Component from '@glimmer/component';
 import Ellipsis from './loader/ellipsis';
 
-import type { GuestPlayer } from 'pinochle/game/networking/types';
-
-type Args = {
-  info: GuestPlayer;
-};
-
-export default class BackOfCards extends Component<Args> {
+export default class BackOfCards extends Component {
   get isOffline() {
     let { id, isOnline } = this.args.info;
 
