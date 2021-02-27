@@ -8101,6 +8101,30 @@ ember-cli-htmlbars@^5.6.0:
     release-it "^14.2.1"
     release-it-lerna-changelog "^3.1.0"
 
+ember-cli-htmlbars@^5.6.1:
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.6.1.tgz#b31609cac722f85c4f9b1f781621c30705e1fbf0"
+  integrity sha512-yj/xgYvjLV7LFPhMfuhx+wrJdXqdQxsm/h7oHN8YgbBbrhA73lipoHxsGPlR7B6txTRtlip6qx5ia41xacKjEA==
+  dependencies:
+    "@ember/edition-utils" "^1.2.0"
+    babel-plugin-htmlbars-inline-precompile "^4.4.1"
+    broccoli-debug "^0.6.5"
+    broccoli-persistent-filter "^3.1.2"
+    broccoli-plugin "^4.0.3"
+    common-tags "^1.8.0"
+    ember-cli-babel-plugin-helpers "^1.1.1"
+    fs-tree-diff "^2.0.1"
+    hash-for-dep "^1.5.1"
+    heimdalljs-logger "^0.1.10"
+    json-stable-stringify "^1.0.1"
+    semver "^7.3.4"
+    silent-error "^1.1.1"
+    strip-bom "^4.0.0"
+    walk-sync "^2.2.0"
+  optionalDependencies:
+    release-it "^14.2.1"
+    release-it-lerna-changelog "^3.1.0"
+
 ember-cli-inject-live-reload@2.0.2, ember-cli-inject-live-reload@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/ember-cli-inject-live-reload/-/ember-cli-inject-live-reload-2.0.2.tgz#95edb543b386239d35959e5ea9579f5382976ac7"
@@ -8729,16 +8753,16 @@ ember-intl@5.6.2:
     mkdirp "^1.0.4"
     silent-error "^1.1.1"
 
-ember-jsqr@1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-1.2.4.tgz#507f4338458a593962e95e2a5704351f7e763f72"
-  integrity sha512-gUKUgKy2OCMxJmBcsmMXLuujOloz630cIvk7eLgEgnS1yqlYjk+0nWuoGbLyBMYHVurKsv1My7QUhouAn3H2iw==
+ember-jsqr@1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/ember-jsqr/-/ember-jsqr-1.2.5.tgz#c96904166a636a937b8d82619687ff7bfb7a2055"
+  integrity sha512-d0nWBiX/ovgvooP+u8n2fLg9nbYT+nzORRMka118rnu/+dpf1uqUfoum4scxzs8HC695/DFFksCxEI1NNsWheQ==
   dependencies:
     "@glimmer/component" "^1.0.4"
     "@glimmer/tracking" "^1.0.4"
     ember-auto-import "^1.10.1"
     ember-cli-babel "^7.23.1"
-    ember-cli-htmlbars "^5.6.0"
+    ember-cli-htmlbars "^5.6.1"
     ember-cli-typescript "^4.1.0"
     ember-modifier "^2.1.1"
     jsqr "^1.3.1"
