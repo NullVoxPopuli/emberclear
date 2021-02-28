@@ -1,4 +1,5 @@
 import { cached } from '@glimmer/tracking';
+import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 import { waitFor } from '@ember/test-waiters';
 
@@ -84,6 +85,9 @@ export class GameHost extends EphemeralConnection {
 
     if (isDestroyed(this)) return;
 
+    if (!this._isPlayerKnown(data.uid)) {
+      this._markOnline(data.uid);
+    }
     // console.debug('host received:', {
     //   from: data.uid,
     //   ...decrypted,

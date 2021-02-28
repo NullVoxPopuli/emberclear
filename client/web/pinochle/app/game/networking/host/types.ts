@@ -2,6 +2,11 @@ import type { SerializablePlayer } from '../types';
 import type { SerializedRound } from './game-round';
 import type RSVP from 'rsvp';
 
+export type MessageFromGuest =
+  | { type: 'GUEST_HEARTBEAT' }
+  | { type: 'JOIN' }
+  | { type: 'PLAY' /* sub info in here */ };
+
 export type PlayerInfo = {
   id: string;
   name: string;
@@ -17,3 +22,4 @@ export type SerializedHost = {
   players: SerializablePlayer[];
   gameRound: SerializedRound;
 };
+

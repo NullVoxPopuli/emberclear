@@ -1352,7 +1352,7 @@
 
 "@ember/test-waiters@2.4.1":
   version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-2.4.1.tgz#e46bd7f1d28ff9a779c89acbbd2cc2df81235ca1"
+  resolved "https://registry.npmjs.org/@ember/test-waiters/-/test-waiters-2.4.1.tgz#e46bd7f1d28ff9a779c89acbbd2cc2df81235ca1"
   integrity sha512-tad4/nKcQHrBZ50kPlZy9xkTpmPpQUaAKegb7lHBfxC+5GcHSGbc6wYM2I8bT9Vf96diWZgNT0a5jbpLSQwRRA==
   dependencies:
     calculate-cache-key-for-tree "^2.0.0"
@@ -7566,7 +7566,7 @@ ember-cache-primitive-polyfill@^1.0.1:
 
 ember-cached-decorator-polyfill@0.1.1:
   version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ember-cached-decorator-polyfill/-/ember-cached-decorator-polyfill-0.1.1.tgz#988c06808666cbffd621e9c6baa51b7c599c6a05"
+  resolved "https://registry.npmjs.org/ember-cached-decorator-polyfill/-/ember-cached-decorator-polyfill-0.1.1.tgz#988c06808666cbffd621e9c6baa51b7c599c6a05"
   integrity sha512-mMdzPQuR4D6hNXkdVFfIWTQbBERNFpm5G36sC4DzogQYDcFKQf5QXLVCmK+3KsEKjJOwPeXmClMQTNUfgtb5Ig==
   dependencies:
     ember-cache-primitive-polyfill "^1.0.1"
@@ -19681,7 +19681,7 @@ xmlhttprequest-ssl@~1.5.4:
   resolved "https://registry.npmjs.org/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.5.tgz#c2876b06168aadc40e57d97e81191ac8f4398b3e"
   integrity sha1-wodrBhaKrcQOV9l+gRkayPQ5iz4=
 
-xstate@4.15.3, xstate@^4.12.0, xstate@^4.15.3:
+xstate@^4.12.0, xstate@^4.15.3, "xstate@github:davidkpiano/xstate#next":
   version "4.15.3"
   resolved "https://registry.npmjs.org/xstate/-/xstate-4.15.3.tgz#9c8225cda3be2359c7d6d1d587e02fa5bf9bfff7"
   integrity sha512-nf4zzLNs5W57stMZib9UG9PA5ywu89INsaXBMZf7iQxkYD9apbIOQcK8nu/iVZEDOVE+vR8GQnTaOg/8iDSK5Q==

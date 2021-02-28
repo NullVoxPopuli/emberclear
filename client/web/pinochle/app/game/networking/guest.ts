@@ -138,10 +138,10 @@ export class GameGuest extends EphemeralConnection {
 
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
-    // console.log('guest received:', {
-    //   gameId: data.uid,
-    //   ...decrypted,
-    // });
+    console.log('guest received:', {
+      gameId: data.uid,
+      ...decrypted,
+    });
 
     if (isDestroyed(this)) return;
 
