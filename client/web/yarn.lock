@@ -4265,11 +4265,6 @@ babel-plugin-htmlbars-inline-precompile@^4.1.0, babel-plugin-htmlbars-inline-pre
   resolved "https://registry.npmjs.org/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-4.2.1.tgz#9a367f8d7ecb9fb2c2e886edfe285caf7cb9766d"
   integrity sha512-MCJXk+1R0YjlF/F52eDbhJTpsnqRVYsPYVP9d0jEu7E46AcRPEWDL5tfSweiQWHLKG017BIedATb91KcIoT3zA==
 
-babel-plugin-htmlbars-inline-precompile@^4.2.1:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-4.3.0.tgz#34b6f271def577cbf34193249925061e9ccf5fe4"
-  integrity sha512-IBQn7pR+7PU9HdTpkOWL1PmiET8afK2G4ztBGyr8kLMjYPwcydh9X5YmzVpwWVfS9RZVU10m0mgbom+lwhxy4w==
-
 babel-plugin-htmlbars-inline-precompile@^4.4.1:
   version "4.4.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-4.4.3.tgz#e45a6386786583009e2d7c8bd2dc5ec51132c041"
@@ -8015,13 +8010,13 @@ ember-cli-htmlbars@5.1.2:
     strip-bom "^4.0.0"
     walk-sync "^2.1.0"
 
-ember-cli-htmlbars@5.3.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.3.2.tgz#d0e1a4ccd2e7c6f91be51ea0cc1ef7650a9b67e7"
-  integrity sha512-S/spDVzBxkdMhnjiT6gG9xqpM9sT0Z7HskWSvSIAAW1sQsKPOCfRYp/1CqJ3+V5aX8ct0j5aHsdRanQYyHya2w==
+ember-cli-htmlbars@5.6.2, ember-cli-htmlbars@^5.6.2:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.6.2.tgz#01aebe6df7b8db7fd6e5dd02ba1c82898c087a35"
+  integrity sha512-8+x82oVqSkWN1RkHtK7QG40D/X94uEJCPmv5QUOJDg4KE+F/zrjA8TEjDKI/phjBUS6JfZ+Hg5RvamU1ZoZbjQ==
   dependencies:
     "@ember/edition-utils" "^1.2.0"
-    babel-plugin-htmlbars-inline-precompile "^4.2.1"
+    babel-plugin-htmlbars-inline-precompile "^4.4.1"
     broccoli-debug "^0.6.5"
     broccoli-persistent-filter "^3.1.2"
     broccoli-plugin "^4.0.3"
@@ -8035,6 +8030,9 @@ ember-cli-htmlbars@5.3.2:
     silent-error "^1.1.1"
     strip-bom "^4.0.0"
     walk-sync "^2.2.0"
+  optionalDependencies:
+    release-it "^14.2.1"
+    release-it-lerna-changelog "^3.1.0"
 
 ember-cli-htmlbars@^4.0.1, ember-cli-htmlbars@^4.0.9, ember-cli-htmlbars@^4.2.0, ember-cli-htmlbars@^4.2.2, ember-cli-htmlbars@^4.3.1:
   version "4.4.0"
@@ -8076,30 +8074,6 @@ ember-cli-htmlbars@^5.1.2, ember-cli-htmlbars@^5.2.0, ember-cli-htmlbars@^5.3.1:
     silent-error "^1.1.1"
     strip-bom "^4.0.0"
     walk-sync "^2.2.0"
-
-ember-cli-htmlbars@^5.6.2:
-  version "5.6.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.6.2.tgz#01aebe6df7b8db7fd6e5dd02ba1c82898c087a35"
-  integrity sha512-8+x82oVqSkWN1RkHtK7QG40D/X94uEJCPmv5QUOJDg4KE+F/zrjA8TEjDKI/phjBUS6JfZ+Hg5RvamU1ZoZbjQ==
-  dependencies:
-    "@ember/edition-utils" "^1.2.0"
-    babel-plugin-htmlbars-inline-precompile "^4.4.1"
-    broccoli-debug "^0.6.5"
-    broccoli-persistent-filter "^3.1.2"
-    broccoli-plugin "^4.0.3"
-    common-tags "^1.8.0"
-    ember-cli-babel-plugin-helpers "^1.1.1"
-    fs-tree-diff "^2.0.1"
-    hash-for-dep "^1.5.1"
-    heimdalljs-logger "^0.1.10"
-    json-stable-stringify "^1.0.1"
-    semver "^7.3.4"
-    silent-error "^1.1.1"
-    strip-bom "^4.0.0"
-    walk-sync "^2.2.0"
-  optionalDependencies:
-    release-it "^14.2.1"
-    release-it-lerna-changelog "^3.1.0"
 
 ember-cli-inject-live-reload@2.0.2, ember-cli-inject-live-reload@^2.0.2:
   version "2.0.2"
@@ -8191,7 +8165,7 @@ ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   resolved "https://registry.npmjs.org/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
   integrity sha1-ObZ3/CgF9VFzc1N2/O8njqpEUqE=
 
-ember-cli-terser@4.0.1, ember-cli-terser@^4.0.0, ember-cli-terser@^4.0.1:
+ember-cli-terser@4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/ember-cli-terser/-/ember-cli-terser-4.0.1.tgz#0da0b8f2b09989e8c992b207553ddec1bbb65915"
   integrity sha512-vvp0uVl8reYeW9EZjSXRPR3Bq7y4u9CYlUdI7j/WzMPDj3/gUHU4Z7CHYOCrftrClQvFfqO2eXmHwDA6F7SLug==
@@ -16186,7 +16160,7 @@ qunit-console-grouper@^0.2.0:
   dependencies:
     broccoli-funnel "^2.0.2"
 
-qunit-dom@1.6.0, qunit-dom@^1.4.0, qunit-dom@^1.6.0:
+qunit-dom@1.6.0:
   version "1.6.0"
   resolved "https://registry.npmjs.org/qunit-dom/-/qunit-dom-1.6.0.tgz#a4bea6a46329d221e4a317d712cb40709107b977"
   integrity sha512-YwSqcLjQcRI0fUFpaSWwU10KIJPFW5Qh+d3cT5DOgx81dypRuUSiPkKFmBY/CDs/R1KdHRadthkcXg2rqAon8Q==
