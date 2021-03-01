@@ -2,10 +2,13 @@ import type { SerializablePlayer } from '../types';
 import type { SerializedRound } from './game-round';
 import type RSVP from 'rsvp';
 
+export interface WithId {
+  fromId: string;
+}
 export type MessageFromGuest =
-  | { type: 'GUEST_HEARTBEAT' }
-  | { type: 'JOIN' }
-  | { type: 'PLAY' /* sub info in here */ };
+  | (WithId & { type: 'GUEST_HEARTBEAT' })
+  | (WithId & { type: 'JOIN' })
+  | (WithId & { type: 'PLAY' /* sub info in here */ });
 
 export type PlayerInfo = {
   id: string;
