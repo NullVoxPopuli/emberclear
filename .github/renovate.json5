@@ -17,11 +17,19 @@
       "enabled": false
     },
     {
-      "paths": ["client/web/**/package.json"],
+      // libraries and addons aka "non-apps"
+      "paths": ["client/web/addons/**/package.json", "client/web/libraries/**/package.json"],
+      "rangeStrategy": "bump",
+      "schedule": ["after 9pm on sunday"]
+    },
+    {
+      "paths": ["client/web/emberclear/package.json", "client/web/pinochle/package.json"],
       // Pin requires more package.json/lockfile churn,
       // but it allows us to determine if an otherwise floating dep
       // introduced a regression
-      "rangeStrategy": "pin"
+      "rangeStrategy": "pin",
+      // then setting a schedule reduces the churn and allows for PRs to be combined with the groups below
+      "schedule": ["after 9pm on sunday"]
     },
     {
       "paths": ["client/web/emberclear/Dockerfile"],
