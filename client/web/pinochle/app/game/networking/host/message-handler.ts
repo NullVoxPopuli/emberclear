@@ -7,8 +7,9 @@ import { Statechart } from 'pinochle/utils/use-machine';
 import { statechart } from './statecharts/message-handler';
 
 import type { GameHost } from '../host';
+import type { Join } from '../types';
 import type { Context, Event, Schema } from './statecharts/message-handler';
-import type { MessageFromGuest } from './types';
+import type { MessageFromGuest, WithId } from './types';
 
 const MAX_PLAYERS = 4;
 const MIN_PLAYERS = 3;
@@ -23,19 +24,21 @@ export class MessageHandler {
         chart: statechart,
         config: {
           actions: {
-            addPlayerToGame: (_, { fromId, name }) => this.host._addPlayer({ name }, fromId),
-            broadcastPlayerList: this.host._broadcastPlayerList,
-            notifyGameIsFull: (_, { fromId }) => this._gameFull(fromId),
+            addPlayerToGame: (_, { fromId, name }: WithId & Join) =>
+              this.host._addPlayer({ name }, fromId),
+            notifyGameIsFull: (_, { fromId }: WithId) => this._gameFull(fromId),
+            ping: (_, { fromId }: WithId) => this._ping(fromId),
+            pong: (_, { fromId }: WithId) => this._pong(fromId),
             beginGame: this.host.beginGame,
-            ping: (_, { fromId }) => this._ping(fromId),
-            pong: (_, { fromId }) => this._pong(fromId),
+            broadcastPlayerList: this.host._broadcastPlayerList,
           },
           guards: {
             isGameFull: this.isGameFull,
             hasEnoughPlayers: this.hasEnoughPlayers,
-            isPlayerKnown: (_, { fromId }) => this.host._isPlayerKnown(fromId),
+            isPlayerKnown: (_, { fromId }: WithId) => this.host._isPlayerKnown(fromId),
           },
-        },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
       },
     };
   });

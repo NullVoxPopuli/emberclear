@@ -19,7 +19,7 @@ import { unwrapObject } from './host/utils';
 
 // import { UnknownMessageError } from '@emberclear/networking/errors';
 import type { PlayerInfo } from './host/types';
-import type { GameMessage } from './types';
+import type { FromGuestMessage } from './types';
 import type { EncryptedMessage } from '@emberclear/crypto/types';
 
 export class GameHost extends EphemeralConnection {
@@ -58,11 +58,11 @@ export class GameHost extends EphemeralConnection {
   async onData(data: EncryptedMessage) {
     if (isDestroyed(this)) return;
 
-    let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
+    let decrypted: FromGuestMessage = await this.crypto.decryptFromSocket(data);
 
     if (isDestroyed(this)) return;
 
-    if (!this._isPlayerKnown(data.uid)) {
+    if (this._isPlayerKnown(data.uid)) {
       this._markOnline(data.uid);
     }
 

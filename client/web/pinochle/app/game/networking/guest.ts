@@ -62,6 +62,8 @@ export class GameGuest extends EphemeralConnection {
     super(publicKeyAsHex);
 
     this.gameId = this.target?.hex;
+
+    this.handler = new MessageHandler(this);
   }
 
   get playerOrder() {

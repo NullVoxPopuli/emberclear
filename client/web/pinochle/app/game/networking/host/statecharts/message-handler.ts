@@ -1,16 +1,12 @@
-import { actions, assign, send } from 'xstate';
-
-import type { MessageFromGuest } from './types';
+import type { MessageFromGuest, MessageFromUi } from '../types';
 import type { MachineConfig, StateSchema } from 'xstate';
 
-export type Event =
-  | MessageFromGuest
-  | {
-      type: 'UI__START_GAME';
-    }
-  | { type: 'PING' };
+export type Event = MessageFromGuest | MessageFromUi;
 
-export interface Context {}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Context {
+  /* no context */
+}
 export interface Schema extends StateSchema<Context> {
   states: {
     idle: StateSchema<Context>;
@@ -25,17 +21,19 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
     PING: {
       actions: ['pong'],
     },
-    GUEST_HEARTBEAT: {
-      actions: [
-        {
-          cond: 'isPlayerKnown',
-          actions: ['markOnline', 'broadcastPlayerList'],
-        },
-        {
-          actions: ['sendNotRecognized'],
-        },
-      ],
+    PONG: {
+      // noop
     },
+    // heartbeat starts after the guest joins
+    HEARTBEAT: [
+      {
+        cond: 'isPlayerKnown',
+        actions: ['markOnline', 'broadcastPlayerList'],
+      },
+      {
+        actions: ['sendNotRecognized'],
+      },
+    ],
   },
   states: {
     idle: {
@@ -48,13 +46,9 @@ export const statechart: MachineConfig<Context, Schema, Event> = {
           { actions: ['addPlayerToGame', 'broadcastPlayerList'] },
         ],
         UI__START_GAME: {
-          actions: [
-            {
-              cond: 'hasEnoughPlayers',
-              target: 'inGame',
-              actions: ['beginGame'],
-            },
-          ],
+          cond: 'hasEnoughPlayers',
+          target: 'inGame',
+          actions: ['beginGame'],
         },
       },
     },

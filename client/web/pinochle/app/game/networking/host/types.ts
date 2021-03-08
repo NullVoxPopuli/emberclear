@@ -1,14 +1,14 @@
-import type { SerializablePlayer } from '../types';
+import type { Heartbeat, Join, Ping, Play, Pong, SerializablePlayer } from '../types';
 import type { SerializedRound } from './game-round';
 import type RSVP from 'rsvp';
 
 export interface WithId {
   fromId: string;
 }
-export type MessageFromGuest =
-  | (WithId & { type: 'GUEST_HEARTBEAT' })
-  | (WithId & { type: 'JOIN' })
-  | (WithId & { type: 'PLAY' /* sub info in here */ });
+export type MessageFromGuest = WithId & (Heartbeat | Join | Ping | Play | Pong);
+/* sub info in here */
+
+export type MessageFromUi = { type: 'UI__START_GAME' };
 
 export type PlayerInfo = {
   id: string;
@@ -25,4 +25,3 @@ export type SerializedHost = {
   players: SerializablePlayer[];
   gameRound: SerializedRound;
 };
-
