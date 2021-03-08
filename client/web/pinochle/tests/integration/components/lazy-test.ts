@@ -17,8 +17,8 @@ module('Integration | Component | lazy', function (hooks) {
       this.setProperties({ text });
 
       render(hbs`
-      <Lazy @wait={{10}}>{{this.text}}</Lazy>
-    `);
+        <Lazy @wait={{10}}>{{this.text}}</Lazy>
+      `);
 
       assert.dom().doesNotContainText(text);
 

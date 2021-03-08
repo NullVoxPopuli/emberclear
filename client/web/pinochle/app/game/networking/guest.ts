@@ -62,6 +62,8 @@ export class GameGuest extends EphemeralConnection {
     super(publicKeyAsHex);
 
     this.gameId = this.target?.hex;
+
+    this.handler = new MessageHandler(this);
   }
 
   get playerOrder() {
@@ -138,10 +140,10 @@ export class GameGuest extends EphemeralConnection {
 
     let decrypted: GameMessage = await this.crypto.decryptFromSocket(data);
 
-    // console.log('guest received:', {
-    //   gameId: data.uid,
-    //   ...decrypted,
-    // });
+    console.log('guest received:', {
+      gameId: data.uid,
+      ...decrypted,
+    });
 
     if (isDestroyed(this)) return;
 

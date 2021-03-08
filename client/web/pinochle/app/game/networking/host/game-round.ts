@@ -4,12 +4,12 @@ import { use } from 'ember-could-get-used-to-this';
 
 import { Statechart } from 'pinochle/utils/use-machine';
 
-import { statechart } from './game-state';
+import { statechart } from './statecharts/game-state';
 import { handById, serializePlayer } from './utils';
 
 import type { GamePhase } from '../constants';
 import type { Bid } from '../types';
-import type { Context, Event, Schema } from './game-state';
+import type { Context, Event, Schema } from './statecharts/game-state';
 import type { PlayerInfo } from './types';
 import type { EncryptableObject } from '@emberclear/crypto/types';
 import type { Card, Suit } from 'pinochle/game/card';

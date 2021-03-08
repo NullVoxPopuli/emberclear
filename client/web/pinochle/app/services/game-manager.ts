@@ -108,7 +108,7 @@ export default class GameManager extends Service {
       }
 
       host.currentGame = GameRound.loadFrom(host.playersById, hostData.gameRound);
-      host._broadcastState();
+      host._broadcastPlayerList();
     }
   }
 
