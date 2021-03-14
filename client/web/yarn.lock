@@ -1350,14 +1350,14 @@
     ember-cli-htmlbars-inline-precompile "^2.1.0"
     ember-test-waiters "^1.1.1"
 
-"@ember/test-waiters@2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-2.4.1.tgz#e46bd7f1d28ff9a779c89acbbd2cc2df81235ca1"
-  integrity sha512-tad4/nKcQHrBZ50kPlZy9xkTpmPpQUaAKegb7lHBfxC+5GcHSGbc6wYM2I8bT9Vf96diWZgNT0a5jbpLSQwRRA==
+"@ember/test-waiters@2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-2.4.2.tgz#28e38d00edc96bcdc8c42592933d8f1b4171d1a1"
+  integrity sha512-WNbprLvC5PsgjnoX0cWa5/2dP3sbDDLjc6JYNUfrFlmZfsuKU9/+Ioyi0V6cx9mzpWLdfkSZMW+bw/rItjPKVg==
   dependencies:
     calculate-cache-key-for-tree "^2.0.0"
-    ember-cli-babel "^7.21.0"
-    ember-cli-typescript "^3.1.4"
+    ember-cli-babel "^7.23.1"
+    ember-cli-typescript "^4.1.0"
     ember-cli-version-checker "^5.1.2"
     semver "^7.3.2"
 
