@@ -1,6 +1,6 @@
 'use strict';
 
-const { configs } = require('@emberclear/eslint');
+const { configs } = require('@nullvoxpopuli/eslint-configs');
 
 const config = configs.node();
 

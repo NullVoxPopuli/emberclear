@@ -57,10 +57,7 @@ describe('smoke', function () {
     this.chatPage1 = new Chat(this.browsers[0]);
     this.chatPage2 = new Chat(this.browsers[1]);
 
-    await Promise.all([
-      this.browsers[0].url(this.host),
-      this.browsers[1].url(this.host),
-    ]);
+    await Promise.all([this.browsers[0].url(this.host), this.browsers[1].url(this.host)]);
   });
 
   after(async function () {
@@ -78,23 +75,18 @@ describe('smoke', function () {
         mnemonic:
           'assist lounge buyer clump marble vital check ordinary liar resemble fantasy vapor snow stool myth mention mention ask tiger video ball suspect lens above loan',
         message: 'Hello Browser 2!',
-        publicKey:
-          'b4645cdeec6889d7515aeadab66b2b4fd0fbac5751f701e0289a1add7822a739',
+        publicKey: 'b4645cdeec6889d7515aeadab66b2b4fd0fbac5751f701e0289a1add7822a739',
       },
       {
         name: 'SpxDqBPG',
         mnemonic:
           'glimpse moment duck pigeon awake gossip burger repair dizzy employ diary merge swarm select very liar rail exhibit space runway face inhale absorb able trigger',
         message: 'Hello Browser 1!',
-        publicKey:
-          'e3ab4b615a00cacbd44d498cdc4d880bb484e2e6e0b1b02bbf3d393c12183047',
+        publicKey: 'e3ab4b615a00cacbd44d498cdc4d880bb484e2e6e0b1b02bbf3d393c12183047',
       },
     ];
 
-    await Promise.all([
-      this.loginPage1.logIn(users[0]),
-      this.loginPage2.logIn(users[1]),
-    ]);
+    await Promise.all([this.loginPage1.logIn(users[0]), this.loginPage2.logIn(users[1])]);
 
     await Promise.all([
       this.addFriendPage1.addFriend(users[1]),

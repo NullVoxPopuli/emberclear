@@ -25,9 +25,7 @@ class AddFriend extends BasePageObject {
   async addFriend(user) {
     await this.addFriendButton.click();
 
-    await this._browser.url(
-      `${this.host}/invite?name=${user.name}&publicKey=${user.publicKey}`
-    );
+    await this._browser.url(`${this.host}/invite?name=${user.name}&publicKey=${user.publicKey}`);
   }
 }
 

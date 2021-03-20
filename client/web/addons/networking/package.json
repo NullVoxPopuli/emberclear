@@ -43,7 +43,7 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@emberclear/config": "*",
-    "@emberclear/eslint": "*",
+    "@nullvoxpopuli/eslint-configs": "1.0.0",
     "@emberclear/questionably-typed": "*",
     "@emberclear/test-helpers": "*",
     "@glimmer/component": "1.0.4",
