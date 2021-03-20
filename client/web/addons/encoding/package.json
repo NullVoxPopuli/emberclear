@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@emberclear/config": "*",
-    "@emberclear/eslint": "*",
+    "@nullvoxpopuli/eslint-configs": "1.0.0",
     "ember-auto-import": "^1.10.1",
     "ember-cli-babel": "7.23.1",
     "ember-cli-htmlbars": "5.6.5",

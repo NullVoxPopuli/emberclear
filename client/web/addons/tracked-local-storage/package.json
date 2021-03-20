@@ -32,8 +32,8 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@emberclear/config": "*",
-    "@emberclear/eslint": "*",
     "@glimmer/component": "1.0.4",
+    "@nullvoxpopuli/eslint-configs": "1.0.0",
     "@glimmer/tracking": "1.0.4",
     "@types/ember": "3.16.4",
     "@types/ember-qunit": "3.4.13",

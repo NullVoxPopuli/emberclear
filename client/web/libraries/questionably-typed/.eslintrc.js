@@ -1,8 +1,8 @@
 'use strict';
 
-const { tsBase } = require('@emberclear/eslint/configs/base');
-const { baseConfig: nodeBase } = require('@emberclear/eslint/configs/node');
-const { createConfig } = require('@emberclear/eslint/utils');
+const { tsBase } = require('@nullvoxpopuli/eslint-configs/configs/base');
+const { baseConfig: nodeBase } = require('@nullvoxpopuli/eslint-configs/configs/node');
+const { createConfig } = require('@nullvoxpopuli/eslint-configs/utils');
 
 module.exports = createConfig(
   {

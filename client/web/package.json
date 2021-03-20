@@ -43,7 +43,7 @@
     "xstate": "^4.15.3"
   },
   "devDependencies": {
-    "@emberclear/eslint": "*",
+    "@nullvoxpopuli/eslint-configs": "1.0.0",
     "cross-env": "7.0.3",
     "deepmerge": "4.2.2",
     "ember-intl-analyzer": "3.0.0",
