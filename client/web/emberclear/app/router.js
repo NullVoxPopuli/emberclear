@@ -44,7 +44,6 @@ Router.map(function () {
   this.route('faq');
 
   this.route('add-friend');
-  this.route('donate');
 
   this.route('not-found', { path: '/*path' });
   this.route('qr');
