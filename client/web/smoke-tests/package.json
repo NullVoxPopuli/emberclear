@@ -8,7 +8,7 @@
     "test": "yarn faltest --browsers 2 --timeouts-override 900000"
   },
   "devDependencies": {
-    "@nullvoxpopuli/eslint-configs": "1.0.0",
+    "@nullvoxpopuli/eslint-configs": "1.1.0",
     "@faltest/cli": "3.0.0",
     "@faltest/lifecycle": "5.0.0",
     "@faltest/page-objects": "4.0.0",
