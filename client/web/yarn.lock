@@ -1392,16 +1392,16 @@
   dependencies:
     ember-cli-babel "^7.4.0"
 
-"@ember/test-helpers@2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.3.tgz#237c2de48a9e85492374b91e825cb142675858cc"
-  integrity sha512-qpLz0wwHrY49JzmS2qznpEjrfZUhrWemgSXu48xgJAZnjXBa52libZgl7mzwnHmmo4YtUBgQtJSRPUp/coYFNA==
+"@ember/test-helpers@2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.5.tgz#9f915310b79fd6330e8e19857958e5f241c1d0de"
+  integrity sha512-E0GMlkmRb9r3lHa+88gtfZcve+IlAS3yoUsB5QSSTC8oRTGhqzirvsxYAylCj8n40gfoOHdqKEZxncYhVimZwg==
   dependencies:
-    "@ember/test-waiters" "^2.4.0"
+    "@ember/test-waiters" "^2.4.3"
     broccoli-debug "^0.6.5"
     broccoli-funnel "^3.0.3"
-    ember-cli-babel "^7.23.1"
-    ember-cli-htmlbars "^5.2.0"
+    ember-cli-babel "^7.26.2"
+    ember-cli-htmlbars "^5.7.1"
     ember-destroyable-polyfill "^2.0.3"
 
 "@ember/test-helpers@^1.7.1":
@@ -1416,7 +1416,7 @@
     ember-cli-htmlbars-inline-precompile "^2.1.0"
     ember-test-waiters "^1.1.1"
 
-"@ember/test-waiters@2.4.3":
+"@ember/test-waiters@2.4.3", "@ember/test-waiters@^2.4.3":
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-2.4.3.tgz#44c144fad5e3a5858b02604c1df7edea61a52dbf"
   integrity sha512-2Nq1y5+mbBg2QeP57JaOrhfCCu2tEBr8QA3XrJw6uutnU5heNKIROnh1gskqDg72m8lqocA1UFzpCQIg4XQywQ==
@@ -1424,17 +1424,6 @@
     calculate-cache-key-for-tree "^2.0.0"
     ember-cli-babel "^7.26.2"
     ember-cli-typescript "^4.1.0"
-    ember-cli-version-checker "^5.1.2"
-    semver "^7.3.2"
-
-"@ember/test-waiters@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-2.4.0.tgz#af92324d03a8840eff7a9ea3e9015138e0c477ed"
-  integrity sha512-P1c0dmbNx7I+wM37nCs3lRiDoGYvcg0s2L3Y/75izj48iYT1/7Vxr3eFkZ7AShuCa7SBMRoH2mHOVsqLDBJ3hA==
-  dependencies:
-    calculate-cache-key-for-tree "^2.0.0"
-    ember-cli-babel "^7.21.0"
-    ember-cli-typescript "^3.1.4"
     ember-cli-version-checker "^5.1.2"
     semver "^7.3.2"
 
@@ -4190,6 +4179,13 @@ babel-plugin-htmlbars-inline-precompile@^4.4.5:
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-4.4.5.tgz#ca0fc6ea49fe13b0a91ff995ee381d33d421a4ef"
   integrity sha512-7qnZTDm9uUQppOmEWjAyIPTQ54akEdd9PCIfbTJ8HNgUdekeKC+24uwd+M1ZTjUItby1iLy9maQOK3Wv9RjWJA==
+  dependencies:
+    babel-plugin-ember-modules-api-polyfill "^3.4.0"
+
+babel-plugin-htmlbars-inline-precompile@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-5.0.0.tgz#b3a3008bdedbd3543e745fc953769cc10d4a7021"
+  integrity sha512-ZPIV7zVwVcwRyTWCp29HSwIPcvqX7PoslpKlNu53AzAx5X4QBwuMb9fFsUYY3JcriNZb5xWFOM4AE95XW0UYeA==
   dependencies:
     babel-plugin-ember-modules-api-polyfill "^3.4.0"
 
@@ -8104,6 +8100,28 @@ ember-cli-htmlbars@^5.6.4:
     broccoli-plugin "^4.0.3"
     common-tags "^1.8.0"
     ember-cli-babel-plugin-helpers "^1.1.1"
+    fs-tree-diff "^2.0.1"
+    hash-for-dep "^1.5.1"
+    heimdalljs-logger "^0.1.10"
+    json-stable-stringify "^1.0.1"
+    semver "^7.3.4"
+    silent-error "^1.1.1"
+    strip-bom "^4.0.0"
+    walk-sync "^2.2.0"
+
+ember-cli-htmlbars@^5.7.1:
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.7.1.tgz#eb5b88c7d9083bc27665fb5447a9b7503b32ce4f"
+  integrity sha512-9laCgL4tSy48orNoQgQKEHp93MaqAs9ZOl7or5q+8iyGGJHW6sVXIYrVv5/5O9HfV6Ts8/pW1rSoaeKyLUE+oA==
+  dependencies:
+    "@ember/edition-utils" "^1.2.0"
+    babel-plugin-htmlbars-inline-precompile "^5.0.0"
+    broccoli-debug "^0.6.5"
+    broccoli-persistent-filter "^3.1.2"
+    broccoli-plugin "^4.0.3"
+    common-tags "^1.8.0"
+    ember-cli-babel-plugin-helpers "^1.1.1"
+    ember-cli-version-checker "^5.1.2"
     fs-tree-diff "^2.0.1"
     hash-for-dep "^1.5.1"
     heimdalljs-logger "^0.1.10"
