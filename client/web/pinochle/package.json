@@ -25,7 +25,7 @@
     "@ember/test-waiters": "2.4.3",
     "@emberclear/config": "*",
     "@emberclear/test-helpers": "*",
-    "@nullvoxpopuli/eslint-configs": "1.1.0",
+    "@nullvoxpopuli/eslint-configs": "1.1.1",
     "@glimmer/component": "1.0.4",
     "@glimmer/tracking": "1.0.4",
     "@types/ember": "3.16.4",
