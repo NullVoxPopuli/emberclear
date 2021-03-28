@@ -7693,13 +7693,13 @@ ember-auto-import@^1.5.2, ember-auto-import@^1.5.3, ember-auto-import@^1.6.0:
     walk-sync "^0.3.3"
     webpack "^4.43.0"
 
-ember-autofocus-modifier@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/ember-autofocus-modifier/-/ember-autofocus-modifier-1.1.0.tgz#2180e560699290b8e2abba40f265844368cb4b26"
-  integrity sha512-o5q6vkRg95pJoF8zNo7zHT8/RRNJv3AcHiBXg0UGKfEi6XjrbiTa48kjUPOz3+zz2CrJLZCDcVLUGEk2tZG0Jg==
+ember-autofocus-modifier@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ember-autofocus-modifier/-/ember-autofocus-modifier-1.2.0.tgz#67c4902c7f0cfd3a454597a2b98d579a02b16cee"
+  integrity sha512-ANZRW+7BaWRJUCe0XlGhhqUcEQNfCdFZmQ4cpXg3GeVfVKZatnrL7d+7+V04OZdoNlbeASDwSDoErUkctu1PlQ==
   dependencies:
-    ember-cli-babel "^7.22.1"
-    ember-modifier "^2.1.0"
+    ember-cli-babel "^7.23.1"
+    ember-modifier "^2.1.1"
 
 ember-autoresize-modifier@0.3.0:
   version "0.3.0"
@@ -7794,7 +7794,7 @@ ember-cli-babel@7.20.5:
     rimraf "^3.0.1"
     semver "^5.5.0"
 
-ember-cli-babel@7.26.3, ember-cli-babel@^7.26.3:
+ember-cli-babel@7.26.3, ember-cli-babel@^7.23.1, ember-cli-babel@^7.26.3:
   version "7.26.3"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.26.3.tgz#e93ce7ec458208894d10844cf76e41cc06fdbeb6"
   integrity sha512-ZCs0g99d3kYaHs1+HT33oMY7/K+nLCAAv7dCLxsMzg7cQf55O6Pq4ZKnWEr3IHVs33xbJFnEb9prt1up36QVnw==
