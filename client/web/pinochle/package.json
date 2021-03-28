@@ -57,7 +57,7 @@
     "ember-maybe-import-regenerator": "0.1.6",
     "ember-qunit": "4.6.0",
     "ember-resolver": "8.0.2",
-    "ember-source": "3.25.1",
+    "ember-source": "3.26.1",
     "ember-template-lint": "2.16.0",
     "fractal-page-object": "0.1.0",
     "husky": "4.3.8",
