@@ -63,6 +63,7 @@ jobs:
       working-directory: ${{ env.cwd }}
       run: yarn install
 
+    - run: yarn global add netlify-cli
     - name: Deploy to Netlify
       env:
         FRONTEND: ${{ env.cwd }}

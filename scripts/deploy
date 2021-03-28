@@ -12,8 +12,6 @@ echo "Current branch: $BRANCH"
 if [[ "$BRANCH" == "master" ]]; then
   echo "Current branch is master. Starting deploy..."
 
-  NETLIFY_CLI_VERSION=0.4.0
-
   # exit if any of the following errors
   set -e
 

@@ -4,13 +4,10 @@ cp $FRONTEND/config/netlify/_redirects $FRONTEND/dist
 # don't exit if a script errors, because we want custom logging
 set +e
 
-npm --version
-npm install -g netlify-cli
-
 netlify deploy \
+  --auth $NETLIFY_ACCESS_TOKEN \
   --site $NETLIFY_SITE_ID \
   --prod \
-  --auth $NETLIFY_ACCESS_TOKEN \
   --dir "./$FRONTEND/dist" \
   --message "Deploying emberclear.io for revision: $GITHUB_SHA"
 
