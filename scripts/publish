@@ -1,13 +1,18 @@
 #!/bin/bash
 cp $FRONTEND/config/netlify/_redirects $FRONTEND/dist
 
-wget https://github.com/netlify/netlifyctl/releases/download/v$NETLIFY_CLI_VERSION/netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
-tar -xf netlifyctl-linux-amd64-$NETLIFY_CLI_VERSION.tar.gz
-
 # don't exit if a script errors, because we want custom logging
 set +e
 
-./netlifyctl -y deploy --site-id $NETLIFY_SITE_ID --access-token $NETLIFY_ACCESS_TOKEN --publish-directory "./$FRONTEND/dist"
+npm --version
+npm install -g netlify-cli
+
+netlify deploy \
+  --site $NETLIFY_SITE_ID \
+  --prod \
+  --auth $NETLIFY_ACCESS_TOKEN \
+  --dir "./$FRONTEND/dist" \
+  --message "Deploying emberclear.io for revision: $GITHUB_SHA"
 
 deploy_status=$?
 echo "Deploy finished with status: $deploy_status"
