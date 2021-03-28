@@ -28,9 +28,9 @@
   "dependencies": {
     "@emberclear/config": "*",
     "@nullvoxpopuli/eslint-configs": "1.1.1",
-    "ember-auto-import": "^1.10.1",
+    "ember-auto-import": "^1.11.2",
     "ember-cli-babel": "7.26.3",
-    "ember-cli-htmlbars": "5.6.5",
+    "ember-cli-htmlbars": "5.7.1",
     "qrcode": "1.4.4"
   },
   "devDependencies": {

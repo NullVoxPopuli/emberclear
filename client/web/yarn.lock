@@ -4189,13 +4189,6 @@ babel-plugin-htmlbars-inline-precompile@^4.4.1:
   dependencies:
     babel-plugin-ember-modules-api-polyfill "^3.4.0"
 
-babel-plugin-htmlbars-inline-precompile@^4.4.5:
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-4.4.5.tgz#ca0fc6ea49fe13b0a91ff995ee381d33d421a4ef"
-  integrity sha512-7qnZTDm9uUQppOmEWjAyIPTQ54akEdd9PCIfbTJ8HNgUdekeKC+24uwd+M1ZTjUItby1iLy9maQOK3Wv9RjWJA==
-  dependencies:
-    babel-plugin-ember-modules-api-polyfill "^3.4.0"
-
 babel-plugin-htmlbars-inline-precompile@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-htmlbars-inline-precompile/-/babel-plugin-htmlbars-inline-precompile-5.0.0.tgz#b3a3008bdedbd3543e745fc953769cc10d4a7021"
@@ -7589,41 +7582,7 @@ ember-ast-helpers@0.3.5:
     "@glimmer/compiler" "^0.27.0"
     "@glimmer/syntax" "^0.27.0"
 
-ember-auto-import@1.10.1, ember-auto-import@^1.10.1:
-  version "1.10.1"
-  resolved "https://registry.npmjs.org/ember-auto-import/-/ember-auto-import-1.10.1.tgz#6c93a875e494aa0a58b759867d3f20adfd514ae3"
-  integrity sha512-7bOWzPELlVwdWDOkB+phDIjg8BNW+/2RiLLQ+Xa/eIvCLT4ABYhHV5wqW5gs5BnXTDVLfE4ddKZdllnGuPGGDQ==
-  dependencies:
-    "@babel/core" "^7.1.6"
-    "@babel/preset-env" "^7.10.2"
-    "@babel/traverse" "^7.1.6"
-    "@babel/types" "^7.1.6"
-    "@embroider/core" "^0.33.0"
-    babel-core "^6.26.3"
-    babel-loader "^8.0.6"
-    babel-plugin-syntax-dynamic-import "^6.18.0"
-    babylon "^6.18.0"
-    broccoli-debug "^0.6.4"
-    broccoli-node-api "^1.7.0"
-    broccoli-plugin "^4.0.0"
-    debug "^3.1.0"
-    ember-cli-babel "^7.0.0"
-    enhanced-resolve "^4.0.0"
-    fs-extra "^6.0.1"
-    fs-tree-diff "^2.0.0"
-    handlebars "^4.3.1"
-    js-string-escape "^1.0.1"
-    lodash "^4.17.19"
-    mkdirp "^0.5.1"
-    resolve-package-path "^3.1.0"
-    rimraf "^2.6.2"
-    semver "^7.3.4"
-    symlink-or-copy "^1.2.0"
-    typescript-memoize "^1.0.0-alpha.3"
-    walk-sync "^0.3.3"
-    webpack "^4.43.0"
-
-ember-auto-import@^1.11.2:
+ember-auto-import@1.11.2, ember-auto-import@^1.11.2:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.11.2.tgz#b6e9a0dddd88a10692830ffa4f5dfd8c137c8919"
   integrity sha512-Sm0x9qgAQEx+XSYeh5zeKj89Uo0c7XzULZxuziFPxbhtKy/G4pywhBuQ7EgDznTj8IZVxOdfe4ufcUxnJtbSgg==
@@ -7641,6 +7600,40 @@ ember-auto-import@^1.11.2:
     broccoli-node-api "^1.7.0"
     broccoli-plugin "^4.0.0"
     broccoli-source "^3.0.0"
+    debug "^3.1.0"
+    ember-cli-babel "^7.0.0"
+    enhanced-resolve "^4.0.0"
+    fs-extra "^6.0.1"
+    fs-tree-diff "^2.0.0"
+    handlebars "^4.3.1"
+    js-string-escape "^1.0.1"
+    lodash "^4.17.19"
+    mkdirp "^0.5.1"
+    resolve-package-path "^3.1.0"
+    rimraf "^2.6.2"
+    semver "^7.3.4"
+    symlink-or-copy "^1.2.0"
+    typescript-memoize "^1.0.0-alpha.3"
+    walk-sync "^0.3.3"
+    webpack "^4.43.0"
+
+ember-auto-import@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.npmjs.org/ember-auto-import/-/ember-auto-import-1.10.1.tgz#6c93a875e494aa0a58b759867d3f20adfd514ae3"
+  integrity sha512-7bOWzPELlVwdWDOkB+phDIjg8BNW+/2RiLLQ+Xa/eIvCLT4ABYhHV5wqW5gs5BnXTDVLfE4ddKZdllnGuPGGDQ==
+  dependencies:
+    "@babel/core" "^7.1.6"
+    "@babel/preset-env" "^7.10.2"
+    "@babel/traverse" "^7.1.6"
+    "@babel/types" "^7.1.6"
+    "@embroider/core" "^0.33.0"
+    babel-core "^6.26.3"
+    babel-loader "^8.0.6"
+    babel-plugin-syntax-dynamic-import "^6.18.0"
+    babylon "^6.18.0"
+    broccoli-debug "^0.6.4"
+    broccoli-node-api "^1.7.0"
+    broccoli-plugin "^4.0.0"
     debug "^3.1.0"
     ember-cli-babel "^7.0.0"
     enhanced-resolve "^4.0.0"
@@ -8084,18 +8077,19 @@ ember-cli-htmlbars@5.1.2:
     strip-bom "^4.0.0"
     walk-sync "^2.1.0"
 
-ember-cli-htmlbars@5.6.5:
-  version "5.6.5"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.6.5.tgz#15a55e4e4f47869a5e95a1e49813f77fd22fb76e"
-  integrity sha512-Wl3AntESMmQoG//yKuu+/7qAOznYAwRgWU8ZOCOPaGdPFaFXD6SPd2SKpRW4BEox5KLBJZFH0e7b9m78IAzcUw==
+ember-cli-htmlbars@5.7.1, ember-cli-htmlbars@^5.7.1:
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.7.1.tgz#eb5b88c7d9083bc27665fb5447a9b7503b32ce4f"
+  integrity sha512-9laCgL4tSy48orNoQgQKEHp93MaqAs9ZOl7or5q+8iyGGJHW6sVXIYrVv5/5O9HfV6Ts8/pW1rSoaeKyLUE+oA==
   dependencies:
     "@ember/edition-utils" "^1.2.0"
-    babel-plugin-htmlbars-inline-precompile "^4.4.5"
+    babel-plugin-htmlbars-inline-precompile "^5.0.0"
     broccoli-debug "^0.6.5"
     broccoli-persistent-filter "^3.1.2"
     broccoli-plugin "^4.0.3"
     common-tags "^1.8.0"
     ember-cli-babel-plugin-helpers "^1.1.1"
+    ember-cli-version-checker "^5.1.2"
     fs-tree-diff "^2.0.1"
     hash-for-dep "^1.5.1"
     heimdalljs-logger "^0.1.10"
@@ -8169,28 +8163,6 @@ ember-cli-htmlbars@^5.6.2:
   optionalDependencies:
     release-it "^14.2.1"
     release-it-lerna-changelog "^3.1.0"
-
-ember-cli-htmlbars@^5.7.1:
-  version "5.7.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.7.1.tgz#eb5b88c7d9083bc27665fb5447a9b7503b32ce4f"
-  integrity sha512-9laCgL4tSy48orNoQgQKEHp93MaqAs9ZOl7or5q+8iyGGJHW6sVXIYrVv5/5O9HfV6Ts8/pW1rSoaeKyLUE+oA==
-  dependencies:
-    "@ember/edition-utils" "^1.2.0"
-    babel-plugin-htmlbars-inline-precompile "^5.0.0"
-    broccoli-debug "^0.6.5"
-    broccoli-persistent-filter "^3.1.2"
-    broccoli-plugin "^4.0.3"
-    common-tags "^1.8.0"
-    ember-cli-babel-plugin-helpers "^1.1.1"
-    ember-cli-version-checker "^5.1.2"
-    fs-tree-diff "^2.0.1"
-    hash-for-dep "^1.5.1"
-    heimdalljs-logger "^0.1.10"
-    json-stable-stringify "^1.0.1"
-    semver "^7.3.4"
-    silent-error "^1.1.1"
-    strip-bom "^4.0.0"
-    walk-sync "^2.2.0"
 
 ember-cli-inject-live-reload@2.0.2, ember-cli-inject-live-reload@^2.0.2:
   version "2.0.2"
