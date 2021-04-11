@@ -17827,10 +17827,10 @@ to-utf8@0.0.1:
   resolved "https://registry.npmjs.org/to-utf8/-/to-utf8-0.0.1.tgz#d17aea72ff2fba39b9e43601be7b3ff72e089852"
   integrity sha1-0Xrqcv8vujm55DYBvns/9y4ImFI=
 
-toastify-js@1.9.3:
-  version "1.9.3"
-  resolved "https://registry.npmjs.org/toastify-js/-/toastify-js-1.9.3.tgz#cab81e077b8a3fa8ee602a7f054568c42a49a516"
-  integrity sha512-v0aXGUy6IbEBWxmoKx7ZCou00dQqEAsjJF86f8b8dNCH4O4L6iEkX3d3WRMVDirBJ+8CxQcHDZuAFD47J/imEw==
+toastify-js@1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/toastify-js/-/toastify-js-1.10.0.tgz#dcbcb01bfdcb213c4b207619085061738174b97c"
+  integrity sha512-xuO499S1sw9gTdiBkZSMNE4sIoiQv/y0y534F7g2dcprVMAJZIdtOaphqiQlNJPfh0YQFDvgD4R3KcX5r94cAQ==
 
 toidentifier@1.0.0:
   version "1.0.0"
