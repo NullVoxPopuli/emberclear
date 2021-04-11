@@ -132,7 +132,7 @@
     "codecov": "3.8.1",
     "colors": "1.4.0",
     "common-tags": "1.8.0",
-    "core-js": "3.10.0",
+    "core-js": "3.10.1",
     "ember-auto-import": "1.11.2",
     "ember-autofocus-modifier": "1.2.0",
     "ember-autoresize-modifier": "0.3.0",
