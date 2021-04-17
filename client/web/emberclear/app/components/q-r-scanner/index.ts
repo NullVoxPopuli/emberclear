@@ -36,7 +36,7 @@ export default class QRScanner extends Component<IArgs> {
     let options = { video: { facingMode: 'environment' } };
 
     try {
-      let stream = await navigator.mediaDevices.getUserMedia(options);
+      let stream = await this.navigator.mediaDevices.getUserMedia(options);
 
       this.cameraStream = stream;
     } catch (e) {
