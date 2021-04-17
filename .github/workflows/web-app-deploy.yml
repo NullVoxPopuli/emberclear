@@ -118,17 +118,9 @@ jobs:
     name: E2E Tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs:
-    - deploy
+    needs: [deploy]
 
     steps:
-    - name: 'Wait for status checks'
-      id: waitforstatuschecks
-      uses: "wyrihaximus/github-action-wait-for-status@master"
-      with:
-        ignoreActions: tests_e2e,"E2E Tests"
-        checkInterval: 30
-
     - uses: actions/checkout@v2
     - uses: volta-cli/action@v1
 
