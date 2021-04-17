@@ -7466,13 +7466,13 @@ ember-autostash-modifier@0.1.20:
     ember-template-lint "2.8.0"
     eslint "7.2.0"
 
-ember-browser-services@1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/ember-browser-services/-/ember-browser-services-1.1.4.tgz#fe44b89cd0263975cf099936109596e5c8547680"
-  integrity sha512-MeXjl9VtMEGWmzSOpAZDM8uG7KRJuX7P9kiQJXPv4ZkhXAtf9hUguy+CLg3f398jfX3jkKjiXmIGCN7pmVy2Cw==
+ember-browser-services@1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/ember-browser-services/-/ember-browser-services-1.1.6.tgz#ea4a9cec2af1210bcc65d57cdf635d51781cf803"
+  integrity sha512-a5Hyo3JCnZRwN8utEoQA5fHIXQobxvwVXlJXgFSQJbm7FaogqBpQ+GNvS1ECl2KG8m/jTKJoLv2rhZxgoKSrvA==
   dependencies:
     ember-cli-babel "^7.24.0"
-    ember-cli-htmlbars "^5.6.5"
+    ember-cli-htmlbars "^5.7.1"
     ember-cli-typescript "^4.1.0"
 
 ember-cache-primitive-polyfill@^1.0.1:
@@ -7817,7 +7817,7 @@ ember-cli-htmlbars@5.1.2:
     strip-bom "^4.0.0"
     walk-sync "^2.1.0"
 
-ember-cli-htmlbars@5.7.1, ember-cli-htmlbars@^5.6.3, ember-cli-htmlbars@^5.6.5, ember-cli-htmlbars@^5.7.1:
+ember-cli-htmlbars@5.7.1, ember-cli-htmlbars@^5.6.3, ember-cli-htmlbars@^5.7.1:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.7.1.tgz#eb5b88c7d9083bc27665fb5447a9b7503b32ce4f"
   integrity sha512-9laCgL4tSy48orNoQgQKEHp93MaqAs9ZOl7or5q+8iyGGJHW6sVXIYrVv5/5O9HfV6Ts8/pW1rSoaeKyLUE+oA==
@@ -9273,10 +9273,10 @@ es6-weak-map@^2.0.1:
     es6-iterator "^2.0.3"
     es6-symbol "^3.1.1"
 
-esbuild@0.11.8:
-  version "0.11.8"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.11.8.tgz#dcab565c3a61f2395aba37a78e93d5ab882bd865"
-  integrity sha512-dUZj5etA0e+SChqRMswgUj8TAj5ay7z06/BD32t0pRWgMDh8S/NTW7e7O1jLVIDeAECsRXkIzG2o+jpBwchq7w==
+esbuild@0.11.12:
+  version "0.11.12"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.11.12.tgz#8cbe15bcb44212624c3e77c896a835f74dc71c3c"
+  integrity sha512-c8cso/1RwVj+fbDvLtUgSG4ZJQ0y9Zdrl6Ot/GAjyy4pdMCHaFnDMts5gqFnWRPLajWtEnI+3hlET4R9fVoZng==
 
 escalade@^3.1.1:
   version "3.1.1"
