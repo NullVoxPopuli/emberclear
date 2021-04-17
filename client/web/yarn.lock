@@ -7110,7 +7110,7 @@ detect-newline@3.1.0:
   resolved "https://registry.npmjs.org/detect-newline/-/detect-newline-3.1.0.tgz#576f5dfc63ae1a192ff192d8ad3af6308991b651"
   integrity sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==
 
-diff@5.0.0:
+diff@5.0.0, diff@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-5.0.0.tgz#7ed6ad76d859d030787ec35855f5b1daf31d852b"
   integrity sha512-/VTCrvm5Z0JGty/BWHljh+BAiw3IK+2j87NGMu8Nwc/f48WoDAC395uomO9ZD117ZOBaHmkX1oyLvkVM/aIT3w==
@@ -8132,10 +8132,10 @@ ember-cli-version-checker@^5.1.2:
     semver "^7.3.4"
     silent-error "^1.1.1"
 
-ember-cli@3.25.3:
-  version "3.25.3"
-  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.25.3.tgz#9ceb694aafbdb48642fab748f970cdec98d6ad39"
-  integrity sha512-fMOjBamGAQ9aC0x8X0uZdtZ+l7/+dp/I1IRDfEE/4Zmmq94SBi5hW4RoO8/OF0OmaCxyIdnsZN43se6bxJ2yOw==
+ember-cli@3.26.0:
+  version "3.26.0"
+  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.26.0.tgz#19b3b9701df7ab78a23f7d0f44bf26e78f031f71"
+  integrity sha512-zmwUS1i4w7nFIwNjPLNGPlH0lOZjbOfUt51FQsbS8zqRgbbA/oYGAfpiTzJfO3bONjiKy3irEQIqbdBQaXFA7w==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/plugin-transform-modules-amd" "^7.12.1"
@@ -8168,7 +8168,7 @@ ember-cli@3.25.3:
     console-ui "^3.1.2"
     core-object "^3.1.5"
     dag-map "^2.0.2"
-    diff "^4.0.2"
+    diff "^5.0.0"
     ember-cli-is-package-missing "^1.0.0"
     ember-cli-lodash-subset "^2.0.1"
     ember-cli-normalize-entity-name "^1.0.0"
@@ -8176,14 +8176,14 @@ ember-cli@3.25.3:
     ember-cli-string-utils "^1.1.0"
     ember-source-channel-url "^3.0.0"
     ensure-posix-path "^1.1.1"
-    execa "^4.1.0"
+    execa "^5.0.0"
     exit "^0.1.2"
     express "^4.17.1"
     filesize "^6.1.0"
     find-up "^5.0.0"
     find-yarn-workspace-root "^2.0.0"
     fixturify-project "^2.1.0"
-    fs-extra "^9.0.1"
+    fs-extra "^9.1.0"
     fs-tree-diff "^2.0.1"
     get-caller-file "^2.0.5"
     git-repo-info "^2.1.1"
@@ -10617,6 +10617,16 @@ fs-extra@^9.0.0, fs-extra@^9.0.1:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
     universalify "^1.0.0"
+
+fs-extra@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
+  integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
+  dependencies:
+    at-least-node "^1.0.0"
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
 
 fs-merger@^3.0.1, fs-merger@^3.1.0:
   version "3.1.0"
