@@ -10,8 +10,8 @@
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "1.1.1",
     "@faltest/cli": "3.0.0",
-    "@faltest/lifecycle": "5.0.0",
-    "@faltest/page-objects": "4.0.0",
+    "@faltest/lifecycle": "5.0.1",
+    "@faltest/page-objects": "4.0.1",
     "http-server": "0.12.3",
     "poll-pr-status": "2.0.2",
     "prettier": "2.2.1"
