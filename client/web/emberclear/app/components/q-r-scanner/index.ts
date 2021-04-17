@@ -40,6 +40,7 @@ export default class QRScanner extends Component<IArgs> {
 
       this.cameraStream = stream;
     } catch (e) {
+      console.error(e);
       let msg = this.intl.t('errors.permissions.enableCamera');
 
       this.toast.error(msg);
