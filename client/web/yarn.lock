@@ -7110,7 +7110,7 @@ detect-newline@3.1.0:
   resolved "https://registry.npmjs.org/detect-newline/-/detect-newline-3.1.0.tgz#576f5dfc63ae1a192ff192d8ad3af6308991b651"
   integrity sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==
 
-diff@5.0.0:
+diff@5.0.0, diff@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-5.0.0.tgz#7ed6ad76d859d030787ec35855f5b1daf31d852b"
   integrity sha512-/VTCrvm5Z0JGty/BWHljh+BAiw3IK+2j87NGMu8Nwc/f48WoDAC395uomO9ZD117ZOBaHmkX1oyLvkVM/aIT3w==
@@ -7466,13 +7466,13 @@ ember-autostash-modifier@0.1.20:
     ember-template-lint "2.8.0"
     eslint "7.2.0"
 
-ember-browser-services@1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/ember-browser-services/-/ember-browser-services-1.1.4.tgz#fe44b89cd0263975cf099936109596e5c8547680"
-  integrity sha512-MeXjl9VtMEGWmzSOpAZDM8uG7KRJuX7P9kiQJXPv4ZkhXAtf9hUguy+CLg3f398jfX3jkKjiXmIGCN7pmVy2Cw==
+ember-browser-services@1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/ember-browser-services/-/ember-browser-services-1.1.6.tgz#ea4a9cec2af1210bcc65d57cdf635d51781cf803"
+  integrity sha512-a5Hyo3JCnZRwN8utEoQA5fHIXQobxvwVXlJXgFSQJbm7FaogqBpQ+GNvS1ECl2KG8m/jTKJoLv2rhZxgoKSrvA==
   dependencies:
     ember-cli-babel "^7.24.0"
-    ember-cli-htmlbars "^5.6.5"
+    ember-cli-htmlbars "^5.7.1"
     ember-cli-typescript "^4.1.0"
 
 ember-cache-primitive-polyfill@^1.0.1:
@@ -7817,7 +7817,7 @@ ember-cli-htmlbars@5.1.2:
     strip-bom "^4.0.0"
     walk-sync "^2.1.0"
 
-ember-cli-htmlbars@5.7.1, ember-cli-htmlbars@^5.6.3, ember-cli-htmlbars@^5.6.5, ember-cli-htmlbars@^5.7.1:
+ember-cli-htmlbars@5.7.1, ember-cli-htmlbars@^5.6.3, ember-cli-htmlbars@^5.7.1:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.7.1.tgz#eb5b88c7d9083bc27665fb5447a9b7503b32ce4f"
   integrity sha512-9laCgL4tSy48orNoQgQKEHp93MaqAs9ZOl7or5q+8iyGGJHW6sVXIYrVv5/5O9HfV6Ts8/pW1rSoaeKyLUE+oA==
@@ -8132,10 +8132,10 @@ ember-cli-version-checker@^5.1.2:
     semver "^7.3.4"
     silent-error "^1.1.1"
 
-ember-cli@3.25.3:
-  version "3.25.3"
-  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.25.3.tgz#9ceb694aafbdb48642fab748f970cdec98d6ad39"
-  integrity sha512-fMOjBamGAQ9aC0x8X0uZdtZ+l7/+dp/I1IRDfEE/4Zmmq94SBi5hW4RoO8/OF0OmaCxyIdnsZN43se6bxJ2yOw==
+ember-cli@3.26.0:
+  version "3.26.0"
+  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.26.0.tgz#19b3b9701df7ab78a23f7d0f44bf26e78f031f71"
+  integrity sha512-zmwUS1i4w7nFIwNjPLNGPlH0lOZjbOfUt51FQsbS8zqRgbbA/oYGAfpiTzJfO3bONjiKy3irEQIqbdBQaXFA7w==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/plugin-transform-modules-amd" "^7.12.1"
@@ -8168,7 +8168,7 @@ ember-cli@3.25.3:
     console-ui "^3.1.2"
     core-object "^3.1.5"
     dag-map "^2.0.2"
-    diff "^4.0.2"
+    diff "^5.0.0"
     ember-cli-is-package-missing "^1.0.0"
     ember-cli-lodash-subset "^2.0.1"
     ember-cli-normalize-entity-name "^1.0.0"
@@ -8176,14 +8176,14 @@ ember-cli@3.25.3:
     ember-cli-string-utils "^1.1.0"
     ember-source-channel-url "^3.0.0"
     ensure-posix-path "^1.1.1"
-    execa "^4.1.0"
+    execa "^5.0.0"
     exit "^0.1.2"
     express "^4.17.1"
     filesize "^6.1.0"
     find-up "^5.0.0"
     find-yarn-workspace-root "^2.0.0"
     fixturify-project "^2.1.0"
-    fs-extra "^9.0.1"
+    fs-extra "^9.1.0"
     fs-tree-diff "^2.0.1"
     get-caller-file "^2.0.5"
     git-repo-info "^2.1.1"
@@ -10617,6 +10617,16 @@ fs-extra@^9.0.0, fs-extra@^9.0.1:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
     universalify "^1.0.0"
+
+fs-extra@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
+  integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
+  dependencies:
+    at-least-node "^1.0.0"
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
 
 fs-merger@^3.0.1, fs-merger@^3.1.0:
   version "3.1.0"

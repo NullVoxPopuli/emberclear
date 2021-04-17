@@ -137,7 +137,7 @@
     "ember-autofocus-modifier": "1.2.0",
     "ember-autoresize-modifier": "0.3.0",
     "ember-autostash-modifier": "0.1.20",
-    "ember-cli": "3.25.3",
+    "ember-cli": "3.26.0",
     "ember-cli-app-version": "5.0.0",
     "ember-cli-babel": "7.26.3",
     "ember-cli-clipboard": "github:NullVoxPopuli/ember-cli-clipboard#octaneify",
