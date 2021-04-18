@@ -121,7 +121,7 @@
     "@types/qunit": "2.11.1",
     "@types/rsvp": "4.0.3",
     "@types/showdown": "1.9.3",
-    "@types/sinon": "9.0.10",
+    "@types/sinon": "10.0.0",
     "@types/url-parse": "1.4.3",
     "@xstate/test": "0.4.2",
     "autoprefixer": "10.2.5",
