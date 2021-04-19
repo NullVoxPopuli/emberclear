@@ -40,7 +40,7 @@
   },
   "resolutions": {
     "ember-test-waiters": "2.1.3",
-    "xstate": "^4.15.3"
+    "xstate": "^4.18.0"
   },
   "devDependencies": {
     "@nullvoxpopuli/eslint-configs": "1.1.1",
