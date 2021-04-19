@@ -95,7 +95,7 @@
     "focus-visible": "5.2.0",
     "tracked-built-ins": "1.0.2",
     "uuid": "8.3.2",
-    "xstate": "4.15.3"
+    "xstate": "4.18.0"
   },
   "typesVersions": {
     "*": {
