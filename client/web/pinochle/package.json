@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
-    "@ember/test-waiters": "2.4.3",
+    "@ember/test-waiters": "2.4.4",
     "@emberclear/config": "*",
     "@emberclear/test-helpers": "*",
     "@nullvoxpopuli/eslint-configs": "1.1.1",
