@@ -8094,17 +8094,17 @@ ember-cli-path-utils@^1.0.0:
   resolved "https://registry.npmjs.org/ember-cli-path-utils/-/ember-cli-path-utils-1.0.0.tgz#4e39af8b55301cddc5017739b77a804fba2071ed"
   integrity sha1-Tjmvi1UwHN3FAXc5t3qAT7ogce0=
 
-ember-cli-postcss@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.npmjs.org/ember-cli-postcss/-/ember-cli-postcss-7.0.0.tgz#5037f370b03dfcb43c38265af72494644cf5f43a"
-  integrity sha512-qvVMwC3pMbyrQAlDU9xKGBAjzCo3A/Tm+C5FrrTW2jW3SEgH8KGzuEH26oLAoT/aEb0wxNg/X5IqcTH6y/ID1w==
+ember-cli-postcss@7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-postcss/-/ember-cli-postcss-7.0.1.tgz#bbd4ba63e013977196643bc6063aca5a645d416e"
+  integrity sha512-mrGGgR1jTASPHLdv14Tl+f+m5BX6OKBnzG9xSpjJFxyPcfgEDZ4n05n5Jgry4Nkt7MI0GsgQv1MLQ0sIeSzdZw==
   dependencies:
     broccoli-file-creator "^2.1.1"
     broccoli-merge-trees "^4.0.0"
     broccoli-postcss "^6.0.0"
     broccoli-postcss-single "^5.0.0"
     ember-cli-babel "^7.1.0"
-    merge "^1.2.0"
+    merge "^2.1.1"
 
 ember-cli-preprocess-registry@^3.3.0:
   version "3.3.0"
@@ -13600,6 +13600,11 @@ merge@^1.2.0:
   version "1.2.1"
   resolved "https://registry.npmjs.org/merge/-/merge-1.2.1.tgz#38bebf80c3220a8a487b6fcfb3941bb11720c145"
   integrity sha512-VjFo4P5Whtj4vsLzsYBu5ayHhoHJ0UqNm7ibvShmbmoz7tGi0vXaoJbGdB+GmDMLUdg8DpQXEIeVDAe8MaABvQ==
+
+merge@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/merge/-/merge-2.1.1.tgz#59ef4bf7e0b3e879186436e8481c06a6c162ca98"
+  integrity sha512-jz+Cfrg9GWOZbQAnDQ4hlVnQky+341Yk5ru8bZSe6sIDTCIg8n9i/u7hSQGSVOF3C7lH6mGtqjkiT9G4wFLL0w==
 
 methods@~1.1.2:
   version "1.1.2"
