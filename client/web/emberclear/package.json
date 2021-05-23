@@ -134,7 +134,7 @@
     "common-tags": "1.8.0",
     "core-js": "3.11.1",
     "ember-auto-import": "1.11.2",
-    "ember-autofocus-modifier": "1.2.0",
+    "ember-autofocus-modifier": "1.2.1",
     "ember-autoresize-modifier": "0.3.0",
     "ember-autostash-modifier": "0.1.20",
     "ember-cli": "3.26.0",
