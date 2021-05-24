@@ -196,7 +196,7 @@
     "testem-failure-only-reporter": "0.0.1",
     "ts-node": "9.1.1",
     "typescript": "4.2.4",
-    "webpack-bundle-analyzer": "4.4.1",
+    "webpack-bundle-analyzer": "4.4.2",
     "yn": "4.0.0"
   },
   "typesVersions": {
