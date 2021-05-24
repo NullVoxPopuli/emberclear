@@ -32,7 +32,7 @@
     "@glimmer/component": "1.0.4",
     "@glimmer/tracking": "1.0.4",
     "ember-auto-import": "1.11.2",
-    "ember-cli-babel": "7.26.5",
+    "ember-cli-babel": "7.26.6",
     "ember-cli-htmlbars": "5.7.1",
     "ember-cli-postcss": "7.0.1",
     "ember-focus-trap": "0.5.0",
