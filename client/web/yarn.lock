@@ -1392,15 +1392,15 @@
   dependencies:
     ember-cli-babel "^7.4.0"
 
-"@ember/test-helpers@2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.5.tgz#9f915310b79fd6330e8e19857958e5f241c1d0de"
-  integrity sha512-E0GMlkmRb9r3lHa+88gtfZcve+IlAS3yoUsB5QSSTC8oRTGhqzirvsxYAylCj8n40gfoOHdqKEZxncYhVimZwg==
+"@ember/test-helpers@2.2.6":
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.6.tgz#48a5dd6f871dd531c81edfee8094991fd932dc12"
+  integrity sha512-nsrIeFeA2ZChLYp+qgOjpDKo0a294PVRJ3XZtid2alF4VjNTJPl+tyjQfnPje5kcQtADZlIGOqemNYC3HTo4Lg==
   dependencies:
     "@ember/test-waiters" "^2.4.3"
     broccoli-debug "^0.6.5"
     broccoli-funnel "^3.0.3"
-    ember-cli-babel "^7.26.2"
+    ember-cli-babel "^7.26.4"
     ember-cli-htmlbars "^5.7.1"
     ember-destroyable-polyfill "^2.0.3"
 
@@ -6162,6 +6162,11 @@ ci-info@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
+
+ci-info@^3.0.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-3.2.0.tgz#2876cb948a498797b5236f0095bc057d0dca38b6"
+  integrity sha512-dVqRX7fLUm8J6FgHJ418XuIgDLZDkYcDFTeL6TA2gt5WlIZUQrrH6EZrNClwT/H0FateUsZkGIOPRrLbP+PR9A==
 
 cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   version "1.0.4"
@@ -14911,13 +14916,13 @@ pngjs@^3.3.0:
   resolved "https://registry.npmjs.org/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
   integrity sha512-NCrCHhWmnQklfH4MtJMRjZ2a8c80qXeMlQMv2uVp9ISJMTt562SbGd6n2oq0PaPgKm7Z6pL9E2UlLIhC+SHL3w==
 
-poll-pr-status@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/poll-pr-status/-/poll-pr-status-2.0.2.tgz#dc96bde1a42c6f36115e71e10dc89de9330f42e3"
-  integrity sha512-IiAXMKZ2rjdlZ9NTqNGUNBJ6bj/5y3pesE6Uh76CrTtsVf5Td+78/jc8AgpN8lWemo+juHXDmzBnd0nvt1P7iA==
+poll-pr-status@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/poll-pr-status/-/poll-pr-status-3.0.0.tgz#62fe29f51610fb28e2e07e80c0ec3505fc9cd507"
+  integrity sha512-S9LGQggTmBWj/Q1sCLlKMEKGxPpqp7mtfyQW7eABDgogBB13VdzDj5IAS6zvxqqGViofbgl+s12jWPhtEGbApg==
   dependencies:
-    ci-info "^2.0.0"
-    execa "^4.0.0"
+    ci-info "^3.0.0"
+    execa "^5.0.0"
     pkg-up "^3.1.0"
     request "^2.88.0"
 
