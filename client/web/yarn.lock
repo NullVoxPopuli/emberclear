@@ -7640,7 +7640,7 @@ ember-cli-babel@7.20.5:
     rimraf "^3.0.1"
     semver "^5.5.0"
 
-ember-cli-babel@7.26.6, ember-cli-babel@^7.26.4:
+ember-cli-babel@7.26.6, ember-cli-babel@^7.26.4, ember-cli-babel@^7.26.6:
   version "7.26.6"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.26.6.tgz#322fbbd3baad9dd99e3276ff05bc6faef5e54b39"
   integrity sha512-040svtfj2RC35j/WMwdWJFusZaXmNoytLAMyBDGLMSlRvznudTxZjGlPV6UupmtTBApy58cEF8Fq4a+COWoEmQ==
@@ -8373,6 +8373,16 @@ ember-compatibility-helpers@^1.1.1, ember-compatibility-helpers@^1.1.2, ember-co
     ember-cli-version-checker "^5.1.1"
     semver "^5.4.1"
 
+ember-compatibility-helpers@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/ember-compatibility-helpers/-/ember-compatibility-helpers-1.2.4.tgz#70e0fef7048969141626eed6006f3880df612cd1"
+  integrity sha512-qjzQVtogyYJrSs6I4DuyCDwDCaj5JWBVNPoZDZBk8pt7caNoN0eBYRYJdin95QKaNMQODxTLPWaI4UUDQ1YWhg==
+  dependencies:
+    babel-plugin-debug-macros "^0.2.0"
+    ember-cli-version-checker "^5.1.1"
+    fs-extra "^9.1.0"
+    semver "^5.4.1"
+
 ember-concurrency-async@0.3.2:
   version "0.3.2"
   resolved "https://registry.npmjs.org/ember-concurrency-async/-/ember-concurrency-async-0.3.2.tgz#565829893a0e0c4511cb12a21611ce6a1154c453"
@@ -8662,15 +8672,15 @@ ember-jsqr@1.2.14:
     ember-modifier "^2.1.1"
     jsqr "^1.3.1"
 
-ember-keyboard@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.npmjs.org/ember-keyboard/-/ember-keyboard-6.0.2.tgz#efe260be34621a403a4d4688b038d65b371f6892"
-  integrity sha512-ZGAXYGfN4gxGFRcv3ix2X8HA8j/VluwhlENT9pfbFjAAGtvFz9wzNUJuaq3LS5Ksj+f2oXL5f++tSOrO7Ha1wA==
+ember-keyboard@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/ember-keyboard/-/ember-keyboard-6.0.3.tgz#71485e0c1cd7b8a330bde4c173ad1b9767e32777"
+  integrity sha512-1JAoiiuccLOXPttKC8xv2qixGACf1LmGI55k/+YUaP4T/+eIPcBUrtikiS/tzz1qO597BM/7UwOc1szdCB3IXQ==
   dependencies:
-    ember-cli-babel "^7.22.1"
-    ember-cli-htmlbars "^5.3.1"
-    ember-compatibility-helpers "^1.2.1"
-    ember-modifier "^2.1.0"
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^5.7.1"
+    ember-compatibility-helpers "^1.2.4"
+    ember-modifier "^2.1.1"
 
 ember-load-initializers@2.1.2:
   version "2.1.2"

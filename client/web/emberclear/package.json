@@ -159,7 +159,7 @@
     "ember-inflector": "4.0.1",
     "ember-intl": "5.6.2",
     "ember-jsqr": "1.2.14",
-    "ember-keyboard": "6.0.2",
+    "ember-keyboard": "6.0.3",
     "ember-load-initializers": "2.1.2",
     "ember-localforage-adapter": "github:NullVoxPopuli/ember-localforage-adapter#9423bebe9c72efce0a6c1bbf478e8af8d140b165",
     "ember-maybe-import-regenerator": "0.1.6",
