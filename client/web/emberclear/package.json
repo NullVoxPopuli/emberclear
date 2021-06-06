@@ -164,7 +164,7 @@
     "ember-localforage-adapter": "github:NullVoxPopuli/ember-localforage-adapter#9423bebe9c72efce0a6c1bbf478e8af8d140b165",
     "ember-maybe-import-regenerator": "0.1.6",
     "ember-mobile-menu": "2.1.1",
-    "ember-modifier": "2.1.1",
+    "ember-modifier": "2.1.2",
     "ember-named-blocks-polyfill": "0.2.4",
     "ember-percy": "1.6.0",
     "ember-purify": "5.0.1",

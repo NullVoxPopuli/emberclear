@@ -90,7 +90,7 @@
     "ember-concurrency-ts": "0.2.2",
     "ember-could-get-used-to-this": "1.0.1",
     "ember-focus-trap": "0.5.0",
-    "ember-modifier": "2.1.1",
+    "ember-modifier": "2.1.2",
     "ember-tracked-local-storage": "*",
     "focus-visible": "5.2.0",
     "tracked-built-ins": "1.0.2",
