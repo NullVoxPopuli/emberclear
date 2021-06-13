@@ -40,7 +40,7 @@
     "ember-concurrency-decorators": "2.0.3",
     "ember-concurrency-test-waiter": "0.4.0",
     "ember-concurrency-ts": "0.2.2",
-    "ember-inflector": "^4.0.1",
+    "ember-inflector": "^4.0.2",
     "localforage": "1.9.0",
     "uuid": "^8.3.2"
   },
