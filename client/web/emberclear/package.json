@@ -68,7 +68,7 @@
     "url-parse": "1.5.1"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "7.13.0",
+    "@babel/preset-typescript": "7.14.5",
     "@ember-data/debug": "3.26.0",
     "@ember-data/model": "3.26.0",
     "@ember-data/record-data": "3.26.0",
