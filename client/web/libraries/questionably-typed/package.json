@@ -13,7 +13,7 @@
     "@types/qunit": "2.11.1",
     "@types/rsvp": "4.0.3",
     "ember-cli-htmlbars": "5.7.1",
-    "typescript": "4.3.2"
+    "typescript": "4.3.3"
   },
   "peerDependencies": {
     "@types/ember": "3.16.4",
