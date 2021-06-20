@@ -175,7 +175,7 @@
     "ember-service-worker": "9.0.1",
     "ember-service-worker-asset-cache": "0.6.4",
     "ember-service-worker-cache-fallback": "0.6.2",
-    "ember-service-worker-index": "0.7.1",
+    "ember-service-worker-index": "0.7.2",
     "ember-service-worker-update-notify": "3.0.0",
     "ember-sinon": "5.0.0",
     "ember-source": "3.26.1",
