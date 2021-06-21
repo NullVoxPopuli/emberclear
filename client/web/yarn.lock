@@ -1889,23 +1889,23 @@
     "@faltest/utils" "^3.0.0"
     verror-extra "^2.0.0"
 
-"@faltest/cli@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-3.0.0.tgz#6bf11e8fe6f5908d129f4cda5fd1a271d2d3ed5e"
-  integrity sha512-2F3+7LNRsz1GUvqnD7FxQbxoCut/NTFmcFTvNvaF9nItojDBxdclggIoxQ1brDdlc1l9V3YOOMbacvnj2Mra6A==
+"@faltest/cli@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@faltest/cli/-/cli-3.0.1.tgz#affbbce4720feeea404dc556966bdd11f7bb09d7"
+  integrity sha512-69glFKN8COrWUeunlU6G0YRzuSF4UEjzDmNZSXZZlyR+a509x+W1jkPH3OhiyH6qzORF6VaYAiryy2XUQOtnMg==
   dependencies:
     "@faltest/mocha" "^5.0.0"
     "@faltest/remote" "^5.0.0"
     "@faltest/utils" "^3.0.0"
-    mocha "^8.0.0"
+    mocha "^8.2.1"
     threads "^1.6.1"
     yargs "^16.0.0"
     yn "^4.0.0"
 
-"@faltest/lifecycle@5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-5.0.1.tgz#6cca3ec37f9ca0e92b9e321aa91457c02a5827d1"
-  integrity sha512-FgXdMjcT9dU57GHbBu+M7c4ekAA28KVmo4WC6orYa1dS4kyNB/Yqy2f9e7zY9jnqJSVaM4G2D39uoRRsUxalrQ==
+"@faltest/lifecycle@5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-5.0.2.tgz#0f07db59131a426feb82fd1799199d44b5d8e308"
+  integrity sha512-vHTvugUe7KuQJXoscZKzDnePQuHVcknfUabup0VocXAmxP7WPwHe9sPoG6m8DBBKCuOdOq13sLzAbsSL0Xy1/Q==
   dependencies:
     "@faltest/remote" "^5.0.0"
     "@faltest/utils" "^3.0.0"
@@ -1923,10 +1923,10 @@
     glob "^7.1.4"
     mocha-helpers "^5.0.0"
 
-"@faltest/page-objects@4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-4.0.1.tgz#6b77d79e1c34669cf765aab5f43c684248e0ea4d"
-  integrity sha512-FJzdLY4X6aXnUOyyr04GKF+ZV/4UEh1Fhgi/XFi817F0kzwUXHY44nVzlmyx+Jm3PgxPOxzrFDYN8w5rlM9KCQ==
+"@faltest/page-objects@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-4.0.2.tgz#805ea91a64a65f2f56bc241a24831480f6b76675"
+  integrity sha512-ibt54x8bPr8CQFTg2zHc1Hnw3pBlJl2bYIHx8Pe2ffodNFmCNrvrL/DNZ0z7hM1mrPp8wtubSAGKic/3Fx2Omw==
   dependencies:
     "@faltest/browser" "^3.0.0"
     verror-extra "^2.0.0"
@@ -6938,10 +6938,10 @@ core-js-compat@^3.8.1:
     browserslist "^4.16.3"
     semver "7.0.0"
 
-core-js@3.11.1:
-  version "3.11.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.11.1.tgz#f920392bf8ed63a0ec8e4e729857bfa3d121c525"
-  integrity sha512-k93Isqg7e4txZWMGNYwevZL9MiogLk8pd1PtwrmFmi8IBq4GXqUaVW/a33Llt6amSI36uSjd0GWwc9pTT9ALlQ==
+core-js@3.15.0:
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.15.0.tgz#db9554ebce0b6fd90dc9b1f2465c841d2d055044"
+  integrity sha512-GUbtPllXMYRzIgHNZ4dTYTcUemls2cni83Q4Q/TrFONHfhcg9oEGOtaGHfb0cpzec60P96UKPvMkjX1jET8rUw==
 
 core-js@^2.4.0, core-js@^2.5.0, core-js@^2.6.5:
   version "2.6.12"
@@ -14067,10 +14067,41 @@ mocha-helpers@^5.0.0:
     mocha "^8.1.3"
     titleize "^2.1.0"
 
-mocha@^8.0.0, mocha@^8.1.3:
+mocha@^8.1.3:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/mocha/-/mocha-8.3.0.tgz#a83a7432d382ae1ca29686062d7fdc2c36f63fe5"
   integrity sha512-TQqyC89V1J/Vxx0DhJIXlq9gbbL9XFNdeLQ1+JsnZsVaSOV1z3tWfw0qZmQJGQRIfkvZcs7snQnZnOCKoldq1Q==
+  dependencies:
+    "@ungap/promise-all-settled" "1.1.2"
+    ansi-colors "4.1.1"
+    browser-stdout "1.3.1"
+    chokidar "3.5.1"
+    debug "4.3.1"
+    diff "5.0.0"
+    escape-string-regexp "4.0.0"
+    find-up "5.0.0"
+    glob "7.1.6"
+    growl "1.10.5"
+    he "1.2.0"
+    js-yaml "4.0.0"
+    log-symbols "4.0.0"
+    minimatch "3.0.4"
+    ms "2.1.3"
+    nanoid "3.1.20"
+    serialize-javascript "5.0.1"
+    strip-json-comments "3.1.1"
+    supports-color "8.1.1"
+    which "2.0.2"
+    wide-align "1.1.3"
+    workerpool "6.1.0"
+    yargs "16.2.0"
+    yargs-parser "20.2.4"
+    yargs-unparser "2.0.0"
+
+mocha@^8.2.1:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-8.4.0.tgz#677be88bf15980a3cae03a73e10a0fc3997f0cff"
+  integrity sha512-hJaO0mwDXmZS4ghXsvPVriOhsxQ7ofcpQdm8dE+jISUOKopitvnXFQmpRR7jd2K6VBG6E26gU3IAbXXGIbu4sQ==
   dependencies:
     "@ungap/promise-all-settled" "1.1.2"
     ansi-colors "4.1.1"
