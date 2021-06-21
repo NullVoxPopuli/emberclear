@@ -54,7 +54,7 @@
     "@emberclear/ui": "*",
     "ember-browser-services": "1.1.6",
     "ember-concurrency": "2.0.3",
-    "ember-concurrency-async": "0.3.2",
+    "ember-concurrency-async": "1.0.0",
     "ember-concurrency-decorators": "2.0.3",
     "ember-concurrency-test-waiter": "0.4.0",
     "ember-concurrency-ts": "0.2.2",
