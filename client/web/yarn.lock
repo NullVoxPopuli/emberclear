@@ -8794,10 +8794,10 @@ ember-compatibility-helpers@^1.2.4:
     fs-extra "^9.1.0"
     semver "^5.4.1"
 
-ember-concurrency-async@0.3.2:
-  version "0.3.2"
-  resolved "https://registry.npmjs.org/ember-concurrency-async/-/ember-concurrency-async-0.3.2.tgz#565829893a0e0c4511cb12a21611ce6a1154c453"
-  integrity sha512-SLf2CSRLS1WWqYjoATwRKWTHkmM2t7Yd2DT0MO7/7u0DxrU53z7aX9vM3YC6CGhrO89om7rwHWJg9cqQzdCzJg==
+ember-concurrency-async@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-concurrency-async/-/ember-concurrency-async-1.0.0.tgz#635ec2b7b11c083699801b85c5bb757bb7ebfd45"
+  integrity sha512-otE1UcF+VYva8qdkYayHVBrGDG+Lt9oYLLMt3heEo98Mv9abdjrdaLzvSMMspzI3ncgKtmZsEwn+aubvq+Zhhw==
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.1"
     "@babel/types" "^7.10.2"
