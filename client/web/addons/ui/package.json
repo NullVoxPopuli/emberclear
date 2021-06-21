@@ -51,7 +51,7 @@
     "@emberclear/config": "*",
     "@emberclear/questionably-typed": "*",
     "@nullvoxpopuli/eslint-configs": "1.1.1",
-    "@types/ember": "3.16.4",
+    "@types/ember": "3.16.5",
     "@types/ember-qunit": "3.4.13",
     "@types/ember-resolver": "^5.0.10",
     "@types/ember__test-helpers": "2.0.0",
