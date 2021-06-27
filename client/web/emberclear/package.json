@@ -168,7 +168,7 @@
     "ember-named-blocks-polyfill": "0.2.4",
     "ember-percy": "1.6.0",
     "ember-purify": "5.0.1",
-    "ember-qunit": "4.6.0",
+    "ember-qunit": "5.1.4",
     "ember-render-helpers": "0.2.0",
     "ember-resolver": "8.0.2",
     "ember-router-helpers": "github:rwjblue/ember-router-helpers",

@@ -70,7 +70,7 @@
     "ember-load-initializers": "2.1.2",
     "ember-maybe-import-regenerator": "0.1.6",
     "ember-named-blocks-polyfill": "0.2.4",
-    "ember-qunit": "4.6.0",
+    "ember-qunit": "5.1.4",
     "ember-resolver": "8.0.2",
     "ember-source": "3.26.1",
     "loader.js": "4.7.0",
