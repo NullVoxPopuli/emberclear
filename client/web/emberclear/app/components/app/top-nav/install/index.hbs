@@ -1,5 +1,5 @@
 {{#if this.window.canInstall}}
-  <button type='button' {{on 'click' (fn this.install)}}>
+  <button type='button' {{on 'click' this.install}}>
     {{t 'install'}}
   </button>
 {{/if}}
