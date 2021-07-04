@@ -61,7 +61,8 @@ export class Statechart<
   Schema extends StateSchema,
   Event extends EventObject
 > extends Resource<Args<Context, Schema, Event>> {
-  declare [MACHINE]: StateMachine<Context, Schema, Event>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  declare [MACHINE]: StateMachine<any, Schema, Event>;
   declare [INTERPRETER]: Interpreter<Context, Schema, Event>;
 
   @tracked declare state: State<Context, Event>;
@@ -199,7 +200,8 @@ export class Statechart<
 
     assert(ERROR_CHART_MISSING, statechart);
 
-    this[MACHINE] = createMachine(statechart);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this[MACHINE] = createMachine(statechart as any);
   }
 
   protected teardown() {
