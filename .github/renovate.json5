@@ -4,7 +4,7 @@
   "extends": [
     "config:base"
   ],
-  "automerge": true,
+  "automerge": false,
   "masterIssue": true,
   "ignorePaths": [
       // Deployed once and forgotten
@@ -70,7 +70,7 @@
         "eslint",
         "babel-eslint",
         "ember-template-lint",
-        "prettier"      
+        "prettier"
       ],
       "packagePatterns": [
         "eslint-plugin-.*",

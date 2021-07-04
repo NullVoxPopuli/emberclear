@@ -4906,7 +4906,7 @@ broccoli-funnel@^3.0.0, broccoli-funnel@^3.0.3, broccoli-funnel@^3.0.6:
     minimatch "^3.0.0"
     walk-sync "^2.0.2"
 
-"broccoli-funnel@github:ef4/broccoli-funnel#c70d060076e14793e8495571f304a976afc754ac":
+broccoli-funnel@ef4/broccoli-funnel#c70d060076e14793e8495571f304a976afc754ac:
   version "2.0.2-ef4.0"
   resolved "https://codeload.github.com/ef4/broccoli-funnel/tar.gz/c70d060076e14793e8495571f304a976afc754ac"
   dependencies:
@@ -7455,7 +7455,7 @@ ember-cli-htmlbars@5.1.2:
     strip-bom "^4.0.0"
     walk-sync "^2.1.0"
 
-ember-cli-htmlbars@5.7.1, ember-cli-htmlbars@^5.1.2, ember-cli-htmlbars@^5.2.0, ember-cli-htmlbars@^5.3.1, ember-cli-htmlbars@^5.6.3, ember-cli-htmlbars@^5.7.1:
+ember-cli-htmlbars@5.7.1, ember-cli-htmlbars@^5.1.2, ember-cli-htmlbars@^5.2.0, ember-cli-htmlbars@^5.3.1, ember-cli-htmlbars@^5.7.1:
   version "5.7.1"
   resolved "https://registry.npmjs.org/ember-cli-htmlbars/-/ember-cli-htmlbars-5.7.1.tgz#eb5b88c7d9083bc27665fb5447a9b7503b32ce4f"
   integrity sha512-9laCgL4tSy48orNoQgQKEHp93MaqAs9ZOl7or5q+8iyGGJHW6sVXIYrVv5/5O9HfV6Ts8/pW1rSoaeKyLUE+oA==
@@ -7829,10 +7829,10 @@ ember-compatibility-helpers@^1.1.1, ember-compatibility-helpers@^1.1.2, ember-co
     fs-extra "^9.1.0"
     semver "^5.4.1"
 
-ember-concurrency-async@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/ember-concurrency-async/-/ember-concurrency-async-1.0.0.tgz#635ec2b7b11c083699801b85c5bb757bb7ebfd45"
-  integrity sha512-otE1UcF+VYva8qdkYayHVBrGDG+Lt9oYLLMt3heEo98Mv9abdjrdaLzvSMMspzI3ncgKtmZsEwn+aubvq+Zhhw==
+ember-concurrency-async@0.3.2:
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/ember-concurrency-async/-/ember-concurrency-async-0.3.2.tgz#565829893a0e0c4511cb12a21611ce6a1154c453"
+  integrity sha512-SLf2CSRLS1WWqYjoATwRKWTHkmM2t7Yd2DT0MO7/7u0DxrU53z7aX9vM3YC6CGhrO89om7rwHWJg9cqQzdCzJg==
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.1"
     "@babel/types" "^7.10.2"
@@ -7865,18 +7865,7 @@ ember-concurrency-ts@0.2.2:
     ember-cli-babel "^7.19.0"
     ember-cli-htmlbars "^4.3.1"
 
-ember-concurrency@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/ember-concurrency/-/ember-concurrency-2.0.3.tgz#d8ac917fdf013a277bfc7b26e417937ee0638455"
-  integrity sha512-+fOOFt32odnunDL3Du0LqMgnRzDDNKnzo1ry9ppICpvLXekJzYFwU1RniVivfJ+9nbpHMJZQUlZJAm1ZAnTExw==
-  dependencies:
-    "@glimmer/tracking" "^1.0.2"
-    ember-cli-babel "^7.22.1"
-    ember-cli-htmlbars "^5.6.3"
-    ember-compatibility-helpers "^1.2.0"
-    ember-destroyable-polyfill "^2.0.2"
-
-ember-concurrency@^1.1.6:
+ember-concurrency@1.3.0, ember-concurrency@^1.1.6:
   version "1.3.0"
   resolved "https://registry.npmjs.org/ember-concurrency/-/ember-concurrency-1.3.0.tgz#66f90fb792687470bcee1172adc0ebf33f5e8b9c"
   integrity sha512-DwGlfWFpYyAkTwsedlEtK4t1DznJSculAW6Vq5S1C0shVPc5b6tTpHB2FFYisannSYkm+wpm1f1Pd40qiNPtOQ==
@@ -8575,10 +8564,10 @@ ember-try@^1.4.0:
     rsvp "^4.7.0"
     walk-sync "^1.1.3"
 
-"ember-usable@git+https://github.com/pzuraq/ember-usable.git#0d03a50", "ember-usable@git+https://github.com/pzuraq/ember-usable.git#0d03a500a2f49041a4ddff0bb05b077c3907ed7d":
+"ember-usable@https://github.com/pzuraq/ember-usable#0d03a50", "ember-usable@https://github.com/pzuraq/ember-usable#0d03a500a2f49041a4ddff0bb05b077c3907ed7d":
   version "0.0.0"
   uid "0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
-  resolved "git+https://github.com/pzuraq/ember-usable.git#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
+  resolved "https://github.com/pzuraq/ember-usable#0d03a500a2f49041a4ddff0bb05b077c3907ed7d"
   dependencies:
     ember-cli-babel "^7.13.0"
     ember-cli-htmlbars "^4.2.0"
