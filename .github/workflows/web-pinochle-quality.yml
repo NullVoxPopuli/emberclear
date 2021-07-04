@@ -53,7 +53,7 @@ jobs:
 
     - name: "Styles"
       working-directory: ${{ env.root }}
-      run: yarn stylelint ${{ env.app }}/**/*.css
+      run: yarn stylelint ${{ env.app }}**/*.css
 
     - name: 'Type Correctness'
       working-directory: ${{ env.full }}
