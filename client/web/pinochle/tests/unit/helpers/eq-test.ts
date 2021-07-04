@@ -4,7 +4,7 @@ import { eq } from 'pinochle/helpers/eq';
 
 module('Unit | Helper | eq', function () {
   test('it works', function (assert) {
-    assert.equal(eq([1, 1]), true);
-    assert.equal(eq([1, '1']), false, 'no coercion');
+    assert.true(eq([1, 1]));
+    assert.false(eq([1, '1']), 'no coercion');
   });
 });

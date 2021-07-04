@@ -58,7 +58,7 @@ module('Integration | Component | embedded-resource', function (hooks) {
     });
   });
 
-  module('The media preview is collapsable', async function () {
+  module('The media preview is collapsable', function () {
     module('when collapsed', function () {
       skip('shows nothing', async function () {});
 

@@ -190,7 +190,7 @@ module('Unit | Game | Host | GameRound', function (hooks) {
         assert.equal(game.info.playerOrder.length, players.length);
         assert.ok(currentPlayer);
         assert.equal(ctx.currentPlayer, playerOrder[0], `it is player 1's turn`);
-        assert.equal(ctx.hasBlind, false, 'no blind');
+        assert.false(ctx.hasBlind, 'no blind');
         assert.equal(ctx.blind?.length, 0, 'no blind');
         assert.equal(ctx.playersById[players[0].id].hand?.length, 12);
         assert.equal(ctx.playersById[players[1].id].hand?.length, 12);

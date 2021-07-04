@@ -26,7 +26,7 @@ module('Acceptance | Notification Permission Prompt', function (hooks) {
     });
 
     test('the prompt is shown', function (assert) {
-      assert.equal(prompt.isVisible, true);
+      assert.true(prompt.isVisible);
     });
 
     test('never ask again is clicked', async function (assert) {
@@ -34,11 +34,11 @@ module('Acceptance | Notification Permission Prompt', function (hooks) {
 
       await prompt.askNever();
 
-      assert.equal(prompt.isVisible, false, 'prompt hides initially');
+      assert.false(prompt.isVisible, 'prompt hides initially');
 
       await refresh(() => stubConnection());
 
-      assert.equal(prompt.isVisible, false, 'still is not shown even after refresh');
+      assert.false(prompt.isVisible, 'still is not shown even after refresh');
     });
 
     module('ask later is clicked', function (hooks) {
@@ -47,7 +47,7 @@ module('Acceptance | Notification Permission Prompt', function (hooks) {
       });
 
       test('the prompt is not shown', function (assert) {
-        assert.equal(prompt.isVisible, false);
+        assert.false(prompt.isVisible);
       });
 
       module('on refresh', function (hooks) {
@@ -60,7 +60,7 @@ module('Acceptance | Notification Permission Prompt', function (hooks) {
         });
 
         test('the prompt is shown', function (assert) {
-          assert.equal(prompt.isVisible, true);
+          assert.true(prompt.isVisible);
         });
       });
     });
