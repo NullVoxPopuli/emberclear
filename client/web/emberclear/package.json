@@ -182,7 +182,7 @@
     "ember-statecharts": "0.13.2",
     "ember-template-lint": "3.5.0",
     "ember-test-helpers-extra": "github:NullVoxPopuli/ember-test-helpers-extra",
-    "ember-test-selectors": "5.0.0",
+    "ember-test-selectors": "5.5.0",
     "ember-test-waiters": "2.1.3",
     "ember-web-app": "5.0.1",
     "git-rev-sync": "3.0.1",
