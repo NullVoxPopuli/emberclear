@@ -10,6 +10,7 @@
   <hr>
 
   <div class='snippet-title-bar'>
+    {{!-- template-lint-disable require-input-label --}}
     <Input
       placeholder='Title (optional)'
       @value={{this.title}}
@@ -24,6 +25,7 @@
     </div>
   </div>
 
+  {{!-- template-lint-disable require-input-label --}}
   <Textarea
     autofocus={{true}}
     class='snippet-entry'

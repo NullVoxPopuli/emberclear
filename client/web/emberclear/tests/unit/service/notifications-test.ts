@@ -78,7 +78,7 @@ module('Unit | Service | notifications', function (hooks) {
 
         await service.askPermission();
 
-        assert.equal(service.askToEnableNotifications, false);
+        assert.false(service.askToEnableNotifications);
       });
 
       test('and permission is denied', async function (assert) {
@@ -88,7 +88,7 @@ module('Unit | Service | notifications', function (hooks) {
 
         await service.askPermission();
 
-        assert.equal(service.askToEnableNotifications, false);
+        assert.false(service.askToEnableNotifications);
       });
     });
   });

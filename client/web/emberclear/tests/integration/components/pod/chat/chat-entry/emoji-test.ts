@@ -14,7 +14,7 @@ import type { TestContext } from 'ember-test-helpers';
 module('Integration | Component | chat-entry', function (hooks) {
   setupRenderingTest(hooks);
 
-  module('emoji code replacement', function () {
+  module('emoji code replacement', function (hooks) {
     hooks.beforeEach(async function (this: TestContext) {
       const store = getStore();
 

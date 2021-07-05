@@ -26,10 +26,10 @@ module('Integration | Component | switch', function (hooks) {
       />
     `);
 
-    assert.equal(page.isChecked, true, 'is checked');
+    assert.true(page.isChecked, 'is checked');
 
     await page.check();
 
-    assert.equal(page.isChecked, false, 'not checked');
+    assert.false(page.isChecked, 'not checked');
   });
 });

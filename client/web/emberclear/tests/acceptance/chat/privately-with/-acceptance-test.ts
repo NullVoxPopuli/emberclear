@@ -41,7 +41,7 @@ module('Acceptance | Chat | Privately With', function (hooks) {
       assert.ok(document.title.startsWith('emberclear'));
     });
 
-    module('anyone', async function (hooks) {
+    module('anyone', function (hooks) {
       setupRelayConnectionMocks(hooks);
 
       hooks.beforeEach(async function () {
@@ -312,12 +312,8 @@ module('Acceptance | Chat | Privately With', function (hooks) {
           });
 
           test('UI elements are configured appropriately', function (assert) {
-            assert.equal(page.isScrollable(), false, 'is not scrollable');
-            assert.equal(
-              page.newMessagesFloater.isHidden,
-              true,
-              'new messages floater is not shown'
-            );
+            assert.false(page.isScrollable(), 'is not scrollable');
+            assert.true(page.newMessagesFloater.isHidden, 'new messages floater is not shown');
           });
         });
 
@@ -357,13 +353,9 @@ module('Acceptance | Chat | Privately With', function (hooks) {
           });
 
           test('most recent messages are shown', async function (assert) {
-            assert.equal(page.isScrollable(), true, 'is scrollable');
+            assert.true(page.isScrollable(), 'is scrollable');
 
-            assert.equal(
-              page.newMessagesFloater.isHidden,
-              true,
-              'more messages below is not visible'
-            );
+            assert.true(page.newMessagesFloater.isHidden, 'more messages below is not visible');
             // TODO: Investigate the implementation of isNotVisible
             //assert.dom(`[data-id="${firstMessage.id}"]`).isNotVisible();
             assert.dom(`[data-id="${lastMessage.id}"]`).exists();
@@ -379,7 +371,7 @@ module('Acceptance | Chat | Privately With', function (hooks) {
             });
 
             test('the more messages floater is visible', function (assert) {
-              assert.equal(page.newMessagesFloater.isHidden, false);
+              assert.false(page.newMessagesFloater.isHidden);
             });
 
             module('after clicking the new messages floater', function (hooks) {
@@ -400,7 +392,7 @@ module('Acceptance | Chat | Privately With', function (hooks) {
           });
         });
 
-        module('there are many unread messages', function () {
+        module('there are many unread messages', function (hooks) {
           hooks.beforeEach(async function () {
             // let currentUser = getService('current-user').record!;
             // let numMessages = 30;

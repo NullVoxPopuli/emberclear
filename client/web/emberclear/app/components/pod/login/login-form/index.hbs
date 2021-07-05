@@ -9,10 +9,12 @@
   <div class='login-form-contents'>
     <div class='left'>
       <Field @label={{t 'input.label.name'}}>
+        {{!-- template-lint-disable require-input-label --}}
         <Input data-test-name @value={{this.name}} />
       </Field>
 
       <Field @label={{t 'input.label.mnemonic'}}>
+        {{!-- template-lint-disable require-input-label --}}
         <Input data-test-mnemonic @value={{this.mnemonic}} />
       </Field>
 

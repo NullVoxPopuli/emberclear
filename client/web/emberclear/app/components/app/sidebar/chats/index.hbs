@@ -1,4 +1,6 @@
+{{!-- template-lint-disable no-inline-styles --}}
 <nav class='contacts' style='overflow-y: hidden;' data-test-contacts-list>
+  {{!-- template-lint-disable require-input-label --}}
   {{#if this.contactManager.isImporting}}
     <EllipsisLoader />
   {{else}}

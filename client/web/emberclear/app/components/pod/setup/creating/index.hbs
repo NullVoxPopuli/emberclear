@@ -3,10 +3,10 @@
   <form data-test-name-form {{on 'submit' this.createIdentity}}>
 
     <Field @label={{t 'models.identity.name'}} @hidden={{true}}>
+      {{!-- template-lint-disable require-input-label --}}
       <Input
         data-test-name-field
         class='input-xl'
-        type='text'
         placeholder={{t 'ui.setup.nameLabel'}}
         @value={{this.name}}
       />
