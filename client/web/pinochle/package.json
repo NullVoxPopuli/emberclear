@@ -96,7 +96,7 @@
     "ember-modifier": "2.1.2",
     "ember-tracked-local-storage": "*",
     "focus-visible": "5.2.0",
-    "tracked-built-ins": "1.0.2",
+    "tracked-built-ins": "1.1.1",
     "uuid": "8.3.2",
     "xstate": "4.20.2"
   },
