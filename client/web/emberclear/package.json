@@ -65,7 +65,7 @@
     "prismjs-components-loader": "3.0.1",
     "showdown": "1.9.1",
     "toastify-js": "1.10.0",
-    "url-parse": "1.5.1"
+    "url-parse": "1.5.2"
   },
   "devDependencies": {
     "@babel/preset-typescript": "7.14.5",
