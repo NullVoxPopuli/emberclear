@@ -6,15 +6,18 @@ redditCommunity: Reddit Community
 twitter: Twitter
 emberjs: Ember.JS
 todo: 'Позднее: заполнить правильно'
-install: Установить
-bundle-analysis: Анализ бандла
+install: Install
+bundle-analysis: JS Bundle Analysis
 qrCode:
   error: Ошибка генерации QR кода
-  malformed: QR код содержит ошибку
-  waitingForCamera: Ожидание доступа к камере
+  malformed: QR Code is malfomed
+  waitingForCamera: Awaaiting Camera Access
 connection:
   connecting: Подключение...
   connected: Подключено!
+  disconnected: Disconnected.
+  degraded: Degraded
+  unknown: Unknown
   status:
     socket:
       error: Ошибка подключения к сокету.
@@ -26,18 +29,18 @@ connection:
     subscribe:
       notConnected: Не могу подписаться на канал без подключения к сети.
 errors:
-  genericTitle: "Прозошла ошибка!"
+  genericTitle: "Произошла ошибка!"
   genericRetry: "О нет! Что-то пошло не так. Повторить?"
   notFound:
     title: Не найдено
-    help: The URL could not be navigated to. If the problem persists,
-    link: please file an issue.
+    help: Страницу невозможно открыть. Если ошибка не исчезнет,
+    link: пожалуйста, сообщите о проблеме.
   permissions:
     enableCamera: You may need to allow this site access to your camera.
 buttons:
   allow: Разрешить
-  deny: Запретить
-  retry: Повторить
+  deny: Отклонить
+  retry: Retry
   delete: удалить
   resend: переотправить
   resendAutomatically: переотправлять автоматически
@@ -54,7 +57,7 @@ buttons:
   scan: Сканировать
   sendSnippet: Отправить сниппет
   remove: Удалить
-  donate: Поддержать
+  donate: Donate
   donateEth: Поддержать в Ethereum
   donateXmr: Поддержать в Monero
   loginInstead: Войти с логином/паролем
@@ -62,7 +65,7 @@ buttons:
   showMyInfo: Обо мне
   invite: Пригласить
   addFriend: Добавить друга
-  makeDefault: Make Default
+  makeDefault: Сделать по умолчанию
   ariaLabel:
     sidebar: 'Переключить панель'
     dropdownBackdrop: Кликните на фон для закрытия дропдауна
@@ -74,7 +77,7 @@ compatibility:
   title: Что-то пошло не так!
   description: Для работы emberclear ваш браузер должен поддерживать следующие возможности
   score: Поддержка
-  required: Required
+  required: Обязательно
   compatibility: Совместимость
   camera: Камера
   notifications: Оповещения
@@ -82,17 +85,20 @@ compatibility:
   wasm: WebAssembly
   serviceWorker: Service Worker
   webWorker: Web Worker
+  status:
+    exists: Browser has this capability
+    missing: Browser missing this capability
 images:
   alt:
     thumbnail: Миниатюра
     ownIdentityQR: Это ваш профиль, представленный в виде QR кода
 input:
   label:
-    mnemonic: Мнемоник
+    mnemonic: Mnemonic
     name: Name
 status:
-  connected: Подключено
-  enabled: Включено
+  connected: Connected
+  enabled: Enabled
   deliveryFailed: 'Не удалось доставить сообщение'
   importing: Импорт ...
   updateAvailable: Доступна новая версия, нажмите сюда для обновления.
@@ -160,9 +166,9 @@ ui:
         enter: to select
         esc: to dismiss
   sidebar:
-    find: Поиск...
-    keepTyping: 'осталось {num} символов до начала поиска...'
-    results: '{num} результатов'
+    find: Find...
+    keepTyping: '{num} characters left to search...'
+    results: '{num} results'
     unread: Новые
     channels:
       title: Каналы
@@ -187,7 +193,7 @@ ui:
     markAllAsRead: Пометить все как прочитанные
     errors:
       contactNotFound: Не удаётся найти ваш контакт
-      channelNotFound: Не удаётся найти канал.
+      channelNotFound: The channel could not be located.
     sender:
       removed: удалено
     messages:
@@ -213,7 +219,7 @@ ui:
       Частично для развлечения и обучения, как пример использования фреймворка, для людей, желающих создать своё собственное веб приложение. Этот проект создан после утраты доверия к существующим мессенджерам и их инфраструктуре. В конечном счете, этот проект по функциональности приблизится к существующим решениям, с одним ключевым отличием в том, что узлы, обслуживающие приложение ничего не отслеживают.
     notOnlineQ: Что произойдёт если я отправил сообщение, а получатель не в сети.
     notOnlineA: >
-      The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
+      Сервер не хранит никаких сообщений и не сохраняет очередь недоставленных сообщений. Если получатель не в сети, сообщение необходимо будет переслать вручную.
     serverStorageQ: Сервер хранит мои сообщения?
     serverStorageA: "No."
   footer:
@@ -223,26 +229,27 @@ ui:
     license: >
       The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
   login:
-    title: "Добро пожаловать!"
+    title: "Welcome Back!"
     instructions: Вставьте или напишите ваш мнемонический ключ.
-    loading: Загружено {num} контактов...
-    success: "Вход выполнен!"
+    loading: Loaded {num} Contacts...
+    success: "Logged In!"
     warning: "Note that without another logged in device or your mnemonic, your account will be unrecoverable as there is no central storage to recovery from."
+    invalidState: 'An unknown error occurred while trying to get things ready for signup or login'
     transfer:
-      title: "Зайти с помощью QR кода"
+      title: "Log in with QR Code"
       prompt: "Scan this with emberclear to login and have all your data transferred instantly."
-      establishConnection: "Установка соединения..."
-      inProgress: Transferring Data...
-      success: "You are about to be logged in on the other device!"
+      establishConnection: "Establishing Connection..."
+      inProgress: Передача данных...
+      success: "Вы собираетесь войти на другое устройство!"
     verify:
-      title: Verify
+      title: Подтвердить
       prompt1: "Do you want to login to a new device?"
       prompt2: "Be sure that the code matches the code below the QR Image on the device."
       received: Received login request
-      waitingOnApproval: Waiting for approval
+      waitingOnApproval: Ожидает подтверждения
       receivedData: Received data
-      importing: Importing data
-      failed: "Something went wrong. Please try again."
+      importing: Импорт данных
+      failed: "Что-то пошло не так. Попробуйте еще раз."
   setup:
     overwriteTitle: Вы уверены что хотите создать новый профиль?
     overwriteQuestion: >
@@ -268,20 +275,20 @@ ui:
   settings:
     title: Настройки
     tabs:
-      profile: Профиль
+      profile: Данные профиля
       interface: Интерфейс
-      permissions: Права
+      permissions: Разрешения
       relays: Relays
-      dangerZone: Опасная зона
+      dangerZone: Danger Zone
     relays:
       add: Add Relay
       URLs: URLs
-      socket: socket
+      socket: сокет
       openGraph: open graph
-      connectedUsers: connected users
+      connectedUsers: подключенные пользователи
     themes:
       title: Темы
-      midnight: Полночь
+      midnight: Темная тема
     copyProfileToDevice: Скопировать профиль на устройство
     hideKey: Скрыть приватный ключ
     showKey: Показать приватный ключ
