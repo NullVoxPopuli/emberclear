@@ -15,6 +15,9 @@ qrCode:
 connection:
   connecting: Connexion en cours...
   connected: Connecté !
+  disconnected: Disconnected.
+  degraded: Degraded
+  unknown: Unknown
   status:
     socket:
       error: Une erreur s'est produite dans la connexion socket !
@@ -82,6 +85,9 @@ compatibility:
   wasm: WebAssembly
   serviceWorker: Service Worker
   webWorker: Web Worker
+  status:
+    exists: Browser has this capability
+    missing: Browser missing this capability
 images:
   alt:
     thumbnail: Aperçu
@@ -228,6 +234,7 @@ ui:
     loading: Loaded {num} Contacts...
     success: "Logged In!"
     warning: "Note that without another logged in device or your mnemonic, your account will be unrecoverable as there is no central storage to recovery from."
+    invalidState: 'An unknown error occurred while trying to get things ready for signup or login'
     transfer:
       title: "Log in with QR Code"
       prompt: "Scan this with emberclear to login and have all your data transferred instantly."
