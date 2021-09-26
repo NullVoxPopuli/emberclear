@@ -30,9 +30,9 @@ connection:
       notConnected: Impossible de s’abonner à une chaine sans une connexion socket !
 errors:
   genericTitle: "An Error occurred!"
-  genericRetry: "Oh no! Something went wrong. Retry?"
+  genericRetry: "Oh non! Quelque chose s'est mal passé. Réessayer?"
   notFound:
-    title: Not Found
+    title: Non trouvé
     help: The URL could not be navigated to. If the problem persists,
     link: please file an issue.
   permissions:
