@@ -36,6 +36,9 @@ module.exports = function (defaults) {
 
   let appOptions = {
     hinting: false,
+    sourcemaps: {
+      enabled: false,
+    },
 
     fingerprint: {
       // why customHash?
