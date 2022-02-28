@@ -17894,10 +17894,10 @@ url-parse-lax@^3.0.0:
   dependencies:
     prepend-http "^2.0.0"
 
-url-parse@1.5.1:
-  version "1.5.1"
-  resolved "https://registry.npmjs.org/url-parse/-/url-parse-1.5.1.tgz#d5fa9890af8a5e1f274a2c98376510f6425f6e3b"
-  integrity sha512-HOfCOUJt7iSYzEx/UqgtwKRMC6EU91NFhsCHMv9oM03VJcVo2Qrp8T8kI9D7amFf1cu+/3CEhgb3rF9zL7k85Q==
+url-parse@1.5.8:
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.8.tgz#3f8090e4d6f80053eb861ec496049849f700337e"
+  integrity sha512-9JZ5zDrn9wJoOy/t+rH00HHejbU8dq9VsOYVu272TYDrCiyVAgHKUSpPh3ruZIpv8PMVR+NXLZvfRPJv8xAcQw==
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
@@ -18535,9 +18535,9 @@ xmlhttprequest-ssl@~1.6.2:
   integrity sha512-3XfeQE/wNkvrIktn2Kf0869fC0BN6UpydVasGIeSm2B1Llihf7/0UfZM+eCkOw3P7bP4+qPgqhm7ZoxuJtFU0Q==
 
 xstate@4.20.2, xstate@^4.12.0, xstate@^4.18.0:
-  version "4.20.2"
-  resolved "https://registry.npmjs.org/xstate/-/xstate-4.20.2.tgz#a22e6e63fc327b8d707494be3bf4897fb7890b37"
-  integrity sha512-HvU+NCYffTOC1oiopNKve3IdLNRpuvNa3tv+fhM8mo9+TGCF35wIMQJON7bWG/2041ySBKw78PW2goV+Ug073w==
+  version "4.30.2"
+  resolved "https://registry.yarnpkg.com/xstate/-/xstate-4.30.2.tgz#bd6dccd9c2426bbcb7d3ab450e53c7ef650ccb8e"
+  integrity sha512-nstZNgz6bzog0wut7jYFmb9ZUZmcyYszkv7f//TNu2CnKCROezOduCTGgpjWrf0W8JnAXV4wEgw5dsC9kVqMFQ==
 
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
