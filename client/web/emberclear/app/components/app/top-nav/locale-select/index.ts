@@ -13,7 +13,7 @@ export default class LocaleSwitcher extends Component {
   dropdown!: HTMLDivElement;
 
   options = [
-    { locale: 'de-de', label: 'Deutsche' },
+    { locale: 'de-de', label: 'Deutsch' },
     { locale: 'en-us', label: 'English' },
     { locale: 'es-es', label: 'Español' },
     { locale: 'fr-fr', label: 'Français' },
