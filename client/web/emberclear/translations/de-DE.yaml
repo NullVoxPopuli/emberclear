@@ -10,14 +10,14 @@ install: Installieren
 bundle-analysis: JS Bundle Analysis
 qrCode:
   error: QR Code konnte nicht erzeugt werden
-  malformed: QR Code is malfomed
+  malformed: QR-Code ist ungültig
   waitingForCamera: Awaaiting Camera Access
 connection:
   connecting: Verbinde...
   connected: Verbunden!
-  disconnected: Disconnected.
-  degraded: Degraded
-  unknown: Unknown
+  disconnected: Verbindung getrennt.
+  degraded: Heruntergestuft
+  unknown: Unbekannt
   status:
     socket:
       error: Bei der Socket Verbindung ist ein Fehler aufgetreten!
@@ -29,18 +29,18 @@ connection:
     subscribe:
       notConnected: Abonnieren eines Kanals ohne Socket Verbindung nicht möglich!
 errors:
-  genericTitle: "An Error occurred!"
-  genericRetry: "Oh no! Something went wrong. Retry?"
+  genericTitle: "Ein Fehler ist aufgetreten!"
+  genericRetry: "Hoppla, da ist etwas schiefgelaufen. Erneut versuchen?"
   notFound:
     title: Nicht gefunden
     help: Die URL konnte nicht aufgerufen werden. Wenn das Problem weiterhin besteht,
-    link: öffnen Sie bitte ein Problem.
+    link: erstelle ein Ticket.
   permissions:
     enableCamera: Du musst dieser Seite möglicherweise Zugriff zu deiner Kamera geben.
 buttons:
-  allow: Allow
-  deny: Deny
-  retry: Retry
+  allow: Zulassen
+  deny: Ablehnen
+  retry: Erneut versuchen
   delete: Löschen
   resend: Erneut senden
   resendAutomatically: automatisch erneut senden
@@ -57,11 +57,11 @@ buttons:
   scan: Scannen
   sendSnippet: Ausschnitt senden
   remove: Entfernen
-  donate: Donate
+  donate: Spenden
   donateEth: Ethereum spenden
   donateXmr: Monero spenden
   loginInstead: Stattdessen anmelden
-  uploadSettings: Upload-Einstellungen
+  uploadSettings: Upload Einstellungen
   showMyInfo: Meine Info anzeigen
   invite: Einladen
   addFriend: Freund hinzufügen
@@ -86,8 +86,8 @@ compatibility:
   serviceWorker: Service Worker
   webWorker: Web Worker
   status:
-    exists: Browser has this capability
-    missing: Browser missing this capability
+    exists: Browser hat diese Fähigkeit
+    missing: Browser fehlt diese Fähigkeit
 images:
   alt:
     thumbnail: Vorschaubild
@@ -114,8 +114,8 @@ routes:
   contacts: Kontakte
   settings: Einstellungen
   profile: Profil
-  faq: Häufig gestellte Fragen (FAQ)
-  createNewUser: Neuen Benutzer anlegen
+  faq: FAQ
+  createNewUser: Neuen Benutzer erstellen
 models:
   identity:
     name: Name
@@ -123,7 +123,7 @@ models:
   message:
     autosendPending: automatische Sendung steht aus
     errors:
-      timeout: 'Verbindung getrennt.'
+      timeout: 'Sendezeit überschritten.'
 ui:
   invite:
     copyProfile: Link kopieren
@@ -134,7 +134,7 @@ ui:
     prompt:
       title: Emberclear benötigt deine Erlaubnis, um die Benachrichtigungen aktivieren zu können.
       enable: Benachrichtigungen aktivieren
-      askLater: Jedes Mal nachfragen
+      askLater: Nächstes Mal fragen
       neverAsk: Nicht erneut nachfragen
   search:
     title: Nach Kontakten und Kanälen suchen
@@ -166,8 +166,8 @@ ui:
         enter: zum Auswählen
         esc: zum Abbrechen
   sidebar:
-    find: Find...
-    keepTyping: '{num} characters left to search...'
+    find: Finden...
+    keepTyping: 'Noch {num} Zeichen zum Suchen...'
     results: '{num} results'
     unread: Ungelesen
     channels:
@@ -193,7 +193,7 @@ ui:
     markAllAsRead: Alle als gelesen markieren
     errors:
       contactNotFound: Dein Kontakt konnte nicht lokalisiert werden
-      channelNotFound: The channel could not be located.
+      channelNotFound: Der Kanal konnte nicht gefunden werden.
     sender:
       removed: Entfernt
     messages:
@@ -221,35 +221,35 @@ ui:
     notOnlineA: >
       Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
     serverStorageQ: Speichert der Server / das Relay meine Nachrichten?
-    serverStorageA: "No."
+    serverStorageA: "Nein."
   footer:
     navigation: Navigation
-    about: About
+    about: Über
     wantToSupport: Möchtest du das Projekt unterstützen?
     license: >
       The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
   login:
-    title: "Welcome Back!"
+    title: "Willkommen zurück!"
     instructions: Bitte füge oder tippe deine mnemonic Passphrase ein
-    loading: Loaded {num} Contacts...
-    success: "Logged In!"
-    warning: "Note that without another logged in device or your mnemonic, your account will be unrecoverable as there is no central storage to recovery from."
-    invalidState: 'An unknown error occurred while trying to get things ready for signup or login'
+    loading: '{num} Kontakte geladen...'
+    success: "Angemeldet!"
+    warning: "Beachten, dass dein Konto ohne ein anderes eingeloggtes Gerät oder deines Mnemonic nicht wiederhergestellt werden kann, da kein zentraler Speicher zum Wiederherstellen vorhanden ist."
+    invalidState: 'Ein unbekannter Fehler trat auf beim Versuch, die Registrierung oder Anmeldung vorzubereiten'
     transfer:
-      title: "Log in with QR Code"
-      prompt: "Scan this with emberclear to login and have all your data transferred instantly."
-      establishConnection: "Establishing Connection..."
-      inProgress: Transferring Data...
-      success: "You are about to be logged in on the other device!"
+      title: "Mit QR-Code anmelden"
+      prompt: "Scannen dies mit emberclear um sich anzumelden und deine Daten sofort zu übertragen."
+      establishConnection: "Verbindung herstellen..."
+      inProgress: Datenübertragung läuft...
+      success: "Du bist daran, dich auf dem anderen Gerät anzumelden!"
     verify:
-      title: Verify
-      prompt1: "Do you want to login to a new device?"
-      prompt2: "Be sure that the code matches the code below the QR Image on the device."
-      received: Received login request
-      waitingOnApproval: Waiting for approval
-      receivedData: Received data
-      importing: Importing data
-      failed: "Something went wrong. Please try again."
+      title: Verifizieren
+      prompt1: "Möchtest du dich bei einem neuen Gerät anmelden?"
+      prompt2: "Stelle sicher, dass der Code mit dem Code unter dem QR Image auf dem Gerät übereinstimmt."
+      received: Login Anfrage erhalten
+      waitingOnApproval: Warten auf Genehmigung
+      receivedData: Empfangene Daten
+      importing: Importierte Daten
+      failed: "Etwas ist schiefgelaufen. Bitte versuche es erneut."
   setup:
     overwriteTitle: Möchtest du wirklich eine neue Identität anlegen?
     overwriteQuestion: >
@@ -278,14 +278,14 @@ ui:
       profile: Profilinfo
       interface: Benutzeroberfläche
       permissions: Berechtigungen
-      relays: Relays
+      relays: Relais
       dangerZone: Gefahrenzone
     relays:
       add: Relais hinzufügen
       URLs: URLs
       socket: Socket
       openGraph: Open Graph
-      connectedUsers: connected users
+      connectedUsers: Verbundene Nutzer
     themes:
       title: Themen
       midnight: Mitternacht
@@ -294,7 +294,7 @@ ui:
     showKey: Privaten Schlüssel anzeigen
     download: Einstellungen herunterladen
     hideOfflineContacts: Offline Kontakte ausblenden
-    useLeftRightJustificationForMessages: Nutze die Linke/Rechte Nachrichten Einstellung
+    useLeftRightJustificationForMessages: Nachrichten Links/Rechts Ausrichten
     danger:
       title: Gefahrenzone
       deleteMessages: Nachrichten löschen
