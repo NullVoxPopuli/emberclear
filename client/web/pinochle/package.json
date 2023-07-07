@@ -68,7 +68,7 @@
     "npm-run-all": "4.1.5",
     "qunit-console-grouper": "0.3.0",
     "qunit-dom": "1.6.0",
-    "stylelint": "13.13.1"
+    "stylelint": "15.10.1"
   },
   "engines": {
     "node": "14.17.1"

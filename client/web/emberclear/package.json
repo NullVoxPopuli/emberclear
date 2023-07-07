@@ -191,7 +191,7 @@
     "qunit-console-grouper": "0.3.0",
     "qunit-dom": "1.6.0",
     "qunit-xstate-test": "0.1.0",
-    "stylelint": "13.13.1",
+    "stylelint": "15.10.1",
     "testdouble": "3.16.1",
     "testem-failure-only-reporter": "0.0.1",
     "ts-node": "9.1.1",
