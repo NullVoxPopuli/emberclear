@@ -12,7 +12,7 @@
     "@faltest/cli": "3.0.1",
     "@faltest/lifecycle": "5.0.2",
     "@faltest/page-objects": "4.0.2",
-    "http-server": "0.12.3",
+    "http-server": "0.13.0",
     "poll-pr-status": "3.0.0",
     "prettier": "2.2.1"
   },
