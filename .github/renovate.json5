@@ -2,7 +2,9 @@
 // https://docs.renovatebot.com/configuration-options/
 {
   "extends": [
-    "config:base"
+    "config:base",
+    "github>NullVoxPopuli/renovate:weekly.json5",
+    "github>NullVoxPopuli/renovate:npm-groups.json5"
   ],
   "automerge": false,
   "masterIssue": true,
