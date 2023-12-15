@@ -71,13 +71,13 @@
     "stylelint": "13.13.1"
   },
   "engines": {
-    "node": "14.17.1"
+    "node": "14.21.3"
   },
   "ember": {
     "edition": "octane"
   },
   "volta": {
-    "node": "14.17.1",
+    "node": "14.21.3",
     "yarn": "1.22.10"
   },
   "dependencies": {
