@@ -105,7 +105,7 @@ jobs:
         path: client/web/emberclear/dist/
 
     - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: nullvoxpopuli/emberclear
         username: ${{ secrets.DOCKERHUB_USER }}
