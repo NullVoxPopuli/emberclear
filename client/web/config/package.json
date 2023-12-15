@@ -10,7 +10,7 @@
     "node": "14.17.1"
   },
   "devDependencies": {
-    "@nullvoxpopuli/eslint-configs": "1.3.2"
+    "@nullvoxpopuli/eslint-configs": "1.5.8"
   },
   "volta": {
     "node": "14.17.1",
