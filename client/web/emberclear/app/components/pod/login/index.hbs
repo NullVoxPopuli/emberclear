@@ -1,0 +1,39 @@
+{{!--
+  data-transfer-started value is string true/false
+  there is CSS controlling some visuals between the login form and transfer-prompt
+  for emphasis.
+--}}
+<FocusCard
+  @title={{t 'ui.login.title'}}
+  data-transfer-started='{{includes this.state 'qrScanned'}}'
+>
+
+  {{#if (includes this.state 'importData')}}
+
+    {{!-- overlays on top of everything --}}
+    <EllipsisLoader /><br>
+    {{t 'ui.login.loading' num=this.contacts.length}}
+
+  {{else if (includes this.state 'error')}}
+
+    <ErrorCard
+      data-test-error
+      @message={{this.ctx.error}}
+      @retry={{fn this.transition 'RETRY'}}
+    />
+
+  {{/if}}
+  {{!--
+    Figureout states for:
+     - uploadFile
+     - processLogin?
+     - success?
+       - timer based that redirects you?
+  --}}
+
+  <LoginForm />
+  <Pod::Login::LoginForm::TransferPrompt
+    @updateTransferStatus={{this.updateTransferStatus}}
+  />
+
+</FocusCard>
