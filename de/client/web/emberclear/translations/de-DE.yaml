@@ -1,0 +1,300 @@
+---
+appname: emberclear
+subheader: Verschlüsselter Chat. Kein Verlauf. Keine Logs.
+authoredBy: von
+redditCommunity: Reddit Community
+twitter: Twitter
+emberjs: Ember.JS
+todo: 'TODO: Fülle dies korrekt aus'
+install: Installieren
+bundle-analysis: JS Bundle Analysis
+qrCode:
+  error: QR Code konnte nicht erzeugt werden
+  malformed: QR Code ist ungültig
+  waitingForCamera: Warten auf Kamerazugriff
+connection:
+  connecting: Verbinde...
+  connected: Verbunden!
+  disconnected: Verbindung getrennt.
+  degraded: Heruntergestuft
+  unknown: Unbekannt
+  status:
+    socket:
+      error: Bei der Socket Verbindung ist ein Fehler aufgetreten!
+      close: Die Socket Verbindung wurde unterbrochen!
+    timeout: Ein Verbindungsfehler ist aufgetreten. Bitte warten...
+  errors:
+    send:
+      notConnected: Nachrichten können ohne Internetverbindung nicht gesendet werden!
+    subscribe:
+      notConnected: Abonnieren eines Kanals ohne Socket Verbindung nicht möglich!
+errors:
+  genericTitle: "Ein Fehler ist aufgetreten!"
+  genericRetry: "Hoppla, da ist etwas schiefgelaufen. Erneut versuchen?"
+  notFound:
+    title: Nicht gefunden
+    help: Die URL konnte nicht aufgerufen werden. Wenn das Problem weiterhin besteht,
+    link: erstelle ein Ticket.
+  permissions:
+    enableCamera: Du musst dieser Seite möglicherweise Zugriff zu deiner Kamera geben.
+buttons:
+  allow: Zulassen
+  deny: Ablehnen
+  retry: Erneut versuchen
+  delete: Löschen
+  resend: Erneut senden
+  resendAutomatically: automatisch erneut senden
+  enable: Aktivieren
+  save: Speichern
+  next: Weiter
+  back: Zurück
+  begin: Starten
+  logout: Abmelden
+  login: Anmelden
+  cancel: Abbrechen
+  close: Schließen
+  import: Importieren
+  scan: Scannen
+  sendSnippet: Ausschnitt senden
+  remove: Entfernen
+  donate: Spenden
+  donateEth: Ethereum spenden
+  donateXmr: Monero spenden
+  loginInstead: Stattdessen anmelden
+  uploadSettings: Upload Einstellungen
+  showMyInfo: Meine Info anzeigen
+  invite: Einladen
+  addFriend: Freund hinzufügen
+  makeDefault: Als Standard festlegen
+  ariaLabel:
+    sidebar: 'Seitenleiste anzeigen/ausblenden'
+    dropdownBackdrop: Klickbarer Hintergrund, um das Dropdown Menü mittels Klick zu schließen
+    modalBackdrop: Klickbarer Hintergrund, um den Dialog mittels Klick zu schließen
+    menuBackdrop: Klickbarer Hintergrund, um das Menü mittels Klick zu schließen
+    sidebarBackdrop: Klickbarer Hintergrund, um die Sidebar mittels Klick auszublenden
+    closeModal: Dialog schließen
+compatibility:
+  title: Leider stimmt etwas nicht!
+  description: Um emberclear nutzen zu können, muss dein Browser die folgenden Technologien und Funktionen unterstützen
+  score: Ergebnis
+  required: Benötigt
+  compatibility: Kompatibilität
+  camera: Kamera
+  notifications: Benachrichtigungen
+  indexeddb: Indexierte Datenbank
+  wasm: WebAssembly
+  serviceWorker: Service Worker
+  webWorker: Web Worker
+  status:
+    exists: Browser hat diese Fähigkeit
+    missing: Browser fehlt diese Fähigkeit
+images:
+  alt:
+    thumbnail: Vorschaubild
+    ownIdentityQR: Dies ist deine Identität, verpackt in einem QR Code
+input:
+  label:
+    mnemonic: Kürzel
+    name: Name
+status:
+  connected: Verbunden
+  enabled: Aktiviert
+  deliveryFailed: 'Die Nachricht konnte nicht zugestellt werden.'
+  importing: Wird importiert...
+  updateAvailable: Eine neue Version ist verfügbar. Klicke hier, um die Aktualisierung durchzuführen.
+services:
+  crypto:
+    keyGenFailed: Erzeugung der Schlüssel fehlgeschlagen
+routes:
+  home: Startseite
+  chat: Chat
+  qr: QR
+  logout: Abmelden
+  login: Anmelden
+  contacts: Kontakte
+  settings: Einstellungen
+  profile: Profil
+  faq: FAQ
+  createNewUser: Neuen Benutzer erstellen
+models:
+  identity:
+    name: Name
+    publicKey: Öffentlicher Schlüssel
+  message:
+    autosendPending: automatische Sendung steht aus
+    errors:
+      timeout: 'Sendezeit überschritten.'
+ui:
+  invite:
+    copyProfile: Link kopieren
+    copied: Kopiert!
+  notifications:
+    title: Emberclear Nachricht
+    from: Nachricht von {name}
+    prompt:
+      title: Emberclear benötigt deine Erlaubnis, um die Benachrichtigungen aktivieren zu können.
+      enable: Benachrichtigungen aktivieren
+      askLater: Nächstes Mal fragen
+      neverAsk: Nicht erneut nachfragen
+  search:
+    title: Nach Kontakten und Kanälen suchen
+    description: Suchfunktion folgt in kürze
+    noContacts: Keine Kontakte gefunden
+    noChannels: Keine Kanäle gefunden
+    contacts: Kontakte
+    channels: Kanäle
+    nothingFound: Keine Ergebnisse gefunden
+  shortcuts:
+    title: Tastatenkombination
+    key:
+      ctrl: strg
+      esc: esc
+      enter: enter
+      i: i
+      slash: /
+      space: Leertaste
+      tab: tab
+      h: h
+      k: k
+    actions:
+      search: Alles durchsuchen
+      toggleSidebar: Seitenleiste anzeigen/ausblenden
+      toggleHelp: Tastaturhilfe einblenden
+    label:
+      search:
+        tab: zum Navigieren
+        enter: zum Auswählen
+        esc: zum Abbrechen
+  sidebar:
+    find: Finden...
+    keepTyping: 'Noch {num} Zeichen zum Suchen...'
+    results: '{num} results'
+    unread: Ungelesen
+    channels:
+      title: Kanäle
+      none: Du bist noch keinem Raum beigetreten
+      placeholder: Name des neuen Kanals
+    contacts:
+      title: 'Kontakte'
+      none: Keine Kontakte vorhanden
+      numOffline: '{num} offline'
+    actions:
+      title: 'Aktionen'
+      none: Keine Aktionen.
+  addContact:
+    title: Lass deine Freunden deinen QR Code einscannen, teile deinen Link, oder scannen den QR Code eines Freundes ein
+  chat:
+    welcome: Willkommen!
+    message: >
+      Du brauchst mindestens einen Freund, um anfangen zu können.'<br />''<br />' Danach kannst du mit deinen Kontakten chatten und über Kanäle mit Gruppen kommunizieren.
+    newMessages: Es existieren neuere Nachrichten
+    viewRecent: Letzte Nachrichten ansehen
+    unreadMessages: '{number} neue Nachrichten seit {time}'
+    markAllAsRead: Alle als gelesen markieren
+    errors:
+      contactNotFound: Dein Kontakt konnte nicht lokalisiert werden
+      channelNotFound: Der Kanal konnte nicht gefunden werden.
+    sender:
+      removed: Entfernt
+    messages:
+      received: 'Empfangen: {at}'
+    embedMenu:
+      code: Code oder Text Ausschnitt
+      embed: Aus URL hinzufügen
+      file: Datei von PC senden
+      video: Video Chat starten
+      audio: Audio Chat starten
+    codeModal:
+      title: Sende Code oder Ausschnitt an '<strong>'{to}'</strong>'
+  faq:
+    title: Häufig gestellte Fragen (FAQ)
+    whatIsQ: Was ist Emberclear?
+    whatIsA: >
+      Emberclear ist ein quelloffener und verschlüsselter p2p Chat Client, der via Open Source Mesh Knoten im kostenlosen Kontingent der großen Cloud Anbieter läuft.
+    howDoesWorkQ: Wie funktioniert das?
+    howDoesWorkA: >
+      Die gesamte Verschlüsselung findet lokal im Browser statt -- zu keiner Zeit verlassen die privaten Schlüssel deinen Computer. Emberclear nutzt Libsodium's öffentliche Schlüssel-Kryptographie, um die Sicherheit der Nachrichten über das gesamte Internet und in jedem Netzwerk zu garantieren -- selbst wenn das genutzte Netzwerk bereits kompromittiert ist.
+    whyQ: Warum?
+    whyA: >
+      Zum Einen aus Spaß, zum Anderen aus der Freude am Lernen -- Ich wollte schon immer ein Framework für Entwickler erstellen, welches diese dann in bestehende Web Anwendungen integrieren können. Dieses Projekt wurde außerdem von meinem Misstrauen gegenüber bestehender Chat Apps und deren Infrastruktur inspiriert. Am Ende soll das Projekt über alle Funktion der populären Messenger verfügen -- mit einem Unterschied: Weder Server, Relays noch die förderierten Knoten tracken deine Inhalte.
+    notOnlineQ: Was passiert, wenn ich eine Nachricht sende und der Empfänger nicht mehr online ist.
+    notOnlineA: >
+      Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfänger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
+    serverStorageQ: Speichert der Server / das Relay meine Nachrichten?
+    serverStorageA: "Nein."
+  footer:
+    navigation: Navigation
+    about: Über
+    wantToSupport: Möchtest du das Projekt unterstützen?
+    license: >
+      The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
+  login:
+    title: "Willkommen zurück!"
+    instructions: Bitte füge oder tippe deine mnemonic Passphrase ein
+    loading: '{num} Kontakte geladen...'
+    success: "Angemeldet!"
+    warning: "Beachten, dass dein Konto ohne ein anderes eingeloggtes Gerät oder deines Mnemonic nicht wiederhergestellt werden kann, da kein zentraler Speicher zum Wiederherstellen vorhanden ist."
+    invalidState: 'Ein unbekannter Fehler trat auf beim Versuch, die Registrierung oder Anmeldung vorzubereiten'
+    transfer:
+      title: "Mit QR Code anmelden"
+      prompt: "Scannen dies mit emberclear um sich anzumelden und deine Daten sofort zu übertragen."
+      establishConnection: "Verbindung herstellen..."
+      inProgress: Datenübertragung läuft...
+      success: "Du bist daran, dich auf dem anderen Gerät anzumelden!"
+    verify:
+      title: Verifizieren
+      prompt1: "Möchtest du dich bei einem neuen Gerät anmelden?"
+      prompt2: "Stelle sicher, dass der Code mit dem Code unter dem QR Image auf dem Gerät übereinstimmt."
+      received: Login Anfrage erhalten
+      waitingOnApproval: Warten auf Genehmigung
+      receivedData: Empfangene Daten
+      importing: Importierte Daten
+      failed: "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+  setup:
+    overwriteTitle: Möchtest du wirklich eine neue Identität anlegen?
+    overwriteQuestion: >
+      Dies ist eine zerstörerische Handlung, welche die aktuell konfigurierte Identität löscht und ersetzt. Es existiert keine Möglichkeit zur Wiederherstellung und ohne die mnemonic Passphrase wirst du dich auch nicht mehr mit zuvor konfigurierten Chats verbinden können. '<br>' '<br>' Möchtest du wirklich fortfahren?
+    overwriteAbort: Nein, bring mich zurück in Sicherheit
+    overwriteConfirm: Ja, ich bin mir der Risiken bewusst
+    introQuestion: Wie möchtest du genannt werden?
+    almostReady: Du hast es fast geschafft!
+    nameLabel: Dein gewünschter Alias
+    mnemonicPrompt: >
+      Wenn du einen Account auch auf anderen Computern nutzen willst, dann speichere diese mnemonic Passphrase an einem sicheren Ort. Diese wird zum Anmelden benötigt.
+    note: >
+      Du kannst jederzeit deine Einstellungen herunterladen, um diese dann später auf einem anderen PC nutzen zu können. Die Einstellungen beinhalten mehr als nur deine Identität.
+  contacts:
+    title: 'Kontakte ({number})'
+    noContacts: Du hast noch keine Kontakte. Über das Benutzer Menü in der oberen rechten Ecke kannst du welche importieren.
+  logout:
+    title: Abmelden löscht die vorhandenen Daten
+    warning: >
+      Das Abmelden führt zur Löschung aller lokalen Daten. Bitte stelle sicher, dass du dir deine mnemonic Passphrase aufgeschrieben oder gemerkt hast. Herunterladen kannst du deine Einstellungen alternativ auch unter
+    theSettingsPage: der Einstellungsseite.
+    confirm: Abmeldung bestätigen
+  settings:
+    title: Einstellungen
+    tabs:
+      profile: Profilinfo
+      interface: Benutzeroberfläche
+      permissions: Berechtigungen
+      relays: Relais
+      dangerZone: Gefahrenzone
+    relays:
+      add: Relais hinzufügen
+      URLs: URLs
+      socket: Socket
+      openGraph: Open Graph
+      connectedUsers: Verbundene Nutzer
+    themes:
+      title: Themen
+      midnight: Mitternacht
+    copyProfileToDevice: Profil auf Gerät kopieren
+    hideKey: Privaten Schlüssel ausblenden
+    showKey: Privaten Schlüssel anzeigen
+    download: Einstellungen herunterladen
+    hideOfflineContacts: Offline Kontakte ausblenden
+    useLeftRightJustificationForMessages: Nachrichten Links/Rechts Ausrichten
+    danger:
+      title: Gefahrenzone
+      deleteMessages: Nachrichten löschen
