@@ -1,0 +1,300 @@
+---
+appname: emberclear
+subheader: Conversação encriptada. Sem histórico. Sem logs.
+authoredBy: por
+redditCommunity: Reddit Community
+twitter: Twitter
+emberjs: Ember.JS
+todo: 'A fazer: preencher isto corretamente'
+install: Install
+bundle-analysis: JS Bundle Analysis
+qrCode:
+  error: Código QR não pôde ser gerado
+  malformed: QR Code is malfomed
+  waitingForCamera: Awaaiting Camera Access
+connection:
+  connecting: A ligar...
+  connected: Ligado!
+  disconnected: Disconnected.
+  degraded: Degraded
+  unknown: Unknown
+  status:
+    socket:
+      error: Ocorreu um erro na conexão do socket!
+      close: A conexão do socket caíu!
+    timeout: Há um problema de rede. A aguardar...
+  errors:
+    send:
+      notConnected: Não pode enviar mensagens sem uma conexão!
+    subscribe:
+      notConnected: Não pode subscrever um canal sem uma conexão de socket!
+errors:
+  genericTitle: "An Error occurred!"
+  genericRetry: "Oh no! Something went wrong. Retry?"
+  notFound:
+    title: Not Found
+    help: The URL could not be navigated to. If the problem persists,
+    link: please file an issue.
+  permissions:
+    enableCamera: You may need to allow this site access to your camera.
+buttons:
+  allow: Allow
+  deny: Deny
+  retry: Retry
+  delete: apagar
+  resend: reenviar
+  resendAutomatically: reenviar automaticamente
+  enable: Enable
+  save: Guardar
+  next: Seguinte
+  back: Anterior
+  begin: Começar
+  logout: Terminar Sessão
+  login: Iniciar sessão
+  cancel: Cancelar
+  close: Fechar
+  import: Importar
+  scan: Procurar
+  sendSnippet: Enviar snippet
+  remove: Remover
+  donate: Donate
+  donateEth: Doar Ethereum
+  donateXmr: Doar Monero
+  loginInstead: Iniciar sessão
+  uploadSettings: Definições de carregamento de ficheiros
+  showMyInfo: Mostrar minha informação
+  invite: Convidar
+  addFriend: Adicionar amigo
+  makeDefault: Make Default
+  ariaLabel:
+    sidebar: 'Ativa/desativar barra lateral'
+    dropdownBackdrop: Elemento acionável para fechar o menu suspenso
+    modalBackdrop: Elemento acionável para fechar o diálogo
+    menuBackdrop: Elemento acionável para fechar o menu
+    sidebarBackdrop: Elemento acionável para ocultar a barra lateral
+    closeModal: Fechar diálogo
+compatibility:
+  title: Algo está errado!
+  description: Para usar o emberclear, o seu browser deve suportar as seguintes tecnologias e funcionalidades
+  score: Pontuação
+  required: Required
+  compatibility: Compatibilidade
+  camera: Câmera
+  notifications: Notificações
+  indexeddb: Indexed DB
+  wasm: WebAssembly
+  serviceWorker: Service Worker
+  webWorker: Web Worker
+  status:
+    exists: Browser has this capability
+    missing: Browser missing this capability
+images:
+  alt:
+    thumbnail: Miniatura
+    ownIdentityQR: Esta é a tua informação de identidade representada como um código QR
+input:
+  label:
+    mnemonic: Mnemonic
+    name: Name
+status:
+  connected: Connected
+  enabled: Enabled
+  deliveryFailed: 'Mensagem não pôde ser entregue'
+  importing: A importar...
+  updateAvailable: Está disponível uma nova versão. Clique para atualizar.
+services:
+  crypto:
+    keyGenFailed: Geração de chave falhou
+routes:
+  home: Início
+  chat: Conversação
+  qr: QR
+  logout: Terminar Sessão
+  login: Iniciar sessão
+  contacts: Contactos
+  settings: Definições
+  profile: Perfil
+  faq: Questões Frequentes
+  createNewUser: Criar Novo Utilizador
+models:
+  identity:
+    name: Nome
+    publicKey: Chave Pública
+  message:
+    autosendPending: reenvio pendente
+    errors:
+      timeout: 'O envio expirou.'
+ui:
+  invite:
+    copyProfile: Copiar ligação
+    copied: Copiado!
+  notifications:
+    title: mensagem de emberclear
+    from: mensagem de {name}
+    prompt:
+      title: emberclear precisa de sua permissão para ativar as notificações.
+      enable: Ativar Notificações
+      askLater: Perguntar da próxima vez
+      neverAsk: Nunca perguntar novamente
+  search:
+    title: Procurar contactos e canais
+    description: Pesquisa brevemente
+    noContacts: Nenhum contacto encontrado
+    noChannels: Nenhum canal encontrado
+    contacts: Contactos
+    channels: Canais
+    nothingFound: Nenhum resultado encontrado
+  shortcuts:
+    title: Atalhos de teclado
+    key:
+      ctrl: ctrl
+      esc: esc
+      enter: enter
+      i: i
+      slash: /
+      space: espaço
+      tab: tab
+      h: h
+      k: k
+    actions:
+      search: Pesquisar tudo
+      toggleSidebar: Ativar/desativar barra lateral
+      toggleHelp: Ativar/desativar ajuda de teclado
+    label:
+      search:
+        tab: to navigate
+        enter: to select
+        esc: to dismiss
+  sidebar:
+    find: Find...
+    keepTyping: '{num} characters left to search...'
+    results: '{num} results'
+    unread: Não lido
+    channels:
+      title: Canais
+      none: Não estás em nenhum canal
+      placeholder: Nome do novo canal
+    contacts:
+      title: 'Contactos'
+      none: Não tens contactos.
+      numOffline: '{num} offline'
+    actions:
+      title: 'Ações'
+      none: Nenhuma ação no momento.
+  addContact:
+    title: Pede a um amigo que faça scan ao teu QR Code, partilhe o teu link ou faça scan do seu QR Code
+  chat:
+    welcome: Bem-vindo!
+    message: >
+      Para começar, precisas de pelo menos um amigo.'<br />''<br />' Depois poderás conversar com ele e criar canais para comunicar com grupos de amigos.
+    newMessages: Existem novas mensagens
+    viewRecent: ver mensagens recentes
+    unreadMessages: '{number} novas mensagens desde {time}'
+    markAllAsRead: Marcar todas como lidas
+    errors:
+      contactNotFound: O teu contacto não pôde ser localizado
+      channelNotFound: The channel could not be located.
+    sender:
+      removed: removido
+    messages:
+      received: 'Recebido: {at}'
+    embedMenu:
+      code: Código ou excerto de texto
+      embed: Incorporar de um URL
+      file: Enviar ficheiro do computador
+      video: Iniciar conversação vídeo
+      audio: Iniciar conversação áudio
+    codeModal:
+      title: Enviar código ou excerto para '<strong>'{to}'</strong>'
+  faq:
+    title: Questões frequentes
+    whatIsQ: O que é emberclear
+    whatIsA: >
+      emberclear é o cliente de conversações p2p encriptado de código aberto que opera sobre nós de rede de código aberto em serviços de nuvem de camada livre.
+    howDoesWorkQ: Como funciona?
+    howDoesWorkA: >
+      Toda a encriptação é feita no browser -- em circunstância alguma as chaves privadas saem do computador. Emberclear usa a criptografia de chave pública libsodium para se certificar mensagens seguras e encriptadas na internet ou em qualquer rede -- mesmo que a rede esteja comprometida.
+    whyQ: Porquê?
+    whyA: >
+      Parcialmente por diversão e aprendizagem -- pretende-se fornecer uma estrutura para pessoas que desejam entrar em aplicativos web para que suas ferramentas pré-existentes possam interagir com suas criações. Este projeto também é inspirado pela falta de confiança em aplicativos de conversação existentes e na sua infraestrutura. Por fim, este projeto, no que toca à funcionalidade, será um clone do que for popular - com a única diferença fundamental de que nada é registado pelos nós de retransmissão / federados.
+    notOnlineQ: O que acontece quando envio uma mensagem e o destinatário já não está online?
+    notOnlineA: >
+      The server does not store any messages, and does not keep a queue of undelivered messages. If a recipient is not online, the message will manually need to be resent.
+    serverStorageQ: O servidor / retransmissor armazena alguma das minhas mensagens?
+    serverStorageA: "No."
+  footer:
+    navigation: Navegação
+    about: About
+    wantToSupport: Queres apoiar este projeto?
+    license: >
+      The '<a href='https://github.com/NullVoxPopuli/emberclear' target='_blank' rel='noopener'>'source code'</a>' uses the '<a href="https://opensource.org/licenses/GPL-3.0" target='_blank' rel='noopener'>'GPL-3'</a>' license.
+  login:
+    title: "Welcome Back!"
+    instructions: Por favor cola ou digita a tua chave-mnemónica.
+    loading: Loaded {num} Contacts...
+    success: "Logged In!"
+    warning: "Note that without another logged in device or your mnemonic, your account will be unrecoverable as there is no central storage to recovery from."
+    invalidState: 'An unknown error occurred while trying to get things ready for signup or login'
+    transfer:
+      title: "Log in with QR Code"
+      prompt: "Scan this with emberclear to login and have all your data transferred instantly."
+      establishConnection: "Establishing Connection..."
+      inProgress: Transferring Data...
+      success: "You are about to be logged in on the other device!"
+    verify:
+      title: Verify
+      prompt1: "Do you want to login to a new device?"
+      prompt2: "Be sure that the code matches the code below the QR Image on the device."
+      received: Received login request
+      waitingOnApproval: Waiting for approval
+      receivedData: Received data
+      importing: Importing data
+      failed: "Something went wrong. Please try again."
+  setup:
+    overwriteTitle: Tens a certeza que pretendes criar uma nova identidade?
+    overwriteQuestion: >
+      Esta é uma ação destrutiva, que fará com que a identidade atualmente configurada seja esquecida e substituída. Não há como recuperar, e sem ter a mnemónica guardada em algum lugar, não conseguirás ligar-te com nenhuma das conversações configuradas anteriormente, pois ninguém saberá quem és. '<br>' '<br>' Tens a certeza que queres fazer isto?
+    overwriteAbort: Não, regressar
+    overwriteConfirm: Sim, eu compreendo os riscos
+    introQuestion: Como gostarias de ser chamado?
+    almostReady: Estás quase pronto para começar a conversação!
+    nameLabel: A tua alcunha desejada
+    mnemonicPrompt: >
+      Se gostarias de usar esta conta em outros computadores, por favor guarda esta mnemónica num local seguro. Será usada para iniciar sessão.
+    note: >
+      Podes descarregar as tuas configurações a qualquer momento para poder enviá-las para outro computador. As configurações incluirão mais do que apenas tua identidade.
+  contacts:
+    title: 'Contactos ({number})'
+    noContacts: Não tens contatos. Sente-te à vontade para importar alguns do menu de utilizador no canto superior direito.
+  logout:
+    title: Terminar sessão é destrutivo
+    warning: >
+      Terminar sessão excluirá todos os dados locais. Por favor, certifica-te que tens a tua mnemónica escrita ou memorizada. Como alternativa, podes descarregar as tuas configurações em
+    theSettingsPage: a página de Configurações.
+    confirm: Confirmar terminar sessão
+  settings:
+    title: Configurações
+    tabs:
+      profile: Profile Info
+      interface: Interface
+      permissions: Permissions
+      relays: Relays
+      dangerZone: Danger Zone
+    relays:
+      add: Add Relay
+      URLs: URLs
+      socket: socket
+      openGraph: open graph
+      connectedUsers: connected users
+    themes:
+      title: Themes
+      midnight: Midnight
+    copyProfileToDevice: Copiar perfil para dispositivo
+    hideKey: Esconder chave privada
+    showKey: Mostrar chave privada
+    download: Descarregar configurações
+    hideOfflineContacts: Esconder contactos offline
+    useLeftRightJustificationForMessages: Usar justificação de mensagens à esquerda/direita
+    danger:
+      title: Zona de perigo
+      deleteMessages: Eliminar mensagens
