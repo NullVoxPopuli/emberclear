@@ -10,8 +10,8 @@ install: Installieren
 bundle-analysis: JS Bundle Analysis
 qrCode:
   error: QR Code konnte nicht erzeugt werden
-  malformed: QR-Code ist ungültig
-  waitingForCamera: Awaaiting Camera Access
+  malformed: QR Code ist ungültig
+  waitingForCamera: Warten auf Kamerazugriff
 connection:
   connecting: Verbinde...
   connected: Verbunden!
@@ -211,15 +211,15 @@ ui:
     whatIsQ: Was ist Emberclear?
     whatIsA: >
       Emberclear ist ein quelloffener und verschlüsselter p2p Chat Client, der via Open Source Mesh Knoten im kostenlosen Kontingent der großen Cloud Anbieter läuft.
-    howDoesWorkQ: Wie funtioniert das?
+    howDoesWorkQ: Wie funktioniert das?
     howDoesWorkA: >
-      Die gesamte Verschlüsselung findet lokal im Browser statt -- zu keiner Zeit verlassen die privaten Schlüssel deinen Computer. Emberclear nutzt Libsodium's öffentliche Schlüssel-Kryptographie, um die Sicherheit der Nachrichten über das gesamte Internet und in jedem Netzwerk zu garantieren -- selbst wenn das genutzte Netzwerk bereits kompromitiert ist.
+      Die gesamte Verschlüsselung findet lokal im Browser statt -- zu keiner Zeit verlassen die privaten Schlüssel deinen Computer. Emberclear nutzt Libsodium's öffentliche Schlüssel-Kryptographie, um die Sicherheit der Nachrichten über das gesamte Internet und in jedem Netzwerk zu garantieren -- selbst wenn das genutzte Netzwerk bereits kompromittiert ist.
     whyQ: Warum?
     whyA: >
       Zum Einen aus Spaß, zum Anderen aus der Freude am Lernen -- Ich wollte schon immer ein Framework für Entwickler erstellen, welches diese dann in bestehende Web Anwendungen integrieren können. Dieses Projekt wurde außerdem von meinem Misstrauen gegenüber bestehender Chat Apps und deren Infrastruktur inspiriert. Am Ende soll das Projekt über alle Funktion der populären Messenger verfügen -- mit einem Unterschied: Weder Server, Relays noch die förderierten Knoten tracken deine Inhalte.
-    notOnlineQ: Was passiert wenn ich eine Nachricht sende und der Empfänger nich mehr online ist.
+    notOnlineQ: Was passiert, wenn ich eine Nachricht sende und der Empfänger nicht mehr online ist.
     notOnlineA: >
-      Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfenger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
+      Der Server speichert keine Nachrichten und besitzt auch keine Warteschlange für nicht zugestellte Inhalte. Wenn ein Empfänger nicht online ist, muss die Nachricht erneut manuell gesendet werden.
     serverStorageQ: Speichert der Server / das Relay meine Nachrichten?
     serverStorageA: "Nein."
   footer:
@@ -236,7 +236,7 @@ ui:
     warning: "Beachten, dass dein Konto ohne ein anderes eingeloggtes Gerät oder deines Mnemonic nicht wiederhergestellt werden kann, da kein zentraler Speicher zum Wiederherstellen vorhanden ist."
     invalidState: 'Ein unbekannter Fehler trat auf beim Versuch, die Registrierung oder Anmeldung vorzubereiten'
     transfer:
-      title: "Mit QR-Code anmelden"
+      title: "Mit QR Code anmelden"
       prompt: "Scannen dies mit emberclear um sich anzumelden und deine Daten sofort zu übertragen."
       establishConnection: "Verbindung herstellen..."
       inProgress: Datenübertragung läuft...
@@ -253,7 +253,7 @@ ui:
   setup:
     overwriteTitle: Möchtest du wirklich eine neue Identität anlegen?
     overwriteQuestion: >
-      Dies ist eine zerstörerische Handlung, welche die aktuell konfigurierte Identität löscht und ersetzt. Es existiert keine Möglichkeit zur Wiederherstellung und ohne die mnemonic Passphrase wirst du dich auch nicht mehr mit zuvor konfigurerten Chats verbinden können. '<br>' '<br>' Möchtest du wirklich fortfahren?
+      Dies ist eine zerstörerische Handlung, welche die aktuell konfigurierte Identität löscht und ersetzt. Es existiert keine Möglichkeit zur Wiederherstellung und ohne die mnemonic Passphrase wirst du dich auch nicht mehr mit zuvor konfigurierten Chats verbinden können. '<br>' '<br>' Möchtest du wirklich fortfahren?
     overwriteAbort: Nein, bring mich zurück in Sicherheit
     overwriteConfirm: Ja, ich bin mir der Risiken bewusst
     introQuestion: Wie möchtest du genannt werden?
