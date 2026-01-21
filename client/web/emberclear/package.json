@@ -63,7 +63,7 @@
     "hammerjs": "2.0.8",
     "prismjs": "1.24.0",
     "prismjs-components-loader": "3.0.1",
-    "showdown": "1.9.1",
+    "showdown": "2.0.0",
     "toastify-js": "1.10.0",
     "url-parse": "1.5.1"
   },
