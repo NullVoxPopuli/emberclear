@@ -224,3 +224,31 @@ jobs:
           --staticDistDir=./dist \
           --githubToken $GITHUB_TOKEN \
           --githubAppToken $LHCI_GITHUB_APP_TOKEN
+
+
+
+
+ ##############################################################
+
+  asset_size_reporting:
+    name: Asset Sizes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [build_app]
+
+    steps:
+    - uses: actions/checkout@v2-beta
+      with:
+        fetch-depth: 0
+
+    - name: Download Built App Artifacts
+      uses: actions/download-artifact@master
+      with:
+        name: built_app
+        path: ${{ env.cwd }}/dist/
+
+    - uses: NullVoxPopuli/ember-asset-size-action@support-working-directory
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${{ env.cwd }}
+        use-pr-artifacts: true
