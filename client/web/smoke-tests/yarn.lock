@@ -167,10 +167,10 @@
     yargs "^16.0.0"
     yn "^4.0.0"
 
-"@faltest/lifecycle@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-5.0.0.tgz#cd497816069acec3e91b15a75fde0b511ed69ca3"
-  integrity sha512-73N4oSvHBYaQye8J8R/F0y9O8Foh8MCs3hPLw9NFD6FiJwZOmmZarIcMjgfoOy6NQUHLrm4LhfVOC9gZni7fKQ==
+"@faltest/lifecycle@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@faltest/lifecycle/-/lifecycle-5.0.1.tgz#6cca3ec37f9ca0e92b9e321aa91457c02a5827d1"
+  integrity sha512-FgXdMjcT9dU57GHbBu+M7c4ekAA28KVmo4WC6orYa1dS4kyNB/Yqy2f9e7zY9jnqJSVaM4G2D39uoRRsUxalrQ==
   dependencies:
     "@faltest/remote" "^5.0.0"
     "@faltest/utils" "^3.0.0"
@@ -188,10 +188,10 @@
     glob "^7.1.4"
     mocha-helpers "^5.0.0"
 
-"@faltest/page-objects@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-4.0.0.tgz#86fcf2d95af8ac3574ca8200bb5babeb96f8172d"
-  integrity sha512-n8D1uZlDE2ti1bDVtcBMTD0GWisUunSwiYnO3Wwb0Os2oJbEAqARf6kWGrmbyAozf3L7cYbpq+efLESiC1G9IQ==
+"@faltest/page-objects@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@faltest/page-objects/-/page-objects-4.0.1.tgz#6b77d79e1c34669cf765aab5f43c684248e0ea4d"
+  integrity sha512-FJzdLY4X6aXnUOyyr04GKF+ZV/4UEh1Fhgi/XFi817F0kzwUXHY44nVzlmyx+Jm3PgxPOxzrFDYN8w5rlM9KCQ==
   dependencies:
     "@faltest/browser" "^3.0.0"
     verror-extra "^2.0.0"
@@ -1979,9 +1979,9 @@ he@1.2.0, he@^1.1.1:
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
 hosted-git-info@^2.1.4:
-  version "2.8.8"
-  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.8.tgz#7539bd4bc1e0e0a895815a2e0262420b12858488"
-  integrity sha512-f/wzC2QaWBs7t9IYqB4T3sR1xviIViXJRJTWBlx2Gf3g0Xi5vI7Yy4koXQ1c9OYDGHN9sBy1DQ2AB8fqZBWhUg==
+  version "2.8.9"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
+  integrity sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==
 
 http-proxy@^1.18.0:
   version "1.18.1"
