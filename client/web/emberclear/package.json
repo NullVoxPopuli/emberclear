@@ -64,7 +64,7 @@
     "prismjs": "1.24.0",
     "prismjs-components-loader": "3.0.1",
     "showdown": "1.9.1",
-    "toastify-js": "1.10.0",
+    "toastify-js": "1.12.0",
     "url-parse": "1.5.1"
   },
   "devDependencies": {
