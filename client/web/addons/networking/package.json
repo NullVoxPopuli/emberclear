@@ -38,7 +38,7 @@
     "ember-concurrency-ts": "0.2.2",
     "ember-destroyable-polyfill": "2.0.3",
     "phoenix": "1.5.9",
-    "uuid": "8.3.2"
+    "uuid": "11.1.1"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
