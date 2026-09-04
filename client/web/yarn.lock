@@ -14188,10 +14188,10 @@ performance-now@^2.1.0:
   resolved "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-phoenix@1.5.9:
-  version "1.5.9"
-  resolved "https://registry.npmjs.org/phoenix/-/phoenix-1.5.9.tgz#5aad82072c8d90e7e20a187063c5db9b9ab9b5cd"
-  integrity sha512-NBRQaCYIrXL/wd5+OoO+DLlNTIdRvxKat0DSkfJ/c8qwYqKK7jNrf1GWPBOPzSVJ9HNMPjgmniJ87m9Os9IQGg==
+phoenix@1.5.15:
+  version "1.5.15"
+  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.5.15.tgz#e44d8369074fb852b29f7c1387ba706eef552634"
+  integrity sha512-hDXS4YTvpD4cc4dkmEAQUK+OZaAHMWL1G6T9JC1Y9cU6UuLFnV+h6FKweWiC8dJOnMAK+evl4iR4cpqqpjVVFQ==
 
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   version "2.3.0"
