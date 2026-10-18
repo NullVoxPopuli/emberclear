@@ -14,7 +14,7 @@
     "@faltest/page-objects": "4.0.2",
     "http-server": "0.12.3",
     "poll-pr-status": "3.0.0",
-    "prettier": "2.2.1"
+    "prettier": "2.8.8"
   },
   "engines": {
     "node": "14.17.1"
